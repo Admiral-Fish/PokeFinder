@@ -3,7 +3,8 @@
 
 #include <string>
 
-class LCRNG {
+class LCRNG
+{
 
 private:
     uint32_t add;
@@ -11,13 +12,13 @@ private:
     uint32_t multR;
     uint32_t addR;
     uint32_t seed;
-    
+
 public:
-    
+
     LCRNG();
-    
+
     LCRNG(uint32_t seed);
-    
+
     void reSeed(uint32_t newSeed);
 
     void setConst(uint32_t mult, uint32_t add, uint32_t multR, uint32_t addR);
@@ -29,17 +30,17 @@ public:
     void setaRNG();
 
     uint32_t getSeed();
-    
+
     uint32_t next32Bit();
 
     uint32_t next16Bit();
-        
+
     uint32_t prev32Bit();
 
     uint32_t prev16Bit();
-        
+
     void advanceFrames(int frames);
-    
+
     void reverseFrames(int frames);
 
 };

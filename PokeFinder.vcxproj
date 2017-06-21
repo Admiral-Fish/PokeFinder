@@ -83,6 +83,19 @@
   <ItemGroup>
     <Text Include="readme.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Objects\LCRNG.cpp" />
+    <ClCompile Include="Test\LCRNG\LCRNG.cpp" />
+    <ClCompile Include="Test\LCRNG\LCRNGTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Objects\LCRNG.hpp" />
+    <ClInclude Include="Test\LCRNG\LCRNG.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Test\LCRNG\LCRNG.pro" />
+    <None Include="Test\LCRNG\LCRNG.pro.user" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
