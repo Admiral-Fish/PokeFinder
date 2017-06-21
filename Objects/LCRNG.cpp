@@ -73,11 +73,11 @@ uint32_t LCRNG::prev16Bit()
 void LCRNG::advanceFrames(int frames)
 {
     for(int i = 0; i < frames; i++)
-	    seed = seed*mult + add;
+        seed = seed*mult + add;
 }
 
 void LCRNG::reverseFrames(int frames)
 {
     for(int i = 0; i < frames; i++)
-      seed = seed*multR + addR;
+        seed = seed*multR + addR;
 }
