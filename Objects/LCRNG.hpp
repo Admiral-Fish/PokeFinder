@@ -38,9 +38,9 @@ public:
 
     uint32_t prev16Bit();
         
-    uint32_t advanceFrames(int frames);
+    void advanceFrames(int frames);
     
-    uint32_t reverseFrames(int frames);
+    void reverseFrames(int frames);
 
 };
 

@@ -1,5 +1,4 @@
 #include "LCRNG.hpp"
-
 #include <string>
 
 LCRNG::LCRNG() {
@@ -59,11 +58,15 @@ uint32_t LCRNG::prev16Bit() {
     return (prev32Bit() >> 16);
 }
 
-uint32_t LCRNG::advanceFrames(int frames) {
-    return -1;
+void LCRNG::advanceFrames(int frames) {
+    for(int i = 0; i < frames; i++) {
+        next32Bit();
+    }
 }
 
-uint32_t LCRNG::reverseFrames(int frames) {
-    return -1;
+void LCRNG::reverseFrames(int frames) {
+    for(int i = 0; i < frames; i++) {
+        prev32Bit();
+    }
 }
 
