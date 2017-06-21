@@ -30,9 +30,3 @@
 *.exe
 *.out
 *.app
-
-# Visual Studio
-*.vs
-
-# Misc Stuff
-readme.txt
