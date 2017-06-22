@@ -17,6 +17,21 @@ LCRNG::LCRNG(uint32_t seed)
     this->seed = seed;
 }
 
+LCRNG::LCRNG(uint32_t seed, std::string type): LCRNG(seed)
+{
+    if (type == "pokeRNG")
+    {
+      setpokeRNG();
+    }
+    else if (type == "xdRNG")
+    {
+      setxdRNG();
+    } else if (type == "aRNG")
+    {
+      setaRNG();
+    }
+}
+
 // Get method for seed
 uint32_t LCRNG::getSeed()
 {

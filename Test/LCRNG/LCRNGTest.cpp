@@ -18,5 +18,11 @@ int main ()
         std::cout << std::hex << seed << std::endl;
     }
 
+    LCRNG test2 = LCRNG(0,"xdRNG");
+    std::cout << std::hex << test2.getSeed() << std::endl;
+    std::cout << std::hex << test2.next32Bit() << std::endl;
+    std::cout << std::hex << test2.next32Bit() << std::endl;
+    std::cout << std::hex << test2.next32Bit() << std::endl;
+    std::cout << std::hex << test2.next32Bit() << std::endl;
 
 }

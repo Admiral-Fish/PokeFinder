@@ -19,6 +19,8 @@ public:
 
     LCRNG(uint32_t seed);
 
+    LCRNG(uint32_t seed, std::string type);
+
     void setSeed(uint32_t newSeed);
 
     void setConst(uint32_t mult, uint32_t add, uint32_t multR, uint32_t addR);
