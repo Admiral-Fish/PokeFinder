@@ -19,7 +19,7 @@ public:
 
     LCRNG(uint32_t seed);
 
-    void reSeed(uint32_t newSeed);
+    void setSeed(uint32_t newSeed);
 
     void setConst(uint32_t mult, uint32_t add, uint32_t multR, uint32_t addR);
 
