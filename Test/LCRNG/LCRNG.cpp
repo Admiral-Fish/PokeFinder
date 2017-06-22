@@ -5,10 +5,7 @@
 LCRNG::LCRNG()
 {
     seed = 0;
-    mult = 0;
-    add = 0;
-    multR = 0;
-    addR = 0;
+    setpokeRNG();
 }
 
 // LCRNG constructor with seed
@@ -17,19 +14,17 @@ LCRNG::LCRNG(uint32_t seed)
     this->seed = seed;
 }
 
+//LCRNG constructor with seed and RNG type
 LCRNG::LCRNG(uint32_t seed, std::string type): LCRNG(seed)
 {
     if (type == "pokeRNG")
-    {
       setpokeRNG();
-    }
     else if (type == "xdRNG")
-    {
       setxdRNG();
-    } else if (type == "aRNG")
-    {
+    else
       setaRNG();
-    }
+
+    this->seed = seed;
 }
 
 // Get method for seed
@@ -74,7 +69,7 @@ void LCRNG::setaRNG()
 // Method for finding next 32 bit seed
 uint32_t LCRNG::next32Bit()
 {
-    seed = seed*mult+add;
+    seed = seed*mult + add;
     return seed;
 }
 
@@ -87,7 +82,7 @@ uint32_t LCRNG::next16Bit()
 // Method for finding previous 32 bit seed
 uint32_t LCRNG::prev32Bit()
 {
-    seed = seed*multR+addR;
+    seed = seed*multR + addR;
     return seed;
 }
 
