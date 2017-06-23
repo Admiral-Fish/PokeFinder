@@ -64,6 +64,7 @@
 */
 
 #include "MTRNG.hpp"
+#include <cstdint>
 
 //Constructor for Mersenne Twister
 MTRNG::MTRNG(uint32_t seed)
@@ -95,7 +96,7 @@ uint32_t MTRNG::Nextuint()
 //Generate the next psuedo-random number
 uint32_t MTRNG::Generateuint()
 {
-    uint y;
+    uint32_t y;
 
     //Array reshuffle check
     if (_mti >= N) 

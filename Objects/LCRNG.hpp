@@ -2,6 +2,7 @@
 #define LCRNG_HPP
 
 #include <string>
+#include <cstdint>
 
 class LCRNG
 {

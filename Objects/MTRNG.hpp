@@ -65,6 +65,7 @@
 
 #ifndef MTRNG_HPP
 #define MTRNG_HPP
+#include <cstdint>
 
 class MTRNG
 {
@@ -77,7 +78,8 @@ private:
     uint32_t const LowerMask = 0x7FFFFFFF;
     uint32_t const TemperingMaskB = 0x9D2C5680;
     uint32_t const TemperingMaskC = 0xEFC60000;
-    uint32_t _mt[] = new uint32_t[N];
+    uint32_t _mt[624];
+    uint32_t _mag01[2] = {0x0, 0x9908B0DF};
     int _mti;
 
 public:

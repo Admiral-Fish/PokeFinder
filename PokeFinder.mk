@@ -5,18 +5,18 @@
 ## Debug
 ProjectName            :=PokeFinder
 ConfigurationName      :=Debug
-WorkspacePath          :=C:/Users/Admiral/Documents/GitHub/PokeFinder
-ProjectPath            :=C:/Users/Admiral/Documents/GitHub/PokeFinder
+WorkspacePath          :=D:/Programming/PokeFinder
+ProjectPath            :=D:/Programming/PokeFinder
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Admiral
+User                   :=1
 Date                   :=23/06/2017
-CodeLitePath           :="C:/Program Files/CodeLite"
-LinkerName             :=C:/TDM-GCC-64/bin/g++.exe
-SharedObjectLinkerName :=C:/TDM-GCC-64/bin/g++.exe -shared -fPIC
+CodeLitePath           :="D:/Program Files/CodeLite"
+LinkerName             :="D:/Program Files/TDMGCC/bin/g++.exe"
+SharedObjectLinkerName :="D:/Program Files/TDMGCC/bin/g++.exe" -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -36,7 +36,7 @@ ObjectsFileList        :="PokeFinder.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
-RcCompilerName         :=C:/TDM-GCC-64/bin/windres.exe
+RcCompilerName         :="D:/Program Files/TDMGCC/bin/windres.exe"
 LinkOptions            :=  
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
@@ -49,20 +49,20 @@ LibPath                := $(LibraryPathSwitch).
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := C:/TDM-GCC-64/bin/ar.exe rcu
-CXX      := C:/TDM-GCC-64/bin/g++.exe
-CC       := C:/TDM-GCC-64/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
+AR       := "D:/Program Files/TDMGCC/bin/ar.exe" rcu
+CXX      := "D:/Program Files/TDMGCC/bin/g++.exe"
+CC       := "D:/Program Files/TDMGCC/bin/gcc.exe"
+CXXFLAGS := -std=c++11 -g -O0 -Wall $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := C:/TDM-GCC-64/bin/as.exe
+AS       := "D:/Program Files/TDMGCC/bin/as.exe"
 
 
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Objects_LCRNG.cpp$(ObjectSuffix) $(IntermediateDirectory)/Objects_MTRNG.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_LCRNG_LCRNGTest.cpp$(ObjectSuffix) 
+CodeLiteDir:=D:\Program Files\CodeLite
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Objects_LCRNG.cpp$(ObjectSuffix) $(IntermediateDirectory)/Objects_MTRNG.cpp$(ObjectSuffix) 
 
 
 
@@ -94,7 +94,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Admiral/Documents/GitHub/PokeFinder/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/Programming/PokeFinder/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 
@@ -102,7 +102,7 @@ $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
 $(IntermediateDirectory)/Objects_LCRNG.cpp$(ObjectSuffix): Objects/LCRNG.cpp $(IntermediateDirectory)/Objects_LCRNG.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Admiral/Documents/GitHub/PokeFinder/Objects/LCRNG.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Objects_LCRNG.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/Programming/PokeFinder/Objects/LCRNG.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Objects_LCRNG.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Objects_LCRNG.cpp$(DependSuffix): Objects/LCRNG.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Objects_LCRNG.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Objects_LCRNG.cpp$(DependSuffix) -MM Objects/LCRNG.cpp
 
@@ -110,20 +110,12 @@ $(IntermediateDirectory)/Objects_LCRNG.cpp$(PreprocessSuffix): Objects/LCRNG.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Objects_LCRNG.cpp$(PreprocessSuffix) Objects/LCRNG.cpp
 
 $(IntermediateDirectory)/Objects_MTRNG.cpp$(ObjectSuffix): Objects/MTRNG.cpp $(IntermediateDirectory)/Objects_MTRNG.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Admiral/Documents/GitHub/PokeFinder/Objects/MTRNG.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Objects_MTRNG.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/Programming/PokeFinder/Objects/MTRNG.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Objects_MTRNG.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Objects_MTRNG.cpp$(DependSuffix): Objects/MTRNG.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Objects_MTRNG.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Objects_MTRNG.cpp$(DependSuffix) -MM Objects/MTRNG.cpp
 
 $(IntermediateDirectory)/Objects_MTRNG.cpp$(PreprocessSuffix): Objects/MTRNG.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Objects_MTRNG.cpp$(PreprocessSuffix) Objects/MTRNG.cpp
-
-$(IntermediateDirectory)/Test_LCRNG_LCRNGTest.cpp$(ObjectSuffix): Test/LCRNG/LCRNGTest.cpp $(IntermediateDirectory)/Test_LCRNG_LCRNGTest.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Admiral/Documents/GitHub/PokeFinder/Test/LCRNG/LCRNGTest.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Test_LCRNG_LCRNGTest.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Test_LCRNG_LCRNGTest.cpp$(DependSuffix): Test/LCRNG/LCRNGTest.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Test_LCRNG_LCRNGTest.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Test_LCRNG_LCRNGTest.cpp$(DependSuffix) -MM Test/LCRNG/LCRNGTest.cpp
-
-$(IntermediateDirectory)/Test_LCRNG_LCRNGTest.cpp$(PreprocessSuffix): Test/LCRNG/LCRNGTest.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Test_LCRNG_LCRNGTest.cpp$(PreprocessSuffix) Test/LCRNG/LCRNGTest.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
