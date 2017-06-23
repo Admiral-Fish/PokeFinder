@@ -1,4 +1,4 @@
-#include "LCRNG.hpp"
+#include "Objects/LCRNG.hpp"
 #include <iostream>
 
 int main ()

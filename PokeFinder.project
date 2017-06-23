@@ -2,8 +2,6 @@
 <CodeLite_Project Name="PokeFinder" Version="10.0.0" InternalType="Console">
   <VirtualDirectory Name="Test">
     <VirtualDirectory Name="LCRNG">
-      <File Name="Test/LCRNG/LCRNG.cpp"/>
-      <File Name="Test/LCRNG/LCRNG.hpp"/>
       <File Name="Test/LCRNG/LCRNGTest.cpp"/>
     </VirtualDirectory>
   </VirtualDirectory>
@@ -105,5 +103,7 @@
   <VirtualDirectory Name="Objects">
     <File Name="Objects/LCRNG.cpp"/>
     <File Name="Objects/LCRNG.hpp"/>
+    <File Name="Objects/MTRNG.cpp"/>
+    <File Name="Objects/MTRNG.hpp"/>
   </VirtualDirectory>
 </CodeLite_Project>
