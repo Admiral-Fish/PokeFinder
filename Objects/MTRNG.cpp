@@ -68,83 +68,83 @@
 //Constructor for Mersenne Twister
 MTRNG::MTRNG(uint32_t seed)
 {
-	init(seed);
+    init(seed);
 }
 
 //Recreates the Mersenne Twister with a new seed
 void MTRNG::Reseed(uint32_t seed)
 {
-	init(seed);
+    init(seed);
 }
 
 //Initializes
 void MTRNG::init(uint32_t seed)
 {
-	_mt[0] = seed;
+    _mt[0] = seed;
 
-	for (_mti = 1; _mti < N; _mti++)
-		_mt[_mti] = (0x6C078965*(_mt[_mti - 1] ^ (_mt[_mti - 1] >> 30)) + _mti);
+    for (_mti = 1; _mti < N; _mti++)
+        _mt[_mti] = (0x6C078965*(_mt[_mti - 1] ^ (_mt[_mti - 1] >> 30)) + _mti);
 }
 
 //Calls the next psuedo-random number
 uint32_t MTRNG::Nextuint()
 {
-	return Generateuint();
+    return Generateuint();
 }
 
 //Generate the next psuedo-random number
 uint32_t MTRNG::Generateuint()
 {
-	uint y;
+    uint y;
 
-	//Array reshuffle check
-	if (_mti >= N) 
-	{
-		int kk = 0;
+    //Array reshuffle check
+    if (_mti >= N) 
+    {
+        int kk = 0;
 
-		for (; kk < N - M; ++kk)
-		{
-			y = (_mt[kk] & UpperMask) | (_mt[kk + 1] & LowerMask);
-			_mt[kk] = _mt[kk + M] ^ (y >> 1) ^ _mag01[y & 0x1];
-		}
+        for (; kk < N - M; ++kk)
+        {
+            y = (_mt[kk] & UpperMask) | (_mt[kk + 1] & LowerMask);
+            _mt[kk] = _mt[kk + M] ^ (y >> 1) ^ _mag01[y & 0x1];
+        }
 
-		for (; kk < N - 1; ++kk)
-		{
-			y = (_mt[kk] & UpperMask) | (_mt[kk + 1] & LowerMask);
-			_mt[kk] = _mt[kk + (M - N)] ^ (y >> 1) ^ _mag01[y & 0x1];
-		}
+        for (; kk < N - 1; ++kk)
+        {
+            y = (_mt[kk] & UpperMask) | (_mt[kk + 1] & LowerMask);
+            _mt[kk] = _mt[kk + (M - N)] ^ (y >> 1) ^ _mag01[y & 0x1];
+        }
 
-		y = (_mt[N - 1] & UpperMask) | (_mt[0] & LowerMask);
-		_mt[N - 1] = _mt[M - 1] ^ (y >> 1) ^ _mag01[y & 0x1];
+        y = (_mt[N - 1] & UpperMask) | (_mt[0] & LowerMask);
+        _mt[N - 1] = _mt[M - 1] ^ (y >> 1) ^ _mag01[y & 0x1];
 
-		_mti = 0;
-	}
+        _mti = 0;
+    }
 
-	y = _mt[_mti++];
-	y ^= temperingShiftU(y);
-	y ^= temperingShiftS(y) & TemperingMaskB;
-	y ^= temperingShiftT(y) & TemperingMaskC;
-	y ^= temperingShiftL(y);
+    y = _mt[_mti++];
+    y ^= temperingShiftU(y);
+    y ^= temperingShiftS(y) & TemperingMaskB;
+    y ^= temperingShiftT(y) & TemperingMaskC;
+    y ^= temperingShiftL(y);
 
-	return y;
+    return y;
 }
 
 uint32_t MTRNG::temperingShiftU(uint32_t y)
 {
-	return (y >> 11);
+    return (y >> 11);
 }
 
 uint32_t MTRNG::temperingShiftS(uint32_t y)
 {
-	return (y << 7);
+    return (y << 7);
 }
 
 uint32_t MTRNG::temperingShiftT(uint32_t y)
 {
-	return (y << 15);
+    return (y << 15);
 }
 
 uint32_t MTRNG::temperingShiftL(uint32_t y)
 {
-	return (y >> 18);
+    return (y >> 18);
 }

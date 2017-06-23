@@ -82,23 +82,23 @@ private:
 
 public:
 
+    void init(uint32_t seed);
+
     MTRNG(uint32_t seed);
 
     void Reseed(uint32_t seed);
-	
-	void init(uint32_t seed);
+
+    uint32_t temperingShiftU(uint32_t y);
+
+    uint32_t temperingShiftS(uint32_t y);
+
+    uint32_t temperingShiftT(uint32_t y);
+
+    uint32_t temperingShiftL(uint32_t y);
 
     uint32_t Nextuint();
 
     uint32_t Generateuint();
-	
-	uint32_t temperingShiftU(uint32_t y);
-	
-	uint32_t temperingShiftS(uint32_t y);
-	
-	uint32_t temperingShiftT(uint32_t y);
-	
-	uint32_t temperingShiftL(uint32_t y);
 };
 
 #endif //MTRNG_HPP
