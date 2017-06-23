@@ -67,29 +67,21 @@
 #define MTRNG_HPP
 #include <cstdint>
 
-class MTRNG
+class MersenneTwister
 {
 
 private:
-    int const N = 624;
-    int const M = 397;
-    uint32_t const MatrixA = 0x9908B0DF;
-    uint32_t const UpperMask = 0x80000000;
-    uint32_t const LowerMask = 0x7FFFFFFF;
-    uint32_t const TemperingMaskB = 0x9D2C5680;
-    uint32_t const TemperingMaskC = 0xEFC60000;
+    //int const N = 624;
+    //int const M = 397;
+    //uint32_t const MatrixA = 0x9908B0DF;
+    //uint32_t const UpperMask = 0x80000000;
+    //uint32_t const LowerMask = 0x7FFFFFFF;
+    //uint32_t const TemperingMaskB = 0x9D2C5680;
+    //uint32_t const TemperingMaskC = 0xEFC60000;
     uint32_t _mt[624];
     uint32_t _mag01[2] = {0x0, 0x9908B0DF};
     int _mti;
-
-public:
-
-    void init(uint32_t seed);
-
-    MTRNG(uint32_t seed);
-
-    void Reseed(uint32_t seed);
-
+    
     uint32_t temperingShiftU(uint32_t y);
 
     uint32_t temperingShiftS(uint32_t y);
@@ -98,9 +90,92 @@ public:
 
     uint32_t temperingShiftL(uint32_t y);
 
+    uint32_t Generateuint();
+
+public:
+
+    void init(uint32_t seed);
+
+    MersenneTwister(uint32_t seed);
+
+    void Reseed(uint32_t seed);
+
     uint32_t Nextuint();
+    
+};
+
+class MersenneTwisterUntempered
+{
+    
+    private:
+    //int const N = 624;
+    //int const M = 397;
+    //uint32_t const MatrixA = 0x9908B0DF;
+    //uint32_t const UpperMask = 0x80000000;
+    //uint32_t const LowerMask = 0x7FFFFFFF;
+    //uint32_t const TemperingMaskB = 0x9D2C5680;
+    //uint32_t const TemperingMaskC = 0xEFC60000;
+    uint32_t _mt[624];
+    uint32_t _mag01[2] = {0x0, 0x9908B0DF};
+    int _mti;
+    
+    uint32_t temperingShiftU(uint32_t y);
+
+    uint32_t temperingShiftS(uint32_t y);
+
+    uint32_t temperingShiftT(uint32_t y);
+
+    uint32_t temperingShiftL(uint32_t y);
 
     uint32_t Generateuint();
+
+public:
+
+    void init(uint32_t seed);
+
+    MersenneTwisterUntempered(uint32_t seed);
+
+    void Reseed(uint32_t seed);
+
+    uint32_t Nextuint();
+    
+};
+
+class MersenneTwisterFast
+{
+    
+    private:
+    //int const N = 624;
+    //int const M = 397;
+    //uint32_t const MatrixA = 0x9908B0DF;
+    //uint32_t const UpperMask = 0x80000000;
+    //uint32_t const LowerMask = 0x7FFFFFFF;
+    //uint32_t const TemperingMaskB = 0x9D2C5680;
+    //uint32_t const TemperingMaskC = 0xEFC60000;
+    uint32_t _mt[624];
+    uint32_t _mag01[2] = {0x0, 0x9908B0DF};
+    int _mti;
+    int maxCalls;
+    int max;
+    
+    uint32_t temperingShiftU(uint32_t y);
+
+    uint32_t temperingShiftS(uint32_t y);
+
+    uint32_t temperingShiftT(uint32_t y);
+
+    uint32_t Generateuint();
+
+public:
+
+    void init(uint32_t seed);
+
+    MersenneTwisterFast(uint32_t seed, int calls);
+
+    void Reseed(uint32_t seed);
+
+    uint32_t Nextuint();
+    
 };
 
 #endif //MTRNG_HPP
