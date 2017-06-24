@@ -243,7 +243,7 @@ void MersenneTwisterFast::init(uint32_t seed)
 {
     _mt[0] = seed;
     
-    for (_mti = 1; _mti < max; _mti++)
+    for (_mti = 1; _mti < max; ++_mti)
         _mt[_mti] = (0x6C078965*(_mt[_mti - 1] ^ (_mt[_mti - 1] >> 30)) + _mti);
 }
 
@@ -275,7 +275,7 @@ uint32_t MersenneTwisterFast::Generateuint()
     y = _mt[_mti++];
     y ^= temperingShiftU(y);
     y ^= temperingShiftS(y) & 0x9D2C5680;
-    y ^= temperingShiftT(y) & 0xEFC60000;
+    y ^= temperingShiftT(y) & 0xEF000000;
 
     return y;
 }
