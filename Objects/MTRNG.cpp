@@ -66,21 +66,21 @@
 #include "MTRNG.hpp"
 #include <cstdint>
 
-//Mersenne Twister
+// Mersenne Twister
 
-//Constructor for Mersenne Twister
+// Constructor for Mersenne Twister
 MersenneTwister::MersenneTwister(uint32_t seed)
 {
     init(seed);
 }
 
-//Recreates the Mersenne Twister with a new seed
+// Recreates the Mersenne Twister with a new seed
 void MersenneTwister::Reseed(uint32_t seed)
 {
     init(seed);
 }
 
-//Initializes
+// Initializes
 void MersenneTwister::init(uint32_t seed)
 {
     _mt[0] = seed;
@@ -89,13 +89,13 @@ void MersenneTwister::init(uint32_t seed)
         _mt[_mti] = (0x6C078965*(_mt[_mti - 1] ^ (_mt[_mti - 1] >> 30)) + _mti);
 }
 
-//Calls the next psuedo-random number
+// Calls the next psuedo-random number
 uint32_t MersenneTwister::Nextuint()
 {
     return Generateuint();
 }
 
-//Generate the next psuedo-random number
+// Generate the next psuedo-random number
 uint32_t MersenneTwister::Generateuint()
 {
     uint32_t y;
@@ -153,21 +153,21 @@ uint32_t MersenneTwister::temperingShiftL(uint32_t y)
 }
 
 
-//Mersenne Twister Untempered
+// Mersenne Twister Untempered
 
-//Constructor for Mersenne Twister Untempered 
+// Constructor for Mersenne Twister Untempered 
 MersenneTwisterUntempered::MersenneTwisterUntempered(uint32_t seed)
 {
     init(seed);
 }
 
-//Recreates the Mersenne Twister Untempered with a new seed
+// Recreates the Mersenne Twister Untempered with a new seed
 void MersenneTwisterUntempered::Reseed(uint32_t seed)
 {
     init(seed);
 }
 
-//Initializes
+// Initializes
 void MersenneTwisterUntempered::init(uint32_t seed)
 {
     _mt[0] = seed;
@@ -176,13 +176,13 @@ void MersenneTwisterUntempered::init(uint32_t seed)
         _mt[_mti] = (0x6C078965*(_mt[_mti - 1] ^ (_mt[_mti - 1] >> 30)) + _mti);
 }
 
-//Calls the next psuedo-random number
+// Calls the next psuedo-random number
 uint32_t MersenneTwisterUntempered::Nextuint()
 {
     return Generateuint();
 }
 
-//Generate the next psuedo-random number
+// Generate the next psuedo-random number
 uint32_t MersenneTwisterUntempered::Generateuint()
 {
     uint32_t y;
@@ -216,9 +216,9 @@ uint32_t MersenneTwisterUntempered::Generateuint()
 }
 
 
-//Mersenne Twister Fast
+// Mersenne Twister Fast
 
-//Constructor for Mersenne Twister Fast
+// Constructor for Mersenne Twister Fast
 MersenneTwisterFast::MersenneTwisterFast(uint32_t seed, int calls)
 {
     maxCalls = calls;
@@ -232,13 +232,13 @@ MersenneTwisterFast::MersenneTwisterFast(uint32_t seed, int calls)
     init(seed);
 }
 
-//Recreates the Mersenne Twister Fast with a new seed
+// Recreates the Mersenne Twister Fast with a new seed
 void MersenneTwisterFast::Reseed(uint32_t seed)
 {
     init(seed);
 }
 
-//Initializes
+// Initializes
 void MersenneTwisterFast::init(uint32_t seed)
 {
     _mt[0] = seed;
@@ -247,13 +247,13 @@ void MersenneTwisterFast::init(uint32_t seed)
         _mt[_mti] = (0x6C078965*(_mt[_mti - 1] ^ (_mt[_mti - 1] >> 30)) + _mti);
 }
 
-//Calls the next psuedo-random number
+// Calls the next psuedo-random number
 uint32_t MersenneTwisterFast::Nextuint()
 {
     return Generateuint();
 }
 
-//Generate the next psuedo-random number
+// Generate the next psuedo-random number
 uint32_t MersenneTwisterFast::Generateuint()
 {
     uint32_t y;

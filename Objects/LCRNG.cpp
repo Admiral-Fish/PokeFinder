@@ -15,7 +15,7 @@ LCRNG::LCRNG(uint32_t seed)
     this->seed = seed;
 }
 
-//LCRNG constructor with seed and RNG type
+// LCRNG constructor with seed and RNG type
 LCRNG::LCRNG(uint32_t seed, std::string type): LCRNG(seed)
 {
     if (type == "pokeRNG")
@@ -24,8 +24,6 @@ LCRNG::LCRNG(uint32_t seed, std::string type): LCRNG(seed)
       setxdRNG();
     else
       setaRNG();
-
-    this->seed = seed;
 }
 
 // Get method for seed

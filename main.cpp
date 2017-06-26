@@ -1,11 +1,12 @@
 #include "Objects/LCRNG.hpp"
 #include "Objects/MTRNG.hpp"
+#include "Objects/NatureLock.hpp"
+#include "Objects/LockInfo.hpp"
 #include <iostream>
 
 int main ()
 {
-    MersenneTwisterFast test = MersenneTwisterFast(0, 227);
-    for (int i = 0; i < 10; i++)
-        std::cout << std::hex << test.Nextuint() << std::endl;
+    NatureLock test = NatureLock(59);
+    std::cout  << test.ivMethodSingleNL(0x6D0AA645)<< std::endl;
 
 }

@@ -107,7 +107,7 @@ public:
 class MersenneTwisterUntempered
 {
     
-    private:
+private:
     //int const N = 624;
     //int const M = 397;
     //uint32_t const MatrixA = 0x9908B0DF;
@@ -136,7 +136,7 @@ public:
 class MersenneTwisterFast
 {
     
-    private:
+private:
     //int const N = 624;
     //int const M = 397;
     //uint32_t const MatrixA = 0x9908B0DF;
