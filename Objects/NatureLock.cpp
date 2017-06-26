@@ -638,7 +638,7 @@ void NatureLock::natureLockSetup(int lockNum)
 bool NatureLock::ivMethodSingleNL(uint32_t seed)
 {
     reverse.setSeed(seed);
-    reverse.advanceFrames(1);
+    reverse.reverseFrames(1);
 
     //Build PID
     pid = getPIDReverse();
@@ -653,10 +653,10 @@ bool NatureLock::ivMethodSingleNL(uint32_t seed)
 
 uint32_t NatureLock::getPIDForward()
 {
-    return reverse.next16Bit() | (reverse.next32Bit() & 0xFFFF0000);
+     return (forward.next32Bit() & 0xFFFF0000) | forward.next16Bit();
 }
 
 uint32_t NatureLock::getPIDReverse()
 {
-     return (forward.next32Bit() & 0xFFFF0000) | forward.next16Bit();
+    return reverse.prev16Bit() | (reverse.prev32Bit() & 0xFFFF0000);
 }
