@@ -6,7 +6,8 @@
 
 int main ()
 {
-    NatureLock test = NatureLock(59);
-    std::cout  << test.ivMethodSingleNL(0x6D0AA645)<< std::endl;
-
+    NatureLock test = NatureLock(0);
+    
+    std::cout  << test.ivMethodFirstShadowShinySkip(0xD19AEF0E)<< std::endl;
+    std::cout  << test.ivMethodFirstShadowShinySkip(0xAA940E92)<< std::endl;
 }
