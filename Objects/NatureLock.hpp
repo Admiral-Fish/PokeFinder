@@ -23,15 +23,17 @@ private:
     
     void natureLockSetup(int lockNum);
     
-    uint32_t getPIDForward();
-    
-    uint32_t getPIDReverse();
-    
     void countBackTwo();
     
     void countForwardTwo();
     
     void getCurrLock();
+    
+    uint32_t getPIDForward();
+    
+    uint32_t getPIDReverse();
+    
+    uint32_t getPSVReverse();
     
 public:
 

@@ -653,10 +653,7 @@ bool NatureLock::ivMethodSingleNL(uint32_t seed)
 
     // Backwards nature lock check
     gender = pid & 255;
-    if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
-        return false;
-    else
-        return true;
+    return !(gender < genderLower || gender > genderUpper || pid % 25 != nature);
 }
 
 // Salamence is a special case of single nature lock and second shadow
@@ -664,34 +661,28 @@ bool NatureLock::ivMethodSingleNL(uint32_t seed)
 bool NatureLock::ivMethodSalamenceUnset(uint32_t seed)
 {
     rng.setSeed(seed);
-    rng.reverseFrames(8);
+    rng.reverseFrames(13);
 
     // Build PID
     pid = getPIDReverse();
 
     // Backwards nature lock check
     gender = pid & 255;
-    if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
-        return false;
-    else
-        return true;
+    return !(gender < genderLower || gender > genderUpper || pid % 25 != nature);
 }
 
 // Checks if seed is valid for 1st shadow set for Salamence
 bool NatureLock::ivMethodSalamenceSet(uint32_t seed)
 {
     rng.setSeed(seed);
-    rng.reverseFrames(6);
+    rng.reverseFrames(11);
 
     // Build PID
     pid = getPIDReverse();
 
     // Backwards nature lock check
     gender = pid & 255;
-    if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
-        return false;
-    else
-        return true;
+    return !(gender < genderLower || gender > genderUpper || pid % 25 != nature);
 }
 
 // Checks if seed is valid for 1st shadow set unset and antishiny(aka Shiny Skip) for Salamence
@@ -703,16 +694,13 @@ bool NatureLock::ivMethodSalamenceShinySkip(uint32_t seed)
     uint32_t psv, psvtemp;
 
     // Check how many advances from shiny skip and build PID
-    pid = getPIDReverse();
-    psv = ((pid & 0xFFFF) ^ (pid >> 16)) >> 3;
-    pid = getPIDReverse();
-    psvtemp = ((pid & 0xFFFF) ^ (pid >> 16)) >> 3;
+    psv = getPSVReverse();
+    psvtemp = getPSVReverse();
         
     while (psv == psvtemp)
     {
         psvtemp = psv;
-        pid = getPIDReverse();
-        psv = ((pid & 0xFFFF) ^ (pid >> 16)) >> 3;
+        psv = getPSVReverse();
     }
 
     rng.reverseFrames(10);
@@ -720,10 +708,7 @@ bool NatureLock::ivMethodSalamenceShinySkip(uint32_t seed)
 
     // Backwards nature lock check
     gender = pid & 255;
-    if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
-        return false;
-    else
-        return true;
+    return !(gender < genderLower || gender > genderUpper || pid % 25 != nature)
 }
 
 // Checks if seed is valid for single shadow case
@@ -777,7 +762,7 @@ bool NatureLock::ivMethodFirstShadow(uint32_t seed)
 bool NatureLock::ivMethodFirstShadowUnset(uint32_t seed)
 {
     rng.setSeed(seed);
-    rng.reverseFrames(8);
+    rng.reverseFrames(13);
 
     // Build temp pid first to not waste time looping if first nl fails
     pidOriginal = getPIDReverse();
@@ -824,7 +809,7 @@ bool NatureLock::ivMethodFirstShadowUnset(uint32_t seed)
 bool NatureLock::ivMethodFirstShadowSet(uint32_t seed)
 {
     rng.setSeed(seed);
-    rng.reverseFrames(6);
+    rng.reverseFrames(11);
 
     // Build temp pid first to not waste time looping if first nl fails
     pidOriginal = getPIDReverse();
@@ -876,15 +861,12 @@ bool NatureLock::ivMethodFirstShadowShinySkip(uint32_t seed)
     uint32_t psv, psvtemp;
 
     //Check how many advances from shiny skip and build initial pid for first nl
-    pidOriginal = getPIDReverse();
-    psv = ((pidOriginal & 0xFFFF) ^ (pidOriginal >> 16)) >> 3;
-    pidOriginal = getPIDReverse();
-    psvtemp = ((pidOriginal & 0xFFFF) ^ (pidOriginal >> 16)) >> 3;
+    psv = getPSVReverse();
+    psvtemp = getPSVReverse();
     while (psv == psvtemp)
     {
         psvtemp = psv;
-        pidOriginal = getPIDReverse();
-        psv = ((pidOriginal & 0xFFFF) ^ (pidOriginal >> 16)) >> 3;
+        psv = getPSVReverse();
     }
 
     rng.reverseFrames(10);
@@ -958,10 +940,16 @@ uint32_t NatureLock::getPIDForward()
     return (rng.next32Bit() & 0xFFFF0000) | rng.next16Bit();
 }
 
-//Generates the next PID backwards
+// Generates the next PID backwards
 uint32_t NatureLock::getPIDReverse()
 {
     return rng.prev16Bit() | (rng.prev32Bit() & 0xFFFF0000);
+}
+
+// Generates the PSV of the next PID backwards
+uint32_t NatureLock::getPSVReverse()
+{
+    return (rng.prev16Bit() ^ rng.prev16Bit()) >> 3;
 }
 
 // Quick sets the values of the current lock
