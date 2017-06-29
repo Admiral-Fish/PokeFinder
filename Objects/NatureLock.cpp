@@ -1,15 +1,17 @@
 #include "NatureLock.hpp"
 #include <cstdint>
 #include "LCRNG.hpp"
-#include "LockInfo.hpp"
 
 // Constructor for NatureLock
 NatureLock::NatureLock(int lockNum)
 {
     rng = LCRNG(0, "xdRNG");
     natureLockSetup(lockNum);
+    count = lockInfo.size();
     count2 = count == 1 ? 0 : count - 2;
     x = 0;
+    if (count == 1)
+        getCurrLock();
 }
 
 // Sets up rest of nature lock data
@@ -17,626 +19,322 @@ void NatureLock::natureLockSetup(int lockNum)
 {
     switch(lockNum)
     {
-        // Altaria
-        case 0:
-            lockInfo[0] = LockInfo(24, 127, 255);
-            lockInfo[1] = LockInfo(0, 0, 126);
-            lockInfo[2] = LockInfo(12, 127, 255);
-            count = 3;
+        case 0: // Altaria
+            lockInfo = { LockInfo(24, 127, 255), LockInfo(0, 0, 126), LockInfo(12, 127, 255) };
             type = 6;
             break;
-        // Arbok
-        case 1:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            lockInfo[1] = LockInfo(12, 0, 126);
-            lockInfo[2] = LockInfo(0, 0, 126);
-            lockInfo[3] = LockInfo(6, 127, 255);
-            count = 4;
+        case 1: // Arbok
+            lockInfo =  { LockInfo(18, 0, 126), LockInfo(12, 0, 126), LockInfo(0, 0, 126), LockInfo(6, 127, 255) };
             type = 1;
             break;
-        //Baltoy 2
-        case 5:
-            lockInfo[0] = LockInfo(0, 127, 255);
-            lockInfo[1] = LockInfo(24, 127, 255);
-            count = 2;
+        case 5: //Baltoy 2
+            lockInfo =  { LockInfo(0, 127, 255), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Banette
-        case 6:
-            lockInfo[0] = LockInfo(12, 0, 255);
-            lockInfo[1] = LockInfo(18, 0, 126);
-            lockInfo[2] = LockInfo(0, 0, 255);
-            count = 3;
+        case 6: // Banette
+            lockInfo =  { LockInfo(12, 0, 255), LockInfo(18, 0, 126), LockInfo(0, 0, 255) };
             type = 6;
             break;
-        // Butterfree
-        case 8:
-            lockInfo[0] = LockInfo(0, 0, 126);
-            lockInfo[1] = LockInfo(6, 127, 255);
-            lockInfo[2] = LockInfo(12, 0, 190);
-            count = 3;
+        case 8: // Butterfree
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(6, 127, 255), LockInfo(12, 0, 190) };
             type = 6;
             break;
-        // Chansey
-        case 10:
-            lockInfo[0] = LockInfo(24, 127, 255);
-            lockInfo[1] = LockInfo(6, 0, 126);
-            count = 2;
+        case 10: // Chansey
+            lockInfo = { LockInfo(24, 127, 255), LockInfo(6, 0, 126) };
             type = 6;
             break;
-        // Delcatty
-        case 11:
-            lockInfo[0] = LockInfo(24, 127, 255);
-            lockInfo[1] = LockInfo(0, 127, 255);
-            lockInfo[2] = LockInfo(6, 0, 190);
-            count = 3;
+        case 11: // Delcatty
+            lockInfo = { LockInfo(24, 127, 255), LockInfo(0, 127, 255), LockInfo(6, 0, 190) };
             type = 1;
             break;
-        // Dodrio
-        case 12:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            count = 1;
-            getCurrLock();
+        case 12: // Dodrio
+            lockInfo =  { LockInfo(18, 0, 126) };
             type = 2;
             break;
-        // Dragonite
-        case 13:
-            lockInfo[0] = LockInfo(0, 127, 255);
-            lockInfo[1] = LockInfo(12, 0, 126);
-            lockInfo[2] = LockInfo(12, 0, 126);
-            lockInfo[3] = LockInfo(18, 127, 255);
-            lockInfo[4] = LockInfo(0, 127, 255);
-            count = 5;
+        case 13: // Dragonite
+            lockInfo = { LockInfo(0, 127, 255), LockInfo(12, 0, 126), LockInfo(12, 0, 126), LockInfo(18, 127, 255), LockInfo(0, 127, 255) };
             type = 1;
             break;
-        // Dugtrio
-        case 14:
-            lockInfo[0] = LockInfo(12, 127, 255);
-            lockInfo[1] = LockInfo(18, 127, 255);
-            lockInfo[2] = LockInfo(6, 0, 126);
-            lockInfo[3] = LockInfo(0, 127, 255);
-            count = 4;
+        case 14: // Dugtrio
+            lockInfo = { LockInfo(12, 127, 255), LockInfo(18, 127, 255), LockInfo(6, 0, 126), LockInfo(0, 127, 255) };
             type = 1;
             break;
-        // Duskull
-        case 15:
-            lockInfo[0] = LockInfo(24, 127, 255);
-            lockInfo[1] = LockInfo(18, 0, 126);
-            lockInfo[2] = LockInfo(12, 127, 255);
-            count = 3;
+        case 15: // Duskull
+            lockInfo = { LockInfo(24, 127, 255), LockInfo(18, 0, 126), LockInfo(12, 127, 255) };
             type = 1;
             break;
-        // Electabuzz
-        case 16:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            lockInfo[1] = LockInfo(6, 0, 126);
-            lockInfo[2] = LockInfo(24, 63, 255);
-            count = 3;
+        case 16: // Electabuzz
+            lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 0, 126), LockInfo(24, 63, 255) };
             type = 1;
             break;
-        // Farfetch'd  
-        case 18:
-            lockInfo[0] = LockInfo(24, 127, 255);
-            lockInfo[1] = LockInfo(0, 0, 126);
-            lockInfo[2] = LockInfo(12, 127, 255);
-            count = 3;
+        case 18: // Farfetch'd  
+            lockInfo = { LockInfo(24, 127, 255), LockInfo(0, 0, 126), LockInfo(12, 127, 255) };
             type = 1;
             break;
-        // Golduck
-        case 19:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            lockInfo[1] = LockInfo(6, 0, 126);
-            lockInfo[2] = LockInfo(24, 127, 255);
-            count = 3;
+        case 19: // Golduck
+            lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 0, 126), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Grimer
-        case 20:
-            lockInfo[0] = LockInfo(18, 127, 255);
-            lockInfo[1] = LockInfo(12, 127, 255);
-            count = 2;
+        case 20: // Grimer
+            lockInfo = { LockInfo(18, 127, 255), LockInfo(12, 127, 255) };
             type = 1;
             break;
-        // Growlithe
-        case 21:
-            lockInfo[0] = LockInfo(6, 0, 126);
-            lockInfo[1] = LockInfo(24, 127, 255);
-            count = 2;
+        case 21: // Growlithe
+            lockInfo = { LockInfo(6, 0, 126), LockInfo(24, 127, 255) };
             type = 6;
             break;
-        // Gulpin 3
-        case 22:
-        // Gulpin 1
-        case 23:
-            lockInfo[0] = LockInfo(6, 127, 255);
-            lockInfo[1] = LockInfo(12, 0, 126);
-            count = 2;
+        case 22: // Gulpin 3
+        case 23: // Gulpin 1
+            lockInfo = { LockInfo(6, 127, 255), LockInfo(12, 0, 126) };
             type = 1;
             break;
-        // Gulpin 2
-        case 24:
-            lockInfo[0] = LockInfo(0, 0, 126);
-            lockInfo[1] = LockInfo(0, 0, 126);
-            lockInfo[2] = LockInfo(6, 127, 255);
-            lockInfo[3] = LockInfo(12, 0, 126);
-            count = 4;
+        case 24: // Gulpin 2
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(0, 0, 126), LockInfo(6, 127, 255), LockInfo(12, 0, 126) };
             type = 1;
             break;
-        // Hitmonchan
-        case 25:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            lockInfo[1] = LockInfo(6, 0, 126);
-            lockInfo[2] = LockInfo(24, 127, 255);
-            count = 3;
+        case 25: // Hitmonchan
+            lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 0, 126), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Hitmonlee
-        case 26:
-            lockInfo[0] = LockInfo(24, 0, 126);
-            lockInfo[1] = LockInfo(6, 0, 255);
-            lockInfo[2] = LockInfo(12, 0, 126);
-            lockInfo[3] = LockInfo(18, 127, 255);
-            count = 4;
+        case 26: // Hitmonlee
+            lockInfo = { LockInfo(24, 0, 126), LockInfo(6, 0, 255), LockInfo(12, 0, 126), LockInfo(18, 127, 255) };
             type = 1;
             break;
-        // Hypno
-        case 30:
-            lockInfo[0] = LockInfo(24, 127, 255);
-            lockInfo[1] = LockInfo(6, 0, 126);
-            lockInfo[2] = LockInfo(12, 0, 126);
-            lockInfo[3] = LockInfo(18, 0, 126);
-            count = 4;
+        case 30: // Hypno
+            lockInfo = { LockInfo(24, 127, 255), LockInfo(6, 0, 126), LockInfo(12, 0, 126), LockInfo(18, 0, 126) };
             type = 6;
             break;
-        // Kangaskhan
-        case 31:
-            lockInfo[0] = LockInfo(12, 0, 255);
-            lockInfo[1] = LockInfo(18, 0, 126);
-            lockInfo[2] = LockInfo(0, 0, 255);
-            count = 3;
+        case 31: // Kangaskhan
+            lockInfo = { LockInfo(12, 0, 255), LockInfo(18, 0, 126), LockInfo(0, 0, 255) };
             type = 1;
             break;
-        // Lapras
-        case 32:
-            lockInfo[0] = LockInfo(24, 127, 255);
-            lockInfo[1] = LockInfo(500, 500, 500);
-            lockInfo[2] = LockInfo(500, 500, 500);
-            lockInfo[3] = LockInfo(6, 0, 126);
-            count = 4;
+        case 32: // Lapras
+            lockInfo = { LockInfo(24, 127, 255), LockInfo(500, 500, 500), LockInfo(500, 500, 500), LockInfo(6, 0, 126) };
             type = 6;
             break;
-        // Ledyba
-        case 33:
-            lockInfo[0] = LockInfo(0, 0, 126);
-            count = 1;
-            getCurrLock();
+        case 33: // Ledyba
+            lockInfo = { LockInfo(0, 0, 126) };
             type = 2;
             break;
-        // Lickitung
-        case 34:
-            lockInfo[0] = LockInfo(6, 0, 255);
-            lockInfo[1] = LockInfo(24, 127, 255);
-            count = 2;
+        case 34: // Lickitung
+            lockInfo = { LockInfo(6, 0, 255), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Lunatone
-        case 36:
-            lockInfo[0] = LockInfo(18, 127, 255);
-            lockInfo[1] = LockInfo(0, 0, 126);
-            count = 2;
+        case 36: // Lunatone
+            lockInfo = { LockInfo(18, 127, 255), LockInfo(0, 0, 126) };
             type = 1;
             break;
-        // Marcargo
-        case 37:
-            lockInfo[0] = LockInfo(12, 0, 126);
-            lockInfo[1] = LockInfo(6, 127, 255);
-            lockInfo[2] = LockInfo(24, 127, 255);
-            count = 3;
+        case 37: // Marcargo
+            lockInfo = { LockInfo(12, 0, 126), LockInfo(6, 127, 255), LockInfo(24, 127, 255) };
             type = 6;
             break;
-        // Magmar 
-        case 38:
-            lockInfo[0] = LockInfo(0, 0, 126);
-            lockInfo[1] = LockInfo(18, 191, 255);
-            lockInfo[2] = LockInfo(18, 127, 255);
-            count = 3;
+        case 38: // Magmar 
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(18, 191, 255), LockInfo(18, 127, 255) };
             type = 1;
             break;
-        // Magneton
-        case 39:
-            lockInfo[0] = LockInfo(12, 0, 126);
-            lockInfo[1] = LockInfo(0, 127, 255);
-            lockInfo[2] = LockInfo(18, 0, 255);
-            count = 3;
+        case 39: // Magneton
+            lockInfo = { LockInfo(12, 0, 126), LockInfo(0, 127, 255), LockInfo(18, 0, 255) };
             type = 1;
             break;
-        // Makuhita
-        case 40:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            lockInfo[1] = LockInfo(6, 127, 255);
-            count = 2;
+        case 40: // Makuhita
+            lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 127, 255) };
             type = 1;
             break;
-        // Makuhita Colo
-        case 41:
-            lockInfo[0] = LockInfo(0, 0, 126);
-            lockInfo[1] = LockInfo(24, 127, 255);
-            count = 2;
+        case 41: // Makuhita Colo
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Manectric
-        case 42:
-            lockInfo[0] = LockInfo(6, 0, 126);
-            count = 1;
-            getCurrLock();
+        case 42: // Manectric
+            lockInfo = { LockInfo(6, 0, 126) };
             type = 2;
             break;
-        // Mareep 1
-        case 44:
-            lockInfo[0] = LockInfo(12, 0, 126);
-            lockInfo[1] = LockInfo(24, 127, 255);
-            count = 2;
+        case 44: // Mareep 1
+            lockInfo = { LockInfo(12, 0, 126), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Mareep 2
-        case 45:
-            lockInfo[0] = LockInfo(0, 0, 255);
-            lockInfo[1] = LockInfo(12, 0, 126);
-            lockInfo[2] = LockInfo(24, 127, 255);
-            count = 3;
+        case 45: // Mareep 2
+            lockInfo = { LockInfo(0, 0, 255), LockInfo(12, 0, 126), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Marowak
-        case 46:
-            lockInfo[0] = LockInfo(24, 127, 255);
-            lockInfo[1] = LockInfo(500, 500, 500);
-            lockInfo[2] = LockInfo(500, 500, 500);
-            lockInfo[3] = LockInfo(6, 0, 126);
-            count = 4;
+        case 46: // Marowak
+            lockInfo = { LockInfo(24, 127, 255), LockInfo(500, 500, 500), LockInfo(500, 500, 500), LockInfo(6, 0, 126) };
             type = 1;
             break;
-        // Mawile
-        case 47:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            lockInfo[1] = LockInfo(6, 127, 255);
-            count = 2;
+        case 47: // Mawile
+            lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 127, 255) };
             type = 1;
             break;
-        // Meowth
-        case 48:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            lockInfo[1] = LockInfo(0, 0, 126);
-            lockInfo[2] = LockInfo(6, 63, 255);
-            count = 3;
+        case 48: // Meowth
+            lockInfo =  { LockInfo(18, 0, 126), LockInfo(0, 0, 126), LockInfo(6, 63, 255) };
             type = 1;
             break;
-        // Mr. Mime
-        case 50:
-            lockInfo[0] = LockInfo(6, 0, 126);
-            lockInfo[1] = LockInfo(24, 127, 255);
-            lockInfo[2] = LockInfo(18, 127, 255);
-            lockInfo[3] = LockInfo(18, 127, 255);
-            count = 4;
+        case 50: // Mr. Mime
+            lockInfo = { LockInfo(6, 0, 126), LockInfo(24, 127, 255), LockInfo(18, 127, 255), LockInfo(18, 127, 255) };
             type = 6;
             break;
-        // Natu
-        case 51:
-            lockInfo[0] = LockInfo(0, 0, 126);
-            lockInfo[1] = LockInfo(24, 127, 255);
-            count = 2;
+        case 51: // Natu
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Nosepass
-        case 52:
-            lockInfo[0] = LockInfo(12, 0, 126);
-            lockInfo[1] = LockInfo(18, 127, 255);
-            lockInfo[2] = LockInfo(0, 127, 255);
-            count = 3;
+        case 52: // Nosepass
+            lockInfo = { LockInfo(12, 0, 126), LockInfo(18, 127, 255), LockInfo(0, 127, 255) };
             type = 1;
             break;
-        // Numel
-        case 53:
-            lockInfo[0] = LockInfo(24, 0, 126);
-            lockInfo[1] = LockInfo(0, 0, 255);
-            lockInfo[2] = LockInfo(6, 127, 255);
-            count = 3;
+        case 53: // Numel
+            lockInfo = { LockInfo(24, 0, 126), LockInfo(0, 0, 255), LockInfo(6, 127, 255) };
             type = 1;
             break;
-        // Paras
-        case 54:
-            lockInfo[0] = LockInfo(6, 0, 126);
-            lockInfo[1] = LockInfo(24, 127, 255);
-            count = 2;
+        case 54: // Paras
+            lockInfo = { LockInfo(6, 0, 126), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Pidgeotto
-        case 55:
-            lockInfo[0] = LockInfo(18, 32, 255);
-            lockInfo[1] = LockInfo(12, 127, 255);
-            count = 2;
+        case 55: // Pidgeotto
+            lockInfo = { LockInfo(18, 32, 255), LockInfo(12, 127, 255) };
             type = 1;
             break;
-        // Pineco
-        case 56:
-            lockInfo[0] = LockInfo(6, 127, 255);
-            count = 1;
-            getCurrLock();
+        case 56: // Pineco
+            lockInfo = { LockInfo(6, 127, 255) };
             type = 2;
             break;
-        // Pinsir
-        case 57:
-            lockInfo[0] = LockInfo(0, 0, 126);
-            lockInfo[1] = LockInfo(18, 191, 255);
-            lockInfo[2] = LockInfo(18, 127, 255);
-            count = 3;
+        case 57: // Pinsir
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(18, 191, 255), LockInfo(18, 127, 255) };
             type = 6;
             break;
-        // Poliwrath
-        case 58:
-            lockInfo[0] = LockInfo(6, 0, 126);
-            lockInfo[1] = LockInfo(24, 127, 255);
-            lockInfo[2] = LockInfo(18, 127, 255);
-            lockInfo[3] = LockInfo(18, 127, 255);
-            count = 4;
+        case 58: // Poliwrath
+            lockInfo = { LockInfo(6, 0, 126), LockInfo(24, 127, 255), LockInfo(18, 127, 255), LockInfo(18, 127, 255) };
             type = 1;
             break;
-        // Poochyena
-        case 59:
-            lockInfo[0] = LockInfo(12, 0, 126);
-            count = 1;
-            getCurrLock();
+        case 59: // Poochyena
+            lockInfo = { LockInfo(12, 0, 126) };
             type = 2;
             break;
-        // Primeape
-        case 60:
-            lockInfo[0] = LockInfo(24, 127, 255);
-            lockInfo[1] = LockInfo(6, 0, 126);
-            lockInfo[2] = LockInfo(12, 0, 126);
-            lockInfo[3] = LockInfo(18, 0, 126);
-            count = 4;
+        case 60: // Primeape
+            lockInfo = { LockInfo(24, 127, 255), LockInfo(6, 0, 126), LockInfo(12, 0, 126), LockInfo(18, 0, 126) };
             type = 1;
             break;
-        // Ralts
-        case 61:
-            lockInfo[0] = LockInfo(18, 127, 255);
-            lockInfo[1] = LockInfo(6, 0, 126);
-            lockInfo[2] = LockInfo(0, 63, 255);
-            count = 3;
+        case 61: // Ralts
+            lockInfo = { LockInfo(18, 127, 255), LockInfo(6, 0, 126), LockInfo(0, 63, 255) };
             type = 1;
             break;
-        // Rapidash
-        case 62:
-            lockInfo[0] = LockInfo(12, 0, 126);
-            lockInfo[1] = LockInfo(6, 127, 255);
-            lockInfo[2] = LockInfo(24, 127, 255);
-            count = 3;
+        case 62: // Rapidash
+            lockInfo = { LockInfo(12, 0, 126), LockInfo(6, 127, 255), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Raticate
-        case 63:
-            lockInfo[0] = LockInfo(18, 127, 255);
-            lockInfo[1] = LockInfo(500, 500, 500);
-            lockInfo[2] = LockInfo(18, 0, 126);
-            count = 3;
+        case 63: // Raticate
+            lockInfo = { LockInfo(18, 127, 255), LockInfo(500, 500, 500), LockInfo(18, 0, 126) };
             type = 1;
             break;
-        // Roselia
-        case 65:
-            lockInfo[0] = LockInfo(18, 127, 255);
-            lockInfo[1] = LockInfo(6, 127, 255);
-            count = 2;
+        case 65: // Roselia
+            lockInfo = { LockInfo(18, 127, 255), LockInfo(6, 127, 255) };
             type = 1;
             break;
-        // Sableye
-        case 66:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            lockInfo[1] = LockInfo(6, 0, 126);
-            lockInfo[2] = LockInfo(24, 127, 255);
-            count = 3;
+        case 66: // Sableye
+            lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 0, 126), LockInfo(24, 127, 255) };
             type = 6;
             break;
-        // Salamence
-        case 67:
-            lockInfo[0] = LockInfo(6, 0, 126);
-            count = 1;
-            getCurrLock();
+        case 67: // Salamence
+            lockInfo = { LockInfo(6, 0, 126) };
             type = 3;
             break;
-        // Scyther
-        case 68:
-            lockInfo[0] = LockInfo(24, 127, 255);
-            lockInfo[1] = LockInfo(6, 0, 126);
+        case 68: // Scyther
+            lockInfo = { LockInfo(24, 127, 255), LockInfo(6, 0, 126) };
+            type = 1;
+            break;
+        case 70: // Seedot 1
+            lockInfo = { LockInfo(12, 127, 255), LockInfo(0, 127, 255), LockInfo(12, 0, 126), LockInfo(24, 0, 126), LockInfo(6, 127, 255) };
+            type = 1;
+            break;
+        case 71: // Seedot 2
+            lockInfo = { LockInfo(6, 127, 255), LockInfo(0, 0, 126), LockInfo(0, 0, 126), LockInfo(24, 0, 126), LockInfo(6, 127, 255) };
+            type = 1;
+            break;
+        case 72: // Seel
+            lockInfo = { LockInfo(18, 0, 126), LockInfo(12, 127, 255), LockInfo(6, 127, 255) };
+            type = 1;
+            break;
+        case 74: // Shroomish
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(24, 0, 126) };
             count = 2;
             type = 1;
             break;
-        // Seedot 1
-        case 70:
-            lockInfo[0] = LockInfo(12, 127, 255);
-            lockInfo[1] = LockInfo(0, 127, 255);
-            lockInfo[2] = LockInfo(12, 0, 126);
-            lockInfo[3] = LockInfo(24, 0, 126);
-            lockInfo[4] = LockInfo(6, 127, 255);
-            count = 5;
-            type = 1;
-            break;
-        // Seedot 2
-        case 71:
-            lockInfo[0] = LockInfo(6, 127, 255);
-            lockInfo[1] = LockInfo(0, 0, 126);
-            lockInfo[2] = LockInfo(0, 0, 126);
-            lockInfo[3] = LockInfo(24, 0, 126);
-            lockInfo[4] = LockInfo(6, 127, 255);
-            count = 5;
-            type = 1;
-            break;
-        // Seel
-        case 72:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            lockInfo[1] = LockInfo(12, 127, 255);
-            lockInfo[2] = LockInfo(6, 127, 255);
-            count = 3;
-            type = 1;
-            break;
-        // Shroomish
-        case 74:
-            lockInfo[0] = LockInfo(0, 0, 126);
-            lockInfo[1] = LockInfo(24, 0, 126);
-            count = 2;
-            type = 1;
-            break;
-        // Snorlax
-        case 75:
-            lockInfo[0] = LockInfo(18, 0, 126);
-            lockInfo[1] = LockInfo(6, 0, 126);
-            lockInfo[2] = LockInfo(24, 63, 255);
-            count = 3;
+        case 75: // Snorlax
+            lockInfo =  { LockInfo(18, 0, 126), LockInfo(6, 0, 126), LockInfo(24, 63, 255) };
             type = 6;
             break;
-        // Snorunt
-        case 76:
-            lockInfo[0] = LockInfo(6, 0, 126);
-            count = 1;
-            getCurrLock();
+        case 76: // Snorunt
+            lockInfo = { LockInfo(6, 0, 126) };
             type = 2;
             break;
-        // Solrock
-        case 77:
-            lockInfo[0] = LockInfo(0, 0, 126);
-            lockInfo[1] = LockInfo(6, 127, 255);
-            lockInfo[2] = LockInfo(24, 0, 255);
-            count = 3;
+        case 77: // Solrock
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(6, 127, 255), LockInfo(24, 0, 255) };
             type = 1;
             break;
-        // Spearow
-        case 78:
-            lockInfo[0] = LockInfo(6, 0, 126);
-            lockInfo[1] = LockInfo(18, 127, 255);
-            count = 2;
+        case 78: // Spearow
+            lockInfo = { LockInfo(6, 0, 126), LockInfo(18, 127, 255) };
             type = 1;
             break;
-        // Spheal 3
-        case 79:
-        // Spheal 2
-        case 81:
-            lockInfo[0] = LockInfo(0, 0, 255);
-            lockInfo[1] = LockInfo(12, 0, 126);
-            lockInfo[2] = LockInfo(24, 127, 255);
-            count = 3;
+        case 79: // Spheal 3
+        case 81: // Spheal 2
+            lockInfo = { LockInfo(0, 0, 255), LockInfo(12, 0, 126), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Spheal 1
-        case 80:
-            lockInfo[0] = LockInfo(12, 0, 126);
-            lockInfo[1] = LockInfo(24, 127, 255);
-            count = 2;
+        case 80: // Spheal 1
+            lockInfo = { LockInfo(12, 0, 126), LockInfo(24, 127, 255) };
             type = 1;
             break;
-        // Spinarak
-        case 82:
-            lockInfo[0] = LockInfo(6, 127, 255);
-            lockInfo[1] = LockInfo(12, 0, 126);
-            count = 2;
+        case 82: // Spinarak
+            lockInfo = { LockInfo(6, 127, 255), LockInfo(12, 0, 126) };
             type = 1;
             break;
-        // Starmie
-        case 83:
-            lockInfo[0] = LockInfo(18, 127, 255);
-            lockInfo[1] = LockInfo(500, 500, 500);
-            lockInfo[2] = LockInfo(0, 0, 126);
-            lockInfo[3] = LockInfo(6, 127, 255);
-            lockInfo[4] = LockInfo(24, 0, 255);
-            count = 5;
+        case 83: // Starmie
+            lockInfo = { LockInfo(18, 127, 255), LockInfo(500, 500, 500), LockInfo(0, 0, 126), LockInfo(6, 127, 255), LockInfo(24, 0, 255) };
             type = 1;
             break;
-        // Swinub
-        case 85:
-            lockInfo[0] = LockInfo(0, 127, 255);
-            lockInfo[1] = LockInfo(18, 0, 126);
-            count = 2;
+        case 85: // Swinub
+            lockInfo =  { LockInfo(0, 127, 255), LockInfo(18, 0, 126) };
             type = 1;
             break;
-        // Tangela
-        case 86:
-            lockInfo[0] = LockInfo(0, 0, 126);
-            lockInfo[1] = LockInfo(6, 127, 255);
-            lockInfo[2] = LockInfo(12, 0, 190);
-            count = 3;
+        case 86: // Tangela
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(6, 127, 255), LockInfo(12, 0, 190) };
             type = 1;
             break;
-        // Venomoth
-        case 90:
-            lockInfo[0] = LockInfo(12, 127, 255);
-            lockInfo[1] = LockInfo(24, 0, 255);
-            lockInfo[2] = LockInfo(18, 0, 126);
-            count = 3;
+        case 90: // Venomoth
+            lockInfo = { LockInfo(12, 127, 255), LockInfo(24, 0, 255), LockInfo(18, 0, 126) };
             type = 1;
             break;
-        // Voltorb
-        case 91:
-            lockInfo[0] = LockInfo(12, 0, 126);
-            lockInfo[1] = LockInfo(12, 127, 255);
-            lockInfo[2] = LockInfo(0, 127, 255);
-            count = 3;
+        case 91: // Voltorb
+            lockInfo = { LockInfo(12, 0, 126), LockInfo(12, 127, 255), LockInfo(0, 127, 255) };
             type = 1;
             break;
-        // Vulpix
-        case 92:
-            lockInfo[0] = LockInfo(18, 127, 255);
-            lockInfo[1] = LockInfo(6, 0, 126);
-            lockInfo[2] = LockInfo(0, 127, 255);
-            count = 3;
+        case 92: // Vulpix
+            lockInfo = { LockInfo(18, 127, 255), LockInfo(6, 0, 126), LockInfo(0, 127, 255) };
             type = 1;
             break;
-        // Weepinbell
-        case 93:
-            lockInfo[0] = LockInfo(12, 127, 255);
-            lockInfo[1] = LockInfo(24, 0, 255);
-            lockInfo[2] = LockInfo(18, 0, 126);
-            count = 3;
+        case 93: // Weepinbell
+            lockInfo = { LockInfo(12, 127, 255), LockInfo(24, 0, 255), LockInfo(18, 0, 126) };
             type = 6;
             break;
-        // Articuno
-        case 2:
-        // Baltoy 3
-        case 3:
-        // Baltoy 1
-        case 4:
-        // Beedrill
-        case 7:
-        // Carvanha
-        case 9:
-        // Exeggutor
-        case 17:
-        // Houndour 3
-        case 27:
-        // Houndour 1
-        case 28:
-        // To do houndour 2
-        case 29:
-        // Lugia
-        case 35:
-        // Mareep 3
-        case 43:
-        // Moltres
-        case 49:
-        // Rhydon
-        case 64:
-        // To do seedot 3
-        case 69:
-        // Shellder
-        case 73:
-        // Swellow
-        case 84:
-        // Tauros
-        case 87:
-        // Teddiursa
-        case 88:
-        // Togepi
-        case 89:
-        // Zangoose
-        case 94:
-        // Zapdos
-        default:
+        case 2: // Articuno
+        case 3: // Baltoy 3
+        case 4: // Baltoy 1
+        case 7: // Beedrill
+        case 9: // Carvanha
+        case 17: // Exeggutor
+        case 27: // Houndour 3
+        case 28: // Houndour 1
+        case 29: // To do houndour 2
+        case 35: // Lugia
+        case 43: // Mareep 3
+        case 49: // Moltres
+        case 64: // Rhydon
+        case 69: // To do seedot 3
+        case 73: // Shellder
+        case 84: // Swellow
+        case 87: // Tauros
+        case 88: // Teddiursa
+        case 89: // Togepi
+        case 94: // Zangoose
+        default: // Zapdos
             type = 0;
             break;
     }
@@ -657,7 +355,7 @@ bool NatureLock::ivMethodSingleNL(uint32_t seed)
 }
 
 // Salamence is a special case of single nature lock and second shadow
-// Checks if seed is valud for 1st shadow unset for Salamence
+// Checks if seed is valid for 1st shadow unset for Salamence
 bool NatureLock::ivMethodSalamenceUnset(uint32_t seed)
 {
     rng.setSeed(seed);
@@ -685,7 +383,7 @@ bool NatureLock::ivMethodSalamenceSet(uint32_t seed)
     return !(gender < genderLower || gender > genderUpper || pid % 25 != nature);
 }
 
-// Checks if seed is valid for 1st shadow set unset and antishiny(aka Shiny Skip) for Salamence
+// Checks if seed is valid for 1st shadow unset and antishiny(aka Shiny Skip) for Salamence
 bool NatureLock::ivMethodSalamenceShinySkip(uint32_t seed)
 {
     rng.setSeed(seed);
@@ -708,7 +406,7 @@ bool NatureLock::ivMethodSalamenceShinySkip(uint32_t seed)
 
     // Backwards nature lock check
     gender = pid & 255;
-    return !(gender < genderLower || gender > genderUpper || pid % 25 != nature)
+    return !(gender < genderLower || gender > genderUpper || pid % 25 != nature);
 }
 
 // Checks if seed is valid for single shadow case
@@ -734,7 +432,7 @@ bool NatureLock::ivMethodFirstShadow(uint32_t seed)
         if (nature != 500)
         {
             gender = pid & 255;
-            if (gender < genderLower || gender > genderUpper|| pid % 25 != nature)
+            if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
                 countBackTwo();
         }
     }
@@ -860,7 +558,7 @@ bool NatureLock::ivMethodFirstShadowShinySkip(uint32_t seed)
 
     uint32_t psv, psvtemp;
 
-    //Check how many advances from shiny skip and build initial pid for first nl
+    // Check how many advances from shiny skip and build initial pid for first nl
     psv = getPSVReverse();
     psvtemp = getPSVReverse();
     while (psv == psvtemp)
@@ -958,4 +656,30 @@ void NatureLock::getCurrLock()
     nature = lockInfo[x].getNature();
     genderLower = lockInfo[x].getGenderLower();
     genderUpper = lockInfo[x].getGenderUpper();
+}
+
+// Constructor for LockInfo
+LockInfo::LockInfo(uint32_t nature, uint32_t genderLower, uint32_t genderUpper)
+{
+    this->nature = nature;
+    this->genderLower = genderLower;
+    this->genderUpper = genderUpper;
+}
+
+// Gets nature value
+uint32_t LockInfo::getNature()
+{
+    return nature;
+}
+
+// Gets lower gender thresh value
+uint32_t LockInfo::getGenderLower()
+{
+    return genderLower;
+}
+
+// Gets upper gender thresh value
+uint32_t LockInfo::getGenderUpper()
+{
+    return genderUpper;
 }

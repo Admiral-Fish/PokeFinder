@@ -1,13 +1,13 @@
 #include "Objects/LCRNG.hpp"
 #include "Objects/MTRNG.hpp"
 #include "Objects/NatureLock.hpp"
-#include "Objects/LockInfo.hpp"
 #include <iostream>
 
 int main ()
 {
-    NatureLock test = NatureLock(0);
+    NatureLock test = NatureLock(67);
     
-    std::cout  << test.ivMethodFirstShadowShinySkip(0xD19AEF0E)<< std::endl;
-    std::cout  << test.ivMethodFirstShadowShinySkip(0xAA940E92)<< std::endl;
+    std::cout  << test.ivMethodSalamenceShinySkip(0x44426368)<< std::endl;
+    std::cout  << test.ivMethodSalamenceShinySkip(0xB5E07FD7)<< std::endl;
+    std::cout  << test.ivMethodSalamenceShinySkip(0x293FFEA7)<< std::endl;
 }

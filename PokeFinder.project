@@ -22,8 +22,6 @@
     <File Name="Objects/MTRNG.hpp"/>
     <File Name="Objects/NatureLock.hpp"/>
     <File Name="Objects/NatureLock.cpp"/>
-    <File Name="Objects/LockInfo.hpp"/>
-    <File Name="Objects/LockInfo.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

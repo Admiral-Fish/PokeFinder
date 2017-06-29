@@ -1,15 +1,35 @@
 #ifndef NATURELOCK_HPP
 #define NATURELOCK_HPP
 #include <cstdint>
+#include <vector>
 #include "LCRNG.hpp"
-#include "LockInfo.hpp"
+
+class LockInfo
+{
+    
+private:
+    uint32_t nature;
+    uint32_t genderLower;
+    uint32_t genderUpper;
+    
+public:
+    
+    LockInfo(uint32_t nature, uint32_t genderLower, uint32_t genderUpper);
+    
+    uint32_t getNature();
+    
+    uint32_t getGenderLower();
+    
+    uint32_t getGenderUpper();
+    
+};
 
 class NatureLock
 {
     
 private:
     LCRNG rng;
-    LockInfo lockInfo[5] = { LockInfo(0 , 0, 0), LockInfo(0 , 0, 0), LockInfo(0 , 0, 0), LockInfo(0 , 0, 0), LockInfo(0 , 0, 0) };
+    std::vector<LockInfo> lockInfo;
     int count;
     int count2;
     int type;
