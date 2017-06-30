@@ -1,6 +1,4 @@
 #include "LCRNG.hpp"
-#include <string>
-#include <cstdint>
 
 // Default constructor for LCRNG
 LCRNG::LCRNG()

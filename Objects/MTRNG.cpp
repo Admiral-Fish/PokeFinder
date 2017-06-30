@@ -64,7 +64,6 @@
 */
 
 #include "MTRNG.hpp"
-#include <cstdint>
 
 // Mersenne Twister
 

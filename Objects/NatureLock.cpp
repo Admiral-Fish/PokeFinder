@@ -1,6 +1,4 @@
 #include "NatureLock.hpp"
-#include <cstdint>
-#include "LCRNG.hpp"
 
 // Constructor for NatureLock
 NatureLock::NatureLock(int lockNum)
