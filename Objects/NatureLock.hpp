@@ -4,6 +4,16 @@
 #include <vector>
 #include "LCRNG.hpp"
 
+//Defines the different types of shadows
+enum ShadowType
+{
+    NoLock,
+    SingleLock,
+    FirstShadow,
+    Salamence,
+    SecondShadow
+};
+
 class LockInfo
 {
     
@@ -32,7 +42,7 @@ private:
     std::vector<LockInfo> lockInfo;
     int count;
     int count2;
-    int type;
+    ShadowType type;
     int x;
     uint32_t nature;
     uint32_t genderLower;
@@ -74,6 +84,8 @@ public:
     bool ivMethodFirstShadowUnset(uint32_t seed);
     
     bool ivMethodFirstShadowShinySkip(uint32_t seed);
+    
+    ShadowType getType();
 
 };
 

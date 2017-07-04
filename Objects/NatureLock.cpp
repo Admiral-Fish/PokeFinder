@@ -19,298 +19,298 @@ void NatureLock::natureLockSetup(int lockNum)
     {
         case 0: // Altaria
             lockInfo = { LockInfo(24, 127, 255), LockInfo(0, 0, 126), LockInfo(12, 127, 255) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 1: // Arbok
             lockInfo =  { LockInfo(18, 0, 126), LockInfo(12, 0, 126), LockInfo(0, 0, 126), LockInfo(6, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 5: //Baltoy 2
             lockInfo =  { LockInfo(0, 127, 255), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 6: // Banette
             lockInfo =  { LockInfo(12, 0, 255), LockInfo(18, 0, 126), LockInfo(0, 0, 255) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 8: // Butterfree
             lockInfo = { LockInfo(0, 0, 126), LockInfo(6, 127, 255), LockInfo(12, 0, 190) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 10: // Chansey
             lockInfo = { LockInfo(24, 127, 255), LockInfo(6, 0, 126) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 11: // Delcatty
             lockInfo = { LockInfo(24, 127, 255), LockInfo(0, 127, 255), LockInfo(6, 0, 190) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 12: // Dodrio
             lockInfo =  { LockInfo(18, 0, 126) };
-            type = 2;
+            type = ShadowType::SingleLock;
             break;
         case 13: // Dragonite
             lockInfo = { LockInfo(0, 127, 255), LockInfo(12, 0, 126), LockInfo(12, 0, 126), LockInfo(18, 127, 255), LockInfo(0, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 14: // Dugtrio
             lockInfo = { LockInfo(12, 127, 255), LockInfo(18, 127, 255), LockInfo(6, 0, 126), LockInfo(0, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 15: // Duskull
             lockInfo = { LockInfo(24, 127, 255), LockInfo(18, 0, 126), LockInfo(12, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 16: // Electabuzz
             lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 0, 126), LockInfo(24, 63, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 18: // Farfetch'd  
             lockInfo = { LockInfo(24, 127, 255), LockInfo(0, 0, 126), LockInfo(12, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 19: // Golduck
             lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 0, 126), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 20: // Grimer
             lockInfo = { LockInfo(18, 127, 255), LockInfo(12, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 21: // Growlithe
             lockInfo = { LockInfo(6, 0, 126), LockInfo(24, 127, 255) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 22: // Gulpin 3
         case 23: // Gulpin 1
             lockInfo = { LockInfo(6, 127, 255), LockInfo(12, 0, 126) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 24: // Gulpin 2
             lockInfo = { LockInfo(0, 0, 126), LockInfo(0, 0, 126), LockInfo(6, 127, 255), LockInfo(12, 0, 126) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 25: // Hitmonchan
             lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 0, 126), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 26: // Hitmonlee
             lockInfo = { LockInfo(24, 0, 126), LockInfo(6, 0, 255), LockInfo(12, 0, 126), LockInfo(18, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 30: // Hypno
             lockInfo = { LockInfo(24, 127, 255), LockInfo(6, 0, 126), LockInfo(12, 0, 126), LockInfo(18, 0, 126) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 31: // Kangaskhan
             lockInfo = { LockInfo(12, 0, 255), LockInfo(18, 0, 126), LockInfo(0, 0, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 32: // Lapras
             lockInfo = { LockInfo(24, 127, 255), LockInfo(500, 500, 500), LockInfo(500, 500, 500), LockInfo(6, 0, 126) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 33: // Ledyba
             lockInfo = { LockInfo(0, 0, 126) };
-            type = 2;
+            type = ShadowType::SingleLock;
             break;
         case 34: // Lickitung
             lockInfo = { LockInfo(6, 0, 255), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 36: // Lunatone
             lockInfo = { LockInfo(18, 127, 255), LockInfo(0, 0, 126) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 37: // Marcargo
             lockInfo = { LockInfo(12, 0, 126), LockInfo(6, 127, 255), LockInfo(24, 127, 255) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 38: // Magmar 
             lockInfo = { LockInfo(0, 0, 126), LockInfo(18, 191, 255), LockInfo(18, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 39: // Magneton
             lockInfo = { LockInfo(12, 0, 126), LockInfo(0, 127, 255), LockInfo(18, 0, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 40: // Makuhita
             lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 41: // Makuhita Colo
             lockInfo = { LockInfo(0, 0, 126), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 42: // Manectric
             lockInfo = { LockInfo(6, 0, 126) };
-            type = 2;
+            type = ShadowType::SingleLock;
             break;
         case 44: // Mareep 1
             lockInfo = { LockInfo(12, 0, 126), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 45: // Mareep 2
             lockInfo = { LockInfo(0, 0, 255), LockInfo(12, 0, 126), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 46: // Marowak
             lockInfo = { LockInfo(24, 127, 255), LockInfo(500, 500, 500), LockInfo(500, 500, 500), LockInfo(6, 0, 126) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 47: // Mawile
             lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 48: // Meowth
             lockInfo =  { LockInfo(18, 0, 126), LockInfo(0, 0, 126), LockInfo(6, 63, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 50: // Mr. Mime
             lockInfo = { LockInfo(6, 0, 126), LockInfo(24, 127, 255), LockInfo(18, 127, 255), LockInfo(18, 127, 255) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 51: // Natu
             lockInfo = { LockInfo(0, 0, 126), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 52: // Nosepass
             lockInfo = { LockInfo(12, 0, 126), LockInfo(18, 127, 255), LockInfo(0, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 53: // Numel
             lockInfo = { LockInfo(24, 0, 126), LockInfo(0, 0, 255), LockInfo(6, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 54: // Paras
             lockInfo = { LockInfo(6, 0, 126), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 55: // Pidgeotto
             lockInfo = { LockInfo(18, 32, 255), LockInfo(12, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 56: // Pineco
             lockInfo = { LockInfo(6, 127, 255) };
-            type = 2;
+            type = ShadowType::SingleLock;
             break;
         case 57: // Pinsir
             lockInfo = { LockInfo(0, 0, 126), LockInfo(18, 191, 255), LockInfo(18, 127, 255) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 58: // Poliwrath
             lockInfo = { LockInfo(6, 0, 126), LockInfo(24, 127, 255), LockInfo(18, 127, 255), LockInfo(18, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 59: // Poochyena
             lockInfo = { LockInfo(12, 0, 126) };
-            type = 2;
+            type = ShadowType::SingleLock;
             break;
         case 60: // Primeape
             lockInfo = { LockInfo(24, 127, 255), LockInfo(6, 0, 126), LockInfo(12, 0, 126), LockInfo(18, 0, 126) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 61: // Ralts
             lockInfo = { LockInfo(18, 127, 255), LockInfo(6, 0, 126), LockInfo(0, 63, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 62: // Rapidash
             lockInfo = { LockInfo(12, 0, 126), LockInfo(6, 127, 255), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 63: // Raticate
             lockInfo = { LockInfo(18, 127, 255), LockInfo(500, 500, 500), LockInfo(18, 0, 126) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 65: // Roselia
             lockInfo = { LockInfo(18, 127, 255), LockInfo(6, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 66: // Sableye
             lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 0, 126), LockInfo(24, 127, 255) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 67: // Salamence
             lockInfo = { LockInfo(6, 0, 126) };
-            type = 3;
+            type = ShadowType::Salamence;
             break;
         case 68: // Scyther
             lockInfo = { LockInfo(24, 127, 255), LockInfo(6, 0, 126) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 70: // Seedot 1
             lockInfo = { LockInfo(12, 127, 255), LockInfo(0, 127, 255), LockInfo(12, 0, 126), LockInfo(24, 0, 126), LockInfo(6, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 71: // Seedot 2
             lockInfo = { LockInfo(6, 127, 255), LockInfo(0, 0, 126), LockInfo(0, 0, 126), LockInfo(24, 0, 126), LockInfo(6, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 72: // Seel
             lockInfo = { LockInfo(18, 0, 126), LockInfo(12, 127, 255), LockInfo(6, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 74: // Shroomish
             lockInfo = { LockInfo(0, 0, 126), LockInfo(24, 0, 126) };
             count = 2;
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 75: // Snorlax
             lockInfo =  { LockInfo(18, 0, 126), LockInfo(6, 0, 126), LockInfo(24, 63, 255) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 76: // Snorunt
             lockInfo = { LockInfo(6, 0, 126) };
-            type = 2;
+            type = ShadowType::SingleLock;
             break;
         case 77: // Solrock
             lockInfo = { LockInfo(0, 0, 126), LockInfo(6, 127, 255), LockInfo(24, 0, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 78: // Spearow
             lockInfo = { LockInfo(6, 0, 126), LockInfo(18, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 79: // Spheal 3
         case 81: // Spheal 2
             lockInfo = { LockInfo(0, 0, 255), LockInfo(12, 0, 126), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 80: // Spheal 1
             lockInfo = { LockInfo(12, 0, 126), LockInfo(24, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 82: // Spinarak
             lockInfo = { LockInfo(6, 127, 255), LockInfo(12, 0, 126) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 83: // Starmie
             lockInfo = { LockInfo(18, 127, 255), LockInfo(500, 500, 500), LockInfo(0, 0, 126), LockInfo(6, 127, 255), LockInfo(24, 0, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 85: // Swinub
             lockInfo =  { LockInfo(0, 127, 255), LockInfo(18, 0, 126) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 86: // Tangela
             lockInfo = { LockInfo(0, 0, 126), LockInfo(6, 127, 255), LockInfo(12, 0, 190) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 90: // Venomoth
             lockInfo = { LockInfo(12, 127, 255), LockInfo(24, 0, 255), LockInfo(18, 0, 126) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 91: // Voltorb
             lockInfo = { LockInfo(12, 0, 126), LockInfo(12, 127, 255), LockInfo(0, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 92: // Vulpix
             lockInfo = { LockInfo(18, 127, 255), LockInfo(6, 0, 126), LockInfo(0, 127, 255) };
-            type = 1;
+            type = ShadowType::FirstShadow;
             break;
         case 93: // Weepinbell
             lockInfo = { LockInfo(12, 127, 255), LockInfo(24, 0, 255), LockInfo(18, 0, 126) };
-            type = 6;
+            type = ShadowType::SecondShadow;
             break;
         case 2: // Articuno
         case 3: // Baltoy 3
@@ -333,9 +333,15 @@ void NatureLock::natureLockSetup(int lockNum)
         case 89: // Togepi
         case 94: // Zangoose
         default: // Zapdos
-            type = 0;
+            type = ShadowType::NoLock;
             break;
     }
+}
+
+//Returns what type the shadow is
+ShadowType NatureLock::getType()
+{
+    return type;
 }
 
 // Checks if seed is valid for single nature lock
