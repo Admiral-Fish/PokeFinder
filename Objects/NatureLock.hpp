@@ -4,7 +4,7 @@
 #include <vector>
 #include "LCRNG.hpp"
 
-//Defines the different types of shadows
+// Defines the different types of shadows
 enum ShadowType
 {
     NoLock,

@@ -22,6 +22,9 @@
     <File Name="Objects/MTRNG.hpp"/>
     <File Name="Objects/NatureLock.hpp"/>
     <File Name="Objects/NatureLock.cpp"/>
+    <File Name="Objects/Method.hpp"/>
+    <File Name="Objects/Lead.hpp"/>
+    <File Name="Objects/Encounter.hpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

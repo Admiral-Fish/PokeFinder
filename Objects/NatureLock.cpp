@@ -338,7 +338,7 @@ void NatureLock::natureLockSetup(int lockNum)
     }
 }
 
-//Returns what type the shadow is
+// Returns what type the shadow is
 ShadowType NatureLock::getType()
 {
     return type;
