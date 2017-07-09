@@ -12,6 +12,17 @@ NatureLock::NatureLock(int lockNum)
         getCurrLock();
 }
 
+// Changes which lock info is being used
+void NatureLock::switchLock(int lockNum)
+{
+    natureLockSetup(lockNum);
+    count = lockInfo.size();
+    count2 = count == 1 ? 0 : count - 2;
+    x = 0;
+    if (count == 1)
+        getCurrLock();
+}
+
 // Sets up rest of nature lock data
 void NatureLock::natureLockSetup(int lockNum)
 {
@@ -239,7 +250,7 @@ void NatureLock::natureLockSetup(int lockNum)
             type = ShadowType::FirstShadow;
             break;
         case 70: // Seedot 1
-            lockInfo = { LockInfo(12, 127, 255), LockInfo(0, 127, 255), LockInfo(12, 0, 126), LockInfo(24, 0, 126), LockInfo(6, 127, 255) };
+            lockInfo = { LockInfo(12, 127, 255), LockInfo(0, 127, 255), LockInfo(18, 0, 126), LockInfo(24, 0, 126), LockInfo(6, 127, 255) };
             type = ShadowType::FirstShadow;
             break;
         case 71: // Seedot 2
@@ -355,7 +366,7 @@ bool NatureLock::ivMethodSingleNL(uint32_t seed)
 
     // Backwards nature lock check
     gender = pid & 255;
-    return !(gender < genderLower || gender > genderUpper || pid % 25 != nature);
+    return (gender > genderLower && gender < genderUpper && pid % 25 == nature);
 }
 
 // Salamence is a special case of single nature lock and second shadow
@@ -370,7 +381,7 @@ bool NatureLock::ivMethodSalamenceUnset(uint32_t seed)
 
     // Backwards nature lock check
     gender = pid & 255;
-    return !(gender < genderLower || gender > genderUpper || pid % 25 != nature);
+    return (gender > genderLower && gender < genderUpper && pid % 25 == nature);
 }
 
 // Checks if seed is valid for 1st shadow set for Salamence
@@ -384,7 +395,7 @@ bool NatureLock::ivMethodSalamenceSet(uint32_t seed)
 
     // Backwards nature lock check
     gender = pid & 255;
-    return !(gender < genderLower || gender > genderUpper || pid % 25 != nature);
+    return (gender > genderLower && gender < genderUpper && pid % 25 == nature);
 }
 
 // Checks if seed is valid for 1st shadow unset and antishiny(aka Shiny Skip) for Salamence
@@ -410,7 +421,7 @@ bool NatureLock::ivMethodSalamenceShinySkip(uint32_t seed)
 
     // Backwards nature lock check
     gender = pid & 255;
-    return !(gender < genderLower || gender > genderUpper || pid % 25 != nature);
+    return (gender > genderLower && gender < genderUpper && pid % 25 == nature);
 }
 
 // Checks if seed is valid for single shadow case
@@ -491,7 +502,7 @@ bool NatureLock::ivMethodFirstShadowUnset(uint32_t seed)
     rng.advanceFrames(1);
 
     // Forwards nature lock check loop
-    for (x = count2; x <= 0; x--)
+    for (x = count2; x >= 0; x--)
     {
         rng.advanceFrames(3);
         pid = getPIDForward();

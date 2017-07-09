@@ -69,6 +69,8 @@ public:
 
     NatureLock(int lockNum);
     
+    void switchLock(int lockNum);
+    
     bool ivMethodSingleNL(uint32_t seed);
     
     bool ivMethodSalamenceSet(uint32_t seed);
