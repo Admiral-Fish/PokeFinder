@@ -10,7 +10,12 @@ enum Encounter
     GoodRod,
     SuperRod,
     Stationary,
-    SafariZone
+    SafariZone,
+    BugCatchingContestPreDex,
+    BugCatchingContestTues,
+    BugCatchingContestThurs,
+    BugCatchingContestSat,
+    HeadButt
 };
 
 #endif // ENCOUNTER_HPP

@@ -25,6 +25,8 @@
     <File Name="Objects/Method.hpp"/>
     <File Name="Objects/Lead.hpp"/>
     <File Name="Objects/Encounter.hpp"/>
+    <File Name="Objects/EncounterSlot.hpp"/>
+    <File Name="Objects/EncounterSlot.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
