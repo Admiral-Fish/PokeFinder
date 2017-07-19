@@ -1,14 +1,18 @@
 #include "NatureLock.hpp"
 
+/* Each non-shadow before a shadow has to match
+ * a specific gender/nature and these preset
+ * values directly impact what spreads are available */
+
 // Constructor for NatureLock
 NatureLock::NatureLock(int lockNum)
 {
     rng = LCRNG(0, "xdRNG");
     natureLockSetup(lockNum);
-    count = lockInfo.size();
-    count2 = count == 1 ? 0 : count - 2;
+    backCount = lockInfo.size();
+    frontCount = backCount == 1 ? 0 : backCount - 2;
     x = 0;
-    if (count == 1)
+    if (backCount == 1)
         getCurrLock();
 }
 
@@ -16,10 +20,10 @@ NatureLock::NatureLock(int lockNum)
 void NatureLock::switchLock(int lockNum)
 {
     natureLockSetup(lockNum);
-    count = lockInfo.size();
-    count2 = count == 1 ? 0 : count - 2;
+    backCount = lockInfo.size();
+    frontCount = backCount == 1 ? 0 : backCount - 2;
     x = 0;
-    if (count == 1)
+    if (backCount == 1)
         getCurrLock();
 }
 
@@ -263,7 +267,7 @@ void NatureLock::natureLockSetup(int lockNum)
             break;
         case 74: // Shroomish
             lockInfo = { LockInfo(0, 0, 126), LockInfo(24, 0, 126) };
-            count = 2;
+            backCount = 2;
             type = ShadowType::FirstShadow;
             break;
         case 75: // Snorlax
@@ -366,7 +370,7 @@ bool NatureLock::ivMethodSingleNL(uint32_t seed)
 
     // Backwards nature lock check
     gender = pid & 255;
-    return (gender > genderLower && gender < genderUpper && pid % 25 == nature);
+    return (gender >= genderLower && gender <= genderUpper && pid % 25 == nature);
 }
 
 // Salamence is a special case of single nature lock and second shadow
@@ -374,28 +378,28 @@ bool NatureLock::ivMethodSingleNL(uint32_t seed)
 bool NatureLock::ivMethodSalamenceUnset(uint32_t seed)
 {
     rng.setSeed(seed);
-    rng.reverseFrames(13);
+    rng.reverseFrames(8);
 
     // Build PID
     pid = getPIDReverse();
 
     // Backwards nature lock check
     gender = pid & 255;
-    return (gender > genderLower && gender < genderUpper && pid % 25 == nature);
+    return (gender >= genderLower && gender <= genderUpper && pid % 25 == nature);
 }
 
 // Checks if seed is valid for 1st shadow set for Salamence
 bool NatureLock::ivMethodSalamenceSet(uint32_t seed)
 {
     rng.setSeed(seed);
-    rng.reverseFrames(11);
+    rng.reverseFrames(6);
 
     // Build PID
     pid = getPIDReverse();
 
     // Backwards nature lock check
     gender = pid & 255;
-    return (gender > genderLower && gender < genderUpper && pid % 25 == nature);
+    return (gender >= genderLower && gender <= genderUpper && pid % 25 == nature);
 }
 
 // Checks if seed is valid for 1st shadow unset and antishiny(aka Shiny Skip) for Salamence
@@ -416,7 +420,7 @@ bool NatureLock::ivMethodSalamenceShinySkip(uint32_t seed)
         psv = getPSVReverse();
     }
 
-    rng.reverseFrames(10);
+    rng.reverseFrames(5);
     pid = getPIDReverse();
 
     // Backwards nature lock check
@@ -435,11 +439,11 @@ bool NatureLock::ivMethodFirstShadow(uint32_t seed)
 
     // Backwards nature lock check
     gender = pidOriginal & 255;
-    if (gender < lockInfo[0].getGenderLower() || gender > lockInfo[0].getGenderUpper() || pidOriginal % 25 != lockInfo[0].getNature())
+    if (!(gender >= lockInfo[0].getGenderLower() && gender <= lockInfo[0].getGenderUpper() && pidOriginal % 25 == lockInfo[0].getNature()))
         return false;
 
     // Backwards nature lock check loop
-    for (x = 1; x < count; x++)
+    for (x = 1; x < backCount; x++)
     {
         rng.reverseFrames(3);
         pid = getPIDReverse();
@@ -447,7 +451,7 @@ bool NatureLock::ivMethodFirstShadow(uint32_t seed)
         if (nature != 500)
         {
             gender = pid & 255;
-            if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
+            if (!(gender >= genderLower && gender <= genderUpper && pid % 25 == nature))
                 countBackTwo();
         }
     }
@@ -455,7 +459,7 @@ bool NatureLock::ivMethodFirstShadow(uint32_t seed)
     rng.advanceFrames(1);
 
     // Forwards nature lock check loop
-    for (x = count2; x >= 0; x--)
+    for (x = frontCount; x >= 0; x--)
     {
         rng.advanceFrames(3);
         pid = getPIDForward();
@@ -463,11 +467,12 @@ bool NatureLock::ivMethodFirstShadow(uint32_t seed)
         if (nature != 500)
         {
             gender = pid & 255;
-            if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
+            if (!(gender >= genderLower && gender <= genderUpper && pid % 25 == nature))
                 countForwardTwo();
         }
     }
 
+    // Checks if first NL PID back from target matches
     return pidOriginal == pid;
 }
 
@@ -475,18 +480,18 @@ bool NatureLock::ivMethodFirstShadow(uint32_t seed)
 bool NatureLock::ivMethodFirstShadowUnset(uint32_t seed)
 {
     rng.setSeed(seed);
-    rng.reverseFrames(13);
+    rng.reverseFrames(8);
 
     // Build temp pid first to not waste time looping if first nl fails
     pidOriginal = getPIDReverse();
 
     // Backwards nature lock check
     gender = pidOriginal & 255;
-    if (gender < lockInfo[0].getGenderLower() || gender > lockInfo[0].getGenderUpper() || pidOriginal % 25 != lockInfo[0].getNature())
+    if (!(gender >= lockInfo[0].getGenderLower() && gender <= lockInfo[0].getGenderUpper() && pidOriginal % 25 == lockInfo[0].getNature()))
         return false;
     
     // Backwards nature lock check loop
-    for (x = 1; x < count; x++)
+    for (x = 1; x < backCount; x++)
     {
         rng.reverseFrames(3);
         pid = getPIDReverse();
@@ -494,7 +499,7 @@ bool NatureLock::ivMethodFirstShadowUnset(uint32_t seed)
         if (nature != 500)
         {
             gender = pid & 255;
-            if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
+            if (!(gender >= genderLower && gender <= genderUpper && pid % 25 == nature))
                 countBackTwo();
         }
     }
@@ -502,7 +507,7 @@ bool NatureLock::ivMethodFirstShadowUnset(uint32_t seed)
     rng.advanceFrames(1);
 
     // Forwards nature lock check loop
-    for (x = count2; x >= 0; x--)
+    for (x = frontCount; x >= 0; x--)
     {
         rng.advanceFrames(3);
         pid = getPIDForward();
@@ -510,11 +515,12 @@ bool NatureLock::ivMethodFirstShadowUnset(uint32_t seed)
         if (nature != 500)
         {
             gender = pid & 255;
-            if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
+            if (!(gender >= genderLower && gender <= genderUpper && pid % 25 == nature))
                 countForwardTwo();
         }
     }
 
+    // Checks if first NL PID back from target matches
     return pidOriginal == pid;
 }
 
@@ -522,18 +528,18 @@ bool NatureLock::ivMethodFirstShadowUnset(uint32_t seed)
 bool NatureLock::ivMethodFirstShadowSet(uint32_t seed)
 {
     rng.setSeed(seed);
-    rng.reverseFrames(11);
+    rng.reverseFrames(6);
 
     // Build temp pid first to not waste time looping if first nl fails
     pidOriginal = getPIDReverse();
 
     // Backwards nature lock check
     gender = pidOriginal & 255;
-    if (gender < lockInfo[0].getGenderLower() || gender > lockInfo[0].getGenderUpper() || pidOriginal % 25 != lockInfo[0].getNature())
+    if (gender >= lockInfo[0].getGenderLower() && gender <= lockInfo[0].getGenderUpper() && pidOriginal % 25 == lockInfo[0].getNature())
         return false;
 
     // Backwards nature lock check loop
-    for (x = 1; x < count; x++)
+    for (x = 1; x < backCount; x++)
     {
         rng.reverseFrames(3);
         pid = getPIDReverse();
@@ -541,15 +547,15 @@ bool NatureLock::ivMethodFirstShadowSet(uint32_t seed)
         if (nature != 500)
         {
             gender = pid & 255;
-            if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
+            if (!(gender >= genderLower && gender <= genderUpper && pid % 25 == nature))
                 countBackTwo();
         }
     }
 
     rng.advanceFrames(1);
 
-    //Forwards nature lock check
-    for (x = count2; x >= 0; x--)
+    // Forwards nature lock check
+    for (x = frontCount; x >= 0; x--)
     {
         rng.advanceFrames(3);
         pid = getPIDForward();
@@ -557,11 +563,12 @@ bool NatureLock::ivMethodFirstShadowSet(uint32_t seed)
         if (nature != 500)
         {
             gender = pid & 255;
-            if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
+            if (!(gender >= genderLower && gender <= genderUpper && pid % 25 == nature))
                 countForwardTwo();
         }
     }
-
+    
+    // Checks if first NL PID back from target matches
     return pidOriginal == pid;
 }
 
@@ -582,16 +589,16 @@ bool NatureLock::ivMethodFirstShadowShinySkip(uint32_t seed)
         psv = getPSVReverse();
     }
 
-    rng.reverseFrames(10);
+    rng.reverseFrames(5);
     pidOriginal = getPIDReverse();
 
     // Backwards nature lock check
     gender = pidOriginal & 255;
-    if (gender < lockInfo[0].getGenderLower() || gender > lockInfo[0].getGenderUpper() || pidOriginal % 25 != lockInfo[0].getNature())
+    if (!(gender >= lockInfo[0].getGenderLower() && gender <= lockInfo[0].getGenderUpper() && pidOriginal % 25 == lockInfo[0].getNature()))
         return false;
 
     // Backwards nature lock check loop
-    for (x = 1; x < count; x++)
+    for (x = 1; x < backCount; x++)
     {
         rng.reverseFrames(3);
         pid = getPIDReverse();
@@ -599,7 +606,7 @@ bool NatureLock::ivMethodFirstShadowShinySkip(uint32_t seed)
         if (nature != 500)
         {
             gender = pid & 255;
-            if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
+            if (!(gender >= genderLower && gender <= genderUpper && pid % 25 == nature))
                 countBackTwo();
         }
     }
@@ -607,7 +614,7 @@ bool NatureLock::ivMethodFirstShadowShinySkip(uint32_t seed)
     rng.advanceFrames(1);
 
     // Forwards nature lock check loop
-    for (x = count2; x >= 0; x--)
+    for (x = frontCount; x >= 0; x--)
     {
         rng.advanceFrames(3);
         pid = getPIDForward();
@@ -615,36 +622,35 @@ bool NatureLock::ivMethodFirstShadowShinySkip(uint32_t seed)
         if (nature != 500)
         {
             gender = pid & 255;
-            if (gender < genderLower || gender > genderUpper || pid % 25 != nature)
+            if (!(gender >= genderLower && gender <= genderUpper && pid % 25 == nature))
                 countForwardTwo();
         }
     }
 
+    // Checks if first NL PID back from target matches
     return pidOriginal == pid;
 }
 
 // Keeps rerolling PID forward by 2 until it finds a match for current lock
 void NatureLock::countForwardTwo()
 {
-    pid = getPIDForward();
-    gender = pid & 255;
-    while (gender < genderLower || gender > genderUpper || pid % 25 != nature)
+    do
     {
         pid = getPIDForward();
         gender = pid & 255;
     }
+    while (!(gender >= genderLower && gender <= genderUpper && pid % 25 == nature));
 }
 
 // Keeps rerolling PID backwards by 2 until it finds a match for current lock
 void NatureLock::countBackTwo()
 {
-    pid = getPIDReverse();
-    gender = pid & 255;
-    while (gender < genderLower || gender > genderUpper || pid % 25 != nature)
+    do
     {
         pid = getPIDReverse();
         gender = pid & 255;
     }
+    while (!(gender >= genderLower && gender <= genderUpper && pid % 25 == nature));
 }
 
 // Generates the next PID forwards

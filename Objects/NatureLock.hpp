@@ -40,8 +40,8 @@ class NatureLock
 private:
     LCRNG rng;
     std::vector<LockInfo> lockInfo;
-    int count;
-    int count2;
+    int backCount;
+    int frontCount;
     ShadowType type;
     int x;
     uint32_t nature;
