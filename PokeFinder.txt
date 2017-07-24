@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 ./Debug/main.cpp.o ./Debug/Objects_LCRNG.cpp.o ./Debug/Objects_MTRNG.cpp.o ./Debug/Objects_NatureLock.cpp.o ./Debug/Objects_EncounterSlot.cpp.o   
+=======
+./Debug/MainTest.cpp.o ./Debug/Objects_LCRNG.cpp.o ./Debug/Objects_MTRNG.cpp.o   
+>>>>>>> Stashed changes

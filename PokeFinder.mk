@@ -35,9 +35,9 @@ PreprocessOnlySwitch   :=-E
 ObjectsFileList        :="PokeFinder.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
-RcCmpOptions           := 
+RcCmpOptions           := $(shell wx-config --rcflags)
 RcCompilerName         :="D:/Program Files/TDMGCC/bin/windres.exe"
-LinkOptions            :=  
+LinkOptions            :=  $(shell wx-config --libs) -mwindows
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
 RcIncludePath          := 
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch).
 AR       := "D:/Program Files/TDMGCC/bin/ar.exe" rcu
 CXX      := "D:/Program Files/TDMGCC/bin/g++.exe"
 CC       := "D:/Program Files/TDMGCC/bin/gcc.exe"
-CXXFLAGS := -std=c++11 -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -g -O0 -Wall $(shell wx-config --cflags)  $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := "D:/Program Files/TDMGCC/bin/as.exe"
@@ -62,7 +62,10 @@ AS       := "D:/Program Files/TDMGCC/bin/as.exe"
 ## User defined environment variables
 ##
 CodeLiteDir:=D:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Objects_LCRNG.cpp$(ObjectSuffix) $(IntermediateDirectory)/Objects_MTRNG.cpp$(ObjectSuffix) 
+WXWIN:=D:\Programming\wxWidgets-3.1.0
+WXCFG:=gcc_dll\mswu
+PATH:=D:\Programming\wxWidgets-3.1.0\lib\gcc_dll;$PATH
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/MainFrame.cpp$(ObjectSuffix) $(IntermediateDirectory)/wxcrafter.cpp$(ObjectSuffix) $(IntermediateDirectory)/wxcrafter_bitmaps.cpp$(ObjectSuffix) $(IntermediateDirectory)/Objects_LCRNG.cpp$(ObjectSuffix) $(IntermediateDirectory)/Objects_MTRNG.cpp$(ObjectSuffix) $(IntermediateDirectory)/MainTest.cpp$(ObjectSuffix) $(IntermediateDirectory)/win_resources.rc$(ObjectSuffix) 
 
 
 
@@ -101,6 +104,30 @@ $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
+$(IntermediateDirectory)/MainFrame.cpp$(ObjectSuffix): MainFrame.cpp $(IntermediateDirectory)/MainFrame.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/Programming/PokeFinder/MainFrame.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MainFrame.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/MainFrame.cpp$(DependSuffix): MainFrame.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/MainFrame.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/MainFrame.cpp$(DependSuffix) -MM MainFrame.cpp
+
+$(IntermediateDirectory)/MainFrame.cpp$(PreprocessSuffix): MainFrame.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/MainFrame.cpp$(PreprocessSuffix) MainFrame.cpp
+
+$(IntermediateDirectory)/wxcrafter.cpp$(ObjectSuffix): wxcrafter.cpp $(IntermediateDirectory)/wxcrafter.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/Programming/PokeFinder/wxcrafter.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/wxcrafter.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/wxcrafter.cpp$(DependSuffix): wxcrafter.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/wxcrafter.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/wxcrafter.cpp$(DependSuffix) -MM wxcrafter.cpp
+
+$(IntermediateDirectory)/wxcrafter.cpp$(PreprocessSuffix): wxcrafter.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/wxcrafter.cpp$(PreprocessSuffix) wxcrafter.cpp
+
+$(IntermediateDirectory)/wxcrafter_bitmaps.cpp$(ObjectSuffix): wxcrafter_bitmaps.cpp $(IntermediateDirectory)/wxcrafter_bitmaps.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/Programming/PokeFinder/wxcrafter_bitmaps.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/wxcrafter_bitmaps.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/wxcrafter_bitmaps.cpp$(DependSuffix): wxcrafter_bitmaps.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/wxcrafter_bitmaps.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/wxcrafter_bitmaps.cpp$(DependSuffix) -MM wxcrafter_bitmaps.cpp
+
+$(IntermediateDirectory)/wxcrafter_bitmaps.cpp$(PreprocessSuffix): wxcrafter_bitmaps.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/wxcrafter_bitmaps.cpp$(PreprocessSuffix) wxcrafter_bitmaps.cpp
+
 $(IntermediateDirectory)/Objects_LCRNG.cpp$(ObjectSuffix): Objects/LCRNG.cpp $(IntermediateDirectory)/Objects_LCRNG.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/Programming/PokeFinder/Objects/LCRNG.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Objects_LCRNG.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Objects_LCRNG.cpp$(DependSuffix): Objects/LCRNG.cpp
@@ -117,6 +144,16 @@ $(IntermediateDirectory)/Objects_MTRNG.cpp$(DependSuffix): Objects/MTRNG.cpp
 $(IntermediateDirectory)/Objects_MTRNG.cpp$(PreprocessSuffix): Objects/MTRNG.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Objects_MTRNG.cpp$(PreprocessSuffix) Objects/MTRNG.cpp
 
+$(IntermediateDirectory)/MainTest.cpp$(ObjectSuffix): MainTest.cpp $(IntermediateDirectory)/MainTest.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "D:/Programming/PokeFinder/MainTest.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/MainTest.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/MainTest.cpp$(DependSuffix): MainTest.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/MainTest.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/MainTest.cpp$(DependSuffix) -MM MainTest.cpp
+
+$(IntermediateDirectory)/MainTest.cpp$(PreprocessSuffix): MainTest.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/MainTest.cpp$(PreprocessSuffix) MainTest.cpp
+
+$(IntermediateDirectory)/win_resources.rc$(ObjectSuffix): win_resources.rc
+	$(RcCompilerName) -i "D:/Programming/PokeFinder/win_resources.rc" $(RcCmpOptions)   $(ObjectSwitch)$(IntermediateDirectory)/win_resources.rc$(ObjectSuffix) $(RcIncludePath)
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
 ##
