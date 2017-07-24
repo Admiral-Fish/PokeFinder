@@ -18,6 +18,8 @@
     <File Name="Objects/Encounter.hpp"/>
     <File Name="Objects/EncounterSlot.hpp"/>
     <File Name="Objects/EncounterSlot.cpp"/>
+    <File Name="Objects/Utilities.hpp"/>
+    <File Name="Objects/Utilities.cpp"/>
   </VirtualDirectory>
 =======
 >>>>>>> Stashed changes
