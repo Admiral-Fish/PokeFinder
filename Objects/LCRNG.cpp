@@ -1,5 +1,6 @@
 #include "LCRNG.hpp"
 
+
 // Default constructor for LCRNG
 LCRNG::LCRNG()
 {
@@ -14,11 +15,11 @@ LCRNG::LCRNG(uint32_t seed)
 }
 
 // LCRNG constructor with seed and RNG type
-LCRNG::LCRNG(uint32_t seed, std::string type): LCRNG(seed)
+LCRNG::LCRNG(uint32_t seed, rng_type type) LCRNG(seed)
 {
-    if (type == "pokeRNG")
+    if (type == POKE_RNG)
       setpokeRNG();
-    else if (type == "xdRNG")
+    else if (type == XD_RNG)
       setxdRNG();
     else
       setaRNG();

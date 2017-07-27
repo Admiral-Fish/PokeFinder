@@ -4,6 +4,11 @@
 #include <string>
 #include <cstdint>
 
+enum rng_type {
+    POKE_RNG,
+    XD_RNG
+}
+
 class LCRNG
 {
 
@@ -20,7 +25,7 @@ public:
 
     LCRNG(uint32_t seed);
 
-    LCRNG(uint32_t seed, std::string type);
+    LCRNG(uint32_t seed, rng_type type);
 
     void setSeed(uint32_t newSeed);
 

@@ -7,7 +7,7 @@
 // Constructor for NatureLock
 NatureLock::NatureLock(int lockNum)
 {
-    rng = LCRNG(0, "xdRNG");
+    rng = LCRNG(0, XD_RNG);
     natureLockSetup(lockNum);
     backCount = lockInfo.size();
     frontCount = backCount == 1 ? 0 : backCount - 2;
