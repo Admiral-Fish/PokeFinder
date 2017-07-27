@@ -15,7 +15,7 @@ LCRNG::LCRNG(uint32_t seed)
 }
 
 // LCRNG constructor with seed and RNG type
-LCRNG::LCRNG(uint32_t seed, rng_type type) LCRNG(seed)
+LCRNG::LCRNG(uint32_t seed, rng_type type): LCRNG(seed)
 {
     if (type == POKE_RNG)
       setpokeRNG();
