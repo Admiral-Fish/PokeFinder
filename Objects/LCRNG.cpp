@@ -49,19 +49,19 @@ void LCRNG::setConst(uint32_t mult, uint32_t add, uint32_t multR, uint32_t addR)
 // Method for setting pokeRNG constants
 void LCRNG::setpokeRNG()
 {
-    setConst(0x41c64e6d, 0x6073, 0xeeb9eb65, 0xa3561a1);
+    setConst(POKE_MULT, POKE_ADD, POKE_MULTR, POKE_ADDR);
 }
 
 // Method for setting xdRNG constants
 void LCRNG::setxdRNG()
 {
-    setConst(0x343FD, 0x269EC3, 0xB9B33155, 0xA170F641);
+    setConst(XD_MULT, XD_ADD, XD_MULTR, XD_ADDR);
 }
 
 // Method for setting aRNG constants
 void LCRNG::setaRNG()
 {
-    setConst(0x6c078965, 0x01, 0x9638806d, 0x69c77f93);
+    setConst(A_MULT, A_ADD, A_MULTR, A_ADDR);
 }
 
 // Method for finding next 32 bit seed

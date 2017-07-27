@@ -9,6 +9,20 @@ enum rng_type {
     XD_RNG
 }
 
+const uint32_t POKE_MULT = 0x41c64e6d;
+const uint32_t POKE_ADD = 0x6073;
+const uint32_t POKE_MULTR = 0xeeb9eb65;
+const uint32_t POKE_ADDR = 0xa3561a1;
+const uint32_t XD_MULT = 0x343FD;
+const uint32_t XD_ADD = 0x269EC3;
+const uint32_t XD_MULTR = 0xB9B33155;
+const uint32_t XD_ADDR = 0xA170F641;
+const uint32_t A_MULT = 0x6c078965;
+const uint32_t A_ADD = 0x01;
+const uint32_t A_MULTR = 0x9638806d;
+const uint32_t A_ADDR = 0x69c77f93;
+
+
 class LCRNG
 {
 
