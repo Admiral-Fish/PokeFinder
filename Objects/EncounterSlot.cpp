@@ -115,9 +115,7 @@ int EncounterSlot::JSlot(uint32_t result, Encounter encounterType)
 int EncounterSlot::calcSlot(int compare, std::vector<Range> ranges)
 {
     for (int i = 0; i < ranges.size(); i++)
-    {
         if (compare >= ranges[i].getMin() && compare <= ranges[i].getMax())
             return i;
-    }
     return -1;
 }

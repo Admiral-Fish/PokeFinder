@@ -9,5 +9,3 @@ Utilities::calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m)
     uint32_t seed = 1440 * d + 960 * (h / 10) + 60 * (h % 10) + 16 * (m / 10) + m % 10;
     return (seed >> 16) ^ (seed & 0xFFFF);
 }
-
-

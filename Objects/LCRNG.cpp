@@ -1,5 +1,6 @@
 #include "LCRNG.hpp"
 
+// LCRNG is used for Gen 3 and 4
 
 // Default constructor for LCRNG
 LCRNG::LCRNG()
@@ -17,9 +18,9 @@ LCRNG::LCRNG(uint32_t seed)
 // LCRNG constructor with seed and RNG type
 LCRNG::LCRNG(uint32_t seed, rng_type type): LCRNG(seed)
 {
-    if (type == POKE_RNG)
+    if (type == rng_type::POKE_RNG)
       setpokeRNG();
-    else if (type == XD_RNG)
+    else if (type == rng_type::XD_RNG)
       setxdRNG();
     else
       setaRNG();
@@ -101,5 +102,66 @@ void LCRNG::advanceFrames(int frames)
 void LCRNG::reverseFrames(int frames)
 {
     for(int i = 0; i < frames; i++)
+        seed = seed*multR + addR;
+}
+
+
+// LCRNG64 is used for Gen 5
+
+// Default constructor for LCRNG64
+LCRNG64::LCRNG64()
+{
+    seed = 0;
+}
+
+// LCRNG64 constructor that sets a given seed
+LCRNG64::LCRNG64(uint64_t seed)
+{
+    this->seed = seed;
+}
+
+// Get method for seed
+uint64_t LCRNG64::getSeed()
+{
+    return seed;
+}
+
+// Method for finding next 64 bit seed
+uint64_t LCRNG64::next64Bit()
+{
+    seed = seed*mult + add;
+    return seed;
+}
+
+// Method for finding next 32 bit seed
+uint32_t LCRNG64::next32Bit()
+{
+    return (uint32_t) (next64Bit() >> 32);
+}
+
+// Method for finding previous 64 bit seed
+uint64_t LCRNG64::prev64Bit()
+{
+    seed = seed*multR + addR;
+    return seed;
+}
+
+// Method for finding previous 32 bit seed
+uint32_t LCRNG64::prev32Bit()
+{
+    return (uint32_t) (prev64Bit() >> 32);
+}
+
+// Method for advancing seed by a given number of frames
+void LCRNG64::advanceFrames(int frames)
+{
+    for (int i = 0; i < frames; i++)
+        seed = seed*mult + add;
+}
+
+// Method for reversing seed by a given number of frames
+void LCRNG64::reverseFrames(int frames)
+{
+    for (int i = 0; i < frames; i++)
         seed = seed*multR + addR;
 }
