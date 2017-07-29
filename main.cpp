@@ -1,36 +1,11 @@
-<<<<<<< Updated upstream
-#include "Objects/NatureLock.hpp"
-#include "Objects/EncounterSlot.hpp"
-#include <iostream>
-=======
-#include <wx/app.h>
-#include <wx/event.h>
-#include "MainFrame.h"
-#include <wx/image.h>
->>>>>>> Stashed changes
+#include "mainwindow.h"
+#include <QApplication>
 
-// Define the MainApp
-class MainApp : public wxApp
+int main(int argc, char *argv[])
 {
-<<<<<<< Updated upstream
-    std::cout << EncounterSlot::KSlot(0x12345678, Encounter::Wild) << std::endl;
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+
+    return a.exec();
 }
-=======
-public:
-    MainApp() {}
-    virtual ~MainApp() {}
-
-    virtual bool OnInit() {
-        // Add the common image handlers
-        wxImage::AddHandler( new wxPNGHandler );
-        wxImage::AddHandler( new wxJPEGHandler );
-
-        MainFrame *mainFrame = new MainFrame(NULL);
-        SetTopWindow(mainFrame);
-        return GetTopWindow()->Show();
-    }
-};
-
-DECLARE_APP(MainApp)
-IMPLEMENT_APP(MainApp)
->>>>>>> Stashed changes
