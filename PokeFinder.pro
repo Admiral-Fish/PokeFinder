@@ -45,3 +45,5 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui
+
+INCLUDEPATH += C:/boost/include/boost-1_64

@@ -29,16 +29,16 @@ int EncounterSlot::HSlot(uint32_t result, Encounter encounterType)
     std::vector<Range> ranges;
     switch(encounterType)
     {
-        case Encounter::OldRod:
+        case OldRod:
             ranges = { Range(0, 69), Range(70, 99) } ;
             return calcSlot(compare, ranges);
-        case Encounter::GoodRod:
+        case GoodRod:
             ranges = { Range(0, 59), Range(60, 79), Range(80, 99) };
             return calcSlot(compare, ranges);
-        case Encounter::SuperRod:
+        case SuperRod:
             ranges = { Range(0, 39), Range(40, 69), Range(70, 84), Range(85, 94), Range(95, 99) };
             return calcSlot(compare, ranges);
-        case Encounter::Surfing:
+        case Surfing:
             ranges = { Range(0, 59), Range(60, 89), Range(90, 94), Range(95, 98), Range(99, 99) };
             return calcSlot(compare, ranges);
         default:
@@ -56,27 +56,27 @@ int EncounterSlot::KSlot(uint32_t result, Encounter encounterType)
     std::vector<Range> ranges;
     switch(encounterType)
     {
-        case Encounter::OldRod:
-        case Encounter::GoodRod:
-        case Encounter::SuperRod:
+        case OldRod:
+        case GoodRod:
+        case SuperRod:
             ranges = { Range(0, 39), Range(40, 69), Range(70, 84), Range(85, 94), Range(95, 99) };
             return calcSlot(compare, ranges);
-        case Encounter::Surfing:
+        case Surfing:
             ranges = { Range(0, 59), Range(60, 89), Range(90, 94), Range(95, 98), Range(99, 99) };
             return calcSlot(compare, ranges);
-        case Encounter::BugCatchingContestPreDex:
-        case Encounter::BugCatchingContestTues:
+        case BugCatchingContestPreDex:
+        case BugCatchingContestTues:
             ranges = { Range(80, 99), Range(60, 79), Range(50, 59), Range(40, 49), Range(10, 14), 
                         Range(15, 19), Range(30, 39), Range(20, 29), Range(5, 9), Range(0, 4) };
             return calcSlot(compare, ranges);
-        case Encounter::BugCatchingContestThurs:
-        case Encounter::BugCatchingContestSat:
+        case BugCatchingContestThurs:
+        case BugCatchingContestSat:
             ranges = { Range(80, 99), Range(50, 59), Range(60, 79), Range(40, 49), Range(30, 39), 
                         Range(20, 29), Range(15, 19), Range(10, 14), Range(5, 9), Range(0, 4) };
             return calcSlot(compare, ranges);
-        case Encounter::SafariZone:
+        case SafariZone:
             return (int) (compare % 10);
-        case Encounter::HeadButt:
+        case HeadButt:
             ranges = { Range(0, 49), Range(50, 64), Range(65, 79), Range(80, 89), Range(90, 94), 
                         Range(95, 99) };
             return calcSlot(compare, ranges);
@@ -95,12 +95,12 @@ int EncounterSlot::JSlot(uint32_t result, Encounter encounterType)
     std::vector<Range> ranges;
     switch (encounterType)
     {
-        case Encounter::GoodRod:
-        case Encounter::SuperRod:
+        case GoodRod:
+        case SuperRod:
             ranges = { Range(0, 39), Range(40, 79), Range(80, 94), Range(95, 98), Range(99, 99) };
             return calcSlot(compare, ranges);
-        case Encounter::OldRod:
-        case Encounter::Surfing:
+        case OldRod:
+        case Surfing:
             ranges = { Range(0, 59), Range(60, 89), Range(90, 94), Range(95, 98), Range(99, 99) };
             return calcSlot(compare, ranges);
         default:
