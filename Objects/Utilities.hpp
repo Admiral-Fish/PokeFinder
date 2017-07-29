@@ -8,7 +8,7 @@ class Utilities
     
 public:
     
-    static calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m);
+    static uint32_t calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m);
 
 };
 
