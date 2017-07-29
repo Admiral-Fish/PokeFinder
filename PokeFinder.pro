@@ -50,4 +50,4 @@ FORMS += \
 linux:LIBS += \
        -lboost_system\
 
-win32:INCLUDEPATH += C:/bod windowsost/include/boost-1_64
+win32:INCLUDEPATH += C:/boost/include/boost-1_64
