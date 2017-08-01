@@ -1,4 +1,5 @@
 #include "LCRNG.hpp"
+#include <iostream>
 
 // LCRNG is used for Gen 3 and 4
 
@@ -13,6 +14,7 @@ LCRNG::LCRNG()
 LCRNG::LCRNG(uint32_t seed)
 {
     this->seed = seed;
+    setpokeRNG();
 }
 
 // LCRNG constructor with seed and RNG type
@@ -69,6 +71,7 @@ void LCRNG::setaRNG()
 uint32_t LCRNG::next32Bit()
 {
     seed = seed*mult + add;
+    
     return seed;
 }
 
