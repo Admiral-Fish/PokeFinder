@@ -2,7 +2,7 @@
 #define ENCOUNTERSLOT_HPP
 #include <cstdint>
 #include <vector>
-#include "Objects/Encounter.hpp"
+#include "Encounter.hpp"
 
 class Range
 {
@@ -26,7 +26,7 @@ class EncounterSlot
 {
     
 private:
-    static int calcSlot(int compare, std::vector<Range> ranges);
+    static int calcSlot(unsigned int compare, std::vector<Range> ranges);
     
 public:
 

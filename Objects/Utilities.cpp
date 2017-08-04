@@ -1,8 +1,8 @@
 #include "Utilities.hpp"
 
-Utilities::calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m)
+uint32_t Utilities::calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m)
 {
-    boost::gregorian::date start = boost::gregorian::date(1999, December, 10);
+    boost::gregorian::date start = boost::gregorian::date(1999, 12, 31);
     boost::gregorian::date_duration span = time - start;
     uint32_t d = span.days();
     
