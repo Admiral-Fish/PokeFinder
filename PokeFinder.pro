@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QMAKE_CXXFLAGS += -std=c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -46,4 +47,7 @@ HEADERS += \
 FORMS += \
         mainwindow.ui
 
-INCLUDEPATH += C:/boost/include/boost-1_64
+linux:LIBS += \
+       -lboost_system\
+
+win32:INCLUDEPATH += C:/boost/include/boost-1_64
