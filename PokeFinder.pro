@@ -48,7 +48,9 @@ SOURCES += \
     Objects/LCRNG.cpp \
     Objects/MTRNG.cpp \
     Objects/NatureLock.cpp \
-    Objects/Utilities.cpp
+    Objects/Utilities.cpp \
+    Objects/SFMT.cpp \
+    Objects/TinyMT.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -59,7 +61,9 @@ HEADERS += \
     Objects/Method.hpp \
     Objects/MTRNG.hpp \
     Objects/NatureLock.hpp \
-    Objects/Utilities.hpp
+    Objects/Utilities.hpp \
+    Objects/SFMT.hpp \
+    Objects/TinyMT.hpp
 
 FORMS += \
         mainwindow.ui
