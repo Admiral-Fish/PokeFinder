@@ -56,6 +56,7 @@ void SFMT::init(uint32_t seed)
         _sfmt[_sfmti] = 0x6C078965 * (_sfmt[_sfmti - 1] ^ (_sfmt[_sfmti - 1] >> 30)) + _sfmti;
 
     period_certificaion();
+    Shuffle();
 }
 
 // Verify internal state vector
@@ -92,10 +93,7 @@ void SFMT::period_certificaion()
 uint32_t SFMT::Nextuint()
 {
     if (_sfmti >= 624)
-    {
         Shuffle();
-        _sfmti = 0;
-    }
     return _sfmt[_sfmti++];
 }
 
@@ -120,6 +118,7 @@ void SFMT::Shuffle()
             b = 0;
     }
     while (a < 624);
+    _sfmti = 0;
 }
 
 // Generates the next 64bit psuedo random number
@@ -132,10 +131,7 @@ uint64_t SFMT::Nextulong()
 void SFMT::Next()
 {
     if (_sfmti >= 622)
-    {
         Shuffle();
-        _sfmti = 0;
-    }
     else
         _sfmti += 2;
 }
