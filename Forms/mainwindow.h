@@ -4,8 +4,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <cstdint>
-#include <string>
-#include "Objects/LCRNG.hpp"
+#include "Core/Objects/LCRNG.hpp"
 
 namespace Ui {
 class MainWindow;

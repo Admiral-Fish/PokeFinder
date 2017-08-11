@@ -43,27 +43,27 @@ macx {
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    Objects/EncounterSlot.cpp \
-    Objects/LCRNG.cpp \
-    Objects/MTRNG.cpp \
-    Objects/NatureLock.cpp \
-    Objects/Utilities.cpp \
-    Objects/SFMT.cpp \
-    Objects/TinyMT.cpp
+        Forms/mainwindow.cpp \
+        Core/Objects/EncounterSlot.cpp \
+        Core/Objects/LCRNG.cpp \
+        Core/Objects/MTRNG.cpp \
+        Core/Objects/NatureLock.cpp \
+        Core/Objects/Utilities.cpp \
+        Core/Objects/SFMT.cpp \
+        Core/Objects/TinyMT.cpp
 
 HEADERS += \
-        mainwindow.h \
-    Objects/Encounter.hpp \
-    Objects/EncounterSlot.hpp \
-    Objects/LCRNG.hpp \
-    Objects/Lead.hpp \
-    Objects/Method.hpp \
-    Objects/MTRNG.hpp \
-    Objects/NatureLock.hpp \
-    Objects/Utilities.hpp \
-    Objects/SFMT.hpp \
-    Objects/TinyMT.hpp
+        Forms/mainwindow.h \
+        Core/Objects/Encounter.hpp \
+        Core/Objects/EncounterSlot.hpp \
+        Core/Objects/LCRNG.hpp \
+        Core/Objects/Lead.hpp \
+        Core/Objects/Method.hpp \
+        Core/Objects/MTRNG.hpp \
+        Core/Objects/NatureLock.hpp \
+        Core/Objects/Utilities.hpp \
+        Core/Objects/SFMT.hpp \
+        Core/Objects/TinyMT.hpp
 
 FORMS += \
-        mainwindow.ui
+        Forms/mainwindow.ui
