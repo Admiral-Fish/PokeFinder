@@ -50,7 +50,8 @@ SOURCES += \
         Core/Objects/NatureLock.cpp \
         Core/Objects/Utilities.cpp \
         Core/Objects/SFMT.cpp \
-        Core/Objects/TinyMT.cpp
+        Core/Objects/TinyMT.cpp \
+        Core/Gen3/StationaryGen3.cpp
 
 HEADERS += \
         Forms/mainwindow.h \
@@ -63,7 +64,8 @@ HEADERS += \
         Core/Objects/NatureLock.hpp \
         Core/Objects/Utilities.hpp \
         Core/Objects/SFMT.hpp \
-        Core/Objects/TinyMT.hpp
+        Core/Objects/TinyMT.hpp \
+        Core/Gen3/StationaryGen3.hpp
 
 FORMS += \
         Forms/mainwindow.ui
