@@ -34,7 +34,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>10</y>
         <width>211</width>
         <height>201</height>
        </rect>
@@ -159,7 +159,7 @@
         </size>
        </property>
        <property name="inputMask">
-        <string>Hhhhhhhh</string>
+        <string/>
        </property>
        <property name="text">
         <string/>
@@ -200,7 +200,13 @@
         </rect>
        </property>
        <property name="inputMask">
-        <string>9999999999</string>
+        <string/>
+       </property>
+       <property name="text">
+        <string>1</string>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
        </property>
       </widget>
       <widget class="QLineEdit" name="maxResults">
@@ -213,7 +219,13 @@
         </rect>
        </property>
        <property name="inputMask">
-        <string>9999999999</string>
+        <string/>
+       </property>
+       <property name="text">
+        <string>100000</string>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
        </property>
       </widget>
       <widget class="QLineEdit" name="id">
@@ -226,7 +238,10 @@
         </rect>
        </property>
        <property name="inputMask">
-        <string>99999</string>
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>5</number>
        </property>
       </widget>
       <widget class="QLineEdit" name="sid">
@@ -239,7 +254,10 @@
         </rect>
        </property>
        <property name="inputMask">
-        <string>99999</string>
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>5</number>
        </property>
       </widget>
      </widget>
@@ -247,7 +265,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>240</y>
+        <y>250</y>
         <width>1191</width>
         <height>271</height>
        </rect>
@@ -317,6 +335,25 @@
         <string>Power</string>
        </property>
       </column>
+     </widget>
+     <widget class="QPushButton" name="generate">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>220</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Generate</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tabWild">
