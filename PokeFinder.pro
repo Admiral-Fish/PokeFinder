@@ -51,7 +51,8 @@ SOURCES += \
         Core/Objects/Utilities.cpp \
         Core/Objects/SFMT.cpp \
         Core/Objects/TinyMT.cpp \
-        Core/Gen3/StationaryGen3.cpp
+        Core/Gen3/GeneratorGen3.cpp \
+        Core/Gen3/FrameGen3.cpp
 
 HEADERS += \
         Forms/mainwindow.h \
@@ -65,7 +66,8 @@ HEADERS += \
         Core/Objects/Utilities.hpp \
         Core/Objects/SFMT.hpp \
         Core/Objects/TinyMT.hpp \
-        Core/Gen3/StationaryGen3.hpp
+        Core/Gen3/GeneratorGen3.hpp \
+        Core/Gen3/FrameGen3.hpp
 
 FORMS += \
         Forms/mainwindow.ui

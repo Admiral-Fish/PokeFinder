@@ -38,7 +38,7 @@ class NatureLock
 {
     
 private:
-    LCRNG rng;
+    LCRNG rng = LCRNG(0, XD_RNG);
     std::vector<LockInfo> lockInfo;
     int backCount;
     int frontCount;

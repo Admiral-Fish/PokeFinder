@@ -107,4 +107,14 @@ void MainWindow::on_generate_clicked()
             return;
         }
     }
+
+    FrameGen3 frame = FrameGen3();
+    frame.hp = 31;
+    frame.atk = 31;
+    frame.def = 31;
+    frame.spa = 31;
+    frame.spd = 31;
+    frame.spe = 31;
+    frame.seed = 0xFFFFFFFF;
+    ui->tableView->horizontalHeader()->setVisible(true);
 }
