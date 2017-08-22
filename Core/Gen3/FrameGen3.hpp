@@ -6,6 +6,7 @@
 #include <vector>
 #include <cstdint>
 #include <string>
+#include <boost/format.hpp>
 
 
 class FrameGen3

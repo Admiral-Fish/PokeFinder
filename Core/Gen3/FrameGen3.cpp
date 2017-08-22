@@ -77,7 +77,7 @@ std::string FrameGen3::getTime()
     int32_t minutes = frame / 3600;
     int32_t seconds = (frame - (3600 * minutes)) / 60;
     int32_t milliseconds = ((frame % 60) * 100) / 60;
-    std::string ret = std::to_string(minutes) + ":" + std::to_string(seconds) + "." + std::to_string(milliseconds);
+    std::string ret = (boost::format("%d:%02d.%02d") % minutes % seconds % milliseconds).str();
     return ret;
 }
 
