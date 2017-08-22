@@ -136,6 +136,11 @@
          <string>XD/Colo</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Channel</string>
+        </property>
+       </item>
       </widget>
       <widget class="QLineEdit" name="initialSeed">
        <property name="geometry">

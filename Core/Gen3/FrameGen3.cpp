@@ -30,6 +30,18 @@ void FrameGen3::setIVs(uint32_t iv1, uint32_t iv2)
     power = (30 + ((((hp >> 1) & 1) + 2 * ((atk >> 1) & 1) + 4 * ((def >> 1) & 1) + 8 * ((spe >> 1) & 1) + 16 * ((spa >> 1) & 1) + 32 * ((spd >> 1) & 1)) * 40 / 63));
 }
 
+void FrameGen3::setIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6)
+{
+    hp = iv1;
+    atk = iv2;
+    def = iv3;
+    spa = iv4;
+    spd = iv5;
+    spe = iv6;
+    hidden = ((((hp & 1) + 2 * (atk & 1) + 4 * (def & 1) + 8 * (spe & 1) + 16 * (spa & 1) + 32 * (spd & 1)) * 15) / 63);
+    power = (30 + ((((hp >> 1) & 1) + 2 * ((atk >> 1) & 1) + 4 * ((def >> 1) & 1) + 8 * ((spe >> 1) & 1) + 16 * ((spa >> 1) & 1) + 32 * ((spd >> 1) & 1)) * 40 / 63));
+}
+
 std::string FrameGen3::getNature()
 {
     return natures[nature];

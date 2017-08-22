@@ -64,6 +64,9 @@ std::vector<FrameGen3> GeneratorGen3::Generate()
         case XDColo:
             rng.setxdRNG();
             return GenerateMethodXDColo();
+        case Channel:
+            rng.setxdRNG();
+            return GenerateMethodChannel();
     }
 }
 
@@ -139,6 +142,27 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodXDColo()
         FrameGen3 frame = FrameGen3(tid, sid);
         frame.setPID(rngList[3], rngList[4]);
         frame.setIVs(rngList[0], rngList[1]);
+        frame.frame = cnt;
+        frames.push_back(frame);
+    }
+    return frames;
+}
+
+std::vector<FrameGen3> GeneratorGen3::GenerateMethodChannel()
+{
+    std::vector<FrameGen3> frames;
+    for (int i = 0; i < 12; i++)
+        rngList.push_back(rng.next16Bit());
+
+    uint32_t max = InitialFrame + MaxResults;
+    for (uint32_t cnt = InitialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.next16Bit()))
+    {
+        FrameGen3 frame = FrameGen3(40122, rngList[0]);
+        if ((rngList[2] > 7 ? 0 : 1) != (rngList[1] ^ 40122 ^ sid))
+            frame.setPID(rngList[1] ^ 0x8000, rngList[2]);
+        else
+            frame.setPID(rngList[1], rngList[2]);
+        frame.setIVsChannel(rngList[6] >> 11, rngList[7] >> 11, rngList[8] >> 11, rngList[10] >> 11, rngList[11] >> 11, rngList[9] >> 11);
         frame.frame = cnt;
         frames.push_back(frame);
     }

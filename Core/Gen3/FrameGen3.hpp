@@ -62,6 +62,8 @@ public:
 
     void setIVs(uint32_t iv1, uint32_t iv2);
 
+    void setIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6);
+
     std::string getNature();
 
     std::string getPower();

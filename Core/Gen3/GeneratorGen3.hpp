@@ -29,6 +29,8 @@ private:
 
     std::vector<FrameGen3> GenerateMethodXDColo();
 
+    std::vector<FrameGen3> GenerateMethodChannel();
+
 public:
     Method FrameType = Method1;
     Encounter EncounterType = Stationary;
