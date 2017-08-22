@@ -16,6 +16,8 @@ private:
     std::vector<uint32_t> rngList;
     int iv1;
     int iv2;
+    uint32_t tid;
+    uint32_t sid;
 
     std::vector<FrameGen3> GenerateMethod124();
 
@@ -24,6 +26,8 @@ private:
     std::vector<FrameGen3> GenerateMethodH124Synch();
 
     std::vector<FrameGen3> GenerateMethodH124CuteCharm();
+
+    std::vector<FrameGen3> GenerateMethodXDColo();
 
 public:
     Method FrameType = Method1;
@@ -36,6 +40,8 @@ public:
     uint32_t cuteCharm;
 
     GeneratorGen3();
+
+    GeneratorGen3(uint32_t MaxResults, uint32_t InitialFrame, uint32_t InitialSeed, uint32_t tid, uint32_t sid);
 
     std::vector<FrameGen3> Generate();
 

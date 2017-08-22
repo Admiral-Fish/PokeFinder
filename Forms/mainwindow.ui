@@ -107,7 +107,7 @@
         <string>Trainer SID:</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="comboBoxMethod">
        <property name="geometry">
         <rect>
          <x>110</x>
@@ -286,7 +286,7 @@
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QTableView" name="tableView">
+     <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -295,6 +295,96 @@
         <height>271</height>
        </rect>
       </property>
+      <column>
+       <property name="text">
+        <string>Frame</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Time</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>PID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>!!!</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nature</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Ability</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>HP</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Atk</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Def</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>SpA</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>SpD</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Spe</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Hidden</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Power</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>12.5% F</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>25% F</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>50% F</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>75% F</string>
+       </property>
+      </column>
      </widget>
     </widget>
     <widget class="QWidget" name="tabWild">

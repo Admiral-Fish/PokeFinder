@@ -5,6 +5,17 @@ GeneratorGen3::GeneratorGen3()
     MaxResults = 100000;
     InitialFrame = 1;
     InitialSeed = 0;
+    tid = 12345;
+    sid = 54321;
+}
+
+GeneratorGen3::GeneratorGen3(uint32_t MaxResults, uint32_t InitialFrame, uint32_t InitialSeed, uint32_t tid, uint32_t sid)
+{
+    this->MaxResults = MaxResults;
+    this->InitialFrame = InitialFrame;
+    this->InitialSeed = InitialSeed;
+    this->tid = tid;
+    this->sid = sid;
 }
 
 std::vector<FrameGen3> GeneratorGen3::Generate()
@@ -35,24 +46,24 @@ std::vector<FrameGen3> GeneratorGen3::Generate()
         case Method1:
         case Method2:
         case Method4:
+            rng.setpokeRNG();
             return GenerateMethod124();
-            break;
         case MethodH1:
         case MethodH2:
         case MethodH4:
+            rng.setpokeRNG();
             switch (LeadType)
             {
                 case None:
                     return GenerateMethodH124();
-                    break;
                 case Synchronize:
                     return GenerateMethodH124Synch();
-                    break;
                 case CuteCharm:
                     return GenerateMethodH124CuteCharm();
-                    break;
             }
-            break;
+        case XDColo:
+            rng.setxdRNG();
+            return GenerateMethodXDColo();
     }
 }
 
@@ -65,7 +76,11 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethod124()
     uint32_t max = InitialFrame + MaxResults;
     for (uint32_t cnt = InitialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.next16Bit()))
     {
-
+        FrameGen3 frame = FrameGen3(tid, sid);
+        frame.setPID(rngList[1], rngList[0]);
+        frame.setIVs(rngList[iv1], rngList[iv2]);
+        frame.frame = cnt;
+        frames.push_back(frame);
     }
     return frames;
 }
@@ -108,6 +123,24 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124CuteCharm()
     for (uint32_t cnt = InitialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.next16Bit()))
     {
 
+    }
+    return frames;
+}
+
+std::vector<FrameGen3> GeneratorGen3::GenerateMethodXDColo()
+{
+    std::vector<FrameGen3> frames;
+    for (int i = 0; i < 5; i++)
+        rngList.push_back(rng.next16Bit());
+
+    uint32_t max = InitialFrame + MaxResults;
+    for (uint32_t cnt = InitialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.next16Bit()))
+    {
+        FrameGen3 frame = FrameGen3(tid, sid);
+        frame.setPID(rngList[3], rngList[4]);
+        frame.setIVs(rngList[0], rngList[1]);
+        frame.frame = cnt;
+        frames.push_back(frame);
     }
     return frames;
 }

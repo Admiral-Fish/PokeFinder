@@ -5,8 +5,10 @@
 #include <QMessageBox>
 #include <QHeaderView>
 #include <cstdint>
+#include <vector>
 #include "Core/Objects/LCRNG.hpp"
 #include "Core/Gen3/FrameGen3.hpp"
+#include "Core/Gen3/GeneratorGen3.hpp"
 
 namespace Ui {
 class MainWindow;
