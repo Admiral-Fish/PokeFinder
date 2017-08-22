@@ -135,7 +135,7 @@ void MainWindow::on_generate_clicked()
         ui->tableWidget->setItem(i, 0, item);
         item = new QTableWidgetItem(QString::fromStdString(frames[i].getTime()), 0);
         ui->tableWidget->setItem(i, 1, item);
-        item = new QTableWidgetItem(QString::number(frames[i].pid, 16).toUpper(), 0);
+        item = new QTableWidgetItem(QString::number(frames[i].pid, 16).toUpper().rightJustified(8,'0'), 0);
         ui->tableWidget->setItem(i, 2, item);
         item = new QTableWidgetItem(QString::fromStdString(frames[i].getShiny()), 0);
         ui->tableWidget->setItem(i, 3, item);
