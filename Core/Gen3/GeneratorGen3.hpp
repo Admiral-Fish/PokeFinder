@@ -1,23 +1,35 @@
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017 by Admiral_Fish and bumba
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 #ifndef GENERATORGEN3_HPP
 #define GENERATORGEN3_HPP
 #include <Core/Objects/LCRNG.hpp>
-#include <Core/Objects/Method.hpp>
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/Lead.hpp>
 #include <Core/Gen3/FrameGen3.hpp>
-#include <vector>
-#include <cstdint>
+#include <Core/Objects/Generator.hpp>
 
-class GeneratorGen3
+class GeneratorGen3: public Generator
 {
 
 private:
     LCRNG rng = LCRNG();
-    std::vector<uint32_t> rngList;
     int iv1;
     int iv2;
-    uint32_t tid;
-    uint32_t sid;
 
     std::vector<FrameGen3> GenerateMethod124();
 
@@ -32,14 +44,6 @@ private:
     std::vector<FrameGen3> GenerateMethodChannel();
 
 public:
-    Method FrameType = Method1;
-    Encounter EncounterType = Stationary;
-    Lead LeadType = None;
-    uint32_t InitialSeed;
-    uint32_t InitialFrame;
-    uint32_t MaxResults;
-    uint32_t SynchNature;
-    uint32_t cuteCharm;
 
     GeneratorGen3();
 

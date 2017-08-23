@@ -92,6 +92,7 @@ void SFMT::period_certificaion()
 // Generates the next psuedo random number
 uint32_t SFMT::Nextuint()
 {
+    // Array reshuffle check
     if (_sfmti >= 624)
         Shuffle();
     return _sfmt[_sfmti++];

@@ -17,43 +17,35 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTERSLOT_HPP
-#define ENCOUNTERSLOT_HPP
+#ifndef GENERATOR_HPP
+#define GENERATOR_HPP
+#include <Core/Objects/Method.hpp>
+#include <Core/Objects/Encounter.hpp>
+#include <Core/Objects/Lead.hpp>
+#include <Core/Objects/EncounterSlot.hpp>
 #include <cstdint>
 #include <vector>
-#include "Encounter.hpp"
 
-class Range
+class Generator
 {
-    
-private:
-    uint32_t min;
-    uint32_t max;
-    
-public:
 
-    Range(uint32_t min, uint32_t max);
-    
-    uint32_t getMin();
-    
-    uint32_t getMax();
-    
+protected:
+    std::vector<uint32_t> rngList;
+    uint32_t tid;
+    uint32_t sid;
+
+public:
+    Method FrameType = Method1;
+    Encounter EncounterType = Stationary;
+    Lead LeadType = None;
+    uint32_t InitialSeed;
+    uint32_t InitialFrame;
+    uint32_t MaxResults;
+    uint32_t SynchNature;
+    uint32_t cuteCharm;
+
+    Generator();
 
 };
 
-class EncounterSlot
-{
-    
-private:
-    static int calcSlot(unsigned int compare, std::vector<Range> ranges);
-    
-public:
-
-    static int HSlot(uint32_t result, Encounter encounterType);
-    
-    static int KSlot(uint32_t result, Encounter encounterType);
-    
-    static int JSlot(uint32_t result, Encounter encounterType);
-};
-
-#endif // ENCOUNTERSLOT_HPP
+#endif // GENERATOR_HPP

@@ -17,43 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTERSLOT_HPP
-#define ENCOUNTERSLOT_HPP
-#include <cstdint>
-#include <vector>
-#include "Encounter.hpp"
+#include "Generator.hpp"
 
-class Range
+/* Generator is the parent for all generation(3-7) generators.
+ * This class doesn't provide much functionality as that is
+ * the purpose of the children for each specific generation.
+ */
+
+// Default constructor
+Generator::Generator()
 {
-    
-private:
-    uint32_t min;
-    uint32_t max;
-    
-public:
-
-    Range(uint32_t min, uint32_t max);
-    
-    uint32_t getMin();
-    
-    uint32_t getMax();
-    
-
-};
-
-class EncounterSlot
-{
-    
-private:
-    static int calcSlot(unsigned int compare, std::vector<Range> ranges);
-    
-public:
-
-    static int HSlot(uint32_t result, Encounter encounterType);
-    
-    static int KSlot(uint32_t result, Encounter encounterType);
-    
-    static int JSlot(uint32_t result, Encounter encounterType);
-};
-
-#endif // ENCOUNTERSLOT_HPP
+    MaxResults = 100000;
+    InitialFrame = 1;
+    InitialSeed = 0;
+    tid = 12345;
+    sid = 54321;
+}
