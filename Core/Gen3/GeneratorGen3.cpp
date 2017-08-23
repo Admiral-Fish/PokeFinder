@@ -45,35 +45,20 @@ std::vector<FrameGen3> GeneratorGen3::Generate()
     rng.setSeed(InitialSeed);
     rng.advanceFrames(InitialFrame - 1);
 
-    if (FrameType == Method1)
+    if (FrameType == Method1 || FrameType == MethodH1)
     {
-        iv1 = 2;
-        iv2 = 3;
+        iv1 = FrameType == MethodH1 ? 1 : 2;
+        iv2 = FrameType == MethodH1 ? 2 : 3;
     }
-    else if (FrameType == MethodH1)
+    else if (FrameType == Method2 || FrameType == MethodH2)
     {
-        iv1 = 0;
-        iv2 = 0;
+        iv1 = FrameType == MethodH2 ? 2 : 3;
+        iv2 = FrameType == MethodH2 ? 3 : 4;
     }
-    else if (FrameType == Method2)
+    else if (FrameType == Method4 || FrameType == MethodH4)
     {
-        iv1 = 3;
-        iv2 = 4;
-    }
-    else if (FrameType == MethodH2)
-    {
-        iv1 = 1;
-        iv2 = 1;
-    }
-    else if (FrameType == Method4)
-    {
-        iv1 = 2;
-        iv2 = 4;
-    }
-    else if (FrameType == MethodH4)
-    {
-        iv1 = 0;
-        iv2 = 1;
+        iv1 = FrameType == MethodH4 ? 1 : 2;
+        iv2 = FrameType == MethodH4 ? 3 : 4;
     }
 
     switch (FrameType)
@@ -165,15 +150,15 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124()
             if (pid % 25 == frame.nature)
             {
                 // Valid PID is found now time to generate IVs
-                ivs1 = rngList[++hunt + iv1];
-                ivs2 = rngList[++hunt + iv2];
+                ivs1 = rngList[hunt + iv1];
+                ivs2 = rngList[hunt + iv2];
                 frame.setIVs(ivs1, ivs2);
                 frame.frame = cnt;
                 found = true;
             }
         }
         frame.setPID(pid);
-        frame.occidentary = hunt - 2;
+        frame.occidentary = hunt;
         frames.push_back(frame);
     }
     rngList.clear();

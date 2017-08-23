@@ -144,7 +144,6 @@ void MainWindow::on_generate_clicked()
     else
         generator.FrameType = Channel;
 
-    generator.FrameType = MethodH4;
     std::vector<FrameGen3> frames = generator.Generate();
     QTableWidgetItem *item;
     int size = frames.size();
