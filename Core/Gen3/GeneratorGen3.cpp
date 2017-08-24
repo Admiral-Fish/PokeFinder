@@ -126,7 +126,7 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124()
         rngList.push_back(rng.next16Bit());
 
     uint32_t max = InitialFrame + MaxResults;
-    uint32_t pid, pid1, pid2, ivs1, ivs2, hunt, first;
+    uint32_t pid, pid1, pid2, hunt;
     for (uint32_t cnt = InitialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.next16Bit()))
     {
         FrameGen3 frame = FrameGen3(tid, sid);
@@ -136,29 +136,22 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124()
 
         // Method H relies on grabbing a hunt nature and generating PIDs until the PID nature matches the hunt nature
         // Grab the hunt nature
-        first = rngList[++hunt];
-        frame.nature = first % 25;
+        frame.nature = rngList[++hunt] % 25;
 
-        // Now search for a Method 124 PID that matches our nature
-        bool found = false;
-        while (!found)
+        // Now search for a Method 124 PID that matches our hunt nature
+        do
         {
             pid2 = rngList[++hunt];
             pid1 = rngList[++hunt];
             pid = (pid1 << 16) | pid2;
-
-            if (pid % 25 == frame.nature)
-            {
-                // Valid PID is found now time to generate IVs
-                ivs1 = rngList[hunt + iv1];
-                ivs2 = rngList[hunt + iv2];
-                frame.setIVs(ivs1, ivs2);
-                frame.frame = cnt;
-                found = true;
-            }
         }
+        while (pid % 25 != frame.nature);
+
+        // Valid PID is found now time to generate IVs
+        frame.setIVs(rngList[hunt + iv1], rngList[hunt + iv2]);
+        frame.frame = cnt;
         frame.setPID(pid);
-        frame.occidentary = hunt;
+        frame.occidentary = hunt + cnt - 1;
         frames.push_back(frame);
     }
     rngList.clear();
@@ -169,13 +162,47 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124()
 std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124Synch()
 {
     std::vector<FrameGen3> frames;
-    for (int i = 0; i < 200; i++)
+    for (int i = 0; i < 300; i++)
         rngList.push_back(rng.next16Bit());
 
     uint32_t max = InitialFrame + MaxResults;
+    uint32_t pid, pid1, pid2, hunt, first;
     for (uint32_t cnt = InitialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.next16Bit()))
     {
+        FrameGen3 frame = FrameGen3(tid, sid);
 
+        hunt = 0;
+        frame.encounterSlot = EncounterSlot::HSlot(rngList[hunt++], EncounterType);
+
+        // Method H relies on grabbing a hunt nature and generating PIDs until the PID nature matches the hunt nature
+        // Check by seeing if frame can synch
+        first = rngList[++hunt];
+        if ((first & 1) == 0)
+        {
+            // Frame is synchable so set nature to synch nature
+            frame.nature = SynchNature;
+        }
+        else
+        {
+            // Synch failed so grab hunt nature from next RNG call
+            frame.nature = rngList[++hunt] % 25;
+        }
+
+        // Now search for a Method 124 PID that matches our hunt nature
+        do
+        {
+            pid2 = rngList[++hunt];
+            pid1 = rngList[++hunt];
+            pid = (pid1 << 16) | pid2;
+        }
+        while (pid % 25 != frame.nature);
+
+        // Valid PID is found now time to generate IVs
+        frame.setIVs(rngList[hunt + iv1], rngList[hunt + iv2]);
+        frame.frame = cnt;
+        frame.setPID(pid);
+        frame.occidentary = hunt + cnt - 1;
+        frames.push_back(frame);
     }
     rngList.clear();
     return frames;
@@ -185,13 +212,45 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124Synch()
 std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124CuteCharm()
 {
     std::vector<FrameGen3> frames;
-    for (int i = 0; i < 200; i++)
+    for (int i = 0; i < 300; i++)
         rngList.push_back(rng.next16Bit());
 
     uint32_t max = InitialFrame + MaxResults;
+    uint32_t pid, pid1, pid2, hunt, first;
     for (uint32_t cnt = InitialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.next16Bit()))
     {
+        FrameGen3 frame = FrameGen3(tid, sid);
 
+        hunt = 0;
+        frame.encounterSlot = EncounterSlot::HSlot(rngList[hunt++], EncounterType);
+
+        // Method H relies on grabbing a hunt nature and generating PIDs until the PID nature matches the hunt nature
+        // Check if cute charm will effect frame
+        first = rngList[++hunt];
+        if (first % 3 > 0)
+        {
+            // setup cute charm comparison
+        }
+
+        // Cute charm uses first call
+        // Call next RNG to determine hunt nature
+        frame.nature = rngList[++hunt] % 25;
+
+        // Now search for a Method 124 PID that matches our nature
+        do
+        {
+            pid2 = rngList[++hunt];
+            pid1 = rngList[++hunt];
+            pid = (pid1 << 16) | pid2;
+        }
+        while (pid % 25 != frame.nature /* && cutecharm check*/);
+
+        // Valid PID is found now time to generate IVs
+        frame.setIVs(rngList[hunt + iv1], rngList[hunt + iv2]);
+        frame.frame = cnt;
+        frame.setPID(pid);
+        frame.occidentary = hunt + cnt - 1;
+        frames.push_back(frame);
     }
     rngList.clear();
     return frames;
@@ -226,11 +285,7 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodChannel()
     for (int i = 0; i < 12; i++)
         rngList.push_back(rng.next16Bit());
 
-    /* Method Channel [SEED] [SID] [PID] [PID]
-     *                [BERRY] [GAME ORIGIN]
-     *                [OT GENDER] [IV] [IV]
-     *                [IV] [IV] [IV] [IV]
-     */
+    // Method Channel [SEED] [SID] [PID] [PID] [BERRY] [GAME ORIGIN] [OT GENDER] [IV] [IV] [IV] [IV] [IV] [IV]
 
     uint32_t max = InitialFrame + MaxResults;
     for (uint32_t cnt = InitialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.next16Bit()))
