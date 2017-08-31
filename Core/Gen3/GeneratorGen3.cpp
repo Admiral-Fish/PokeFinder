@@ -122,7 +122,7 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethod124()
 std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124()
 {
     std::vector<FrameGen3> frames;
-    for (int i = 0; i < 300; i++)
+    for (int i = 0; i < 1100; i++)
         rngList.push_back(rng.next16Bit());
 
     uint32_t max = InitialFrame + MaxResults;
@@ -162,7 +162,7 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124()
 std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124Synch()
 {
     std::vector<FrameGen3> frames;
-    for (int i = 0; i < 300; i++)
+    for (int i = 0; i < 1200; i++)
         rngList.push_back(rng.next16Bit());
 
     uint32_t max = InitialFrame + MaxResults;
@@ -212,7 +212,7 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124Synch()
 std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124CuteCharm()
 {
     std::vector<FrameGen3> frames;
-    for (int i = 0; i < 300; i++)
+    for (int i = 0; i < 2500; i++)
         rngList.push_back(rng.next16Bit());
 
     uint32_t max = InitialFrame + MaxResults;
@@ -225,25 +225,36 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124CuteCharm()
         frame.encounterSlot = EncounterSlot::HSlot(rngList[hunt++], EncounterType);
 
         // Method H relies on grabbing a hunt nature and generating PIDs until the PID nature matches the hunt nature
-        // Check if cute charm will effect frame
         first = rngList[++hunt];
-        if (first % 3 > 0)
-        {
-            // setup cute charm comparison
-        }
 
         // Cute charm uses first call
         // Call next RNG to determine hunt nature
         frame.nature = rngList[++hunt] % 25;
 
-        // Now search for a Method 124 PID that matches our nature
-        do
+        // Check if cute charm will effect frame
+        if (first % 3 > 0)
         {
-            pid2 = rngList[++hunt];
-            pid1 = rngList[++hunt];
-            pid = (pid1 << 16) | pid2;
+            // Now search for a Method 124 PID that matches our hunt nature and cute charm
+            do
+            {
+                pid2 = rngList[++hunt];
+                pid1 = rngList[++hunt];
+                pid = (pid1 << 16) | pid2;
+            }
+            while (pid % 25 != frame.nature || !cuteCharm(pid));
         }
-        while (pid % 25 != frame.nature /* && cutecharm check*/);
+        else
+        {
+            // Cute charm failed
+            // Only search for a Method 124 PID that matches our hunt nature
+            do
+            {
+                pid2 = rngList[++hunt];
+                pid1 = rngList[++hunt];
+                pid = (pid1 << 16) | pid2;
+            }
+            while (pid % 25 != frame.nature);
+        }
 
         // Valid PID is found now time to generate IVs
         frame.setIVs(rngList[hunt + iv1], rngList[hunt + iv2]);
@@ -254,6 +265,32 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124CuteCharm()
     }
     rngList.clear();
     return frames;
+}
+
+// Checks if PID fits constraints of cute charm
+bool GeneratorGen3::cuteCharm(uint32_t pid)
+{
+    switch (LeadType)
+    {
+        case CuteCharm125F:
+            return (pid & 0xff) < 31;
+        case CuteCharm875M:
+            return (pid & 0xff) >= 31;
+        case CuteCharm25F:
+            return (pid & 0xff) < 63;
+        case CuteCharm75M:
+            return (pid & 0xff) >= 63;
+        case CuteCharm50F:
+            return (pid & 0xff) < 127;
+        case CuteCharm50M:
+            return (pid & 0xff) >= 127;
+        case CuteCharm75F:
+            return (pid & 0xff) < 191;
+        // Case CuteCharm25M:
+        // Set to default to avoid compiler warning message
+        default:
+            return (pid & 0xff) >= 191;
+    }
 }
 
 // Returns vector of frames Method XD/Colo

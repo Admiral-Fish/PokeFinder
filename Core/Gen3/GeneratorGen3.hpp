@@ -43,6 +43,8 @@ private:
 
     std::vector<FrameGen3> GenerateMethodChannel();
 
+    bool cuteCharm(uint32_t pid);
+
 public:
 
     GeneratorGen3();
