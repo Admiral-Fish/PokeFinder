@@ -21,7 +21,7 @@
 #define NATURELOCK_HPP
 #include <cstdint>
 #include <vector>
-#include "Core/Objects/LCRNG.hpp"
+#include "Core/RNG/LCRNG.hpp"
 
 // Defines the different types of shadows
 enum ShadowType

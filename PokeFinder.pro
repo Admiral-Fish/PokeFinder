@@ -45,33 +45,37 @@ SOURCES += \
         main.cpp \
         Forms/mainwindow.cpp \
         Core/Objects/EncounterSlot.cpp \
-        Core/Objects/LCRNG.cpp \
-        Core/Objects/MTRNG.cpp \
         Core/Objects/Utilities.cpp \
-        Core/Objects/SFMT.cpp \
-        Core/Objects/TinyMT.cpp \
         Core/Objects/Generator.cpp \
         Core/Objects/Frame.cpp \
         Core/Gen3/NatureLock.cpp \
         Core/Gen3/GeneratorGen3.cpp \
-        Core/Gen3/FrameGen3.cpp
+        Core/Gen3/FrameGen3.cpp \
+        Core/RNG/LCRNG.cpp \
+        Core/RNG/MTRNG.cpp \
+        Core/RNG/SFMT.cpp \
+        Core/RNG/TinyMT.cpp \
+        Core/RNG/RNGCache.cpp \
+        Core/RNG/RNGEuclidean.cpp
 
 HEADERS += \
         Forms/mainwindow.h \
         Core/Objects/Encounter.hpp \
-        Core/Objects/EncounterSlot.hpp \
-        Core/Objects/LCRNG.hpp \
         Core/Objects/Lead.hpp \
         Core/Objects/Method.hpp \
-        Core/Objects/MTRNG.hpp \
+        Core/Objects/EncounterSlot.hpp \
         Core/Objects/Utilities.hpp \
-        Core/Objects/SFMT.hpp \
-        Core/Objects/TinyMT.hpp \
         Core/Objects/Generator.hpp \
         Core/Objects/Frame.hpp \
         Core/Gen3/NatureLock.hpp \
         Core/Gen3/GeneratorGen3.hpp \
-        Core/Gen3/FrameGen3.hpp
+        Core/Gen3/FrameGen3.hpp \
+        Core/RNG/LCRNG.hpp \
+        Core/RNG/MTRNG.hpp \
+        Core/RNG/SFMT.hpp \
+        Core/RNG/TinyMT.hpp \
+        Core/RNG/RNGCache.hpp \
+        Core/RNG/RNGEuclidean.hpp
 
 FORMS += \
         Forms/mainwindow.ui

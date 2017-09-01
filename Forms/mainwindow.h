@@ -25,7 +25,7 @@
 #include <QHeaderView>
 #include <cstdint>
 #include <vector>
-#include "Core/Objects/LCRNG.hpp"
+#include "Core/RNG/LCRNG.hpp"
 #include "Core/Gen3/FrameGen3.hpp"
 #include "Core/Gen3/GeneratorGen3.hpp"
 

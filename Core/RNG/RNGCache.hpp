@@ -17,40 +17,37 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GENERATORGEN3_HPP
-#define GENERATORGEN3_HPP
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/Gen3/FrameGen3.hpp>
-#include <Core/Objects/Generator.hpp>
+#ifndef RNGCACHE_HPP
+#define RNGCACHE_HPP
+#include <cstdint>
+#include<vector>
+#include <Core/Objects/Method.hpp>
 
-class GeneratorGen3: public Generator
+
+class RNGCache
 {
 
 private:
-    LCRNG rng = LCRNG();
-    int iv1;
-    int iv2;
+    uint8_t low8[0x10000];
+    bool flags[0x10000];
+    uint32_t k;
+    uint32_t mult;
+    uint32_t add;
 
-    std::vector<FrameGen3> GenerateMethod124();
+    void PopulateArrays();
 
-    std::vector<FrameGen3> GenerateMethodH124();
-
-    std::vector<FrameGen3> GenerateMethodH124Synch();
-
-    std::vector<FrameGen3> GenerateMethodH124CuteCharm();
-
-    std::vector<FrameGen3> GenerateMethodXDColo();
-
-    std::vector<FrameGen3> GenerateMethodChannel();
+    void setupCache(Method MethodType);
 
 public:
 
-    GeneratorGen3();
+    RNGCache(Method MethodType);
 
-    GeneratorGen3(uint32_t MaxResults, uint32_t InitialFrame, uint32_t InitialSeed, uint32_t tid, uint32_t sid);
+    void switchCache(Method MethodType);
 
-    std::vector<FrameGen3> Generate();
+    std::vector<uint32_t> RecoverLower16BitsIV(uint32_t first, uint32_t second);
+
+    std::vector<uint32_t> RecoverLower16BitsPID(uint32_t first, uint32_t second);
 
 };
 
-#endif // GENERATORGEN3_HPP
+#endif // RNGCACHE_HPP

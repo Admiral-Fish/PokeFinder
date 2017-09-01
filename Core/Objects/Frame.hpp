@@ -70,7 +70,7 @@ public:
 
     void setPID(uint32_t pid1, uint32_t pid2);
 
-    void setPID(uint32_t pid);
+    void setPID(uint32_t pid, uint32_t pid1, uint32_t pid2);
 
     void setIVs(uint32_t iv1, uint32_t iv2);
 

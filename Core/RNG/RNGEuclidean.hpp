@@ -17,40 +17,36 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GENERATORGEN3_HPP
-#define GENERATORGEN3_HPP
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/Gen3/FrameGen3.hpp>
-#include <Core/Objects/Generator.hpp>
+#ifndef RNGEUCLIDEAN_HPP
+#define RNGEUCLIDEAN_HPP
+#include <cstdint>
+#include <vector>
+#include <Core/Objects/Method.hpp>
 
-class GeneratorGen3: public Generator
+class RNGEuclidean
 {
 
 private:
-    LCRNG rng = LCRNG();
-    int iv1;
-    int iv2;
+    uint64_t sub1;
+    uint64_t sub2;
+    uint64_t base;
+    const uint32_t mult = 0x343FD;
+    const uint32_t add = 0x269EC3;
 
-    std::vector<FrameGen3> GenerateMethod124();
-
-    std::vector<FrameGen3> GenerateMethodH124();
-
-    std::vector<FrameGen3> GenerateMethodH124Synch();
-
-    std::vector<FrameGen3> GenerateMethodH124CuteCharm();
-
-    std::vector<FrameGen3> GenerateMethodXDColo();
-
-    std::vector<FrameGen3> GenerateMethodChannel();
+    void setupEuclidean(Method FrameType);
 
 public:
 
-    GeneratorGen3();
+    RNGEuclidean(Method FrameType);
 
-    GeneratorGen3(uint32_t MaxResults, uint32_t InitialFrame, uint32_t InitialSeed, uint32_t tid, uint32_t sid);
+    void switchEuclidean(Method FrameType);
 
-    std::vector<FrameGen3> Generate();
+    std::vector<uint32_t> RecoverLower16BitsIV(uint64_t first, uint64_t second);
+
+    std::vector<uint32_t> RecoverLower16BitsPID(uint64_t first, uint64_t second);
+
+    std::vector<uint32_t> RecoverLower27BitsChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
 
 };
 
-#endif // GENERATORGEN3_HPP
+#endif // RNGEUCLIDEAN_HPP

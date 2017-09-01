@@ -150,7 +150,7 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124()
         // Valid PID is found now time to generate IVs
         frame.setIVs(rngList[hunt + iv1], rngList[hunt + iv2]);
         frame.frame = cnt;
-        frame.setPID(pid);
+        frame.setPID(pid, pid1, pid2);
         frame.occidentary = hunt + cnt - 1;
         frames.push_back(frame);
     }
@@ -200,12 +200,60 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124Synch()
         // Valid PID is found now time to generate IVs
         frame.setIVs(rngList[hunt + iv1], rngList[hunt + iv2]);
         frame.frame = cnt;
-        frame.setPID(pid);
+        frame.setPID(pid, pid1, pid2);
         frame.occidentary = hunt + cnt - 1;
         frames.push_back(frame);
     }
     rngList.clear();
     return frames;
+}
+
+// Checks if PID fits constraints of 12.5% female target
+bool cuteCharm125F(uint32_t pid)
+{
+    return (pid & 0xff) < 31;
+}
+
+// Checks if PID fits constraints of 87.5% male target
+bool cuteCharm875M(uint32_t pid)
+{
+    return (pid & 0xff) >= 31;
+}
+
+// Checks if PID fits constraints of 25% female target
+bool cuteCharm25F(uint32_t pid)
+{
+    return (pid & 0xff) < 63;
+}
+
+// Checks if PID fits constraints of 75% male target
+bool cuteCharm75M(uint32_t pid)
+{
+    return (pid & 0xff) >= 63;
+}
+
+// Checks if PID fits constraints of 50% female target
+bool cuteCharm50F(uint32_t pid)
+{
+    return (pid & 0xff) < 127;
+}
+
+// Checks if PID fits constraints of 50% male target
+bool cuteCharm50M(uint32_t pid)
+{
+    return (pid & 0xff) >= 127;
+}
+
+// Checks if PID fits constraints of 75% female target
+bool cuteCharm75F(uint32_t pid)
+{
+    return (pid & 0xff) < 191;
+}
+
+// Checks if PID fits constraints of 50% male target
+bool cuteCharm25M(uint32_t pid)
+{
+    return (pid & 0xff) >= 191;
 }
 
 // Returns vector of frames Method H 1, 2, or 4 given cute charm lead
@@ -217,6 +265,38 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124CuteCharm()
 
     uint32_t max = InitialFrame + MaxResults;
     uint32_t pid, pid1, pid2, hunt, first;
+
+    bool (*cuteCharm)(uint32_t);
+    switch (LeadType)
+    {
+        case CuteCharm125F:
+            cuteCharm = &cuteCharm125F;
+            break;
+        case CuteCharm875M:
+            cuteCharm = &cuteCharm875M;
+            break;
+        case CuteCharm25F:
+            cuteCharm = &cuteCharm25F;
+            break;
+        case CuteCharm75M:
+            cuteCharm = &cuteCharm75M;
+            break;
+        case CuteCharm50F:
+            cuteCharm = &cuteCharm50F;
+            break;
+        case CuteCharm50M:
+            cuteCharm = &cuteCharm50M;
+            break;
+        case CuteCharm75F:
+            cuteCharm = &cuteCharm75F;
+            break;
+        // Case CuteCharm25M:
+        // Set to default to avoid compiler warning message
+        default:
+            cuteCharm = &cuteCharm25F;
+            break;
+    }
+
     for (uint32_t cnt = InitialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.next16Bit()))
     {
         FrameGen3 frame = FrameGen3(tid, sid);
@@ -259,38 +339,12 @@ std::vector<FrameGen3> GeneratorGen3::GenerateMethodH124CuteCharm()
         // Valid PID is found now time to generate IVs
         frame.setIVs(rngList[hunt + iv1], rngList[hunt + iv2]);
         frame.frame = cnt;
-        frame.setPID(pid);
+        frame.setPID(pid, pid1, pid2);
         frame.occidentary = hunt + cnt - 1;
         frames.push_back(frame);
     }
     rngList.clear();
     return frames;
-}
-
-// Checks if PID fits constraints of cute charm
-bool GeneratorGen3::cuteCharm(uint32_t pid)
-{
-    switch (LeadType)
-    {
-        case CuteCharm125F:
-            return (pid & 0xff) < 31;
-        case CuteCharm875M:
-            return (pid & 0xff) >= 31;
-        case CuteCharm25F:
-            return (pid & 0xff) < 63;
-        case CuteCharm75M:
-            return (pid & 0xff) >= 63;
-        case CuteCharm50F:
-            return (pid & 0xff) < 127;
-        case CuteCharm50M:
-            return (pid & 0xff) >= 127;
-        case CuteCharm75F:
-            return (pid & 0xff) < 191;
-        // Case CuteCharm25M:
-        // Set to default to avoid compiler warning message
-        default:
-            return (pid & 0xff) >= 191;
-    }
 }
 
 // Returns vector of frames Method XD/Colo
