@@ -12,6 +12,7 @@ addons:
             - build-essential
             - qtbase5-dev
             - qt5-qmake
+            - qt5-default
             - boost
             - boost-system
 
