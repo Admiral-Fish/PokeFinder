@@ -5,3 +5,16 @@ rvm:
 os:
     - linux
     - osx
+
+addons:
+    apt:
+        packages:
+            - build-essential
+            - qtbase5-dev
+            - qt5-qmake
+            - boost
+            - boost-system
+
+script:
+    - qmake PokeFinder.pro
+    - make
