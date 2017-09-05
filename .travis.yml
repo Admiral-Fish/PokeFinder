@@ -5,7 +5,7 @@ os:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default boost boost-system
+  - sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default libboost-dev libboost-system-dev
 
 script:
     - qmake PokeFinder.pro
