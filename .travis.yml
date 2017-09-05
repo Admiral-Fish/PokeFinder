@@ -1,1 +1,7 @@
-language: c++
+language: cpp
+rvm:
+    - gcc
+    
+os:
+    - linux
+    - osx
