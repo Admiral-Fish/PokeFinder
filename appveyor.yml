@@ -1,6 +1,6 @@
 version: 1.0.0.{build}
 
-os: unstable
+os: Visual Studio 2017
 
 environment:
     QTDIR: C:\Qt\5.4\mingw491_32
@@ -8,7 +8,6 @@ environment:
 
 install:
   - set PATH=%QTDIR%\bin;C:\Qt\Tools\mingw491_32\bin;%PATH%
-  - set PATH=%BOOST_PATH%\bin;C:\Libraries\boost_1_64_0\bin;%PATH%
   
 build_script:
   - qmake PokeFinder.pro
