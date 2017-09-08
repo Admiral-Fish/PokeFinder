@@ -4,10 +4,11 @@ os: unstable
 
 environment:
     QTDIR: C:\Qt\5.4\mingw491_32
-    BOOST_ROOT: C\Libraries\boost_1_64_0
+    BOOST_PATH: C:\Libraries\boost_1_64_0
 
 install:
   - set PATH=%QTDIR%\bin;C:\Qt\Tools\mingw491_32\bin;%PATH%
+  - set PATH=%BOOST_PATH%\bin;C:\Libraries\boost_1_64_0\bin;%PATH%
   
 build_script:
   - qmake PokeFinder.pro
