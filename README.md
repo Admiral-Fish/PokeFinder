@@ -1,4 +1,5 @@
 # PokéFinder
+[![Build Status](https://travis-ci.org/Admiral-Fish/PokeFinder.svg?branch=master) [![Build Status](https://ci.appveyor.com/api/projects/status/PokeFinder/branch/master)
 
 This will be a RNG Tool for all main Pokémon games generations 3-7. It currently supports parts of generation 3.
 
