@@ -15,4 +15,4 @@ build_script:
   - mingw32-make   
   
 artifacts:
-  - path: PokéFinder.exe
+  - path: release/PokéFinder.exe
