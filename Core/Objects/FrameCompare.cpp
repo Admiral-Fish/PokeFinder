@@ -17,14 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#include "FrameCompare.hpp"
 
-int main(int argc, char *argv[])
+FrameCompare::FrameCompare()
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
 
-    return a.exec();
 }

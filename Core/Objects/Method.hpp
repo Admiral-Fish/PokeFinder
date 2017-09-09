@@ -17,14 +17,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#ifndef METHOD_HPP
+#define METHOD_HPP
 
-int main(int argc, char *argv[])
+// Different method types for various games
+enum Method
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    Method1,
+    Method1Reverse,
+    Method2,
+    Method4,
+    MethodH1,
+    MethodH2,
+    MethodH4,
+    XDColo,
+    Channel,
+    EBred,
+    EBredSplit,
+    EBredAlternate,
+    EBredPID,
+    RSBred,
+    FRLGBred
+};
 
-    return a.exec();
-}
+#endif // METHOD_HPP

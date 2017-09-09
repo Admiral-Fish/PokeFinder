@@ -17,14 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#include "Utilities.hpp"
 
-int main(int argc, char *argv[])
+// Returns initial seed for Ruby/Sapphire live battery given date and time
+/*uint32_t Utilities::calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m)
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-
-    return a.exec();
-}
+    boost::gregorian::date start = boost::gregorian::date(1999, 12, 31);
+    boost::gregorian::date_duration span = time - start;
+    uint32_t d = span.days();
+    
+    uint32_t seed = 1440 * d + 960 * (h / 10) + 60 * (h % 10) + 16 * (m / 10) + m % 10;
+    return (seed >> 16) ^ (seed & 0xFFFF);
+}*/

@@ -17,14 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#ifndef UTILITIES_HPP
+#define UTILITIES_HPP
+//#include <boost/date_time/gregorian/gregorian_types.hpp>
+#include <cstdint>
 
-int main(int argc, char *argv[])
+class Utilities
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    
+public:
+    
+    //static uint32_t calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m);
 
-    return a.exec();
-}
+};
+
+#endif // UTILITIES_HPP

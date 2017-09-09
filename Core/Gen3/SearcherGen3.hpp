@@ -17,14 +17,26 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#ifndef SEARCHERGEN3_HPP
+#define SEARCHERGEN3_HPP
+#include <Core/Objects/Searcher.hpp>
+#include <Core/Gen3/FrameGen3.hpp>
+#include <Core/RNG/RNGCache.hpp>
+#include <Core/RNG/RNGEuclidean.hpp>
 
-int main(int argc, char *argv[])
+class SearcherGen3: public Searcher
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
 
-    return a.exec();
-}
+private:
+    LCRNG rng = LCRNG();
+
+public:
+
+    SearcherGen3();
+
+    SearcherGen3(uint32_t tid, uint32_t sid);
+
+    std::vector<FrameGen3> Search();
+};
+
+#endif // SEARCHERGEN3_HPP

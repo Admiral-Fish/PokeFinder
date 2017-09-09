@@ -17,14 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#ifndef ENCOUNTER_HPP
+#define ENCOUNTER_HPP
 
-int main(int argc, char *argv[])
+// All the different encounter types wild pokémon can have
+enum Encounter
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    Wild,
+    Surfing,
+    OldRod,
+    GoodRod,
+    SuperRod,
+    Stationary,
+    SafariZone,
+    BugCatchingContestPreDex,
+    BugCatchingContestTues,
+    BugCatchingContestThurs,
+    BugCatchingContestSat,
+    HeadButt
+};
 
-    return a.exec();
-}
+#endif // ENCOUNTER_HPP

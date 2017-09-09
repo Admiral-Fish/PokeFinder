@@ -17,14 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#include "Searcher.hpp"
 
-int main(int argc, char *argv[])
+/* Searcher is the parent for generations 3-5 searchers.
+ * This class doesn't provide much functionality as that is
+ * the purpose of the children for each specific generation.
+ */
+
+// Default constructor
+Searcher::Searcher()
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-
-    return a.exec();
+    tid = 12345;
+    sid = 54321;
 }

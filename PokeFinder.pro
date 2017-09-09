@@ -43,23 +43,45 @@ macx {
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    Objects/EncounterSlot.cpp \
-    Objects/LCRNG.cpp \
-    Objects/MTRNG.cpp \
-    Objects/NatureLock.cpp \
-    Objects/Utilities.cpp
+        Forms/mainwindow.cpp \
+        Core/Objects/EncounterSlot.cpp \
+        Core/Objects/Utilities.cpp \
+        Core/Objects/Generator.cpp \
+        Core/Objects/Frame.cpp \
+        Core/Objects/FrameCompare.cpp \
+        Core/Objects/Searcher.cpp \
+        Core/Gen3/NatureLock.cpp \
+        Core/Gen3/GeneratorGen3.cpp \
+        Core/Gen3/FrameGen3.cpp \
+        Core/Gen3/SearcherGen3.cpp \
+        Core/RNG/LCRNG.cpp \
+        Core/RNG/MTRNG.cpp \
+        Core/RNG/SFMT.cpp \
+        Core/RNG/TinyMT.cpp \
+        Core/RNG/RNGCache.cpp \
+        Core/RNG/RNGEuclidean.cpp
 
 HEADERS += \
-        mainwindow.h \
-    Objects/Encounter.hpp \
-    Objects/EncounterSlot.hpp \
-    Objects/LCRNG.hpp \
-    Objects/Lead.hpp \
-    Objects/Method.hpp \
-    Objects/MTRNG.hpp \
-    Objects/NatureLock.hpp \
-    Objects/Utilities.hpp
+        Forms/mainwindow.h \
+        Core/Objects/Encounter.hpp \
+        Core/Objects/Lead.hpp \
+        Core/Objects/Method.hpp \
+        Core/Objects/EncounterSlot.hpp \
+        Core/Objects/Utilities.hpp \
+        Core/Objects/Generator.hpp \
+        Core/Objects/Frame.hpp \
+        Core/Objects/FrameCompare.hpp \
+        Core/Objects/Searcher.hpp \
+        Core/Gen3/NatureLock.hpp \
+        Core/Gen3/GeneratorGen3.hpp \
+        Core/Gen3/FrameGen3.hpp \
+        Core/Gen3/SearcherGen3.hpp \
+        Core/RNG/LCRNG.hpp \
+        Core/RNG/MTRNG.hpp \
+        Core/RNG/SFMT.hpp \
+        Core/RNG/TinyMT.hpp \
+        Core/RNG/RNGCache.hpp \
+        Core/RNG/RNGEuclidean.hpp
 
 FORMS += \
-        mainwindow.ui
+        Forms/mainwindow.ui

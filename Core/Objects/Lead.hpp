@@ -17,14 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#ifndef LEAD_HPP
+#define LEAD_HPP
 
-int main(int argc, char *argv[])
+// Different modifiers that can lead a party
+enum Lead
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    None,
+    Synchronize,
+    CuteCharm,
+    CuteCharm50M,
+    CuteCharm75M,
+    CuteCharm25M,
+    CuteCharm875M,
+    CuteCharm50F,
+    CuteCharm75F,
+    CuteCharm25F,
+    CuteCharm125F,
+    Everstone
+};
 
-    return a.exec();
-}
+#endif // LEAD_HPP

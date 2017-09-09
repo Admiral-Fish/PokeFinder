@@ -99,7 +99,7 @@ uint32_t MersenneTwister::Generateuint()
 {
     uint32_t y;
 
-    //Array reshuffle check
+    // Array reshuffle check
     if (_mti >= 624) 
     {
         int kk = 0;
@@ -186,7 +186,7 @@ uint32_t MersenneTwisterUntempered::Generateuint()
 {
     uint32_t y;
 
-    //Array reshuffle check
+    // Array reshuffle check
     if (_mti >= 624) 
     {
         int kk = 0;
@@ -257,7 +257,7 @@ uint32_t MersenneTwisterFast::Generateuint()
 {
     uint32_t y;
 
-    //Array reshuffle check
+    // Array reshuffle check
     if (_mti >= max) 
     {
         int kk = 0;

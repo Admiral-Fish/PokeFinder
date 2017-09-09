@@ -17,14 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#include "Generator.hpp"
 
-int main(int argc, char *argv[])
+/* Generator is the parent for all generation(3-7) generators.
+ * This class doesn't provide much functionality as that is
+ * the purpose of the children for each specific generation.
+ */
+
+// Default constructor
+Generator::Generator()
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-
-    return a.exec();
+    MaxResults = 100000;
+    InitialFrame = 1;
+    InitialSeed = 0;
+    tid = 12345;
+    sid = 54321;
 }

@@ -17,14 +17,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#ifndef FRAMECOMPARE_HPP
+#define FRAMECOMPARE_HPP
 
-int main(int argc, char *argv[])
+
+class FrameCompare
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+public:
+    FrameCompare();
+};
 
-    return a.exec();
-}
+#endif // FRAMECOMPARE_HPP

@@ -17,14 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#include "SearcherGen3.hpp"
 
-int main(int argc, char *argv[])
+SearcherGen3::SearcherGen3()
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-
-    return a.exec();
+    tid = 12345;
+    sid = 54321;
 }

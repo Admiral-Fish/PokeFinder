@@ -17,14 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#ifndef SEARCHER_HPP
+#define SEARCHER_HPP
+#include <Core/Objects/Method.hpp>
+#include <Core/Objects/Encounter.hpp>
+#include <Core/Objects/Lead.hpp>
+#include <Core/Objects/EncounterSlot.hpp>
+#include <Core/RNG/LCRNG.hpp>
+#include <cstdint>
+#include <vector>
 
-int main(int argc, char *argv[])
+class Searcher
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
 
-    return a.exec();
-}
+protected:
+    uint32_t tid;
+    uint32_t sid;
+
+public:
+    Method FrameType = Method1;
+    Encounter EncounterType = Stationary;
+    Lead LeadType = None;
+    uint32_t SynchNature;
+    uint32_t cuteCharm;
+
+    Searcher();
+
+};
+
+#endif // SEARCHER_HPP

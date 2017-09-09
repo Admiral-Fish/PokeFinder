@@ -17,14 +17,36 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#ifndef FRAMEGEN3_HPP
+#define FRAMEGEN3_HPP
+#include <Core/Objects/Frame.hpp>
 
-int main(int argc, char *argv[])
+
+class FrameGen3: public Frame
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
 
-    return a.exec();
-}
+private:
+    uint32_t HABCDS[6] = { 0, 1, 2, 5, 3, 4 };
+    uint32_t ABCDS[5] = { 1, 2, 5, 3, 4 };
+    uint32_t ACDS[4] = { 1, 5, 3, 4 };
+
+public:
+    uint32_t inh1;
+    uint32_t inh2;
+    uint32_t inh3;
+    uint32_t par1;
+    uint32_t par2;
+    uint32_t par3;
+    uint32_t occidentary;
+
+    FrameGen3(uint32_t tid, uint32_t sid, uint32_t psv);
+
+    void setIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6);
+
+    void setIDs(uint32_t tid, uint32_t sid);
+
+    std::string getTime();
+
+};
+
+#endif // FRAMEGEN3_HPP

@@ -17,14 +17,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#ifndef GENERATORGEN3_HPP
+#define GENERATORGEN3_HPP
+#include <Core/Gen3/FrameGen3.hpp>
+#include <Core/Objects/Generator.hpp>
 
-int main(int argc, char *argv[])
+class GeneratorGen3: public Generator
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
 
-    return a.exec();
-}
+private:
+    LCRNG rng = LCRNG();
+    int iv1;
+    int iv2;
+
+    std::vector<FrameGen3> GenerateMethod124();
+
+    std::vector<FrameGen3> GenerateMethodH124();
+
+    std::vector<FrameGen3> GenerateMethodH124Synch();
+
+    std::vector<FrameGen3> GenerateMethodH124CuteCharm();
+
+    std::vector<FrameGen3> GenerateMethodXDColo();
+
+    std::vector<FrameGen3> GenerateMethodChannel();
+
+public:
+
+    GeneratorGen3();
+
+    GeneratorGen3(uint32_t MaxResults, uint32_t InitialFrame, uint32_t InitialSeed, uint32_t tid, uint32_t sid);
+
+    std::vector<FrameGen3> Generate();
+
+};
+
+#endif // GENERATORGEN3_HPP

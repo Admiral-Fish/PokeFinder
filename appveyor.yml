@@ -1,0 +1,20 @@
+version: 1.0.0.{build}
+
+os: unstable
+
+environment:
+    QTDIR: C:\Qt\5.9.1\mingw53_32
+    BOOST_ROOT: C:\Libraries\boost_1_64_0
+   
+configuration:
+    - Release
+
+install:
+    - set PATH=%QTDIR%\bin;C:\Qt\Tools\mingw530_32\bin;%PATH%
+  
+build_script:
+    - qmake PokeFinder.pro
+    - mingw32-make   
+  
+artifacts:
+    - path: release/PokeFinder.exe

@@ -17,14 +17,36 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/mainwindow.h"
-#include <QApplication>
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+#include <QMainWindow>
+#include <QMessageBox>
+#include <QHeaderView>
+#include <cstdint>
+#include <vector>
+#include "Core/RNG/LCRNG.hpp"
+#include "Core/Gen3/FrameGen3.hpp"
+#include "Core/Gen3/GeneratorGen3.hpp"
 
-    return a.exec();
+namespace Ui {
+class MainWindow;
 }
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
+
+private slots:
+    void on_generate_clicked();
+
+private:
+    Ui::MainWindow *ui;
+
+};
+
+#endif // MAINWINDOW_H
