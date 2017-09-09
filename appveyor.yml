@@ -15,9 +15,6 @@ install:
 build_script:
     - qmake PokeFinder.pro
     - mingw32-make   
-    
-after_build:
-    - cd C:/projects/pokefinder/release
   
 artifacts:
-    - path: PokeFinder.exe
+    - path: release/PokeFinder.exe
