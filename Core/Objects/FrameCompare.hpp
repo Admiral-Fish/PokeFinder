@@ -17,18 +17,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
-//#include <boost/date_time/gregorian/gregorian_types.hpp>
-#include <cstdint>
+#ifndef FRAMECOMPARE_HPP
+#define FRAMECOMPARE_HPP
 
-class Utilities
+
+class FrameCompare
 {
-    
 public:
-    
-    //static uint32_t calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m);
-
+    FrameCompare();
 };
 
-#endif // UTILITIES_HPP
+#endif // FRAMECOMPARE_HPP

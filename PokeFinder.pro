@@ -48,9 +48,12 @@ SOURCES += \
         Core/Objects/Utilities.cpp \
         Core/Objects/Generator.cpp \
         Core/Objects/Frame.cpp \
+        Core/Objects/FrameCompare.cpp \
+        Core/Objects/Searcher.cpp \
         Core/Gen3/NatureLock.cpp \
         Core/Gen3/GeneratorGen3.cpp \
         Core/Gen3/FrameGen3.cpp \
+        Core/Gen3/SearcherGen3.cpp \
         Core/RNG/LCRNG.cpp \
         Core/RNG/MTRNG.cpp \
         Core/RNG/SFMT.cpp \
@@ -67,9 +70,12 @@ HEADERS += \
         Core/Objects/Utilities.hpp \
         Core/Objects/Generator.hpp \
         Core/Objects/Frame.hpp \
+        Core/Objects/FrameCompare.hpp \
+        Core/Objects/Searcher.hpp \
         Core/Gen3/NatureLock.hpp \
         Core/Gen3/GeneratorGen3.hpp \
         Core/Gen3/FrameGen3.hpp \
+        Core/Gen3/SearcherGen3.hpp \
         Core/RNG/LCRNG.hpp \
         Core/RNG/MTRNG.hpp \
         Core/RNG/SFMT.hpp \

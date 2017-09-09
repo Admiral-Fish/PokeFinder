@@ -19,7 +19,6 @@
 
 #ifndef GENERATORGEN3_HPP
 #define GENERATORGEN3_HPP
-#include <Core/RNG/LCRNG.hpp>
 #include <Core/Gen3/FrameGen3.hpp>
 #include <Core/Objects/Generator.hpp>
 

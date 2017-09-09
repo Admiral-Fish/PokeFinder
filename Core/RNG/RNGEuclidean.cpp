@@ -75,8 +75,8 @@ std::vector<uint32_t> RNGEuclidean::RecoverLower16BitsIV(uint64_t first, uint64_
         {
             fullFirst = (uint32_t)(first | (t / sub1));
             fullSecond = fullFirst * mult + add;
-            if ((fullSecond & 0x7fff0000) == second)
-                origin.push_back(fullFirst);
+            origin.push_back(fullFirst);
+            origin.push_back(fullSecond);
         }
     }
     return origin;
@@ -98,8 +98,7 @@ std::vector<uint32_t> RNGEuclidean::RecoverLower16BitsPID(uint64_t first, uint64
         {
             fullFirst = (uint32_t)(first | (t / sub1));
             fullSecond = fullFirst * mult + add;
-            if ((fullSecond & 0xffff0000) == second)
-                origin.push_back(fullFirst);
+            origin.push_back(fullFirst);
         }
     }
     return origin;
@@ -121,7 +120,9 @@ std::vector<uint32_t> RNGEuclidean::RecoverLower27BitsChannel(uint32_t hp, uint3
             continue;
 
         fullFirst = first | (uint32_t)(t / sub1);
-        // Check if the next 5 IVs lineup
+        // Check if the next 4 IVs lineup
+        // The euclidean divisor assures the first and last call match up
+        // so there is no need to check if the last call lines up
         uint32_t call = fullFirst * mult + add;
         if ((call >> 27) != atk)
             continue;
@@ -136,10 +137,6 @@ std::vector<uint32_t> RNGEuclidean::RecoverLower27BitsChannel(uint32_t hp, uint3
 
         call = call * mult + add;
         if ((call >> 27) != spa)
-            continue;
-
-        call = call * mult + add;
-        if ((call >> 27) != spd)
             continue;
 
         origin.push_back(fullFirst);

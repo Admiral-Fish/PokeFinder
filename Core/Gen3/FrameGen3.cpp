@@ -19,10 +19,11 @@
 
 #include "FrameGen3.hpp"
 
-FrameGen3::FrameGen3(uint32_t tid, uint32_t sid)
+FrameGen3::FrameGen3(uint32_t tid, uint32_t sid, uint32_t psv)
 {
     this->tid = tid;
     this->sid = sid;
+    this->psv = psv;
 }
 
 // Sets IVs for Channel method and calculates characteristics based on IVs
@@ -38,12 +39,21 @@ void FrameGen3::setIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t
     power = (30 + ((((hp >> 1) & 1) + 2 * ((atk >> 1) & 1) + 4 * ((def >> 1) & 1) + 8 * ((spe >> 1) & 1) + 16 * ((spa >> 1) & 1) + 32 * ((spd >> 1) & 1)) * 40 / 63));
 }
 
+// Change the tid/sid (mostly used for Channel)
+void FrameGen3::setIDs(uint32_t tid, uint32_t sid)
+{
+    this->tid = tid;
+    this->sid = sid;
+    psv = tid ^ sid;
+}
+
 // Returns real time for a given frame
 std::string FrameGen3::getTime()
 {
     int32_t minutes = frame / 3600;
     int32_t seconds = (frame - (3600 * minutes)) / 60;
     int32_t milliseconds = ((frame % 60) * 100) / 60;
-    return (boost::format("%d:%02d.%02d") % minutes % seconds % milliseconds).str();
+    return "temp";
+    //return (boost::format("%d:%02d.%02d") % minutes % seconds % milliseconds).str();
 }
 

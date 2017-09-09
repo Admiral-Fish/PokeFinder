@@ -17,18 +17,26 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
-//#include <boost/date_time/gregorian/gregorian_types.hpp>
-#include <cstdint>
+#ifndef SEARCHERGEN3_HPP
+#define SEARCHERGEN3_HPP
+#include <Core/Objects/Searcher.hpp>
+#include <Core/Gen3/FrameGen3.hpp>
+#include <Core/RNG/RNGCache.hpp>
+#include <Core/RNG/RNGEuclidean.hpp>
 
-class Utilities
+class SearcherGen3: public Searcher
 {
-    
-public:
-    
-    //static uint32_t calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m);
 
+private:
+    LCRNG rng = LCRNG();
+
+public:
+
+    SearcherGen3();
+
+    SearcherGen3(uint32_t tid, uint32_t sid);
+
+    std::vector<FrameGen3> Search();
 };
 
-#endif // UTILITIES_HPP
+#endif // SEARCHERGEN3_HPP

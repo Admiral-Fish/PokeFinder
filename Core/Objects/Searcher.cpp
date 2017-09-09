@@ -17,18 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
-//#include <boost/date_time/gregorian/gregorian_types.hpp>
-#include <cstdint>
+#include "Searcher.hpp"
 
-class Utilities
+/* Searcher is the parent for generations 3-5 searchers.
+ * This class doesn't provide much functionality as that is
+ * the purpose of the children for each specific generation.
+ */
+
+// Default constructor
+Searcher::Searcher()
 {
-    
-public:
-    
-    //static uint32_t calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m);
-
-};
-
-#endif // UTILITIES_HPP
+    tid = 12345;
+    sid = 54321;
+}

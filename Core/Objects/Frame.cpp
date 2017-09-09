@@ -24,6 +24,7 @@ Frame::Frame()
 {
     tid = 12345;
     sid = 54321;
+    psv = tid ^ sid;
 }
 
 // Sets PID and calculates characteristics based on PID
@@ -33,7 +34,7 @@ void Frame::setPID(uint32_t pid1, uint32_t pid2)
     nature = pid % 25;
     gender = pid & 255;
     ability = pid & 1;
-    if ((pid1 ^ pid2 ^ tid ^ sid) < 8)
+    if ((pid1 ^ pid2 ^ psv) < 8)
         shiny = true;
     else
         shiny = false;
@@ -45,7 +46,7 @@ void Frame::setPID(uint32_t pid, uint32_t pid1, uint32_t pid2)
     this->pid = pid;
     gender = pid & 255;
     ability = pid & 1;
-    if ((pid1 ^ pid2 ^ tid ^ sid) < 8)
+    if ((pid1 ^ pid2 ^ psv) < 8)
         shiny = true;
     else
         shiny = false;

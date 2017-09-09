@@ -39,9 +39,11 @@ public:
     uint32_t par3;
     uint32_t occidentary;
 
-    FrameGen3(uint32_t tid, uint32_t sid);
+    FrameGen3(uint32_t tid, uint32_t sid, uint32_t psv);
 
     void setIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6);
+
+    void setIDs(uint32_t tid, uint32_t sid);
 
     std::string getTime();
 

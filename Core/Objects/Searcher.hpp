@@ -17,18 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
-//#include <boost/date_time/gregorian/gregorian_types.hpp>
+#ifndef SEARCHER_HPP
+#define SEARCHER_HPP
+#include <Core/Objects/Method.hpp>
+#include <Core/Objects/Encounter.hpp>
+#include <Core/Objects/Lead.hpp>
+#include <Core/Objects/EncounterSlot.hpp>
+#include <Core/RNG/LCRNG.hpp>
 #include <cstdint>
+#include <vector>
 
-class Utilities
+class Searcher
 {
-    
+
+protected:
+    uint32_t tid;
+    uint32_t sid;
+
 public:
-    
-    //static uint32_t calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m);
+    Method FrameType = Method1;
+    Encounter EncounterType = Stationary;
+    Lead LeadType = None;
+    uint32_t SynchNature;
+    uint32_t cuteCharm;
+
+    Searcher();
 
 };
 
-#endif // UTILITIES_HPP
+#endif // SEARCHER_HPP
