@@ -14,7 +14,11 @@ install:
   
 build_script:
     - qmake PokeFinder.pro
-    - mingw32-make   
+    - mingw32-make
+    
+after_build:
+    - cmd: C:\QT\5.9.1\mingw53_32\bin\windeployqt.exe release/PokeFinder
+    - 7z a PokeFinder.zip release
   
 artifacts:
-    - path: release/PokeFinder.exe
+    - path: PokeFinder.zip
