@@ -17,7 +17,7 @@ build_script:
     - mingw32-make
     
 after_build:
-    - 7z a PokeFinder.zip release
+    - 7z a PokeFinder.zip release\PokeFinder.exe
     - 7z a PokeFinder.zip release\*.dll
   
 artifacts:
