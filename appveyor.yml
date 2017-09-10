@@ -17,9 +17,9 @@ build_script:
     - mingw32-make
     
 after_build:
-    - cmd: mkdir release/PokeFinder
-    - cmd: move release/PokeFinder.exe release/PokeFinder
-    - cmd: C:\QT\5.9.1\mingw53_32\bin\windeployqt.exe release/PokeFinder/PokeFinder.exe
+    - cmd: C:/mkdir PokeFinder
+    - cmd: move release/PokeFinder.exe C:/PokeFinder
+    - cmd: C:\QT\5.9.1\mingw53_32\bin\windeployqt.exe C:/PokeFinder/PokeFinder.exe
     - 7z a PokeFinder.zip release
   
 artifacts:
