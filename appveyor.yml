@@ -18,7 +18,12 @@ build_script:
     
 after_build:
     - 7z a PokeFinder.zip release\PokeFinder.exe
-    - 7z a PokeFinder.zip release\*.dll
+    - 7a a PokeFinder.zip C:\QT\5.9.1\mingw53_32\bin\libwinpthread-1.dll
+    - 7a a PokeFinder.zip C:\QT\5.9.1\mingw53_32\bin\libstdc++-6.dll
+    - 7a a PokeFinder.zip C:\QT\5.9.1\mingw53_32\bin\libgcc_s_dw2-1.dll
+    - 7a a PokeFinder.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Core.dll
+    - 7a a PokeFinder.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Gui.dll
+    - 7a a PokeFinder.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Widgets.dll
   
 artifacts:
     - path: PokeFinder.zip
