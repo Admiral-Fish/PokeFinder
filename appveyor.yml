@@ -30,7 +30,7 @@ artifacts:
     - path: PokeFinder-windows.zip
     
 deploy:
-    - provider: Github
+    provider: Github
     description: ''
     auth_token:
         secure: f1bnm7cWsq0pNja+DdwEkQLCMUxczFH5O8eWDEnfNnhbHKuotQ7YFS6jLYyqFbGe
