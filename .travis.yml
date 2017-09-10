@@ -20,3 +20,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: Admiral-Fish/PokeFinder
+    tags: true
