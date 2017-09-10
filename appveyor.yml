@@ -14,7 +14,29 @@ install:
   
 build_script:
     - qmake PokeFinder.pro
-    - mingw32-make   
+    - mingw32-make
+    
+after_build:
+    - 7z a PokeFinder-windows.zip release\PokeFinder.exe
+    - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\libwinpthread-1.dll
+    - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\libstdc++-6.dll
+    - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\libgcc_s_dw2-1.dll
+    - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Core.dll
+    - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Gui.dll
+    - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Widgets.dll
+    - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\plugins\platforms\qwindowsd.dll
   
 artifacts:
-    - path: release/PokeFinder.exe
+    - path: PokeFinder-windows.zip
+    
+deploy:
+    provider: GitHub
+    description: ''
+    auth_token:
+        secure: f1bnm7cWsq0pNja+DdwEkQLCMUxczFH5O8eWDEnfNnhbHKuotQ7YFS6jLYyqFbGe
+    artifact: PokeFinder-windows.zip
+    draft: false
+    prerelease: true
+    on:
+        branch: master
+        appveyor_repo_tag: true
