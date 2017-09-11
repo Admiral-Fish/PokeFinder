@@ -36,16 +36,14 @@ after_build:
   
 artifacts:
     - path: PokeFinder-windows.zip
-    name: zip
     - path: PokeFinder-windows.7z
-    name: 7z
     
 deploy:
     provider: GitHub
     description: ''
     auth_token:
         secure: f1bnm7cWsq0pNja+DdwEkQLCMUxczFH5O8eWDEnfNnhbHKuotQ7YFS6jLYyqFbGe
-    artifact: zip,7z
+    artifact: PokeFinder-windows.zip,PokeFinder-windows.7z
     draft: false
     prerelease: true
     on:
