@@ -25,14 +25,6 @@ after_build:
     - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Gui.dll
     - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Widgets.dll
     - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\plugins\platforms\qwindows.dll
-    - 7z a PokeFinder-windows.7z release\PokeFinder.exe
-    - 7z a PokeFinder-windows.7z C:\QT\5.9.1\mingw53_32\bin\libwinpthread-1.dll
-    - 7z a PokeFinder-windows.7z C:\QT\5.9.1\mingw53_32\bin\libstdc++-6.dll
-    - 7z a PokeFinder-windows.7z C:\QT\5.9.1\mingw53_32\bin\libgcc_s_dw2-1.dll
-    - 7z a PokeFinder-windows.7z C:\QT\5.9.1\mingw53_32\bin\Qt5Core.dll
-    - 7z a PokeFinder-windows.7z C:\QT\5.9.1\mingw53_32\bin\Qt5Gui.dll
-    - 7z a PokeFinder-windows.7z C:\QT\5.9.1\mingw53_32\bin\Qt5Widgets.dll
-    - 7z a PokeFinder-windows.7z C:\QT\5.9.1\mingw53_32\plugins\platforms\qwindows.dll
   
 artifacts:
     - path: PokeFinder-windows.zip
