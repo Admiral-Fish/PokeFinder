@@ -18,7 +18,7 @@ build_script:
     
 after_build:
     - 7z a PokeFinder-windows.zip .\release\PokeFinder.exe
-    - 7a rn PokeFinder-windows.zip PokeFinder.exe PokeFinder-{build}.exe
+    - 7z rn PokeFinder-windows.zip PokeFinder.exe PokeFinder-{build}.exe
     - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\libwinpthread-1.dll
     - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\libstdc++-6.dll
     - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\bin\libgcc_s_dw2-1.dll
@@ -28,7 +28,7 @@ after_build:
     - 7z a PokeFinder-windows.zip C:\QT\5.9.1\mingw53_32\plugins\platforms\qwindows.dll
     - 7z rn PokeFinder-windows.zip qwindows.dll platforms\qwindows.dll
     - 7z a PokeFinder-windows.7z .\release\PokeFinder.exe
-    - 7a rn PokeFinder-windows.7z PokeFinder.exe PokeFinder-{build}.exe
+    - 7z rn PokeFinder-windows.7z PokeFinder.exe PokeFinder-{build}.exe
     - 7z a PokeFinder-windows.7z C:\QT\5.9.1\mingw53_32\bin\libwinpthread-1.dll
     - 7z a PokeFinder-windows.7z C:\QT\5.9.1\mingw53_32\bin\libstdc++-6.dll
     - 7z a PokeFinder-windows.7z C:\QT\5.9.1\mingw53_32\bin\libgcc_s_dw2-1.dll
