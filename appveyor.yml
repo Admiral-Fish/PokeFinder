@@ -17,27 +17,27 @@ build_script:
     - mingw32-make
     
 after_build:
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip .\release\PokeFinder.exe
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip C:\QT\5.9.1\mingw53_32\bin\libwinpthread-1.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip C:\QT\5.9.1\mingw53_32\bin\libstdc++-6.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip C:\QT\5.9.1\mingw53_32\bin\libgcc_s_dw2-1.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip C:\QT\5.9.1\mingw53_32\bin\Qt5Core.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip C:\QT\5.9.1\mingw53_32\bin\Qt5Gui.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip C:\QT\5.9.1\mingw53_32\bin\Qt5Widgets.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip C:\QT\5.9.1\mingw53_32\plugins\platforms\qwindows.dll
-    - 7z rn PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip qwindows.dll platforms\qwindows.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z .\release\PokeFinder.exe
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z C:\QT\5.9.1\mingw53_32\bin\libwinpthread-1.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z C:\QT\5.9.1\mingw53_32\bin\libstdc++-6.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z C:\QT\5.9.1\mingw53_32\bin\libgcc_s_dw2-1.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z C:\QT\5.9.1\mingw53_32\bin\Qt5Core.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z C:\QT\5.9.1\mingw53_32\bin\Qt5Gui.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z C:\QT\5.9.1\mingw53_32\bin\Qt5Widgets.dll
-    - 7z a PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z C:\QT\5.9.1\mingw53_32\plugins\platforms\qwindows.dll
-    - 7z rn PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z qwindows.dll platforms\qwindows.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.zip .\release\PokeFinder.exe
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.zip C:\QT\5.9.1\mingw53_32\bin\libwinpthread-1.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.zip C:\QT\5.9.1\mingw53_32\bin\libstdc++-6.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.zip C:\QT\5.9.1\mingw53_32\bin\libgcc_s_dw2-1.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Core.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Gui.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.zip C:\QT\5.9.1\mingw53_32\bin\Qt5Widgets.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.zip C:\QT\5.9.1\mingw53_32\plugins\platforms\qwindows.dll
+    - 7z rn PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.zip qwindows.dll platforms\qwindows.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.7z .\release\PokeFinder.exe
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.7z C:\QT\5.9.1\mingw53_32\bin\libwinpthread-1.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.7z C:\QT\5.9.1\mingw53_32\bin\libstdc++-6.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.7z C:\QT\5.9.1\mingw53_32\bin\libgcc_s_dw2-1.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.7z C:\QT\5.9.1\mingw53_32\bin\Qt5Core.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.7z C:\QT\5.9.1\mingw53_32\bin\Qt5Gui.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.7z C:\QT\5.9.1\mingw53_32\bin\Qt5Widgets.dll
+    - 7z a PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.7z C:\QT\5.9.1\mingw53_32\plugins\platforms\qwindows.dll
+    - 7z rn PokeFinder-windows-%APPVEYOR_REPO_COMMIT_TIMESTAMP%.7z qwindows.dll platforms\qwindows.dll
   
 artifacts:
-    - path: PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip
+    - path: PokeFinder-windows-$(APPVEYOR_REPO_COMMIT_TIMESTAMP).zip
     - path: PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z
     
 deploy:
@@ -45,7 +45,7 @@ deploy:
     description: ''
     auth_token:
         secure: f1bnm7cWsq0pNja+DdwEkQLCMUxczFH5O8eWDEnfNnhbHKuotQ7YFS6jLYyqFbGe
-    artifact: PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).zip,PokeFinder-windows-$(APPVEYOR_REPO_COMMIT).7z
+    artifact: PokeFinder-windows-$(APPVEYOR_REPO_COMMIT_TIMESTAMP).zip,PokeFinder-windows-$(APPVEYOR_REPO_COMMIT_TIMESTAMP).7z
     draft: false
     prerelease: true
     on:
