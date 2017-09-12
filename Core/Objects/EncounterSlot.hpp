@@ -19,24 +19,24 @@
 
 #ifndef ENCOUNTERSLOT_HPP
 #define ENCOUNTERSLOT_HPP
+#include <Core/Objects/Encounter.hpp>
 #include <cstdint>
 #include <vector>
-#include "Encounter.hpp"
 
 class Range
 {
     
 private:
-    uint32_t min;
     uint32_t max;
+    uint32_t min;
     
 public:
 
     Range(uint32_t min, uint32_t max);
+
+    uint32_t GetMax();
     
-    uint32_t getMin();
-    
-    uint32_t getMax();
+    uint32_t GetMin();
     
 
 };
@@ -50,10 +50,10 @@ private:
 public:
 
     static int HSlot(uint32_t result, Encounter encounterType);
+
+    static int JSlot(uint32_t result, Encounter encounterType);
     
     static int KSlot(uint32_t result, Encounter encounterType);
-    
-    static int JSlot(uint32_t result, Encounter encounterType);
 };
 
 #endif // ENCOUNTERSLOT_HPP

@@ -20,14 +20,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QHeaderView>
 #include <QMainWindow>
 #include <QMessageBox>
-#include <QHeaderView>
+#include <Core/Gen3/FrameGen3.hpp>
+#include <Core/Gen3/GeneratorGen3.hpp>
+#include <Core/RNG/LCRNG.hpp>
 #include <cstdint>
 #include <vector>
-#include "Core/RNG/LCRNG.hpp"
-#include "Core/Gen3/FrameGen3.hpp"
-#include "Core/Gen3/GeneratorGen3.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -37,15 +37,16 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+
+private:
+    Ui::MainWindow *ui;
 
 private slots:
     void on_generate_clicked();
 
-private:
-    Ui::MainWindow *ui;
+public:
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
 };
 

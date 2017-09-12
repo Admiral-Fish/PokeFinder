@@ -19,19 +19,19 @@
 
 #ifndef RNGEUCLIDEAN_HPP
 #define RNGEUCLIDEAN_HPP
+#include <Core/Objects/Method.hpp>
 #include <cstdint>
 #include <vector>
-#include <Core/Objects/Method.hpp>
 
 class RNGEuclidean
 {
 
 private:
+    const uint32_t ADD = 0x269EC3;
+    const uint32_t MULT = 0x343FD;
+    uint64_t base;
     uint64_t sub1;
     uint64_t sub2;
-    uint64_t base;
-    const uint32_t mult = 0x343FD;
-    const uint32_t add = 0x269EC3;
 
     void setupEuclidean(Method FrameType);
 
@@ -39,13 +39,13 @@ public:
 
     RNGEuclidean(Method FrameType);
 
-    void switchEuclidean(Method FrameType);
-
     std::vector<uint32_t> RecoverLower16BitsIV(uint64_t first, uint64_t second);
 
     std::vector<uint32_t> RecoverLower16BitsPID(uint64_t first, uint64_t second);
 
     std::vector<uint32_t> RecoverLower27BitsChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    void SwitchEuclidean(Method FrameType);
 
 };
 

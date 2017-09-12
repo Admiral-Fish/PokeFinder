@@ -39,16 +39,20 @@ class TinyMT
 {
 
 private:
-    //uint32_t mat1 = 0x8f7011ee;
-    //uint32_t const mat2 = 0xfc78ff1f;
-    //uint32_t const tmat = 0x3793fdff;
-    //int const MIN_LOOP = 8;
-    //int const PRE_LOOP = 8;
-    //uint32_t const TINYMT32_MASK = 0x7FFFFFFF;
-    //int const TINYMT32_SH0 = 1;
-    //int const TINYMT32_SH1 = 10;
-    //int const TINYMT32_SH8 = 8;
-    uint32_t status[4] = { 0, 0, 0, 0 };
+    uint32_t const MAT1 = 0x8f7011ee;
+    uint32_t const MAT2 = 0xfc78ff1f;
+    int const MINLOOP = 8;
+    int const PRELOOP = 8;
+    uint32_t const TMAT = 0x3793fdff;
+    uint32_t const TINYMT32MASK = 0x7FFFFFFF;
+    int const TINYMT32SH0 = 1;
+    int const TINYMT32SH1 = 10;
+    int const TINYMT32SH8 = 8;
+    uint32_t state[4];
+
+    void init(uint32_t seed);
+
+    void periodCertification();
 
 public:
 
@@ -56,15 +60,11 @@ public:
 
     TinyMT(uint32_t st[]);
 
-    void init(uint32_t seed);
+    void NextState();
 
-    void nextState();
+    uint32_t NextUint();
 
-    uint32_t temper();
-
-    void period_certification();
-
-    uint32_t Nextuint();
+    uint32_t Temper();
 
 };
 

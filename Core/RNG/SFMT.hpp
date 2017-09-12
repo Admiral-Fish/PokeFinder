@@ -41,34 +41,34 @@ class SFMT
 {
 
 private:
-    //int const N32 = 624;
-    //uint32_t const cMSK1 = 0xdfffffef;
-    //uint32_t const cMSK2 = 0xddfecb7f;
-    //uint32_t const cMSK3 = 0xbffaffff;
-    //uint32_t const cMSK4 = 0xbffffff6;
-    //int const cSL1 = 18;
-    //int const cSR1 = 11;
-    uint32_t _sfmt[624];
-    uint32_t _parity[4] = { 0x1, 0x0, 0x0, 0x13c9e684 };
-    int _sfmti;
-
-    void period_certificaion();
-
-public:
+    uint32_t const CMSK1 = 0xdfffffef;
+    uint32_t const CMSK2 = 0xddfecb7f;
+    uint32_t const CMSK3 = 0xbffaffff;
+    uint32_t const CMSK4 = 0xbffffff6;
+    int const CSL1 = 18;
+    int const CSR1 = 11;
+    int const N32 = 624;
+    int index;
+    uint32_t parity[4] = { 0x1, 0x0, 0x0, 0x13c9e684 };
+    uint32_t sfmt[624];
 
     void init(uint32_t seed);
 
+    void periodCertificaion();
+
+public:
+
     SFMT(uint32_t seed);
 
-    uint32_t Nextuint();
+    void Next();
 
-    uint64_t Nextulong();
+    uint32_t NextUint();
+
+    uint64_t NextUlong();
 
     void Reseed(uint32_t seed);
 
     void Shuffle();
-
-    void Next();
 
 };
 

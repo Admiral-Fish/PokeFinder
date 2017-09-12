@@ -43,74 +43,74 @@ TinyMT::TinyMT(uint32_t seed)
 TinyMT::TinyMT(uint32_t st[])
 {
     for (int i = 0; i < 4; i++)
-        status[i] = st[i];
-    period_certification();
+        state[i] = st[i];
+    periodCertification();
 }
 
-// Creates Tiny status given seed
+// Creates Tiny state given seed
 void TinyMT::init(uint32_t seed)
 {
-    status[0] = seed;
-    status[1] = 0x8f7011ee;
-    status[2] = 0xfc78ff1f;
-    status[3] = 0x3793fdff;
+    state[0] = seed;
+    state[1] = MAT1;
+    state[2] = MAT2;
+    state[3] = TMAT;
 
     int i;
-    for (i = 1; i < 8; i++)
-        status[i & 3] ^= i + 0x6c078965 * (status[(i - 1) & 3] ^ (status[(i - 1) & 3] >> 30));
+    for (i = 1; i < MINLOOP; i++)
+        state[i & 3] ^= i + 0x6c078965 * (state[(i - 1) & 3] ^ (state[(i - 1) & 3] >> 30));
 
-    period_certification();
+    periodCertification();
 
-    for (i = 0; i < 8; i++)
-        nextState();
-}
-
-// Generates the next Tiny state
-void TinyMT::nextState()
-{
-    uint32_t y = status[3];
-    uint32_t x = (status[0] & 0x7FFFFFFF) ^ status[1] ^ status[2];
-    x ^= (x << 1);
-    y ^= (y >> 1) ^ x;
-    status[0] = status[1];
-    status[1] = status[2];
-    status[2] = x ^ (y << 10);
-    status[3] = y;
-
-    if ((y & 1) == 1)
-    {
-        status[1] ^= 0x8f7011ee;
-        status[2] ^= 0xfc78ff1f;
-    }
-}
-
-// Generates the psuedo random number from the Tiny state
-uint32_t TinyMT::temper()
-{
-    uint32_t t0 = status[3];
-    uint32_t t1 = status[0] + (status[2] >> 8);
-
-    t0 ^= t1;
-    if ((t1 & 1) == 1)
-        t0 ^= 0x3793fdff;
-    return t0;
-}
-
-// Calls the next state and next psuedo random number
-uint32_t TinyMT::Nextuint()
-{
-    nextState();
-    return temper();
+    for (i = 0; i < PRELOOP; i++)
+        NextState();
 }
 
 // Verifies not all 4 Tiny states are 0
-void TinyMT::period_certification()
+void TinyMT::periodCertification()
 {
-    if (status[0] == 0 && status[1] == 0 && status[2] == 0 && status[3] == 0)
+    if (state[0] == 0 && state[1] == 0 && state[2] == 0 && state[3] == 0)
     {
-        status[0] = 84;
-        status[1] = 73;
-        status[2] = 78;
-        status[3] = 89;
+        state[0] = 'T';
+        state[1] = 'I';
+        state[2] = 'N';
+        state[3] = 'Y';
     }
+}
+
+// Generates the next Tiny state
+void TinyMT::NextState()
+{
+    uint32_t y = state[3];
+    uint32_t x = (state[0] & TINYMT32MASK) ^ state[1] ^ state[2];
+    x ^= (x << TINYMT32SH0);
+    y ^= (y >> TINYMT32SH0) ^ x;
+    state[0] = state[1];
+    state[1] = state[2];
+    state[2] = x ^ (y << TINYMT32SH1);
+    state[3] = y;
+
+    if ((y & 1) == 1)
+    {
+        state[1] ^= MAT1;
+        state[2] ^= MAT2;
+    }
+}
+
+// Calls the next state and next psuedo random number
+uint32_t TinyMT::NextUint()
+{
+    NextState();
+    return Temper();
+}
+
+// Generates the psuedo random number from the Tiny state
+uint32_t TinyMT::Temper()
+{
+    uint32_t t0 = state[3];
+    uint32_t t1 = state[0] + (state[2] >> TINYMT32SH8);
+
+    t0 ^= t1;
+    if ((t1 & 1) == 1)
+        t0 ^= TMAT;
+    return t0;
 }

@@ -19,8 +19,8 @@
 
 #ifndef SEARCHERGEN3_HPP
 #define SEARCHERGEN3_HPP
-#include <Core/Objects/Searcher.hpp>
 #include <Core/Gen3/FrameGen3.hpp>
+#include <Core/Objects/Searcher.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
 

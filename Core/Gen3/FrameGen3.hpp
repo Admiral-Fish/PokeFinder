@@ -26,26 +26,26 @@ class FrameGen3: public Frame
 {
 
 private:
-    uint32_t HABCDS[6] = { 0, 1, 2, 5, 3, 4 };
     uint32_t ABCDS[5] = { 1, 2, 5, 3, 4 };
     uint32_t ACDS[4] = { 1, 5, 3, 4 };
+    uint32_t HABCDS[6] = { 0, 1, 2, 5, 3, 4 };
 
 public:
     uint32_t inh1;
     uint32_t inh2;
     uint32_t inh3;
+    uint32_t occidentary;
     uint32_t par1;
     uint32_t par2;
     uint32_t par3;
-    uint32_t occidentary;
 
     FrameGen3(uint32_t tid, uint32_t sid, uint32_t psv);
 
-    void setIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6);
+    std::string GetTime();
 
-    void setIDs(uint32_t tid, uint32_t sid);
+    void SetIDs(uint32_t tid, uint32_t sid);
 
-    std::string getTime();
+    void SetIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6);
 
 };
 

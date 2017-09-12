@@ -19,10 +19,10 @@
 
 #ifndef SEARCHER_HPP
 #define SEARCHER_HPP
-#include <Core/Objects/Method.hpp>
 #include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/Lead.hpp>
 #include <Core/Objects/EncounterSlot.hpp>
+#include <Core/Objects/Lead.hpp>
+#include <Core/Objects/Method.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <cstdint>
 #include <vector>
@@ -31,15 +31,15 @@ class Searcher
 {
 
 protected:
-    uint32_t tid;
     uint32_t sid;
+    uint32_t tid;
 
 public:
-    Method FrameType = Method1;
-    Encounter EncounterType = Stationary;
-    Lead LeadType = None;
-    uint32_t SynchNature;
     uint32_t cuteCharm;
+    Encounter encounterType = Stationary;
+    Method frameType = Method1;
+    Lead leadType = None;
+    uint32_t synchNature;
 
     Searcher();
 

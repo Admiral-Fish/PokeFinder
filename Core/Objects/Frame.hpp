@@ -22,10 +22,10 @@
 #include <Core/Objects/Encounter.hpp>
 #include <Core/Objects/Lead.hpp>
 #include <Core/Objects/Method.hpp>
-#include <vector>
+//#include <boost/format.hpp>
 #include <cstdint>
 #include <string>
-//#include <boost/format.hpp>
+#include <vector>
 
 class Frame
 {
@@ -41,53 +41,53 @@ protected:
                                "Fire", "Water", "Grass", "Electric",
                                "Psychic", "Ice", "Dragon", "Dark" };
 public:
-    uint32_t seed;
-    uint32_t pid;
-    uint32_t tid;
-    uint32_t sid;
-    uint32_t psv;
-    uint32_t dv1;
-    uint32_t dv2;
-    uint32_t hp;
+    uint32_t ability;
     uint32_t atk;
     uint32_t def;
+    uint32_t dv1;
+    uint32_t dv2;
+    uint32_t encounterSlot;
+    Encounter encounterType;
+    uint32_t frame;
+    uint32_t gender;
+    uint32_t hidden;
+    uint32_t hp;
+    Lead leadType;
+    Method methodType;
+    uint32_t nature;
+    uint32_t pid;
+    uint32_t power;
+    uint32_t psv;
+    uint32_t seed;
+    bool shiny;
+    uint32_t sid;
     uint32_t spa;
     uint32_t spd;
     uint32_t spe;
-    uint32_t gender;
-    uint32_t nature;
-    uint32_t ability;
-    uint32_t hidden;
-    uint32_t power;
-    uint32_t frame;
-    uint32_t encounterSlot;
-    bool shiny;
     bool synchable;
-    Method MethodType;
-    Lead LeadType;
-    Encounter EncounterType;
+    uint32_t tid;
 
     Frame();
 
-    void setPID(uint32_t pid1, uint32_t pid2);
+    std::string GetFemale125();
 
-    void setPID(uint32_t pid, uint32_t pid1, uint32_t pid2);
+    std::string GetFemale25();
 
-    void setIVs(uint32_t iv1, uint32_t iv2);
+    std::string GetFemale50();
 
-    std::string getNature();
+    std::string GetFemale75();
 
-    std::string getPower();
+    std::string GetNature();
 
-    std::string getFemale125();
+    std::string GetPower();
 
-    std::string getFemale25();
+    std::string GetShiny();
 
-    std::string getFemale50();
+    void SetIVs(uint32_t iv1, uint32_t iv2);
 
-    std::string getFemale75();
+    void SetPID(uint32_t pid1, uint32_t pid2);
 
-    std::string getShiny();
+    void SetPID(uint32_t pid, uint32_t pid1, uint32_t pid2);
 
 };
 

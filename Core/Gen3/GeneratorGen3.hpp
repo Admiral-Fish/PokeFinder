@@ -26,27 +26,27 @@ class GeneratorGen3: public Generator
 {
 
 private:
-    LCRNG rng = LCRNG();
     int iv1;
     int iv2;
+    LCRNG rng = LCRNG();
 
-    std::vector<FrameGen3> GenerateMethod124();
+    std::vector<FrameGen3> generateMethodChannel();
 
-    std::vector<FrameGen3> GenerateMethodH124();
+    std::vector<FrameGen3> generateMethodH124();
 
-    std::vector<FrameGen3> GenerateMethodH124Synch();
+    std::vector<FrameGen3> generateMethodH124Synch();
 
-    std::vector<FrameGen3> GenerateMethodH124CuteCharm();
+    std::vector<FrameGen3> generateMethodH124CuteCharm();
 
-    std::vector<FrameGen3> GenerateMethodXDColo();
+    std::vector<FrameGen3> generateMethodXDColo();
 
-    std::vector<FrameGen3> GenerateMethodChannel();
+    std::vector<FrameGen3> generateMethod124();
 
 public:
 
     GeneratorGen3();
 
-    GeneratorGen3(uint32_t MaxResults, uint32_t InitialFrame, uint32_t InitialSeed, uint32_t tid, uint32_t sid);
+    GeneratorGen3(uint32_t maxResults, uint32_t initialFrame, uint32_t initialSeed, uint32_t tid, uint32_t sid);
 
     std::vector<FrameGen3> Generate();
 

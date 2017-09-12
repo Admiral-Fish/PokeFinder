@@ -27,9 +27,9 @@
 // Default constructor
 Generator::Generator()
 {
-    MaxResults = 100000;
-    InitialFrame = 1;
-    InitialSeed = 0;
+    maxResults = 100000;
+    initialFrame = 1;
+    initialSeed = 0;
     tid = 12345;
     sid = 54321;
 }

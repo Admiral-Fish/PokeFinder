@@ -25,37 +25,25 @@
 LCRNG::LCRNG()
 {
     seed = 0;
-    setpokeRNG();
+    SetPokeRNG();
 }
 
 // LCRNG constructor with seed
 LCRNG::LCRNG(uint32_t seed)
 {
     this->seed = seed;
-    setpokeRNG();
+    SetPokeRNG();
 }
 
 // LCRNG constructor with seed and RNG type
 LCRNG::LCRNG(uint32_t seed, rng_type type): LCRNG(seed)
 {
     if (type == POKE_RNG)
-      setpokeRNG();
+      SetPokeRNG();
     else if (type == XD_RNG)
-      setxdRNG();
+        SetXDRNG();
     else
-      setaRNG();
-}
-
-// Get method for seed
-uint32_t LCRNG::getSeed()
-{
-    return seed;
-}
-
-// Set method for seed
-void LCRNG::setSeed(uint32_t newSeed)
-{
-    seed = newSeed;
+      SetARNG();
 }
 
 // Method for setting other constants
@@ -67,62 +55,74 @@ void LCRNG::setConst(uint32_t mult, uint32_t add, uint32_t multR, uint32_t addR)
     this->addR = addR;
 }
 
-// Method for setting pokeRNG constants
-void LCRNG::setpokeRNG()
+// Method for advancing seed by a given number of frames
+void LCRNG::AdvanceFrames(int frames)
 {
-    setConst(POKE_MULT, POKE_ADD, POKE_MULTR, POKE_ADDR);
+    for(int i = 0; i < frames; i++)
+        seed = seed * mult + add;
 }
 
-// Method for setting xdRNG constants
-void LCRNG::setxdRNG()
+// Get method for seed
+uint32_t LCRNG::GetSeed()
 {
-    setConst(XD_MULT, XD_ADD, XD_MULTR, XD_ADDR);
-}
-
-// Method for setting aRNG constants
-void LCRNG::setaRNG()
-{
-    setConst(A_MULT, A_ADD, A_MULTR, A_ADDR);
-}
-
-// Method for finding next 32 bit seed
-uint32_t LCRNG::next32Bit()
-{
-    seed = seed*mult + add;
     return seed;
 }
 
 // Method for finding next 16 bit seed
-uint32_t LCRNG::next16Bit()
+uint32_t LCRNG::Next16Bit()
 {
-    return (next32Bit() >> 16);
+    return (Next32Bit() >> 16);
 }
 
-// Method for finding previous 32 bit seed
-uint32_t LCRNG::prev32Bit()
+// Method for finding next 32 bit seed
+uint32_t LCRNG::Next32Bit()
 {
-    seed = seed*multR + addR;
+    seed = seed * mult + add;
     return seed;
 }
 
 // Method for finding previous 16 bit seed
-uint32_t LCRNG::prev16Bit()
+uint32_t LCRNG::Prev16Bit()
 {
-    return (prev32Bit() >> 16);
+    return (Prev32Bit() >> 16);
 }
 
-// Method for advancing seed by a given number of frames
-void LCRNG::advanceFrames(int frames)
+// Method for finding previous 32 bit seed
+uint32_t LCRNG::Prev32Bit()
 {
-    for(int i = 0; i < frames; i++)
-        seed = seed*mult + add;
+    seed = seed * multR + addR;
+    return seed;
 }
 
 // Method for reversing seed by a given number of frames
-void LCRNG::reverseFrames(int frames)
+void LCRNG::ReverseFrames(int frames)
 {
     for(int i = 0; i < frames; i++)
-        seed = seed*multR + addR;
+        seed = seed * multR + addR;
+}
+
+// Method for setting aRNG constants
+void LCRNG::SetARNG()
+{
+    setConst(A_MULT, A_ADD, A_MULTR, A_ADDR);
+}
+
+// Method for setting pokeRNG constants
+void LCRNG::SetPokeRNG()
+{
+    setConst(POKEMULT, POKEADD, POKEMULTR, POKEADDR);
+}
+
+// Set method for seed
+void LCRNG::SetSeed(uint32_t newSeed)
+{
+    seed = newSeed;
+}
+
+// Method for setting xdRNG constants
+void LCRNG::SetXDRNG()
+{
+    setConst(XDMULT, XDADD, XDMULTR, XDADDR);
 }
 
 
@@ -140,48 +140,48 @@ LCRNG64::LCRNG64(uint64_t seed)
     this->seed = seed;
 }
 
-// Get method for seed
-uint64_t LCRNG64::getSeed()
+// Method for advancing seed by a given number of frames
+void LCRNG64::AdvanceFrames(int frames)
 {
-    return seed;
+    for (int i = 0; i < frames; i++)
+        seed = seed * MULT + ADD;
 }
 
-// Method for finding next 64 bit seed
-uint64_t LCRNG64::next64Bit()
+// Get method for seed
+uint64_t LCRNG64::GetSeed()
 {
-    seed = seed*mult + add;
     return seed;
 }
 
 // Method for finding next 32 bit seed
-uint32_t LCRNG64::next32Bit()
+uint32_t LCRNG64::Next32Bit()
 {
-    return (uint32_t) (next64Bit() >> 32);
+    return (uint32_t) (Next64Bit() >> 32);
 }
 
-// Method for finding previous 64 bit seed
-uint64_t LCRNG64::prev64Bit()
+// Method for finding next 64 bit seed
+uint64_t LCRNG64::Next64Bit()
 {
-    seed = seed*multR + addR;
+    seed = seed * MULT + ADD;
     return seed;
 }
 
 // Method for finding previous 32 bit seed
-uint32_t LCRNG64::prev32Bit()
+uint32_t LCRNG64::Prev32Bit()
 {
-    return (uint32_t) (prev64Bit() >> 32);
+    return (uint32_t) (Prev64Bit() >> 32);
 }
 
-// Method for advancing seed by a given number of frames
-void LCRNG64::advanceFrames(int frames)
+// Method for finding previous 64 bit seed
+uint64_t LCRNG64::Prev64Bit()
 {
-    for (int i = 0; i < frames; i++)
-        seed = seed*mult + add;
+    seed = seed * MULTR + ADDR;
+    return seed;
 }
 
 // Method for reversing seed by a given number of frames
-void LCRNG64::reverseFrames(int frames)
+void LCRNG64::ReverseFrames(int frames)
 {
     for (int i = 0; i < frames; i++)
-        seed = seed*multR + addR;
+        seed = seed * MULTR + ADDR;
 }

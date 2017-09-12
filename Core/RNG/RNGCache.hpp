@@ -19,22 +19,22 @@
 
 #ifndef RNGCACHE_HPP
 #define RNGCACHE_HPP
-#include <cstdint>
-#include<vector>
 #include <Core/Objects/Method.hpp>
+#include <cstdint>
+#include <vector>
 
 
 class RNGCache
 {
 
 private:
-    uint8_t low8[0x10000];
+    uint32_t add;
     bool flags[0x10000];
     uint32_t k;
+    uint8_t low8[0x10000];
     uint32_t mult;
-    uint32_t add;
 
-    void PopulateArrays();
+    void populateArrays();
 
     void setupCache(Method MethodType);
 
@@ -42,11 +42,11 @@ public:
 
     RNGCache(Method MethodType);
 
-    void switchCache(Method MethodType);
-
     std::vector<uint32_t> RecoverLower16BitsIV(uint32_t first, uint32_t second);
 
     std::vector<uint32_t> RecoverLower16BitsPID(uint32_t first, uint32_t second);
+
+    void SwitchCache(Method MethodType);
 
 };
 

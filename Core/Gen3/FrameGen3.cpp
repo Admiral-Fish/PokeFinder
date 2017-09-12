@@ -26,8 +26,26 @@ FrameGen3::FrameGen3(uint32_t tid, uint32_t sid, uint32_t psv)
     this->psv = psv;
 }
 
+// Returns real time for a given frame
+std::string FrameGen3::GetTime()
+{
+    //int32_t minutes = frame / 3600;
+    //int32_t seconds = (frame - (3600 * minutes)) / 60;
+    //int32_t milliseconds = ((frame % 60) * 100) / 60;
+    //return (boost::format("%d:%02d.%02d") % minutes % seconds % milliseconds).str();
+    return "temp";
+}
+
+// Change the tid/sid (mostly used for Channel)
+void FrameGen3::SetIDs(uint32_t tid, uint32_t sid)
+{
+    this->tid = tid;
+    this->sid = sid;
+    psv = tid ^ sid;
+}
+
 // Sets IVs for Channel method and calculates characteristics based on IVs
-void FrameGen3::setIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6)
+void FrameGen3::SetIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6)
 {
     hp = iv1;
     atk = iv2;
@@ -38,22 +56,3 @@ void FrameGen3::setIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t
     hidden = ((((hp & 1) + 2 * (atk & 1) + 4 * (def & 1) + 8 * (spe & 1) + 16 * (spa & 1) + 32 * (spd & 1)) * 15) / 63);
     power = (30 + ((((hp >> 1) & 1) + 2 * ((atk >> 1) & 1) + 4 * ((def >> 1) & 1) + 8 * ((spe >> 1) & 1) + 16 * ((spa >> 1) & 1) + 32 * ((spd >> 1) & 1)) * 40 / 63));
 }
-
-// Change the tid/sid (mostly used for Channel)
-void FrameGen3::setIDs(uint32_t tid, uint32_t sid)
-{
-    this->tid = tid;
-    this->sid = sid;
-    psv = tid ^ sid;
-}
-
-// Returns real time for a given frame
-std::string FrameGen3::getTime()
-{
-    int32_t minutes = frame / 3600;
-    int32_t seconds = (frame - (3600 * minutes)) / 60;
-    int32_t milliseconds = ((frame % 60) * 100) / 60;
-    return "temp";
-    //return (boost::format("%d:%02d.%02d") % minutes % seconds % milliseconds).str();
-}
-

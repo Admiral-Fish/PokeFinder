@@ -30,16 +30,28 @@ Range::Range(uint32_t min, uint32_t max)
     this->max = max;
 }
 
-// Gets current value of the min
-uint32_t Range::getMin()
-{
-    return min;
-} 
-
 // Gets current value of the max
-uint32_t Range::getMax()
+uint32_t Range::GetMax()
 {
     return max;
+}
+
+// Gets current value of the min
+uint32_t Range::GetMin()
+{
+    return min;
+}
+
+
+// Encounter slot calculations
+
+// Runs through ranges and compare value to get the encounter slot
+int EncounterSlot::calcSlot(unsigned int compare, std::vector<Range> ranges)
+{
+    for (unsigned int i = 0; i < ranges.size(); i++)
+        if (compare >= ranges[i].GetMin() && compare <= ranges[i].GetMax())
+            return i;
+    return -1;
 }
 
 // Calcs the encounter slot for Method H 1/2/4 (Emerald, FRLG, RS)
@@ -64,6 +76,29 @@ int EncounterSlot::HSlot(uint32_t result, Encounter encounterType)
         default:
             ranges = { Range(0, 19), Range(20, 39), Range(40, 49), Range(50, 59), Range(60, 69), 
                         Range(70, 79), Range(80, 84), Range(85, 89), Range(90, 93), Range(94, 97), 
+                        Range(98, 98), Range(99, 99) };
+            return calcSlot(compare, ranges);
+    }
+}
+
+// Calcs the encounter slot for Method J (DPPt)
+int EncounterSlot::JSlot(uint32_t result, Encounter encounterType)
+{
+    int compare = (result >> 16) / 656;
+    std::vector<Range> ranges;
+    switch (encounterType)
+    {
+        case GoodRod:
+        case SuperRod:
+            ranges = { Range(0, 39), Range(40, 79), Range(80, 94), Range(95, 98), Range(99, 99) };
+            return calcSlot(compare, ranges);
+        case OldRod:
+        case Surfing:
+            ranges = { Range(0, 59), Range(60, 89), Range(90, 94), Range(95, 98), Range(99, 99) };
+            return calcSlot(compare, ranges);
+        default:
+            ranges = { Range(0, 19), Range(20, 39), Range(40, 49), Range(50, 59), Range(60, 69),
+                        Range(70, 79), Range(80, 84), Range(85, 89), Range(90, 93), Range(94, 97),
                         Range(98, 98), Range(99, 99) };
             return calcSlot(compare, ranges);
     }
@@ -106,36 +141,4 @@ int EncounterSlot::KSlot(uint32_t result, Encounter encounterType)
                         Range(98, 98), Range(99, 99) };
             return calcSlot(compare, ranges);
     }
-}
-
-// Calcs the encounter slot for Method J (DPPt)
-int EncounterSlot::JSlot(uint32_t result, Encounter encounterType)
-{
-    int compare = (result >> 16) / 656;
-    std::vector<Range> ranges;
-    switch (encounterType)
-    {
-        case GoodRod:
-        case SuperRod:
-            ranges = { Range(0, 39), Range(40, 79), Range(80, 94), Range(95, 98), Range(99, 99) };
-            return calcSlot(compare, ranges);
-        case OldRod:
-        case Surfing:
-            ranges = { Range(0, 59), Range(60, 89), Range(90, 94), Range(95, 98), Range(99, 99) };
-            return calcSlot(compare, ranges);
-        default:
-            ranges = { Range(0, 19), Range(20, 39), Range(40, 49), Range(50, 59), Range(60, 69), 
-                        Range(70, 79), Range(80, 84), Range(85, 89), Range(90, 93), Range(94, 97), 
-                        Range(98, 98), Range(99, 99) };
-            return calcSlot(compare, ranges);
-    }
-}
-
-// Runs through ranges and compare value to get the encounter slot
-int EncounterSlot::calcSlot(unsigned int compare, std::vector<Range> ranges)
-{
-    for (unsigned int i = 0; i < ranges.size(); i++)
-        if (compare >= ranges[i].getMin() && compare <= ranges[i].getMax())
-            return i;
-    return -1;
 }
