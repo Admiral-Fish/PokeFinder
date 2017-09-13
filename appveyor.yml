@@ -6,7 +6,7 @@ image:
     - Visual Studio 2017
 
 environment:
-  - platform: x64
+  platform: x64
   APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
   QTDIR: C:\Qt\5.9.1\mingw53_32
   BOOST_ROOT: C:\Libraries\boost_1_64_0
