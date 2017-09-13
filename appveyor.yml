@@ -15,7 +15,7 @@ init:
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 install:
-    - set PATH=%QTDIR%\bin;%PATH%
+    - set PATH=%MINGWDIR%\bin;%QTDIR%\bin;%PATH%
 
 build_script:
     - qmake PokeFinder.pro
