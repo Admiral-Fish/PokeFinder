@@ -14,6 +14,9 @@ matrix:
         - os: osx
           sudo: required
 
+before_install:
+    - chmod +x ./.travis/install.sh
+
 install:
     - ./.travis/install.sh
 
