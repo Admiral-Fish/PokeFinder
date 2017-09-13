@@ -8,12 +8,11 @@ matrix:
     allow_failures:
         - os: linux
         - os: osx
-matrix:
-  include:
-    - os: linux
-      dist: precise
-      sudo: required
-    - os: osx
+      include:
+        - os: linux
+          dist: precise
+          sudo: required
+        - os: osx
 
 before_install:
     - chmod +x ./.travis/install.sh
