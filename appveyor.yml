@@ -18,7 +18,7 @@ install:
 
 build_script:
     - qmake PokeFinder.pro
-    - mingw32-make
+    - mingw64-make
 
 after_build:
     - 7z a PokeFinder-windows.zip .\release\PokeFinder.exe
