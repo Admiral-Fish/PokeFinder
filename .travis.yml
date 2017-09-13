@@ -3,7 +3,6 @@ language: cpp
 matrix:
   include:
     - os: linux
-      dist: precise
       sudo: required
     - os: osx
 
