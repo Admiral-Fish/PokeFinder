@@ -1,7 +1,7 @@
 version: 1.0.0.{build}
 
 environment:
-  QTDIR: C:\Qt\5.9.1
+  QTDIR: C:\Qt\5.9.1\bin
   BOOST_ROOT: C:\Libraries\boost_1_64_0
   matrix:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
