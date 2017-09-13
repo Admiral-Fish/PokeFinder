@@ -31,6 +31,7 @@ class Searcher
 {
 
 protected:
+    uint32_t psv;
     uint32_t sid;
     uint32_t tid;
 

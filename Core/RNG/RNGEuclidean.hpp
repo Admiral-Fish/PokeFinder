@@ -39,9 +39,9 @@ public:
 
     RNGEuclidean(Method FrameType);
 
-    std::vector<uint32_t> RecoverLower16BitsIV(uint64_t first, uint64_t second);
+    std::vector<uint32_t> RecoverLower16BitsIV(uint32_t first, uint32_t second);
 
-    std::vector<uint32_t> RecoverLower16BitsPID(uint64_t first, uint64_t second);
+    std::vector<uint32_t> RecoverLower16BitsPID(uint32_t first, uint32_t second);
 
     std::vector<uint32_t> RecoverLower27BitsChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
 

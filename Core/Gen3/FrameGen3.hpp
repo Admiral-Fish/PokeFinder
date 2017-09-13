@@ -34,6 +34,7 @@ public:
     uint32_t inh1;
     uint32_t inh2;
     uint32_t inh3;
+    std::string lockReason;
     uint32_t occidentary;
     uint32_t par1;
     uint32_t par2;
@@ -43,9 +44,9 @@ public:
 
     std::string GetTime();
 
-    void SetIDs(uint32_t tid, uint32_t sid);
+    void SetIDs(uint32_t tid, uint32_t sid, uint32_t psv);
 
-    void SetIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6);
+    void SetIVsManual(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6);
 
 };
 

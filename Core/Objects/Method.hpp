@@ -31,6 +31,8 @@ enum Method
     MethodH2,
     MethodH4,
     XDColo,
+    XD, // Used to signify XD shadows
+    Colo, // Used to signify Colo shadows
     Channel,
     EBred,
     EBredSplit,

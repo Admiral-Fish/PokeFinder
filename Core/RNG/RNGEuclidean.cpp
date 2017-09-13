@@ -44,7 +44,7 @@ void RNGEuclidean::setupEuclidean(Method FrameType)
         sub2 = 0x9A974C78; // -Modified add + 0x8000000 - 1
         base = 0x142549847b56cf2; // 0x7ffffff * (Modified mult + 1)
     }
-    // XDColo
+    // XDColo, XD, Colo
     else
     {
         sub1 = 0x343fd; // XDRNG mult
@@ -54,7 +54,7 @@ void RNGEuclidean::setupEuclidean(Method FrameType)
 }
 
 // Recovers origin seeds for two 16 bit calls(15 bits known)
-std::vector<uint32_t> RNGEuclidean::RecoverLower16BitsIV(uint64_t first, uint64_t second)
+std::vector<uint32_t> RNGEuclidean::RecoverLower16BitsIV(uint32_t first, uint32_t second)
 {
     std::vector<uint32_t> origin;
     int64_t t, kmax;
@@ -77,7 +77,7 @@ std::vector<uint32_t> RNGEuclidean::RecoverLower16BitsIV(uint64_t first, uint64_
 }
 
 // Recovers origin seeds for two 16 bit calls
-std::vector<uint32_t> RNGEuclidean::RecoverLower16BitsPID(uint64_t first, uint64_t second)
+std::vector<uint32_t> RNGEuclidean::RecoverLower16BitsPID(uint32_t first, uint32_t second)
 {
     std::vector<uint32_t> origin;
     int64_t t, kmax;

@@ -37,15 +37,15 @@ std::string FrameGen3::GetTime()
 }
 
 // Change the tid/sid (mostly used for Channel)
-void FrameGen3::SetIDs(uint32_t tid, uint32_t sid)
+void FrameGen3::SetIDs(uint32_t tid, uint32_t sid, uint32_t psv)
 {
     this->tid = tid;
     this->sid = sid;
-    psv = tid ^ sid;
+    this->psv = psv;
 }
 
-// Sets IVs for Channel method and calculates characteristics based on IVs
-void FrameGen3::SetIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6)
+// Sets IVs for either Channel method or manual input and calculates characteristics based on IVs
+void FrameGen3::SetIVsManual(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6)
 {
     hp = iv1;
     atk = iv2;

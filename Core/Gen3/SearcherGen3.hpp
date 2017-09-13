@@ -28,7 +28,31 @@ class SearcherGen3: public Searcher
 {
 
 private:
+    RNGCache cache = RNGCache(Method1);
+    RNGEuclidean euclidean = RNGEuclidean(XDColo);
+    FrameGen3 frame = FrameGen3(0, 0, 0);
     LCRNG rng = LCRNG();
+
+    std::vector<FrameGen3> searchMethodChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    std::vector<FrameGen3> searchMethodColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    std::vector<FrameGen3> searchMethodH1(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    std::vector<FrameGen3> searchMethodH2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    std::vector<FrameGen3> searchMethodH4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    std::vector<FrameGen3> searchMethodXD(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    std::vector<FrameGen3> searchMethodXDColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    std::vector<FrameGen3> searchMethod1(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    std::vector<FrameGen3> searchMethod2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    std::vector<FrameGen3> searchMethod4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
 
 public:
 
@@ -36,7 +60,9 @@ public:
 
     SearcherGen3(uint32_t tid, uint32_t sid);
 
-    std::vector<FrameGen3> Search();
+    std::vector<FrameGen3> Search(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    void SetMethod(Method frameType);
 };
 
 #endif // SEARCHERGEN3_HPP

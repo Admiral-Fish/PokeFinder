@@ -55,12 +55,12 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodChannel()
     uint32_t max = initialFrame + maxResults;
     for (uint32_t cnt = initialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.Next16Bit()))
     {
-        frame.SetIDs(40122, rngList[0]);
+        frame.SetIDs(40122, rngList[0], 40122 ^ rngList[0]);
         if ((rngList[2] > 7 ? 0 : 1) != (rngList[1] ^ 40122 ^ rngList[0]))
             frame.SetPID(rngList[1] ^ 0x8000, rngList[2]);
         else
             frame.SetPID(rngList[1], rngList[2]);
-        frame.SetIVsChannel(rngList[6] >> 11, rngList[7] >> 11, rngList[8] >> 11, rngList[10] >> 11, rngList[11] >> 11, rngList[9] >> 11);
+        frame.SetIVsManual(rngList[6] >> 11, rngList[7] >> 11, rngList[8] >> 11, rngList[10] >> 11, rngList[11] >> 11, rngList[9] >> 11);
         frame.frame = cnt;
         frames.push_back(frame);
     }

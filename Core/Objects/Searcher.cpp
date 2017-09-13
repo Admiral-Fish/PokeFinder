@@ -29,4 +29,5 @@ Searcher::Searcher()
 {
     tid = 12345;
     sid = 54321;
+    psv = tid ^ sid;
 }
