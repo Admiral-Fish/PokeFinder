@@ -14,11 +14,11 @@ init:
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 install:
-    - set PATH=%QTDIR%\bin;C:\Qt\Tools\mingw530_32\bin;%PATH%
+    - set PATH=%QTDIR%\bin;%QTDIR%\msvc2017_64\bin;%PATH%
 
 build_script:
     - qmake PokeFinder.pro
-    - mingw32-make
+    - make
 
 after_build:
     - 7z a PokeFinder-windows.zip .\release\PokeFinder.exe
