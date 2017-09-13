@@ -1,12 +1,11 @@
 version: 1.0.0.{build}
 
 environment:
-  QTDIR: C:\Qt\5.9.1
+  QTDIR: C:\Qt\5.9.1\msvc2017_64
   BOOST_ROOT: C:\Libraries\boost_1_64_0
-  MINGW_DIR: C:\Qt\5.9.1\mingw53_32
   matrix:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    SHORT_MSVC_PLATFORM: x64
+    SHORT_MSVC_PLATFORM: x86
 
 configuration:
     - Release
@@ -15,7 +14,7 @@ init:
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 install:
-    - set PATH=%MINGW_DIR%;%MINGW_DIR%\bin;%PATH%
+    - set PATH=%QTDIR%\bin;%PATH%
 
 build_script:
     - qmake PokeFinder.pro
