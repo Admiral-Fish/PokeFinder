@@ -22,7 +22,7 @@
 #include <Core/Objects/Encounter.hpp>
 #include <Core/Objects/Lead.hpp>
 #include <Core/Objects/Method.hpp>
-//#include <boost/format.hpp>
+#include <boost/format.hpp>
 #include <cstdint>
 #include <string>
 #include <vector>
