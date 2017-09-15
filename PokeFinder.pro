@@ -30,7 +30,7 @@ win32 {
 }
 
 macx {
-    _BOOST_PATH = /usr/local/Cellar/boost/1.63.0
+    _BOOST_PATH = /usr/local/Cellar/boost/1.65.1
         INCLUDEPATH += "$${_BOOST_PATH}/include/"
         LIBS += -L$${_BOOST_PATH}/lib
 }
