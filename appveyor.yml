@@ -1,42 +1,40 @@
 version: 1.0.0.{build}
 
 environment:
-  QTDIR: C:\Qt\5.9.1\mingw53_32
+    matrix:
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          QTDIR: C:\Qt\5.9.1\mingw53_32
+          BUILDER: MINGW
+          ARCH: x86
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+          QTDIR: C:\Qt\5.9.1\msvc2017_64
+          BUILDER: NMAKE
+          ARCH: x64
 
 configuration:
     - Release
 
 install:
-    - set PATH=%QTDIR%\bin;;C:\Qt\Tools\mingw530_32\bin;%PATH%
+    - set PATH=%QTDIR%\bin;%PATH%
+    - if "%BUILDER%"=="MINGW" set PATH=C:\Qt\Tools\mingw530_32\bin;%PATH%
+    - if "%BUILDER%"=="NMAKE" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 build_script:
     - qmake PokeFinder.pro
-    - mingw32-make
+    - if "%BUILDER%"=="MINGW" mingw32-make
+    - if "%BUILDER%"=="NMAKE" nmake
 
 after_build:
-    - 7z a PokeFinder-windows.zip .\release\PokeFinder.exe
-    - 7z a PokeFinder-windows.zip %QTDIR%\bin\libwinpthread-1.dll
-    - 7z a PokeFinder-windows.zip %QTDIR%\bin\libstdc++-6.dll
-    - 7z a PokeFinder-windows.zip %QTDIR%\bin\libgcc_s_dw2-1.dll
-    - 7z a PokeFinder-windows.zip %QTDIR%\bin\Qt5Core.dll
-    - 7z a PokeFinder-windows.zip %QTDIR%\bin\Qt5Gui.dll
-    - 7z a PokeFinder-windows.zip %QTDIR%\bin\Qt5Widgets.dll
-    - 7z a PokeFinder-windows.zip %QTDIR%\plugins\platforms\qwindows.dll
-    - 7z rn PokeFinder-windows.zip qwindows.dll platforms\qwindows.dll
-
-    - 7z a PokeFinder-windows.7z .\release\PokeFinder.exe
-    - 7z a PokeFinder-windows.7z %QTDIR%\bin\libwinpthread-1.dll
-    - 7z a PokeFinder-windows.7z %QTDIR%\bin\libstdc++-6.dll
-    - 7z a PokeFinder-windows.7z %QTDIR%\bin\libgcc_s_dw2-1.dll
-    - 7z a PokeFinder-windows.7z %QTDIR%\bin\Qt5Core.dll
-    - 7z a PokeFinder-windows.7z %QTDIR%\bin\Qt5Gui.dll
-    - 7z a PokeFinder-windows.7z %QTDIR%\bin\Qt5Widgets.dll
-    - 7z a PokeFinder-windows.7z %QTDIR%\plugins\platforms\qwindows.dll
-    - 7z rn PokeFinder-windows.7z qwindows.dll platforms\qwindows.dll
-
+    - md PokeFinder-windows
+    - move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe 
+    - windeployqt --release --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
+    - xcopy /I %QTDIR%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
+    - 7z a PokeFinder-windows-%ARCH%.zip PokeFinder-windows\
+    - 7z a PokeFinder-windows-%ARCH%.7z PokeFinder-windows\
+    
 artifacts:
-    - path: PokeFinder-windows.zip
-    - path: PokeFinder-windows.7z
+    - path: PokeFinder-windows-%ARCH%.zip
+    - path: PokeFinder-windows-%ARCH%.7z
 
 deploy:
     provider: GitHub
