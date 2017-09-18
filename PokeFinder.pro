@@ -28,6 +28,7 @@ linux {
 win32 {
     INCLUDEPATH += C:\Libraries\boost_1_63_0
     INCLUDEPATH += C:\Libraries\boost_1_64_0
+    INCLUDEPATH += C:\boost\include\boost-1_64
 }
 
 macx {
