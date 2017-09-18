@@ -33,6 +33,8 @@ private:
     FrameGen3 frame = FrameGen3(0, 0, 0);
     LCRNG rng = LCRNG();
 
+    uint32_t getEncounterSlot();
+
     std::vector<FrameGen3> searchMethodChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
 
     std::vector<FrameGen3> searchMethodColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
@@ -52,6 +54,8 @@ private:
     std::vector<FrameGen3> searchMethod2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
 
     std::vector<FrameGen3> searchMethod4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    uint32_t validatePID(uint32_t seed);
 
 
 public:

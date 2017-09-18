@@ -41,7 +41,7 @@ GeneratorGen3::GeneratorGen3(uint32_t maxResults, uint32_t initialFrame, uint32_
     psv = tid ^ sid;
 }
 
-// Returns vector of frames Method Channel
+// Returns vector of frames for Method Channel
 std::vector<FrameGen3> GeneratorGen3::generateMethodChannel()
 {
     std::vector<FrameGen3> frames;
@@ -68,7 +68,7 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodChannel()
     return frames;
 }
 
-// Returns vector of frames Method H 1, 2, or 4
+// Returns vector of frames for Method H 1, 2, or 4
 std::vector<FrameGen3> GeneratorGen3::generateMethodH124()
 {
     std::vector<FrameGen3> frames;
@@ -108,7 +108,7 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodH124()
     return frames;
 }
 
-// Returns vector of frames Method H 1, 2, or 4 given synch lead
+// Returns vector of frames for Method H 1, 2, or 4 given synch lead
 std::vector<FrameGen3> GeneratorGen3::generateMethodH124Synch()
 {
     std::vector<FrameGen3> frames;
@@ -206,7 +206,7 @@ bool cuteCharm25M(uint32_t pid)
     return (pid & 0xff) >= 191;
 }
 
-// Returns vector of frames Method H 1, 2, or 4 given cute charm lead
+// Returns vector of frames for Method H 1, 2, or 4 given cute charm lead
 std::vector<FrameGen3> GeneratorGen3::generateMethodH124CuteCharm()
 {
     std::vector<FrameGen3> frames;
@@ -297,7 +297,7 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodH124CuteCharm()
     return frames;
 }
 
-// Returns vector of frames Method XD/Colo
+// Returns vector of frames for Method XD/Colo
 std::vector<FrameGen3> GeneratorGen3::generateMethodXDColo()
 {
     std::vector<FrameGen3> frames;
@@ -320,7 +320,7 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodXDColo()
     return frames;
 }
 
-// Returns vector of frames Method 1, 2, or 4
+// Returns vector of frames for Method 1, 2, or 4
 std::vector<FrameGen3> GeneratorGen3::generateMethod124()
 {
     std::vector<FrameGen3> frames;

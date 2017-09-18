@@ -20,7 +20,7 @@
 #include "Utilities.hpp"
 
 // Returns initial seed for Ruby/Sapphire live battery given date and time
-uint32_t Utilities::calcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m)
+uint32_t Utilities::CalcGen3Seed(boost::gregorian::date time, uint32_t h, uint32_t m)
 {
     boost::gregorian::date_duration span = time - boost::gregorian::date(1999, 12, 31);
     uint32_t d = span.days();
