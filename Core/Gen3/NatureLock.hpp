@@ -81,12 +81,14 @@ private:
     uint32_t getPIDReverse();
 
     uint32_t getPSVReverse();
+
+    void natureLockSetupColo(int lockNum);
     
-    void natureLockSetup(int lockNum);
+    void natureLockSetupGales(int lockNum);
     
 public:
 
-    NatureLock(int lockNum);
+    NatureLock();
 
     ShadowType GetType();
 
@@ -105,8 +107,10 @@ public:
     bool IVMethodSalamenceUnset(uint32_t seed);
 
     bool IVMethodSingleNL(uint32_t seed);
+
+    void SwitchLockColo(int lockNum);
     
-    void SwitchLock(int lockNum);
+    void SwitchLockGales(int lockNum);
 
 };
 

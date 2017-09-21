@@ -20,6 +20,7 @@
 #ifndef SEARCHERGEN3_HPP
 #define SEARCHERGEN3_HPP
 #include <Core/Gen3/FrameGen3.hpp>
+#include <Core/Gen3/NatureLock.hpp>
 #include <Core/Objects/Searcher.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
@@ -32,6 +33,7 @@ private:
     RNGEuclidean euclidean = RNGEuclidean(XDColo);
     FrameGen3 frame = FrameGen3(0, 0, 0);
     LCRNG rng = LCRNG();
+    NatureLock natureLock = NatureLock();
 
     uint32_t getEncounterSlot();
 

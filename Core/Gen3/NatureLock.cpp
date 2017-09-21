@@ -24,9 +24,9 @@
  * values directly impact what spreads are available */
 
 // Constructor for NatureLock
-NatureLock::NatureLock(int lockNum)
+NatureLock::NatureLock()
 {
-    natureLockSetup(lockNum);
+    natureLockSetupGales(0);
     backCount = lockInfo.size();
     frontCount = backCount == 1 ? 0 : backCount - 2;
     x = 0;
@@ -82,8 +82,27 @@ uint32_t NatureLock::getPSVReverse()
     return (rng.Prev16Bit() ^ rng.Prev16Bit()) >> 3;
 }
 
-// Sets up rest of nature lock data
-void NatureLock::natureLockSetup(int lockNum)
+// Sets up rest of nature lock data for Colo
+void NatureLock::natureLockSetupColo(int lockNum)
+{
+    switch (lockNum) {
+        case 0: // Heracross
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(0, 126, 255) };
+            type = FirstShadow;
+            break;
+        case 1: // Makuhita
+            lockInfo = { LockInfo(0, 0, 126), LockInfo(24, 127, 255) };
+            type = FirstShadow;
+            break;
+        default: // Murkrow
+            lockInfo = { LockInfo(18, 127, 255), LockInfo(12, 0, 126), LockInfo(6, 127, 255 ) };
+            type = FirstShadow;
+            break;
+    }
+}
+
+// Sets up rest of nature lock data for Gales
+void NatureLock::natureLockSetupGales(int lockNum)
 {
     switch(lockNum)
     {
@@ -208,19 +227,15 @@ void NatureLock::natureLockSetup(int lockNum)
             lockInfo = { LockInfo(18, 0, 126), LockInfo(6, 127, 255) };
             type = FirstShadow;
             break;
-        case 41: // Makuhita Colo
-            lockInfo = { LockInfo(0, 0, 126), LockInfo(24, 127, 255) };
-            type = FirstShadow;
-            break;
-        case 42: // Manectric
+        case 41: // Manectric
             lockInfo = { LockInfo(6, 0, 126) };
             type = SingleLock;
             break;
-        case 44: // Mareep 1
+        case 43: // Mareep 1
             lockInfo = { LockInfo(12, 0, 126), LockInfo(24, 127, 255) };
             type = FirstShadow;
             break;
-        case 45: // Mareep 2
+        case 44: // Mareep 2
             lockInfo = { LockInfo(0, 0, 255), LockInfo(12, 0, 126), LockInfo(24, 127, 255) };
             type = FirstShadow;
             break;
@@ -395,7 +410,7 @@ void NatureLock::natureLockSetup(int lockNum)
         case 28: // Houndour 1
         case 29: // Houndour 2
         case 35: // Lugia
-        case 43: // Mareep 3
+        case 42: // Mareep 3
         case 49: // Moltres
         case 64: // Rhydon
         case 73: // Shellder
@@ -688,10 +703,21 @@ bool NatureLock::IVMethodSingleNL(uint32_t seed)
     return (gender >= genderLower && gender <= genderUpper && pid % 25 == nature);
 }
 
-// Changes which lock info is being used
-void NatureLock::SwitchLock(int lockNum)
+// Changes which lock info is being used for Colo
+void NatureLock::SwitchLockColo(int lockNum)
 {
-    natureLockSetup(lockNum);
+    natureLockSetupGales(lockNum);
+    backCount = lockInfo.size();
+    frontCount = backCount == 1 ? 0 : backCount - 2;
+    x = 0;
+    if (backCount == 1)
+        getCurrLock();
+}
+
+// Changes which lock info is being used for Gales
+void NatureLock::SwitchLockGales(int lockNum)
+{
+    natureLockSetupGales(lockNum);
     backCount = lockInfo.size();
     frontCount = backCount == 1 ? 0 : backCount - 2;
     x = 0;
