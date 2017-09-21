@@ -27,7 +27,7 @@ class Utilities
     
 public:
     
-    static uint32_t CalcGen3Seed(QDateTime time, uint32_t h, uint32_t m);
+    static uint32_t CalcGen3Seed(QDate time, uint32_t h, uint32_t m);
 
 };
 
