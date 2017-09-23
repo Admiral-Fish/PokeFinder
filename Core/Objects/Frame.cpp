@@ -28,43 +28,43 @@ Frame::Frame()
 }
 
 // Returns gender of 12.5% F ratio
-std::string Frame::GetFemale125()
+QString Frame::GetFemale125()
 {
     return (gender >= 31) ? "M" : "F";
 }
 
 // Returns gender of 25% F ratio
-std::string Frame::GetFemale25()
+QString Frame::GetFemale25()
 {
     return (gender >= 63) ? "M" : "F";
 }
 
 // Returns gender of 50% F ratio
-std::string Frame::GetFemale50()
+QString Frame::GetFemale50()
 {
     return (gender >= 127) ? "M" : "F";
 }
 
 // Returns gender of 75% F ratio
-std::string Frame::GetFemale75()
+QString Frame::GetFemale75()
 {
     return (gender >= 191) ? "M" : "F";
 }
 
 // Returns string equivalent of nature
-std::string Frame::GetNature()
+QString Frame::GetNature()
 {
     return natures[nature];
 }
 
 // Returns string equivalent of hidden power
-std::string Frame::GetPower()
+QString Frame::GetPower()
 {
     return powers[hidden];
 }
 
 // Returns !!! if shiny or blank if not
-std::string Frame::GetShiny()
+QString Frame::GetShiny()
 {
     return shiny ? "!!!" : "";
 }

@@ -22,21 +22,20 @@
 #include <Core/Objects/Encounter.hpp>
 #include <Core/Objects/Lead.hpp>
 #include <Core/Objects/Method.hpp>
-#include <boost/format.hpp>
+#include <QString>
 #include <cstdint>
-#include <string>
 #include <vector>
 
 class Frame
 {
 
 protected:
-    std::string natures[25] = { "Hardy", "Lonely", "Brave", "Adamant", "Naughty",
+    QString natures[25] = { "Hardy", "Lonely", "Brave", "Adamant", "Naughty",
                            "Bold", "Docile", "Relaxed", "Impish", "Lax",
                            "Timid", "Hasty", "Serious", "Jolly", "Naive",
                            "Modest", "Mild", "Quiet", "Bashful", "Rash",
                            "Calm", "Gentle", "Sassy", "Careful", "Quirky" };
-    std::string powers[16] = { "Fighting", "Flying", "Poison", "Ground",
+    QString powers[16] = { "Fighting", "Flying", "Poison", "Ground",
                                "Rock", "Bug", "Ghost", "Steel",
                                "Fire", "Water", "Grass", "Electric",
                                "Psychic", "Ice", "Dragon", "Dark" };
@@ -69,19 +68,19 @@ public:
 
     Frame();
 
-    std::string GetFemale125();
+    QString GetFemale125();
 
-    std::string GetFemale25();
+    QString GetFemale25();
 
-    std::string GetFemale50();
+    QString GetFemale50();
 
-    std::string GetFemale75();
+    QString GetFemale75();
 
-    std::string GetNature();
+    QString GetNature();
 
-    std::string GetPower();
+    QString GetPower();
 
-    std::string GetShiny();
+    QString GetShiny();
 
     void SetIVs(uint32_t iv1, uint32_t iv2);
 

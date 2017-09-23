@@ -152,13 +152,13 @@ void MainWindow::on_generate_clicked()
     {
         item = new QTableWidgetItem(QString::number(frames[i].frame), 0);
         ui->tableWidget->setItem(i, 0, item);
-        item = new QTableWidgetItem(QString::fromStdString(frames[i].GetTime()), 0);
+        item = new QTableWidgetItem(frames[i].GetTime(), 0);
         ui->tableWidget->setItem(i, 1, item);
         item = new QTableWidgetItem(QString::number(frames[i].pid, 16).toUpper().rightJustified(8,'0'), 0);
         ui->tableWidget->setItem(i, 2, item);
-        item = new QTableWidgetItem(QString::fromStdString(frames[i].GetShiny()), 0);
+        item = new QTableWidgetItem(frames[i].GetShiny(), 0);
         ui->tableWidget->setItem(i, 3, item);
-        item = new QTableWidgetItem(QString::fromStdString(frames[i].GetNature()), 0);
+        item = new QTableWidgetItem(frames[i].GetNature(), 0);
         ui->tableWidget->setItem(i, 4, item);
         item = new QTableWidgetItem(QString::number(frames[i].ability), 0);
         ui->tableWidget->setItem(i, 5, item);
@@ -174,17 +174,17 @@ void MainWindow::on_generate_clicked()
         ui->tableWidget->setItem(i, 10, item);
         item = new QTableWidgetItem(QString::number(frames[i].spe), 0);
         ui->tableWidget->setItem(i, 11, item);
-        item = new QTableWidgetItem(QString::fromStdString(frames[i].GetPower()), 0);
+        item = new QTableWidgetItem(frames[i].GetPower(), 0);
         ui->tableWidget->setItem(i, 12, item);
         item = new QTableWidgetItem(QString::number(frames[i].power), 0);
         ui->tableWidget->setItem(i, 13, item);
-        item = new QTableWidgetItem(QString::fromStdString(frames[i].GetFemale125()), 0);
+        item = new QTableWidgetItem(frames[i].GetFemale125(), 0);
         ui->tableWidget->setItem(i, 14, item);
-        item = new QTableWidgetItem(QString::fromStdString(frames[i].GetFemale25()), 0);
+        item = new QTableWidgetItem(frames[i].GetFemale25(), 0);
         ui->tableWidget->setItem(i, 15, item);
-        item = new QTableWidgetItem(QString::fromStdString(frames[i].GetFemale50()), 0);
+        item = new QTableWidgetItem(frames[i].GetFemale50(), 0);
         ui->tableWidget->setItem(i, 16, item);
-        item = new QTableWidgetItem(QString::fromStdString(frames[i].GetFemale75()), 0);
+        item = new QTableWidgetItem(frames[i].GetFemale75(), 0);
         ui->tableWidget->setItem(i, 17, item);
     }
     ui->tableWidget->resizeColumnsToContents();

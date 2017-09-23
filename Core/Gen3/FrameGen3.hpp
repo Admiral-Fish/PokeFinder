@@ -21,7 +21,6 @@
 #define FRAMEGEN3_HPP
 #include <Core/Objects/Frame.hpp>
 
-
 class FrameGen3: public Frame
 {
 
@@ -42,7 +41,7 @@ public:
 
     FrameGen3(uint32_t tid, uint32_t sid, uint32_t psv);
 
-    std::string GetTime();
+    QString GetTime();
 
     void SetIDs(uint32_t tid, uint32_t sid, uint32_t psv);
 

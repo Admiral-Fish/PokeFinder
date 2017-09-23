@@ -27,12 +27,12 @@ FrameGen3::FrameGen3(uint32_t tid, uint32_t sid, uint32_t psv)
 }
 
 // Returns real time for a given frame
-std::string FrameGen3::GetTime()
+QString FrameGen3::GetTime()
 {
     int32_t minutes = frame / 3600;
     int32_t seconds = (frame - (3600 * minutes)) / 60;
     int32_t milliseconds = ((frame % 60) * 100) / 60;
-    return (boost::format("%d:%02d.%02d") % minutes % seconds % milliseconds).str();
+    return QString("%1:%2:%3").arg(minutes).arg(seconds, 2, 10, QChar('0')).arg(milliseconds, 2, 10, QChar('0'));
 }
 
 // Change the tid/sid (mostly used for Channel)
