@@ -1,4 +1,3 @@
-/*
 Copyright (c) 2006,2007 Mutsuo Saito, Makoto Matsumoto and Hiroshima
 University.
 Copyright (c) 2012 Mutsuo Saito, Makoto Matsumoto, Hiroshima University
@@ -31,45 +30,3 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
-
-#ifndef SFMT_HPP
-#define SFMT_HPP
-#include <cstdint>
-
-class SFMT
-{
-
-private:
-    uint32_t const CMSK1 = 0xdfffffef;
-    uint32_t const CMSK2 = 0xddfecb7f;
-    uint32_t const CMSK3 = 0xbffaffff;
-    uint32_t const CMSK4 = 0xbffffff6;
-    int const CSL1 = 18;
-    int const CSR1 = 11;
-    int const N32 = 624;
-    int index;
-    uint32_t parity[4] = { 0x1, 0x0, 0x0, 0x13c9e684 };
-    uint32_t sfmt[624];
-
-    void init(uint32_t seed);
-
-    void periodCertificaion();
-
-public:
-
-    SFMT(uint32_t seed);
-
-    void Next();
-
-    uint32_t NextUint();
-
-    uint64_t NextUlong();
-
-    void Reseed(uint32_t seed);
-
-    void Shuffle();
-
-};
-
-#endif // SFMT_HPP

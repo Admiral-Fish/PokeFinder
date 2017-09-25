@@ -40,7 +40,7 @@ SearcherGen3::SearcherGen3(uint32_t tid, uint32_t sid)
 // Calculates encounter slot for Method H
 uint32_t SearcherGen3::getEncounterSlot()
 {
-    rng.SetSeed(frame.seed);
+    rng.seed = frame.seed;
     uint32_t searchNature;
 
     // Determine which RNG call gave the hunt nature
@@ -67,7 +67,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethodChannel(uint32_t hp, uint32_t a
     for (int i = 0; i < size; i++)
     {
         frame.SetIVsManual(hp, atk, def, spa, spd, spe);
-        rng.SetSeed(seeds[i]);
+        rng.seed = seeds[i];
 
         // Calculate PID
         rng.ReverseFrames(3);
@@ -100,7 +100,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethodColo(uint32_t hp, uint32_t atk,
     {
         // Setup normal frame
         frame.SetIVsManual(hp, atk, def, spa, spd, spe);
-        rng.SetSeed(seeds[i + 1]);
+        rng.seed = seeds[i + 1];
         rng.AdvanceFrames(1);
         frame.SetPID(rng.Next16Bit(), rng.Next16Bit());
         frame.seed = seeds[i] * 0xB9B33155 + 0xA170F641;
@@ -130,7 +130,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethodH1(uint32_t hp, uint32_t atk, u
     {
         // Setup normal frame
         frame.SetIVsManual(hp, atk, def, spa, spd, spe);
-        rng.SetSeed(seeds[i]);
+        rng.seed = seeds[i];
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         seed = rng.Prev32Bit();
         frame.seed = seed;
@@ -175,7 +175,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethodH2(uint32_t hp, uint32_t atk, u
     {
         // Setup normal frame
         frame.SetIVsManual(hp, atk, def, spa, spd, spe);
-        rng.SetSeed(seeds[i]);
+        rng.seed = seeds[i];
         rng.ReverseFrames(1);
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         seed = rng.Prev32Bit();
@@ -221,7 +221,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethodH4(uint32_t hp, uint32_t atk, u
     {
         // Setup normal frame
         frame.SetIVsManual(hp, atk, def, spa, spd, spe);
-        rng.SetSeed(seeds[i]);
+        rng.seed = seeds[i];
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         seed = rng.Prev32Bit();
         frame.seed = seed;
@@ -266,7 +266,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethodXD(uint32_t hp, uint32_t atk, u
     {
         // Setup normal frame
         frame.SetIVsManual(hp, atk, def, spa, spd, spe);
-        rng.SetSeed(seeds[i + 1]);
+        rng.seed = seeds[i + 1];
         frame.SetPID(rng.Next16Bit(), rng.Next16Bit());
         frame.seed = seeds[i] * 0xB9B33155 + 0xA170F641;
         frames.push_back(frame);
@@ -294,7 +294,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethodXDColo(uint32_t hp, uint32_t at
     {
         // Setup normal frame
         frame.SetIVsManual(hp, atk, def, spa, spd, spe);
-        rng.SetSeed(seeds[i + 1]);
+        rng.seed = seeds[i + 1];
         frame.SetPID(rng.Next16Bit(), rng.Next16Bit());
         frame.seed = seeds[i] * 0xB9B33155 + 0xA170F641;
         frames.push_back(frame);
@@ -322,7 +322,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethod1(uint32_t hp, uint32_t atk, ui
     {
         // Setup normal frame
         frame.SetIVsManual(hp, atk, def, spa, spd, spe);
-        rng.SetSeed(seeds[i]);
+        rng.seed = seeds[i];
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         frame.seed = rng.Prev32Bit();
         frames.push_back(frame);
@@ -350,7 +350,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethod2(uint32_t hp, uint32_t atk, ui
     {
         // Setup normal frame
         frame.SetIVsManual(hp, atk, def, spa, spd, spe);
-        rng.SetSeed(seeds[i]);
+        rng.seed = seeds[i];
         rng.ReverseFrames(1);
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         frame.seed = rng.Prev32Bit();
@@ -379,7 +379,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethod4(uint32_t hp, uint32_t atk, ui
     {
         // Setup normal frame
         frame.SetIVsManual(hp, atk, def, spa, spd, spe);
-        rng.SetSeed(seeds[i]);
+        rng.seed = seeds[i];
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         frame.seed = rng.Prev32Bit();
         frames.push_back(frame);
@@ -396,7 +396,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethod4(uint32_t hp, uint32_t atk, ui
 // Ensures PID is valid for Method H
 uint32_t SearcherGen3::validatePID(uint32_t seed)
 {
-    rng.SetSeed(seed);
+    rng.seed = seed;
     rng.AdvanceFrames(2);
     uint32_t nature = rng.Next16Bit() % 25;
     uint32_t pid;
@@ -415,9 +415,9 @@ uint32_t SearcherGen3::validatePID(uint32_t seed)
 std::vector<FrameGen3> SearcherGen3::Search(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
 {
     if (frameType == XDColo || frameType == Channel || frameType == XD || frameType == Colo)
-        rng.SetXDRNG();
+        rng = XDRNG(0);
     else
-        rng.SetPokeRNG();
+        rng = PokeRNG(0);
 
     switch (frameType)
     {

@@ -32,7 +32,7 @@ private:
     RNGCache cache = RNGCache(Method1);
     RNGEuclidean euclidean = RNGEuclidean(XDColo);
     FrameGen3 frame = FrameGen3(0, 0, 0);
-    LCRNG rng = LCRNG();
+    LCRNG rng = PokeRNG(0);
     NatureLock natureLock = NatureLock();
 
     uint32_t getEncounterSlot();

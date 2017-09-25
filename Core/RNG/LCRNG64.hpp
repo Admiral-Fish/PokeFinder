@@ -17,17 +17,49 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Searcher.hpp"
+#ifndef LCRNG64_HPP
+#define LCRNG64_HPP
+#include <cstdint>
 
-/* Searcher is the parent for generations 3-5 searchers.
- * This class doesn't provide much functionality as that is
- * the purpose of the children for each specific generation.
- */
-
-// Default constructor
-Searcher::Searcher()
+class LCRNG64
 {
-    tid = 12345;
-    sid = 54321;
-    psv = tid ^ sid;
-}
+
+private:
+    uint64_t add;
+    uint64_t addr;
+    uint64_t mult;
+    uint64_t multr;
+
+public:
+    uint64_t seed;
+
+    LCRNG64(uint64_t add, uint64_t addr, uint64_t mult, uint64_t multr, uint64_t seed);
+
+    void AdvanceFrames(int frames);
+
+    uint32_t Next32Bit();
+
+    uint32_t Next32Bit(uint32_t max);
+
+    uint64_t Next64Bit();
+
+    uint32_t Prev32Bit();
+
+    uint32_t Prev32Bit(uint32_t max);
+
+    uint64_t Prev64Bit();
+
+    void ReverseFrames(int frames);
+
+};
+
+class BWRNG : public LCRNG64
+{
+
+public:
+
+    BWRNG(uint64_t seed);
+
+};
+
+#endif // LCRNG64_HPP

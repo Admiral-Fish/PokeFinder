@@ -46,8 +46,6 @@ public:
     uint32_t synchNature;
     uint32_t cuteCharm;
 
-    Generator();
-
 };
 
 #endif // GENERATOR_HPP

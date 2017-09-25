@@ -19,14 +19,6 @@
 
 #include "Frame.hpp"
 
-// Default constructor
-Frame::Frame()
-{
-    tid = 12345;
-    sid = 54321;
-    psv = tid ^ sid;
-}
-
 // Returns gender of 12.5% F ratio
 QString Frame::GetFemale125()
 {

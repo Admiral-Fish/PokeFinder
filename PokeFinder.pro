@@ -28,7 +28,6 @@ linux {
 win32 {
     INCLUDEPATH += C:\Libraries\boost_1_63_0
     INCLUDEPATH += C:\Libraries\boost_1_64_0
-    INCLUDEPATH += C:\Libraries\Boost_1_64_0\stage\lib
     INCLUDEPATH += C:\boost\include\boost-1_64
 }
 
@@ -49,17 +48,15 @@ SOURCES += \
         Forms/mainwindow.cpp \
         Core/Objects/EncounterSlot.cpp \
         Core/Objects/Utilities.cpp \
-        Core/Objects/Generator.cpp \
         Core/Objects/Frame.cpp \
         Core/Objects/FrameCompare.cpp \
-        Core/Objects/Searcher.cpp \
         Core/Gen3/NatureLock.cpp \
         Core/Gen3/GeneratorGen3.cpp \
         Core/Gen3/FrameGen3.cpp \
         Core/Gen3/SearcherGen3.cpp \
         Core/RNG/LCRNG.cpp \
+        Core/RNG/LCRNG64.cpp \
         Core/RNG/MTRNG.cpp \
-        Core/RNG/SFMT.cpp \
         Core/RNG/TinyMT.cpp \
         Core/RNG/RNGCache.cpp \
         Core/RNG/RNGEuclidean.cpp
@@ -80,8 +77,8 @@ HEADERS += \
         Core/Gen3/FrameGen3.hpp \
         Core/Gen3/SearcherGen3.hpp \
         Core/RNG/LCRNG.hpp \
+        Core/RNG/LCRNG64.hpp \
         Core/RNG/MTRNG.hpp \
-        Core/RNG/SFMT.hpp \
         Core/RNG/TinyMT.hpp \
         Core/RNG/RNGCache.hpp \
         Core/RNG/RNGEuclidean.hpp

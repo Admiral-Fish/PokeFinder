@@ -66,8 +66,6 @@ public:
     bool synchable;
     uint32_t tid;
 
-    Frame();
-
     QString GetFemale125();
 
     QString GetFemale25();

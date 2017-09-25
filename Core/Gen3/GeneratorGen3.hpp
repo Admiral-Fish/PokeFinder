@@ -28,7 +28,7 @@ class GeneratorGen3: public Generator
 private:
     int iv1;
     int iv2;
-    LCRNG rng = LCRNG();
+    LCRNG rng = PokeRNG(0);
 
     std::vector<FrameGen3> generateMethodChannel();
 

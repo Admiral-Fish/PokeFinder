@@ -66,7 +66,7 @@ private:
     uint32_t nature;
     uint32_t pid;
     uint32_t pidOriginal;
-    LCRNG rng = LCRNG(0, XD_RNG);
+    LCRNG rng = XDRNG(0);
     ShadowType type;
     int x;
 

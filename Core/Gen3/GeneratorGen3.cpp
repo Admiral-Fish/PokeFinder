@@ -349,10 +349,10 @@ std::vector<FrameGen3> GeneratorGen3::generateMethod124()
 std::vector<FrameGen3> GeneratorGen3::Generate()
 {
     if (frameType == XDColo || frameType == Channel)
-        rng.SetXDRNG();
+        rng = XDRNG(0);
     else
-        rng.SetPokeRNG();
-    rng.SetSeed(initialSeed);
+        rng = PokeRNG(0);
+    rng.seed = initialSeed;
     rng.AdvanceFrames(initialFrame - 1);
 
     if (frameType == Method1 || frameType == MethodH1)

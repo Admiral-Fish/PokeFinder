@@ -434,7 +434,7 @@ ShadowType NatureLock::GetType()
 // Checks if seed is valid for single shadow case
 bool NatureLock::IVMethodFirstShadow(uint32_t seed)
 {
-    rng.SetSeed(seed);
+    rng.seed = seed;
     rng.ReverseFrames(1);
 
     // Build temp pid first to not waste time looping if first backwards nl fails
@@ -482,7 +482,7 @@ bool NatureLock::IVMethodFirstShadow(uint32_t seed)
 // Checks if seed is valid for second shadow with first shadow set
 bool NatureLock::IVMethodFirstShadowSet(uint32_t seed)
 {
-    rng.SetSeed(seed);
+    rng.seed = seed;
     rng.ReverseFrames(6);
 
     // Build temp pid first to not waste time looping if first nl fails
@@ -530,7 +530,7 @@ bool NatureLock::IVMethodFirstShadowSet(uint32_t seed)
 // Checks if seed is valid for second shadow with first shadow unset and antishiny(aka Shiny Skip)
 bool NatureLock::IVMethodFirstShadowShinySkip(uint32_t seed)
 {
-    rng.SetSeed(seed);
+    rng.seed = seed;
     rng.ReverseFrames(1);
 
     uint32_t psv, psvtemp;
@@ -589,7 +589,7 @@ bool NatureLock::IVMethodFirstShadowShinySkip(uint32_t seed)
 // Checks if seed is valid for second shadow with first shadow unset
 bool NatureLock::IVMethodFirstShadowUnset(uint32_t seed)
 {
-    rng.SetSeed(seed);
+    rng.seed = seed;
     rng.ReverseFrames(8);
 
     // Build temp pid first to not waste time looping if first nl fails
@@ -637,7 +637,7 @@ bool NatureLock::IVMethodFirstShadowUnset(uint32_t seed)
 // Checks if seed is valid for 1st shadow set for Salamence
 bool NatureLock::IVMethodSalamenceSet(uint32_t seed)
 {
-    rng.SetSeed(seed);
+    rng.seed = seed;
     rng.ReverseFrames(6);
 
     // Build PID
@@ -651,7 +651,7 @@ bool NatureLock::IVMethodSalamenceSet(uint32_t seed)
 // Checks if seed is valid for 1st shadow unset and antishiny(aka Shiny Skip) for Salamence
 bool NatureLock::IVMethodSalamenceShinySkip(uint32_t seed)
 {
-    rng.SetSeed(seed);
+    rng.seed = seed;
     rng.ReverseFrames(1);
 
     uint32_t psv, psvtemp;
@@ -678,7 +678,7 @@ bool NatureLock::IVMethodSalamenceShinySkip(uint32_t seed)
 // Checks if seed is valid for 1st shadow unset for Salamence
 bool NatureLock::IVMethodSalamenceUnset(uint32_t seed)
 {
-    rng.SetSeed(seed);
+    rng.seed = seed;
     rng.ReverseFrames(8);
 
     // Build PID
@@ -692,7 +692,7 @@ bool NatureLock::IVMethodSalamenceUnset(uint32_t seed)
 // Checks if seed is valid for single nature lock
 bool NatureLock::IVMethodSingleNL(uint32_t seed)
 {
-    rng.SetSeed(seed);
+    rng.seed = seed;
     rng.ReverseFrames(1);
 
     // Build PID

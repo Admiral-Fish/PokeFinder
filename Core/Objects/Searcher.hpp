@@ -42,8 +42,6 @@ public:
     Lead leadType = None;
     uint32_t synchNature;
 
-    Searcher();
-
 };
 
 #endif // SEARCHER_HPP
