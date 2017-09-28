@@ -23,7 +23,10 @@
 #include <QHeaderView>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QStandardItemModel>
+#include <QStandardItem>
 #include <Core/Gen3/FrameGen3.hpp>
+#include <Core/RNG/MTRNG.hpp>
 #include <Core/Gen3/GeneratorGen3.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <cstdint>

@@ -20,6 +20,8 @@
 #ifndef FRAMEGEN3_HPP
 #define FRAMEGEN3_HPP
 #include <Core/Objects/Frame.hpp>
+#include <QList>
+#include <QStandardItem>
 
 class FrameGen3: public Frame
 {
@@ -46,6 +48,8 @@ public:
     void SetIDs(uint32_t tid, uint32_t sid, uint32_t psv);
 
     void SetIVsManual(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6);
+
+    QList<QStandardItem *> GetTableRow();
 
 };
 

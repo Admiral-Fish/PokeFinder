@@ -25,8 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->tableWidget->resizeColumnsToContents();
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->resizeColumnsToContents();
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 MainWindow::~MainWindow()
@@ -129,7 +129,7 @@ void MainWindow::on_generate_clicked()
         }
     }
 
-    ui->tableWidget->clearContents();
+    //ui->tableView->clearContents();
     GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid);
     int method = ui->comboBoxMethod->currentIndex();
 
@@ -145,47 +145,16 @@ void MainWindow::on_generate_clicked()
         generator.frameType = Channel;
 
     std::vector<FrameGen3> frames = generator.Generate();
-    QTableWidgetItem *item;
     int size = frames.size();
-    ui->tableWidget->setRowCount(size);
+    //ui->tableView->setRowCount(size);
+
+    QStandardItemModel *model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({"Frame", "Time", "PID", "!!!", "Nature", "Ability", "HP", "Atk", "Def", "SpA", "SpD", "Spe", "Hidden", "Power", "12.5% Female", "25% Female", "50% Female", "75% Female"});
+
     for (int i = 0; i < size; i++)
     {
-        item = new QTableWidgetItem(QString::number(frames[i].frame), 0);
-        ui->tableWidget->setItem(i, 0, item);
-        item = new QTableWidgetItem(frames[i].GetTime(), 0);
-        ui->tableWidget->setItem(i, 1, item);
-        item = new QTableWidgetItem(QString::number(frames[i].pid, 16).toUpper().rightJustified(8,'0'), 0);
-        ui->tableWidget->setItem(i, 2, item);
-        item = new QTableWidgetItem(frames[i].GetShiny(), 0);
-        ui->tableWidget->setItem(i, 3, item);
-        item = new QTableWidgetItem(frames[i].GetNature(), 0);
-        ui->tableWidget->setItem(i, 4, item);
-        item = new QTableWidgetItem(QString::number(frames[i].ability), 0);
-        ui->tableWidget->setItem(i, 5, item);
-        item = new QTableWidgetItem(QString::number(frames[i].hp), 0);
-        ui->tableWidget->setItem(i, 6, item);
-        item = new QTableWidgetItem(QString::number(frames[i].atk), 0);
-        ui->tableWidget->setItem(i, 7, item);
-        item = new QTableWidgetItem(QString::number(frames[i].def), 0);
-        ui->tableWidget->setItem(i, 8, item);
-        item = new QTableWidgetItem(QString::number(frames[i].spa), 0);
-        ui->tableWidget->setItem(i, 9, item);
-        item = new QTableWidgetItem(QString::number(frames[i].spd), 0);
-        ui->tableWidget->setItem(i, 10, item);
-        item = new QTableWidgetItem(QString::number(frames[i].spe), 0);
-        ui->tableWidget->setItem(i, 11, item);
-        item = new QTableWidgetItem(frames[i].GetPower(), 0);
-        ui->tableWidget->setItem(i, 12, item);
-        item = new QTableWidgetItem(QString::number(frames[i].power), 0);
-        ui->tableWidget->setItem(i, 13, item);
-        item = new QTableWidgetItem(frames[i].GetFemale125(), 0);
-        ui->tableWidget->setItem(i, 14, item);
-        item = new QTableWidgetItem(frames[i].GetFemale25(), 0);
-        ui->tableWidget->setItem(i, 15, item);
-        item = new QTableWidgetItem(frames[i].GetFemale50(), 0);
-        ui->tableWidget->setItem(i, 16, item);
-        item = new QTableWidgetItem(frames[i].GetFemale75(), 0);
-        ui->tableWidget->setItem(i, 17, item);
+        model->appendRow(frames[i].GetTableRow());
     }
-    ui->tableWidget->resizeColumnsToContents();
+    ui->tableView->setModel(model);
+    ui->tableView->resizeColumnsToContents();
 }
