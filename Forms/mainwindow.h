@@ -30,7 +30,9 @@
 #include <Core/Gen3/GeneratorGen3.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <cstdint>
+#include <QTranslator>
 #include <vector>
+#include <QDir>
 
 namespace Ui {
 class MainWindow;
@@ -40,12 +42,24 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+protected:
+    void changeEvent(QEvent*);
+
 
 private:
     Ui::MainWindow *ui;
+    QTranslator m_translator;
+    QTranslator m_translatorQt;
+    QString m_currLang;
+    QString m_langPath;
+
+    void loadLanguage(const QString& rLanguage);
+
+    void createLanguageMenu(void);
 
 private slots:
     void on_generate_clicked();
+    void slotLanguageChanged(QAction* action);
 
 public:
     explicit MainWindow(QWidget *parent = 0);
