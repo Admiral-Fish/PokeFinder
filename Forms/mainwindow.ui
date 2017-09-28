@@ -35,7 +35,7 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>211</width>
+        <width>251</width>
         <height>201</height>
        </rect>
       </property>
@@ -47,8 +47,8 @@
         <rect>
          <x>10</x>
          <y>20</y>
-         <width>47</width>
-         <height>13</height>
+         <width>151</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
@@ -60,8 +60,8 @@
         <rect>
          <x>10</x>
          <y>80</y>
-         <width>81</width>
-         <height>13</height>
+         <width>151</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
@@ -73,8 +73,8 @@
         <rect>
          <x>10</x>
          <y>110</y>
-         <width>62</width>
-         <height>13</height>
+         <width>151</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
@@ -86,7 +86,7 @@
         <rect>
          <x>10</x>
          <y>140</y>
-         <width>61</width>
+         <width>151</width>
          <height>16</height>
         </rect>
        </property>
@@ -99,7 +99,7 @@
         <rect>
          <x>10</x>
          <y>170</y>
-         <width>61</width>
+         <width>151</width>
          <height>16</height>
         </rect>
        </property>
@@ -110,9 +110,9 @@
       <widget class="QComboBox" name="comboBoxMethod">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>170</x>
          <y>20</y>
-         <width>69</width>
+         <width>71</width>
          <height>22</height>
         </rect>
        </property>
@@ -145,7 +145,7 @@
       <widget class="QLineEdit" name="initialSeed">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>170</x>
          <y>50</y>
          <width>71</width>
          <height>20</height>
@@ -187,7 +187,7 @@
         <rect>
          <x>10</x>
          <y>50</y>
-         <width>31</width>
+         <width>151</width>
          <height>16</height>
         </rect>
        </property>
@@ -198,7 +198,7 @@
       <widget class="QLineEdit" name="startingFrame">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>170</x>
          <y>80</y>
          <width>71</width>
          <height>20</height>
@@ -217,7 +217,7 @@
       <widget class="QLineEdit" name="maxResults">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>170</x>
          <y>110</y>
          <width>71</width>
          <height>20</height>
@@ -236,7 +236,7 @@
       <widget class="QLineEdit" name="id">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>170</x>
          <y>140</y>
          <width>71</width>
          <height>20</height>
@@ -255,7 +255,7 @@
       <widget class="QLineEdit" name="sid">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>170</x>
          <y>170</y>
          <width>71</width>
          <height>20</height>
@@ -338,6 +338,12 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuLanguage">
+    <property name="title">
+     <string>Language</string>
+    </property>
+   </widget>
+   <addaction name="menuLanguage"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

@@ -27,11 +27,102 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->tableView->resizeColumnsToContents();
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    createLanguageMenu();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::changeEvent(QEvent* event)
+{
+    if(0 != event)
+    {
+        switch(event->type())
+        {
+        case QEvent::LanguageChange:
+            ui->retranslateUi(this);
+            break;
+
+        case QEvent::LocaleChange:
+        {
+            QString locale = QLocale::system().name();
+            locale.truncate(locale.lastIndexOf('_'));
+            loadLanguage(locale);
+        }
+            break;
+
+        }
+    }
+    QMainWindow::changeEvent(event);
+}
+
+void MainWindow::createLanguageMenu(void)
+{
+    QActionGroup* langGroup = new QActionGroup(ui->menuLanguage);
+    langGroup->setExclusive(true);
+
+    connect(langGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotLanguageChanged(QAction *)));
+
+    QString defaultLocale = QLocale::system().name();
+    defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
+
+    m_langPath = QApplication::applicationDirPath();
+    m_langPath.append("/languages");
+    QDir dir(m_langPath);
+    QStringList fileNames = dir.entryList(QStringList("PokeFinder_*.qm"));
+
+    for(int i = 0; i < fileNames.size(); i++)
+    {
+        QString locale;
+        locale = fileNames[i];
+        locale.truncate(locale.lastIndexOf('.'));
+        locale.remove(0, locale.indexOf('_') + 1);
+
+        QString lang = QLocale::languageToString(QLocale(locale).language());
+        QAction *action = new QAction(lang, this);
+        action->setCheckable(true);
+        action->setData(locale);
+
+        ui->menuLanguage->addAction(action);
+        langGroup->addAction(action);
+
+        if(defaultLocale == locale)
+        {
+            action->setChecked(true);
+        }
+    }
+
+}
+
+void MainWindow::slotLanguageChanged(QAction* action)
+{
+    if(0 != action)
+    {
+        loadLanguage(action->data().toString());
+    }
+}
+
+void switchTranslator(QTranslator& translator, const QString& filename)
+{
+    qApp->removeTranslator(&translator);
+    if(translator.load(QCoreApplication::applicationDirPath() + "/languages/" + filename))
+        qApp->installTranslator(&translator);
+}
+
+void MainWindow::loadLanguage(const QString& rLanguage)
+{
+    if(m_currLang != rLanguage)
+    {
+        m_currLang = rLanguage;
+        QLocale locale = QLocale(m_currLang);
+        QLocale::setDefault(locale);
+        QString languageName = QLocale::languageToString(locale.language());
+        switchTranslator(m_translator, QString("PokeFinder_%1.qm").arg(rLanguage));
+        switchTranslator(m_translatorQt, QString("qt_%1.qm").arg(rLanguage));
+    }
 }
 
 void MainWindow::on_generate_clicked()

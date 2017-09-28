@@ -42,6 +42,13 @@ macx {
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+TRANSLATIONS += \
+        Language/PokeFinder_en.ts \
+        Language/PokeFinder_fr.ts \
+        Language/PokeFinder_es.ts \
+        Language/PokeFinder_pt.ts \
+        Language/PokeFinder_de.ts \
+        Language/PokeFinder_it.ts
 
 SOURCES += \
         main.cpp \
