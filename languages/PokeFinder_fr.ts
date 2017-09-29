@@ -2,214 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
-    <name>Frame</name>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="33"/>
-        <source>Hardy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="33"/>
-        <source>Lonely</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="33"/>
-        <source>Brave</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="33"/>
-        <source>Adamant</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="33"/>
-        <source>Naughty</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="34"/>
-        <source>Bold</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="34"/>
-        <source>Docile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="34"/>
-        <source>Relaxed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="34"/>
-        <source>Impish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="34"/>
-        <source>Lax</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="35"/>
-        <source>Timid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="35"/>
-        <source>Hasty</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="35"/>
-        <source>Serious</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="35"/>
-        <source>Jolly</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="35"/>
-        <source>Naive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="36"/>
-        <source>Modest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="36"/>
-        <source>Mild</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="36"/>
-        <source>Quiet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="36"/>
-        <source>Bashful</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="36"/>
-        <source>Rash</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="37"/>
-        <source>Calm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="37"/>
-        <source>Gentle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="37"/>
-        <source>Sassy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="37"/>
-        <source>Careful</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="37"/>
-        <source>Quirky</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="38"/>
-        <source>Fighting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="38"/>
-        <source>Flying</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="38"/>
-        <source>Poison</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="38"/>
-        <source>Ground</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="39"/>
-        <source>Rock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="39"/>
-        <source>Bug</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="39"/>
-        <source>Ghost</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="39"/>
-        <source>Steel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="40"/>
-        <source>Fire</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="40"/>
-        <source>Water</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="40"/>
-        <source>Grass</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="40"/>
-        <source>Electric</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="41"/>
-        <source>Psychic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="41"/>
-        <source>Ice</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="41"/>
-        <source>Dragon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Frame.hpp" line="41"/>
-        <source>Dark</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="../Forms/mainwindow.ui" line="14"/>
@@ -423,7 +215,8 @@
         <location filename="../Forms/mainwindow.ui" line="782"/>
         <location filename="../Forms/mainwindow.ui" line="857"/>
         <location filename="../Forms/mainwindow.ui" line="932"/>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>HP</source>
         <translation type="unfinished"></translation>
     </message>
@@ -563,87 +356,104 @@
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>PID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>!!!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>Nature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>Ability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>Atk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>Def</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>SpA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>SpD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>Spe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>12.5% Female</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>25% Female</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>50% Female</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
+        <location filename="../Forms/mainwindow.cpp" line="224"/>
+        <location filename="../Forms/mainwindow.cpp" line="253"/>
         <source>75% Female</source>
         <translation type="unfinished"></translation>
     </message>
