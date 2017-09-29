@@ -29,6 +29,7 @@
 #include <Core/RNG/MTRNG.hpp>
 #include <Core/Gen3/GeneratorGen3.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Objects/FrameCompare.hpp>
 #include <cstdint>
 #include <QTranslator>
 #include <vector>

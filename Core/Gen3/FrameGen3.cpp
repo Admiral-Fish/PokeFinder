@@ -56,11 +56,10 @@ void FrameGen3::SetIVsManual(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t 
     power = (30 + ((((hp >> 1) & 1) + 2 * ((atk >> 1) & 1) + 4 * ((def >> 1) & 1) + 8 * ((spe >> 1) & 1) + 16 * ((spa >> 1) & 1) + 32 * ((spd >> 1) & 1)) * 40 / 63));
 }
 
-QList<QStandardItem *> FrameGen3::GetTableRow()
+QList<QStandardItem *> FrameGen3::GetTableRow(int genderRatioIndex)
 {
     QList<QStandardItem *> row;
     row.append(new QStandardItem(QString::number(frame)));
-    row.append(new QStandardItem(GetTime()));
     row.append(new QStandardItem(QString::number(pid, 16).toUpper().rightJustified(8,'0')));
     row.append(new QStandardItem(GetShiny()));
     row.append(new QStandardItem(GetNature()));
@@ -73,10 +72,34 @@ QList<QStandardItem *> FrameGen3::GetTableRow()
     row.append(new QStandardItem(QString::number(spe)));
     row.append(new QStandardItem(GetPower()));
     row.append(new QStandardItem(QString::number(power)));
-    row.append(new QStandardItem(GetFemale125()));
-    row.append(new QStandardItem(GetFemale25()));
-    row.append(new QStandardItem(GetFemale50()));
-    row.append(new QStandardItem(GetFemale75()));
+    switch(genderRatioIndex)
+    {
+    case 1:
+        row.append(new QStandardItem(GetFemale50()));
+        break;
+    case 2:
+        row.append(new QStandardItem(GetFemale75()));
+        break;
+    case 3:
+        row.append(new QStandardItem(GetFemale25()));
+        break;
+    case 4:
+        row.append(new QStandardItem(GetFemale125()));
+        break;
+    case 5:
+        row.append(new QStandardItem(QString("M")));
+        break;
+    case 6:
+        row.append(new QStandardItem(QString("F")));
+        break;
+    default:
+        row.append(new QStandardItem(QString("-")));
+        break;
+    }
+    row.append(new QStandardItem(QString(" ")));
+    row.append(new QStandardItem(GetTime()));
+
+
 
     return row;
 }

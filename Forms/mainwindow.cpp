@@ -221,7 +221,7 @@ void MainWindow::on_generate_clicked()
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("Time"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("12.5% Female"), tr("25% Female"), tr("50% Female"), tr("75% Female")});
+        model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Seed Time"), tr("Real Time")});
 
     GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid);
     int method = ui->comboBoxMethod->currentIndex();
@@ -239,9 +239,26 @@ void MainWindow::on_generate_clicked()
 
     std::vector<FrameGen3> frames = generator.Generate();
     int size = frames.size();
+    int genderRatioIndex = ui->comboBoxGenderRatio->currentIndex();
 
-    for (int i = 0; i < size; i++)
-        model->appendRow(frames[i].GetTableRow());
+    bool nofilter = ui->checkBoxDisable->isChecked();
+
+    if(!nofilter) {
+        FrameCompare fc = FrameCompare(ui->comboBoxHP->currentIndex(), ui->spinBoxHP->value(), ui->comboBoxAtk->currentIndex(), ui->spinBoxAtk->value(), ui->comboBoxDef->currentIndex(), ui->spinBoxDef->value(), ui->comboBoxSpA->currentIndex(), ui->spinBoxSpA->value(), ui->comboBoxSpD->currentIndex(), ui->spinBoxSpD->value(), ui->comboBoxSpe->currentIndex(), ui->spinBoxSpe->value(), ui->comboBoxGender->currentIndex(), genderRatioIndex, ui->comboBoxAbility->currentIndex(), ui->comboBoxNature->currentIndex(), ui->comboBoxHiddenP->currentIndex(), ui->checkBoxShiny->isChecked());
+        for (int i = 0; i < size; i++)
+        {
+            if(!fc.compareFrame(frames[i]))
+                    continue;
+            model->appendRow(frames[i].GetTableRow(genderRatioIndex));
+
+        }
+    } else {
+        for (int i = 0; i < size; i++)
+        {
+            model->appendRow(frames[i].GetTableRow(genderRatioIndex));
+        }
+    }
+
 
     ui->tableView->setModel(model);
 }
@@ -249,7 +266,7 @@ void MainWindow::on_generate_clicked()
 void MainWindow::setupModels()
 {
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("Time"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("12.5% Female"), tr("25% Female"), tr("50% Female"), tr("75% Female")});
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Seed Time"), tr("Real Time")});
     ui->tableView->setModel(model);
     ui->tableView->verticalHeader()->setVisible(false);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);

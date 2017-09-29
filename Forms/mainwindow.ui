@@ -67,7 +67,13 @@ QGroupBox {
 	background-color: #274050;
 	border-radius: 10px;
 	margin-top: 7px;
-	font-family: Myriad;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+		font-family: &quot;Myriad Pro&quot;, Montserrat;
+		font-weight: 500;
 }
 
 QComboBox {
@@ -103,6 +109,7 @@ QGroupBox::title {
 QPushButton {
 	border: none;
 	border-radius: 6px;
+	color: white;
 }
 </string>
       </property>
@@ -376,11 +383,11 @@ QPushButton {
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton {
-	background-color: yellow;
+	background-color: orange;
 }</string>
        </property>
        <property name="text">
-        <string>Save Profile</string>
+        <string>Create a Profile</string>
        </property>
        <property name="checkable">
         <bool>false</bool>
@@ -410,7 +417,8 @@ QHeaderView::section {
 	padding-top: 3px;
 	padding-bottom: 3px;
 	color: white;
-}</string>
+}
+</string>
       </property>
      </widget>
      <widget class="QGroupBox" name="groupBoxFilters">
@@ -453,6 +461,13 @@ QGroupBox {
 	background-color: #274050;
 	border-radius: 10px;
 	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+		font-family: &quot;Myriad Pro&quot;, Montserrat;
+		font-weight: 500;
 }
 
 QComboBox {
@@ -635,31 +650,6 @@ QCheckBox::indicator:checked {
          <string>!=</string>
         </property>
        </item>
-       <item>
-        <property name="text">
-         <string>E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>O</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_O</string>
-        </property>
-       </item>
       </widget>
       <widget class="QComboBox" name="comboBoxAtk">
        <property name="geometry">
@@ -708,31 +698,6 @@ QCheckBox::indicator:checked {
        <item>
         <property name="text">
          <string>!=</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>O</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_O</string>
         </property>
        </item>
       </widget>
@@ -785,31 +750,6 @@ QCheckBox::indicator:checked {
          <string>!=</string>
         </property>
        </item>
-       <item>
-        <property name="text">
-         <string>E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>O</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_O</string>
-        </property>
-       </item>
       </widget>
       <widget class="QComboBox" name="comboBoxSpA">
        <property name="geometry">
@@ -858,31 +798,6 @@ QCheckBox::indicator:checked {
        <item>
         <property name="text">
          <string>!=</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>O</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_O</string>
         </property>
        </item>
       </widget>
@@ -935,31 +850,6 @@ QCheckBox::indicator:checked {
          <string>!=</string>
         </property>
        </item>
-       <item>
-        <property name="text">
-         <string>E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>O</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_O</string>
-        </property>
-       </item>
       </widget>
       <widget class="QComboBox" name="comboBoxSpe">
        <property name="geometry">
@@ -1008,31 +898,6 @@ QCheckBox::indicator:checked {
        <item>
         <property name="text">
          <string>!=</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>O</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_E</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HP_O</string>
         </property>
        </item>
       </widget>
@@ -1233,12 +1098,12 @@ QCheckBox::indicator:checked {
        </item>
        <item>
         <property name="text">
-         <string>1</string>
+         <string>0</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>2</string>
+         <string>1</string>
         </property>
        </item>
       </widget>
@@ -1258,42 +1123,7 @@ QCheckBox::indicator:checked {
        </item>
        <item>
         <property name="text">
-         <string>Adamant</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Bold</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Brave</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Calm</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Careful</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Hasty</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Impish</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Jolly</string>
+         <string>Hardy</string>
         </property>
        </item>
        <item>
@@ -1303,17 +1133,12 @@ QCheckBox::indicator:checked {
        </item>
        <item>
         <property name="text">
-         <string>Mild</string>
+         <string>Brave</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Modest</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Naive</string>
+         <string>Adamant</string>
         </property>
        </item>
        <item>
@@ -1323,42 +1148,7 @@ QCheckBox::indicator:checked {
        </item>
        <item>
         <property name="text">
-         <string>Quiet</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Rash</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Relaxed</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Sassy</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Timid</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Gentle</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Lax</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Bashful</string>
+         <string>Bold</string>
         </property>
        </item>
        <item>
@@ -1368,17 +1158,92 @@ QCheckBox::indicator:checked {
        </item>
        <item>
         <property name="text">
-         <string>Hardy</string>
+         <string>Relaxed</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Quirky</string>
+         <string>Impish</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Lax</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Timid</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hasty</string>
         </property>
        </item>
        <item>
         <property name="text">
          <string>Serious</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Jolly</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Naive</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Modest</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mild</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Quiet</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Bashful</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Rash</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Calm</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Gentle</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Sassy</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Careful</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Quirky</string>
         </property>
        </item>
       </widget>
@@ -1503,7 +1368,7 @@ QCheckBox::indicator:checked {
         <string/>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBoxGender_2">
+      <widget class="QComboBox" name="comboBoxGenderRatio">
        <property name="geometry">
         <rect>
          <x>300</x>
