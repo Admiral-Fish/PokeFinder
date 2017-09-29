@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    setupModels();
     ui->tableView->resizeColumnsToContents();
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
@@ -38,22 +40,24 @@ MainWindow::~MainWindow()
 
 void MainWindow::changeEvent(QEvent* event)
 {
-    if(0 != event)
+    if(event != 0)
     {
         switch(event->type())
         {
-        case QEvent::LanguageChange:
-            ui->retranslateUi(this);
-            break;
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                break;
 
-        case QEvent::LocaleChange:
-        {
-            QString locale = QLocale::system().name();
-            locale.truncate(locale.lastIndexOf('_'));
-            loadLanguage(locale);
-        }
-            break;
+            case QEvent::LocaleChange:
+            {
+                QString locale = QLocale::system().name();
+                locale.truncate(locale.lastIndexOf('_'));
+                loadLanguage(locale);
+            }
+                break;
 
+            default:
+                return;
         }
     }
     QMainWindow::changeEvent(event);
@@ -90,19 +94,15 @@ void MainWindow::createLanguageMenu(void)
         langGroup->addAction(action);
 
         if(defaultLocale == locale)
-        {
             action->setChecked(true);
-        }
     }
 
 }
 
 void MainWindow::slotLanguageChanged(QAction* action)
 {
-    if(0 != action)
-    {
+    if(action != 0)
         loadLanguage(action->data().toString());
-    }
 }
 
 void switchTranslator(QTranslator& translator, const QString& filename)
@@ -220,7 +220,11 @@ void MainWindow::on_generate_clicked()
         }
     }
 
-    //ui->tableView->clearContents();
+    // Force early garbage collection
+    QStandardItemModel *model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({"Frame", "Time", "PID", "!!!", "Nature", "Ability", "HP", "Atk", "Def", "SpA", "SpD", "Spe", "Hidden", "Power", "12.5% Female", "25% Female", "50% Female", "75% Female"});
+    ui->tableView->setModel(model);
+
     GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid);
     int method = ui->comboBoxMethod->currentIndex();
 
@@ -237,15 +241,18 @@ void MainWindow::on_generate_clicked()
 
     std::vector<FrameGen3> frames = generator.Generate();
     int size = frames.size();
-    //ui->tableView->setRowCount(size);
 
-    QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({"Frame", "Time", "PID", "!!!", "Nature", "Ability", "HP", "Atk", "Def", "SpA", "SpD", "Spe", "Hidden", "Power", "12.5% Female", "25% Female", "50% Female", "75% Female"});
 
     for (int i = 0; i < size; i++)
-    {
         model->appendRow(frames[i].GetTableRow());
-    }
+
     ui->tableView->setModel(model);
     ui->tableView->resizeColumnsToContents();
+}
+
+void MainWindow::setupModels()
+{
+    QStandardItemModel *model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({"Frame", "Time", "PID", "!!!", "Nature", "Ability", "HP", "Atk", "Def", "SpA", "SpD", "Spe", "Hidden", "Power", "12.5% Female", "25% Female", "50% Female", "75% Female"});
+    ui->tableView->setModel(model);
 }

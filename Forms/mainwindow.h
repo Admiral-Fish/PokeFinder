@@ -57,6 +57,8 @@ private:
 
     void createLanguageMenu(void);
 
+    void setupModels();
+
 private slots:
     void on_generate_clicked();
     void slotLanguageChanged(QAction* action);
