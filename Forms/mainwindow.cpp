@@ -54,6 +54,9 @@ void MainWindow::changeEvent(QEvent* event)
         }
             break;
 
+        default:
+            break;
+
         }
     }
     QMainWindow::changeEvent(event);

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1219</width>
-    <height>650</height>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,23 @@
       <x>0</x>
       <y>50</y>
       <width>1221</width>
-      <height>551</height>
+      <height>581</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">.QTabWidget &gt;  QWidget &gt; QWidget {
+	background-color: #E6E6E6;
+}
+
+QTabBar::tab {
+	color: black;
+	background-color: #A1ABB3;
+}
+
+QTabBar::tab:selected {
+	color: white;
+	background-color: #1D303C;
+}</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -30,14 +45,64 @@
      <attribute name="title">
       <string>Stationary</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupBoxRNGInfo">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>10</y>
         <width>251</width>
-        <height>201</height>
+        <height>261</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}
+
+QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	padding-left: 12px;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+}</string>
       </property>
       <property name="title">
        <string>RNG Info</string>
@@ -59,7 +124,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>80</y>
+         <y>50</y>
          <width>151</width>
          <height>16</height>
         </rect>
@@ -72,7 +137,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>110</y>
+         <y>80</y>
          <width>151</width>
          <height>16</height>
         </rect>
@@ -85,7 +150,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>140</y>
+         <y>110</y>
          <width>151</width>
          <height>16</height>
         </rect>
@@ -98,7 +163,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>170</y>
+         <y>140</y>
          <width>151</width>
          <height>16</height>
         </rect>
@@ -142,11 +207,127 @@
         </property>
        </item>
       </widget>
-      <widget class="QLineEdit" name="initialSeed">
+      <widget class="QLineEdit" name="startingFrame">
        <property name="geometry">
         <rect>
          <x>170</x>
          <y>50</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="text">
+        <string>1</string>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="maxResults">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>80</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="text">
+        <string>100000</string>
+       </property>
+       <property name="maxLength">
+        <number>10</number>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="id">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>110</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="text">
+        <string>12345</string>
+       </property>
+       <property name="maxLength">
+        <number>5</number>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="sid">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>140</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="text">
+        <string>54321</string>
+       </property>
+       <property name="maxLength">
+        <number>5</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="generate">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>200</y>
+         <width>231</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+       </property>
+       <property name="text">
+        <string>Generate</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="seedLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>170</y>
+         <width>151</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Seed:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="initialSeed">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>170</y>
          <width>71</width>
          <height>20</height>
         </rect>
@@ -176,130 +357,813 @@
         <number>0</number>
        </property>
        <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        <set>Qt::AlignCenter</set>
        </property>
        <property name="clearButtonEnabled">
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="seedLabel">
+      <widget class="QPushButton" name="saveProfile">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>50</y>
-         <width>151</width>
-         <height>16</height>
+         <y>230</y>
+         <width>231</width>
+         <height>23</height>
         </rect>
        </property>
-       <property name="text">
-        <string>Seed:</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="startingFrame">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>80</y>
-         <width>71</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="inputMask">
-        <string/>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: yellow;
+}</string>
        </property>
        <property name="text">
-        <string>1</string>
+        <string>Save Profile</string>
        </property>
-       <property name="maxLength">
-        <number>10</number>
+       <property name="checkable">
+        <bool>false</bool>
        </property>
-      </widget>
-      <widget class="QLineEdit" name="maxResults">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>110</y>
-         <width>71</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="inputMask">
-        <string/>
-       </property>
-       <property name="text">
-        <string>100000</string>
-       </property>
-       <property name="maxLength">
-        <number>10</number>
+       <property name="autoDefault">
+        <bool>false</bool>
        </property>
       </widget>
-      <widget class="QLineEdit" name="id">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>140</y>
-         <width>71</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="inputMask">
-        <string/>
-       </property>
-       <property name="text">
-        <string>12345</string>
-       </property>
-       <property name="maxLength">
-        <number>5</number>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="sid">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>170</y>
-         <width>71</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="inputMask">
-        <string/>
-       </property>
-       <property name="text">
-        <string>54321</string>
-       </property>
-       <property name="maxLength">
-        <number>5</number>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QPushButton" name="generate">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>220</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Generate</string>
-      </property>
-      <property name="checkable">
-       <bool>false</bool>
-      </property>
-      <property name="autoDefault">
-       <bool>false</bool>
-      </property>
      </widget>
      <widget class="QTableView" name="tableView">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>250</y>
+        <y>280</y>
         <width>1191</width>
         <height>271</height>
        </rect>
       </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxFilters">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>10</y>
+        <width>531</width>
+        <height>261</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QSpinBox {
+	qproperty-alignment: AlignCenter;
+}</string>
+      </property>
+      <property name="title">
+       <string>Filters</string>
+      </property>
+      <widget class="QLabel" name="hpLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>HP:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="atkLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Atk:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="spaLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SpA:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="spdLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SpD:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="defLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Def:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="speLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>170</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Spe:</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBoxHP">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>20</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="duplicatesEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>==</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&gt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&lt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>!=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>O</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_O</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxAtk">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>50</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="duplicatesEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>==</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&gt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&lt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>!=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>O</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_O</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxDef">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>80</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="duplicatesEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>==</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&gt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&lt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>!=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>O</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_O</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxSpA">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>110</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="duplicatesEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>==</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&gt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&lt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>!=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>O</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_O</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxSpD">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>140</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="duplicatesEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>==</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&gt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&lt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>!=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>O</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_O</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxSpe">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>170</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="duplicatesEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>==</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&gt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>&lt;=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>!=</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>O</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_E</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HP_O</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QSpinBox" name="spinBoxHP">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>20</y>
+         <width>42</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBoxDef">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>80</y>
+         <width>42</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBoxSpA">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>110</y>
+         <width>42</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBoxSpD">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>140</y>
+         <width>42</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBoxAtk">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>50</y>
+         <width>42</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBoxSpe">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>170</y>
+         <width>42</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="genderLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>20</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Gender:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="abilityLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>50</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ability:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="natureLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>80</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Nature:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="hiddenPLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>110</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Hidden Power:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="shinyLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>140</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Shiny Only?</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="disableLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>170</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Disable Filters:</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>20</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Don't Care / Genderless</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Male (50% Male / 50% Female)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Female (50% Male / 50% Female)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Male (25% Male / 75% Female)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Female (25% Male / 75% Female)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Male (75% Male / 25% Female)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Female (75% Male / 25% Female)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Male (87.5% Male / 12.5% Female)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Female (87.5% Male / 12.5% Female)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Male (100% Male)</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Female (100% Female)</string>
+        </property>
+       </item>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tabWild">
