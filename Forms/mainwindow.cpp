@@ -244,7 +244,6 @@ void MainWindow::on_generate_clicked()
         model->appendRow(frames[i].GetTableRow());
 
     ui->tableView->setModel(model);
-    ui->tableView->resizeColumnsToContents();
 }
 
 void MainWindow::setupModels()
@@ -252,4 +251,7 @@ void MainWindow::setupModels()
     QStandardItemModel *model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({tr("Frame"), tr("Time"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("12.5% Female"), tr("25% Female"), tr("50% Female"), tr("75% Female")});
     ui->tableView->setModel(model);
+    ui->tableView->verticalHeader()->setVisible(false);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->resizeColumnsToContents();
 }
