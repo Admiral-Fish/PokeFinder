@@ -67,6 +67,7 @@ QGroupBox {
 	background-color: #274050;
 	border-radius: 10px;
 	margin-top: 7px;
+	font-family: Myriad;
 }
 
 QComboBox {
@@ -102,7 +103,8 @@ QGroupBox::title {
 QPushButton {
 	border: none;
 	border-radius: 6px;
-}</string>
+}
+</string>
       </property>
       <property name="title">
        <string>RNG Info</string>
@@ -397,6 +399,19 @@ QPushButton {
         <height>271</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QTableView {
+	border: 4px solid DodgerBlue;
+}
+
+QHeaderView::section {
+	border: none;
+	background-color: #274050;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: white;
+}</string>
+      </property>
      </widget>
      <widget class="QGroupBox" name="groupBoxFilters">
       <property name="geometry">
@@ -410,6 +425,84 @@ QPushButton {
       <property name="styleSheet">
        <string notr="true">QSpinBox {
 	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+
+QSpinBox::up-button {
+	subcontrol-origin: border;
+    subcontrol-position: top right;
+}
+
+QSpinBox::down-button {
+	subcontrol-origin: border;
+    subcontrol-position: bottom right;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}
+
+QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	padding-left: 13px;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+		background-color: white;
 }</string>
       </property>
       <property name="title">
@@ -1077,7 +1170,7 @@ QPushButton {
        <property name="geometry">
         <rect>
          <x>160</x>
-         <y>140</y>
+         <y>170</y>
          <width>131</width>
          <height>16</height>
         </rect>
@@ -1090,7 +1183,7 @@ QPushButton {
        <property name="geometry">
         <rect>
          <x>160</x>
-         <y>170</y>
+         <y>200</y>
          <width>131</width>
          <height>16</height>
         </rect>
@@ -1099,7 +1192,7 @@ QPushButton {
         <string>Disable Filters:</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="comboBoxGender">
        <property name="geometry">
         <rect>
          <x>300</x>
@@ -1110,59 +1203,363 @@ QPushButton {
        </property>
        <item>
         <property name="text">
-         <string>Don't Care / Genderless</string>
+         <string>-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Male (50% Male / 50% Female)</string>
+         <string>♂</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Female (50% Male / 50% Female)</string>
+         <string>♀</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxAbility">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>50</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Any</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Male (25% Male / 75% Female)</string>
+         <string>1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Female (25% Male / 75% Female)</string>
+         <string>2</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxNature">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>80</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Any</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Male (75% Male / 25% Female)</string>
+         <string>Adamant</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Female (75% Male / 25% Female)</string>
+         <string>Bold</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Male (87.5% Male / 12.5% Female)</string>
+         <string>Brave</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Female (87.5% Male / 12.5% Female)</string>
+         <string>Calm</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Male (100% Male)</string>
+         <string>Careful</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Female (100% Female)</string>
+         <string>Hasty</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Impish</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Jolly</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Lonely</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mild</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Modest</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Naive</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Naughty</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Quiet</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Rash</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Relaxed</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Sassy</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Timid</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Gentle</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Lax</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Bashful</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Docile</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hardy</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Quirky</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Serious</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxHiddenP">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>110</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Any</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Fighting</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Flying</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Poison</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ground</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Rock</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Bug</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ghost</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Steel</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Fire</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Water</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Grass</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Electric</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Psychic</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ice</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Dragon</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Dark</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QCheckBox" name="checkBoxShiny">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>170</y>
+         <width>16</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBoxDisable">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>200</y>
+         <width>16</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBoxGender_2">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>140</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Genderless</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>50% Male / 50% Female</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>25% Male / 75% Female</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>75% Male / 25% Female</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>87.5% Male / 12.5% Female</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>100% Male</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>100% Female</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="genderRLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>140</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Gender Ratio:</string>
+       </property>
       </widget>
      </widget>
     </widget>
@@ -1210,6 +1607,9 @@ QPushButton {
    <addaction name="menuLanguage"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="movable">
+    <bool>false</bool>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
