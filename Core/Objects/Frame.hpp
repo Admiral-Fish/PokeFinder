@@ -28,18 +28,19 @@
 
 class Frame
 {
-
 protected:
-    QString natures[25] = { "Hardy", "Lonely", "Brave", "Adamant", "Naughty",
-                           "Bold", "Docile", "Relaxed", "Impish", "Lax",
-                           "Timid", "Hasty", "Serious", "Jolly", "Naive",
-                           "Modest", "Mild", "Quiet", "Bashful", "Rash",
-                           "Calm", "Gentle", "Sassy", "Careful", "Quirky" };
-    QString powers[16] = { "Fighting", "Flying", "Poison", "Ground",
-                               "Rock", "Bug", "Ghost", "Steel",
-                               "Fire", "Water", "Grass", "Electric",
-                               "Psychic", "Ice", "Dragon", "Dark" };
+    QString natures[25] = {"Hardy","Lonely","Brave","Adamant","Naughty",
+                           "Bold","Docile","Relaxed","Impish","Lax",
+                           "Timid","Hasty","Serious","Jolly","Naive",
+                           "Modest","Mild","Quiet","Bashful","Rash",
+                           "Calm","Gentle","Sassy","Careful","Quirky" };
+    QString powers[16] = {"Fighting","Flying","Poison","Ground",
+                          "Rock","Bug","Ghost","Steel",
+                          "Fire","Water","Grass","Electric",
+                          "Psychic","Ice","Dragon","Dark" };
+
 public:
+
     uint32_t ability;
     uint32_t atk;
     uint32_t def;
