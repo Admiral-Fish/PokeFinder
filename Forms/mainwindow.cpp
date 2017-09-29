@@ -243,7 +243,7 @@ void MainWindow::on_generate_clicked()
     //ui->tableView->setRowCount(size);
 
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({"Frame", "Time", "PID", "!!!", "Nature", "Ability", "HP", "Atk", "Def", "SpA", "SpD", "Spe", "Hidden", "Power", "12.5% Female", "25% Female", "50% Female", "75% Female"});
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("Time"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("12.5% Female"), tr("25% Female"), tr("50% Female"), tr("75% Female")});
 
     for (int i = 0; i < size; i++)
     {

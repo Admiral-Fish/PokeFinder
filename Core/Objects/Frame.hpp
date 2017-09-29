@@ -30,15 +30,15 @@ class Frame
 {
 
 protected:
-    QString natures[25] = { "Hardy", "Lonely", "Brave", "Adamant", "Naughty",
-                           "Bold", "Docile", "Relaxed", "Impish", "Lax",
-                           "Timid", "Hasty", "Serious", "Jolly", "Naive",
-                           "Modest", "Mild", "Quiet", "Bashful", "Rash",
-                           "Calm", "Gentle", "Sassy", "Careful", "Quirky" };
-    QString powers[16] = { "Fighting", "Flying", "Poison", "Ground",
-                               "Rock", "Bug", "Ghost", "Steel",
-                               "Fire", "Water", "Grass", "Electric",
-                               "Psychic", "Ice", "Dragon", "Dark" };
+    QString natures[25] = {tr("Hardy"),tr("Lonely"),tr("Brave"),tr("Adamant"),tr("Naughty"),
+                           tr("Bold"),tr("Docile"),tr("Relaxed"),tr("Impish"),tr("Lax"),
+                           tr("Timid"),tr("Hasty"),tr("Serious"),tr("Jolly"),tr("Naive"),
+                           tr("Modest"),tr("Mild"),tr("Quiet"),tr("Bashful"),tr("Rash"),
+                           tr("Calm"),tr("Gentle"),tr("Sassy"),tr("Careful"),tr("Quirky") };
+    QString powers[16] = {tr("Fighting"),tr("Flying"),tr("Poison"),tr("Ground"),
+                          tr("Rock"),tr("Bug"),tr("Ghost"),tr("Steel"),
+                          tr("Fire"),tr("Water"),tr("Grass"),tr("Electric"),
+                          tr("Psychic"),tr("Ice"),tr("Dragon"),tr("Dark") };
 public:
     uint32_t ability;
     uint32_t atk;
