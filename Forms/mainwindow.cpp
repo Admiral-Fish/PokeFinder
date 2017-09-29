@@ -55,9 +55,8 @@ void MainWindow::changeEvent(QEvent* event)
                 loadLanguage(locale);
             }
                 break;
-
             default:
-                return;
+                break;
         }
     }
     QMainWindow::changeEvent(event);
