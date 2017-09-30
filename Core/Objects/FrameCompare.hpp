@@ -41,12 +41,12 @@ private:
     int genderRatio;
     int ability;
     std::vector<int> natures;
-    int hiddenPower;
+    std::vector<int> powers;
 
     bool shiny;
 
 public:
-    FrameCompare(int hpEvalIndex, int hpNum, int atkEvalIndex, int atkNum, int defEvalIndex, int defNum, int spaEvalIndex, int spaNum, int spdEvalIndex, int spdNum, int speEvalIndex, int speNum, int genderIndex, int genderRatioIndex, int abilityIndex, std::vector<int> natureIndex, int hiddenPowerIndex, bool onlyShiny);
+    FrameCompare(int hpEvalIndex, int hpNum, int atkEvalIndex, int atkNum, int defEvalIndex, int defNum, int spaEvalIndex, int spaNum, int spdEvalIndex, int spdNum, int speEvalIndex, int speNum, int genderIndex, int genderRatioIndex, int abilityIndex, std::vector<int> natureIndex, std::vector<int> hiddenPowerIndicies, bool onlyShiny);
 
     bool compareFrame(Frame frame);
 

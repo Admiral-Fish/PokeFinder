@@ -20,7 +20,7 @@
 #include "FrameCompare.hpp"
 #include "ui_mainwindow.h"
 
-FrameCompare::FrameCompare(int hpEvalIndex, int hpNum, int atkEvalIndex, int atkNum, int defEvalIndex, int defNum, int spaEvalIndex, int spaNum, int spdEvalIndex, int spdNum, int speEvalIndex, int speNum, int genderIndex, int genderRatioIndex, int abilityIndex, std::vector<int> natureIndicies, int hiddenPowerIndex, bool onlyShiny)
+FrameCompare::FrameCompare(int hpEvalIndex, int hpNum, int atkEvalIndex, int atkNum, int defEvalIndex, int defNum, int spaEvalIndex, int spaNum, int spdEvalIndex, int spdNum, int speEvalIndex, int speNum, int genderIndex, int genderRatioIndex, int abilityIndex, std::vector<int> natureIndicies, std::vector<int> hiddenPowerIndicies, bool onlyShiny)
 {
     hp[0] = hpEvalIndex;
     hp[1] = hpNum;
@@ -39,7 +39,7 @@ FrameCompare::FrameCompare(int hpEvalIndex, int hpNum, int atkEvalIndex, int atk
     genderRatio = genderRatioIndex;
     ability = abilityIndex;
     natures = natureIndicies;
-    hiddenPower = hiddenPowerIndex;
+    powers = hiddenPowerIndicies;
 
     shiny = onlyShiny;
 
@@ -149,7 +149,7 @@ bool FrameCompare::compareFrame(Frame frame)
     if(natures.size() != 0 && std::find(natures.begin(), natures.end(), (int)frame.nature) == natures.end())
         return false;
 
-    if(hiddenPower != 0 && hiddenPower - 1 != (int)frame.hidden)
+    if(powers.size() != 0 && std::find(powers.begin(), powers.end(), (int)frame.hidden) == powers.end())
         return false;
 
     switch(hp[0])

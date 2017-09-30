@@ -245,6 +245,7 @@ void MainWindow::on_generate_clicked()
 
     if(!nofilter) {
         std::vector<int> natureIndicies;
+        std::vector<int> hiddenPowerIndicies;
         for(int i = 1; i < 26; i++)
         {
             if(ui->comboBoxNature->model()->data(ui->comboBoxNature->model()->index(i, 0), Qt::CheckStateRole).toBool())
@@ -252,7 +253,14 @@ void MainWindow::on_generate_clicked()
                 natureIndicies.push_back(i - 1);
             }
         }
-        FrameCompare fc = FrameCompare(ui->comboBoxHP->currentIndex(), ui->spinBoxHP->value(), ui->comboBoxAtk->currentIndex(), ui->spinBoxAtk->value(), ui->comboBoxDef->currentIndex(), ui->spinBoxDef->value(), ui->comboBoxSpA->currentIndex(), ui->spinBoxSpA->value(), ui->comboBoxSpD->currentIndex(), ui->spinBoxSpD->value(), ui->comboBoxSpe->currentIndex(), ui->spinBoxSpe->value(), ui->comboBoxGender->currentIndex(), genderRatioIndex, ui->comboBoxAbility->currentIndex(), natureIndicies, ui->comboBoxHiddenP->currentIndex(), ui->checkBoxShiny->isChecked());
+        for(int i = 1; i < 17; i++)
+        {
+            if(ui->comboBoxHiddenP->model()->data(ui->comboBoxHiddenP->model()->index(i, 0), Qt::CheckStateRole).toBool())
+            {
+                hiddenPowerIndicies.push_back(i - 1);
+            }
+        }
+        FrameCompare fc = FrameCompare(ui->comboBoxHP->currentIndex(), ui->spinBoxHP->value(), ui->comboBoxAtk->currentIndex(), ui->spinBoxAtk->value(), ui->comboBoxDef->currentIndex(), ui->spinBoxDef->value(), ui->comboBoxSpA->currentIndex(), ui->spinBoxSpA->value(), ui->comboBoxSpD->currentIndex(), ui->spinBoxSpD->value(), ui->comboBoxSpe->currentIndex(), ui->spinBoxSpe->value(), ui->comboBoxGender->currentIndex(), genderRatioIndex, ui->comboBoxAbility->currentIndex(), natureIndicies, hiddenPowerIndicies, ui->checkBoxShiny->isChecked());
         for (int i = 0; i < size; i++)
         {
             if(!fc.compareFrame(frames[i]))
@@ -266,7 +274,6 @@ void MainWindow::on_generate_clicked()
             model->appendRow(frames[i].GetTableRow(genderRatioIndex));
         }
     }
-
 
     ui->tableView->setModel(model);
 }
@@ -297,12 +304,38 @@ void MainWindow::natureItemCheck(QModelIndex a, QModelIndex b)
     }
 }
 
+void MainWindow::hiddenItemCheck(QModelIndex a, QModelIndex b)
+{
+    (void)a;
+    (void)b;
+
+    QString newFirst = "";
+    for(int i = 1; i < 17; i++)
+    {
+        if(ui->comboBoxHiddenP->model()->data(ui->comboBoxHiddenP->model()->index(i, 0), Qt::CheckStateRole).toBool())
+        {
+            QString text = ui->comboBoxHiddenP->model()->data(ui->comboBoxHiddenP->model()->index(i, 0)).toString();
+            text.append(", ");
+            newFirst += text;
+        }
+    }
+    if(newFirst.length() != 0)
+    {
+        newFirst.remove(newFirst.length() - 2, 2);
+        ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), newFirst);
+    }
+    else
+    {
+        ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), tr("Any"));
+    }
+}
+
 void MainWindow::setupModels()
 {
     QStandardItemModel *natures = new QStandardItemModel(26, 1, this);
     QString natureList[25] = {QObject::tr("Hardy"), QObject::tr("Lonely"), QObject::tr("Brave"), QObject::tr("Adamant"), QObject::tr("Naughty"), QObject::tr("Bold"), QObject::tr("Docile"), QObject::tr("Relaxed"), QObject::tr("Impish"), QObject::tr("Lax"), QObject::tr("Timid"), QObject::tr("Hasty"), QObject::tr("Serious"), QObject::tr("Jolly"), QObject::tr("Naive"), QObject::tr("Modest"), QObject::tr("Mild"), QObject::tr("Quiet"), QObject::tr("Bashful"), QObject::tr("Rash"), QObject::tr("Calm"), QObject::tr("Gentle"), QObject::tr("Sassy"), QObject::tr("Careful"), QObject::tr("Quirky") };
-    QStandardItem* first = new QStandardItem(tr("Any"));
-    natures->setItem(0, first);
+    QStandardItem* firstNature = new QStandardItem(tr("Any"));
+    natures->setItem(0, firstNature);
     for(int i = 0; i < 25; i++)
     {
         QStandardItem* item = new QStandardItem(natureList[i]);
@@ -313,6 +346,21 @@ void MainWindow::setupModels()
     }
     ui->comboBoxNature->setModel(natures);
     connect(ui->comboBoxNature->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(natureItemCheck(QModelIndex, QModelIndex)));
+
+    QStandardItemModel *hidden = new QStandardItemModel(17, 1, this);
+    QString powerList[16] = {QObject::tr("Fighting"), QObject::tr("Flying"), QObject::tr("Poison"), QObject::tr("Ground"), QObject::tr("Rock"), QObject::tr("Bug"), QObject::tr("Ghost"), QObject::tr("Steel"), QObject::tr("Fire"), QObject::tr("Water"), QObject::tr("Grass"), QObject::tr("Electric"), QObject::tr("Psychic"), QObject::tr("Ice"), QObject::tr("Dragon"), QObject::tr("Dark") };
+    QStandardItem* firstPower = new QStandardItem(tr("Any"));
+    hidden->setItem(0, firstPower);
+    for(int i = 0; i < 16; i++)
+    {
+        QStandardItem* item = new QStandardItem(powerList[i]);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        item->setData(Qt::Unchecked, Qt::CheckStateRole);
+
+        hidden->setItem(i + 1, item);
+    }
+    ui->comboBoxHiddenP->setModel(hidden);
+    connect(ui->comboBoxHiddenP->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(hiddenItemCheck(QModelIndex, QModelIndex)));
 
     QStandardItemModel *model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Seed Time"), tr("Real Time")});
