@@ -21,6 +21,7 @@
 #define GENERATORGEN3_HPP
 #include <Core/Gen3/FrameGen3.hpp>
 #include <Core/Objects/Generator.hpp>
+#include <Core/Objects/FrameCompare.hpp>
 
 class GeneratorGen3: public Generator
 {
@@ -30,17 +31,17 @@ private:
     int iv2;
     LCRNG rng = PokeRNG(0);
 
-    std::vector<FrameGen3> generateMethodChannel();
+    std::vector<FrameGen3> generateMethodChannel(FrameCompare compare);
 
-    std::vector<FrameGen3> generateMethodH124();
+    std::vector<FrameGen3> generateMethodH124(FrameCompare compare);
 
-    std::vector<FrameGen3> generateMethodH124Synch();
+    std::vector<FrameGen3> generateMethodH124Synch(FrameCompare compare);
 
-    std::vector<FrameGen3> generateMethodH124CuteCharm();
+    std::vector<FrameGen3> generateMethodH124CuteCharm(FrameCompare compare);
 
-    std::vector<FrameGen3> generateMethodXDColo();
+    std::vector<FrameGen3> generateMethodXDColo(FrameCompare compare);
 
-    std::vector<FrameGen3> generateMethod124();
+    std::vector<FrameGen3> generateMethod124(FrameCompare compare);
 
 public:
 
@@ -48,7 +49,7 @@ public:
 
     GeneratorGen3(uint32_t maxResults, uint32_t initialFrame, uint32_t initialSeed, uint32_t tid, uint32_t sid);
 
-    std::vector<FrameGen3> Generate();
+    std::vector<FrameGen3> Generate(FrameCompare compare);
 
 };
 

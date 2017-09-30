@@ -42,7 +42,7 @@ GeneratorGen3::GeneratorGen3(uint32_t maxResults, uint32_t initialFrame, uint32_
 }
 
 // Returns vector of frames for Method Channel
-std::vector<FrameGen3> GeneratorGen3::generateMethodChannel()
+std::vector<FrameGen3> GeneratorGen3::generateMethodChannel(FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
     FrameGen3 frame = FrameGen3(tid, sid, psv);
@@ -60,7 +60,13 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodChannel()
             frame.SetPID(rngList[1] ^ 0x8000, rngList[2]);
         else
             frame.SetPID(rngList[1], rngList[2]);
+        if (!compare.CompareFramePID(frame))
+            continue;
+
         frame.SetIVsManual(rngList[6] >> 11, rngList[7] >> 11, rngList[8] >> 11, rngList[10] >> 11, rngList[11] >> 11, rngList[9] >> 11);
+        if (!compare.CompareFrameIVs(frame))
+            continue;
+
         frame.frame = cnt;
         frames.push_back(frame);
     }
@@ -69,7 +75,7 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodChannel()
 }
 
 // Returns vector of frames for Method H 1, 2, or 4
-std::vector<FrameGen3> GeneratorGen3::generateMethodH124()
+std::vector<FrameGen3> GeneratorGen3::generateMethodH124(FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
     FrameGen3 frame = FrameGen3(tid, sid, psv);
@@ -99,8 +105,14 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodH124()
 
         // Valid PID is found now time to generate IVs
         frame.SetIVs(rngList[hunt + iv1], rngList[hunt + iv2]);
-        frame.frame = cnt;
+        if (!compare.CompareFrameIVs(frame))
+            continue;
+
         frame.SetPID(pid, pid1, pid2);
+        if (!compare.CompareFramePID(frame))
+            continue;
+
+        frame.frame = cnt;
         frame.occidentary = hunt + cnt - 1;
         frames.push_back(frame);
     }
@@ -109,7 +121,7 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodH124()
 }
 
 // Returns vector of frames for Method H 1, 2, or 4 given synch lead
-std::vector<FrameGen3> GeneratorGen3::generateMethodH124Synch()
+std::vector<FrameGen3> GeneratorGen3::generateMethodH124Synch(FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
     FrameGen3 frame = FrameGen3(tid, sid, psv);
@@ -149,8 +161,14 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodH124Synch()
 
         // Valid PID is found now time to generate IVs
         frame.SetIVs(rngList[hunt + iv1], rngList[hunt + iv2]);
-        frame.frame = cnt;
+        if (!compare.CompareFrameIVs(frame))
+            continue;
+
         frame.SetPID(pid, pid1, pid2);
+        if (!compare.CompareFramePID(frame))
+            continue;
+
+        frame.frame = cnt;
         frame.occidentary = hunt + cnt - 1;
         frames.push_back(frame);
     }
@@ -207,7 +225,7 @@ bool cuteCharm25M(uint32_t pid)
 }
 
 // Returns vector of frames for Method H 1, 2, or 4 given cute charm lead
-std::vector<FrameGen3> GeneratorGen3::generateMethodH124CuteCharm()
+std::vector<FrameGen3> GeneratorGen3::generateMethodH124CuteCharm(FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
     FrameGen3 frame = FrameGen3(tid, sid, psv);
@@ -288,8 +306,14 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodH124CuteCharm()
 
         // Valid PID is found now time to generate IVs
         frame.SetIVs(rngList[hunt + iv1], rngList[hunt + iv2]);
-        frame.frame = cnt;
+        if (!compare.CompareFrameIVs(frame))
+            continue;
+
         frame.SetPID(pid, pid1, pid2);
+        if (!compare.CompareFramePID(frame))
+            continue;
+
+        frame.frame = cnt;
         frame.occidentary = hunt + cnt - 1;
         frames.push_back(frame);
     }
@@ -298,7 +322,7 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodH124CuteCharm()
 }
 
 // Returns vector of frames for Method XD/Colo
-std::vector<FrameGen3> GeneratorGen3::generateMethodXDColo()
+std::vector<FrameGen3> GeneratorGen3::generateMethodXDColo(FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
     FrameGen3 frame = FrameGen3(tid, sid, psv);
@@ -312,7 +336,13 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodXDColo()
     for (uint32_t cnt = initialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.Next16Bit()))
     {
         frame.SetPID(rngList[3], rngList[4]);
+        if (!compare.CompareFramePID(frame))
+            continue;
+
         frame.SetIVs(rngList[0], rngList[1]);
+        if (!compare.CompareFrameIVs(frame))
+            continue;
+
         frame.frame = cnt;
         frames.push_back(frame);
     }
@@ -321,7 +351,7 @@ std::vector<FrameGen3> GeneratorGen3::generateMethodXDColo()
 }
 
 // Returns vector of frames for Method 1, 2, or 4
-std::vector<FrameGen3> GeneratorGen3::generateMethod124()
+std::vector<FrameGen3> GeneratorGen3::generateMethod124(FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
     FrameGen3 frame = FrameGen3(tid, sid, psv);
@@ -337,7 +367,13 @@ std::vector<FrameGen3> GeneratorGen3::generateMethod124()
     for (uint32_t cnt = initialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.Next16Bit()))
     {
         frame.SetPID(rngList[1], rngList[0]);
+        if (!compare.CompareFramePID(frame))
+            continue;
+
         frame.SetIVs(rngList[iv1], rngList[iv2]);
+        if (!compare.CompareFrameIVs(frame))
+            continue;
+
         frame.frame = cnt;
         frames.push_back(frame);
     }
@@ -346,7 +382,7 @@ std::vector<FrameGen3> GeneratorGen3::generateMethod124()
 }
 
 // Determines what generational method to return
-std::vector<FrameGen3> GeneratorGen3::Generate()
+std::vector<FrameGen3> GeneratorGen3::Generate(FrameCompare compare)
 {
     if (frameType == XDColo || frameType == Channel)
         rng = XDRNG(0);
@@ -376,26 +412,26 @@ std::vector<FrameGen3> GeneratorGen3::Generate()
         case Method1:
         case Method2:
         case Method4:
-            return generateMethod124();
+            return generateMethod124(compare);
         case MethodH1:
         case MethodH2:
         case MethodH4:
             switch (leadType)
             {
                 case None:
-                    return generateMethodH124();
+                    return generateMethodH124(compare);
                 case Synchronize:
-                    return generateMethodH124Synch();
+                    return generateMethodH124Synch(compare);
                 // case CuteCharm:
                 // Set to default to avoid compiler warning message
                 default:
-                    return generateMethodH124CuteCharm();
+                    return generateMethodH124CuteCharm(compare);
             }
         case XDColo:
-            return generateMethodXDColo();
+            return generateMethodXDColo(compare);
         // case Channel:
         // Set to default to avoid compiler warning message
         default:
-            return generateMethodChannel();
+            return generateMethodChannel(compare);
     }
 }

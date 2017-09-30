@@ -21,34 +21,37 @@
 #define FRAMECOMPARE_HPP
 #include <QString>
 #include <QTranslator>
+#include <QComboBox>
 #include <cstdint>
 #include <vector>
-#include <Forms/mainwindow.h>
 #include <Core/Objects/Frame.hpp>
 
 class FrameCompare
 {
 private:
 
-    int hp[2];
-    int atk[2];
-    int def[2];
-    int spa[2];
-    int spd[2];
-    int spe[2];
+    uint hp[2];
+    uint atk[2];
+    uint def[2];
+    uint spa[2];
+    uint spd[2];
+    uint spe[2];
 
-    int gender;
-    int genderRatio;
-    int ability;
-    std::vector<int> natures;
-    std::vector<int> powers;
+    uint gender;
+    uint genderRatio;
+    uint ability;
+    std::vector<uint> natures;
+    std::vector<uint> powers;
 
     bool shiny;
+    bool skip;
 
 public:
-    FrameCompare(int hpEvalIndex, int hpNum, int atkEvalIndex, int atkNum, int defEvalIndex, int defNum, int spaEvalIndex, int spaNum, int spdEvalIndex, int spdNum, int speEvalIndex, int speNum, int genderIndex, int genderRatioIndex, int abilityIndex, std::vector<int> natureIndex, std::vector<int> hiddenPowerIndicies, bool onlyShiny);
+    FrameCompare(int hpEvalIndex, int hpNum, int atkEvalIndex, int atkNum, int defEvalIndex, int defNum, int spaEvalIndex, int spaNum, int spdEvalIndex, int spdNum, int speEvalIndex, int speNum, int genderIndex, int genderRatioIndex, int abilityIndex, QComboBox *natureBox, QComboBox *hiddenPowerBox, bool onlyShiny, bool skipCompare);
 
-    bool compareFrame(Frame frame);
+    bool CompareFramePID(Frame frame);
+
+    bool CompareFrameIVs(Frame frame);
 
 };
 

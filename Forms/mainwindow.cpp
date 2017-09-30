@@ -221,9 +221,11 @@ void MainWindow::on_generate_clicked()
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Seed Time"), tr("Real Time")});
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("Time"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")});
 
+    int genderRatioIndex = ui->comboBoxGenderRatio->currentIndex();
     GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid);
+    FrameCompare compare = FrameCompare(ui->comboBoxHP->currentIndex(), ui->spinBoxHP->value(), ui->comboBoxAtk->currentIndex(), ui->spinBoxAtk->value(), ui->comboBoxDef->currentIndex(), ui->spinBoxDef->value(), ui->comboBoxSpA->currentIndex(), ui->spinBoxSpA->value(), ui->comboBoxSpD->currentIndex(), ui->spinBoxSpD->value(), ui->comboBoxSpe->currentIndex(), ui->spinBoxSpe->value(), ui->comboBoxGender->currentIndex(), genderRatioIndex, ui->comboBoxAbility->currentIndex(), ui->comboBoxNature, ui->comboBoxHiddenP, ui->checkBoxShiny->isChecked(), ui->checkBoxDisable->isChecked());
     int method = ui->comboBoxMethod->currentIndex();
 
     if (method == 0)
@@ -237,43 +239,11 @@ void MainWindow::on_generate_clicked()
     else
         generator.frameType = Channel;
 
-    std::vector<FrameGen3> frames = generator.Generate();
+    std::vector<FrameGen3> frames = generator.Generate(compare);
     int size = frames.size();
-    int genderRatioIndex = ui->comboBoxGenderRatio->currentIndex();
 
-    bool nofilter = ui->checkBoxDisable->isChecked();
-
-    if(!nofilter) {
-        std::vector<int> natureIndicies;
-        std::vector<int> hiddenPowerIndicies;
-        for(int i = 1; i < 26; i++)
-        {
-            if(ui->comboBoxNature->model()->data(ui->comboBoxNature->model()->index(i, 0), Qt::CheckStateRole).toBool())
-            {
-                natureIndicies.push_back(i - 1);
-            }
-        }
-        for(int i = 1; i < 17; i++)
-        {
-            if(ui->comboBoxHiddenP->model()->data(ui->comboBoxHiddenP->model()->index(i, 0), Qt::CheckStateRole).toBool())
-            {
-                hiddenPowerIndicies.push_back(i - 1);
-            }
-        }
-        FrameCompare fc = FrameCompare(ui->comboBoxHP->currentIndex(), ui->spinBoxHP->value(), ui->comboBoxAtk->currentIndex(), ui->spinBoxAtk->value(), ui->comboBoxDef->currentIndex(), ui->spinBoxDef->value(), ui->comboBoxSpA->currentIndex(), ui->spinBoxSpA->value(), ui->comboBoxSpD->currentIndex(), ui->spinBoxSpD->value(), ui->comboBoxSpe->currentIndex(), ui->spinBoxSpe->value(), ui->comboBoxGender->currentIndex(), genderRatioIndex, ui->comboBoxAbility->currentIndex(), natureIndicies, hiddenPowerIndicies, ui->checkBoxShiny->isChecked());
-        for (int i = 0; i < size; i++)
-        {
-            if(!fc.compareFrame(frames[i]))
-                continue;
-            model->appendRow(frames[i].GetTableRow(genderRatioIndex));
-
-        }
-    } else {
-        for (int i = 0; i < size; i++)
-        {
-            model->appendRow(frames[i].GetTableRow(genderRatioIndex));
-        }
-    }
+    for (int i = 0; i < size; i++)
+        model->appendRow(frames[i].GetTableRow(genderRatioIndex));
 
     ui->tableView->setModel(model);
 }

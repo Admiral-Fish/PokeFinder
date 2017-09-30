@@ -19,6 +19,7 @@
 
 #ifndef GENERATOR_HPP
 #define GENERATOR_HPP
+#include <Core/Objects/FrameCompare.hpp>
 #include <Core/Objects/Encounter.hpp>
 #include <Core/Objects/EncounterSlot.hpp>
 #include <Core/Objects/Lead.hpp>
