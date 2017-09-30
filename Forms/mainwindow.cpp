@@ -221,7 +221,7 @@ void MainWindow::on_generate_clicked()
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("Time"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")});
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Seed Time"), tr("Real Time")});
 
     int genderRatioIndex = ui->comboBoxGenderRatio->currentIndex();
     GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid);

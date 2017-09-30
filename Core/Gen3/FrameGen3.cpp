@@ -60,7 +60,6 @@ QList<QStandardItem *> FrameGen3::GetTableRow(int genderRatioIndex)
 {
     QList<QStandardItem *> row;
     row.append(new QStandardItem(QString::number(frame)));
-    row.append(new QStandardItem(GetTime()));
     row.append(new QStandardItem(QString::number(pid, 16).toUpper().rightJustified(8,'0')));
     row.append(new QStandardItem(GetShiny()));
     row.append(new QStandardItem(GetNature()));
@@ -97,6 +96,9 @@ QList<QStandardItem *> FrameGen3::GetTableRow(int genderRatioIndex)
             row.append(new QStandardItem(QString("-")));
             break;
     }
+
+    row.append(new QStandardItem(""));
+    row.append(new QStandardItem(GetTime()));
 
     return row;
 }
