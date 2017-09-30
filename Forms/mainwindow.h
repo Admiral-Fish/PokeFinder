@@ -34,6 +34,7 @@
 #include <QTranslator>
 #include <vector>
 #include <QDir>
+#include <QDebug>
 
 namespace Ui {
 class MainWindow;
@@ -63,6 +64,7 @@ private:
 private slots:
     void on_generate_clicked();
     void slotLanguageChanged(QAction* action);
+    void natureItemCheck(QModelIndex a, QModelIndex b);
 
 public:
     explicit MainWindow(QWidget *parent = 0);
