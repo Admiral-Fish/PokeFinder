@@ -26,8 +26,25 @@ FrameGen3::FrameGen3(uint32_t tid, uint32_t sid, uint32_t psv)
     this->psv = psv;
 }
 
-// Sets IVs for Channel method and calculates characteristics based on IVs
-void FrameGen3::setIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6)
+// Returns real time for a given frame
+QString FrameGen3::GetTime()
+{
+    int32_t minutes = frame / 3600;
+    int32_t seconds = (frame - (3600 * minutes)) / 60;
+    int32_t milliseconds = ((frame % 60) * 100) / 60;
+    return QString("%1:%2:%3").arg(minutes).arg(seconds, 2, 10, QChar('0')).arg(milliseconds, 2, 10, QChar('0'));
+}
+
+// Change the tid/sid (mostly used for Channel)
+void FrameGen3::SetIDs(uint32_t tid, uint32_t sid, uint32_t psv)
+{
+    this->tid = tid;
+    this->sid = sid;
+    this->psv = psv;
+}
+
+// Sets IVs for either Channel method or manual input and calculates characteristics based on IVs
+void FrameGen3::SetIVsManual(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6)
 {
     hp = iv1;
     atk = iv2;
@@ -39,21 +56,50 @@ void FrameGen3::setIVsChannel(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t
     power = (30 + ((((hp >> 1) & 1) + 2 * ((atk >> 1) & 1) + 4 * ((def >> 1) & 1) + 8 * ((spe >> 1) & 1) + 16 * ((spa >> 1) & 1) + 32 * ((spd >> 1) & 1)) * 40 / 63));
 }
 
-// Change the tid/sid (mostly used for Channel)
-void FrameGen3::setIDs(uint32_t tid, uint32_t sid)
+QList<QStandardItem *> FrameGen3::GetTableRow(int genderRatioIndex)
 {
-    this->tid = tid;
-    this->sid = sid;
-    psv = tid ^ sid;
-}
+    QList<QStandardItem *> row;
+    row.append(new QStandardItem(QString::number(frame)));
+    row.append(new QStandardItem(QString::number(pid, 16).toUpper().rightJustified(8,'0')));
+    row.append(new QStandardItem(GetShiny()));
+    row.append(new QStandardItem(GetNature()));
+    row.append(new QStandardItem(QString::number(ability)));
+    row.append(new QStandardItem(QString::number(hp)));
+    row.append(new QStandardItem(QString::number(atk)));
+    row.append(new QStandardItem(QString::number(def)));
+    row.append(new QStandardItem(QString::number(spa)));
+    row.append(new QStandardItem(QString::number(spd)));
+    row.append(new QStandardItem(QString::number(spe)));
+    row.append(new QStandardItem(GetPower()));
+    row.append(new QStandardItem(QString::number(power)));
+    switch(genderRatioIndex)
+    {
+    case 1:
+        row.append(new QStandardItem(GetFemale50()));
+        break;
+    case 2:
+        row.append(new QStandardItem(GetFemale75()));
+        break;
+    case 3:
+        row.append(new QStandardItem(GetFemale25()));
+        break;
+    case 4:
+        row.append(new QStandardItem(GetFemale125()));
+        break;
+    case 5:
+        row.append(new QStandardItem(QString("M")));
+        break;
+    case 6:
+        row.append(new QStandardItem(QString("F")));
+        break;
+    default:
+        row.append(new QStandardItem(QString("-")));
+        break;
+    }
+    row.append(new QStandardItem(QString(" ")));
+    row.append(new QStandardItem(GetTime()));
 
-// Returns real time for a given frame
-std::string FrameGen3::getTime()
-{
-    int32_t minutes = frame / 3600;
-    int32_t seconds = (frame - (3600 * minutes)) / 60;
-    int32_t milliseconds = ((frame % 60) * 100) / 60;
-    return "temp";
-    //return (boost::format("%d:%02d.%02d") % minutes % seconds % milliseconds).str();
-}
 
+
+    return row;
+}

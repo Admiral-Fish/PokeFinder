@@ -20,14 +20,21 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QHeaderView>
 #include <QMainWindow>
 #include <QMessageBox>
-#include <QHeaderView>
+#include <QStandardItemModel>
+#include <QStandardItem>
+#include <Core/Gen3/FrameGen3.hpp>
+#include <Core/RNG/MTRNG.hpp>
+#include <Core/Gen3/GeneratorGen3.hpp>
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Objects/FrameCompare.hpp>
 #include <cstdint>
+#include <QTranslator>
 #include <vector>
-#include "Core/RNG/LCRNG.hpp"
-#include "Core/Gen3/FrameGen3.hpp"
-#include "Core/Gen3/GeneratorGen3.hpp"
+#include <QDir>
+#include <QDebug>
 
 namespace Ui {
 class MainWindow;
@@ -37,15 +44,32 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+protected:
+    void changeEvent(QEvent*);
 
-private slots:
-    void on_generate_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QTranslator m_translator;
+    QTranslator m_translatorQt;
+    QString m_currLang;
+    QString m_langPath;
+
+    void loadLanguage(const QString& rLanguage);
+
+    void createLanguageMenu(void);
+
+    void setupModels();
+
+private slots:
+    void on_generate_clicked();
+    void slotLanguageChanged(QAction* action);
+    void natureItemCheck(QModelIndex a, QModelIndex b);
+    void hiddenItemCheck(QModelIndex a, QModelIndex b);
+
+public:
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
 };
 

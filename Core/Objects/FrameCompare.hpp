@@ -19,12 +19,37 @@
 
 #ifndef FRAMECOMPARE_HPP
 #define FRAMECOMPARE_HPP
-
+#include <QString>
+#include <QTranslator>
+#include <cstdint>
+#include <vector>
+#include <Forms/mainwindow.h>
+#include <Core/Objects/Frame.hpp>
 
 class FrameCompare
 {
+private:
+
+    int hp[2];
+    int atk[2];
+    int def[2];
+    int spa[2];
+    int spd[2];
+    int spe[2];
+
+    int gender;
+    int genderRatio;
+    int ability;
+    std::vector<int> natures;
+    std::vector<int> powers;
+
+    bool shiny;
+
 public:
-    FrameCompare();
+    FrameCompare(int hpEvalIndex, int hpNum, int atkEvalIndex, int atkNum, int defEvalIndex, int defNum, int spaEvalIndex, int spaNum, int spdEvalIndex, int spdNum, int speEvalIndex, int speNum, int genderIndex, int genderRatioIndex, int abilityIndex, std::vector<int> natureIndex, std::vector<int> hiddenPowerIndicies, bool onlyShiny);
+
+    bool compareFrame(Frame frame);
+
 };
 
 #endif // FRAMECOMPARE_HPP

@@ -28,10 +28,20 @@ RNGCache::RNGCache(Method MethodType)
     setupCache(MethodType);
 }
 
-// Switches cache being used
-void RNGCache::switchCache(Method MethodType)
+// Populates cache to use for brute forcing
+void RNGCache::populateArrays()
 {
-    setupCache(MethodType);
+    for (uint16_t i = 0; i < 256; i++)
+    {
+        uint32_t right = mult * i + add;
+        uint32_t val = right >> 16;
+
+        low8[val] = i;
+        flags[val] = true;
+
+        low8[--val] = i;
+        flags[val] = true;
+    }
 }
 
 // Generates brute force cache based on which method is provided
@@ -51,37 +61,20 @@ void RNGCache::setupCache(Method MethodType)
         add = 0x6073; // pokerng constant
     }
 
-    PopulateArrays();
-}
-
-// Populates cache to use for brute forcing
-void RNGCache::PopulateArrays()
-{
-    for (uint16_t i = 0; i < 256; i++)
-    {
-        uint32_t right = mult * i + add;
-        uint32_t val = right >> 16;
-
-        low8[val] = i;
-        flags[val] = true;
-
-        low8[--val] = i;
-        flags[val] = true;
-    }
+    populateArrays();
 }
 
 // Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap based on the cache
 std::vector<uint32_t> RNGCache::RecoverLower16BitsIV(uint32_t first, uint32_t second)
 {
     std::vector<uint32_t> origin;
-    uint16_t i;
 
     // Check with the top bit of the first call both
     // flipped and unflipped to account for only knowing 15 bits
     uint32_t search1 = second - first * mult;
     uint32_t search2 = second - (first ^ 0x80000000) * mult;
     uint32_t val;
-    for (i = 0; i < 256; i++, search1 -= k, search2 -= k)
+    for (uint16_t i = 0; i < 256; i++, search1 -= k, search2 -= k)
     {
         val = search1 >> 16;
         if (flags[val])
@@ -122,4 +115,10 @@ std::vector<uint32_t> RNGCache::RecoverLower16BitsPID(uint32_t first, uint32_t s
         }
     }
     return origin;
+}
+
+// Switches cache being used
+void RNGCache::SwitchCache(Method MethodType)
+{
+    setupCache(MethodType);
 }

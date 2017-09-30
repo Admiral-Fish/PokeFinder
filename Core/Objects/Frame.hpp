@@ -22,72 +22,70 @@
 #include <Core/Objects/Encounter.hpp>
 #include <Core/Objects/Lead.hpp>
 #include <Core/Objects/Method.hpp>
-#include <vector>
+#include <QString>
+#include <QTranslator>
 #include <cstdint>
-#include <string>
-//#include <boost/format.hpp>
+#include <vector>
 
 class Frame
 {
-
 protected:
-    std::string natures[25] = { "Hardy", "Lonely", "Brave", "Adamant", "Naughty",
-                           "Bold", "Docile", "Relaxed", "Impish", "Lax",
-                           "Timid", "Hasty", "Serious", "Jolly", "Naive",
-                           "Modest", "Mild", "Quiet", "Bashful", "Rash",
-                           "Calm", "Gentle", "Sassy", "Careful", "Quirky" };
-    std::string powers[16] = { "Fighting", "Flying", "Poison", "Ground",
-                               "Rock", "Bug", "Ghost", "Steel",
-                               "Fire", "Water", "Grass", "Electric",
-                               "Psychic", "Ice", "Dragon", "Dark" };
+    QString natures[25] = {QObject::tr("Hardy"), QObject::tr("Lonely"), QObject::tr("Brave"), QObject::tr("Adamant"), QObject::tr("Naughty"), QObject::tr("Bold"), QObject::tr("Docile"), QObject::tr("Relaxed"), QObject::tr("Impish"), QObject::tr("Lax"), QObject::tr("Timid"), QObject::tr("Hasty"), QObject::tr("Serious"), QObject::tr("Jolly"), QObject::tr("Naive"), QObject::tr("Modest"), QObject::tr("Mild"), QObject::tr("Quiet"), QObject::tr("Bashful"), QObject::tr("Rash"), QObject::tr("Calm"), QObject::tr("Gentle"), QObject::tr("Sassy"), QObject::tr("Careful"), QObject::tr("Quirky") };
+
+
+
+    QString powers[16] = {QObject::tr("Fighting"), QObject::tr("Flying"), QObject::tr("Poison"), QObject::tr("Ground"),
+                           QObject::tr("Rock"), QObject::tr("Bug"), QObject::tr("Ghost"), QObject::tr("Steel"),
+                           QObject::tr("Fire"), QObject::tr("Water"), QObject::tr("Grass"), QObject::tr("Electric"),
+                           QObject::tr("Psychic"), QObject::tr("Ice"), QObject::tr("Dragon"), QObject::tr("Dark") };
+
 public:
-    uint32_t seed;
-    uint32_t pid;
-    uint32_t tid;
-    uint32_t sid;
-    uint32_t psv;
-    uint32_t dv1;
-    uint32_t dv2;
-    uint32_t hp;
+
+    uint32_t ability;
     uint32_t atk;
     uint32_t def;
+    uint32_t dv1;
+    uint32_t dv2;
+    uint32_t encounterSlot;
+    Encounter encounterType;
+    uint32_t frame;
+    uint32_t gender;
+    uint32_t hidden;
+    uint32_t hp;
+    Lead leadType;
+    Method methodType;
+    uint32_t nature;
+    uint32_t pid;
+    uint32_t power;
+    uint32_t psv;
+    uint32_t seed;
+    bool shiny;
+    uint32_t sid;
     uint32_t spa;
     uint32_t spd;
     uint32_t spe;
-    uint32_t gender;
-    uint32_t nature;
-    uint32_t ability;
-    uint32_t hidden;
-    uint32_t power;
-    uint32_t frame;
-    uint32_t encounterSlot;
-    bool shiny;
     bool synchable;
-    Method MethodType;
-    Lead LeadType;
-    Encounter EncounterType;
+    uint32_t tid;
 
-    Frame();
+    QString GetFemale125();
 
-    void setPID(uint32_t pid1, uint32_t pid2);
+    QString GetFemale25();
 
-    void setPID(uint32_t pid, uint32_t pid1, uint32_t pid2);
+    QString GetFemale50();
 
-    void setIVs(uint32_t iv1, uint32_t iv2);
+    QString GetFemale75();
 
-    std::string getNature();
+    QString GetNature();
 
-    std::string getPower();
+    QString GetPower();
 
-    std::string getFemale125();
+    QString GetShiny();
 
-    std::string getFemale25();
+    void SetIVs(uint32_t iv1, uint32_t iv2);
 
-    std::string getFemale50();
+    void SetPID(uint32_t pid1, uint32_t pid2);
 
-    std::string getFemale75();
-
-    std::string getShiny();
+    void SetPID(uint32_t pid, uint32_t pid1, uint32_t pid2);
 
 };
 

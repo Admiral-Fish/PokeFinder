@@ -19,10 +19,10 @@
 
 #ifndef GENERATOR_HPP
 #define GENERATOR_HPP
-#include <Core/Objects/Method.hpp>
 #include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/Lead.hpp>
 #include <Core/Objects/EncounterSlot.hpp>
+#include <Core/Objects/Lead.hpp>
+#include <Core/Objects/Method.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <cstdint>
 #include <vector>
@@ -31,22 +31,20 @@ class Generator
 {
 
 protected:
-    std::vector<uint32_t> rngList;
-    uint32_t tid;
-    uint32_t sid;
     uint32_t psv;
+    std::vector<uint32_t> rngList;
+    uint32_t sid;
+    uint32_t tid;
 
 public:
-    Method FrameType = Method1;
-    Encounter EncounterType = Stationary;
-    Lead LeadType = None;
-    uint32_t InitialSeed;
-    uint32_t InitialFrame;
-    uint32_t MaxResults;
-    uint32_t SynchNature;
+    Method frameType = Method1;
+    Encounter encounterType = Stationary;
+    Lead leadType = None;
+    uint32_t initialSeed;
+    uint32_t initialFrame;
+    uint32_t maxResults;
+    uint32_t synchNature;
     uint32_t cuteCharm;
-
-    Generator();
 
 };
 
