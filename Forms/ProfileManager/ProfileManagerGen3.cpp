@@ -1,0 +1,151 @@
+#include "ProfileManagerGen3.hpp"
+#include "ui_ProfileManagerGen3.h"
+
+ProfileManagerGen3::ProfileManagerGen3(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::ProfileManagerGen3)
+{
+    ui->setupUi(this);
+    updateTable(ProfileGen3::loadProfiles());
+}
+
+ProfileManagerGen3::~ProfileManagerGen3()
+{
+    delete ui;
+}
+
+void ProfileManagerGen3::on_pushButtonNew_clicked()
+{
+    ProfileManagerGen3NewEdit* dialog = new ProfileManagerGen3NewEdit();
+    QObject::connect(dialog, SIGNAL(newProfile(QString, int, int, uint32_t, uint32_t, bool)), this, SLOT(registerProfile(QString, int, int, uint32_t, uint32_t,bool)));
+    dialog->exec();
+}
+
+void ProfileManagerGen3::updateTable(std::vector<QList<QStandardItem *>> rows)
+{
+    QStandardItemModel *model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dead Battery")});
+
+    for(int i = 0; i < (int)rows.size(); i++)
+    {
+        model->appendRow(rows.at(i));
+    }
+
+    ui->tableView->setModel(model);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+}
+
+void ProfileManagerGen3::registerProfile(QString profileName, int version, int language, uint32_t tid, uint32_t sid, bool deadBattery)
+{
+    bool exists = false;
+
+    ProfileGen3 profile(profileName, version, tid, sid, language, deadBattery, true);
+    profile.saveProfile();
+
+    QStandardItemModel *model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dead Battery")});
+
+    QAbstractItemModel* original = ui->tableView->model();
+
+    for(int i = 0; i < original->rowCount(); i++)
+    {
+        QList<QStandardItem *> item;
+        if(original->data(original->index(i, 0)).toString() == profileName)
+        {
+            exists = true;
+            original->setData(original->index(i, 0), profileName);
+            original->setData(original->index(i, 1), ProfileGen3::getVersion(version));
+            original->setData(original->index(i, 2), ProfileGen3::getLanguage(language));
+            original->setData(original->index(i, 3), QString::number(tid));
+            original->setData(original->index(i, 4), QString::number(sid));
+            if(version == 0 || version == 1)
+            {
+                original->setData(original->index(i, 5), (deadBattery ? "Yes" : "No"));
+            }
+            else
+            {
+                original->setData(original->index(i, 5), "N/A");
+            }
+        }
+        for(int j = 0; j < original->columnCount(); j++)
+        {
+            QStandardItem *it = new QStandardItem(original->data(original->index(i, j)).toString());
+            it->setData(Qt::AlignCenter, Qt::TextAlignmentRole);
+            item.append(it);
+        }
+        model->appendRow(item);
+    }
+    if(!exists)
+    {
+        QList<QStandardItem *> newItem;
+        newItem.append(new QStandardItem(profileName));
+        newItem.append(new QStandardItem(ProfileGen3::getVersion(version)));
+        newItem.append(new QStandardItem(ProfileGen3::getLanguage(language)));
+        newItem.append(new QStandardItem(QString::number(tid)));
+        newItem.append(new QStandardItem(QString::number(sid)));
+        if(version == 0 || version == 1)
+        {
+            newItem.append(new QStandardItem(deadBattery ? "Yes" : "No"));
+        }
+        else
+        {
+            newItem.append(new QStandardItem("N/A"));
+        }
+
+        for(int i = 0; i < newItem.count(); i++)
+        {
+            newItem.at(i)->setData(Qt::AlignCenter, Qt::TextAlignmentRole);
+        }
+
+        model->appendRow(newItem);
+    }
+
+    ui->tableView->setModel(model);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+}
+
+void ProfileManagerGen3::on_pushButtonOk_clicked()
+{
+    this->close();
+}
+
+void ProfileManagerGen3::on_pushButtonEdit_clicked()
+{
+    QMessageBox error;
+    QItemSelectionModel *selections = ui->tableView->selectionModel();
+    if(selections->selectedRows().count() != 1)
+    {
+        error.setText("Please select one row.");
+        error.exec();
+        return;
+    }
+
+    QAbstractItemModel* model = ui->tableView->model();
+
+    int r = selections->selectedRows().at(0).row();
+    ProfileManagerGen3NewEdit* dialog = new ProfileManagerGen3NewEdit(model->data(model->index(r, 0)).toString(), ProfileGen3::getVersionIndex(model->data(model->index(r, 1)).toString()), ProfileGen3::getLanguageIndex(model->data(model->index(r, 2)).toString()), model->data(model->index(r, 3)).toString().toUInt(), model->data(model->index(r, 4)).toString().toUInt(), model->data(model->index(r, 5)).toBool());
+    QObject::connect(dialog, SIGNAL(newProfile(QString, int, int, uint32_t, uint32_t, bool)), this, SLOT(registerProfile(QString, int, int, uint32_t, uint32_t,bool)));
+    dialog->exec();
+
+}
+
+void ProfileManagerGen3::on_pushButtonDelete_clicked()
+{
+    QMessageBox error;
+    QItemSelectionModel *selections = ui->tableView->selectionModel();
+    if(selections->selectedRows().count() != 1)
+    {
+        error.setText("Please select one row.");
+        error.exec();
+        return;
+    }
+
+    QAbstractItemModel* model = ui->tableView->model();
+
+    int r = selections->selectedRows().at(0).row();
+    ProfileGen3 profile(model->data(model->index(r, 0)).toString(), ProfileGen3::getVersionIndex(model->data(model->index(r, 1)).toString()), ProfileGen3::getLanguageIndex(model->data(model->index(r, 2)).toString()), model->data(model->index(r, 3)).toString().toUInt(), model->data(model->index(r, 4)).toString().toUInt(), model->data(model->index(r, 5)).toBool());
+    profile.deleteProfile();
+
+    model->removeRow(r);
+
+}

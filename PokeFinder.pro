@@ -71,7 +71,9 @@ SOURCES += \
         Core/RNG/TinyMT.cpp \
         Core/RNG/RNGCache.cpp \
         Core/RNG/RNGEuclidean.cpp \
-    Core/Gen3/ProfileGen3.cpp
+    Core/Gen3/ProfileGen3.cpp \
+    Forms/ProfileManager/ProfileManagerGen3.cpp \
+    Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp
 
 HEADERS += \
         Forms/mainwindow.h \
@@ -97,7 +99,11 @@ HEADERS += \
         Core/RNG/RNGCache.hpp \
         Core/RNG/RNGEuclidean.hpp \
     Core/Objects/Profile.hpp \
-    Core/Gen3/ProfileGen3.hpp
+    Core/Gen3/ProfileGen3.hpp \
+    Forms/ProfileManager/ProfileManagerGen3.hpp \
+    Forms/ProfileManager/ProfileManagerGen3NewEdit.hpp
 
 FORMS += \
-        Forms/mainwindow.ui
+        Forms/mainwindow.ui \
+    Forms/ProfileManager/ProfileManagerGen3.ui \
+    Forms/ProfileManager/ProfileManagerGen3NewEdit.ui

@@ -39,6 +39,7 @@
 #include <QDebug>
 #include <QDomDocument>
 #include <Core/Gen3/ProfileGen3.hpp>
+#include <Forms/ProfileManager/ProfileManagerGen3.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -73,6 +74,8 @@ private slots:
     void natureItemCheck(QModelIndex a, QModelIndex b);
     void hiddenItemCheck(QModelIndex a, QModelIndex b);
 
+
+    void on_saveProfile_clicked();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

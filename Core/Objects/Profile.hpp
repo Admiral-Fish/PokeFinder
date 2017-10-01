@@ -12,8 +12,8 @@ class Profile
 public:
 
     QString profileName;
-    QString version;
-    QString language;
+    int version;
+    int language;
     bool valid;
 
 };

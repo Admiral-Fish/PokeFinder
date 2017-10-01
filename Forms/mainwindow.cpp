@@ -359,5 +359,10 @@ void MainWindow::setupModels()
     ui->tableView->setModel(model);
     ui->tableView->verticalHeader()->setVisible(false);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableView->resizeColumnsToContents();
+}
+
+void MainWindow::on_saveProfile_clicked()
+{
+    ProfileManagerGen3* manager = new ProfileManagerGen3();
+    manager->show();
 }
