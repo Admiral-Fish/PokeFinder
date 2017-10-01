@@ -122,7 +122,6 @@ void MainWindow::loadLanguage(const QString& rLanguage)
         QString languageName = QLocale::languageToString(locale.language());
         switchTranslator(m_translator, QString("PokeFinder_%1.qm").arg(rLanguage));
         switchTranslator(m_translatorQt, QString("qt_%1.qm").arg(rLanguage));
-        setupModels();
     }
 }
 

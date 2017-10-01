@@ -46,9 +46,10 @@ TRANSLATIONS += \
         languages/PokeFinder_en.ts \
         languages/PokeFinder_fr.ts \
         languages/PokeFinder_es.ts \
-        languages/PokeFinder_pt.ts \
         languages/PokeFinder_de.ts \
-        languages/PokeFinder_it.ts
+        languages/PokeFinder_it.ts \
+        languages/PokeFinder_jp.ts \
+        languages/PokeFinder_ko.ts
 
 SOURCES += \
         main.cpp \
