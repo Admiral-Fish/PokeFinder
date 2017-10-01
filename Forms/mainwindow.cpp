@@ -46,6 +46,7 @@ void MainWindow::changeEvent(QEvent* event)
         {
         case QEvent::LanguageChange:
             ui->retranslateUi(this);
+            setupModels();
             break;
 
         case QEvent::LocaleChange:
