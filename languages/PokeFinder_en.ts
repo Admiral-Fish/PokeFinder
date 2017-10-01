@@ -496,248 +496,207 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="33"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="24"/>
         <source>Hardy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="33"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="24"/>
         <source>Lonely</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="33"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="24"/>
         <source>Brave</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="33"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="24"/>
         <source>Adamant</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="34"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
         <source>Naughty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="34"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
         <source>Bold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="34"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
         <source>Docile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="34"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
         <source>Relaxed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="35"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
         <source>Impish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="35"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
         <source>Lax</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="35"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
         <source>Timid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="35"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
         <source>Hasty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="36"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
         <source>Serious</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="36"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
         <source>Jolly</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="36"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
         <source>Naive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="36"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
         <source>Modest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="37"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
         <source>Mild</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="37"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
         <source>Quiet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="37"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
         <source>Bashful</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="37"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
         <source>Rash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="38"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Calm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="38"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Gentle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="38"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Sassy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="38"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Careful</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="39"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Core/Objects/Nature.cpp" line="30"/>
         <source>Quirky</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="43"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="24"/>
         <source>Fighting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="43"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="24"/>
         <source>Flying</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="43"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="24"/>
         <source>Poison</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="43"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="24"/>
         <source>Ground</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="44"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="25"/>
         <source>Rock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="44"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="25"/>
         <source>Bug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="44"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="25"/>
         <source>Ghost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="44"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="25"/>
         <source>Steel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="45"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Fire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="45"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Water</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="45"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Grass</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="45"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Electric</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="46"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Psychic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="46"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Ice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="46"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Dragon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Frame.hpp" line="46"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
