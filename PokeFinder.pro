@@ -93,7 +93,7 @@ HEADERS += \
         Core/RNG/TinyMT.hpp \
         Core/RNG/RNGCache.hpp \
         Core/RNG/RNGEuclidean.hpp \
-        Core/Objects/ProfileManager.hpp
+    Core/Objects/Profile.hpp
 
 FORMS += \
         Forms/mainwindow.ui
