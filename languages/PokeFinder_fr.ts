@@ -231,10 +231,10 @@
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1097"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
-        <location filename="../Forms/mainwindow.cpp" line="301"/>
-        <location filename="../Forms/mainwindow.cpp" line="309"/>
-        <location filename="../Forms/mainwindow.cpp" line="324"/>
+        <location filename="../Forms/mainwindow.cpp" line="274"/>
+        <location filename="../Forms/mainwindow.cpp" line="300"/>
+        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Forms/mainwindow.cpp" line="323"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
@@ -319,92 +319,92 @@
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Nature</source>
         <translation>La nature</translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>PID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>!!!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Ability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>HP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Atk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Def</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>SpA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>SpD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Spe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Gender</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
