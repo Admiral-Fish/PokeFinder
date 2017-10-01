@@ -37,27 +37,8 @@ SearcherGen3::SearcherGen3(uint32_t tid, uint32_t sid)
     frame.SetIDs(tid, sid, psv);
 }
 
-// Calculates encounter slot for Method H
-uint32_t SearcherGen3::getEncounterSlot()
-{
-    rng.seed = frame.seed;
-    uint32_t searchNature;
-
-    // Determine which RNG call gave the hunt nature
-    do
-    {
-        rng.ReverseFrames(1);
-        searchNature = rng.Prev16Bit() % 25;
-    }
-    while (searchNature != frame.nature);
-
-    rng.ReverseFrames(1);
-    frame.encounterSlot = EncounterSlot::HSlot(rng.Prev16Bit(), encounterType);
-    return rng.Prev32Bit();
-}
-
 // Returns vector of frames for Channel Method
-std::vector<FrameGen3> SearcherGen3::searchMethodChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::searchMethodChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
 
@@ -79,14 +60,17 @@ std::vector<FrameGen3> SearcherGen3::searchMethodChannel(uint32_t hp, uint32_t a
             pid1 ^= 0x8000;
         frame.SetPID(pid1, pid2);
 
-        frame.seed = rng.Prev16Bit();
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+        {
+            frame.seed = rng.Prev32Bit();
+            frames.push_back(frame);
+        }
     }
     return frames;
 }
 
 // Returns vector of frames for Method Colo Shadows
-std::vector<FrameGen3> SearcherGen3::searchMethodColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::searchMethodColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
 
@@ -104,19 +88,23 @@ std::vector<FrameGen3> SearcherGen3::searchMethodColo(uint32_t hp, uint32_t atk,
         rng.AdvanceFrames(1);
         frame.SetPID(rng.Next16Bit(), rng.Next16Bit());
         frame.seed = seeds[i] * 0xB9B33155 + 0xA170F641;
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+            frames.push_back(frame);
 
         // Setup XORed frame
         frame.pid ^= 0x80008000;
         frame.nature = frame.pid % 25;
-        frame.seed ^= 0x80000000;
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+        {
+            frame.seed ^= 0x80000000;
+            frames.push_back(frame);
+        }
     }
     return frames;
 }
 
 // Returns vector of frames for Method H1
-std::vector<FrameGen3> SearcherGen3::searchMethodH1(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::searchMethodH1(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
 
@@ -124,7 +112,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethodH1(uint32_t hp, uint32_t atk, u
     uint32_t second = (spe | (spa << 5) | (spd << 10)) << 16;
     std::vector<uint32_t> seeds = cache.RecoverLower16BitsIV(first, second);
     int size = seeds.size();
-    uint32_t hSeed, seed;
+    uint32_t seed;
 
     for (int i = 0; i < size; i++)
     {
@@ -133,35 +121,80 @@ std::vector<FrameGen3> SearcherGen3::searchMethodH1(uint32_t hp, uint32_t atk, u
         rng.seed = seeds[i];
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         seed = rng.Prev32Bit();
-        frame.seed = seed;
 
-        // Check if frame is valid Method H
-        hSeed = getEncounterSlot();
-        if (validatePID(hSeed) == frame.pid)
+        // Use for loop to check both normal and sister spread
+        for (int i = 0; i < 2; i++)
         {
-            frame.seed = hSeed;
-            frames.push_back(frame);
-        }
+            if (i == 1)
+            {
+                frame.pid ^= 0x80008000;
+                frame.nature = frame.pid % 25;
+                seed ^= 0x80000000;
+            }
 
-        // Setup XORed frame
-        frame.pid ^= 0x80008000;
-        frame.nature = frame.pid % 25;
-        seed ^= 0x80008000;
-        frame.seed = seed;
+            if (!compare.CompareFramePID(frame))
+                continue;
 
-        // Check if frame is valid Method H
-        hSeed = getEncounterSlot();
-        if (validatePID(hSeed) == frame.pid)
-        {
-            frame.seed = hSeed;
-            frames.push_back(frame);
+            LCRNG testRNG = PokeRNG(seed);
+            uint32_t testPID, slot, testSeed;
+            uint32_t nextRNG = seed >> 16;
+            uint32_t nextRNG2 = testRNG.Prev16Bit();
+
+            do
+            {
+                frame.leadType = None;
+
+                // Check normal
+                if ((nextRNG % 25) == frame.nature)
+                {
+                    slot = testRNG.seed * 0xeeb9eb65 + 0xa3561a1;
+                    testSeed = slot * 0xeeb9eb65 + 0xa3561a1;
+                    frame.seed = seed;
+                    frame.encounterSlot = EncounterSlot::HSlot(slot >> 16, encounterType);
+                    frames.push_back(frame);
+
+                    slot = slot * 0xeeb9eb65 + 0xa3561a1;
+                    testSeed = testSeed * 0xeeb9eb65 + 0xa3561a1;
+                    frame.seed = testSeed;
+                    frame.encounterSlot = EncounterSlot::HSlot(slot >> 16, encounterType);
+
+                    // Check failed synch
+                    if ((nextRNG2 & 1) == 1)
+                    {
+                        frame.leadType = Synchronize;
+                        frames.push_back(frame);
+                    }
+
+                    // Check Cute Charm
+                    if ((nextRNG2 % 3) > 0)
+                    {
+                        frame.leadType = CuteCharm;
+                        frames.push_back(frame);
+                    }
+                }
+                // Check synch
+                else if ((nextRNG2 & 1) == 0)
+                {
+                    frame.leadType = Synchronize;
+                    slot = testRNG.seed * 0xeeb9eb65 + 0xa3561a1;
+                    testSeed = slot * 0xeeb9eb65 + 0xa3561a1;
+                    frame.seed = testSeed;
+                    frame.encounterSlot = EncounterSlot::HSlot(slot >> 16, encounterType);
+                    frames.push_back(frame);
+                }
+
+                testPID = (nextRNG << 16) | nextRNG2;
+                nextRNG = testRNG.Prev16Bit();
+                nextRNG2 = testRNG.Prev16Bit();
+            }
+            while ((testPID % 25) != frame.nature);
         }
     }
     return frames;
 }
 
 // Returns vector of frames for Method H2
-std::vector<FrameGen3> SearcherGen3::searchMethodH2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::searchMethodH2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
 
@@ -169,7 +202,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethodH2(uint32_t hp, uint32_t atk, u
     uint32_t second = (spe | (spa << 5) | (spd << 10)) << 16;
     std::vector<uint32_t> seeds = cache.RecoverLower16BitsIV(first, second);
     int size = seeds.size();
-    uint32_t hSeed, seed;
+    uint32_t seed;
 
     for (int i = 0; i < size; i++)
     {
@@ -179,35 +212,80 @@ std::vector<FrameGen3> SearcherGen3::searchMethodH2(uint32_t hp, uint32_t atk, u
         rng.ReverseFrames(1);
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         seed = rng.Prev32Bit();
-        frame.seed = seed;
 
-        // Check if frame is valid Method H
-        hSeed = getEncounterSlot();
-        if (validatePID(hSeed) == frame.pid)
+        // Use for loop to check both normal and sister spread
+        for (int i = 0; i < 2; i++)
         {
-            frame.seed = hSeed;
-            frames.push_back(frame);
-        }
+            if (i == 1)
+            {
+                frame.pid ^= 0x80008000;
+                frame.nature = frame.pid % 25;
+                seed ^= 0x80000000;
+            }
 
-        // Setup XORed frame
-        frame.pid ^= 0x80008000;
-        frame.nature = frame.pid % 25;
-        seed ^= 0x80008000;
-        frame.seed = seed;
+            if (!compare.CompareFramePID(frame))
+                continue;
 
-        // Check if frame is valid Method H
-        hSeed = getEncounterSlot();
-        if (validatePID(hSeed) == frame.pid)
-        {
-            frame.seed = hSeed;
-            frames.push_back(frame);
+            LCRNG testRNG = PokeRNG(seed);
+            uint32_t testPID, slot, testSeed;
+            uint32_t nextRNG = seed >> 16;
+            uint32_t nextRNG2 = testRNG.Prev16Bit();
+
+            do
+            {
+                frame.leadType = None;
+
+                // Check normal
+                if ((nextRNG % 25) == frame.nature)
+                {
+                    slot = testRNG.seed * 0xeeb9eb65 + 0xa3561a1;
+                    testSeed = slot * 0xeeb9eb65 + 0xa3561a1;
+                    frame.seed = seed;
+                    frame.encounterSlot = EncounterSlot::HSlot(slot >> 16, encounterType);
+                    frames.push_back(frame);
+
+                    slot = slot * 0xeeb9eb65 + 0xa3561a1;
+                    testSeed = testSeed * 0xeeb9eb65 + 0xa3561a1;
+                    frame.seed = testSeed;
+                    frame.encounterSlot = EncounterSlot::HSlot(slot >> 16, encounterType);
+
+                    // Check failed synch
+                    if ((nextRNG2 & 1) == 1)
+                    {
+                        frame.leadType = Synchronize;
+                        frames.push_back(frame);
+                    }
+
+                    // Check Cute Charm
+                    if ((nextRNG2 % 3) > 0)
+                    {
+                        frame.leadType = CuteCharm;
+                        frames.push_back(frame);
+                    }
+                }
+                // Check synch
+                else if ((nextRNG2 & 1) == 0)
+                {
+                    frame.leadType = Synchronize;
+                    slot = testRNG.seed * 0xeeb9eb65 + 0xa3561a1;
+                    testSeed = slot * 0xeeb9eb65 + 0xa3561a1;
+                    frame.seed = testSeed;
+                    frame.encounterSlot = EncounterSlot::HSlot(slot >> 16, encounterType);
+                    frames.push_back(frame);
+                }
+
+                testPID = (nextRNG << 16) | nextRNG2;
+                nextRNG = testRNG.Prev16Bit();
+                nextRNG2 = testRNG.Prev16Bit();
+            }
+            while ((testPID % 25) != frame.nature);
         }
     }
     return frames;
 }
 
 // Returns vector of frames for Method H4
-std::vector<FrameGen3> SearcherGen3::searchMethodH4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::searchMethodH4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
 
@@ -215,7 +293,7 @@ std::vector<FrameGen3> SearcherGen3::searchMethodH4(uint32_t hp, uint32_t atk, u
     uint32_t second = (spe | (spa << 5) | (spd << 10)) << 16;
     std::vector<uint32_t> seeds = cache.RecoverLower16BitsIV(first, second);
     int size = seeds.size();
-    uint32_t hSeed, seed;
+    uint32_t seed;
 
     for (int i = 0; i < size; i++)
     {
@@ -224,35 +302,81 @@ std::vector<FrameGen3> SearcherGen3::searchMethodH4(uint32_t hp, uint32_t atk, u
         rng.seed = seeds[i];
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         seed = rng.Prev32Bit();
-        frame.seed = seed;
 
-        // Check if frame is valid Method H
-        hSeed = getEncounterSlot();
-        if (validatePID(hSeed) == frame.pid)
+        // Use for loop to check both normal and sister spread
+        for (int i = 0; i < 2; i++)
         {
-            frame.seed = hSeed;
-            frames.push_back(frame);
-        }
+            if (i == 1)
+            {
+                frame.pid ^= 0x80008000;
+                frame.nature = frame.pid % 25;
+                seed ^= 0x80000000;
+            }
 
-        // Setup XORed frame
-        frame.pid ^= 0x80008000;
-        frame.nature = frame.pid % 25;
-        seed ^= 0x80008000;
-        frame.seed = seed;
+            if (!compare.CompareFramePID(frame))
+                continue;
 
-        // Check if frame is valid Method H
-        hSeed = getEncounterSlot();
-        if (validatePID(hSeed) == frame.pid)
-        {
-            frame.seed = hSeed;
-            frames.push_back(frame);
+            LCRNG testRNG = PokeRNG(seed);
+            uint32_t testPID, slot, testSeed;
+            uint32_t nextRNG = seed >> 16;
+            uint32_t nextRNG2 = testRNG.Prev16Bit();
+
+            do
+            {
+                frame.leadType = None;
+
+                // Check normal
+                if (nextRNG % 25 == frame.nature)
+                {
+                    slot = testRNG.seed * 0xeeb9eb65 + 0xa3561a1;
+                    testSeed = slot * 0xeeb9eb65 + 0xa3561a1;
+                    frame.seed = seed;
+                    frame.encounterSlot = EncounterSlot::HSlot(slot >> 16, encounterType);
+                    frames.push_back(frame);
+
+                    slot = slot * 0xeeb9eb65 + 0xa3561a1;
+                    testSeed = testSeed * 0xeeb9eb65 + 0xa3561a1;
+                    frame.seed = testSeed;
+                    frame.encounterSlot = EncounterSlot::HSlot(slot >> 16, encounterType);
+
+                    // Check failed synch
+                    if ((nextRNG2 & 1) == 1)
+                    {
+                        frame.leadType = Synchronize;
+                        frames.push_back(frame);
+                    }
+
+                    // Check Cute Charm
+                    if ((nextRNG2 % 3) > 0)
+                    {
+                        frame.leadType = CuteCharm;
+                        frames.push_back(frame);
+                    }
+                }
+
+                // Check synch
+                if ((nextRNG2 & 1) == 0)
+                {
+                    frame.leadType = Synchronize;
+                    slot = testRNG.seed * 0xeeb9eb65 + 0xa3561a1;
+                    testSeed = slot * 0xeeb9eb65 + 0xa3561a1;
+                    frame.seed = seed;
+                    frame.encounterSlot = EncounterSlot::HSlot(slot >> 16, encounterType);
+                    frames.push_back(frame);
+                }
+
+                testPID = (nextRNG << 16) | nextRNG2;
+                nextRNG = testRNG.Prev16Bit();
+                nextRNG2 = testRNG.Prev16Bit();
+            }
+            while ((testPID % 25) != frame.nature);
         }
     }
     return frames;
 }
 
 // Returns vector of frames for Method Gales Shadows
-std::vector<FrameGen3> SearcherGen3::searchMethodXD(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::searchMethodXD(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
 
@@ -269,19 +393,23 @@ std::vector<FrameGen3> SearcherGen3::searchMethodXD(uint32_t hp, uint32_t atk, u
         rng.seed = seeds[i + 1];
         frame.SetPID(rng.Next16Bit(), rng.Next16Bit());
         frame.seed = seeds[i] * 0xB9B33155 + 0xA170F641;
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+            frames.push_back(frame);
 
         // Setup XORed frame
         frame.pid ^= 0x80008000;
         frame.nature = frame.pid % 25;
-        frame.seed ^= 0x80000000;
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+        {
+            frame.seed ^= 0x80000000;
+            frames.push_back(frame);
+        }
     }
     return frames;
 }
 
 // Return vector of frames for Method XDColo
-std::vector<FrameGen3> SearcherGen3::searchMethodXDColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::searchMethodXDColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
 
@@ -297,19 +425,23 @@ std::vector<FrameGen3> SearcherGen3::searchMethodXDColo(uint32_t hp, uint32_t at
         rng.seed = seeds[i + 1];
         frame.SetPID(rng.Next16Bit(), rng.Next16Bit());
         frame.seed = seeds[i] * 0xB9B33155 + 0xA170F641;
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+            frames.push_back(frame);
 
         // Setup XORed frame
         frame.pid ^= 0x80008000;
         frame.nature = frame.pid % 25;
-        frame.seed ^= 0x80000000;
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+        {
+            frame.seed ^= 0x80000000;
+            frames.push_back(frame);
+        }
     }
     return frames;
 }
 
 // Returns vector of frames for Method 1
-std::vector<FrameGen3> SearcherGen3::searchMethod1(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::searchMethod1(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
 
@@ -325,19 +457,23 @@ std::vector<FrameGen3> SearcherGen3::searchMethod1(uint32_t hp, uint32_t atk, ui
         rng.seed = seeds[i];
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         frame.seed = rng.Prev32Bit();
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+            frames.push_back(frame);
 
         // Setup XORed frame
         frame.pid ^= 0x80008000;
         frame.nature = frame.pid % 25;
-        frame.seed ^= 0x80000000;
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+        {
+            frame.seed ^= 0x80000000;
+            frames.push_back(frame);
+        }
     }
     return frames;
 }
 
 // Returns vector of frames for Method 2
-std::vector<FrameGen3> SearcherGen3::searchMethod2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::searchMethod2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
 
@@ -354,19 +490,23 @@ std::vector<FrameGen3> SearcherGen3::searchMethod2(uint32_t hp, uint32_t atk, ui
         rng.ReverseFrames(1);
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         frame.seed = rng.Prev32Bit();
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+            frames.push_back(frame);
 
         // Setup XORed frame
         frame.pid ^= 0x80008000;
         frame.nature = frame.pid % 25;
-        frame.seed ^= 0x80000000;
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+        {
+            frame.seed ^= 0x80000000;
+            frames.push_back(frame);
+        }
     }
     return frames;
 }
 
 // Returns vector of frames for Method 4
-std::vector<FrameGen3> SearcherGen3::searchMethod4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::searchMethod4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     std::vector<FrameGen3> frames;
 
@@ -382,37 +522,23 @@ std::vector<FrameGen3> SearcherGen3::searchMethod4(uint32_t hp, uint32_t atk, ui
         rng.seed = seeds[i];
         frame.SetPID(rng.Prev16Bit(), rng.Prev16Bit());
         frame.seed = rng.Prev32Bit();
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+            frames.push_back(frame);
 
         // Setup XORed frame
         frame.pid ^= 0x80008000;
         frame.nature = frame.pid % 25;
-        frame.seed ^= 0x80000000;
-        frames.push_back(frame);
+        if (compare.CompareFramePID(frame))
+        {
+            frame.seed ^= 0x80000000;
+            frames.push_back(frame);
+        }
     }
     return frames;
 }
 
-// Ensures PID is valid for Method H
-uint32_t SearcherGen3::validatePID(uint32_t seed)
-{
-    rng.seed = seed;
-    rng.AdvanceFrames(2);
-    uint32_t nature = rng.Next16Bit() % 25;
-    uint32_t pid;
-
-    // Determine PID of seed given Method H
-    do
-    {
-        pid = rng.Next16Bit() | (rng.Next32Bit() & 0xFFFF0000);
-    }
-    while ((pid % 25) != nature);
-
-    return pid;
-}
-
 // Determines which generational method to return
-std::vector<FrameGen3> SearcherGen3::Search(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe)
+std::vector<FrameGen3> SearcherGen3::Search(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare)
 {
     if (frameType == XDColo || frameType == Channel || frameType == XD || frameType == Colo)
         rng = XDRNG(0);
@@ -423,36 +549,36 @@ std::vector<FrameGen3> SearcherGen3::Search(uint32_t hp, uint32_t atk, uint32_t 
     {
         case Method1:
             cache.SwitchCache(Method1);
-            return searchMethod1(hp, atk, def, spa, spd, spe);
+            return searchMethod1(hp, atk, def, spa, spd, spe, compare);
         case Method2:
             cache.SwitchCache(Method2);
-            return searchMethod2(hp, atk, def, spa, spd, spe);
+            return searchMethod2(hp, atk, def, spa, spd, spe, compare);
         case Method4:
             cache.SwitchCache(Method4);
-            return searchMethod4(hp, atk, def, spa, spd, spe);
+            return searchMethod4(hp, atk, def, spa, spd, spe, compare);
         case MethodH1:
             cache.SwitchCache(Method1);
-            return searchMethodH1(hp, atk, def, spa, spd, spe);
+            return searchMethodH1(hp, atk, def, spa, spd, spe, compare);
         case MethodH2:
             cache.SwitchCache(Method2);
-            return searchMethodH2(hp, atk, def, spa, spd, spe);
+            return searchMethodH2(hp, atk, def, spa, spd, spe, compare);
         case MethodH4:
             cache.SwitchCache(Method4);
-            return searchMethodH4(hp, atk, def, spa, spd, spe);
+            return searchMethodH4(hp, atk, def, spa, spd, spe, compare);
         case Colo:
             euclidean.SwitchEuclidean(Colo);
-            return searchMethodColo(hp, atk, def, spa, spd, spe);
+            return searchMethodColo(hp, atk, def, spa, spd, spe, compare);
         case XD:
             euclidean.SwitchEuclidean(XD);
-            return searchMethodXD(hp, atk, def, spa, spd, spe);
+            return searchMethodXD(hp, atk, def, spa, spd, spe, compare);
         case XDColo:
             euclidean.SwitchEuclidean(XDColo);
-            return searchMethodXDColo(hp, atk, def, spa, spd, spe);
+            return searchMethodXDColo(hp, atk, def, spa, spd, spe, compare);
         // case Channel:
         // Set to default to avoid compiler warning message
         default:
             euclidean.SwitchEuclidean(Channel);
-            return searchMethodChannel(hp, atk, def, spa, spd, spe);
+            return searchMethodChannel(hp, atk, def, spa, spd, spe, compare);
     }
 }
 
