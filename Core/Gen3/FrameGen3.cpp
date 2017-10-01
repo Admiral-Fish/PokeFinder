@@ -98,5 +98,10 @@ QList<QStandardItem *> FrameGen3::GetTableRow(int genderRatioIndex)
     }
     row.append(new QStandardItem(GetTime()));
 
+    for(int i = 0; i < row.count(); i++)
+    {
+        row.at(i)->setData(Qt::AlignCenter, Qt::TextAlignmentRole);
+    }
+
     return row;
 }
