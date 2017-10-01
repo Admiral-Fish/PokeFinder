@@ -30,6 +30,8 @@
 #include <Core/Gen3/GeneratorGen3.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Objects/FrameCompare.hpp>
+#include <Core/Objects/Nature.hpp>
+#include <Core/Objects/Power.hpp>
 #include <cstdint>
 #include <QTranslator>
 #include <vector>

@@ -22,28 +22,18 @@
 #include <Core/Objects/Encounter.hpp>
 #include <Core/Objects/Lead.hpp>
 #include <Core/Objects/Method.hpp>
+#include <Core/Objects/Nature.hpp>
+#include <Core/Objects/Power.hpp>
 #include <QString>
-#include <QTranslator>
 #include <cstdint>
 #include <vector>
 
 class Frame
 {
 protected:
-    QString natures[25] = {QObject::tr("Hardy"), QObject::tr("Lonely"), QObject::tr("Brave"), QObject::tr("Adamant"),
-                           QObject::tr("Naughty"), QObject::tr("Bold"), QObject::tr("Docile"), QObject::tr("Relaxed"),
-                           QObject::tr("Impish"), QObject::tr("Lax"), QObject::tr("Timid"), QObject::tr("Hasty"),
-                           QObject::tr("Serious"), QObject::tr("Jolly"), QObject::tr("Naive"), QObject::tr("Modest"),
-                           QObject::tr("Mild"), QObject::tr("Quiet"), QObject::tr("Bashful"), QObject::tr("Rash"),
-                           QObject::tr("Calm"), QObject::tr("Gentle"), QObject::tr("Sassy"), QObject::tr("Careful"),
-                           QObject::tr("Quirky") };
+    std::vector<QString> natures = Nature::GetNatures();
 
-
-
-    QString powers[16] = {QObject::tr("Fighting"), QObject::tr("Flying"), QObject::tr("Poison"), QObject::tr("Ground"),
-                           QObject::tr("Rock"), QObject::tr("Bug"), QObject::tr("Ghost"), QObject::tr("Steel"),
-                           QObject::tr("Fire"), QObject::tr("Water"), QObject::tr("Grass"), QObject::tr("Electric"),
-                           QObject::tr("Psychic"), QObject::tr("Ice"), QObject::tr("Dragon"), QObject::tr("Dark") };
+    std::vector<QString> powers = Power::GetPowers();
 
 public:
 

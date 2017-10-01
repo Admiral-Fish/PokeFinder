@@ -305,7 +305,7 @@ void MainWindow::hiddenItemCheck(QModelIndex a, QModelIndex b)
 void MainWindow::setupModels()
 {
     QStandardItemModel *natures = new QStandardItemModel(26, 1, this);
-    QString natureList[25] = {QObject::tr("Hardy"), QObject::tr("Lonely"), QObject::tr("Brave"), QObject::tr("Adamant"), QObject::tr("Naughty"), QObject::tr("Bold"), QObject::tr("Docile"), QObject::tr("Relaxed"), QObject::tr("Impish"), QObject::tr("Lax"), QObject::tr("Timid"), QObject::tr("Hasty"), QObject::tr("Serious"), QObject::tr("Jolly"), QObject::tr("Naive"), QObject::tr("Modest"), QObject::tr("Mild"), QObject::tr("Quiet"), QObject::tr("Bashful"), QObject::tr("Rash"), QObject::tr("Calm"), QObject::tr("Gentle"), QObject::tr("Sassy"), QObject::tr("Careful"), QObject::tr("Quirky") };
+    std::vector<QString> natureList = Nature::GetNatures();
     QStandardItem* firstNature = new QStandardItem(tr("Any"));
     natures->setItem(0, firstNature);
     for(int i = 0; i < 25; i++)
@@ -320,7 +320,7 @@ void MainWindow::setupModels()
     connect(ui->comboBoxNature->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(natureItemCheck(QModelIndex, QModelIndex)));
 
     QStandardItemModel *hidden = new QStandardItemModel(17, 1, this);
-    QString powerList[16] = {QObject::tr("Fighting"), QObject::tr("Flying"), QObject::tr("Poison"), QObject::tr("Ground"), QObject::tr("Rock"), QObject::tr("Bug"), QObject::tr("Ghost"), QObject::tr("Steel"), QObject::tr("Fire"), QObject::tr("Water"), QObject::tr("Grass"), QObject::tr("Electric"), QObject::tr("Psychic"), QObject::tr("Ice"), QObject::tr("Dragon"), QObject::tr("Dark") };
+    std::vector<QString> powerList = Power::GetPowers();
     QStandardItem* firstPower = new QStandardItem(tr("Any"));
     hidden->setItem(0, firstPower);
     for(int i = 0; i < 16; i++)
