@@ -35,29 +35,26 @@ private:
     LCRNG rng = PokeRNG(0);
     NatureLock natureLock = NatureLock();
 
-    uint32_t getEncounterSlot();
+    std::vector<FrameGen3> searchMethodChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
-    std::vector<FrameGen3> searchMethodChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+    std::vector<FrameGen3> searchMethodColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
-    std::vector<FrameGen3> searchMethodColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+    std::vector<FrameGen3> searchMethodH1(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
-    std::vector<FrameGen3> searchMethodH1(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+    std::vector<FrameGen3> searchMethodH2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
-    std::vector<FrameGen3> searchMethodH2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+    std::vector<FrameGen3> searchMethodH4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
-    std::vector<FrameGen3> searchMethodH4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+    std::vector<FrameGen3> searchMethodXD(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
-    std::vector<FrameGen3> searchMethodXD(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+    std::vector<FrameGen3> searchMethodXDColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
-    std::vector<FrameGen3> searchMethodXDColo(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+    std::vector<FrameGen3> searchMethod1(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
-    std::vector<FrameGen3> searchMethod1(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+    std::vector<FrameGen3> searchMethod2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
-    std::vector<FrameGen3> searchMethod2(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+    std::vector<FrameGen3> searchMethod4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
-    std::vector<FrameGen3> searchMethod4(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
-
-    uint32_t validatePID(uint32_t seed);
 
 
 public:
@@ -66,7 +63,7 @@ public:
 
     SearcherGen3(uint32_t tid, uint32_t sid);
 
-    std::vector<FrameGen3> Search(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+    std::vector<FrameGen3> Search(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe, FrameCompare compare);
 
     void SetMethod(Method frameType);
 };

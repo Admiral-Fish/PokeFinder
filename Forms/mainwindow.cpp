@@ -121,6 +121,7 @@ void MainWindow::loadLanguage(const QString& rLanguage)
         QString languageName = QLocale::languageToString(locale.language());
         switchTranslator(m_translator, QString("PokeFinder_%1.qm").arg(rLanguage));
         switchTranslator(m_translatorQt, QString("qt_%1.qm").arg(rLanguage));
+        setupModels();
     }
 }
 
@@ -221,7 +222,7 @@ void MainWindow::on_generate_clicked()
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Seed Time"), tr("Real Time")});
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
 
     int genderRatioIndex = ui->comboBoxGenderRatio->currentIndex();
     GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid);
@@ -333,7 +334,7 @@ void MainWindow::setupModels()
     connect(ui->comboBoxHiddenP->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(hiddenItemCheck(QModelIndex, QModelIndex)));
 
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Seed Time"), tr("Real Time")});
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
     ui->tableView->setModel(model);
     ui->tableView->verticalHeader()->setVisible(false);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);

@@ -21,6 +21,7 @@
 #define SEARCHER_HPP
 #include <Core/Objects/Encounter.hpp>
 #include <Core/Objects/EncounterSlot.hpp>
+#include <Core/Objects/FrameCompare.hpp>
 #include <Core/Objects/Lead.hpp>
 #include <Core/Objects/Method.hpp>
 #include <Core/RNG/LCRNG.hpp>
