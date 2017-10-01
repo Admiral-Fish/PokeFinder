@@ -496,12 +496,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="24"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Hardy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="24"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
         <source>Lonely</source>
         <translation type="unfinished"></translation>
     </message>
@@ -516,107 +516,107 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
         <source>Naughty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="24"/>
         <source>Bold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Docile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
         <source>Relaxed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
         <source>Impish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
         <source>Lax</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
         <source>Timid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
         <source>Hasty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="30"/>
         <source>Serious</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
         <source>Jolly</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
         <source>Naive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
         <source>Modest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
         <source>Mild</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
         <source>Quiet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Bashful</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
         <source>Rash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="24"/>
         <source>Calm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
         <source>Gentle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
         <source>Sassy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
         <source>Careful</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="30"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Quirky</source>
         <translation type="unfinished"></translation>
     </message>

@@ -40,7 +40,7 @@ FrameCompare::FrameCompare(int hpEvalIndex, int hpNum, int atkEvalIndex, int atk
 
     for(uint i = 1; i < 26; i++)
         if(natureBox->model()->data(natureBox->model()->index(i, 0), Qt::CheckStateRole).toBool())
-            natures.push_back(i - 1);
+            natures.push_back(Nature::GetAdjustedNature(i - 1));
 
     for(uint i = 1; i < 17; i++)
         if(hiddenPowerBox->model()->data(hiddenPowerBox->model()->index(i, 0), Qt::CheckStateRole).toBool())
