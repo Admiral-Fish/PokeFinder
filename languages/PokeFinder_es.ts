@@ -231,10 +231,10 @@
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1097"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
-        <location filename="../Forms/mainwindow.cpp" line="301"/>
-        <location filename="../Forms/mainwindow.cpp" line="309"/>
-        <location filename="../Forms/mainwindow.cpp" line="324"/>
+        <location filename="../Forms/mainwindow.cpp" line="274"/>
+        <location filename="../Forms/mainwindow.cpp" line="300"/>
+        <location filename="../Forms/mainwindow.cpp" line="308"/>
+        <location filename="../Forms/mainwindow.cpp" line="323"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
@@ -319,92 +319,92 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>PID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>!!!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Nature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Ability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>HP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Atk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Def</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>SpA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>SpD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Spe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Gender</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="226"/>
-        <location filename="../Forms/mainwindow.cpp" line="338"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="337"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
@@ -412,209 +412,209 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="24"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Hardy</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuerte</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="24"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
         <source>Lonely</source>
-        <translation type="unfinished"></translation>
+        <translation>Huraña</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="24"/>
         <source>Brave</source>
-        <translation type="unfinished"></translation>
+        <translation>Audaz</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="24"/>
         <source>Adamant</source>
-        <translation type="unfinished"></translation>
+        <translation>Firme</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
         <source>Naughty</source>
-        <translation type="unfinished"></translation>
+        <translation>Pícara</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="24"/>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Osada</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Docile</source>
-        <translation type="unfinished"></translation>
+        <translation>Dócil</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <source>Relaxed</source>
+        <translation>Plácida</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="25"/>
-        <source>Relaxed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
         <source>Impish</source>
-        <translation type="unfinished"></translation>
+        <translation>Agitada</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
         <source>Lax</source>
-        <translation type="unfinished"></translation>
+        <translation>Floja</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
         <source>Timid</source>
-        <translation type="unfinished"></translation>
+        <translation>Miedosa</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
         <source>Hasty</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <source>Serious</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <source>Jolly</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <source>Naive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <source>Modest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <source>Mild</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <source>Quiet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <source>Bashful</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <source>Rash</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <source>Calm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <source>Gentle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <source>Sassy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <source>Careful</source>
-        <translation type="unfinished"></translation>
+        <translation>Activa</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="30"/>
+        <source>Serious</source>
+        <translation>Seria</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <source>Jolly</source>
+        <translation>Alegre</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <source>Naive</source>
+        <translation>Ingenua</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <source>Modest</source>
+        <translation>Modesta</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <source>Mild</source>
+        <translation>Afable</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <source>Quiet</source>
+        <translation>Mansa</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <source>Bashful</source>
+        <translation>Tímida</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <source>Rash</source>
+        <translation>Alocada</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="24"/>
+        <source>Calm</source>
+        <translation>Serena</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <source>Gentle</source>
+        <translation>Amable</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <source>Sassy</source>
+        <translation>Grosera</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <source>Careful</source>
+        <translation>Cauta</translation>
+    </message>
+    <message>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
         <source>Quirky</source>
-        <translation type="unfinished"></translation>
+        <translation>Rara</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="24"/>
         <source>Fighting</source>
-        <translation type="unfinished"></translation>
+        <translation>Lucha</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="24"/>
         <source>Flying</source>
-        <translation type="unfinished"></translation>
+        <translation>Volador</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="24"/>
         <source>Poison</source>
-        <translation type="unfinished"></translation>
+        <translation>Veneno</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="24"/>
         <source>Ground</source>
-        <translation type="unfinished"></translation>
+        <translation>Tierra</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="25"/>
         <source>Rock</source>
-        <translation type="unfinished"></translation>
+        <translation>Roca</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="25"/>
         <source>Bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Bicho</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="25"/>
         <source>Ghost</source>
-        <translation type="unfinished"></translation>
+        <translation>Fantasma</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="25"/>
         <source>Steel</source>
-        <translation type="unfinished"></translation>
+        <translation>Acero</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Fire</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuego</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Water</source>
-        <translation type="unfinished"></translation>
+        <translation>Agua</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Grass</source>
-        <translation type="unfinished"></translation>
+        <translation>Planta</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Electric</source>
-        <translation type="unfinished"></translation>
+        <translation>Eléctrico</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Psychic</source>
-        <translation type="unfinished"></translation>
+        <translation>Psíquico</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Ice</source>
-        <translation type="unfinished"></translation>
+        <translation>Hielo</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Dragon</source>
-        <translation type="unfinished"></translation>
+        <translation>Dragón</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Siniestro</translation>
     </message>
 </context>
 </TS>
