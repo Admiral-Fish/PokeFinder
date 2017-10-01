@@ -54,9 +54,11 @@ SOURCES += \
         main.cpp \
         Forms/mainwindow.cpp \
         Core/Objects/EncounterSlot.cpp \
-        Core/Objects/Utilities.cpp \
         Core/Objects/Frame.cpp \
         Core/Objects/FrameCompare.cpp \
+        Core/Objects/Nature.cpp \
+        Core/Objects/Power.cpp \
+        Core/Objects/Utilities.cpp \
         Core/Gen3/NatureLock.cpp \
         Core/Gen3/GeneratorGen3.cpp \
         Core/Gen3/FrameGen3.cpp \
@@ -74,11 +76,13 @@ HEADERS += \
         Core/Objects/Lead.hpp \
         Core/Objects/Method.hpp \
         Core/Objects/EncounterSlot.hpp \
-        Core/Objects/Utilities.hpp \
         Core/Objects/Generator.hpp \
         Core/Objects/Frame.hpp \
         Core/Objects/FrameCompare.hpp \
+        Core/Objects/Nature.hpp \
+        Core/Objects/Power.hpp \
         Core/Objects/Searcher.hpp \
+        Core/Objects/Utilities.hpp \
         Core/Gen3/NatureLock.hpp \
         Core/Gen3/GeneratorGen3.hpp \
         Core/Gen3/FrameGen3.hpp \
@@ -88,7 +92,8 @@ HEADERS += \
         Core/RNG/MTRNG.hpp \
         Core/RNG/TinyMT.hpp \
         Core/RNG/RNGCache.hpp \
-        Core/RNG/RNGEuclidean.hpp
+        Core/RNG/RNGEuclidean.hpp \
+        Core/Objects/ProfileManager.hpp
 
 FORMS += \
         Forms/mainwindow.ui
