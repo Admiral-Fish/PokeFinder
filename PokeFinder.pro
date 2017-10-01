@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += xml
 QMAKE_CXXFLAGS += -std=c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -69,7 +70,8 @@ SOURCES += \
         Core/RNG/MTRNG.cpp \
         Core/RNG/TinyMT.cpp \
         Core/RNG/RNGCache.cpp \
-        Core/RNG/RNGEuclidean.cpp
+        Core/RNG/RNGEuclidean.cpp \
+    Core/Gen3/ProfileGen3.cpp
 
 HEADERS += \
         Forms/mainwindow.h \
@@ -94,7 +96,8 @@ HEADERS += \
         Core/RNG/TinyMT.hpp \
         Core/RNG/RNGCache.hpp \
         Core/RNG/RNGEuclidean.hpp \
-    Core/Objects/Profile.hpp
+    Core/Objects/Profile.hpp \
+    Core/Gen3/ProfileGen3.hpp
 
 FORMS += \
         Forms/mainwindow.ui

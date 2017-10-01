@@ -37,6 +37,8 @@
 #include <vector>
 #include <QDir>
 #include <QDebug>
+#include <QDomDocument>
+#include <Core/Gen3/ProfileGen3.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -63,11 +65,14 @@ private:
 
     void setupModels();
 
+    void createProfileXml();
+
 private slots:
     void on_generate_clicked();
     void slotLanguageChanged(QAction* action);
     void natureItemCheck(QModelIndex a, QModelIndex b);
     void hiddenItemCheck(QModelIndex a, QModelIndex b);
+
 
 public:
     explicit MainWindow(QWidget *parent = 0);

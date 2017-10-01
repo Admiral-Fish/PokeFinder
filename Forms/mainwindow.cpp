@@ -27,6 +27,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setupModels();
+
+    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
+
+    if(!file.exists())
+        createProfileXml();
+
     ui->tableView->resizeColumnsToContents();
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
@@ -127,6 +133,7 @@ void MainWindow::loadLanguage(const QString& rLanguage)
 
 void MainWindow::on_generate_clicked()
 {
+
     bool pass;
     QMessageBox error;
     QString input;
@@ -298,6 +305,20 @@ void MainWindow::hiddenItemCheck(QModelIndex a, QModelIndex b)
     else
     {
         ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), tr("Any"));
+    }
+}
+
+void MainWindow::createProfileXml()
+{
+    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QDomDocument doc;
+        QDomElement profiles = doc.createElement(QString("Profiles"));
+        doc.appendChild(profiles);
+        QTextStream stream( &file );
+        stream << doc.toString();
+        file.close();
     }
 }
 
