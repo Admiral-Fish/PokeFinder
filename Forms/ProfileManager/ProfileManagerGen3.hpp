@@ -12,9 +12,12 @@ namespace Ui {
 class ProfileManagerGen3;
 }
 
-class ProfileManagerGen3 : public QWidget
+class ProfileManagerGen3 : public QDialog
 {
     Q_OBJECT
+
+signals:
+    void updateProfiles();
 
 public:
     explicit ProfileManagerGen3(QWidget *parent = 0);

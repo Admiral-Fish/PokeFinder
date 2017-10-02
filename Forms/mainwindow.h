@@ -74,12 +74,17 @@ private slots:
     void natureItemCheck(QModelIndex a, QModelIndex b);
     void hiddenItemCheck(QModelIndex a, QModelIndex b);
 
+    void updateProfiles();
 
     void on_saveProfile_clicked();
+
+    void on_comboBoxProfiles_currentIndexChanged(int index);
 
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    std::vector<ProfileGen3> profiles;
 
 };
 

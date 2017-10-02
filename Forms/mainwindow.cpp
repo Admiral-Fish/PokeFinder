@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setupModels();
+    updateProfiles();
 
     QFile file(QApplication::applicationDirPath() + "/profiles.xml");
 
@@ -354,6 +355,8 @@ void MainWindow::setupModels()
     ui->comboBoxHiddenP->setModel(hidden);
     connect(ui->comboBoxHiddenP->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(hiddenItemCheck(QModelIndex, QModelIndex)));
 
+
+
     QStandardItemModel *model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
     ui->tableView->setModel(model);
@@ -364,5 +367,39 @@ void MainWindow::setupModels()
 void MainWindow::on_saveProfile_clicked()
 {
     ProfileManagerGen3* manager = new ProfileManagerGen3();
-    manager->show();
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    manager->exec();
+}
+
+void MainWindow::updateProfiles()
+{
+    profiles = ProfileGen3::loadProfileList();
+
+    QStandardItemModel *profile = new QStandardItemModel(profiles.size() + 1, 1, this);
+    QStandardItem* firstProfile = new QStandardItem(tr("None"));
+    profile->setItem(0, firstProfile);
+    for(int i = 0; i < (int)profiles.size(); i++)
+    {
+        QStandardItem* item = new QStandardItem(profiles.at(i).profileName);
+        profile->setItem(i + 1, item);
+    }
+    ui->comboBoxProfiles->setModel(profile);
+}
+
+void MainWindow::on_comboBoxProfiles_currentIndexChanged(int index)
+{
+    if(index == 0)
+    {
+        ui->id->setReadOnly(false);
+        ui->sid->setReadOnly(false);
+        ui->id->setText("");
+        ui->sid->setText("");
+    }
+    else
+    {
+        ui->id->setReadOnly(true);
+        ui->sid->setReadOnly(true);
+        ui->id->setText(QString::number(profiles.at(index - 1).tid));
+        ui->sid->setText(QString::number(profiles.at(index - 1).sid));
+    }
 }

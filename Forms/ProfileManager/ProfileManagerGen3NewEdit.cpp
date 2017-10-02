@@ -34,7 +34,7 @@ void ProfileManagerGen3NewEdit::on_pushButtonAccept_clicked()
     input = ui->lineEditProfile->text().trimmed();
     if(input == "")
     {
-        error.setText("Please enter a Profile Name.");
+        error.setText(tr("Please enter a Profile Name."));
         error.exec();
         return;
     }
@@ -45,13 +45,13 @@ void ProfileManagerGen3NewEdit::on_pushButtonAccept_clicked()
         uint32_t tid = input.toUInt(&pass, 10);
         if (!pass)
         {
-            error.setText("Please enter Trainer ID in valid decimal format.");
+            error.setText(tr("Please enter Trainer ID in valid decimal format."));
             error.exec();
             return;
         }
         else if (tid > 0xffff)
         {
-            error.setText("Please enter a value lower then 65536.");
+            error.setText(tr("Please enter a value lower then 65536."));
             error.exec();
             return;
         }
@@ -63,13 +63,13 @@ void ProfileManagerGen3NewEdit::on_pushButtonAccept_clicked()
         uint32_t sid = input.toUInt(&pass, 10);
         if (!pass)
         {
-            error.setText("Please enter Trainer SID in valid decimal format.");
+            error.setText(tr("Please enter Trainer SID in valid decimal format."));
             error.exec();
             return;
         }
         else if (sid > 0xffff)
         {
-            error.setText("Please enter a value lower then 65536.");
+            error.setText(tr("Please enter a value lower then 65536."));
             error.exec();
             return;
         }
@@ -84,4 +84,17 @@ void ProfileManagerGen3NewEdit::on_pushButtonAccept_clicked()
 void ProfileManagerGen3NewEdit::on_pushButtonCancel_clicked()
 {
     done(QDialog::Rejected);
+}
+
+void ProfileManagerGen3NewEdit::on_comboBoxVersion_currentIndexChanged(int index)
+{
+    if(index > 1)
+    {
+        ui->checkBoxDeadBattery->setEnabled(false);
+        ui->checkBoxDeadBattery->setChecked(false);
+    }
+    else
+    {
+        ui->checkBoxDeadBattery->setEnabled(true);
+    }
 }

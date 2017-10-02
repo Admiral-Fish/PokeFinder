@@ -18,6 +18,8 @@ public:
 
     static std::vector<QList<QStandardItem *>>& loadProfiles();
 
+    static std::vector<ProfileGen3>& loadProfileList();
+
     static QString getVersion(int i);
 
     static QString getLanguage(int i);

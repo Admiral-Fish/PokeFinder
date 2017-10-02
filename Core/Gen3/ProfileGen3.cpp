@@ -381,24 +381,102 @@ std::vector<QList<QStandardItem *>>& ProfileGen3::loadProfiles()
     return profileList;
 }
 
+std::vector<ProfileGen3>& ProfileGen3::loadProfileList()
+{
+    static std::vector<ProfileGen3> profileList;
+    profileList.clear();
+
+    bool pass;
+    QDomDocument doc;
+    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
+    if(file.open(QIODevice::ReadOnly | QFile::Text))
+    {
+        doc.setContent(&file);
+
+        QDomElement profiles = doc.documentElement();
+        QDomNode domNode = profiles.firstChild();
+        while(!domNode.isNull())
+        {
+            QDomElement domElement = domNode.toElement();
+            if(!domElement.isNull())
+            {
+                if(domElement.tagName() == "Gen3")
+                {
+                    QDomNode info = domElement.firstChild();
+                    QString profileName;
+                    int version;
+                    int language;
+                    QString tid;
+                    QString sid;
+                    bool deadBattery;
+                    while(!info.isNull())
+                    {
+                        QDomElement infoElement = info.toElement();
+                        if(!infoElement.isNull())
+                        {
+                            const QString tagName(infoElement.tagName());
+                            if(tagName == "profileName")
+                            {
+                                profileName = infoElement.text();
+                            }
+                            else if(tagName == "version")
+                            {
+                                version = infoElement.text().toInt(&pass, 10);
+                            }
+                            else if(tagName == "language")
+                            {
+                                language = infoElement.text().toInt(&pass, 10);
+                            }
+                            else if(tagName == "tid")
+                            {
+                                tid = infoElement.text();
+                            }
+                            else if(tagName == "sid")
+                            {
+                                sid = infoElement.text();
+                            }
+                            else if(tagName == "deadBattery")
+                            {
+                                deadBattery = (infoElement.text() == "1" ? true : false);
+                            }
+
+                            info = info.nextSibling();
+                        }
+                    }
+
+                    ProfileGen3 profile(profileName, version, tid.toUInt(&pass, 10), sid.toUInt(&pass, 10), language, deadBattery, true);
+
+                    profileList.push_back(profile);
+
+                }
+            }
+            domNode = domNode.nextSibling();
+        }
+
+        file.close();
+    }
+
+    return profileList;
+}
+
 QString ProfileGen3::getVersion(int i)
 {
     switch(i)
     {
     case 0:
-        return "Ruby";
+        return QObject::tr("Ruby");
     case 1:
-        return "Sapphire";
+        return QObject::tr("Sapphire");
     case 2:
-        return "Fire Red";
+        return QObject::tr("Fire Red");
     case 3:
-        return "Leaf Green";
+        return QObject::tr("Leaf Green");
     case 4:
-        return "Emerald";
+        return QObject::tr("Emerald");
     case 5:
-        return "XD";
+        return QObject::tr("XD");
     case 6:
-        return "Colosseum";
+        return QObject::tr("Colosseum");
     default:
         return "-";
     }
@@ -427,31 +505,31 @@ QString ProfileGen3::getLanguage(int i)
 
 int ProfileGen3::getVersionIndex(QString s)
 {
-    if(s.toLower() == "ruby")
+    if(s.toLower() == QObject::tr("Ruby").toLower())
     {
         return 0;
     }
-    else if(s.toLower() == "sapphire")
+    else if(s.toLower() == QObject::tr("Sapphire").toLower())
     {
         return 1;
     }
-    else if(s.toLower() == "fire red")
+    else if(s.toLower() == QObject::tr("Fire Red").toLower())
     {
         return 2;
     }
-    else if(s.toLower() == "leaf green")
+    else if(s.toLower() == QObject::tr("Leaf Green").toLower())
     {
         return 3;
     }
-    else if(s.toLower() == "emerald")
+    else if(s.toLower() == QObject::tr("Emerald").toLower())
     {
         return 4;
     }
-    else if(s.toLower() == "xd")
+    else if(s.toLower() == QObject::tr("XD").toLower())
     {
         return 5;
     }
-    else if(s.toLower() == "colosseum")
+    else if(s.toLower() == QObject::tr("Colosseum").toLower())
     {
         return 6;
     }

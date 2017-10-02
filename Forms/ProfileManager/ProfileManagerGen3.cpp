@@ -2,7 +2,7 @@
 #include "ui_ProfileManagerGen3.h"
 
 ProfileManagerGen3::ProfileManagerGen3(QWidget *parent) :
-    QWidget(parent),
+    QDialog(parent),
     ui(new Ui::ProfileManagerGen3)
 {
     ui->setupUi(this);
@@ -106,6 +106,7 @@ void ProfileManagerGen3::registerProfile(QString profileName, int version, int l
 
 void ProfileManagerGen3::on_pushButtonOk_clicked()
 {
+    emit updateProfiles();
     this->close();
 }
 
@@ -135,7 +136,7 @@ void ProfileManagerGen3::on_pushButtonDelete_clicked()
     QItemSelectionModel *selections = ui->tableView->selectionModel();
     if(selections->selectedRows().count() != 1)
     {
-        error.setText("Please select one row.");
+        error.setText(tr("Please select one row."));
         error.exec();
         return;
     }
