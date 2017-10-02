@@ -46,7 +46,7 @@ QString Frame::GetFemale75()
 // Returns string equivalent of nature
 QString Frame::GetNature()
 {
-    return natures[Nature::GetReversedNature(nature)];
+    return natures[nature];
 }
 
 // Returns string equivalent of hidden power

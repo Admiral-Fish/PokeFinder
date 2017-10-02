@@ -31,7 +31,7 @@
 class Frame
 {
 protected:
-    std::vector<QString> natures = Nature::GetNatures();
+    std::vector<QString> natures = Nature::GetFrameNatures();
 
     std::vector<QString> powers = Power::GetPowers();
 
