@@ -31,6 +31,8 @@ public:
 
     static std::vector<QString> GetNatures();
 
+    static std::vector<QString> GetFrameNatures();
+
     static uint32_t GetAdjustedNature(uint32_t nature);
 
     static uint32_t GetReversedNature(uint32_t nature);

@@ -231,10 +231,10 @@
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1097"/>
-        <location filename="../Forms/mainwindow.cpp" line="274"/>
-        <location filename="../Forms/mainwindow.cpp" line="300"/>
-        <location filename="../Forms/mainwindow.cpp" line="308"/>
-        <location filename="../Forms/mainwindow.cpp" line="323"/>
+        <location filename="../Forms/mainwindow.cpp" line="281"/>
+        <location filename="../Forms/mainwindow.cpp" line="307"/>
+        <location filename="../Forms/mainwindow.cpp" line="329"/>
+        <location filename="../Forms/mainwindow.cpp" line="344"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
@@ -294,118 +294,295 @@
         <translation>Selvatici</translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1224"/>
+        <location filename="../Forms/mainwindow.ui" line="1229"/>
         <source>Egg</source>
         <translation>Uova</translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1229"/>
+        <location filename="../Forms/mainwindow.ui" line="1234"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1234"/>
-        <source>Time Finder</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/mainwindow.ui" line="1239"/>
+        <location filename="../Forms/mainwindow.ui" line="1224"/>
         <source>Spread Seacher</source>
         <translation>Trova Spread</translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1255"/>
+        <location filename="../Forms/mainwindow.ui" line="1250"/>
         <source>Language</source>
         <translation>Lingua</translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>PID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>!!!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>Nature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>Ability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>HP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>Atk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>Def</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>SpA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>SpD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>Spe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>Gender</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="225"/>
-        <location filename="../Forms/mainwindow.cpp" line="337"/>
+        <location filename="../Forms/mainwindow.cpp" line="232"/>
+        <location filename="../Forms/mainwindow.cpp" line="358"/>
         <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfileManagerGen3</name>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="26"/>
+        <source>New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="49"/>
+        <source>Done</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="62"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="75"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <source>Profile Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <source>Language</source>
+        <translation type="unfinished">Lingua</translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <source>TID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <source>SID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <source>Dead Battery</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfileManagerGen3NewEdit</name>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="26"/>
+        <source>Profile Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="49"/>
+        <source>Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="63"/>
+        <source>Ruby</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="68"/>
+        <source>Sapphire</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="73"/>
+        <source>Fire Red</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="78"/>
+        <source>Leaf Green</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="83"/>
+        <source>Emerald</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="88"/>
+        <source>XD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="93"/>
+        <source>Colosseum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="107"/>
+        <source>TID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="130"/>
+        <source>SID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="153"/>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="167"/>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="172"/>
+        <source>ENG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="177"/>
+        <source>SPA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="182"/>
+        <source>FRE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="187"/>
+        <source>ITA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="192"/>
+        <source>DEU</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="197"/>
+        <source>JPN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="224"/>
+        <source>Dead Battery?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="237"/>
+        <source>Accept</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="250"/>
+        <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -413,126 +590,151 @@
     <name>QObject</name>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="36"/>
         <source>Hardy</source>
         <translation>Ardita</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="36"/>
         <source>Lonely</source>
         <translation>Schiva</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="24"/>
+        <location filename="../Core/Objects/Nature.cpp" line="36"/>
         <source>Brave</source>
         <translation>Audace</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="24"/>
+        <location filename="../Core/Objects/Nature.cpp" line="36"/>
         <source>Adamant</source>
         <translation>Decisa</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="37"/>
         <source>Naughty</source>
         <translation>Birbona</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="24"/>
+        <location filename="../Core/Objects/Nature.cpp" line="37"/>
         <source>Bold</source>
         <translation>Sicura</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="37"/>
         <source>Docile</source>
         <translation>Docile</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="37"/>
         <source>Relaxed</source>
         <translation>Placida</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="38"/>
         <source>Impish</source>
         <translation>Scaltra</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="38"/>
         <source>Lax</source>
         <translation>Fiacca</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="38"/>
         <source>Timid</source>
         <translation>Timida</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="38"/>
         <source>Hasty</source>
         <translation>Lesta</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="30"/>
+        <location filename="../Core/Objects/Nature.cpp" line="39"/>
         <source>Serious</source>
         <translation>Seria</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="39"/>
         <source>Jolly</source>
         <translation>Allegra</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="39"/>
         <source>Naive</source>
         <translation>Ingenua</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="39"/>
         <source>Modest</source>
         <translation>Modesta</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="40"/>
         <source>Mild</source>
         <translation>Mite</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="40"/>
         <source>Quiet</source>
         <translation>Quieta</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="40"/>
         <source>Bashful</source>
         <translation>Ritrosa</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="40"/>
         <source>Rash</source>
         <translation>Ardente</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="24"/>
+        <location filename="../Core/Objects/Nature.cpp" line="41"/>
         <source>Calm</source>
         <translation>Calma</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="41"/>
         <source>Gentle</source>
         <translation>Gentile</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="41"/>
         <source>Sassy</source>
         <translation>Vivace</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="25"/>
+        <location filename="../Core/Objects/Nature.cpp" line="41"/>
         <source>Careful</source>
         <translation>Cauta</translation>
     </message>
     <message>
         <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="42"/>
         <source>Quirky</source>
         <translation>Furba</translation>
     </message>
