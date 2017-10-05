@@ -73,7 +73,10 @@ SOURCES += \
         Core/RNG/RNGEuclidean.cpp \
     Core/Gen3/ProfileGen3.cpp \
     Forms/ProfileManager/ProfileManagerGen3.cpp \
-    Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp
+    Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp \
+    Util/Validators/IDValidator.cpp \
+    Util/Validators/SeedValidator.cpp \
+    Util/Validators/FrameValidator.cpp
 
 HEADERS += \
         Forms/mainwindow.h \
@@ -101,7 +104,10 @@ HEADERS += \
     Core/Objects/Profile.hpp \
     Core/Gen3/ProfileGen3.hpp \
     Forms/ProfileManager/ProfileManagerGen3.hpp \
-    Forms/ProfileManager/ProfileManagerGen3NewEdit.hpp
+    Forms/ProfileManager/ProfileManagerGen3NewEdit.hpp \
+    Util/Validators/IDValidator.hpp \
+    Util/Validators/SeedValidator.hpp \
+    Util/Validators/FrameValidator.hpp
 
 FORMS += \
         Forms/mainwindow.ui \

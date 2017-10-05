@@ -40,6 +40,9 @@
 #include <QDomDocument>
 #include <Core/Gen3/ProfileGen3.hpp>
 #include <Forms/ProfileManager/ProfileManagerGen3.hpp>
+#include <Util/Validators/IDValidator.hpp>
+#include <Util/Validators/SeedValidator.hpp>
+#include <Util/Validators/FrameValidator.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -85,6 +88,10 @@ public:
     ~MainWindow();
 
     std::vector<ProfileGen3> profiles;
+
+    QValidator *idVal;
+    QValidator *seedVal;
+    QValidator *frameVal;
 
 };
 
