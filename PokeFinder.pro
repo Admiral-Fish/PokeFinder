@@ -76,7 +76,7 @@ SOURCES += \
         Core/RNG/RNGCache.cpp \
         Util/Validators/IDValidator.cpp \
         Util/Validators/SeedValidator.cpp \
-        Util/Validators/FrameValidator.cpp
+        Util/Validators/FrameValidator.cpp \
         Core/RNG/RNGEuclidean.cpp
 
 HEADERS += \
