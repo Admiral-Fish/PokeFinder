@@ -314,14 +314,28 @@ void MainWindow::checkLineEdits(QString str)
     QString sid = ui->sid->text();
     QString startingFrame = ui->startingFrame->text();
     QString maxResults = ui->maxResults->text();
-    QString initialSeed = ui->initialSeed->text();
+    QString initialSeed = ui->initialSeed->text().toUpper();
+    ui->initialSeed->setText(initialSeed);
     if(idVal->validate(id, pos) == QValidator::Acceptable && idVal->validate(sid, pos) == QValidator::Acceptable && frameVal->validate(startingFrame, pos) == QValidator::Acceptable && frameVal->validate(maxResults, pos) == QValidator::Acceptable && seedVal->validate(initialSeed, pos) == QValidator::Acceptable)
     {
         ui->generate->setEnabled(true);
     }
     else
     {
+        idVal->fixup(id);
+        idVal->fixup(sid);
+        frameVal->fixup(startingFrame);
+        frameVal->fixup(maxResults);
+        seedVal->fixup(initialSeed);
+
+        ui->id->setText(id);
+        ui->sid->setText(sid);
+        ui->startingFrame->setText(startingFrame);
+        ui->maxResults->setText(maxResults);
+        ui->initialSeed->setText(initialSeed);
+
         ui->generate->setEnabled(false);
+        checkLineEdits(str);
     }
 }
 

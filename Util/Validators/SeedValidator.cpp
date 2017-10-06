@@ -5,6 +5,11 @@ SeedValidator::SeedValidator(QObject *parent) : QValidator(parent)
 
 }
 
+void SeedValidator::fixup(QString & input) const
+{
+    input.remove(QRegExp("[^0-9A-F]"));
+}
+
 QValidator::State SeedValidator::validate(QString & input, int & pos) const
 {
     bool pass;

@@ -5,6 +5,11 @@ IDValidator::IDValidator(QObject *parent) : QValidator(parent)
 
 }
 
+void IDValidator::fixup(QString & input) const
+{
+    input.remove(QRegExp("[^0-9]"));
+}
+
 QValidator::State IDValidator::validate(QString & input, int & pos) const
 {
     bool pass;

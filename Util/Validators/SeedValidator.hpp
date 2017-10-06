@@ -8,6 +8,8 @@ class SeedValidator : public QValidator
 public:
     SeedValidator(QObject* parent = 0);
 
+    void fixup(QString &) const;
+
     QValidator::State validate(QString &, int &) const;
 };
 

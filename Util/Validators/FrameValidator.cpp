@@ -5,6 +5,11 @@ FrameValidator::FrameValidator(QObject *parent) : QValidator(parent)
 
 }
 
+void FrameValidator::fixup(QString & input) const
+{
+    input.remove(QRegExp("[^0-9]"));
+}
+
 QValidator::State FrameValidator::validate(QString & input, int & pos) const
 {
     bool pass;
