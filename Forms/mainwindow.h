@@ -85,6 +85,10 @@ private slots:
 
     void checkLineEdits(QString str);
 
+    void on_anyNature_clicked();
+
+    void on_anyHiddenPower_clicked();
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

@@ -1216,6 +1216,42 @@ QCheckBox::indicator:checked {
         <string>Gender Ratio:</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="anyNature">
+       <property name="geometry">
+        <rect>
+         <x>470</x>
+         <y>80</y>
+         <width>51</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: yellow;
+}</string>
+       </property>
+       <property name="text">
+        <string>Any</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="anyHiddenPower">
+       <property name="geometry">
+        <rect>
+         <x>470</x>
+         <y>110</y>
+         <width>51</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: yellow;
+}</string>
+       </property>
+       <property name="text">
+        <string>Any</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tabWild">

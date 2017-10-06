@@ -345,3 +345,26 @@ void MainWindow::on_comboBoxProfiles_currentIndexChanged(int index)
         ui->sid->setText(QString::number(profiles.at(index - 1).sid));
     }
 }
+
+void MainWindow::on_anyNature_clicked()
+{
+    for(int i = 1; i < 26; i++)
+    {
+        ui->comboBoxNature->model()->setData(ui->comboBoxNature->model()->index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
+
+    }
+
+    ui->comboBoxNature->model()->setData(ui->comboBoxNature->model()->index(0, 0), tr("Any"));
+
+}
+
+void MainWindow::on_anyHiddenPower_clicked()
+{
+    for(int i = 1; i < 17; i++)
+    {
+        ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
+
+    }
+
+    ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), tr("Any"));
+}
