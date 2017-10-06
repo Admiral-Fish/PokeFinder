@@ -7,26 +7,22 @@ SeedValidator::SeedValidator(QObject *parent) : QValidator(parent)
 
 QValidator::State SeedValidator::validate(QString & input, int & pos) const
 {
-    uint32_t seed;
     bool pass;
+    uint32_t seed = input.toUInt(&pass, 16);;
     (void) pos;
-    if (input != "")
+
+    if (input == "")
     {
-        seed = input.toUInt(&pass, 16);
-        if (!pass)
-        {
-            return QValidator::Invalid;
-        }
-        else if(seed > 0xffffffff)
-        {
-            return QValidator::Invalid;
-        }
+        return QValidator::Acceptable;
     }
-    else
+    else if (!pass)
+    {
+        return QValidator::Invalid;
+    }
+    else if(seed > 0xffffffff)
     {
         return QValidator::Invalid;
     }
 
     return QValidator::Acceptable;
-
 }

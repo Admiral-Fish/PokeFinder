@@ -7,22 +7,19 @@ IDValidator::IDValidator(QObject *parent) : QValidator(parent)
 
 QValidator::State IDValidator::validate(QString & input, int & pos) const
 {
-    (void) pos;
     bool pass;
-    uint32_t tid;
-    if (input != "")
+    uint32_t tid = input.toUInt(&pass, 10);
+    (void) pos;
+
+    if (input == "")
     {
-        tid = input.toUInt(&pass, 10);
-        if (!pass)
-        {
-            return QValidator::Invalid;
-        }
-        else if (tid > 0xffff)
-        {
-            return QValidator::Invalid;
-        }
+        return QValidator::Acceptable;
     }
-    else
+    else if (!pass)
+    {
+        return QValidator::Invalid;
+    }
+    else if (tid > 0xffff)
     {
         return QValidator::Invalid;
     }

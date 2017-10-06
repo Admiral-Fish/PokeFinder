@@ -55,20 +55,20 @@ void MainWindow::changeEvent(QEvent* event)
     {
         switch(event->type())
         {
-        case QEvent::LanguageChange:
-            ui->retranslateUi(this);
-            setupModels();
-            break;
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                setupModels();
+                break;
 
-        case QEvent::LocaleChange:
-        {
-            QString locale = QLocale::system().name();
-            locale.truncate(locale.lastIndexOf('_'));
-            loadLanguage(locale);
-        }
-            break;
-        default:
-            break;
+            case QEvent::LocaleChange:
+            {
+                QString locale = QLocale::system().name();
+                locale.truncate(locale.lastIndexOf('_'));
+                loadLanguage(locale);
+            }
+                break;
+            default:
+                break;
         }
     }
     QMainWindow::changeEvent(event);
@@ -138,14 +138,11 @@ void MainWindow::loadLanguage(const QString& rLanguage)
 
 void MainWindow::on_generate_clicked()
 {
-
-    bool pass;
-    uint32_t seed = ui->initialSeed->text().toUInt(&pass, 16);
-    uint32_t startingFrame = ui->startingFrame->text().toUInt(&pass, 10);
-    uint32_t maxResults = ui->maxResults->text().toUInt(&pass, 10);
-    uint32_t tid = ui->id->text().toUInt(&pass, 10);
-    uint32_t sid = ui->sid->text().toUInt(&pass, 10);
-
+    uint32_t seed = ui->initialSeed->text().toUInt(NULL, 16);
+    uint32_t startingFrame = ui->startingFrame->text().toUInt(NULL, 10);
+    uint32_t maxResults = ui->maxResults->text().toUInt(NULL, 10);
+    uint32_t tid = ui->id->text().toUInt(NULL, 10);
+    uint32_t sid = ui->sid->text().toUInt(NULL, 10);
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
