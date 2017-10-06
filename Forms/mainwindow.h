@@ -83,6 +83,8 @@ private slots:
 
     void on_comboBoxProfiles_currentIndexChanged(int index);
 
+    void checkLineEdits(QString str);
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

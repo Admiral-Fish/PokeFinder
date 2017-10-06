@@ -140,64 +140,12 @@ void MainWindow::on_generate_clicked()
 {
 
     bool pass;
-    QMessageBox error;
-    QString input;
-    int pos = 0;
+    uint32_t seed = ui->initialSeed->text().toUInt(&pass, 16);
+    uint32_t startingFrame = ui->startingFrame->text().toUInt(&pass, 10);
+    uint32_t maxResults = ui->maxResults->text().toUInt(&pass, 10);
+    uint32_t tid = ui->id->text().toUInt(&pass, 10);
+    uint32_t sid = ui->sid->text().toUInt(&pass, 10);
 
-    uint32_t seed = 0;
-    input = ui->initialSeed->text();
-    if(seedVal->validate(input, pos) == QValidator::Acceptable)
-        seed = input.toUInt(&pass, 16);
-    else
-    {
-        error.setText("Please enter seed in valid hexidecimal format.");
-        error.exec();
-        return;
-    }
-
-    uint32_t startingFrame = 1;
-    input = ui->startingFrame->text();
-    if(frameVal->validate(input, pos) == QValidator::Acceptable)
-        startingFrame = input.toUInt(&pass, 10);
-    else
-    {
-        error.setText("Please enter starting frame in valid decimal format with a value less than 4294967296.");
-        error.exec();
-        return;
-    }
-
-    uint32_t maxResults = 100000;
-    input = ui->maxResults->text();
-    if(frameVal->validate(input, pos) == QValidator::Acceptable)
-        maxResults = input.toUInt(&pass, 10);
-    else
-    {
-        error.setText("Please enter max results in valid decimal format with a value less than 4294967296.");
-        error.exec();
-        return;
-    }
-
-    uint32_t tid = 12345;
-    input = ui->id->text();
-    if(idVal->validate(input, pos) == QValidator::Acceptable)
-        tid = input.toUInt(&pass, 10);
-    else
-    {
-        error.setText("Please enter Trainer ID in valid decimal format with a value less than 65536.");
-        error.exec();
-        return;
-    }
-
-    uint32_t sid = 54321;
-    input = ui->sid->text();
-    if(idVal->validate(input, pos) == QValidator::Acceptable)
-        sid = input.toUInt(&pass, 10);
-    else
-    {
-        error.setText("Please enter Trainer SID in valid decimal format with a value less than 65536.");
-        error.exec();
-        return;
-    }
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
@@ -332,6 +280,11 @@ void MainWindow::setupModels()
     ui->tableView->verticalHeader()->setVisible(false);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
+    connect(ui->id, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->sid, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->startingFrame, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->maxResults, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->initialSeed, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
 }
 
 void MainWindow::on_saveProfile_clicked()
@@ -354,6 +307,25 @@ void MainWindow::updateProfiles()
         profile->setItem(i + 1, item);
     }
     ui->comboBoxProfiles->setModel(profile);
+}
+
+void MainWindow::checkLineEdits(QString str)
+{
+    (void) str;
+    int pos = 0;
+    QString id = ui->id->text();
+    QString sid = ui->sid->text();
+    QString startingFrame = ui->startingFrame->text();
+    QString maxResults = ui->maxResults->text();
+    QString initialSeed = ui->initialSeed->text();
+    if(idVal->validate(id, pos) == QValidator::Acceptable && idVal->validate(sid, pos) == QValidator::Acceptable && frameVal->validate(startingFrame, pos) == QValidator::Acceptable && frameVal->validate(maxResults, pos) == QValidator::Acceptable && seedVal->validate(initialSeed, pos) == QValidator::Acceptable)
+    {
+        ui->generate->setEnabled(true);
+    }
+    else
+    {
+        ui->generate->setEnabled(false);
+    }
 }
 
 void MainWindow::on_comboBoxProfiles_currentIndexChanged(int index)
