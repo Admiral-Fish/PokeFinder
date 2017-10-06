@@ -36,6 +36,7 @@ protected:
     std::vector<uint32_t> rngList;
     uint32_t sid;
     uint32_t tid;
+    uint32_t offset;
 
 public:
     Method frameType = Method1;

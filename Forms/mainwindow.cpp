@@ -143,13 +143,14 @@ void MainWindow::on_generate_clicked()
     uint32_t maxResults = ui->maxResults->text().toUInt(NULL, 10);
     uint32_t tid = ui->id->text().toUInt(NULL, 10);
     uint32_t sid = ui->sid->text().toUInt(NULL, 10);
+    uint32_t offset = ui->delay->text().toUInt(NULL, 10);
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
 
     int genderRatioIndex = ui->comboBoxGenderRatio->currentIndex();
-    GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid);
+    GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid, offset);
     FrameCompare compare = FrameCompare(ui->comboBoxHP->currentIndex(), ui->spinBoxHP->value(), ui->comboBoxAtk->currentIndex(), ui->spinBoxAtk->value(), ui->comboBoxDef->currentIndex(), ui->spinBoxDef->value(), ui->comboBoxSpA->currentIndex(), ui->spinBoxSpA->value(), ui->comboBoxSpD->currentIndex(), ui->spinBoxSpD->value(), ui->comboBoxSpe->currentIndex(), ui->spinBoxSpe->value(), ui->comboBoxGender->currentIndex(), genderRatioIndex, ui->comboBoxAbility->currentIndex(), ui->comboBoxNature, ui->comboBoxHiddenP, ui->checkBoxShiny->isChecked(), ui->checkBoxDisable->isChecked());
     int method = ui->comboBoxMethod->currentIndex();
 
@@ -282,6 +283,7 @@ void MainWindow::setupModels()
     connect(ui->startingFrame, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
     connect(ui->maxResults, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
     connect(ui->initialSeed, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->delay, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
 }
 
 void MainWindow::on_saveProfile_clicked()
@@ -315,8 +317,9 @@ void MainWindow::checkLineEdits(QString str)
     QString startingFrame = ui->startingFrame->text();
     QString maxResults = ui->maxResults->text();
     QString initialSeed = ui->initialSeed->text().toUpper();
+    QString delay = ui->delay->text();
     ui->initialSeed->setText(initialSeed);
-    if(idVal->validate(id, pos) == QValidator::Acceptable && idVal->validate(sid, pos) == QValidator::Acceptable && frameVal->validate(startingFrame, pos) == QValidator::Acceptable && frameVal->validate(maxResults, pos) == QValidator::Acceptable && seedVal->validate(initialSeed, pos) == QValidator::Acceptable)
+    if(idVal->validate(id, pos) == QValidator::Acceptable && idVal->validate(sid, pos) == QValidator::Acceptable && frameVal->validate(startingFrame, pos) == QValidator::Acceptable && frameVal->validate(maxResults, pos) == QValidator::Acceptable && seedVal->validate(initialSeed, pos) == QValidator::Acceptable && frameVal->validate(delay, pos))
     {
         ui->generate->setEnabled(true);
     }
@@ -326,6 +329,7 @@ void MainWindow::checkLineEdits(QString str)
         idVal->fixup(sid);
         frameVal->fixup(startingFrame);
         frameVal->fixup(maxResults);
+        frameVal->fixup(delay);
         seedVal->fixup(initialSeed);
 
         ui->id->setText(id);
@@ -333,6 +337,7 @@ void MainWindow::checkLineEdits(QString str)
         ui->startingFrame->setText(startingFrame);
         ui->maxResults->setText(maxResults);
         ui->initialSeed->setText(initialSeed);
+        ui->delay->setText(delay);
 
         ui->generate->setEnabled(false);
         checkLineEdits(str);
@@ -378,4 +383,17 @@ void MainWindow::on_anyHiddenPower_clicked()
     }
 
     ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), tr("Any"));
+}
+
+void MainWindow::on_checkBoxDelay_clicked()
+{
+    if(ui->checkBoxDelay->isChecked())
+    {
+        ui->delay->setEnabled(true);
+    }
+    else
+    {
+        ui->delay->setEnabled(false);
+        ui->delay->setText("");
+    }
 }

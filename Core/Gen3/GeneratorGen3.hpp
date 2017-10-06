@@ -47,7 +47,7 @@ public:
 
     GeneratorGen3();
 
-    GeneratorGen3(uint32_t maxResults, uint32_t initialFrame, uint32_t initialSeed, uint32_t tid, uint32_t sid);
+    GeneratorGen3(uint32_t maxResults, uint32_t initialFrame, uint32_t initialSeed, uint32_t tid, uint32_t sid, uint32_t offset);
 
     std::vector<FrameGen3> Generate(FrameCompare compare);
 

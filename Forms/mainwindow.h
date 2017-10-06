@@ -89,6 +89,8 @@ private slots:
 
     void on_anyHiddenPower_clicked();
 
+    void on_checkBoxDelay_clicked();
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

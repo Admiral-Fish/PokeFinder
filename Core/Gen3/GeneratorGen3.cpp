@@ -31,13 +31,14 @@ GeneratorGen3::GeneratorGen3()
 }
 
 // Constructor given user defined parameters
-GeneratorGen3::GeneratorGen3(uint32_t maxResults, uint32_t initialFrame, uint32_t initialSeed, uint32_t tid, uint32_t sid)
+GeneratorGen3::GeneratorGen3(uint32_t maxResults, uint32_t initialFrame, uint32_t initialSeed, uint32_t tid, uint32_t sid, uint32_t offset)
 {
     this->maxResults = maxResults;
     this->initialFrame = initialFrame;
     this->initialSeed = initialSeed;
     this->tid = tid;
     this->sid = sid;
+    this->offset = offset;
     psv = tid ^ sid;
 }
 
@@ -389,7 +390,7 @@ std::vector<FrameGen3> GeneratorGen3::Generate(FrameCompare compare)
     else
         rng = PokeRNG(0);
     rng.seed = initialSeed;
-    rng.AdvanceFrames(initialFrame - 1);
+    rng.AdvanceFrames(initialFrame - 1 + offset);
 
     if (frameType == Method1 || frameType == MethodH1)
     {
