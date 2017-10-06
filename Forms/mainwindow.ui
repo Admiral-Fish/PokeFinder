@@ -1296,6 +1296,9 @@ QCheckBox::indicator:checked {
        <property name="text">
         <string/>
        </property>
+       <property name="maxLength">
+        <number>10</number>
+       </property>
       </widget>
       <widget class="QLabel" name="labelF">
        <property name="geometry">
