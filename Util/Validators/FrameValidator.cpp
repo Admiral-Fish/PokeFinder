@@ -8,6 +8,11 @@ FrameValidator::FrameValidator(QObject *parent) : QValidator(parent)
 void FrameValidator::fixup(QString & input) const
 {
     input.remove(QRegExp("[^0-9]"));
+    uint32_t temp = input.toUInt(NULL, 10);
+    if(temp > UINT32_MAX)
+    {
+        input.remove(input.length() - 1, 1);
+    }
 }
 
 QValidator::State FrameValidator::validate(QString & input, int & pos) const
