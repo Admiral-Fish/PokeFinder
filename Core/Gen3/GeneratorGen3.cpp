@@ -219,7 +219,7 @@ bool cuteCharm75F(uint32_t pid)
     return (pid & 0xff) < 191;
 }
 
-// Checks if PID fits constraints of 50% male target
+// Checks if PID fits constraints of 25% male target
 bool cuteCharm25M(uint32_t pid)
 {
     return (pid & 0xff) >= 191;
