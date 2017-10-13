@@ -19,7 +19,20 @@
 
 #include "FrameCompare.hpp"
 
-FrameCompare::FrameCompare(int hpEvalIndex, int hpNum, int atkEvalIndex, int atkNum, int defEvalIndex, int defNum, int spaEvalIndex, int spaNum, int spdEvalIndex, int spdNum, int speEvalIndex, int speNum, int genderIndex, int genderRatioIndex, int abilityIndex, QComboBox *natureBox, QComboBox *hiddenPowerBox, bool onlyShiny, bool skipCompare)
+FrameCompare::FrameCompare( int hpEvalIndex,    int hpNum,
+                            int atkEvalIndex,   int atkNum,
+                            int defEvalIndex,   int defNum,
+                            int spaEvalIndex,   int spaNum,
+                            int spdEvalIndex,   int spdNum,
+                            int speEvalIndex,   int speNum,
+                            int genderIndex,
+                            int genderRatioIndex,
+                            int abilityIndex,
+                            QComboBox *natureBox,
+                            QComboBox *hiddenPowerBox,
+                            bool onlyShiny,
+                            bool skipCompare
+                          )
 {
     hp[0] = (uint)hpEvalIndex;
     hp[1] = (uint)hpNum;
