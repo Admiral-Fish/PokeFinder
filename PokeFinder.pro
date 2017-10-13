@@ -51,7 +51,7 @@ TRANSLATIONS += \
         languages/PokeFinder_it.ts \
         languages/PokeFinder_ja.ts \
         languages/PokeFinder_ko.ts \
-        languages/Pokefinder_zh_Hans_CN.ts
+        languages/PokeFinder_zh_Hans_CN.ts
 
 SOURCES += \
         main.cpp \
