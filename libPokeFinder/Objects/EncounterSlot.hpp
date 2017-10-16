@@ -17,40 +17,43 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef FRAMEGEN3_HPP
-#define FRAMEGEN3_HPP
-#include <Core/Objects/Frame.hpp>
-#include <QList>
-#include <QStandardItem>
+#ifndef ENCOUNTERSLOT_HPP
+#define ENCOUNTERSLOT_HPP
+#include <libPokeFinder/Objects/Encounter.hpp>
+#include <cstdint>
+#include <vector>
 
-class FrameGen3: public Frame
+class Range
 {
-
+    
 private:
-    uint32_t ABCDS[5] = { 1, 2, 5, 3, 4 };
-    uint32_t ACDS[4] = { 1, 5, 3, 4 };
-    uint32_t HABCDS[6] = { 0, 1, 2, 5, 3, 4 };
-
+    uint32_t max;
+    uint32_t min;
+    
 public:
-    uint32_t inh1;
-    uint32_t inh2;
-    uint32_t inh3;
-    std::string lockReason;
-    uint32_t occidentary;
-    uint32_t par1;
-    uint32_t par2;
-    uint32_t par3;
 
-    FrameGen3(uint32_t tid, uint32_t sid, uint32_t psv);
+    Range(uint32_t min, uint32_t max);
 
-    QString GetTime();
-
-    void SetIDs(uint32_t tid, uint32_t sid, uint32_t psv);
-
-    void SetIVsManual(uint32_t iv1, uint32_t iv2, uint32_t iv3, uint32_t iv4, uint32_t iv5, uint32_t iv6);
-
-    QList<QStandardItem *> GetTableRow(int genderRatioIndex);
+    uint32_t GetMax();
+    
+    uint32_t GetMin();
+    
 
 };
 
-#endif // FRAMEGEN3_HPP
+class EncounterSlot
+{
+    
+private:
+    static int calcSlot(unsigned int compare, std::vector<Range> ranges);
+    
+public:
+
+    static int HSlot(uint32_t result, Encounter encounterType);
+
+    static int JSlot(uint32_t result, Encounter encounterType);
+    
+    static int KSlot(uint32_t result, Encounter encounterType);
+};
+
+#endif // ENCOUNTERSLOT_HPP

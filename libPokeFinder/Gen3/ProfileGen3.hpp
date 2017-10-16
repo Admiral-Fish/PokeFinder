@@ -1,7 +1,7 @@
 #ifndef PROFILEGEN3_HPP
 #define PROFILEGEN3_HPP
 
-#include <Core/Objects/Profile.hpp>
+#include <libPokeFinder/Objects/Profile.hpp>
 #include <QList>
 #include <QStandardItemModel>
 

@@ -17,37 +17,36 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GENERATOR_HPP
-#define GENERATOR_HPP
-#include <Core/Objects/FrameCompare.hpp>
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/EncounterSlot.hpp>
-#include <Core/Objects/Lead.hpp>
-#include <Core/Objects/Method.hpp>
-#include <Core/RNG/LCRNG.hpp>
+#ifndef RNGEUCLIDEAN_HPP
+#define RNGEUCLIDEAN_HPP
+#include <libPokeFinder/Objects/Method.hpp>
 #include <cstdint>
 #include <vector>
 
-class Generator
+class RNGEuclidean
 {
 
-protected:
-    uint32_t psv;
-    std::vector<uint32_t> rngList;
-    uint32_t sid;
-    uint32_t tid;
-    uint32_t offset;
+private:
+    const uint32_t ADD = 0x269EC3;
+    const uint32_t MULT = 0x343FD;
+    uint64_t base;
+    uint64_t sub1;
+    uint64_t sub2;
+
+    void setupEuclidean(Method FrameType);
 
 public:
-    Method frameType = Method1;
-    Encounter encounterType = Stationary;
-    Lead leadType = None;
-    uint32_t initialSeed;
-    uint32_t initialFrame;
-    uint32_t maxResults;
-    uint32_t synchNature;
-    uint32_t cuteCharm;
+
+    RNGEuclidean(Method FrameType);
+
+    std::vector<uint32_t> RecoverLower16BitsIV(uint32_t first, uint32_t second);
+
+    std::vector<uint32_t> RecoverLower16BitsPID(uint32_t first, uint32_t second);
+
+    std::vector<uint32_t> RecoverLower27BitsChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
+
+    void SwitchEuclidean(Method FrameType);
 
 };
 
-#endif // GENERATOR_HPP
+#endif // RNGEUCLIDEAN_HPP

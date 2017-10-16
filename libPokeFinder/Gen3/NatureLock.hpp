@@ -19,7 +19,7 @@
 
 #ifndef NATURELOCK_HPP
 #define NATURELOCK_HPP
-#include <Core/RNG/LCRNG.hpp>
+#include <libPokeFinder/RNG/LCRNG.hpp>
 #include <cstdint>
 #include <vector>
 

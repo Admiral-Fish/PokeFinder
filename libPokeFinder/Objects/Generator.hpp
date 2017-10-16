@@ -17,37 +17,37 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef RNGCACHE_HPP
-#define RNGCACHE_HPP
-#include <Core/Objects/Method.hpp>
+#ifndef GENERATOR_HPP
+#define GENERATOR_HPP
+#include <libPokeFinder/Objects/FrameCompare.hpp>
+#include <libPokeFinder/Objects/Encounter.hpp>
+#include <libPokeFinder/Objects/EncounterSlot.hpp>
+#include <libPokeFinder/Objects/Lead.hpp>
+#include <libPokeFinder/Objects/Method.hpp>
+#include <libPokeFinder/RNG/LCRNG.hpp>
 #include <cstdint>
 #include <vector>
 
-
-class RNGCache
+class Generator
 {
 
-private:
-    uint32_t add;
-    bool flags[0x10000];
-    uint32_t k;
-    uint8_t low8[0x10000];
-    uint32_t mult;
-
-    void populateArrays();
-
-    void setupCache(Method MethodType);
+protected:
+    uint32_t psv;
+    std::vector<uint32_t> rngList;
+    uint32_t sid;
+    uint32_t tid;
+    uint32_t offset;
 
 public:
-
-    RNGCache(Method MethodType);
-
-    std::vector<uint32_t> RecoverLower16BitsIV(uint32_t first, uint32_t second);
-
-    std::vector<uint32_t> RecoverLower16BitsPID(uint32_t first, uint32_t second);
-
-    void SwitchCache(Method MethodType);
+    Method frameType = Method1;
+    Encounter encounterType = Stationary;
+    Lead leadType = None;
+    uint32_t initialSeed;
+    uint32_t initialFrame;
+    uint32_t maxResults;
+    uint32_t synchNature;
+    uint32_t cuteCharm;
 
 };
 
-#endif // RNGCACHE_HPP
+#endif // GENERATOR_HPP

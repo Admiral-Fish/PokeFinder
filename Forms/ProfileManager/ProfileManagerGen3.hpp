@@ -6,7 +6,7 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QObject>
-#include <Core/Gen3/ProfileGen3.hpp>
+#include <libPokeFinder/Gen3/ProfileGen3.hpp>
 
 namespace Ui {
 class ProfileManagerGen3;

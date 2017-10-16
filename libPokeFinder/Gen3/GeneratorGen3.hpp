@@ -19,9 +19,9 @@
 
 #ifndef GENERATORGEN3_HPP
 #define GENERATORGEN3_HPP
-#include <Core/Gen3/FrameGen3.hpp>
-#include <Core/Objects/Generator.hpp>
-#include <Core/Objects/FrameCompare.hpp>
+#include <libPokeFinder/Gen3/FrameGen3.hpp>
+#include <libPokeFinder/Objects/Generator.hpp>
+#include <libPokeFinder/Objects/FrameCompare.hpp>
 
 class GeneratorGen3: public Generator
 {

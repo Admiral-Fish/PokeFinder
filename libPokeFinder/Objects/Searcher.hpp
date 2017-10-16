@@ -19,12 +19,12 @@
 
 #ifndef SEARCHER_HPP
 #define SEARCHER_HPP
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/EncounterSlot.hpp>
-#include <Core/Objects/FrameCompare.hpp>
-#include <Core/Objects/Lead.hpp>
-#include <Core/Objects/Method.hpp>
-#include <Core/RNG/LCRNG.hpp>
+#include <libPokeFinder/Objects/Encounter.hpp>
+#include <libPokeFinder/Objects/EncounterSlot.hpp>
+#include <libPokeFinder/Objects/FrameCompare.hpp>
+#include <libPokeFinder/Objects/Lead.hpp>
+#include <libPokeFinder/Objects/Method.hpp>
+#include <libPokeFinder/RNG/LCRNG.hpp>
 #include <cstdint>
 #include <vector>
 

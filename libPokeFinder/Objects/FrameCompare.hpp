@@ -22,10 +22,10 @@
 #include <QString>
 #include <QTranslator>
 #include <QComboBox>
-#include <Core/Objects/Nature.hpp>
+#include <libPokeFinder/Objects/Nature.hpp>
 #include <cstdint>
 #include <vector>
-#include <Core/Objects/Frame.hpp>
+#include <libPokeFinder/Objects/Frame.hpp>
 
 class FrameCompare
 {

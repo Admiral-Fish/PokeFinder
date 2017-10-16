@@ -19,11 +19,11 @@
 
 #ifndef FRAME_HPP
 #define FRAME_HPP
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/Lead.hpp>
-#include <Core/Objects/Method.hpp>
-#include <Core/Objects/Nature.hpp>
-#include <Core/Objects/Power.hpp>
+#include <libPokeFinder/Objects/Encounter.hpp>
+#include <libPokeFinder/Objects/Lead.hpp>
+#include <libPokeFinder/Objects/Method.hpp>
+#include <libPokeFinder/Objects/Nature.hpp>
+#include <libPokeFinder/Objects/Power.hpp>
 #include <QString>
 #include <cstdint>
 #include <vector>

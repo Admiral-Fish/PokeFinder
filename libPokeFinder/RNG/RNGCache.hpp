@@ -17,36 +17,37 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef RNGEUCLIDEAN_HPP
-#define RNGEUCLIDEAN_HPP
-#include <Core/Objects/Method.hpp>
+#ifndef RNGCACHE_HPP
+#define RNGCACHE_HPP
+#include <libPokeFinder/Objects/Method.hpp>
 #include <cstdint>
 #include <vector>
 
-class RNGEuclidean
+
+class RNGCache
 {
 
 private:
-    const uint32_t ADD = 0x269EC3;
-    const uint32_t MULT = 0x343FD;
-    uint64_t base;
-    uint64_t sub1;
-    uint64_t sub2;
+    uint32_t add;
+    bool flags[0x10000];
+    uint32_t k;
+    uint8_t low8[0x10000];
+    uint32_t mult;
 
-    void setupEuclidean(Method FrameType);
+    void populateArrays();
+
+    void setupCache(Method MethodType);
 
 public:
 
-    RNGEuclidean(Method FrameType);
+    RNGCache(Method MethodType);
 
     std::vector<uint32_t> RecoverLower16BitsIV(uint32_t first, uint32_t second);
 
     std::vector<uint32_t> RecoverLower16BitsPID(uint32_t first, uint32_t second);
 
-    std::vector<uint32_t> RecoverLower27BitsChannel(uint32_t hp, uint32_t atk, uint32_t def, uint32_t spa, uint32_t spd, uint32_t spe);
-
-    void SwitchEuclidean(Method FrameType);
+    void SwitchCache(Method MethodType);
 
 };
 
-#endif // RNGEUCLIDEAN_HPP
+#endif // RNGCACHE_HPP
