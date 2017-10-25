@@ -12,6 +12,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = PokeFinder
 TEMPLATE = app
+VERSION = 1.1.0
+QMAKE_TARGET_DESCRIPTION = PokeFinder
+QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings

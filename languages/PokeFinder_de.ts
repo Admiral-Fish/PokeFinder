@@ -4,11 +4,6 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="14"/>
-        <source>PokéFinder 1.0.0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="47"/>
         <source>Stationary</source>
         <translation>Stationär</translation>
@@ -69,15 +64,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="337"/>
+        <location filename="../Forms/mainwindow.ui" line="340"/>
         <source>Seed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="236"/>
-        <location filename="../Forms/mainwindow.ui" line="1111"/>
+        <location filename="../Forms/mainwindow.ui" line="1114"/>
         <source>1</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/mainwindow.ui" line="14"/>
+        <source>PokéFinder 1.1.0</source>
+        <translation>PokéFinder 1.1.0</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="255"/>
@@ -95,317 +95,331 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="318"/>
+        <location filename="../Forms/mainwindow.ui" line="321"/>
         <source>Generate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="529"/>
+        <location filename="../Forms/mainwindow.ui" line="532"/>
         <source>Filters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="541"/>
+        <location filename="../Forms/mainwindow.ui" line="544"/>
         <source>HP:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="554"/>
+        <location filename="../Forms/mainwindow.ui" line="557"/>
         <source>Atk:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="567"/>
+        <location filename="../Forms/mainwindow.ui" line="570"/>
         <source>SpA:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="580"/>
+        <location filename="../Forms/mainwindow.ui" line="583"/>
         <source>SpD:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="593"/>
+        <location filename="../Forms/mainwindow.ui" line="596"/>
         <source>Def:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="606"/>
+        <location filename="../Forms/mainwindow.ui" line="609"/>
         <source>Spe:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="635"/>
-        <location filename="../Forms/mainwindow.ui" line="685"/>
-        <location filename="../Forms/mainwindow.ui" line="735"/>
-        <location filename="../Forms/mainwindow.ui" line="785"/>
-        <location filename="../Forms/mainwindow.ui" line="835"/>
-        <location filename="../Forms/mainwindow.ui" line="885"/>
-        <location filename="../Forms/mainwindow.cpp" line="299"/>
+        <location filename="../Forms/mainwindow.ui" line="638"/>
+        <location filename="../Forms/mainwindow.ui" line="688"/>
+        <location filename="../Forms/mainwindow.ui" line="738"/>
+        <location filename="../Forms/mainwindow.ui" line="788"/>
+        <location filename="../Forms/mainwindow.ui" line="838"/>
+        <location filename="../Forms/mainwindow.ui" line="888"/>
+        <location filename="../Forms/mainwindow.cpp" line="301"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="640"/>
-        <location filename="../Forms/mainwindow.ui" line="690"/>
-        <location filename="../Forms/mainwindow.ui" line="740"/>
-        <location filename="../Forms/mainwindow.ui" line="790"/>
-        <location filename="../Forms/mainwindow.ui" line="840"/>
-        <location filename="../Forms/mainwindow.ui" line="890"/>
+        <location filename="../Forms/mainwindow.ui" line="643"/>
+        <location filename="../Forms/mainwindow.ui" line="693"/>
+        <location filename="../Forms/mainwindow.ui" line="743"/>
+        <location filename="../Forms/mainwindow.ui" line="793"/>
+        <location filename="../Forms/mainwindow.ui" line="843"/>
+        <location filename="../Forms/mainwindow.ui" line="893"/>
         <source>==</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="645"/>
-        <location filename="../Forms/mainwindow.ui" line="695"/>
-        <location filename="../Forms/mainwindow.ui" line="745"/>
-        <location filename="../Forms/mainwindow.ui" line="795"/>
-        <location filename="../Forms/mainwindow.ui" line="845"/>
-        <location filename="../Forms/mainwindow.ui" line="895"/>
+        <location filename="../Forms/mainwindow.ui" line="648"/>
+        <location filename="../Forms/mainwindow.ui" line="698"/>
+        <location filename="../Forms/mainwindow.ui" line="748"/>
+        <location filename="../Forms/mainwindow.ui" line="798"/>
+        <location filename="../Forms/mainwindow.ui" line="848"/>
+        <location filename="../Forms/mainwindow.ui" line="898"/>
         <source>&gt;=</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="650"/>
-        <location filename="../Forms/mainwindow.ui" line="700"/>
-        <location filename="../Forms/mainwindow.ui" line="750"/>
-        <location filename="../Forms/mainwindow.ui" line="800"/>
-        <location filename="../Forms/mainwindow.ui" line="850"/>
-        <location filename="../Forms/mainwindow.ui" line="900"/>
+        <location filename="../Forms/mainwindow.ui" line="653"/>
+        <location filename="../Forms/mainwindow.ui" line="703"/>
+        <location filename="../Forms/mainwindow.ui" line="753"/>
+        <location filename="../Forms/mainwindow.ui" line="803"/>
+        <location filename="../Forms/mainwindow.ui" line="853"/>
+        <location filename="../Forms/mainwindow.ui" line="903"/>
         <source>&lt;=</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="655"/>
-        <location filename="../Forms/mainwindow.ui" line="705"/>
-        <location filename="../Forms/mainwindow.ui" line="755"/>
-        <location filename="../Forms/mainwindow.ui" line="805"/>
-        <location filename="../Forms/mainwindow.ui" line="855"/>
-        <location filename="../Forms/mainwindow.ui" line="905"/>
+        <location filename="../Forms/mainwindow.ui" line="658"/>
+        <location filename="../Forms/mainwindow.ui" line="708"/>
+        <location filename="../Forms/mainwindow.ui" line="758"/>
+        <location filename="../Forms/mainwindow.ui" line="808"/>
+        <location filename="../Forms/mainwindow.ui" line="858"/>
+        <location filename="../Forms/mainwindow.ui" line="908"/>
         <source>!=</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="997"/>
+        <location filename="../Forms/mainwindow.ui" line="1000"/>
         <source>Gender:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1010"/>
+        <location filename="../Forms/mainwindow.ui" line="1013"/>
         <source>Ability:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1023"/>
+        <location filename="../Forms/mainwindow.ui" line="1026"/>
         <source>Nature:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1036"/>
+        <location filename="../Forms/mainwindow.ui" line="1039"/>
         <source>Hidden Power:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1049"/>
+        <location filename="../Forms/mainwindow.ui" line="1052"/>
         <source>Shiny Only?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1062"/>
+        <location filename="../Forms/mainwindow.ui" line="1065"/>
         <source>Disable Filters:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1076"/>
+        <location filename="../Forms/mainwindow.ui" line="1079"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1081"/>
+        <location filename="../Forms/mainwindow.ui" line="1084"/>
         <source>♂</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1086"/>
+        <location filename="../Forms/mainwindow.ui" line="1089"/>
         <source>♀</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1101"/>
-        <location filename="../Forms/mainwindow.cpp" line="198"/>
-        <location filename="../Forms/mainwindow.cpp" line="224"/>
-        <location filename="../Forms/mainwindow.cpp" line="246"/>
-        <location filename="../Forms/mainwindow.cpp" line="261"/>
+        <location filename="../Forms/mainwindow.ui" line="1104"/>
+        <location filename="../Forms/mainwindow.ui" line="1237"/>
+        <location filename="../Forms/mainwindow.ui" line="1255"/>
+        <location filename="../Forms/mainwindow.cpp" line="199"/>
+        <location filename="../Forms/mainwindow.cpp" line="225"/>
+        <location filename="../Forms/mainwindow.cpp" line="247"/>
+        <location filename="../Forms/mainwindow.cpp" line="262"/>
+        <location filename="../Forms/mainwindow.cpp" line="373"/>
+        <location filename="../Forms/mainwindow.cpp" line="385"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="395"/>
+        <location filename="../Forms/mainwindow.ui" line="398"/>
         <source>Create a Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1106"/>
+        <location filename="../Forms/mainwindow.ui" line="1109"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1172"/>
+        <location filename="../Forms/mainwindow.ui" line="1175"/>
         <source>Genderless</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1177"/>
+        <location filename="../Forms/mainwindow.ui" line="1180"/>
         <source>50% Male / 50% Female</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1182"/>
+        <location filename="../Forms/mainwindow.ui" line="1185"/>
         <source>25% Male / 75% Female</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1187"/>
+        <location filename="../Forms/mainwindow.ui" line="1190"/>
         <source>75% Male / 25% Female</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1192"/>
+        <location filename="../Forms/mainwindow.ui" line="1195"/>
         <source>87.5% Male / 12.5% Female</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1197"/>
+        <location filename="../Forms/mainwindow.ui" line="1200"/>
         <source>100% Male</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1202"/>
+        <location filename="../Forms/mainwindow.ui" line="1205"/>
         <source>100% Female</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1216"/>
+        <location filename="../Forms/mainwindow.ui" line="1219"/>
         <source>Gender Ratio:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1223"/>
+        <location filename="../Forms/mainwindow.ui" line="1268"/>
+        <source>Use Delay?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/mainwindow.ui" line="1313"/>
+        <source>(F)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/mainwindow.ui" line="1320"/>
         <source>Wild</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1233"/>
+        <location filename="../Forms/mainwindow.ui" line="1330"/>
         <source>Egg</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1238"/>
+        <location filename="../Forms/mainwindow.ui" line="1335"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1228"/>
+        <location filename="../Forms/mainwindow.ui" line="1325"/>
         <source>Spread Seacher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1252"/>
+        <location filename="../Forms/mainwindow.ui" line="1349"/>
         <source>Profile:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="1277"/>
+        <location filename="../Forms/mainwindow.ui" line="1374"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>PID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>!!!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Nature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Ability</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>HP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Atk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Def</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>SpA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>SpD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Spe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Hidden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Gender</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.cpp" line="149"/>
-        <location filename="../Forms/mainwindow.cpp" line="275"/>
+        <location filename="../Forms/mainwindow.cpp" line="150"/>
+        <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
@@ -621,274 +635,274 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <location filename="../Core/Objects/Nature.cpp" line="36"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
         <source>Hardy</source>
         <translation>Robust</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
-        <location filename="../Core/Objects/Nature.cpp" line="36"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
         <source>Lonely</source>
         <translation>Solo</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="24"/>
-        <location filename="../Core/Objects/Nature.cpp" line="36"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="24"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
         <source>Brave</source>
         <translation>Mutig</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="24"/>
-        <location filename="../Core/Objects/Nature.cpp" line="36"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="24"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
         <source>Adamant</source>
         <translation>Hart</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <location filename="../Core/Objects/Nature.cpp" line="37"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
         <source>Naughty</source>
         <translation>Frech</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="24"/>
-        <location filename="../Core/Objects/Nature.cpp" line="37"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="24"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
         <source>Bold</source>
         <translation>Kühn</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <location filename="../Core/Objects/Nature.cpp" line="37"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
         <source>Docile</source>
         <translation>Sanft</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <location filename="../Core/Objects/Nature.cpp" line="37"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
         <source>Relaxed</source>
         <translation>Locker</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
-        <location filename="../Core/Objects/Nature.cpp" line="38"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
         <source>Impish</source>
         <translation>Pfiffig</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <location filename="../Core/Objects/Nature.cpp" line="38"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
         <source>Lax</source>
         <translation>Lasch</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <location filename="../Core/Objects/Nature.cpp" line="38"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
         <source>Timid</source>
         <translation>Scheu</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
-        <location filename="../Core/Objects/Nature.cpp" line="38"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
         <source>Hasty</source>
         <translation>Hastig</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="30"/>
-        <location filename="../Core/Objects/Nature.cpp" line="39"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="30"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
         <source>Serious</source>
         <translation>Ernst</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
-        <location filename="../Core/Objects/Nature.cpp" line="39"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
         <source>Jolly</source>
         <translation>Froh</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
-        <location filename="../Core/Objects/Nature.cpp" line="39"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
         <source>Naive</source>
         <translation>Naiv</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
-        <location filename="../Core/Objects/Nature.cpp" line="39"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
         <source>Modest</source>
         <translation>Mäßig</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
-        <location filename="../Core/Objects/Nature.cpp" line="40"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
         <source>Mild</source>
         <translation>Mild</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <location filename="../Core/Objects/Nature.cpp" line="40"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
         <source>Quiet</source>
         <translation>Ruhig</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <location filename="../Core/Objects/Nature.cpp" line="40"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
         <source>Bashful</source>
         <translation>Zaghaft</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <location filename="../Core/Objects/Nature.cpp" line="40"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
         <source>Rash</source>
         <translation>Hitzig</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="24"/>
-        <location filename="../Core/Objects/Nature.cpp" line="41"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="24"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="41"/>
         <source>Calm</source>
         <translation>Still</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <location filename="../Core/Objects/Nature.cpp" line="41"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="41"/>
         <source>Gentle</source>
         <translation>Zart</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <location filename="../Core/Objects/Nature.cpp" line="41"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="41"/>
         <source>Sassy</source>
         <translation>Forsch</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="25"/>
-        <location filename="../Core/Objects/Nature.cpp" line="41"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="41"/>
         <source>Careful</source>
         <translation>Sacht</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <location filename="../Core/Objects/Nature.cpp" line="42"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="42"/>
         <source>Quirky</source>
         <translation>Kauzig</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="24"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="24"/>
         <source>Fighting</source>
         <translation>Kampf</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="24"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="24"/>
         <source>Flying</source>
         <translation>Flug</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="24"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="24"/>
         <source>Poison</source>
         <translation>Gift</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="24"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="24"/>
         <source>Ground</source>
         <translation>Boden</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="25"/>
         <source>Rock</source>
         <translation>Gestein</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="25"/>
         <source>Bug</source>
         <translation>Käfer</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="25"/>
         <source>Ghost</source>
         <translation>Geist</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="25"/>
         <source>Steel</source>
         <translation>Stahl</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="26"/>
         <source>Fire</source>
         <translation>Feuer</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="26"/>
         <source>Water</source>
         <translation>Wasser</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="26"/>
         <source>Grass</source>
         <translation>Pflanze</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="26"/>
         <source>Electric</source>
         <translation>Elektro</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="27"/>
         <source>Psychic</source>
         <translation>Psycho</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="27"/>
         <source>Ice</source>
         <translation>Eis</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="27"/>
         <source>Dragon</source>
         <translation>Drachen</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Power.cpp" line="27"/>
         <source>Dark</source>
         <translation>Unlicht</translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="467"/>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="508"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="486"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="527"/>
         <source>Ruby</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="469"/>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="512"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="488"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="531"/>
         <source>Sapphire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="471"/>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="516"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="490"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="535"/>
         <source>Fire Red</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="473"/>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="520"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="492"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="539"/>
         <source>Leaf Green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="475"/>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="524"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="494"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="543"/>
         <source>Emerald</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="477"/>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="528"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="496"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="547"/>
         <source>XD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="479"/>
-        <location filename="../Core/Gen3/ProfileGen3.cpp" line="532"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="498"/>
+        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="551"/>
         <source>Colosseum</source>
         <translation type="unfinished"></translation>
     </message>
