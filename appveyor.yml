@@ -18,7 +18,8 @@ install:
     - set PATH=%QTDIR%\bin;%PATH%
     - if "%BUILDER%"=="MINGW" set PATH=C:\Qt\Tools\mingw530_32\bin;%PATH%
     - if "%BUILDER%"=="NMAKE" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-
+    - git submodule update --init --recursive
+    
 build_script:
     - qmake PokeFinder.pro
     - if "%BUILDER%"=="MINGW" mingw32-make

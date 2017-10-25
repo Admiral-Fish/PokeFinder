@@ -25,14 +25,24 @@
 #include <QMessageBox>
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <Core/Gen3/FrameGen3.hpp>
-#include <Core/RNG/MTRNG.hpp>
-#include <Core/Gen3/GeneratorGen3.hpp>
-#include <Core/RNG/LCRNG.hpp>
+#include <libPokeFinder/Gen3/FrameGen3.hpp>
+#include <libPokeFinder/RNG/MTRNG.hpp>
+#include <libPokeFinder/Gen3/GeneratorGen3.hpp>
+#include <libPokeFinder/RNG/LCRNG.hpp>
+#include <libPokeFinder/Objects/FrameCompare.hpp>
+#include <libPokeFinder/Objects/Nature.hpp>
+#include <libPokeFinder/Objects/Power.hpp>
 #include <cstdint>
 #include <QTranslator>
 #include <vector>
 #include <QDir>
+#include <QDebug>
+#include <QDomDocument>
+#include <libPokeFinder/Gen3/ProfileGen3.hpp>
+#include <Forms/ProfileManager/ProfileManagerGen3.hpp>
+#include <Util/Validators/IDValidator.hpp>
+#include <Util/Validators/SeedValidator.hpp>
+#include <Util/Validators/FrameValidator.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -59,13 +69,37 @@ private:
 
     void setupModels();
 
+    void createProfileXml();
+
 private slots:
     void on_generate_clicked();
     void slotLanguageChanged(QAction* action);
+    void natureItemCheck(QModelIndex a, QModelIndex b);
+    void hiddenItemCheck(QModelIndex a, QModelIndex b);
+
+    void updateProfiles();
+
+    void on_saveProfile_clicked();
+
+    void on_comboBoxProfiles_currentIndexChanged(int index);
+
+    void checkLineEdits(QString str);
+
+    void on_anyNature_clicked();
+
+    void on_anyHiddenPower_clicked();
+
+    void on_checkBoxDelay_clicked();
 
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    std::vector<ProfileGen3> profiles;
+
+    QValidator *idVal;
+    QValidator *seedVal;
+    QValidator *frameVal;
 
 };
 

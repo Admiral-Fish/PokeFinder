@@ -5,12 +5,16 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += xml
 QMAKE_CXXFLAGS += -std=c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = PokeFinder
 TEMPLATE = app
+VERSION = 1.1.0
+QMAKE_TARGET_DESCRIPTION = PokeFinder
+QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -46,49 +50,70 @@ TRANSLATIONS += \
         languages/PokeFinder_en.ts \
         languages/PokeFinder_fr.ts \
         languages/PokeFinder_es.ts \
-        languages/PokeFinder_pt.ts \
         languages/PokeFinder_de.ts \
-        languages/PokeFinder_it.ts
+        languages/PokeFinder_it.ts \
+        languages/PokeFinder_ja.ts \
+        languages/PokeFinder_ko.ts \
+        languages/PokeFinder_zh_Hans_CN.ts
 
 SOURCES += \
-        main.cpp \
-        Forms/mainwindow.cpp \
-        Core/Objects/EncounterSlot.cpp \
-        Core/Objects/Utilities.cpp \
-        Core/Objects/Frame.cpp \
-        Core/Objects/FrameCompare.cpp \
-        Core/Gen3/NatureLock.cpp \
-        Core/Gen3/GeneratorGen3.cpp \
-        Core/Gen3/FrameGen3.cpp \
-        Core/Gen3/SearcherGen3.cpp \
-        Core/RNG/LCRNG.cpp \
-        Core/RNG/LCRNG64.cpp \
-        Core/RNG/MTRNG.cpp \
-        Core/RNG/TinyMT.cpp \
-        Core/RNG/RNGCache.cpp \
-        Core/RNG/RNGEuclidean.cpp
+    Forms/ProfileManager/ProfileManagerGen3.cpp \
+    Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp \
+    Forms/mainwindow.cpp \
+    libPokeFinder/Gen3/FrameGen3.cpp \
+    libPokeFinder/Gen3/GeneratorGen3.cpp \
+    libPokeFinder/Gen3/NatureLock.cpp \
+    libPokeFinder/Gen3/ProfileGen3.cpp \
+    libPokeFinder/Gen3/SearcherGen3.cpp \
+    libPokeFinder/Objects/EncounterSlot.cpp \
+    libPokeFinder/Objects/Frame.cpp \
+    libPokeFinder/Objects/FrameCompare.cpp \
+    libPokeFinder/Objects/Nature.cpp \
+    libPokeFinder/Objects/Power.cpp \
+    libPokeFinder/Objects/Utilities.cpp \
+    libPokeFinder/RNG/LCRNG.cpp \
+    libPokeFinder/RNG/LCRNG64.cpp \
+    libPokeFinder/RNG/MTRNG.cpp \
+    libPokeFinder/RNG/RNGCache.cpp \
+    libPokeFinder/RNG/RNGEuclidean.cpp \
+    libPokeFinder/RNG/TinyMT.cpp \
+    Util/Validators/FrameValidator.cpp \
+    Util/Validators/IDValidator.cpp \
+    Util/Validators/SeedValidator.cpp \
+    main.cpp
 
 HEADERS += \
-        Forms/mainwindow.h \
-        Core/Objects/Encounter.hpp \
-        Core/Objects/Lead.hpp \
-        Core/Objects/Method.hpp \
-        Core/Objects/EncounterSlot.hpp \
-        Core/Objects/Utilities.hpp \
-        Core/Objects/Generator.hpp \
-        Core/Objects/Frame.hpp \
-        Core/Objects/FrameCompare.hpp \
-        Core/Objects/Searcher.hpp \
-        Core/Gen3/NatureLock.hpp \
-        Core/Gen3/GeneratorGen3.hpp \
-        Core/Gen3/FrameGen3.hpp \
-        Core/Gen3/SearcherGen3.hpp \
-        Core/RNG/LCRNG.hpp \
-        Core/RNG/LCRNG64.hpp \
-        Core/RNG/MTRNG.hpp \
-        Core/RNG/TinyMT.hpp \
-        Core/RNG/RNGCache.hpp \
-        Core/RNG/RNGEuclidean.hpp
+    Forms/ProfileManager/ProfileManagerGen3.hpp \
+    Forms/ProfileManager/ProfileManagerGen3NewEdit.hpp \
+    Forms/mainwindow.h \
+    libPokeFinder/Gen3/FrameGen3.hpp \
+    libPokeFinder/Gen3/GeneratorGen3.hpp \
+    libPokeFinder/Gen3/NatureLock.hpp \
+    libPokeFinder/Gen3/ProfileGen3.hpp \
+    libPokeFinder/Gen3/SearcherGen3.hpp \
+    libPokeFinder/Objects/Encounter.hpp \
+    libPokeFinder/Objects/EncounterSlot.hpp \
+    libPokeFinder/Objects/Frame.hpp \
+    libPokeFinder/Objects/FrameCompare.hpp \
+    libPokeFinder/Objects/Generator.hpp \
+    libPokeFinder/Objects/Lead.hpp \
+    libPokeFinder/Objects/Method.hpp \
+    libPokeFinder/Objects/Nature.hpp \
+    libPokeFinder/Objects/Power.hpp \
+    libPokeFinder/Objects/Profile.hpp \
+    libPokeFinder/Objects/Searcher.hpp \
+    libPokeFinder/Objects/Utilities.hpp \
+    libPokeFinder/RNG/LCRNG.hpp \
+    libPokeFinder/RNG/LCRNG64.hpp \
+    libPokeFinder/RNG/MTRNG.hpp \
+    libPokeFinder/RNG/RNGCache.hpp \
+    libPokeFinder/RNG/RNGEuclidean.hpp \
+    libPokeFinder/RNG/TinyMT.hpp \
+    Util/Validators/FrameValidator.hpp \
+    Util/Validators/IDValidator.hpp \
+    Util/Validators/SeedValidator.hpp
 
 FORMS += \
-        Forms/mainwindow.ui
+    Forms/ProfileManager/ProfileManagerGen3.ui \
+    Forms/ProfileManager/ProfileManagerGen3NewEdit.ui \
+    Forms/mainwindow.ui

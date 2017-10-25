@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProfileManagerGen3NewEdit</class>
+ <widget class="QDialog" name="ProfileManagerGen3NewEdit">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>743</width>
+    <height>110</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="labelProfile">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Profile Name:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditProfile">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>10</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelVersion">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Version:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBoxVersion">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>40</y>
+     <width>121</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Ruby</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Sapphire</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Fire Red</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Leaf Green</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Emerald</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>XD</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Colosseum</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="labelTID">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>10</y>
+     <width>41</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TID:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditTID">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>10</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelSID">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>40</y>
+     <width>41</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SID:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditSID">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>40</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelLanguage">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Language:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBoxLanguage">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>70</y>
+     <width>121</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ENG</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SPA</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>FRE</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ITA</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>DEU</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>JPN</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QCheckBox" name="checkBoxDeadBattery">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>70</y>
+     <width>16</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelDeadBattery">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>70</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Dead Battery?</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonAccept">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>10</y>
+     <width>151</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Accept</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonCancel">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>40</y>
+     <width>151</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

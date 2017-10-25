@@ -26,7 +26,18 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    idVal = new IDValidator();
+    seedVal = new SeedValidator();
+    frameVal = new FrameValidator();
+
     setupModels();
+    updateProfiles();
+
+    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
+
+    if(!file.exists())
+        createProfileXml();
+
     ui->tableView->resizeColumnsToContents();
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
@@ -44,19 +55,20 @@ void MainWindow::changeEvent(QEvent* event)
     {
         switch(event->type())
         {
-        case QEvent::LanguageChange:
-            ui->retranslateUi(this);
-            break;
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                setupModels();
+                break;
 
-        case QEvent::LocaleChange:
-        {
-            QString locale = QLocale::system().name();
-            locale.truncate(locale.lastIndexOf('_'));
-            loadLanguage(locale);
-        }
-            break;
-        default:
-            break;
+            case QEvent::LocaleChange:
+            {
+                QString locale = QLocale::system().name();
+                locale.truncate(locale.lastIndexOf('_'));
+                loadLanguage(locale);
+            }
+                break;
+            default:
+                break;
         }
     }
     QMainWindow::changeEvent(event);
@@ -126,104 +138,20 @@ void MainWindow::loadLanguage(const QString& rLanguage)
 
 void MainWindow::on_generate_clicked()
 {
-    bool pass;
-    QMessageBox error;
-    QString input;
-
-    uint32_t seed = 0;
-    input = ui->initialSeed->text();
-    if (input != "")
-    {
-        seed = input.toUInt(&pass, 16);
-        if (!pass)
-        {
-            error.setText("Please enter seed in valid hexadecimal format.");
-            error.exec();
-            return;
-        }
-    }
-
-    uint32_t startingFrame = 1;
-    input = ui->startingFrame->text();
-    if (input != "")
-    {
-        startingFrame = input.toUInt(&pass, 10);
-        if (!pass)
-        {
-            error.setText("Please enter starting frame in valid decimal format.");
-            error.exec();
-            return;
-        }
-        else if (startingFrame > 0xffffffff)
-        {
-            error.setText("Please enter a value lower then 4294967296.");
-            error.exec();
-            return;
-        }
-    }
-
-    uint32_t maxResults = 100000;
-    input = ui->maxResults->text();
-    if (input != "")
-    {
-        maxResults = input.toUInt(&pass, 10);
-        if (!pass)
-        {
-            error.setText("Please enter max results in valid decimal format.");
-            error.exec();
-            return;
-        }
-        else if (maxResults > 0xffffffff)
-        {
-            error.setText("Please enter a value lower then 4294967296.");
-            error.exec();
-            return;
-        }
-    }
-
-    uint32_t tid = 12345;
-    input = ui->id->text();
-    if (input != "")
-    {
-        tid = input.toUInt(&pass, 10);
-        if (!pass)
-        {
-            error.setText("Please enter Trainer ID in valid decimal format.");
-            error.exec();
-            return;
-        }
-        else if (tid > 0xffff)
-        {
-            error.setText("Please enter a value lower then 65536.");
-            error.exec();
-            return;
-        }
-    }
-
-    uint32_t sid = 54321;
-    input = ui->sid->text();
-    if (input != "")
-    {
-        sid = input.toUInt(&pass, 10);
-        if (!pass)
-        {
-            error.setText("Please enter Trainer SID in valid decimal format.");
-            error.exec();
-            return;
-        }
-        else if (sid > 0xffff)
-        {
-            error.setText("Please enter a value lower then 65536.");
-            error.exec();
-            return;
-        }
-    }
+    uint32_t seed = ui->initialSeed->text().toUInt(NULL, 16);
+    uint32_t startingFrame = ui->startingFrame->text().toUInt(NULL, 10);
+    uint32_t maxResults = ui->maxResults->text().toUInt(NULL, 10);
+    uint32_t tid = ui->id->text().toUInt(NULL, 10);
+    uint32_t sid = ui->sid->text().toUInt(NULL, 10);
+    uint32_t offset = ui->delay->text().toUInt(NULL, 10);
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("Time"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("12.5% Female"), tr("25% Female"), tr("50% Female"), tr("75% Female")});
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
 
-    GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid);
+    int genderRatioIndex = ui->comboBoxGenderRatio->currentIndex();
+    GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid, offset);
+    FrameCompare compare = FrameCompare(ui->comboBoxHP->currentIndex(), ui->spinBoxHP->value(), ui->comboBoxAtk->currentIndex(), ui->spinBoxAtk->value(), ui->comboBoxDef->currentIndex(), ui->spinBoxDef->value(), ui->comboBoxSpA->currentIndex(), ui->spinBoxSpA->value(), ui->comboBoxSpD->currentIndex(), ui->spinBoxSpD->value(), ui->comboBoxSpe->currentIndex(), ui->spinBoxSpe->value(), ui->comboBoxGender->currentIndex(), genderRatioIndex, ui->comboBoxAbility->currentIndex(), ui->comboBoxNature, ui->comboBoxHiddenP, ui->checkBoxShiny->isChecked(), ui->checkBoxDisable->isChecked());
     int method = ui->comboBoxMethod->currentIndex();
 
     if (method == 0)
@@ -237,21 +165,235 @@ void MainWindow::on_generate_clicked()
     else
         generator.frameType = Channel;
 
-    std::vector<FrameGen3> frames = generator.Generate();
+    std::vector<FrameGen3> frames = generator.Generate(compare);
     int size = frames.size();
 
     for (int i = 0; i < size; i++)
-        model->appendRow(frames[i].GetTableRow());
+        model->appendRow(frames[i].GetTableRow(genderRatioIndex));
 
     ui->tableView->setModel(model);
 }
 
+void MainWindow::natureItemCheck(QModelIndex a, QModelIndex b)
+{
+    (void)a;
+    (void)b;
+
+    QString newFirst = "";
+    for(int i = 1; i < 26; i++)
+    {
+        if(ui->comboBoxNature->model()->data(ui->comboBoxNature->model()->index(i, 0), Qt::CheckStateRole).toBool())
+        {
+            QString text = ui->comboBoxNature->model()->data(ui->comboBoxNature->model()->index(i, 0)).toString();
+            text.append(", ");
+            newFirst += text;
+        }
+    }
+    if(newFirst.length() != 0)
+    {
+        newFirst.remove(newFirst.length() - 2, 2);
+        ui->comboBoxNature->model()->setData(ui->comboBoxNature->model()->index(0, 0), newFirst);
+    }
+    else
+    {
+        ui->comboBoxNature->model()->setData(ui->comboBoxNature->model()->index(0, 0), tr("Any"));
+    }
+}
+
+void MainWindow::hiddenItemCheck(QModelIndex a, QModelIndex b)
+{
+    (void)a;
+    (void)b;
+
+    QString newFirst = "";
+    for(int i = 1; i < 17; i++)
+    {
+        if(ui->comboBoxHiddenP->model()->data(ui->comboBoxHiddenP->model()->index(i, 0), Qt::CheckStateRole).toBool())
+        {
+            QString text = ui->comboBoxHiddenP->model()->data(ui->comboBoxHiddenP->model()->index(i, 0)).toString();
+            text.append(", ");
+            newFirst += text;
+        }
+    }
+    if(newFirst.length() != 0)
+    {
+        newFirst.remove(newFirst.length() - 2, 2);
+        ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), newFirst);
+    }
+    else
+    {
+        ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), tr("Any"));
+    }
+}
+
+void MainWindow::createProfileXml()
+{
+    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QDomDocument doc;
+        QDomElement profiles = doc.createElement(QString("Profiles"));
+        doc.appendChild(profiles);
+        QTextStream stream( &file );
+        stream << doc.toString();
+        file.close();
+    }
+}
+
 void MainWindow::setupModels()
 {
+    QStandardItemModel *natures = new QStandardItemModel(26, 1, this);
+    std::vector<QString> natureList = Nature::GetNatures();
+    QStandardItem* firstNature = new QStandardItem(tr("Any"));
+    natures->setItem(0, firstNature);
+    for(int i = 0; i < 25; i++)
+    {
+        QStandardItem* item = new QStandardItem(natureList[i]);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        item->setData(Qt::Unchecked, Qt::CheckStateRole);
+
+        natures->setItem(i + 1, item);
+    }
+    ui->comboBoxNature->setModel(natures);
+    connect(ui->comboBoxNature->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(natureItemCheck(QModelIndex, QModelIndex)));
+
+    QStandardItemModel *hidden = new QStandardItemModel(17, 1, this);
+    std::vector<QString> powerList = Power::GetPowers();
+    QStandardItem* firstPower = new QStandardItem(tr("Any"));
+    hidden->setItem(0, firstPower);
+    for(int i = 0; i < 16; i++)
+    {
+        QStandardItem* item = new QStandardItem(powerList[i]);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        item->setData(Qt::Unchecked, Qt::CheckStateRole);
+
+        hidden->setItem(i + 1, item);
+    }
+    ui->comboBoxHiddenP->setModel(hidden);
+    connect(ui->comboBoxHiddenP->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(hiddenItemCheck(QModelIndex, QModelIndex)));
+
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("Time"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("12.5% Female"), tr("25% Female"), tr("50% Female"), tr("75% Female")});
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
     ui->tableView->setModel(model);
     ui->tableView->verticalHeader()->setVisible(false);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableView->resizeColumnsToContents();
+
+    connect(ui->id, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->sid, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->startingFrame, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->maxResults, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->initialSeed, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->delay, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+}
+
+void MainWindow::on_saveProfile_clicked()
+{
+    ProfileManagerGen3* manager = new ProfileManagerGen3();
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    manager->exec();
+}
+
+void MainWindow::updateProfiles()
+{
+    profiles = ProfileGen3::loadProfileList();
+
+    QStandardItemModel *profile = new QStandardItemModel(profiles.size() + 1, 1, this);
+    QStandardItem* firstProfile = new QStandardItem(tr("None"));
+    profile->setItem(0, firstProfile);
+    for(int i = 0; i < (int)profiles.size(); i++)
+    {
+        QStandardItem* item = new QStandardItem(profiles.at(i).profileName);
+        profile->setItem(i + 1, item);
+    }
+    ui->comboBoxProfiles->setModel(profile);
+}
+
+void MainWindow::checkLineEdits(QString str)
+{
+    (void) str;
+    int pos = 0;
+    QString id = ui->id->text();
+    QString sid = ui->sid->text();
+    QString startingFrame = ui->startingFrame->text();
+    QString maxResults = ui->maxResults->text();
+    QString initialSeed = ui->initialSeed->text().toUpper();
+    QString delay = ui->delay->text();
+    ui->initialSeed->setText(initialSeed);
+    if(idVal->validate(id, pos) == QValidator::Acceptable && idVal->validate(sid, pos) == QValidator::Acceptable && frameVal->validate(startingFrame, pos) == QValidator::Acceptable && frameVal->validate(maxResults, pos) == QValidator::Acceptable && seedVal->validate(initialSeed, pos) == QValidator::Acceptable && frameVal->validate(delay, pos))
+    {
+        ui->generate->setEnabled(true);
+    }
+    else
+    {
+        idVal->fixup(id);
+        idVal->fixup(sid);
+        frameVal->fixup(startingFrame);
+        frameVal->fixup(maxResults);
+        frameVal->fixup(delay);
+        seedVal->fixup(initialSeed);
+
+        ui->id->setText(id);
+        ui->sid->setText(sid);
+        ui->startingFrame->setText(startingFrame);
+        ui->maxResults->setText(maxResults);
+        ui->initialSeed->setText(initialSeed);
+        ui->delay->setText(delay);
+
+        ui->generate->setEnabled(false);
+        checkLineEdits(str);
+    }
+}
+
+void MainWindow::on_comboBoxProfiles_currentIndexChanged(int index)
+{
+    if(index == 0)
+    {
+        ui->id->setReadOnly(false);
+        ui->sid->setReadOnly(false);
+        ui->id->setText("");
+        ui->sid->setText("");
+    }
+    else
+    {
+        ui->id->setReadOnly(true);
+        ui->sid->setReadOnly(true);
+        ui->id->setText(QString::number(profiles.at(index - 1).tid));
+        ui->sid->setText(QString::number(profiles.at(index - 1).sid));
+    }
+}
+
+void MainWindow::on_anyNature_clicked()
+{
+    for(int i = 1; i < 26; i++)
+    {
+        ui->comboBoxNature->model()->setData(ui->comboBoxNature->model()->index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
+
+    }
+
+    ui->comboBoxNature->model()->setData(ui->comboBoxNature->model()->index(0, 0), tr("Any"));
+
+}
+
+void MainWindow::on_anyHiddenPower_clicked()
+{
+    for(int i = 1; i < 17; i++)
+    {
+        ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
+
+    }
+
+    ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), tr("Any"));
+}
+
+void MainWindow::on_checkBoxDelay_clicked()
+{
+    if(ui->checkBoxDelay->isChecked())
+    {
+        ui->delay->setEnabled(true);
+    }
+    else
+    {
+        ui->delay->setEnabled(false);
+        ui->delay->setText("");
+    }
 }

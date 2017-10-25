@@ -1,61 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="it_IT">
+<TS version="2.1" language="ko_KR">
 <context>
     <name>MainWindow</name>
     <message>
-        <source>PokéFinder 1.0.0</source>
-        <translation type="vanished">PokéFinder 1.0.0</translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="47"/>
         <source>Stationary</source>
-        <translation>Stazionario</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="118"/>
         <source>RNG Info</source>
-        <translation>Informazioni RNG</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="130"/>
         <source>Method:</source>
-        <translation>Metodo:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="143"/>
         <source>Starting Frame:</source>
-        <translation>Frame Iniziale:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="156"/>
         <source>Max Results:</source>
-        <translation>Massimo Risultati:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="169"/>
         <source>Trainer ID:</source>
-        <translation>ID Allenatore:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="182"/>
         <source>Trainer SID:</source>
-        <translation>SID Allenatore:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="196"/>
         <source>Method 1</source>
-        <translation>Metodo 1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="201"/>
         <source>Method 2</source>
-        <translation>Metodo 2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="206"/>
         <source>Method 4</source>
-        <translation>Metodo 4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="211"/>
@@ -68,20 +64,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="340"/>
-        <source>Seed:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="236"/>
         <location filename="../Forms/mainwindow.ui" line="1114"/>
         <source>1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/mainwindow.ui" line="14"/>
-        <source>PokéFinder 1.1.0</source>
-        <translation type="unfinished">PokéFinder 1.1.0</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="255"/>
@@ -101,7 +87,17 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="321"/>
         <source>Generate</source>
-        <translation>Genera</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/mainwindow.ui" line="340"/>
+        <source>Seed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/mainwindow.ui" line="398"/>
+        <source>Create a Profile</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="532"/>
@@ -248,11 +244,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="398"/>
-        <source>Create a Profile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="1109"/>
         <source>0</source>
         <translation type="unfinished"></translation>
@@ -310,22 +301,27 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="1320"/>
         <source>Wild</source>
-        <translation>Selvatici</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1330"/>
         <source>Egg</source>
-        <translation>Uova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1335"/>
         <source>ID</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1325"/>
         <source>Spread Seacher</source>
-        <translation>Trova Spread</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/mainwindow.ui" line="14"/>
+        <source>PokéFinder 1.1.0</source>
+        <translation type="unfinished">PokéFinder 1.1.0</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1349"/>
@@ -335,7 +331,7 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="1374"/>
         <source>Language</source>
-        <translation>Lingua</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
@@ -471,7 +467,7 @@
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
         <source>Language</source>
-        <translation type="unfinished">Lingua</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
@@ -639,234 +635,234 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
-        <source>Hardy</source>
-        <translation>Ardita</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
-        <source>Lonely</source>
-        <translation>Schiva</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="24"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
-        <source>Brave</source>
-        <translation>Audace</translation>
-    </message>
-    <message>
         <location filename="../libPokeFinder/Objects/Nature.cpp" line="24"/>
         <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
         <source>Adamant</source>
-        <translation>Decisa</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
-        <source>Naughty</source>
-        <translation>Birbona</translation>
+        <translation>고집</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Nature.cpp" line="24"/>
         <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
         <source>Bold</source>
-        <translation>Sicura</translation>
+        <translation>대담</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
-        <source>Docile</source>
-        <translation>Docile</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
-        <source>Relaxed</source>
-        <translation>Placida</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
-        <source>Impish</source>
-        <translation>Scaltra</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
-        <source>Lax</source>
-        <translation>Fiacca</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
-        <source>Timid</source>
-        <translation>Timida</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
-        <source>Hasty</source>
-        <translation>Lesta</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="30"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
-        <source>Serious</source>
-        <translation>Seria</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
-        <source>Jolly</source>
-        <translation>Allegra</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
-        <source>Naive</source>
-        <translation>Ingenua</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
-        <source>Modest</source>
-        <translation>Modesta</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
-        <source>Mild</source>
-        <translation>Mite</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
-        <source>Quiet</source>
-        <translation>Quieta</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
-        <source>Bashful</source>
-        <translation>Ritrosa</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
-        <source>Rash</source>
-        <translation>Ardente</translation>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="24"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
+        <source>Brave</source>
+        <translation>용감</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Nature.cpp" line="24"/>
         <location filename="../libPokeFinder/Objects/Nature.cpp" line="41"/>
         <source>Calm</source>
-        <translation>Calma</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="41"/>
-        <source>Gentle</source>
-        <translation>Gentile</translation>
-    </message>
-    <message>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
-        <location filename="../libPokeFinder/Objects/Nature.cpp" line="41"/>
-        <source>Sassy</source>
-        <translation>Vivace</translation>
+        <translation>차분</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
         <location filename="../libPokeFinder/Objects/Nature.cpp" line="41"/>
         <source>Careful</source>
-        <translation>Cauta</translation>
+        <translation>신중</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
+        <source>Hasty</source>
+        <translation>성급</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
+        <source>Impish</source>
+        <translation>장난꾸러기</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="25"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
+        <source>Jolly</source>
+        <translation>명랑</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
+        <source>Lonely</source>
+        <translation>외로움</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
+        <source>Mild</source>
+        <translation>의젓</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
+        <source>Modest</source>
+        <translation>조심</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="26"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
+        <source>Naive</source>
+        <translation>천진난만</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
+        <source>Naughty</source>
+        <translation>개구쟁이</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
+        <source>Quiet</source>
+        <translation>냉정</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
+        <source>Rash</source>
+        <translation>덜렁</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="27"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
+        <source>Relaxed</source>
+        <translation>무사태평</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="41"/>
+        <source>Sassy</source>
+        <translation>건방</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
+        <source>Timid</source>
+        <translation>겁쟁이</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="41"/>
+        <source>Gentle</source>
+        <translation>얌전</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="28"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="38"/>
+        <source>Lax</source>
+        <translation>촐랑</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="40"/>
+        <source>Bashful</source>
+        <translation>수줍음</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="37"/>
+        <source>Docile</source>
+        <translation>온순</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="36"/>
+        <source>Hardy</source>
+        <translation>노력</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Nature.cpp" line="29"/>
         <location filename="../libPokeFinder/Objects/Nature.cpp" line="42"/>
         <source>Quirky</source>
-        <translation>Furba</translation>
+        <translation>변덕</translation>
+    </message>
+    <message>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="30"/>
+        <location filename="../libPokeFinder/Objects/Nature.cpp" line="39"/>
+        <source>Serious</source>
+        <translation>성실</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="24"/>
         <source>Fighting</source>
-        <translation>Lotta</translation>
+        <translation>격투</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="24"/>
         <source>Flying</source>
-        <translation>Volante</translation>
+        <translation>비행</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="24"/>
         <source>Poison</source>
-        <translation>Veleno</translation>
+        <translation>독</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="24"/>
         <source>Ground</source>
-        <translation>Terra</translation>
+        <translation>땅</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="25"/>
         <source>Rock</source>
-        <translation>Roccia</translation>
+        <translation>바위</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="25"/>
         <source>Bug</source>
-        <translation>Coleottero</translation>
+        <translation>벌레</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="25"/>
         <source>Ghost</source>
-        <translation>Spettro</translation>
+        <translation>고스트</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="25"/>
         <source>Steel</source>
-        <translation>Acciaio</translation>
+        <translation>강철</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="26"/>
         <source>Fire</source>
-        <translation>Fuoco</translation>
+        <translation>불꽃</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="26"/>
         <source>Water</source>
-        <translation>Acqua</translation>
+        <translation>물</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="26"/>
         <source>Grass</source>
-        <translation>Erba</translation>
+        <translation>풀</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="26"/>
         <source>Electric</source>
-        <translation>Elettro</translation>
+        <translation>전기</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="27"/>
         <source>Psychic</source>
-        <translation>Psico</translation>
+        <translation>에스퍼</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="27"/>
         <source>Ice</source>
-        <translation>Ghiaccio</translation>
+        <translation>얼음</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="27"/>
         <source>Dragon</source>
-        <translation>Drago</translation>
+        <translation>드래곤</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Objects/Power.cpp" line="27"/>
         <source>Dark</source>
-        <translation>Buio</translation>
+        <translation>악</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="486"/>
