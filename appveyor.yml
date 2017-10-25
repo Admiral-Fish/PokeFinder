@@ -23,6 +23,7 @@ build_script:
     - qmake PokeFinder.pro
     - if "%BUILDER%"=="MINGW" mingw32-make
     - if "%BUILDER%"=="NMAKE" nmake
+    - git submodule update --init --recursive
 
 after_build:
     - md PokeFinder-windows
