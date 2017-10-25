@@ -1,0 +1,3 @@
+[submodule "libPokeFinder"]
+	path = libPokeFinder
+	url = https://github.com/Admiral-Fish/libPokeFinder
