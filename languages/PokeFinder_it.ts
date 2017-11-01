@@ -4,10 +4,6 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <source>PokéFinder 1.0.0</source>
-        <translation type="vanished">PokéFinder 1.0.0</translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="47"/>
         <source>Stationary</source>
         <translation>Stazionario</translation>

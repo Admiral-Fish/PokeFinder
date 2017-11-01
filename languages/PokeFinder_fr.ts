@@ -4,10 +4,6 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <source>PokéFinder 1.0.0</source>
-        <translation type="vanished">PokéFinder 1.0.0</translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="47"/>
         <source>Stationary</source>
         <translation>Fixes</translation>
@@ -76,17 +72,17 @@
         <location filename="../Forms/mainwindow.ui" line="236"/>
         <location filename="../Forms/mainwindow.ui" line="1114"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="14"/>
         <source>PokéFinder 1.1.0</source>
-        <translation type="unfinished">PokéFinder 1.1.0</translation>
+        <translation>PokéFinder 1.1.0</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="255"/>
         <source>100000</source>
-        <translation type="unfinished"></translation>
+        <translation>100000</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="274"/>
@@ -207,7 +203,7 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="1039"/>
         <source>Hidden Power:</source>
-        <translation type="unfinished">Puissance cachée :</translation>
+        <translation>Puissance cachée:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1052"/>
@@ -217,7 +213,7 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="1065"/>
         <source>Disable Filters:</source>
-        <translation type="unfinished">Désactiver les filtres :</translation>
+        <translation>Désactiver les filtres:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1079"/>
@@ -255,7 +251,7 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="1109"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1175"/>
@@ -295,7 +291,7 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="1219"/>
         <source>Gender Ratio:</source>
-        <translation type="unfinished">Ratio du genre :</translation>
+        <translation>Ratio du genre:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1268"/>
@@ -321,10 +317,6 @@
         <location filename="../Forms/mainwindow.ui" line="1335"/>
         <source>ID</source>
         <translation>ID</translation>
-    </message>
-    <message>
-        <source>Time Finder</source>
-        <translation type="vanished">Time Finder</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1325"/>
@@ -399,7 +391,7 @@
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>SpD</source>
-        <translation">Déf spé</translation>
+        <translation>Déf spé</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
@@ -417,7 +409,7 @@
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Power</source>
-        <translation type="unfinished">Puissance</translation>
+        <translation>Puissance</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
@@ -437,7 +429,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Formulaire</translation>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="26"/>
@@ -498,7 +490,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="139"/>
         <source>Please select one row.</source>
-        <translation>Sélectionnez une ligne SVP</translation>
+        <translation>Sélectionnez une ligne SVP.</translation>
     </message>
 </context>
 <context>
@@ -556,7 +548,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="107"/>
         <source>TID:</source>
-        <translation type="unfinished">ID</translation>
+        <translation>ID:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="130"/>
@@ -621,7 +613,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="37"/>
         <source>Please enter a Profile Name.</source>
-        <translation>Indiquez un nom SVP</translation>
+        <translation>Indiquez un nom SVP.</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="48"/>
@@ -871,10 +863,6 @@
         <location filename="../libPokeFinder/Objects/Power.cpp" line="27"/>
         <source>Dark</source>
         <translation>Ténèbres</translation>
-    </message>
-    <message>
-        <source>Nature</source>
-        <translation>Nature</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="486"/>

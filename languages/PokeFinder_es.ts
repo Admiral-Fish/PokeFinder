@@ -4,10 +4,6 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <source>PokéFinder 1.0.0</source>
-        <translation type="vanished">PokéFinder 1.0.0</translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="47"/>
         <source>Stationary</source>
         <translation>Estacionario</translation>
@@ -15,47 +11,47 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="118"/>
         <source>RNG Info</source>
-        <translation> Informacion de RNG </translation>
+        <translation>Informacion de RNG</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="130"/>
         <source>Method:</source>
-        <translation >Método</translation>
+        <translation>Método:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="143"/>
         <source>Starting Frame:</source>
-        <translation> Empezando Marco</translation>
+        <translation>Empezando Marco:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="156"/>
         <source>Max Results:</source>
-        <translation> Resultados Máximos</translation>
+        <translation>Resultados Máximos:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="169"/>
         <source>Trainer ID:</source>
-        <translation > ID de entrenador</translation>
+        <translation>ID de entrenador:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="182"/>
         <source>Trainer SID:</source>
-        <translation> SID de entrenador</translation>
+        <translation>SID de entrenador:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="196"/>
         <source>Method 1</source>
-        <translation> Método 1</translation>
+        <translation>Método 1</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="201"/>
         <source>Method 2</source>
-        <translation >Método 2</translation>
+        <translation>Método 2</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="206"/>
         <source>Method 4</source>
-        <translation> Método 4</translation>
+        <translation>Método 4</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="211"/>
@@ -70,7 +66,7 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="340"/>
         <source>Seed:</source>
-        <translation>Semilla</translation>
+        <translation>Semilla:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="236"/>
@@ -106,7 +102,7 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="532"/>
         <source>Filters</source>
-        <translation >Filtros</translation>
+        <translation>Filtros</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="544"/>
@@ -131,12 +127,12 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="596"/>
         <source>Def:</source>
-        <translation> Defensa:</translation>
+        <translation>Defensa:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="609"/>
         <source>Spe:</source>
-        <translation>Especial</translation>
+        <translation>Especial:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="638"/>
@@ -192,32 +188,32 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="1000"/>
         <source>Gender:</source>
-        <translation >Género:</translation>
+        <translation>Género:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1013"/>
         <source>Ability:</source>
-        <translation >Habilidad:</translation>
+        <translation>Habilidad:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1026"/>
         <source>Nature:</source>
-        <translation>Naturaleza</translation>
+        <translation>Naturaleza:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1039"/>
         <source>Hidden Power:</source>
-        <translation>Poder Oculto</translation>
+        <translation>Poder Oculto:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1052"/>
         <source>Shiny Only?</source>
-        <translation >¿Brilla Solo?</translation>
+        <translation>¿Brilla Solo?</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1065"/>
         <source>Disable Filters:</source>
-        <translation> Desabilitar Filtros</translation>
+        <translation>Desabilitar Filtros:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1079"/>
@@ -260,12 +256,12 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="1175"/>
         <source>Genderless</source>
-        <translation >Sin género</translation>
+        <translation>Sin género</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1180"/>
         <source>50% Male / 50% Female</source>
-        <translation> 50% Masculino / 50% Femenino</translation>
+        <translation>50% Masculino / 50% Femenino</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1185"/>
@@ -295,7 +291,7 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="1219"/>
         <source>Gender Ratio:</source>
-        <translation>Prporción de género</translation>
+        <translation>Prporción de género:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1268"/>
@@ -325,7 +321,7 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="1325"/>
         <source>Spread Seacher</source>
-        <translation> Buscador extendido</translation>
+        <translation>Buscador extendido</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1349"/>
@@ -502,7 +498,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="14"/>
         <source>Dialog</source>
-        <translation>Diálogo:</translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="26"/>
@@ -562,7 +558,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="153"/>
         <source>Language:</source>
-        <translation>Lenguaje</translation>
+        <translation>Lenguaje:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="167"/>
@@ -617,23 +613,23 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="37"/>
         <source>Please enter a Profile Name.</source>
-        <translation>Por favor ingrese un Nombre de Perfil</translation>
+        <translation>Por favor ingrese un Nombre de Perfil.</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="48"/>
         <source>Please enter Trainer ID in valid decimal format.</source>
-        <translation>Porfavor ingrese un ID de entrador en formato decimal válido</translation>
+        <translation>Porfavor ingrese un ID de entrador en formato decimal válido.</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="54"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="72"/>
         <source>Please enter a value lower then 65536.</source>
-        <translation>Por favor ingrese un valor menor a 65536</translation>
+        <translation>Por favor ingrese un valor menor a 65536.</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="66"/>
         <source>Please enter Trainer SID in valid decimal format.</source>
-        <translation>Porfavor ingrese El SID de entrenador en formato decimal válido</translation>
+        <translation>Porfavor ingrese El SID de entrenador en formato decimal válido.</translation>
     </message>
 </context>
 <context>
@@ -908,7 +904,7 @@
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="498"/>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="551"/>
         <source>Colosseum</source>
-        <translation> Coliseo</translation>
+        <translation>Coliseo</translation>
     </message>
 </context>
 </TS>
