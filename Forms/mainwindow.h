@@ -44,6 +44,8 @@
 #include <Util/Validators/SeedValidator.hpp>
 #include <Util/Validators/FrameValidator.hpp>
 
+using namespace std;
+
 namespace Ui {
 class MainWindow;
 }
@@ -95,7 +97,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    std::vector<ProfileGen3> profiles;
+    vector<ProfileGen3> profiles;
 
     QValidator *idVal;
     QValidator *seedVal;
