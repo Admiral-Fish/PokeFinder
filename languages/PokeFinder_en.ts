@@ -100,10 +100,6 @@
         <translation>Generate</translation>
     </message>
     <message>
-        <source>Save Profile</source>
-        <translation type="vanished">Save Profile</translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="532"/>
         <source>Filters</source>
         <translation>Filters</translation>
@@ -190,26 +186,10 @@
         <translation>!=</translation>
     </message>
     <message>
-        <source>E</source>
-        <translation type="vanished">E</translation>
-    </message>
-    <message>
-        <source>O</source>
-        <translation type="vanished">O</translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>HP</source>
         <translation>HP</translation>
-    </message>
-    <message>
-        <source>HP_E</source>
-        <translation type="vanished">HP_E</translation>
-    </message>
-    <message>
-        <source>HP_O</source>
-        <translation type="vanished">HP_E</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1000"/>
@@ -242,50 +222,6 @@
         <translation>Disable Filters:</translation>
     </message>
     <message>
-        <source>Don&apos;t Care / Genderless</source>
-        <translation type="vanished">Don&apos;t Care / Genderless</translation>
-    </message>
-    <message>
-        <source>Male (50% Male / 50% Female)</source>
-        <translation type="vanished">Male (50% Male / 50% Female)</translation>
-    </message>
-    <message>
-        <source>Female (50% Male / 50% Female)</source>
-        <translation type="vanished">Female (50% Male / 50% Female)</translation>
-    </message>
-    <message>
-        <source>Male (25% Male / 75% Female)</source>
-        <translation type="vanished">Male (25% Male / 75% Female)</translation>
-    </message>
-    <message>
-        <source>Female (25% Male / 75% Female)</source>
-        <translation type="vanished">Female (25% Male / 75% Female)</translation>
-    </message>
-    <message>
-        <source>Male (75% Male / 25% Female)</source>
-        <translation type="vanished">Male (75% Male / 25% Female)</translation>
-    </message>
-    <message>
-        <source>Female (75% Male / 25% Female)</source>
-        <translation type="vanished">Female (75% Male / 25% Female)</translation>
-    </message>
-    <message>
-        <source>Male (87.5% Male / 12.5% Female)</source>
-        <translation type="vanished">Male (87.5% Male / 15.5% Female)</translation>
-    </message>
-    <message>
-        <source>Female (87.5% Male / 12.5% Female)</source>
-        <translation type="vanished">Female (75% Male / 25% Female)</translation>
-    </message>
-    <message>
-        <source>Male (100% Male)</source>
-        <translation type="vanished">Male (100% Male)</translation>
-    </message>
-    <message>
-        <source>Female (100% Female)</source>
-        <translation type="vanished">Female (100% Female)</translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="1079"/>
         <source>-</source>
         <translation>-</translation>
@@ -312,10 +248,6 @@
         <location filename="../Forms/mainwindow.cpp" line="385"/>
         <source>Any</source>
         <translation>Any</translation>
-    </message>
-    <message>
-        <source>2</source>
-        <translation type="obsolete">2</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="398"/>
@@ -391,10 +323,6 @@
         <location filename="../Forms/mainwindow.ui" line="1335"/>
         <source>ID</source>
         <translation>ID</translation>
-    </message>
-    <message>
-        <source>Time Finder</source>
-        <translation type="vanished">Time Finder</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1325"/>
@@ -494,22 +422,6 @@
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Gender</source>
         <translation>Gender</translation>
-    </message>
-    <message>
-        <source>12.5% Female</source>
-        <translation type="vanished">12.5% Female</translation>
-    </message>
-    <message>
-        <source>25% Female</source>
-        <translation type="vanished">25% Female</translation>
-    </message>
-    <message>
-        <source>50% Female</source>
-        <translation type="vanished">50% Female</translation>
-    </message>
-    <message>
-        <source>75% Female</source>
-        <translation type="vanished">75% Female</translation>
     </message>
 </context>
 <context>
@@ -951,58 +863,6 @@
         <location filename="../libPokeFinder/Objects/Power.cpp" line="27"/>
         <source>Dark</source>
         <translation>Dark</translation>
-    </message>
-    <message>
-        <source>Frame</source>
-        <translation type="obsolete">Frame</translation>
-    </message>
-    <message>
-        <source>PID</source>
-        <translation type="obsolete">PID</translation>
-    </message>
-    <message>
-        <source>!!!</source>
-        <translation type="obsolete">!!!</translation>
-    </message>
-    <message>
-        <source>Nature</source>
-        <translation type="obsolete">Nature</translation>
-    </message>
-    <message>
-        <source>Ability</source>
-        <translation type="obsolete">Ability</translation>
-    </message>
-    <message>
-        <source>HP</source>
-        <translation type="obsolete">HP</translation>
-    </message>
-    <message>
-        <source>Atk</source>
-        <translation type="obsolete">Atk</translation>
-    </message>
-    <message>
-        <source>Def</source>
-        <translation type="obsolete">Def</translation>
-    </message>
-    <message>
-        <source>SpA</source>
-        <translation type="obsolete">SpA</translation>
-    </message>
-    <message>
-        <source>SpD</source>
-        <translation type="obsolete">SpD</translation>
-    </message>
-    <message>
-        <source>Spe</source>
-        <translation type="obsolete">Spe</translation>
-    </message>
-    <message>
-        <source>Hidden</source>
-        <translation type="obsolete">Hidden</translation>
-    </message>
-    <message>
-        <source>Power</source>
-        <translation type="obsolete">Power</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="486"/>

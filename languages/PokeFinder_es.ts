@@ -4,10 +4,6 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <source>PokéFinder 1.0.0</source>
-        <translation type="vanished">PokéFinder 1.0.0</translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="47"/>
         <source>Stationary</source>
         <translation>Estacionario</translation>
@@ -15,68 +11,68 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="118"/>
         <source>RNG Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacion de RNG</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="130"/>
         <source>Method:</source>
-        <translation type="unfinished"></translation>
+        <translation>Método:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="143"/>
         <source>Starting Frame:</source>
-        <translation type="unfinished"></translation>
+        <translation>Empezando Marco:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="156"/>
         <source>Max Results:</source>
-        <translation type="unfinished"></translation>
+        <translation>Resultados Máximos:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="169"/>
         <source>Trainer ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>ID de entrenador:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="182"/>
         <source>Trainer SID:</source>
-        <translation type="unfinished"></translation>
+        <translation>SID de entrenador:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="196"/>
         <source>Method 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Método 1</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="201"/>
         <source>Method 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Método 2</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="206"/>
         <source>Method 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Método 4</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="211"/>
         <source>XD/Colo</source>
-        <translation type="unfinished"></translation>
+        <translation>XD/Colo</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="216"/>
         <source>Channel</source>
-        <translation type="unfinished"></translation>
+        <translation>Canal</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="340"/>
         <source>Seed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Semilla:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="236"/>
         <location filename="../Forms/mainwindow.ui" line="1114"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="14"/>
@@ -86,57 +82,57 @@
     <message>
         <location filename="../Forms/mainwindow.ui" line="255"/>
         <source>100000</source>
-        <translation type="unfinished"></translation>
+        <translation>100000</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="274"/>
         <source>12345</source>
-        <translation type="unfinished"></translation>
+        <translation>12345</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="293"/>
         <source>54321</source>
-        <translation type="unfinished"></translation>
+        <translation>54321</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="321"/>
         <source>Generate</source>
-        <translation type="unfinished"></translation>
+        <translation>Generar</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="532"/>
         <source>Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtros</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="544"/>
         <source>HP:</source>
-        <translation type="unfinished"></translation>
+        <translation>Puntos de Golpe:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="557"/>
         <source>Atk:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ataque:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="570"/>
         <source>SpA:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ataque Especial:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="583"/>
         <source>SpD:</source>
-        <translation type="unfinished"></translation>
+        <translation>Defensa Especial:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="596"/>
         <source>Def:</source>
-        <translation type="unfinished"></translation>
+        <translation>Defensa:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="609"/>
         <source>Spe:</source>
-        <translation type="unfinished"></translation>
+        <translation>Especial:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="638"/>
@@ -147,7 +143,7 @@
         <location filename="../Forms/mainwindow.ui" line="888"/>
         <location filename="../Forms/mainwindow.cpp" line="301"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="643"/>
@@ -157,7 +153,7 @@
         <location filename="../Forms/mainwindow.ui" line="843"/>
         <location filename="../Forms/mainwindow.ui" line="893"/>
         <source>==</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="648"/>
@@ -167,7 +163,7 @@
         <location filename="../Forms/mainwindow.ui" line="848"/>
         <location filename="../Forms/mainwindow.ui" line="898"/>
         <source>&gt;=</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="653"/>
@@ -177,7 +173,7 @@
         <location filename="../Forms/mainwindow.ui" line="853"/>
         <location filename="../Forms/mainwindow.ui" line="903"/>
         <source>&lt;=</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="658"/>
@@ -187,52 +183,52 @@
         <location filename="../Forms/mainwindow.ui" line="858"/>
         <location filename="../Forms/mainwindow.ui" line="908"/>
         <source>!=</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1000"/>
         <source>Gender:</source>
-        <translation type="unfinished"></translation>
+        <translation>Género:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1013"/>
         <source>Ability:</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilidad:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1026"/>
         <source>Nature:</source>
-        <translation type="unfinished"></translation>
+        <translation>Naturaleza:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1039"/>
         <source>Hidden Power:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poder Oculto:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1052"/>
         <source>Shiny Only?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Brilla Solo?</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1065"/>
         <source>Disable Filters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Desabilitar Filtros:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1079"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1084"/>
         <source>♂</source>
-        <translation type="unfinished"></translation>
+        <translation>♂</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1089"/>
         <source>♀</source>
-        <translation type="unfinished"></translation>
+        <translation>♀</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1104"/>
@@ -245,187 +241,187 @@
         <location filename="../Forms/mainwindow.cpp" line="373"/>
         <location filename="../Forms/mainwindow.cpp" line="385"/>
         <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation>Cualquiera</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="398"/>
         <source>Create a Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear perfil</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1109"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1175"/>
         <source>Genderless</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin género</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1180"/>
         <source>50% Male / 50% Female</source>
-        <translation type="unfinished"></translation>
+        <translation>50% Masculino / 50% Femenino</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1185"/>
         <source>25% Male / 75% Female</source>
-        <translation type="unfinished"></translation>
+        <translation>25% Masculino / 75% Femenino</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1190"/>
         <source>75% Male / 25% Female</source>
-        <translation type="unfinished"></translation>
+        <translation>75% Masculino / 25% Femenino</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1195"/>
         <source>87.5% Male / 12.5% Female</source>
-        <translation type="unfinished"></translation>
+        <translation>87.5% Masculino / 12.5% Femenino</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1200"/>
         <source>100% Male</source>
-        <translation type="unfinished"></translation>
+        <translation>100% Masculino</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1205"/>
         <source>100% Female</source>
-        <translation type="unfinished"></translation>
+        <translation>100% femenino</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1219"/>
         <source>Gender Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prporción de género:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1268"/>
         <source>Use Delay?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿usar Retraso?</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1313"/>
         <source>(F)</source>
-        <translation type="unfinished"></translation>
+        <translation>(F)</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1320"/>
         <source>Wild</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvage</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1330"/>
         <source>Egg</source>
-        <translation type="unfinished"></translation>
+        <translation>Huevo</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1335"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1325"/>
         <source>Spread Seacher</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscador extendido</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1349"/>
         <source>Profile:</source>
-        <translation type="unfinished"></translation>
+        <translation>Perfil:</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1374"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>Marco</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>!!!</source>
-        <translation type="unfinished"></translation>
+        <translation>!!!</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Nature</source>
-        <translation type="unfinished"></translation>
+        <translation>Naturaleza</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Ability</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilidad</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>HP</source>
-        <translation type="unfinished"></translation>
+        <translation>Puntos de Golpe</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Atk</source>
-        <translation type="unfinished"></translation>
+        <translation>Ataque</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Def</source>
-        <translation type="unfinished"></translation>
+        <translation>Defensa</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>SpA</source>
-        <translation type="unfinished"></translation>
+        <translation>Ataque Especial</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>SpD</source>
-        <translation type="unfinished"></translation>
+        <translation>Defensa Especial</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Spe</source>
-        <translation type="unfinished"></translation>
+        <translation>Especial</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Oculto</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Poder</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Gender</source>
-        <translation type="unfinished"></translation>
+        <translation>Género</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.cpp" line="150"/>
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiempo</translation>
     </message>
 </context>
 <context>
@@ -433,68 +429,68 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="26"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuevo</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="49"/>
         <source>Done</source>
-        <translation type="unfinished"></translation>
+        <translation>Hecho</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="62"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="75"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrar</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
         <source>Profile Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de Perfil</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versión</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
         <source>TID</source>
-        <translation type="unfinished"></translation>
+        <translation>TID</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
         <source>SID</source>
-        <translation type="unfinished"></translation>
+        <translation>SID</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
         <source>Dead Battery</source>
-        <translation type="unfinished"></translation>
+        <translation>Bateria Muerta</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="139"/>
         <source>Please select one row.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor seleccione una fila.</translation>
     </message>
 </context>
 <context>
@@ -502,138 +498,138 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="26"/>
         <source>Profile Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de Perfil:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="49"/>
         <source>Version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versión:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="63"/>
         <source>Ruby</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubí</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="68"/>
         <source>Sapphire</source>
-        <translation type="unfinished"></translation>
+        <translation>Zafiro</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="73"/>
         <source>Fire Red</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuego Rojo</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="78"/>
         <source>Leaf Green</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoja Verde</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="83"/>
         <source>Emerald</source>
-        <translation type="unfinished"></translation>
+        <translation>Esmeralda</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="88"/>
         <source>XD</source>
-        <translation type="unfinished"></translation>
+        <translation>XD</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="93"/>
         <source>Colosseum</source>
-        <translation type="unfinished"></translation>
+        <translation>Coliseo</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="107"/>
         <source>TID:</source>
-        <translation type="unfinished"></translation>
+        <translation>TID:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="130"/>
         <source>SID:</source>
-        <translation type="unfinished"></translation>
+        <translation>SID:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="153"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lenguaje:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="167"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation>-</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="172"/>
         <source>ENG</source>
-        <translation type="unfinished"></translation>
+        <translation>ING</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="177"/>
         <source>SPA</source>
-        <translation type="unfinished"></translation>
+        <translation>ESP</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="182"/>
         <source>FRE</source>
-        <translation type="unfinished"></translation>
+        <translation>FRA</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="187"/>
         <source>ITA</source>
-        <translation type="unfinished"></translation>
+        <translation>ITA</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="192"/>
         <source>DEU</source>
-        <translation type="unfinished"></translation>
+        <translation>AL</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="197"/>
         <source>JPN</source>
-        <translation type="unfinished"></translation>
+        <translation>Japones</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="224"/>
         <source>Dead Battery?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Bateria muerta?</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="237"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="250"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="37"/>
         <source>Please enter a Profile Name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor ingrese un Nombre de Perfil.</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="48"/>
         <source>Please enter Trainer ID in valid decimal format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Porfavor ingrese un ID de entrador en formato decimal válido.</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="54"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="72"/>
         <source>Please enter a value lower then 65536.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor ingrese un valor menor a 65536.</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="66"/>
         <source>Please enter Trainer SID in valid decimal format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Porfavor ingrese El SID de entrenador en formato decimal válido.</translation>
     </message>
 </context>
 <context>
@@ -872,43 +868,43 @@
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="486"/>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="527"/>
         <source>Ruby</source>
-        <translation type="unfinished"></translation>
+        <translation>Rubí</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="488"/>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="531"/>
         <source>Sapphire</source>
-        <translation type="unfinished"></translation>
+        <translation>Zafiro</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="490"/>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="535"/>
         <source>Fire Red</source>
-        <translation type="unfinished"></translation>
+        <translation>Fuego Rojo</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="492"/>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="539"/>
         <source>Leaf Green</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoja Verde</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="494"/>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="543"/>
         <source>Emerald</source>
-        <translation type="unfinished"></translation>
+        <translation>Esmeralda</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="496"/>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="547"/>
         <source>XD</source>
-        <translation type="unfinished"></translation>
+        <translation>XD</translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="498"/>
         <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="551"/>
         <source>Colosseum</source>
-        <translation type="unfinished"></translation>
+        <translation>Coliseo</translation>
     </message>
 </context>
 </TS>

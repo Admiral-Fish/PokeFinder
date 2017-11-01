@@ -105,10 +105,6 @@
         <translation></translation>
     </message>
     <message>
-        <source>Save Profile</source>
-        <translation type="vanished">保存配置</translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="532"/>
         <source>Filters</source>
         <translation>过滤器</translation>
@@ -257,170 +253,6 @@
         <location filename="../Forms/mainwindow.cpp" line="385"/>
         <source>Any</source>
         <translation>任何</translation>
-    </message>
-    <message>
-        <source>Adamant</source>
-        <translation type="vanished">固执</translation>
-    </message>
-    <message>
-        <source>Bold</source>
-        <translation type="vanished">大胆</translation>
-    </message>
-    <message>
-        <source>Brave</source>
-        <translation type="vanished">勇敢</translation>
-    </message>
-    <message>
-        <source>Calm</source>
-        <translation type="vanished">温和</translation>
-    </message>
-    <message>
-        <source>Careful</source>
-        <translation type="vanished">慎重</translation>
-    </message>
-    <message>
-        <source>Hasty</source>
-        <translation type="vanished">急躁</translation>
-    </message>
-    <message>
-        <source>Impish</source>
-        <translation type="vanished">淘气</translation>
-    </message>
-    <message>
-        <source>Jolly</source>
-        <translation type="vanished">爽朗</translation>
-    </message>
-    <message>
-        <source>Lonely</source>
-        <translation type="vanished">怕寂寞</translation>
-    </message>
-    <message>
-        <source>Mild</source>
-        <translation type="vanished">慢吞吞</translation>
-    </message>
-    <message>
-        <source>Modest</source>
-        <translation type="vanished">内敛</translation>
-    </message>
-    <message>
-        <source>Naive</source>
-        <translation type="vanished">天真</translation>
-    </message>
-    <message>
-        <source>Naughty</source>
-        <translation type="vanished">顽皮</translation>
-    </message>
-    <message>
-        <source>Quiet</source>
-        <translation type="vanished">冷静</translation>
-    </message>
-    <message>
-        <source>Rash</source>
-        <translation type="vanished">马虎</translation>
-    </message>
-    <message>
-        <source>Relaxed</source>
-        <translation type="vanished">悠闲</translation>
-    </message>
-    <message>
-        <source>Sassy</source>
-        <translation type="vanished">自大</translation>
-    </message>
-    <message>
-        <source>Timid</source>
-        <translation type="vanished">胆小</translation>
-    </message>
-    <message>
-        <source>Gentle</source>
-        <translation type="vanished">温顺</translation>
-    </message>
-    <message>
-        <source>Lax</source>
-        <translation type="vanished">乐天</translation>
-    </message>
-    <message>
-        <source>Bashful</source>
-        <translation type="vanished">害羞</translation>
-    </message>
-    <message>
-        <source>Docile</source>
-        <translation type="vanished">坦率</translation>
-    </message>
-    <message>
-        <source>Hardy</source>
-        <translation type="vanished">勤奋</translation>
-    </message>
-    <message>
-        <source>Quirky</source>
-        <translation type="vanished">浮躁</translation>
-    </message>
-    <message>
-        <source>Serious</source>
-        <translation type="vanished">认真</translation>
-    </message>
-    <message>
-        <source>Fighting</source>
-        <translation type="vanished">格斗</translation>
-    </message>
-    <message>
-        <source>Flying</source>
-        <translation type="vanished">飞行</translation>
-    </message>
-    <message>
-        <source>Poison</source>
-        <translation type="vanished">毒</translation>
-    </message>
-    <message>
-        <source>Ground</source>
-        <translation type="vanished">地面</translation>
-    </message>
-    <message>
-        <source>Rock</source>
-        <translation type="vanished">岩石</translation>
-    </message>
-    <message>
-        <source>Bug</source>
-        <translation type="vanished">虫</translation>
-    </message>
-    <message>
-        <source>Ghost</source>
-        <translation type="vanished">幽灵</translation>
-    </message>
-    <message>
-        <source>Steel</source>
-        <translation type="vanished">钢</translation>
-    </message>
-    <message>
-        <source>Fire</source>
-        <translation type="vanished">火</translation>
-    </message>
-    <message>
-        <source>Water</source>
-        <translation type="vanished">水</translation>
-    </message>
-    <message>
-        <source>Grass</source>
-        <translation type="vanished">草</translation>
-    </message>
-    <message>
-        <source>Electric</source>
-        <translation type="vanished">电</translation>
-    </message>
-    <message>
-        <source>Psychic</source>
-        <translation type="vanished">超能力</translation>
-    </message>
-    <message>
-        <source>Ice</source>
-        <translation type="vanished">冰</translation>
-    </message>
-    <message>
-        <source>Dragon</source>
-        <translation type="vanished">龙</translation>
-    </message>
-    <message>
-        <source>Dark</source>
-        <translation type="vanished">恶</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1175"/>
@@ -592,22 +424,6 @@
         <location filename="../Forms/mainwindow.cpp" line="276"/>
         <source>Gender</source>
         <translation>性别</translation>
-    </message>
-    <message>
-        <source>12.5% Female</source>
-        <translation type="vanished">12.5% 雌</translation>
-    </message>
-    <message>
-        <source>25% Female</source>
-        <translation type="vanished">25% 雌</translation>
-    </message>
-    <message>
-        <source>50% Female</source>
-        <translation type="vanished">50% 雌</translation>
-    </message>
-    <message>
-        <source>75% Female</source>
-        <translation type="vanished">75% 雌</translation>
     </message>
 </context>
 <context>
