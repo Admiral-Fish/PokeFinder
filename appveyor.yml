@@ -30,7 +30,7 @@ after_build:
     - move languages PokeFinder-windows\languages 
     - move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe 
     - windeployqt --release --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
-    - del vcredist*.exe
+    - del PokeFinder-windows\vcredist*.exe
     - xcopy /I %QTDIR%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
     - 7z a PokeFinder-windows-%ARCH%.zip PokeFinder-windows\
     - 7z a PokeFinder-windows-%ARCH%.7z PokeFinder-windows\
