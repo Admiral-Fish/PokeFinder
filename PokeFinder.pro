@@ -12,7 +12,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = PokeFinder
 TEMPLATE = app
-VERSION = 1.1.0
+VERSION = 1.1.1
 QMAKE_TARGET_DESCRIPTION = PokeFinder
 QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
@@ -47,14 +47,14 @@ macx {
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 TRANSLATIONS += \
-        languages/PokeFinder_en.ts \
-        languages/PokeFinder_fr.ts \
-        languages/PokeFinder_es.ts \
-        languages/PokeFinder_de.ts \
-        languages/PokeFinder_it.ts \
-        languages/PokeFinder_ja.ts \
-        languages/PokeFinder_ko.ts \
-        languages/PokeFinder_zh_Hans_CN.ts
+    languages/PokeFinder_en.ts \
+    languages/PokeFinder_fr.ts \
+    languages/PokeFinder_es.ts \
+    languages/PokeFinder_de.ts \
+    languages/PokeFinder_it.ts \
+    languages/PokeFinder_ja.ts \
+    languages/PokeFinder_ko.ts \
+    languages/PokeFinder_zh_Hans_CN.ts
 
 SOURCES += \
     Forms/ProfileManager/ProfileManagerGen3.cpp \
@@ -80,7 +80,8 @@ SOURCES += \
     Util/Validators/FrameValidator.cpp \
     Util/Validators/IDValidator.cpp \
     Util/Validators/SeedValidator.cpp \
-    main.cpp
+    main.cpp \
+    libPokeFinder/RNG/SFMT.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManagerGen3.hpp \
@@ -111,7 +112,10 @@ HEADERS += \
     libPokeFinder/RNG/TinyMT.hpp \
     Util/Validators/FrameValidator.hpp \
     Util/Validators/IDValidator.hpp \
-    Util/Validators/SeedValidator.hpp
+    Util/Validators/SeedValidator.hpp \
+    libPokeFinder/RNG/IRNG.hpp \
+    libPokeFinder/RNG/SFMT.hpp \
+    libPokeFinder/RNG/IRNG64.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManagerGen3.ui \

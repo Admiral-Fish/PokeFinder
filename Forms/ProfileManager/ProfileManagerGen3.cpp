@@ -21,7 +21,7 @@ void ProfileManagerGen3::on_pushButtonNew_clicked()
     dialog->exec();
 }
 
-void ProfileManagerGen3::updateTable(std::vector<QList<QStandardItem *>> rows)
+void ProfileManagerGen3::updateTable(vector<QList<QStandardItem *>> rows)
 {
     QStandardItemModel *model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dead Battery")});

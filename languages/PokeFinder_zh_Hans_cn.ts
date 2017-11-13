@@ -110,6 +110,11 @@
         <translation>过滤器</translation>
     </message>
     <message>
+        <location filename="../Forms/mainwindow.ui" line="14"/>
+        <source>PokéFinder 1.1.1</source>
+        <translation type="unfinished">PokéFinder 1.1.1</translation>
+    </message>
+    <message>
         <location filename="../Forms/mainwindow.ui" line="544"/>
         <source>HP:</source>
         <translation>体力:</translation>
@@ -324,11 +329,6 @@
         <location filename="../Forms/mainwindow.ui" line="1325"/>
         <source>Spread Seacher</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/mainwindow.ui" line="14"/>
-        <source>PokéFinder 1.1.0</source>
-        <translation type="unfinished">PokéFinder 1.1.0</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1349"/>
@@ -613,23 +613,23 @@
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="37"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="36"/>
         <source>Please enter a Profile Name.</source>
         <translation>请选择配置文件名.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="48"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="47"/>
         <source>Please enter Trainer ID in valid decimal format.</source>
         <translation>请输入有效的 16 进制训练家 ID.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="54"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="72"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="53"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="71"/>
         <source>Please enter a value lower then 65536.</source>
         <translation>请输入一个小于 65536 的值.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="66"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="65"/>
         <source>Please enter Trainer SID in valid decimal format.</source>
         <translation>请输入有效的 16 进制训练家 SID.</translation>
     </message>

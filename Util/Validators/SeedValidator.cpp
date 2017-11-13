@@ -8,7 +8,7 @@ SeedValidator::SeedValidator(QObject *parent) : QValidator(parent)
 void SeedValidator::fixup(QString & input) const
 {
     input.remove(QRegExp("[^0-9A-F]"));
-    uint32_t temp = input.toUInt(NULL, 16);
+    u32 temp = input.toUInt(NULL, 16);
     if(temp > 0xffffffff)
     {
         input.remove(input.length() - 1, 1);
@@ -18,7 +18,7 @@ void SeedValidator::fixup(QString & input) const
 QValidator::State SeedValidator::validate(QString & input, int & pos) const
 {
     bool pass;
-    uint32_t seed = input.toUInt(&pass, 16);;
+    u32 seed = input.toUInt(&pass, 16);;
     (void) pos;
 
     if (input == "")

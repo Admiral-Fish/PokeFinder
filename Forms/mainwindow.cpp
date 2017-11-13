@@ -138,12 +138,12 @@ void MainWindow::loadLanguage(const QString& rLanguage)
 
 void MainWindow::on_generate_clicked()
 {
-    uint32_t seed = ui->initialSeed->text().toUInt(NULL, 16);
-    uint32_t startingFrame = ui->startingFrame->text().toUInt(NULL, 10);
-    uint32_t maxResults = ui->maxResults->text().toUInt(NULL, 10);
-    uint32_t tid = ui->id->text().toUInt(NULL, 10);
-    uint32_t sid = ui->sid->text().toUInt(NULL, 10);
-    uint32_t offset = ui->delay->text().toUInt(NULL, 10);
+    u32 seed = ui->initialSeed->text().toUInt(NULL, 16);
+    u32 startingFrame = ui->startingFrame->text().toUInt(NULL, 10);
+    u32 maxResults = ui->maxResults->text().toUInt(NULL, 10);
+    u32 tid = ui->id->text().toUInt(NULL, 10);
+    u32 sid = ui->sid->text().toUInt(NULL, 10);
+    u32 offset = ui->delay->text().toUInt(NULL, 10);
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
@@ -165,7 +165,7 @@ void MainWindow::on_generate_clicked()
     else
         generator.frameType = Channel;
 
-    std::vector<FrameGen3> frames = generator.Generate(compare);
+    vector<FrameGen3> frames = generator.Generate(compare);
     int size = frames.size();
 
     for (int i = 0; i < size; i++)
@@ -243,7 +243,7 @@ void MainWindow::createProfileXml()
 void MainWindow::setupModels()
 {
     QStandardItemModel *natures = new QStandardItemModel(26, 1, this);
-    std::vector<QString> natureList = Nature::GetNatures();
+    vector<QString> natureList = Nature::GetNatures();
     QStandardItem* firstNature = new QStandardItem(tr("Any"));
     natures->setItem(0, firstNature);
     for(int i = 0; i < 25; i++)
@@ -258,7 +258,7 @@ void MainWindow::setupModels()
     connect(ui->comboBoxNature->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(natureItemCheck(QModelIndex, QModelIndex)));
 
     QStandardItemModel *hidden = new QStandardItemModel(17, 1, this);
-    std::vector<QString> powerList = Power::GetPowers();
+    vector<QString> powerList = Power::GetPowers();
     QStandardItem* firstPower = new QStandardItem(tr("Any"));
     hidden->setItem(0, firstPower);
     for(int i = 0; i < 16; i++)

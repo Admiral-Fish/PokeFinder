@@ -75,11 +75,6 @@
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Forms/mainwindow.ui" line="14"/>
-        <source>PokéFinder 1.1.0</source>
-        <translation>PokéFinder 1.1.0</translation>
-    </message>
-    <message>
         <location filename="../Forms/mainwindow.ui" line="255"/>
         <source>100000</source>
         <translation>100000</translation>
@@ -247,6 +242,11 @@
         <location filename="../Forms/mainwindow.ui" line="398"/>
         <source>Create a Profile</source>
         <translation>Crear perfil</translation>
+    </message>
+    <message>
+        <location filename="../Forms/mainwindow.ui" line="14"/>
+        <source>PokéFinder 1.1.1</source>
+        <translation type="unfinished">PokéFinder 1.1.1</translation>
     </message>
     <message>
         <location filename="../Forms/mainwindow.ui" line="1109"/>
@@ -611,23 +611,23 @@
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="37"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="36"/>
         <source>Please enter a Profile Name.</source>
         <translation>Por favor ingrese un Nombre de Perfil.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="48"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="47"/>
         <source>Please enter Trainer ID in valid decimal format.</source>
         <translation>Porfavor ingrese un ID de entrador en formato decimal válido.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="54"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="72"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="53"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="71"/>
         <source>Please enter a value lower then 65536.</source>
         <translation>Por favor ingrese un valor menor a 65536.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="66"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="65"/>
         <source>Please enter Trainer SID in valid decimal format.</source>
         <translation>Porfavor ingrese El SID de entrenador en formato decimal válido.</translation>
     </message>

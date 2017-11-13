@@ -3,6 +3,8 @@
 
 #include <QValidator>
 
+typedef uint32_t u32;
+
 class IDValidator : public QValidator
 {
 public:
