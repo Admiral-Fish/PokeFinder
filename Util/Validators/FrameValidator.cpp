@@ -8,7 +8,7 @@ FrameValidator::FrameValidator(QObject *parent) : QValidator(parent)
 void FrameValidator::fixup(QString & input) const
 {
     input.remove(QRegExp("[^0-9]"));
-    uint32_t temp = input.toUInt(NULL, 10);
+    u32 temp = input.toUInt(NULL, 10);
     if(temp > UINT32_MAX)
     {
         input.remove(input.length() - 1, 1);
@@ -18,7 +18,7 @@ void FrameValidator::fixup(QString & input) const
 QValidator::State FrameValidator::validate(QString & input, int & pos) const
 {
     bool pass;
-    uint32_t frame = input.toUInt(&pass, 10);
+    u32 frame = input.toUInt(&pass, 10);
     (void) pos;
 
     if (input == "")

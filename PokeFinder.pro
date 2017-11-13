@@ -80,7 +80,8 @@ SOURCES += \
     Util/Validators/FrameValidator.cpp \
     Util/Validators/IDValidator.cpp \
     Util/Validators/SeedValidator.cpp \
-    main.cpp
+    main.cpp \
+    libPokeFinder/RNG/SFMT.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManagerGen3.hpp \
@@ -111,7 +112,10 @@ HEADERS += \
     libPokeFinder/RNG/TinyMT.hpp \
     Util/Validators/FrameValidator.hpp \
     Util/Validators/IDValidator.hpp \
-    Util/Validators/SeedValidator.hpp
+    Util/Validators/SeedValidator.hpp \
+    libPokeFinder/RNG/IRNG.hpp \
+    libPokeFinder/RNG/SFMT.hpp \
+    libPokeFinder/RNG/IRNG64.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManagerGen3.ui \

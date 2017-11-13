@@ -138,12 +138,12 @@ void MainWindow::loadLanguage(const QString& rLanguage)
 
 void MainWindow::on_generate_clicked()
 {
-    uint32_t seed = ui->initialSeed->text().toUInt(NULL, 16);
-    uint32_t startingFrame = ui->startingFrame->text().toUInt(NULL, 10);
-    uint32_t maxResults = ui->maxResults->text().toUInt(NULL, 10);
-    uint32_t tid = ui->id->text().toUInt(NULL, 10);
-    uint32_t sid = ui->sid->text().toUInt(NULL, 10);
-    uint32_t offset = ui->delay->text().toUInt(NULL, 10);
+    u32 seed = ui->initialSeed->text().toUInt(NULL, 16);
+    u32 startingFrame = ui->startingFrame->text().toUInt(NULL, 10);
+    u32 maxResults = ui->maxResults->text().toUInt(NULL, 10);
+    u32 tid = ui->id->text().toUInt(NULL, 10);
+    u32 sid = ui->sid->text().toUInt(NULL, 10);
+    u32 offset = ui->delay->text().toUInt(NULL, 10);
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);

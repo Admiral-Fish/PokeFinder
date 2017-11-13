@@ -45,6 +45,7 @@
 #include <Util/Validators/FrameValidator.hpp>
 
 using namespace std;
+typedef uint32_t u32;
 
 namespace Ui {
 class MainWindow;

@@ -8,7 +8,7 @@ ProfileManagerGen3NewEdit::ProfileManagerGen3NewEdit(QWidget *parent) :
     ui->setupUi(this);
 }
 
-ProfileManagerGen3NewEdit::ProfileManagerGen3NewEdit(QString profileName, int version, int language, uint32_t tid, uint32_t sid, bool deadBattery, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManagerGen3NewEdit)
+ProfileManagerGen3NewEdit::ProfileManagerGen3NewEdit(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManagerGen3NewEdit)
 {
     ui->setupUi(this);
     ui->lineEditProfile->setText(profileName);
@@ -17,7 +17,6 @@ ProfileManagerGen3NewEdit::ProfileManagerGen3NewEdit(QString profileName, int ve
     ui->lineEditTID->setText(QString::number(tid));
     ui->lineEditSID->setText(QString::number(sid));
     ui->checkBoxDeadBattery->setChecked(deadBattery);
-
 }
 
 ProfileManagerGen3NewEdit::~ProfileManagerGen3NewEdit()
@@ -42,7 +41,7 @@ void ProfileManagerGen3NewEdit::on_pushButtonAccept_clicked()
     input = ui->lineEditTID->text().trimmed();
     if (input != "")
     {
-        uint32_t tid = input.toUInt(&pass, 10);
+        u32 tid = input.toUInt(&pass, 10);
         if (!pass)
         {
             error.setText(tr("Please enter Trainer ID in valid decimal format."));
@@ -60,7 +59,7 @@ void ProfileManagerGen3NewEdit::on_pushButtonAccept_clicked()
     input = ui->lineEditSID->text().trimmed();
     if (input != "")
     {
-        uint32_t sid = input.toUInt(&pass, 10);
+        u32 sid = input.toUInt(&pass, 10);
         if (!pass)
         {
             error.setText(tr("Please enter Trainer SID in valid decimal format."));

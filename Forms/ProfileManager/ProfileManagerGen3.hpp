@@ -28,6 +28,7 @@
 #include <libPokeFinder/Gen3/ProfileGen3.hpp>
 
 using namespace std;
+typedef uint32_t u32;
 
 namespace Ui {
 class ProfileManagerGen3;
@@ -49,7 +50,7 @@ private slots:
 
     void on_pushButtonOk_clicked();
 
-    void registerProfile(QString profileName, int version, int language, uint32_t tid, uint32_t sid, bool deadBattery);
+    void registerProfile(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery);
 
     void on_pushButtonEdit_clicked();
 

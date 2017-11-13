@@ -27,6 +27,8 @@
 #include <QStandardItemModel>
 #include <QList>
 
+typedef uint32_t u32;
+
 namespace Ui {
 class ProfileManagerGen3NewEdit;
 }
@@ -36,11 +38,11 @@ class ProfileManagerGen3NewEdit : public QDialog
     Q_OBJECT
 
 signals:
-    void newProfile(QString, int, int, uint32_t, uint32_t, bool);
+    void newProfile(QString, int, int, u32, u32, bool);
 
 public:
     explicit ProfileManagerGen3NewEdit(QWidget *parent = 0);
-    explicit ProfileManagerGen3NewEdit(QString profileName, int version, int language, uint32_t tid, uint32_t sid, bool deadBattery, QWidget *parent = 0);
+    explicit ProfileManagerGen3NewEdit(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery, QWidget *parent = 0);
     ~ProfileManagerGen3NewEdit();
 
 private slots:
