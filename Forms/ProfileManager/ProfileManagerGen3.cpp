@@ -17,7 +17,7 @@ ProfileManagerGen3::~ProfileManagerGen3()
 void ProfileManagerGen3::on_pushButtonNew_clicked()
 {
     ProfileManagerGen3NewEdit* dialog = new ProfileManagerGen3NewEdit();
-    QObject::connect(dialog, SIGNAL(newProfile(QString, int, int, uint32_t, uint32_t, bool)), this, SLOT(registerProfile(QString, int, int, uint32_t, uint32_t,bool)));
+    QObject::connect(dialog, SIGNAL(newProfile(QString, int, int, u32, u32, bool)), this, SLOT(registerProfile(QString, int, int, u32, u32,bool)));
     dialog->exec();
 }
 
@@ -35,7 +35,7 @@ void ProfileManagerGen3::updateTable(vector<QList<QStandardItem *>> rows)
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void ProfileManagerGen3::registerProfile(QString profileName, int version, int language, uint32_t tid, uint32_t sid, bool deadBattery)
+void ProfileManagerGen3::registerProfile(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery)
 {
     bool exists = false;
 
@@ -125,7 +125,7 @@ void ProfileManagerGen3::on_pushButtonEdit_clicked()
 
     int r = selections->selectedRows().at(0).row();
     ProfileManagerGen3NewEdit* dialog = new ProfileManagerGen3NewEdit(model->data(model->index(r, 0)).toString(), ProfileGen3::getVersionIndex(model->data(model->index(r, 1)).toString()), ProfileGen3::getLanguageIndex(model->data(model->index(r, 2)).toString()), model->data(model->index(r, 3)).toString().toUInt(), model->data(model->index(r, 4)).toString().toUInt(), model->data(model->index(r, 5)).toBool());
-    QObject::connect(dialog, SIGNAL(newProfile(QString, int, int, uint32_t, uint32_t, bool)), this, SLOT(registerProfile(QString, int, int, uint32_t, uint32_t,bool)));
+    QObject::connect(dialog, SIGNAL(newProfile(QString, int, int, u32, u32, bool)), this, SLOT(registerProfile(QString, int, int, u32, u32,bool)));
     dialog->exec();
 
 }
