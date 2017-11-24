@@ -28,8 +28,10 @@
 using namespace std;
 typedef uint32_t u32;
 typedef uint64_t u64;
-typedef u64 (*Calculator)(u64, u64);
-typedef unordered_map<string, Calculator> Calculators;
+
+struct Calculations {
+    u64 Modulo(u64 x, u64 y);
+};
 
 namespace Ui {
 class Researcher;

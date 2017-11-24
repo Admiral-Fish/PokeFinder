@@ -19,6 +19,10 @@
 
 #include "Researcher.hpp"
 #include "ui_Researcher.h"
+#include <iostream>
+
+typedef u64 (*func)(u64, u64);
+typedef unordered_map<string, func> Calculator;
 
 Researcher::Researcher(QWidget *parent) :
     QMainWindow(parent),
@@ -40,18 +44,15 @@ void Researcher::setupModel()
     ui->tableView->setModel(model);
 }
 
+u64 Modulo(u64 x, u64 y) { return x % y; };
+
 void Researcher::on_pushButtonGenerate32Bit_clicked()
 {
     vector<ResearcherFrame> frames;
-    Calculators calc;
-    u64 (*test)(u64);
-    //test = &Modulo;
+    Calculator calc;
+    calc["%"] = &Modulo;
 
-}
-
-u64 Modulo(u64 x)
-{
-    return x % 5;
+    cout << calc["%"](1,4);
 }
 
 ResearcherFrame::ResearcherFrame()
