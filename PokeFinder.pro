@@ -22,25 +22,6 @@ QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-# Paths to boost libraries.
-
-linux {
-    LIBS += \
-       -lboost_system\
-}
-
-win32 {
-    INCLUDEPATH += C:\Libraries\boost_1_63_0
-    INCLUDEPATH += C:\Libraries\boost_1_64_0
-    INCLUDEPATH += C:\boost\include\boost-1_64
-}
-
-macx {
-    _BOOST_PATH = /usr/local/Cellar/boost/1.65.1
-        INCLUDEPATH += "$${_BOOST_PATH}/include/"
-        LIBS += -L$${_BOOST_PATH}/lib
-}
-
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
