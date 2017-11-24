@@ -59,7 +59,6 @@ TRANSLATIONS += \
 SOURCES += \
     Forms/ProfileManager/ProfileManagerGen3.cpp \
     Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp \
-    Forms/mainwindow.cpp \
     libPokeFinder/Gen3/FrameGen3.cpp \
     libPokeFinder/Gen3/GeneratorGen3.cpp \
     libPokeFinder/Gen3/NatureLock.cpp \
@@ -81,12 +80,13 @@ SOURCES += \
     Util/Validators/IDValidator.cpp \
     Util/Validators/SeedValidator.cpp \
     main.cpp \
-    libPokeFinder/RNG/SFMT.cpp
+    libPokeFinder/RNG/SFMT.cpp \
+    Forms/Researcher.cpp \
+    Forms/MainWindow.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManagerGen3.hpp \
     Forms/ProfileManager/ProfileManagerGen3NewEdit.hpp \
-    Forms/mainwindow.h \
     libPokeFinder/Gen3/FrameGen3.hpp \
     libPokeFinder/Gen3/GeneratorGen3.hpp \
     libPokeFinder/Gen3/NatureLock.hpp \
@@ -115,9 +115,12 @@ HEADERS += \
     Util/Validators/SeedValidator.hpp \
     libPokeFinder/RNG/IRNG.hpp \
     libPokeFinder/RNG/SFMT.hpp \
-    libPokeFinder/RNG/IRNG64.hpp
+    libPokeFinder/RNG/IRNG64.hpp \
+    Forms/Researcher.hpp \
+    Forms/MainWindow.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManagerGen3.ui \
     Forms/ProfileManager/ProfileManagerGen3NewEdit.ui \
-    Forms/mainwindow.ui
+    Forms/Researcher.ui \
+    Forms/MainWindow.ui
