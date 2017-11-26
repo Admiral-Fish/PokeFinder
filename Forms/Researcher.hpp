@@ -21,39 +21,23 @@
 #define RESEARCHER_HPP
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include <QStandardItemModel>
 #include <vector>
 #include <unordered_map>
+#include <libPokeFinder/RNG/IRNG.hpp>
+#include <libPokeFinder/RNG/IRNG64.hpp>
+#include <libPokeFinder/RNG/LCRNG.hpp>
+#include <libPokeFinder/RNG/LCRNG64.hpp>
+#include <libPokeFinder/RNG/MTRNG.hpp>
+#include <libPokeFinder/RNG/SFMT.hpp>
+#include <libPokeFinder/RNG/TinyMT.hpp>
 
 using namespace std;
 typedef uint32_t u32;
 typedef uint64_t u64;
-
-struct Calculations {
-    u64 Modulo(u64 x, u64 y);
-};
-
-namespace Ui {
-class Researcher;
-}
-
-class Researcher : public QMainWindow
-{
-    Q_OBJECT
-
-private:
-    void setupModel();
-
-public:
-    explicit Researcher(QWidget *parent = 0);
-    ~Researcher();
-
-private slots:
-    void on_pushButtonGenerate32Bit_clicked();
-
-private:
-    Ui::Researcher *ui;
-};
+typedef u64 (*func)(u64, u64);
+typedef unordered_map<string, func> Calculator;
 
 class ResearcherFrame
 {
@@ -65,7 +49,7 @@ public:
     u64 Full64;
     u32 Full32;
 
-    ResearcherFrame();
+    ResearcherFrame(bool rng64Bit);
 
     u32 High32() { return (u32)(Full64 >> 32); }
     u32 Low32() { return (u32)(Full64 & 0xFFFFFFFF); }
@@ -79,6 +63,32 @@ public:
     u32 LowBit() { return RNG64Bit ? High32() & 1 : High16() & 1; }
 
     QList<QStandardItem *> GetRow();
+};
+
+namespace Ui {
+class Researcher;
+}
+
+class Researcher : public QMainWindow
+{
+    Q_OBJECT
+
+private:
+    void setupModel();
+    u64 GetCustom(string text, ResearcherFrame frame, vector<ResearcherFrame> frames);
+    unordered_map<string, int> keys;
+
+public:
+    explicit Researcher(QWidget *parent = 0);
+    ~Researcher();
+
+private slots:
+    void on_pushButtonGenerate32Bit_clicked();
+
+    void on_rngSelection_currentChanged(int index);
+
+private:
+    Ui::Researcher *ui;
 };
 
 #endif // RESEARCHER_HPP
