@@ -27,29 +27,32 @@ Researcher::Researcher(QWidget *parent) :
     ui->setupUi(this);
     setupModel();
 
-    keys["32Bit"] = 0;
-    keys["16Bit High"] = 1;
-    keys["16Bit Low"] = 2;
-    keys["Custom1"] = 3;
-    keys["Custom2"] = 4;
-    keys["Custom3"] = 5;
-    keys["Custom4"] = 6;
-    keys["Custom5"] = 7;
-    keys["Custom6"] = 8;
-    keys["Custom7"] = 9;
-    keys["Custom8"] = 10;
-    keys["Custom9"] = 11;
-    keys["Custom10"] = 12;
-    keys["Previous1"] = 13;
-    keys["Previous2"] = 14;
-    keys["Previous3"] = 15;
-    keys["Previous4"] = 16;
-    keys["Previous5"] = 17;
-    keys["Previous6"] = 18;
-    keys["Previous7"] = 19;
-    keys["Previous8"] = 20;
-    keys["Previous9"] = 21;
-    keys["Previous10"] = 22;
+    keys["64Bit"] = 0;
+    keys["32Bit"] = 1;
+    keys["32Bit High"] = 2;
+    keys["32Bit Low"] = 3;
+    keys["16Bit High"] = 4;
+    keys["16Bit Low"] = 5;
+    keys["Custom1"] = 6;
+    keys["Custom2"] = 7;
+    keys["Custom3"] = 8;
+    keys["Custom4"] = 9;
+    keys["Custom5"] = 10;
+    keys["Custom6"] = 11;
+    keys["Custom7"] = 12;
+    keys["Custom8"] = 13;
+    keys["Custom9"] = 14;
+    keys["Custom10"] = 15;
+    keys["Previous1"] = 16;
+    keys["Previous2"] = 17;
+    keys["Previous3"] = 18;
+    keys["Previous4"] = 19;
+    keys["Previous5"] = 20;
+    keys["Previous6"] = 21;
+    keys["Previous7"] = 22;
+    keys["Previous8"] = 23;
+    keys["Previous9"] = 24;
+    keys["Previous10"] = 25;
 }
 
 Researcher::~Researcher()
@@ -172,7 +175,9 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     }
     else
     {
-        //TinyMT
+        u32 status[4] = { ui->lineEditStatus0->text().toUInt(NULL, 16), ui->lineEditStatus1->text().toUInt(NULL, 16),
+                          ui->lineEditStatus2->text().toUInt(NULL, 16), ui->lineEditStatus3->text().toUInt(NULL, 16) };
+        rng = new TinyMT(status);
     }
 
     Calculator calc;
@@ -276,13 +281,11 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         ResearcherFrame frame = ResearcherFrame(rng64Bit);
         if (rng64Bit)
         {
-            u64 num = rng64->Nextulong();
-            frame.Full64 = num;
+            frame.Full64 = rng64->Nextulong();;
         }
         else
         {
-            u32 num = rng->Nextuint();
-            frame.Full32 = num;
+            frame.Full32 = rng->Nextuint();;
         }
 
         for (int j = 0; j < 10; j++)
@@ -324,6 +327,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     ui->tableView->setModel(model);
 
     delete rng;
+    delete rng64;
 }
 
 u64 Researcher::GetCustom(string text, ResearcherFrame frame, vector<ResearcherFrame> frames)
@@ -331,50 +335,56 @@ u64 Researcher::GetCustom(string text, ResearcherFrame frame, vector<ResearcherF
     switch (keys[text])
     {
         case 0:
-            return frame.Full32;
+            return frame.Full64;
         case 1:
-            return frame.High16();
+            return frame.Full32;
         case 2:
-            return frame.Low16();
+            return frame.High32();
         case 3:
-            return frame.Custom[0];
+            return frame.Low32();
         case 4:
-            return frame.Custom[1];
+            return frame.High16();
         case 5:
-            return frame.Custom[2];
+            return frame.Low16();
         case 6:
-            return frame.Custom[3];
+            return frame.Custom[0];
         case 7:
-            return frame.Custom[4];
+            return frame.Custom[1];
         case 8:
-            return frame.Custom[5];
+            return frame.Custom[2];
         case 9:
-            return frame.Custom[6];
+            return frame.Custom[3];
         case 10:
-            return frame.Custom[7];
+            return frame.Custom[4];
         case 11:
-            return frame.Custom[8];
+            return frame.Custom[5];
         case 12:
-            return frame.Custom[9];
+            return frame.Custom[6];
         case 13:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[0];
+            return frame.Custom[7];
         case 14:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[1];
+            return frame.Custom[8];
         case 15:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[2];
+            return frame.Custom[9];
         case 16:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[3];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[0];
         case 17:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[4];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[1];
         case 18:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[5];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[2];
         case 19:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[6];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[3];
         case 20:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[7];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[4];
         case 21:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[8];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[5];
         case 22:
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[6];
+        case 23:
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[7];
+        case 24:
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[8];
+        case 25:
             return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[9];
         default:
             return 0;
@@ -434,15 +444,6 @@ QList<QStandardItem *> ResearcherFrame::GetRow()
 
 void Researcher::on_rngSelection_currentChanged(int index)
 {
-    switch (index)
-    {
-        case 0:
-        case 2:
-            return;
-        case 1:
-            QStandardItemModel *model = qobject_cast<QStandardItemModel*>(ui->comboBoxLValue1->model());
-            QModelIndex index = model->index(ui->comboBoxLValue1->currentIndex(), ui->comboBoxLValue1->modelColumn(), ui->comboBoxLValue1->rootModelIndex());
-            model->itemFromIndex(index)->setSelectable(false);
-            return;
-    }
+    ui->lineEditSeed->setVisible(index != 2);
+    ui->label_14->setVisible(index != 2);
 }
