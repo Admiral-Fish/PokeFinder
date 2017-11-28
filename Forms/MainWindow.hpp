@@ -32,7 +32,6 @@
 #include <libPokeFinder/Objects/FrameCompare.hpp>
 #include <libPokeFinder/Objects/Nature.hpp>
 #include <libPokeFinder/Objects/Power.hpp>
-#include <cstdint>
 #include <QTranslator>
 #include <vector>
 #include <QDir>
@@ -43,6 +42,7 @@
 #include <Util/Validators/IDValidator.hpp>
 #include <Util/Validators/SeedValidator.hpp>
 #include <Util/Validators/FrameValidator.hpp>
+#include <Forms/Researcher.hpp>
 
 using namespace std;
 typedef uint32_t u32;
@@ -65,6 +65,7 @@ private:
     QTranslator m_translatorQt;
     QString m_currLang;
     QString m_langPath;
+    Researcher *r;
 
     void loadLanguage(const QString& rLanguage);
 
@@ -93,6 +94,8 @@ private slots:
     void on_anyHiddenPower_clicked();
 
     void on_checkBoxDelay_clicked();
+
+    void on_actionResearcher_triggered();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

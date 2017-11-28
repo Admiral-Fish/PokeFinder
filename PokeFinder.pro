@@ -22,25 +22,6 @@ QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-# Paths to boost libraries.
-
-linux {
-    LIBS += \
-       -lboost_system\
-}
-
-win32 {
-    INCLUDEPATH += C:\Libraries\boost_1_63_0
-    INCLUDEPATH += C:\Libraries\boost_1_64_0
-    INCLUDEPATH += C:\boost\include\boost-1_64
-}
-
-macx {
-    _BOOST_PATH = /usr/local/Cellar/boost/1.65.1
-        INCLUDEPATH += "$${_BOOST_PATH}/include/"
-        LIBS += -L$${_BOOST_PATH}/lib
-}
-
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
@@ -59,7 +40,6 @@ TRANSLATIONS += \
 SOURCES += \
     Forms/ProfileManager/ProfileManagerGen3.cpp \
     Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp \
-    Forms/mainwindow.cpp \
     libPokeFinder/Gen3/FrameGen3.cpp \
     libPokeFinder/Gen3/GeneratorGen3.cpp \
     libPokeFinder/Gen3/NatureLock.cpp \
@@ -81,12 +61,13 @@ SOURCES += \
     Util/Validators/IDValidator.cpp \
     Util/Validators/SeedValidator.cpp \
     main.cpp \
-    libPokeFinder/RNG/SFMT.cpp
+    libPokeFinder/RNG/SFMT.cpp \
+    Forms/Researcher.cpp \
+    Forms/MainWindow.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManagerGen3.hpp \
     Forms/ProfileManager/ProfileManagerGen3NewEdit.hpp \
-    Forms/mainwindow.h \
     libPokeFinder/Gen3/FrameGen3.hpp \
     libPokeFinder/Gen3/GeneratorGen3.hpp \
     libPokeFinder/Gen3/NatureLock.hpp \
@@ -115,9 +96,12 @@ HEADERS += \
     Util/Validators/SeedValidator.hpp \
     libPokeFinder/RNG/IRNG.hpp \
     libPokeFinder/RNG/SFMT.hpp \
-    libPokeFinder/RNG/IRNG64.hpp
+    libPokeFinder/RNG/IRNG64.hpp \
+    Forms/Researcher.hpp \
+    Forms/MainWindow.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManagerGen3.ui \
     Forms/ProfileManager/ProfileManagerGen3NewEdit.ui \
-    Forms/mainwindow.ui
+    Forms/Researcher.ui \
+    Forms/MainWindow.ui

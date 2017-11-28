@@ -3,11 +3,11 @@ version: 1.1.1.{build}
 environment:
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          QTDIR: C:\Qt\5.9.1\mingw53_32
+          QTDIR: C:\Qt\5.9.2\mingw53_32
           BUILDER: MINGW
           ARCH: x86
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-          QTDIR: C:\Qt\5.9.1\msvc2017_64
+          QTDIR: C:\Qt\5.9.2\msvc2017_64
           BUILDER: NMAKE
           ARCH: x64
 
