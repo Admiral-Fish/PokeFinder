@@ -48,8 +48,9 @@ public:
     bool RNG64Bit;
     u64 Full64;
     u32 Full32;
+    u32 Frame;
 
-    ResearcherFrame(bool rng64Bit);
+    ResearcherFrame(bool rng64Bit, u32 frame);
 
     u32 High32() { return (u32)(Full64 >> 32); }
     u32 Low32() { return (u32)(Full64 & 0xFFFFFFFF); }

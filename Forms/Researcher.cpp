@@ -83,11 +83,11 @@ u64 Multiply(u64 x, u64 y) { return x * y; }
 void Researcher::setupModel()
 {
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({ tr("32Bit"), tr("16Bit High"), tr("16BitLow"), tr("Custom1"),
-                                       tr("Custom2"), tr("Custom3"), tr("Custom4"), tr("Custom5"),
-                                       tr("Custom6"), tr("Custom7"), tr("Custom8"), tr("Custom9"),
-                                       tr("Custom10"), tr("%3"), tr("% 25"), tr("%100"), tr("/656"),
-                                       tr("LBit"), tr("HBit") });
+    model->setHorizontalHeaderLabels({ tr("Frame"), tr("32Bit"), tr("16Bit High"), tr("16BitLow"),
+                                       tr("Custom1"), tr("Custom2"), tr("Custom3"), tr("Custom4"),
+                                       tr("Custom5"), tr("Custom6"), tr("Custom7"), tr("Custom8"),
+                                       tr("Custom9"), tr("Custom10"), tr("%3"), tr("% 25"),
+                                       tr("%100"), tr("/656"), tr("LBit"), tr("HBit") });
     ui->tableView->setModel(model);
 }
 
@@ -95,6 +95,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 {
     u64 seed = ui->lineEditSeed->text().toUInt(NULL, 16);
     u32 maxFrames = ui->lineEditMaxFrames->text().toUInt(NULL, 10);
+    u32 startingFrame = ui->lineEditStartingFrame->text().toUInt(NULL, 10);
 
     IRNG *rng = NULL;
     IRNG64 *rng64 = NULL;
@@ -264,6 +265,15 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     vector<ResearcherFrame> frames;
     bool rng64Bit = ui->rngSelection->currentIndex() == 1;
 
+    if (rng64Bit)
+    {
+        rng64->AdvanceFrames(startingFrame - 1);
+    }
+    else
+    {
+        rng->AdvanceFrames(startingFrame - 1);
+    }
+
     string textL[10] = { ui->comboBoxLValue1->currentText().toStdString(), ui->comboBoxLValue2->currentText().toStdString(),
                           ui->comboBoxLValue3->currentText().toStdString(), ui->comboBoxLValue4->currentText().toStdString(),
                           ui->comboBoxLValue5->currentText().toStdString(), ui->comboBoxLValue6->currentText().toStdString(),
@@ -276,9 +286,9 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                           ui->comboBoxRValue7->currentText().toStdString(), ui->comboBoxRValue8->currentText().toStdString(),
                           ui->comboBoxRValue9->currentText().toStdString(), ui->comboBoxRValue10->currentText().toStdString() };
 
-    for (u32 i = 0; i < maxFrames; i++)
+    for (u32 i = startingFrame; i < maxFrames + startingFrame; i++)
     {
-        ResearcherFrame frame = ResearcherFrame(rng64Bit);
+        ResearcherFrame frame = ResearcherFrame(rng64Bit, i);
         if (rng64Bit)
         {
             frame.Full64 = rng64->Nextulong();;
@@ -306,25 +316,27 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     QStandardItemModel *model = new QStandardItemModel(this);
     if (rng64Bit)
     {
-        model->setHorizontalHeaderLabels({ tr("64 Bit"), tr("32Bit High"), tr("32Bit Low"), tr("16Bit High"),
-                                           tr("16BitLow"), tr("Custom1"), tr("Custom2"), tr("Custom3"),
-                                           tr("Custom4"), tr("Custom5"), tr("Custom6"), tr("Custom7"),
-                                           tr("Custom8"), tr("Custom9"), tr("Custom10"), tr("%3"),
-                                           tr("% 25"), tr("%100"), tr("/656"),  tr("LBit"), tr("HBit") });
+        model->setHorizontalHeaderLabels({ tr("Frame"), tr("64 Bit"), tr("32Bit High"), tr("32Bit Low"),
+                                           tr("16Bit High"), tr("16BitLow"), tr("Custom1"), tr("Custom2"),
+                                           tr("Custom3"), tr("Custom4"), tr("Custom5"), tr("Custom6"),
+                                           tr("Custom7"), tr("Custom8"), tr("Custom9"), tr("Custom10"),
+                                           tr("%3"), tr("% 25"), tr("%100"), tr("/656"),  tr("LBit"),
+                                           tr("HBit") });
     }
     else
     {
-        model->setHorizontalHeaderLabels({ tr("32Bit"), tr("16Bit High"), tr("16BitLow"), tr("Custom1"),
-                                           tr("Custom2"), tr("Custom3"), tr("Custom4"), tr("Custom5"),
-                                           tr("Custom6"), tr("Custom7"), tr("Custom8"), tr("Custom9"),
-                                           tr("Custom10"), tr("%3"), tr("% 25"), tr("%100"), tr("/656"),
-                                           tr("LBit"), tr("HBit") });
+        model->setHorizontalHeaderLabels({ tr("Frame"), tr("32Bit"), tr("16Bit High"), tr("16BitLow"),
+                                           tr("Custom1"), tr("Custom2"), tr("Custom3"), tr("Custom4"),
+                                           tr("Custom5"), tr("Custom6"), tr("Custom7"), tr("Custom8"),
+                                           tr("Custom9"), tr("Custom10"), tr("%3"), tr("% 25"), tr("%100"),
+                                           tr("/656"), tr("LBit"), tr("HBit") });
     }
 
     for (u32 k = 0; k < maxFrames; k++)
         model->appendRow(frames[k].GetRow());
 
     ui->tableView->setModel(model);
+    ui->tableView->resizeColumnsToContents();
 
     delete rng;
     delete rng64;
@@ -391,7 +403,7 @@ u64 Researcher::GetCustom(string text, ResearcherFrame frame, vector<ResearcherF
     }
 }
 
-ResearcherFrame::ResearcherFrame(bool rng64Bit)
+ResearcherFrame::ResearcherFrame(bool rng64Bit, u32 frame)
 {
     for (int i = 0; i < 10; i++)
     {
@@ -400,12 +412,14 @@ ResearcherFrame::ResearcherFrame(bool rng64Bit)
     RNG64Bit = rng64Bit;
     Full32 = 0;
     Full64 = 0;
+    Frame = frame;
 }
 
 
 QList<QStandardItem *> ResearcherFrame::GetRow()
 {
     QList<QStandardItem *> row;
+    row.append(new QStandardItem(QString::number(Frame)));
     if (RNG64Bit)
     {
         row.append(new QStandardItem(QString::number(Full64, 16).toUpper().rightJustified(16,'0')));

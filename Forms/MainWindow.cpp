@@ -172,6 +172,7 @@ void MainWindow::on_generate_clicked()
         model->appendRow(frames[i].GetTableRow(genderRatioIndex));
 
     ui->tableView->setModel(model);
+    ui->tableView->resizeRowsToContents();
 }
 
 void MainWindow::natureItemCheck(QModelIndex a, QModelIndex b)
