@@ -1378,16 +1378,17 @@ QCheckBox::indicator:checked {
      <string>Language</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuResearcher">
+   <widget class="QMenu" name="menuTools">
     <property name="layoutDirection">
      <enum>Qt::RightToLeft</enum>
     </property>
     <property name="title">
-     <string>Researcher</string>
+     <string>Tools</string>
     </property>
+    <addaction name="actionResearcher"/>
    </widget>
    <addaction name="menuLanguage"/>
-   <addaction name="menuResearcher"/>
+   <addaction name="menuTools"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="movable">
@@ -1401,6 +1402,11 @@ QCheckBox::indicator:checked {
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionResearcher">
+   <property name="text">
+    <string>Researcher</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

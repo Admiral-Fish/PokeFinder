@@ -65,6 +65,7 @@ private:
     QTranslator m_translatorQt;
     QString m_currLang;
     QString m_langPath;
+    Researcher *r;
 
     void loadLanguage(const QString& rLanguage);
 
@@ -93,6 +94,8 @@ private slots:
     void on_anyHiddenPower_clicked();
 
     void on_checkBoxDelay_clicked();
+
+    void on_actionResearcher_triggered();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

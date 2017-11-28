@@ -19,6 +19,7 @@
 
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
+#include "Researcher.hpp"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -42,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     createLanguageMenu();
+
 }
 
 MainWindow::~MainWindow()
@@ -397,4 +399,13 @@ void MainWindow::on_checkBoxDelay_clicked()
         ui->delay->setEnabled(false);
         ui->delay->setText("");
     }
+}
+
+
+void MainWindow::on_actionResearcher_triggered()
+{
+
+    r = new Researcher();
+    r->show();
+
 }

@@ -64,6 +64,7 @@ public:
     u32 LowBit() { return RNG64Bit ? High32() & 1 : High16() & 1; }
 
     QList<QStandardItem *> GetRow();
+
 };
 
 namespace Ui {
