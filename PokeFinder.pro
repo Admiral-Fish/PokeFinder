@@ -12,7 +12,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = PokeFinder
 TEMPLATE = app
-VERSION = 1.1.1
+VERSION = 1.1.2
 QMAKE_TARGET_DESCRIPTION = PokeFinder
 QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
