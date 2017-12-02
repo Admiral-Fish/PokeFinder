@@ -17,8 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "MainWindow.hpp"
+#include "ui_MainWindow.h"
+#include "Researcher.hpp"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -42,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     createLanguageMenu();
+
 }
 
 MainWindow::~MainWindow()
@@ -172,6 +174,7 @@ void MainWindow::on_generate_clicked()
         model->appendRow(frames[i].GetTableRow(genderRatioIndex));
 
     ui->tableView->setModel(model);
+    ui->tableView->resizeRowsToContents();
 }
 
 void MainWindow::natureItemCheck(QModelIndex a, QModelIndex b)
@@ -396,4 +399,13 @@ void MainWindow::on_checkBoxDelay_clicked()
         ui->delay->setEnabled(false);
         ui->delay->setText("");
     }
+}
+
+
+void MainWindow::on_actionResearcher_triggered()
+{
+
+    r = new Researcher();
+    r->show();
+
 }
