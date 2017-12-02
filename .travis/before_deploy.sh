@@ -3,6 +3,6 @@
 if [ $TRAVIS_OS_NAME = linux ]; then
     zip -r PokeFinder-linux.zip PokeFinder languages
 else
-    /usr/local/Cellar/qt/5.9.2/bin/macdeployqt PokeFinder.app -dmg -verbose=2
+    /usr/local/Cellar/qt/5.9.3/bin/macdeployqt PokeFinder.app -dmg -verbose=2
     zip -r PokeFinder-macOS.zip PokeFinder.dmg languages
 fi
