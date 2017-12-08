@@ -93,12 +93,15 @@ void Researcher::setupModel()
 
 void Researcher::on_pushButtonGenerate32Bit_clicked()
 {
-    u64 seed = ui->lineEditSeed->text().toUInt(NULL, 16);
+    u64 seed = ui->lineEditSeed->text().toULongLong(NULL, 16);
     u32 maxFrames = ui->lineEditMaxFrames->text().toUInt(NULL, 10);
     u32 startingFrame = ui->lineEditStartingFrame->text().toUInt(NULL, 10);
 
     IRNG *rng = NULL;
     IRNG64 *rng64 = NULL;
+
+    if (ui->rngSelection->currentIndex() != 1 && (seed > 0xffffffff))
+        seed >>= 32;
 
     if (ui->rngSelection->currentIndex() == 0)
     {
@@ -163,6 +166,8 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                     rng64 = new BWRNGR(seed);
                     break;
                 case 2:
+                    if (seed > 0xffffffff)
+                        seed >>= 32;
                     rng64 = new SFMT(seed);
                     break;
             }
@@ -291,11 +296,11 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         ResearcherFrame frame = ResearcherFrame(rng64Bit, i);
         if (rng64Bit)
         {
-            frame.Full64 = rng64->Nextulong();;
+            frame.Full64 = rng64->Nextulong();
         }
         else
         {
-            frame.Full32 = rng->Nextuint();;
+            frame.Full32 = rng->Nextuint();
         }
 
         for (int j = 0; j < 10; j++)
