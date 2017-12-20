@@ -83,11 +83,11 @@ u64 Multiply(u64 x, u64 y) { return x * y; }
 void Researcher::setupModel()
 {
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({ tr("Frame"), tr("32Bit"), tr("16Bit High"), tr("16BitLow"),
-                                       tr("Custom1"), tr("Custom2"), tr("Custom3"), tr("Custom4"),
-                                       tr("Custom5"), tr("Custom6"), tr("Custom7"), tr("Custom8"),
-                                       tr("Custom9"), tr("Custom10"), tr("%3"), tr("% 25"),
-                                       tr("%100"), tr("/656"), tr("LBit"), tr("HBit") });
+    model->setHorizontalHeaderLabels({ "Frame", "32Bit", "16Bit High", "16BitLow",
+                                       "Custom1", "Custom2", "Custom3", "Custom4",
+                                       "Custom5", "Custom6", "Custom7", "Custom8",
+                                       "Custom9", "Custom10", "%3", "%25",
+                                       "%100", "/656", "LBit", "HBit" });
     ui->tableView->setModel(model);
 }
 
@@ -137,7 +137,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                     if (maxFrames > 227)
                     {
                         QMessageBox error;
-                        error.setText("Please enter a max frame lower then 228");
+                        error.setText(tr("Please enter a max frame lower then 228"));
                         error.exec();
                         return;
                     }
@@ -321,20 +321,20 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     QStandardItemModel *model = new QStandardItemModel(this);
     if (rng64Bit)
     {
-        model->setHorizontalHeaderLabels({ tr("Frame"), tr("64 Bit"), tr("32Bit High"), tr("32Bit Low"),
-                                           tr("16Bit High"), tr("16BitLow"), tr("Custom1"), tr("Custom2"),
-                                           tr("Custom3"), tr("Custom4"), tr("Custom5"), tr("Custom6"),
-                                           tr("Custom7"), tr("Custom8"), tr("Custom9"), tr("Custom10"),
-                                           tr("%3"), tr("% 25"), tr("%100"), tr("/656"),  tr("LBit"),
-                                           tr("HBit") });
+        model->setHorizontalHeaderLabels({ "Frame", "64 Bit", "32Bit High", "32Bit Low",
+                                           "16Bit High", "16BitLow", "Custom1", "Custom2",
+                                           "Custom3", "Custom4", "Custom5", "Custom6",
+                                           "Custom7", "Custom8", "Custom9", "Custom10",
+                                           "%3", "%25", "%100", "/656",  "LBit",
+                                           "HBit" });
     }
     else
     {
-        model->setHorizontalHeaderLabels({ tr("Frame"), tr("32Bit"), tr("16Bit High"), tr("16BitLow"),
-                                           tr("Custom1"), tr("Custom2"), tr("Custom3"), tr("Custom4"),
-                                           tr("Custom5"), tr("Custom6"), tr("Custom7"), tr("Custom8"),
-                                           tr("Custom9"), tr("Custom10"), tr("%3"), tr("% 25"), tr("%100"),
-                                           tr("/656"), tr("LBit"), tr("HBit") });
+        model->setHorizontalHeaderLabels({ "Frame", "32Bit", "16Bit High", "16BitLow",
+                                           "Custom1", "Custom2", "Custom3", "Custom4",
+                                           "Custom5", "Custom6", "Custom7", "Custom8",
+                                           "Custom9", "Custom10", "%3", "%25", "%100",
+                                           "/656", "LBit", "HBit" });
     }
 
     for (u32 k = 0; k < maxFrames; k++)

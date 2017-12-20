@@ -75,6 +75,11 @@
         <translation>1</translation>
     </message>
     <message>
+        <location filename="../Forms/MainWindow.ui" line="14"/>
+        <source>PokéFinder 1.1.2</source>
+        <translation type="unfinished">PokéFinder 1.1.2</translation>
+    </message>
+    <message>
         <location filename="../Forms/MainWindow.ui" line="259"/>
         <source>100000</source>
         <translation>100000</translation>
@@ -252,11 +257,6 @@
         <location filename="../Forms/MainWindow.ui" line="402"/>
         <source>Create a Profile</source>
         <translation>Créer un profil</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="14"/>
-        <source>PokéFinder 1.1.1</source>
-        <translation type="unfinished">PokéFinder 1.1.1</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="1113"/>
@@ -1091,8 +1091,6 @@
         <location filename="../Forms/Researcher.ui" line="2199"/>
         <location filename="../Forms/Researcher.ui" line="2253"/>
         <location filename="../Forms/Researcher.ui" line="2439"/>
-        <location filename="../Forms/Researcher.cpp" line="86"/>
-        <location filename="../Forms/Researcher.cpp" line="328"/>
         <source>32Bit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1116,7 +1114,6 @@
         <location filename="../Forms/Researcher.ui" line="2204"/>
         <location filename="../Forms/Researcher.ui" line="2258"/>
         <location filename="../Forms/Researcher.ui" line="2444"/>
-        <location filename="../Forms/Researcher.cpp" line="319"/>
         <source>32Bit High</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1140,7 +1137,6 @@
         <location filename="../Forms/Researcher.ui" line="2209"/>
         <location filename="../Forms/Researcher.ui" line="2263"/>
         <location filename="../Forms/Researcher.ui" line="2449"/>
-        <location filename="../Forms/Researcher.cpp" line="319"/>
         <source>32Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1164,9 +1160,6 @@
         <location filename="../Forms/Researcher.ui" line="2214"/>
         <location filename="../Forms/Researcher.ui" line="2268"/>
         <location filename="../Forms/Researcher.ui" line="2454"/>
-        <location filename="../Forms/Researcher.cpp" line="86"/>
-        <location filename="../Forms/Researcher.cpp" line="320"/>
-        <location filename="../Forms/Researcher.cpp" line="328"/>
         <source>16Bit High</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1212,9 +1205,6 @@
         <location filename="../Forms/Researcher.ui" line="2224"/>
         <location filename="../Forms/Researcher.ui" line="2278"/>
         <location filename="../Forms/Researcher.ui" line="2464"/>
-        <location filename="../Forms/Researcher.cpp" line="87"/>
-        <location filename="../Forms/Researcher.cpp" line="320"/>
-        <location filename="../Forms/Researcher.cpp" line="329"/>
         <source>Custom1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1269,9 +1259,6 @@
         <location filename="../Forms/Researcher.ui" line="2229"/>
         <location filename="../Forms/Researcher.ui" line="2283"/>
         <location filename="../Forms/Researcher.ui" line="2469"/>
-        <location filename="../Forms/Researcher.cpp" line="87"/>
-        <location filename="../Forms/Researcher.cpp" line="320"/>
-        <location filename="../Forms/Researcher.cpp" line="329"/>
         <source>Custom2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1309,9 +1296,6 @@
         <location filename="../Forms/Researcher.ui" line="2234"/>
         <location filename="../Forms/Researcher.ui" line="2288"/>
         <location filename="../Forms/Researcher.ui" line="2474"/>
-        <location filename="../Forms/Researcher.cpp" line="87"/>
-        <location filename="../Forms/Researcher.cpp" line="321"/>
-        <location filename="../Forms/Researcher.cpp" line="329"/>
         <source>Custom3</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1345,9 +1329,6 @@
         <location filename="../Forms/Researcher.ui" line="2239"/>
         <location filename="../Forms/Researcher.ui" line="2293"/>
         <location filename="../Forms/Researcher.ui" line="2479"/>
-        <location filename="../Forms/Researcher.cpp" line="87"/>
-        <location filename="../Forms/Researcher.cpp" line="321"/>
-        <location filename="../Forms/Researcher.cpp" line="329"/>
         <source>Custom4</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1362,9 +1343,6 @@
         <location filename="../Forms/Researcher.ui" line="2031"/>
         <location filename="../Forms/Researcher.ui" line="2298"/>
         <location filename="../Forms/Researcher.ui" line="2484"/>
-        <location filename="../Forms/Researcher.cpp" line="88"/>
-        <location filename="../Forms/Researcher.cpp" line="321"/>
-        <location filename="../Forms/Researcher.cpp" line="330"/>
         <source>Custom5</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1377,9 +1355,6 @@
         <location filename="../Forms/Researcher.ui" line="2036"/>
         <location filename="../Forms/Researcher.ui" line="2303"/>
         <location filename="../Forms/Researcher.ui" line="2489"/>
-        <location filename="../Forms/Researcher.cpp" line="88"/>
-        <location filename="../Forms/Researcher.cpp" line="321"/>
-        <location filename="../Forms/Researcher.cpp" line="330"/>
         <source>Custom6</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1431,9 +1406,6 @@
         <location filename="../Forms/Researcher.ui" line="2041"/>
         <location filename="../Forms/Researcher.ui" line="2308"/>
         <location filename="../Forms/Researcher.ui" line="2494"/>
-        <location filename="../Forms/Researcher.cpp" line="88"/>
-        <location filename="../Forms/Researcher.cpp" line="322"/>
-        <location filename="../Forms/Researcher.cpp" line="330"/>
         <source>Custom7</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1452,9 +1424,6 @@
         <location filename="../Forms/Researcher.ui" line="2046"/>
         <location filename="../Forms/Researcher.ui" line="2313"/>
         <location filename="../Forms/Researcher.ui" line="2499"/>
-        <location filename="../Forms/Researcher.cpp" line="88"/>
-        <location filename="../Forms/Researcher.cpp" line="322"/>
-        <location filename="../Forms/Researcher.cpp" line="330"/>
         <source>Custom8</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1469,9 +1438,6 @@
     <message>
         <location filename="../Forms/Researcher.ui" line="2318"/>
         <location filename="../Forms/Researcher.ui" line="2504"/>
-        <location filename="../Forms/Researcher.cpp" line="89"/>
-        <location filename="../Forms/Researcher.cpp" line="322"/>
-        <location filename="../Forms/Researcher.cpp" line="331"/>
         <source>Custom9</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1513,7 +1479,6 @@
     </message>
     <message>
         <location filename="../Forms/Researcher.ui" line="128"/>
-        <location filename="../Forms/Researcher.cpp" line="319"/>
         <source>64 Bit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1713,70 +1678,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="86"/>
-        <location filename="../Forms/Researcher.cpp" line="320"/>
-        <location filename="../Forms/Researcher.cpp" line="328"/>
-        <source>16BitLow</source>
+        <location filename="../Forms/Researcher.cpp" line="140"/>
+        <source>Please enter a max frame lower then 228</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="86"/>
-        <location filename="../Forms/Researcher.cpp" line="319"/>
-        <location filename="../Forms/Researcher.cpp" line="328"/>
-        <source>Frame</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.cpp" line="89"/>
-        <location filename="../Forms/Researcher.cpp" line="322"/>
-        <location filename="../Forms/Researcher.cpp" line="331"/>
-        <source>Custom10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.cpp" line="89"/>
-        <location filename="../Forms/Researcher.cpp" line="323"/>
-        <location filename="../Forms/Researcher.cpp" line="331"/>
-        <source>%3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.cpp" line="89"/>
-        <location filename="../Forms/Researcher.cpp" line="323"/>
-        <location filename="../Forms/Researcher.cpp" line="331"/>
-        <source>% 25</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.cpp" line="90"/>
-        <location filename="../Forms/Researcher.cpp" line="323"/>
-        <location filename="../Forms/Researcher.cpp" line="331"/>
-        <source>%100</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.cpp" line="90"/>
-        <location filename="../Forms/Researcher.cpp" line="323"/>
-        <location filename="../Forms/Researcher.cpp" line="332"/>
-        <source>/656</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.cpp" line="90"/>
-        <location filename="../Forms/Researcher.cpp" line="323"/>
-        <location filename="../Forms/Researcher.cpp" line="332"/>
-        <source>LBit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.cpp" line="90"/>
-        <location filename="../Forms/Researcher.cpp" line="324"/>
-        <location filename="../Forms/Researcher.cpp" line="332"/>
-        <source>HBit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.cpp" line="248"/>
+        <location filename="../Forms/Researcher.cpp" line="253"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translation type="unfinished"></translation>
     </message>

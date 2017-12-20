@@ -42,20 +42,7 @@ typedef unordered_map<string, func> Calculator;
 class ResearcherFrame
 {
 
-public:
-
-    u64 Custom[10];
-    bool RNG64Bit;
-    u64 Full64;
-    u32 Full32;
-    u32 Frame;
-
-    ResearcherFrame(bool rng64Bit, u32 frame);
-
-    u32 High32() { return (u32)(Full64 >> 32); }
-    u32 Low32() { return (u32)(Full64 & 0xFFFFFFFF); }
-    u32 High16() { return RNG64Bit ? High32() >> 16 : Full32 >> 16; }
-    u32 Low16() { return RNG64Bit ? High32() & 0xFFFF : Full32 & 0xFFFF; }
+private:
     u32 Mod25() { return RNG64Bit ? High32() % 25 : High16() % 25; }
     u32 Mod100() { return RNG64Bit ? High32() % 100 : High16() % 100; }
     u32 Mod3() { return RNG64Bit ? High32() % 3 : High16() % 3; }
@@ -63,6 +50,18 @@ public:
     u32 HighBit() { return RNG64Bit ? High32() >> 31 : High16() >> 15; }
     u32 LowBit() { return RNG64Bit ? High32() & 1 : High16() & 1; }
 
+public:
+    u64 Custom[10];
+    bool RNG64Bit;
+    u64 Full64;
+    u32 Full32;
+    u32 Frame;
+
+    ResearcherFrame(bool rng64Bit, u32 frame);
+    u32 High32() { return (u32)(Full64 >> 32); }
+    u32 Low32() { return (u32)(Full64 & 0xFFFFFFFF); }
+    u32 High16() { return RNG64Bit ? High32() >> 16 : Full32 >> 16; }
+    u32 Low16() { return RNG64Bit ? High32() & 0xFFFF : Full32 & 0xFFFF; }
     QList<QStandardItem *> GetRow();
 
 };
@@ -86,7 +85,6 @@ public:
 
 private slots:
     void on_pushButtonGenerate32Bit_clicked();
-
     void on_rngSelection_currentChanged(int index);
 
 private:
