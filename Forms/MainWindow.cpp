@@ -287,6 +287,12 @@ void MainWindow::setupModels()
     connect(ui->maxResults, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
     connect(ui->initialSeed, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
     connect(ui->delay, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+
+    ui->comboBoxMethod->setEditable(true);
+    ui->comboBoxMethod->lineEdit()->setAlignment(Qt::AlignCenter);
+    for(int i = 0; i < ui->comboBoxMethod->count(); i++)
+        ui->comboBoxMethod->setItemData(i, Qt::AlignCenter, Qt::TextAlignmentRole);
+    ui->comboBoxMethod->setEditable(false);
 }
 
 void MainWindow::on_saveProfile_clicked()
