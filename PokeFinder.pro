@@ -28,14 +28,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 TRANSLATIONS += \
-    languages/PokeFinder_en.ts \
-    languages/PokeFinder_fr.ts \
-    languages/PokeFinder_es.ts \
-    languages/PokeFinder_de.ts \
-    languages/PokeFinder_it.ts \
-    languages/PokeFinder_ja.ts \
-    languages/PokeFinder_ko.ts \
-    languages/PokeFinder_zh_Hans_CN.ts
+    Languages/PokeFinder_en.ts \
+    Languages/PokeFinder_fr.ts \
+    Languages/PokeFinder_es.ts \
+    Languages/PokeFinder_de.ts \
+    Languages/PokeFinder_it.ts \
+    Languages/PokeFinder_ja.ts \
+    Languages/PokeFinder_ko.ts \
+    Languages/PokeFinder_zh_Hans_CN.ts
 
 SOURCES += \
     Forms/ProfileManager/ProfileManagerGen3.cpp \

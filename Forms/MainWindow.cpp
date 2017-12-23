@@ -87,7 +87,7 @@ void MainWindow::createLanguageMenu(void)
     defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
 
     m_langPath = QApplication::applicationDirPath();
-    m_langPath.append("/languages");
+    m_langPath.append("/Languages");
     QDir dir(m_langPath);
     QStringList fileNames = dir.entryList(QStringList("PokeFinder_*.qm"));
 
@@ -121,7 +121,7 @@ void MainWindow::slotLanguageChanged(QAction* action)
 void switchTranslator(QTranslator& translator, const QString& filename)
 {
     qApp->removeTranslator(&translator);
-    if(translator.load(QCoreApplication::applicationDirPath() + "/languages/" + filename))
+    if(translator.load(QCoreApplication::applicationDirPath() + "/Languages/" + filename))
         qApp->installTranslator(&translator);
 }
 
