@@ -27,7 +27,7 @@ build_script:
 
 after_build:
     - md PokeFinder-windows
-    - del Languages\*.tm
+    - del Languages\*.ts
     - move Languages PokeFinder-windows\Languages
     - move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe 
     - windeployqt --release --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
