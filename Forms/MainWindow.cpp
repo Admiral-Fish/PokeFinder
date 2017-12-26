@@ -409,8 +409,6 @@ void MainWindow::on_checkBoxDelay_clicked()
 
 void MainWindow::on_actionResearcher_triggered()
 {
-
-    r = new Researcher();
+    r = new Researcher(this);
     r->show();
-
 }
