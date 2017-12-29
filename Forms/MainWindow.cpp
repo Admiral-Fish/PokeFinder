@@ -169,9 +169,28 @@ void MainWindow::on_generate_clicked()
 
     vector<FrameGen3> frames = generator.Generate(compare);
     int size = frames.size();
+    model->setRowCount(size);
+    model->setColumnCount(15);
 
+    QModelIndex m = QModelIndex();
     for (int i = 0; i < size; i++)
-        model->appendRow(frames[i].GetTableRow(genderRatioIndex));
+    {
+        model->setData(model->index(i, 0, m), frames[i].frame);
+        model->setData(model->index(i, 1, m), QString::number(frames[i].pid, 16).toUpper().rightJustified(8,'0'));
+        model->setData(model->index(i, 2, m), frames[i].GetShiny());
+        model->setData(model->index(i, 3, m), frames[i].GetNature());
+        model->setData(model->index(i, 4, m), frames[i].ability);
+        model->setData(model->index(i, 5, m), frames[i].ivs[0]);
+        model->setData(model->index(i, 6, m), frames[i].ivs[1]);
+        model->setData(model->index(i, 7, m), frames[i].ivs[2]);
+        model->setData(model->index(i, 8, m), frames[i].ivs[3]);
+        model->setData(model->index(i, 9, m), frames[i].ivs[4]);
+        model->setData(model->index(i, 10, m), frames[i].ivs[5]);
+        model->setData(model->index(i, 11, m), frames[i].GetPower());
+        model->setData(model->index(i, 12, m), frames[i].power);
+        model->setData(model->index(i, 13, m), frames[i].GetFemale25());
+        model->setData(model->index(i, 14, m), frames[i].GetTime());
+    }
 
     ui->tableView->setModel(model);
 }
