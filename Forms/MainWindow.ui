@@ -14,8 +14,8 @@
    <string>PokéFinder 1.1.2</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>../pokefinder.ico</normaloff>../pokefinder.ico</iconset>
+   <iconset resource="../resources.qrc">
+    <normaloff>:/pokefinder.ico</normaloff>:/pokefinder.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="tabRNGSelector">
@@ -1250,6 +1250,8 @@ QCheckBox::indicator:checked {
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
