@@ -16,7 +16,7 @@ VERSION = 1.1.2
 QMAKE_TARGET_DESCRIPTION = PokeFinder
 QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
-win32:RC_ICONS += pokefinder.ico
+RC_ICONS += pokefinder.ico
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
