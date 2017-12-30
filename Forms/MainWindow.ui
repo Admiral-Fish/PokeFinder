@@ -1422,13 +1422,13 @@ QPushButton::disabled {
            </size>
           </property>
           <property name="inputMask">
-           <string>AAAAAAAA</string>
+           <string/>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="maxLength">
-           <number>8</number>
+           <number>32767</number>
           </property>
           <property name="cursorPosition">
            <number>0</number>
