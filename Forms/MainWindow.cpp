@@ -39,8 +39,8 @@ MainWindow::MainWindow(QWidget *parent) :
     if(!file.exists())
         createProfileXml();
 
-    ui->tableView->resizeColumnsToContents();
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableViewStationary3->resizeColumnsToContents();
+    ui->tableViewStationary3->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     createLanguageMenu();
 
@@ -138,24 +138,31 @@ void MainWindow::loadLanguage(const QString& rLanguage)
     }
 }
 
-void MainWindow::on_generate_clicked()
+void MainWindow::on_generateStationary3_clicked()
 {
-    u32 seed = ui->initialSeed->text().toUInt(NULL, 16);
-    u32 startingFrame = ui->startingFrame->text().toUInt(NULL, 10);
-    u32 maxResults = ui->maxResults->text().toUInt(NULL, 10);
-    u32 tid = ui->id->text().toUInt(NULL, 10);
-    u32 sid = ui->sid->text().toUInt(NULL, 10);
-    u32 offset = ui->delay->text().toUInt(NULL, 10);
+    u32 seed = ui->initialSeedStationary3->text().toUInt(NULL, 16);
+    u32 startingFrame = ui->startingFrameStationary3->text().toUInt(NULL, 10);
+    u32 maxResults = ui->maxResultsStationary3->text().toUInt(NULL, 10);
+    u32 tid = ui->idStationary3->text().toUInt(NULL, 10);
+    u32 sid = ui->sidStationary3->text().toUInt(NULL, 10);
+    u32 offset = ui->delayStationary3->text().toUInt(NULL, 10);
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+                                      tr("Def"), tr("SpA"), tr("SpD"),tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
 
-    int genderRatioIndex = ui->comboBoxGenderRatio->currentIndex();
+    int genderRatioIndex = ui->comboBoxGenderRatioStationary3->currentIndex();
     GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid, offset);
-    FrameCompare compare = FrameCompare(ui->comboBoxHP->currentIndex(), ui->spinBoxHP->value(), ui->comboBoxAtk->currentIndex(), ui->spinBoxAtk->value(), ui->comboBoxDef->currentIndex(), ui->spinBoxDef->value(), ui->comboBoxSpA->currentIndex(), ui->spinBoxSpA->value(), ui->comboBoxSpD->currentIndex(), ui->spinBoxSpD->value(), ui->comboBoxSpe->currentIndex(), ui->spinBoxSpe->value(), ui->comboBoxGender->currentIndex(), genderRatioIndex, ui->comboBoxAbility->currentIndex(), ui->comboBoxNature, ui->comboBoxHiddenP, ui->checkBoxShiny->isChecked(), ui->checkBoxDisable->isChecked());
-    int method = ui->comboBoxMethod->currentIndex();
+    FrameCompare compare = FrameCompare(ui->comboBoxHPStationary3->currentIndex(), ui->spinBoxHPStationary3->value(), ui->comboBoxAtkStationary3->currentIndex(),
+                                        ui->spinBoxAtkStationary3->value(), ui->comboBoxDefStationary3->currentIndex(), ui->spinBoxDefStationary3->value(),
+                                        ui->comboBoxSpAStationary3->currentIndex(), ui->spinBoxSpAStationary3->value(), ui->comboBoxSpDStationary3->currentIndex(),
+                                        ui->spinBoxSpDStationary3->value(), ui->comboBoxSpeStationary3->currentIndex(), ui->spinBoxSpeStationary3->value(),
+                                        ui->comboBoxGenderStationary3->currentIndex(), genderRatioIndex, ui->comboBoxAbilityStationary3->currentIndex(),
+                                        ui->comboBoxNatureStationary3->getChecked(), ui->comboBoxHiddenPowerStationary3->getChecked(),
+                                        ui->checkBoxShinyStationary3->isChecked(), ui->checkBoxDisableStationary3->isChecked());
 
+    int method = ui->comboBoxMethodStationary3->currentIndex();
     if (method == 0)
         generator.frameType = Method1;
     else if (method == 1)
@@ -192,59 +199,68 @@ void MainWindow::on_generate_clicked()
         model->setData(model->index(i, 14, m), frames[i].GetTime());
     }
 
-    ui->tableView->setModel(model);
+    ui->tableViewStationary3->setModel(model);
 }
 
-void MainWindow::natureItemCheck(QModelIndex a, QModelIndex b)
+void MainWindow::on_generateWild3_clicked()
 {
-    (void)a;
-    (void)b;
+    u32 seed = ui->initialSeedWild3->text().toUInt(NULL, 16);
+    u32 startingFrame = ui->startingFrameWild3->text().toUInt(NULL, 10);
+    u32 maxResults = ui->maxResultsWild3->text().toUInt(NULL, 10);
+    u32 tid = ui->idWild3->text().toUInt(NULL, 10);
+    u32 sid = ui->sidWild3->text().toUInt(NULL, 10);
+    u32 offset = ui->delayWild3->text().toUInt(NULL, 10);
 
-    QString newFirst = "";
-    for(int i = 1; i < 26; i++)
-    {
-        if(ui->comboBoxNature->model()->data(ui->comboBoxNature->model()->index(i, 0), Qt::CheckStateRole).toBool())
-        {
-            QString text = ui->comboBoxNature->model()->data(ui->comboBoxNature->model()->index(i, 0)).toString();
-            text.append(", ");
-            newFirst += text;
-        }
-    }
-    if(newFirst.length() != 0)
-    {
-        newFirst.remove(newFirst.length() - 2, 2);
-        ui->comboBoxNature->model()->setData(ui->comboBoxNature->model()->index(0, 0), newFirst);
-    }
+    // Force early garbage collection
+    QStandardItemModel *model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("Slot"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+                                      tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
+
+    int genderRatioIndex = ui->comboBoxGenderRatioWild3->currentIndex();
+    GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid, offset);
+    FrameCompare compare = FrameCompare(ui->comboBoxHPWild3->currentIndex(), ui->spinBoxHPWild3->value(), ui->comboBoxAtkWild3->currentIndex(),
+                                        ui->spinBoxAtkWild3->value(), ui->comboBoxDefWild3->currentIndex(), ui->spinBoxDefWild3->value(),
+                                        ui->comboBoxSpAWild3->currentIndex(), ui->spinBoxSpAWild3->value(), ui->comboBoxSpDWild3->currentIndex(),
+                                        ui->spinBoxSpDWild3->value(), ui->comboBoxSpeWild3->currentIndex(), ui->spinBoxSpeWild3->value(),
+                                        ui->comboBoxGenderWild3->currentIndex(), genderRatioIndex, ui->comboBoxAbilityWild3->currentIndex(),
+                                        ui->comboBoxNatureWild3->getChecked(), ui->comboBoxHiddenPowerWild3->getChecked(),
+                                        ui->checkBoxShinyWild3->isChecked(), ui->checkBoxDisableWild3->isChecked());
+
+    int method = ui->comboBoxMethodWild3->currentIndex();
+    if (method == 0)
+        generator.frameType = MethodH1;
+    else if (method == 1)
+        generator.frameType = MethodH2;
     else
-    {
-        ui->comboBoxNature->model()->setData(ui->comboBoxNature->model()->index(0, 0), tr("Any"));
-    }
-}
+        generator.frameType = MethodH4;
 
-void MainWindow::hiddenItemCheck(QModelIndex a, QModelIndex b)
-{
-    (void)a;
-    (void)b;
+    vector<FrameGen3> frames = generator.Generate(compare);
+    int size = frames.size();
+    model->setRowCount(size);
+    model->setColumnCount(16);
 
-    QString newFirst = "";
-    for(int i = 1; i < 17; i++)
+    QModelIndex m = QModelIndex();
+    for (int i = 0; i < size; i++)
     {
-        if(ui->comboBoxHiddenP->model()->data(ui->comboBoxHiddenP->model()->index(i, 0), Qt::CheckStateRole).toBool())
-        {
-            QString text = ui->comboBoxHiddenP->model()->data(ui->comboBoxHiddenP->model()->index(i, 0)).toString();
-            text.append(", ");
-            newFirst += text;
-        }
+        model->setData(model->index(i, 0, m), frames[i].frame);
+        model->setData(model->index(i, 1, m), frames[i].encounterSlot);
+        model->setData(model->index(i, 2, m), QString::number(frames[i].pid, 16).toUpper().rightJustified(8,'0'));
+        model->setData(model->index(i, 3, m), frames[i].GetShiny());
+        model->setData(model->index(i, 4, m), frames[i].GetNature());
+        model->setData(model->index(i, 5, m), frames[i].ability);
+        model->setData(model->index(i, 6, m), frames[i].ivs[0]);
+        model->setData(model->index(i, 7, m), frames[i].ivs[1]);
+        model->setData(model->index(i, 8, m), frames[i].ivs[2]);
+        model->setData(model->index(i, 9, m), frames[i].ivs[3]);
+        model->setData(model->index(i, 10, m), frames[i].ivs[4]);
+        model->setData(model->index(i, 11, m), frames[i].ivs[5]);
+        model->setData(model->index(i, 12, m), frames[i].GetPower());
+        model->setData(model->index(i, 13, m), frames[i].power);
+        model->setData(model->index(i, 14, m), frames[i].GetFemale25());
+        model->setData(model->index(i, 15, m), frames[i].GetTime());
     }
-    if(newFirst.length() != 0)
-    {
-        newFirst.remove(newFirst.length() - 2, 2);
-        ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), newFirst);
-    }
-    else
-    {
-        ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), tr("Any"));
-    }
+
+    ui->tableViewWild3->setModel(model);
 }
 
 void MainWindow::createProfileXml()
@@ -263,57 +279,43 @@ void MainWindow::createProfileXml()
 
 void MainWindow::setupModels()
 {
-    QStandardItemModel *natures = new QStandardItemModel(26, 1, this);
-    vector<QString> natureList = Nature::GetNatures();
-    QStandardItem* firstNature = new QStandardItem(tr("Any"));
-    natures->setItem(0, firstNature);
-    for(int i = 0; i < 25; i++)
-    {
-        QStandardItem* item = new QStandardItem(natureList[i]);
-        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-        item->setData(Qt::Unchecked, Qt::CheckStateRole);
+    QStringList natureList = Nature::GetNatures();
+    ui->comboBoxNatureStationary3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->comboBoxNatureWild3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
 
-        natures->setItem(i + 1, item);
-    }
-    ui->comboBoxNature->setModel(natures);
-    connect(ui->comboBoxNature->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(natureItemCheck(QModelIndex, QModelIndex)));
-
-    QStandardItemModel *hidden = new QStandardItemModel(17, 1, this);
-    vector<QString> powerList = Power::GetPowers();
-    QStandardItem* firstPower = new QStandardItem(tr("Any"));
-    hidden->setItem(0, firstPower);
-    for(int i = 0; i < 16; i++)
-    {
-        QStandardItem* item = new QStandardItem(powerList[i]);
-        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-        item->setData(Qt::Unchecked, Qt::CheckStateRole);
-
-        hidden->setItem(i + 1, item);
-    }
-    ui->comboBoxHiddenP->setModel(hidden);
-    connect(ui->comboBoxHiddenP->model(), SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(hiddenItemCheck(QModelIndex, QModelIndex)));
+    QStringList powerList = Power::GetPowers();
+    ui->comboBoxHiddenPowerStationary3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerWild3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
 
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
-    ui->tableView->setModel(model);
-    ui->tableView->verticalHeader()->setVisible(false);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+                                      tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
+    ui->tableViewStationary3->setModel(model);
+    ui->tableViewStationary3->verticalHeader()->setVisible(false);
+    ui->tableViewStationary3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    connect(ui->id, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
-    connect(ui->sid, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
-    connect(ui->startingFrame, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
-    connect(ui->maxResults, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
-    connect(ui->initialSeed, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
-    connect(ui->delay, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("Slot"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+                                      tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
+    ui->tableViewWild3->setModel(model);
+    ui->tableViewWild3->verticalHeader()->setVisible(false);
+    ui->tableViewWild3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    ui->comboBoxMethod->setEditable(true);
-    ui->comboBoxMethod->lineEdit()->setAlignment(Qt::AlignCenter);
-    for(int i = 0; i < ui->comboBoxMethod->count(); i++)
-        ui->comboBoxMethod->setItemData(i, Qt::AlignCenter, Qt::TextAlignmentRole);
-    ui->comboBoxMethod->setEditable(false);
+    connect(ui->idStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->sidStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->startingFrameStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->maxResultsStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->initialSeedStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    connect(ui->delayStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+
+    ui->comboBoxMethodStationary3->setEditable(true);
+    ui->comboBoxMethodStationary3->lineEdit()->setAlignment(Qt::AlignCenter);
+    for(int i = 0; i < ui->comboBoxMethodStationary3->count(); i++)
+        ui->comboBoxMethodStationary3->setItemData(i, Qt::AlignCenter, Qt::TextAlignmentRole);
+    ui->comboBoxMethodStationary3->setEditable(false);
 }
 
-void MainWindow::on_saveProfile_clicked()
+void MainWindow::on_saveProfileStationary3_clicked()
 {
     ProfileManagerGen3* manager = new ProfileManagerGen3();
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
@@ -339,16 +341,16 @@ void MainWindow::checkLineEdits(QString str)
 {
     (void) str;
     int pos = 0;
-    QString id = ui->id->text();
-    QString sid = ui->sid->text();
-    QString startingFrame = ui->startingFrame->text();
-    QString maxResults = ui->maxResults->text();
-    QString initialSeed = ui->initialSeed->text().toUpper();
-    QString delay = ui->delay->text();
-    ui->initialSeed->setText(initialSeed);
+    QString id = ui->idStationary3->text();
+    QString sid = ui->sidStationary3->text();
+    QString startingFrame = ui->startingFrameStationary3->text();
+    QString maxResults = ui->maxResultsStationary3->text();
+    QString initialSeed = ui->initialSeedStationary3->text().toUpper();
+    QString delay = ui->delayStationary3->text();
+    ui->initialSeedStationary3->setText(initialSeed);
     if(idVal->validate(id, pos) == QValidator::Acceptable && idVal->validate(sid, pos) == QValidator::Acceptable && frameVal->validate(startingFrame, pos) == QValidator::Acceptable && frameVal->validate(maxResults, pos) == QValidator::Acceptable && seedVal->validate(initialSeed, pos) == QValidator::Acceptable && frameVal->validate(delay, pos))
     {
-        ui->generate->setEnabled(true);
+        ui->generateStationary3->setEnabled(true);
     }
     else
     {
@@ -359,14 +361,14 @@ void MainWindow::checkLineEdits(QString str)
         frameVal->fixup(delay);
         seedVal->fixup(initialSeed);
 
-        ui->id->setText(id);
-        ui->sid->setText(sid);
-        ui->startingFrame->setText(startingFrame);
-        ui->maxResults->setText(maxResults);
-        ui->initialSeed->setText(initialSeed);
-        ui->delay->setText(delay);
+        ui->idStationary3->setText(id);
+        ui->sidStationary3->setText(sid);
+        ui->startingFrameStationary3->setText(startingFrame);
+        ui->maxResultsStationary3->setText(maxResults);
+        ui->initialSeedStationary3->setText(initialSeed);
+        ui->delayStationary3->setText(delay);
 
-        ui->generate->setEnabled(false);
+        ui->generateStationary3->setEnabled(false);
         checkLineEdits(str);
     }
 }
@@ -375,53 +377,50 @@ void MainWindow::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     if(index == 0)
     {
-        ui->id->setReadOnly(false);
-        ui->sid->setReadOnly(false);
-        ui->id->setText("");
-        ui->sid->setText("");
+        ui->idStationary3->setReadOnly(false);
+        ui->sidStationary3->setReadOnly(false);
+        ui->idStationary3->setText("");
+        ui->sidStationary3->setText("");
     }
     else
     {
-        ui->id->setReadOnly(true);
-        ui->sid->setReadOnly(true);
-        ui->id->setText(QString::number(profiles.at(index - 1).tid));
-        ui->sid->setText(QString::number(profiles.at(index - 1).sid));
+        ui->idStationary3->setReadOnly(true);
+        ui->sidStationary3->setReadOnly(true);
+        ui->idStationary3->setText(QString::number(profiles.at(index - 1).tid));
+        ui->sidStationary3->setText(QString::number(profiles.at(index - 1).sid));
     }
 }
 
-void MainWindow::on_anyNature_clicked()
+void MainWindow::on_anyNatureStationary3_clicked()
 {
-    for(int i = 1; i < 26; i++)
-    {
-        ui->comboBoxNature->model()->setData(ui->comboBoxNature->model()->index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
-
-    }
-
-    ui->comboBoxNature->model()->setData(ui->comboBoxNature->model()->index(0, 0), tr("Any"));
-
+    ui->comboBoxNatureStationary3->uncheckAll();
 }
 
-void MainWindow::on_anyHiddenPower_clicked()
+void MainWindow::on_anyHiddenPowerStationary3_clicked()
 {
-    for(int i = 1; i < 17; i++)
-    {
-        ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
-
-    }
-
-    ui->comboBoxHiddenP->model()->setData(ui->comboBoxHiddenP->model()->index(0, 0), tr("Any"));
+    ui->comboBoxHiddenPowerStationary3->uncheckAll();
 }
 
-void MainWindow::on_checkBoxDelay_clicked()
+void MainWindow::on_anyHiddenPowerWild3_clicked()
 {
-    if(ui->checkBoxDelay->isChecked())
+    ui->comboBoxHiddenPowerWild3->uncheckAll();
+}
+
+void MainWindow::on_anyNatureWild3_clicked()
+{
+    ui->comboBoxNatureWild3->uncheckAll();
+}
+
+void MainWindow::on_checkBoxDelayStationary3_clicked()
+{
+    if(ui->checkBoxDelayStationary3->isChecked())
     {
-        ui->delay->setEnabled(true);
+        ui->delayStationary3->setEnabled(true);
     }
     else
     {
-        ui->delay->setEnabled(false);
-        ui->delay->setText("");
+        ui->delayStationary3->setEnabled(false);
+        ui->delayStationary3->setText("");
     }
 }
 

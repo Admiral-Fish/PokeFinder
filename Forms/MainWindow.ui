@@ -126,7 +126,7 @@ QPushButton {
       <property name="title">
        <string>RNG Info</string>
       </property>
-      <widget class="QPushButton" name="generate">
+      <widget class="QPushButton" name="generateStationary3">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -157,7 +157,7 @@ QPushButton::disabled {
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="saveProfile">
+      <widget class="QPushButton" name="saveProfileStationary3">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -195,7 +195,7 @@ QPushButton::disabled {
          <enum>QLayout::SetNoConstraint</enum>
         </property>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="id">
+         <widget class="QLineEdit" name="idStationary3">
           <property name="inputMask">
            <string/>
           </property>
@@ -243,7 +243,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxMethod">
+         <widget class="QComboBox" name="comboBoxMethodStationary3">
           <property name="layoutDirection">
            <enum>Qt::RightToLeft</enum>
           </property>
@@ -281,7 +281,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLineEdit" name="sid">
+         <widget class="QLineEdit" name="sidStationary3">
           <property name="inputMask">
            <string/>
           </property>
@@ -301,7 +301,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QLineEdit" name="initialSeed">
+         <widget class="QLineEdit" name="initialSeedStationary3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -335,7 +335,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="startingFrame">
+         <widget class="QLineEdit" name="startingFrameStationary3">
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -351,7 +351,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="maxResults">
+         <widget class="QLineEdit" name="maxResultsStationary3">
           <property name="inputMask">
            <string/>
           </property>
@@ -365,39 +365,6 @@ QPushButton::disabled {
         </item>
        </layout>
       </widget>
-     </widget>
-     <widget class="QTableView" name="tableView">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>280</y>
-        <width>1191</width>
-        <height>271</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QTableView {
-	border: 4px solid DodgerBlue;
-}
-
-QHeaderView::section {
-	border: none;
-	background-color: #274050;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	color: white;
-}
-</string>
-      </property>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>100</number>
-      </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
-       <number>20</number>
-      </attribute>
-      <attribute name="verticalHeaderMinimumSectionSize">
-       <number>20</number>
-      </attribute>
      </widget>
      <widget class="QGroupBox" name="groupBoxFilters">
       <property name="geometry">
@@ -515,7 +482,7 @@ QCheckBox::indicator:checked {
          <enum>QLayout::SetNoConstraint</enum>
         </property>
         <item row="1" column="4">
-         <widget class="QComboBox" name="comboBoxAbility">
+         <widget class="QComboBox" name="comboBoxAbilityStationary3">
           <item>
            <property name="text">
             <string>Any</string>
@@ -547,7 +514,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="0" column="4">
-         <widget class="QComboBox" name="comboBoxGender">
+         <widget class="QComboBox" name="comboBoxGenderStationary3">
           <item>
            <property name="text">
             <string>-</string>
@@ -566,7 +533,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxHP">
+         <widget class="QComboBox" name="comboBoxHPStationary3">
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
           </property>
@@ -636,7 +603,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="3" column="5">
-         <widget class="QPushButton" name="anyHiddenPower">
+         <widget class="QPushButton" name="anyHiddenPowerStationary3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -680,7 +647,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QComboBox" name="comboBoxSpD">
+         <widget class="QComboBox" name="comboBoxSpDStationary3">
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
           </property>
@@ -738,7 +705,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QComboBox" name="comboBoxSpe">
+         <widget class="QComboBox" name="comboBoxSpeStationary3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -794,7 +761,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="0" column="2">
-         <widget class="QSpinBox" name="spinBoxHP">
+         <widget class="QSpinBox" name="spinBoxHPStationary3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -807,7 +774,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="6" column="5">
-         <widget class="QLineEdit" name="delay">
+         <widget class="QLineEdit" name="delayStationary3">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -838,21 +805,21 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QSpinBox" name="spinBoxAtk">
+         <widget class="QSpinBox" name="spinBoxAtkStationary3">
           <property name="maximum">
            <number>31</number>
           </property>
          </widget>
         </item>
         <item row="4" column="2">
-         <widget class="QSpinBox" name="spinBoxSpD">
+         <widget class="QSpinBox" name="spinBoxSpDStationary3">
           <property name="maximum">
            <number>31</number>
           </property>
          </widget>
         </item>
         <item row="5" column="2">
-         <widget class="QSpinBox" name="spinBoxSpe">
+         <widget class="QSpinBox" name="spinBoxSpeStationary3">
           <property name="maximum">
            <number>31</number>
           </property>
@@ -866,10 +833,10 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="2" column="4">
-         <widget class="QComboBox" name="comboBoxNature"/>
+         <widget class="QCheckList" name="comboBoxNatureStationary3"/>
         </item>
         <item row="2" column="5">
-         <widget class="QPushButton" name="anyNature">
+         <widget class="QPushButton" name="anyNatureStationary3">
           <property name="minimumSize">
            <size>
             <width>50</width>
@@ -893,14 +860,14 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="5" column="6">
-         <widget class="QCheckBox" name="checkBoxDelay">
+         <widget class="QCheckBox" name="checkBoxDelayStationary3">
           <property name="text">
            <string/>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QComboBox" name="comboBoxAtk">
+         <widget class="QComboBox" name="comboBoxAtkStationary3">
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
           </property>
@@ -944,7 +911,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QComboBox" name="comboBoxSpA">
+         <widget class="QComboBox" name="comboBoxSpAStationary3">
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
           </property>
@@ -988,14 +955,14 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QSpinBox" name="spinBoxDef">
+         <widget class="QSpinBox" name="spinBoxDefStationary3">
           <property name="maximum">
            <number>31</number>
           </property>
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QComboBox" name="comboBoxDef">
+         <widget class="QComboBox" name="comboBoxDefStationary3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -1045,7 +1012,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="3" column="2">
-         <widget class="QSpinBox" name="spinBoxSpA">
+         <widget class="QSpinBox" name="spinBoxSpAStationary3">
           <property name="maximum">
            <number>31</number>
           </property>
@@ -1073,7 +1040,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="3" column="4">
-         <widget class="QComboBox" name="comboBoxHiddenP"/>
+         <widget class="QCheckList" name="comboBoxHiddenPowerStationary3"/>
         </item>
         <item row="4" column="3">
          <widget class="QLabel" name="genderRLabel">
@@ -1097,7 +1064,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="4" column="4">
-         <widget class="QComboBox" name="comboBoxGenderRatio">
+         <widget class="QComboBox" name="comboBoxGenderRatioStationary3">
           <item>
            <property name="text">
             <string>Genderless</string>
@@ -1136,14 +1103,14 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="5" column="4">
-         <widget class="QCheckBox" name="checkBoxShiny">
+         <widget class="QCheckBox" name="checkBoxShinyStationary3">
           <property name="text">
            <string/>
           </property>
          </widget>
         </item>
         <item row="6" column="4">
-         <widget class="QCheckBox" name="checkBoxDisable">
+         <widget class="QCheckBox" name="checkBoxDisableStationary3">
           <property name="text">
            <string/>
           </property>
@@ -1159,11 +1126,1146 @@ QCheckBox::indicator:checked {
        </layout>
       </widget>
      </widget>
+     <widget class="QTableView" name="tableViewStationary3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>280</y>
+        <width>1191</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableView {
+	border: 4px solid DodgerBlue;
+}
+
+QHeaderView::section {
+	border: none;
+	background-color: #274050;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: white;
+}
+</string>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>100</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>20</number>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>20</number>
+      </attribute>
+     </widget>
     </widget>
     <widget class="QWidget" name="tabWild">
      <attribute name="title">
       <string>Wild</string>
      </attribute>
+     <widget class="QGroupBox" name="groupBoxRNGInfo_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>251</width>
+        <height>261</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}
+
+QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+		font-family: &quot;Myriad Pro&quot;, Montserrat;
+		font-weight: 500;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+QComboBox::editable {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+</string>
+      </property>
+      <property name="title">
+       <string>RNG Info</string>
+      </property>
+      <widget class="QPushButton" name="generateWild3">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>200</y>
+         <width>231</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}
+
+QPushButton::disabled {
+	background-color: gray;
+}</string>
+       </property>
+       <property name="text">
+        <string>Generate</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="saveWild3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>230</y>
+         <width>231</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: orange;
+}</string>
+       </property>
+       <property name="text">
+        <string>Create a Profile</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QWidget" name="gridLayoutWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>231</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayoutInfo_2" rowstretch="0,0,0,0,0,0" columnstretch="0,0">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetNoConstraint</enum>
+        </property>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="idWild3">
+          <property name="inputMask">
+           <string/>
+          </property>
+          <property name="text">
+           <string>12345</string>
+          </property>
+          <property name="maxLength">
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="sidLabel_2">
+          <property name="text">
+           <string>Trainer SID:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="idLabel_2">
+          <property name="text">
+           <string>Trainer ID:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="startingFrameLabel_2">
+          <property name="text">
+           <string>Starting Frame:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="seedLabel_2">
+          <property name="text">
+           <string>Seed:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="maxResultsLabel_2">
+          <property name="text">
+           <string>Max Results:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboBoxMethodWild3">
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
+          </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>Method H1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Method H2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Method H4</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="sidWild3">
+          <property name="inputMask">
+           <string/>
+          </property>
+          <property name="text">
+           <string>54321</string>
+          </property>
+          <property name="maxLength">
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="methodLabel_2">
+          <property name="text">
+           <string>Method:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="initialSeedWild3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>153</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="inputMask">
+           <string>AAAAAAAA</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="maxLength">
+           <number>8</number>
+          </property>
+          <property name="cursorPosition">
+           <number>0</number>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="startingFrameWild3">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="inputMask">
+           <string/>
+          </property>
+          <property name="text">
+           <string>1</string>
+          </property>
+          <property name="maxLength">
+           <number>10</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="maxResultsWild3">
+          <property name="inputMask">
+           <string/>
+          </property>
+          <property name="text">
+           <string>100000</string>
+          </property>
+          <property name="maxLength">
+           <number>10</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxFilters_2">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>10</y>
+        <width>671</width>
+        <height>261</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QSpinBox {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+
+QSpinBox::up-button {
+	subcontrol-origin: border;
+    subcontrol-position: top right;
+}
+
+QSpinBox::down-button {
+	subcontrol-origin: border;
+    subcontrol-position: bottom right;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}
+
+QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+		font-family: &quot;Myriad Pro&quot;, Montserrat;
+		font-weight: 500;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	padding-left: 13px;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+		background-color: white;
+}</string>
+      </property>
+      <property name="title">
+       <string>Filters</string>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>651</width>
+         <height>234</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0,0,0,0,0" columnstretch="0,0,0,0,0,0,0">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetNoConstraint</enum>
+        </property>
+        <item row="1" column="4">
+         <widget class="QComboBox" name="comboBoxAbilityWild3">
+          <item>
+           <property name="text">
+            <string>Any</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="5" column="5">
+         <widget class="QLabel" name="labelDelay_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Use Delay?</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QComboBox" name="comboBoxGenderWild3">
+          <item>
+           <property name="text">
+            <string>-</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>♂</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>♀</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboBoxHPWild3">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+          </property>
+          <property name="duplicatesEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>None</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>==</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&gt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&lt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>!=</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="hpLabel_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>16</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>HP:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="atkLabel_2">
+          <property name="text">
+           <string>Atk:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="5">
+         <widget class="QPushButton" name="anyHiddenPowerWild3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>13</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>13</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: yellow;
+}</string>
+          </property>
+          <property name="text">
+           <string>Any</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="defLabel_2">
+          <property name="text">
+           <string>Def:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="spdLabel_2">
+          <property name="text">
+           <string>SpD:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="comboBoxSpDWild3">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+          </property>
+          <property name="duplicatesEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>None</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>==</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&gt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&lt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>!=</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="speLabel_2">
+          <property name="text">
+           <string>Spe:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="spaLabel_2">
+          <property name="text">
+           <string>SpA:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QComboBox" name="comboBoxSpeWild3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>53</width>
+            <height>13</height>
+           </size>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+          </property>
+          <property name="duplicatesEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>None</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>==</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&gt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&lt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>!=</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QSpinBox" name="spinBoxHPWild3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="5">
+         <widget class="QLineEdit" name="delayWild3">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>63</width>
+            <height>13</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>63</width>
+            <height>13</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="maxLength">
+           <number>10</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QSpinBox" name="spinBoxAtkWild3">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QSpinBox" name="spinBoxSpDWild3">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QSpinBox" name="spinBoxSpeWild3">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3">
+         <widget class="QLabel" name="shinyLabel_2">
+          <property name="text">
+           <string>Shiny Only?</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <widget class="QCheckList" name="comboBoxNatureWild3"/>
+        </item>
+        <item row="2" column="5">
+         <widget class="QPushButton" name="anyNatureWild3">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>13</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>13</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: yellow;
+}</string>
+          </property>
+          <property name="text">
+           <string>Any</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="6">
+         <widget class="QCheckBox" name="checkBoxDelayWild3">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="comboBoxAtkWild3">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+          </property>
+          <property name="duplicatesEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>None</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>==</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&gt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&lt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>!=</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="comboBoxSpAWild3">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+          </property>
+          <property name="duplicatesEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>None</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>==</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&gt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&lt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>!=</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QSpinBox" name="spinBoxDefWild3">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="comboBoxDefWild3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+          </property>
+          <property name="duplicatesEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>None</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>==</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&gt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&lt;=</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>!=</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QSpinBox" name="spinBoxSpAWild3">
+          <property name="maximum">
+           <number>31</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLabel" name="genderLabel_2">
+          <property name="text">
+           <string>Gender:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QLabel" name="natureLabel_2">
+          <property name="text">
+           <string>Nature:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QLabel" name="abilityLabel_2">
+          <property name="text">
+           <string>Ability:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QCheckList" name="comboBoxHiddenPowerWild3"/>
+        </item>
+        <item row="4" column="3">
+         <widget class="QLabel" name="genderRLabel_2">
+          <property name="text">
+           <string>Gender Ratio:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QLabel" name="hiddenPLabel_2">
+          <property name="text">
+           <string>Hidden Power:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="3">
+         <widget class="QLabel" name="disableLabel_2">
+          <property name="text">
+           <string>Disable Filters:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="4">
+         <widget class="QComboBox" name="comboBoxGenderRatioWild3">
+          <item>
+           <property name="text">
+            <string>Genderless</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>50% Male / 50% Female</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>25% Male / 75% Female</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>75% Male / 25% Female</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>87.5% Male / 12.5% Female</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>100% Male</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>100% Female</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="5" column="4">
+         <widget class="QCheckBox" name="checkBoxShinyWild3">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="4">
+         <widget class="QCheckBox" name="checkBoxDisableWild3">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="6">
+         <widget class="QLabel" name="labelF_2">
+          <property name="text">
+           <string>(F)</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QTableView" name="tableViewWild3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>280</y>
+        <width>1191</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableView {
+	border: 4px solid DodgerBlue;
+}
+
+QHeaderView::section {
+	border: none;
+	background-color: #274050;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: white;
+}
+</string>
+      </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>100</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>20</number>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>20</number>
+      </attribute>
+     </widget>
     </widget>
     <widget class="QWidget" name="tabSpreadSearcher">
      <attribute name="title">
@@ -1250,6 +2352,13 @@ QCheckBox::indicator:checked {
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QCheckList</class>
+   <extends>QComboBox</extends>
+   <header>QCheckList.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../resources.qrc"/>
  </resources>

@@ -101,7 +101,8 @@ HEADERS += \
     libPokeFinder/RNG/SFMT.hpp \
     libPokeFinder/RNG/IRNG64.hpp \
     Forms/Researcher.hpp \
-    Forms/MainWindow.hpp
+    Forms/MainWindow.hpp \
+    Forms/QCheckList.h
 
 FORMS += \
     Forms/ProfileManager/ProfileManagerGen3.ui \

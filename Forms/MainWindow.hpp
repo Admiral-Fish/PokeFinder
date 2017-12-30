@@ -23,6 +23,7 @@
 #include <QHeaderView>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <Forms/QCheckList.h>
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <libPokeFinder/Gen3/FrameGen3.hpp>
@@ -58,7 +59,6 @@ class MainWindow : public QMainWindow
 protected:
     void changeEvent(QEvent*);
 
-
 private:
     Ui::MainWindow *ui;
     QTranslator m_translator;
@@ -68,41 +68,30 @@ private:
     Researcher *r;
 
     void loadLanguage(const QString& rLanguage);
-
     void createLanguageMenu(void);
-
     void setupModels();
-
     void createProfileXml();
 
 private slots:
-    void on_generate_clicked();
+    void on_generateStationary3_clicked();
     void slotLanguageChanged(QAction* action);
-    void natureItemCheck(QModelIndex a, QModelIndex b);
-    void hiddenItemCheck(QModelIndex a, QModelIndex b);
-
     void updateProfiles();
-
-    void on_saveProfile_clicked();
-
+    void on_saveProfileStationary3_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
-
     void checkLineEdits(QString str);
-
-    void on_anyNature_clicked();
-
-    void on_anyHiddenPower_clicked();
-
-    void on_checkBoxDelay_clicked();
-
+    void on_anyNatureStationary3_clicked();
+    void on_anyHiddenPowerStationary3_clicked();
+    void on_checkBoxDelayStationary3_clicked();
     void on_actionResearcher_triggered();
+    void on_generateWild3_clicked();
+    void on_anyHiddenPowerWild3_clicked();
+    void on_anyNatureWild3_clicked();
 
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
     vector<ProfileGen3> profiles;
-
     QValidator *idVal;
     QValidator *seedVal;
     QValidator *frameVal;
