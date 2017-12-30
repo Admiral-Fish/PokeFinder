@@ -2356,7 +2356,7 @@ QHeaderView::section {
   <customwidget>
    <class>QCheckList</class>
    <extends>QComboBox</extends>
-   <header>QCheckList.h</header>
+   <header>Forms/QCheckList.h</header>
   </customwidget>
  </customwidgets>
  <resources>
