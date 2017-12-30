@@ -20,24 +20,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QHeaderView>
-#include <QMainWindow>
-#include <QMessageBox>
 #include <Forms/QCheckList.h>
-#include <QStandardItemModel>
-#include <QStandardItem>
 #include <libPokeFinder/Gen3/FrameGen3.hpp>
-#include <libPokeFinder/RNG/MTRNG.hpp>
 #include <libPokeFinder/Gen3/GeneratorGen3.hpp>
-#include <libPokeFinder/RNG/LCRNG.hpp>
 #include <libPokeFinder/Objects/FrameCompare.hpp>
 #include <libPokeFinder/Objects/Nature.hpp>
 #include <libPokeFinder/Objects/Power.hpp>
-#include <QTranslator>
 #include <vector>
 #include <QDir>
-#include <QDebug>
-#include <QDomDocument>
 #include <libPokeFinder/Gen3/ProfileGen3.hpp>
 #include <Forms/ProfileManager/ProfileManagerGen3.hpp>
 #include <Util/Validators/IDValidator.hpp>
