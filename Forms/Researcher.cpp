@@ -53,6 +53,10 @@ Researcher::Researcher(QWidget *parent) :
     keys["Previous8"] = 23;
     keys["Previous9"] = 24;
     keys["Previous10"] = 25;
+
+
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->verticalHeader()->setVisible(false);
 }
 
 Researcher::~Researcher()
@@ -89,6 +93,7 @@ void Researcher::setupModel()
                                        "Custom9", "Custom10", "%3", "%25",
                                        "%100", "/656", "LBit", "HBit" });
     ui->tableView->setModel(model);
+    ui->tableView->resizeColumnsToContents();
 }
 
 void Researcher::on_pushButtonGenerate32Bit_clicked()
@@ -319,6 +324,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     }
 
     QStandardItemModel *model = new QStandardItemModel(this);
+    model->setRowCount((int)frames.size());
     if (rng64Bit)
     {
         model->setHorizontalHeaderLabels({ "Frame", "64 Bit", "32Bit High", "32Bit Low",
@@ -337,11 +343,69 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                                            "/656", "LBit", "HBit" });
     }
 
-    for (u32 k = 0; k < maxFrames; k++)
-        model->appendRow(frames[k].GetRow());
+    QModelIndex m = QModelIndex();
+    if (rng64Bit)
+    {
+        for (u32 i = 0; i < maxFrames; i++)
+        {
+            model->setData(model->index(i, 0, m), frames[i].Frame);
+            model->setData(model->index(i, 1, m), QString::number(frames[i].Full64, 16).toUpper().rightJustified(16,'0'));
+            model->setData(model->index(i, 2, m), QString::number(frames[i].High32(), 16).toUpper().rightJustified(8,'0'));
+            model->setData(model->index(i, 3, m), QString::number(frames[i].Low32(), 16).toUpper().rightJustified(8,'0'));
+            model->setData(model->index(i, 4, m), QString::number(frames[i].High16(), 16).toUpper().rightJustified(4,'0'));
+            model->setData(model->index(i, 5, m), QString::number(frames[i].Low16(), 16).toUpper().rightJustified(4,'0'));
+            model->setData(model->index(i, 6, m), frames[i].Custom[0]);
+            model->setData(model->index(i, 7, m), frames[i].Custom[1]);
+            model->setData(model->index(i, 8, m), frames[i].Custom[2]);
+            model->setData(model->index(i, 9, m), frames[i].Custom[3]);
+            model->setData(model->index(i, 10, m), frames[i].Custom[4]);
+            model->setData(model->index(i, 11, m), frames[i].Custom[5]);
+            model->setData(model->index(i, 12, m), frames[i].Custom[6]);
+            model->setData(model->index(i, 13, m), frames[i].Custom[7]);
+            model->setData(model->index(i, 14, m), frames[i].Custom[8]);
+            model->setData(model->index(i, 15, m), frames[i].Custom[9]);
+            model->setData(model->index(i, 16, m), frames[i].Mod3());
+            model->setData(model->index(i, 17, m), frames[i].Mod25());
+            model->setData(model->index(i, 18, m), frames[i].Mod100());
+            model->setData(model->index(i, 19, m), frames[i].Div656());
+            model->setData(model->index(i, 20, m), frames[i].LowBit());
+            model->setData(model->index(i, 21, m), frames[i].HighBit());
+        }
+    }
+    else
+    {
+        for (u32 i = 0; i < maxFrames; i++)
+        {
+            model->setData(model->index(i, 0, m), frames[i].Frame);
+            model->setData(model->index(i, 1, m), QString::number(frames[i].Full32, 16).toUpper().rightJustified(8,'0'));
+            model->setData(model->index(i, 2, m), QString::number(frames[i].High16(), 16).toUpper().rightJustified(4,'0'));
+            model->setData(model->index(i, 3, m), QString::number(frames[i].Low16(), 16).toUpper().rightJustified(4,'0'));
+            model->setData(model->index(i, 4, m), frames[i].Custom[0]);
+            model->setData(model->index(i, 5, m), frames[i].Custom[1]);
+            model->setData(model->index(i, 6, m), frames[i].Custom[2]);
+            model->setData(model->index(i, 7, m), frames[i].Custom[3]);
+            model->setData(model->index(i, 8, m), frames[i].Custom[4]);
+            model->setData(model->index(i, 9, m), frames[i].Custom[5]);
+            model->setData(model->index(i, 10, m), frames[i].Custom[6]);
+            model->setData(model->index(i, 11, m), frames[i].Custom[7]);
+            model->setData(model->index(i, 12, m), frames[i].Custom[8]);
+            model->setData(model->index(i, 13, m), frames[i].Custom[9]);
+            model->setData(model->index(i, 14, m), frames[i].Mod3());
+            model->setData(model->index(i, 15, m), frames[i].Mod25());
+            model->setData(model->index(i, 16, m), frames[i].Mod100());
+            model->setData(model->index(i, 17, m), frames[i].Div656());
+            model->setData(model->index(i, 18, m), frames[i].LowBit());
+            model->setData(model->index(i, 19, m), frames[i].HighBit());
+        }
+    }
 
     ui->tableView->setModel(model);
-    ui->tableView->resizeColumnsToContents();
+    ui->tableView->resizeColumnToContents(1);
+    if (rng64Bit)
+    {
+        ui->tableView->resizeColumnToContents(2);
+        ui->tableView->resizeColumnToContents(3);
+    }
 
     delete rng;
     delete rng64;
@@ -419,47 +483,6 @@ ResearcherFrame::ResearcherFrame(bool rng64Bit, u32 frame)
     Full64 = 0;
     Frame = frame;
 }
-
-
-QList<QStandardItem *> ResearcherFrame::GetRow()
-{
-    QList<QStandardItem *> row;
-    row.append(new QStandardItem(QString::number(Frame)));
-    if (RNG64Bit)
-    {
-        row.append(new QStandardItem(QString::number(Full64, 16).toUpper().rightJustified(16,'0')));
-        row.append(new QStandardItem(QString::number(High32(), 16).toUpper().rightJustified(8,'0')));
-        row.append(new QStandardItem(QString::number(Low32(), 16).toUpper().rightJustified(8,'0')));
-        row.append(new QStandardItem(QString::number(High16(), 16).toUpper().rightJustified(4,'0')));
-        row.append(new QStandardItem(QString::number(Low16(), 16).toUpper().rightJustified(4,'0')));
-    }
-    else
-    {
-        row.append(new QStandardItem(QString::number(Full32, 16).toUpper().rightJustified(8,'0')));
-        row.append(new QStandardItem(QString::number(High16(), 16).toUpper().rightJustified(4,'0')));
-        row.append(new QStandardItem(QString::number(Low16(), 16).toUpper().rightJustified(4,'0')));
-    }
-
-    for (int i = 0; i < 10; i++)
-    {
-        row.append(new QStandardItem(QString::number(Custom[i])));
-    }
-
-    row.append(new QStandardItem(QString::number(Mod3())));
-    row.append(new QStandardItem(QString::number(Mod25())));
-    row.append(new QStandardItem(QString::number(Mod100())));
-    row.append(new QStandardItem(QString::number(Div656())));
-    row.append(new QStandardItem(QString::number(LowBit())));
-    row.append(new QStandardItem(QString::number(HighBit())));
-
-    for(int i = 0; i < row.count(); i++)
-    {
-        row.at(i)->setData(Qt::AlignCenter, Qt::TextAlignmentRole);
-    }
-
-    return row;
-}
-
 
 void Researcher::on_rngSelection_currentChanged(int index)
 {
