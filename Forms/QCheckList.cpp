@@ -52,9 +52,9 @@ QStandardItem *QCheckList::addCheckItem(const QString &label, const QVariant &da
     return item;
 }
 
-void QCheckList::addCheckItems(const QStringList &label, const QVariant &data, const Qt::CheckState checkState)
+void QCheckList::addCheckItems(const std::vector<QString> &label, const QVariant &data, const Qt::CheckState checkState)
 {
-    for (auto i = 0; i < label.length(); i++)
+    for (auto i = 0; i < label.size(); i++)
     {
         QStandardItem* item = new QStandardItem(label[i]);
         item->setCheckState(checkState);

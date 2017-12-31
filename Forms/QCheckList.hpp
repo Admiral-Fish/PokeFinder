@@ -43,7 +43,7 @@ public:
 
     QStandardItem *addCheckItem(const QString &label, const QVariant &data, const Qt::CheckState checkState);
 
-    void addCheckItems(const QStringList &label, const QVariant &data, const Qt::CheckState checkState);
+    void addCheckItems(const std::vector<QString> &label, const QVariant &data, const Qt::CheckState checkState);
 
     std::vector<bool> getChecked();
 

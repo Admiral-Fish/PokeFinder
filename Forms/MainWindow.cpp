@@ -275,11 +275,11 @@ void MainWindow::createProfileXml()
 
 void MainWindow::setupModels()
 {
-    QStringList natureList = Nature::GetNatures();
+    vector<QString> natureList = Nature::GetNatures();
     ui->comboBoxNatureStationary3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
     ui->comboBoxNatureWild3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
 
-    QStringList powerList = Power::GetPowers();
+    vector<QString> powerList = Power::GetPowers();
     ui->comboBoxHiddenPowerStationary3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
     ui->comboBoxHiddenPowerWild3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
 
