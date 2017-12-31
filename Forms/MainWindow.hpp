@@ -20,7 +20,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <Forms/QCheckList.h>
+#include <Forms/QCheckList.hpp>
 #include <libPokeFinder/Gen3/FrameGen3.hpp>
 #include <libPokeFinder/Gen3/GeneratorGen3.hpp>
 #include <libPokeFinder/Objects/FrameCompare.hpp>
@@ -76,6 +76,8 @@ private slots:
     void on_generateWild3_clicked();
     void on_anyHiddenPowerWild3_clicked();
     void on_anyNatureWild3_clicked();
+
+    void on_saveWild3_clicked();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

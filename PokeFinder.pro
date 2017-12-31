@@ -66,7 +66,8 @@ SOURCES += \
     main.cpp \
     libPokeFinder/RNG/SFMT.cpp \
     Forms/Researcher.cpp \
-    Forms/MainWindow.cpp
+    Forms/MainWindow.cpp \
+    Forms/QCheckList.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManagerGen3.hpp \
@@ -102,7 +103,7 @@ HEADERS += \
     libPokeFinder/RNG/IRNG64.hpp \
     Forms/Researcher.hpp \
     Forms/MainWindow.hpp \
-    Forms/QCheckList.h
+    Forms/QCheckList.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManagerGen3.ui \

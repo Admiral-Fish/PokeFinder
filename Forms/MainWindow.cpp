@@ -322,6 +322,13 @@ void MainWindow::on_saveProfileStationary3_clicked()
     manager->exec();
 }
 
+void MainWindow::on_saveWild3_clicked()
+{
+    ProfileManagerGen3* manager = new ProfileManagerGen3();
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    manager->exec();
+}
+
 void MainWindow::updateProfiles()
 {
     profiles = ProfileGen3::loadProfileList();
