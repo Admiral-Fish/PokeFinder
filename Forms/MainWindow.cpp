@@ -170,7 +170,7 @@ void MainWindow::on_generateStationary3_clicked()
         generator.frameType = Channel;
 
     vector<FrameGen3> frames = generator.Generate(compare);
-    int size = frames.size();
+    int size = (int)frames.size();
     model->setRowCount(size);
     model->setColumnCount(15);
 
@@ -230,7 +230,7 @@ void MainWindow::on_generateWild3_clicked()
         generator.frameType = MethodH4;
 
     vector<FrameGen3> frames = generator.Generate(compare);
-    int size = frames.size();
+    int size = (int)frames.size();
     model->setRowCount(size);
     model->setColumnCount(17);
 
@@ -338,7 +338,7 @@ void MainWindow::updateProfiles()
 {
     profiles = ProfileGen3::loadProfileList();
 
-    QStandardItemModel *profile = new QStandardItemModel(profiles.size() + 1, 1, this);
+    QStandardItemModel *profile = new QStandardItemModel((int)profiles.size() + 1, 1, this);
     QStandardItem* firstProfile = new QStandardItem(tr("None"));
     profile->setItem(0, firstProfile);
     for(int i = 0; i < (int)profiles.size(); i++)

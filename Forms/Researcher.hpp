@@ -46,7 +46,7 @@ private:
 
 
 public:
-    u64 Custom[10];
+    quint64 Custom[10];
     bool RNG64Bit;
     u64 Full64;
     u32 Full32;
