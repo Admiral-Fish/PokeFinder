@@ -20,7 +20,7 @@
 #ifndef PROFILEMANAGERGEN3_HPP
 #define PROFILEMANAGERGEN3_HPP
 
-#include <QWidget>
+#include <QMainWindow>
 #include <Forms/ProfileManager/ProfileManagerGen3NewEdit.hpp>
 #include <QStandardItemModel>
 #include <QStandardItem>
@@ -34,7 +34,7 @@ namespace Ui {
 class ProfileManagerGen3;
 }
 
-class ProfileManagerGen3 : public QDialog
+class ProfileManagerGen3 : public QMainWindow
 {
     Q_OBJECT
 
@@ -47,19 +47,16 @@ public:
 
 private slots:
     void on_pushButtonNew_clicked();
-
     void on_pushButtonOk_clicked();
-
     void registerProfile(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery);
-
     void on_pushButtonEdit_clicked();
-
     void on_pushButtonDelete_clicked();
 
 private:
     Ui::ProfileManagerGen3 *ui;
 
     void updateTable(vector<QList<QStandardItem *>> rows);
+
 };
 
 #endif // PROFILEMANAGERGEN3_HPP

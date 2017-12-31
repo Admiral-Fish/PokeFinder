@@ -73,7 +73,6 @@ private slots:
     void on_generateWild3_clicked();
     void on_anyHiddenPowerWild3_clicked();
     void on_anyNatureWild3_clicked();
-
     void on_saveWild3_clicked();
 
 public:

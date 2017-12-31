@@ -41,7 +41,6 @@ TRANSLATIONS += \
     Languages/PokeFinder_zh_Hans_CN.ts
 
 SOURCES += \
-    Forms/ProfileManager/ProfileManagerGen3.cpp \
     Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp \
     libPokeFinder/Gen3/FrameGen3.cpp \
     libPokeFinder/Gen3/GeneratorGen3.cpp \
@@ -65,10 +64,10 @@ SOURCES += \
     Forms/Researcher.cpp \
     Forms/MainWindow.cpp \
     Forms/QCheckList.cpp \
-    Forms/QTextBox.cpp
+    Forms/QTextBox.cpp \
+    Forms/ProfileManager/ProfileManagerGen3.cpp
 
 HEADERS += \
-    Forms/ProfileManager/ProfileManagerGen3.hpp \
     Forms/ProfileManager/ProfileManagerGen3NewEdit.hpp \
     libPokeFinder/Gen3/FrameGen3.hpp \
     libPokeFinder/Gen3/GeneratorGen3.hpp \
@@ -99,13 +98,14 @@ HEADERS += \
     Forms/Researcher.hpp \
     Forms/MainWindow.hpp \
     Forms/QCheckList.hpp \
-    Forms/QTextBox.hpp
+    Forms/QTextBox.hpp \
+    Forms/ProfileManager/ProfileManagerGen3.hpp
 
 FORMS += \
-    Forms/ProfileManager/ProfileManagerGen3.ui \
     Forms/ProfileManager/ProfileManagerGen3NewEdit.ui \
     Forms/Researcher.ui \
-    Forms/MainWindow.ui
+    Forms/MainWindow.ui \
+    Forms/ProfileManager/ProfileManagerGen3.ui
 
 RESOURCES += \
     resources.qrc

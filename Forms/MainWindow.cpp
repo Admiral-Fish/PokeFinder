@@ -321,15 +321,17 @@ void MainWindow::setupModels()
 void MainWindow::on_saveProfileStationary3_clicked()
 {
     ProfileManagerGen3* manager = new ProfileManagerGen3();
+    manager->setAttribute(Qt::WA_QuitOnClose, false);
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
-    manager->exec();
+    manager->show();
 }
 
 void MainWindow::on_saveWild3_clicked()
 {
     ProfileManagerGen3* manager = new ProfileManagerGen3();
+    manager->setAttribute(Qt::WA_QuitOnClose, false);
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
-    manager->exec();
+    manager->show();
 }
 
 void MainWindow::updateProfiles()
@@ -401,6 +403,7 @@ void MainWindow::on_checkBoxDelayStationary3_clicked()
 
 void MainWindow::on_actionResearcher_triggered()
 {
-    r = new Researcher(this);
+    r = new Researcher();
+    r->setAttribute(Qt::WA_QuitOnClose, false);
     r->show();
 }

@@ -174,7 +174,7 @@
         <location filename="../Forms/MainWindow.ui" line="1995"/>
         <location filename="../Forms/MainWindow.ui" line="2039"/>
         <location filename="../Forms/MainWindow.ui" line="2096"/>
-        <location filename="../Forms/MainWindow.cpp" line="340"/>
+        <location filename="../Forms/MainWindow.cpp" line="342"/>
         <source>None</source>
         <translation>不指定</translation>
     </message>
@@ -564,68 +564,68 @@
 <context>
     <name>ProfileManagerGen3</name>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="14"/>
-        <source>Form</source>
-        <translation>新配置</translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="20"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="27"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="44"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="66"/>
         <source>Done</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="27"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="53"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="34"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="14"/>
+        <source>Profile Manager Gen 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="40"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
         <source>Profile Name</source>
         <translation>配置名</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
         <source>TID</source>
         <translation>TID</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
         <source>SID</source>
         <translation>SID</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="27"/>
         <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
         <source>Dead Battery</source>
         <translation>无电池</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="139"/>
+        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="158"/>
         <source>Please select one row.</source>
         <translation>请选择一列.</translation>
     </message>
