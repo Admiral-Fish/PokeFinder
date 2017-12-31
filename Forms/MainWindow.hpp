@@ -21,6 +21,7 @@
 #define MAINWINDOW_H
 
 #include <Forms/QCheckList.hpp>
+#include <Forms/QTextBox.hpp>
 #include <libPokeFinder/Gen3/FrameGen3.hpp>
 #include <libPokeFinder/Gen3/GeneratorGen3.hpp>
 #include <libPokeFinder/Objects/FrameCompare.hpp>
@@ -30,9 +31,6 @@
 #include <QDir>
 #include <libPokeFinder/Gen3/ProfileGen3.hpp>
 #include <Forms/ProfileManager/ProfileManagerGen3.hpp>
-#include <Util/Validators/IDValidator.hpp>
-#include <Util/Validators/SeedValidator.hpp>
-#include <Util/Validators/FrameValidator.hpp>
 #include <Forms/Researcher.hpp>
 
 using namespace std;
@@ -68,7 +66,6 @@ private slots:
     void updateProfiles();
     void on_saveProfileStationary3_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
-    void checkLineEdits(QString str);
     void on_anyNatureStationary3_clicked();
     void on_anyHiddenPowerStationary3_clicked();
     void on_checkBoxDelayStationary3_clicked();
@@ -84,9 +81,6 @@ public:
     ~MainWindow();
 
     vector<ProfileGen3> profiles;
-    QValidator *idVal;
-    QValidator *seedVal;
-    QValidator *frameVal;
 
 };
 

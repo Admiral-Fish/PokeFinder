@@ -19,17 +19,12 @@
 
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
-#include "Researcher.hpp"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    idVal = new IDValidator();
-    seedVal = new SeedValidator();
-    frameVal = new FrameValidator();
 
     setupModels();
     updateProfiles();
@@ -213,7 +208,7 @@ void MainWindow::on_generateWild3_clicked()
 
     // Force early garbage collection
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("Slot"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("Occidentary"), tr("Slot"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
                                       tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
 
     int genderRatioIndex = ui->comboBoxGenderRatioWild3->currentIndex();
@@ -237,27 +232,28 @@ void MainWindow::on_generateWild3_clicked()
     vector<FrameGen3> frames = generator.Generate(compare);
     int size = frames.size();
     model->setRowCount(size);
-    model->setColumnCount(16);
+    model->setColumnCount(17);
 
     QModelIndex m = QModelIndex();
     for (int i = 0; i < size; i++)
     {
         model->setData(model->index(i, 0, m), frames[i].frame);
-        model->setData(model->index(i, 1, m), frames[i].encounterSlot);
-        model->setData(model->index(i, 2, m), QString::number(frames[i].pid, 16).toUpper().rightJustified(8,'0'));
-        model->setData(model->index(i, 3, m), frames[i].GetShiny());
-        model->setData(model->index(i, 4, m), frames[i].GetNature());
-        model->setData(model->index(i, 5, m), frames[i].ability);
-        model->setData(model->index(i, 6, m), frames[i].ivs[0]);
-        model->setData(model->index(i, 7, m), frames[i].ivs[1]);
-        model->setData(model->index(i, 8, m), frames[i].ivs[2]);
-        model->setData(model->index(i, 9, m), frames[i].ivs[3]);
-        model->setData(model->index(i, 10, m), frames[i].ivs[4]);
-        model->setData(model->index(i, 11, m), frames[i].ivs[5]);
-        model->setData(model->index(i, 12, m), frames[i].GetPower());
-        model->setData(model->index(i, 13, m), frames[i].power);
-        model->setData(model->index(i, 14, m), frames[i].GetFemale25());
-        model->setData(model->index(i, 15, m), frames[i].GetTime());
+        model->setData(model->index(i, 1, m), frames[i].occidentary);
+        model->setData(model->index(i, 2, m), frames[i].encounterSlot);
+        model->setData(model->index(i, 3, m), QString::number(frames[i].pid, 16).toUpper().rightJustified(8,'0'));
+        model->setData(model->index(i, 4, m), frames[i].GetShiny());
+        model->setData(model->index(i, 5, m), frames[i].GetNature());
+        model->setData(model->index(i, 6, m), frames[i].ability);
+        model->setData(model->index(i, 7, m), frames[i].ivs[0]);
+        model->setData(model->index(i, 8, m), frames[i].ivs[1]);
+        model->setData(model->index(i, 9, m), frames[i].ivs[2]);
+        model->setData(model->index(i, 10, m), frames[i].ivs[3]);
+        model->setData(model->index(i, 11, m), frames[i].ivs[4]);
+        model->setData(model->index(i, 12, m), frames[i].ivs[5]);
+        model->setData(model->index(i, 13, m), frames[i].GetPower());
+        model->setData(model->index(i, 14, m), frames[i].power);
+        model->setData(model->index(i, 15, m), frames[i].GetFemale25());
+        model->setData(model->index(i, 16, m), frames[i].GetTime());
     }
 
     ui->tableViewWild3->setModel(model);
@@ -295,18 +291,25 @@ void MainWindow::setupModels()
     ui->tableViewStationary3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("Slot"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("Occidentary"), tr("Slot"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
                                       tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
     ui->tableViewWild3->setModel(model);
     ui->tableViewWild3->verticalHeader()->setVisible(false);
     ui->tableViewWild3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    connect(ui->idStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
-    connect(ui->sidStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
-    connect(ui->startingFrameStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
-    connect(ui->maxResultsStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
-    connect(ui->initialSeedStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
-    connect(ui->delayStationary3, SIGNAL(textChanged(QString)), this, SLOT(checkLineEdits(QString)));
+    ui->initialSeedStationary3->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->idStationary3->SetValues("[^0-9]", 0xffff, 10);
+    ui->sidStationary3->SetValues("[^0-9]", 0xffff, 10);
+    ui->startingFrameStationary3->SetValues("[^0-9]", 0xffffffff, 10);
+    ui->maxResultsStationary3->SetValues("[^0-9]", 0xffffffff, 10);
+    ui->delayStationary3->SetValues("[^0-9]", 0xffffffff, 10);
+
+    ui->initialSeedWild3->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->idWild3->SetValues("[^0-9]", 0xffff, 10);
+    ui->sidWild3->SetValues("[^0-9]", 0xffff, 10);
+    ui->startingFrameWild3->SetValues("[^0-9]", 0xffffffff, 10);
+    ui->maxResultsWild3->SetValues("[^0-9]", 0xffffffff, 10);
+    ui->delayWild3->SetValues("[^0-9]", 0xffffffff, 10);
 
     ui->comboBoxMethodStationary3->setEditable(true);
     ui->comboBoxMethodStationary3->lineEdit()->setAlignment(Qt::AlignCenter);
@@ -342,42 +345,6 @@ void MainWindow::updateProfiles()
         profile->setItem(i + 1, item);
     }
     ui->comboBoxProfiles->setModel(profile);
-}
-
-void MainWindow::checkLineEdits(QString str)
-{
-    (void) str;
-    int pos = 0;
-    QString id = ui->idStationary3->text();
-    QString sid = ui->sidStationary3->text();
-    QString startingFrame = ui->startingFrameStationary3->text();
-    QString maxResults = ui->maxResultsStationary3->text();
-    QString initialSeed = ui->initialSeedStationary3->text().toUpper();
-    QString delay = ui->delayStationary3->text();
-    ui->initialSeedStationary3->setText(initialSeed);
-    if(idVal->validate(id, pos) == QValidator::Acceptable && idVal->validate(sid, pos) == QValidator::Acceptable && frameVal->validate(startingFrame, pos) == QValidator::Acceptable && frameVal->validate(maxResults, pos) == QValidator::Acceptable && seedVal->validate(initialSeed, pos) == QValidator::Acceptable && frameVal->validate(delay, pos))
-    {
-        ui->generateStationary3->setEnabled(true);
-    }
-    else
-    {
-        idVal->fixup(id);
-        idVal->fixup(sid);
-        frameVal->fixup(startingFrame);
-        frameVal->fixup(maxResults);
-        frameVal->fixup(delay);
-        seedVal->fixup(initialSeed);
-
-        ui->idStationary3->setText(id);
-        ui->sidStationary3->setText(sid);
-        ui->startingFrameStationary3->setText(startingFrame);
-        ui->maxResultsStationary3->setText(maxResults);
-        ui->initialSeedStationary3->setText(initialSeed);
-        ui->delayStationary3->setText(delay);
-
-        ui->generateStationary3->setEnabled(false);
-        checkLineEdits(str);
-    }
 }
 
 void MainWindow::on_comboBoxProfiles_currentIndexChanged(int index)

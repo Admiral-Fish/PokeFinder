@@ -60,14 +60,12 @@ SOURCES += \
     libPokeFinder/RNG/RNGCache.cpp \
     libPokeFinder/RNG/RNGEuclidean.cpp \
     libPokeFinder/RNG/TinyMT.cpp \
-    Util/Validators/FrameValidator.cpp \
-    Util/Validators/IDValidator.cpp \
-    Util/Validators/SeedValidator.cpp \
     main.cpp \
     libPokeFinder/RNG/SFMT.cpp \
     Forms/Researcher.cpp \
     Forms/MainWindow.cpp \
-    Forms/QCheckList.cpp
+    Forms/QCheckList.cpp \
+    Forms/QTextBox.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManagerGen3.hpp \
@@ -95,15 +93,13 @@ HEADERS += \
     libPokeFinder/RNG/RNGCache.hpp \
     libPokeFinder/RNG/RNGEuclidean.hpp \
     libPokeFinder/RNG/TinyMT.hpp \
-    Util/Validators/FrameValidator.hpp \
-    Util/Validators/IDValidator.hpp \
-    Util/Validators/SeedValidator.hpp \
     libPokeFinder/RNG/IRNG.hpp \
     libPokeFinder/RNG/SFMT.hpp \
     libPokeFinder/RNG/IRNG64.hpp \
     Forms/Researcher.hpp \
     Forms/MainWindow.hpp \
-    Forms/QCheckList.hpp
+    Forms/QCheckList.hpp \
+    Forms/QTextBox.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManagerGen3.ui \

@@ -128,7 +128,7 @@ QPushButton {
       </property>
       <widget class="QPushButton" name="generateStationary3">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -195,7 +195,7 @@ QPushButton::disabled {
          <enum>QLayout::SetNoConstraint</enum>
         </property>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="idStationary3">
+         <widget class="QTextBox" name="idStationary3">
           <property name="inputMask">
            <string/>
           </property>
@@ -281,7 +281,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLineEdit" name="sidStationary3">
+         <widget class="QTextBox" name="sidStationary3">
           <property name="inputMask">
            <string/>
           </property>
@@ -301,7 +301,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QLineEdit" name="initialSeedStationary3">
+         <widget class="QTextBox" name="initialSeedStationary3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -335,7 +335,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="startingFrameStationary3">
+         <widget class="QTextBox" name="startingFrameStationary3">
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -351,7 +351,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="maxResultsStationary3">
+         <widget class="QTextBox" name="maxResultsStationary3">
           <property name="inputMask">
            <string/>
           </property>
@@ -774,7 +774,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="6" column="5">
-         <widget class="QLineEdit" name="delayStationary3">
+         <widget class="QTextBox" name="delayStationary3">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -1245,7 +1245,7 @@ QPushButton {
       </property>
       <widget class="QPushButton" name="generateWild3">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
@@ -1312,7 +1312,7 @@ QPushButton::disabled {
          <enum>QLayout::SetNoConstraint</enum>
         </property>
         <item row="3" column="1">
-         <widget class="QLineEdit" name="idWild3">
+         <widget class="QTextBox" name="idWild3">
           <property name="inputMask">
            <string/>
           </property>
@@ -1365,7 +1365,7 @@ QPushButton::disabled {
            <enum>Qt::RightToLeft</enum>
           </property>
           <property name="editable">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="frame">
            <bool>true</bool>
@@ -1388,7 +1388,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLineEdit" name="sidWild3">
+         <widget class="QTextBox" name="sidWild3">
           <property name="inputMask">
            <string/>
           </property>
@@ -1408,7 +1408,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QLineEdit" name="initialSeedWild3">
+         <widget class="QTextBox" name="initialSeedWild3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -1428,7 +1428,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="maxLength">
-           <number>32767</number>
+           <number>8</number>
           </property>
           <property name="cursorPosition">
            <number>0</number>
@@ -1442,7 +1442,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="startingFrameWild3">
+         <widget class="QTextBox" name="startingFrameWild3">
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -1458,7 +1458,7 @@ QPushButton::disabled {
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="maxResultsWild3">
+         <widget class="QTextBox" name="maxResultsWild3">
           <property name="inputMask">
            <string/>
           </property>
@@ -1881,7 +1881,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="6" column="5">
-         <widget class="QLineEdit" name="delayWild3">
+         <widget class="QTextBox" name="delayWild3">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -2357,6 +2357,11 @@ QHeaderView::section {
    <class>QCheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/QCheckList.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>QTextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
  <resources>

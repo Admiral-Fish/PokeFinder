@@ -174,7 +174,7 @@
         <location filename="../Forms/MainWindow.ui" line="1995"/>
         <location filename="../Forms/MainWindow.ui" line="2039"/>
         <location filename="../Forms/MainWindow.ui" line="2096"/>
-        <location filename="../Forms/MainWindow.cpp" line="330"/>
+        <location filename="../Forms/MainWindow.cpp" line="340"/>
         <source>None</source>
         <translation>不指定</translation>
     </message>
@@ -243,10 +243,10 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="152"/>
-        <location filename="../Forms/MainWindow.cpp" line="216"/>
-        <location filename="../Forms/MainWindow.cpp" line="291"/>
-        <location filename="../Forms/MainWindow.cpp" line="298"/>
+        <location filename="../Forms/MainWindow.cpp" line="147"/>
+        <location filename="../Forms/MainWindow.cpp" line="211"/>
+        <location filename="../Forms/MainWindow.cpp" line="287"/>
+        <location filename="../Forms/MainWindow.cpp" line="294"/>
         <source>HP</source>
         <translation>体力</translation>
     </message>
@@ -436,122 +436,128 @@
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="152"/>
-        <location filename="../Forms/MainWindow.cpp" line="216"/>
-        <location filename="../Forms/MainWindow.cpp" line="291"/>
-        <location filename="../Forms/MainWindow.cpp" line="298"/>
+        <location filename="../Forms/MainWindow.cpp" line="147"/>
+        <location filename="../Forms/MainWindow.cpp" line="211"/>
+        <location filename="../Forms/MainWindow.cpp" line="287"/>
+        <location filename="../Forms/MainWindow.cpp" line="294"/>
         <source>Frame</source>
         <translation>帧</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="153"/>
-        <location filename="../Forms/MainWindow.cpp" line="217"/>
-        <location filename="../Forms/MainWindow.cpp" line="292"/>
-        <location filename="../Forms/MainWindow.cpp" line="299"/>
+        <location filename="../Forms/MainWindow.cpp" line="148"/>
+        <location filename="../Forms/MainWindow.cpp" line="212"/>
+        <location filename="../Forms/MainWindow.cpp" line="288"/>
+        <location filename="../Forms/MainWindow.cpp" line="295"/>
         <source>Time</source>
         <translation>时间</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="152"/>
-        <location filename="../Forms/MainWindow.cpp" line="216"/>
-        <location filename="../Forms/MainWindow.cpp" line="291"/>
-        <location filename="../Forms/MainWindow.cpp" line="298"/>
+        <location filename="../Forms/MainWindow.cpp" line="147"/>
+        <location filename="../Forms/MainWindow.cpp" line="211"/>
+        <location filename="../Forms/MainWindow.cpp" line="287"/>
+        <location filename="../Forms/MainWindow.cpp" line="294"/>
         <source>PID</source>
         <translatorcomment>no need translate</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="152"/>
-        <location filename="../Forms/MainWindow.cpp" line="216"/>
-        <location filename="../Forms/MainWindow.cpp" line="291"/>
-        <location filename="../Forms/MainWindow.cpp" line="298"/>
+        <location filename="../Forms/MainWindow.cpp" line="147"/>
+        <location filename="../Forms/MainWindow.cpp" line="211"/>
+        <location filename="../Forms/MainWindow.cpp" line="287"/>
+        <location filename="../Forms/MainWindow.cpp" line="294"/>
         <source>!!!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="152"/>
-        <location filename="../Forms/MainWindow.cpp" line="216"/>
-        <location filename="../Forms/MainWindow.cpp" line="291"/>
-        <location filename="../Forms/MainWindow.cpp" line="298"/>
+        <location filename="../Forms/MainWindow.cpp" line="147"/>
+        <location filename="../Forms/MainWindow.cpp" line="211"/>
+        <location filename="../Forms/MainWindow.cpp" line="287"/>
+        <location filename="../Forms/MainWindow.cpp" line="294"/>
         <source>Nature</source>
         <translation>性格</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="152"/>
-        <location filename="../Forms/MainWindow.cpp" line="216"/>
-        <location filename="../Forms/MainWindow.cpp" line="291"/>
-        <location filename="../Forms/MainWindow.cpp" line="298"/>
+        <location filename="../Forms/MainWindow.cpp" line="147"/>
+        <location filename="../Forms/MainWindow.cpp" line="211"/>
+        <location filename="../Forms/MainWindow.cpp" line="287"/>
+        <location filename="../Forms/MainWindow.cpp" line="294"/>
         <source>Ability</source>
         <translation>能力</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="152"/>
-        <location filename="../Forms/MainWindow.cpp" line="216"/>
-        <location filename="../Forms/MainWindow.cpp" line="291"/>
-        <location filename="../Forms/MainWindow.cpp" line="298"/>
+        <location filename="../Forms/MainWindow.cpp" line="147"/>
+        <location filename="../Forms/MainWindow.cpp" line="211"/>
+        <location filename="../Forms/MainWindow.cpp" line="287"/>
+        <location filename="../Forms/MainWindow.cpp" line="294"/>
         <source>Atk</source>
         <translation>攻击力</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="153"/>
-        <location filename="../Forms/MainWindow.cpp" line="217"/>
-        <location filename="../Forms/MainWindow.cpp" line="292"/>
-        <location filename="../Forms/MainWindow.cpp" line="299"/>
+        <location filename="../Forms/MainWindow.cpp" line="148"/>
+        <location filename="../Forms/MainWindow.cpp" line="212"/>
+        <location filename="../Forms/MainWindow.cpp" line="288"/>
+        <location filename="../Forms/MainWindow.cpp" line="295"/>
         <source>Def</source>
         <translation>防御</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="153"/>
-        <location filename="../Forms/MainWindow.cpp" line="217"/>
-        <location filename="../Forms/MainWindow.cpp" line="292"/>
-        <location filename="../Forms/MainWindow.cpp" line="299"/>
+        <location filename="../Forms/MainWindow.cpp" line="148"/>
+        <location filename="../Forms/MainWindow.cpp" line="212"/>
+        <location filename="../Forms/MainWindow.cpp" line="288"/>
+        <location filename="../Forms/MainWindow.cpp" line="295"/>
         <source>SpA</source>
         <translation>特攻</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="153"/>
-        <location filename="../Forms/MainWindow.cpp" line="217"/>
-        <location filename="../Forms/MainWindow.cpp" line="292"/>
-        <location filename="../Forms/MainWindow.cpp" line="299"/>
+        <location filename="../Forms/MainWindow.cpp" line="148"/>
+        <location filename="../Forms/MainWindow.cpp" line="212"/>
+        <location filename="../Forms/MainWindow.cpp" line="288"/>
+        <location filename="../Forms/MainWindow.cpp" line="295"/>
         <source>SpD</source>
         <translation>特防</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="153"/>
-        <location filename="../Forms/MainWindow.cpp" line="217"/>
-        <location filename="../Forms/MainWindow.cpp" line="292"/>
-        <location filename="../Forms/MainWindow.cpp" line="299"/>
+        <location filename="../Forms/MainWindow.cpp" line="148"/>
+        <location filename="../Forms/MainWindow.cpp" line="212"/>
+        <location filename="../Forms/MainWindow.cpp" line="288"/>
+        <location filename="../Forms/MainWindow.cpp" line="295"/>
         <source>Spe</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="153"/>
-        <location filename="../Forms/MainWindow.cpp" line="217"/>
-        <location filename="../Forms/MainWindow.cpp" line="292"/>
-        <location filename="../Forms/MainWindow.cpp" line="299"/>
+        <location filename="../Forms/MainWindow.cpp" line="148"/>
+        <location filename="../Forms/MainWindow.cpp" line="212"/>
+        <location filename="../Forms/MainWindow.cpp" line="288"/>
+        <location filename="../Forms/MainWindow.cpp" line="295"/>
         <source>Hidden</source>
         <translation>隐藏</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="153"/>
-        <location filename="../Forms/MainWindow.cpp" line="217"/>
-        <location filename="../Forms/MainWindow.cpp" line="292"/>
-        <location filename="../Forms/MainWindow.cpp" line="299"/>
+        <location filename="../Forms/MainWindow.cpp" line="148"/>
+        <location filename="../Forms/MainWindow.cpp" line="212"/>
+        <location filename="../Forms/MainWindow.cpp" line="288"/>
+        <location filename="../Forms/MainWindow.cpp" line="295"/>
         <source>Power</source>
         <translation>力量</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="153"/>
-        <location filename="../Forms/MainWindow.cpp" line="217"/>
-        <location filename="../Forms/MainWindow.cpp" line="292"/>
-        <location filename="../Forms/MainWindow.cpp" line="299"/>
+        <location filename="../Forms/MainWindow.cpp" line="148"/>
+        <location filename="../Forms/MainWindow.cpp" line="212"/>
+        <location filename="../Forms/MainWindow.cpp" line="288"/>
+        <location filename="../Forms/MainWindow.cpp" line="295"/>
         <source>Gender</source>
         <translation>性别</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="216"/>
-        <location filename="../Forms/MainWindow.cpp" line="298"/>
+        <location filename="../Forms/MainWindow.cpp" line="211"/>
+        <location filename="../Forms/MainWindow.cpp" line="294"/>
         <source>Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.cpp" line="211"/>
+        <location filename="../Forms/MainWindow.cpp" line="294"/>
+        <source>Occidentary</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -766,7 +772,7 @@
 <context>
     <name>QCheckList</name>
     <message>
-        <location filename="../Forms/QCheckList.h" line="32"/>
+        <location filename="../Forms/QCheckList.hpp" line="26"/>
         <source>Any</source>
         <translation>任何</translation>
     </message>
@@ -1807,12 +1813,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="140"/>
+        <location filename="../Forms/Researcher.cpp" line="145"/>
         <source>Please enter a max frame lower then 228</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="253"/>
+        <location filename="../Forms/Researcher.cpp" line="258"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translation type="unfinished"></translation>
     </message>
