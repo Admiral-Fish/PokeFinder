@@ -23,6 +23,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QStandardItemModel>
+#include <Forms/QTextBox.hpp>
 #include <vector>
 #include <unordered_map>
 #include <libPokeFinder/RNG/IRNG.hpp>

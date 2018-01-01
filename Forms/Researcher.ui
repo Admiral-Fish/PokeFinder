@@ -23,6 +23,9 @@
       <height>119</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
@@ -107,7 +110,11 @@
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QLineEdit" name="lineEditMult32Bit"/>
+         <widget class="QTextBox" name="textBoxMult32Bit">
+          <property name="maxLength">
+           <number>8</number>
+          </property>
+         </widget>
         </item>
         <item row="2" column="1">
          <widget class="QLabel" name="label_12">
@@ -117,7 +124,11 @@
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QLineEdit" name="lineEditAdd32Bit"/>
+         <widget class="QTextBox" name="textBoxAdd32Bit">
+          <property name="maxLength">
+           <number>8</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -174,7 +185,11 @@
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QLineEdit" name="lineEditMult64Bit"/>
+         <widget class="QTextBox" name="textBoxMult64Bit">
+          <property name="maxLength">
+           <number>16</number>
+          </property>
+         </widget>
         </item>
         <item row="2" column="1">
          <widget class="QLabel" name="label_16">
@@ -184,7 +199,11 @@
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QLineEdit" name="lineEditAdd64Bit"/>
+         <widget class="QTextBox" name="textBoxAdd64Bit">
+          <property name="maxLength">
+           <number>16</number>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -225,7 +244,11 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEditStatus3"/>
+        <widget class="QTextBox" name="textBoxStatus3">
+         <property name="maxLength">
+          <number>8</number>
+         </property>
+        </widget>
        </item>
        <item row="0" column="2">
         <widget class="QLabel" name="label_18">
@@ -235,7 +258,11 @@
         </widget>
        </item>
        <item row="0" column="3">
-        <widget class="QLineEdit" name="lineEditStatus2"/>
+        <widget class="QTextBox" name="textBoxStatus2">
+         <property name="maxLength">
+          <number>8</number>
+         </property>
+        </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_19">
@@ -245,7 +272,11 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEditStatus1"/>
+        <widget class="QTextBox" name="textBoxStatus1">
+         <property name="maxLength">
+          <number>8</number>
+         </property>
+        </widget>
        </item>
        <item row="1" column="2">
         <widget class="QLabel" name="label_20">
@@ -255,7 +286,11 @@
         </widget>
        </item>
        <item row="1" column="3">
-        <widget class="QLineEdit" name="lineEditStatus0"/>
+        <widget class="QTextBox" name="textBoxStatus0">
+         <property name="maxLength">
+          <number>8</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -269,6 +304,20 @@
       <width>781</width>
       <height>291</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableView {
+	border: 4px solid DodgerBlue;
+}
+
+QHeaderView::section {
+	border: none;
+	background-color: #274050;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: white;
+}
+</string>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -2567,7 +2616,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -2585,9 +2634,12 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEditStartingFrame">
+      <widget class="QTextBox" name="textBoxStartingFrame">
        <property name="text">
         <string>1</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
        </property>
       </widget>
      </item>
@@ -2599,9 +2651,12 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEditMaxFrames">
+      <widget class="QTextBox" name="textBoxMaxFrames">
        <property name="text">
         <string>1000</string>
+       </property>
+       <property name="maxLength">
+        <number>20</number>
        </property>
       </widget>
      </item>
@@ -2613,7 +2668,11 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="lineEditSeed"/>
+      <widget class="QTextBox" name="textBoxSeed">
+       <property name="maxLength">
+        <number>16</number>
+       </property>
+      </widget>
      </item>
      <item row="2" column="2">
       <widget class="QPushButton" name="pushButtonGenerate32Bit">
@@ -2637,6 +2696,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QTextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/QTextBox.hpp</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

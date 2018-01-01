@@ -45,3 +45,18 @@ void QTextBox::SetValues(QString string, u64 value, u32 base)
     this->base = base;
     filter = QRegExp(string);
 }
+
+void QTextBox::SetFilter(QString string)
+{
+    filter = QRegExp(string);
+}
+
+void QTextBox::SetValue(u64 value)
+{
+    maxValue = value;
+}
+
+void QTextBox::SetBase(u32 base)
+{
+    this->base = base;
+}

@@ -54,6 +54,20 @@ Researcher::Researcher(QWidget *parent) :
     keys["Previous9"] = 24;
     keys["Previous10"] = 25;
 
+    ui->textBoxStartingFrame->SetValues("[^0-9]", 0xffffffffffffffff, 10);
+    ui->textBoxMaxFrames->SetValues("[^0-9]", 0xffffffffffffffff, 10);
+    ui->textBoxSeed->SetValues("[^0-9A-F]", 0xffffffffffffffff, 16);
+
+    ui->textBoxMult32Bit->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->textBoxAdd32Bit->SetValues("[^0-9A-F]", 0xffffffff, 16);
+
+    ui->textBoxMult64Bit->SetValues("[^0-9A-F]", 0xffffffffffffffff, 16);
+    ui->textBoxAdd64Bit->SetValues("[^0-9A-F]", 0xffffffffffffffff, 16);
+
+    ui->textBoxStatus3->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->textBoxStatus2->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->textBoxStatus1->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->textBoxStatus0->SetValues("[^0-9A-F]", 0xffffffff, 16);
 
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->verticalHeader()->setVisible(false);
@@ -98,9 +112,9 @@ void Researcher::setupModel()
 
 void Researcher::on_pushButtonGenerate32Bit_clicked()
 {
-    u64 seed = ui->lineEditSeed->text().toULongLong(NULL, 16);
-    u32 maxFrames = ui->lineEditMaxFrames->text().toUInt(NULL, 10);
-    u32 startingFrame = ui->lineEditStartingFrame->text().toUInt(NULL, 10);
+    u64 seed = ui->textBoxSeed->text().toULongLong(NULL, 16);
+    u32 maxFrames = ui->textBoxMaxFrames->text().toUInt(NULL, 10);
+    u32 startingFrame = ui->textBoxStartingFrame->text().toUInt(NULL, 10);
 
     IRNG *rng = NULL;
     IRNG64 *rng64 = NULL;
@@ -153,8 +167,8 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         }
         else
         {
-            u32 add = ui->lineEditAdd32Bit->text().toUInt(NULL, 16);
-            u32 mult = ui->lineEditMult32Bit->text().toUInt(NULL, 16);
+            u32 add = ui->textBoxAdd32Bit->text().toUInt(NULL, 16);
+            u32 mult = ui->textBoxMult32Bit->text().toUInt(NULL, 16);
             rng = new LCRNG(add, mult, seed);
         }
     }
@@ -179,15 +193,15 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         }
         else
         {
-            u64 add = ui->lineEditAdd64Bit->text().toUInt(NULL, 16);
-            u64 mult = ui->lineEditMult64Bit->text().toUInt(NULL, 16);
+            u64 add = ui->textBoxAdd64Bit->text().toUInt(NULL, 16);
+            u64 mult = ui->textBoxMult64Bit->text().toUInt(NULL, 16);
             rng64 = new LCRNG64(add, mult, seed);
         }
     }
     else
     {
-        u32 status[4] = { ui->lineEditStatus0->text().toUInt(NULL, 16), ui->lineEditStatus1->text().toUInt(NULL, 16),
-                          ui->lineEditStatus2->text().toUInt(NULL, 16), ui->lineEditStatus3->text().toUInt(NULL, 16) };
+        u32 status[4] = { ui->textBoxStatus0->text().toUInt(NULL, 16), ui->textBoxStatus1->text().toUInt(NULL, 16),
+                          ui->textBoxStatus2->text().toUInt(NULL, 16), ui->textBoxStatus3->text().toUInt(NULL, 16) };
         rng = new TinyMT(status);
     }
 
@@ -486,6 +500,6 @@ ResearcherFrame::ResearcherFrame(bool rng64Bit, u32 frame)
 
 void Researcher::on_rngSelection_currentChanged(int index)
 {
-    ui->lineEditSeed->setVisible(index != 2);
+    ui->textBoxSeed->setVisible(index != 2);
     ui->label_14->setVisible(index != 2);
 }
