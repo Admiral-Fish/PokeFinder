@@ -31,7 +31,7 @@ class QTextBox : public QLineEdit
 {
 
 private:
-    u64 maxValue;
+    u64 maxValue = NULL;
     u32 base;
     QRegExp filter;
 

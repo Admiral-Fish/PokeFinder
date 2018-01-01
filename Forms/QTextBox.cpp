@@ -26,14 +26,17 @@ QTextBox::QTextBox(QWidget *parent) : QLineEdit(parent)
 
 void QTextBox::OnTextChanged(QString string)
 {
-    string = string.toUpper();
-    string.remove(filter);
-    u64 temp = string.toULongLong(NULL, base);
-    if (temp > maxValue)
+    if (maxValue != NULL)
     {
-        string.remove(string.length() - 1, 1);
+        string = string.toUpper();
+        string.remove(filter);
+        u64 temp = string.toULongLong(NULL, base);
+        if (temp > maxValue)
+        {
+            string.remove(string.length() - 1, 1);
+        }
+        setText(string);
     }
-    setText(string);
 }
 
 void QTextBox::SetValues(QString string, u64 value, u32 base)
