@@ -24,6 +24,7 @@
 #include <Forms/QTextBox.hpp>
 #include <libPokeFinder/Gen3/FrameGen3.hpp>
 #include <libPokeFinder/Gen3/GeneratorGen3.hpp>
+#include <libPokeFinder/Gen3/SearcherGen3.hpp>
 #include <libPokeFinder/Objects/FrameCompare.hpp>
 #include <libPokeFinder/Objects/Nature.hpp>
 #include <libPokeFinder/Objects/Power.hpp>
@@ -32,6 +33,7 @@
 #include <libPokeFinder/Gen3/ProfileGen3.hpp>
 #include <Forms/ProfileManager/ProfileManagerGen3.hpp>
 #include <Forms/Researcher.hpp>
+#include <thread>
 
 using namespace std;
 typedef uint32_t u32;
@@ -59,6 +61,7 @@ private:
     void createLanguageMenu(void);
     void setupModels();
     void createProfileXml();
+    void Search3(QStandardItemModel *model);
 
 private slots:
     void on_generateStationary3_clicked();
@@ -74,6 +77,10 @@ private slots:
     void on_anyHiddenPowerWild3_clicked();
     void on_anyNatureWild3_clicked();
     void on_saveWild3_clicked();
+    void on_saveSearcher3_clicked();
+    void on_generateSearcher3_clicked();
+    void on_anyNatureSearcher3_clicked();
+    void on_anyHiddenPowerSearcher3_clicked();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

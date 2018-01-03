@@ -34,7 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
     if(!file.exists())
         createProfileXml();
 
-    ui->tableViewStationary3->resizeColumnsToContents();
     ui->tableViewStationary3->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     createLanguageMenu();
@@ -131,6 +130,186 @@ void MainWindow::loadLanguage(const QString& rLanguage)
         switchTranslator(m_translator, QString("PokeFinder_%1.qm").arg(rLanguage));
         switchTranslator(m_translatorQt, QString("qt_%1.qm").arg(rLanguage));
     }
+}
+
+void MainWindow::createProfileXml()
+{
+    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QDomDocument doc;
+        QDomElement profiles = doc.createElement(QString("Profiles"));
+        doc.appendChild(profiles);
+        QTextStream stream( &file );
+        stream << doc.toString();
+        file.close();
+    }
+}
+
+void MainWindow::setupModels()
+{
+    vector<QString> natureList = Nature::GetNatures();
+    ui->comboBoxNatureStationary3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->comboBoxNatureWild3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->comboBoxNatureSearcher3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+
+    vector<QString> powerList = Power::GetPowers();
+    ui->comboBoxHiddenPowerStationary3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerWild3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerSearcher3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+
+    QStandardItemModel *model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+                                      tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
+    ui->tableViewStationary3->setModel(model);
+    ui->tableViewStationary3->verticalHeader()->setVisible(false);
+    ui->tableViewStationary3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({tr("Frame"), tr("Occidentary"), tr("Slot"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+                                      tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
+    ui->tableViewWild3->setModel(model);
+    ui->tableViewWild3->verticalHeader()->setVisible(false);
+    ui->tableViewWild3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({tr("Seed"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+                                     tr("Def"), tr("SpA"), tr("SpD"),tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")});
+    ui->tableViewSearcher3->setModel(model);
+    ui->tableViewSearcher3->verticalHeader()->setVisible(false);
+    ui->tableViewSearcher3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+
+    ui->initialSeedStationary3->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->idStationary3->SetValues("[^0-9]", 0xffff, 10);
+    ui->sidStationary3->SetValues("[^0-9]", 0xffff, 10);
+    ui->startingFrameStationary3->SetValues("[^0-9]", 0xffffffff, 10);
+    ui->maxResultsStationary3->SetValues("[^0-9]", 0xffffffff, 10);
+    ui->delayStationary3->SetValues("[^0-9]", 0xffffffff, 10);
+
+    ui->initialSeedWild3->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->idWild3->SetValues("[^0-9]", 0xffff, 10);
+    ui->sidWild3->SetValues("[^0-9]", 0xffff, 10);
+    ui->startingFrameWild3->SetValues("[^0-9]", 0xffffffff, 10);
+    ui->maxResultsWild3->SetValues("[^0-9]", 0xffffffff, 10);
+    ui->delayWild3->SetValues("[^0-9]", 0xffffffff, 10);
+
+    ui->idSearcher3->SetValues("[^0-9]", 0xffff, 10);
+    ui->sidSearcher3->SetValues("[^0-9]", 0xffff, 10);
+
+    ui->comboBoxMethodStationary3->setEditable(true);
+    ui->comboBoxMethodStationary3->lineEdit()->setAlignment(Qt::AlignCenter);
+    for(int i = 0; i < ui->comboBoxMethodStationary3->count(); i++)
+        ui->comboBoxMethodStationary3->setItemData(i, Qt::AlignCenter, Qt::TextAlignmentRole);
+    ui->comboBoxMethodStationary3->setEditable(false);
+}
+
+void MainWindow::on_saveProfileStationary3_clicked()
+{
+    ProfileManagerGen3* manager = new ProfileManagerGen3();
+    manager->setAttribute(Qt::WA_QuitOnClose, false);
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    manager->show();
+}
+
+void MainWindow::on_saveWild3_clicked()
+{
+    ProfileManagerGen3* manager = new ProfileManagerGen3();
+    manager->setAttribute(Qt::WA_QuitOnClose, false);
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    manager->show();
+}
+
+void MainWindow::on_saveSearcher3_clicked()
+{
+    ProfileManagerGen3* manager = new ProfileManagerGen3();
+    manager->setAttribute(Qt::WA_QuitOnClose, false);
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    manager->show();
+}
+
+void MainWindow::updateProfiles()
+{
+    profiles = ProfileGen3::loadProfileList();
+
+    QStandardItemModel *profile = new QStandardItemModel((int)profiles.size() + 1, 1, this);
+    QStandardItem* firstProfile = new QStandardItem(tr("None"));
+    profile->setItem(0, firstProfile);
+    for(int i = 0; i < (int)profiles.size(); i++)
+    {
+        QStandardItem* item = new QStandardItem(profiles.at(i).profileName);
+        profile->setItem(i + 1, item);
+    }
+    ui->comboBoxProfiles->setModel(profile);
+}
+
+void MainWindow::on_comboBoxProfiles_currentIndexChanged(int index)
+{
+    if(index == 0)
+    {
+        ui->idStationary3->setReadOnly(false);
+        ui->sidStationary3->setReadOnly(false);
+        ui->idStationary3->setText("");
+        ui->sidStationary3->setText("");
+    }
+    else
+    {
+        ui->idStationary3->setReadOnly(true);
+        ui->sidStationary3->setReadOnly(true);
+        ui->idStationary3->setText(QString::number(profiles.at(index - 1).tid));
+        ui->sidStationary3->setText(QString::number(profiles.at(index - 1).sid));
+    }
+}
+
+void MainWindow::on_anyNatureStationary3_clicked()
+{
+    ui->comboBoxNatureStationary3->uncheckAll();
+}
+
+void MainWindow::on_anyHiddenPowerStationary3_clicked()
+{
+    ui->comboBoxHiddenPowerStationary3->uncheckAll();
+}
+
+void MainWindow::on_anyHiddenPowerWild3_clicked()
+{
+    ui->comboBoxHiddenPowerWild3->uncheckAll();
+}
+
+void MainWindow::on_anyNatureWild3_clicked()
+{
+    ui->comboBoxNatureWild3->uncheckAll();
+}
+
+void MainWindow::on_anyNatureSearcher3_clicked()
+{
+    ui->comboBoxNatureSearcher3->uncheckAll();
+}
+
+void MainWindow::on_anyHiddenPowerSearcher3_clicked()
+{
+    ui->comboBoxHiddenPowerSearcher3->uncheckAll();
+}
+
+void MainWindow::on_checkBoxDelayStationary3_clicked()
+{
+    if(ui->checkBoxDelayStationary3->isChecked())
+    {
+        ui->delayStationary3->setEnabled(true);
+    }
+    else
+    {
+        ui->delayStationary3->setEnabled(false);
+        ui->delayStationary3->setText("");
+    }
+}
+
+
+void MainWindow::on_actionResearcher_triggered()
+{
+    r = new Researcher();
+    r->setAttribute(Qt::WA_QuitOnClose, false);
+    r->show();
 }
 
 void MainWindow::on_generateStationary3_clicked()
@@ -259,151 +438,122 @@ void MainWindow::on_generateWild3_clicked()
     ui->tableViewWild3->setModel(model);
 }
 
-void MainWindow::createProfileXml()
+void MainWindow::Search3(QStandardItemModel *model)
 {
-    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
-    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    u32 tid = ui->idSearcher3->text().toUInt(NULL, 10);
+    u32 sid = ui->sidSearcher3->text().toUInt(NULL, 10);
+
+    u32 ivFilter[6] = { ui->comboBoxHPSearcher3->currentIndex(), ui->comboBoxAtkSearcher3->currentIndex(),
+                        ui->comboBoxDefSearcher3->currentIndex(), ui->comboBoxSpASearcher3->currentIndex(),
+                        ui->comboBoxSpDSearcher3->currentIndex(), ui->comboBoxSpeSearcher3->currentIndex() };
+    u32 ivs[6] = { ui->spinBoxHPSearcher3->value(), ui->spinBoxAtkSearcher3->value(),
+                   ui->spinBoxDefSearcher3->value(), ui->spinBoxSpASearcher3->value(),
+                   ui->spinBoxSpDSearcher3->value(), ui->spinBoxSpeSearcher3->value() };
+
+    int genderRatioIndex = ui->comboBoxGenderRatioSearcher3->currentIndex();
+    SearcherGen3 search = SearcherGen3(tid, sid);
+    FrameCompare compare = FrameCompare(ivFilter[0], ivs[0], ivFilter[1], ivs[1], ivFilter[2], ivs[2],
+                                        ivFilter[3], ivs[3], ivFilter[4], ivs[4], ivFilter[5], ivs[5],
+                                        ui->comboBoxGenderSearcher3->currentIndex(), genderRatioIndex, ui->comboBoxAbilitySearcher3->currentIndex(),
+                                        ui->comboBoxNatureSearcher3->getChecked(), ui->comboBoxHiddenPowerSearcher3->getChecked(),
+                                        ui->checkBoxShinySearcher3->isChecked(), false);
+
+    int method = ui->comboBoxMethodSearcher3->currentIndex();
+    if (method == 0)
+        search.frameType = Method1;
+    else if (method == 1)
+        search.frameType = Method2;
+    else if (method == 2)
+        search.frameType = Method4;
+    else if (method == 3)
+        search.frameType = MethodH1;
+    else if (method == 4)
+        search.frameType = MethodH2;
+    else if (method == 5)
+        search.frameType = MethodH4;
+    else if (method == 6)
+        search.frameType = XDColo;
+    else
+        search.frameType = Channel;
+
+    model->setHorizontalHeaderLabels({tr("Seed"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+                                     tr("Def"), tr("SpA"), tr("SpD"),tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")});
+    model->setColumnCount(14);
+    QModelIndex m = QModelIndex();
+
+    u32 min[6], max[6];
+
+    for (int i = 0; i < 6; i++)
     {
-        QDomDocument doc;
-        QDomElement profiles = doc.createElement(QString("Profiles"));
-        doc.appendChild(profiles);
-        QTextStream stream( &file );
-        stream << doc.toString();
-        file.close();
+        switch (ivFilter[i])
+        {
+            case 0:
+                min[i] = 0;
+                max[i] = 31;
+                break;
+            case 1:
+                min[i] = max[i] = ivs[i];
+                break;
+            case 2:
+                min[i] = ivs[i];
+                max[i] = 31;
+                break;
+            case 3:
+                min[i] = 0;
+                max[i] = ivs[i];
+                break;
+        }
+    }
+
+    for (u32 a = min[0]; a <= max[0]; a++)
+    {
+        for (u32 b = min[1]; b <= max[1]; b++)
+        {
+            for (u32 c = min[2]; c <= max[2]; c++)
+            {
+                for (u32 d = min[3]; d <= max[3]; d++)
+                {
+                    for (u32 e = min[4]; e <= max[4]; e++)
+                    {
+                        for (u32 f = min[5]; f <= max[5]; f++)
+                        {
+                            vector<FrameGen3> frames = search.Search(a, b, c, d, e, f, compare);
+
+                            int i = model->rowCount();
+                            int size = (int)frames.size();
+                            model->setRowCount(i + size);
+                            size += i;
+
+                            for (int index = 0; i < size; i++, index++)
+                            {
+                                model->setData(model->index(i, 0, m), QString::number(frames[index].seed, 16).toUpper().rightJustified(8,'0'));
+                                model->setData(model->index(i, 1, m), QString::number(frames[index].pid, 16).toUpper().rightJustified(8,'0'));
+                                model->setData(model->index(i, 2, m), frames[index].GetShiny());
+                                model->setData(model->index(i, 3, m), frames[index].GetNature());
+                                model->setData(model->index(i, 4, m), frames[index].ability);
+                                model->setData(model->index(i, 5, m), frames[index].ivs[0]);
+                                model->setData(model->index(i, 6, m), frames[index].ivs[1]);
+                                model->setData(model->index(i, 7, m), frames[index].ivs[2]);
+                                model->setData(model->index(i, 8, m), frames[index].ivs[3]);
+                                model->setData(model->index(i, 9, m), frames[index].ivs[4]);
+                                model->setData(model->index(i, 10, m), frames[index].ivs[5]);
+                                model->setData(model->index(i, 11, m), frames[index].GetPower());
+                                model->setData(model->index(i, 12, m), frames[index].power);
+                                model->setData(model->index(i, 13, m), frames[index].GetFemale25());
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
-void MainWindow::setupModels()
+void MainWindow::on_generateSearcher3_clicked()
 {
-    vector<QString> natureList = Nature::GetNatures();
-    ui->comboBoxNatureStationary3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureWild3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-
-    vector<QString> powerList = Power::GetPowers();
-    ui->comboBoxHiddenPowerStationary3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerWild3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-
     QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-                                      tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
-    ui->tableViewStationary3->setModel(model);
-    ui->tableViewStationary3->verticalHeader()->setVisible(false);
-    ui->tableViewStationary3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("Occidentary"), tr("Slot"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-                                      tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
-    ui->tableViewWild3->setModel(model);
-    ui->tableViewWild3->verticalHeader()->setVisible(false);
-    ui->tableViewWild3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    ui->initialSeedStationary3->SetValues("[^0-9A-F]", 0xffffffff, 16);
-    ui->idStationary3->SetValues("[^0-9]", 0xffff, 10);
-    ui->sidStationary3->SetValues("[^0-9]", 0xffff, 10);
-    ui->startingFrameStationary3->SetValues("[^0-9]", 0xffffffff, 10);
-    ui->maxResultsStationary3->SetValues("[^0-9]", 0xffffffff, 10);
-    ui->delayStationary3->SetValues("[^0-9]", 0xffffffff, 10);
-
-    ui->initialSeedWild3->SetValues("[^0-9A-F]", 0xffffffff, 16);
-    ui->idWild3->SetValues("[^0-9]", 0xffff, 10);
-    ui->sidWild3->SetValues("[^0-9]", 0xffff, 10);
-    ui->startingFrameWild3->SetValues("[^0-9]", 0xffffffff, 10);
-    ui->maxResultsWild3->SetValues("[^0-9]", 0xffffffff, 10);
-    ui->delayWild3->SetValues("[^0-9]", 0xffffffff, 10);
-
-    ui->comboBoxMethodStationary3->setEditable(true);
-    ui->comboBoxMethodStationary3->lineEdit()->setAlignment(Qt::AlignCenter);
-    for(int i = 0; i < ui->comboBoxMethodStationary3->count(); i++)
-        ui->comboBoxMethodStationary3->setItemData(i, Qt::AlignCenter, Qt::TextAlignmentRole);
-    ui->comboBoxMethodStationary3->setEditable(false);
-}
-
-void MainWindow::on_saveProfileStationary3_clicked()
-{
-    ProfileManagerGen3* manager = new ProfileManagerGen3();
-    manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
-    manager->show();
-}
-
-void MainWindow::on_saveWild3_clicked()
-{
-    ProfileManagerGen3* manager = new ProfileManagerGen3();
-    manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
-    manager->show();
-}
-
-void MainWindow::updateProfiles()
-{
-    profiles = ProfileGen3::loadProfileList();
-
-    QStandardItemModel *profile = new QStandardItemModel((int)profiles.size() + 1, 1, this);
-    QStandardItem* firstProfile = new QStandardItem(tr("None"));
-    profile->setItem(0, firstProfile);
-    for(int i = 0; i < (int)profiles.size(); i++)
-    {
-        QStandardItem* item = new QStandardItem(profiles.at(i).profileName);
-        profile->setItem(i + 1, item);
-    }
-    ui->comboBoxProfiles->setModel(profile);
-}
-
-void MainWindow::on_comboBoxProfiles_currentIndexChanged(int index)
-{
-    if(index == 0)
-    {
-        ui->idStationary3->setReadOnly(false);
-        ui->sidStationary3->setReadOnly(false);
-        ui->idStationary3->setText("");
-        ui->sidStationary3->setText("");
-    }
-    else
-    {
-        ui->idStationary3->setReadOnly(true);
-        ui->sidStationary3->setReadOnly(true);
-        ui->idStationary3->setText(QString::number(profiles.at(index - 1).tid));
-        ui->sidStationary3->setText(QString::number(profiles.at(index - 1).sid));
-    }
-}
-
-void MainWindow::on_anyNatureStationary3_clicked()
-{
-    ui->comboBoxNatureStationary3->uncheckAll();
-}
-
-void MainWindow::on_anyHiddenPowerStationary3_clicked()
-{
-    ui->comboBoxHiddenPowerStationary3->uncheckAll();
-}
-
-void MainWindow::on_anyHiddenPowerWild3_clicked()
-{
-    ui->comboBoxHiddenPowerWild3->uncheckAll();
-}
-
-void MainWindow::on_anyNatureWild3_clicked()
-{
-    ui->comboBoxNatureWild3->uncheckAll();
-}
-
-void MainWindow::on_checkBoxDelayStationary3_clicked()
-{
-    if(ui->checkBoxDelayStationary3->isChecked())
-    {
-        ui->delayStationary3->setEnabled(true);
-    }
-    else
-    {
-        ui->delayStationary3->setEnabled(false);
-        ui->delayStationary3->setText("");
-    }
-}
-
-
-void MainWindow::on_actionResearcher_triggered()
-{
-    r = new Researcher();
-    r->setAttribute(Qt::WA_QuitOnClose, false);
-    r->show();
+    ui->tableViewSearcher3->setModel(model);
+    ui->tableViewSearcher3->setUpdatesEnabled(true);
+    std::thread search(&MainWindow::Search3, this, model);
+    search.detach();
 }
