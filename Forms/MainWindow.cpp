@@ -443,12 +443,12 @@ void MainWindow::Search3(QStandardItemModel *model)
     u32 tid = ui->idSearcher3->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher3->text().toUInt(NULL, 10);
 
-    u32 ivFilter[6] = { ui->comboBoxHPSearcher3->currentIndex(), ui->comboBoxAtkSearcher3->currentIndex(),
+    int ivFilter[6] = { ui->comboBoxHPSearcher3->currentIndex(), ui->comboBoxAtkSearcher3->currentIndex(),
                         ui->comboBoxDefSearcher3->currentIndex(), ui->comboBoxSpASearcher3->currentIndex(),
                         ui->comboBoxSpDSearcher3->currentIndex(), ui->comboBoxSpeSearcher3->currentIndex() };
-    u32 ivs[6] = { ui->spinBoxHPSearcher3->value(), ui->spinBoxAtkSearcher3->value(),
-                   ui->spinBoxDefSearcher3->value(), ui->spinBoxSpASearcher3->value(),
-                   ui->spinBoxSpDSearcher3->value(), ui->spinBoxSpeSearcher3->value() };
+    u32 ivs[6] = { (u32)ui->spinBoxHPSearcher3->value(), (u32)ui->spinBoxAtkSearcher3->value(),
+                   (u32)ui->spinBoxDefSearcher3->value(), (u32)ui->spinBoxSpASearcher3->value(),
+                   (u32)ui->spinBoxSpDSearcher3->value(), (u32)ui->spinBoxSpeSearcher3->value() };
 
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher3->currentIndex();
     SearcherGen3 search = SearcherGen3(tid, sid);
