@@ -41,12 +41,7 @@ TRANSLATIONS += \
     Languages/PokeFinder_zh_Hans_CN.ts
 
 SOURCES += \
-    Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp \
-    libPokeFinder/Gen3/FrameGen3.cpp \
-    libPokeFinder/Gen3/GeneratorGen3.cpp \
     libPokeFinder/Gen3/NatureLock.cpp \
-    libPokeFinder/Gen3/ProfileGen3.cpp \
-    libPokeFinder/Gen3/SearcherGen3.cpp \
     libPokeFinder/Objects/EncounterSlot.cpp \
     libPokeFinder/Objects/Frame.cpp \
     libPokeFinder/Objects/FrameCompare.cpp \
@@ -65,15 +60,15 @@ SOURCES += \
     Forms/MainWindow.cpp \
     Forms/QCheckList.cpp \
     Forms/QTextBox.cpp \
-    Forms/ProfileManager/ProfileManagerGen3.cpp
+    libPokeFinder/Gen3/Frame3.cpp \
+    libPokeFinder/Gen3/Generator3.cpp \
+    libPokeFinder/Gen3/Profile3.cpp \
+    libPokeFinder/Gen3/Searcher3.cpp \
+    Forms/ProfileManager/ProfileManager3.cpp \
+    Forms/ProfileManager/ProfileManager3NewEdit.cpp
 
 HEADERS += \
-    Forms/ProfileManager/ProfileManagerGen3NewEdit.hpp \
-    libPokeFinder/Gen3/FrameGen3.hpp \
-    libPokeFinder/Gen3/GeneratorGen3.hpp \
     libPokeFinder/Gen3/NatureLock.hpp \
-    libPokeFinder/Gen3/ProfileGen3.hpp \
-    libPokeFinder/Gen3/SearcherGen3.hpp \
     libPokeFinder/Objects/Encounter.hpp \
     libPokeFinder/Objects/EncounterSlot.hpp \
     libPokeFinder/Objects/Frame.hpp \
@@ -99,13 +94,18 @@ HEADERS += \
     Forms/MainWindow.hpp \
     Forms/QCheckList.hpp \
     Forms/QTextBox.hpp \
-    Forms/ProfileManager/ProfileManagerGen3.hpp
+    libPokeFinder/Gen3/Frame3.hpp \
+    libPokeFinder/Gen3/Generator3.hpp \
+    libPokeFinder/Gen3/Profile3.hpp \
+    libPokeFinder/Gen3/Searcher3.hpp \
+    Forms/ProfileManager/ProfileManager3.hpp \
+    Forms/ProfileManager/ProfileManager3NewEdit.hpp
 
 FORMS += \
-    Forms/ProfileManager/ProfileManagerGen3NewEdit.ui \
     Forms/Researcher.ui \
     Forms/MainWindow.ui \
-    Forms/ProfileManager/ProfileManagerGen3.ui
+    Forms/ProfileManager/ProfileManager3.ui \
+    Forms/ProfileManager/ProfileManager3NewEdit.ui
 
 RESOURCES += \
     resources.qrc

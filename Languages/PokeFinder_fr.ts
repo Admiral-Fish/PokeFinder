@@ -666,211 +666,211 @@
     </message>
 </context>
 <context>
-    <name>ProfileManagerGen3</name>
+    <name>ProfileManager3</name>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="27"/>
-        <source>New</source>
-        <translation>Nouveau</translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="66"/>
-        <source>Done</source>
-        <translation>Terminé</translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="53"/>
-        <source>Edit</source>
-        <translation>Modifier</translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="14"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="14"/>
         <source>Profile Manager Gen 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="40"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="27"/>
+        <source>New</source>
+        <translation type="unfinished">Nouveau</translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="40"/>
         <source>Delete</source>
-        <translation>Supprimer</translation>
+        <translation type="unfinished">Supprimer</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="53"/>
+        <source>Edit</source>
+        <translation type="unfinished">Modifier</translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="66"/>
+        <source>Done</source>
+        <translation type="unfinished">Terminé</translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Profile Name</source>
-        <translation>Nom du profil</translation>
+        <translation type="unfinished">Nom du profil</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Version</source>
-        <translation>Version</translation>
+        <translation type="unfinished">Version</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Language</source>
-        <translation>Langue</translation>
+        <translation type="unfinished">Langue</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>TID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>SID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Dead Battery</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="158"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="158"/>
         <source>Please select one row.</source>
-        <translation>Sélectionnez une ligne SVP.</translation>
+        <translation type="unfinished">Sélectionnez une ligne SVP.</translation>
     </message>
 </context>
 <context>
-    <name>ProfileManagerGen3NewEdit</name>
+    <name>ProfileManager3NewEdit</name>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="14"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="14"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="26"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="26"/>
         <source>Profile Name:</source>
-        <translation>Nom du profil :</translation>
+        <translation type="unfinished">Nom du profil :</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="49"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="49"/>
         <source>Version:</source>
-        <translation>Version :</translation>
+        <translation type="unfinished">Version :</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="63"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="63"/>
         <source>Ruby</source>
-        <translation>Rubis</translation>
+        <translation type="unfinished">Rubis</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="68"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="68"/>
         <source>Sapphire</source>
-        <translation>Saphir</translation>
+        <translation type="unfinished">Saphir</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="73"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="73"/>
         <source>Fire Red</source>
-        <translation>Rouge feu</translation>
+        <translation type="unfinished">Rouge feu</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="78"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="78"/>
         <source>Leaf Green</source>
-        <translation>Vert feuille</translation>
+        <translation type="unfinished">Vert feuille</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="83"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="83"/>
         <source>Emerald</source>
-        <translation>Emeraude</translation>
+        <translation type="unfinished">Emeraude</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="88"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="88"/>
         <source>XD</source>
-        <translation>XD</translation>
+        <translation type="unfinished">XD</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="93"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="93"/>
         <source>Colosseum</source>
-        <translation>Colosseum</translation>
+        <translation type="unfinished">Colosseum</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="107"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="107"/>
         <source>TID:</source>
-        <translation>ID:</translation>
+        <translation type="unfinished">ID:</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="130"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="130"/>
         <source>SID:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="153"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="153"/>
         <source>Language:</source>
-        <translation>Langue :</translation>
+        <translation type="unfinished">Langue :</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="167"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="167"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="172"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="172"/>
         <source>ENG</source>
-        <translation>EN</translation>
+        <translation type="unfinished">EN</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="177"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="177"/>
         <source>SPA</source>
-        <translation>ESP</translation>
+        <translation type="unfinished">ESP</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="182"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="182"/>
         <source>FRE</source>
-        <translation>FR</translation>
+        <translation type="unfinished">FR</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="187"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="187"/>
         <source>ITA</source>
-        <translation>IT</translation>
+        <translation type="unfinished">IT</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="192"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="192"/>
         <source>DEU</source>
-        <translation>ALL</translation>
+        <translation type="unfinished">ALL</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="197"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="197"/>
         <source>JPN</source>
-        <translation>JAP</translation>
+        <translation type="unfinished">JAP</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="224"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="224"/>
         <source>Dead Battery?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="237"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="237"/>
         <source>Accept</source>
-        <translation>Valider</translation>
+        <translation type="unfinished">Valider</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="250"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="250"/>
         <source>Cancel</source>
-        <translation>Annuler</translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="36"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="36"/>
         <source>Please enter a Profile Name.</source>
-        <translation>Indiquez un nom SVP.</translation>
+        <translation type="unfinished">Indiquez un nom SVP.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="47"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="47"/>
         <source>Please enter Trainer ID in valid decimal format.</source>
-        <translation>Indiquez un Trainer ID dans un format décimal valide.</translation>
+        <translation type="unfinished">Indiquez un Trainer ID dans un format décimal valide.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="53"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="71"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="53"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="71"/>
         <source>Please enter a value lower then 65536.</source>
-        <translation>Indiquez une valeur inférieure à 65536.</translation>
+        <translation type="unfinished">Indiquez une valeur inférieure à 65536.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="65"/>
         <source>Please enter Trainer SID in valid decimal format.</source>
-        <translation>Indiquez un Trainer SID dans un format décimal valide.</translation>
+        <translation type="unfinished">Indiquez un Trainer SID dans un format décimal valide.</translation>
     </message>
 </context>
 <context>
@@ -1114,44 +1114,44 @@
         <translation>Ténèbres</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="486"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="527"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="486"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="527"/>
         <source>Ruby</source>
         <translation>Rubis</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="488"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="531"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="488"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="531"/>
         <source>Sapphire</source>
         <translation>Saphir</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="490"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="535"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="490"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="535"/>
         <source>Fire Red</source>
         <translation>Rouge feu</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="492"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="539"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="492"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="539"/>
         <source>Leaf Green</source>
         <translation>Vert feuille</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="494"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="543"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="494"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="543"/>
         <source>Emerald</source>
         <translation>Emeraude</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="496"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="547"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="496"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="547"/>
         <source>XD</source>
         <translation>XD</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="498"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="551"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="498"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="551"/>
         <source>Colosseum</source>
         <translation>Colosseum</translation>
     </message>

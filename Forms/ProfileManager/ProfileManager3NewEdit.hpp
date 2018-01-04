@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGERGEN3NEWEDIT_HPP
-#define PROFILEMANAGERGEN3NEWEDIT_HPP
+#ifndef PROFILEMANAGER3NEWEDIT_HPP
+#define PROFILEMANAGER3NEWEDIT_HPP
 
 #include <QDialog>
 #include <QString>
@@ -30,10 +30,10 @@
 typedef uint32_t u32;
 
 namespace Ui {
-class ProfileManagerGen3NewEdit;
+class ProfileManager3NewEdit;
 }
 
-class ProfileManagerGen3NewEdit : public QDialog
+class ProfileManager3NewEdit : public QDialog
 {
     Q_OBJECT
 
@@ -41,9 +41,9 @@ signals:
     void newProfile(QString, int, int, u32, u32, bool);
 
 public:
-    explicit ProfileManagerGen3NewEdit(QWidget *parent = 0);
-    explicit ProfileManagerGen3NewEdit(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery, QWidget *parent = 0);
-    ~ProfileManagerGen3NewEdit();
+    explicit ProfileManager3NewEdit(QWidget *parent = 0);
+    explicit ProfileManager3NewEdit(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery, QWidget *parent = 0);
+    ~ProfileManager3NewEdit();
 
 private slots:
     void on_pushButtonAccept_clicked();
@@ -53,7 +53,7 @@ private slots:
     void on_comboBoxVersion_currentIndexChanged(int index);
 
 private:
-    Ui::ProfileManagerGen3NewEdit *ui;
+    Ui::ProfileManager3NewEdit *ui;
 };
 
-#endif // PROFILEMANAGERGEN3NEWEDIT_HPP
+#endif // PROFILEMANAGER3NEWEDIT_HPP

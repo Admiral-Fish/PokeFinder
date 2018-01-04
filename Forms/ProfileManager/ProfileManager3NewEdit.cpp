@@ -1,14 +1,14 @@
-#include "ProfileManagerGen3NewEdit.hpp"
-#include "ui_ProfileManagerGen3NewEdit.h"
+#include "ProfileManager3NewEdit.hpp"
+#include "ui_ProfileManager3NewEdit.h"
 
-ProfileManagerGen3NewEdit::ProfileManagerGen3NewEdit(QWidget *parent) :
+ProfileManager3NewEdit::ProfileManager3NewEdit(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ProfileManagerGen3NewEdit)
+    ui(new Ui::ProfileManager3NewEdit)
 {
     ui->setupUi(this);
 }
 
-ProfileManagerGen3NewEdit::ProfileManagerGen3NewEdit(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManagerGen3NewEdit)
+ProfileManager3NewEdit::ProfileManager3NewEdit(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManager3NewEdit)
 {
     ui->setupUi(this);
     ui->lineEditProfile->setText(profileName);
@@ -19,12 +19,12 @@ ProfileManagerGen3NewEdit::ProfileManagerGen3NewEdit(QString profileName, int ve
     ui->checkBoxDeadBattery->setChecked(deadBattery);
 }
 
-ProfileManagerGen3NewEdit::~ProfileManagerGen3NewEdit()
+ProfileManager3NewEdit::~ProfileManager3NewEdit()
 {
     delete ui;
 }
 
-void ProfileManagerGen3NewEdit::on_pushButtonAccept_clicked()
+void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
 {
     bool pass;
     QMessageBox error;
@@ -80,12 +80,12 @@ void ProfileManagerGen3NewEdit::on_pushButtonAccept_clicked()
 }
 
 
-void ProfileManagerGen3NewEdit::on_pushButtonCancel_clicked()
+void ProfileManager3NewEdit::on_pushButtonCancel_clicked()
 {
     done(QDialog::Rejected);
 }
 
-void ProfileManagerGen3NewEdit::on_comboBoxVersion_currentIndexChanged(int index)
+void ProfileManager3NewEdit::on_comboBoxVersion_currentIndexChanged(int index)
 {
     if(index > 1)
     {

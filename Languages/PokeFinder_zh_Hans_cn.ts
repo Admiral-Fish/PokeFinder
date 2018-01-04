@@ -668,211 +668,211 @@
     </message>
 </context>
 <context>
-    <name>ProfileManagerGen3</name>
+    <name>ProfileManager3</name>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="27"/>
-        <source>New</source>
-        <translation>新建</translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="66"/>
-        <source>Done</source>
-        <translation>完成</translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="53"/>
-        <source>Edit</source>
-        <translation>编辑</translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="14"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="14"/>
         <source>Profile Manager Gen 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.ui" line="40"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="27"/>
+        <source>New</source>
+        <translation type="unfinished">新建</translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="40"/>
         <source>Delete</source>
-        <translation>删除</translation>
+        <translation type="unfinished">删除</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="53"/>
+        <source>Edit</source>
+        <translation type="unfinished">编辑</translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="66"/>
+        <source>Done</source>
+        <translation type="unfinished">完成</translation>
+    </message>
+    <message>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Profile Name</source>
-        <translation>配置名</translation>
+        <translation type="unfinished">配置名</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Version</source>
-        <translation>版本</translation>
+        <translation type="unfinished">版本</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Language</source>
-        <translation>语言</translation>
+        <translation type="unfinished">语言</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>TID</source>
-        <translation>TID</translation>
+        <translation type="unfinished">TID</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>SID</source>
-        <translation>SID</translation>
+        <translation type="unfinished">SID</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Dead Battery</source>
-        <translation>无电池</translation>
+        <translation type="unfinished">无电池</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3.cpp" line="158"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="158"/>
         <source>Please select one row.</source>
-        <translation>请选择一列.</translation>
+        <translation type="unfinished">请选择一列.</translation>
     </message>
 </context>
 <context>
-    <name>ProfileManagerGen3NewEdit</name>
+    <name>ProfileManager3NewEdit</name>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="14"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="14"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="26"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="26"/>
         <source>Profile Name:</source>
-        <translation>配置名:</translation>
+        <translation type="unfinished">配置名:</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="49"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="49"/>
         <source>Version:</source>
-        <translation>版本:</translation>
+        <translation type="unfinished">版本:</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="63"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="63"/>
         <source>Ruby</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="68"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="68"/>
         <source>Sapphire</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="73"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="73"/>
         <source>Fire Red</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="78"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="78"/>
         <source>Leaf Green</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="83"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="83"/>
         <source>Emerald</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="88"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="88"/>
         <source>XD</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="93"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="93"/>
         <source>Colosseum</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="107"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="107"/>
         <source>TID:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="130"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="130"/>
         <source>SID:</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="153"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="153"/>
         <source>Language:</source>
-        <translation>语言:</translation>
+        <translation type="unfinished">语言:</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="167"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="167"/>
         <source>-</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="172"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="172"/>
         <source>ENG</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="177"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="177"/>
         <source>SPA</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="182"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="182"/>
         <source>FRE</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="187"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="187"/>
         <source>ITA</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="192"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="192"/>
         <source>DEU</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="197"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="197"/>
         <source>JPN</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="224"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="224"/>
         <source>Dead Battery?</source>
-        <translation>无电池？</translation>
+        <translation type="unfinished">无电池？</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="237"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="237"/>
         <source>Accept</source>
-        <translation>接受</translation>
+        <translation type="unfinished">接受</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.ui" line="250"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="250"/>
         <source>Cancel</source>
-        <translation>取消</translation>
+        <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="36"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="36"/>
         <source>Please enter a Profile Name.</source>
-        <translation>请选择配置文件名.</translation>
+        <translation type="unfinished">请选择配置文件名.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="47"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="47"/>
         <source>Please enter Trainer ID in valid decimal format.</source>
-        <translation>请输入有效的 16 进制训练家 ID.</translation>
+        <translation type="unfinished">请输入有效的 16 进制训练家 ID.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="53"/>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="71"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="53"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="71"/>
         <source>Please enter a value lower then 65536.</source>
-        <translation>请输入一个小于 65536 的值.</translation>
+        <translation type="unfinished">请输入一个小于 65536 的值.</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManagerGen3NewEdit.cpp" line="65"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="65"/>
         <source>Please enter Trainer SID in valid decimal format.</source>
-        <translation>请输入有效的 16 进制训练家 SID.</translation>
+        <translation type="unfinished">请输入有效的 16 进制训练家 SID.</translation>
     </message>
 </context>
 <context>
@@ -1116,44 +1116,44 @@
         <translation>恶</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="486"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="527"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="486"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="527"/>
         <source>Ruby</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="488"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="531"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="488"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="531"/>
         <source>Sapphire</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="490"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="535"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="490"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="535"/>
         <source>Fire Red</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="492"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="539"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="492"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="539"/>
         <source>Leaf Green</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="494"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="543"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="494"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="543"/>
         <source>Emerald</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="496"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="547"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="496"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="547"/>
         <source>XD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="498"/>
-        <location filename="../libPokeFinder/Gen3/ProfileGen3.cpp" line="551"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="498"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="551"/>
         <source>Colosseum</source>
         <translation></translation>
     </message>

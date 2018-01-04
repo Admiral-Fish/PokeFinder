@@ -17,24 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGERGEN3_HPP
-#define PROFILEMANAGERGEN3_HPP
+#ifndef PROFILEMANAGER3_HPP
+#define PROFILEMANAGER3_HPP
 
 #include <QMainWindow>
-#include <Forms/ProfileManager/ProfileManagerGen3NewEdit.hpp>
+#include <Forms/ProfileManager/ProfileManager3NewEdit.hpp>
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QObject>
-#include <libPokeFinder/Gen3/ProfileGen3.hpp>
+#include <libPokeFinder/Gen3/Profile3.hpp>
 
 using namespace std;
 typedef uint32_t u32;
 
 namespace Ui {
-class ProfileManagerGen3;
+class ProfileManager3;
 }
 
-class ProfileManagerGen3 : public QMainWindow
+class ProfileManager3 : public QMainWindow
 {
     Q_OBJECT
 
@@ -42,8 +42,8 @@ signals:
     void updateProfiles();
 
 public:
-    explicit ProfileManagerGen3(QWidget *parent = 0);
-    ~ProfileManagerGen3();
+    explicit ProfileManager3(QWidget *parent = 0);
+    ~ProfileManager3();
 
 private slots:
     void on_pushButtonNew_clicked();
@@ -53,10 +53,10 @@ private slots:
     void on_pushButtonDelete_clicked();
 
 private:
-    Ui::ProfileManagerGen3 *ui;
+    Ui::ProfileManager3 *ui;
 
     void updateTable(vector<QList<QStandardItem *>> rows);
 
 };
 
-#endif // PROFILEMANAGERGEN3_HPP
+#endif // PROFILEMANAGER3_HPP

@@ -22,16 +22,16 @@
 
 #include <Forms/QCheckList.hpp>
 #include <Forms/QTextBox.hpp>
-#include <libPokeFinder/Gen3/FrameGen3.hpp>
-#include <libPokeFinder/Gen3/GeneratorGen3.hpp>
-#include <libPokeFinder/Gen3/SearcherGen3.hpp>
+#include <libPokeFinder/Gen3/Frame3.hpp>
+#include <libPokeFinder/Gen3/Generator3.hpp>
+#include <libPokeFinder/Gen3/Searcher3.hpp>
 #include <libPokeFinder/Objects/FrameCompare.hpp>
 #include <libPokeFinder/Objects/Nature.hpp>
 #include <libPokeFinder/Objects/Power.hpp>
 #include <vector>
 #include <QDir>
-#include <libPokeFinder/Gen3/ProfileGen3.hpp>
-#include <Forms/ProfileManager/ProfileManagerGen3.hpp>
+#include <libPokeFinder/Gen3/Profile3.hpp>
+#include <Forms/ProfileManager/ProfileManager3.hpp>
 #include <Forms/Researcher.hpp>
 #include <thread>
 
@@ -86,7 +86,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    vector<ProfileGen3> profiles;
+    vector<Profile3> profiles;
 
 };
 

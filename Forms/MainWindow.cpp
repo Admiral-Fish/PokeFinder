@@ -206,7 +206,7 @@ void MainWindow::setupModels()
 
 void MainWindow::on_saveProfileStationary3_clicked()
 {
-    ProfileManagerGen3* manager = new ProfileManagerGen3();
+    ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
     manager->show();
@@ -214,7 +214,7 @@ void MainWindow::on_saveProfileStationary3_clicked()
 
 void MainWindow::on_saveWild3_clicked()
 {
-    ProfileManagerGen3* manager = new ProfileManagerGen3();
+    ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
     manager->show();
@@ -222,7 +222,7 @@ void MainWindow::on_saveWild3_clicked()
 
 void MainWindow::on_saveSearcher3_clicked()
 {
-    ProfileManagerGen3* manager = new ProfileManagerGen3();
+    ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
     manager->show();
@@ -230,7 +230,7 @@ void MainWindow::on_saveSearcher3_clicked()
 
 void MainWindow::updateProfiles()
 {
-    profiles = ProfileGen3::loadProfileList();
+    profiles = Profile3::loadProfileList();
 
     QStandardItemModel *profile = new QStandardItemModel((int)profiles.size() + 1, 1, this);
     QStandardItem* firstProfile = new QStandardItem(tr("None"));
@@ -327,7 +327,7 @@ void MainWindow::on_generateStationary3_clicked()
                                       tr("Def"), tr("SpA"), tr("SpD"),tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
 
     int genderRatioIndex = ui->comboBoxGenderRatioStationary3->currentIndex();
-    GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid, offset);
+    Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
     FrameCompare compare = FrameCompare(ui->comboBoxHPStationary3->currentIndex(), ui->spinBoxHPStationary3->value(), ui->comboBoxAtkStationary3->currentIndex(),
                                         ui->spinBoxAtkStationary3->value(), ui->comboBoxDefStationary3->currentIndex(), ui->spinBoxDefStationary3->value(),
                                         ui->comboBoxSpAStationary3->currentIndex(), ui->spinBoxSpAStationary3->value(), ui->comboBoxSpDStationary3->currentIndex(),
@@ -348,7 +348,7 @@ void MainWindow::on_generateStationary3_clicked()
     else
         generator.frameType = Channel;
 
-    vector<FrameGen3> frames = generator.Generate(compare);
+    vector<Frame3> frames = generator.Generate(compare);
     int size = (int)frames.size();
     model->setRowCount(size);
     model->setColumnCount(15);
@@ -391,7 +391,7 @@ void MainWindow::on_generateWild3_clicked()
                                       tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
 
     int genderRatioIndex = ui->comboBoxGenderRatioWild3->currentIndex();
-    GeneratorGen3 generator = GeneratorGen3(maxResults, startingFrame, seed, tid, sid, offset);
+    Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
     FrameCompare compare = FrameCompare(ui->comboBoxHPWild3->currentIndex(), ui->spinBoxHPWild3->value(), ui->comboBoxAtkWild3->currentIndex(),
                                         ui->spinBoxAtkWild3->value(), ui->comboBoxDefWild3->currentIndex(), ui->spinBoxDefWild3->value(),
                                         ui->comboBoxSpAWild3->currentIndex(), ui->spinBoxSpAWild3->value(), ui->comboBoxSpDWild3->currentIndex(),
@@ -408,7 +408,7 @@ void MainWindow::on_generateWild3_clicked()
     else
         generator.frameType = MethodH4;
 
-    vector<FrameGen3> frames = generator.Generate(compare);
+    vector<Frame3> frames = generator.Generate(compare);
     int size = (int)frames.size();
     model->setRowCount(size);
     model->setColumnCount(17);
@@ -451,7 +451,7 @@ void MainWindow::Search3(QStandardItemModel *model)
                    (u32)ui->spinBoxSpDSearcher3->value(), (u32)ui->spinBoxSpeSearcher3->value() };
 
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher3->currentIndex();
-    SearcherGen3 search = SearcherGen3(tid, sid);
+    Searcher3 search = Searcher3(tid, sid);
     FrameCompare compare = FrameCompare(ivFilter[0], ivs[0], ivFilter[1], ivs[1], ivFilter[2], ivs[2],
                                         ivFilter[3], ivs[3], ivFilter[4], ivs[4], ivFilter[5], ivs[5],
                                         ui->comboBoxGenderSearcher3->currentIndex(), genderRatioIndex, ui->comboBoxAbilitySearcher3->currentIndex(),
@@ -517,7 +517,7 @@ void MainWindow::Search3(QStandardItemModel *model)
                     {
                         for (u32 f = min[5]; f <= max[5]; f++)
                         {
-                            vector<FrameGen3> frames = search.Search(a, b, c, d, e, f, compare);
+                            vector<Frame3> frames = search.Search(a, b, c, d, e, f, compare);
 
                             int i = model->rowCount();
                             int size = (int)frames.size();
