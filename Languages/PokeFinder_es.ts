@@ -57,12 +57,12 @@
     <message>
         <location filename="../Forms/MainWindow.ui" line="263"/>
         <location filename="../Forms/MainWindow.ui" line="2436"/>
-        <location filename="../Forms/MainWindow.ui" line="2441"/>
         <source>Method 2</source>
         <translation>Método 2</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="268"/>
+        <location filename="../Forms/MainWindow.ui" line="2441"/>
         <source>Method 4</source>
         <translation>Método 4</translation>
     </message>
@@ -1917,12 +1917,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="159"/>
+        <location filename="../Forms/Researcher.cpp" line="140"/>
         <source>Please enter a max frame lower then 228</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="272"/>
+        <location filename="../Forms/Researcher.cpp" line="254"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translation type="unfinished"></translation>
     </message>

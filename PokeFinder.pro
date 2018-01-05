@@ -65,7 +65,9 @@ SOURCES += \
     libPokeFinder/Gen3/Profile3.cpp \
     libPokeFinder/Gen3/Searcher3.cpp \
     Forms/ProfileManager/ProfileManager3.cpp \
-    Forms/ProfileManager/ProfileManager3NewEdit.cpp
+    Forms/ProfileManager/ProfileManager3NewEdit.cpp \
+    Models/ResearcherModel.cpp \
+    Util/ResearcherFrame.cpp
 
 HEADERS += \
     libPokeFinder/Gen3/NatureLock.hpp \
@@ -99,7 +101,9 @@ HEADERS += \
     libPokeFinder/Gen3/Profile3.hpp \
     libPokeFinder/Gen3/Searcher3.hpp \
     Forms/ProfileManager/ProfileManager3.hpp \
-    Forms/ProfileManager/ProfileManager3NewEdit.hpp
+    Forms/ProfileManager/ProfileManager3NewEdit.hpp \
+    Models/ResearcherModel.hpp \
+    Util/ResearcherFrame.hpp
 
 FORMS += \
     Forms/Researcher.ui \

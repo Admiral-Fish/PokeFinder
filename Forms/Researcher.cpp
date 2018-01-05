@@ -25,7 +25,6 @@ Researcher::Researcher(QWidget *parent) :
     ui(new Ui::Researcher)
 {
     ui->setupUi(this);
-    SetupModel();
 
     keys["64Bit"] = 0;
     keys["32Bit"] = 1;
@@ -80,6 +79,9 @@ Researcher::Researcher(QWidget *parent) :
     ui->lineEditRValue9->SetValues("[^0-9A-F]", 0xffffffff, 16);
     ui->lineEditRValue10->SetValues("[^0-9A-F]", 0xffffffff, 16);
 
+    ui->tableView->setModel(new ResearcherModel(this, false));
+    ui->tableView->resizeColumnsToContents();
+
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->verticalHeader()->setVisible(false);
 }
@@ -87,18 +89,6 @@ Researcher::Researcher(QWidget *parent) :
 Researcher::~Researcher()
 {
     delete ui;
-}
-
-void Researcher::SetupModel()
-{
-    QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({ "Frame", "32Bit", "16Bit High", "16BitLow",
-                                       "Custom1", "Custom2", "Custom3", "Custom4",
-                                       "Custom5", "Custom6", "Custom7", "Custom8",
-                                       "Custom9", "Custom10", "%3", "%25",
-                                       "%100", "/656", "LBit", "HBit" });
-    ui->tableView->setModel(model);
-    ui->tableView->resizeColumnsToContents();
 }
 
 void Researcher::on_pushButtonGenerate32Bit_clicked()
@@ -329,9 +319,9 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         frames.push_back(frame);
     }
 
-    QStandardItemModel *model = new QStandardItemModel(this);
-    model->setRowCount((int)frames.size());
-    if (rng64Bit)
+    ResearcherModel *model = new ResearcherModel(this, rng64Bit);
+    model->SetModel(frames);
+    /*if (rng64Bit)
     {
         model->setHorizontalHeaderLabels({ "Frame", "64 Bit", "32Bit High", "32Bit Low",
                                            "16Bit High", "16BitLow", "Custom1", "Custom2",
@@ -347,63 +337,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                                            "Custom5", "Custom6", "Custom7", "Custom8",
                                            "Custom9", "Custom10", "%3", "%25", "%100",
                                            "/656", "LBit", "HBit" });
-    }
-
-    QModelIndex m = QModelIndex();
-    if (rng64Bit)
-    {
-        for (u32 i = 0; i < maxFrames; i++)
-        {
-            model->setData(model->index(i, 0, m), frames[i].Frame);
-            model->setData(model->index(i, 1, m), QString::number(frames[i].Full64, 16).toUpper().rightJustified(16,'0'));
-            model->setData(model->index(i, 2, m), QString::number(frames[i].High32(), 16).toUpper().rightJustified(8,'0'));
-            model->setData(model->index(i, 3, m), QString::number(frames[i].Low32(), 16).toUpper().rightJustified(8,'0'));
-            model->setData(model->index(i, 4, m), QString::number(frames[i].High16(), 16).toUpper().rightJustified(4,'0'));
-            model->setData(model->index(i, 5, m), QString::number(frames[i].Low16(), 16).toUpper().rightJustified(4,'0'));
-            model->setData(model->index(i, 6, m), frames[i].Custom[0]);
-            model->setData(model->index(i, 7, m), frames[i].Custom[1]);
-            model->setData(model->index(i, 8, m), frames[i].Custom[2]);
-            model->setData(model->index(i, 9, m), frames[i].Custom[3]);
-            model->setData(model->index(i, 10, m), frames[i].Custom[4]);
-            model->setData(model->index(i, 11, m), frames[i].Custom[5]);
-            model->setData(model->index(i, 12, m), frames[i].Custom[6]);
-            model->setData(model->index(i, 13, m), frames[i].Custom[7]);
-            model->setData(model->index(i, 14, m), frames[i].Custom[8]);
-            model->setData(model->index(i, 15, m), frames[i].Custom[9]);
-            model->setData(model->index(i, 16, m), frames[i].Mod3());
-            model->setData(model->index(i, 17, m), frames[i].Mod25());
-            model->setData(model->index(i, 18, m), frames[i].Mod100());
-            model->setData(model->index(i, 19, m), frames[i].Div656());
-            model->setData(model->index(i, 20, m), frames[i].LowBit());
-            model->setData(model->index(i, 21, m), frames[i].HighBit());
-        }
-    }
-    else
-    {
-        for (u32 i = 0; i < maxFrames; i++)
-        {
-            model->setData(model->index(i, 0, m), frames[i].Frame);
-            model->setData(model->index(i, 1, m), QString::number(frames[i].Full32, 16).toUpper().rightJustified(8,'0'));
-            model->setData(model->index(i, 2, m), QString::number(frames[i].High16(), 16).toUpper().rightJustified(4,'0'));
-            model->setData(model->index(i, 3, m), QString::number(frames[i].Low16(), 16).toUpper().rightJustified(4,'0'));
-            model->setData(model->index(i, 4, m), frames[i].Custom[0]);
-            model->setData(model->index(i, 5, m), frames[i].Custom[1]);
-            model->setData(model->index(i, 6, m), frames[i].Custom[2]);
-            model->setData(model->index(i, 7, m), frames[i].Custom[3]);
-            model->setData(model->index(i, 8, m), frames[i].Custom[4]);
-            model->setData(model->index(i, 9, m), frames[i].Custom[5]);
-            model->setData(model->index(i, 10, m), frames[i].Custom[6]);
-            model->setData(model->index(i, 11, m), frames[i].Custom[7]);
-            model->setData(model->index(i, 12, m), frames[i].Custom[8]);
-            model->setData(model->index(i, 13, m), frames[i].Custom[9]);
-            model->setData(model->index(i, 14, m), frames[i].Mod3());
-            model->setData(model->index(i, 15, m), frames[i].Mod25());
-            model->setData(model->index(i, 16, m), frames[i].Mod100());
-            model->setData(model->index(i, 17, m), frames[i].Div656());
-            model->setData(model->index(i, 18, m), frames[i].LowBit());
-            model->setData(model->index(i, 19, m), frames[i].HighBit());
-        }
-    }
+    }*/
 
     ui->tableView->setModel(model);
     ui->tableView->resizeColumnToContents(1);
@@ -476,18 +410,6 @@ u64 Researcher::GetCustom(string text, ResearcherFrame frame, vector<ResearcherF
         default:
             return 0;
     }
-}
-
-ResearcherFrame::ResearcherFrame(bool rng64Bit, u32 frame)
-{
-    for (int i = 0; i < 10; i++)
-    {
-        Custom[i] = 0;
-    }
-    RNG64Bit = rng64Bit;
-    Full32 = 0;
-    Full64 = 0;
-    Frame = frame;
 }
 
 void Researcher::on_rngSelection_currentChanged(int index)
