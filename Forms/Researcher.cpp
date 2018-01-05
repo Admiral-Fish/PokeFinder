@@ -321,23 +321,6 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 
     ResearcherModel *model = new ResearcherModel(this, rng64Bit);
     model->SetModel(frames);
-    /*if (rng64Bit)
-    {
-        model->setHorizontalHeaderLabels({ "Frame", "64 Bit", "32Bit High", "32Bit Low",
-                                           "16Bit High", "16BitLow", "Custom1", "Custom2",
-                                           "Custom3", "Custom4", "Custom5", "Custom6",
-                                           "Custom7", "Custom8", "Custom9", "Custom10",
-                                           "%3", "%25", "%100", "/656",  "LBit",
-                                           "HBit" });
-    }
-    else
-    {
-        model->setHorizontalHeaderLabels({ "Frame", "32Bit", "16Bit High", "16BitLow",
-                                           "Custom1", "Custom2", "Custom3", "Custom4",
-                                           "Custom5", "Custom6", "Custom7", "Custom8",
-                                           "Custom9", "Custom10", "%3", "%25", "%100",
-                                           "/656", "LBit", "HBit" });
-    }*/
 
     ui->tableView->setModel(model);
     ui->tableView->resizeColumnToContents(1);
