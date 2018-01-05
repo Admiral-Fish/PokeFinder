@@ -74,7 +74,7 @@ void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
         }
     }
 
-    emit newProfile(ui->lineEditProfile->text(), ui->comboBoxVersion->currentIndex(), ui->comboBoxLanguage->currentIndex(), ui->lineEditTID->text().toUInt(&pass, 10), ui->lineEditSID->text().toUInt(&pass, 10), ui->checkBoxDeadBattery->isChecked());
+    emit NewProfile(ui->lineEditProfile->text(), ui->comboBoxVersion->currentIndex(), ui->comboBoxLanguage->currentIndex(), ui->lineEditTID->text().toUInt(&pass, 10), ui->lineEditSID->text().toUInt(&pass, 10), ui->checkBoxDeadBattery->isChecked());
 
     done(QDialog::Accepted);
 }

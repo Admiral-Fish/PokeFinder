@@ -38,7 +38,7 @@ class ProfileManager3NewEdit : public QDialog
     Q_OBJECT
 
 signals:
-    void newProfile(QString, int, int, u32, u32, bool);
+    void NewProfile(QString, int, int, u32, u32, bool);
 
 public:
     explicit ProfileManager3NewEdit(QWidget *parent = 0);
@@ -47,13 +47,12 @@ public:
 
 private slots:
     void on_pushButtonAccept_clicked();
-
     void on_pushButtonCancel_clicked();
-
     void on_comboBoxVersion_currentIndexChanged(int index);
 
 private:
     Ui::ProfileManager3NewEdit *ui;
+
 };
 
 #endif // PROFILEMANAGER3NEWEDIT_HPP

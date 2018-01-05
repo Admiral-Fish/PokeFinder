@@ -2438,7 +2438,7 @@ QPushButton::disabled {
           </item>
           <item>
            <property name="text">
-            <string>Method 2</string>
+            <string>Method 4</string>
            </property>
           </item>
           <item>

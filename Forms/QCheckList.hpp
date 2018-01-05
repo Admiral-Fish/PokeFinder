@@ -22,53 +22,44 @@ public:
     static const int StateUnknown = 3;
 
 private:
-    QStandardItemModel* m_model;
-    QString m_noneCheckedText = tr("Any");
-    QString m_allCheckedText;
-    QString m_unknownlyCheckedText;
+    QStandardItemModel* model;
+    QString noneCheckedText = tr("Any");
+    QString allCheckedText;
+    QString unknownlyCheckedText;
 
 signals:
-    void globalCheckStateChanged(int);
+    void GlobalCheckStateChanged(int);
 
 public:
     QCheckList(QWidget* _parent = 0);
-
     ~QCheckList();
-
-    void setAllCheckedText(const QString &text);
-
-    void setNoneCheckedText(const QString &text);
-
-    void setUnknownlyCheckedText(const QString &text);
-
-    QStandardItem *addCheckItem(const QString &label, const QVariant &data, const Qt::CheckState checkState);
-
-    void addCheckItems(const std::vector<QString> &label, const QVariant &data, const Qt::CheckState checkState);
-
-    std::vector<bool> getChecked();
-
-    void uncheckAll();
-
-    int globalCheckState();
+    void SetAllCheckedText(const QString &text);
+    void SetNoneCheckedText(const QString &text);
+    void SetUnknownlyCheckedText(const QString &text);
+    QStandardItem *AddCheckItem(const QString &label, const QVariant &data, const Qt::CheckState checkState);
+    void AddCheckItems(const std::vector<QString> &label, const QVariant &data, const Qt::CheckState checkState);
+    std::vector<bool> GetChecked();
+    void UncheckAll();
+    int GlobalCheckState();
 
 protected:
     bool eventFilter(QObject* _object, QEvent* _event);
 
 private:
-    void updateText();
+    void UpdateText();
 
 private slots:
     void on_modelDataChanged();
-
     void on_itemPressed(const QModelIndex &index);
 
 public:
     class QCheckListStyledItemDelegate : public QStyledItemDelegate
     {
+
     public:
         QCheckListStyledItemDelegate(QObject* parent = 0) : QStyledItemDelegate(parent) {}
-
         void paint(QPainter * painter_, const QStyleOptionViewItem & option_, const QModelIndex & index_) const;
+
     };
 };
 

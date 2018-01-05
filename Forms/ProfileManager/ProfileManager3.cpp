@@ -25,7 +25,7 @@ ProfileManager3::ProfileManager3(QWidget *parent) :
     ui(new Ui::ProfileManager3)
 {
     ui->setupUi(this);
-    updateTable(Profile3::loadProfiles());
+    UpdateTable(Profile3::LoadProfiles());
 }
 
 ProfileManager3::~ProfileManager3()
@@ -36,11 +36,11 @@ ProfileManager3::~ProfileManager3()
 void ProfileManager3::on_pushButtonNew_clicked()
 {
     ProfileManager3NewEdit* dialog = new ProfileManager3NewEdit();
-    QObject::connect(dialog, SIGNAL(newProfile(QString, int, int, u32, u32, bool)), this, SLOT(registerProfile(QString, int, int, u32, u32,bool)));
+    QObject::connect(dialog, SIGNAL(NewProfile(QString, int, int, u32, u32, bool)), this, SLOT(RegisterProfile(QString, int, int, u32, u32,bool)));
     dialog->exec();
 }
 
-void ProfileManager3::updateTable(vector<QList<QStandardItem *>> rows)
+void ProfileManager3::UpdateTable(vector<QList<QStandardItem *>> rows)
 {
     QStandardItemModel *model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dead Battery")});
@@ -54,12 +54,12 @@ void ProfileManager3::updateTable(vector<QList<QStandardItem *>> rows)
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void ProfileManager3::registerProfile(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery)
+void ProfileManager3::RegisterProfile(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery)
 {
     bool exists = false;
 
     Profile3 profile(profileName, version, tid, sid, language, deadBattery, true);
-    profile.saveProfile();
+    profile.SaveProfile();
 
     QStandardItemModel *model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dead Battery")});
@@ -73,8 +73,8 @@ void ProfileManager3::registerProfile(QString profileName, int version, int lang
         {
             exists = true;
             original->setData(original->index(i, 0), profileName);
-            original->setData(original->index(i, 1), Profile3::getVersion(version));
-            original->setData(original->index(i, 2), Profile3::getLanguage(language));
+            original->setData(original->index(i, 1), Profile3::GetVersion(version));
+            original->setData(original->index(i, 2), Profile3::GetLanguage(language));
             original->setData(original->index(i, 3), QString::number(tid));
             original->setData(original->index(i, 4), QString::number(sid));
             if(version == 0 || version == 1)
@@ -98,8 +98,8 @@ void ProfileManager3::registerProfile(QString profileName, int version, int lang
     {
         QList<QStandardItem *> newItem;
         newItem.append(new QStandardItem(profileName));
-        newItem.append(new QStandardItem(Profile3::getVersion(version)));
-        newItem.append(new QStandardItem(Profile3::getLanguage(language)));
+        newItem.append(new QStandardItem(Profile3::GetVersion(version)));
+        newItem.append(new QStandardItem(Profile3::GetLanguage(language)));
         newItem.append(new QStandardItem(QString::number(tid)));
         newItem.append(new QStandardItem(QString::number(sid)));
         if(version == 0 || version == 1)
@@ -125,7 +125,7 @@ void ProfileManager3::registerProfile(QString profileName, int version, int lang
 
 void ProfileManager3::on_pushButtonOk_clicked()
 {
-    emit updateProfiles();
+    emit UpdateProfiles();
     this->close();
 }
 
@@ -143,8 +143,8 @@ void ProfileManager3::on_pushButtonEdit_clicked()
     QAbstractItemModel* model = ui->tableView->model();
 
     int r = selections->selectedRows().at(0).row();
-    ProfileManager3NewEdit* dialog = new ProfileManager3NewEdit(model->data(model->index(r, 0)).toString(), Profile3::getVersionIndex(model->data(model->index(r, 1)).toString()), Profile3::getLanguageIndex(model->data(model->index(r, 2)).toString()), model->data(model->index(r, 3)).toString().toUInt(), model->data(model->index(r, 4)).toString().toUInt(), model->data(model->index(r, 5)).toBool());
-    QObject::connect(dialog, SIGNAL(newProfile(QString, int, int, u32, u32, bool)), this, SLOT(registerProfile(QString, int, int, u32, u32,bool)));
+    ProfileManager3NewEdit* dialog = new ProfileManager3NewEdit(model->data(model->index(r, 0)).toString(), Profile3::GetVersionIndex(model->data(model->index(r, 1)).toString()), Profile3::GetLanguageIndex(model->data(model->index(r, 2)).toString()), model->data(model->index(r, 3)).toString().toUInt(), model->data(model->index(r, 4)).toString().toUInt(), model->data(model->index(r, 5)).toBool());
+    QObject::connect(dialog, SIGNAL(NewProfile(QString, int, int, u32, u32, bool)), this, SLOT(RegisterProfile(QString, int, int, u32, u32,bool)));
     dialog->exec();
 
 }
@@ -163,8 +163,8 @@ void ProfileManager3::on_pushButtonDelete_clicked()
     QAbstractItemModel* model = ui->tableView->model();
 
     int r = selections->selectedRows().at(0).row();
-    Profile3 profile(model->data(model->index(r, 0)).toString(), Profile3::getVersionIndex(model->data(model->index(r, 1)).toString()), Profile3::getLanguageIndex(model->data(model->index(r, 2)).toString()), model->data(model->index(r, 3)).toString().toUInt(), model->data(model->index(r, 4)).toString().toUInt(), model->data(model->index(r, 5)).toBool());
-    profile.deleteProfile();
+    Profile3 profile(model->data(model->index(r, 0)).toString(), Profile3::GetVersionIndex(model->data(model->index(r, 1)).toString()), Profile3::GetLanguageIndex(model->data(model->index(r, 2)).toString()), model->data(model->index(r, 3)).toString().toUInt(), model->data(model->index(r, 4)).toString().toUInt(), model->data(model->index(r, 5)).toBool());
+    profile.DeleteProfile();
 
     model->removeRow(r);
 

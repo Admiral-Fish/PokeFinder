@@ -395,10 +395,10 @@ QHeaderView::section {
       </widget>
      </item>
      <item row="2" column="3">
-      <widget class="QLineEdit" name="lineEditRValue3"/>
+      <widget class="QTextBox" name="lineEditRValue3"/>
      </item>
      <item row="1" column="3">
-      <widget class="QLineEdit" name="lineEditRValue2"/>
+      <widget class="QTextBox" name="lineEditRValue2"/>
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label">
@@ -462,7 +462,7 @@ QHeaderView::section {
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QLineEdit" name="lineEditRValue1"/>
+      <widget class="QTextBox" name="lineEditRValue1"/>
      </item>
      <item row="0" column="4">
       <widget class="QCheckBox" name="checkBoxHex1">
@@ -810,7 +810,7 @@ QHeaderView::section {
       </widget>
      </item>
      <item row="3" column="3">
-      <widget class="QLineEdit" name="lineEditRValue4"/>
+      <widget class="QTextBox" name="lineEditRValue4"/>
      </item>
      <item row="1" column="4">
       <widget class="QCheckBox" name="checkBoxHex2">
@@ -1070,7 +1070,7 @@ QHeaderView::section {
       </widget>
      </item>
      <item row="5" column="3">
-      <widget class="QLineEdit" name="lineEditRValue6"/>
+      <widget class="QTextBox" name="lineEditRValue6"/>
      </item>
      <item row="6" column="4">
       <widget class="QCheckBox" name="checkBoxHex7">
@@ -1992,7 +1992,7 @@ QHeaderView::section {
       </widget>
      </item>
      <item row="7" column="3">
-      <widget class="QLineEdit" name="lineEditRValue8"/>
+      <widget class="QTextBox" name="lineEditRValue8"/>
      </item>
      <item row="3" column="4">
       <widget class="QCheckBox" name="checkBoxHex4">
@@ -2009,7 +2009,7 @@ QHeaderView::section {
       </widget>
      </item>
      <item row="8" column="3">
-      <widget class="QLineEdit" name="lineEditRValue9"/>
+      <widget class="QTextBox" name="lineEditRValue9"/>
      </item>
      <item row="8" column="4">
       <widget class="QCheckBox" name="checkBoxHex9">
@@ -2226,10 +2226,10 @@ QHeaderView::section {
       </widget>
      </item>
      <item row="6" column="3">
-      <widget class="QLineEdit" name="lineEditRValue7"/>
+      <widget class="QTextBox" name="lineEditRValue7"/>
      </item>
      <item row="4" column="3">
-      <widget class="QLineEdit" name="lineEditRValue5"/>
+      <widget class="QTextBox" name="lineEditRValue5"/>
      </item>
      <item row="4" column="5">
       <widget class="QComboBox" name="comboBoxRValue5">
@@ -2469,7 +2469,7 @@ QHeaderView::section {
       </widget>
      </item>
      <item row="9" column="3">
-      <widget class="QLineEdit" name="lineEditRValue10"/>
+      <widget class="QTextBox" name="lineEditRValue10"/>
      </item>
      <item row="9" column="5">
       <widget class="QComboBox" name="comboBoxRValue10">

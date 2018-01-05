@@ -57,16 +57,16 @@ private:
     QString m_langPath;
     Researcher *r;
 
-    void loadLanguage(const QString& rLanguage);
-    void createLanguageMenu(void);
-    void setupModels();
-    void createProfileXml();
+    void LoadLanguage(const QString& rLanguage);
+    void CreateLanguageMenu(void);
+    void SetupModels();
+    void CreateProfileXml();
     void Search3(QStandardItemModel *model);
 
 private slots:
     void on_generateStationary3_clicked();
-    void slotLanguageChanged(QAction* action);
-    void updateProfiles();
+    void SlotLanguageChanged(QAction* action);
+    void UpdateProfiles();
     void on_saveProfileStationary3_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_anyNatureStationary3_clicked();

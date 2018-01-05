@@ -25,7 +25,7 @@ Researcher::Researcher(QWidget *parent) :
     ui(new Ui::Researcher)
 {
     ui->setupUi(this);
-    setupModel();
+    SetupModel();
 
     keys["64Bit"] = 0;
     keys["32Bit"] = 1;
@@ -69,6 +69,17 @@ Researcher::Researcher(QWidget *parent) :
     ui->textBoxStatus1->SetValues("[^0-9A-F]", 0xffffffff, 16);
     ui->textBoxStatus0->SetValues("[^0-9A-F]", 0xffffffff, 16);
 
+    ui->lineEditRValue1->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->lineEditRValue2->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->lineEditRValue3->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->lineEditRValue4->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->lineEditRValue5->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->lineEditRValue6->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->lineEditRValue7->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->lineEditRValue8->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->lineEditRValue9->SetValues("[^0-9A-F]", 0xffffffff, 16);
+    ui->lineEditRValue10->SetValues("[^0-9A-F]", 0xffffffff, 16);
+
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->verticalHeader()->setVisible(false);
 }
@@ -78,27 +89,7 @@ Researcher::~Researcher()
     delete ui;
 }
 
-u64 Divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
-
-u64 Modulo(u64 x, u64 y) { return x % y; }
-
-u64 ShiftRight(u64 x, u64 y) { return x >> y; }
-
-u64 ShiftLeft(u64 x, u64 y) { return x << y; }
-
-u64 And(u64 x, u64 y) { return x & y; }
-
-u64 Or(u64 x, u64 y) { return x | y; }
-
-u64 Xor(u64 x, u64 y) { return x ^ y; }
-
-u64 Add(u64 x, u64 y) { return x + y; }
-
-u64 Subtract(u64 x, u64 y) { return x - y; }
-
-u64 Multiply(u64 x, u64 y) { return x * y; }
-
-void Researcher::setupModel()
+void Researcher::SetupModel()
 {
     QStandardItemModel *model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({ "Frame", "32Bit", "16Bit High", "16BitLow",
@@ -206,16 +197,17 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     }
 
     Calculator calc;
-    calc["/"] = &Divide;
-    calc["%"] = &Modulo;
-    calc[">>"] = &ShiftRight;
-    calc["<<"] = &ShiftLeft;
-    calc["&"] = &And;
-    calc["|"] = &Or;
-    calc["^"] = &Xor;
-    calc["+"] = &Add;
-    calc["-"] = &Subtract;
-    calc["*"] = &Multiply;
+
+    calc["/"] = &Researcher::Divide;
+    calc["%"] = &Researcher::Modulo;
+    calc[">>"] = &Researcher::ShiftRight;
+    calc["<<"] = &Researcher::ShiftLeft;
+    calc["&"] = &Researcher::And;
+    calc["|"] = &Researcher::Or;
+    calc["^"] = &Researcher::Xor;
+    calc["+"] = &Researcher::Add;
+    calc["-"] = &Researcher::Subtract;
+    calc["*"] = &Researcher::Multiply;
 
     bool calcCustom[10];
     u64 customRValue[10];

@@ -26,17 +26,17 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setupModels();
-    updateProfiles();
+    SetupModels();
+    UpdateProfiles();
 
     QFile file(QApplication::applicationDirPath() + "/profiles.xml");
 
     if(!file.exists())
-        createProfileXml();
+        CreateProfileXml();
 
     ui->tableViewStationary3->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    createLanguageMenu();
+    CreateLanguageMenu();
 
 }
 
@@ -53,14 +53,14 @@ void MainWindow::changeEvent(QEvent* event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                setupModels();
+                SetupModels();
                 break;
 
             case QEvent::LocaleChange:
             {
                 QString locale = QLocale::system().name();
                 locale.truncate(locale.lastIndexOf('_'));
-                loadLanguage(locale);
+                LoadLanguage(locale);
             }
                 break;
             default:
@@ -70,12 +70,12 @@ void MainWindow::changeEvent(QEvent* event)
     QMainWindow::changeEvent(event);
 }
 
-void MainWindow::createLanguageMenu(void)
+void MainWindow::CreateLanguageMenu(void)
 {
     QActionGroup* langGroup = new QActionGroup(ui->menuLanguage);
     langGroup->setExclusive(true);
 
-    connect(langGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotLanguageChanged(QAction *)));
+    connect(langGroup, SIGNAL (triggered(QAction *)), this, SLOT (SlotLanguageChanged(QAction *)));
 
     QString defaultLocale = QLocale::system().name();
     defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
@@ -106,10 +106,10 @@ void MainWindow::createLanguageMenu(void)
 
 }
 
-void MainWindow::slotLanguageChanged(QAction* action)
+void MainWindow::SlotLanguageChanged(QAction* action)
 {
     if(action != 0)
-        loadLanguage(action->data().toString());
+        LoadLanguage(action->data().toString());
 }
 
 void switchTranslator(QTranslator& translator, const QString& filename)
@@ -119,7 +119,7 @@ void switchTranslator(QTranslator& translator, const QString& filename)
         qApp->installTranslator(&translator);
 }
 
-void MainWindow::loadLanguage(const QString& rLanguage)
+void MainWindow::LoadLanguage(const QString& rLanguage)
 {
     if(m_currLang != rLanguage)
     {
@@ -132,7 +132,7 @@ void MainWindow::loadLanguage(const QString& rLanguage)
     }
 }
 
-void MainWindow::createProfileXml()
+void MainWindow::CreateProfileXml()
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.xml");
     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -146,17 +146,17 @@ void MainWindow::createProfileXml()
     }
 }
 
-void MainWindow::setupModels()
+void MainWindow::SetupModels()
 {
     vector<QString> natureList = Nature::GetNatures();
-    ui->comboBoxNatureStationary3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureWild3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureSearcher3->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->comboBoxNatureStationary3->AddCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->comboBoxNatureWild3->AddCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->comboBoxNatureSearcher3->AddCheckItems(natureList, QVariant(), Qt::Unchecked);
 
     vector<QString> powerList = Power::GetPowers();
-    ui->comboBoxHiddenPowerStationary3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerWild3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerSearcher3->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerStationary3->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerWild3->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerSearcher3->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
 
     QStandardItemModel *model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
@@ -208,7 +208,7 @@ void MainWindow::on_saveProfileStationary3_clicked()
 {
     ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    connect(manager, SIGNAL(UpdateProfiles()), this, SLOT(UpdateProfiles()));
     manager->show();
 }
 
@@ -216,7 +216,7 @@ void MainWindow::on_saveWild3_clicked()
 {
     ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    connect(manager, SIGNAL(UpdateProfiles()), this, SLOT(UpdateProfiles()));
     manager->show();
 }
 
@@ -224,13 +224,13 @@ void MainWindow::on_saveSearcher3_clicked()
 {
     ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    connect(manager, SIGNAL(UpdateProfiles()), this, SLOT(UpdateProfiles()));
     manager->show();
 }
 
-void MainWindow::updateProfiles()
+void MainWindow::UpdateProfiles()
 {
-    profiles = Profile3::loadProfileList();
+    profiles = Profile3::LoadProfileList();
 
     QStandardItemModel *profile = new QStandardItemModel((int)profiles.size() + 1, 1, this);
     QStandardItem* firstProfile = new QStandardItem(tr("None"));
@@ -263,32 +263,32 @@ void MainWindow::on_comboBoxProfiles_currentIndexChanged(int index)
 
 void MainWindow::on_anyNatureStationary3_clicked()
 {
-    ui->comboBoxNatureStationary3->uncheckAll();
+    ui->comboBoxNatureStationary3->UncheckAll();
 }
 
 void MainWindow::on_anyHiddenPowerStationary3_clicked()
 {
-    ui->comboBoxHiddenPowerStationary3->uncheckAll();
+    ui->comboBoxHiddenPowerStationary3->UncheckAll();
 }
 
 void MainWindow::on_anyHiddenPowerWild3_clicked()
 {
-    ui->comboBoxHiddenPowerWild3->uncheckAll();
+    ui->comboBoxHiddenPowerWild3->UncheckAll();
 }
 
 void MainWindow::on_anyNatureWild3_clicked()
 {
-    ui->comboBoxNatureWild3->uncheckAll();
+    ui->comboBoxNatureWild3->UncheckAll();
 }
 
 void MainWindow::on_anyNatureSearcher3_clicked()
 {
-    ui->comboBoxNatureSearcher3->uncheckAll();
+    ui->comboBoxNatureSearcher3->UncheckAll();
 }
 
 void MainWindow::on_anyHiddenPowerSearcher3_clicked()
 {
-    ui->comboBoxHiddenPowerSearcher3->uncheckAll();
+    ui->comboBoxHiddenPowerSearcher3->UncheckAll();
 }
 
 void MainWindow::on_checkBoxDelayStationary3_clicked()
@@ -333,7 +333,7 @@ void MainWindow::on_generateStationary3_clicked()
                                         ui->comboBoxSpAStationary3->currentIndex(), ui->spinBoxSpAStationary3->value(), ui->comboBoxSpDStationary3->currentIndex(),
                                         ui->spinBoxSpDStationary3->value(), ui->comboBoxSpeStationary3->currentIndex(), ui->spinBoxSpeStationary3->value(),
                                         ui->comboBoxGenderStationary3->currentIndex(), genderRatioIndex, ui->comboBoxAbilityStationary3->currentIndex(),
-                                        ui->comboBoxNatureStationary3->getChecked(), ui->comboBoxHiddenPowerStationary3->getChecked(),
+                                        ui->comboBoxNatureStationary3->GetChecked(), ui->comboBoxHiddenPowerStationary3->GetChecked(),
                                         ui->checkBoxShinyStationary3->isChecked(), ui->checkBoxDisableStationary3->isChecked());
 
     int method = ui->comboBoxMethodStationary3->currentIndex();
@@ -397,7 +397,7 @@ void MainWindow::on_generateWild3_clicked()
                                         ui->comboBoxSpAWild3->currentIndex(), ui->spinBoxSpAWild3->value(), ui->comboBoxSpDWild3->currentIndex(),
                                         ui->spinBoxSpDWild3->value(), ui->comboBoxSpeWild3->currentIndex(), ui->spinBoxSpeWild3->value(),
                                         ui->comboBoxGenderWild3->currentIndex(), genderRatioIndex, ui->comboBoxAbilityWild3->currentIndex(),
-                                        ui->comboBoxNatureWild3->getChecked(), ui->comboBoxHiddenPowerWild3->getChecked(),
+                                        ui->comboBoxNatureWild3->GetChecked(), ui->comboBoxHiddenPowerWild3->GetChecked(),
                                         ui->checkBoxShinyWild3->isChecked(), ui->checkBoxDisableWild3->isChecked());
 
     int method = ui->comboBoxMethodWild3->currentIndex();
@@ -455,7 +455,7 @@ void MainWindow::Search3(QStandardItemModel *model)
     FrameCompare compare = FrameCompare(ivFilter[0], ivs[0], ivFilter[1], ivs[1], ivFilter[2], ivs[2],
                                         ivFilter[3], ivs[3], ivFilter[4], ivs[4], ivFilter[5], ivs[5],
                                         ui->comboBoxGenderSearcher3->currentIndex(), genderRatioIndex, ui->comboBoxAbilitySearcher3->currentIndex(),
-                                        ui->comboBoxNatureSearcher3->getChecked(), ui->comboBoxHiddenPowerSearcher3->getChecked(),
+                                        ui->comboBoxNatureSearcher3->GetChecked(), ui->comboBoxHiddenPowerSearcher3->GetChecked(),
                                         ui->checkBoxShinySearcher3->isChecked(), false);
 
     int method = ui->comboBoxMethodSearcher3->currentIndex();

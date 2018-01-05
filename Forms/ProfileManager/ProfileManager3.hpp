@@ -39,7 +39,7 @@ class ProfileManager3 : public QMainWindow
     Q_OBJECT
 
 signals:
-    void updateProfiles();
+    void UpdateProfiles();
 
 public:
     explicit ProfileManager3(QWidget *parent = 0);
@@ -48,14 +48,14 @@ public:
 private slots:
     void on_pushButtonNew_clicked();
     void on_pushButtonOk_clicked();
-    void registerProfile(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery);
+    void RegisterProfile(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery);
     void on_pushButtonEdit_clicked();
     void on_pushButtonDelete_clicked();
 
 private:
     Ui::ProfileManager3 *ui;
 
-    void updateTable(vector<QList<QStandardItem *>> rows);
+    void UpdateTable(vector<QList<QStandardItem *>> rows);
 
 };
 

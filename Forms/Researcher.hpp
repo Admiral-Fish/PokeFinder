@@ -26,8 +26,6 @@
 #include <Forms/QTextBox.hpp>
 #include <vector>
 #include <unordered_map>
-#include <libPokeFinder/RNG/IRNG.hpp>
-#include <libPokeFinder/RNG/IRNG64.hpp>
 #include <libPokeFinder/RNG/LCRNG.hpp>
 #include <libPokeFinder/RNG/LCRNG64.hpp>
 #include <libPokeFinder/RNG/MTRNG.hpp>
@@ -42,9 +40,6 @@ typedef unordered_map<string, func> Calculator;
 
 class ResearcherFrame
 {
-
-private:
-
 
 public:
     quint64 Custom[10];
@@ -76,8 +71,19 @@ class Researcher : public QMainWindow
     Q_OBJECT
 
 private:
-    void setupModel();
+    void SetupModel();
     u64 GetCustom(string text, ResearcherFrame frame, vector<ResearcherFrame> frames);
+    static inline u64 Divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
+    static inline u64 Modulo(u64 x, u64 y) { return x % y; }
+    static inline u64 ShiftRight(u64 x, u64 y) { return x >> y; }
+    static inline u64 ShiftLeft(u64 x, u64 y) { return x << y; }
+    static inline u64 And(u64 x, u64 y) { return x & y; }
+    static inline u64 Or(u64 x, u64 y) { return x | y; }
+    static inline u64 Xor(u64 x, u64 y) { return x ^ y; }
+    static inline u64 Add(u64 x, u64 y) { return x + y; }
+    static inline u64 Subtract(u64 x, u64 y) { return x - y; }
+    static inline u64 Multiply(u64 x, u64 y) { return x * y; }
+
     unordered_map<string, int> keys;
 
 public:
@@ -90,6 +96,7 @@ private slots:
 
 private:
     Ui::Researcher *ui;
+
 };
 
 #endif // RESEARCHER_HPP
