@@ -1,3 +1,22 @@
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017 by Admiral_Fish and bumba
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 #include "ResearcherModel.hpp"
 
 ResearcherModel::ResearcherModel(QObject *parent, bool is64Bit) : QAbstractTableModel(parent)
@@ -24,11 +43,11 @@ int ResearcherModel::columnCount(const QModelIndex &parent) const
 
 QVariant ResearcherModel::data(const QModelIndex &index, int role) const
 {
-    int row = index.row();
-    int column = index.column();
-    ResearcherFrame frame = model[row];
     if (role == Qt::DisplayRole)
     {
+        int row = index.row();
+        int column = index.column();
+        ResearcherFrame frame = model[row];
         if (flag)
         {
             switch (column)
@@ -189,46 +208,46 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
             {
                 switch (section)
                 {
-                case 0:
-                    return "Frame";
-                case 1:
-                    return "32Bit";
-                case 2:
-                    return "16Bit High";
-                case 3:
-                    return "16Bit Low";
-                case 4:
-                    return "Custom1";
-                case 5:
-                    return "Custom2";
-                case 6:
-                    return "Custom3";
-                case 7:
-                    return "Custom4";
-                case 8:
-                    return "Custom5";
-                case 9:
-                    return "Custom6";
-                case 10:
-                    return "Custom7";
-                case 11:
-                    return "Custom8";
-                case 12:
-                    return "Custom9";
-                case 13:
-                    return "Custom10";
-                case 14:
-                    return "%3";
-                case 15:
-                    return "%25";
-                case 16:
-                    return "%100";
-                case 17:
-                    return "/656";
-                case 18:
-                    return "LBit";
-                case 19:
-                    return "HBit";
+                    case 0:
+                        return "Frame";
+                    case 1:
+                        return "32Bit";
+                    case 2:
+                        return "16Bit High";
+                    case 3:
+                        return "16Bit Low";
+                    case 4:
+                        return "Custom1";
+                    case 5:
+                        return "Custom2";
+                    case 6:
+                        return "Custom3";
+                    case 7:
+                        return "Custom4";
+                    case 8:
+                        return "Custom5";
+                    case 9:
+                        return "Custom6";
+                    case 10:
+                        return "Custom7";
+                    case 11:
+                        return "Custom8";
+                    case 12:
+                        return "Custom9";
+                    case 13:
+                        return "Custom10";
+                    case 14:
+                        return "%3";
+                    case 15:
+                        return "%25";
+                    case 16:
+                        return "%100";
+                    case 17:
+                        return "/656";
+                    case 18:
+                        return "LBit";
+                    case 19:
+                        return "HBit";
                 }
             }
         }

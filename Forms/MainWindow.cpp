@@ -34,8 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
     if(!file.exists())
         CreateProfileXml();
 
-    ui->tableViewStationary3->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
     CreateLanguageMenu();
 
 }
@@ -158,27 +156,17 @@ void MainWindow::SetupModels()
     ui->comboBoxHiddenPowerWild3->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
     ui->comboBoxHiddenPowerSearcher3->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
 
-    QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-                                      tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
-    ui->tableViewStationary3->setModel(model);
+    ui->tableViewStationary3->setModel(new Stationary3Model(this));
     ui->tableViewStationary3->verticalHeader()->setVisible(false);
     ui->tableViewStationary3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("Occidentary"), tr("Slot"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-                                      tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
-    ui->tableViewWild3->setModel(model);
+    ui->tableViewWild3->setModel(new Wild3Model(this));
     ui->tableViewWild3->verticalHeader()->setVisible(false);
     ui->tableViewWild3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Seed"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-                                     tr("Def"), tr("SpA"), tr("SpD"),tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")});
-    ui->tableViewSearcher3->setModel(model);
+    ui->tableViewSearcher3->setModel(new Searcher3Model(this, Method1));
     ui->tableViewSearcher3->verticalHeader()->setVisible(false);
     ui->tableViewSearcher3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
 
     ui->initialSeedStationary3->SetValues("[^0-9A-F]", 0xffffffff, 16);
     ui->idStationary3->SetValues("[^0-9]", 0xffff, 10);
@@ -321,11 +309,6 @@ void MainWindow::on_generateStationary3_clicked()
     u32 sid = ui->sidStationary3->text().toUInt(NULL, 10);
     u32 offset = ui->delayStationary3->text().toUInt(NULL, 10);
 
-    // Force early garbage collection
-    QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-                                      tr("Def"), tr("SpA"), tr("SpD"),tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
-
     int genderRatioIndex = ui->comboBoxGenderRatioStationary3->currentIndex();
     Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
     FrameCompare compare = FrameCompare(ui->comboBoxHPStationary3->currentIndex(), ui->spinBoxHPStationary3->value(), ui->comboBoxAtkStationary3->currentIndex(),
@@ -349,29 +332,9 @@ void MainWindow::on_generateStationary3_clicked()
         generator.frameType = Channel;
 
     vector<Frame3> frames = generator.Generate(compare);
-    int size = (int)frames.size();
-    model->setRowCount(size);
-    model->setColumnCount(15);
 
-    QModelIndex m = QModelIndex();
-    for (int i = 0; i < size; i++)
-    {
-        model->setData(model->index(i, 0, m), frames[i].frame);
-        model->setData(model->index(i, 1, m), QString::number(frames[i].pid, 16).toUpper().rightJustified(8,'0'));
-        model->setData(model->index(i, 2, m), frames[i].GetShiny());
-        model->setData(model->index(i, 3, m), frames[i].GetNature());
-        model->setData(model->index(i, 4, m), frames[i].ability);
-        model->setData(model->index(i, 5, m), frames[i].ivs[0]);
-        model->setData(model->index(i, 6, m), frames[i].ivs[1]);
-        model->setData(model->index(i, 7, m), frames[i].ivs[2]);
-        model->setData(model->index(i, 8, m), frames[i].ivs[3]);
-        model->setData(model->index(i, 9, m), frames[i].ivs[4]);
-        model->setData(model->index(i, 10, m), frames[i].ivs[5]);
-        model->setData(model->index(i, 11, m), frames[i].GetPower());
-        model->setData(model->index(i, 12, m), frames[i].power);
-        model->setData(model->index(i, 13, m), frames[i].GetFemale25());
-        model->setData(model->index(i, 14, m), frames[i].GetTime());
-    }
+    Stationary3Model *model = new Stationary3Model(this);
+    model->SetModel(frames);
 
     ui->tableViewStationary3->setModel(model);
 }
@@ -384,11 +347,6 @@ void MainWindow::on_generateWild3_clicked()
     u32 tid = ui->idWild3->text().toUInt(NULL, 10);
     u32 sid = ui->sidWild3->text().toUInt(NULL, 10);
     u32 offset = ui->delayWild3->text().toUInt(NULL, 10);
-
-    // Force early garbage collection
-    QStandardItemModel *model = new QStandardItemModel(this);
-    model->setHorizontalHeaderLabels({tr("Frame"), tr("Occidentary"), tr("Slot"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-                                      tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")});
 
     int genderRatioIndex = ui->comboBoxGenderRatioWild3->currentIndex();
     Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
@@ -409,36 +367,14 @@ void MainWindow::on_generateWild3_clicked()
         generator.frameType = MethodH4;
 
     vector<Frame3> frames = generator.Generate(compare);
-    int size = (int)frames.size();
-    model->setRowCount(size);
-    model->setColumnCount(17);
 
-    QModelIndex m = QModelIndex();
-    for (int i = 0; i < size; i++)
-    {
-        model->setData(model->index(i, 0, m), frames[i].frame);
-        model->setData(model->index(i, 1, m), frames[i].occidentary);
-        model->setData(model->index(i, 2, m), frames[i].encounterSlot);
-        model->setData(model->index(i, 3, m), QString::number(frames[i].pid, 16).toUpper().rightJustified(8,'0'));
-        model->setData(model->index(i, 4, m), frames[i].GetShiny());
-        model->setData(model->index(i, 5, m), frames[i].GetNature());
-        model->setData(model->index(i, 6, m), frames[i].ability);
-        model->setData(model->index(i, 7, m), frames[i].ivs[0]);
-        model->setData(model->index(i, 8, m), frames[i].ivs[1]);
-        model->setData(model->index(i, 9, m), frames[i].ivs[2]);
-        model->setData(model->index(i, 10, m), frames[i].ivs[3]);
-        model->setData(model->index(i, 11, m), frames[i].ivs[4]);
-        model->setData(model->index(i, 12, m), frames[i].ivs[5]);
-        model->setData(model->index(i, 13, m), frames[i].GetPower());
-        model->setData(model->index(i, 14, m), frames[i].power);
-        model->setData(model->index(i, 15, m), frames[i].GetFemale25());
-        model->setData(model->index(i, 16, m), frames[i].GetTime());
-    }
+    Wild3Model *model = new Wild3Model(this);
+    model->SetModel(frames);
 
     ui->tableViewWild3->setModel(model);
 }
 
-void MainWindow::Search3(QStandardItemModel *model)
+void MainWindow::Search3(Searcher3Model *model)
 {
     u32 tid = ui->idSearcher3->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher3->text().toUInt(NULL, 10);
@@ -475,11 +411,6 @@ void MainWindow::Search3(QStandardItemModel *model)
         search.frameType = XDColo;
     else
         search.frameType = Channel;
-
-    model->setHorizontalHeaderLabels({tr("Seed"), tr("PID"), tr("!!!"), tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-                                     tr("Def"), tr("SpA"), tr("SpD"),tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")});
-    model->setColumnCount(14);
-    QModelIndex m = QModelIndex();
 
     u32 min[6], max[6];
 
@@ -519,28 +450,8 @@ void MainWindow::Search3(QStandardItemModel *model)
                         {
                             vector<Frame3> frames = search.Search(a, b, c, d, e, f, compare);
 
-                            int i = model->rowCount();
-                            int size = (int)frames.size();
-                            model->setRowCount(i + size);
-                            size += i;
-
-                            for (int index = 0; i < size; i++, index++)
-                            {
-                                model->setData(model->index(i, 0, m), QString::number(frames[index].seed, 16).toUpper().rightJustified(8,'0'));
-                                model->setData(model->index(i, 1, m), QString::number(frames[index].pid, 16).toUpper().rightJustified(8,'0'));
-                                model->setData(model->index(i, 2, m), frames[index].GetShiny());
-                                model->setData(model->index(i, 3, m), frames[index].GetNature());
-                                model->setData(model->index(i, 4, m), frames[index].ability);
-                                model->setData(model->index(i, 5, m), frames[index].ivs[0]);
-                                model->setData(model->index(i, 6, m), frames[index].ivs[1]);
-                                model->setData(model->index(i, 7, m), frames[index].ivs[2]);
-                                model->setData(model->index(i, 8, m), frames[index].ivs[3]);
-                                model->setData(model->index(i, 9, m), frames[index].ivs[4]);
-                                model->setData(model->index(i, 10, m), frames[index].ivs[5]);
-                                model->setData(model->index(i, 11, m), frames[index].GetPower());
-                                model->setData(model->index(i, 12, m), frames[index].power);
-                                model->setData(model->index(i, 13, m), frames[index].GetFemale25());
-                            }
+                            model->AddItems(frames);
+                            ui->tableViewSearcher3->reset();
                         }
                     }
                 }
@@ -551,9 +462,24 @@ void MainWindow::Search3(QStandardItemModel *model)
 
 void MainWindow::on_generateSearcher3_clicked()
 {
-    QStandardItemModel *model = new QStandardItemModel(this);
-    ui->tableViewSearcher3->setModel(model);
-    ui->tableViewSearcher3->setUpdatesEnabled(true);
+    Searcher3Model *model;
+    int method = ui->comboBoxMethodSearcher3->currentIndex();
+    if (method == 0)
+        model = new Searcher3Model(this, Method1);
+    else if (method == 1)
+        model = new Searcher3Model(this, Method2);
+    else if (method == 2)
+        model = new Searcher3Model(this, Method4);
+    else if (method == 3)
+        model = new Searcher3Model(this, MethodH1);
+    else if (method == 4)
+        model = new Searcher3Model(this, MethodH2);
+    else if (method == 5)
+        model = new Searcher3Model(this, MethodH4);
+    else if (method == 6)
+        model = new Searcher3Model(this, XDColo);
+    else
+        model = new Searcher3Model(this, Channel);
     std::thread search(&MainWindow::Search3, this, model);
     search.detach();
 }

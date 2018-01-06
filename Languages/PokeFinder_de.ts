@@ -192,7 +192,7 @@
         <location filename="../Forms/MainWindow.ui" line="2890"/>
         <location filename="../Forms/MainWindow.ui" line="2948"/>
         <location filename="../Forms/MainWindow.ui" line="3143"/>
-        <location filename="../Forms/MainWindow.cpp" line="236"/>
+        <location filename="../Forms/MainWindow.cpp" line="224"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -498,170 +498,6 @@
     <message>
         <location filename="../Forms/MainWindow.ui" line="3320"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="162"/>
-        <location filename="../Forms/MainWindow.cpp" line="169"/>
-        <location filename="../Forms/MainWindow.cpp" line="326"/>
-        <location filename="../Forms/MainWindow.cpp" line="390"/>
-        <source>Frame</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="162"/>
-        <location filename="../Forms/MainWindow.cpp" line="169"/>
-        <location filename="../Forms/MainWindow.cpp" line="176"/>
-        <location filename="../Forms/MainWindow.cpp" line="326"/>
-        <location filename="../Forms/MainWindow.cpp" line="390"/>
-        <location filename="../Forms/MainWindow.cpp" line="479"/>
-        <source>PID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="162"/>
-        <location filename="../Forms/MainWindow.cpp" line="169"/>
-        <location filename="../Forms/MainWindow.cpp" line="176"/>
-        <location filename="../Forms/MainWindow.cpp" line="326"/>
-        <location filename="../Forms/MainWindow.cpp" line="390"/>
-        <location filename="../Forms/MainWindow.cpp" line="479"/>
-        <source>!!!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="162"/>
-        <location filename="../Forms/MainWindow.cpp" line="169"/>
-        <location filename="../Forms/MainWindow.cpp" line="176"/>
-        <location filename="../Forms/MainWindow.cpp" line="326"/>
-        <location filename="../Forms/MainWindow.cpp" line="390"/>
-        <location filename="../Forms/MainWindow.cpp" line="479"/>
-        <source>Nature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="162"/>
-        <location filename="../Forms/MainWindow.cpp" line="169"/>
-        <location filename="../Forms/MainWindow.cpp" line="176"/>
-        <location filename="../Forms/MainWindow.cpp" line="326"/>
-        <location filename="../Forms/MainWindow.cpp" line="390"/>
-        <location filename="../Forms/MainWindow.cpp" line="479"/>
-        <source>Ability</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="162"/>
-        <location filename="../Forms/MainWindow.cpp" line="169"/>
-        <location filename="../Forms/MainWindow.cpp" line="176"/>
-        <location filename="../Forms/MainWindow.cpp" line="326"/>
-        <location filename="../Forms/MainWindow.cpp" line="390"/>
-        <location filename="../Forms/MainWindow.cpp" line="479"/>
-        <source>HP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="162"/>
-        <location filename="../Forms/MainWindow.cpp" line="169"/>
-        <location filename="../Forms/MainWindow.cpp" line="176"/>
-        <location filename="../Forms/MainWindow.cpp" line="326"/>
-        <location filename="../Forms/MainWindow.cpp" line="390"/>
-        <location filename="../Forms/MainWindow.cpp" line="479"/>
-        <source>Atk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="163"/>
-        <location filename="../Forms/MainWindow.cpp" line="170"/>
-        <location filename="../Forms/MainWindow.cpp" line="177"/>
-        <location filename="../Forms/MainWindow.cpp" line="327"/>
-        <location filename="../Forms/MainWindow.cpp" line="391"/>
-        <location filename="../Forms/MainWindow.cpp" line="480"/>
-        <source>Def</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="163"/>
-        <location filename="../Forms/MainWindow.cpp" line="170"/>
-        <location filename="../Forms/MainWindow.cpp" line="177"/>
-        <location filename="../Forms/MainWindow.cpp" line="327"/>
-        <location filename="../Forms/MainWindow.cpp" line="391"/>
-        <location filename="../Forms/MainWindow.cpp" line="480"/>
-        <source>SpA</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="163"/>
-        <location filename="../Forms/MainWindow.cpp" line="170"/>
-        <location filename="../Forms/MainWindow.cpp" line="177"/>
-        <location filename="../Forms/MainWindow.cpp" line="327"/>
-        <location filename="../Forms/MainWindow.cpp" line="391"/>
-        <location filename="../Forms/MainWindow.cpp" line="480"/>
-        <source>SpD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="163"/>
-        <location filename="../Forms/MainWindow.cpp" line="170"/>
-        <location filename="../Forms/MainWindow.cpp" line="177"/>
-        <location filename="../Forms/MainWindow.cpp" line="327"/>
-        <location filename="../Forms/MainWindow.cpp" line="391"/>
-        <location filename="../Forms/MainWindow.cpp" line="480"/>
-        <source>Spe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="163"/>
-        <location filename="../Forms/MainWindow.cpp" line="170"/>
-        <location filename="../Forms/MainWindow.cpp" line="177"/>
-        <location filename="../Forms/MainWindow.cpp" line="327"/>
-        <location filename="../Forms/MainWindow.cpp" line="391"/>
-        <location filename="../Forms/MainWindow.cpp" line="480"/>
-        <source>Hidden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="163"/>
-        <location filename="../Forms/MainWindow.cpp" line="170"/>
-        <location filename="../Forms/MainWindow.cpp" line="177"/>
-        <location filename="../Forms/MainWindow.cpp" line="327"/>
-        <location filename="../Forms/MainWindow.cpp" line="391"/>
-        <location filename="../Forms/MainWindow.cpp" line="480"/>
-        <source>Power</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="163"/>
-        <location filename="../Forms/MainWindow.cpp" line="170"/>
-        <location filename="../Forms/MainWindow.cpp" line="177"/>
-        <location filename="../Forms/MainWindow.cpp" line="327"/>
-        <location filename="../Forms/MainWindow.cpp" line="391"/>
-        <location filename="../Forms/MainWindow.cpp" line="480"/>
-        <source>Gender</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="163"/>
-        <location filename="../Forms/MainWindow.cpp" line="170"/>
-        <location filename="../Forms/MainWindow.cpp" line="327"/>
-        <location filename="../Forms/MainWindow.cpp" line="391"/>
-        <source>Time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="169"/>
-        <location filename="../Forms/MainWindow.cpp" line="390"/>
-        <source>Slot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="169"/>
-        <location filename="../Forms/MainWindow.cpp" line="390"/>
-        <source>Occidentary</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="176"/>
-        <location filename="../Forms/MainWindow.cpp" line="479"/>
-        <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1924,6 +1760,248 @@
     <message>
         <location filename="../Forms/Researcher.cpp" line="254"/>
         <source>You must check the Hex box in order to use Hex values.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Searcher3Model</name>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="163"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="201"/>
+        <source>Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="165"/>
+        <source>Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="167"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="203"/>
+        <source>PID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="171"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="207"/>
+        <source>Nature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="173"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="209"/>
+        <source>Ability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="175"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="211"/>
+        <source>HP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="177"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="213"/>
+        <source>Atk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="179"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="215"/>
+        <source>Def</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="181"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="217"/>
+        <source>SpA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="183"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="219"/>
+        <source>SpD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="185"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="221"/>
+        <source>Spe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="187"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="223"/>
+        <source>Hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="189"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="225"/>
+        <source>Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="191"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="227"/>
+        <source>Gender</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Stationary3Model</name>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="96"/>
+        <source>Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="98"/>
+        <source>PID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="102"/>
+        <source>Nature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="104"/>
+        <source>Ability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="106"/>
+        <source>HP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="108"/>
+        <source>Atk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="110"/>
+        <source>Def</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="112"/>
+        <source>SpA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="114"/>
+        <source>SpD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="116"/>
+        <source>Spe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="118"/>
+        <source>Hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="120"/>
+        <source>Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="122"/>
+        <source>Gender</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="124"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Wild3Model</name>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="100"/>
+        <source>Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="102"/>
+        <source>Occidentary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="104"/>
+        <source>Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="106"/>
+        <source>PID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="110"/>
+        <source>Nature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="112"/>
+        <source>Ability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="114"/>
+        <source>HP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="116"/>
+        <source>Atk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="118"/>
+        <source>Def</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="120"/>
+        <source>SpA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="122"/>
+        <source>SpD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="124"/>
+        <source>Spe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="126"/>
+        <source>Hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="128"/>
+        <source>Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="130"/>
+        <source>Gender</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="132"/>
+        <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

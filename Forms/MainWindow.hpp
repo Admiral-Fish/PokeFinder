@@ -33,7 +33,11 @@
 #include <libPokeFinder/Gen3/Profile3.hpp>
 #include <Forms/ProfileManager/ProfileManager3.hpp>
 #include <Forms/Researcher.hpp>
+#include <Models/Gen3/Stationary3Model.hpp>
+#include <Models/Gen3/Wild3Model.hpp>
+#include <Models/Gen3/Searcher3Model.hpp>
 #include <thread>
+#include <chrono>
 
 using namespace std;
 typedef uint32_t u32;
@@ -61,7 +65,7 @@ private:
     void CreateLanguageMenu(void);
     void SetupModels();
     void CreateProfileXml();
-    void Search3(QStandardItemModel *model);
+    void Search3(Searcher3Model *model);
 
 private slots:
     void on_generateStationary3_clicked();
