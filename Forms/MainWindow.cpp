@@ -207,7 +207,8 @@ void MainWindow::SetupModels()
     ui->idSearcher3->SetValues("[^0-9]", 0xffff, 10);
     ui->sidSearcher3->SetValues("[^0-9]", 0xffff, 10);
 
-    connect(this, SIGNAL(UpdateView()), this, SLOT(UpdateViewSearcher()));
+    qRegisterMetaType<QVector<int>>("QVector<int>");
+    connect(this, SIGNAL(UpdateView(Searcher3Model *model)), this, SLOT(UpdateViewSearcher(Searcher3Model *model)));
 
     ui->comboBoxMethodStationary3->setEditable(true);
     ui->comboBoxMethodStationary3->lineEdit()->setAlignment(Qt::AlignCenter);
@@ -303,9 +304,9 @@ void MainWindow::on_anyHiddenPowerSearcher3_clicked()
     ui->comboBoxHiddenPowerSearcher3->UncheckAll();
 }
 
-void MainWindow::UpdateViewSearcher()
+void MainWindow::UpdateViewSearcher(Searcher3Model *model)
 {
-    ui->tableViewSearcher3->viewport()->repaint();
+    ui->tableViewSearcher3->setModel(model);
 }
 
 void MainWindow::on_checkBoxDelayStationary3_clicked()
@@ -448,7 +449,7 @@ void MainWindow::Search3(Searcher3Model *model)
                             vector<Frame3> frames = searcher.Search(a, b, c, d, e, f, compare);
 
                             model->AddItems(frames);
-                            emit UpdateView();
+                            emit UpdateView(model);
                         }
                     }
                 }

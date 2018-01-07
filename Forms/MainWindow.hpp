@@ -50,7 +50,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 signals:
-    void UpdateView();
+    void UpdateView(Searcher3Model *model);
 
 protected:
     void changeEvent(QEvent*);
@@ -87,7 +87,7 @@ private slots:
     void on_generateSearcher3_clicked();
     void on_anyNatureSearcher3_clicked();
     void on_anyHiddenPowerSearcher3_clicked();
-    void UpdateViewSearcher();
+    void UpdateViewSearcher(Searcher3Model *model);
 
 public:
     explicit MainWindow(QWidget *parent = 0);
