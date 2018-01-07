@@ -168,6 +168,28 @@ void MainWindow::SetupModels()
     ui->tableViewSearcher3->verticalHeader()->setVisible(false);
     ui->tableViewSearcher3->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
+    ui->comboBoxMethodStationary3->clear();
+    ui->comboBoxMethodStationary3->addItem(tr("Method 1"), Method1);
+    ui->comboBoxMethodStationary3->addItem(tr("Method 2"), Method2);
+    ui->comboBoxMethodStationary3->addItem(tr("Method 4"), Method4);
+    ui->comboBoxMethodStationary3->addItem(tr("XD/Colo"), XDColo);
+    ui->comboBoxMethodStationary3->addItem(tr("Channel"), Channel);
+
+    ui->comboBoxMethodWild3->clear();
+    ui->comboBoxMethodWild3->addItem(tr("Method H1"), MethodH1);
+    ui->comboBoxMethodWild3->addItem(tr("Method H2"), MethodH2);
+    ui->comboBoxMethodWild3->addItem(tr("Method H4"), MethodH4);
+
+    ui->comboBoxMethodSearcher3->clear();
+    ui->comboBoxMethodSearcher3->addItem(tr("Method 1"), Method1);
+    ui->comboBoxMethodSearcher3->addItem(tr("Method 2"), Method2);
+    ui->comboBoxMethodSearcher3->addItem(tr("Method 4"), Method4);
+    ui->comboBoxMethodSearcher3->addItem(tr("Method H1"), MethodH1);
+    ui->comboBoxMethodSearcher3->addItem(tr("Method H2"), MethodH2);
+    ui->comboBoxMethodSearcher3->addItem(tr("Method H4"), MethodH4);
+    ui->comboBoxMethodSearcher3->addItem(tr("XD/Colo"), XDColo);
+    ui->comboBoxMethodSearcher3->addItem(tr("Channel"), Channel);
+
     ui->initialSeedStationary3->SetValues("[^0-9A-F]", 0xffffffff, 16);
     ui->idStationary3->SetValues("[^0-9]", 0xffff, 10);
     ui->sidStationary3->SetValues("[^0-9]", 0xffff, 10);
@@ -319,17 +341,7 @@ void MainWindow::on_generateStationary3_clicked()
                                         ui->comboBoxNatureStationary3->GetChecked(), ui->comboBoxHiddenPowerStationary3->GetChecked(),
                                         ui->checkBoxShinyStationary3->isChecked(), ui->checkBoxDisableStationary3->isChecked());
 
-    int method = ui->comboBoxMethodStationary3->currentIndex();
-    if (method == 0)
-        generator.frameType = Method1;
-    else if (method == 1)
-        generator.frameType = Method2;
-    else if (method == 2)
-        generator.frameType = Method4;
-    else if (method == 3)
-        generator.frameType = XDColo;
-    else
-        generator.frameType = Channel;
+    generator.frameType = (Method)ui->comboBoxMethodStationary3->currentData().toInt(NULL);
 
     vector<Frame3> frames = generator.Generate(compare);
 
@@ -358,13 +370,7 @@ void MainWindow::on_generateWild3_clicked()
                                         ui->comboBoxNatureWild3->GetChecked(), ui->comboBoxHiddenPowerWild3->GetChecked(),
                                         ui->checkBoxShinyWild3->isChecked(), ui->checkBoxDisableWild3->isChecked());
 
-    int method = ui->comboBoxMethodWild3->currentIndex();
-    if (method == 0)
-        generator.frameType = MethodH1;
-    else if (method == 1)
-        generator.frameType = MethodH2;
-    else
-        generator.frameType = MethodH4;
+    generator.frameType = (Method)ui->comboBoxMethodWild3->currentData().toInt(NULL);
 
     vector<Frame3> frames = generator.Generate(compare);
 
@@ -387,30 +393,14 @@ void MainWindow::Search3(Searcher3Model *model)
                    (u32)ui->spinBoxSpDSearcher3->value(), (u32)ui->spinBoxSpeSearcher3->value() };
 
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher3->currentIndex();
-    Searcher3 search = Searcher3(tid, sid);
+    Searcher3 searcher = Searcher3(tid, sid);
     FrameCompare compare = FrameCompare(ivFilter[0], ivs[0], ivFilter[1], ivs[1], ivFilter[2], ivs[2],
                                         ivFilter[3], ivs[3], ivFilter[4], ivs[4], ivFilter[5], ivs[5],
                                         ui->comboBoxGenderSearcher3->currentIndex(), genderRatioIndex, ui->comboBoxAbilitySearcher3->currentIndex(),
                                         ui->comboBoxNatureSearcher3->GetChecked(), ui->comboBoxHiddenPowerSearcher3->GetChecked(),
                                         ui->checkBoxShinySearcher3->isChecked(), false);
 
-    int method = ui->comboBoxMethodSearcher3->currentIndex();
-    if (method == 0)
-        search.frameType = Method1;
-    else if (method == 1)
-        search.frameType = Method2;
-    else if (method == 2)
-        search.frameType = Method4;
-    else if (method == 3)
-        search.frameType = MethodH1;
-    else if (method == 4)
-        search.frameType = MethodH2;
-    else if (method == 5)
-        search.frameType = MethodH4;
-    else if (method == 6)
-        search.frameType = XDColo;
-    else
-        search.frameType = Channel;
+    searcher.frameType = (Method)ui->comboBoxMethodSearcher3->currentData().toInt(NULL);
 
     u32 min[6], max[6];
 
@@ -448,10 +438,10 @@ void MainWindow::Search3(Searcher3Model *model)
                     {
                         for (u32 f = min[5]; f <= max[5]; f++)
                         {
-                            vector<Frame3> frames = search.Search(a, b, c, d, e, f, compare);
+                            vector<Frame3> frames = searcher.Search(a, b, c, d, e, f, compare);
 
                             model->AddItems(frames);
-                            ui->tableViewSearcher3->reset();
+                            ui->tableViewSearcher3->viewport()->repaint();
                         }
                     }
                 }
@@ -462,24 +452,8 @@ void MainWindow::Search3(Searcher3Model *model)
 
 void MainWindow::on_generateSearcher3_clicked()
 {
-    Searcher3Model *model;
-    int method = ui->comboBoxMethodSearcher3->currentIndex();
-    if (method == 0)
-        model = new Searcher3Model(this, Method1);
-    else if (method == 1)
-        model = new Searcher3Model(this, Method2);
-    else if (method == 2)
-        model = new Searcher3Model(this, Method4);
-    else if (method == 3)
-        model = new Searcher3Model(this, MethodH1);
-    else if (method == 4)
-        model = new Searcher3Model(this, MethodH2);
-    else if (method == 5)
-        model = new Searcher3Model(this, MethodH4);
-    else if (method == 6)
-        model = new Searcher3Model(this, XDColo);
-    else
-        model = new Searcher3Model(this, Channel);
+    Searcher3Model *model = new Searcher3Model(this, (Method)ui->comboBoxMethodSearcher3->currentData().toInt(NULL));
+    ui->tableViewSearcher3->setModel(model);
     std::thread search(&MainWindow::Search3, this, model);
     search.detach();
 }

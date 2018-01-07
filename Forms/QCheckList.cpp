@@ -54,6 +54,7 @@ QStandardItem *QCheckList::AddCheckItem(const QString &label, const QVariant &da
 
 void QCheckList::AddCheckItems(const std::vector<QString> &label, const QVariant &data, const Qt::CheckState checkState)
 {
+    model->clear();
     for (auto i = 0; i < label.size(); i++)
     {
         QStandardItem* item = new QStandardItem(label[i]);

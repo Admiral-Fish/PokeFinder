@@ -253,31 +253,6 @@ QPushButton::disabled {
           <property name="frame">
            <bool>true</bool>
           </property>
-          <item>
-           <property name="text">
-            <string>Method 1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Method 2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Method 4</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>XD/Colo</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Channel</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item row="4" column="1">
@@ -1370,21 +1345,6 @@ QPushButton::disabled {
           <property name="frame">
            <bool>true</bool>
           </property>
-          <item>
-           <property name="text">
-            <string>Method H1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Method H2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Method H4</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item row="4" column="1">
@@ -2426,46 +2386,6 @@ QPushButton::disabled {
           <property name="frame">
            <bool>true</bool>
           </property>
-          <item>
-           <property name="text">
-            <string>Method 1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Method 2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Method 4</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Method H1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Method H2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Method H4</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>XD/Colo</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Channel</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item row="1" column="1">

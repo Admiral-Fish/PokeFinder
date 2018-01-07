@@ -37,7 +37,6 @@
 #include <Models/Gen3/Wild3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <thread>
-#include <chrono>
 
 using namespace std;
 typedef uint32_t u32;
