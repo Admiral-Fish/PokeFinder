@@ -306,7 +306,7 @@ void MainWindow::on_anyHiddenPowerSearcher3_clicked()
 void MainWindow::UpdateViewSearcher(vector<Frame3> frames)
 {
     s->AddItems(frames);
-    ui->tableViewSearcher3->viewport()->repaint();
+    ui->tableViewSearcher3->viewport()->update();
 }
 
 void MainWindow::on_checkBoxDelayStationary3_clicked()
