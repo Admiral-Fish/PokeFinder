@@ -90,6 +90,7 @@ private slots:
     void on_anyNatureSearcher3_clicked();
     void on_anyHiddenPowerSearcher3_clicked();
     void UpdateViewSearcher(vector<Frame3> frames);
+    void UpdateViewSearcher(Searcher3Model *model);
 
 public:
     explicit MainWindow(QWidget *parent = 0);

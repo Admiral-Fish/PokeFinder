@@ -209,6 +209,9 @@ void MainWindow::SetupModels()
     ui->idSearcher3->SetValues("[^0-9]", 0xffff, 10);
     ui->sidSearcher3->SetValues("[^0-9]", 0xffff, 10);
 
+    qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
+    connect(this, SIGNAL(UpdateView()), this, SLOT(UpdateViewSearcher()));
+  
     ui->comboBoxMethodStationary3->setEditable(true);
     ui->comboBoxMethodStationary3->lineEdit()->setAlignment(Qt::AlignCenter);
     for(int i = 0; i < ui->comboBoxMethodStationary3->count(); i++)
