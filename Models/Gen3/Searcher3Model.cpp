@@ -31,8 +31,10 @@ void Searcher3Model::SetModel(vector<Frame3> frames)
 
 void Searcher3Model::AddItems(vector<Frame3> frames)
 {
+    int i = rowCount();
+    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
     model.insert(model.end(), frames.begin(), frames.end());
-    emit dataChanged(QModelIndex(), QModelIndex());
+    emit endInsertRows();
 }
 
 int Searcher3Model::rowCount(const QModelIndex &parent) const
