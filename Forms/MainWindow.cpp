@@ -36,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     CreateLanguageMenu();
 
+    qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
+    connect(this, SIGNAL(UpdateView(vector<Frame3>)), this, SLOT(UpdateViewSearcher(vector<Frame3>)));
 }
 
 MainWindow::~MainWindow()
@@ -207,8 +209,6 @@ void MainWindow::SetupModels()
     ui->idSearcher3->SetValues("[^0-9]", 0xffff, 10);
     ui->sidSearcher3->SetValues("[^0-9]", 0xffff, 10);
 
-    connect(this, SIGNAL(UpdateView()), this, SLOT(UpdateViewSearcher()));
-
     ui->comboBoxMethodStationary3->setEditable(true);
     ui->comboBoxMethodStationary3->lineEdit()->setAlignment(Qt::AlignCenter);
     for(int i = 0; i < ui->comboBoxMethodStationary3->count(); i++)
@@ -303,8 +303,9 @@ void MainWindow::on_anyHiddenPowerSearcher3_clicked()
     ui->comboBoxHiddenPowerSearcher3->UncheckAll();
 }
 
-void MainWindow::UpdateViewSearcher()
+void MainWindow::UpdateViewSearcher(vector<Frame3> frames)
 {
+    s->AddItems(frames);
     ui->tableViewSearcher3->viewport()->repaint();
 }
 
@@ -387,7 +388,7 @@ void MainWindow::on_generateWild3_clicked()
     ui->tableViewWild3->setModel(model);
 }
 
-void MainWindow::Search3(Searcher3Model *model)
+void MainWindow::Search3()
 {
     u32 tid = ui->idSearcher3->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher3->text().toUInt(NULL, 10);
@@ -447,8 +448,8 @@ void MainWindow::Search3(Searcher3Model *model)
                         {
                             vector<Frame3> frames = searcher.Search(a, b, c, d, e, f, compare);
 
-                            model->AddItems(frames);
-                            emit UpdateView();
+                            if (!frames.empty())
+                                emit UpdateView(frames);
                         }
                     }
                 }
@@ -459,8 +460,8 @@ void MainWindow::Search3(Searcher3Model *model)
 
 void MainWindow::on_generateSearcher3_clicked()
 {
-    Searcher3Model *model = new Searcher3Model(this, (Method)ui->comboBoxMethodSearcher3->currentData().toInt(NULL));
-    ui->tableViewSearcher3->setModel(model);
-    std::thread search(&MainWindow::Search3, this, model);
+    s = new Searcher3Model(this, (Method)ui->comboBoxMethodSearcher3->currentData().toInt(NULL));
+    ui->tableViewSearcher3->setModel(s);
+    std::thread search(&MainWindow::Search3, this);
     search.detach();
 }

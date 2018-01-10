@@ -36,6 +36,7 @@
 #include <Models/Gen3/Stationary3Model.hpp>
 #include <Models/Gen3/Wild3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
+#include <QTimer>
 #include <thread>
 
 using namespace std;
@@ -50,7 +51,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 signals:
-    void UpdateView();
+    void UpdateView(vector<Frame3>);
 
 protected:
     void changeEvent(QEvent*);
@@ -62,12 +63,13 @@ private:
     QString m_currLang;
     QString m_langPath;
     Researcher *r;
+    Searcher3Model *s;
 
     void LoadLanguage(const QString& rLanguage);
     void CreateLanguageMenu(void);
     void SetupModels();
     void CreateProfileXml();
-    void Search3(Searcher3Model *model);
+    void Search3();
 
 private slots:
     void on_generateStationary3_clicked();
@@ -87,7 +89,7 @@ private slots:
     void on_generateSearcher3_clicked();
     void on_anyNatureSearcher3_clicked();
     void on_anyHiddenPowerSearcher3_clicked();
-    void UpdateViewSearcher();
+    void UpdateViewSearcher(vector<Frame3> frames);
 
 public:
     explicit MainWindow(QWidget *parent = 0);
