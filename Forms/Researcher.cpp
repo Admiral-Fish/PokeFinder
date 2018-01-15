@@ -352,6 +352,13 @@ void Researcher::on_pushButtonSearch_clicked()
         ui->tableView->scrollTo(end);
         ui->tableView->setFocus();
     }
+    else
+    {
+        QMessageBox error;
+        error.setText(tr("No result found"));
+        error.exec();
+        return;
+    }
 }
 
 void Researcher::on_pushButtonNext_clicked()
@@ -372,6 +379,13 @@ void Researcher::on_pushButtonNext_clicked()
         ui->tableView->setCurrentIndex(end);
         ui->tableView->scrollTo(end);
         ui->tableView->setFocus();
+    }
+    else
+    {
+        QMessageBox error;
+        error.setText(tr("No result found"));
+        error.exec();
+        return;
     }
 }
 
