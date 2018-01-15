@@ -62,7 +62,8 @@ private:
     QString m_currLang;
     QString m_langPath;
     Researcher *r;
-    Searcher3Model *s;
+    Searcher3Model *s = NULL;
+    bool search = false;
 
     void LoadLanguage(const QString& rLanguage);
     void CreateLanguageMenu(void);

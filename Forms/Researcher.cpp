@@ -56,6 +56,7 @@ Researcher::Researcher(QWidget *parent) :
     ui->textBoxStartingFrame->SetValues("[^0-9]", 0xffffffffffffffff, 10);
     ui->textBoxMaxFrames->SetValues("[^0-9]", 0xffffffffffffffff, 10);
     ui->textBoxSeed->SetValues("[^0-9A-F]", 0xffffffffffffffff, 16);
+    ui->textBoxSearch->SetValues("[^0-9A-F]", 0xffffffffffffffff, 16);
 
     ui->textBoxMult32Bit->SetValues("[^0-9A-F]", 0xffffffff, 16);
     ui->textBoxAdd32Bit->SetValues("[^0-9A-F]", 0xffffffff, 16);
@@ -89,6 +90,8 @@ Researcher::Researcher(QWidget *parent) :
 Researcher::~Researcher()
 {
     delete ui;
+    if (model != NULL)
+        delete model;
 }
 
 void Researcher::on_pushButtonGenerate32Bit_clicked()
@@ -270,6 +273,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 
     vector<ResearcherFrame> frames;
     bool rng64Bit = ui->rngSelection->currentIndex() == 1;
+    model = new ResearcherModel(this, rng64Bit);
 
     if (rng64Bit)
     {
@@ -319,7 +323,6 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         frames.push_back(frame);
     }
 
-    ResearcherModel *model = new ResearcherModel(this, rng64Bit);
     model->SetModel(frames);
 
     ui->tableView->setModel(model);
@@ -332,6 +335,44 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 
     delete rng;
     delete rng64;
+}
+
+void Researcher::on_pushButtonSearch_clicked()
+{
+    if (model->rowCount() == 0)
+        return;
+
+    QString string = ui->comboBoxSearch->currentText();
+    u64 result = ui->textBoxSearch->text().toULongLong(NULL, 16);
+
+    QModelIndex end = model->Search(string, result, 0);
+    if (end.isValid())
+    {
+        ui->tableView->setCurrentIndex(end);
+        ui->tableView->scrollTo(end);
+        ui->tableView->setFocus();
+    }
+}
+
+void Researcher::on_pushButtonNext_clicked()
+{
+    if (model->rowCount() == 0)
+        return;
+
+    QString string = ui->comboBoxSearch->currentText();
+    QModelIndex start = ui->tableView->currentIndex();
+    u64 result = ui->textBoxSearch->text().toULongLong(NULL, 16);
+
+    if (!start.isValid())
+        return;
+
+    QModelIndex end = model->Search(string, result, start.row() + 1);
+    if (end.isValid())
+    {
+        ui->tableView->setCurrentIndex(end);
+        ui->tableView->scrollTo(end);
+        ui->tableView->setFocus();
+    }
 }
 
 u64 Researcher::GetCustom(string text, ResearcherFrame frame, vector<ResearcherFrame> frames)
@@ -399,4 +440,8 @@ void Researcher::on_rngSelection_currentChanged(int index)
 {
     ui->textBoxSeed->setVisible(index != 2);
     ui->label_14->setVisible(index != 2);
+    ui->comboBoxSearch->clear();
+    QStringList items = index != 1 ? QStringList() << "32Bit" << "16Bit High" << "16Bit Low" :
+                                     QStringList() << "64Bit" << "32Bit High" << "32Bit Low" << "16Bit High" << "16Bit Low" ;
+    ui->comboBoxSearch->addItems(items);
 }

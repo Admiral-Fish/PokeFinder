@@ -254,3 +254,50 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
     }
     return QVariant();
 }
+
+QModelIndex ResearcherModel::Search(QString string, u64 result, int row)
+{
+    int column;
+    u64 (*getResult)(ResearcherFrame);
+    if (string == "64Bit")
+    {
+        column = 1;
+        getResult = &ResearcherModel::Get64Bit;
+    }
+    else if(string == "32Bit High")
+    {
+        column = 2;
+        getResult = &ResearcherModel::Get32BitHigh;
+    }
+    else if(string == "32Bit Low")
+    {
+        column = 3;
+        getResult = &ResearcherModel::Get32BitLow;
+    }
+    else if (string == "32Bit")
+    {
+        column = 1;
+        getResult = &ResearcherModel::Get32;
+    }
+    else if (string == "16Bit High")
+    {
+        column = flag ? 4 : 2;
+        getResult = &ResearcherModel::Get16BitHigh;
+    }
+    else if (string == "16Bit Low")
+    {
+        column = flag ? 5 : 3;
+        getResult = &ResearcherModel::Get16BitLow;
+    }
+
+    int size = rowCount();
+
+    for (; row < size; row++)
+    {
+        u64 value = getResult(model[row]);
+        if (value == result)
+            return index(row, column, QModelIndex());
+    }
+
+    return QModelIndex();
+}

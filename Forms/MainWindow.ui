@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PokéFinder 1.1.2</string>
+   <string notr="true">PokéFinder 1.1.2</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources.qrc">
@@ -44,7 +44,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tabStationary">
      <attribute name="title">
@@ -200,7 +200,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="text">
-           <string>12345</string>
+           <string notr="true">12345</string>
           </property>
           <property name="maxLength">
            <number>5</number>
@@ -261,7 +261,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="text">
-           <string>54321</string>
+           <string notr="true">54321</string>
           </property>
           <property name="maxLength">
            <number>5</number>
@@ -318,7 +318,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="text">
-           <string>1</string>
+           <string notr="true">1</string>
           </property>
           <property name="maxLength">
            <number>10</number>
@@ -331,7 +331,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="text">
-           <string>100000</string>
+           <string notr="true">100000</string>
           </property>
           <property name="maxLength">
            <number>10</number>
@@ -1292,7 +1292,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="text">
-           <string>12345</string>
+           <string notr="true">12345</string>
           </property>
           <property name="maxLength">
            <number>5</number>
@@ -1353,7 +1353,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="text">
-           <string>54321</string>
+           <string notr="true">54321</string>
           </property>
           <property name="maxLength">
            <number>5</number>
@@ -1410,7 +1410,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="text">
-           <string>1</string>
+           <string notr="true">1</string>
           </property>
           <property name="maxLength">
            <number>10</number>
@@ -1423,7 +1423,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="text">
-           <string>100000</string>
+           <string notr="true">100000</string>
           </property>
           <property name="maxLength">
            <number>10</number>
@@ -2394,7 +2394,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="text">
-           <string>12345</string>
+           <string notr="true">12345</string>
           </property>
           <property name="maxLength">
            <number>5</number>
@@ -2421,7 +2421,7 @@ QPushButton::disabled {
            <string/>
           </property>
           <property name="text">
-           <string>54321</string>
+           <string notr="true">54321</string>
           </property>
           <property name="maxLength">
            <number>5</number>
@@ -3266,7 +3266,7 @@ QHeaderView::section {
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionResearcher">
    <property name="text">
-    <string>Researcher</string>
+    <string notr="true">Researcher</string>
    </property>
   </action>
  </widget>

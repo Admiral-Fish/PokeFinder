@@ -49,32 +49,32 @@
         <translation>SID de entrenador:</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="172"/>
-        <location filename="../Forms/MainWindow.cpp" line="184"/>
+        <location filename="../Forms/MainWindow.cpp" line="176"/>
+        <location filename="../Forms/MainWindow.cpp" line="188"/>
         <source>Method 1</source>
         <translation>Método 1</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="173"/>
-        <location filename="../Forms/MainWindow.cpp" line="185"/>
+        <location filename="../Forms/MainWindow.cpp" line="177"/>
+        <location filename="../Forms/MainWindow.cpp" line="189"/>
         <source>Method 2</source>
         <translation>Método 2</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="174"/>
-        <location filename="../Forms/MainWindow.cpp" line="186"/>
+        <location filename="../Forms/MainWindow.cpp" line="178"/>
+        <location filename="../Forms/MainWindow.cpp" line="190"/>
         <source>Method 4</source>
         <translation>Método 4</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="175"/>
-        <location filename="../Forms/MainWindow.cpp" line="190"/>
+        <location filename="../Forms/MainWindow.cpp" line="179"/>
+        <location filename="../Forms/MainWindow.cpp" line="194"/>
         <source>XD/Colo</source>
         <translation>XD/Colo</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="176"/>
-        <location filename="../Forms/MainWindow.cpp" line="191"/>
+        <location filename="../Forms/MainWindow.cpp" line="180"/>
+        <location filename="../Forms/MainWindow.cpp" line="195"/>
         <source>Channel</source>
         <translation>Canal</translation>
     </message>
@@ -85,38 +85,11 @@
         <translation>Semilla:</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="321"/>
         <location filename="../Forms/MainWindow.ui" line="473"/>
-        <location filename="../Forms/MainWindow.ui" line="1413"/>
         <location filename="../Forms/MainWindow.ui" line="1565"/>
         <location filename="../Forms/MainWindow.ui" line="3001"/>
         <source>1</source>
         <translation>1</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="14"/>
-        <source>PokéFinder 1.1.2</source>
-        <translation>PokéFinder 1.1.2</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="334"/>
-        <location filename="../Forms/MainWindow.ui" line="1426"/>
-        <source>100000</source>
-        <translation>100000</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="203"/>
-        <location filename="../Forms/MainWindow.ui" line="1295"/>
-        <location filename="../Forms/MainWindow.ui" line="2397"/>
-        <source>12345</source>
-        <translation>12345</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="264"/>
-        <location filename="../Forms/MainWindow.ui" line="1356"/>
-        <location filename="../Forms/MainWindow.ui" line="2424"/>
-        <source>54321</source>
-        <translation>54321</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="151"/>
@@ -192,7 +165,7 @@
         <location filename="../Forms/MainWindow.ui" line="2810"/>
         <location filename="../Forms/MainWindow.ui" line="2868"/>
         <location filename="../Forms/MainWindow.ui" line="3063"/>
-        <location filename="../Forms/MainWindow.cpp" line="246"/>
+        <location filename="../Forms/MainWindow.cpp" line="250"/>
         <source>None</source>
         <translation></translation>
     </message>
@@ -359,11 +332,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="3269"/>
-        <source>Researcher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Forms/MainWindow.ui" line="175"/>
         <location filename="../Forms/MainWindow.ui" line="1267"/>
         <location filename="../Forms/MainWindow.ui" line="2356"/>
@@ -453,20 +421,20 @@
         <translation>Salvage</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="179"/>
-        <location filename="../Forms/MainWindow.cpp" line="187"/>
+        <location filename="../Forms/MainWindow.cpp" line="183"/>
+        <location filename="../Forms/MainWindow.cpp" line="191"/>
         <source>Method H1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="180"/>
-        <location filename="../Forms/MainWindow.cpp" line="188"/>
+        <location filename="../Forms/MainWindow.cpp" line="184"/>
+        <location filename="../Forms/MainWindow.cpp" line="192"/>
         <source>Method H2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="181"/>
-        <location filename="../Forms/MainWindow.cpp" line="189"/>
+        <location filename="../Forms/MainWindow.cpp" line="185"/>
+        <location filename="../Forms/MainWindow.cpp" line="193"/>
         <source>Method H4</source>
         <translation type="unfinished"></translation>
     </message>
@@ -995,11 +963,6 @@
 <context>
     <name>Researcher</name>
     <message>
-        <location filename="../Forms/Researcher.ui" line="14"/>
-        <source>Researcher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Forms/Researcher.ui" line="34"/>
         <source>32 Bit</source>
         <translation type="unfinished"></translation>
@@ -1062,14 +1025,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="108"/>
-        <location filename="../Forms/Researcher.ui" line="183"/>
-        <source>X</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.ui" line="122"/>
-        <location filename="../Forms/Researcher.ui" line="197"/>
         <location filename="../Forms/Researcher.ui" line="382"/>
         <location filename="../Forms/Researcher.ui" line="449"/>
         <location filename="../Forms/Researcher.ui" line="797"/>
@@ -1101,26 +1056,6 @@
     <message>
         <location filename="../Forms/Researcher.ui" line="226"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.ui" line="242"/>
-        <source>[3]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.ui" line="256"/>
-        <source>[2]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.ui" line="270"/>
-        <source>[1]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.ui" line="284"/>
-        <source>[0]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1166,6 +1101,7 @@
         <location filename="../Forms/Researcher.ui" line="2248"/>
         <location filename="../Forms/Researcher.ui" line="2302"/>
         <location filename="../Forms/Researcher.ui" line="2488"/>
+        <location filename="../Forms/Researcher.ui" line="2710"/>
         <source>32Bit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1235,6 +1171,7 @@
         <location filename="../Forms/Researcher.ui" line="2263"/>
         <location filename="../Forms/Researcher.ui" line="2317"/>
         <location filename="../Forms/Researcher.ui" line="2503"/>
+        <location filename="../Forms/Researcher.ui" line="2715"/>
         <source>16Bit High</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1258,6 +1195,7 @@
         <location filename="../Forms/Researcher.ui" line="2268"/>
         <location filename="../Forms/Researcher.ui" line="2322"/>
         <location filename="../Forms/Researcher.ui" line="2508"/>
+        <location filename="../Forms/Researcher.ui" line="2720"/>
         <source>16Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1528,19 +1466,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2639"/>
-        <source>1</source>
-        <translation type="unfinished">1</translation>
+        <location filename="../Forms/Researcher.ui" line="2699"/>
+        <source>Search Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Researcher.ui" line="2728"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Researcher.ui" line="2735"/>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Researcher.ui" line="2649"/>
         <source>Max Results</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Researcher.ui" line="2656"/>
-        <source>1000</source>
-        <translation type="unfinished">1000</translation>
     </message>
     <message>
         <location filename="../Forms/Researcher.ui" line="2666"/>
@@ -1753,12 +1696,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="140"/>
+        <location filename="../Forms/Researcher.cpp" line="143"/>
         <source>Please enter a max frame lower then 228</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="254"/>
+        <location filename="../Forms/Researcher.cpp" line="257"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1766,85 +1709,85 @@
 <context>
     <name>Searcher3Model</name>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="163"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="201"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="165"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="203"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="165"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="167"/>
         <source>Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="167"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="203"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="169"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="205"/>
         <source>PID</source>
         <translation type="unfinished">PID</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="171"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="207"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="173"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="209"/>
         <source>Nature</source>
         <translation type="unfinished">Naturaleza</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="173"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="209"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="175"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="211"/>
         <source>Ability</source>
         <translation type="unfinished">Habilidad</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="175"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="211"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="177"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="213"/>
         <source>HP</source>
         <translation type="unfinished">Puntos de Golpe</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="177"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="213"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="179"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="215"/>
         <source>Atk</source>
         <translation type="unfinished">Ataque</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="179"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="215"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="181"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="217"/>
         <source>Def</source>
         <translation type="unfinished">Defensa</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="181"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="217"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="183"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="219"/>
         <source>SpA</source>
         <translation type="unfinished">Ataque Especial</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="183"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="219"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="185"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="221"/>
         <source>SpD</source>
         <translation type="unfinished">Defensa Especial</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="185"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="221"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="187"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="223"/>
         <source>Spe</source>
         <translation type="unfinished">Especial</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="187"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="223"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="189"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="225"/>
         <source>Hidden</source>
         <translation type="unfinished">Oculto</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="189"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="225"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="191"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="227"/>
         <source>Power</source>
         <translation type="unfinished">Poder</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="191"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="227"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="193"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="229"/>
         <source>Gender</source>
         <translation type="unfinished">Género</translation>
     </message>

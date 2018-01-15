@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Researcher</string>
+   <string notr="true">Researcher</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="rngSelection">
@@ -105,7 +105,7 @@
         <item row="1" column="1">
          <widget class="QLabel" name="label_11">
           <property name="text">
-           <string>X</string>
+           <string notr="true">X</string>
           </property>
          </widget>
         </item>
@@ -119,7 +119,7 @@
         <item row="2" column="1">
          <widget class="QLabel" name="label_12">
           <property name="text">
-           <string>+</string>
+           <string notr="true">+</string>
           </property>
          </widget>
         </item>
@@ -180,7 +180,7 @@
         <item row="1" column="1">
          <widget class="QLabel" name="label_15">
           <property name="text">
-           <string>X</string>
+           <string notr="true">X</string>
           </property>
          </widget>
         </item>
@@ -194,7 +194,7 @@
         <item row="2" column="1">
          <widget class="QLabel" name="label_16">
           <property name="text">
-           <string>+</string>
+           <string notr="true">+</string>
           </property>
          </widget>
         </item>
@@ -239,7 +239,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_17">
          <property name="text">
-          <string>[3]</string>
+          <string notr="true">[3]</string>
          </property>
         </widget>
        </item>
@@ -253,7 +253,7 @@
        <item row="0" column="2">
         <widget class="QLabel" name="label_18">
          <property name="text">
-          <string>[2]</string>
+          <string notr="true">[2]</string>
          </property>
         </widget>
        </item>
@@ -267,7 +267,7 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_19">
          <property name="text">
-          <string>[1]</string>
+          <string notr="true">[1]</string>
          </property>
         </widget>
        </item>
@@ -281,7 +281,7 @@
        <item row="1" column="2">
         <widget class="QLabel" name="label_20">
          <property name="text">
-          <string>[0]</string>
+          <string notr="true">[0]</string>
          </property>
         </widget>
        </item>
@@ -2636,7 +2636,7 @@ QHeaderView::section {
      <item row="0" column="1">
       <widget class="QTextBox" name="textBoxStartingFrame">
        <property name="text">
-        <string>1</string>
+        <string notr="true">1</string>
        </property>
        <property name="maxLength">
         <number>20</number>
@@ -2653,7 +2653,7 @@ QHeaderView::section {
      <item row="1" column="1">
       <widget class="QTextBox" name="textBoxMaxFrames">
        <property name="text">
-        <string>1000</string>
+        <string notr="true">1000</string>
        </property>
        <property name="maxLength">
         <number>20</number>
@@ -2678,6 +2678,61 @@ QHeaderView::section {
       <widget class="QPushButton" name="pushButtonGenerate32Bit">
        <property name="text">
         <string>Generate</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>22</x>
+      <y>232</y>
+      <width>291</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_23">
+       <property name="text">
+        <string>Search Seed</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" colspan="2">
+      <widget class="QTextBox" name="textBoxSearch"/>
+     </item>
+     <item row="0" column="3">
+      <widget class="QComboBox" name="comboBoxSearch">
+       <item>
+        <property name="text">
+         <string>32Bit</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>16Bit High</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>16Bit Low</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="2">
+      <widget class="QPushButton" name="pushButtonSearch">
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2" colspan="2">
+      <widget class="QPushButton" name="pushButtonNext">
+       <property name="text">
+        <string>Next</string>
        </property>
       </widget>
      </item>

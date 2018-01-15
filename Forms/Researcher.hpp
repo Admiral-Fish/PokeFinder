@@ -70,9 +70,12 @@ public:
 private slots:
     void on_pushButtonGenerate32Bit_clicked();
     void on_rngSelection_currentChanged(int index);
+    void on_pushButtonSearch_clicked();
+    void on_pushButtonNext_clicked();
 
 private:
     Ui::Researcher *ui;
+    ResearcherModel *model = NULL;
 
 };
 

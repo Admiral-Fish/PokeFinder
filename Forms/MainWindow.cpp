@@ -43,6 +43,8 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    if (s != NULL)
+        delete s;
 }
 
 void MainWindow::changeEvent(QEvent* event)
@@ -390,6 +392,7 @@ void MainWindow::on_generateWild3_clicked()
 
 void MainWindow::Search3()
 {
+    search = true;
     u32 tid = ui->idSearcher3->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher3->text().toUInt(NULL, 10);
 
@@ -456,12 +459,15 @@ void MainWindow::Search3()
             }
         }
     }
+    search = false;
 }
 
 void MainWindow::on_generateSearcher3_clicked()
 {
+    if (search == true)
+        return;
     s = new Searcher3Model(this, (Method)ui->comboBoxMethodSearcher3->currentData().toInt(NULL));
     ui->tableViewSearcher3->setModel(s);
-    std::thread search(&MainWindow::Search3, this);
-    search.detach();
+    std::thread job(&MainWindow::Search3, this);
+    job.detach();
 }

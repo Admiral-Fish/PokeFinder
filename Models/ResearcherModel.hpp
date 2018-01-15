@@ -23,6 +23,7 @@
 #include <QAbstractTableModel>
 #include <Util/ResearcherFrame.hpp>
 #include <vector>
+#include <cstdint>
 
 using namespace std;
 
@@ -32,6 +33,12 @@ class ResearcherModel : public QAbstractTableModel
 private:
     vector<ResearcherFrame> model;
     bool flag;
+    static inline u64 Get64Bit(ResearcherFrame f) { return f.Full64; }
+    static inline u64 Get32BitHigh(ResearcherFrame f) { return f.High32(); }
+    static inline u64 Get32BitLow(ResearcherFrame f) { return f.Low32(); }
+    static inline u64 Get32(ResearcherFrame f) { return f.Full32; }
+    static inline u64 Get16BitHigh(ResearcherFrame f) { return f.High16(); }
+    static inline u64 Get16BitLow(ResearcherFrame f) { return f.Low16(); }
 
 public:
     ResearcherModel(QObject *parent, bool is64Bit);
@@ -40,6 +47,7 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    QModelIndex Search(QString string, u64 result, int row);
 
 };
 
