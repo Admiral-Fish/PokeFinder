@@ -43,7 +43,6 @@ TRANSLATIONS += \
 SOURCES += \
     Forms/ProfileManager/ProfileManager3.cpp \
     Forms/ProfileManager/ProfileManager3NewEdit.cpp \
-    Forms/MainWindow.cpp \
     Forms/QCheckList.cpp \
     Forms/QTextBox.cpp \
     Forms/Researcher.cpp \
@@ -70,12 +69,14 @@ SOURCES += \
     Util/ResearcherFrame.cpp \
     main.cpp \
     Models/Gen3/Wild3Model.cpp \
-    Models/Gen3/Searcher3Model.cpp
+    Models/Gen3/Searcher3Model.cpp \
+    Forms/Gen3/Stationary3.cpp \
+    Forms/MainWindow.cpp \
+    Forms/Gen3/Wild3.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManager3.hpp \
     Forms/ProfileManager/ProfileManager3NewEdit.hpp \
-    Forms/MainWindow.hpp \
     Forms/QCheckList.hpp \
     Forms/QTextBox.hpp \
     Forms/Researcher.hpp \
@@ -109,13 +110,18 @@ HEADERS += \
     Models/ResearcherModel.hpp \
     Util/ResearcherFrame.hpp \
     Models/Gen3/Wild3Model.hpp \
-    Models/Gen3/Searcher3Model.hpp
+    Models/Gen3/Searcher3Model.hpp \
+    Forms/Gen3/Stationary3.hpp \
+    Forms/MainWindow.hpp \
+    Forms/Gen3/Wild3.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManager3.ui \
     Forms/ProfileManager/ProfileManager3NewEdit.ui \
+    Forms/Researcher.ui \
+    Forms/Gen3/Stationary3.ui \
     Forms/MainWindow.ui \
-    Forms/Researcher.ui
+    Forms/Gen3/Wild3.ui
 
 RESOURCES += \
     resources.qrc

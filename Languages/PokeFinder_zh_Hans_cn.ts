@@ -4,468 +4,37 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="51"/>
+        <location filename="../Forms/MainWindow.ui" line="31"/>
+        <source>Gen 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui" line="43"/>
         <source>Stationary</source>
         <translation>静态</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="127"/>
-        <location filename="../Forms/MainWindow.ui" line="1219"/>
-        <location filename="../Forms/MainWindow.ui" line="2308"/>
-        <source>RNG Info</source>
-        <translation>RNG 信息</translation>
+        <location filename="../Forms/MainWindow.ui" line="70"/>
+        <source>Gen 4</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="274"/>
-        <location filename="../Forms/MainWindow.ui" line="1366"/>
-        <location filename="../Forms/MainWindow.ui" line="2434"/>
-        <source>Method:</source>
-        <translation>方式:</translation>
+        <location filename="../Forms/MainWindow.ui" line="100"/>
+        <source>Researcher</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="227"/>
-        <location filename="../Forms/MainWindow.ui" line="1319"/>
-        <source>Starting Frame:</source>
-        <translation>开始帧:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="241"/>
-        <location filename="../Forms/MainWindow.ui" line="1333"/>
-        <source>Max Results:</source>
-        <translation>最大帧数:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="220"/>
-        <location filename="../Forms/MainWindow.ui" line="1312"/>
-        <location filename="../Forms/MainWindow.ui" line="2414"/>
-        <source>Trainer ID:</source>
-        <translation>训练师 ID:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="213"/>
-        <location filename="../Forms/MainWindow.ui" line="1305"/>
-        <location filename="../Forms/MainWindow.ui" line="2407"/>
-        <source>Trainer SID:</source>
-        <translation>训练师 SID:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="176"/>
-        <location filename="../Forms/MainWindow.cpp" line="188"/>
-        <source>Method 1</source>
-        <translation>方式 1</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="177"/>
-        <location filename="../Forms/MainWindow.cpp" line="189"/>
-        <source>Method 2</source>
-        <translation>方式 2</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="178"/>
-        <location filename="../Forms/MainWindow.cpp" line="190"/>
-        <source>Method 4</source>
-        <translation>方式 4</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="179"/>
-        <location filename="../Forms/MainWindow.cpp" line="194"/>
-        <source>XD/Colo</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="180"/>
-        <location filename="../Forms/MainWindow.cpp" line="195"/>
-        <source>Channel</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="473"/>
-        <location filename="../Forms/MainWindow.ui" line="1565"/>
-        <location filename="../Forms/MainWindow.ui" line="3001"/>
-        <source>1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="151"/>
-        <location filename="../Forms/MainWindow.ui" line="1243"/>
-        <source>Generate</source>
-        <translation>生成</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="234"/>
-        <location filename="../Forms/MainWindow.ui" line="1326"/>
-        <source>Seed:</source>
-        <translation>种子:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="175"/>
-        <location filename="../Forms/MainWindow.ui" line="1267"/>
-        <location filename="../Forms/MainWindow.ui" line="2356"/>
-        <source>Create a Profile</source>
-        <translation>创建配置文件</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="468"/>
-        <location filename="../Forms/MainWindow.ui" line="1560"/>
-        <location filename="../Forms/MainWindow.ui" line="2996"/>
-        <source>0</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="444"/>
-        <location filename="../Forms/MainWindow.ui" line="1536"/>
-        <location filename="../Forms/MainWindow.ui" line="2541"/>
-        <source>Filters</source>
-        <translation>过滤器</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="569"/>
-        <location filename="../Forms/MainWindow.ui" line="1661"/>
-        <location filename="../Forms/MainWindow.ui" line="3040"/>
-        <source>HP:</source>
-        <translation>体力:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="576"/>
-        <location filename="../Forms/MainWindow.ui" line="1668"/>
-        <location filename="../Forms/MainWindow.ui" line="3093"/>
-        <source>Atk:</source>
-        <translation>攻击力:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="678"/>
-        <location filename="../Forms/MainWindow.ui" line="1770"/>
-        <location filename="../Forms/MainWindow.ui" line="2787"/>
-        <source>SpA:</source>
-        <translation>特攻:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="620"/>
-        <location filename="../Forms/MainWindow.ui" line="1712"/>
-        <location filename="../Forms/MainWindow.ui" line="2780"/>
-        <source>SpD:</source>
-        <translation>特防:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="613"/>
-        <location filename="../Forms/MainWindow.ui" line="1705"/>
-        <location filename="../Forms/MainWindow.ui" line="3086"/>
-        <source>Def:</source>
-        <translation>防御:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="671"/>
-        <location filename="../Forms/MainWindow.ui" line="1763"/>
-        <location filename="../Forms/MainWindow.ui" line="2833"/>
-        <source>Spe:</source>
-        <translation>速度:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="529"/>
-        <location filename="../Forms/MainWindow.ui" line="643"/>
-        <location filename="../Forms/MainWindow.ui" line="713"/>
-        <location filename="../Forms/MainWindow.ui" line="863"/>
-        <location filename="../Forms/MainWindow.ui" line="907"/>
-        <location filename="../Forms/MainWindow.ui" line="964"/>
-        <location filename="../Forms/MainWindow.ui" line="1621"/>
-        <location filename="../Forms/MainWindow.ui" line="1735"/>
-        <location filename="../Forms/MainWindow.ui" line="1805"/>
-        <location filename="../Forms/MainWindow.ui" line="1955"/>
-        <location filename="../Forms/MainWindow.ui" line="1999"/>
-        <location filename="../Forms/MainWindow.ui" line="2056"/>
-        <location filename="../Forms/MainWindow.ui" line="2575"/>
-        <location filename="../Forms/MainWindow.ui" line="2614"/>
-        <location filename="../Forms/MainWindow.ui" line="2659"/>
-        <location filename="../Forms/MainWindow.ui" line="2810"/>
-        <location filename="../Forms/MainWindow.ui" line="2868"/>
-        <location filename="../Forms/MainWindow.ui" line="3063"/>
-        <location filename="../Forms/MainWindow.cpp" line="250"/>
-        <source>None</source>
-        <translation>不指定</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="534"/>
-        <location filename="../Forms/MainWindow.ui" line="648"/>
-        <location filename="../Forms/MainWindow.ui" line="718"/>
-        <location filename="../Forms/MainWindow.ui" line="868"/>
-        <location filename="../Forms/MainWindow.ui" line="912"/>
-        <location filename="../Forms/MainWindow.ui" line="969"/>
-        <location filename="../Forms/MainWindow.ui" line="1626"/>
-        <location filename="../Forms/MainWindow.ui" line="1740"/>
-        <location filename="../Forms/MainWindow.ui" line="1810"/>
-        <location filename="../Forms/MainWindow.ui" line="1960"/>
-        <location filename="../Forms/MainWindow.ui" line="2004"/>
-        <location filename="../Forms/MainWindow.ui" line="2061"/>
-        <location filename="../Forms/MainWindow.ui" line="2580"/>
-        <location filename="../Forms/MainWindow.ui" line="2619"/>
-        <location filename="../Forms/MainWindow.ui" line="2664"/>
-        <location filename="../Forms/MainWindow.ui" line="2815"/>
-        <location filename="../Forms/MainWindow.ui" line="2873"/>
-        <location filename="../Forms/MainWindow.ui" line="3068"/>
-        <source>==</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="539"/>
-        <location filename="../Forms/MainWindow.ui" line="653"/>
-        <location filename="../Forms/MainWindow.ui" line="723"/>
-        <location filename="../Forms/MainWindow.ui" line="873"/>
-        <location filename="../Forms/MainWindow.ui" line="917"/>
-        <location filename="../Forms/MainWindow.ui" line="974"/>
-        <location filename="../Forms/MainWindow.ui" line="1631"/>
-        <location filename="../Forms/MainWindow.ui" line="1745"/>
-        <location filename="../Forms/MainWindow.ui" line="1815"/>
-        <location filename="../Forms/MainWindow.ui" line="1965"/>
-        <location filename="../Forms/MainWindow.ui" line="2009"/>
-        <location filename="../Forms/MainWindow.ui" line="2066"/>
-        <location filename="../Forms/MainWindow.ui" line="2585"/>
-        <location filename="../Forms/MainWindow.ui" line="2624"/>
-        <location filename="../Forms/MainWindow.ui" line="2669"/>
-        <location filename="../Forms/MainWindow.ui" line="2820"/>
-        <location filename="../Forms/MainWindow.ui" line="2878"/>
-        <location filename="../Forms/MainWindow.ui" line="3073"/>
-        <source>&gt;=</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="544"/>
-        <location filename="../Forms/MainWindow.ui" line="658"/>
-        <location filename="../Forms/MainWindow.ui" line="728"/>
-        <location filename="../Forms/MainWindow.ui" line="878"/>
-        <location filename="../Forms/MainWindow.ui" line="922"/>
-        <location filename="../Forms/MainWindow.ui" line="979"/>
-        <location filename="../Forms/MainWindow.ui" line="1636"/>
-        <location filename="../Forms/MainWindow.ui" line="1750"/>
-        <location filename="../Forms/MainWindow.ui" line="1820"/>
-        <location filename="../Forms/MainWindow.ui" line="1970"/>
-        <location filename="../Forms/MainWindow.ui" line="2014"/>
-        <location filename="../Forms/MainWindow.ui" line="2071"/>
-        <location filename="../Forms/MainWindow.ui" line="2590"/>
-        <location filename="../Forms/MainWindow.ui" line="2629"/>
-        <location filename="../Forms/MainWindow.ui" line="2674"/>
-        <location filename="../Forms/MainWindow.ui" line="2825"/>
-        <location filename="../Forms/MainWindow.ui" line="2883"/>
-        <location filename="../Forms/MainWindow.ui" line="3078"/>
-        <source>&lt;=</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="549"/>
-        <location filename="../Forms/MainWindow.ui" line="663"/>
-        <location filename="../Forms/MainWindow.ui" line="733"/>
-        <location filename="../Forms/MainWindow.ui" line="883"/>
-        <location filename="../Forms/MainWindow.ui" line="927"/>
-        <location filename="../Forms/MainWindow.ui" line="984"/>
-        <location filename="../Forms/MainWindow.ui" line="1641"/>
-        <location filename="../Forms/MainWindow.ui" line="1755"/>
-        <location filename="../Forms/MainWindow.ui" line="1825"/>
-        <location filename="../Forms/MainWindow.ui" line="1975"/>
-        <location filename="../Forms/MainWindow.ui" line="2019"/>
-        <location filename="../Forms/MainWindow.ui" line="2076"/>
-        <source>!=</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="999"/>
-        <location filename="../Forms/MainWindow.ui" line="2091"/>
-        <location filename="../Forms/MainWindow.ui" line="2689"/>
-        <source>Gender:</source>
-        <translation>性别:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1013"/>
-        <location filename="../Forms/MainWindow.ui" line="2105"/>
-        <location filename="../Forms/MainWindow.ui" line="2703"/>
-        <source>Ability:</source>
-        <translation>能力:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1006"/>
-        <location filename="../Forms/MainWindow.ui" line="2098"/>
-        <location filename="../Forms/MainWindow.ui" line="2696"/>
-        <source>Nature:</source>
-        <translation>性格:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1030"/>
-        <location filename="../Forms/MainWindow.ui" line="2122"/>
-        <location filename="../Forms/MainWindow.ui" line="2710"/>
-        <source>Hidden Power:</source>
-        <translation>隐藏特性:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="806"/>
-        <location filename="../Forms/MainWindow.ui" line="1898"/>
-        <location filename="../Forms/MainWindow.ui" line="2925"/>
-        <source>Shiny Only?</source>
-        <translation>只有异色?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1037"/>
-        <location filename="../Forms/MainWindow.ui" line="2129"/>
-        <source>Disable Filters:</source>
-        <translation>关闭过滤器:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="495"/>
-        <location filename="../Forms/MainWindow.ui" line="1587"/>
-        <location filename="../Forms/MainWindow.ui" line="3010"/>
-        <source>-</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="500"/>
-        <location filename="../Forms/MainWindow.ui" line="1592"/>
-        <location filename="../Forms/MainWindow.ui" line="3015"/>
-        <source>♂</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="505"/>
-        <location filename="../Forms/MainWindow.ui" line="1597"/>
-        <location filename="../Forms/MainWindow.ui" line="3020"/>
-        <source>♀</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="463"/>
-        <location filename="../Forms/MainWindow.ui" line="606"/>
-        <location filename="../Forms/MainWindow.ui" line="833"/>
-        <location filename="../Forms/MainWindow.ui" line="1555"/>
-        <location filename="../Forms/MainWindow.ui" line="1698"/>
-        <location filename="../Forms/MainWindow.ui" line="1925"/>
-        <location filename="../Forms/MainWindow.ui" line="2952"/>
-        <location filename="../Forms/MainWindow.ui" line="2991"/>
-        <location filename="../Forms/MainWindow.ui" line="3123"/>
-        <source>Any</source>
-        <translation>任何</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1045"/>
-        <location filename="../Forms/MainWindow.ui" line="2137"/>
-        <location filename="../Forms/MainWindow.ui" line="2728"/>
-        <source>Genderless</source>
-        <translation>不关心</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1050"/>
-        <location filename="../Forms/MainWindow.ui" line="2142"/>
-        <location filename="../Forms/MainWindow.ui" line="2733"/>
-        <source>50% Male / 50% Female</source>
-        <translation>50% 雄 / 50% 雌</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1055"/>
-        <location filename="../Forms/MainWindow.ui" line="2147"/>
-        <location filename="../Forms/MainWindow.ui" line="2738"/>
-        <source>25% Male / 75% Female</source>
-        <translation>25% 雄 / 75% 雌</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1060"/>
-        <location filename="../Forms/MainWindow.ui" line="2152"/>
-        <location filename="../Forms/MainWindow.ui" line="2743"/>
-        <source>75% Male / 25% Female</source>
-        <translation>75% 雄 / 25% 雌</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1065"/>
-        <location filename="../Forms/MainWindow.ui" line="2157"/>
-        <location filename="../Forms/MainWindow.ui" line="2748"/>
-        <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% 雄 / 12.5% 雌</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1070"/>
-        <location filename="../Forms/MainWindow.ui" line="2162"/>
-        <location filename="../Forms/MainWindow.ui" line="2753"/>
-        <source>100% Male</source>
-        <translation>100% 雄性</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1075"/>
-        <location filename="../Forms/MainWindow.ui" line="2167"/>
-        <location filename="../Forms/MainWindow.ui" line="2758"/>
-        <source>100% Female</source>
-        <translation>100% 雌性</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1023"/>
-        <location filename="../Forms/MainWindow.ui" line="2115"/>
-        <location filename="../Forms/MainWindow.ui" line="2717"/>
-        <source>Gender Ratio:</source>
-        <translation>性别比例:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="487"/>
-        <location filename="../Forms/MainWindow.ui" line="1579"/>
-        <location filename="../Forms/MainWindow.ui" line="3150"/>
-        <source>Use Delay?</source>
-        <translation>使用延迟?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1097"/>
-        <location filename="../Forms/MainWindow.ui" line="2189"/>
-        <location filename="../Forms/MainWindow.ui" line="3130"/>
-        <source>(F)</source>
-        <translation>(帧)</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="1143"/>
+        <location filename="../Forms/MainWindow.ui" line="56"/>
         <source>Wild</source>
         <translation>野外</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="183"/>
-        <location filename="../Forms/MainWindow.cpp" line="191"/>
-        <source>Method H1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="184"/>
-        <location filename="../Forms/MainWindow.cpp" line="192"/>
-        <source>Method H2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.cpp" line="185"/>
-        <location filename="../Forms/MainWindow.cpp" line="193"/>
-        <source>Method H4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="2332"/>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="3196"/>
-        <source>Egg</source>
-        <translation>蛋</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="3201"/>
-        <source>ID</source>
-        <translatorcomment>no need translate</translatorcomment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="3248"/>
+        <location filename="../Forms/MainWindow.ui" line="90"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="2232"/>
-        <source>Spread Seacher</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="3215"/>
-        <source>Profile:</source>
-        <translation>配置:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/MainWindow.ui" line="3240"/>
+        <location filename="../Forms/MainWindow.ui" line="85"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
@@ -480,63 +49,63 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="27"/>
         <source>New</source>
-        <translation type="unfinished">新建</translation>
+        <translation>新建</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="40"/>
         <source>Delete</source>
-        <translation type="unfinished">删除</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="53"/>
         <source>Edit</source>
-        <translation type="unfinished">编辑</translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="66"/>
         <source>Done</source>
-        <translation type="unfinished">完成</translation>
+        <translation>完成</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Profile Name</source>
-        <translation type="unfinished">配置名</translation>
+        <translation>配置名</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Version</source>
-        <translation type="unfinished">版本</translation>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Language</source>
-        <translation type="unfinished">语言</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation>TID</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation>SID</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
         <source>Dead Battery</source>
-        <translation type="unfinished">无电池</translation>
+        <translation>无电池</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="158"/>
         <source>Please select one row.</source>
-        <translation type="unfinished">请选择一列.</translation>
+        <translation>请选择一列.</translation>
     </message>
 </context>
 <context>
@@ -549,12 +118,12 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="26"/>
         <source>Profile Name:</source>
-        <translation type="unfinished">配置名:</translation>
+        <translation>配置名:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="49"/>
         <source>Version:</source>
-        <translation type="unfinished">版本:</translation>
+        <translation>版本:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="63"/>
@@ -604,7 +173,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="153"/>
         <source>Language:</source>
-        <translation type="unfinished">语言:</translation>
+        <translation>语言:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="167"/>
@@ -644,38 +213,38 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="224"/>
         <source>Dead Battery?</source>
-        <translation type="unfinished">无电池？</translation>
+        <translation>无电池？</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="237"/>
         <source>Accept</source>
-        <translation type="unfinished">接受</translation>
+        <translation>接受</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="250"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="36"/>
         <source>Please enter a Profile Name.</source>
-        <translation type="unfinished">请选择配置文件名.</translation>
+        <translation>请选择配置文件名.</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="47"/>
         <source>Please enter Trainer ID in valid decimal format.</source>
-        <translation type="unfinished">请输入有效的 16 进制训练家 ID.</translation>
+        <translation>请输入有效的 16 进制训练家 ID.</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="53"/>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="71"/>
         <source>Please enter a value lower then 65536.</source>
-        <translation type="unfinished">请输入一个小于 65536 的值.</translation>
+        <translation>请输入一个小于 65536 的值.</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="65"/>
         <source>Please enter Trainer SID in valid decimal format.</source>
-        <translation type="unfinished">请输入有效的 16 进制训练家 SID.</translation>
+        <translation>请输入有效的 16 进制训练家 SID.</translation>
     </message>
 </context>
 <context>
@@ -1254,7 +823,7 @@
         <location filename="../Forms/Researcher.ui" line="2238"/>
         <location filename="../Forms/Researcher.ui" line="2478"/>
         <source>None</source>
-        <translation type="unfinished">不指定</translation>
+        <translation>不指定</translation>
     </message>
     <message>
         <location filename="../Forms/Researcher.ui" line="618"/>
@@ -1494,7 +1063,7 @@
     <message>
         <location filename="../Forms/Researcher.ui" line="2680"/>
         <source>Generate</source>
-        <translation type="unfinished">生成</translation>
+        <translation>生成</translation>
     </message>
     <message>
         <location filename="../Forms/Researcher.ui" line="139"/>
@@ -1697,13 +1266,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="143"/>
+        <location filename="../Forms/Researcher.cpp" line="146"/>
         <source>Please enter a max frame lower then 228</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="257"/>
+        <location filename="../Forms/Researcher.cpp" line="260"/>
         <source>You must check the Hex box in order to use Hex values.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Researcher.cpp" line="363"/>
+        <location filename="../Forms/Researcher.cpp" line="391"/>
+        <source>No result found</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1730,67 +1305,422 @@
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="173"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="209"/>
         <source>Nature</source>
-        <translation type="unfinished">性格</translation>
+        <translation>性格</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="175"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="211"/>
         <source>Ability</source>
-        <translation type="unfinished">能力</translation>
+        <translation>能力</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="177"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="213"/>
         <source>HP</source>
-        <translation type="unfinished">体力</translation>
+        <translation>体力</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="179"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="215"/>
         <source>Atk</source>
-        <translation type="unfinished">攻击力</translation>
+        <translation>攻击力</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="181"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="217"/>
         <source>Def</source>
-        <translation type="unfinished">防御</translation>
+        <translation>防御</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="183"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="219"/>
         <source>SpA</source>
-        <translation type="unfinished">特攻</translation>
+        <translation>特攻</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="185"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="221"/>
         <source>SpD</source>
-        <translation type="unfinished">特防</translation>
+        <translation>特防</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="187"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="223"/>
         <source>Spe</source>
-        <translation type="unfinished">速度</translation>
+        <translation>速度</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="189"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="225"/>
         <source>Hidden</source>
-        <translation type="unfinished">隐藏</translation>
+        <translation>隐藏</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="191"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="227"/>
         <source>Power</source>
-        <translation type="unfinished">力量</translation>
+        <translation>力量</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="193"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="229"/>
         <source>Gender</source>
-        <translation type="unfinished">性别</translation>
+        <translation>性别</translation>
+    </message>
+</context>
+<context>
+    <name>Stationary3</name>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="51"/>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="127"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1219"/>
+        <source>RNG Info</source>
+        <translation>RNG 信息</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="151"/>
+        <source>Generate</source>
+        <translation>生成</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="175"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1267"/>
+        <source>Create a Profile</source>
+        <translation>创建配置文件</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="213"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1318"/>
+        <source>Trainer SID:</source>
+        <translation>训练师 SID:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="220"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1325"/>
+        <source>Trainer ID:</source>
+        <translation>训练师 ID:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="227"/>
+        <source>Starting Frame:</source>
+        <translation>开始帧:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="234"/>
+        <source>Seed:</source>
+        <translation>种子:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="241"/>
+        <source>Max Results:</source>
+        <translation>最大帧数:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="274"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1345"/>
+        <source>Method:</source>
+        <translation>方式:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="444"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1452"/>
+        <source>Filters</source>
+        <translation>过滤器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="463"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="606"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="833"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1863"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1902"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="2034"/>
+        <source>Any</source>
+        <translation>任何</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="468"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1907"/>
+        <source>0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="473"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1912"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="487"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="2061"/>
+        <source>Use Delay?</source>
+        <translation>使用延迟?</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="495"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1921"/>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="500"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1926"/>
+        <source>♂</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="505"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1931"/>
+        <source>♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="529"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="643"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="713"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="863"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="907"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="964"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1486"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1525"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1570"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1721"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1779"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1974"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="126"/>
+        <source>None</source>
+        <translation>不指定</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="534"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="648"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="718"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="868"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="912"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="969"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1491"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1530"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1575"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1726"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1784"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1979"/>
+        <source>==</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="539"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="653"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="723"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="873"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="917"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="974"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1496"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1535"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1580"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1731"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1789"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1984"/>
+        <source>&gt;=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="544"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="658"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="728"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="878"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="922"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="979"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1501"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1540"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1585"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1736"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1794"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1989"/>
+        <source>&lt;=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="549"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="663"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="733"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="883"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="927"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="984"/>
+        <source>!=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="569"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1951"/>
+        <source>HP:</source>
+        <translation>体力:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="576"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="2004"/>
+        <source>Atk:</source>
+        <translation>攻击力:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="613"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1997"/>
+        <source>Def:</source>
+        <translation>防御:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="620"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1691"/>
+        <source>SpD:</source>
+        <translation>特防:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="671"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1744"/>
+        <source>Spe:</source>
+        <translation>速度:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="678"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1698"/>
+        <source>SpA:</source>
+        <translation>特攻:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="806"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1836"/>
+        <source>Shiny Only?</source>
+        <translation>只有异色?</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="999"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1600"/>
+        <source>Gender:</source>
+        <translation>性别:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1006"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1607"/>
+        <source>Nature:</source>
+        <translation>性格:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1013"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1614"/>
+        <source>Ability:</source>
+        <translation>能力:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1023"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1628"/>
+        <source>Gender Ratio:</source>
+        <translation>性别比例:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1030"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1621"/>
+        <source>Hidden Power:</source>
+        <translation>隐藏特性:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1037"/>
+        <source>Disable Filters:</source>
+        <translation>关闭过滤器:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1045"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1639"/>
+        <source>Genderless</source>
+        <translation>不关心</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1050"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1644"/>
+        <source>50% Male / 50% Female</source>
+        <translation>50% 雄 / 50% 雌</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1055"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1649"/>
+        <source>25% Male / 75% Female</source>
+        <translation>25% 雄 / 75% 雌</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1060"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1654"/>
+        <source>75% Male / 25% Female</source>
+        <translation>75% 雄 / 25% 雌</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1065"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1659"/>
+        <source>87.5% Male / 12.5% Female</source>
+        <translation>87.5% 雄 / 12.5% 雌</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1070"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1664"/>
+        <source>100% Male</source>
+        <translation>100% 雄性</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1075"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1669"/>
+        <source>100% Female</source>
+        <translation>100% 雌性</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1097"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="2041"/>
+        <source>(F)</source>
+        <translation>(帧)</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1143"/>
+        <source>Searcher</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1243"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="2116"/>
+        <source>Profile:</source>
+        <translation>配置:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="81"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="88"/>
+        <source>Method 1</source>
+        <translation>方式 1</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="82"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="89"/>
+        <source>Method 2</source>
+        <translation>方式 2</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="83"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="90"/>
+        <source>Method 4</source>
+        <translation>方式 4</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="84"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="91"/>
+        <source>XD/Colo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="85"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="92"/>
+        <source>Channel</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1798,7 +1728,7 @@
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="96"/>
         <source>Frame</source>
-        <translation type="unfinished">帧</translation>
+        <translation>帧</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="98"/>
@@ -1808,62 +1738,410 @@
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="102"/>
         <source>Nature</source>
-        <translation type="unfinished">性格</translation>
+        <translation>性格</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="104"/>
         <source>Ability</source>
-        <translation type="unfinished">能力</translation>
+        <translation>能力</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="106"/>
         <source>HP</source>
-        <translation type="unfinished">体力</translation>
+        <translation>体力</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="108"/>
         <source>Atk</source>
-        <translation type="unfinished">攻击力</translation>
+        <translation>攻击力</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="110"/>
         <source>Def</source>
-        <translation type="unfinished">防御</translation>
+        <translation>防御</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="112"/>
         <source>SpA</source>
-        <translation type="unfinished">特攻</translation>
+        <translation>特攻</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="114"/>
         <source>SpD</source>
-        <translation type="unfinished">特防</translation>
+        <translation>特防</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="116"/>
         <source>Spe</source>
-        <translation type="unfinished">速度</translation>
+        <translation>速度</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="118"/>
         <source>Hidden</source>
-        <translation type="unfinished">隐藏</translation>
+        <translation>隐藏</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="120"/>
         <source>Power</source>
-        <translation type="unfinished">力量</translation>
+        <translation>力量</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="122"/>
         <source>Gender</source>
-        <translation type="unfinished">性别</translation>
+        <translation>性别</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="124"/>
         <source>Time</source>
-        <translation type="unfinished">时间</translation>
+        <translation>时间</translation>
+    </message>
+</context>
+<context>
+    <name>Wild3</name>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="14"/>
+        <source>Gen 3 Wild</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="51"/>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="127"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1219"/>
+        <source>RNG Info</source>
+        <translation>RNG 信息</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="151"/>
+        <source>Generate</source>
+        <translation>生成</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="175"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1267"/>
+        <source>Create a Profile</source>
+        <translation>创建配置文件</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="213"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1318"/>
+        <source>Trainer SID:</source>
+        <translation>训练师 SID:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="220"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1325"/>
+        <source>Trainer ID:</source>
+        <translation>训练师 ID:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="227"/>
+        <source>Starting Frame:</source>
+        <translation>开始帧:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="234"/>
+        <source>Seed:</source>
+        <translation>种子:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="241"/>
+        <source>Max Results:</source>
+        <translation>最大帧数:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="274"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1345"/>
+        <source>Method:</source>
+        <translation>方式:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="444"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1452"/>
+        <source>Filters</source>
+        <translation>过滤器</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="463"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="606"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="833"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1863"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1902"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="2034"/>
+        <source>Any</source>
+        <translation>任何</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="468"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1907"/>
+        <source>0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="473"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1912"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="487"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="2061"/>
+        <source>Use Delay?</source>
+        <translation>使用延迟?</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="495"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1921"/>
+        <source>-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="500"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1926"/>
+        <source>♂</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="505"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1931"/>
+        <source>♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="529"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="643"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="713"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="863"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="907"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="964"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1486"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1525"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1570"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1721"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1779"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1974"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="59"/>
+        <source>None</source>
+        <translation>不指定</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="534"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="648"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="718"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="868"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="912"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="969"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1491"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1530"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1575"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1726"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1784"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1979"/>
+        <source>==</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="539"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="653"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="723"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="873"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="917"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="974"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1496"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1535"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1580"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1731"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1789"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1984"/>
+        <source>&gt;=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="544"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="658"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="728"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="878"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="922"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="979"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1501"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1540"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1585"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1736"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1794"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1989"/>
+        <source>&lt;=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="549"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="663"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="733"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="883"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="927"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="984"/>
+        <source>!=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="569"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1951"/>
+        <source>HP:</source>
+        <translation>体力:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="576"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="2004"/>
+        <source>Atk:</source>
+        <translation>攻击力:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="613"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1997"/>
+        <source>Def:</source>
+        <translation>防御:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="620"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1691"/>
+        <source>SpD:</source>
+        <translation>特防:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="671"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1744"/>
+        <source>Spe:</source>
+        <translation>速度:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="678"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1698"/>
+        <source>SpA:</source>
+        <translation>特攻:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="806"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1836"/>
+        <source>Shiny Only?</source>
+        <translation>只有异色?</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="999"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1600"/>
+        <source>Gender:</source>
+        <translation>性别:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1006"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1607"/>
+        <source>Nature:</source>
+        <translation>性格:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1013"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1614"/>
+        <source>Ability:</source>
+        <translation>能力:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1023"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1628"/>
+        <source>Gender Ratio:</source>
+        <translation>性别比例:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1030"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1621"/>
+        <source>Hidden Power:</source>
+        <translation>隐藏特性:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1037"/>
+        <source>Disable Filters:</source>
+        <translation>关闭过滤器:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1045"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1639"/>
+        <source>Genderless</source>
+        <translation>不关心</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1050"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1644"/>
+        <source>50% Male / 50% Female</source>
+        <translation>50% 雄 / 50% 雌</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1055"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1649"/>
+        <source>25% Male / 75% Female</source>
+        <translation>25% 雄 / 75% 雌</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1060"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1654"/>
+        <source>75% Male / 25% Female</source>
+        <translation>75% 雄 / 25% 雌</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1065"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1659"/>
+        <source>87.5% Male / 12.5% Female</source>
+        <translation>87.5% 雄 / 12.5% 雌</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1070"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1664"/>
+        <source>100% Male</source>
+        <translation>100% 雄性</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1075"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1669"/>
+        <source>100% Female</source>
+        <translation>100% 雌性</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1097"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="2041"/>
+        <source>(F)</source>
+        <translation>(帧)</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1143"/>
+        <source>Searcher</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1243"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui" line="2116"/>
+        <source>Profile:</source>
+        <translation>配置:</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="88"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="93"/>
+        <source>Method H1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="89"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="94"/>
+        <source>Method H2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="90"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="95"/>
+        <source>Method H4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

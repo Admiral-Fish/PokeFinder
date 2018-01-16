@@ -91,7 +91,10 @@ Researcher::~Researcher()
 {
     delete ui;
     if (model != NULL)
+    {
         delete model;
+        model = NULL;
+    }
 }
 
 void Researcher::on_pushButtonGenerate32Bit_clicked()
@@ -335,6 +338,8 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 
     delete rng;
     delete rng64;
+    rng = NULL;
+    rng64 = NULL;
 }
 
 void Researcher::on_pushButtonSearch_clicked()
