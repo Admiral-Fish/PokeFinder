@@ -53,6 +53,7 @@ signals:
 private:
     Ui::Stationary3 *ui;
     Searcher3Model *s = NULL;
+    Stationary3Model *g = NULL;
     bool search = false;
     vector<Profile3> profiles;
 

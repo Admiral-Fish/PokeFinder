@@ -42,7 +42,15 @@ Stationary3::~Stationary3()
 {
     delete ui;
     if (s != NULL)
+    {
         delete s;
+        s = NULL;
+    }
+    if (g != NULL)
+    {
+        delete g;
+        g = NULL;
+    }
 }
 
 void Stationary3::CreateProfileXml()
@@ -192,6 +200,11 @@ void Stationary3::on_checkBoxDelayGenerator_clicked()
 
 void Stationary3::on_generate_clicked()
 {
+    if (g != NULL)
+        delete g;
+    g = new Stationary3Model(this);
+    ui->tableViewGenerator->setModel(g);
+
     u32 seed = ui->initialSeedGenerator->text().toUInt(NULL, 16);
     u32 startingFrame = ui->startingFrameGenerator->text().toUInt(NULL, 10);
     u32 maxResults = ui->maxResultsGenerator->text().toUInt(NULL, 10);
@@ -209,14 +222,11 @@ void Stationary3::on_generate_clicked()
                                         ui->comboBoxNatureGenerator->GetChecked(), ui->comboBoxHiddenPowerGenerator->GetChecked(),
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked());
 
-    generator.frameType = (Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL);
+    generator.Setup((Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL));
 
     vector<Frame3> frames = generator.Generate(compare);
-
-    Stationary3Model *model = new Stationary3Model(this);
-    model->SetModel(frames);
-
-    ui->tableViewGenerator->setModel(model);
+    g->SetModel(frames);
+    ui->tableViewGenerator->viewport()->update();
 }
 
 void Stationary3::Search()
@@ -240,7 +250,7 @@ void Stationary3::Search()
                                         ui->comboBoxNatureSearcher->GetChecked(), ui->comboBoxHiddenPowerSearcher->GetChecked(),
                                         ui->checkBoxShinySearcher->isChecked(), false);
 
-    searcher.frameType = (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL);
+    searcher.Setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
 
     u32 min[6], max[6];
 
@@ -295,6 +305,8 @@ void Stationary3::on_search_clicked()
 {
     if (search == true)
         return;
+    if (s != NULL)
+        delete s;
     s = new Searcher3Model(this, (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
     ui->tableViewSearcher->setModel(s);
     std::thread job(&Stationary3::Search, this);

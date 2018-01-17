@@ -42,7 +42,15 @@ Wild3::~Wild3()
 {
     delete ui;
     if (s != NULL)
+    {
         delete s;
+        s = NULL;
+    }
+    if (g != NULL)
+    {
+        delete g;
+        g = NULL;
+    }
 }
 
 void Wild3::UpdateViewSearcher(vector<Frame3> frames)
@@ -159,6 +167,11 @@ void Wild3::on_anyHiddenPowerSearcher_clicked()
 
 void Wild3::on_generate_clicked()
 {
+    if (g != NULL)
+        delete g;
+    g = new Wild3Model(this);
+    ui->tableViewGenerator->setModel(g);
+
     u32 seed = ui->initialSeedGenerator->text().toUInt(NULL, 16);
     u32 startingFrame = ui->startingFrameGenerator->text().toUInt(NULL, 10);
     u32 maxResults = ui->maxResultsGenerator->text().toUInt(NULL, 10);
@@ -179,17 +192,16 @@ void Wild3::on_generate_clicked()
     generator.frameType = (Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL);
 
     vector<Frame3> frames = generator.Generate(compare);
-
-    Wild3Model *model = new Wild3Model(this);
-    model->SetModel(frames);
-
-    ui->tableViewGenerator->setModel(model);
+    g->SetModel(frames);
+    ui->tableViewGenerator->viewport()->update();
 }
 
 void Wild3::on_search_clicked()
 {
     if (search == true)
         return;
+    if (s != NULL)
+        delete s;
     s = new Searcher3Model(this, (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
     ui->tableViewSearcher->setModel(s);
     std::thread job(&Wild3::Search, this);

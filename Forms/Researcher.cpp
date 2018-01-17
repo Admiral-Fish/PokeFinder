@@ -99,6 +99,12 @@ Researcher::~Researcher()
 
 void Researcher::on_pushButtonGenerate32Bit_clicked()
 {
+    bool rng64Bit = ui->rngSelection->currentIndex() == 1;
+    if (model != NULL)
+        delete model;
+    model = new ResearcherModel(this, rng64Bit);
+    ui->tableView->setModel(model);
+
     u64 seed = ui->textBoxSeed->text().toULongLong(NULL, 16);
     u32 maxFrames = ui->textBoxMaxFrames->text().toUInt(NULL, 10);
     u32 startingFrame = ui->textBoxStartingFrame->text().toUInt(NULL, 10);
@@ -275,8 +281,6 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     Calculators[9] = calc[ui->comboBoxOperator10->currentText().toStdString()];
 
     vector<ResearcherFrame> frames;
-    bool rng64Bit = ui->rngSelection->currentIndex() == 1;
-    model = new ResearcherModel(this, rng64Bit);
 
     if (rng64Bit)
     {
@@ -327,8 +331,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     }
 
     model->SetModel(frames);
-
-    ui->tableView->setModel(model);
+    ui->tableView->viewport()->update();
     ui->tableView->resizeColumnToContents(1);
     if (rng64Bit)
     {

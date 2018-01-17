@@ -68,6 +68,7 @@ private:
     vector<Profile3> profiles;
     bool search = false;
     Searcher3Model *s = NULL;
+    Wild3Model *g = NULL;
 
     void SetupModels();
     void CreateProfileXml();
