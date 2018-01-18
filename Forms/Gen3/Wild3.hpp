@@ -62,6 +62,8 @@ private slots:
     void on_anyHiddenPowerSearcher_clicked();
     void UpdateViewSearcher(vector<Frame3> frames);
     void UpdateProfiles();
+    void on_checkBoxDelaySearcher_clicked();
+    void on_checkBoxDelayGenerator_clicked();
 
 private:
     Ui::Wild3 *ui;

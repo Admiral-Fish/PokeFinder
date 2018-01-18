@@ -74,6 +74,7 @@ private slots:
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
     void UpdateViewSearcher(vector<Frame3> frames);
+    void on_checkBoxDelaySearcher_clicked();
 
 public:
     explicit Stationary3(QWidget *parent = 0);

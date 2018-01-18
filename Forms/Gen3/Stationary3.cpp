@@ -187,7 +187,7 @@ void Stationary3::UpdateViewSearcher(vector<Frame3> frames)
 
 void Stationary3::on_checkBoxDelayGenerator_clicked()
 {
-    if(ui->checkBoxDelayGenerator->isChecked())
+    if (ui->checkBoxDelayGenerator->isChecked())
     {
         ui->delayGenerator->setEnabled(true);
     }
@@ -195,6 +195,19 @@ void Stationary3::on_checkBoxDelayGenerator_clicked()
     {
         ui->delayGenerator->setEnabled(false);
         ui->delayGenerator->setText("");
+    }
+}
+
+void Stationary3::on_checkBoxDelaySearcher_clicked()
+{
+    if (ui->checkBoxDelaySearcher->isChecked())
+    {
+        ui->delaySearcher->setEnabled(true);
+    }
+    else
+    {
+        ui->delaySearcher->setEnabled(false);
+        ui->delaySearcher->setText("");
     }
 }
 

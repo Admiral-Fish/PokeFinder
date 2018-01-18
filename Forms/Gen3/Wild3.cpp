@@ -53,6 +53,32 @@ Wild3::~Wild3()
     }
 }
 
+void Wild3::on_checkBoxDelayGenerator_clicked()
+{
+    if (ui->checkBoxDelayGenerator->isChecked())
+    {
+        ui->delayGenerator->setEnabled(true);
+    }
+    else
+    {
+        ui->delayGenerator->setEnabled(false);
+        ui->delayGenerator->setText("");
+    }
+}
+
+void Wild3::on_checkBoxDelaySearcher_clicked()
+{
+    if (ui->checkBoxDelaySearcher->isChecked())
+    {
+        ui->delaySearcher->setEnabled(true);
+    }
+    else
+    {
+        ui->delaySearcher->setEnabled(false);
+        ui->delaySearcher->setText("");
+    }
+}
+
 void Wild3::UpdateViewSearcher(vector<Frame3> frames)
 {
     s->AddItems(frames);
