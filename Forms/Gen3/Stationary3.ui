@@ -44,7 +44,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabStationary">
      <attribute name="title">
@@ -1273,19 +1273,23 @@ QPushButton::disabled {
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QWidget" name="gridLayoutWidget_5">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>11</x>
          <y>20</y>
          <width>231</width>
-         <height>131</height>
+         <height>171</height>
         </rect>
        </property>
-       <layout class="QGridLayout" name="gridLayoutInfo_3" rowstretch="0,0,0" columnstretch="0,0">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetNoConstraint</enum>
-        </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="methodLabel_3">
+          <property name="text">
+           <string>Method:</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="1">
          <widget class="QComboBox" name="comboBoxMethodSearcher">
           <property name="layoutDirection">
@@ -1296,6 +1300,13 @@ QPushButton::disabled {
           </property>
           <property name="frame">
            <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="idLabel_3">
+          <property name="text">
+           <string>Trainer ID:</string>
           </property>
          </widget>
         </item>
@@ -1319,13 +1330,6 @@ QPushButton::disabled {
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="idLabel_3">
-          <property name="text">
-           <string>Trainer ID:</string>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="1">
          <widget class="QTextBox" name="sidSearcher">
           <property name="inputMask">
@@ -1339,12 +1343,15 @@ QPushButton::disabled {
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="methodLabel_3">
+        <item row="3" column="0">
+         <widget class="QLabel" name="label">
           <property name="text">
-           <string>Method:</string>
+           <string>Shadow:</string>
           </property>
          </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="comboBoxShadow"/>
         </item>
        </layout>
       </widget>

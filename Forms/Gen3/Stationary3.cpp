@@ -26,6 +26,9 @@ Stationary3::Stationary3(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->label->setVisible(false);
+    ui->comboBoxShadow->setVisible(false);
+
     SetupModels();
     UpdateProfiles();
 
@@ -77,11 +80,13 @@ void Stationary3::SetupModels()
     ui->comboBoxHiddenPowerGenerator->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
     ui->comboBoxHiddenPowerSearcher->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
 
-    ui->tableViewGenerator->setModel(new Stationary3Model(this));
+    g = new Stationary3Model(this);
+    ui->tableViewGenerator->setModel(g);
     ui->tableViewGenerator->verticalHeader()->setVisible(false);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    ui->tableViewSearcher->setModel(new Searcher3Model(this, Method1));
+    s = new Searcher3Model(this, Method1);
+    ui->tableViewSearcher->setModel(s);
     ui->tableViewSearcher->verticalHeader()->setVisible(false);
     ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -97,6 +102,8 @@ void Stationary3::SetupModels()
     ui->comboBoxMethodSearcher->addItem(tr("Method 2"), Method2);
     ui->comboBoxMethodSearcher->addItem(tr("Method 4"), Method4);
     ui->comboBoxMethodSearcher->addItem(tr("XD/Colo"), XDColo);
+    ui->comboBoxMethodSearcher->addItem(tr("Gales"), XD);
+    ui->comboBoxMethodSearcher->addItem(tr("Colo"), Colo);
     ui->comboBoxMethodSearcher->addItem(tr("Channel"), Channel);
 
     ui->initialSeedGenerator->SetValues("[^0-9A-F]", 0xffffffff, 16);
@@ -264,6 +271,8 @@ void Stationary3::Search()
                                         ui->checkBoxShinySearcher->isChecked(), false);
 
     searcher.Setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
+    if (searcher.frameType == XD || searcher.frameType == Colo)
+        searcher.SetupNatureLock(ui->comboBoxShadow->currentIndex());
 
     u32 min[6], max[6];
 
@@ -324,4 +333,58 @@ void Stationary3::on_search_clicked()
     ui->tableViewSearcher->setModel(s);
     std::thread job(&Stationary3::Search, this);
     job.detach();
+}
+
+void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
+{
+    (void) index;
+    Method method = (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL);
+    ui->comboBoxShadow->clear();
+
+    if (method == XD)
+    {
+        QStringList s;
+        s << tr("Altaria") << tr("Arbok") << tr("Banette");
+        s << tr("Butterfree") << tr("Chansey") << tr("Delcatty");
+        s << tr("Dodrio") << tr("Dragonite") << tr("Dugtrio");
+        s << tr("Duskull") << tr("Electabuzz") << tr("Farfetch'd");
+        s << tr("Golduck") << tr("Grimer") << tr("Growlithe");
+        s << tr("Gulpin (Citadark)") << tr("Gulpin (Initial)") << tr("Gulpin (Phenac)");
+        s << tr("Hitmonchan") << tr("Hitmonlee") << tr("Hypno");
+        s << tr("Kangaskhan") << tr("Lapras") << tr("Ledyba");
+        s << tr("Lickitung") << tr("Lunatone") << tr("Magcargo");
+        s << tr("Magmar") << tr("Magneton") << tr("Makuhita");
+        s << tr("Manectric") << tr("Marowak") << tr("Mawile");
+        s << tr("Meowth") << tr("Mr. Mime") << tr("Natu");
+        s << tr("Nosepass") << tr("Numel") << tr("Paras");
+        s << tr("Pidgeotto") << tr("Pineco") << tr("Pinsir");
+        s << tr("Poliwrath") << tr("Poochyena") << tr("Primeape");
+        s << tr("Ralts") << tr("Rapidash") << tr("Raticate");
+        s << tr("Roselia") << tr("Sableye") << tr("Salamence");
+        s << tr("Scyther") <<tr("Seedot (Citadark)") << tr("Seedot (Initial)");
+        s << tr("Seedot (Phenac)") << tr("Seel") << tr("Shroomish");
+        s << tr("Snorlax") << tr("Snorunt") << tr("Solrock");
+        s << tr("Spearow") << tr("Spheal (Citadark)") << tr("Spheal (Initial)");
+        s << tr("Spheal (Phenac)") << tr("Spinarak") << tr("Starmie");
+        s << tr("Swinub") << tr("Tangela") << tr("Venomoth");
+        s << tr("Voltorb") << tr("Vulpix") << tr("Weepinbell");
+
+        ui->comboBoxShadow->addItems(s);
+        ui->comboBoxShadow->setVisible(true);
+        ui->label->setVisible(true);
+    }
+    else if (method == Colo)
+    {
+        QStringList s;
+        s << tr("Gligar") << tr("Heracross") << tr("Makuhita") << tr("Murkrow") << tr("Ursaring");
+
+        ui->comboBoxShadow->addItems(s);
+        ui->comboBoxShadow->setVisible(true);
+        ui->label->setVisible(true);
+    }
+    else
+    {
+        ui->comboBoxShadow->setVisible(false);
+        ui->label->setVisible(false);
+    }
 }

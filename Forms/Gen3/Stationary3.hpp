@@ -75,6 +75,7 @@ private slots:
     void on_anyHiddenPowerSearcher_clicked();
     void UpdateViewSearcher(vector<Frame3> frames);
     void on_checkBoxDelaySearcher_clicked();
+    void on_comboBoxMethodSearcher_currentIndexChanged(int index);
 
 public:
     explicit Stationary3(QWidget *parent = 0);
