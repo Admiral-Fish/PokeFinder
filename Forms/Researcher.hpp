@@ -50,6 +50,7 @@ class Researcher : public QMainWindow
 
 private:
     u64 GetCustom(string text, ResearcherFrame frame, vector<ResearcherFrame> frames);
+    void SetupModels();
     static inline u64 Divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
     static inline u64 Modulo(u64 x, u64 y) { return x % y; }
     static inline u64 ShiftRight(u64 x, u64 y) { return x >> y; }
@@ -61,6 +62,8 @@ private:
     static inline u64 Subtract(u64 x, u64 y) { return x - y; }
     static inline u64 Multiply(u64 x, u64 y) { return x * y; }
 
+    Ui::Researcher *ui;
+    ResearcherModel *model = NULL;
     unordered_map<string, int> keys;
 
 public:
@@ -72,10 +75,6 @@ private slots:
     void on_rngSelection_currentChanged(int index);
     void on_pushButtonSearch_clicked();
     void on_pushButtonNext_clicked();
-
-private:
-    Ui::Researcher *ui;
-    ResearcherModel *model = NULL;
 
 };
 

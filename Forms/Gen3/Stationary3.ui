@@ -44,7 +44,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tabStationary">
      <attribute name="title">
@@ -1124,6 +1124,9 @@ QHeaderView::section {
 }
 </string>
       </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
       <property name="sortingEnabled">
        <bool>false</bool>
       </property>
@@ -1273,7 +1276,7 @@ QPushButton::disabled {
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>11</x>
@@ -2094,6 +2097,9 @@ QHeaderView::section {
 	color: white;
 }
 </string>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
       </property>
       <property name="sortingEnabled">
        <bool>true</bool>

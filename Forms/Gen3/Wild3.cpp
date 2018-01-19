@@ -110,11 +110,17 @@ void Wild3::SetupModels()
     ui->comboBoxHiddenPowerGenerator->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
     ui->comboBoxHiddenPowerSearcher->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
 
-    ui->tableViewGenerator->setModel(new Wild3Model(this));
+    if (g != NULL)
+        delete g;
+    g = new Wild3Model(this);
+    ui->tableViewGenerator->setModel(g);
     ui->tableViewGenerator->verticalHeader()->setVisible(false);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    ui->tableViewSearcher->setModel(new Searcher3Model(this, MethodH1));
+    if (s != NULL)
+        delete s;
+    s = new Searcher3Model(this, MethodH1);
+    ui->tableViewSearcher->setModel(s);
     ui->tableViewSearcher->verticalHeader()->setVisible(false);
     ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 

@@ -26,6 +26,8 @@ Researcher::Researcher(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    SetupModels();
+
     keys["64Bit"] = 0;
     keys["32Bit"] = 1;
     keys["32Bit High"] = 2;
@@ -79,12 +81,6 @@ Researcher::Researcher(QWidget *parent) :
     ui->lineEditRValue8->SetValues("[^0-9A-F]", 0xffffffff, 16);
     ui->lineEditRValue9->SetValues("[^0-9A-F]", 0xffffffff, 16);
     ui->lineEditRValue10->SetValues("[^0-9A-F]", 0xffffffff, 16);
-
-    ui->tableView->setModel(new ResearcherModel(this, false));
-    ui->tableView->resizeColumnsToContents();
-
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableView->verticalHeader()->setVisible(false);
 }
 
 Researcher::~Researcher()
@@ -456,6 +452,16 @@ u64 Researcher::GetCustom(string text, ResearcherFrame frame, vector<ResearcherF
         default:
             return 0;
     }
+}
+
+void Researcher::SetupModels()
+{
+    if (model != NULL)
+        delete model;
+    model = new ResearcherModel(this, false);
+    ui->tableView->setModel(model);
+    ui->tableView->resizeColumnsToContents();
+    ui->tableView->verticalHeader()->setVisible(false);
 }
 
 void Researcher::on_rngSelection_currentChanged(int index)
