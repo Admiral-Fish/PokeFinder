@@ -4,11 +4,6 @@
 <context>
     <name>IVFilter</name>
     <message>
-        <location filename="../Forms/IVFilter.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Forms/IVFilter.ui" line="145"/>
         <location filename="../Forms/IVFilter.ui" line="277"/>
         <location filename="../Forms/IVFilter.ui" line="352"/>
@@ -61,17 +56,17 @@
     <message>
         <location filename="../Forms/IVFilter.ui" line="204"/>
         <source>SpA:</source>
-        <translation type="unfinished">Attaque spéciale :</translation>
+        <translation>Attaque spéciale :</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="454"/>
         <source>Def:</source>
-        <translation type="unfinished">Défense :</translation>
+        <translation>Défense :</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="529"/>
         <source>SpD:</source>
-        <translation type="unfinished">Défense spéciale :</translation>
+        <translation>Défense spéciale :</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="648"/>
@@ -81,12 +76,12 @@
     <message>
         <location filename="../Forms/IVFilter.ui" line="668"/>
         <source>Atk:</source>
-        <translation type="unfinished">Attaque :</translation>
+        <translation>Attaque :</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="700"/>
         <source>HP:</source>
-        <translation type="unfinished">PV :</translation>
+        <translation>PV :</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="738"/>
@@ -261,7 +256,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="107"/>
         <source>TID:</source>
-        <translation type="unfinished">ID:</translation>
+        <translation>ID:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="130"/>

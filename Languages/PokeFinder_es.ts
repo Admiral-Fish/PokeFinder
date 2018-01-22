@@ -4,11 +4,6 @@
 <context>
     <name>IVFilter</name>
     <message>
-        <location filename="../Forms/IVFilter.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Forms/IVFilter.ui" line="145"/>
         <location filename="../Forms/IVFilter.ui" line="277"/>
         <location filename="../Forms/IVFilter.ui" line="352"/>
@@ -61,32 +56,32 @@
     <message>
         <location filename="../Forms/IVFilter.ui" line="204"/>
         <source>SpA:</source>
-        <translation type="unfinished">Ataque Especial:</translation>
+        <translation>Ataque Especial:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="454"/>
         <source>Def:</source>
-        <translation type="unfinished">Defensa:</translation>
+        <translation>Defensa:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="529"/>
         <source>SpD:</source>
-        <translation type="unfinished">Defensa Especial:</translation>
+        <translation>Defensa Especial:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="648"/>
         <source>Spe:</source>
-        <translation type="unfinished">Especial:</translation>
+        <translation>Especial:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="668"/>
         <source>Atk:</source>
-        <translation type="unfinished">Ataque:</translation>
+        <translation>Ataque:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="700"/>
         <source>HP:</source>
-        <translation type="unfinished">Puntos de Golpe:</translation>
+        <translation>Puntos de Golpe:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="738"/>

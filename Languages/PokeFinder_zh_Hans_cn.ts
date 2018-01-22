@@ -4,11 +4,6 @@
 <context>
     <name>IVFilter</name>
     <message>
-        <location filename="../Forms/IVFilter.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Forms/IVFilter.ui" line="145"/>
         <location filename="../Forms/IVFilter.ui" line="277"/>
         <location filename="../Forms/IVFilter.ui" line="352"/>
@@ -16,7 +11,7 @@
         <location filename="../Forms/IVFilter.ui" line="489"/>
         <location filename="../Forms/IVFilter.ui" line="564"/>
         <source>None</source>
-        <translation type="unfinished">不指定</translation>
+        <translation>不指定</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="150"/>
@@ -61,32 +56,32 @@
     <message>
         <location filename="../Forms/IVFilter.ui" line="204"/>
         <source>SpA:</source>
-        <translation type="unfinished">特攻:</translation>
+        <translation>特攻:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="454"/>
         <source>Def:</source>
-        <translation type="unfinished">防御:</translation>
+        <translation>防御:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="529"/>
         <source>SpD:</source>
-        <translation type="unfinished">特防:</translation>
+        <translation>特防:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="648"/>
         <source>Spe:</source>
-        <translation type="unfinished">速度:</translation>
+        <translation>速度:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="668"/>
         <source>Atk:</source>
-        <translation type="unfinished">攻击力:</translation>
+        <translation>攻击力:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="700"/>
         <source>HP:</source>
-        <translation type="unfinished">体力:</translation>
+        <translation>体力:</translation>
     </message>
     <message>
         <location filename="../Forms/IVFilter.ui" line="738"/>
@@ -2478,7 +2473,7 @@
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="100"/>
         <source>Frame</source>
-        <translation type="unfinished">帧</translation>
+        <translation>帧</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="102"/>
@@ -2498,62 +2493,62 @@
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="110"/>
         <source>Nature</source>
-        <translation type="unfinished">性格</translation>
+        <translation>性格</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="112"/>
         <source>Ability</source>
-        <translation type="unfinished">能力</translation>
+        <translation>能力</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="114"/>
         <source>HP</source>
-        <translation type="unfinished">体力</translation>
+        <translation>体力</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="116"/>
         <source>Atk</source>
-        <translation type="unfinished">攻击力</translation>
+        <translation>攻击力</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="118"/>
         <source>Def</source>
-        <translation type="unfinished">防御</translation>
+        <translation>防御</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="120"/>
         <source>SpA</source>
-        <translation type="unfinished">特攻</translation>
+        <translation>特攻</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="122"/>
         <source>SpD</source>
-        <translation type="unfinished">特防</translation>
+        <translation>特防</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="124"/>
         <source>Spe</source>
-        <translation type="unfinished">速度</translation>
+        <translation>速度</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="126"/>
         <source>Hidden</source>
-        <translation type="unfinished">隐藏</translation>
+        <translation>隐藏</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="128"/>
         <source>Power</source>
-        <translation type="unfinished">力量</translation>
+        <translation>力量</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="130"/>
         <source>Gender</source>
-        <translation type="unfinished">性别</translation>
+        <translation>性别</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="132"/>
         <source>Time</source>
-        <translation type="unfinished">时间</translation>
+        <translation>时间</translation>
     </message>
 </context>
 </TS>

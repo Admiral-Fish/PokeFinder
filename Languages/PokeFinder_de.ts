@@ -4,11 +4,6 @@
 <context>
     <name>IVFilter</name>
     <message>
-        <location filename="../Forms/IVFilter.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Forms/IVFilter.ui" line="145"/>
         <location filename="../Forms/IVFilter.ui" line="277"/>
         <location filename="../Forms/IVFilter.ui" line="352"/>
