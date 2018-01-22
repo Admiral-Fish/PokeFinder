@@ -238,10 +238,7 @@ void Stationary3::on_generate_clicked()
 
     int genderRatioIndex = ui->comboBoxGenderRatioGenerator->currentIndex();
     Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
-    FrameCompare compare = FrameCompare(ui->comboBoxHPGenerator->currentIndex(), ui->spinBoxHPGenerator->value(), ui->comboBoxAtkGenerator->currentIndex(),
-                                        ui->spinBoxAtkGenerator->value(), ui->comboBoxDefGenerator->currentIndex(), ui->spinBoxDefGenerator->value(),
-                                        ui->comboBoxSpAGenerator->currentIndex(), ui->spinBoxSpAGenerator->value(), ui->comboBoxSpDGenerator->currentIndex(),
-                                        ui->spinBoxSpDGenerator->value(), ui->comboBoxSpeGenerator->currentIndex(), ui->spinBoxSpeGenerator->value(),
+    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->GetEvals(), ui->ivFilterGenerator->GetValues(),
                                         ui->comboBoxGenderGenerator->currentIndex(), genderRatioIndex, ui->comboBoxAbilityGenerator->currentIndex(),
                                         ui->comboBoxNatureGenerator->GetChecked(), ui->comboBoxHiddenPowerGenerator->GetChecked(),
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked());
@@ -259,20 +256,14 @@ void Stationary3::Search()
     u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
-    int ivFilter[6] = { ui->comboBoxHPSearcher->currentIndex(), ui->comboBoxAtkSearcher->currentIndex(),
-                        ui->comboBoxDefSearcher->currentIndex(), ui->comboBoxSpASearcher->currentIndex(),
-                        ui->comboBoxSpDSearcher->currentIndex(), ui->comboBoxSpeSearcher->currentIndex() };
-    u32 ivs[6] = { (u32)ui->spinBoxHPSearcher->value(), (u32)ui->spinBoxAtkSearcher->value(),
-                   (u32)ui->spinBoxDefSearcher->value(), (u32)ui->spinBoxSpASearcher->value(),
-                   (u32)ui->spinBoxSpDSearcher->value(), (u32)ui->spinBoxSpeSearcher->value() };
+    vector<u32> eval = ui->ivFilterSearcher->GetEvals();
+    vector<u32> ivs = ui->ivFilterSearcher->GetValues();
 
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
     Searcher3 searcher = Searcher3(tid, sid);
-    FrameCompare compare = FrameCompare(ivFilter[0], ivs[0], ivFilter[1], ivs[1], ivFilter[2], ivs[2],
-                                        ivFilter[3], ivs[3], ivFilter[4], ivs[4], ivFilter[5], ivs[5],
-                                        ui->comboBoxGenderSearcher->currentIndex(), genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(),
-                                        ui->comboBoxNatureSearcher->GetChecked(), ui->comboBoxHiddenPowerSearcher->GetChecked(),
-                                        ui->checkBoxShinySearcher->isChecked(), false);
+    FrameCompare compare = FrameCompare(eval, ivs, ui->comboBoxGenderSearcher->currentIndex(), genderRatioIndex,
+                                        ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->GetChecked(),
+                                        ui->comboBoxHiddenPowerSearcher->GetChecked(), ui->checkBoxShinySearcher->isChecked(), false);
 
     searcher.Setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
     if (searcher.frameType == XD || searcher.frameType == Colo)
@@ -282,7 +273,7 @@ void Stationary3::Search()
 
     for (int i = 0; i < 6; i++)
     {
-        switch (ivFilter[i])
+        switch (eval[i])
         {
             case 0:
                 min[i] = 0;

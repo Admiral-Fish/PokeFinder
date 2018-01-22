@@ -32,6 +32,7 @@
 #include <QDir>
 #include <libPokeFinder/Gen3/Profile3.hpp>
 #include <Forms/ProfileManager/ProfileManager3.hpp>
+#include <Forms/IVFilter.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <thread>

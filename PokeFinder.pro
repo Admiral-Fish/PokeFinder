@@ -72,7 +72,8 @@ SOURCES += \
     Models/Gen3/Searcher3Model.cpp \
     Forms/Gen3/Stationary3.cpp \
     Forms/MainWindow.cpp \
-    Forms/Gen3/Wild3.cpp
+    Forms/Gen3/Wild3.cpp \
+    Forms/IVFilter.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManager3.hpp \
@@ -113,7 +114,8 @@ HEADERS += \
     Models/Gen3/Searcher3Model.hpp \
     Forms/Gen3/Stationary3.hpp \
     Forms/MainWindow.hpp \
-    Forms/Gen3/Wild3.hpp
+    Forms/Gen3/Wild3.hpp \
+    Forms/IVFilter.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManager3.ui \
@@ -121,7 +123,8 @@ FORMS += \
     Forms/Researcher.ui \
     Forms/Gen3/Stationary3.ui \
     Forms/MainWindow.ui \
-    Forms/Gen3/Wild3.ui
+    Forms/Gen3/Wild3.ui \
+    Forms/IVFilter.ui
 
 RESOURCES += \
     resources.qrc
