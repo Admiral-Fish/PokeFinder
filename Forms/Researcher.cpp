@@ -55,32 +55,32 @@ Researcher::Researcher(QWidget *parent) :
     keys["Previous9"] = 24;
     keys["Previous10"] = 25;
 
-    ui->textBoxStartingFrame->SetValues("[^0-9]", 1, 0xffffffffffffffff, 10);
-    ui->textBoxMaxFrames->SetValues("[^0-9]", 1, 0xffffffffffffffff, 10);
-    ui->textBoxSeed->SetValues("[^0-9A-F]", 0, 0xffffffffffffffff, 16);
-    ui->textBoxSearch->SetValues("[^0-9A-F]", 0, 0xffffffffffffffff, 16);
+    ui->textBoxStartingFrame->SetValues(1, 0, true);
+    ui->textBoxMaxFrames->SetValues(1, 0, true);
+    ui->textBoxSeed->SetValues(0, 0, false);
+    ui->textBoxSearch->SetValues(0, 0, false);
 
-    ui->textBoxMult32Bit->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->textBoxAdd32Bit->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
+    ui->textBoxMult32Bit->SetValues(0, 32, false);
+    ui->textBoxAdd32Bit->SetValues(0, 32, false);
 
-    ui->textBoxMult64Bit->SetValues("[^0-9A-F]", 0, 0xffffffffffffffff, 16);
-    ui->textBoxAdd64Bit->SetValues("[^0-9A-F]", 0, 0xffffffffffffffff, 16);
+    ui->textBoxMult64Bit->SetValues(0, 0, false);
+    ui->textBoxAdd64Bit->SetValues(0, 0, false);
 
-    ui->textBoxStatus3->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->textBoxStatus2->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->textBoxStatus1->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->textBoxStatus0->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
+    ui->textBoxStatus3->SetValues(0, 32, false);
+    ui->textBoxStatus2->SetValues(0, 32, false);
+    ui->textBoxStatus1->SetValues(0, 32, false);
+    ui->textBoxStatus0->SetValues(0, 32, false);
 
-    ui->lineEditRValue1->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->lineEditRValue2->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->lineEditRValue3->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->lineEditRValue4->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->lineEditRValue5->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->lineEditRValue6->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->lineEditRValue7->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->lineEditRValue8->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->lineEditRValue9->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->lineEditRValue10->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
+    ui->lineEditRValue1->SetValues(0, 32, false);
+    ui->lineEditRValue2->SetValues(0, 32, false);
+    ui->lineEditRValue3->SetValues(0, 32, false);
+    ui->lineEditRValue4->SetValues(0, 32, false);
+    ui->lineEditRValue5->SetValues(0, 32, false);
+    ui->lineEditRValue6->SetValues(0, 32, false);
+    ui->lineEditRValue7->SetValues(0, 32, false);
+    ui->lineEditRValue8->SetValues(0, 32, false);
+    ui->lineEditRValue9->SetValues(0, 32, false);
+    ui->lineEditRValue10->SetValues(0, 32, false);
 }
 
 Researcher::~Researcher()

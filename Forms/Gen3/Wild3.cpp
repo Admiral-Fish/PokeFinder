@@ -134,15 +134,15 @@ void Wild3::SetupModels()
     ui->comboBoxMethodSearcher->addItem(tr("Method H2"), MethodH2);
     ui->comboBoxMethodSearcher->addItem(tr("Method H4"), MethodH4);
 
-    ui->initialSeedGenerator->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
-    ui->idGenerator->SetValues("[^0-9]", 0, 0xffff, 10);
-    ui->sidGenerator->SetValues("[^0-9]", 0, 0xffff, 10);
-    ui->startingFrameGenerator->SetValues("[^0-9]", 1, 0xffffffff, 10);
-    ui->maxResultsGenerator->SetValues("[^0-9]", 1, 0xffffffff, 10);
-    ui->delayGenerator->SetValues("[^0-9]", 0, 0xffffffff, 10);
+    ui->initialSeedGenerator->SetValues(0, 32, false);
+    ui->idGenerator->SetValues(0, 48, true);
+    ui->sidGenerator->SetValues(0, 48, true);
+    ui->startingFrameGenerator->SetValues(1, 32, true);
+    ui->maxResultsGenerator->SetValues(1, 32, true);
+    ui->delayGenerator->SetValues(1, 32, true);
 
-    ui->idSearcher->SetValues("[^0-9]", 0, 0xffff, 10);
-    ui->sidSearcher->SetValues("[^0-9]", 0, 0xffff, 10);
+    ui->idSearcher->SetValues(0, 48, true);
+    ui->sidSearcher->SetValues(0, 48, true);
 }
 
 void Wild3::CreateProfileXml()

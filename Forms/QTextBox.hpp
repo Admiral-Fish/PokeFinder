@@ -41,7 +41,7 @@ public slots:
 
 public:
     QTextBox(QWidget *parent = 0);
-    void SetValues(QString string, u64 min, u64 max, u32 base);
+    void SetValues(u64 min, u64 shift, bool isDecimal);
     void SetFilter(QString string);
     void SetValue(u64 value);
     void SetBase(u32 base);

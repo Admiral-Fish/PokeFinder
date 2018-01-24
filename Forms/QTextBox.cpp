@@ -41,12 +41,12 @@ void QTextBox::OnTextChanged(QString string)
     }
 }
 
-void QTextBox::SetValues(QString string, u64 min, u64 max, u32 base)
+void QTextBox::SetValues(u64 min, u64 shift, bool isDecimal)
 {
-    maxValue = max;
+    maxValue = 0xFFFFFFFFFFFFFFFF >> shift;
     minValue = min;
-    this->base = base;
-    filter = QRegExp(string);
+    base = isDecimal ? 10 : 16;
+    filter = QRegExp(isDecimal ? "[^0-9]" : "[^0-9A-F]");
 }
 
 void QTextBox::SetFilter(QString string)
