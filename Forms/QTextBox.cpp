@@ -31,17 +31,20 @@ void QTextBox::OnTextChanged(QString string)
         string = string.toUpper();
         string.remove(filter);
         u64 temp = string.toULongLong(NULL, base);
+
         if (temp > maxValue)
-        {
             string = QString::number(maxValue, base);
-        }
+        if (temp < minValue)
+            string = QString::number(minValue, base);
+
         setText(string);
     }
 }
 
-void QTextBox::SetValues(QString string, u64 value, u32 base)
+void QTextBox::SetValues(QString string, u64 min, u64 max, u32 base)
 {
-    maxValue = value;
+    maxValue = max;
+    minValue = min;
     this->base = base;
     filter = QRegExp(string);
 }

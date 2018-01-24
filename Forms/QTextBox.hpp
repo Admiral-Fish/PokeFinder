@@ -32,6 +32,7 @@ class QTextBox : public QLineEdit
 
 private:
     u64 maxValue = NULL;
+    u64 minValue;
     u32 base;
     QRegExp filter;
 
@@ -40,7 +41,7 @@ public slots:
 
 public:
     QTextBox(QWidget *parent = 0);
-    void SetValues(QString string, u64 value, u32 base);
+    void SetValues(QString string, u64 min, u64 max, u32 base);
     void SetFilter(QString string);
     void SetValue(u64 value);
     void SetBase(u32 base);

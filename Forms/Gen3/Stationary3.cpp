@@ -110,15 +110,15 @@ void Stationary3::SetupModels()
     ui->comboBoxMethodSearcher->addItem(tr("Colo"), Colo);
     ui->comboBoxMethodSearcher->addItem(tr("Channel"), Channel);
 
-    ui->initialSeedGenerator->SetValues("[^0-9A-F]", 0xffffffff, 16);
-    ui->idGenerator->SetValues("[^0-9]", 0xffff, 10);
-    ui->sidGenerator->SetValues("[^0-9]", 0xffff, 10);
-    ui->startingFrameGenerator->SetValues("[^0-9]", 0xffffffff, 10);
-    ui->maxResultsGenerator->SetValues("[^0-9]", 0xffffffff, 10);
-    ui->delayGenerator->SetValues("[^0-9]", 0xffffffff, 10);
+    ui->initialSeedGenerator->SetValues("[^0-9A-F]", 0, 0xffffffff, 16);
+    ui->idGenerator->SetValues("[^0-9]", 0, 0xffff, 10);
+    ui->sidGenerator->SetValues("[^0-9]", 0, 0xffff, 10);
+    ui->startingFrameGenerator->SetValues("[^0-9]", 1, 0xffffffff, 10);
+    ui->maxResultsGenerator->SetValues("[^0-9]", 1, 0xffffffff, 10);
+    ui->delayGenerator->SetValues("[^0-9]", 0, 0xffffffff, 10);
 
-    ui->idSearcher->SetValues("[^0-9]", 0xffff, 10);
-    ui->sidSearcher->SetValues("[^0-9]", 0xffff, 10);
+    ui->idSearcher->SetValues("[^0-9]", 0, 0xffff, 10);
+    ui->sidSearcher->SetValues("[^0-9]", 0, 0xffff, 10);
 }
 
 void Stationary3::on_saveProfileGenerator_clicked()
