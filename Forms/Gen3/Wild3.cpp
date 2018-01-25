@@ -218,7 +218,7 @@ void Wild3::on_generate_clicked()
                                         ui->comboBoxNatureGenerator->GetChecked(), ui->comboBoxHiddenPowerGenerator->GetChecked(),
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked());
 
-    generator.frameType = (Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL);
+    generator.Setup((Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL));
 
     vector<Frame3> frames = generator.Generate(compare);
     g->SetModel(frames);
