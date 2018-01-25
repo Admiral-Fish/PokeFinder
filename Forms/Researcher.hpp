@@ -38,7 +38,7 @@ using namespace std;
 typedef uint32_t u32;
 typedef uint64_t u64;
 typedef u64 (*func)(u64, u64);
-typedef unordered_map<string, func> Calculator;
+typedef QMap<QString, func> Calculator;
 
 namespace Ui {
 class Researcher;
@@ -52,7 +52,7 @@ protected:
     void changeEvent(QEvent*);
 
 private:
-    u64 GetCustom(string text, ResearcherFrame frame, vector<ResearcherFrame> frames);
+    u64 GetCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames);
     void SetupModels();
     static inline u64 Divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
     static inline u64 Modulo(u64 x, u64 y) { return x % y; }
@@ -67,7 +67,7 @@ private:
 
     Ui::Researcher *ui;
     ResearcherModel *model = NULL;
-    unordered_map<string, int> keys;
+    QMap<QString, int> keys;
 
 public:
     explicit Researcher(QWidget *parent = 0);

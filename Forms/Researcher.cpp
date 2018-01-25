@@ -28,33 +28,6 @@ Researcher::Researcher(QWidget *parent) :
 
     SetupModels();
 
-    keys["64Bit"] = 0;
-    keys["32Bit"] = 1;
-    keys["32Bit High"] = 2;
-    keys["32Bit Low"] = 3;
-    keys["16Bit High"] = 4;
-    keys["16Bit Low"] = 5;
-    keys["Custom 1"] = 6;
-    keys["Custom 2"] = 7;
-    keys["Custom 3"] = 8;
-    keys["Custom 4"] = 9;
-    keys["Custom 5"] = 10;
-    keys["Custom 6"] = 11;
-    keys["Custom 7"] = 12;
-    keys["Custom 8"] = 13;
-    keys["Custom 9"] = 14;
-    keys["Custom 10"] = 15;
-    keys["Previous 1"] = 16;
-    keys["Previous 2"] = 17;
-    keys["Previous 3"] = 18;
-    keys["Previous 4"] = 19;
-    keys["Previous 5"] = 20;
-    keys["Previous 6"] = 21;
-    keys["Previous 7"] = 22;
-    keys["Previous 8"] = 23;
-    keys["Previous 9"] = 24;
-    keys["Previous 10"] = 25;
-
     ui->textBoxStartingFrame->SetValues(1, 0, true);
     ui->textBoxMaxFrames->SetValues(1, 0, true);
     ui->textBoxSeed->SetValues(0, 0, false);
@@ -281,16 +254,16 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         }
     }
 
-    Calculators[0] = calc[ui->comboBoxOperator1->currentText().toStdString()];
-    Calculators[1] = calc[ui->comboBoxOperator2->currentText().toStdString()];
-    Calculators[2] = calc[ui->comboBoxOperator3->currentText().toStdString()];
-    Calculators[3] = calc[ui->comboBoxOperator4->currentText().toStdString()];
-    Calculators[4] = calc[ui->comboBoxOperator5->currentText().toStdString()];
-    Calculators[5] = calc[ui->comboBoxOperator6->currentText().toStdString()];
-    Calculators[6] = calc[ui->comboBoxOperator7->currentText().toStdString()];
-    Calculators[7] = calc[ui->comboBoxOperator8->currentText().toStdString()];
-    Calculators[8] = calc[ui->comboBoxOperator9->currentText().toStdString()];
-    Calculators[9] = calc[ui->comboBoxOperator10->currentText().toStdString()];
+    Calculators[0] = calc[ui->comboBoxOperator1->currentText()];
+    Calculators[1] = calc[ui->comboBoxOperator2->currentText()];
+    Calculators[2] = calc[ui->comboBoxOperator3->currentText()];
+    Calculators[3] = calc[ui->comboBoxOperator4->currentText()];
+    Calculators[4] = calc[ui->comboBoxOperator5->currentText()];
+    Calculators[5] = calc[ui->comboBoxOperator6->currentText()];
+    Calculators[6] = calc[ui->comboBoxOperator7->currentText()];
+    Calculators[7] = calc[ui->comboBoxOperator8->currentText()];
+    Calculators[8] = calc[ui->comboBoxOperator9->currentText()];
+    Calculators[9] = calc[ui->comboBoxOperator10->currentText()];
 
     vector<ResearcherFrame> frames;
 
@@ -303,17 +276,17 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         rng->AdvanceFrames(startingFrame - 1);
     }
 
-    string textL[10] = { ui->comboBoxLValue1->currentText().toStdString(), ui->comboBoxLValue2->currentText().toStdString(),
-                          ui->comboBoxLValue3->currentText().toStdString(), ui->comboBoxLValue4->currentText().toStdString(),
-                          ui->comboBoxLValue5->currentText().toStdString(), ui->comboBoxLValue6->currentText().toStdString(),
-                          ui->comboBoxLValue7->currentText().toStdString(), ui->comboBoxLValue8->currentText().toStdString(),
-                          ui->comboBoxLValue9->currentText().toStdString(), ui->comboBoxLValue10->currentText().toStdString() };
+    QString textL[10] = { ui->comboBoxLValue1->currentText(), ui->comboBoxLValue2->currentText(),
+                          ui->comboBoxLValue3->currentText(), ui->comboBoxLValue4->currentText(),
+                          ui->comboBoxLValue5->currentText(), ui->comboBoxLValue6->currentText(),
+                          ui->comboBoxLValue7->currentText(), ui->comboBoxLValue8->currentText(),
+                          ui->comboBoxLValue9->currentText(), ui->comboBoxLValue10->currentText() };
 
-    string textR[10] = { "None", ui->comboBoxRValue2->currentText().toStdString(),
-                          ui->comboBoxRValue3->currentText().toStdString(), ui->comboBoxRValue4->currentText().toStdString(),
-                          ui->comboBoxRValue5->currentText().toStdString(), ui->comboBoxRValue6->currentText().toStdString(),
-                          ui->comboBoxRValue7->currentText().toStdString(), ui->comboBoxRValue8->currentText().toStdString(),
-                          ui->comboBoxRValue9->currentText().toStdString(), ui->comboBoxRValue10->currentText().toStdString() };
+    QString textR[10] = { "None", ui->comboBoxRValue2->currentText(),
+                          ui->comboBoxRValue3->currentText(), ui->comboBoxRValue4->currentText(),
+                          ui->comboBoxRValue5->currentText(), ui->comboBoxRValue6->currentText(),
+                          ui->comboBoxRValue7->currentText(), ui->comboBoxRValue8->currentText(),
+                          ui->comboBoxRValue9->currentText(), ui->comboBoxRValue10->currentText() };
 
     for (u32 i = startingFrame; i < maxFrames + startingFrame; i++)
     {
@@ -333,7 +306,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
             {
                 u64 temp = GetCustom(textL[j], frame, frames);
 
-                if (textR[j] != "None")
+                if (textR[j] != tr("None"))
                     customRValue[j] = GetCustom(textR[j], frame, frames);
 
                 frame.Custom[j] = Calculators[j](temp, customRValue[j]);
@@ -409,7 +382,7 @@ void Researcher::on_pushButtonNext_clicked()
     }
 }
 
-u64 Researcher::GetCustom(string text, ResearcherFrame frame, vector<ResearcherFrame> frames)
+u64 Researcher::GetCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames)
 {
     switch (keys[text])
     {
@@ -444,27 +417,23 @@ u64 Researcher::GetCustom(string text, ResearcherFrame frame, vector<ResearcherF
         case 14:
             return frame.Custom[8];
         case 15:
-            return frame.Custom[9];
-        case 16:
             return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[0];
-        case 17:
+        case 16:
             return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[1];
-        case 18:
+        case 17:
             return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[2];
-        case 19:
+        case 18:
             return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[3];
-        case 20:
+        case 19:
             return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[4];
-        case 21:
+        case 20:
             return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[5];
-        case 22:
+        case 21:
             return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[6];
-        case 23:
+        case 22:
             return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[7];
-        case 24:
+        case 23:
             return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[8];
-        case 25:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[9];
         default:
             return 0;
     }
@@ -472,6 +441,31 @@ u64 Researcher::GetCustom(string text, ResearcherFrame frame, vector<ResearcherF
 
 void Researcher::SetupModels()
 {
+    keys.clear();
+    keys[tr("64Bit")] = 0;
+    keys[tr("32Bit")] = 1;
+    keys[tr("32Bit High")] = 2;
+    keys[tr("32Bit Low")] = 3;
+    keys[tr("16Bit High")] = 4;
+    keys[tr("16Bit Low")] = 5;
+    keys[tr("Custom 1")] = 6;
+    keys[tr("Custom 2")] = 7;
+    keys[tr("Custom 3")] = 8;
+    keys[tr("Custom 4")] = 9;
+    keys[tr("Custom 5")] = 10;
+    keys[tr("Custom 6")] = 11;
+    keys[tr("Custom 7")] = 12;
+    keys[tr("Custom 8")] = 13;
+    keys[tr("Custom 9")] = 14;
+    keys[tr("Previous 1")] = 15;
+    keys[tr("Previous 2")] = 16;
+    keys[tr("Previous 3")] = 17;
+    keys[tr("Previous 4")] = 18;
+    keys[tr("Previous 5")] = 19;
+    keys[tr("Previous 6")] = 20;
+    keys[tr("Previous 7")] = 21;
+    keys[tr("Previous 8")] = 22;
+    keys[tr("Previous 9")] = 23;
     if (model != NULL)
         delete model;
     model = new ResearcherModel(this, false);
@@ -485,7 +479,7 @@ void Researcher::on_rngSelection_currentChanged(int index)
     ui->textBoxSeed->setVisible(index != 2);
     ui->label_14->setVisible(index != 2);
     ui->comboBoxSearch->clear();
-    QStringList items = index != 1 ? QStringList() << "32Bit" << "16Bit High" << "16Bit Low" :
-                                     QStringList() << "64Bit" << "32Bit High" << "32Bit Low" << "16Bit High" << "16Bit Low" ;
+    QStringList items = index != 1 ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low") :
+                                     QStringList() << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low") ;
     ui->comboBoxSearch->addItems(items);
 }

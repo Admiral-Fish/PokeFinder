@@ -159,37 +159,37 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
                 switch (section)
                 {
                     case 0:
-                        return "Frame";
+                        return tr("Frame");
                     case 1:
-                        return "64Bit";
+                        return tr("64Bit");
                     case 2:
-                        return "32Bit High";
+                        return tr("32Bit High");
                     case 3:
-                        return "32Bit Low";
+                        return tr("32Bit Low");
                     case 4:
-                        return "16Bit High";
+                        return tr("16Bit High");
                     case 5:
-                        return "16Bit Low";
+                        return tr("16Bit Low");
                     case 6:
-                        return "Custom1";
+                        return tr("Custom 1");
                     case 7:
-                        return "Custom2";
+                        return tr("Custom 2");
                     case 8:
-                        return "Custom3";
+                        return tr("Custom 3");
                     case 9:
-                        return "Custom4";
+                        return tr("Custom 4");
                     case 10:
-                        return "Custom5";
+                        return tr("Custom 5");
                     case 11:
-                        return "Custom6";
+                        return tr("Custom 6");
                     case 12:
-                        return "Custom7";
+                        return tr("Custom 7");
                     case 13:
-                        return "Custom8";
+                        return tr("Custom 8");
                     case 14:
-                        return "Custom9";
+                        return tr("Custom 9");
                     case 15:
-                        return "Custom10";
+                        return tr("Custom 10");
                     case 16:
                         return "%3";
                     case 17:
@@ -199,9 +199,9 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
                     case 19:
                         return "/656";
                     case 20:
-                        return "LBit";
+                        return tr("LBit");
                     case 21:
-                        return "HBit";
+                        return tr("HBit");
                 }
             }
             else
@@ -209,33 +209,33 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
                 switch (section)
                 {
                     case 0:
-                        return "Frame";
+                        return tr("Frame");
                     case 1:
-                        return "32Bit";
+                        return tr("32Bit");
                     case 2:
-                        return "16Bit High";
+                        return tr("16Bit High");
                     case 3:
-                        return "16Bit Low";
+                        return tr("16Bit Low");
                     case 4:
-                        return "Custom1";
+                        return tr("Custom 1");
                     case 5:
-                        return "Custom2";
+                        return tr("Custom 2");
                     case 6:
-                        return "Custom3";
+                        return tr("Custom 3");
                     case 7:
-                        return "Custom4";
+                        return tr("Custom 4");
                     case 8:
-                        return "Custom5";
+                        return tr("Custom 5");
                     case 9:
-                        return "Custom6";
+                        return tr("Custom 6");
                     case 10:
-                        return "Custom7";
+                        return tr("Custom 7");
                     case 11:
-                        return "Custom8";
+                        return tr("Custom 8");
                     case 12:
-                        return "Custom9";
+                        return tr("Custom 9");
                     case 13:
-                        return "Custom10";
+                        return tr("Custom 10");
                     case 14:
                         return "%3";
                     case 15:
@@ -245,9 +245,9 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
                     case 17:
                         return "/656";
                     case 18:
-                        return "LBit";
+                        return tr("LBit");
                     case 19:
-                        return "HBit";
+                        return tr("HBit");
                 }
             }
         }
@@ -259,32 +259,32 @@ QModelIndex ResearcherModel::Search(QString string, u64 result, int row)
 {
     int column;
     u64 (*getResult)(ResearcherFrame);
-    if (string == "64Bit")
+    if (string == tr("64Bit"))
     {
         column = 1;
         getResult = &ResearcherModel::Get64Bit;
     }
-    else if(string == "32Bit High")
+    else if(string == tr("32Bit High"))
     {
         column = 2;
         getResult = &ResearcherModel::Get32BitHigh;
     }
-    else if(string == "32Bit Low")
+    else if(string == tr("32Bit Low"))
     {
         column = 3;
         getResult = &ResearcherModel::Get32BitLow;
     }
-    else if (string == "32Bit")
+    else if (string == tr("32Bit"))
     {
         column = 1;
         getResult = &ResearcherModel::Get32;
     }
-    else if (string == "16Bit High")
+    else if (string == tr("16Bit High"))
     {
         column = flag ? 4 : 2;
         getResult = &ResearcherModel::Get16BitHigh;
     }
-    else if (string == "16Bit Low")
+    else if (string == tr("16Bit Low"))
     {
         column = flag ? 5 : 3;
         getResult = &ResearcherModel::Get16BitLow;
