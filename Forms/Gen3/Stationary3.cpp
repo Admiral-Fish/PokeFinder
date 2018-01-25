@@ -70,6 +70,22 @@ void Stationary3::CreateProfileXml()
     }
 }
 
+void Stationary3::changeEvent(QEvent *event)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                SetupModels();
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 void Stationary3::SetupModels()
 {
     vector<QString> natureList = Nature::GetNatures();

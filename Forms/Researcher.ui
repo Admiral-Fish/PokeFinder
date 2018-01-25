@@ -31,7 +31,7 @@
     </property>
     <widget class="QWidget" name="widget">
      <attribute name="title">
-      <string>32 Bit</string>
+      <string>32Bit</string>
      </attribute>
      <layout class="QFormLayout" name="formLayout_2">
       <item row="0" column="0">
@@ -136,7 +136,7 @@
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>64 Bit</string>
+      <string>64Bit</string>
      </attribute>
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
@@ -347,52 +347,52 @@ QHeaderView::section {
       <widget class="QComboBox" name="comboBoxOperator3">
        <item>
         <property name="text">
-         <string>/</string>
+         <string notr="true">/</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>%</string>
+         <string notr="true">%</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string notr="true">&gt;&gt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string notr="true">&lt;&lt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&amp;</string>
+         <string notr="true">&amp;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>|</string>
+         <string notr="true">|</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>^</string>
+         <string notr="true">^</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>+</string>
+         <string notr="true">+</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>*</string>
+         <string notr="true">*</string>
         </property>
        </item>
       </widget>
@@ -414,52 +414,52 @@ QHeaderView::section {
       <widget class="QComboBox" name="comboBoxOperator1">
        <item>
         <property name="text">
-         <string>/</string>
+         <string notr="true">/</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>%</string>
+         <string notr="true">%</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string notr="true">&gt;&gt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string notr="true">&lt;&lt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&amp;</string>
+         <string notr="true">&amp;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>|</string>
+         <string notr="true">|</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>^</string>
+         <string notr="true">^</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>+</string>
+         <string notr="true">+</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>*</string>
+         <string notr="true">*</string>
         </property>
        </item>
       </widget>
@@ -508,12 +508,12 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
       </widget>
@@ -557,12 +557,12 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
       </widget>
@@ -613,22 +613,22 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
       </widget>
@@ -674,32 +674,32 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
       </widget>
@@ -738,22 +738,22 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
       </widget>
@@ -762,52 +762,52 @@ QHeaderView::section {
       <widget class="QComboBox" name="comboBoxOperator4">
        <item>
         <property name="text">
-         <string>/</string>
+         <string notr="true">/</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>%</string>
+         <string notr="true">%</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string notr="true">&gt;&gt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string notr="true">&lt;&lt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&amp;</string>
+         <string notr="true">&amp;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>|</string>
+         <string notr="true">|</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>^</string>
+         <string notr="true">^</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>+</string>
+         <string notr="true">+</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>*</string>
+         <string notr="true">*</string>
         </property>
        </item>
       </widget>
@@ -833,52 +833,52 @@ QHeaderView::section {
       <widget class="QComboBox" name="comboBoxOperator2">
        <item>
         <property name="text">
-         <string>/</string>
+         <string notr="true">/</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>%</string>
+         <string notr="true">%</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string notr="true">&gt;&gt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string notr="true">&lt;&lt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&amp;</string>
+         <string notr="true">&amp;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>|</string>
+         <string notr="true">|</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>^</string>
+         <string notr="true">^</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>+</string>
+         <string notr="true">+</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>*</string>
+         <string notr="true">*</string>
         </property>
        </item>
       </widget>
@@ -951,62 +951,62 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom5</string>
+         <string>Custom 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom6</string>
+         <string>Custom 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous5</string>
+         <string>Previous 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous6</string>
+         <string>Previous 6</string>
         </property>
        </item>
       </widget>
@@ -1022,52 +1022,52 @@ QHeaderView::section {
       <widget class="QComboBox" name="comboBoxOperator5">
        <item>
         <property name="text">
-         <string>/</string>
+         <string notr="true">/</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>%</string>
+         <string notr="true">%</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string notr="true">&gt;&gt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string notr="true">&lt;&lt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&amp;</string>
+         <string notr="true">&amp;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>|</string>
+         <string notr="true">|</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>^</string>
+         <string notr="true">^</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>+</string>
+         <string notr="true">+</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>*</string>
+         <string notr="true">*</string>
         </property>
        </item>
       </widget>
@@ -1121,72 +1121,72 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom5</string>
+         <string>Custom 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom6</string>
+         <string>Custom 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom7</string>
+         <string>Custom 7</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous5</string>
+         <string>Previous 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous6</string>
+         <string>Previous 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous7</string>
+         <string>Previous 7</string>
         </property>
        </item>
       </widget>
@@ -1230,52 +1230,52 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom5</string>
+         <string>Custom 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous5</string>
+         <string>Previous 5</string>
         </property>
        </item>
       </widget>
@@ -1291,52 +1291,52 @@ QHeaderView::section {
       <widget class="QComboBox" name="comboBoxOperator7">
        <item>
         <property name="text">
-         <string>/</string>
+         <string notr="true">/</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>%</string>
+         <string notr="true">%</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string notr="true">&gt;&gt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string notr="true">&lt;&lt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&amp;</string>
+         <string notr="true">&amp;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>|</string>
+         <string notr="true">|</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>^</string>
+         <string notr="true">^</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>+</string>
+         <string notr="true">+</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>*</string>
+         <string notr="true">*</string>
         </property>
        </item>
       </widget>
@@ -1345,52 +1345,52 @@ QHeaderView::section {
       <widget class="QComboBox" name="comboBoxOperator8">
        <item>
         <property name="text">
-         <string>/</string>
+         <string notr="true">/</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>%</string>
+         <string notr="true">%</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string notr="true">&gt;&gt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string notr="true">&lt;&lt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&amp;</string>
+         <string notr="true">&amp;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>|</string>
+         <string notr="true">|</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>^</string>
+         <string notr="true">^</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>+</string>
+         <string notr="true">+</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>*</string>
+         <string notr="true">*</string>
         </property>
        </item>
       </widget>
@@ -1434,32 +1434,32 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
       </widget>
@@ -1503,62 +1503,62 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom5</string>
+         <string>Custom 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom6</string>
+         <string>Custom 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous5</string>
+         <string>Previous 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous6</string>
+         <string>Previous 6</string>
         </property>
        </item>
       </widget>
@@ -1597,52 +1597,52 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom5</string>
+         <string>Custom 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous5</string>
+         <string>Previous 5</string>
         </property>
        </item>
       </widget>
@@ -1688,82 +1688,82 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom5</string>
+         <string>Custom 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom6</string>
+         <string>Custom 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom7</string>
+         <string>Custom 7</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom8</string>
+         <string>Custom 8</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous5</string>
+         <string>Previous 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous6</string>
+         <string>Previous 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous7</string>
+         <string>Previous 7</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous8</string>
+         <string>Previous 8</string>
         </property>
        </item>
       </widget>
@@ -1772,52 +1772,52 @@ QHeaderView::section {
       <widget class="QComboBox" name="comboBoxOperator9">
        <item>
         <property name="text">
-         <string>/</string>
+         <string notr="true">/</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>%</string>
+         <string notr="true">%</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string notr="true">&gt;&gt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string notr="true">&lt;&lt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&amp;</string>
+         <string notr="true">&amp;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>|</string>
+         <string notr="true">|</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>^</string>
+         <string notr="true">^</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>+</string>
+         <string notr="true">+</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>*</string>
+         <string notr="true">*</string>
         </property>
        </item>
       </widget>
@@ -1870,72 +1870,72 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom5</string>
+         <string>Custom 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom6</string>
+         <string>Custom 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom7</string>
+         <string>Custom 7</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous5</string>
+         <string>Previous 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous6</string>
+         <string>Previous 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous7</string>
+         <string>Previous 7</string>
         </property>
        </item>
       </widget>
@@ -1944,52 +1944,52 @@ QHeaderView::section {
       <widget class="QComboBox" name="comboBoxOperator6">
        <item>
         <property name="text">
-         <string>/</string>
+         <string notr="true">/</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>%</string>
+         <string notr="true">%</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string notr="true">&gt;&gt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string notr="true">&lt;&lt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&amp;</string>
+         <string notr="true">&amp;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>|</string>
+         <string notr="true">|</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>^</string>
+         <string notr="true">^</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>+</string>
+         <string notr="true">+</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>*</string>
+         <string notr="true">*</string>
         </property>
        </item>
       </widget>
@@ -2060,82 +2060,82 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom5</string>
+         <string>Custom 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom6</string>
+         <string>Custom 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom7</string>
+         <string>Custom 7</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom8</string>
+         <string>Custom 8</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous5</string>
+         <string>Previous 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous6</string>
+         <string>Previous 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous7</string>
+         <string>Previous 7</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous8</string>
+         <string>Previous 8</string>
         </property>
        </item>
       </widget>
@@ -2181,42 +2181,42 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
       </widget>
@@ -2273,22 +2273,42 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Previous 1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Previous 2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Previous 3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Previous 4</string>
         </property>
        </item>
       </widget>
@@ -2327,92 +2347,92 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom5</string>
+         <string>Custom 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom6</string>
+         <string>Custom 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom7</string>
+         <string>Custom 7</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom8</string>
+         <string>Custom 8</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom9</string>
+         <string>Custom 9</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous5</string>
+         <string>Previous 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous6</string>
+         <string>Previous 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous7</string>
+         <string>Previous 7</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous8</string>
+         <string>Previous 8</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous9</string>
+         <string>Previous 9</string>
         </property>
        </item>
       </widget>
@@ -2421,52 +2441,52 @@ QHeaderView::section {
       <widget class="QComboBox" name="comboBoxOperator10">
        <item>
         <property name="text">
-         <string>/</string>
+         <string notr="true">/</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>%</string>
+         <string notr="true">%</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&gt;&gt;</string>
+         <string notr="true">&gt;&gt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&lt;&lt;</string>
+         <string notr="true">&lt;&lt;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>&amp;</string>
+         <string notr="true">&amp;</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>|</string>
+         <string notr="true">|</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>^</string>
+         <string notr="true">^</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>+</string>
+         <string notr="true">+</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>-</string>
+         <string notr="true">-</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>*</string>
+         <string notr="true">*</string>
         </property>
        </item>
       </widget>
@@ -2513,92 +2533,92 @@ QHeaderView::section {
        </item>
        <item>
         <property name="text">
-         <string>Custom1</string>
+         <string>Custom 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom2</string>
+         <string>Custom 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom3</string>
+         <string>Custom 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom4</string>
+         <string>Custom 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom5</string>
+         <string>Custom 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom6</string>
+         <string>Custom 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom7</string>
+         <string>Custom 7</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom8</string>
+         <string>Custom 8</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Custom9</string>
+         <string>Custom 9</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous1</string>
+         <string>Previous 1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous2</string>
+         <string>Previous 2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous3</string>
+         <string>Previous 3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous4</string>
+         <string>Previous 4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous5</string>
+         <string>Previous 5</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous6</string>
+         <string>Previous 6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous7</string>
+         <string>Previous 7</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous8</string>
+         <string>Previous 8</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Previous9</string>
+         <string>Previous 9</string>
         </property>
        </item>
       </widget>

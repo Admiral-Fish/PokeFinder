@@ -164,7 +164,7 @@
    </property>
    <item>
     <property name="text">
-     <string>-</string>
+     <string notr="true">-</string>
     </property>
    </item>
    <item>

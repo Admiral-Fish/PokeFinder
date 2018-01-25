@@ -48,6 +48,9 @@ class Researcher : public QMainWindow
 {
     Q_OBJECT
 
+protected:
+    void changeEvent(QEvent*);
+
 private:
     u64 GetCustom(string text, ResearcherFrame frame, vector<ResearcherFrame> frames);
     void SetupModels();

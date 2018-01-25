@@ -33,6 +33,9 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+protected:
+    void changeEvent(QEvent*);
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -41,11 +44,20 @@ private slots:
     void on_pushButtonStationary3_clicked();
     void on_actionResearcher_triggered();
     void on_pushButtonWild3_clicked();
+    void slotLanguageChanged(QAction *action);
 
 private:
     Ui::MainWindow *ui;
+    QTranslator translator;
+    QString currLang;
+    QString langPath = QApplication::applicationDirPath().append("/Languages/");
     Stationary3 s3;
     Wild3 w3;
+
+    void SetupLanguage();
+    void SetupModels();
+    void LoadLanguage(const QString &lang);
+    void SwitchTranslator(QTranslator& translator, const QString& filename);
 
 };
 

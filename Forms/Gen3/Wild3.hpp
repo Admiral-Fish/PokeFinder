@@ -45,6 +45,9 @@ class Wild3 : public QMainWindow
 {
     Q_OBJECT
 
+protected:
+    void changeEvent(QEvent*);
+
 signals:
     void UpdateView(vector<Frame3>);
 

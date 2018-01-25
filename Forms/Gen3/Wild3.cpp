@@ -38,6 +38,22 @@ Wild3::Wild3(QWidget *parent) :
     connect(this, SIGNAL(UpdateView(vector<Frame3>)), this, SLOT(UpdateViewSearcher(vector<Frame3>)));
 }
 
+void Wild3::changeEvent(QEvent *event)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                SetupModels();
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 Wild3::~Wild3()
 {
     delete ui;

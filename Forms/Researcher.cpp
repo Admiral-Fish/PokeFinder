@@ -34,26 +34,26 @@ Researcher::Researcher(QWidget *parent) :
     keys["32Bit Low"] = 3;
     keys["16Bit High"] = 4;
     keys["16Bit Low"] = 5;
-    keys["Custom1"] = 6;
-    keys["Custom2"] = 7;
-    keys["Custom3"] = 8;
-    keys["Custom4"] = 9;
-    keys["Custom5"] = 10;
-    keys["Custom6"] = 11;
-    keys["Custom7"] = 12;
-    keys["Custom8"] = 13;
-    keys["Custom9"] = 14;
-    keys["Custom10"] = 15;
-    keys["Previous1"] = 16;
-    keys["Previous2"] = 17;
-    keys["Previous3"] = 18;
-    keys["Previous4"] = 19;
-    keys["Previous5"] = 20;
-    keys["Previous6"] = 21;
-    keys["Previous7"] = 22;
-    keys["Previous8"] = 23;
-    keys["Previous9"] = 24;
-    keys["Previous10"] = 25;
+    keys["Custom 1"] = 6;
+    keys["Custom 2"] = 7;
+    keys["Custom 3"] = 8;
+    keys["Custom 4"] = 9;
+    keys["Custom 5"] = 10;
+    keys["Custom 6"] = 11;
+    keys["Custom 7"] = 12;
+    keys["Custom 8"] = 13;
+    keys["Custom 9"] = 14;
+    keys["Custom 10"] = 15;
+    keys["Previous 1"] = 16;
+    keys["Previous 2"] = 17;
+    keys["Previous 3"] = 18;
+    keys["Previous 4"] = 19;
+    keys["Previous 5"] = 20;
+    keys["Previous 6"] = 21;
+    keys["Previous 7"] = 22;
+    keys["Previous 8"] = 23;
+    keys["Previous 9"] = 24;
+    keys["Previous 10"] = 25;
 
     ui->textBoxStartingFrame->SetValues(1, 0, true);
     ui->textBoxMaxFrames->SetValues(1, 0, true);
@@ -81,6 +81,22 @@ Researcher::Researcher(QWidget *parent) :
     ui->lineEditRValue8->SetValues(0, 32, false);
     ui->lineEditRValue9->SetValues(0, 32, false);
     ui->lineEditRValue10->SetValues(0, 32, false);
+}
+
+void Researcher::changeEvent(QEvent *event)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                SetupModels();
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 Researcher::~Researcher()

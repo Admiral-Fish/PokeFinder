@@ -470,17 +470,17 @@ QCheckBox::indicator:checked {
          <widget class="QComboBox" name="comboBoxGenderGenerator">
           <item>
            <property name="text">
-            <string>-</string>
+            <string notr="true">-</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>♂</string>
+            <string notr="true">♂</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>♀</string>
+            <string notr="true">♀</string>
            </property>
           </item>
          </widget>
@@ -501,12 +501,12 @@ QCheckBox::indicator:checked {
           </item>
           <item>
            <property name="text">
-            <string>0</string>
+            <string notr="true">0</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>1</string>
+            <string notr="true">1</string>
            </property>
           </item>
          </widget>
@@ -1090,7 +1090,7 @@ QCheckBox::indicator:checked {
         </rect>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>360</x>
@@ -1111,17 +1111,17 @@ QCheckBox::indicator:checked {
          <widget class="QComboBox" name="comboBoxGenderSearcher">
           <item>
            <property name="text">
-            <string>-</string>
+            <string notr="true">-</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>♂</string>
+            <string notr="true">♂</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>♀</string>
+            <string notr="true">♀</string>
            </property>
           </item>
          </widget>
@@ -1142,12 +1142,12 @@ QCheckBox::indicator:checked {
           </item>
           <item>
            <property name="text">
-            <string>0</string>
+            <string notr="true">0</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>1</string>
+            <string notr="true">1</string>
            </property>
           </item>
          </widget>

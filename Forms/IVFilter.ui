@@ -147,22 +147,22 @@ QPushButton {
    </item>
    <item>
     <property name="text">
-     <string>==</string>
+     <string notr="true">==</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&gt;=</string>
+     <string notr="true">&gt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&lt;=</string>
+     <string notr="true">&lt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>!=</string>
+     <string notr="true">!=</string>
     </property>
    </item>
   </widget>
@@ -279,22 +279,22 @@ QPushButton {
    </item>
    <item>
     <property name="text">
-     <string>==</string>
+     <string notr="true">==</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&gt;=</string>
+     <string notr="true">&gt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&lt;=</string>
+     <string notr="true">&lt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>!=</string>
+     <string notr="true">!=</string>
     </property>
    </item>
   </widget>
@@ -354,22 +354,22 @@ QPushButton {
    </item>
    <item>
     <property name="text">
-     <string>==</string>
+     <string notr="true">==</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&gt;=</string>
+     <string notr="true">&gt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&lt;=</string>
+     <string notr="true">&lt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>!=</string>
+     <string notr="true">!=</string>
     </property>
    </item>
   </widget>
@@ -416,22 +416,22 @@ QPushButton {
    </item>
    <item>
     <property name="text">
-     <string>==</string>
+     <string notr="true">==</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&gt;=</string>
+     <string notr="true">&gt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&lt;=</string>
+     <string notr="true">&lt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>!=</string>
+     <string notr="true">!=</string>
     </property>
    </item>
   </widget>
@@ -491,22 +491,22 @@ QPushButton {
    </item>
    <item>
     <property name="text">
-     <string>==</string>
+     <string notr="true">==</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&gt;=</string>
+     <string notr="true">&gt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&lt;=</string>
+     <string notr="true">&lt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>!=</string>
+     <string notr="true">!=</string>
     </property>
    </item>
   </widget>
@@ -566,22 +566,22 @@ QPushButton {
    </item>
    <item>
     <property name="text">
-     <string>==</string>
+     <string notr="true">==</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&gt;=</string>
+     <string notr="true">&gt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>&lt;=</string>
+     <string notr="true">&lt;=</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>!=</string>
+     <string notr="true">!=</string>
     </property>
    </item>
   </widget>
