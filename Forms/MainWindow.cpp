@@ -26,14 +26,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    SetupLanguage();
-    SetupModels();
+    setupLanguage();
+    setupModels();
 
     s3.setAttribute(Qt::WA_QuitOnClose, false);
     w3.setAttribute(Qt::WA_QuitOnClose, false);
 }
 
-void MainWindow::SetupLanguage()
+void MainWindow::setupLanguage()
 {
     QActionGroup* langGroup = new QActionGroup(ui->menuLanguage);
     connect(langGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotLanguageChanged(QAction *)));
@@ -63,7 +63,7 @@ void MainWindow::SetupLanguage()
     slotLanguageChanged(langGroup->checkedAction());
 }
 
-void MainWindow::SetupModels()
+void MainWindow::setupModels()
 {
     QList<QAction*> actions = ui->menuLanguage->actions();
     QStringList langs = QStringList() << tr("German") << tr("English") << tr("Spanish") << tr("French") << tr("Italian") << tr("Japanese") << tr("Korean") << tr("Chinese");
@@ -84,10 +84,10 @@ void MainWindow::SetupModels()
 void MainWindow::slotLanguageChanged(QAction *action)
 {
     if (action != NULL)
-        LoadLanguage(action->data().toString());
+        loadLanguage(action->data().toString());
 }
 
-void MainWindow::LoadLanguage(const QString &lang)
+void MainWindow::loadLanguage(const QString &lang)
 {
     if(currLang != lang)
     {
@@ -95,11 +95,11 @@ void MainWindow::LoadLanguage(const QString &lang)
         QLocale locale = QLocale(currLang);
         QLocale::setDefault(locale);
         QString languageName = QLocale::languageToString(locale.language());
-        SwitchTranslator(translator, QString("PokeFinder_%1.qm").arg(currLang));
+        switchTranslator(translator, QString("PokeFinder_%1.qm").arg(currLang));
     }
 }
 
-void MainWindow::SwitchTranslator(QTranslator &translator, const QString &filename)
+void MainWindow::switchTranslator(QTranslator &translator, const QString &filename)
 {
     qApp->removeTranslator(&translator);
     if(translator.load(langPath + filename))
@@ -119,7 +119,7 @@ void MainWindow::changeEvent(QEvent *event)
             {
                 QString locale = QLocale::system().name();
                 locale.truncate(locale.lastIndexOf('_'));
-                LoadLanguage(locale);
+                loadLanguage(locale);
                 break;
             }
             default:

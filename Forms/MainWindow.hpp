@@ -54,10 +54,10 @@ private:
     Stationary3 s3;
     Wild3 w3;
 
-    void SetupLanguage();
-    void SetupModels();
-    void LoadLanguage(const QString &lang);
-    void SwitchTranslator(QTranslator& translator, const QString& filename);
+    void setupLanguage();
+    void setupModels();
+    void loadLanguage(const QString &lang);
+    void switchTranslator(QTranslator& translator, const QString& filename);
 
 };
 

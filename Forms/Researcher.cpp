@@ -26,34 +26,34 @@ Researcher::Researcher(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    SetupModels();
+    setupModels();
 
-    ui->textBoxStartingFrame->SetValues(1, 0, true);
-    ui->textBoxMaxFrames->SetValues(1, 0, true);
-    ui->textBoxSeed->SetValues(0, 0, false);
-    ui->textBoxSearch->SetValues(0, 0, false);
+    ui->textBoxStartingFrame->setValues(1, 0, true);
+    ui->textBoxMaxFrames->setValues(1, 0, true);
+    ui->textBoxSeed->setValues(0, 0, false);
+    ui->textBoxSearch->setValues(0, 0, false);
 
-    ui->textBoxMult32Bit->SetValues(0, 32, false);
-    ui->textBoxAdd32Bit->SetValues(0, 32, false);
+    ui->textBoxMult32Bit->setValues(0, 32, false);
+    ui->textBoxAdd32Bit->setValues(0, 32, false);
 
-    ui->textBoxMult64Bit->SetValues(0, 0, false);
-    ui->textBoxAdd64Bit->SetValues(0, 0, false);
+    ui->textBoxMult64Bit->setValues(0, 0, false);
+    ui->textBoxAdd64Bit->setValues(0, 0, false);
 
-    ui->textBoxStatus3->SetValues(0, 32, false);
-    ui->textBoxStatus2->SetValues(0, 32, false);
-    ui->textBoxStatus1->SetValues(0, 32, false);
-    ui->textBoxStatus0->SetValues(0, 32, false);
+    ui->textBoxStatus3->setValues(0, 32, false);
+    ui->textBoxStatus2->setValues(0, 32, false);
+    ui->textBoxStatus1->setValues(0, 32, false);
+    ui->textBoxStatus0->setValues(0, 32, false);
 
-    ui->lineEditRValue1->SetValues(0, 32, false);
-    ui->lineEditRValue2->SetValues(0, 32, false);
-    ui->lineEditRValue3->SetValues(0, 32, false);
-    ui->lineEditRValue4->SetValues(0, 32, false);
-    ui->lineEditRValue5->SetValues(0, 32, false);
-    ui->lineEditRValue6->SetValues(0, 32, false);
-    ui->lineEditRValue7->SetValues(0, 32, false);
-    ui->lineEditRValue8->SetValues(0, 32, false);
-    ui->lineEditRValue9->SetValues(0, 32, false);
-    ui->lineEditRValue10->SetValues(0, 32, false);
+    ui->lineEditRValue1->setValues(0, 32, false);
+    ui->lineEditRValue2->setValues(0, 32, false);
+    ui->lineEditRValue3->setValues(0, 32, false);
+    ui->lineEditRValue4->setValues(0, 32, false);
+    ui->lineEditRValue5->setValues(0, 32, false);
+    ui->lineEditRValue6->setValues(0, 32, false);
+    ui->lineEditRValue7->setValues(0, 32, false);
+    ui->lineEditRValue8->setValues(0, 32, false);
+    ui->lineEditRValue9->setValues(0, 32, false);
+    ui->lineEditRValue10->setValues(0, 32, false);
 }
 
 void Researcher::changeEvent(QEvent *event)
@@ -64,7 +64,7 @@ void Researcher::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                SetupModels();
+                setupModels();
                 break;
             default:
                 break;
@@ -185,16 +185,16 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 
     Calculator calc;
 
-    calc["/"] = &Researcher::Divide;
-    calc["%"] = &Researcher::Modulo;
-    calc[">>"] = &Researcher::ShiftRight;
-    calc["<<"] = &Researcher::ShiftLeft;
-    calc["&"] = &Researcher::And;
-    calc["|"] = &Researcher::Or;
-    calc["^"] = &Researcher::Xor;
-    calc["+"] = &Researcher::Add;
-    calc["-"] = &Researcher::Subtract;
-    calc["*"] = &Researcher::Multiply;
+    calc["/"] = &Researcher::divide;
+    calc["%"] = &Researcher::modulo;
+    calc[">>"] = &Researcher::shiftRight;
+    calc["<<"] = &Researcher::shiftLeft;
+    calc["&"] = &Researcher::bitAnd;
+    calc["|"] = &Researcher::bitOr;
+    calc["^"] = &Researcher::bitXor;
+    calc["+"] = &Researcher::add;
+    calc["-"] = &Researcher::subtract;
+    calc["*"] = &Researcher::multiply;
 
     bool calcCustom[10];
     u64 customRValue[10];
@@ -269,11 +269,11 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 
     if (rng64Bit)
     {
-        rng64->AdvanceFrames(startingFrame - 1);
+        rng64->advanceFrames(startingFrame - 1);
     }
     else
     {
-        rng->AdvanceFrames(startingFrame - 1);
+        rng->advanceFrames(startingFrame - 1);
     }
 
     QString textL[10] = { ui->comboBoxLValue1->currentText(), ui->comboBoxLValue2->currentText(),
@@ -293,29 +293,29 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         ResearcherFrame frame = ResearcherFrame(rng64Bit, i);
         if (rng64Bit)
         {
-            frame.Full64 = rng64->Nextulong();
+            frame.full64 = rng64->nextULong();
         }
         else
         {
-            frame.Full32 = rng->Nextuint();
+            frame.full32 = rng->nextUInt();
         }
 
         for (int j = 0; j < 10; j++)
         {
             if (calcCustom[j])
             {
-                u64 temp = GetCustom(textL[j], frame, frames);
+                u64 temp = getCustom(textL[j], frame, frames);
 
                 if (textR[j] != tr("None"))
-                    customRValue[j] = GetCustom(textR[j], frame, frames);
+                    customRValue[j] = getCustom(textR[j], frame, frames);
 
-                frame.Custom[j] = Calculators[j](temp, customRValue[j]);
+                frame.custom[j] = Calculators[j](temp, customRValue[j]);
             }
         }
         frames.push_back(frame);
     }
 
-    model->SetModel(frames);
+    model->setModel(frames);
     ui->tableView->viewport()->update();
     ui->tableView->resizeColumnToContents(1);
     if (rng64Bit)
@@ -338,7 +338,7 @@ void Researcher::on_pushButtonSearch_clicked()
     QString string = ui->comboBoxSearch->currentText();
     u64 result = ui->textBoxSearch->text().toULongLong(NULL, 16);
 
-    QModelIndex end = model->Search(string, result, 0);
+    QModelIndex end = model->search(string, result, 0);
     if (end.isValid())
     {
         ui->tableView->setCurrentIndex(end);
@@ -366,7 +366,7 @@ void Researcher::on_pushButtonNext_clicked()
     if (!start.isValid())
         return;
 
-    QModelIndex end = model->Search(string, result, start.row() + 1);
+    QModelIndex end = model->search(string, result, start.row() + 1);
     if (end.isValid())
     {
         ui->tableView->setCurrentIndex(end);
@@ -382,64 +382,64 @@ void Researcher::on_pushButtonNext_clicked()
     }
 }
 
-u64 Researcher::GetCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames)
+u64 Researcher::getCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames)
 {
     switch (keys[text])
     {
         case 0:
-            return frame.Full64;
+            return frame.full64;
         case 1:
-            return frame.Full32;
+            return frame.full32;
         case 2:
-            return frame.High32();
+            return frame.high32();
         case 3:
-            return frame.Low32();
+            return frame.low32();
         case 4:
-            return frame.High16();
+            return frame.high16();
         case 5:
-            return frame.Low16();
+            return frame.low16();
         case 6:
-            return frame.Custom[0];
+            return frame.custom[0];
         case 7:
-            return frame.Custom[1];
+            return frame.custom[1];
         case 8:
-            return frame.Custom[2];
+            return frame.custom[2];
         case 9:
-            return frame.Custom[3];
+            return frame.custom[3];
         case 10:
-            return frame.Custom[4];
+            return frame.custom[4];
         case 11:
-            return frame.Custom[5];
+            return frame.custom[5];
         case 12:
-            return frame.Custom[6];
+            return frame.custom[6];
         case 13:
-            return frame.Custom[7];
+            return frame.custom[7];
         case 14:
-            return frame.Custom[8];
+            return frame.custom[8];
         case 15:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[0];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[0];
         case 16:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[1];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[1];
         case 17:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[2];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[2];
         case 18:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[3];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[3];
         case 19:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[4];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[4];
         case 20:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[5];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[5];
         case 21:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[6];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[6];
         case 22:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[7];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[7];
         case 23:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].Custom[8];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[8];
         default:
             return 0;
     }
 }
 
-void Researcher::SetupModels()
+void Researcher::setupModels()
 {
     keys.clear();
     keys[tr("64Bit")] = 0;

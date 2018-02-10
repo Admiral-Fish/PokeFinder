@@ -20,9 +20,7 @@
 #ifndef QTEXTBOX_HPP
 #define QTEXTBOX_HPP
 
-#include <QWidget>
 #include <QLineEdit>
-#include <cstdint>
 
 typedef uint64_t u64;
 typedef uint32_t u32;
@@ -37,14 +35,14 @@ private:
     QRegExp filter;
 
 public slots:
-    void OnTextChanged(QString string);
+    void onTextChanged(QString string);
 
 public:
     QTextBox(QWidget *parent = 0);
-    void SetValues(u64 min, u64 shift, bool isDecimal);
-    void SetFilter(QString string);
-    void SetValue(u64 value);
-    void SetBase(u32 base);
+    void setValues(u64 min, u64 shift, bool isDecimal);
+    void setFilter(QString string);
+    void setValue(u64 value);
+    void setBase(u32 base);
 
 };
 

@@ -25,7 +25,7 @@
 #include <vector>
 #include <cstdint>
 
-using namespace std;
+using std::vector;
 
 class ResearcherModel : public QAbstractTableModel
 {
@@ -33,21 +33,22 @@ class ResearcherModel : public QAbstractTableModel
 private:
     vector<ResearcherFrame> model;
     bool flag;
-    static inline u64 Get64Bit(ResearcherFrame f) { return f.Full64; }
-    static inline u64 Get32BitHigh(ResearcherFrame f) { return f.High32(); }
-    static inline u64 Get32BitLow(ResearcherFrame f) { return f.Low32(); }
-    static inline u64 Get32(ResearcherFrame f) { return f.Full32; }
-    static inline u64 Get16BitHigh(ResearcherFrame f) { return f.High16(); }
-    static inline u64 Get16BitLow(ResearcherFrame f) { return f.Low16(); }
+
+    static inline u64 get64Bit(ResearcherFrame f) { return f.full64; }
+    static inline u64 get32BitHigh(ResearcherFrame f) { return f.high32(); }
+    static inline u64 get32BitLow(ResearcherFrame f) { return f.low32(); }
+    static inline u64 get32(ResearcherFrame f) { return f.full32; }
+    static inline u64 get16BitHigh(ResearcherFrame f) { return f.high16(); }
+    static inline u64 get16BitLow(ResearcherFrame f) { return f.low16(); }
 
 public:
     ResearcherModel(QObject *parent, bool is64Bit);
-    void SetModel(vector<ResearcherFrame>);
+    void setModel(vector<ResearcherFrame>);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-    QModelIndex Search(QString string, u64 result, int row);
+    QModelIndex search(QString string, u64 result, int row);
 
 };
 

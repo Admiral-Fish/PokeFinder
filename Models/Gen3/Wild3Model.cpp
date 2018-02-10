@@ -23,7 +23,7 @@ Wild3Model::Wild3Model(QObject *parent) : QAbstractTableModel(parent)
 {
 }
 
-void Wild3Model::SetModel(vector<Frame3> frames)
+void Wild3Model::setModel(vector<Frame3> frames)
 {
     model = frames;
 }
@@ -58,9 +58,9 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
             case 3:
                 return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
             case 4:
-                return frame.GetShiny();
+                return frame.getShiny();
             case 5:
-                return frame.GetNature();
+                return frame.getNature();
             case 6:
                 return frame.ability;
             case 7:
@@ -76,13 +76,13 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
             case 12:
                 return frame.ivs[5];
             case 13:
-                return frame.GetPower();
+                return frame.getPower();
             case 14:
                 return frame.power;
             case 15:
-                return frame.GetFemale25();
+                return frame.getFemale25();
             case 16:
-                return frame.GetTime();
+                return frame.getTime();
         }
     }
     return QVariant();

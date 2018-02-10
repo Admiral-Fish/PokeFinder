@@ -24,7 +24,7 @@ ResearcherModel::ResearcherModel(QObject *parent, bool is64Bit) : QAbstractTable
     flag = is64Bit;
 }
 
-void ResearcherModel::SetModel(vector<ResearcherFrame> frames)
+void ResearcherModel::setModel(vector<ResearcherFrame> frames)
 {
     model = frames;
 }
@@ -53,49 +53,49 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
             switch (column)
             {
                 case 0:
-                    return frame.Frame;
+                    return frame.frame;
                 case 1:
-                    return QString::number(frame.Full64, 16).toUpper().rightJustified(16,'0');
+                    return QString::number(frame.full64, 16).toUpper().rightJustified(16,'0');
                 case 2:
-                    return QString::number(frame.High32(), 16).toUpper().rightJustified(8,'0');
+                    return QString::number(frame.high32(), 16).toUpper().rightJustified(8,'0');
                 case 3:
-                    return QString::number(frame.Low32(), 16).toUpper().rightJustified(8,'0');
+                    return QString::number(frame.low32(), 16).toUpper().rightJustified(8,'0');
                 case 4:
-                    return QString::number(frame.High16(), 16).toUpper().rightJustified(4,'0');
+                    return QString::number(frame.high16(), 16).toUpper().rightJustified(4,'0');
                 case 5:
-                    return QString::number(frame.Low16(), 16).toUpper().rightJustified(4,'0');
+                    return QString::number(frame.low16(), 16).toUpper().rightJustified(4,'0');
                 case 6:
-                    return frame.Custom[0];
+                    return frame.custom[0];
                 case 7:
-                    return frame.Custom[1];
+                    return frame.custom[1];
                 case 8:
-                    return frame.Custom[2];
+                    return frame.custom[2];
                 case 9:
-                    return frame.Custom[3];
+                    return frame.custom[3];
                 case 10:
-                    return frame.Custom[4];
+                    return frame.custom[4];
                 case 11:
-                    return frame.Custom[5];
+                    return frame.custom[5];
                 case 12:
-                    return frame.Custom[6];
+                    return frame.custom[6];
                 case 13:
-                    return frame.Custom[7];
+                    return frame.custom[7];
                 case 14:
-                    return frame.Custom[8];
+                    return frame.custom[8];
                 case 15:
-                    return frame.Custom[9];
+                    return frame.custom[9];
                 case 16:
-                    return frame.Mod3();
+                    return frame.mod3();
                 case 17:
-                    return frame.Mod25();
+                    return frame.mod25();
                 case 18:
-                    return frame.Mod100();
+                    return frame.mod100();
                 case 19:
-                    return frame.Div656();
+                    return frame.div656();
                 case 20:
-                    return frame.LowBit();
+                    return frame.lowBit();
                 case 21:
-                    return frame.HighBit();
+                    return frame.highBit();
             }
         }
         else
@@ -103,45 +103,45 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
             switch(column)
             {
                 case 0:
-                    return frame.Frame;
+                    return frame.frame;
                 case 1:
-                    return QString::number(frame.Full32, 16).toUpper().rightJustified(8, '0');
+                    return QString::number(frame.full32, 16).toUpper().rightJustified(8, '0');
                 case 2:
-                    return QString::number(frame.High16(), 16).toUpper().rightJustified(4, '0');
+                    return QString::number(frame.high16(), 16).toUpper().rightJustified(4, '0');
                 case 3:
-                    return QString::number(frame.Low16(), 16).toUpper().rightJustified(4, '0');
+                    return QString::number(frame.low16(), 16).toUpper().rightJustified(4, '0');
                 case 4:
-                    return frame.Custom[0];
+                    return frame.custom[0];
                 case 5:
-                    return frame.Custom[1];
+                    return frame.custom[1];
                 case 6:
-                    return frame.Custom[2];
+                    return frame.custom[2];
                 case 7:
-                    return frame.Custom[3];
+                    return frame.custom[3];
                 case 8:
-                    return frame.Custom[4];
+                    return frame.custom[4];
                 case 9:
-                    return frame.Custom[5];
+                    return frame.custom[5];
                 case 10:
-                    return frame.Custom[6];
+                    return frame.custom[6];
                 case 11:
-                    return frame.Custom[7];
+                    return frame.custom[7];
                 case 12:
-                    return frame.Custom[8];
+                    return frame.custom[8];
                 case 13:
-                    return frame.Custom[9];
+                    return frame.custom[9];
                 case 14:
-                    return frame.Mod3();
+                    return frame.mod3();
                 case 15:
-                    return frame.Mod25();
+                    return frame.mod25();
                 case 16:
-                    return frame.Mod100();
+                    return frame.mod100();
                 case 17:
-                    return frame.Div656();
+                    return frame.div656();
                 case 18:
-                    return frame.LowBit();
+                    return frame.lowBit();
                 case 19:
-                    return frame.HighBit();
+                    return frame.highBit();
             }
         }
     }
@@ -255,39 +255,39 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
     return QVariant();
 }
 
-QModelIndex ResearcherModel::Search(QString string, u64 result, int row)
+QModelIndex ResearcherModel::search(QString string, u64 result, int row)
 {
     int column;
     u64 (*getResult)(ResearcherFrame);
     if (string == tr("64Bit"))
     {
         column = 1;
-        getResult = &ResearcherModel::Get64Bit;
+        getResult = &ResearcherModel::get64Bit;
     }
     else if(string == tr("32Bit High"))
     {
         column = 2;
-        getResult = &ResearcherModel::Get32BitHigh;
+        getResult = &ResearcherModel::get32BitHigh;
     }
     else if(string == tr("32Bit Low"))
     {
         column = 3;
-        getResult = &ResearcherModel::Get32BitLow;
+        getResult = &ResearcherModel::get32BitLow;
     }
     else if (string == tr("32Bit"))
     {
         column = 1;
-        getResult = &ResearcherModel::Get32;
+        getResult = &ResearcherModel::get32;
     }
     else if (string == tr("16Bit High"))
     {
         column = flag ? 4 : 2;
-        getResult = &ResearcherModel::Get16BitHigh;
+        getResult = &ResearcherModel::get16BitHigh;
     }
     else if (string == tr("16Bit Low"))
     {
         column = flag ? 5 : 3;
-        getResult = &ResearcherModel::Get16BitLow;
+        getResult = &ResearcherModel::get16BitLow;
     }
 
     int size = rowCount();

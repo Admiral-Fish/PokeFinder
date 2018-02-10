@@ -64,21 +64,21 @@ private slots:
     void on_saveSearcher_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void UpdateViewSearcher(vector<Frame3> frames);
-    void UpdateProfiles();
+    void updateViewSearcher(vector<Frame3> frames);
+    void updateProfiles();
     void on_checkBoxDelaySearcher_clicked();
     void on_checkBoxDelayGenerator_clicked();
 
 private:
     Ui::Wild3 *ui;
     vector<Profile3> profiles;
-    bool search = false;
+    bool isSearching = false;
     Searcher3Model *s = NULL;
     Wild3Model *g = NULL;
 
-    void SetupModels();
-    void CreateProfileXml();
-    void Search();
+    void setupModels();
+    void createProfileXml();
+    void search();
 
 };
 

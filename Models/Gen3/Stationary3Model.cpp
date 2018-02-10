@@ -23,7 +23,7 @@ Stationary3Model::Stationary3Model(QObject *parent) : QAbstractTableModel(parent
 {
 }
 
-void Stationary3Model::SetModel(vector<Frame3> frames)
+void Stationary3Model::setModel(vector<Frame3> frames)
 {
     model = frames;
 }
@@ -54,9 +54,9 @@ QVariant Stationary3Model::data(const QModelIndex &index, int role) const
             case 1:
                 return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
             case 2:
-                return frame.GetShiny();
+                return frame.getShiny();
             case 3:
-                return frame.GetNature();
+                return frame.getNature();
             case 4:
                 return frame.ability;
             case 5:
@@ -72,13 +72,13 @@ QVariant Stationary3Model::data(const QModelIndex &index, int role) const
             case 10:
                 return frame.ivs[5];
             case 11:
-                return frame.GetPower();
+                return frame.getPower();
             case 12:
                 return frame.power;
             case 13:
-                return frame.GetFemale25();
+                return frame.getFemale25();
             case 14:
-                return frame.GetTime();
+                return frame.getTime();
         }
     }
     return QVariant();

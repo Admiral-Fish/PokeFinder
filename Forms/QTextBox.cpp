@@ -21,10 +21,10 @@
 
 QTextBox::QTextBox(QWidget *parent) : QLineEdit(parent)
 {
-    connect(this, &QLineEdit::textChanged, this, &QTextBox::OnTextChanged);
+    connect(this, SIGNAL (textChanged()), this, SLOT (onTextChanged()));
 }
 
-void QTextBox::OnTextChanged(QString string)
+void QTextBox::onTextChanged(QString string)
 {
     if (maxValue != NULL)
     {
@@ -41,7 +41,7 @@ void QTextBox::OnTextChanged(QString string)
     }
 }
 
-void QTextBox::SetValues(u64 min, u64 shift, bool isDecimal)
+void QTextBox::setValues(u64 min, u64 shift, bool isDecimal)
 {
     maxValue = 0xFFFFFFFFFFFFFFFF >> shift;
     minValue = min;
@@ -49,17 +49,17 @@ void QTextBox::SetValues(u64 min, u64 shift, bool isDecimal)
     filter = QRegExp(isDecimal ? "[^0-9]" : "[^0-9A-F]");
 }
 
-void QTextBox::SetFilter(QString string)
+void QTextBox::setFilter(QString string)
 {
     filter = QRegExp(string);
 }
 
-void QTextBox::SetValue(u64 value)
+void QTextBox::setValue(u64 value)
 {
     maxValue = value;
 }
 
-void QTextBox::SetBase(u32 base)
+void QTextBox::setBase(u32 base)
 {
     this->base = base;
 }

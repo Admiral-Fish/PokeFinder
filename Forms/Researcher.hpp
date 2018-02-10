@@ -34,7 +34,7 @@
 #include <Models/ResearcherModel.hpp>
 #include <Util/ResearcherFrame.hpp>
 
-using namespace std;
+using std::vector;
 typedef uint32_t u32;
 typedef uint64_t u64;
 typedef u64 (*func)(u64, u64);
@@ -52,22 +52,23 @@ protected:
     void changeEvent(QEvent*);
 
 private:
-    u64 GetCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames);
-    void SetupModels();
-    static inline u64 Divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
-    static inline u64 Modulo(u64 x, u64 y) { return x % y; }
-    static inline u64 ShiftRight(u64 x, u64 y) { return x >> y; }
-    static inline u64 ShiftLeft(u64 x, u64 y) { return x << y; }
-    static inline u64 And(u64 x, u64 y) { return x & y; }
-    static inline u64 Or(u64 x, u64 y) { return x | y; }
-    static inline u64 Xor(u64 x, u64 y) { return x ^ y; }
-    static inline u64 Add(u64 x, u64 y) { return x + y; }
-    static inline u64 Subtract(u64 x, u64 y) { return x - y; }
-    static inline u64 Multiply(u64 x, u64 y) { return x * y; }
-
     Ui::Researcher *ui;
     ResearcherModel *model = NULL;
     QMap<QString, int> keys;
+
+    u64 getCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames);
+    void setupModels();
+    static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
+    static inline u64 modulo(u64 x, u64 y) { return x % y; }
+    static inline u64 shiftRight(u64 x, u64 y) { return x >> y; }
+    static inline u64 shiftLeft(u64 x, u64 y) { return x << y; }
+    static inline u64 bitAnd(u64 x, u64 y) { return x & y; }
+    static inline u64 bitOr(u64 x, u64 y) { return x | y; }
+    static inline u64 bitXor(u64 x, u64 y) { return x ^ y; }
+    static inline u64 add(u64 x, u64 y) { return x + y; }
+    static inline u64 subtract(u64 x, u64 y) { return x - y; }
+    static inline u64 multiply(u64 x, u64 y) { return x * y; }
+
 
 public:
     explicit Researcher(QWidget *parent = 0);

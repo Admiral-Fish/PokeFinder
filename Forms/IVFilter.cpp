@@ -32,7 +32,7 @@ IVFilter::~IVFilter()
     delete ui;
 }
 
-vector<u32> IVFilter::GetEvals()
+vector<u32> IVFilter::getEvals()
 {
     vector<u32> evals = { (u32)ui->comboBoxHP->currentIndex(), (u32)ui->comboBoxAtk->currentIndex(),
                           (u32)ui->comboBoxDef->currentIndex(), (u32)ui->comboBoxSpA->currentIndex(),
@@ -41,7 +41,7 @@ vector<u32> IVFilter::GetEvals()
     return evals;
 }
 
-vector<u32> IVFilter::GetValues()
+vector<u32> IVFilter::getValues()
 {
     vector<u32> values = { (u32)ui->spinBoxHP->value(), (u32)ui->spinBoxAtk->value(),
                            (u32)ui->spinBoxDef->value(), (u32)ui->spinBoxSpA->value(),

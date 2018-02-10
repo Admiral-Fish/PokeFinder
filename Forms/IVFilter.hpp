@@ -24,7 +24,7 @@
 #include <vector>
 
 typedef uint32_t u32;
-using namespace std;
+using std::vector;
 
 namespace Ui {
 class IVFilter;
@@ -37,8 +37,8 @@ class IVFilter : public QWidget
 public:
     explicit IVFilter(QWidget *parent = 0);
     ~IVFilter();
-    vector<u32> GetEvals();
-    vector<u32> GetValues();
+    vector<u32> getEvals();
+    vector<u32> getValues();
 
 private slots:
     void on_pushButton31HP_clicked();

@@ -28,7 +28,6 @@
 #include <libPokeFinder/Objects/FrameCompare.hpp>
 #include <libPokeFinder/Objects/Nature.hpp>
 #include <libPokeFinder/Objects/Power.hpp>
-#include <vector>
 #include <QDir>
 #include <libPokeFinder/Gen3/Profile3.hpp>
 #include <Forms/ProfileManager/ProfileManager3.hpp>
@@ -36,9 +35,6 @@
 #include <Models/Gen3/Stationary3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <thread>
-
-using namespace std;
-typedef uint32_t u32;
 
 namespace Ui {
 class Stationary3;
@@ -52,22 +48,22 @@ protected:
     void changeEvent(QEvent*);
 
 signals:
-    void UpdateView(vector<Frame3>);
+    void updateView(vector<Frame3>);
 
 private:
     Ui::Stationary3 *ui;
     Searcher3Model *s = NULL;
     Stationary3Model *g = NULL;
-    bool search = false;
+    bool isSearching = false;
     vector<Profile3> profiles;
 
-    void SetupModels();
-    void CreateProfileXml();
-    void Search();
+    void setupModels();
+    void createProfileXml();
+    void search();
 
 private slots:
     void on_generate_clicked();
-    void UpdateProfiles();
+    void updateProfiles();
     void on_saveProfileGenerator_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_anyNatureGenerator_clicked();
@@ -77,7 +73,7 @@ private slots:
     void on_search_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void UpdateViewSearcher(vector<Frame3> frames);
+    void updateViewSearcher(vector<Frame3> frames);
     void on_checkBoxDelaySearcher_clicked();
     void on_comboBoxMethodSearcher_currentIndexChanged(int index);
 

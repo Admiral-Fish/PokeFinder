@@ -22,11 +22,10 @@
 ResearcherFrame::ResearcherFrame(bool rng64Bit, u32 frame)
 {
     for (int i = 0; i < 10; i++)
-    {
-        Custom[i] = 0;
-    }
-    RNG64Bit = rng64Bit;
-    Full32 = 0;
-    Full64 = 0;
-    Frame = frame;
+        custom[i] = 0;
+
+    rng64Bit = rng64Bit;
+    full32 = 0;
+    full64 = 0;
+    this->frame = frame;
 }

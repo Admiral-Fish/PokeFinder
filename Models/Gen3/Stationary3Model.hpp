@@ -22,9 +22,6 @@
 
 #include <QAbstractTableModel>
 #include <libPokeFinder/Gen3/Frame3.hpp>
-#include <vector>
-
-using namespace std;
 
 class Stationary3Model : public QAbstractTableModel
 {
@@ -34,7 +31,7 @@ private:
 
 public:
     Stationary3Model(QObject *parent);
-    void SetModel(vector<Frame3> frames);
+    void setModel(vector<Frame3> frames);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;

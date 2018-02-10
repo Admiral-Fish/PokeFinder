@@ -20,7 +20,6 @@
 #ifndef RESEARCHERFRAME_HPP
 #define RESEARCHERFRAME_HPP
 
-#include <cstdint>
 #include <QObject>
 
 typedef uint32_t u32;
@@ -30,23 +29,23 @@ class ResearcherFrame
 {
 
 public:
-    quint64 Custom[10];
-    bool RNG64Bit;
-    u64 Full64;
-    u32 Full32;
-    u32 Frame;
+    quint64 custom[10];
+    bool rng64Bit;
+    u64 full64;
+    u32 full32;
+    u32 frame;
 
     ResearcherFrame(bool rng64Bit, u32 frame);
-    inline u32 High32() { return (u32)(Full64 >> 32); }
-    inline u32 Low32() { return (u32)(Full64 & 0xFFFFFFFF); }
-    inline u32 High16() { return RNG64Bit ? High32() >> 16 : Full32 >> 16; }
-    inline u32 Low16() { return RNG64Bit ? High32() & 0xFFFF : Full32 & 0xFFFF; }
-    inline u32 Mod25() { return RNG64Bit ? High32() % 25 : High16() % 25; }
-    inline u32 Mod100() { return RNG64Bit ? High32() % 100 : High16() % 100; }
-    inline u32 Mod3() { return RNG64Bit ? High32() % 3 : High16() % 3; }
-    inline u32 Div656() { return High16() / 656; }
-    inline u32 HighBit() { return RNG64Bit ? High32() >> 31 : High16() >> 15; }
-    inline u32 LowBit() { return RNG64Bit ? High32() & 1 : High16() & 1; }
+    inline u32 high32() { return (u32)(full64 >> 32); }
+    inline u32 low32() { return (u32)(full64 & 0xFFFFFFFF); }
+    inline u32 high16() { return rng64Bit ? high32() >> 16 : full32 >> 16; }
+    inline u32 low16() { return rng64Bit ? high32() & 0xFFFF : full32 & 0xFFFF; }
+    inline u32 mod25() { return rng64Bit ? high32() % 25 : high16() % 25; }
+    inline u32 mod100() { return rng64Bit ? high32() % 100 : high16() % 100; }
+    inline u32 mod3() { return rng64Bit ? high32() % 3 : high16() % 3; }
+    inline u32 div656() { return high16() / 656; }
+    inline u32 highBit() { return rng64Bit ? high32() >> 31 : high16() >> 15; }
+    inline u32 lowBit() { return rng64Bit ? high32() & 1 : high16() & 1; }
 
 };
 

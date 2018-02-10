@@ -22,7 +22,6 @@
 
 #include <QAbstractTableModel>
 #include <libPokeFinder/Gen3/Frame3.hpp>
-#include <vector>
 
 class Wild3Model : public QAbstractTableModel
 {
@@ -32,7 +31,7 @@ private:
 
 public:
     Wild3Model(QObject *parent);
-    void SetModel(vector<Frame3> frames);
+    void setModel(vector<Frame3> frames);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;

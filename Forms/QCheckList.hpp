@@ -10,6 +10,8 @@
 #include <QListView>
 #include <vector>
 
+using std::vector;
+
 /**
  * @brief QComboBox with support of checkboxes
  * http://stackoverflow.com/questions/8422760/combobox-of-checkboxes
@@ -19,7 +21,7 @@ class QCheckList : public QComboBox
     Q_OBJECT
 
 public:
-    static const int StateUnknown = 3;
+    static const int STATEUNKNOWN = 3;
 
 private:
     QStandardItemModel* model;
@@ -28,25 +30,25 @@ private:
     QString unknownlyCheckedText;
 
 signals:
-    void GlobalCheckStateChanged(int);
+    void globalCheckStateChanged(int);
 
 public:
     QCheckList(QWidget* _parent = 0);
     ~QCheckList();
-    void SetAllCheckedText(const QString &text);
-    void SetNoneCheckedText(const QString &text);
-    void SetUnknownlyCheckedText(const QString &text);
-    QStandardItem *AddCheckItem(const QString &label, const QVariant &data, const Qt::CheckState checkState);
-    void AddCheckItems(const std::vector<QString> &label, const QVariant &data, const Qt::CheckState checkState);
-    std::vector<bool> GetChecked();
-    void UncheckAll();
-    int GlobalCheckState();
+    void setAllCheckedText(const QString &text);
+    void setNoneCheckedText(const QString &text);
+    void setUnknownlyCheckedText(const QString &text);
+    QStandardItem *addCheckItem(const QString &label, const QVariant &data, const Qt::CheckState checkState);
+    void addCheckItems(const std::vector<QString> &label, const QVariant &data, const Qt::CheckState checkState);
+    vector<bool> getChecked();
+    void uncheckAll();
+    int globalCheckState();
 
 protected:
-    bool eventFilter(QObject* _object, QEvent* _event);
+    bool eventFilter(QObject* object, QEvent* event);
 
 private:
-    void UpdateText();
+    void updateText();
 
 private slots:
     void on_modelDataChanged();
@@ -58,7 +60,7 @@ public:
 
     public:
         QCheckListStyledItemDelegate(QObject* parent = 0) : QStyledItemDelegate(parent) {}
-        void paint(QPainter * painter_, const QStyleOptionViewItem & option_, const QModelIndex & index_) const;
+        void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
     };
 };

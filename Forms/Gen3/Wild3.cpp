@@ -26,16 +26,16 @@ Wild3::Wild3(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    SetupModels();
-    UpdateProfiles();
+    setupModels();
+    updateProfiles();
 
     QFile file(QApplication::applicationDirPath() + "/profiles.xml");
 
     if(!file.exists())
-        CreateProfileXml();
+        createProfileXml();
 
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
-    connect(this, SIGNAL(UpdateView(vector<Frame3>)), this, SLOT(UpdateViewSearcher(vector<Frame3>)));
+    connect(this, SIGNAL(UpdateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
 }
 
 void Wild3::changeEvent(QEvent *event)
@@ -46,7 +46,7 @@ void Wild3::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                SetupModels();
+                setupModels();
                 break;
             default:
                 break;
@@ -95,15 +95,15 @@ void Wild3::on_checkBoxDelaySearcher_clicked()
     }
 }
 
-void Wild3::UpdateViewSearcher(vector<Frame3> frames)
+void Wild3::updateViewSearcher(vector<Frame3> frames)
 {
-    s->AddItems(frames);
+    s->addItems(frames);
     ui->tableViewSearcher->viewport()->update();
 }
 
-void Wild3::UpdateProfiles()
+void Wild3::updateProfiles()
 {
-    profiles = Profile3::LoadProfileList();
+    profiles = Profile3::loadProfileList();
 
     QStandardItemModel *profile = new QStandardItemModel((int)profiles.size() + 1, 1, this);
     QStandardItem* firstProfile = new QStandardItem(tr("None"));
@@ -116,15 +116,15 @@ void Wild3::UpdateProfiles()
     ui->comboBoxProfiles->setModel(profile);
 }
 
-void Wild3::SetupModels()
+void Wild3::setupModels()
 {
-    vector<QString> natureList = Nature::GetNatures();
-    ui->comboBoxNatureGenerator->AddCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureSearcher->AddCheckItems(natureList, QVariant(), Qt::Unchecked);
+    vector<QString> natureList = Nature::getNatures();
+    ui->comboBoxNatureGenerator->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->comboBoxNatureSearcher->addCheckItems(natureList, QVariant(), Qt::Unchecked);
 
-    vector<QString> powerList = Power::GetPowers();
-    ui->comboBoxHiddenPowerGenerator->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerSearcher->AddCheckItems(powerList, QVariant(), Qt::Unchecked);
+    vector<QString> powerList = Power::getPowers();
+    ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
 
     if (g != NULL)
         delete g;
@@ -150,18 +150,18 @@ void Wild3::SetupModels()
     ui->comboBoxMethodSearcher->addItem(tr("Method H2"), MethodH2);
     ui->comboBoxMethodSearcher->addItem(tr("Method H4"), MethodH4);
 
-    ui->initialSeedGenerator->SetValues(0, 32, false);
-    ui->idGenerator->SetValues(0, 48, true);
-    ui->sidGenerator->SetValues(0, 48, true);
-    ui->startingFrameGenerator->SetValues(1, 32, true);
-    ui->maxResultsGenerator->SetValues(1, 32, true);
-    ui->delayGenerator->SetValues(1, 32, true);
+    ui->initialSeedGenerator->setValues(0, 32, false);
+    ui->idGenerator->setValues(0, 48, true);
+    ui->sidGenerator->setValues(0, 48, true);
+    ui->startingFrameGenerator->setValues(1, 32, true);
+    ui->maxResultsGenerator->setValues(1, 32, true);
+    ui->delayGenerator->setValues(1, 32, true);
 
-    ui->idSearcher->SetValues(0, 48, true);
-    ui->sidSearcher->SetValues(0, 48, true);
+    ui->idSearcher->setValues(0, 48, true);
+    ui->sidSearcher->setValues(0, 48, true);
 }
 
-void Wild3::CreateProfileXml()
+void Wild3::createProfileXml()
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.xml");
     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -179,7 +179,7 @@ void Wild3::on_saveProfileGenerator_clicked()
 {
     ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(UpdateProfiles()), this, SLOT(UpdateProfiles()));
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
     manager->show();
 }
 
@@ -188,29 +188,29 @@ void Wild3::on_saveSearcher_clicked()
 {
     ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(UpdateProfiles()), this, SLOT(UpdateProfiles()));
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
     manager->show();
 }
 
 void Wild3::on_anyNatureGenerator_clicked()
 {
-    ui->comboBoxNatureGenerator->UncheckAll();
+    ui->comboBoxNatureGenerator->uncheckAll();
 }
 
 void Wild3::on_anyHiddenPowerGenerator_clicked()
 {
-    ui->comboBoxHiddenPowerGenerator->UncheckAll();
+    ui->comboBoxHiddenPowerGenerator->uncheckAll();
 }
 
 
 void Wild3::on_anyNatureSearcher_clicked()
 {
-    ui->comboBoxNatureSearcher->UncheckAll();
+    ui->comboBoxNatureSearcher->uncheckAll();
 }
 
 void Wild3::on_anyHiddenPowerSearcher_clicked()
 {
-    ui->comboBoxHiddenPowerSearcher->UncheckAll();
+    ui->comboBoxHiddenPowerSearcher->uncheckAll();
 }
 
 void Wild3::on_generate_clicked()
@@ -229,44 +229,44 @@ void Wild3::on_generate_clicked()
 
     int genderRatioIndex = ui->comboBoxGenderRatioGenerator->currentIndex();
     Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
-    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->GetEvals(), ui->ivFilterGenerator->GetValues(),
+    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getEvals(), ui->ivFilterGenerator->getValues(),
                                         ui->comboBoxGenderGenerator->currentIndex(), genderRatioIndex, ui->comboBoxAbilityGenerator->currentIndex(),
-                                        ui->comboBoxNatureGenerator->GetChecked(), ui->comboBoxHiddenPowerGenerator->GetChecked(),
+                                        ui->comboBoxNatureGenerator->getChecked(), ui->comboBoxHiddenPowerGenerator->getChecked(),
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked());
 
-    generator.Setup((Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL));
+    generator.setup((Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL));
 
-    vector<Frame3> frames = generator.Generate(compare);
-    g->SetModel(frames);
+    vector<Frame3> frames = generator.generate(compare);
+    g->setModel(frames);
     ui->tableViewGenerator->viewport()->update();
 }
 
 void Wild3::on_search_clicked()
 {
-    if (search == true)
+    if (isSearching == true)
         return;
     if (s != NULL)
         delete s;
     s = new Searcher3Model(this, (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
     ui->tableViewSearcher->setModel(s);
-    std::thread job(&Wild3::Search, this);
+    std::thread job(&Wild3::search, this);
     job.detach();
 }
 
-void Wild3::Search()
+void Wild3::search()
 {
-    search = true;
+    isSearching = true;
     u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
-    vector<u32> eval = ui->ivFilterSearcher->GetEvals();
-    vector<u32> ivs = ui->ivFilterSearcher->GetValues();
+    vector<u32> eval = ui->ivFilterSearcher->getEvals();
+    vector<u32> ivs = ui->ivFilterSearcher->getValues();
 
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
     Searcher3 searcher = Searcher3(tid, sid);
     FrameCompare compare = FrameCompare(eval, ivs, ui->comboBoxGenderSearcher->currentIndex(), genderRatioIndex,
-                                        ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->GetChecked(),
-                                        ui->comboBoxHiddenPowerSearcher->GetChecked(), ui->checkBoxShinySearcher->isChecked(), false);
+                                        ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
+                                        ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
 
     searcher.frameType = (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL);
 
@@ -306,7 +306,7 @@ void Wild3::Search()
                     {
                         for (u32 f = min[5]; f <= max[5]; f++)
                         {
-                            vector<Frame3> frames = searcher.Search(a, b, c, d, e, f, compare);
+                            vector<Frame3> frames = searcher.search(a, b, c, d, e, f, compare);
 
                             if (!frames.empty())
                                 emit UpdateView(frames);
@@ -316,5 +316,5 @@ void Wild3::Search()
             }
         }
     }
-    search = false;
+    isSearching = false;
 }

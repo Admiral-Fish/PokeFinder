@@ -24,12 +24,12 @@ Searcher3Model::Searcher3Model(QObject *parent, Method method) : QAbstractTableM
     this->method = method;
 }
 
-void Searcher3Model::SetModel(vector<Frame3> frames)
+void Searcher3Model::setModel(vector<Frame3> frames)
 {
     model = frames;
 }
 
-void Searcher3Model::AddItems(vector<Frame3> frames)
+void Searcher3Model::addItems(vector<Frame3> frames)
 {
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
@@ -85,9 +85,9 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 2:
                         return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 3:
-                        return frame.GetShiny();
+                        return frame.getShiny();
                     case 4:
-                        return frame.GetNature();
+                        return frame.getNature();
                     case 5:
                         return frame.ability;
                     case 6:
@@ -103,11 +103,11 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 11:
                         return frame.ivs[5];
                     case 12:
-                        return frame.GetPower();
+                        return frame.getPower();
                     case 13:
                         return frame.power;
                     case 14:
-                        return frame.GetFemale25();
+                        return frame.getFemale25();
                 }
             case Method1:
             case Method2:
@@ -121,9 +121,9 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 2:
-                        return frame.GetShiny();
+                        return frame.getShiny();
                     case 3:
-                        return frame.GetNature();
+                        return frame.getNature();
                     case 4:
                         return frame.ability;
                     case 5:
@@ -139,11 +139,11 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 10:
                         return frame.ivs[5];
                     case 11:
-                        return frame.GetPower();
+                        return frame.getPower();
                     case 12:
                         return frame.power;
                     case 13:
-                        return frame.GetFemale25();
+                        return frame.getFemale25();
                 }
             case XD:
             case Colo:
@@ -154,9 +154,9 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 2:
-                        return frame.GetShiny();
+                        return frame.getShiny();
                     case 3:
-                        return frame.GetNature();
+                        return frame.getNature();
                     case 4:
                         return frame.ability;
                     case 5:
@@ -172,11 +172,11 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 10:
                         return frame.ivs[5];
                     case 11:
-                        return frame.GetPower();
+                        return frame.getPower();
                     case 12:
                         return frame.power;
                     case 13:
-                        return frame.GetFemale25();
+                        return frame.getFemale25();
                     case 14:
                         return frame.lockReason;
                 }

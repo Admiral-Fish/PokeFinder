@@ -23,7 +23,6 @@
 #include <QAbstractTableModel>
 #include <libPokeFinder/Gen3/Frame3.hpp>
 #include <libPokeFinder/Objects/Method.hpp>
-#include <vector>
 
 class Searcher3Model : public QAbstractTableModel
 {
@@ -34,8 +33,8 @@ private:
 
 public:
     Searcher3Model(QObject *parent, Method method);
-    void SetModel(vector<Frame3> frames);
-    void AddItems(vector<Frame3> frames);
+    void setModel(vector<Frame3> frames);
+    void addItems(vector<Frame3> frames);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;

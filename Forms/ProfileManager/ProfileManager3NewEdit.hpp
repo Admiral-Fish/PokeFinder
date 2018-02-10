@@ -38,7 +38,7 @@ class ProfileManager3NewEdit : public QDialog
     Q_OBJECT
 
 signals:
-    void NewProfile(QString, int, int, u32, u32, bool);
+    void newProfile(QString, int, int, u32, u32, bool);
 
 public:
     explicit ProfileManager3NewEdit(QWidget *parent = 0);
