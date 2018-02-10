@@ -21,12 +21,12 @@
 
 QTextBox::QTextBox(QWidget *parent) : QLineEdit(parent)
 {
-    connect(this, SIGNAL (textChanged()), this, SLOT (onTextChanged()));
+    connect(this, SIGNAL (textChanged(QString)), this, SLOT (onTextChanged(QString)));
 }
 
 void QTextBox::onTextChanged(QString string)
 {
-    if (maxValue != NULL)
+    if (maxValue != 0)
     {
         string = string.toUpper();
         string.remove(filter);

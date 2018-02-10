@@ -27,14 +27,15 @@ typedef uint32_t u32;
 
 class QTextBox : public QLineEdit
 {
+    Q_OBJECT
 
 private:
-    u64 maxValue = NULL;
+    u64 maxValue = 0;
     u64 minValue;
     u32 base;
     QRegExp filter;
 
-public slots:
+private slots:
     void onTextChanged(QString string);
 
 public:
