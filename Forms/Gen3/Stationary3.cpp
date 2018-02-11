@@ -342,7 +342,7 @@ void Stationary3::on_search_clicked()
         delete s;
     s = new Searcher3Model(this, (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
     ui->tableViewSearcher->setModel(s);
-    std::thread job(&Stationary3::isSearching, this);
+    std::thread job(&Stationary3::search, this);
     job.detach();
 }
 
