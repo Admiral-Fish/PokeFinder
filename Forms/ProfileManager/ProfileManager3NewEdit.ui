@@ -107,7 +107,7 @@
     <string>TID:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditTID">
+  <widget class="QTextBox" name="textBoxTID">
    <property name="geometry">
     <rect>
      <x>440</x>
@@ -130,7 +130,7 @@
     <string>SID:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditSID">
+  <widget class="QTextBox" name="textBoxSID">
    <property name="geometry">
     <rect>
      <x>440</x>
@@ -251,6 +251,13 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QTextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/QTextBox.hpp</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

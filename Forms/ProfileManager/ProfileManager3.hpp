@@ -26,6 +26,7 @@
 #include <QStandardItem>
 #include <QObject>
 #include <libPokeFinder/Gen3/Profile3.hpp>
+#include <Models/Gen3/Profile3Model.hpp>
 
 using std::vector;
 typedef uint32_t u32;
@@ -48,14 +49,14 @@ public:
 private slots:
     void on_pushButtonNew_clicked();
     void on_pushButtonOk_clicked();
-    void registerProfile(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery);
+    void registerProfile(Profile3 profile);
+    void editProfile(Profile3 profile, Profile3 original);
     void on_pushButtonEdit_clicked();
     void on_pushButtonDelete_clicked();
 
 private:
     Ui::ProfileManager3 *ui;
-
-    void updateTable(vector<QList<QStandardItem *>> rows);
+    Profile3Model *model = NULL;
 
 };
 

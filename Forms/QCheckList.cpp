@@ -74,9 +74,7 @@ vector<bool> QCheckList::getChecked()
     if (globalCheckState() == Qt::Unchecked)
     {
         for (auto i = 0; i < model->rowCount(); i++)
-        {
             result.push_back(true);
-        }
     }
     else
     {

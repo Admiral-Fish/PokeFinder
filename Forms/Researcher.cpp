@@ -282,7 +282,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                           ui->comboBoxLValue7->currentText(), ui->comboBoxLValue8->currentText(),
                           ui->comboBoxLValue9->currentText(), ui->comboBoxLValue10->currentText() };
 
-    QString textR[10] = { "None", ui->comboBoxRValue2->currentText(),
+    QString textR[10] = { tr("None"), ui->comboBoxRValue2->currentText(),
                           ui->comboBoxRValue3->currentText(), ui->comboBoxRValue4->currentText(),
                           ui->comboBoxRValue5->currentText(), ui->comboBoxRValue6->currentText(),
                           ui->comboBoxRValue7->currentText(), ui->comboBoxRValue8->currentText(),

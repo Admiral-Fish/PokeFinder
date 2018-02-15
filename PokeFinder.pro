@@ -73,7 +73,8 @@ SOURCES += \
     Forms/Gen3/Stationary3.cpp \
     Forms/MainWindow.cpp \
     Forms/Gen3/Wild3.cpp \
-    Forms/IVFilter.cpp
+    Forms/IVFilter.cpp \
+    Models/Gen3/Profile3Model.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManager3.hpp \
@@ -115,7 +116,8 @@ HEADERS += \
     Forms/Gen3/Stationary3.hpp \
     Forms/MainWindow.hpp \
     Forms/Gen3/Wild3.hpp \
-    Forms/IVFilter.hpp
+    Forms/IVFilter.hpp \
+    Models/Gen3/Profile3Model.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManager3.ui \

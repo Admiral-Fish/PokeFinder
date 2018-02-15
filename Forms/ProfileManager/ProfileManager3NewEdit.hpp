@@ -26,6 +26,7 @@
 #include <QObject>
 #include <QStandardItemModel>
 #include <QList>
+#include <libPokeFinder/Gen3/Profile3.hpp>
 
 typedef uint32_t u32;
 
@@ -38,11 +39,12 @@ class ProfileManager3NewEdit : public QDialog
     Q_OBJECT
 
 signals:
-    void newProfile(QString, int, int, u32, u32, bool);
+    void newProfile(Profile3);
+    void editProfile(Profile3, Profile3);
 
 public:
     explicit ProfileManager3NewEdit(QWidget *parent = 0);
-    explicit ProfileManager3NewEdit(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery, QWidget *parent = 0);
+    explicit ProfileManager3NewEdit( Profile3 profile, QWidget *parent = 0);
     ~ProfileManager3NewEdit();
 
 private slots:
@@ -52,6 +54,8 @@ private slots:
 
 private:
     Ui::ProfileManager3NewEdit *ui;
+    bool isEditing = false;
+    Profile3 original;
 
 };
 

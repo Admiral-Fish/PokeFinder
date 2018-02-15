@@ -6,17 +6,26 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(QWidget *parent) :
     ui(new Ui::ProfileManager3NewEdit)
 {
     ui->setupUi(this);
+
+    ui->textBoxTID->setValues(0, 48, true);
+    ui->textBoxSID->setValues(0, 48, true);
 }
 
-ProfileManager3NewEdit::ProfileManager3NewEdit(QString profileName, int version, int language, u32 tid, u32 sid, bool deadBattery, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManager3NewEdit)
+ProfileManager3NewEdit::ProfileManager3NewEdit(Profile3 profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManager3NewEdit)
 {
     ui->setupUi(this);
-    ui->lineEditProfile->setText(profileName);
-    ui->comboBoxVersion->setCurrentIndex(version);
-    ui->comboBoxLanguage->setCurrentIndex(language);
-    ui->lineEditTID->setText(QString::number(tid));
-    ui->lineEditSID->setText(QString::number(sid));
-    ui->checkBoxDeadBattery->setChecked(deadBattery);
+
+    ui->textBoxTID->setValues(0, 48, true);
+    ui->textBoxSID->setValues(0, 48, true);
+
+    ui->lineEditProfile->setText(profile.profileName);
+    ui->comboBoxVersion->setCurrentIndex(profile.version);
+    ui->comboBoxLanguage->setCurrentIndex(profile.language);
+    ui->textBoxTID->setText(QString::number(profile.tid));
+    ui->textBoxSID->setText(QString::number(profile.sid));
+    ui->checkBoxDeadBattery->setChecked(profile.deadBattery);
+    isEditing = true;
+    original = profile;
 }
 
 ProfileManager3NewEdit::~ProfileManager3NewEdit()
@@ -26,55 +35,26 @@ ProfileManager3NewEdit::~ProfileManager3NewEdit()
 
 void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
 {
-    bool pass;
-    QMessageBox error;
-    QString input;
-
-    input = ui->lineEditProfile->text().trimmed();
+    QString input = ui->lineEditProfile->text().trimmed();
     if(input == "")
     {
-        error.setText(tr("Please enter a Profile Name."));
+        QMessageBox error;
+        error.setText(tr("Enter a Profile Name."));
         error.exec();
         return;
     }
 
-    input = ui->lineEditTID->text().trimmed();
-    if (input != "")
-    {
-        u32 tid = input.toUInt(&pass, 10);
-        if (!pass)
-        {
-            error.setText(tr("Please enter Trainer ID in valid decimal format."));
-            error.exec();
-            return;
-        }
-        else if (tid > 0xffff)
-        {
-            error.setText(tr("Please enter a value lower then 65536."));
-            error.exec();
-            return;
-        }
-    }
+    Profile3 profile(ui->lineEditProfile->text(), ui->comboBoxVersion->currentIndex(), ui->textBoxTID->text().toUInt(NULL, 10),
+                     ui->textBoxSID->text().toUInt(NULL, 10), ui->comboBoxLanguage->currentIndex(), ui->checkBoxDeadBattery->isChecked());
 
-    input = ui->lineEditSID->text().trimmed();
-    if (input != "")
+    if (isEditing)
     {
-        u32 sid = input.toUInt(&pass, 10);
-        if (!pass)
-        {
-            error.setText(tr("Please enter Trainer SID in valid decimal format."));
-            error.exec();
-            return;
-        }
-        else if (sid > 0xffff)
-        {
-            error.setText(tr("Please enter a value lower then 65536."));
-            error.exec();
-            return;
-        }
+        emit editProfile(profile, original);
     }
-
-    emit newProfile(ui->lineEditProfile->text(), ui->comboBoxVersion->currentIndex(), ui->comboBoxLanguage->currentIndex(), ui->lineEditTID->text().toUInt(&pass, 10), ui->lineEditSID->text().toUInt(&pass, 10), ui->checkBoxDeadBattery->isChecked());
+    else
+    {
+        emit newProfile(profile);
+    }
 
     done(QDialog::Accepted);
 }

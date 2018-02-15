@@ -133,6 +133,49 @@
     </message>
 </context>
 <context>
+    <name>Profile3Model</name>
+    <message>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="59"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="59"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="79"/>
+        <source>Profile Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="81"/>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="83"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="85"/>
+        <source>TID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="87"/>
+        <source>SID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="89"/>
+        <source>Dead Battery</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ProfileManager3</name>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="14"/>
@@ -160,43 +203,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
-        <source>Profile Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
-        <source>Version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
-        <source>Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
-        <source>TID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
-        <source>SID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="46"/>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="65"/>
-        <source>Dead Battery</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="158"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="90"/>
         <source>Please select one row.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -314,31 +321,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="36"/>
-        <source>Please enter a Profile Name.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="47"/>
-        <source>Please enter Trainer ID in valid decimal format.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="53"/>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="71"/>
-        <source>Please enter a value lower then 65536.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="65"/>
-        <source>Please enter Trainer SID in valid decimal format.</source>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="42"/>
+        <source>Enter a Profile Name.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QCheckList</name>
     <message>
-        <location filename="../Forms/QCheckList.hpp" line="26"/>
+        <location filename="../Forms/QCheckList.hpp" line="28"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
@@ -576,44 +567,37 @@
         <translation>악</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="486"/>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="527"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="348"/>
         <source>Ruby</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="488"/>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="531"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="350"/>
         <source>Sapphire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="490"/>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="535"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="352"/>
         <source>Fire Red</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="492"/>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="539"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="354"/>
         <source>Leaf Green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="494"/>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="543"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="356"/>
         <source>Emerald</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="496"/>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="547"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="358"/>
         <source>XD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="498"/>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="551"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="360"/>
         <source>Colosseum</source>
         <translation type="unfinished"></translation>
     </message>
@@ -621,28 +605,28 @@
         <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="425"/>
         <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="445"/>
         <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="488"/>
-        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="505"/>
+        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="507"/>
         <source>First shadow unset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="431"/>
         <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="451"/>
-        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="493"/>
-        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="510"/>
+        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="494"/>
+        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="513"/>
         <source>First shadow set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="437"/>
         <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="457"/>
-        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="498"/>
-        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="515"/>
+        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="500"/>
+        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="519"/>
         <source>Shiny Skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="739"/>
+        <location filename="../libPokeFinder/Gen3/Searcher3.cpp" line="743"/>
         <source>Pass NL</source>
         <translation type="unfinished"></translation>
     </message>
@@ -893,6 +877,7 @@
         <location filename="../Forms/Researcher.ui" line="2028"/>
         <location filename="../Forms/Researcher.ui" line="2241"/>
         <location filename="../Forms/Researcher.ui" line="2501"/>
+        <location filename="../Forms/Researcher.cpp" line="285"/>
         <location filename="../Forms/Researcher.cpp" line="309"/>
         <source>None</source>
         <translation type="unfinished"></translation>
