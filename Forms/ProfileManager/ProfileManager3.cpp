@@ -67,6 +67,7 @@ void ProfileManager3::on_pushButtonOk_clicked()
 
 void ProfileManager3::on_pushButtonEdit_clicked()
 {
+    QItemSelectionModel *selections = ui->tableView->selectionModel();
     if(selections->selectedRows().count() != 1)
     {
         QMessageBox error;
@@ -75,7 +76,7 @@ void ProfileManager3::on_pushButtonEdit_clicked()
         return;
     }
 
-    int r = ui->tableView->selectionModel()->selectedRows().at(0).row();
+    int r = selections->selectedRows().at(0).row();
     ProfileManager3NewEdit* dialog = new ProfileManager3NewEdit(model->getProfile(r));
     connect(dialog, SIGNAL (editProfile(Profile3, Profile3)), this, SLOT (editProfile(Profile3, Profile3)));
     dialog->exec();
