@@ -27,187 +27,199 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="widget">
      <attribute name="title">
       <string>32Bit</string>
      </attribute>
-     <layout class="QFormLayout" name="formLayout_2">
-      <item row="0" column="0">
-       <layout class="QGridLayout" name="gridLayout32Bit">
-        <item row="0" column="0">
-         <widget class="QRadioButton" name="radioButtonCommon32Bit">
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>301</width>
+        <height>85</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QRadioButton" name="radioButtonCommon32Bit">
+         <property name="text">
+          <string>Common RNGs</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QComboBox" name="comboBoxRNG32Bit">
+         <item>
           <property name="text">
-           <string>Common RNGs</string>
+           <string>LCRNG</string>
           </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QComboBox" name="comboBoxRNG32Bit">
-          <item>
-           <property name="text">
-            <string>LCRNG</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>LCRNG[R]</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>XDRNG</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>XDRNG[R]</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>ARNG</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>ARNG[R]</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Mersenne Twister</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>M. Twister (Untempered)</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>M. Twister (Fast)</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QRadioButton" name="radioButtonCustom32Bit">
+         </item>
+         <item>
           <property name="text">
-           <string>Custom</string>
+           <string>LCRNG[R]</string>
           </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLabel" name="label_11">
+         </item>
+         <item>
           <property name="text">
-           <string notr="true">X</string>
+           <string>XDRNG</string>
           </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QTextBox" name="textBoxMult32Bit">
-          <property name="maxLength">
-           <number>8</number>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="label_12">
+         </item>
+         <item>
           <property name="text">
-           <string notr="true">+</string>
+           <string>XDRNG[R]</string>
           </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QTextBox" name="textBoxAdd32Bit">
-          <property name="maxLength">
-           <number>8</number>
+         </item>
+         <item>
+          <property name="text">
+           <string>ARNG</string>
           </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
+         </item>
+         <item>
+          <property name="text">
+           <string>ARNG[R]</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Mersenne Twister</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>M. Twister (Untempered)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>M. Twister (Fast)</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="radioButtonCustom32Bit">
+         <property name="text">
+          <string>Custom</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string notr="true">X</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QTextBox" name="textBoxMult32Bit">
+         <property name="maxLength">
+          <number>8</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string notr="true">+</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QTextBox" name="textBoxAdd32Bit">
+         <property name="maxLength">
+          <number>8</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>64Bit</string>
      </attribute>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="0">
-       <layout class="QGridLayout" name="gridLayout64Bit">
-        <item row="0" column="0">
-         <widget class="QRadioButton" name="radioButtonCommon64Bit">
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>301</width>
+        <height>85</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QRadioButton" name="radioButtonCommon64Bit">
+         <property name="text">
+          <string>Common RNGs</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QComboBox" name="comboBoxRNG64Bit">
+         <item>
           <property name="text">
-           <string>Common RNGs</string>
+           <string>BWRNG</string>
           </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QComboBox" name="comboBoxRNG64Bit">
-          <item>
-           <property name="text">
-            <string>BWRNG</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>BWRNG[R]</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>SFMT</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QRadioButton" name="radioButtonCustom64Bit">
+         </item>
+         <item>
           <property name="text">
-           <string>Custom</string>
+           <string>BWRNG[R]</string>
           </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLabel" name="label_15">
+         </item>
+         <item>
           <property name="text">
-           <string notr="true">X</string>
+           <string>SFMT</string>
           </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QTextBox" name="textBoxMult64Bit">
-          <property name="maxLength">
-           <number>16</number>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="label_16">
-          <property name="text">
-           <string notr="true">+</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QTextBox" name="textBoxAdd64Bit">
-          <property name="maxLength">
-           <number>16</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="radioButtonCustom64Bit">
+         <property name="text">
+          <string>Custom</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string notr="true">X</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QTextBox" name="textBoxMult64Bit">
+         <property name="maxLength">
+          <number>16</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string notr="true">+</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QTextBox" name="textBoxAdd64Bit">
+         <property name="maxLength">
+          <number>16</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -218,7 +230,7 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>31</width>
+        <width>41</width>
         <height>16</height>
        </rect>
       </property>
@@ -232,7 +244,7 @@
         <x>10</x>
         <y>30</y>
         <width>281</width>
-        <height>48</height>
+        <height>54</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayoutStatus">
@@ -328,8 +340,8 @@ QHeaderView::section {
      <rect>
       <x>340</x>
       <y>13</y>
-      <width>449</width>
-      <height>256</height>
+      <width>461</width>
+      <height>307</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayoutCustoms">
@@ -2645,7 +2657,7 @@ QHeaderView::section {
       <x>20</x>
       <y>140</y>
       <width>293</width>
-      <height>77</height>
+      <height>96</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayoutSearch">
@@ -2712,7 +2724,7 @@ QHeaderView::section {
       <x>22</x>
       <y>232</y>
       <width>291</width>
-      <height>51</height>
+      <height>65</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -2768,7 +2780,7 @@ QHeaderView::section {
      <x>0</x>
      <y>0</y>
      <width>797</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
