@@ -54,6 +54,8 @@ Researcher::Researcher(QWidget *parent) :
     ui->lineEditRValue8->setValues(0, 32, false);
     ui->lineEditRValue9->setValues(0, 32, false);
     ui->lineEditRValue10->setValues(0, 32, false);
+
+    //ui->tableView->
 }
 
 void Researcher::changeEvent(QEvent *event)
@@ -131,14 +133,13 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                     rng = new MersenneTwisterUntempered(seed);
                     break;
                 case 8:
-                    if (maxFrames > 227)
+                    if (maxFrames > 227 || startingFrame > 227 || (startingFrame + maxFrames > 227))
                     {
                         QMessageBox error;
-                        error.setText(tr("Please enter a max frame lower then 228"));
+                        error.setText(tr("Please enter a search range lower then 228"));
                         error.exec();
                         return;
                     }
-                    else
                         rng = new MersenneTwisterFast(seed, maxFrames);
                     break;
             }
@@ -318,10 +319,11 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     model->setModel(frames);
     ui->tableView->viewport()->update();
     ui->tableView->resizeColumnToContents(1);
+    //ui->tableView->resizeColumnsToContents();
     if (rng64Bit)
     {
-        ui->tableView->resizeColumnToContents(2);
-        ui->tableView->resizeColumnToContents(3);
+       ui->tableView->resizeColumnToContents(2);
+       ui->tableView->resizeColumnToContents(3);
     }
 
     delete rng;
