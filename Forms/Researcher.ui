@@ -27,18 +27,18 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="widget">
      <attribute name="title">
       <string>32Bit</string>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>0</y>
-        <width>301</width>
+        <width>291</width>
         <height>85</height>
        </rect>
       </property>
@@ -144,12 +144,12 @@
      <attribute name="title">
       <string>64Bit</string>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>0</y>
-        <width>301</width>
+        <width>291</width>
         <height>85</height>
        </rect>
       </property>
@@ -338,10 +338,10 @@ QHeaderView::section {
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>330</x>
       <y>13</y>
       <width>461</width>
-      <height>307</height>
+      <height>281</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayoutCustoms">
@@ -415,7 +415,7 @@ QHeaderView::section {
      <item row="1" column="3">
       <widget class="QTextBox" name="lineEditRValue2"/>
      </item>
-     <item row="0" column="0">
+     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Custom 1</string>
@@ -579,7 +579,7 @@ QHeaderView::section {
        </item>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="2" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>Custom 3</string>
@@ -645,7 +645,7 @@ QHeaderView::section {
        </item>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item row="3" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>Custom 4</string>
@@ -834,7 +834,7 @@ QHeaderView::section {
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Custom 2</string>
@@ -1023,7 +1023,7 @@ QHeaderView::section {
        </item>
       </widget>
      </item>
-     <item row="7" column="0">
+     <item row="7" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_8">
        <property name="text">
         <string>Custom 8</string>
@@ -1292,7 +1292,7 @@ QHeaderView::section {
        </item>
       </widget>
      </item>
-     <item row="4" column="0">
+     <item row="4" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_5">
        <property name="text">
         <string>Custom 5</string>
@@ -1841,7 +1841,7 @@ QHeaderView::section {
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
+     <item row="6" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_7">
        <property name="text">
         <string>Custom 7</string>
@@ -2016,7 +2016,7 @@ QHeaderView::section {
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
+     <item row="8" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_9">
        <property name="text">
         <string>Custom 9</string>
@@ -2152,7 +2152,7 @@ QHeaderView::section {
        </item>
       </widget>
      </item>
-     <item row="5" column="0">
+     <item row="5" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Custom 6</string>
@@ -2635,7 +2635,7 @@ QHeaderView::section {
        </item>
       </widget>
      </item>
-     <item row="9" column="0">
+     <item row="9" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_10">
        <property name="text">
         <string>Custom 10</string>
@@ -2651,24 +2651,24 @@ QHeaderView::section {
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>140</y>
+      <x>21</x>
+      <y>135</y>
       <width>293</width>
-      <height>96</height>
+      <height>151</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayoutSearch">
-     <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_22">
        <property name="text">
         <string>Starting Frame</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item row="0" column="1" colspan="2">
       <widget class="QTextBox" name="textBoxStartingFrame">
        <property name="text">
         <string notr="true">1</string>
@@ -2678,14 +2678,14 @@ QHeaderView::section {
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_13">
        <property name="text">
         <string>Max Results</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item row="1" column="1" colspan="2">
       <widget class="QTextBox" name="textBoxMaxFrames">
        <property name="text">
         <string notr="true">1000</string>
@@ -2695,50 +2695,38 @@ QHeaderView::section {
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="2" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_14">
        <property name="text">
         <string>Seed</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="2" column="1" colspan="2">
       <widget class="QTextBox" name="textBoxSeed">
        <property name="maxLength">
         <number>16</number>
        </property>
       </widget>
      </item>
-     <item row="2" column="2">
+     <item row="2" column="3">
       <widget class="QPushButton" name="pushButtonGenerate32Bit">
        <property name="text">
         <string>Generate</string>
        </property>
       </widget>
      </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>22</x>
-      <y>232</y>
-      <width>291</width>
-      <height>65</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
+     <item row="3" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="label_23">
        <property name="text">
         <string>Search Seed</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1" colspan="2">
+     <item row="3" column="1" colspan="2">
       <widget class="QTextBox" name="textBoxSearch"/>
      </item>
-     <item row="0" column="3">
+     <item row="3" column="3">
       <widget class="QComboBox" name="comboBoxSearch">
        <item>
         <property name="text">
@@ -2757,14 +2745,14 @@ QHeaderView::section {
        </item>
       </widget>
      </item>
-     <item row="1" column="0" colspan="2">
+     <item row="4" column="0" colspan="2">
       <widget class="QPushButton" name="pushButtonSearch">
        <property name="text">
         <string>Search</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="2" colspan="2">
+     <item row="4" column="2" colspan="2">
       <widget class="QPushButton" name="pushButtonNext">
        <property name="text">
         <string>Next</string>
@@ -2780,7 +2768,7 @@ QHeaderView::section {
      <x>0</x>
      <y>0</y>
      <width>797</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
