@@ -54,8 +54,6 @@ Researcher::Researcher(QWidget *parent) :
     ui->lineEditRValue8->setValues(0, 32, false);
     ui->lineEditRValue9->setValues(0, 32, false);
     ui->lineEditRValue10->setValues(0, 32, false);
-
-    //ui->tableView->
 }
 
 void Researcher::changeEvent(QEvent *event)
@@ -90,7 +88,6 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     if (model != NULL)
         delete model;
     model = new ResearcherModel(this, rng64Bit);
-    ui->tableView->setModel(model);
 
     u64 seed = ui->textBoxSeed->text().toULongLong(NULL, 16);
     u32 maxFrames = ui->textBoxMaxFrames->text().toUInt(NULL, 10);
@@ -317,14 +314,8 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     }
 
     model->setModel(frames);
-    ui->tableView->viewport()->update();
-    ui->tableView->resizeColumnToContents(1);
+    ui->tableView->setModel(model);
     //ui->tableView->resizeColumnsToContents();
-    if (rng64Bit)
-    {
-       ui->tableView->resizeColumnToContents(2);
-       ui->tableView->resizeColumnToContents(3);
-    }
 
     delete rng;
     delete rng64;
