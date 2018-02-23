@@ -316,6 +316,12 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     model->setModel(frames);
     ui->tableView->setModel(model);
     //ui->tableView->resizeColumnsToContents();
+    ui->tableView->resizeColumnToContents(1);
+    if (rng64Bit)
+    {
+        ui->tableView->resizeColumnToContents(2);
+        ui->tableView->resizeColumnToContents(3);
+    }
 
     delete rng;
     delete rng64;
