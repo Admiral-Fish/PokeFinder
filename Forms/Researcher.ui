@@ -35,7 +35,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="widget">
+      <widget class="QWidget" name="tab32Bit">
        <attribute name="title">
         <string>32Bit</string>
        </attribute>
@@ -48,7 +48,7 @@
           <height>85</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="gridLayout_3">
+        <layout class="QGridLayout" name="gridLayout32Bit">
          <item row="0" column="0">
           <widget class="QRadioButton" name="radioButtonCommon32Bit">
            <property name="text">
@@ -146,7 +146,7 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="tab64Bit">
        <attribute name="title">
         <string>64Bit</string>
        </attribute>
@@ -159,7 +159,7 @@
           <height>85</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2">
+        <layout class="QGridLayout" name="gridLayout64Bit">
          <item row="0" column="0">
           <widget class="QRadioButton" name="radioButtonCommon64Bit">
            <property name="text">
@@ -227,7 +227,7 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_3">
+      <widget class="QWidget" name="tabTiny">
        <attribute name="title">
         <string>TinyMT</string>
        </attribute>
@@ -2624,7 +2624,7 @@
      </layout>
     </item>
     <item row="1" column="0">
-     <layout class="QGridLayout" name="gridLayout">
+     <layout class="QGridLayout" name="gridLayoutSearch">
       <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QLabel" name="label_22">
         <property name="text">
