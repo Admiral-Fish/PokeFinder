@@ -10,6 +10,12 @@
     <height>390</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>463</width>
+    <height>390</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string notr="true">PokéFinder 1.1.2</string>
   </property>
@@ -18,58 +24,48 @@
     <normaloff>../pokefinder.ico</normaloff>../pokefinder.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="groupBoxGen3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>211</width>
-      <height>331</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Gen 3</string>
-    </property>
-    <widget class="QPushButton" name="pushButtonStationary3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>191</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Stationary</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButtonWild3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>191</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Wild</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="groupBoxGen4">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>10</y>
-      <width>221</width>
-      <height>331</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Gen 4</string>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="groupBoxGen3">
+      <property name="title">
+       <string>Gen 3</string>
+      </property>
+      <widget class="QPushButton" name="pushButtonStationary3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Stationary</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonWild3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Wild</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBoxGen4">
+      <property name="title">
+       <string>Gen 4</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
