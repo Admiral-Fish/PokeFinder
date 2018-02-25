@@ -10,11 +10,11 @@
     <height>390</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>463</width>
-    <height>390</height>
-   </size>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string notr="true">PokéFinder 1.1.2</string>
@@ -34,7 +34,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>30</y>
          <width>191</width>
          <height>23</height>
         </rect>
@@ -47,7 +47,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>50</y>
+         <y>60</y>
          <width>191</width>
          <height>23</height>
         </rect>
@@ -90,7 +90,6 @@
    <addaction name="menuLanguage"/>
    <addaction name="menuTools"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionResearcher">
    <property name="text">
     <string>Researcher</string>
