@@ -16,6 +16,18 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>463</width>
+    <height>390</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>463</width>
+    <height>390</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string notr="true">PokéFinder 1.1.2</string>
   </property>
