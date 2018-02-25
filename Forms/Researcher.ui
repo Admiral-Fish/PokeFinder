@@ -20,7 +20,7 @@
    <string notr="true">Researcher</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_6">
+   <layout class="QGridLayout" name="gridLayout_7">
     <item row="0" column="0">
      <widget class="QTabWidget" name="rngSelection">
       <property name="maximumSize">
@@ -346,8 +346,8 @@ QLineEdit {
       </widget>
      </widget>
     </item>
-    <item row="0" column="1" rowspan="2">
-     <widget class="QGroupBox" name="groupBox_2">
+    <item row="0" column="1" rowspan="3">
+     <widget class="QGroupBox" name="groupBoxCustoms">
       <property name="styleSheet">
        <string notr="true">QLineEdit {
 	qproperty-alignment: AlignCenter;
@@ -2724,7 +2724,7 @@ QCheckBox::indicator:checked {
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupBoxParameters">
       <property name="styleSheet">
        <string notr="true">QSpinBox {
 	qproperty-alignment: AlignCenter;
@@ -2816,9 +2816,9 @@ QCheckBox::indicator:checked {
 }</string>
       </property>
       <property name="title">
-       <string>Filters</string>
+       <string>Parameters</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_4">
+      <layout class="QGridLayout" name="gridLayout_6">
        <item row="0" column="0">
         <widget class="QLabel" name="label_22">
          <property name="text">
@@ -2826,7 +2826,7 @@ QCheckBox::indicator:checked {
          </property>
         </widget>
        </item>
-       <item row="0" column="1" colspan="2">
+       <item row="0" column="1">
         <widget class="QTextBox" name="textBoxStartingFrame">
          <property name="text">
           <string notr="true">1</string>
@@ -2843,7 +2843,7 @@ QCheckBox::indicator:checked {
          </property>
         </widget>
        </item>
-       <item row="1" column="1" colspan="2">
+       <item row="1" column="1">
         <widget class="QTextBox" name="textBoxMaxFrames">
          <property name="text">
           <string notr="true">1000</string>
@@ -2860,14 +2860,14 @@ QCheckBox::indicator:checked {
          </property>
         </widget>
        </item>
-       <item row="2" column="1" colspan="2">
+       <item row="2" column="1">
         <widget class="QTextBox" name="textBoxSeed">
          <property name="maxLength">
           <number>16</number>
          </property>
         </widget>
        </item>
-       <item row="2" column="3">
+       <item row="2" column="2">
         <widget class="QPushButton" name="pushButtonGenerate32Bit">
          <property name="minimumSize">
           <size>
@@ -2885,17 +2885,116 @@ QCheckBox::indicator:checked {
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QGroupBox" name="groupBoxSearch">
+      <property name="styleSheet">
+       <string notr="true">QSpinBox {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+
+QSpinBox::up-button {
+	subcontrol-origin: border;
+    subcontrol-position: top right;
+}
+
+QSpinBox::down-button {
+	subcontrol-origin: border;
+    subcontrol-position: bottom right;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}
+
+QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+		font-family: &quot;Myriad Pro&quot;, Montserrat;
+		font-weight: 500;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	padding-left: 13px;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+		background-color: white;
+}</string>
+      </property>
+      <property name="title">
+       <string>Search</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
         <widget class="QLabel" name="label_23">
          <property name="text">
           <string>Search Seed</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1" colspan="2">
+       <item row="0" column="1" colspan="2">
         <widget class="QTextBox" name="textBoxSearch"/>
        </item>
-       <item row="3" column="3">
+       <item row="0" column="3">
         <widget class="QComboBox" name="comboBoxSearch">
          <item>
           <property name="text">
@@ -2914,7 +3013,7 @@ QCheckBox::indicator:checked {
          </item>
         </widget>
        </item>
-       <item row="4" column="0" colspan="2">
+       <item row="1" column="0" colspan="2">
         <widget class="QPushButton" name="pushButtonSearch">
          <property name="minimumSize">
           <size>
@@ -2932,7 +3031,7 @@ QCheckBox::indicator:checked {
          </property>
         </widget>
        </item>
-       <item row="4" column="2" colspan="2">
+       <item row="1" column="2" colspan="2">
         <widget class="QPushButton" name="pushButtonNext">
          <property name="minimumSize">
           <size>
@@ -2953,7 +3052,7 @@ QCheckBox::indicator:checked {
       </layout>
      </widget>
     </item>
-    <item row="2" column="0" colspan="2">
+    <item row="3" column="0" colspan="2">
      <widget class="QTableView" name="tableView">
       <property name="styleSheet">
        <string notr="true">QTableView {
@@ -2986,7 +3085,6 @@ QHeaderView::section {
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>
