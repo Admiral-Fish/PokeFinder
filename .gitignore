@@ -38,3 +38,6 @@ pokeapi-cli
 
 # QT Stuff
 *.pro.user
+
+# Mac Stuff
+.DS_Store
