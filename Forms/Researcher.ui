@@ -25,7 +25,7 @@
      <widget class="QTabWidget" name="rngSelection">
       <property name="maximumSize">
        <size>
-        <width>311</width>
+        <width>16777215</width>
         <height>119</height>
        </size>
       </property>
