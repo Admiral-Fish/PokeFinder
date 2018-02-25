@@ -57,77 +57,77 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="31"/>
+        <location filename="../Forms/MainWindow.ui" line="43"/>
         <source>Gen 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="43"/>
+        <location filename="../Forms/MainWindow.ui" line="55"/>
         <source>Stationary</source>
         <translation>Fixes</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="70"/>
+        <location filename="../Forms/MainWindow.ui" line="76"/>
         <source>Gen 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="100"/>
+        <location filename="../Forms/MainWindow.ui" line="107"/>
         <source>Researcher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="90"/>
+        <location filename="../Forms/MainWindow.ui" line="98"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="56"/>
+        <location filename="../Forms/MainWindow.ui" line="68"/>
         <source>Wild</source>
         <translation>Sauvage</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.ui" line="85"/>
+        <location filename="../Forms/MainWindow.ui" line="93"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="69"/>
+        <location filename="../Forms/MainWindow.cpp" line="71"/>
         <source>German</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="69"/>
+        <location filename="../Forms/MainWindow.cpp" line="71"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="69"/>
+        <location filename="../Forms/MainWindow.cpp" line="71"/>
         <source>Spanish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="69"/>
+        <location filename="../Forms/MainWindow.cpp" line="71"/>
         <source>French</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="69"/>
+        <location filename="../Forms/MainWindow.cpp" line="71"/>
         <source>Italian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="69"/>
+        <location filename="../Forms/MainWindow.cpp" line="71"/>
         <source>Japanese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="69"/>
+        <location filename="../Forms/MainWindow.cpp" line="71"/>
         <source>Korean</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="69"/>
+        <location filename="../Forms/MainWindow.cpp" line="71"/>
         <source>Chinese</source>
         <translation type="unfinished"></translation>
     </message>
@@ -178,7 +178,7 @@
 <context>
     <name>ProfileManager3</name>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="14"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="20"/>
         <source>Profile Manager Gen 3</source>
         <translation type="unfinished"></translation>
     </message>
@@ -188,30 +188,31 @@
         <translation>Nouveau</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="40"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="41"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="53"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="34"/>
         <source>Edit</source>
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="66"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="51"/>
         <source>Done</source>
         <translation>Terminé</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="90"/>
-        <source>Please select one row.</source>
-        <translation>Sélectionnez une ligne SVP.</translation>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="76"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="93"/>
+        <source>Please select a profile.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ProfileManager3NewEdit</name>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="14"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="20"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -221,102 +222,102 @@
         <translation>Nom du profil :</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="49"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="53"/>
         <source>Version:</source>
         <translation>Version :</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="63"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="61"/>
         <source>Ruby</source>
         <translation>Rubis</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="68"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="66"/>
         <source>Sapphire</source>
         <translation>Saphir</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="73"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="71"/>
         <source>Fire Red</source>
         <translation>Rouge feu</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="78"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="76"/>
         <source>Leaf Green</source>
         <translation>Vert feuille</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="83"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="81"/>
         <source>Emerald</source>
         <translation>Emeraude</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="88"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="86"/>
         <source>XD</source>
         <translation>XD</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="93"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="91"/>
         <source>Colosseum</source>
         <translation>Colosseum</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="107"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="36"/>
         <source>TID:</source>
         <translation>ID:</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="130"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="99"/>
         <source>SID:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="153"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="116"/>
         <source>Language:</source>
         <translation>Langue :</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="172"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="129"/>
         <source>ENG</source>
         <translation>EN</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="177"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="134"/>
         <source>SPA</source>
         <translation>ESP</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="182"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="139"/>
         <source>FRE</source>
         <translation>FR</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="187"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="144"/>
         <source>ITA</source>
         <translation>IT</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="192"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="149"/>
         <source>DEU</source>
         <translation>ALL</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="197"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="154"/>
         <source>JPN</source>
         <translation>JAP</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="224"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="162"/>
         <source>Dead Battery?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="237"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="46"/>
         <source>Accept</source>
         <translation>Valider</translation>
     </message>
     <message>
-        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="250"/>
+        <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="109"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -634,605 +635,616 @@
 <context>
     <name>Researcher</name>
     <message>
-        <location filename="../Forms/Researcher.ui" line="42"/>
-        <location filename="../Forms/Researcher.ui" line="147"/>
+        <location filename="../Forms/Researcher.ui" line="113"/>
+        <location filename="../Forms/Researcher.ui" line="214"/>
         <source>Common RNGs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="101"/>
-        <location filename="../Forms/Researcher.ui" line="176"/>
+        <location filename="../Forms/Researcher.ui" line="172"/>
+        <location filename="../Forms/Researcher.ui" line="243"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="53"/>
+        <location filename="../Forms/Researcher.ui" line="124"/>
         <source>LCRNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="58"/>
+        <location filename="../Forms/Researcher.ui" line="129"/>
         <source>LCRNG[R]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="63"/>
+        <location filename="../Forms/Researcher.ui" line="134"/>
         <source>XDRNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="68"/>
+        <location filename="../Forms/Researcher.ui" line="139"/>
         <source>XDRNG[R]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="73"/>
+        <location filename="../Forms/Researcher.ui" line="144"/>
         <source>ARNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="78"/>
+        <location filename="../Forms/Researcher.ui" line="149"/>
         <source>ARNG[R]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="83"/>
+        <location filename="../Forms/Researcher.ui" line="154"/>
         <source>Mersenne Twister</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="88"/>
+        <location filename="../Forms/Researcher.ui" line="159"/>
         <source>M. Twister (Untempered)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="93"/>
+        <location filename="../Forms/Researcher.ui" line="164"/>
         <source>M. Twister (Fast)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="158"/>
+        <location filename="../Forms/Researcher.ui" line="225"/>
         <source>BWRNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="163"/>
+        <location filename="../Forms/Researcher.ui" line="230"/>
         <source>BWRNG[R]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="168"/>
+        <location filename="../Forms/Researcher.ui" line="235"/>
         <source>SFMT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="226"/>
+        <location filename="../Forms/Researcher.ui" line="285"/>
         <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="139"/>
-        <location filename="../Forms/Researcher.ui" line="481"/>
-        <location filename="../Forms/Researcher.ui" line="530"/>
-        <location filename="../Forms/Researcher.ui" line="586"/>
-        <location filename="../Forms/Researcher.ui" line="647"/>
-        <location filename="../Forms/Researcher.ui" line="711"/>
-        <location filename="../Forms/Researcher.ui" line="890"/>
-        <location filename="../Forms/Researcher.ui" line="924"/>
-        <location filename="../Forms/Researcher.ui" line="1094"/>
-        <location filename="../Forms/Researcher.ui" line="1203"/>
-        <location filename="../Forms/Researcher.ui" line="1407"/>
-        <location filename="../Forms/Researcher.ui" line="1476"/>
-        <location filename="../Forms/Researcher.ui" line="1570"/>
-        <location filename="../Forms/Researcher.ui" line="1661"/>
-        <location filename="../Forms/Researcher.ui" line="1843"/>
-        <location filename="../Forms/Researcher.ui" line="2033"/>
-        <location filename="../Forms/Researcher.ui" line="2154"/>
-        <location filename="../Forms/Researcher.ui" line="2246"/>
-        <location filename="../Forms/Researcher.ui" line="2320"/>
-        <location filename="../Forms/Researcher.ui" line="2506"/>
-        <location filename="../Forms/Researcher.cpp" line="445"/>
-        <location filename="../Forms/Researcher.cpp" line="483"/>
+        <location filename="../Forms/Researcher.ui" line="208"/>
+        <location filename="../Forms/Researcher.ui" line="433"/>
+        <location filename="../Forms/Researcher.ui" line="538"/>
+        <location filename="../Forms/Researcher.ui" line="651"/>
+        <location filename="../Forms/Researcher.ui" line="702"/>
+        <location filename="../Forms/Researcher.ui" line="825"/>
+        <location filename="../Forms/Researcher.ui" line="886"/>
+        <location filename="../Forms/Researcher.ui" line="1019"/>
+        <location filename="../Forms/Researcher.ui" line="1090"/>
+        <location filename="../Forms/Researcher.ui" line="1233"/>
+        <location filename="../Forms/Researcher.ui" line="1314"/>
+        <location filename="../Forms/Researcher.ui" line="1467"/>
+        <location filename="../Forms/Researcher.ui" line="1558"/>
+        <location filename="../Forms/Researcher.ui" line="1721"/>
+        <location filename="../Forms/Researcher.ui" line="1822"/>
+        <location filename="../Forms/Researcher.ui" line="1995"/>
+        <location filename="../Forms/Researcher.ui" line="2106"/>
+        <location filename="../Forms/Researcher.ui" line="2289"/>
+        <location filename="../Forms/Researcher.ui" line="2410"/>
+        <location filename="../Forms/Researcher.ui" line="2603"/>
+        <location filename="../Forms/Researcher.cpp" line="444"/>
+        <location filename="../Forms/Researcher.cpp" line="482"/>
         <source>64Bit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="34"/>
-        <location filename="../Forms/Researcher.ui" line="486"/>
-        <location filename="../Forms/Researcher.ui" line="535"/>
-        <location filename="../Forms/Researcher.ui" line="591"/>
-        <location filename="../Forms/Researcher.ui" line="652"/>
-        <location filename="../Forms/Researcher.ui" line="716"/>
-        <location filename="../Forms/Researcher.ui" line="895"/>
-        <location filename="../Forms/Researcher.ui" line="929"/>
-        <location filename="../Forms/Researcher.ui" line="1099"/>
-        <location filename="../Forms/Researcher.ui" line="1208"/>
-        <location filename="../Forms/Researcher.ui" line="1412"/>
-        <location filename="../Forms/Researcher.ui" line="1491"/>
-        <location filename="../Forms/Researcher.ui" line="1575"/>
-        <location filename="../Forms/Researcher.ui" line="1666"/>
-        <location filename="../Forms/Researcher.ui" line="1848"/>
-        <location filename="../Forms/Researcher.ui" line="2038"/>
-        <location filename="../Forms/Researcher.ui" line="2159"/>
-        <location filename="../Forms/Researcher.ui" line="2251"/>
-        <location filename="../Forms/Researcher.ui" line="2325"/>
-        <location filename="../Forms/Researcher.ui" line="2511"/>
-        <location filename="../Forms/Researcher.ui" line="2733"/>
-        <location filename="../Forms/Researcher.cpp" line="446"/>
-        <location filename="../Forms/Researcher.cpp" line="482"/>
+        <location filename="../Forms/Researcher.ui" line="107"/>
+        <location filename="../Forms/Researcher.ui" line="438"/>
+        <location filename="../Forms/Researcher.ui" line="543"/>
+        <location filename="../Forms/Researcher.ui" line="656"/>
+        <location filename="../Forms/Researcher.ui" line="707"/>
+        <location filename="../Forms/Researcher.ui" line="830"/>
+        <location filename="../Forms/Researcher.ui" line="891"/>
+        <location filename="../Forms/Researcher.ui" line="1024"/>
+        <location filename="../Forms/Researcher.ui" line="1095"/>
+        <location filename="../Forms/Researcher.ui" line="1238"/>
+        <location filename="../Forms/Researcher.ui" line="1319"/>
+        <location filename="../Forms/Researcher.ui" line="1472"/>
+        <location filename="../Forms/Researcher.ui" line="1563"/>
+        <location filename="../Forms/Researcher.ui" line="1736"/>
+        <location filename="../Forms/Researcher.ui" line="1827"/>
+        <location filename="../Forms/Researcher.ui" line="2000"/>
+        <location filename="../Forms/Researcher.ui" line="2111"/>
+        <location filename="../Forms/Researcher.ui" line="2294"/>
+        <location filename="../Forms/Researcher.ui" line="2415"/>
+        <location filename="../Forms/Researcher.ui" line="2608"/>
+        <location filename="../Forms/Researcher.ui" line="3001"/>
+        <location filename="../Forms/Researcher.cpp" line="445"/>
+        <location filename="../Forms/Researcher.cpp" line="481"/>
         <source>32Bit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="491"/>
-        <location filename="../Forms/Researcher.ui" line="540"/>
-        <location filename="../Forms/Researcher.ui" line="596"/>
-        <location filename="../Forms/Researcher.ui" line="657"/>
-        <location filename="../Forms/Researcher.ui" line="721"/>
-        <location filename="../Forms/Researcher.ui" line="900"/>
-        <location filename="../Forms/Researcher.ui" line="934"/>
-        <location filename="../Forms/Researcher.ui" line="1104"/>
-        <location filename="../Forms/Researcher.ui" line="1213"/>
-        <location filename="../Forms/Researcher.ui" line="1417"/>
-        <location filename="../Forms/Researcher.ui" line="1481"/>
-        <location filename="../Forms/Researcher.ui" line="1580"/>
-        <location filename="../Forms/Researcher.ui" line="1671"/>
-        <location filename="../Forms/Researcher.ui" line="1853"/>
-        <location filename="../Forms/Researcher.ui" line="2043"/>
-        <location filename="../Forms/Researcher.ui" line="2164"/>
-        <location filename="../Forms/Researcher.ui" line="2256"/>
-        <location filename="../Forms/Researcher.ui" line="2330"/>
-        <location filename="../Forms/Researcher.ui" line="2516"/>
-        <location filename="../Forms/Researcher.cpp" line="447"/>
-        <location filename="../Forms/Researcher.cpp" line="483"/>
+        <location filename="../Forms/Researcher.ui" line="419"/>
+        <source>Customs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Researcher.ui" line="443"/>
+        <location filename="../Forms/Researcher.ui" line="548"/>
+        <location filename="../Forms/Researcher.ui" line="661"/>
+        <location filename="../Forms/Researcher.ui" line="712"/>
+        <location filename="../Forms/Researcher.ui" line="835"/>
+        <location filename="../Forms/Researcher.ui" line="896"/>
+        <location filename="../Forms/Researcher.ui" line="1029"/>
+        <location filename="../Forms/Researcher.ui" line="1100"/>
+        <location filename="../Forms/Researcher.ui" line="1243"/>
+        <location filename="../Forms/Researcher.ui" line="1324"/>
+        <location filename="../Forms/Researcher.ui" line="1477"/>
+        <location filename="../Forms/Researcher.ui" line="1568"/>
+        <location filename="../Forms/Researcher.ui" line="1726"/>
+        <location filename="../Forms/Researcher.ui" line="1832"/>
+        <location filename="../Forms/Researcher.ui" line="2005"/>
+        <location filename="../Forms/Researcher.ui" line="2116"/>
+        <location filename="../Forms/Researcher.ui" line="2299"/>
+        <location filename="../Forms/Researcher.ui" line="2420"/>
+        <location filename="../Forms/Researcher.ui" line="2613"/>
+        <location filename="../Forms/Researcher.cpp" line="446"/>
+        <location filename="../Forms/Researcher.cpp" line="482"/>
         <source>32Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="496"/>
-        <location filename="../Forms/Researcher.ui" line="545"/>
-        <location filename="../Forms/Researcher.ui" line="601"/>
-        <location filename="../Forms/Researcher.ui" line="662"/>
-        <location filename="../Forms/Researcher.ui" line="726"/>
-        <location filename="../Forms/Researcher.ui" line="905"/>
-        <location filename="../Forms/Researcher.ui" line="939"/>
-        <location filename="../Forms/Researcher.ui" line="1109"/>
-        <location filename="../Forms/Researcher.ui" line="1218"/>
-        <location filename="../Forms/Researcher.ui" line="1422"/>
-        <location filename="../Forms/Researcher.ui" line="1486"/>
-        <location filename="../Forms/Researcher.ui" line="1585"/>
-        <location filename="../Forms/Researcher.ui" line="1676"/>
-        <location filename="../Forms/Researcher.ui" line="1858"/>
-        <location filename="../Forms/Researcher.ui" line="2048"/>
-        <location filename="../Forms/Researcher.ui" line="2169"/>
-        <location filename="../Forms/Researcher.ui" line="2261"/>
-        <location filename="../Forms/Researcher.ui" line="2335"/>
-        <location filename="../Forms/Researcher.ui" line="2521"/>
-        <location filename="../Forms/Researcher.cpp" line="448"/>
-        <location filename="../Forms/Researcher.cpp" line="483"/>
+        <location filename="../Forms/Researcher.ui" line="448"/>
+        <location filename="../Forms/Researcher.ui" line="553"/>
+        <location filename="../Forms/Researcher.ui" line="666"/>
+        <location filename="../Forms/Researcher.ui" line="717"/>
+        <location filename="../Forms/Researcher.ui" line="840"/>
+        <location filename="../Forms/Researcher.ui" line="901"/>
+        <location filename="../Forms/Researcher.ui" line="1034"/>
+        <location filename="../Forms/Researcher.ui" line="1105"/>
+        <location filename="../Forms/Researcher.ui" line="1248"/>
+        <location filename="../Forms/Researcher.ui" line="1329"/>
+        <location filename="../Forms/Researcher.ui" line="1482"/>
+        <location filename="../Forms/Researcher.ui" line="1573"/>
+        <location filename="../Forms/Researcher.ui" line="1731"/>
+        <location filename="../Forms/Researcher.ui" line="1837"/>
+        <location filename="../Forms/Researcher.ui" line="2010"/>
+        <location filename="../Forms/Researcher.ui" line="2121"/>
+        <location filename="../Forms/Researcher.ui" line="2304"/>
+        <location filename="../Forms/Researcher.ui" line="2425"/>
+        <location filename="../Forms/Researcher.ui" line="2618"/>
+        <location filename="../Forms/Researcher.cpp" line="447"/>
+        <location filename="../Forms/Researcher.cpp" line="482"/>
         <source>32Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="501"/>
-        <location filename="../Forms/Researcher.ui" line="550"/>
-        <location filename="../Forms/Researcher.ui" line="606"/>
-        <location filename="../Forms/Researcher.ui" line="667"/>
-        <location filename="../Forms/Researcher.ui" line="731"/>
-        <location filename="../Forms/Researcher.ui" line="910"/>
-        <location filename="../Forms/Researcher.ui" line="944"/>
-        <location filename="../Forms/Researcher.ui" line="1114"/>
-        <location filename="../Forms/Researcher.ui" line="1223"/>
-        <location filename="../Forms/Researcher.ui" line="1427"/>
-        <location filename="../Forms/Researcher.ui" line="1496"/>
-        <location filename="../Forms/Researcher.ui" line="1590"/>
-        <location filename="../Forms/Researcher.ui" line="1681"/>
-        <location filename="../Forms/Researcher.ui" line="1863"/>
-        <location filename="../Forms/Researcher.ui" line="2053"/>
-        <location filename="../Forms/Researcher.ui" line="2174"/>
-        <location filename="../Forms/Researcher.ui" line="2266"/>
-        <location filename="../Forms/Researcher.ui" line="2340"/>
-        <location filename="../Forms/Researcher.ui" line="2526"/>
-        <location filename="../Forms/Researcher.ui" line="2738"/>
-        <location filename="../Forms/Researcher.cpp" line="449"/>
+        <location filename="../Forms/Researcher.ui" line="453"/>
+        <location filename="../Forms/Researcher.ui" line="558"/>
+        <location filename="../Forms/Researcher.ui" line="671"/>
+        <location filename="../Forms/Researcher.ui" line="722"/>
+        <location filename="../Forms/Researcher.ui" line="845"/>
+        <location filename="../Forms/Researcher.ui" line="906"/>
+        <location filename="../Forms/Researcher.ui" line="1039"/>
+        <location filename="../Forms/Researcher.ui" line="1110"/>
+        <location filename="../Forms/Researcher.ui" line="1253"/>
+        <location filename="../Forms/Researcher.ui" line="1334"/>
+        <location filename="../Forms/Researcher.ui" line="1487"/>
+        <location filename="../Forms/Researcher.ui" line="1578"/>
+        <location filename="../Forms/Researcher.ui" line="1741"/>
+        <location filename="../Forms/Researcher.ui" line="1842"/>
+        <location filename="../Forms/Researcher.ui" line="2015"/>
+        <location filename="../Forms/Researcher.ui" line="2126"/>
+        <location filename="../Forms/Researcher.ui" line="2309"/>
+        <location filename="../Forms/Researcher.ui" line="2430"/>
+        <location filename="../Forms/Researcher.ui" line="2623"/>
+        <location filename="../Forms/Researcher.ui" line="3006"/>
+        <location filename="../Forms/Researcher.cpp" line="448"/>
+        <location filename="../Forms/Researcher.cpp" line="481"/>
         <location filename="../Forms/Researcher.cpp" line="482"/>
-        <location filename="../Forms/Researcher.cpp" line="483"/>
         <source>16Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="506"/>
-        <location filename="../Forms/Researcher.ui" line="555"/>
-        <location filename="../Forms/Researcher.ui" line="611"/>
-        <location filename="../Forms/Researcher.ui" line="672"/>
-        <location filename="../Forms/Researcher.ui" line="736"/>
-        <location filename="../Forms/Researcher.ui" line="915"/>
-        <location filename="../Forms/Researcher.ui" line="949"/>
-        <location filename="../Forms/Researcher.ui" line="1119"/>
-        <location filename="../Forms/Researcher.ui" line="1228"/>
-        <location filename="../Forms/Researcher.ui" line="1432"/>
-        <location filename="../Forms/Researcher.ui" line="1501"/>
-        <location filename="../Forms/Researcher.ui" line="1595"/>
-        <location filename="../Forms/Researcher.ui" line="1686"/>
-        <location filename="../Forms/Researcher.ui" line="1868"/>
-        <location filename="../Forms/Researcher.ui" line="2058"/>
-        <location filename="../Forms/Researcher.ui" line="2179"/>
-        <location filename="../Forms/Researcher.ui" line="2271"/>
-        <location filename="../Forms/Researcher.ui" line="2345"/>
-        <location filename="../Forms/Researcher.ui" line="2531"/>
-        <location filename="../Forms/Researcher.ui" line="2743"/>
-        <location filename="../Forms/Researcher.cpp" line="450"/>
+        <location filename="../Forms/Researcher.ui" line="458"/>
+        <location filename="../Forms/Researcher.ui" line="563"/>
+        <location filename="../Forms/Researcher.ui" line="676"/>
+        <location filename="../Forms/Researcher.ui" line="727"/>
+        <location filename="../Forms/Researcher.ui" line="850"/>
+        <location filename="../Forms/Researcher.ui" line="911"/>
+        <location filename="../Forms/Researcher.ui" line="1044"/>
+        <location filename="../Forms/Researcher.ui" line="1115"/>
+        <location filename="../Forms/Researcher.ui" line="1258"/>
+        <location filename="../Forms/Researcher.ui" line="1339"/>
+        <location filename="../Forms/Researcher.ui" line="1492"/>
+        <location filename="../Forms/Researcher.ui" line="1583"/>
+        <location filename="../Forms/Researcher.ui" line="1746"/>
+        <location filename="../Forms/Researcher.ui" line="1847"/>
+        <location filename="../Forms/Researcher.ui" line="2020"/>
+        <location filename="../Forms/Researcher.ui" line="2131"/>
+        <location filename="../Forms/Researcher.ui" line="2314"/>
+        <location filename="../Forms/Researcher.ui" line="2435"/>
+        <location filename="../Forms/Researcher.ui" line="2628"/>
+        <location filename="../Forms/Researcher.ui" line="3011"/>
+        <location filename="../Forms/Researcher.cpp" line="449"/>
+        <location filename="../Forms/Researcher.cpp" line="481"/>
         <location filename="../Forms/Researcher.cpp" line="482"/>
-        <location filename="../Forms/Researcher.cpp" line="483"/>
         <source>16Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="525"/>
-        <location filename="../Forms/Researcher.ui" line="581"/>
-        <location filename="../Forms/Researcher.ui" line="1089"/>
-        <location filename="../Forms/Researcher.ui" line="1198"/>
-        <location filename="../Forms/Researcher.ui" line="1402"/>
-        <location filename="../Forms/Researcher.ui" line="1471"/>
-        <location filename="../Forms/Researcher.ui" line="2028"/>
-        <location filename="../Forms/Researcher.ui" line="2241"/>
-        <location filename="../Forms/Researcher.ui" line="2501"/>
-        <location filename="../Forms/Researcher.cpp" line="285"/>
-        <location filename="../Forms/Researcher.cpp" line="309"/>
+        <location filename="../Forms/Researcher.ui" line="646"/>
+        <location filename="../Forms/Researcher.ui" line="820"/>
+        <location filename="../Forms/Researcher.ui" line="1014"/>
+        <location filename="../Forms/Researcher.ui" line="1228"/>
+        <location filename="../Forms/Researcher.ui" line="1462"/>
+        <location filename="../Forms/Researcher.ui" line="1716"/>
+        <location filename="../Forms/Researcher.ui" line="1990"/>
+        <location filename="../Forms/Researcher.ui" line="2284"/>
+        <location filename="../Forms/Researcher.ui" line="2598"/>
+        <location filename="../Forms/Researcher.cpp" line="283"/>
+        <location filename="../Forms/Researcher.cpp" line="307"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2655"/>
+        <location filename="../Forms/Researcher.ui" line="2819"/>
+        <source>Parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Researcher.ui" line="2825"/>
         <source>Starting Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2722"/>
+        <location filename="../Forms/Researcher.ui" line="2990"/>
         <source>Search Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2751"/>
+        <location filename="../Forms/Researcher.ui" line="2984"/>
+        <location filename="../Forms/Researcher.ui" line="3030"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2758"/>
+        <location filename="../Forms/Researcher.ui" line="3048"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2672"/>
+        <location filename="../Forms/Researcher.ui" line="2842"/>
         <source>Max Results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="1189"/>
-        <location filename="../Forms/Researcher.ui" line="1761"/>
-        <location filename="../Forms/Researcher.ui" line="1938"/>
-        <location filename="../Forms/Researcher.ui" line="2133"/>
-        <location filename="../Forms/Researcher.ui" line="2425"/>
-        <location filename="../Forms/Researcher.ui" line="2611"/>
-        <location filename="../Forms/Researcher.cpp" line="466"/>
+        <location filename="../Forms/Researcher.ui" line="1917"/>
+        <location filename="../Forms/Researcher.ui" line="2090"/>
+        <location filename="../Forms/Researcher.ui" line="2206"/>
+        <location filename="../Forms/Researcher.ui" line="2389"/>
+        <location filename="../Forms/Researcher.ui" line="2515"/>
+        <location filename="../Forms/Researcher.ui" line="2708"/>
+        <location filename="../Forms/Researcher.cpp" line="465"/>
         <source>Previous 7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="1766"/>
-        <location filename="../Forms/Researcher.ui" line="2138"/>
-        <location filename="../Forms/Researcher.ui" line="2430"/>
-        <location filename="../Forms/Researcher.ui" line="2616"/>
-        <location filename="../Forms/Researcher.cpp" line="467"/>
+        <location filename="../Forms/Researcher.ui" line="2211"/>
+        <location filename="../Forms/Researcher.ui" line="2394"/>
+        <location filename="../Forms/Researcher.ui" line="2520"/>
+        <location filename="../Forms/Researcher.ui" line="2713"/>
+        <location filename="../Forms/Researcher.cpp" line="466"/>
         <source>Previous 8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2435"/>
-        <location filename="../Forms/Researcher.ui" line="2621"/>
-        <location filename="../Forms/Researcher.cpp" line="468"/>
+        <location filename="../Forms/Researcher.ui" line="2525"/>
+        <location filename="../Forms/Researcher.ui" line="2718"/>
+        <location filename="../Forms/Researcher.cpp" line="467"/>
         <source>Previous 9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2689"/>
+        <location filename="../Forms/Researcher.ui" line="2859"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2703"/>
+        <location filename="../Forms/Researcher.ui" line="2884"/>
         <source>Generate</source>
         <translation>Générer</translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="214"/>
+        <location filename="../Forms/Researcher.ui" line="279"/>
         <source>TinyMT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="409"/>
-        <location filename="../Forms/Researcher.ui" line="511"/>
-        <location filename="../Forms/Researcher.ui" line="560"/>
-        <location filename="../Forms/Researcher.ui" line="616"/>
-        <location filename="../Forms/Researcher.ui" line="677"/>
-        <location filename="../Forms/Researcher.ui" line="741"/>
-        <location filename="../Forms/Researcher.ui" line="954"/>
-        <location filename="../Forms/Researcher.ui" line="1124"/>
-        <location filename="../Forms/Researcher.ui" line="1233"/>
-        <location filename="../Forms/Researcher.ui" line="1437"/>
-        <location filename="../Forms/Researcher.ui" line="1506"/>
-        <location filename="../Forms/Researcher.ui" line="1600"/>
-        <location filename="../Forms/Researcher.ui" line="1691"/>
-        <location filename="../Forms/Researcher.ui" line="1873"/>
-        <location filename="../Forms/Researcher.ui" line="2063"/>
-        <location filename="../Forms/Researcher.ui" line="2184"/>
-        <location filename="../Forms/Researcher.ui" line="2276"/>
-        <location filename="../Forms/Researcher.ui" line="2350"/>
-        <location filename="../Forms/Researcher.ui" line="2536"/>
-        <location filename="../Forms/Researcher.cpp" line="451"/>
+        <location filename="../Forms/Researcher.ui" line="425"/>
+        <location filename="../Forms/Researcher.ui" line="568"/>
+        <location filename="../Forms/Researcher.ui" line="681"/>
+        <location filename="../Forms/Researcher.ui" line="732"/>
+        <location filename="../Forms/Researcher.ui" line="855"/>
+        <location filename="../Forms/Researcher.ui" line="916"/>
+        <location filename="../Forms/Researcher.ui" line="1049"/>
+        <location filename="../Forms/Researcher.ui" line="1120"/>
+        <location filename="../Forms/Researcher.ui" line="1263"/>
+        <location filename="../Forms/Researcher.ui" line="1344"/>
+        <location filename="../Forms/Researcher.ui" line="1497"/>
+        <location filename="../Forms/Researcher.ui" line="1588"/>
+        <location filename="../Forms/Researcher.ui" line="1751"/>
+        <location filename="../Forms/Researcher.ui" line="1852"/>
+        <location filename="../Forms/Researcher.ui" line="2025"/>
+        <location filename="../Forms/Researcher.ui" line="2136"/>
+        <location filename="../Forms/Researcher.ui" line="2319"/>
+        <location filename="../Forms/Researcher.ui" line="2440"/>
+        <location filename="../Forms/Researcher.ui" line="2633"/>
+        <location filename="../Forms/Researcher.cpp" line="450"/>
         <source>Custom 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="621"/>
-        <location filename="../Forms/Researcher.ui" line="682"/>
-        <location filename="../Forms/Researcher.ui" line="746"/>
-        <location filename="../Forms/Researcher.ui" line="828"/>
-        <location filename="../Forms/Researcher.ui" line="959"/>
-        <location filename="../Forms/Researcher.ui" line="1129"/>
-        <location filename="../Forms/Researcher.ui" line="1238"/>
-        <location filename="../Forms/Researcher.ui" line="1442"/>
-        <location filename="../Forms/Researcher.ui" line="1511"/>
-        <location filename="../Forms/Researcher.ui" line="1605"/>
-        <location filename="../Forms/Researcher.ui" line="1696"/>
-        <location filename="../Forms/Researcher.ui" line="1878"/>
-        <location filename="../Forms/Researcher.ui" line="2068"/>
-        <location filename="../Forms/Researcher.ui" line="2189"/>
-        <location filename="../Forms/Researcher.ui" line="2281"/>
-        <location filename="../Forms/Researcher.ui" line="2355"/>
-        <location filename="../Forms/Researcher.ui" line="2541"/>
-        <location filename="../Forms/Researcher.cpp" line="452"/>
+        <location filename="../Forms/Researcher.ui" line="530"/>
+        <location filename="../Forms/Researcher.ui" line="737"/>
+        <location filename="../Forms/Researcher.ui" line="860"/>
+        <location filename="../Forms/Researcher.ui" line="921"/>
+        <location filename="../Forms/Researcher.ui" line="1054"/>
+        <location filename="../Forms/Researcher.ui" line="1125"/>
+        <location filename="../Forms/Researcher.ui" line="1268"/>
+        <location filename="../Forms/Researcher.ui" line="1349"/>
+        <location filename="../Forms/Researcher.ui" line="1502"/>
+        <location filename="../Forms/Researcher.ui" line="1593"/>
+        <location filename="../Forms/Researcher.ui" line="1756"/>
+        <location filename="../Forms/Researcher.ui" line="1857"/>
+        <location filename="../Forms/Researcher.ui" line="2030"/>
+        <location filename="../Forms/Researcher.ui" line="2141"/>
+        <location filename="../Forms/Researcher.ui" line="2324"/>
+        <location filename="../Forms/Researcher.ui" line="2445"/>
+        <location filename="../Forms/Researcher.ui" line="2638"/>
+        <location filename="../Forms/Researcher.cpp" line="451"/>
         <source>Custom 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="573"/>
-        <location filename="../Forms/Researcher.ui" line="687"/>
-        <location filename="../Forms/Researcher.ui" line="964"/>
-        <location filename="../Forms/Researcher.ui" line="1134"/>
-        <location filename="../Forms/Researcher.ui" line="1243"/>
-        <location filename="../Forms/Researcher.ui" line="1447"/>
-        <location filename="../Forms/Researcher.ui" line="1516"/>
-        <location filename="../Forms/Researcher.ui" line="1610"/>
-        <location filename="../Forms/Researcher.ui" line="1701"/>
-        <location filename="../Forms/Researcher.ui" line="1883"/>
-        <location filename="../Forms/Researcher.ui" line="2073"/>
-        <location filename="../Forms/Researcher.ui" line="2194"/>
-        <location filename="../Forms/Researcher.ui" line="2286"/>
-        <location filename="../Forms/Researcher.ui" line="2360"/>
-        <location filename="../Forms/Researcher.ui" line="2546"/>
-        <location filename="../Forms/Researcher.cpp" line="453"/>
+        <location filename="../Forms/Researcher.ui" line="694"/>
+        <location filename="../Forms/Researcher.ui" line="926"/>
+        <location filename="../Forms/Researcher.ui" line="1059"/>
+        <location filename="../Forms/Researcher.ui" line="1130"/>
+        <location filename="../Forms/Researcher.ui" line="1273"/>
+        <location filename="../Forms/Researcher.ui" line="1354"/>
+        <location filename="../Forms/Researcher.ui" line="1507"/>
+        <location filename="../Forms/Researcher.ui" line="1598"/>
+        <location filename="../Forms/Researcher.ui" line="1761"/>
+        <location filename="../Forms/Researcher.ui" line="1862"/>
+        <location filename="../Forms/Researcher.ui" line="2035"/>
+        <location filename="../Forms/Researcher.ui" line="2146"/>
+        <location filename="../Forms/Researcher.ui" line="2329"/>
+        <location filename="../Forms/Researcher.ui" line="2450"/>
+        <location filename="../Forms/Researcher.ui" line="2643"/>
+        <location filename="../Forms/Researcher.cpp" line="452"/>
         <source>Custom 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="516"/>
-        <location filename="../Forms/Researcher.ui" line="565"/>
-        <location filename="../Forms/Researcher.ui" line="626"/>
-        <location filename="../Forms/Researcher.ui" line="692"/>
-        <location filename="../Forms/Researcher.ui" line="751"/>
-        <location filename="../Forms/Researcher.ui" line="984"/>
-        <location filename="../Forms/Researcher.ui" line="1159"/>
-        <location filename="../Forms/Researcher.ui" line="1258"/>
-        <location filename="../Forms/Researcher.ui" line="1452"/>
-        <location filename="../Forms/Researcher.ui" line="1536"/>
-        <location filename="../Forms/Researcher.ui" line="1625"/>
-        <location filename="../Forms/Researcher.ui" line="1731"/>
-        <location filename="../Forms/Researcher.ui" line="1908"/>
-        <location filename="../Forms/Researcher.ui" line="2103"/>
-        <location filename="../Forms/Researcher.ui" line="2204"/>
-        <location filename="../Forms/Researcher.ui" line="2296"/>
-        <location filename="../Forms/Researcher.ui" line="2395"/>
-        <location filename="../Forms/Researcher.ui" line="2581"/>
-        <location filename="../Forms/Researcher.cpp" line="460"/>
+        <location filename="../Forms/Researcher.ui" line="573"/>
+        <location filename="../Forms/Researcher.ui" line="686"/>
+        <location filename="../Forms/Researcher.ui" line="742"/>
+        <location filename="../Forms/Researcher.ui" line="865"/>
+        <location filename="../Forms/Researcher.ui" line="931"/>
+        <location filename="../Forms/Researcher.ui" line="1064"/>
+        <location filename="../Forms/Researcher.ui" line="1140"/>
+        <location filename="../Forms/Researcher.ui" line="1283"/>
+        <location filename="../Forms/Researcher.ui" line="1369"/>
+        <location filename="../Forms/Researcher.ui" line="1522"/>
+        <location filename="../Forms/Researcher.ui" line="1618"/>
+        <location filename="../Forms/Researcher.ui" line="1781"/>
+        <location filename="../Forms/Researcher.ui" line="1887"/>
+        <location filename="../Forms/Researcher.ui" line="2060"/>
+        <location filename="../Forms/Researcher.ui" line="2176"/>
+        <location filename="../Forms/Researcher.ui" line="2359"/>
+        <location filename="../Forms/Researcher.ui" line="2485"/>
+        <location filename="../Forms/Researcher.ui" line="2678"/>
+        <location filename="../Forms/Researcher.cpp" line="459"/>
         <source>Previous 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="631"/>
-        <location filename="../Forms/Researcher.ui" line="697"/>
-        <location filename="../Forms/Researcher.ui" line="756"/>
-        <location filename="../Forms/Researcher.ui" line="989"/>
-        <location filename="../Forms/Researcher.ui" line="1164"/>
-        <location filename="../Forms/Researcher.ui" line="1263"/>
-        <location filename="../Forms/Researcher.ui" line="1457"/>
-        <location filename="../Forms/Researcher.ui" line="1541"/>
-        <location filename="../Forms/Researcher.ui" line="1630"/>
-        <location filename="../Forms/Researcher.ui" line="1736"/>
-        <location filename="../Forms/Researcher.ui" line="1913"/>
-        <location filename="../Forms/Researcher.ui" line="2108"/>
-        <location filename="../Forms/Researcher.ui" line="2209"/>
-        <location filename="../Forms/Researcher.ui" line="2301"/>
-        <location filename="../Forms/Researcher.ui" line="2400"/>
-        <location filename="../Forms/Researcher.ui" line="2586"/>
-        <location filename="../Forms/Researcher.cpp" line="461"/>
+        <location filename="../Forms/Researcher.ui" line="747"/>
+        <location filename="../Forms/Researcher.ui" line="870"/>
+        <location filename="../Forms/Researcher.ui" line="936"/>
+        <location filename="../Forms/Researcher.ui" line="1069"/>
+        <location filename="../Forms/Researcher.ui" line="1145"/>
+        <location filename="../Forms/Researcher.ui" line="1288"/>
+        <location filename="../Forms/Researcher.ui" line="1374"/>
+        <location filename="../Forms/Researcher.ui" line="1527"/>
+        <location filename="../Forms/Researcher.ui" line="1623"/>
+        <location filename="../Forms/Researcher.ui" line="1786"/>
+        <location filename="../Forms/Researcher.ui" line="1892"/>
+        <location filename="../Forms/Researcher.ui" line="2065"/>
+        <location filename="../Forms/Researcher.ui" line="2181"/>
+        <location filename="../Forms/Researcher.ui" line="2364"/>
+        <location filename="../Forms/Researcher.ui" line="2490"/>
+        <location filename="../Forms/Researcher.ui" line="2683"/>
+        <location filename="../Forms/Researcher.cpp" line="460"/>
         <source>Previous 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="639"/>
-        <location filename="../Forms/Researcher.ui" line="969"/>
-        <location filename="../Forms/Researcher.ui" line="1139"/>
-        <location filename="../Forms/Researcher.ui" line="1248"/>
-        <location filename="../Forms/Researcher.ui" line="1521"/>
-        <location filename="../Forms/Researcher.ui" line="1615"/>
-        <location filename="../Forms/Researcher.ui" line="1706"/>
-        <location filename="../Forms/Researcher.ui" line="1888"/>
-        <location filename="../Forms/Researcher.ui" line="2078"/>
-        <location filename="../Forms/Researcher.ui" line="2199"/>
-        <location filename="../Forms/Researcher.ui" line="2291"/>
-        <location filename="../Forms/Researcher.ui" line="2365"/>
-        <location filename="../Forms/Researcher.ui" line="2551"/>
-        <location filename="../Forms/Researcher.cpp" line="454"/>
+        <location filename="../Forms/Researcher.ui" line="878"/>
+        <location filename="../Forms/Researcher.ui" line="1135"/>
+        <location filename="../Forms/Researcher.ui" line="1278"/>
+        <location filename="../Forms/Researcher.ui" line="1359"/>
+        <location filename="../Forms/Researcher.ui" line="1512"/>
+        <location filename="../Forms/Researcher.ui" line="1603"/>
+        <location filename="../Forms/Researcher.ui" line="1766"/>
+        <location filename="../Forms/Researcher.ui" line="1867"/>
+        <location filename="../Forms/Researcher.ui" line="2040"/>
+        <location filename="../Forms/Researcher.ui" line="2151"/>
+        <location filename="../Forms/Researcher.ui" line="2334"/>
+        <location filename="../Forms/Researcher.ui" line="2455"/>
+        <location filename="../Forms/Researcher.ui" line="2648"/>
+        <location filename="../Forms/Researcher.cpp" line="453"/>
         <source>Custom 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="702"/>
-        <location filename="../Forms/Researcher.ui" line="994"/>
-        <location filename="../Forms/Researcher.ui" line="1169"/>
-        <location filename="../Forms/Researcher.ui" line="1268"/>
-        <location filename="../Forms/Researcher.ui" line="1462"/>
-        <location filename="../Forms/Researcher.ui" line="1546"/>
-        <location filename="../Forms/Researcher.ui" line="1635"/>
-        <location filename="../Forms/Researcher.ui" line="1741"/>
-        <location filename="../Forms/Researcher.ui" line="1918"/>
-        <location filename="../Forms/Researcher.ui" line="2113"/>
-        <location filename="../Forms/Researcher.ui" line="2214"/>
-        <location filename="../Forms/Researcher.ui" line="2306"/>
-        <location filename="../Forms/Researcher.ui" line="2405"/>
-        <location filename="../Forms/Researcher.ui" line="2591"/>
-        <location filename="../Forms/Researcher.cpp" line="462"/>
+        <location filename="../Forms/Researcher.ui" line="941"/>
+        <location filename="../Forms/Researcher.ui" line="1074"/>
+        <location filename="../Forms/Researcher.ui" line="1150"/>
+        <location filename="../Forms/Researcher.ui" line="1293"/>
+        <location filename="../Forms/Researcher.ui" line="1379"/>
+        <location filename="../Forms/Researcher.ui" line="1532"/>
+        <location filename="../Forms/Researcher.ui" line="1628"/>
+        <location filename="../Forms/Researcher.ui" line="1791"/>
+        <location filename="../Forms/Researcher.ui" line="1897"/>
+        <location filename="../Forms/Researcher.ui" line="2070"/>
+        <location filename="../Forms/Researcher.ui" line="2186"/>
+        <location filename="../Forms/Researcher.ui" line="2369"/>
+        <location filename="../Forms/Researcher.ui" line="2495"/>
+        <location filename="../Forms/Researcher.ui" line="2688"/>
+        <location filename="../Forms/Researcher.cpp" line="461"/>
         <source>Previous 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="974"/>
-        <location filename="../Forms/Researcher.ui" line="1144"/>
-        <location filename="../Forms/Researcher.ui" line="1253"/>
-        <location filename="../Forms/Researcher.ui" line="1286"/>
-        <location filename="../Forms/Researcher.ui" line="1526"/>
-        <location filename="../Forms/Researcher.ui" line="1620"/>
-        <location filename="../Forms/Researcher.ui" line="1711"/>
-        <location filename="../Forms/Researcher.ui" line="1893"/>
-        <location filename="../Forms/Researcher.ui" line="2083"/>
-        <location filename="../Forms/Researcher.ui" line="2370"/>
-        <location filename="../Forms/Researcher.ui" line="2556"/>
-        <location filename="../Forms/Researcher.cpp" line="455"/>
+        <location filename="../Forms/Researcher.ui" line="1082"/>
+        <location filename="../Forms/Researcher.ui" line="1364"/>
+        <location filename="../Forms/Researcher.ui" line="1517"/>
+        <location filename="../Forms/Researcher.ui" line="1608"/>
+        <location filename="../Forms/Researcher.ui" line="1771"/>
+        <location filename="../Forms/Researcher.ui" line="1872"/>
+        <location filename="../Forms/Researcher.ui" line="2045"/>
+        <location filename="../Forms/Researcher.ui" line="2156"/>
+        <location filename="../Forms/Researcher.ui" line="2339"/>
+        <location filename="../Forms/Researcher.ui" line="2460"/>
+        <location filename="../Forms/Researcher.ui" line="2653"/>
+        <location filename="../Forms/Researcher.cpp" line="454"/>
         <source>Custom 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="979"/>
-        <location filename="../Forms/Researcher.ui" line="1149"/>
-        <location filename="../Forms/Researcher.ui" line="1531"/>
-        <location filename="../Forms/Researcher.ui" line="1716"/>
-        <location filename="../Forms/Researcher.ui" line="1898"/>
-        <location filename="../Forms/Researcher.ui" line="2088"/>
-        <location filename="../Forms/Researcher.ui" line="2146"/>
-        <location filename="../Forms/Researcher.ui" line="2375"/>
-        <location filename="../Forms/Researcher.ui" line="2561"/>
-        <location filename="../Forms/Researcher.cpp" line="456"/>
+        <location filename="../Forms/Researcher.ui" line="1306"/>
+        <location filename="../Forms/Researcher.ui" line="1613"/>
+        <location filename="../Forms/Researcher.ui" line="1776"/>
+        <location filename="../Forms/Researcher.ui" line="1877"/>
+        <location filename="../Forms/Researcher.ui" line="2050"/>
+        <location filename="../Forms/Researcher.ui" line="2161"/>
+        <location filename="../Forms/Researcher.ui" line="2344"/>
+        <location filename="../Forms/Researcher.ui" line="2465"/>
+        <location filename="../Forms/Researcher.ui" line="2658"/>
+        <location filename="../Forms/Researcher.cpp" line="455"/>
         <source>Custom 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="999"/>
-        <location filename="../Forms/Researcher.ui" line="1174"/>
-        <location filename="../Forms/Researcher.ui" line="1273"/>
-        <location filename="../Forms/Researcher.ui" line="1551"/>
-        <location filename="../Forms/Researcher.ui" line="1640"/>
-        <location filename="../Forms/Researcher.ui" line="1746"/>
-        <location filename="../Forms/Researcher.ui" line="1923"/>
-        <location filename="../Forms/Researcher.ui" line="2118"/>
-        <location filename="../Forms/Researcher.ui" line="2219"/>
-        <location filename="../Forms/Researcher.ui" line="2311"/>
-        <location filename="../Forms/Researcher.ui" line="2410"/>
-        <location filename="../Forms/Researcher.ui" line="2596"/>
-        <location filename="../Forms/Researcher.cpp" line="463"/>
+        <location filename="../Forms/Researcher.ui" line="1155"/>
+        <location filename="../Forms/Researcher.ui" line="1298"/>
+        <location filename="../Forms/Researcher.ui" line="1384"/>
+        <location filename="../Forms/Researcher.ui" line="1537"/>
+        <location filename="../Forms/Researcher.ui" line="1633"/>
+        <location filename="../Forms/Researcher.ui" line="1796"/>
+        <location filename="../Forms/Researcher.ui" line="1902"/>
+        <location filename="../Forms/Researcher.ui" line="2075"/>
+        <location filename="../Forms/Researcher.ui" line="2191"/>
+        <location filename="../Forms/Researcher.ui" line="2374"/>
+        <location filename="../Forms/Researcher.ui" line="2500"/>
+        <location filename="../Forms/Researcher.ui" line="2693"/>
+        <location filename="../Forms/Researcher.cpp" line="462"/>
         <source>Previous 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="1004"/>
-        <location filename="../Forms/Researcher.ui" line="1179"/>
-        <location filename="../Forms/Researcher.ui" line="1278"/>
-        <location filename="../Forms/Researcher.ui" line="1556"/>
-        <location filename="../Forms/Researcher.ui" line="1645"/>
-        <location filename="../Forms/Researcher.ui" line="1751"/>
-        <location filename="../Forms/Researcher.ui" line="1928"/>
-        <location filename="../Forms/Researcher.ui" line="2123"/>
-        <location filename="../Forms/Researcher.ui" line="2415"/>
-        <location filename="../Forms/Researcher.ui" line="2601"/>
-        <location filename="../Forms/Researcher.cpp" line="464"/>
+        <location filename="../Forms/Researcher.ui" line="1389"/>
+        <location filename="../Forms/Researcher.ui" line="1542"/>
+        <location filename="../Forms/Researcher.ui" line="1638"/>
+        <location filename="../Forms/Researcher.ui" line="1801"/>
+        <location filename="../Forms/Researcher.ui" line="1907"/>
+        <location filename="../Forms/Researcher.ui" line="2080"/>
+        <location filename="../Forms/Researcher.ui" line="2196"/>
+        <location filename="../Forms/Researcher.ui" line="2379"/>
+        <location filename="../Forms/Researcher.ui" line="2505"/>
+        <location filename="../Forms/Researcher.ui" line="2698"/>
+        <location filename="../Forms/Researcher.cpp" line="463"/>
         <source>Previous 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="1009"/>
-        <location filename="../Forms/Researcher.ui" line="1184"/>
-        <location filename="../Forms/Researcher.ui" line="1561"/>
-        <location filename="../Forms/Researcher.ui" line="1756"/>
-        <location filename="../Forms/Researcher.ui" line="1933"/>
-        <location filename="../Forms/Researcher.ui" line="2128"/>
-        <location filename="../Forms/Researcher.ui" line="2420"/>
-        <location filename="../Forms/Researcher.ui" line="2606"/>
-        <location filename="../Forms/Researcher.cpp" line="465"/>
+        <location filename="../Forms/Researcher.ui" line="1643"/>
+        <location filename="../Forms/Researcher.ui" line="1806"/>
+        <location filename="../Forms/Researcher.ui" line="1912"/>
+        <location filename="../Forms/Researcher.ui" line="2085"/>
+        <location filename="../Forms/Researcher.ui" line="2201"/>
+        <location filename="../Forms/Researcher.ui" line="2384"/>
+        <location filename="../Forms/Researcher.ui" line="2510"/>
+        <location filename="../Forms/Researcher.ui" line="2703"/>
+        <location filename="../Forms/Researcher.cpp" line="464"/>
         <source>Previous 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="1154"/>
-        <location filename="../Forms/Researcher.ui" line="1721"/>
-        <location filename="../Forms/Researcher.ui" line="1835"/>
-        <location filename="../Forms/Researcher.ui" line="1903"/>
-        <location filename="../Forms/Researcher.ui" line="2093"/>
-        <location filename="../Forms/Researcher.ui" line="2380"/>
-        <location filename="../Forms/Researcher.ui" line="2566"/>
-        <location filename="../Forms/Researcher.cpp" line="457"/>
+        <location filename="../Forms/Researcher.ui" line="1550"/>
+        <location filename="../Forms/Researcher.ui" line="1882"/>
+        <location filename="../Forms/Researcher.ui" line="2055"/>
+        <location filename="../Forms/Researcher.ui" line="2166"/>
+        <location filename="../Forms/Researcher.ui" line="2349"/>
+        <location filename="../Forms/Researcher.ui" line="2470"/>
+        <location filename="../Forms/Researcher.ui" line="2663"/>
+        <location filename="../Forms/Researcher.cpp" line="456"/>
         <source>Custom 7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="1017"/>
-        <location filename="../Forms/Researcher.ui" line="1726"/>
-        <location filename="../Forms/Researcher.ui" line="2098"/>
-        <location filename="../Forms/Researcher.ui" line="2385"/>
-        <location filename="../Forms/Researcher.ui" line="2571"/>
-        <location filename="../Forms/Researcher.cpp" line="458"/>
+        <location filename="../Forms/Researcher.ui" line="1814"/>
+        <location filename="../Forms/Researcher.ui" line="2171"/>
+        <location filename="../Forms/Researcher.ui" line="2354"/>
+        <location filename="../Forms/Researcher.ui" line="2475"/>
+        <location filename="../Forms/Researcher.ui" line="2668"/>
+        <location filename="../Forms/Researcher.cpp" line="457"/>
         <source>Custom 8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2010"/>
-        <location filename="../Forms/Researcher.ui" line="2390"/>
-        <location filename="../Forms/Researcher.ui" line="2576"/>
-        <location filename="../Forms/Researcher.cpp" line="459"/>
+        <location filename="../Forms/Researcher.ui" line="2098"/>
+        <location filename="../Forms/Researcher.ui" line="2480"/>
+        <location filename="../Forms/Researcher.ui" line="2673"/>
+        <location filename="../Forms/Researcher.cpp" line="458"/>
         <source>Custom 9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="2629"/>
+        <location filename="../Forms/Researcher.ui" line="2402"/>
         <source>Custom 10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.ui" line="342"/>
-        <location filename="../Forms/Researcher.ui" line="473"/>
-        <location filename="../Forms/Researcher.ui" line="821"/>
-        <location filename="../Forms/Researcher.ui" line="1081"/>
-        <location filename="../Forms/Researcher.ui" line="1653"/>
-        <location filename="../Forms/Researcher.ui" line="1828"/>
-        <location filename="../Forms/Researcher.ui" line="2003"/>
-        <location filename="../Forms/Researcher.ui" line="2020"/>
-        <location filename="../Forms/Researcher.ui" line="2227"/>
-        <location filename="../Forms/Researcher.ui" line="2636"/>
+        <location filename="../Forms/Researcher.ui" line="523"/>
+        <location filename="../Forms/Researcher.ui" line="638"/>
+        <location filename="../Forms/Researcher.ui" line="812"/>
+        <location filename="../Forms/Researcher.ui" line="1006"/>
+        <location filename="../Forms/Researcher.ui" line="1220"/>
+        <location filename="../Forms/Researcher.ui" line="1454"/>
+        <location filename="../Forms/Researcher.ui" line="1708"/>
+        <location filename="../Forms/Researcher.ui" line="1982"/>
+        <location filename="../Forms/Researcher.ui" line="2276"/>
+        <location filename="../Forms/Researcher.ui" line="2590"/>
         <source>Hex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="137"/>
-        <source>Please enter a max frame lower then 228</source>
+        <location filename="../Forms/Researcher.cpp" line="136"/>
+        <source>Please enter a search range lower then 228</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="251"/>
+        <location filename="../Forms/Researcher.cpp" line="249"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Researcher.cpp" line="351"/>
-        <location filename="../Forms/Researcher.cpp" line="379"/>
+        <location filename="../Forms/Researcher.cpp" line="350"/>
+        <location filename="../Forms/Researcher.cpp" line="378"/>
         <source>No result found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1463,79 +1475,79 @@
 <context>
     <name>Stationary3</name>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="51"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="74"/>
         <source>Generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="127"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="841"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="150"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="872"/>
         <source>RNG Info</source>
         <translation>RNG Info</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="147"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="240"/>
         <source>Generate</source>
         <translation>Générer</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="171"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="889"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="338"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="986"/>
         <source>Create a Profile</source>
         <translation>Créer un profil</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="209"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="951"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="287"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="898"/>
         <source>Trainer SID:</source>
         <translation>Numéro de Dresseur secret:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="216"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="931"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="203"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="905"/>
         <source>Trainer ID:</source>
         <translation>Numéro de Dresseur:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="223"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="183"/>
         <source>Starting Frame:</source>
         <translation>Frame de départ:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="230"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="307"/>
         <source>Seed:</source>
         <translation>Seed:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="237"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="176"/>
         <source>Max Results:</source>
         <translation>Nombre de résultats maximum:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="270"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="911"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="169"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="891"/>
         <source>Method:</source>
         <translation>Méthode:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="440"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1081"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="463"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1111"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="499"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="544"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="584"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1140"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1185"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1225"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="521"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="573"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="652"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1169"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1214"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1254"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="657"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1298"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="665"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1327"/>
         <source>Use Delay?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1545,111 +1557,111 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="637"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1278"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="731"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1307"/>
         <source>Shiny Only?</source>
         <translation>Shiny uniquement ?</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="465"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1106"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="487"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1135"/>
         <source>Gender:</source>
         <translation>Genre :</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="517"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1158"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="539"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1187"/>
         <source>Nature:</source>
         <translation>Nature:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="491"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1132"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="513"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1161"/>
         <source>Ability:</source>
         <translation>Talent :</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="591"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1232"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="622"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1261"/>
         <source>Gender Ratio:</source>
         <translation>Ratio du genre:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="551"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1192"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="549"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1221"/>
         <source>Hidden Power:</source>
         <translation>Puissance cachée:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="671"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="679"/>
         <source>Disable Filters:</source>
         <translation>Désactiver les filtres:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="599"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1240"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="581"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1269"/>
         <source>Genderless</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="604"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1245"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="586"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1274"/>
         <source>50% Male / 50% Female</source>
         <translation>50% mâle / 50% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="609"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1250"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="591"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1279"/>
         <source>25% Male / 75% Female</source>
         <translation>25% mâle / 75% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="614"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1255"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="596"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1284"/>
         <source>75% Male / 25% Female</source>
         <translation>75% mâle / 25% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="619"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1260"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="601"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1289"/>
         <source>87.5% Male / 12.5% Female</source>
         <translation>87.5% mâle / 12.5% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="624"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1265"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="606"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1294"/>
         <source>100% Male</source>
         <translation>100% mâle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="629"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1270"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="611"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1299"/>
         <source>100% Female</source>
         <translation>100% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="716"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1343"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="738"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1372"/>
         <source>(F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="765"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="790"/>
         <source>Searcher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="865"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="962"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="971"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="925"/>
         <source>Shadow:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1401"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="31"/>
         <source>Profile:</source>
         <translation>Profil :</translation>
     </message>
@@ -2156,79 +2168,79 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="51"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="52"/>
         <source>Generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="127"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="845"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="128"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="838"/>
         <source>RNG Info</source>
         <translation>RNG Info</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="151"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="268"/>
         <source>Generate</source>
         <translation>Générer</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="175"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="893"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="161"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="888"/>
         <source>Create a Profile</source>
         <translation>Créer un profil</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="213"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="944"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="240"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="921"/>
         <source>Trainer SID:</source>
         <translation>Numéro de Dresseur secret:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="220"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="951"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="281"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="844"/>
         <source>Trainer ID:</source>
         <translation>Numéro de Dresseur:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="227"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="200"/>
         <source>Starting Frame:</source>
         <translation>Frame de départ:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="234"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="247"/>
         <source>Seed:</source>
         <translation>Seed:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="241"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="220"/>
         <source>Max Results:</source>
         <translation>Nombre de résultats maximum:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="274"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="971"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="288"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="901"/>
         <source>Method:</source>
         <translation>Méthode:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="444"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1078"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="441"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1061"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="503"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="548"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="588"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1137"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1182"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1222"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="499"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="544"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="584"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1119"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1164"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1204"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="661"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1295"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="657"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1277"/>
         <source>Use Delay?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2238,106 +2250,106 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="641"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1275"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="637"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1257"/>
         <source>Shiny Only?</source>
         <translation>Shiny uniquement ?</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="469"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1103"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="465"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1085"/>
         <source>Gender:</source>
         <translation>Genre :</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="521"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1155"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="517"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1137"/>
         <source>Nature:</source>
         <translation>Nature:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="495"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1129"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="491"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1111"/>
         <source>Ability:</source>
         <translation>Talent :</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="595"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1229"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="591"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1211"/>
         <source>Gender Ratio:</source>
         <translation>Ratio du genre:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="555"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1189"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="551"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1171"/>
         <source>Hidden Power:</source>
         <translation>Puissance cachée:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="675"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="671"/>
         <source>Disable Filters:</source>
         <translation>Désactiver les filtres:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="603"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1237"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="599"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1219"/>
         <source>Genderless</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="608"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1242"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="604"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1224"/>
         <source>50% Male / 50% Female</source>
         <translation>50% mâle / 50% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="613"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1247"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="609"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1229"/>
         <source>25% Male / 75% Female</source>
         <translation>25% mâle / 75% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="618"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1252"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="614"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1234"/>
         <source>75% Male / 25% Female</source>
         <translation>75% mâle / 25% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="623"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1257"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="619"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1239"/>
         <source>87.5% Male / 12.5% Female</source>
         <translation>87.5% mâle / 12.5% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="628"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1262"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="624"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1244"/>
         <source>100% Male</source>
         <translation>100% mâle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="633"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1267"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="629"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1249"/>
         <source>100% Female</source>
         <translation>100% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="720"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1340"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="716"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1322"/>
         <source>(F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="769"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="762"/>
         <source>Searcher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="869"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="942"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1398"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="25"/>
         <source>Profile:</source>
         <translation>Profil :</translation>
     </message>
