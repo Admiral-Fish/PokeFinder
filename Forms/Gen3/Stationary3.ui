@@ -956,10 +956,6 @@ QPushButton {
              <property name="styleSheet">
               <string notr="true">QPushButton {
 	background-color: DodgerBlue;
-}
-
-QPushButton::disabled {
-	background-color: gray;
 }</string>
              </property>
              <property name="text">
