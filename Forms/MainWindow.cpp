@@ -26,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
+
     setupLanguage();
     setupModels();
 

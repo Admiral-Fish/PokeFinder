@@ -6,319 +6,3056 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>797</width>
+    <width>850</width>
     <height>638</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>797</width>
+    <height>638</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string notr="true">Researcher</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="rngSelection">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>9</y>
-      <width>311</width>
-      <height>119</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="widget">
-     <attribute name="title">
-      <string>32Bit</string>
-     </attribute>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>291</width>
-        <height>85</height>
-       </rect>
+   <layout class="QGridLayout" name="gridLayout_7">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="rngSelection">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>119</height>
+       </size>
       </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QRadioButton" name="radioButtonCommon32Bit">
-         <property name="text">
-          <string>Common RNGs</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QComboBox" name="comboBoxRNG32Bit">
-         <item>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QTabWidget * {
+		font-family: &quot;Myriad Pro&quot;, Montserrat;
+		font-weight: 500;
+}
+
+QTabBar::tab {
+	color: black;
+	background-color: #A1ABB3;
+	font-family: &quot;Myriad Pro&quot;;
+}
+
+QTabBar::tab:selected {
+	color: white;
+	background-color: #1D303C;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	padding-left: 13px;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+}
+
+QRadioButton::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QRadioButton::indicator:checked {
+	background-color: #274050;
+}
+
+QRadioButton::indicator:unchecked {
+		background-color: white;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab32Bit">
+       <attribute name="title">
+        <string>32Bit</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QRadioButton" name="radioButtonCommon32Bit">
           <property name="text">
-           <string>LCRNG</string>
+           <string>Common RNGs</string>
           </property>
-         </item>
-         <item>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QComboBox" name="comboBoxRNG32Bit">
+          <item>
+           <property name="text">
+            <string>LCRNG</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>LCRNG[R]</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>XDRNG</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>XDRNG[R]</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ARNG</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ARNG[R]</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Mersenne Twister</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>M. Twister (Untempered)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>M. Twister (Fast)</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QRadioButton" name="radioButtonCustom32Bit">
           <property name="text">
-           <string>LCRNG[R]</string>
+           <string>Custom</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label_11">
           <property name="text">
-           <string>XDRNG</string>
+           <string notr="true">X</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QTextBox" name="textBoxMult32Bit">
+          <property name="maxLength">
+           <number>8</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="label_12">
           <property name="text">
-           <string>XDRNG[R]</string>
+           <string notr="true">+</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QTextBox" name="textBoxAdd32Bit">
+          <property name="maxLength">
+           <number>8</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab64Bit">
+       <attribute name="title">
+        <string>64Bit</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QRadioButton" name="radioButtonCommon64Bit">
           <property name="text">
-           <string>ARNG</string>
+           <string>Common RNGs</string>
           </property>
-         </item>
-         <item>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QComboBox" name="comboBoxRNG64Bit">
+          <item>
+           <property name="text">
+            <string>BWRNG</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>BWRNG[R]</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SFMT</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QRadioButton" name="radioButtonCustom64Bit">
           <property name="text">
-           <string>ARNG[R]</string>
+           <string>Custom</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label_15">
           <property name="text">
-           <string>Mersenne Twister</string>
+           <string notr="true">X</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QTextBox" name="textBoxMult64Bit">
+          <property name="maxLength">
+           <number>16</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="label_16">
           <property name="text">
-           <string>M. Twister (Untempered)</string>
+           <string notr="true">+</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QTextBox" name="textBoxAdd64Bit">
+          <property name="maxLength">
+           <number>16</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabTiny">
+       <attribute name="title">
+        <string>TinyMT</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0" colspan="2">
+         <widget class="QLabel" name="label_21">
           <property name="text">
-           <string>M. Twister (Fast)</string>
+           <string>Status</string>
           </property>
-         </item>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QRadioButton" name="radioButtonCustom32Bit">
-         <property name="text">
-          <string>Custom</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="label_11">
-         <property name="text">
-          <string notr="true">X</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QTextBox" name="textBoxMult32Bit">
-         <property name="maxLength">
-          <number>8</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_12">
-         <property name="text">
-          <string notr="true">+</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QTextBox" name="textBoxAdd32Bit">
-         <property name="maxLength">
-          <number>8</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string notr="true">[3]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QTextBox" name="textBoxStatus3">
+          <property name="maxLength">
+           <number>8</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string notr="true">[2]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QTextBox" name="textBoxStatus2">
+          <property name="maxLength">
+           <number>8</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string notr="true">[1]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QTextBox" name="textBoxStatus1">
+          <property name="maxLength">
+           <number>8</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLabel" name="label_20">
+          <property name="text">
+           <string notr="true">[0]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QTextBox" name="textBoxStatus0">
+          <property name="maxLength">
+           <number>8</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>64Bit</string>
-     </attribute>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>291</width>
-        <height>85</height>
-       </rect>
+    </item>
+    <item row="0" column="1" rowspan="3">
+     <widget class="QGroupBox" name="groupBoxCustoms">
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}
+
+QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+		font-family: &quot;Myriad Pro&quot;, Montserrat;
+		font-weight: 500;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	padding-left: 13px;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+		background-color: white;
+}</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2">
+      <property name="title">
+       <string>Customs</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
        <item row="0" column="0">
-        <widget class="QRadioButton" name="radioButtonCommon64Bit">
+        <widget class="QLabel" name="label">
          <property name="text">
-          <string>Common RNGs</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QComboBox" name="comboBoxRNG64Bit">
-         <item>
-          <property name="text">
-           <string>BWRNG</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>BWRNG[R]</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>SFMT</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QRadioButton" name="radioButtonCustom64Bit">
-         <property name="text">
-          <string>Custom</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="label_15">
-         <property name="text">
-          <string notr="true">X</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QTextBox" name="textBoxMult64Bit">
-         <property name="maxLength">
-          <number>16</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_16">
-         <property name="text">
-          <string notr="true">+</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QTextBox" name="textBoxAdd64Bit">
-         <property name="maxLength">
-          <number>16</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_3">
-     <attribute name="title">
-      <string>TinyMT</string>
-     </attribute>
-     <widget class="QLabel" name="label_21">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>41</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Status</string>
-      </property>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>281</width>
-        <height>54</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayoutStatus">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_17">
-         <property name="text">
-          <string notr="true">[3]</string>
+          <string>Custom 1</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QTextBox" name="textBoxStatus3">
-         <property name="maxLength">
-          <number>8</number>
-         </property>
+        <widget class="QComboBox" name="comboBoxLValue1">
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QLabel" name="label_18">
-         <property name="text">
-          <string notr="true">[2]</string>
-         </property>
+        <widget class="QComboBox" name="comboBoxOperator1">
+         <item>
+          <property name="text">
+           <string notr="true">/</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">%</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&gt;&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&lt;&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&amp;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">|</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">^</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">+</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">-</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="0" column="3">
-        <widget class="QTextBox" name="textBoxStatus2">
-         <property name="maxLength">
-          <number>8</number>
+        <widget class="QTextBox" name="lineEditRValue1"/>
+       </item>
+       <item row="0" column="4">
+        <widget class="QCheckBox" name="checkBoxHex1">
+         <property name="text">
+          <string>Hex</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_19">
+        <widget class="QLabel" name="label_2">
          <property name="text">
-          <string notr="true">[1]</string>
+          <string>Custom 2</string>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QTextBox" name="textBoxStatus1">
-         <property name="maxLength">
-          <number>8</number>
-         </property>
+        <widget class="QComboBox" name="comboBoxLValue2">
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="QLabel" name="label_20">
-         <property name="text">
-          <string notr="true">[0]</string>
-         </property>
+        <widget class="QComboBox" name="comboBoxOperator2">
+         <item>
+          <property name="text">
+           <string notr="true">/</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">%</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&gt;&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&lt;&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&amp;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">|</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">^</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">+</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">-</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="1" column="3">
-        <widget class="QTextBox" name="textBoxStatus0">
+        <widget class="QTextBox" name="lineEditRValue2"/>
+       </item>
+       <item row="1" column="4">
+        <widget class="QCheckBox" name="checkBoxHex2">
+         <property name="text">
+          <string>Hex</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QComboBox" name="comboBoxRValue2">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Custom 3</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="comboBoxLValue3">
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QComboBox" name="comboBoxOperator3">
+         <item>
+          <property name="text">
+           <string notr="true">/</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">%</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&gt;&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&lt;&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&amp;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">|</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">^</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">+</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">-</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QTextBox" name="lineEditRValue3"/>
+       </item>
+       <item row="2" column="4">
+        <widget class="QCheckBox" name="checkBoxHex3">
+         <property name="text">
+          <string>Hex</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="QComboBox" name="comboBoxRValue3">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Custom 4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QComboBox" name="comboBoxLValue4">
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QComboBox" name="comboBoxOperator4">
+         <item>
+          <property name="text">
+           <string notr="true">/</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">%</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&gt;&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&lt;&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&amp;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">|</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">^</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">+</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">-</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QTextBox" name="lineEditRValue4"/>
+       </item>
+       <item row="3" column="4">
+        <widget class="QCheckBox" name="checkBoxHex4">
+         <property name="text">
+          <string>Hex</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="5">
+        <widget class="QComboBox" name="comboBoxRValue4">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Custom 5</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QComboBox" name="comboBoxLValue5">
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QComboBox" name="comboBoxOperator5">
+         <item>
+          <property name="text">
+           <string notr="true">/</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">%</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&gt;&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&lt;&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&amp;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">|</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">^</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">+</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">-</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QTextBox" name="lineEditRValue5"/>
+       </item>
+       <item row="4" column="4">
+        <widget class="QCheckBox" name="checkBoxHex5">
+         <property name="text">
+          <string>Hex</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="5">
+        <widget class="QComboBox" name="comboBoxRValue5">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Custom 6</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QComboBox" name="comboBoxLValue6">
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 5</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QComboBox" name="comboBoxOperator6">
+         <item>
+          <property name="text">
+           <string notr="true">/</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">%</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&gt;&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&lt;&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&amp;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">|</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">^</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">+</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">-</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QTextBox" name="lineEditRValue6"/>
+       </item>
+       <item row="5" column="4">
+        <widget class="QCheckBox" name="checkBoxHex6">
+         <property name="text">
+          <string>Hex</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="5">
+        <widget class="QComboBox" name="comboBoxRValue6">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 5</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Custom 7</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QComboBox" name="comboBoxLValue7">
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 6</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QComboBox" name="comboBoxOperator7">
+         <item>
+          <property name="text">
+           <string notr="true">/</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">%</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&gt;&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&lt;&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&amp;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">|</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">^</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">+</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">-</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="3">
+        <widget class="QTextBox" name="lineEditRValue7"/>
+       </item>
+       <item row="6" column="4">
+        <widget class="QCheckBox" name="checkBoxHex7">
+         <property name="text">
+          <string>Hex</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="5">
+        <widget class="QComboBox" name="comboBoxRValue7">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 6</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Custom 8</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QComboBox" name="comboBoxLValue8">
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 7</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="2">
+        <widget class="QComboBox" name="comboBoxOperator8">
+         <item>
+          <property name="text">
+           <string notr="true">/</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">%</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&gt;&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&lt;&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&amp;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">|</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">^</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">+</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">-</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <widget class="QTextBox" name="lineEditRValue8"/>
+       </item>
+       <item row="7" column="4">
+        <widget class="QCheckBox" name="checkBoxHex8">
+         <property name="text">
+          <string>Hex</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="5">
+        <widget class="QComboBox" name="comboBoxRValue8">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 7</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Custom 9</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QComboBox" name="comboBoxLValue9">
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 8</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="8" column="2">
+        <widget class="QComboBox" name="comboBoxOperator9">
+         <item>
+          <property name="text">
+           <string notr="true">/</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">%</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&gt;&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&lt;&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&amp;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">|</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">^</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">+</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">-</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="8" column="3">
+        <widget class="QTextBox" name="lineEditRValue9"/>
+       </item>
+       <item row="8" column="4">
+        <widget class="QCheckBox" name="checkBoxHex9">
+         <property name="text">
+          <string>Hex</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="5">
+        <widget class="QComboBox" name="comboBoxRValue9">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 8</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>Custom 10</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QComboBox" name="comboBoxLValue10">
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 9</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="9" column="2">
+        <widget class="QComboBox" name="comboBoxOperator10">
+         <item>
+          <property name="text">
+           <string notr="true">/</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">%</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&gt;&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&lt;&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">&amp;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">|</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">^</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">+</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">-</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">*</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="9" column="3">
+        <widget class="QTextBox" name="lineEditRValue10"/>
+       </item>
+       <item row="9" column="4">
+        <widget class="QCheckBox" name="checkBoxHex10">
+         <property name="text">
+          <string>Hex</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="5">
+        <widget class="QComboBox" name="comboBoxRValue10">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>64Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>32Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Custom 9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Previous 9</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="groupBoxParameters">
+      <property name="styleSheet">
+       <string notr="true">QSpinBox {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+
+QSpinBox::up-button {
+	subcontrol-origin: border;
+    subcontrol-position: top right;
+}
+
+QSpinBox::down-button {
+	subcontrol-origin: border;
+    subcontrol-position: bottom right;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}
+
+QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+		font-family: &quot;Myriad Pro&quot;, Montserrat;
+		font-weight: 500;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	padding-left: 13px;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+		background-color: white;
+}</string>
+      </property>
+      <property name="title">
+       <string>Parameters</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_22">
+         <property name="text">
+          <string>Starting Frame</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QTextBox" name="textBoxStartingFrame">
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
          <property name="maxLength">
-          <number>8</number>
+          <number>20</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>Max Results</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QTextBox" name="textBoxMaxFrames">
+         <property name="text">
+          <string notr="true">1000</string>
+         </property>
+         <property name="maxLength">
+          <number>20</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>Seed</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QTextBox" name="textBoxSeed">
+         <property name="maxLength">
+          <number>16</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="pushButtonGenerate32Bit">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+         </property>
+         <property name="text">
+          <string>Generate</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-    </widget>
-   </widget>
-   <widget class="QTableView" name="tableView">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>302</y>
-      <width>781</width>
-      <height>291</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QTableView {
+    </item>
+    <item row="2" column="0">
+     <widget class="QGroupBox" name="groupBoxSearch">
+      <property name="styleSheet">
+       <string notr="true">QSpinBox {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+
+QSpinBox::up-button {
+	subcontrol-origin: border;
+    subcontrol-position: top right;
+}
+
+QSpinBox::down-button {
+	subcontrol-origin: border;
+    subcontrol-position: bottom right;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}
+
+QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+		font-family: &quot;Myriad Pro&quot;, Montserrat;
+		font-weight: 500;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	padding-left: 13px;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+		background-color: white;
+}</string>
+      </property>
+      <property name="title">
+       <string>Search</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_23">
+         <property name="text">
+          <string>Search Seed</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QTextBox" name="textBoxSearch"/>
+       </item>
+       <item row="0" column="3">
+        <widget class="QComboBox" name="comboBoxSearch">
+         <item>
+          <property name="text">
+           <string>32Bit</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit High</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>16Bit Low</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QPushButton" name="pushButtonSearch">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	background-color: orange;
+}</string>
+         </property>
+         <property name="text">
+          <string>Search</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="2">
+        <widget class="QPushButton" name="pushButtonNext">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	background-color: orange;
+}</string>
+         </property>
+         <property name="text">
+          <string>Next</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2">
+     <widget class="QTableView" name="tableView">
+      <property name="styleSheet">
+       <string notr="true">QTableView {
 	border: 4px solid DodgerBlue;
 }
 
@@ -330,2449 +3067,24 @@ QHeaderView::section {
 	color: white;
 }
 </string>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::NoEditTriggers</set>
-    </property>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>13</y>
-      <width>461</width>
-      <height>281</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayoutCustoms">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetNoConstraint</enum>
-     </property>
-     <item row="2" column="4">
-      <widget class="QCheckBox" name="checkBoxHex3">
-       <property name="text">
-        <string>Hex</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QComboBox" name="comboBoxOperator3">
-       <item>
-        <property name="text">
-         <string notr="true">/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&gt;&gt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&lt;&lt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&amp;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">|</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">^</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">+</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">-</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QTextBox" name="lineEditRValue3"/>
-     </item>
-     <item row="1" column="3">
-      <widget class="QTextBox" name="lineEditRValue2"/>
-     </item>
-     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Custom 1</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QComboBox" name="comboBoxOperator1">
-       <item>
-        <property name="text">
-         <string notr="true">/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&gt;&gt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&lt;&lt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&amp;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">|</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">^</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">+</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">-</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QTextBox" name="lineEditRValue1"/>
-     </item>
-     <item row="0" column="4">
-      <widget class="QCheckBox" name="checkBoxHex1">
-       <property name="text">
-        <string>Hex</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="comboBoxLValue2">
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="1" column="5">
-      <widget class="QComboBox" name="comboBoxRValue2">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="2" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Custom 3</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="5">
-      <widget class="QComboBox" name="comboBoxRValue3">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="3" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>Custom 4</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QComboBox" name="comboBoxLValue4">
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QComboBox" name="comboBoxLValue3">
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="3" column="2">
-      <widget class="QComboBox" name="comboBoxOperator4">
-       <item>
-        <property name="text">
-         <string notr="true">/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&gt;&gt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&lt;&lt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&amp;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">|</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">^</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">+</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">-</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="3" column="3">
-      <widget class="QTextBox" name="lineEditRValue4"/>
-     </item>
-     <item row="1" column="4">
-      <widget class="QCheckBox" name="checkBoxHex2">
-       <property name="text">
-        <string>Hex</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Custom 2</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QComboBox" name="comboBoxOperator2">
-       <item>
-        <property name="text">
-         <string notr="true">/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&gt;&gt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&lt;&lt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&amp;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">|</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">^</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">+</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">-</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QComboBox" name="comboBoxLValue1">
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QComboBox" name="comboBoxLValue7">
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 6</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="7" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>Custom 8</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="2">
-      <widget class="QComboBox" name="comboBoxOperator5">
-       <item>
-        <property name="text">
-         <string notr="true">/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&gt;&gt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&lt;&lt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&amp;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">|</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">^</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">+</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">-</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="5" column="3">
-      <widget class="QTextBox" name="lineEditRValue6"/>
-     </item>
-     <item row="6" column="4">
-      <widget class="QCheckBox" name="checkBoxHex7">
-       <property name="text">
-        <string>Hex</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="5">
-      <widget class="QComboBox" name="comboBoxRValue8">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 7</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="5" column="5">
-      <widget class="QComboBox" name="comboBoxRValue6">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 5</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="4" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_5">
-       <property name="text">
-        <string>Custom 5</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="2">
-      <widget class="QComboBox" name="comboBoxOperator7">
-       <item>
-        <property name="text">
-         <string notr="true">/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&gt;&gt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&lt;&lt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&amp;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">|</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">^</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">+</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">-</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="7" column="2">
-      <widget class="QComboBox" name="comboBoxOperator8">
-       <item>
-        <property name="text">
-         <string notr="true">/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&gt;&gt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&lt;&lt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&amp;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">|</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">^</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">+</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">-</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="3" column="5">
-      <widget class="QComboBox" name="comboBoxRValue4">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="6" column="5">
-      <widget class="QComboBox" name="comboBoxRValue7">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 6</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QComboBox" name="comboBoxLValue6">
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 5</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="7" column="4">
-      <widget class="QCheckBox" name="checkBoxHex8">
-       <property name="text">
-        <string>Hex</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="1">
-      <widget class="QComboBox" name="comboBoxLValue9">
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 8</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 8</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="8" column="2">
-      <widget class="QComboBox" name="comboBoxOperator9">
-       <item>
-        <property name="text">
-         <string notr="true">/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&gt;&gt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&lt;&lt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&amp;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">|</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">^</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">+</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">-</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="4" column="4">
-      <widget class="QCheckBox" name="checkBoxHex5">
-       <property name="text">
-        <string>Hex</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>Custom 7</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QComboBox" name="comboBoxLValue8">
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 7</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="5" column="2">
-      <widget class="QComboBox" name="comboBoxOperator6">
-       <item>
-        <property name="text">
-         <string notr="true">/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&gt;&gt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&lt;&lt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&amp;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">|</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">^</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">+</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">-</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="7" column="3">
-      <widget class="QTextBox" name="lineEditRValue8"/>
-     </item>
-     <item row="3" column="4">
-      <widget class="QCheckBox" name="checkBoxHex4">
-       <property name="text">
-        <string>Hex</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>Custom 9</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="3">
-      <widget class="QTextBox" name="lineEditRValue9"/>
-     </item>
-     <item row="8" column="4">
-      <widget class="QCheckBox" name="checkBoxHex9">
-       <property name="text">
-        <string>Hex</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="5">
-      <widget class="QComboBox" name="comboBoxRValue9">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 8</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 8</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="5" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>Custom 6</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QComboBox" name="comboBoxLValue5">
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="5" column="4">
-      <widget class="QCheckBox" name="checkBoxHex6">
-       <property name="text">
-        <string>Hex</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="3">
-      <widget class="QTextBox" name="lineEditRValue7"/>
-     </item>
-     <item row="4" column="3">
-      <widget class="QTextBox" name="lineEditRValue5"/>
-     </item>
-     <item row="4" column="5">
-      <widget class="QComboBox" name="comboBoxRValue5">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="9" column="1">
-      <widget class="QComboBox" name="comboBoxLValue10">
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 8</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 9</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 8</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 9</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="9" column="2">
-      <widget class="QComboBox" name="comboBoxOperator10">
-       <item>
-        <property name="text">
-         <string notr="true">/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">%</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&gt;&gt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&lt;&lt;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">&amp;</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">|</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">^</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">+</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">-</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="9" column="3">
-      <widget class="QTextBox" name="lineEditRValue10"/>
-     </item>
-     <item row="9" column="5">
-      <widget class="QComboBox" name="comboBoxRValue10">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>64Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>32Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 8</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Custom 9</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 8</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Previous 9</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="9" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_10">
-       <property name="text">
-        <string>Custom 10</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="4">
-      <widget class="QCheckBox" name="checkBoxHex10">
-       <property name="text">
-        <string>Hex</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>21</x>
-      <y>135</y>
-      <width>293</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_22">
-       <property name="text">
-        <string>Starting Frame</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1" colspan="2">
-      <widget class="QTextBox" name="textBoxStartingFrame">
-       <property name="text">
-        <string notr="true">1</string>
-       </property>
-       <property name="maxLength">
-        <number>20</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_13">
-       <property name="text">
-        <string>Max Results</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1" colspan="2">
-      <widget class="QTextBox" name="textBoxMaxFrames">
-       <property name="text">
-        <string notr="true">1000</string>
-       </property>
-       <property name="maxLength">
-        <number>20</number>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_14">
-       <property name="text">
-        <string>Seed</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1" colspan="2">
-      <widget class="QTextBox" name="textBoxSeed">
-       <property name="maxLength">
-        <number>16</number>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QPushButton" name="pushButtonGenerate32Bit">
-       <property name="text">
-        <string>Generate</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-      <widget class="QLabel" name="label_23">
-       <property name="text">
-        <string>Search Seed</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1" colspan="2">
-      <widget class="QTextBox" name="textBoxSearch"/>
-     </item>
-     <item row="3" column="3">
-      <widget class="QComboBox" name="comboBoxSearch">
-       <item>
-        <property name="text">
-         <string>32Bit</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit High</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>16Bit Low</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="4" column="0" colspan="2">
-      <widget class="QPushButton" name="pushButtonSearch">
-       <property name="text">
-        <string>Search</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="2" colspan="2">
-      <widget class="QPushButton" name="pushButtonNext">
-       <property name="text">
-        <string>Next</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>797</width>
+     <width>850</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>

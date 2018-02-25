@@ -166,7 +166,7 @@ void QCheckList::updateText()
                     if (!text.isEmpty())
                         text+= ", ";
 
-                    text+= model->item(i)->text();
+                    text += model->item(i)->text();
                 }
             }
             break;

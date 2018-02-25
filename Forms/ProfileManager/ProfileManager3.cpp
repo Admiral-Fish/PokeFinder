@@ -29,6 +29,7 @@ ProfileManager3::ProfileManager3(QWidget *parent) :
     model = new Profile3Model(this);
     model->setModel(Profile3::loadProfileList());
     ui->tableView->setModel(model);
+    ui->tableView->verticalHeader()->setVisible(false);
 }
 
 ProfileManager3::~ProfileManager3()
@@ -54,7 +55,7 @@ void ProfileManager3::registerProfile(Profile3 profile)
 void ProfileManager3::editProfile(Profile3 profile, Profile3 original)
 {
     profile.updateProfile(original);
-    int r = ui->tableView->selectionModel()->selectedRows().at(0).row();
+    int r = ui->tableView->currentIndex().row();
     model->updateProfile(profile, r);
     ui->tableView->viewport()->update();
     emit updateProfiles();
@@ -67,16 +68,16 @@ void ProfileManager3::on_pushButtonOk_clicked()
 
 void ProfileManager3::on_pushButtonEdit_clicked()
 {
-    QItemSelectionModel *selections = ui->tableView->selectionModel();
-    if(selections->selectedRows().count() != 1)
+    int r = ui->tableView->currentIndex().row();
+
+    if (r == -1)
     {
         QMessageBox error;
-        error.setText("Please select one row.");
+        error.setText(tr("Please select a profile."));
         error.exec();
         return;
     }
 
-    int r = selections->selectedRows().at(0).row();
     ProfileManager3NewEdit* dialog = new ProfileManager3NewEdit(model->getProfile(r));
     connect(dialog, SIGNAL (editProfile(Profile3, Profile3)), this, SLOT (editProfile(Profile3, Profile3)));
     dialog->exec();
@@ -84,16 +85,16 @@ void ProfileManager3::on_pushButtonEdit_clicked()
 
 void ProfileManager3::on_pushButtonDelete_clicked()
 {
-    QMessageBox error;
-    QItemSelectionModel *selections = ui->tableView->selectionModel();
-    if(selections->selectedRows().count() != 1)
+    int r = ui->tableView->currentIndex().row();
+
+    if (r == -1)
     {
-        error.setText(tr("Please select one row."));
+        QMessageBox error;
+        error.setText(tr("Please select a profile."));
         error.exec();
         return;
     }
 
-    int r = selections->selectedRows().at(0).row();
     Profile3 profile = model->getProfile(r);
     profile.deleteProfile();
 

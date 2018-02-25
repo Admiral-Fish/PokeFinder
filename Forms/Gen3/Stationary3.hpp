@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef Generator_H
-#define Generator_H
+#ifndef STATIONARY3_H
+#define STATIONARY3_H
 
 #include <Forms/QCheckList.hpp>
 #include <Forms/QTextBox.hpp>
@@ -83,4 +83,4 @@ public:
 
 };
 
-#endif // Generator_H
+#endif // STATIONARY3_H
