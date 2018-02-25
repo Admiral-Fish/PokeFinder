@@ -137,42 +137,42 @@
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="59"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Yes</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="59"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="79"/>
         <source>Profile Name</source>
-        <translation type="unfinished">Profile Name</translation>
+        <translation>Profile Name</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="81"/>
         <source>Version</source>
-        <translation type="unfinished">Version</translation>
+        <translation>Version</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="83"/>
         <source>Language</source>
-        <translation type="unfinished">Language</translation>
+        <translation>Language</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="85"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation>TID</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="87"/>
         <source>SID</source>
-        <translation type="unfinished">SID</translation>
+        <translation>SID</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="89"/>
         <source>Dead Battery</source>
-        <translation type="unfinished">Dead Battery</translation>
+        <translation>Dead Battery</translation>
     </message>
 </context>
 <context>
@@ -206,7 +206,7 @@
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="76"/>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="93"/>
         <source>Please select a profile.</source>
-        <translation type="unfinished"></translation>
+        <translation>Please select a profile.</translation>
     </message>
 </context>
 <context>
@@ -274,7 +274,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="116"/>
         <source>Language:</source>
-        <translation>Lanuage:</translation>
+        <translation>Language:</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="129"/>
@@ -324,7 +324,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="42"/>
         <source>Enter a Profile Name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Enter a Profile Name.</translation>
     </message>
 </context>
 <context>
@@ -568,37 +568,37 @@
         <translation>Dark</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="348"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="276"/>
         <source>Ruby</source>
         <translation>Ruby</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="350"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="278"/>
         <source>Sapphire</source>
         <translation>Sapphire</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="352"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="280"/>
         <source>Fire Red</source>
         <translation>Fire Red</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="354"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="282"/>
         <source>Leaf Green</source>
         <translation>Leaf Green</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="356"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="284"/>
         <source>Emerald</source>
         <translation>Emerald</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="358"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="286"/>
         <source>XD</source>
         <translation>XD</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="360"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="288"/>
         <source>Colosseum</source>
         <translation>Colosseum</translation>
     </message>
@@ -638,7 +638,7 @@
         <location filename="../Forms/Researcher.ui" line="113"/>
         <location filename="../Forms/Researcher.ui" line="214"/>
         <source>Common RNGs</source>
-        <translation>Commons RNGs</translation>
+        <translation>Common RNGs</translation>
     </message>
     <message>
         <location filename="../Forms/Researcher.ui" line="172"/>
@@ -767,7 +767,7 @@
     <message>
         <location filename="../Forms/Researcher.ui" line="419"/>
         <source>Customs</source>
-        <translation type="unfinished"></translation>
+        <translation>Customs</translation>
     </message>
     <message>
         <location filename="../Forms/Researcher.ui" line="443"/>
@@ -891,7 +891,7 @@
     <message>
         <location filename="../Forms/Researcher.ui" line="2819"/>
         <source>Parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Parameters</translation>
     </message>
     <message>
         <location filename="../Forms/Researcher.ui" line="2825"/>
@@ -1235,7 +1235,7 @@
     <message>
         <location filename="../Forms/Researcher.cpp" line="136"/>
         <source>Please enter a search range lower then 228</source>
-        <translation type="unfinished"></translation>
+        <translation>Please enter a search range lower then 228</translation>
     </message>
     <message>
         <location filename="../Forms/Researcher.cpp" line="249"/>
@@ -1788,12 +1788,12 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="363"/>
         <source>Gulpin (Initial)</source>
-        <translation>Gulpin (Initial</translation>
+        <translation>Gulpin (Initial)</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="363"/>
         <source>Gulpin (Phenac)</source>
-        <translation>Gulpin (Phenac</translation>
+        <translation>Gulpin (Phenac)</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="364"/>
@@ -1803,7 +1803,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="364"/>
         <source>Hitmonlee</source>
-        <translation>Hitmolee</translation>
+        <translation>Hitmonlee</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="364"/>
@@ -1859,7 +1859,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="368"/>
         <source>Manectric</source>
-        <translation>Manetric</translation>
+        <translation>Manectric</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="368"/>
@@ -1929,7 +1929,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="372"/>
         <source>Primeape</source>
-        <translation>Primape</translation>
+        <translation>Primeape</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="373"/>
@@ -1974,7 +1974,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="375"/>
         <source>Seedot (Initial)</source>
-        <translation>Seedot (Initial</translation>
+        <translation>Seedot (Initial)</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="376"/>
@@ -2019,7 +2019,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="378"/>
         <source>Spheal (Initial)</source>
-        <translation>Speal (Initial)</translation>
+        <translation>Spheal (Initial)</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="379"/>

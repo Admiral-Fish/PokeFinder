@@ -568,37 +568,37 @@
         <translation>악</translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="348"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="276"/>
         <source>Ruby</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="350"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="278"/>
         <source>Sapphire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="352"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="280"/>
         <source>Fire Red</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="354"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="282"/>
         <source>Leaf Green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="356"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="284"/>
         <source>Emerald</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="358"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="286"/>
         <source>XD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="360"/>
+        <location filename="../libPokeFinder/Gen3/Profile3.cpp" line="288"/>
         <source>Colosseum</source>
         <translation type="unfinished"></translation>
     </message>

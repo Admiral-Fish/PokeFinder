@@ -26,6 +26,8 @@
 class Stationary3Model : public QAbstractTableModel
 {
 
+    Q_OBJECT
+
 private:
     vector<Frame3> model;
 

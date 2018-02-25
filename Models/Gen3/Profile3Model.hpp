@@ -8,6 +8,8 @@
 class Profile3Model : public QAbstractTableModel
 {
 
+    Q_OBJECT
+
 private:
     vector<Profile3> model;
 
