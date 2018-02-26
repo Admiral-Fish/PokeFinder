@@ -64,26 +64,36 @@ QTabBar::tab {
 QTabBar::tab:selected {
 	color: white;
 	background-color: #1D303C;
-}</string>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tabStationary">
-       <attribute name="title">
-        <string>Generator</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_8">
-        <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBoxRNGInfoStationary3">
-          <property name="maximumSize">
-           <size>
-            <width>249</width>
-            <height>231</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLineEdit {
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+		background-color: white;
+}
+
+QTableView {
+	border: 4px solid DodgerBlue;
+}
+
+QHeaderView::section {
+	border: none;
+	background-color: #274050;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: white;
+}
+
+QLineEdit {
 	qproperty-alignment: AlignCenter;
 	background-color: #1D303C;
 	border:none;
@@ -109,7 +119,9 @@ QComboBox {
 	border: none;
 	border-radius: 6px;
 	color: white;
+	padding-left: 13px;
 }
+
 QComboBox::editable {
 	background-color: #1D303C;
 	border: none;
@@ -145,6 +157,25 @@ QPushButton {
 	color: white;
 }
 </string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabStationary">
+       <attribute name="title">
+        <string>Generator</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBoxRNGInfoStationary3">
+          <property name="maximumSize">
+           <size>
+            <width>249</width>
+            <height>231</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
           </property>
           <property name="title">
            <string>RNG Info</string>
@@ -370,94 +401,7 @@ QPushButton {
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QSpinBox {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-
-QSpinBox::up-button {
-	subcontrol-origin: border;
-    subcontrol-position: top right;
-}
-
-QSpinBox::down-button {
-	subcontrol-origin: border;
-    subcontrol-position: bottom right;
-}
-
-QLineEdit {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border:none;
-	border-radius: 6px;
-	color: white;
-}
-
-QGroupBox {
-	background-color: #274050;
-	border-radius: 10px;
-	margin-top: 7px;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-.QGroupBox * {
-		font-family: &quot;Myriad Pro&quot;, Montserrat;
-		font-weight: 500;
-}
-
-QComboBox {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-	padding-left: 13px;
-}
-
-QComboBox::down-arrow {
-	image: url(noimg);
-	border-width: 0px;
-}
-
-QComboBox::drop-down {
-	background: transparent;
-	width: 0px;
-}
-
-QLabel {
-	color: white;
-}
-
-QGroupBox::title {
-	subcontrol-origin: margin;
-	left: 20px;
-	padding: 3px 5px 3px 5px;
-	background-color: #969F91;
-	border-radius: 5px;
-}
-
-QPushButton {
-	border: none;
-	border-radius: 6px;
-}
-
-QCheckBox::indicator {
-	border: 2px solid white;
-	border-radius: 3px;
-	height: 10px;
-	width: 10px;
-}
-
-QCheckBox::indicator:unchecked {
-	background-color: #274050;
-}
-
-QCheckBox::indicator:checked {
-		background-color: white;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="title">
            <string>Filters</string>
@@ -567,6 +511,7 @@ QCheckBox::indicator:checked {
                <property name="styleSheet">
                 <string notr="true">QPushButton {
 	background-color: yellow;
+	color: black;
 }</string>
                </property>
                <property name="text">
@@ -646,6 +591,7 @@ QCheckBox::indicator:checked {
                <property name="styleSheet">
                 <string notr="true">QPushButton {
 	background-color: yellow;
+	color: black;
 }</string>
                </property>
                <property name="text">
@@ -753,18 +699,7 @@ QCheckBox::indicator:checked {
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QTableView {
-	border: 4px solid DodgerBlue;
-}
-
-QHeaderView::section {
-	border: none;
-	background-color: #274050;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	color: white;
-}
-</string>
+           <string notr="true"/>
           </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
@@ -805,68 +740,7 @@ QHeaderView::section {
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QLineEdit {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border:none;
-	border-radius: 6px;
-	color: white;
-}
-
-QGroupBox {
-	background-color: #274050;
-	border-radius: 10px;
-	margin-top: 7px;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-.QGroupBox * {
-		font-family: &quot;Myriad Pro&quot;, Montserrat;
-		font-weight: 500;
-}
-
-QComboBox {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-QComboBox::editable {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-
-QComboBox::down-arrow {
-	image: url(noimg);
-	border-width: 0px;
-}
-
-QComboBox::drop-down {
-	background: transparent;
-	width: 0px;
-}
-
-QLabel {
-	color: white;
-}
-
-QGroupBox::title {
-	subcontrol-origin: margin;
-	left: 20px;
-	padding: 3px 5px 3px 5px;
-	background-color: #969F91;
-	border-radius: 5px;
-}
-
-QPushButton {
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-</string>
+           <string notr="true"/>
           </property>
           <property name="title">
            <string>RNG Info</string>
@@ -1018,94 +892,7 @@ QPushButton {
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QSpinBox {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-
-QSpinBox::up-button {
-	subcontrol-origin: border;
-    subcontrol-position: top right;
-}
-
-QSpinBox::down-button {
-	subcontrol-origin: border;
-    subcontrol-position: bottom right;
-}
-
-QLineEdit {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border:none;
-	border-radius: 6px;
-	color: white;
-}
-
-QGroupBox {
-	background-color: #274050;
-	border-radius: 10px;
-	margin-top: 7px;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-.QGroupBox * {
-		font-family: &quot;Myriad Pro&quot;, Montserrat;
-		font-weight: 500;
-}
-
-QComboBox {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-	padding-left: 13px;
-}
-
-QComboBox::down-arrow {
-	image: url(noimg);
-	border-width: 0px;
-}
-
-QComboBox::drop-down {
-	background: transparent;
-	width: 0px;
-}
-
-QLabel {
-	color: white;
-}
-
-QGroupBox::title {
-	subcontrol-origin: margin;
-	left: 20px;
-	padding: 3px 5px 3px 5px;
-	background-color: #969F91;
-	border-radius: 5px;
-}
-
-QPushButton {
-	border: none;
-	border-radius: 6px;
-}
-
-QCheckBox::indicator {
-	border: 2px solid white;
-	border-radius: 3px;
-	height: 10px;
-	width: 10px;
-}
-
-QCheckBox::indicator:unchecked {
-	background-color: #274050;
-}
-
-QCheckBox::indicator:checked {
-		background-color: white;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="title">
            <string>Filters</string>
@@ -1208,6 +995,7 @@ QCheckBox::indicator:checked {
                <property name="styleSheet">
                 <string notr="true">QPushButton {
 	background-color: yellow;
+	color: black;
 }</string>
                </property>
                <property name="text">
@@ -1248,6 +1036,7 @@ QCheckBox::indicator:checked {
                <property name="styleSheet">
                 <string notr="true">QPushButton {
 	background-color: yellow;
+	color: black;
 }</string>
                </property>
                <property name="text">
@@ -1381,18 +1170,7 @@ QCheckBox::indicator:checked {
         <item row="1" column="0" colspan="2">
          <widget class="QTableView" name="tableViewSearcher">
           <property name="styleSheet">
-           <string notr="true">QTableView {
-	border: 4px solid DodgerBlue;
-}
-
-QHeaderView::section {
-	border: none;
-	background-color: #274050;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	color: white;
-}
-</string>
+           <string notr="true"/>
           </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
