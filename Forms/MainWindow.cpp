@@ -31,8 +31,9 @@ MainWindow::MainWindow(QWidget *parent) :
     setupLanguage();
     setupModels();
 
-    s3.setAttribute(Qt::WA_QuitOnClose, false);
-    w3.setAttribute(Qt::WA_QuitOnClose, false);
+    stationary3.setAttribute(Qt::WA_QuitOnClose, false);
+    wild3.setAttribute(Qt::WA_QuitOnClose, false);
+    egg3.setAttribute(Qt::WA_QuitOnClose, false);
 }
 
 void MainWindow::setupLanguage()
@@ -137,8 +138,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButtonStationary3_clicked()
 {
-    s3.show();
-    s3.raise();
+    stationary3.show();
+    stationary3.raise();
 }
 
 void MainWindow::on_actionResearcher_triggered()
@@ -150,6 +151,12 @@ void MainWindow::on_actionResearcher_triggered()
 
 void MainWindow::on_pushButtonWild3_clicked()
 {
-    w3.show();
-    w3.raise();
+    wild3.show();
+    wild3.raise();
+}
+
+void MainWindow::on_pushButtonEgg3_clicked()
+{
+    egg3.show();
+    egg3.raise();
 }

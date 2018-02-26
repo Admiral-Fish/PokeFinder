@@ -23,6 +23,7 @@
 #include <QMainWindow>
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Wild3.hpp>
+#include <Forms/Gen3/Egg3.hpp>
 #include <Forms/Researcher.hpp>
 
 namespace Ui {
@@ -45,14 +46,16 @@ private slots:
     void on_actionResearcher_triggered();
     void on_pushButtonWild3_clicked();
     void slotLanguageChanged(QAction *action);
+    void on_pushButtonEgg3_clicked();
 
 private:
     Ui::MainWindow *ui;
     QTranslator translator;
     QString currLang;
     QString langPath = QApplication::applicationDirPath().append("/Languages/");
-    Stationary3 s3;
-    Wild3 w3;
+    Stationary3 stationary3;
+    Wild3 wild3;
+    Egg3 egg3;
 
     void setupLanguage();
     void setupModels();

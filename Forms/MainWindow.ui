@@ -68,6 +68,19 @@
         <string>Wild</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButtonEgg3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Egg</string>
+       </property>
+      </widget>
      </widget>
     </item>
     <item row="0" column="1">

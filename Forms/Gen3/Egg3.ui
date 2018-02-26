@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Egg3</class>
+ <widget class="QMainWindow" name="Egg3">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1182</width>
+    <height>662</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0" colspan="4">
+     <widget class="QTabWidget" name="tabEggSelection">
+      <property name="styleSheet">
+       <string notr="true">.QTabWidget &gt;  QWidget &gt; QWidget {
+	background-color: #E6E6E6;
+}
+
+QTabBar::tab {
+	color: black;
+	background-color: #A1ABB3;
+	font-family: &quot;Myriad Pro&quot;;
+}
+
+QTabBar::tab:selected {
+	color: white;
+	background-color: #1D303C;
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+		background-color: white;
+}
+
+QTableView {
+	border: 4px solid DodgerBlue;
+}
+
+QHeaderView::section {
+	border: none;
+	background-color: #274050;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: white;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}
+
+QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+		font-family: &quot;Myriad Pro&quot;, Montserrat;
+		font-weight: 500;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	padding-left: 13px;
+}
+
+QComboBox::editable {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabEmerald">
+       <attribute name="title">
+        <string>Emerald</string>
+       </attribute>
+       <widget class="QTableView" name="tableViewEmeraldPID">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>280</y>
+          <width>561</width>
+          <height>281</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QTableView" name="tableViewEmeraldIVs">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>281</y>
+          <width>561</width>
+          <height>281</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBoxEmeraldPID">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>561</width>
+          <height>261</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Egg PID</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBoxEmeraldIVs">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>10</y>
+          <width>561</width>
+          <height>261</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Egg IVs</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tabRS">
+       <attribute name="title">
+        <string>Ruby/Sapphire</string>
+       </attribute>
+       <widget class="QTableView" name="tableViewRS">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>291</y>
+          <width>1131</width>
+          <height>251</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBoxRNGInfoRS">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>271</width>
+          <height>271</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>RNG Info</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBoxFiltersRS">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>10</y>
+          <width>851</width>
+          <height>271</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>GroupBox</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tabFRLG">
+       <attribute name="title">
+        <string>Fire Red/Leaf Green</string>
+       </attribute>
+       <widget class="QTableView" name="tableViewFRLG">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>331</y>
+          <width>1131</width>
+          <height>221</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBoxRNGInfoFRLG">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>301</width>
+          <height>311</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>GroupBox</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBoxFilterFRLG">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>10</y>
+          <width>821</width>
+          <height>311</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>GroupBox</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Profile:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1">
+     <widget class="QComboBox" name="comboBoxProfiles"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1182</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
