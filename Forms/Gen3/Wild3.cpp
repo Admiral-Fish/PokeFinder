@@ -202,7 +202,6 @@ void Wild3::on_anyHiddenPowerGenerator_clicked()
     ui->comboBoxHiddenPowerGenerator->uncheckAll();
 }
 
-
 void Wild3::on_anyNatureSearcher_clicked()
 {
     ui->comboBoxNatureSearcher->uncheckAll();
@@ -211,6 +210,24 @@ void Wild3::on_anyNatureSearcher_clicked()
 void Wild3::on_anyHiddenPowerSearcher_clicked()
 {
     ui->comboBoxHiddenPowerSearcher->uncheckAll();
+}
+
+void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
+{
+    if(index == 0)
+    {
+        ui->idGenerator->setText("");
+        ui->sidGenerator->setText("");
+        ui->idSearcher->setText("");
+        ui->sidSearcher->setText("");
+    }
+    else
+    {
+        ui->idGenerator->setText(QString::number(profiles.at(index - 1).tid));
+        ui->sidGenerator->setText(QString::number(profiles.at(index - 1).sid));
+        ui->idSearcher->setText(QString::number(profiles.at(index - 1).tid));
+        ui->sidSearcher->setText(QString::number(profiles.at(index - 1).sid));
+    }
 }
 
 void Wild3::on_generate_clicked()

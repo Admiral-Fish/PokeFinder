@@ -68,6 +68,7 @@ private slots:
     void updateProfiles();
     void on_checkBoxDelaySearcher_clicked();
     void on_checkBoxDelayGenerator_clicked();
+    void on_comboBoxProfiles_currentIndexChanged(int index);
 
 private:
     Ui::Wild3 *ui;
