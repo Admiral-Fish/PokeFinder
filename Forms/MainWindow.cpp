@@ -34,6 +34,9 @@ MainWindow::MainWindow(QWidget *parent) :
     stationary3.setAttribute(Qt::WA_QuitOnClose, false);
     wild3.setAttribute(Qt::WA_QuitOnClose, false);
     egg3.setAttribute(Qt::WA_QuitOnClose, false);
+
+    connect(&s3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    connect(&w3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
 }
 
 void MainWindow::setupLanguage()
@@ -88,6 +91,15 @@ void MainWindow::slotLanguageChanged(QAction *action)
 {
     if (action != NULL)
         loadLanguage(action->data().toString());
+}
+
+void MainWindow::updateProfiles(int num)
+{
+    if (num == 3)
+    {
+        s3.updateProfiles();
+        w3.updateProfiles();
+    }
 }
 
 void MainWindow::loadLanguage(const QString &lang)

@@ -49,6 +49,7 @@ protected:
 
 signals:
     void updateView(vector<Frame3>);
+    void alertProfiles(int);
 
 private:
     Ui::Stationary3 *ui;
@@ -63,7 +64,7 @@ private:
 
 private slots:
     void on_generate_clicked();
-    void updateProfiles();
+    void refreshProfiles();
     void on_saveProfileGenerator_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_anyNatureGenerator_clicked();
@@ -80,6 +81,7 @@ private slots:
 public:
     explicit Stationary3(QWidget *parent = 0);
     ~Stationary3();
+    void updateProfiles();
 
 };
 

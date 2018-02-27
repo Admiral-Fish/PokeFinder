@@ -43,10 +43,11 @@ public:
 
 private slots:
     void on_pushButtonStationary3_clicked();
-    void on_actionResearcher_triggered();
     void on_pushButtonWild3_clicked();
-    void slotLanguageChanged(QAction *action);
     void on_pushButtonEgg3_clicked();
+    void on_actionResearcher_triggered();
+    void slotLanguageChanged(QAction *action);
+    void updateProfiles(int num);
 
 private:
     Ui::MainWindow *ui;

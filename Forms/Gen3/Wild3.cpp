@@ -35,7 +35,7 @@ Wild3::Wild3(QWidget *parent) :
         createProfileXml();
 
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
-    connect(this, SIGNAL(UpdateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
+    connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
 }
 
 void Wild3::changeEvent(QEvent *event)
@@ -179,7 +179,7 @@ void Wild3::on_saveProfileGenerator_clicked()
 {
     ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
 }
 
@@ -188,7 +188,7 @@ void Wild3::on_saveSearcher_clicked()
 {
     ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
 }
 
@@ -202,7 +202,6 @@ void Wild3::on_anyHiddenPowerGenerator_clicked()
     ui->comboBoxHiddenPowerGenerator->uncheckAll();
 }
 
-
 void Wild3::on_anyNatureSearcher_clicked()
 {
     ui->comboBoxNatureSearcher->uncheckAll();
@@ -211,6 +210,29 @@ void Wild3::on_anyNatureSearcher_clicked()
 void Wild3::on_anyHiddenPowerSearcher_clicked()
 {
     ui->comboBoxHiddenPowerSearcher->uncheckAll();
+}
+
+void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
+{
+    if(index == 0)
+    {
+        ui->idGenerator->setText("");
+        ui->sidGenerator->setText("");
+        ui->idSearcher->setText("");
+        ui->sidSearcher->setText("");
+    }
+    else
+    {
+        ui->idGenerator->setText(QString::number(profiles.at(index - 1).tid));
+        ui->sidGenerator->setText(QString::number(profiles.at(index - 1).sid));
+        ui->idSearcher->setText(QString::number(profiles.at(index - 1).tid));
+        ui->sidSearcher->setText(QString::number(profiles.at(index - 1).sid));
+    }
+}
+
+void Wild3::refreshProfiles()
+{
+    emit alertProfiles(3);
 }
 
 void Wild3::on_generate_clicked()
@@ -309,7 +331,7 @@ void Wild3::search()
                             vector<Frame3> frames = searcher.search(a, b, c, d, e, f, compare);
 
                             if (!frames.empty())
-                                emit UpdateView(frames);
+                                emit updateView(frames);
                         }
                     }
                 }
