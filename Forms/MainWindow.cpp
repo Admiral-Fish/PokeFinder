@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(&stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
     connect(&wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    connect(&egg3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
 }
 
 void MainWindow::setupLanguage()
@@ -99,6 +100,7 @@ void MainWindow::updateProfiles(int num)
     {
         stationary3.updateProfiles();
         wild3.updateProfiles();
+        egg3.updateProfiles();
     }
 }
 

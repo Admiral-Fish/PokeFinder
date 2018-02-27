@@ -35,15 +35,21 @@ class Egg3 : public QMainWindow
 protected:
     void changeEvent(QEvent*);
 
+signals:
+    void alertProfiles(int);
+
 public:
     explicit Egg3(QWidget *parent = 0);
     ~Egg3();
+    void updateProfiles();
 
 private slots:
     void on_pushButtonProfileManagerEmerald_clicked();
+    void refreshProfiles();
 
 private:
     Ui::Egg3 *ui;
+    vector<Profile3> profiles;
 
     void setupModels();
 };

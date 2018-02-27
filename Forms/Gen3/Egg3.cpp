@@ -27,11 +27,27 @@ Egg3::Egg3(QWidget *parent) :
     ui->setupUi(this);
 
     setupModels();
+    updateProfiles();
 }
 
 Egg3::~Egg3()
 {
     delete ui;
+}
+
+void Egg3::updateProfiles()
+{
+    profiles = Profile3::loadProfileList();
+
+    QStandardItemModel *profile = new QStandardItemModel((int)profiles.size() + 1, 1, this);
+    QStandardItem* firstProfile = new QStandardItem(tr("None"));
+    profile->setItem(0, firstProfile);
+    for(int i = 0; i < (int)profiles.size(); i++)
+    {
+        QStandardItem* item = new QStandardItem(profiles.at(i).profileName);
+        profile->setItem(i + 1, item);
+    }
+    ui->comboBoxProfiles->setModel(profile);
 }
 
 void Egg3::setupModels()
@@ -68,8 +84,13 @@ void Egg3::changeEvent(QEvent *event)
 
 void Egg3::on_pushButtonProfileManagerEmerald_clicked()
 {
-    //ProfileManager3* manager = new ProfileManager3();
-    //manager->setAttribute(Qt::WA_QuitOnClose, false);
-    //connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
-    //manager->show();
+    ProfileManager3* manager = new ProfileManager3();
+    manager->setAttribute(Qt::WA_QuitOnClose, false);
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
+    manager->show();
+}
+
+void Egg3::refreshProfiles()
+{
+    emit alertProfiles(3);
 }
