@@ -17,35 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGG3_HPP
-#define EGG3_HPP
+#ifndef EGG3MODEL_HPP
+#define EGG3MODEL_HPP
 
-#include <QMainWindow>
+#include <QAbstractTableModel>
 #include <libPokeFinder/Gen3/Frame3.hpp>
-#include <Forms/ProfileManager/ProfileManager3.hpp>
+#include <libPokeFinder/Objects/Method.hpp>
+#include <libPokeFinder/Objects/Method.hpp>
 
-namespace Ui {
-class Egg3;
-}
-
-class Egg3 : public QMainWindow
+class Egg3Model : public QAbstractTableModel
 {
+
     Q_OBJECT
 
-protected:
-    void changeEvent(QEvent*);
+private:
+    vector<Frame> model;
+    Method method;
 
 public:
-    explicit Egg3(QWidget *parent = 0);
-    ~Egg3();
+    Egg3Model(QObject *parent, Method method);
+    void setModel(vector<Frame3> frames);
+    void addItems(vector<Frame3> frames);
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
-private slots:
-    void on_pushButtonProfileManagerEmerald_clicked();
-
-private:
-    Ui::Egg3 *ui;
-
-    void setupModels();
 };
 
-#endif // EGG3_HPP
+#endif // EGG3MODEL_HPP

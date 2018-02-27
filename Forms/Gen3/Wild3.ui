@@ -189,7 +189,7 @@ QPushButton {
 }</string>
              </property>
              <property name="text">
-              <string>Create a Profile</string>
+              <string>Profile Manager</string>
              </property>
              <property name="checkable">
               <bool>false</bool>
@@ -759,7 +759,7 @@ QPushButton {
 }</string>
              </property>
              <property name="text">
-              <string>Create a Profile</string>
+              <string>Profile Manager</string>
              </property>
              <property name="checkable">
               <bool>false</bool>

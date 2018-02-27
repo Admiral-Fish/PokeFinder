@@ -263,7 +263,7 @@ void Wild3::search()
     vector<u32> ivs = ui->ivFilterSearcher->getValues();
 
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
-    Searcher3 searcher = Searcher3(tid, sid);
+    Searcher3 searcher = Searcher3(tid, sid, genderRatioIndex);
     FrameCompare compare = FrameCompare(eval, ivs, ui->comboBoxGenderSearcher->currentIndex(), genderRatioIndex,
                                         ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
                                         ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);

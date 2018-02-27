@@ -76,7 +76,8 @@ SOURCES += \
     Forms/IVFilter.cpp \
     Models/Gen3/Profile3Model.cpp \
     Forms/Gen3/Egg3.cpp \
-    Forms/Gen3/Egg3.cpp
+    Forms/Gen3/Egg3.cpp \
+    Models/Gen3/Egg3Model.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManager3.hpp \
@@ -121,7 +122,8 @@ HEADERS += \
     Forms/IVFilter.hpp \
     Models/Gen3/Profile3Model.hpp \
     Forms/Gen3/Egg3.hpp \
-    Forms/Gen3/Egg3.hpp
+    Forms/Gen3/Egg3.hpp \
+    Models/Gen3/Egg3Model.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManager3.ui \
