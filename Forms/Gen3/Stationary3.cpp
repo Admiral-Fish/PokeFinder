@@ -141,7 +141,7 @@ void Stationary3::on_saveProfileGenerator_clicked()
 {
     ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
 }
 
@@ -149,8 +149,13 @@ void Stationary3::on_saveSearcher_clicked()
 {
     ProfileManager3* manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(updateProfiles()));
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
+}
+
+void Stationary3::refreshProfiles()
+{
+    emit alertProfiles(3);
 }
 
 void Stationary3::updateProfiles()

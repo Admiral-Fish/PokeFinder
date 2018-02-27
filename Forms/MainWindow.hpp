@@ -45,6 +45,7 @@ private slots:
     void on_actionResearcher_triggered();
     void on_pushButtonWild3_clicked();
     void slotLanguageChanged(QAction *action);
+    void updateProfiles(int num);
 
 private:
     Ui::MainWindow *ui;

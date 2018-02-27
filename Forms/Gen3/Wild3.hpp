@@ -49,14 +49,17 @@ protected:
     void changeEvent(QEvent*);
 
 signals:
-    void UpdateView(vector<Frame3>);
+    void updateView(vector<Frame3>);
+    void alertProfiles(int);
 
 public:
     explicit Wild3(QWidget *parent = 0);
     ~Wild3();
+    void updateProfiles();
 
 private slots:
     void on_generate_clicked();
+    void refreshProfiles();
     void on_saveProfileGenerator_clicked();
     void on_anyNatureGenerator_clicked();
     void on_anyHiddenPowerGenerator_clicked();
@@ -65,7 +68,6 @@ private slots:
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
     void updateViewSearcher(vector<Frame3> frames);
-    void updateProfiles();
     void on_checkBoxDelaySearcher_clicked();
     void on_checkBoxDelayGenerator_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
