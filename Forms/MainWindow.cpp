@@ -35,8 +35,8 @@ MainWindow::MainWindow(QWidget *parent) :
     wild3.setAttribute(Qt::WA_QuitOnClose, false);
     egg3.setAttribute(Qt::WA_QuitOnClose, false);
 
-    connect(&s3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
-    connect(&w3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    connect(&stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    connect(&wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
 }
 
 void MainWindow::setupLanguage()
@@ -97,8 +97,8 @@ void MainWindow::updateProfiles(int num)
 {
     if (num == 3)
     {
-        s3.updateProfiles();
-        w3.updateProfiles();
+        stationary3.updateProfiles();
+        wild3.updateProfiles();
     }
 }
 
