@@ -156,7 +156,7 @@ void Eggs3::on_pushButtonGenerateEmeraldIVs_clicked()
     u32 tid = ui->textBoxTIDEmerald->text().toUInt(NULL, 10);
     u32 sid = ui->textBoxSIDEmerald->text().toUInt(NULL, 10);
 
-    Method method = EBredAlternate;;
+    Method method = EBredAlternate;
     if (ui->radioButtonNormal->isChecked())
         method = EBred;
     else if (ui->radioButtonSplit->isChecked())
