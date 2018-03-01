@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Egg3</class>
- <widget class="QMainWindow" name="Egg3">
+ <class>Eggs3</class>
+ <widget class="QMainWindow" name="Eggs3">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -447,23 +447,7 @@ QSpinBox::down-button {
               </widget>
              </item>
              <item row="4" column="1">
-              <widget class="QComboBox" name="comboBoxCompatibilityEmerald">
-               <item>
-                <property name="text">
-                 <string>The two don't seem to like each other</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>The two seem to get along</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>The two seem to get along very well</string>
-                </property>
-               </item>
-              </widget>
+              <widget class="QComboBox" name="comboBoxCompatibilityEmerald"/>
              </item>
              <item row="5" column="0">
               <widget class="QLabel" name="label_13">

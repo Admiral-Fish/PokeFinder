@@ -23,7 +23,7 @@
 #include <QMainWindow>
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Wild3.hpp>
-#include <Forms/Gen3/Egg3.hpp>
+#include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Researcher.hpp>
 
 namespace Ui {
@@ -56,7 +56,7 @@ private:
     QString langPath = QApplication::applicationDirPath().append("/Languages/");
     Stationary3 stationary3;
     Wild3 wild3;
-    Egg3 egg3;
+    Eggs3 egg3;
 
     void setupLanguage();
     void setupModels();

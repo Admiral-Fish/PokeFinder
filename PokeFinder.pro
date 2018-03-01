@@ -75,8 +75,9 @@ SOURCES += \
     Forms/Gen3/Wild3.cpp \
     Forms/IVFilter.cpp \
     Models/Gen3/Profile3Model.cpp \
-    Forms/Gen3/Egg3.cpp \
-    Models/Gen3/Egg3Model.cpp
+    Models/Gen3/Egg3Model.cpp \
+    Forms/Gen3/Eggs3.cpp \
+    libPokeFinder/Gen3/Egg3.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManager3.hpp \
@@ -120,8 +121,10 @@ HEADERS += \
     Forms/Gen3/Wild3.hpp \
     Forms/IVFilter.hpp \
     Models/Gen3/Profile3Model.hpp \
-    Forms/Gen3/Egg3.hpp \
-    Models/Gen3/Egg3Model.hpp
+    Models/Gen3/Egg3Model.hpp \
+    Forms/Gen3/Eggs3.hpp \
+    libPokeFinder/Objects/Egg.hpp \
+    libPokeFinder/Gen3/Egg3.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManager3.ui \
@@ -131,7 +134,7 @@ FORMS += \
     Forms/MainWindow.ui \
     Forms/Gen3/Wild3.ui \
     Forms/IVFilter.ui \
-    Forms/Gen3/Egg3.ui
+    Forms/Gen3/Eggs3.ui
 
 RESOURCES += \
     resources.qrc

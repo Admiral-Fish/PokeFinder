@@ -45,6 +45,7 @@ int Egg3Model::rowCount(const QModelIndex &parent) const
 
 int Egg3Model::columnCount(const QModelIndex &parent) const
 {
+    (void) parent;
     switch (method)
     {
         case EBred:
@@ -123,6 +124,61 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
 
 QVariant Egg3Model::headerData(int section, Qt::Orientation orientation, int role) const
 {
+    if (role == Qt::DisplayRole)
+    {
+        if (orientation == Qt::Horizontal)
+        {
+            switch (method)
+            {
+                case EBred:
+                case EBredSplit:
+                case EBredAlternate:
+                    switch (section)
+                    {
+                        case 0:
+                            return tr("Frame");
+                        case 1:
+                            return tr("Time");
+                        case 2:
+                            return tr("HP");
+                        case 3:
+                            return tr("Atk");
+                        case 4:
+                            return tr("Def");
+                        case 5:
+                            return tr("SpA");
+                        case 6:
+                            return tr("SpD");
+                        case 7:
+                            return tr("Spe");
+                        case 8:
+                            return tr("Hidden");
+                        case 9:
+                            return tr("Power");
+                    }
+                case EBredPID:
+                    switch (section)
+                    {
+                        case 0:
+                            return tr("Frame");
+                        case 1:
+                            return tr("Time");
+                        case 2:
+                            return tr("Redraws");
+                        case 3:
+                            return tr("PID");
+                        case 4:
+                            return "!!!";
+                        case 5:
+                            return tr("Nature");
+                        case 6:
+                            return tr("Ability");
+                        case 7:
+                            return tr("Gender");
+                    }
+            }
+        }
+    }
 
     return QVariant();
 }

@@ -17,18 +17,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGG3_HPP
-#define EGG3_HPP
+#ifndef EGGS3_HPP
+#define EGGS3_HPP
 
 #include <QMainWindow>
 #include <libPokeFinder/Gen3/Frame3.hpp>
 #include <Forms/ProfileManager/ProfileManager3.hpp>
+#include <Models/Gen3/Egg3Model.hpp>
+#include <libPokeFinder/Objects/FrameCompare.hpp>
+#include <libPokeFinder/Gen3/Egg3.hpp>
 
 namespace Ui {
-class Egg3;
+class Eggs3;
 }
 
-class Egg3 : public QMainWindow
+class Eggs3 : public QMainWindow
 {
     Q_OBJECT
 
@@ -39,19 +42,22 @@ signals:
     void alertProfiles(int);
 
 public:
-    explicit Egg3(QWidget *parent = 0);
-    ~Egg3();
+    explicit Eggs3(QWidget *parent = 0);
+    ~Eggs3();
     void updateProfiles();
 
 private slots:
     void on_pushButtonProfileManagerEmerald_clicked();
     void refreshProfiles();
+    void on_pushButtonGenerateEmeraldPID_clicked();
 
 private:
-    Ui::Egg3 *ui;
+    Ui::Eggs3 *ui;
     vector<Profile3> profiles;
+    Egg3Model *emeraldIVs = NULL;
+    Egg3Model *emeraldPID = NULL;
 
     void setupModels();
 };
 
-#endif // EGG3_HPP
+#endif // EGGS3_HPP
