@@ -125,25 +125,54 @@ void Eggs3::on_pushButtonGenerateEmeraldPID_clicked()
     u32 maxResults = ui->textBoxMaxFrameEmeraldPID->text().toUInt(NULL, 10);
     u32 tid = ui->textBoxTIDEmerald->text().toUInt(NULL, 10);
     u32 sid = ui->textBoxSIDEmerald->text().toUInt(NULL, 10);
-
     int genderRatioIndex = ui->comboBoxGenderRatioEmerald->currentIndex();
+
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, EBredPID);
     generator.minRedraw = ui->textBoxMinRedraws->text().toUInt(NULL, 10);
     generator.maxRedraw = ui->textBoxMaxRedraws->text().toUInt(NULL, 10);
     generator.calibration = ui->textBoxCalibration->text().toUInt(NULL, 10);
     generator.compatability = ui->comboBoxCompatibilityEmerald->currentData().toUInt(NULL);
+    generator.everstone = ui->comboBoxEverstone->currentIndex() != 0;
     if (ui->comboBoxEverstone->currentIndex() != 0)
-    {
         generator.everstoneNature = Nature::getAdjustedNature(ui->comboBoxEverstone->currentIndex() - 1);
-        generator.everstone = true;
-    }
-    else
-        generator.everstone = false;
 
     FrameCompare compare = FrameCompare(ui->comboBoxGenderEmerald->currentIndex(), genderRatioIndex, ui->comboBoxAbilityEmerald->currentIndex(),
                                         ui->comboBoxNatureEmerald->getChecked(), ui->checkBoxShinyEmerald->isChecked());
 
     vector<Frame3> frames = generator.generate(compare);
     emeraldPID->setModel(frames);
+    ui->tableViewEmeraldPID->viewport()->update();
+}
+
+void Eggs3::on_pushButtonGenerateEmeraldIVs_clicked()
+{
+    if (emeraldIVs != NULL)
+        delete emeraldIVs;
+    emeraldIVs = new Egg3Model(this, EBred);
+    ui->tableViewEmeraldIVs->setModel(emeraldIVs);
+
+    u32 startingFrame = ui->textBoxMinFrameEmeraldIVs->text().toUInt(NULL, 10);
+    u32 maxResults = ui->textBoxMaxFrameEmeraldIVs->text().toUInt(NULL, 10);
+    u32 tid = ui->textBoxTIDEmerald->text().toUInt(NULL, 10);
+    u32 sid = ui->textBoxSIDEmerald->text().toUInt(NULL, 10);
+
+    Method method = EBredAlternate;;
+    if (ui->radioButtonNormal->isChecked())
+        method = EBred;
+    else if (ui->radioButtonSplit->isChecked())
+        method = EBredSplit;
+
+    vector<u32> parent1 = { (u32)ui->parent1HPEmerald->value(), (u32)ui->parent1AtkEmerald->value(), (u32)ui->parent1DefEmerald->value(),
+                            (u32)ui->parent1SpAEmerald->value(), (u32)ui->parent1SpDEmerald->value(), (u32)ui->parent1SpeEmerald->value() };
+    vector<u32> parent2 = { (u32)ui->parent2HPEmerald->value(), (u32)ui->parent2AtkEmerald->value(), (u32)ui->parent2DefEmerald->value(),
+                            (u32)ui->parent2SpAEmerald->value(), (u32)ui->parent2SpDEmerald->value(), (u32)ui->parent2SpeEmerald->value() };
+
+    Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, method);
+    generator.setParents(parent1, parent2);
+
+    FrameCompare compare = FrameCompare(ui->ivFilterEmerald->getEvals(), ui->ivFilterEmerald->getValues());
+
+    vector<Frame3> frames = generator.generate(compare);
+    emeraldIVs->setModel(frames);
     ui->tableViewEmeraldPID->viewport()->update();
 }

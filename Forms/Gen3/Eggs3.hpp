@@ -50,6 +50,7 @@ private slots:
     void on_pushButtonProfileManagerEmerald_clicked();
     void refreshProfiles();
     void on_pushButtonGenerateEmeraldPID_clicked();
+    void on_pushButtonGenerateEmeraldIVs_clicked();
 
 private:
     Ui::Eggs3 *ui;
