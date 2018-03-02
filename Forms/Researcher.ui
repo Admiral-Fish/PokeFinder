@@ -39,8 +39,8 @@
 }
 
 .QTabWidget * {
-		font-family: &quot;Myriad Pro&quot;, Montserrat;
-		font-weight: 500;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
 }
 
 QTabBar::tab {
@@ -88,7 +88,11 @@ QRadioButton::indicator:checked {
 }
 
 QRadioButton::indicator:unchecked {
-		background-color: white;
+	background-color: white;
+}
+
+QRadioButton {
+	color: white;
 }
 
 QLineEdit {
