@@ -76,7 +76,7 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                 switch (column)
                 {
                     case 0:
-                        return frame.split ? QString::number(frame.frame) + "S" : QString::number(frame.frame);
+                        return frame.frame;
                     case 1:
                         return frame.getTime();
                     case 2:
