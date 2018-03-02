@@ -100,6 +100,10 @@ QComboBox {
 	padding-left: 13px;
 }
 
+QComboBox::item {
+	background-color: #1D303C;
+}
+
 QComboBox::editable {
 	background-color: #1D303C;
 	border: none;
