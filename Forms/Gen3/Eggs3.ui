@@ -634,6 +634,10 @@ QRadioButton::indicator:checked {
 
 QRadioButton::indicator:unchecked {
 		background-color: white;
+}
+
+QRadioButton {
+	color: white;
 }</string>
           </property>
           <property name="title">
