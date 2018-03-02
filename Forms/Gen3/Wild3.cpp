@@ -247,7 +247,9 @@ void Wild3::on_generate_clicked()
     u32 maxResults = ui->maxResultsGenerator->text().toUInt(NULL, 10);
     u32 tid = ui->idGenerator->text().toUInt(NULL, 10);
     u32 sid = ui->sidGenerator->text().toUInt(NULL, 10);
-    u32 offset = ui->delayGenerator->text().toUInt(NULL, 10);
+    u32 offset = 0;
+    if(ui->checkBoxDelayGenerator->isChecked())
+        ui->delayGenerator->text().toUInt(NULL, 10);
 
     int genderRatioIndex = ui->comboBoxGenderRatioGenerator->currentIndex();
     Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
