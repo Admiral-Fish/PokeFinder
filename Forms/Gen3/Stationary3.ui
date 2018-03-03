@@ -131,6 +131,7 @@ QComboBox::editable {
 
 QComboBox::item {
 	background-color: #1D303C;
+	selection-background-color: #003941;
 }
 
 QComboBox::down-arrow {
