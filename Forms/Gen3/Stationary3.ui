@@ -129,13 +129,18 @@ QComboBox::editable {
 	color: white;
 }
 
+QComboBox::item {
+	background-color: #1D303C;
+	selection-background-color: #003941;
+}
+
 QComboBox::down-arrow {
 	image: url(noimg);
 	border-width: 0px;
 }
 
 QComboBox::drop-down {
-	background: transparent;
+	background-color: #1D303C;
 	width: 0px;
 }
 
