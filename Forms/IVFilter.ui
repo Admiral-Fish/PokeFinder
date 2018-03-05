@@ -32,8 +32,13 @@ QComboBox::down-arrow {
 }
 
 QComboBox::drop-down {
-	background: transparent;
+	background-color: #1D303C;
 	width: 0px;
+}
+
+QComboBox::item {
+	background-color: #1D303C;
+	selection-background-color: #003941;
 }
 
 QSpinBox {

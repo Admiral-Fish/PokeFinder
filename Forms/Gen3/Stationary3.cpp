@@ -230,19 +230,6 @@ void Stationary3::on_checkBoxDelayGenerator_clicked()
     }
 }
 
-void Stationary3::on_checkBoxDelaySearcher_clicked()
-{
-    if (ui->checkBoxDelaySearcher->isChecked())
-    {
-        ui->delaySearcher->setEnabled(true);
-    }
-    else
-    {
-        ui->delaySearcher->setEnabled(false);
-        ui->delaySearcher->setText("");
-    }
-}
-
 void Stationary3::on_generate_clicked()
 {
     if (g != NULL)

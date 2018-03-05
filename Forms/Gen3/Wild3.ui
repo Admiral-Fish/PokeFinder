@@ -1059,64 +1059,6 @@ QPushButton {
                </property>
               </widget>
              </item>
-             <item row="5" column="2">
-              <widget class="QLabel" name="labelDelay_3">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Use Delay?</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="3">
-              <widget class="QCheckBox" name="checkBoxDelaySearcher">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="2">
-              <widget class="QTextBox" name="delaySearcher">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>63</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>63</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="maxLength">
-                <number>10</number>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="3">
-              <widget class="QLabel" name="labelF_3">
-               <property name="text">
-                <string>(F)</string>
-               </property>
-              </widget>
-             </item>
             </layout>
            </item>
           </layout>

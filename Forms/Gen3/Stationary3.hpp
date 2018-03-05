@@ -75,7 +75,6 @@ private slots:
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
     void updateViewSearcher(vector<Frame3> frames);
-    void on_checkBoxDelaySearcher_clicked();
     void on_comboBoxMethodSearcher_currentIndexChanged(int index);
 
 public:

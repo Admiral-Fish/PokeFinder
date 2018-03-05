@@ -20,11 +20,17 @@
    <string>Profile Manager Gen 3</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QPushButton {
+   <string notr="true">QMainWindow {
+	background-color: #274050;
+}
+
+QPushButton {
 	border: none;
 	border-radius: 6px;
 	background-color: orange;
 	color: white;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
 }
 
 QTableView {
@@ -108,7 +114,6 @@ QHeaderView::section {
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

@@ -947,44 +947,46 @@ QPushButton {
                </item>
               </widget>
              </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="abilityLabel_3">
-               <property name="text">
-                <string>Ability:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QComboBox" name="comboBoxAbilitySearcher">
-               <item>
-                <property name="text">
-                 <string>Any</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">0</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">1</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="natureLabel_3">
-               <property name="text">
-                <string>Nature:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QCheckList" name="comboBoxNatureSearcher"/>
-             </item>
              <item row="2" column="2">
               <widget class="QPushButton" name="anyNatureSearcher">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="genderRLabel_3">
+               <property name="text">
+                <string>Gender Ratio:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QPushButton" name="anyHiddenPowerSearcher">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>50</width>
@@ -1018,41 +1020,17 @@ QPushButton {
              <item row="3" column="1">
               <widget class="QCheckList" name="comboBoxHiddenPowerSearcher"/>
              </item>
-             <item row="3" column="2">
-              <widget class="QPushButton" name="anyHiddenPowerSearcher">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>50</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-               </property>
+             <item row="5" column="0">
+              <widget class="QLabel" name="shinyLabel_3">
                <property name="text">
-                <string>Any</string>
+                <string>Shiny Only?</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="genderRLabel_3">
+             <item row="5" column="1">
+              <widget class="QCheckBox" name="checkBoxShinySearcher">
                <property name="text">
-                <string>Gender Ratio:</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -1095,75 +1073,39 @@ QPushButton {
                </item>
               </widget>
              </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="shinyLabel_3">
+             <item row="2" column="1">
+              <widget class="QCheckList" name="comboBoxNatureSearcher"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="abilityLabel_3">
                <property name="text">
-                <string>Shiny Only?</string>
+                <string>Ability:</string>
                </property>
               </widget>
              </item>
-             <item row="5" column="1">
-              <widget class="QCheckBox" name="checkBoxShinySearcher">
-               <property name="text">
-                <string/>
-               </property>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboBoxAbilitySearcher">
+               <item>
+                <property name="text">
+                 <string>Any</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">1</string>
+                </property>
+               </item>
               </widget>
              </item>
-             <item row="5" column="2">
-              <widget class="QLabel" name="labelDelay_3">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
+             <item row="2" column="0">
+              <widget class="QLabel" name="natureLabel_3">
                <property name="text">
-                <string>Use Delay?</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="3">
-              <widget class="QCheckBox" name="checkBoxDelaySearcher">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="2">
-              <widget class="QTextBox" name="delaySearcher">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>63</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>63</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="maxLength">
-                <number>10</number>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="3">
-              <widget class="QLabel" name="labelF_3">
-               <property name="text">
-                <string>(F)</string>
+                <string>Nature:</string>
                </property>
               </widget>
              </item>

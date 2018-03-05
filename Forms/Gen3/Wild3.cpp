@@ -82,19 +82,6 @@ void Wild3::on_checkBoxDelayGenerator_clicked()
     }
 }
 
-void Wild3::on_checkBoxDelaySearcher_clicked()
-{
-    if (ui->checkBoxDelaySearcher->isChecked())
-    {
-        ui->delaySearcher->setEnabled(true);
-    }
-    else
-    {
-        ui->delaySearcher->setEnabled(false);
-        ui->delaySearcher->setText("");
-    }
-}
-
 void Wild3::updateViewSearcher(vector<Frame3> frames)
 {
     s->addItems(frames);
