@@ -17,32 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILE3MODEL_HPP
-#define PROFILE3MODEL_HPP
+#ifndef EGG3MODEL_HPP
+#define EGG3MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <libPokeFinder/Gen3/Profile3.hpp>
+#include <libPokeFinder/Gen3/Frame3.hpp>
+#include <libPokeFinder/Objects/Method.hpp>
+#include <libPokeFinder/Objects/Method.hpp>
 
-class Profile3Model : public QAbstractTableModel
+class Egg3Model : public QAbstractTableModel
 {
 
     Q_OBJECT
 
 private:
-    vector<Profile3> model;
+    vector<Frame3> model;
+    Method method;
 
 public:
-    Profile3Model(QObject *parent);
-    void setModel(vector<Profile3> profiles);
-    void addItem(Profile3 profile);
-    void updateProfile(Profile3 profile, int row);
+    Egg3Model(QObject *parent, Method method);
+    void setModel(vector<Frame3> frames);
+    void addItems(vector<Frame3> frames);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-    Profile3 getProfile(int index);
-    void removeProfile(int index);
 
 };
 
-#endif // PROFILE3MODEL_HPP
+#endif // EGG3MODEL_HPP

@@ -80,7 +80,7 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
             case 14:
                 return frame.power;
             case 15:
-                return frame.getFemale25();
+                return frame.getGender();
             case 16:
                 return frame.getTime();
         }

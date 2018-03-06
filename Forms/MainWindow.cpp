@@ -31,11 +31,13 @@ MainWindow::MainWindow(QWidget *parent) :
     setupLanguage();
     setupModels();
 
-    connect(&s3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
-    connect(&w3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    stationary3.setAttribute(Qt::WA_QuitOnClose, false);
+    wild3.setAttribute(Qt::WA_QuitOnClose, false);
+    egg3.setAttribute(Qt::WA_QuitOnClose, false);
 
-    s3.setAttribute(Qt::WA_QuitOnClose, false);
-    w3.setAttribute(Qt::WA_QuitOnClose, false);
+    connect(&stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    connect(&wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    connect(&egg3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
 }
 
 void MainWindow::setupLanguage()
@@ -96,8 +98,9 @@ void MainWindow::updateProfiles(int num)
 {
     if (num == 3)
     {
-        s3.updateProfiles();
-        w3.updateProfiles();
+        stationary3.updateProfiles();
+        wild3.updateProfiles();
+        egg3.updateProfiles();
     }
 }
 
@@ -149,8 +152,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButtonStationary3_clicked()
 {
-    s3.show();
-    s3.raise();
+    stationary3.show();
+    stationary3.raise();
 }
 
 void MainWindow::on_actionResearcher_triggered()
@@ -162,6 +165,12 @@ void MainWindow::on_actionResearcher_triggered()
 
 void MainWindow::on_pushButtonWild3_clicked()
 {
-    w3.show();
-    w3.raise();
+    wild3.show();
+    wild3.raise();
+}
+
+void MainWindow::on_pushButtonEgg3_clicked()
+{
+    egg3.show();
+    egg3.raise();
 }

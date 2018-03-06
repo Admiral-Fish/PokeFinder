@@ -76,7 +76,7 @@ QVariant Stationary3Model::data(const QModelIndex &index, int role) const
             case 12:
                 return frame.power;
             case 13:
-                return frame.getFemale25();
+                return frame.getGender();
             case 14:
                 return frame.getTime();
         }
