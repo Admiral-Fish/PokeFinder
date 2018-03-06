@@ -25,7 +25,7 @@ public:
 
 private:
     QStandardItemModel* model;
-    QString noneCheckedText = tr("Any");
+    QString noneCheckedText;
     QString allCheckedText;
     QString unknownlyCheckedText;
 

@@ -155,7 +155,7 @@ void QCheckList::updateText()
             break;
 
         case Qt::Unchecked:
-            text = noneCheckedText;
+            text = tr("Any");
             break;
 
         case Qt::PartiallyChecked:
