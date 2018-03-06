@@ -10,6 +10,12 @@
     <height>662</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>1182</width>
+    <height>662</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Gen 3 Eggs</string>
   </property>
@@ -102,8 +108,13 @@ QComboBox::down-arrow {
 }
 
 QComboBox::drop-down {
-	background: transparent;
+	background-color: #1D303C;
 	width: 0px;
+}
+
+QComboBox::item {
+	background-color: #1D303C;
+	selection-background-color: #003941;
 }
 
 QLabel {
@@ -167,6 +178,9 @@ QSpinBox::down-button {
              <property name="text">
               <string notr="true">54321</string>
              </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
             </widget>
            </item>
            <item row="0" column="0">
@@ -193,6 +207,9 @@ QSpinBox::down-button {
              </property>
              <property name="text">
               <string notr="true">1000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
              </property>
             </widget>
            </item>
@@ -516,6 +533,9 @@ QSpinBox::down-button {
              <property name="text">
               <string notr="true">5</string>
              </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
             </widget>
            </item>
            <item row="0" column="3">
@@ -528,6 +548,9 @@ QSpinBox::down-button {
              </property>
              <property name="text">
               <string notr="true">5000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
              </property>
             </widget>
            </item>
@@ -543,6 +566,9 @@ QSpinBox::down-button {
              <property name="text">
               <string notr="true">18</string>
              </property>
+             <property name="maxLength">
+              <number>3</number>
+             </property>
             </widget>
            </item>
            <item row="2" column="0" colspan="2">
@@ -557,6 +583,9 @@ QSpinBox::down-button {
              <property name="text">
               <string notr="true">12345</string>
              </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
             </widget>
            </item>
            <item row="4" column="0">
@@ -570,6 +599,9 @@ QSpinBox::down-button {
             <widget class="QTextBox" name="textBoxMinRedraws">
              <property name="text">
               <string notr="true">0</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
              </property>
             </widget>
            </item>
@@ -643,7 +675,7 @@ QRadioButton {
           <property name="title">
            <string>Egg IVs</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_4">
+          <layout class="QGridLayout" name="gridLayout_16">
            <item row="0" column="0">
             <widget class="QLabel" name="label_16">
              <property name="text">
@@ -651,21 +683,21 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
+           <item row="0" column="1" colspan="2">
             <widget class="QTextBox" name="textBoxMinFrameEmeraldIVs">
              <property name="text">
               <string notr="true">1000</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="2">
+           <item row="0" column="3">
             <widget class="QTextBox" name="textBoxMaxFrameEmeraldIVs">
              <property name="text">
               <string notr="true">5000</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="3" rowspan="5" colspan="4">
+           <item row="0" column="4" rowspan="6">
             <widget class="IVFilter" name="ivFilterEmerald" native="true">
              <property name="minimumSize">
               <size>
@@ -681,7 +713,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="1" column="0" colspan="2">
+           <item row="1" column="0" colspan="3">
             <widget class="QRadioButton" name="radioButtonNormal">
              <property name="text">
               <string>Normal Spreads</string>
@@ -694,7 +726,7 @@ QRadioButton {
              </attribute>
             </widget>
            </item>
-           <item row="2" column="0" colspan="2">
+           <item row="2" column="0" colspan="3">
             <widget class="QRadioButton" name="radioButtonSplit">
              <property name="text">
               <string>Split Spreads</string>
@@ -704,7 +736,7 @@ QRadioButton {
              </attribute>
             </widget>
            </item>
-           <item row="3" column="0" colspan="2">
+           <item row="3" column="0" colspan="3">
             <widget class="QRadioButton" name="radioButtonAlternate">
              <property name="text">
               <string>Alternate Spreads</string>
@@ -714,141 +746,167 @@ QRadioButton {
              </attribute>
             </widget>
            </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="label_14">
+           <item row="4" column="0" colspan="2">
+            <widget class="QLabel" name="label_45">
              <property name="text">
-              <string>Parent 1:</string>
+              <string>Hidden Power:</string>
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
-            <widget class="QSpinBox" name="parent1HPEmerald">
-             <property name="minimumSize">
-              <size>
-               <width>76</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
+           <item row="6" column="0" colspan="5">
+            <layout class="QGridLayout" name="gridLayout_4">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_14">
+               <property name="text">
+                <string>Parent 1:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="parent1HPEmerald">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QSpinBox" name="parent1AtkEmerald">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QSpinBox" name="parent1DefEmerald">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4">
+              <widget class="QSpinBox" name="parent1SpAEmerald">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="5">
+              <widget class="QSpinBox" name="parent1SpDEmerald">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="6">
+              <widget class="QSpinBox" name="parent1SpeEmerald">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_15">
+               <property name="text">
+                <string>Parent 2:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="parent2HPEmerald">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QSpinBox" name="parent2AtkEmerald">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QSpinBox" name="parent2DefEmerald">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QSpinBox" name="parent2SpAEmerald">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QSpinBox" name="parent2SpDEmerald">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QSpinBox" name="parent2SpeEmerald">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
-           <item row="5" column="2">
-            <widget class="QSpinBox" name="parent1AtkEmerald">
-             <property name="minimumSize">
-              <size>
-               <width>76</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
+           <item row="4" column="2" colspan="2">
+            <widget class="QCheckList" name="comboBoxHiddenPowerEmerald"/>
            </item>
-           <item row="5" column="3">
-            <widget class="QSpinBox" name="parent1DefEmerald">
-             <property name="minimumSize">
-              <size>
-               <width>76</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="4">
-            <widget class="QSpinBox" name="parent1SpAEmerald">
-             <property name="minimumSize">
-              <size>
-               <width>76</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="5">
-            <widget class="QSpinBox" name="parent1SpDEmerald">
-             <property name="minimumSize">
-              <size>
-               <width>76</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="6">
-            <widget class="QSpinBox" name="parent1SpeEmerald">
-             <property name="minimumSize">
-              <size>
-               <width>76</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="label_15">
-             <property name="text">
-              <string>Parent 2:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="1">
-            <widget class="QSpinBox" name="parent2HPEmerald">
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="2">
-            <widget class="QSpinBox" name="parent2AtkEmerald">
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="3">
-            <widget class="QSpinBox" name="parent2DefEmerald">
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="4">
-            <widget class="QSpinBox" name="parent2SpAEmerald">
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="5">
-            <widget class="QSpinBox" name="parent2SpDEmerald">
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="6">
-            <widget class="QSpinBox" name="parent2SpeEmerald">
-             <property name="maximum">
-              <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0" colspan="3">
+           <item row="5" column="0" colspan="4">
             <widget class="QPushButton" name="pushButtonGenerateEmeraldIVs">
              <property name="minimumSize">
               <size>
@@ -881,83 +939,1000 @@ QRadioButton {
        <attribute name="title">
         <string>Ruby/Sapphire</string>
        </attribute>
-       <widget class="QTableView" name="tableViewRS">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>291</y>
-          <width>1131</width>
-          <height>251</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QGroupBox" name="groupBoxRNGInfoRS">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>271</width>
-          <height>271</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>RNG Info</string>
-        </property>
-       </widget>
-       <widget class="QGroupBox" name="groupBoxFiltersRS">
-        <property name="geometry">
-         <rect>
-          <x>290</x>
-          <y>10</y>
-          <width>851</width>
-          <height>271</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Filters</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBoxRNGInfoRS">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>261</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>271</width>
+            <height>261</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>RNG Info</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_21">
+             <property name="text">
+              <string>Seed:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>Frame Held:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
+            <widget class="QTextBox" name="textBoxMinHeldRS">
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string notr="true">1000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QTextBox" name="textBoxMaxHeldRS">
+             <property name="text">
+              <string notr="true">5000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>Pickup Frame:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QTextBox" name="textBoxMinPickupRS">
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string notr="true">1000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QTextBox" name="textBoxMaxPickupRS">
+             <property name="text">
+              <string notr="true">5000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>TID:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" colspan="3">
+            <widget class="QTextBox" name="textBoxTIDRS">
+             <property name="text">
+              <string notr="true">12345</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>SID:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="3">
+            <widget class="QTextBox" name="textBoxSIDRS">
+             <property name="text">
+              <string notr="true">54321</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="3">
+            <widget class="QTextBox" name="textBoxSeedRS">
+             <property name="text">
+              <string notr="true">5A0</string>
+             </property>
+             <property name="maxLength">
+              <number>4</number>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0" colspan="4">
+            <widget class="QPushButton" name="pushButtonGenerateRS">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+             </property>
+             <property name="text">
+              <string>Generate</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="pushButtonProfileManagerRS">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: orange;
+}</string>
+             </property>
+             <property name="text">
+              <string>Profile Manager</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="groupBoxFiltersRS">
+          <property name="title">
+           <string>Filters</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_12">
+           <item row="0" column="0">
+            <widget class="IVFilter" name="ivFilterRS" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>335</width>
+               <height>180</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>335</width>
+               <height>180</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" rowspan="2">
+            <layout class="QGridLayout" name="gridLayout_10">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_29">
+               <property name="text">
+                <string>Gender:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_30">
+               <property name="text">
+                <string>Ability:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="comboBoxGenderRS">
+               <item>
+                <property name="text">
+                 <string notr="true">-</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">♂</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">♀</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboBoxAbilityRS">
+               <item>
+                <property name="text">
+                 <string>Any</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">1</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="pushButtonAnyAbilityRS">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_31">
+               <property name="text">
+                <string>Nature:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QCheckList" name="comboBoxNatureRS"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QPushButton" name="pushButtonAnyNatureRS">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_32">
+               <property name="text">
+                <string>Hidden Power:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QCheckList" name="comboBoxHiddenPowerRS"/>
+             </item>
+             <item row="4" column="1">
+              <widget class="QComboBox" name="comboBoxCompatibilityRS"/>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_34">
+               <property name="text">
+                <string>Gender Ratio:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QComboBox" name="comboBoxGenderRatioRS">
+               <item>
+                <property name="text">
+                 <string>Genderless</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>50% Male / 50% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>25% Male / 75% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>75% Male / 25% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>87.5% Male / 12.5% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Male</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Female</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_33">
+               <property name="text">
+                <string>Compatibility:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_35">
+               <property name="text">
+                <string>Shiny Only?</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QCheckBox" name="checkBoxShinyRS">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <layout class="QGridLayout" name="gridLayout_11">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_27">
+               <property name="text">
+                <string>Parent 1:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="parent1HPRS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QSpinBox" name="parent1AtkRS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QSpinBox" name="parent1DefRS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4">
+              <widget class="QSpinBox" name="parent1SpARS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="5">
+              <widget class="QSpinBox" name="parent1SpDRS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="6">
+              <widget class="QSpinBox" name="parent1SpeRS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_28">
+               <property name="text">
+                <string>Parent 2:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="parent2HPRS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QSpinBox" name="parent2AtkRS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QSpinBox" name="parent2DefRS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QSpinBox" name="parent2SpARS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QSpinBox" name="parent2SpDRS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QSpinBox" name="parent2SpeRS">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QTableView" name="tableViewRS"/>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tabFRLG">
        <attribute name="title">
         <string>Fire Red/Leaf Green</string>
        </attribute>
-       <widget class="QTableView" name="tableViewFRLG">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>331</y>
-          <width>1131</width>
-          <height>221</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QGroupBox" name="groupBoxRNGInfoFRLG">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>301</width>
-          <height>311</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>RNG Info</string>
-        </property>
-       </widget>
-       <widget class="QGroupBox" name="groupBoxFilterFRLG">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>10</y>
-          <width>821</width>
-          <height>311</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Filters</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBoxRNGInfoFRLG">
+          <property name="minimumSize">
+           <size>
+            <width>271</width>
+            <height>261</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>271</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>RNG Info</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_23">
+             <property name="text">
+              <string>Seed:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QTextBox" name="textBoxSeedFRLG">
+             <property name="maxLength">
+              <number>4</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_22">
+             <property name="text">
+              <string>Frame Held:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QTextBox" name="textBoxMinHeldFRLG">
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string notr="true">1000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QTextBox" name="textBoxMaxHeldFRLG">
+             <property name="text">
+              <string notr="true">5000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_24">
+             <property name="text">
+              <string>Pickup Frame:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QTextBox" name="textBoxMinPickupFRLG">
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string notr="true">1000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QTextBox" name="textBoxMaxPickupFRLG">
+             <property name="text">
+              <string notr="true">5000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_26">
+             <property name="text">
+              <string>TID:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" colspan="2">
+            <widget class="QTextBox" name="textBoxTIDFRLG">
+             <property name="text">
+              <string notr="true">12345</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_25">
+             <property name="text">
+              <string>SID:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="QTextBox" name="textBoxSIDFRLG">
+             <property name="text">
+              <string notr="true">54321</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0" colspan="3">
+            <widget class="QPushButton" name="pushButtonGenerateFRLG">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+             </property>
+             <property name="text">
+              <string>Generate</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0" colspan="3">
+            <widget class="QPushButton" name="pushButtonProfileManagerFRLG">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: orange;
+}</string>
+             </property>
+             <property name="text">
+              <string>Profile Manager</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="groupBoxFilterFRLG">
+          <property name="title">
+           <string>Filters</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_15">
+           <item row="0" column="0">
+            <widget class="IVFilter" name="ivFilterFRLG" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>335</width>
+               <height>180</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>335</width>
+               <height>180</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" rowspan="2">
+            <layout class="QGridLayout" name="gridLayout_14">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_38">
+               <property name="text">
+                <string>Gender:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_39">
+               <property name="text">
+                <string>Ability:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="comboBoxGenderFRLG">
+               <item>
+                <property name="text">
+                 <string notr="true">-</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">♂</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">♀</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboBoxAbilityFRLG">
+               <item>
+                <property name="text">
+                 <string>Any</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">1</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="pushButtonAnyAbilityFRLG">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_40">
+               <property name="text">
+                <string>Nature:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QCheckList" name="comboBoxNatureFRLG"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QPushButton" name="pushButtonAnyNatureFRLG">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_41">
+               <property name="text">
+                <string>Hidden Power:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QCheckList" name="comboBoxHiddenPowerFRLG"/>
+             </item>
+             <item row="4" column="1">
+              <widget class="QComboBox" name="comboBoxCompatibilityFRLG"/>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_42">
+               <property name="text">
+                <string>Gender Ratio:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QComboBox" name="comboBoxGenderRatioFRLG">
+               <item>
+                <property name="text">
+                 <string>Genderless</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>50% Male / 50% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>25% Male / 75% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>75% Male / 25% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>87.5% Male / 12.5% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Male</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Female</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_43">
+               <property name="text">
+                <string>Compatibility:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_44">
+               <property name="text">
+                <string>Shiny Only?</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QCheckBox" name="checkBoxShinyFRLG">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <layout class="QGridLayout" name="gridLayout_13">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_36">
+               <property name="text">
+                <string>Parent 1:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="parent1HPFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QSpinBox" name="parent1AtkFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QSpinBox" name="parent1DefFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4">
+              <widget class="QSpinBox" name="parent1SpAFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="5">
+              <widget class="QSpinBox" name="parent1SpDFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="6">
+              <widget class="QSpinBox" name="parent1SpeFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_37">
+               <property name="text">
+                <string>Parent 2:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="parent2HPFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QSpinBox" name="parent2AtkFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QSpinBox" name="parent2DefFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QSpinBox" name="parent2SpAFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QSpinBox" name="parent2SpDFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QSpinBox" name="parent2SpeFRLG">
+               <property name="maximum">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QTableView" name="tableViewFRLG"/>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

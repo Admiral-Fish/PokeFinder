@@ -177,10 +177,10 @@ void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     if(index == 0)
     {
-        ui->idGenerator->setText("");
-        ui->sidGenerator->setText("");
-        ui->idSearcher->setText("");
-        ui->sidSearcher->setText("");
+        ui->idGenerator->setText("12345");
+        ui->sidGenerator->setText("54321");
+        ui->idSearcher->setText("12345");
+        ui->sidSearcher->setText("54321");
     }
     else
     {

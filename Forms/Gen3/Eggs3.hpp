@@ -51,12 +51,19 @@ private slots:
     void refreshProfiles();
     void on_pushButtonGenerateEmeraldPID_clicked();
     void on_pushButtonGenerateEmeraldIVs_clicked();
+    void on_pushButtonProfileManagerRS_clicked();
+    void on_pushButtonGenerateRS_clicked();
+    void on_comboBoxProfiles_currentIndexChanged(int index);
+    void on_pushButtonGenerateFRLG_clicked();
+    void on_pushButtonProfileManagerFRLG_clicked();
 
 private:
     Ui::Eggs3 *ui;
     vector<Profile3> profiles;
     Egg3Model *emeraldIVs = NULL;
     Egg3Model *emeraldPID = NULL;
+    Egg3Model *rs = NULL;
+    Egg3Model *frlg = NULL;
 
     void setupModels();
 };
