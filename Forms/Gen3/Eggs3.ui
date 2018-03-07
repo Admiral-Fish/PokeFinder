@@ -679,11 +679,11 @@ QSpinBox::down-button {
 }
 
 QRadioButton::indicator:checked {
-	background-color: #274050;
+	background-color: white;
 }
 
 QRadioButton::indicator:unchecked {
-		background-color: white;
+	background-color: #274050;
 }
 
 QRadioButton {
@@ -1985,7 +1985,7 @@ QRadioButton {
      <x>0</x>
      <y>0</y>
      <width>1182</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
