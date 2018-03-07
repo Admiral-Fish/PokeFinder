@@ -22,94 +22,23 @@
 	font-weight: 500;
 }
 
-QWidget QLineEdit {
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-.QTabWidget * {
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QTabBar::tab {
-	color: black;
-	background-color: #A1ABB3;
-	font-family: &quot;Myriad Pro&quot;;
-}
-
-QTabBar::tab:selected {
-	color: white;
-	background-color: #1D303C;
-}
-
-QGroupBox {
-	background-color: #274050;
-	border-radius: 10px;
-	margin-top: 7px;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-.QGroupBox * {
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QGroupBox::title {
-	subcontrol-origin: margin;
-	left: 20px;
-	padding: 3px 5px 3px 5px;
-	background-color: #969F91;
-	border-radius: 5px;
-}
-
-QComboBox {
-	background-color: #1D303C;
+QPushButton {
 	border: none;
 	border-radius: 6px;
 	color: white;
-	padding-left: 13px;
-}
-
-QComboBox::down-arrow {
-	image: url(noimg);
-	border-width: 0px;
-}
-
-QComboBox::drop-down {
-	background-color: #1D303C;
-	width: 0px;
-}
-
-QComboBox::item {
-	background-color: #1D303C;
-	selection-background-color: #003941;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
 }
 
 QLabel {
+	color: black;
 	font-family: &quot;Myriad Pro&quot;, Montserrat;
 	font-weight: 500;
-	color: black;
 }
 
-QRadioButton::indicator {
-	border: 2px solid white;
-	border-radius: 3px;
-	height: 10px;
-	width: 10px;
-}
-
-QRadioButton::indicator:checked {
-	background-color: #274050;
-}
-
-QRadioButton::indicator:unchecked {
-	background-color: white;
-}
-
-QRadioButton {
-	color: white;
+QWidget QLineEdit {
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
 }
 
 QLineEdit {
@@ -120,29 +49,18 @@ QLineEdit {
 	color: white;
 }
 
-QPushButton {
-	border: none;
-	border-radius: 6px;
-}
-
-QCheckBox::indicator {
-	border: 2px solid white;
-	border-radius: 3px;
-	height: 10px;
-	width: 10px;
-}
-
-QCheckBox::indicator:unchecked {
-	background-color: #274050;
-}
-
-QCheckBox::indicator:checked {
-		background-color: white;
-}
-
 QTableView {
 	border: 4px solid DodgerBlue;
-}</string>
+}
+
+QHeaderView::section {
+	border: none;
+	background-color: #274050;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: white;
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="seedLabel">
@@ -207,7 +125,7 @@ QTableView {
      <string>Enter a 16-bit seed</string>
     </property>
    </widget>
-   <widget class="QLabel" name="descriptionLabel1_2">
+   <widget class="QLabel" name="descriptionLabel2">
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -247,12 +165,46 @@ QTableView {
     <attribute name="horizontalHeaderDefaultSectionSize">
      <number>100</number>
     </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
     <attribute name="verticalHeaderDefaultSectionSize">
      <number>20</number>
     </attribute>
     <attribute name="verticalHeaderMinimumSectionSize">
      <number>20</number>
     </attribute>
+   </widget>
+   <widget class="QPushButton" name="pushButtonFind">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>100</y>
+      <width>101</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+    </property>
+    <property name="text">
+     <string>Find</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="descriptionLabel3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>421</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>This feature only works for Ruby/Sapphire with a live battery</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
