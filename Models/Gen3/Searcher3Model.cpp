@@ -51,6 +51,7 @@ int Searcher3Model::columnCount(const QModelIndex &parent) const
         case MethodH1:
         case MethodH2:
         case MethodH4:
+            return 16;
         case XD:
         case Colo:
             return 15;
@@ -81,32 +82,37 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return QString::number(frame.seed, 16).toUpper().rightJustified(8, '0');
                     case 1:
-                        return frame.encounterSlot;
+                    {
+                        Lead type = frame.leadType;
+                        return type == None ? tr("None") : type == Synchronize ? tr("Synch") : tr("Cute Charm");
+                    }
                     case 2:
-                        return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
+                        return frame.encounterSlot;
                     case 3:
-                        return frame.getShiny();
+                        return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 4:
-                        return frame.getNature();
+                        return frame.getShiny();
                     case 5:
-                        return frame.ability;
+                        return frame.getNature();
                     case 6:
-                        return frame.ivs[0];
+                        return frame.ability;
                     case 7:
-                        return frame.ivs[1];
+                        return frame.ivs[0];
                     case 8:
-                        return frame.ivs[2];
+                        return frame.ivs[1];
                     case 9:
-                        return frame.ivs[3];
+                        return frame.ivs[2];
                     case 10:
-                        return frame.ivs[4];
+                        return frame.ivs[3];
                     case 11:
-                        return frame.ivs[5];
+                        return frame.ivs[4];
                     case 12:
-                        return frame.getPower();
+                        return frame.ivs[5];
                     case 13:
-                        return frame.power;
+                        return frame.getPower();
                     case 14:
+                        return frame.power;
+                    case 15:
                         return frame.getGender();
                 }
             case Method1:
@@ -201,32 +207,34 @@ QVariant Searcher3Model::headerData(int section, Qt::Orientation orientation, in
                         case 0:
                             return tr("Seed");
                         case 1:
-                            return tr("Slot");
+                            return tr("Lead");
                         case 2:
-                            return tr("PID");
+                            return tr("Slot");
                         case 3:
-                            return "!!!";
+                            return tr("PID");
                         case 4:
-                            return tr("Nature");
+                            return "!!!";
                         case 5:
-                            return tr("Ability");
+                            return tr("Nature");
                         case 6:
-                            return tr("HP");
+                            return tr("Ability");
                         case 7:
-                            return tr("Atk");
+                            return tr("HP");
                         case 8:
-                            return tr("Def");
+                            return tr("Atk");
                         case 9:
-                            return tr("SpA");
+                            return tr("Def");
                         case 10:
-                            return tr("SpD");
+                            return tr("SpA");
                         case 11:
-                            return tr("Spe");
+                            return tr("SpD");
                         case 12:
-                            return tr("Hidden");
+                            return tr("Spe");
                         case 13:
-                            return tr("Power");
+                            return tr("Hidden");
                         case 14:
+                            return tr("Power");
+                        case 15:
                             return tr("Gender");
                     }
                 case Method1:
