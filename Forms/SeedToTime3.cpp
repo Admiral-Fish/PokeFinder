@@ -95,7 +95,7 @@ void SeedToTime3::seedToTime(uint32_t seed, uint32_t year)
                         QDateTime finalTime = QDateTime(start);
                         finalTime = finalTime.addDays(day);
                         finalTime = finalTime.addSecs((hour * 60 * 60) + (minute * 60));
-                        QString result = finalTime.toString();
+                        QString result = finalTime.toString("M/d/yyyy h:mm:ss AP");
                         int seconds = day * 86400 + hour * 3600 + minute * 60;
                         QList<QStandardItem *> list;
                         QStandardItem *text = new QStandardItem(result);
