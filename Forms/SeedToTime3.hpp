@@ -3,11 +3,13 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
-#include <QDate>
-#include <QTime>
 #include <QDateTime>
 #include <QList>
 #include <QStandardItem>
+#include <QMessageBox>
+#include <libPokeFinder/RNG/LCRNG.hpp>
+
+typedef uint32_t u32;
 
 namespace Ui {
 class SeedToTime3;
@@ -16,6 +18,9 @@ class SeedToTime3;
 class SeedToTime3 : public QMainWindow
 {
     Q_OBJECT
+
+protected:
+    void changeEvent(QEvent*);
 
 public:
     explicit SeedToTime3(QWidget *parent = 0);
@@ -31,9 +36,8 @@ private:
     QDateTime addTime;
 
     void setupModels();
-    uint32_t originSeed(uint32_t seed);
-    uint32_t reverse(uint32_t seed);
-    void seedToTime(uint32_t seed, uint32_t year);
+    u32 originSeed(u32 seed);
+    void seedToTime(u32 seed, u32 year);
 };
 
 #endif // SEEDTOTIME3_HPP
