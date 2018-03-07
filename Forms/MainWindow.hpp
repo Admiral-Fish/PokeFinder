@@ -25,7 +25,7 @@
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Researcher.hpp>
-#include <Forms/SeedToTime3.hpp>
+#include <Forms/Gen3/SeedToTime3.hpp>
 
 namespace Ui {
 class MainWindow;
