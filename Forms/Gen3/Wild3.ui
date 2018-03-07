@@ -56,7 +56,7 @@ QCheckBox::indicator:unchecked {
 }
 
 QCheckBox::indicator:checked {
-		background-color: white;
+	background-color: white;
 }
 
 QTableView {
@@ -100,9 +100,26 @@ QComboBox {
 	padding-left: 13px;
 }
 
-QComboBox::item {
-	background-color: #1D303C;
-	selection-background-color: #003941;
+QComboBox QListView{
+	color: white;
+    background-color: #1D303C;
+    border:1px solid black;
+}
+
+QComboBox::item:alternate {
+    background: #1D303C;
+}
+
+QComboBox::item:selected {
+    border: 1px solid transparent;
+    background: #003941;
+}
+
+QComboBox::indicator{
+    background-color:transparent;
+    selection-background-color:transparent;
+    color:transparent;
+    selection-color:transparent;
 }
 
 QComboBox::editable {
@@ -1125,7 +1142,7 @@ QHeaderView::section {
      <x>0</x>
      <y>0</y>
      <width>1182</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
