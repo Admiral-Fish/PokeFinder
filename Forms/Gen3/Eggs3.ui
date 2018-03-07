@@ -946,10 +946,18 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QTableView" name="tableViewEmeraldPID"/>
+         <widget class="QTableView" name="tableViewEmeraldPID">
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QTableView" name="tableViewEmeraldIVs"/>
+         <widget class="QTableView" name="tableViewEmeraldIVs">
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -1450,7 +1458,11 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewRS"/>
+         <widget class="QTableView" name="tableViewRS">
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -1948,7 +1960,11 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewFRLG"/>
+         <widget class="QTableView" name="tableViewFRLG">
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -1985,7 +2001,7 @@ QRadioButton {
      <x>0</x>
      <y>0</y>
      <width>1182</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

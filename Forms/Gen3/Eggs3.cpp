@@ -92,28 +92,24 @@ void Eggs3::setupModels()
         delete emeraldIVs;
     emeraldIVs = new Egg3Model(this, EBred);
     ui->tableViewEmeraldIVs->setModel(emeraldIVs);
-    ui->tableViewEmeraldIVs->verticalHeader()->setVisible(false);
     ui->tableViewEmeraldIVs->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     if (emeraldPID != NULL)
         delete emeraldPID;
     emeraldPID = new Egg3Model(this, EBredPID);
     ui->tableViewEmeraldPID->setModel(emeraldPID);
-    ui->tableViewEmeraldPID->verticalHeader()->setVisible(false);
     ui->tableViewEmeraldPID->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     if (rs != NULL)
         delete rs;
     rs = new Egg3Model(this, RSBred);
     ui->tableViewRS->setModel(rs);
-    ui->tableViewRS->verticalHeader()->setVisible(false);
     ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     if (frlg != NULL)
         delete frlg;
     frlg = new Egg3Model(this, FRLGBred);
     ui->tableViewFRLG->setModel(frlg);
-    ui->tableViewFRLG->verticalHeader()->setVisible(false);
     ui->tableViewFRLG->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->comboBoxCompatibilityEmerald->clear();

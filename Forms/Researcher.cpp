@@ -469,7 +469,6 @@ void Researcher::setupModels()
         delete model;
     model = new ResearcherModel(this, false);
     ui->tableView->setModel(model);
-    ui->tableView->verticalHeader()->setVisible(false);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
