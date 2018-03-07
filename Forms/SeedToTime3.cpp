@@ -10,32 +10,29 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
     start = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
 
     setupModels();
+    ui->tableViewGenerator->setModel(m);
 }
 
-void SeedToTime3::setupModels() {
+void SeedToTime3::setupModels()
+{
     ui->seedToTimeSeed->setValues(0, 32, false);
 
-    if(m != NULL)
-        delete m;
-    m = new QStandardItemModel(this);
     m->setColumnCount(2);
     m->setHorizontalHeaderLabels(QStringList() << "Time" << "Seconds");
-    ui->tableViewGenerator->setModel(m);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableViewGenerator->viewport()->update();
 }
 
 SeedToTime3::~SeedToTime3()
 {
     delete ui;
+    delete m;
 }
 
 void SeedToTime3::on_pushButtonFind_clicked()
 {
-    if(m != NULL)
-        delete m;
-    m = new QStandardItemModel(this);
-    m->setColumnCount(2);
-    m->setHorizontalHeaderLabels(QStringList() << "Time" << "Seconds");
+    m->removeRows(0, m->rowCount());
+    ui->tableViewGenerator->viewport()->update();
 
     u32 seed = ui->seedToTimeSeed->text().toUInt(NULL, 16);
     u32 year = ui->seedToTimeYear->text().toUInt(NULL, 10);
@@ -110,9 +107,7 @@ void SeedToTime3::seedToTime(uint32_t seed, uint32_t year)
         }
     }
 
-    ui->tableViewGenerator->setModel(m);
     ui->tableViewGenerator->viewport()->update();
-
 }
 
 uint32_t SeedToTime3::originSeed(uint32_t seed)

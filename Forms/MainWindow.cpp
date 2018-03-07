@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     stationary3.setAttribute(Qt::WA_QuitOnClose, false);
     wild3.setAttribute(Qt::WA_QuitOnClose, false);
     egg3.setAttribute(Qt::WA_QuitOnClose, false);
-    //seedtotime3.setAttribute(Qt::WA_QuitOnClose, false);
+    seedtotime3.setAttribute(Qt::WA_QuitOnClose, false);
 
     connect(&stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
     connect(&wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));

@@ -26,7 +26,7 @@ private slots:
 
 private:
     Ui::SeedToTime3 *ui;
-    QStandardItemModel *m;
+    QStandardItemModel *m = new QStandardItemModel(this);
     QDateTime start;
     QDateTime addTime;
 
