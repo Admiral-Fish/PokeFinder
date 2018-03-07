@@ -6,12 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>690</width>
-    <height>488</height>
+    <width>504</width>
+    <height>355</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>504</width>
+    <height>355</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Gen 3 Seed to Time</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QTabWidget {
@@ -63,161 +69,117 @@ QHeaderView::section {
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="seedLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>111</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>16/32-Bit Seed</string>
-    </property>
-   </widget>
-   <widget class="QTextBox" name="seedToTimeSeed">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>20</y>
-      <width>113</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextBox" name="seedToTimeYear">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>50</y>
-      <width>113</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>2000</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="yearLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>50</y>
-      <width>111</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Year</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="descriptionLabel1">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>20</y>
-      <width>241</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Enter a 16-bit seed</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="descriptionLabel2">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>40</y>
-      <width>291</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Or 32-bit seed for closest 16-bit match</string>
-    </property>
-   </widget>
-   <widget class="QTableView" name="tableViewGenerator">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>130</y>
-      <width>671</width>
-      <height>296</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>16777215</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::NoEditTriggers</set>
-    </property>
-    <property name="sortingEnabled">
-     <bool>false</bool>
-    </property>
-    <attribute name="horizontalHeaderDefaultSectionSize">
-     <number>100</number>
-    </attribute>
-    <attribute name="verticalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="verticalHeaderDefaultSectionSize">
-     <number>20</number>
-    </attribute>
-    <attribute name="verticalHeaderMinimumSectionSize">
-     <number>20</number>
-    </attribute>
-   </widget>
-   <widget class="QPushButton" name="pushButtonFind">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>100</y>
-      <width>101</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="seedLabel">
+        <property name="text">
+         <string>16/32-Bit Seed</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QTextBox" name="seedToTimeSeed"/>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="descriptionLabel1">
+        <property name="text">
+         <string>Enter a 16-bit seed</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="yearLabel">
+        <property name="text">
+         <string>Year</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QTextBox" name="seedToTimeYear">
+        <property name="text">
+         <string>2000</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="descriptionLabel2">
+        <property name="text">
+         <string>Or 32-bit seed for closest 16-bit match</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="3">
+       <widget class="QLabel" name="descriptionLabel3">
+        <property name="text">
+         <string>This feature only works for Ruby/Sapphire with a live battery</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QPushButton" name="pushButtonFind">
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>23</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
 	background-color: DodgerBlue;
 }</string>
-    </property>
-    <property name="text">
-     <string>Find</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="descriptionLabel3">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>100</y>
-      <width>421</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>This feature only works for Ruby/Sapphire with a live battery</string>
-    </property>
-   </widget>
+        </property>
+        <property name="text">
+         <string>Find</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <widget class="QTableView" name="tableViewGenerator">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>100</number>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>20</number>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>20</number>
+      </attribute>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>690</width>
-     <height>26</height>
+     <width>504</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>
