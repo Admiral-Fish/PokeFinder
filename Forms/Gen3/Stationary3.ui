@@ -78,7 +78,7 @@ QCheckBox::indicator:unchecked {
 }
 
 QCheckBox::indicator:checked {
-		background-color: white;
+	background-color: white;
 }
 
 QTableView {
@@ -110,8 +110,8 @@ QGroupBox {
 }
 
 .QGroupBox * {
-		font-family: &quot;Myriad Pro&quot;, Montserrat;
-		font-weight: 500;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
 }
 
 QComboBox {
@@ -124,24 +124,25 @@ QComboBox {
 
 QComboBox QListView{
 	color: white;
-    background-color: #1D303C;
-    border:1px solid black;
+	background-color: #1D303C;
+	border:1px solid black;
+	padding-left: 3px;
 }
 
 QComboBox::item:alternate {
-    background: #1D303C;
+	background: #1D303C;
 }
 
 QComboBox::item:selected {
-    border: 1px solid transparent;
-    background: #003941;
+	border: 1px solid transparent;
+	background: #003941;
 }
 
 QComboBox::indicator{
-    background-color:transparent;
-    selection-background-color:transparent;
-    color:transparent;
-    selection-color:transparent;
+	background-color:transparent;
+	selection-background-color:transparent;
+	color:transparent;
+	selection-color:transparent;
 }
 
 QComboBox::editable {
@@ -1165,7 +1166,7 @@ QPushButton {
      <x>0</x>
      <y>0</y>
      <width>1182</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
