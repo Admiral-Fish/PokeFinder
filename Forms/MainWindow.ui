@@ -81,6 +81,19 @@
         <string>Egg</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButtonSeedToTime3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>16-Bit Seed to Time</string>
+       </property>
+      </widget>
      </widget>
     </item>
     <item row="0" column="1">
@@ -98,7 +111,7 @@
      <x>0</x>
      <y>0</y>
      <width>463</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLanguage">

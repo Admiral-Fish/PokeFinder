@@ -25,6 +25,7 @@
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Researcher.hpp>
+#include <Forms/SeedToTime3.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -49,6 +50,8 @@ private slots:
     void slotLanguageChanged(QAction *action);
     void updateProfiles(int num);
 
+    void on_pushButtonSeedToTime3_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTranslator translator;
@@ -57,6 +60,7 @@ private:
     Stationary3 stationary3;
     Wild3 wild3;
     Eggs3 egg3;
+    SeedToTime3 seedtotime3;
 
     void setupLanguage();
     void setupModels();
