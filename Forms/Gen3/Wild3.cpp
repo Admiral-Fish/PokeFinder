@@ -279,7 +279,7 @@ void Wild3::search()
                                         ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
                                         ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
 
-    searcher.frameType = (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL);
+    searcher.setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
 
     u32 min[6], max[6];
 
