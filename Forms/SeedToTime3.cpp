@@ -98,13 +98,15 @@ void SeedToTime3::seedToTime(uint32_t seed, uint32_t year)
                         QString result = finalTime.toString();
                         int seconds = day * 86400 + hour * 3600 + minute * 60;
                         QList<QStandardItem *> list;
-                        list.append(new QStandardItem(result));
-                        list.append(new QStandardItem(QString::number(seconds, 10)));
+                        QStandardItem *text = new QStandardItem(result);
+                        QStandardItem *secondsText = new QStandardItem(QString::number(seconds, 10));
+                        list << text << secondsText;
                         m->appendRow(list);
                     }
                 }
             }
         }
+        minDay += temp.daysInMonth();
     }
 
     ui->tableViewGenerator->viewport()->update();
