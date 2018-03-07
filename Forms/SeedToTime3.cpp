@@ -105,6 +105,7 @@ void SeedToTime3::seedToTime(uint32_t seed, uint32_t year)
                 }
             }
         }
+        minDay += temp.daysInMonth();
     }
 
     ui->tableViewGenerator->viewport()->update();
