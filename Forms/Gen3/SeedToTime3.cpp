@@ -7,6 +7,8 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
+
     start = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
 
     setupModels();
