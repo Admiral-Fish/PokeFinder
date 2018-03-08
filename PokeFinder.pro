@@ -79,7 +79,9 @@ SOURCES += \
     Forms/Gen3/Eggs3.cpp \
     libPokeFinder/Gen3/Egg3.cpp \
     Forms/Gen3/SeedToTime3.cpp \
-    Forms/Gen3/JirachiGeneration.cpp
+    Forms/Gen3/JirachiGeneration.cpp \
+    Forms/Gen3/PokeSpot.cpp \
+    Models/Gen3/PokeSpotModel.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManager3.hpp \
@@ -128,7 +130,9 @@ HEADERS += \
     libPokeFinder/Objects/Egg.hpp \
     libPokeFinder/Gen3/Egg3.hpp \
     Forms/Gen3/SeedToTime3.hpp \
-    Forms/Gen3/JirachiGeneration.hpp
+    Forms/Gen3/JirachiGeneration.hpp \
+    Forms/Gen3/PokeSpot.hpp \
+    Models/Gen3/PokeSpotModel.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManager3.ui \
@@ -140,7 +144,8 @@ FORMS += \
     Forms/IVFilter.ui \
     Forms/Gen3/Eggs3.ui \
     Forms/Gen3/SeedToTime3.ui \
-    Forms/Gen3/JirachiGeneration.ui
+    Forms/Gen3/JirachiGeneration.ui \
+    Forms/Gen3/PokeSpot.ui
 
 RESOURCES += \
     resources.qrc

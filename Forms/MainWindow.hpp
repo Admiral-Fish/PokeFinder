@@ -27,6 +27,7 @@
 #include <Forms/Researcher.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Forms/Gen3/JirachiGeneration.hpp>
+#include <Forms/Gen3/PokeSpot.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -50,10 +51,9 @@ private slots:
     void on_actionResearcher_triggered();
     void slotLanguageChanged(QAction *action);
     void updateProfiles(int num);
-
     void on_pushButtonSeedToTime3_clicked();
-
     void on_pushButtonJirachiGeneration_clicked();
+    void on_pushButtonPokeSpot_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -65,6 +65,7 @@ private:
     Eggs3 egg3;
     SeedToTime3 seedtotime3;
     JirachiGeneration jirachiGeneration;
+    PokeSpot pokeSpot;
 
     void setupLanguage();
     void setupModels();

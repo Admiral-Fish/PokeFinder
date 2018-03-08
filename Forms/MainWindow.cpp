@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     egg3.setAttribute(Qt::WA_QuitOnClose, false);
     seedtotime3.setAttribute(Qt::WA_QuitOnClose, false);
     jirachiGeneration.setAttribute(Qt::WA_QuitOnClose, false);
+    pokeSpot.setAttribute(Qt::WA_QuitOnClose, false);
 
     connect(&stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
     connect(&wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
@@ -187,4 +188,10 @@ void MainWindow::on_pushButtonJirachiGeneration_clicked()
 {
     jirachiGeneration.show();
     jirachiGeneration.raise();
+}
+
+void MainWindow::on_pushButtonPokeSpot_clicked()
+{
+    pokeSpot.show();
+    pokeSpot.raise();
 }

@@ -17,24 +17,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SEEDTOTIME3_HPP
-#define SEEDTOTIME3_HPP
+#ifndef POKESPOT_HPP
+#define POKESPOT_HPP
 
 #include <QMainWindow>
-#include <QStandardItemModel>
-#include <QDateTime>
-#include <QList>
-#include <QStandardItem>
-#include <QMessageBox>
 #include <libPokeFinder/RNG/LCRNG.hpp>
-
-typedef uint32_t u32;
+#include <Models/Gen3/PokeSpotModel.hpp>
+#include <libPokeFinder/Objects/Nature.hpp>
+#include <libPokeFinder/Gen3/Frame3.hpp>
+#include <libPokeFinder/Objects/FrameCompare.hpp>
 
 namespace Ui {
-class SeedToTime3;
+class PokeSpot;
 }
 
-class SeedToTime3 : public QMainWindow
+class PokeSpot : public QMainWindow
 {
     Q_OBJECT
 
@@ -42,19 +39,24 @@ protected:
     void changeEvent(QEvent*);
 
 public:
-    explicit SeedToTime3(QWidget *parent = 0);
-    ~SeedToTime3();
+    explicit PokeSpot(QWidget *parent = 0);
+    ~PokeSpot();
 
 private slots:
-    void on_pushButtonFind_clicked();
+    void on_pushButtonAnyAbility_clicked();
+    void on_pushButtonAnyNature_clicked();
+    void on_pushButtonAnySpotType_clicked();
+
+    void on_pushButtonGenerate_clicked();
 
 private:
-    Ui::SeedToTime3 *ui;
-    QStandardItemModel *m = new QStandardItemModel(this);
+    Ui::PokeSpot *ui;
+    PokeSpotModel *model = new PokeSpotModel(this);
+    LCRNG rng = XDRNG(0);
+    vector<u32> rngList;
 
     void setupModels();
-    u32 originSeed(u32 seed);
-    void seedToTime(u32 seed, u32 year);
+
 };
 
-#endif // SEEDTOTIME3_HPP
+#endif // POKESPOT_HPP
