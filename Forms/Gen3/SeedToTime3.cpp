@@ -9,8 +9,6 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
 
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
-    start = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
-
     setupModels();
     ui->tableViewGenerator->setModel(m);
 }
@@ -18,6 +16,7 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
 void SeedToTime3::setupModels()
 {
     ui->seedToTimeSeed->setValues(0, 32, false);
+    ui->seedToTimeYear->setValues(0, 53, true);
 
     m->setColumnCount(2);
     m->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Seconds"));
@@ -68,6 +67,11 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
     u32 minDay = 0;
     u32 maxDay = 0;
 
+    // For whatever reason the start date is different if the year is greater then 2000
+    QDateTime start = QDateTime(QDate(year == 2000 ? 2000 : 2001, 1, 1), QTime(0, 0));
+
+    // Hard cap upper year since game seems to crash above year 2037
+    // Maybe some kind of overflow error
     if (year < 2000 || year > 2037)
     {
         QMessageBox error;
@@ -78,41 +82,32 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
 
     QDate temp = QDate(2000, 1, 1);
 
-    if (year != 2000)
+    // Game decides to ignore a year of counting days
+    for (u32 x = 2001; x < year; x++)
     {
-        for(u32 x = 2000; x < year; x++)
-        {
-            temp.setDate(x, 1, 1);
-            minDay += temp.daysInYear();
-            maxDay += temp.daysInYear();
-        }
+        temp.setDate(x, 1, 1);
+        minDay += temp.daysInYear();
+        maxDay += temp.daysInYear();
     }
 
-    for (int month = 1; month < 13; month++)
+    // Loop through the year generating seeds to check against user input
+    for (u32 month = 1; month < 13; month++)
     {
-        temp.setDate(year, month, 1);
+        temp.setDate(2000, month, 1);
         maxDay += temp.daysInMonth();
         for (u32 day = minDay; day < maxDay; day++)
         {
-            u32 x1 = (1440 * day) >> 16;
-            u32 x2 = x1 + 1;
-
-            u32 y1 = x1 ^ seed;
-            u32 y2 = x2 ^ seed;
-
-            u32 v1 = (x1 << 16) | y1;
-            u32 v2 = (x2 << 16) | y2;
-
-            for (u32 hour = 0; hour < 24; hour++)
+            for (u32 hour = 0; hour < 23; hour++)
             {
-                for (u32 minute = 0; minute < 60; minute++)
+                for (u32 minute = 0; minute < 59; minute++)
                 {
+                    // Formula to generate intial seed
                     u32 v = 1440 * day + 960 * (hour / 10) + 60 * (hour % 10) + 16 * (minute / 10) + (minute % 10) + 0x5A0;
-                    if (v1 == v || v2 == v)
+                    v = (v >> 16) ^ (v & 0xFFFF);
+
+                    if (v == seed)
                     {
-                        QDateTime finalTime = QDateTime(start);
-                        finalTime = finalTime.addDays(day);
-                        finalTime = finalTime.addSecs((hour * 60 * 60) + (minute * 60));
+                        QDateTime finalTime = start.addDays(day).addSecs((hour * 60 * 60) + (minute * 60));
                         QString result = finalTime.toString(Qt::SystemLocaleShortDate);
                         int seconds = day * 86400 + hour * 3600 + minute * 60;
                         QList<QStandardItem *> list;
@@ -126,7 +121,6 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
         }
         minDay += temp.daysInMonth();
     }
-
     ui->tableViewGenerator->viewport()->update();
 }
 

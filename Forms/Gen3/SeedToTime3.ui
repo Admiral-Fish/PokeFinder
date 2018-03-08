@@ -86,7 +86,11 @@ QHeaderView::section {
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QTextBox" name="seedToTimeSeed"/>
+       <widget class="QTextBox" name="seedToTimeSeed">
+        <property name="maxLength">
+         <number>8</number>
+        </property>
+       </widget>
       </item>
       <item row="0" column="2">
        <widget class="QLabel" name="descriptionLabel1">
@@ -105,7 +109,10 @@ QHeaderView::section {
       <item row="1" column="1">
        <widget class="QTextBox" name="seedToTimeYear">
         <property name="text">
-         <string>2000</string>
+         <string notr="true">2000</string>
+        </property>
+        <property name="maxLength">
+         <number>4</number>
         </property>
        </widget>
       </item>
@@ -182,7 +189,7 @@ QHeaderView::section {
      <x>0</x>
      <y>0</y>
      <width>504</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

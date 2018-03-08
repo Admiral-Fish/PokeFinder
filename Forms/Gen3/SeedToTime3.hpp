@@ -32,8 +32,6 @@ private slots:
 private:
     Ui::SeedToTime3 *ui;
     QStandardItemModel *m = new QStandardItemModel(this);
-    QDateTime start;
-    QDateTime addTime;
 
     void setupModels();
     u32 originSeed(u32 seed);
