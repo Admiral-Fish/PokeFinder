@@ -181,3 +181,9 @@ void MainWindow::on_pushButtonSeedToTime3_clicked()
     seedtotime3.show();
     seedtotime3.raise();
 }
+
+void MainWindow::on_pushButtonJirachiGeneration_clicked()
+{
+    jirachiGeneration.show();
+    jirachiGeneration.raise();
+}
