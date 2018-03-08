@@ -138,7 +138,7 @@ QPushButton {
        </size>
       </property>
       <property name="title">
-       <string>GroupBox</string>
+       <string>RNG Info</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
@@ -253,7 +253,7 @@ QPushButton {
        </size>
       </property>
       <property name="title">
-       <string>GroupBox</string>
+       <string>Filters</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
