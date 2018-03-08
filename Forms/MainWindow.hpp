@@ -26,6 +26,7 @@
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Researcher.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
+#include <Forms/Gen3/JirachiGeneration.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -52,6 +53,8 @@ private slots:
 
     void on_pushButtonSeedToTime3_clicked();
 
+    void on_pushButtonJirachiGeneration_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTranslator translator;
@@ -61,6 +64,7 @@ private:
     Wild3 wild3;
     Eggs3 egg3;
     SeedToTime3 seedtotime3;
+    JirachiGeneration jirachiGeneration;
 
     void setupLanguage();
     void setupModels();
