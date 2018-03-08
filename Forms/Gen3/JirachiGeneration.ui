@@ -61,7 +61,7 @@
       <x>10</x>
       <y>60</y>
       <width>731</width>
-      <height>235</height>
+      <height>251</height>
      </rect>
     </property>
     <property name="maximumSize">
@@ -115,11 +115,10 @@
      <x>0</x>
      <y>0</y>
      <width>752</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>

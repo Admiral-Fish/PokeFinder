@@ -7,12 +7,18 @@ JirachiGeneration::JirachiGeneration(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
+
     setupModels();
+
+    ui->tableViewGenerator->setModel(s);
+    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 JirachiGeneration::~JirachiGeneration()
 {
     delete ui;
+    delete s;
 }
 
 void JirachiGeneration::setupModels()
@@ -20,8 +26,6 @@ void JirachiGeneration::setupModels()
     ui->jirachiGenerationSeed->setValues(0, 32, false);
 
     s->setHorizontalHeaderLabels(QStringList() << tr("Probable"));
-    ui->tableViewGenerator->setModel(s);
-    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void JirachiGeneration::on_pushButtonGenerate_clicked()
@@ -30,7 +34,6 @@ void JirachiGeneration::on_pushButtonGenerate_clicked()
     u32 seed = ui->jirachiGenerationSeed->text().toUInt(NULL, 16);
     ui->tableViewGenerator->viewport()->update();
     genListOut(seed);
-
 }
 
 void JirachiGeneration::genListOut(u32 seed)
@@ -53,12 +56,12 @@ QString JirachiGeneration::calcProbable(u32 seed)
     u32 advance = 8;
     bool xCheck = false;
 
-    for(u32 m = 0; m < 35; m++)
+    for (u32 m = 0; m < 35; m++)
     {
         backseed = rng.nextUInt();
         genlistout = QString::number(backseed >> 30, 16) + "|" + genlistout;
 
-        if(m == (advance - 1))
+        if (m == (advance - 1))
         {
             f = backseed >> 30;
             genlistout = " M: " + genlistout;
@@ -68,13 +71,13 @@ QString JirachiGeneration::calcProbable(u32 seed)
     QString genlistend = genlistout.mid(genlistout.length() - 7);
     int intAdvance = 3;
 
-    if(genlistend.at(0) == QChar('0'))
+    if (genlistend.at(0) == QChar('0'))
         intAdvance = 7;
-    if(genlistend.at(2) == QChar('0') && intAdvance == 3)
+    if (genlistend.at(2) == QChar('0') && intAdvance == 3)
         intAdvance = 5;
-    if(genlistend.at(4) == QChar('0') && intAdvance == 3)
+    if (genlistend.at(4) == QChar('0') && intAdvance == 3)
         intAdvance = 3;
-    if(genlistend.at(6) == QChar('0') && intAdvance == 3)
+    if (genlistend.at(6) == QChar('0') && intAdvance == 3)
         intAdvance = 3;
     int mm = genlistout.indexOf(QChar('M'));
     genlistout = genlistout.mid(0, mm + intAdvance) + "T:" + genlistout.mid(mm + intAdvance);
@@ -89,13 +92,13 @@ QString JirachiGeneration::calcProbable(u32 seed)
     checker[QString(targetNum).toInt(NULL, 10)] = 1;
     for(int x = 0; x < string2Search.length(); x++)
     {
-        if(!xCheck)
+        if (!xCheck)
         {
-            if(string2Search.at(x) == QChar('1') || string2Search.at(x) == QChar('2') || string2Search.at(x) == QChar('3'))
+            if (string2Search.at(x) == QChar('1') || string2Search.at(x) == QChar('2') || string2Search.at(x) == QChar('3'))
             {
-                if(string2Search.at(x) == targetNum)
+                if (string2Search.at(x) == targetNum)
                 {
-                    if(checker[0] == 1 || checker[1] == 0 || checker[2] == 0 || checker[3] == 0)
+                    if (checker[0] == 1 || checker[1] == 0 || checker[2] == 0 || checker[3] == 0)
                     {
                         string2Search = string2Search.mid(0, x) + "XXX" + string2Search.mid(x);
                         xCheck = true;
@@ -113,13 +116,12 @@ QString JirachiGeneration::calcProbable(u32 seed)
     genlistout = string2Search + genlistend;
 
     return genlistout;
-
 }
 
 QString JirachiGeneration::flip(QString text)
 {
     QString reverse = "";
-    for(int i = text.length() - 1; i >= 0; i--)
+    for (int i = text.length() - 1; i >= 0; i--)
         reverse += text.mid(i, 1);
     return reverse;
 }
