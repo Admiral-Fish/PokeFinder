@@ -81,7 +81,8 @@ SOURCES += \
     Forms/Gen3/SeedToTime3.cpp \
     Forms/Gen3/JirachiGeneration.cpp \
     Forms/Gen3/PokeSpot.cpp \
-    Models/Gen3/PokeSpotModel.cpp
+    Models/Gen3/PokeSpotModel.cpp \
+    Forms/IVtoPID_SID_SEED.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManager3.hpp \
@@ -132,7 +133,8 @@ HEADERS += \
     Forms/Gen3/SeedToTime3.hpp \
     Forms/Gen3/JirachiGeneration.hpp \
     Forms/Gen3/PokeSpot.hpp \
-    Models/Gen3/PokeSpotModel.hpp
+    Models/Gen3/PokeSpotModel.hpp \
+    Forms/IVtoPID_SID_SEED.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManager3.ui \
@@ -145,7 +147,8 @@ FORMS += \
     Forms/Gen3/Eggs3.ui \
     Forms/Gen3/SeedToTime3.ui \
     Forms/Gen3/JirachiGeneration.ui \
-    Forms/Gen3/PokeSpot.ui
+    Forms/Gen3/PokeSpot.ui \
+    Forms/IVtoPID_SID_SEED.ui
 
 RESOURCES += \
     resources.qrc

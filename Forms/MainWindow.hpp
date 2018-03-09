@@ -28,6 +28,7 @@
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Forms/Gen3/JirachiGeneration.hpp>
 #include <Forms/Gen3/PokeSpot.hpp>
+#include <Forms/IVtoPID_SID_SEED.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -55,6 +56,8 @@ private slots:
     void on_pushButtonJirachiGeneration_clicked();
     void on_pushButtonPokeSpot_clicked();
 
+    void on_pushButtonIVToPID_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTranslator translator;
@@ -66,6 +69,7 @@ private:
     SeedToTime3 seedtotime3;
     JirachiGeneration jirachiGeneration;
     PokeSpot pokeSpot;
+    IVtoPID_SID_SEED ivToPID;
 
     void setupLanguage();
     void setupModels();
