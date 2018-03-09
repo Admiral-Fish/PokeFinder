@@ -82,7 +82,8 @@ SOURCES += \
     Forms/Gen3/JirachiGeneration.cpp \
     Forms/Gen3/PokeSpot.cpp \
     Models/Gen3/PokeSpotModel.cpp \
-    Forms/Util/IVtoPID.cpp
+    Forms/Util/IVtoPID.cpp \
+    Forms/Gen3/GameCubeRTC.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManager3.hpp \
@@ -134,7 +135,8 @@ HEADERS += \
     Forms/Gen3/JirachiGeneration.hpp \
     Forms/Gen3/PokeSpot.hpp \
     Models/Gen3/PokeSpotModel.hpp \
-    Forms/Util/IVtoPID.hpp
+    Forms/Util/IVtoPID.hpp \
+    Forms/Gen3/GameCubeRTC.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManager3.ui \
@@ -148,7 +150,8 @@ FORMS += \
     Forms/Gen3/SeedToTime3.ui \
     Forms/Gen3/JirachiGeneration.ui \
     Forms/Gen3/PokeSpot.ui \
-    Forms/Util/IVtoPID.ui
+    Forms/Util/IVtoPID.ui \
+    Forms/Gen3/GameCubeRTC.ui
 
 RESOURCES += \
     resources.qrc

@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     jirachiGeneration.setAttribute(Qt::WA_QuitOnClose, false);
     pokeSpot.setAttribute(Qt::WA_QuitOnClose, false);
     ivToPID.setAttribute(Qt::WA_QuitOnClose, false);
+    GCRTC.setAttribute(Qt::WA_QuitOnClose, false);
 
     connect(&stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
     connect(&wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
@@ -201,4 +202,10 @@ void MainWindow::on_pushButtonIVToPID_clicked()
 {
     ivToPID.show();
     ivToPID.raise();
+}
+
+void MainWindow::on_pushButtonGameCubeRTC_clicked()
+{
+    GCRTC.show();
+    GCRTC.raise();
 }

@@ -29,6 +29,7 @@
 #include <Forms/Gen3/JirachiGeneration.hpp>
 #include <Forms/Gen3/PokeSpot.hpp>
 #include <Forms/Util/IVtoPID.hpp>
+#include <Forms/Gen3/GameCubeRTC.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -58,6 +59,8 @@ private slots:
 
     void on_pushButtonIVToPID_clicked();
 
+    void on_pushButtonGameCubeRTC_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTranslator translator;
@@ -70,6 +73,7 @@ private:
     JirachiGeneration jirachiGeneration;
     PokeSpot pokeSpot;
     IVtoPID ivToPID;
+    GameCubeRTC GCRTC;
 
     void setupLanguage();
     void setupModels();

@@ -100,7 +100,7 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid)
         // Gales/Colo
         if ((rng1XD & 0x7FFF) == (ivs2 & 0x7FFF))
         {
-            u32 rng2XD = rngXD.nextUShort();
+            rngXD.nextUShort();
             u32 rng3XD = rngXD.nextUShort();
             u32 rng4XD = rngXD.nextUShort();
             u32 XDColoSeed = rngXDR.nextUInt();
