@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>IVs to PID</string>
   </property>
   <property name="styleSheet">
    <string notr="true">* {
@@ -158,6 +158,131 @@ QPushButton {
       <height>16</height>
      </rect>
     </property>
+    <item>
+     <property name="text">
+      <string>Adamant</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bold</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Brave</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Calm</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Careful</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Hasty</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Impish</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Jolly</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Lonely</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mild</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Modest</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Naive</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Naughty</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Quiet</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Rash</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Relaxed</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Sassy</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Timid</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Gentle</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Lax</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bashful</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Docile</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Hardy</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Quirky</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Serious</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="labelNature">
     <property name="geometry">
@@ -223,7 +348,7 @@ QPushButton {
      <string>Find</string>
     </property>
    </widget>
-   <widget class="QTableView" name="tableViewGenerator">
+   <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -289,11 +414,10 @@ QPushButton {
      <x>0</x>
      <y>0</y>
      <width>981</width>
-     <height>23</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>
