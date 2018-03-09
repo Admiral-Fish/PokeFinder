@@ -23,7 +23,6 @@
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <Forms/QTextBox.hpp>
 #include <QString>
 #include <QChar>
 #include <libPokeFinder/RNG/LCRNG.hpp>

@@ -124,7 +124,7 @@
   <customwidget>
    <class>QTextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/QTextBox.hpp</header>
+   <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

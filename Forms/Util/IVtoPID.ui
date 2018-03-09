@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>IVtoPID_SID_SEED</class>
- <widget class="QMainWindow" name="IVtoPID_SID_SEED">
+ <class>IVtoPID</class>
+ <widget class="QMainWindow" name="IVtoPID">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -423,13 +423,13 @@ QPushButton {
   <customwidget>
    <class>IVFilter</class>
    <extends>QWidget</extends>
-   <header>Forms/IVFilter.hpp</header>
+   <header>Forms/Controls/IVFilter.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>QTextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/QTextBox.hpp</header>
+   <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

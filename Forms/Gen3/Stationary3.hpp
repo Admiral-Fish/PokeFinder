@@ -20,8 +20,6 @@
 #ifndef STATIONARY3_H
 #define STATIONARY3_H
 
-#include <Forms/QCheckList.hpp>
-#include <Forms/QTextBox.hpp>
 #include <libPokeFinder/Gen3/Frame3.hpp>
 #include <libPokeFinder/Gen3/Generator3.hpp>
 #include <libPokeFinder/Gen3/Searcher3.hpp>
@@ -31,7 +29,6 @@
 #include <QDir>
 #include <libPokeFinder/Gen3/Profile3.hpp>
 #include <Forms/ProfileManager/ProfileManager3.hpp>
-#include <Forms/IVFilter.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <thread>

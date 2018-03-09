@@ -19,9 +19,8 @@
 
 #include "PokeSpotModel.hpp"
 
-PokeSpotModel::PokeSpotModel(QObject *parent)
+PokeSpotModel::PokeSpotModel(QObject *parent) : QAbstractTableModel(parent)
 {
-
 }
 
 void PokeSpotModel::setModel(vector<Frame3> frames)
@@ -37,6 +36,7 @@ int PokeSpotModel::rowCount(const QModelIndex &parent) const
 
 int PokeSpotModel::columnCount(const QModelIndex &parent) const
 {
+    (void) parent;
     return 7;
 }
 

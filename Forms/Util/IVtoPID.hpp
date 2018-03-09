@@ -17,24 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IVTOPID_SID_SEED_HPP
-#define IVTOPID_SID_SEED_HPP
+#ifndef IVTOPIDHPP
+#define IVTOPIDHPP
 
 #include <QMainWindow>
 #include <libPokeFinder/Objects/Nature.hpp>
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <Forms/IVFilter.hpp>
 #include <libPokeFinder/RNG/LCRNG.hpp>
 #include <QList>
 
 typedef uint32_t u32;
 
 namespace Ui {
-class IVtoPID_SID_SEED;
+class IVtoPID;
 }
 
-class IVtoPID_SID_SEED : public QMainWindow
+class IVtoPID : public QMainWindow
 {
     Q_OBJECT
 
@@ -42,14 +41,14 @@ protected:
     void changeEvent(QEvent*);
 
 public:
-    explicit IVtoPID_SID_SEED(QWidget *parent = 0);
-    ~IVtoPID_SID_SEED();
+    explicit IVtoPID(QWidget *parent = 0);
+    ~IVtoPID();
 
 private slots:
     void on_pushButtonFind_clicked();
 
 private:
-    Ui::IVtoPID_SID_SEED *ui;
+    Ui::IVtoPID *ui;
 
     QStandardItemModel *m = new QStandardItemModel(this);
 
@@ -57,4 +56,4 @@ private:
     void getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid);
 };
 
-#endif // IVTOPID_SID_SEED_HPP
+#endif // IVTOPID

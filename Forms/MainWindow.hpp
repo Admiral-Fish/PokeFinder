@@ -24,11 +24,11 @@
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen3/Eggs3.hpp>
-#include <Forms/Researcher.hpp>
+#include <Forms/Util/Researcher.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Forms/Gen3/JirachiGeneration.hpp>
 #include <Forms/Gen3/PokeSpot.hpp>
-#include <Forms/IVtoPID_SID_SEED.hpp>
+#include <Forms/Util/IVtoPID.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -69,7 +69,7 @@ private:
     SeedToTime3 seedtotime3;
     JirachiGeneration jirachiGeneration;
     PokeSpot pokeSpot;
-    IVtoPID_SID_SEED ivToPID;
+    IVtoPID ivToPID;
 
     void setupLanguage();
     void setupModels();
