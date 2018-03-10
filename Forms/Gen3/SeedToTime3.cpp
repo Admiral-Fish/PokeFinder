@@ -40,7 +40,6 @@ void SeedToTime3::setupModels()
     m->setColumnCount(2);
     m->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Seconds"));
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableViewGenerator->viewport()->update();
 }
 
 SeedToTime3::~SeedToTime3()
@@ -81,7 +80,6 @@ void SeedToTime3::on_pushButtonFind_clicked()
 void SeedToTime3::seedToTime(u32 seed, u32 year)
 {
     m->removeRows(0, m->rowCount());
-    ui->tableViewGenerator->viewport()->update();
 
     u32 minDay = 0;
     u32 maxDay = 0;
@@ -140,7 +138,6 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
         }
         minDay += temp.daysInMonth();
     }
-    ui->tableViewGenerator->viewport()->update();
 }
 
 u32 SeedToTime3::originSeed(u32 seed)

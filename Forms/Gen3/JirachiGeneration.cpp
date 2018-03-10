@@ -51,7 +51,6 @@ void JirachiGeneration::on_pushButtonGenerate_clicked()
 {
     s->removeRows(0, s->rowCount());
     u32 seed = ui->jirachiGenerationSeed->text().toUInt(NULL, 16);
-    ui->tableViewGenerator->viewport()->update();
     genListOut(seed);
 }
 
@@ -61,7 +60,6 @@ void JirachiGeneration::genListOut(u32 seed)
 
     QString result = genlistout.replace("|", " | ");
     s->appendRow(new QStandardItem(result));
-    ui->tableViewGenerator->viewport()->update();
 }
 
 QString JirachiGeneration::calcProbable(u32 seed)

@@ -306,8 +306,6 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid)
             }
         }
     }
-
-    ui->tableView->viewport()->update();
 }
 
 void IVtoPID::getSeedsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe, u32 nature)

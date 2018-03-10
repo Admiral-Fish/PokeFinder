@@ -34,7 +34,6 @@ void GameCubeRTC::setupModels()
 void GameCubeRTC::updateTableView(QList<QStandardItem*> row)
 {
     m->appendRow(row);
-    ui->tableViewGenerator->viewport()->update();
 }
 
 void GameCubeRTC::calcRTC()
