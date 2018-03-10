@@ -50,8 +50,8 @@ signals:
 
 private:
     Ui::Stationary3 *ui;
-    Searcher3Model *s = NULL;
-    Stationary3Model *g = NULL;
+    Searcher3Model *s = new Searcher3Model(this, Method1);
+    Stationary3Model *g = new Stationary3Model(this);
     bool isSearching = false;
     vector<Profile3> profiles;
 

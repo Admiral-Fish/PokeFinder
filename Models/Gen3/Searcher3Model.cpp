@@ -37,6 +37,20 @@ void Searcher3Model::addItems(vector<Frame3> frames)
     emit endInsertRows();
 }
 
+void Searcher3Model::clear()
+{
+    int i = rowCount();
+    emit beginRemoveRows(QModelIndex(), 0, i == 0 ? 0 : i - 1);
+    model.clear();
+    emit endRemoveRows();
+}
+
+void Searcher3Model::setMethod(Method method)
+{
+    this->method = method;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
+}
+
 int Searcher3Model::rowCount(const QModelIndex &parent) const
 {
     (void) parent;

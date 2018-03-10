@@ -25,7 +25,18 @@ Stationary3Model::Stationary3Model(QObject *parent) : QAbstractTableModel(parent
 
 void Stationary3Model::setModel(vector<Frame3> frames)
 {
-    model = frames;
+    int i = rowCount();
+    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
+    model.insert(model.end(), frames.begin(), frames.end());
+    emit endInsertRows();
+}
+
+void Stationary3Model::clear()
+{
+    int i = rowCount();
+    emit beginRemoveRows(QModelIndex(), 0, i == 0 ? 0 : i - 1);
+    model.clear();
+    emit endRemoveRows();
 }
 
 int Stationary3Model::rowCount(const QModelIndex &parent) const
