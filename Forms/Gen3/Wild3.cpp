@@ -25,6 +25,7 @@ Wild3::Wild3(QWidget *parent) :
     ui(new Ui::Wild3)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
     updateProfiles();
@@ -57,16 +58,8 @@ void Wild3::changeEvent(QEvent *event)
 Wild3::~Wild3()
 {
     delete ui;
-    if (s != NULL)
-    {
-        delete s;
-        s = NULL;
-    }
-    if (g != NULL)
-    {
-        delete g;
-        g = NULL;
-    }
+    delete s;
+    delete g;
 }
 
 void Wild3::on_checkBoxDelayGenerator_clicked()
@@ -85,7 +78,6 @@ void Wild3::on_checkBoxDelayGenerator_clicked()
 void Wild3::updateViewSearcher(vector<Frame3> frames)
 {
     s->addItems(frames);
-    ui->tableViewSearcher->viewport()->update();
 }
 
 void Wild3::updateProfiles()
@@ -224,10 +216,7 @@ void Wild3::refreshProfiles()
 
 void Wild3::on_generate_clicked()
 {
-    if (g != NULL)
-        delete g;
-    g = new Wild3Model(this);
-    ui->tableViewGenerator->setModel(g);
+    g->clear();
 
     u32 seed = ui->initialSeedGenerator->text().toUInt(NULL, 16);
     u32 startingFrame = ui->startingFrameGenerator->text().toUInt(NULL, 10);
@@ -249,17 +238,14 @@ void Wild3::on_generate_clicked()
 
     vector<Frame3> frames = generator.generate(compare);
     g->setModel(frames);
-    ui->tableViewGenerator->viewport()->update();
 }
 
 void Wild3::on_search_clicked()
 {
     if (isSearching == true)
         return;
-    if (s != NULL)
-        delete s;
-    s = new Searcher3Model(this, (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
-    ui->tableViewSearcher->setModel(s);
+    s->clear();
+    s->setMethod((Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL));
     std::thread job(&Wild3::search, this);
     job.detach();
 }

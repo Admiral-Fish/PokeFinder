@@ -70,8 +70,8 @@ private:
     Ui::Wild3 *ui;
     vector<Profile3> profiles;
     bool isSearching = false;
-    Searcher3Model *s = NULL;
-    Wild3Model *g = NULL;
+    Searcher3Model *s = new Searcher3Model(this, Method1);
+    Wild3Model *g = new Wild3Model(this);
 
     void setupModels();
     void createProfileXml();

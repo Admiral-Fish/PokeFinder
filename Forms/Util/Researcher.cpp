@@ -25,8 +25,14 @@ Researcher::Researcher(QWidget *parent) :
     ui(new Ui::Researcher)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+    setAttribute(Qt::WA_DeleteOnClose);
 
     setupModels();
+
+    ui->tableView->setModel(model);
+    ui->tableView->verticalHeader()->setVisible(false);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     ui->textBoxStartingFrame->setValues(1, 0, true);
     ui->textBoxMaxFrames->setValues(1, 0, true);
@@ -75,19 +81,15 @@ void Researcher::changeEvent(QEvent *event)
 Researcher::~Researcher()
 {
     delete ui;
-    if (model != NULL)
-    {
-        delete model;
-        model = NULL;
-    }
+    delete model;
 }
 
 void Researcher::on_pushButtonGenerate32Bit_clicked()
 {
     bool rng64Bit = ui->rngSelection->currentIndex() == 1;
-    if (model != NULL)
-        delete model;
-    model = new ResearcherModel(this, rng64Bit);
+
+    model->clear();
+    model->setFlag(rng64Bit);
 
     u64 seed = ui->textBoxSeed->text().toULongLong(NULL, 16);
     u32 maxFrames = ui->textBoxMaxFrames->text().toUInt(NULL, 10);
@@ -314,19 +316,9 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     }
 
     model->setModel(frames);
-    ui->tableView->setModel(model);
-    //ui->tableView->resizeColumnsToContents();
-    ui->tableView->resizeColumnToContents(1);
-    if (rng64Bit)
-    {
-        ui->tableView->resizeColumnToContents(2);
-        ui->tableView->resizeColumnToContents(3);
-    }
 
     delete rng;
     delete rng64;
-    rng = NULL;
-    rng64 = NULL;
 }
 
 void Researcher::on_pushButtonSearch_clicked()
@@ -465,12 +457,6 @@ void Researcher::setupModels()
     keys[tr("Previous 7")] = 21;
     keys[tr("Previous 8")] = 22;
     keys[tr("Previous 9")] = 23;
-    if (model != NULL)
-        delete model;
-    model = new ResearcherModel(this, false);
-    ui->tableView->setModel(model);
-    ui->tableView->verticalHeader()->setVisible(false);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 void Researcher::on_rngSelection_currentChanged(int index)

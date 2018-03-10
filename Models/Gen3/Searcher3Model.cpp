@@ -39,9 +39,11 @@ void Searcher3Model::addItems(vector<Frame3> frames)
 
 void Searcher3Model::clear()
 {
-    int i = rowCount();
-    emit beginRemoveRows(QModelIndex(), 0, i == 0 ? 0 : i - 1);
+    if (model.empty())
+        return;
+    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
+    model.shrink_to_fit();
     emit endRemoveRows();
 }
 

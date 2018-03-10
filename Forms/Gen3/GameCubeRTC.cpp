@@ -6,6 +6,7 @@ GameCubeRTC::GameCubeRTC(QWidget *parent) :
     ui(new Ui::GameCubeRTC)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
 

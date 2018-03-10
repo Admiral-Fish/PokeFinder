@@ -25,6 +25,8 @@ Stationary3Model::Stationary3Model(QObject *parent) : QAbstractTableModel(parent
 
 void Stationary3Model::setModel(vector<Frame3> frames)
 {
+    if (frames.empty())
+        return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
     model.insert(model.end(), frames.begin(), frames.end());
@@ -33,9 +35,11 @@ void Stationary3Model::setModel(vector<Frame3> frames)
 
 void Stationary3Model::clear()
 {
-    int i = rowCount();
-    emit beginRemoveRows(QModelIndex(), 0, i == 0 ? 0 : i - 1);
+    if (model.empty())
+        return;
+    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
+    model.shrink_to_fit();
     emit endRemoveRows();
 }
 

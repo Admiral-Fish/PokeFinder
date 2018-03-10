@@ -25,7 +25,7 @@ JirachiGeneration::JirachiGeneration(QWidget *parent) :
     ui(new Ui::JirachiGeneration)
 {
     ui->setupUi(this);
-
+    setAttribute(Qt::WA_QuitOnClose, false);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();

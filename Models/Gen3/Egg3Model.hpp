@@ -37,7 +37,8 @@ private:
 public:
     Egg3Model(QObject *parent, Method method);
     void setModel(vector<Frame3> frames);
-    void addItems(vector<Frame3> frames);
+    void clear();
+    void setMethod(Method method);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;

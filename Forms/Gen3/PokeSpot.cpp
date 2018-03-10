@@ -25,7 +25,7 @@ PokeSpot::PokeSpot(QWidget *parent) :
     ui(new Ui::PokeSpot)
 {
     ui->setupUi(this);
-
+    setAttribute(Qt::WA_QuitOnClose, false);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
@@ -37,6 +37,7 @@ PokeSpot::PokeSpot(QWidget *parent) :
     ui->textBoxSID->setValues(0, 48, true);
 
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setModel(model);
 }
 
 PokeSpot::~PokeSpot()
@@ -85,16 +86,11 @@ void PokeSpot::setupModels()
     ui->comboBoxSpotType->addCheckItem(tr("Common"), QVariant(), Qt::Unchecked);
     ui->comboBoxSpotType->addCheckItem(tr("Uncommon"), QVariant(), Qt::Unchecked);
     ui->comboBoxSpotType->addCheckItem(tr("Rare"), QVariant(), Qt::Unchecked);
-
-    delete model;
-    model = new PokeSpotModel(this);
-    ui->tableView->setModel(model);
 }
 
 void PokeSpot::on_pushButtonGenerate_clicked()
 {
-    delete model;
-    model = new PokeSpotModel(this);
+    model->clear();
 
     vector<Frame3> frames;
 
@@ -164,5 +160,4 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         }
     }
     model->setModel(frames);
-    ui->tableView->setModel(model);
 }

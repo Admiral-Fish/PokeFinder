@@ -56,7 +56,7 @@ private slots:
 
 private:
     Ui::ProfileManager3 *ui;
-    Profile3Model *model = NULL;
+    Profile3Model *model = new Profile3Model(this);
 
 };
 

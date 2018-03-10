@@ -25,6 +25,7 @@ Stationary3::Stationary3(QWidget *parent) :
     ui(new Ui::Stationary3)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
 
     ui->label->setVisible(false);
     ui->comboBoxShadow->setVisible(false);
@@ -323,7 +324,6 @@ void Stationary3::on_search_clicked()
         return;
     s->clear();
     s->setMethod((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
-    ui->tableViewSearcher->setModel(s);
     std::thread job(&Stationary3::search, this);
     job.detach();
 }

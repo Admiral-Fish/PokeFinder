@@ -25,7 +25,12 @@ Profile3Model::Profile3Model(QObject *parent) : QAbstractTableModel(parent)
 
 void Profile3Model::setModel(vector<Profile3> profiles)
 {
-    model = profiles;
+    if (profiles.empty())
+        return;
+    int i = rowCount();
+    emit beginInsertRows(QModelIndex(), i, i + profiles.size() - 1);
+    model.insert(model.end(), profiles.begin(), profiles.end());
+    emit endInsertRows();
 }
 
 void Profile3Model::addItem(Profile3 profile)
@@ -119,5 +124,7 @@ Profile3 Profile3Model::getProfile(int index)
 
 void Profile3Model::removeProfile(int index)
 {
+    emit beginRemoveRows(QModelIndex(), index, index + 1);
     model.erase(model.begin() + index);
+    model.shrink_to_fit();
 }

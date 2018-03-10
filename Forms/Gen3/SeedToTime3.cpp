@@ -25,7 +25,7 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
     ui(new Ui::SeedToTime3)
 {
     ui->setupUi(this);
-
+    setAttribute(Qt::WA_QuitOnClose, false);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();

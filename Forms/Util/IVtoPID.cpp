@@ -25,6 +25,7 @@ IVtoPID::IVtoPID(QWidget *parent) :
     ui(new Ui::IVtoPID)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
 

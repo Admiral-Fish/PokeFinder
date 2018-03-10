@@ -31,15 +31,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setupLanguage();
     setupModels();
 
-    stationary3.setAttribute(Qt::WA_QuitOnClose, false);
-    wild3.setAttribute(Qt::WA_QuitOnClose, false);
-    egg3.setAttribute(Qt::WA_QuitOnClose, false);
-    seedtotime3.setAttribute(Qt::WA_QuitOnClose, false);
-    jirachiGeneration.setAttribute(Qt::WA_QuitOnClose, false);
-    pokeSpot.setAttribute(Qt::WA_QuitOnClose, false);
-    ivToPID.setAttribute(Qt::WA_QuitOnClose, false);
-    GCRTC.setAttribute(Qt::WA_QuitOnClose, false);
-
     connect(&stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
     connect(&wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
     connect(&egg3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
@@ -164,7 +155,6 @@ void MainWindow::on_pushButtonStationary3_clicked()
 void MainWindow::on_actionResearcher_triggered()
 {
     Researcher *r = new Researcher();
-    r->setAttribute(Qt::WA_QuitOnClose, false);
     r->show();
 }
 

@@ -52,7 +52,7 @@ protected:
 
 private:
     Ui::Researcher *ui;
-    ResearcherModel *model = NULL;
+    ResearcherModel *model = new ResearcherModel(this, false);
     QMap<QString, int> keys;
 
     u64 getCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames);
