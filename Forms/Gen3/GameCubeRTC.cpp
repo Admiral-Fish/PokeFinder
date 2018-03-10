@@ -16,6 +16,7 @@ GameCubeRTC::GameCubeRTC(QWidget *parent) :
 GameCubeRTC::~GameCubeRTC()
 {
     delete ui;
+    delete m;
 }
 
 void GameCubeRTC::setupModels()
@@ -56,18 +57,19 @@ void GameCubeRTC::calcRTC()
     bool targetHit = false;
     int minutes = 0;
 
-    while(!targetHit)
+    while (!targetHit)
     {
         rng.seed = initSeed;
 
-        for(u32 x = 0; x < maxFrame; x++)
+        for (u32 x = 0; x < maxFrame; x++)
         {
-            if(rng.nextUInt() == targetSeed)
+            if (rng.nextUInt() == targetSeed)
             {
                 QDateTime finalTime = date.addSecs(seconds);
                 QList<QStandardItem*> row;
                 QString time = finalTime.toString(Qt::SystemLocaleShortDate);
-                row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second())))) << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initSeed, 16).toUpper());
+                row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
+                    << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initSeed, 16).toUpper());
                 emit updateView(row);
                 isSearching = false;
                 return;
@@ -78,23 +80,21 @@ void GameCubeRTC::calcRTC()
         seconds += 1;
         secoundCount += 1;
 
-        if(secoundCount == 60)
+        if (secoundCount == 60)
         {
             minutes += 1;
             secoundCount = 0;
         }
     }
-
 }
 
 void GameCubeRTC::on_pushButtonSearch_clicked()
 {
-    if(isSearching)
+    if (isSearching)
         return;
     m->removeRows(0, m->rowCount());
     ui->tableViewGenerator->viewport()->update();
 
     std::thread job(&GameCubeRTC::calcRTC, this);
     job.detach();
-
 }

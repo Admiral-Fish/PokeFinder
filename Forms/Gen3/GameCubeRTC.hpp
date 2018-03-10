@@ -34,7 +34,6 @@ private slots:
 
 private:
     Ui::GameCubeRTC *ui;
-
     bool isSearching = false;
     QStandardItemModel *m = new QStandardItemModel(this);
     QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));

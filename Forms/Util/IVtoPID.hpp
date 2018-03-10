@@ -21,11 +21,12 @@
 #define IVTOPIDHPP
 
 #include <QMainWindow>
-#include <libPokeFinder/Objects/Nature.hpp>
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <libPokeFinder/RNG/LCRNG.hpp>
 #include <QList>
+#include <libPokeFinder/RNG/RNGEuclidean.hpp>
+#include <libPokeFinder/RNG/LCRNG.hpp>
+#include <libPokeFinder/Objects/Nature.hpp>
 
 typedef uint32_t u32;
 
@@ -49,11 +50,11 @@ private slots:
 
 private:
     Ui::IVtoPID *ui;
-
     QStandardItemModel *m = new QStandardItemModel(this);
 
     void setupModels();
     void getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid);
+    void getSeedsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe, u32 nature);
 };
 
 #endif // IVTOPID
