@@ -104,12 +104,12 @@ void Stationary3::setupModels()
     ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
     ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
 
-    /*ui->comboBoxMethodGenerator->clear();
+    ui->comboBoxMethodGenerator->clear();
     ui->comboBoxMethodGenerator->addItem(tr("Method 1"), Method1);
     ui->comboBoxMethodGenerator->addItem(tr("Method 2"), Method2);
     ui->comboBoxMethodGenerator->addItem(tr("Method 4"), Method4);
     ui->comboBoxMethodGenerator->addItem(tr("XD/Colo"), XDColo);
-    ui->comboBoxMethodGenerator->addItem(tr("Channel"), Channel);*/
+    ui->comboBoxMethodGenerator->addItem(tr("Channel"), Channel);
 
     ui->comboBoxMethodSearcher->clear();
     ui->comboBoxMethodSearcher->addItem(tr("Method 1"), Method1);
