@@ -30,6 +30,7 @@
 #include <Forms/Gen3/PokeSpot.hpp>
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Gen3/GameCubeRTC.hpp>
+#include <Forms/Gen3/PIDtoIVs.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -61,6 +62,8 @@ private slots:
 
     void on_pushButtonGameCubeRTC_clicked();
 
+    void on_pushButtonPIDtoIV_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTranslator translator;
@@ -74,6 +77,7 @@ private:
     PokeSpot pokeSpot;
     IVtoPID ivToPID;
     GameCubeRTC GCRTC;
+    PIDtoIVs pidToIV;
 
     void setupLanguage();
     void setupModels();

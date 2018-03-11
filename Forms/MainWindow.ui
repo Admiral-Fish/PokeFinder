@@ -146,6 +146,19 @@
         <string>GameCube RTC</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButtonPIDtoIV">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>270</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PID to IV</string>
+       </property>
+      </widget>
      </widget>
     </item>
     <item row="0" column="1">
