@@ -7,6 +7,8 @@ PIDtoIVs::PIDtoIVs(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    cache = new RNGCache(Method::Method1);
+
     for(u32 i = 0; i < 256; i++)
     {
 
@@ -48,22 +50,10 @@ void PIDtoIVs::calcMethod124(u32 pid)
     u32 pidl = (pid & 0xFFFF) << 16;
     u32 pidh = pid & 0xFFFF0000;
 
-    u32 k1 = pidh - pidl * 0x41c64e6d;
-    for(u32 cnt = 0; cnt < 256; cnt++, k1 -= 0xc64e6d00)
+    vector<u32> seeds = cache->recoverLower16BitsPID(pidl, pidh);
+    for(int i = 0; i < seeds.size(); i++)
     {
-        u32 test = k1 >> 16;
-        if(test == 13938)
-        {
-            test = test;
-        }
-
-        if(flags[test])
-        {
-            u32 fullFirst = (pidl | (cnt << 8) | low8[test]);
-            u32 fullSecond = forward(fullFirst);
-            if((fullSecond & 0xFFFF0000) == pidh)
-                addSeed(reverse(fullFirst), forward(fullSecond));
-        }
+        addSeed(reverse(seeds.at(i)), forward(forward(seeds.at(i))));
     }
 }
 
@@ -73,12 +63,12 @@ void PIDtoIVs::calcMethodXD(u32 pid)
     long second = (pid & 0xFFFF) << 16;
     u32 fullFirst;
 
-    long t = ((second - 0x343fd * first) - 0x259ec4) % 0x100000000;
+    int64_t t = ((second - 0x343fd * first) - 0x259ec4) % 0x100000000;
     t = t < 0 ? t + 0x100000000 : t;
     long kmax = (0x343fabc02 - t) / 0x100000000;
     for(long k = 0; k <= kmax; k++, t += 0x100000000)
     {
-        if((t % 0x343fd) < 0x10000)
+        if(t % 0x343fd < 65536)
         {
             fullFirst = first | (t / 0x343fd);
             u32 iv2 = reverseXD(reverseXD(fullFirst));
@@ -91,15 +81,15 @@ void PIDtoIVs::calcMethodXD(u32 pid)
 void PIDtoIVs::addSeed(u32 seed, u32 iv1)
 {
     QString monsterSeed = QString::number(seed, 16);
-    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed) << new QStandardItem(QString("Method 1")) << new QStandardItem(calcIVs1(iv1)));
-    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed) << new QStandardItem(QString("Method 2")) << new QStandardItem(calcIVs2(forward(iv1))));
-    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed) << new QStandardItem(QString("Method 4")) << new QStandardItem(calcIVs4(iv1)));
+    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 1")) << new QStandardItem(calcIVs1(iv1)));
+    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 2")) << new QStandardItem(calcIVs2(forward(iv1))));
+    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 4")) << new QStandardItem(calcIVs4(iv1)));
     ui->tabePIDToIV->viewport()->update();
 }
 
 void PIDtoIVs::addSeedGC(u32 seed, u32 iv1, u32 iv2)
 {
-    m->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16)) << new QStandardItem(QString("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
+    m->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(QString("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
     ui->tabePIDToIV->viewport()->update();
 }
 

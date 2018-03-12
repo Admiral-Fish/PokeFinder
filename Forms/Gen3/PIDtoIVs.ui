@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>682</width>
+    <width>482</width>
     <height>402</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>PID to IV</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextBox" name="pidInput">
@@ -42,7 +42,7 @@
      <rect>
       <x>10</x>
       <y>110</y>
-      <width>661</width>
+      <width>461</width>
       <height>235</height>
      </rect>
     </property>
@@ -77,7 +77,7 @@
    <widget class="QPushButton" name="pushButtonGenerate">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>380</x>
       <y>80</y>
       <width>91</width>
       <height>26</height>
@@ -93,7 +93,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>682</width>
+     <width>482</width>
      <height>25</height>
     </rect>
    </property>

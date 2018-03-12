@@ -5,9 +5,13 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QList>
+#include <libPokeFinder/RNG/RNGCache.hpp>
+#include <libPokeFinder/Objects/Method.hpp>
+#include <QDebug>
 
 typedef uint32_t u32;
 
+using std::vector;
 namespace Ui {
 class PIDtoIVs;
 }
@@ -29,6 +33,7 @@ private:
     QStandardItemModel *m = new QStandardItemModel(this);
     char low8[0x10000];
     bool flags[0x10000];
+    RNGCache *cache;
 
     void setupModels();
     void calcFromPID(u32 pid);
