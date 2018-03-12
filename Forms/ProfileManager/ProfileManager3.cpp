@@ -25,6 +25,7 @@ ProfileManager3::ProfileManager3(QWidget *parent) :
     ui(new Ui::ProfileManager3)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
 
     model = new Profile3Model(this);
     model->setModel(Profile3::loadProfileList());
@@ -48,7 +49,6 @@ void ProfileManager3::registerProfile(Profile3 profile)
 {
     profile.saveProfile();
     model->addItem(profile);
-    ui->tableView->viewport()->update();
     emit updateProfiles();
 }
 
@@ -57,7 +57,6 @@ void ProfileManager3::editProfile(Profile3 profile, Profile3 original)
     profile.updateProfile(original);
     int r = ui->tableView->currentIndex().row();
     model->updateProfile(profile, r);
-    ui->tableView->viewport()->update();
     emit updateProfiles();
 }
 

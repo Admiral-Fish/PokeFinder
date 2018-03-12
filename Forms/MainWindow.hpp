@@ -24,7 +24,13 @@
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen3/Eggs3.hpp>
-#include <Forms/Researcher.hpp>
+#include <Forms/Util/Researcher.hpp>
+#include <Forms/Gen3/SeedToTime3.hpp>
+#include <Forms/Gen3/JirachiGeneration.hpp>
+#include <Forms/Gen3/PokeSpot.hpp>
+#include <Forms/Util/IVtoPID.hpp>
+#include <Forms/Gen3/GameCubeRTC.hpp>
+#include <Forms/Gen3/PIDtoIVs.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -48,6 +54,15 @@ private slots:
     void on_actionResearcher_triggered();
     void slotLanguageChanged(QAction *action);
     void updateProfiles(int num);
+    void on_pushButtonSeedToTime3_clicked();
+    void on_pushButtonJirachiGeneration_clicked();
+    void on_pushButtonPokeSpot_clicked();
+
+    void on_pushButtonIVToPID_clicked();
+
+    void on_pushButtonGameCubeRTC_clicked();
+
+    void on_pushButtonPIDtoIV_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -57,6 +72,12 @@ private:
     Stationary3 stationary3;
     Wild3 wild3;
     Eggs3 egg3;
+    SeedToTime3 seedtotime3;
+    JirachiGeneration jirachiGeneration;
+    PokeSpot pokeSpot;
+    IVtoPID ivToPID;
+    GameCubeRTC GCRTC;
+    PIDtoIVs pidToIV;
 
     void setupLanguage();
     void setupModels();

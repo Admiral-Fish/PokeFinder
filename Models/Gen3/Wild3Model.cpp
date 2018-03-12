@@ -25,7 +25,22 @@ Wild3Model::Wild3Model(QObject *parent) : QAbstractTableModel(parent)
 
 void Wild3Model::setModel(vector<Frame3> frames)
 {
-    model = frames;
+    if (frames.empty())
+        return;
+    int i = rowCount();
+    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
+    model.insert(model.end(), frames.begin(), frames.end());
+    emit endInsertRows();
+}
+
+void Wild3Model::clear()
+{
+    if (model.empty())
+        return;
+    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+    model.clear();
+    model.shrink_to_fit();
+    emit endRemoveRows();
 }
 
 int Wild3Model::rowCount(const QModelIndex &parent) const

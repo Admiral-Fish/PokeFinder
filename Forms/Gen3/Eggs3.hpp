@@ -60,10 +60,10 @@ private slots:
 private:
     Ui::Eggs3 *ui;
     vector<Profile3> profiles;
-    Egg3Model *emeraldIVs = NULL;
-    Egg3Model *emeraldPID = NULL;
-    Egg3Model *rs = NULL;
-    Egg3Model *frlg = NULL;
+    Egg3Model *emeraldIVs = new Egg3Model(this, EBred);
+    Egg3Model *emeraldPID = new Egg3Model(this, EBredPID);
+    Egg3Model *rs = new Egg3Model(this, RSBred);
+    Egg3Model *frlg = new Egg3Model(this, FRLGBred);
 
     void setupModels();
 };

@@ -17,29 +17,44 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIONARY3MODEL_HPP
-#define STATIONARY3MODEL_HPP
+#ifndef IVTOPIDHPP
+#define IVTOPIDHPP
 
-#include <QAbstractTableModel>
-#include <libPokeFinder/Gen3/Frame3.hpp>
+#include <QMainWindow>
+#include <QStandardItemModel>
+#include <QStandardItem>
+#include <QList>
+#include <libPokeFinder/RNG/RNGEuclidean.hpp>
+#include <libPokeFinder/RNG/LCRNG.hpp>
+#include <libPokeFinder/Objects/Nature.hpp>
 
-class Stationary3Model : public QAbstractTableModel
+typedef uint32_t u32;
+
+namespace Ui {
+class IVtoPID;
+}
+
+class IVtoPID : public QMainWindow
 {
-
     Q_OBJECT
 
-private:
-    vector<Frame3> model;
+protected:
+    void changeEvent(QEvent*);
 
 public:
-    Stationary3Model(QObject *parent);
-    void setModel(vector<Frame3> frames);
-    void clear();
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    explicit IVtoPID(QWidget *parent = 0);
+    ~IVtoPID();
 
+private slots:
+    void on_pushButtonFind_clicked();
+
+private:
+    Ui::IVtoPID *ui;
+    QStandardItemModel *m = new QStandardItemModel(this);
+
+    void setupModels();
+    void getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid);
+    void getSeedsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe, u32 nature);
 };
 
-#endif // STATIONARY3MODEL_HPP
+#endif // IVTOPID

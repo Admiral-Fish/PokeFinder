@@ -25,12 +25,21 @@ Stationary3::Stationary3(QWidget *parent) :
     ui(new Ui::Stationary3)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
 
     ui->label->setVisible(false);
     ui->comboBoxShadow->setVisible(false);
 
     setupModels();
     updateProfiles();
+
+    ui->tableViewGenerator->setModel(g);
+    ui->tableViewGenerator->verticalHeader()->setVisible(false);
+    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->tableViewSearcher->setModel(s);
+    ui->tableViewSearcher->verticalHeader()->setVisible(false);
+    ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     QFile file(QApplication::applicationDirPath() + "/profiles.xml");
 
@@ -95,18 +104,6 @@ void Stationary3::setupModels()
     vector<QString> powerList = Power::getPowers();
     ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
     ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-
-    if (g != NULL)
-        delete g;
-    g = new Stationary3Model(this);
-    ui->tableViewGenerator->setModel(g);
-    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    if (s != NULL)
-        delete s;
-    s = new Searcher3Model(this, Method1);
-    ui->tableViewSearcher->setModel(s);
-    ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->comboBoxMethodGenerator->clear();
     ui->comboBoxMethodGenerator->addItem(tr("Method 1"), Method1);
@@ -212,7 +209,6 @@ void Stationary3::on_anyHiddenPowerSearcher_clicked()
 void Stationary3::updateViewSearcher(vector<Frame3> frames)
 {
     s->addItems(frames);
-    ui->tableViewSearcher->viewport()->update();
 }
 
 void Stationary3::on_checkBoxDelayGenerator_clicked()
@@ -230,10 +226,7 @@ void Stationary3::on_checkBoxDelayGenerator_clicked()
 
 void Stationary3::on_generate_clicked()
 {
-    if (g != NULL)
-        delete g;
-    g = new Stationary3Model(this);
-    ui->tableViewGenerator->setModel(g);
+    g->clear();
 
     u32 seed = ui->initialSeedGenerator->text().toUInt(NULL, 16);
     u32 startingFrame = ui->startingFrameGenerator->text().toUInt(NULL, 10);
@@ -255,7 +248,6 @@ void Stationary3::on_generate_clicked()
 
     vector<Frame3> frames = generator.generate(compare);
     g->setModel(frames);
-    ui->tableViewGenerator->viewport()->update();
 }
 
 void Stationary3::search()
@@ -330,10 +322,8 @@ void Stationary3::on_search_clicked()
 {
     if (isSearching == true)
         return;
-    if (s != NULL)
-        delete s;
-    s = new Searcher3Model(this, (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
-    ui->tableViewSearcher->setModel(s);
+    s->clear();
+    s->setMethod((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
     std::thread job(&Stationary3::search, this);
     job.detach();
 }

@@ -17,29 +17,46 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIONARY3MODEL_HPP
-#define STATIONARY3MODEL_HPP
+#ifndef POKESPOT_HPP
+#define POKESPOT_HPP
 
-#include <QAbstractTableModel>
+#include <QMainWindow>
+#include <libPokeFinder/RNG/LCRNG.hpp>
+#include <Models/Gen3/PokeSpotModel.hpp>
+#include <libPokeFinder/Objects/Nature.hpp>
 #include <libPokeFinder/Gen3/Frame3.hpp>
+#include <libPokeFinder/Objects/FrameCompare.hpp>
 
-class Stationary3Model : public QAbstractTableModel
+namespace Ui {
+class PokeSpot;
+}
+
+class PokeSpot : public QMainWindow
 {
-
     Q_OBJECT
 
-private:
-    vector<Frame3> model;
+protected:
+    void changeEvent(QEvent*);
 
 public:
-    Stationary3Model(QObject *parent);
-    void setModel(vector<Frame3> frames);
-    void clear();
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    explicit PokeSpot(QWidget *parent = 0);
+    ~PokeSpot();
+
+private slots:
+    void on_pushButtonAnyAbility_clicked();
+    void on_pushButtonAnyNature_clicked();
+    void on_pushButtonAnySpotType_clicked();
+
+    void on_pushButtonGenerate_clicked();
+
+private:
+    Ui::PokeSpot *ui;
+    PokeSpotModel *model = new PokeSpotModel(this);
+    LCRNG rng = XDRNG(0);
+    vector<u32> rngList;
+
+    void setupModels();
 
 };
 
-#endif // STATIONARY3MODEL_HPP
+#endif // POKESPOT_HPP

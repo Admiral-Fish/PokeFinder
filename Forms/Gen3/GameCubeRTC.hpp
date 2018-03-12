@@ -17,47 +17,48 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGER3_HPP
-#define PROFILEMANAGER3_HPP
+#ifndef GAMECUBERTC_HPP
+#define GAMECUBERTC_HPP
 
 #include <QMainWindow>
-#include <Forms/ProfileManager/ProfileManager3NewEdit.hpp>
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <QObject>
-#include <libPokeFinder/Gen3/Profile3.hpp>
-#include <Models/Gen3/Profile3Model.hpp>
+#include <thread>
+#include <QList>
+#include <libPokeFinder/RNG/LCRNG.hpp>
+#include <QDateTime>
+#include <QDate>
+#include <QTime>
 
-using std::vector;
 typedef uint32_t u32;
 
 namespace Ui {
-class ProfileManager3;
+class GameCubeRTC;
 }
 
-class ProfileManager3 : public QMainWindow
+class GameCubeRTC : public QMainWindow
 {
     Q_OBJECT
 
-signals:
-    void updateProfiles();
-
 public:
-    explicit ProfileManager3(QWidget *parent = 0);
-    ~ProfileManager3();
+    explicit GameCubeRTC(QWidget *parent = 0);
+    ~GameCubeRTC();
+
+signals:
+    void updateView(QList<QStandardItem *>);
 
 private slots:
-    void on_pushButtonNew_clicked();
-    void on_pushButtonOk_clicked();
-    void registerProfile(Profile3 profile);
-    void editProfile(Profile3 profile, Profile3 original);
-    void on_pushButtonEdit_clicked();
-    void on_pushButtonDelete_clicked();
+    void on_pushButtonSearch_clicked();
+    void updateTableView(QList<QStandardItem *> row);
 
 private:
-    Ui::ProfileManager3 *ui;
-    Profile3Model *model = new Profile3Model(this);
+    Ui::GameCubeRTC *ui;
+    bool isSearching = false;
+    QStandardItemModel *m = new QStandardItemModel(this);
+    QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
 
+    void setupModels();
+    void calcRTC();
 };
 
-#endif // PROFILEMANAGER3_HPP
+#endif // GAMECUBERTC_HPP

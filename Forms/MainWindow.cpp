@@ -31,10 +31,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setupLanguage();
     setupModels();
 
-    stationary3.setAttribute(Qt::WA_QuitOnClose, false);
-    wild3.setAttribute(Qt::WA_QuitOnClose, false);
-    egg3.setAttribute(Qt::WA_QuitOnClose, false);
-
     connect(&stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
     connect(&wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
     connect(&egg3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
@@ -159,7 +155,6 @@ void MainWindow::on_pushButtonStationary3_clicked()
 void MainWindow::on_actionResearcher_triggered()
 {
     Researcher *r = new Researcher();
-    r->setAttribute(Qt::WA_QuitOnClose, false);
     r->show();
 }
 
@@ -173,4 +168,40 @@ void MainWindow::on_pushButtonEgg3_clicked()
 {
     egg3.show();
     egg3.raise();
+}
+
+void MainWindow::on_pushButtonSeedToTime3_clicked()
+{
+    seedtotime3.show();
+    seedtotime3.raise();
+}
+
+void MainWindow::on_pushButtonJirachiGeneration_clicked()
+{
+    jirachiGeneration.show();
+    jirachiGeneration.raise();
+}
+
+void MainWindow::on_pushButtonPokeSpot_clicked()
+{
+    pokeSpot.show();
+    pokeSpot.raise();
+}
+
+void MainWindow::on_pushButtonIVToPID_clicked()
+{
+    ivToPID.show();
+    ivToPID.raise();
+}
+
+void MainWindow::on_pushButtonGameCubeRTC_clicked()
+{
+    GCRTC.show();
+    GCRTC.raise();
+}
+
+void MainWindow::on_pushButtonPIDtoIV_clicked()
+{
+    pidToIV.show();
+    pidToIV.raise();
 }

@@ -46,6 +46,8 @@ private:
 public:
     ResearcherModel(QObject *parent, bool is64Bit);
     void setModel(vector<ResearcherFrame>);
+    void clear();
+    void setFlag(bool is64Bit);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;

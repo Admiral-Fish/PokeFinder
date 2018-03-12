@@ -23,7 +23,6 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QStandardItemModel>
-#include <Forms/QTextBox.hpp>
 #include <vector>
 #include <unordered_map>
 #include <libPokeFinder/RNG/LCRNG.hpp>
@@ -53,7 +52,7 @@ protected:
 
 private:
     Ui::Researcher *ui;
-    ResearcherModel *model = NULL;
+    ResearcherModel *model = new ResearcherModel(this, false);
     QMap<QString, int> keys;
 
     u64 getCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames);

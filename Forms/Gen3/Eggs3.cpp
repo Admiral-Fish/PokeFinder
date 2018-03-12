@@ -25,14 +25,35 @@ Eggs3::Eggs3(QWidget *parent) :
     ui(new Ui::Eggs3)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
     updateProfiles();
+
+    ui->tableViewEmeraldIVs->setModel(emeraldIVs);
+    ui->tableViewEmeraldIVs->verticalHeader()->setVisible(false);
+    ui->tableViewEmeraldIVs->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->tableViewEmeraldPID->setModel(emeraldPID);
+    ui->tableViewEmeraldPID->verticalHeader()->setVisible(false);
+    ui->tableViewEmeraldPID->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->tableViewRS->setModel(rs);
+    ui->tableViewRS->verticalHeader()->setVisible(false);
+    ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->tableViewFRLG->setModel(frlg);
+    ui->tableViewFRLG->verticalHeader()->setVisible(false);
+    ui->tableViewFRLG->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 Eggs3::~Eggs3()
 {
     delete ui;
+    delete emeraldIVs;
+    delete emeraldPID;
+    delete rs;
+    delete frlg;
 }
 
 void Eggs3::updateProfiles()
@@ -87,30 +108,6 @@ void Eggs3::setupModels()
     ui->textBoxMaxPickupFRLG->setValues(1, 32, true);
     ui->textBoxTIDFRLG->setValues(0, 48, true);
     ui->textBoxSIDFRLG->setValues(0, 48, true);
-
-    if (emeraldIVs != NULL)
-        delete emeraldIVs;
-    emeraldIVs = new Egg3Model(this, EBred);
-    ui->tableViewEmeraldIVs->setModel(emeraldIVs);
-    ui->tableViewEmeraldIVs->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    if (emeraldPID != NULL)
-        delete emeraldPID;
-    emeraldPID = new Egg3Model(this, EBredPID);
-    ui->tableViewEmeraldPID->setModel(emeraldPID);
-    ui->tableViewEmeraldPID->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    if (rs != NULL)
-        delete rs;
-    rs = new Egg3Model(this, RSBred);
-    ui->tableViewRS->setModel(rs);
-    ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    if (frlg != NULL)
-        delete frlg;
-    frlg = new Egg3Model(this, FRLGBred);
-    ui->tableViewFRLG->setModel(frlg);
-    ui->tableViewFRLG->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->comboBoxCompatibilityEmerald->clear();
     ui->comboBoxCompatibilityEmerald->addItem(tr("The two don't seem to like each other"), 20);
@@ -197,10 +194,7 @@ void Eggs3::refreshProfiles()
 
 void Eggs3::on_pushButtonGenerateEmeraldPID_clicked()
 {
-    if (emeraldPID != NULL)
-        delete emeraldPID;
-    emeraldPID = new Egg3Model(this, EBredPID);
-    ui->tableViewEmeraldPID->setModel(emeraldPID);
+    emeraldPID->clear();
 
     u32 startingFrame = ui->textBoxMinFrameEmeraldPID->text().toUInt(NULL, 10);
     u32 maxResults = ui->textBoxMaxFrameEmeraldPID->text().toUInt(NULL, 10);
@@ -222,15 +216,11 @@ void Eggs3::on_pushButtonGenerateEmeraldPID_clicked()
 
     vector<Frame3> frames = generator.generate(compare);
     emeraldPID->setModel(frames);
-    ui->tableViewEmeraldPID->viewport()->update();
 }
 
 void Eggs3::on_pushButtonGenerateEmeraldIVs_clicked()
 {
-    if (emeraldIVs != NULL)
-        delete emeraldIVs;
-    emeraldIVs = new Egg3Model(this, EBred);
-    ui->tableViewEmeraldIVs->setModel(emeraldIVs);
+    emeraldIVs->clear();
 
     u32 startingFrame = ui->textBoxMinFrameEmeraldIVs->text().toUInt(NULL, 10);
     u32 maxResults = ui->textBoxMaxFrameEmeraldIVs->text().toUInt(NULL, 10);
@@ -255,15 +245,11 @@ void Eggs3::on_pushButtonGenerateEmeraldIVs_clicked()
 
     vector<Frame3> frames = generator.generate(compare);
     emeraldIVs->setModel(frames);
-    ui->tableViewEmeraldPID->viewport()->update();
 }
 
 void Eggs3::on_pushButtonGenerateRS_clicked()
 {
-    if (rs != NULL)
-        delete rs;
-    rs = new Egg3Model(this, RSBred);
-    ui->tableViewRS->setModel(rs);
+    rs->clear();
 
     u32 minHeld = ui->textBoxMinHeldRS->text().toUInt(NULL, 10);
     u32 maxHeld = ui->textBoxMaxHeldRS->text().toUInt(NULL, 10);
@@ -289,15 +275,11 @@ void Eggs3::on_pushButtonGenerateRS_clicked()
 
     vector<Frame3> frames = generator.generate(compare);
     rs->setModel(frames);
-    ui->tableViewRS->viewport()->update();
 }
 
 void Eggs3::on_pushButtonGenerateFRLG_clicked()
 {
-    if (frlg != NULL)
-        delete frlg;
-    frlg = new Egg3Model(this, RSBred);
-    ui->tableViewFRLG->setModel(frlg);
+    frlg->clear();
 
     u32 minHeld = ui->textBoxMinHeldFRLG->text().toUInt(NULL, 10);
     u32 maxHeld = ui->textBoxMaxHeldFRLG->text().toUInt(NULL, 10);
@@ -323,5 +305,4 @@ void Eggs3::on_pushButtonGenerateFRLG_clicked()
 
     vector<Frame3> frames = generator.generate(compare);
     frlg->setModel(frames);
-    ui->tableViewFRLG->viewport()->update();
 }

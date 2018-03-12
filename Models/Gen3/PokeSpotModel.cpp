@@ -17,13 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Stationary3Model.hpp"
+#include "PokeSpotModel.hpp"
 
-Stationary3Model::Stationary3Model(QObject *parent) : QAbstractTableModel(parent)
+PokeSpotModel::PokeSpotModel(QObject *parent) : QAbstractTableModel(parent)
 {
 }
 
-void Stationary3Model::setModel(vector<Frame3> frames)
+void PokeSpotModel::setModel(vector<Frame3> frames)
 {
     if (frames.empty())
         return;
@@ -33,7 +33,7 @@ void Stationary3Model::setModel(vector<Frame3> frames)
     emit endInsertRows();
 }
 
-void Stationary3Model::clear()
+void PokeSpotModel::clear()
 {
     if (model.empty())
         return;
@@ -43,19 +43,19 @@ void Stationary3Model::clear()
     emit endRemoveRows();
 }
 
-int Stationary3Model::rowCount(const QModelIndex &parent) const
+int PokeSpotModel::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
     return (int)model.size();
 }
 
-int Stationary3Model::columnCount(const QModelIndex &parent) const
+int PokeSpotModel::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return 15;
+    return 7;
 }
 
-QVariant Stationary3Model::data(const QModelIndex &index, int role) const
+QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
@@ -71,35 +71,19 @@ QVariant Stationary3Model::data(const QModelIndex &index, int role) const
             case 2:
                 return frame.getShiny();
             case 3:
-                return frame.getNature();
+                return frame.lockReason;
             case 4:
-                return frame.ability;
+                return frame.getNature();
             case 5:
-                return frame.ivs[0];
+                return frame.ability;
             case 6:
-                return frame.ivs[1];
-            case 7:
-                return frame.ivs[2];
-            case 8:
-                return frame.ivs[3];
-            case 9:
-                return frame.ivs[4];
-            case 10:
-                return frame.ivs[5];
-            case 11:
-                return frame.getPower();
-            case 12:
-                return frame.power;
-            case 13:
                 return frame.getGender();
-            case 14:
-                return frame.getTime();
         }
     }
     return QVariant();
 }
 
-QVariant Stationary3Model::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant PokeSpotModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role == Qt::DisplayRole)
     {
@@ -114,29 +98,13 @@ QVariant Stationary3Model::headerData(int section, Qt::Orientation orientation, 
                 case 2:
                     return "!!!";
                 case 3:
-                    return tr("Nature");
+                    return tr("Type");
                 case 4:
-                    return tr("Ability");
+                    return tr("Nature");
                 case 5:
-                    return tr("HP");
+                    return tr("Ability");
                 case 6:
-                    return tr("Atk");
-                case 7:
-                    return tr("Def");
-                case 8:
-                    return tr("SpA");
-                case 9:
-                    return tr("SpD");
-                case 10:
-                    return tr("Spe");
-                case 11:
-                    return tr("Hidden");
-                case 12:
-                    return tr("Power");
-                case 13:
                     return tr("Gender");
-                case 14:
-                    return tr("Time");
             }
         }
     }

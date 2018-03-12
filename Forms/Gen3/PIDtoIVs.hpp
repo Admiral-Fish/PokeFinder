@@ -17,47 +17,51 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGER3_HPP
-#define PROFILEMANAGER3_HPP
+#ifndef PIDTOIVS_HPP
+#define PIDTOIVS_HPP
 
 #include <QMainWindow>
-#include <Forms/ProfileManager/ProfileManager3NewEdit.hpp>
-#include <QStandardItemModel>
 #include <QStandardItem>
-#include <QObject>
-#include <libPokeFinder/Gen3/Profile3.hpp>
-#include <Models/Gen3/Profile3Model.hpp>
+#include <QStandardItemModel>
+#include <QList>
+#include <libPokeFinder/RNG/RNGCache.hpp>
+#include <libPokeFinder/Objects/Method.hpp>
+#include <libPokeFinder/RNG/RNGEuclidean.hpp>
+#include <libPokeFinder/RNG/LCRNG.hpp>
 
-using std::vector;
 typedef uint32_t u32;
 
+using std::vector;
 namespace Ui {
-class ProfileManager3;
+class PIDtoIVs;
 }
 
-class ProfileManager3 : public QMainWindow
+class PIDtoIVs : public QMainWindow
 {
     Q_OBJECT
 
-signals:
-    void updateProfiles();
-
 public:
-    explicit ProfileManager3(QWidget *parent = 0);
-    ~ProfileManager3();
+    explicit PIDtoIVs(QWidget *parent = 0);
+    ~PIDtoIVs();
 
 private slots:
-    void on_pushButtonNew_clicked();
-    void on_pushButtonOk_clicked();
-    void registerProfile(Profile3 profile);
-    void editProfile(Profile3 profile, Profile3 original);
-    void on_pushButtonEdit_clicked();
-    void on_pushButtonDelete_clicked();
+    void on_pushButtonGenerate_clicked();
 
 private:
-    Ui::ProfileManager3 *ui;
-    Profile3Model *model = new Profile3Model(this);
+    Ui::PIDtoIVs *ui;
+    QStandardItemModel *m = new QStandardItemModel(this);
+
+    void setupModels();
+    void calcFromPID(u32 pid);
+    void calcMethod124(u32 pid);
+    void calcMethodXD(u32 pid);
+    QString calcIVs1(u32 iv1);
+    QString calcIVs2(u32 iv1);
+    QString calcIVs4(u32 iv1);
+    QString calcIVsXD(u32 iv1, u32 iv2);
+    void addSeed(u32 seed, u32 iv1);
+    void addSeedGC(u32 seed, u32 iv1, u32 iv2);
 
 };
 
-#endif // PROFILEMANAGER3_HPP
+#endif // PIDTOIVS_HPP

@@ -26,15 +26,26 @@ Egg3Model::Egg3Model(QObject *parent, Method method) : QAbstractTableModel(paren
 
 void Egg3Model::setModel(vector<Frame3> frames)
 {
-    model = frames;
-}
-
-void Egg3Model::addItems(vector<Frame3> frames)
-{
     int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
+    int size = i + frames.size();
+    emit beginInsertRows(QModelIndex(), i, size == 0 ? 0 : size);
     model.insert(model.end(), frames.begin(), frames.end());
     emit endInsertRows();
+}
+
+void Egg3Model::clear()
+{
+    int i = rowCount();
+    emit beginRemoveRows(QModelIndex(), 0, i == 0 ? 0 : i - 1);
+    model.clear();
+    model.shrink_to_fit();
+    emit endRemoveRows();
+}
+
+void Egg3Model::setMethod(Method method)
+{
+    this->method = method;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
 int Egg3Model::rowCount(const QModelIndex &parent) const

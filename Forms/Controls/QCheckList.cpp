@@ -151,7 +151,7 @@ void QCheckList::updateText()
     switch (globalCheckState())
     {
         case Qt::Checked:
-            text = allCheckedText;
+            text = tr("Any");
             break;
 
         case Qt::Unchecked:

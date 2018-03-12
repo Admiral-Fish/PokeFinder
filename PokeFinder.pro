@@ -43,9 +43,9 @@ TRANSLATIONS += \
 SOURCES += \
     Forms/ProfileManager/ProfileManager3.cpp \
     Forms/ProfileManager/ProfileManager3NewEdit.cpp \
-    Forms/QCheckList.cpp \
-    Forms/QTextBox.cpp \
-    Forms/Researcher.cpp \
+    Forms/Controls/QCheckList.cpp \
+    Forms/Controls/QTextBox.cpp \
+    Forms/Util/Researcher.cpp \
     libPokeFinder/Gen3/Frame3.cpp \
     libPokeFinder/Gen3/Generator3.cpp \
     libPokeFinder/Gen3/NatureLock.cpp \
@@ -73,18 +73,25 @@ SOURCES += \
     Forms/Gen3/Stationary3.cpp \
     Forms/MainWindow.cpp \
     Forms/Gen3/Wild3.cpp \
-    Forms/IVFilter.cpp \
+    Forms/Controls/IVFilter.cpp \
     Models/Gen3/Profile3Model.cpp \
     Models/Gen3/Egg3Model.cpp \
     Forms/Gen3/Eggs3.cpp \
-    libPokeFinder/Gen3/Egg3.cpp
+    libPokeFinder/Gen3/Egg3.cpp \
+    Forms/Gen3/SeedToTime3.cpp \
+    Forms/Gen3/JirachiGeneration.cpp \
+    Forms/Gen3/PokeSpot.cpp \
+    Models/Gen3/PokeSpotModel.cpp \
+    Forms/Util/IVtoPID.cpp \
+    Forms/Gen3/GameCubeRTC.cpp \
+    Forms/Gen3/PIDtoIVs.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManager3.hpp \
     Forms/ProfileManager/ProfileManager3NewEdit.hpp \
-    Forms/QCheckList.hpp \
-    Forms/QTextBox.hpp \
-    Forms/Researcher.hpp \
+    Forms/Controls/QCheckList.hpp \
+    Forms/Controls/QTextBox.hpp \
+    Forms/Util/Researcher.hpp \
     libPokeFinder/Gen3/Frame3.hpp \
     libPokeFinder/Gen3/Generator3.hpp \
     libPokeFinder/Gen3/NatureLock.hpp \
@@ -119,22 +126,35 @@ HEADERS += \
     Forms/Gen3/Stationary3.hpp \
     Forms/MainWindow.hpp \
     Forms/Gen3/Wild3.hpp \
-    Forms/IVFilter.hpp \
+    Forms/Controls/IVFilter.hpp \
     Models/Gen3/Profile3Model.hpp \
     Models/Gen3/Egg3Model.hpp \
     Forms/Gen3/Eggs3.hpp \
     libPokeFinder/Objects/Egg.hpp \
-    libPokeFinder/Gen3/Egg3.hpp
+    libPokeFinder/Gen3/Egg3.hpp \
+    Forms/Gen3/SeedToTime3.hpp \
+    Forms/Gen3/JirachiGeneration.hpp \
+    Forms/Gen3/PokeSpot.hpp \
+    Models/Gen3/PokeSpotModel.hpp \
+    Forms/Util/IVtoPID.hpp \
+    Forms/Gen3/GameCubeRTC.hpp \
+    Forms/Gen3/PIDtoIVs.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManager3.ui \
     Forms/ProfileManager/ProfileManager3NewEdit.ui \
-    Forms/Researcher.ui \
+    Forms/Util/Researcher.ui \
     Forms/Gen3/Stationary3.ui \
     Forms/MainWindow.ui \
     Forms/Gen3/Wild3.ui \
-    Forms/IVFilter.ui \
-    Forms/Gen3/Eggs3.ui
+    Forms/Controls/IVFilter.ui \
+    Forms/Gen3/Eggs3.ui \
+    Forms/Gen3/SeedToTime3.ui \
+    Forms/Gen3/JirachiGeneration.ui \
+    Forms/Gen3/PokeSpot.ui \
+    Forms/Util/IVtoPID.ui \
+    Forms/Gen3/GameCubeRTC.ui \
+    Forms/Gen3/PIDtoIVs.ui
 
 RESOURCES += \
     resources.qrc

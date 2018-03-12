@@ -2924,7 +2924,7 @@ QHeaderView::section {
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -2933,7 +2933,7 @@ QHeaderView::section {
   <customwidget>
    <class>QTextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/QTextBox.hpp</header>
+   <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -20,19 +20,14 @@
 #ifndef WILD3_HPP
 #define WILD3_HPP
 
-#include <Forms/QCheckList.hpp>
-#include <Forms/QTextBox.hpp>
 #include <libPokeFinder/Gen3/Frame3.hpp>
 #include <libPokeFinder/Gen3/Generator3.hpp>
 #include <libPokeFinder/Gen3/Searcher3.hpp>
 #include <libPokeFinder/Objects/FrameCompare.hpp>
 #include <libPokeFinder/Objects/Nature.hpp>
 #include <libPokeFinder/Objects/Power.hpp>
-#include <vector>
-#include <QDir>
 #include <libPokeFinder/Gen3/Profile3.hpp>
 #include <Forms/ProfileManager/ProfileManager3.hpp>
-#include <Forms/IVFilter.hpp>
 #include <Models/Gen3/Wild3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <thread>
@@ -75,8 +70,8 @@ private:
     Ui::Wild3 *ui;
     vector<Profile3> profiles;
     bool isSearching = false;
-    Searcher3Model *s = NULL;
-    Wild3Model *g = NULL;
+    Searcher3Model *s = new Searcher3Model(this, Method1);
+    Wild3Model *g = new Wild3Model(this);
 
     void setupModels();
     void createProfileXml();

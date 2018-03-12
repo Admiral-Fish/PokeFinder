@@ -17,13 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIONARY3MODEL_HPP
-#define STATIONARY3MODEL_HPP
+#ifndef POKESPOTMODEL_HPP
+#define POKESPOTMODEL_HPP
 
 #include <QAbstractTableModel>
 #include <libPokeFinder/Gen3/Frame3.hpp>
 
-class Stationary3Model : public QAbstractTableModel
+class PokeSpotModel : public QAbstractTableModel
 {
 
     Q_OBJECT
@@ -32,7 +32,7 @@ private:
     vector<Frame3> model;
 
 public:
-    Stationary3Model(QObject *parent);
+    PokeSpotModel(QObject *parent);
     void setModel(vector<Frame3> frames);
     void clear();
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
@@ -42,4 +42,4 @@ public:
 
 };
 
-#endif // STATIONARY3MODEL_HPP
+#endif // POKESPOTMODEL_HPP

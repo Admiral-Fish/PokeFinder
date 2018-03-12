@@ -81,6 +81,84 @@
         <string>Egg</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButtonSeedToTime3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>16-Bit Seed to Time</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonJirachiGeneration">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>150</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Jirachi Generation</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonPokeSpot">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>180</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PokeSpot</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonIVToPID">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>210</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>IV to PID</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonGameCubeRTC">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>240</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>GameCube RTC</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonPIDtoIV">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>270</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PID to IV</string>
+       </property>
+      </widget>
      </widget>
     </item>
     <item row="0" column="1">
@@ -98,7 +176,7 @@
      <x>0</x>
      <y>0</y>
      <width>463</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLanguage">

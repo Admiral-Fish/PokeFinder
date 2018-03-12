@@ -6,6 +6,7 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(QWidget *parent) :
     ui(new Ui::ProfileManager3NewEdit)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
 
     ui->textBoxTID->setValues(0, 48, true);
     ui->textBoxSID->setValues(0, 48, true);
@@ -36,7 +37,7 @@ ProfileManager3NewEdit::~ProfileManager3NewEdit()
 void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
 {
     QString input = ui->lineEditProfile->text().trimmed();
-    if(input == "")
+    if (input == "")
     {
         QMessageBox error;
         error.setText(tr("Enter a Profile Name."));

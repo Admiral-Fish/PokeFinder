@@ -17,29 +17,44 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIONARY3MODEL_HPP
-#define STATIONARY3MODEL_HPP
+#ifndef SEEDTOTIME3_HPP
+#define SEEDTOTIME3_HPP
 
-#include <QAbstractTableModel>
-#include <libPokeFinder/Gen3/Frame3.hpp>
+#include <QMainWindow>
+#include <QStandardItemModel>
+#include <QDateTime>
+#include <QList>
+#include <QStandardItem>
+#include <QMessageBox>
+#include <libPokeFinder/RNG/LCRNG.hpp>
 
-class Stationary3Model : public QAbstractTableModel
+typedef uint32_t u32;
+
+namespace Ui {
+class SeedToTime3;
+}
+
+class SeedToTime3 : public QMainWindow
 {
-
     Q_OBJECT
 
-private:
-    vector<Frame3> model;
+protected:
+    void changeEvent(QEvent*);
 
 public:
-    Stationary3Model(QObject *parent);
-    void setModel(vector<Frame3> frames);
-    void clear();
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    explicit SeedToTime3(QWidget *parent = 0);
+    ~SeedToTime3();
 
+private slots:
+    void on_pushButtonFind_clicked();
+
+private:
+    Ui::SeedToTime3 *ui;
+    QStandardItemModel *m = new QStandardItemModel(this);
+
+    void setupModels();
+    u32 originSeed(u32 seed);
+    void seedToTime(u32 seed, u32 year);
 };
 
-#endif // STATIONARY3MODEL_HPP
+#endif // SEEDTOTIME3_HPP
