@@ -1,3 +1,22 @@
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017 by Admiral_Fish and bumba
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 #include "PIDtoIVs.hpp"
 #include "ui_PIDtoIVs.h"
 
@@ -6,28 +25,15 @@ PIDtoIVs::PIDtoIVs(QWidget *parent) :
     ui(new Ui::PIDtoIVs)
 {
     ui->setupUi(this);
-
-    cache = new RNGCache(Method::Method1);
-
-    for(u32 i = 0; i < 256; i++)
-    {
-
-        u32 right = 0x41c64e6d * i + 0x6073;
-        ushort val = right >> 16;
-        flags[val] = true;
-        low8[val] = i;
-        --val;
-        flags[val] = true;
-        low8[val] = i;
-    }
+    setAttribute(Qt::WA_QuitOnClose, false);
 
     setupModels();
-
 }
 
 PIDtoIVs::~PIDtoIVs()
 {
     delete ui;
+    delete m;
 }
 
 void PIDtoIVs::setupModels()
@@ -47,34 +53,35 @@ void PIDtoIVs::calcFromPID(u32 pid)
 
 void PIDtoIVs::calcMethod124(u32 pid)
 {
+    RNGCache cache = RNGCache(Method1);
+    LCRNG forward = PokeRNG(0);
+    LCRNG backward = PokeRNGR(0);
+
     u32 pidl = (pid & 0xFFFF) << 16;
     u32 pidh = pid & 0xFFFF0000;
 
-    vector<u32> seeds = cache->recoverLower16BitsPID(pidl, pidh);
+    vector<u32> seeds = cache.recoverLower16BitsPID(pidl, pidh);
     for(int i = 0; i < seeds.size(); i++)
     {
-        addSeed(reverse(seeds.at(i)), forward(forward(seeds.at(i))));
+        forward.seed = backward.seed = seeds[i];
+        forward.nextUInt();
+        addSeed(backward.nextUInt(), forward.nextUInt());
     }
 }
 
 void PIDtoIVs::calcMethodXD(u32 pid)
 {
-    long first = pid & 0xFFFF0000;
-    long second = (pid & 0xFFFF) << 16;
-    u32 fullFirst;
+    RNGEuclidean euclidean = RNGEuclidean(XDColo);
+    LCRNG rng = XDRNGR(0);
 
-    int64_t t = ((second - 0x343fd * first) - 0x259ec4) % 0x100000000;
-    t = t < 0 ? t + 0x100000000 : t;
-    long kmax = (0x343fabc02 - t) / 0x100000000;
-    for(long k = 0; k <= kmax; k++, t += 0x100000000)
+    vector<u32> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
+    for (auto i = 0; i < seeds.size(); i += 2)
     {
-        if(t % 0x343fd < 65536)
-        {
-            fullFirst = first | (t / 0x343fd);
-            u32 iv2 = reverseXD(reverseXD(fullFirst));
-            u32 iv1 = reverseXD(iv2);
-            addSeedGC(reverseXD(iv1), iv1, iv2);
-        }
+        rng.seed = seeds[i];
+        rng.nextUInt();
+        u32 iv2 = rng.nextUShort();
+        u32 iv1 = rng.nextUShort();
+        addSeedGC(rng.nextUInt(), iv1, iv2);
     }
 }
 
@@ -82,21 +89,20 @@ void PIDtoIVs::addSeed(u32 seed, u32 iv1)
 {
     QString monsterSeed = QString::number(seed, 16);
     m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 1")) << new QStandardItem(calcIVs1(iv1)));
-    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 2")) << new QStandardItem(calcIVs2(forward(iv1))));
+    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 2")) << new QStandardItem(calcIVs2(iv1)));
     m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 4")) << new QStandardItem(calcIVs4(iv1)));
-    ui->tabePIDToIV->viewport()->update();
 }
 
 void PIDtoIVs::addSeedGC(u32 seed, u32 iv1, u32 iv2)
 {
-    m->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(QString("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
-    ui->tabePIDToIV->viewport()->update();
+    m->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper())<< new QStandardItem(QString("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
 }
 
 QString PIDtoIVs::calcIVs1(u32 iv1)
 {
     QString ivs = "";
-    u32 iv2 = forward(iv1) >> 16;
+    LCRNG rng = PokeRNG(iv1);
+    u32 iv2 = rng.nextUShort();
     iv1 >>= 16;
 
     for(u32 x = 0; x < 3; x++)
@@ -107,16 +113,16 @@ QString PIDtoIVs::calcIVs1(u32 iv1)
         ivs += ".";
     }
 
-    u32 iV = (iv2 >> 5) & 31;
-    ivs += QString::number(iV);
+    u32 val = (iv2 >> 5) & 31;
+    ivs += QString::number(val);
     ivs += ".";
 
-    iV = (iv2 >> 10) & 31;
-    ivs += QString::number(iV);
+    val = (iv2 >> 10) & 31;
+    ivs += QString::number(val);
     ivs += ".";
 
-    iV = iv2 & 31;
-    ivs += QString::number(iV);
+    val = iv2 & 31;
+    ivs += QString::number(val);
 
     return ivs;
 }
@@ -124,7 +130,9 @@ QString PIDtoIVs::calcIVs1(u32 iv1)
 QString PIDtoIVs::calcIVs2(u32 iv1)
 {
     QString ivs = "";
-    u32 iv2 = forward(iv1) >> 16;
+    LCRNG rng = PokeRNG(iv1);
+    iv1 = rng.nextUInt();
+    u32 iv2 = rng.nextUShort();
     iv1 >>= 16;
 
     for (u32 x = 0; x < 3; x++)
@@ -135,16 +143,16 @@ QString PIDtoIVs::calcIVs2(u32 iv1)
         ivs += ".";
     }
 
-    u32 iV = (iv2 >> 5) & 31;
-    ivs += QString::number(iV);
+    u32 val = (iv2 >> 5) & 31;
+    ivs += QString::number(val);
     ivs += ".";
 
-    iV = (iv2 >> 10) & 31;
-    ivs += QString::number(iV);
+    val = (iv2 >> 10) & 31;
+    ivs += QString::number(val);
     ivs += ".";
 
-    iV = iv2 & 31;
-    ivs += QString::number(iV);
+    val = iv2 & 31;
+    ivs += QString::number(val);
 
     return ivs;
 }
@@ -152,7 +160,9 @@ QString PIDtoIVs::calcIVs2(u32 iv1)
 QString PIDtoIVs::calcIVs4(u32 iv1)
 {
     QString ivs = "";
-    u32 iv2 = forward(forward(iv1)) >> 16;
+    LCRNG rng = PokeRNG(iv1);
+    rng.nextUInt();
+    u32 iv2 = rng.nextUShort();
     iv1 >>= 16;
 
     for (u32 x = 0; x < 3; x++)
@@ -163,16 +173,16 @@ QString PIDtoIVs::calcIVs4(u32 iv1)
         ivs += ".";
     }
 
-    u32 iV = (iv2 >> 5) & 31;
-    ivs += QString::number(iV);
+    u32 val = (iv2 >> 5) & 31;
+    ivs += QString::number(val);
     ivs += ".";
 
-    iV = (iv2 >> 10) & 31;
-    ivs += QString::number(iV);
+    val = (iv2 >> 10) & 31;
+    ivs += QString::number(val);
     ivs += ".";
 
-    iV = iv2 & 31;
-    ivs += QString::number(iV);
+    val = iv2 & 31;
+    ivs += QString::number(val);
 
     return ivs;
 }
@@ -180,8 +190,6 @@ QString PIDtoIVs::calcIVs4(u32 iv1)
 QString PIDtoIVs::calcIVsXD(u32 iv1, u32 iv2)
 {
     QString ivs = "";
-    iv1 >>= 16;
-    iv2 >>= 16;
 
     for (u32 x = 0; x < 3; x++)
     {
@@ -191,41 +199,23 @@ QString PIDtoIVs::calcIVsXD(u32 iv1, u32 iv2)
         ivs += ".";
     }
 
-    u32 iV = (iv2 >> 5) & 31;
-    ivs += QString::number(iV);
+    u32 val = (iv2 >> 5) & 31;
+    ivs += QString::number(val);
     ivs += ".";
 
-    iV = (iv2 >> 10) & 31;
-    ivs += QString::number(iV);
+    val = (iv2 >> 10) & 31;
+    ivs += QString::number(val);
     ivs += ".";
 
-    iV = iv2 & 31;
-    ivs += QString::number(iV);
+    val = iv2 & 31;
+    ivs += QString::number(val);
 
     return ivs;
 }
-
-u32 PIDtoIVs::forward(u32 seed)
-{
-    return seed * 0x41c64e6d + 0x6073;
-}
-
-u32 PIDtoIVs::reverse(u32 seed)
-{
-    return seed * 0xeeb9eb65 + 0xa3561a1;
-}
-
-u32 PIDtoIVs::reverseXD(u32 seed)
-{
-    return seed * 0xB9B33155 + 0xA170F641;
-}
-
-
 
 void PIDtoIVs::on_pushButtonGenerate_clicked()
 {
     m->removeRows(0, m->rowCount());
     u32 pid = ui->pidInput->text().toUInt(NULL, 16);
     calcFromPID(pid);
-
 }

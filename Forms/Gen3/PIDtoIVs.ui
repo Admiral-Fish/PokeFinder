@@ -23,6 +23,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -94,7 +97,7 @@
      <x>0</x>
      <y>0</y>
      <width>482</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

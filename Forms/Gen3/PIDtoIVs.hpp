@@ -1,3 +1,22 @@
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017 by Admiral_Fish and bumba
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 #ifndef PIDTOIVS_HPP
 #define PIDTOIVS_HPP
 
@@ -7,7 +26,8 @@
 #include <QList>
 #include <libPokeFinder/RNG/RNGCache.hpp>
 #include <libPokeFinder/Objects/Method.hpp>
-#include <QDebug>
+#include <libPokeFinder/RNG/RNGEuclidean.hpp>
+#include <libPokeFinder/RNG/LCRNG.hpp>
 
 typedef uint32_t u32;
 
@@ -29,11 +49,7 @@ private slots:
 
 private:
     Ui::PIDtoIVs *ui;
-
     QStandardItemModel *m = new QStandardItemModel(this);
-    char low8[0x10000];
-    bool flags[0x10000];
-    RNGCache *cache;
 
     void setupModels();
     void calcFromPID(u32 pid);
@@ -45,9 +61,6 @@ private:
     QString calcIVsXD(u32 iv1, u32 iv2);
     void addSeed(u32 seed, u32 iv1);
     void addSeedGC(u32 seed, u32 iv1, u32 iv2);
-    u32 forward(u32 seed);
-    u32 reverse(u32 seed);
-    u32 reverseXD(u32 seed);
 
 };
 
