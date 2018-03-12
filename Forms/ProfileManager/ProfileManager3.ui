@@ -87,7 +87,11 @@ QHeaderView::section {
      </widget>
     </item>
     <item row="1" column="0" colspan="3">
-     <widget class="QTableView" name="tableView"/>
+     <widget class="QTableView" name="tableView">
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
     </item>
     <item row="2" column="0" colspan="3">
      <widget class="QPushButton" name="pushButtonOk">

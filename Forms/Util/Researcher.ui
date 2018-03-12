@@ -73,19 +73,44 @@ QComboBox {
 	padding-left: 13px;
 }
 
+QComboBox QListView{
+	color: white;
+	background-color: #1D303C;
+	border:1px solid black;
+	padding-left: 3px;
+}
+
+QComboBox::item:alternate {
+	background: #1D303C;
+}
+
+QComboBox::item:selected {
+	border: 1px solid transparent;
+	background: #003941;
+}
+
+QComboBox::indicator{
+	background-color:transparent;
+	selection-background-color:transparent;
+	color:transparent;
+	selection-color:transparent;
+}
+
+QComboBox::editable {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+
 QComboBox::down-arrow {
 	image: url(noimg);
 	border-width: 0px;
 }
 
 QComboBox::drop-down {
-	background-color: #1D303C;
+	background: transparent;
 	width: 0px;
-}
-
-QComboBox::item {
-	background-color: #1D303C;
-	selection-background-color: #003941;
 }
 
 QLabel {
@@ -136,7 +161,7 @@ QCheckBox::indicator:unchecked {
 }
 
 QCheckBox::indicator:checked {
-		background-color: white;
+	background-color: white;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -2886,6 +2911,9 @@ QHeaderView::section {
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
      </widget>
     </item>
    </layout>

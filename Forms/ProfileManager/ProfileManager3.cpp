@@ -30,7 +30,6 @@ ProfileManager3::ProfileManager3(QWidget *parent) :
     model = new Profile3Model(this);
     model->setModel(Profile3::loadProfileList());
     ui->tableView->setModel(model);
-    ui->tableView->verticalHeader()->setVisible(false);
 }
 
 ProfileManager3::~ProfileManager3()

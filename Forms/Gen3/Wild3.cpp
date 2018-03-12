@@ -109,14 +109,12 @@ void Wild3::setupModels()
         delete g;
     g = new Wild3Model(this);
     ui->tableViewGenerator->setModel(g);
-    ui->tableViewGenerator->verticalHeader()->setVisible(false);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     if (s != NULL)
         delete s;
     s = new Searcher3Model(this, MethodH1);
     ui->tableViewSearcher->setModel(s);
-    ui->tableViewSearcher->verticalHeader()->setVisible(false);
     ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->comboBoxMethodGenerator->clear();
