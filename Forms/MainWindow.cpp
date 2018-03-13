@@ -156,6 +156,7 @@ void MainWindow::on_actionResearcher_triggered()
 {
     Researcher *r = new Researcher();
     r->show();
+    r->raise();
 }
 
 void MainWindow::on_pushButtonWild3_clicked()
@@ -172,36 +173,42 @@ void MainWindow::on_pushButtonEgg3_clicked()
 
 void MainWindow::on_action16_Bit_Seed_to_Time_triggered()
 {
-    seedtotime3.show();
-    seedtotime3.raise();
+    SeedToTime3 *seedToTime = new SeedToTime3();
+    seedToTime->show();
+    seedToTime->raise();
 }
 
 void MainWindow::on_actionJirachi_Generation_triggered()
 {
-    jirachiGeneration.show();
-    jirachiGeneration.raise();
+    JirachiGeneration *jirachi = new JirachiGeneration();
+    jirachi->show();
+    jirachi->raise();
 }
 
 void MainWindow::on_actionPokeSpot_triggered()
 {
-    pokeSpot.show();
-    pokeSpot.raise();
+    PokeSpot *pokeSpot = new PokeSpot();
+    pokeSpot->show();
+    pokeSpot->raise();
 }
 
 void MainWindow::on_actionIV_to_PID_triggered()
 {
-    ivToPID.show();
-    ivToPID.raise();
+    IVtoPID *ivToPID = new IVtoPID();
+    ivToPID->show();
+    ivToPID->raise();
 }
 
 void MainWindow::on_actionGameCube_RTC_triggered()
 {
-    GCRTC.show();
-    GCRTC.raise();
+    GameCubeRTC *rtc = new GameCubeRTC();
+    rtc->show();
+    rtc->raise();
 }
 
 void MainWindow::on_actionPID_to_IV_triggered()
 {
-    pidToIV.show();
-    pidToIV.raise();
+    PIDtoIVs *pidToIV = new PIDtoIVs();
+    pidToIV->show();
+    pidToIV->raise();
 }
