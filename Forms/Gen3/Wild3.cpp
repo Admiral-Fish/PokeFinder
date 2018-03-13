@@ -54,6 +54,7 @@ Wild3::~Wild3()
     delete ui;
     delete s;
     delete g;
+    delete contextMenu;
 }
 
 void Wild3::on_checkBoxDelayGenerator_clicked()
@@ -120,6 +121,19 @@ void Wild3::setupModels()
 
     ui->comboBoxHiddenPowerGenerator->setup();
     ui->comboBoxHiddenPowerSearcher->setup();
+
+    QAction *setTargetFrame = new QAction("Set Target Frame", this);
+    QAction *jumpToTarget = new QAction("Jump to Target Frame", this);
+    QAction *centerTo1Second = new QAction("Center to +/- 1 Second and Set as Target Frame", this);
+
+    connect(setTargetFrame, &QAction::triggered, this, &Wild3::setTargetFrameGenerator);
+    connect(jumpToTarget, &QAction::triggered, this, &Wild3::jumpToTargetGenerator);
+    connect(centerTo1Second, &QAction::triggered, this, &Wild3::centerTo1SecondGenerator);
+
+    contextMenu->addAction(setTargetFrame);
+    contextMenu->addAction(jumpToTarget);
+    contextMenu->addSeparator();
+    contextMenu->addAction(centerTo1Second);
 }
 
 void Wild3::on_saveProfileGenerator_clicked()
@@ -332,21 +346,6 @@ void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
         return;
 
     lastIndex = ui->tableViewGenerator->indexAt(pos);
-
-    QMenu *contextMenu = new QMenu(this);
-
-    QAction *setTargetFrame = new QAction("Set Target Frame", this);
-    QAction *jumpToTarget = new QAction("Jump to Target Frame", this);
-    QAction *centerTo1Second = new QAction("Center to +/- 1 Second and Set as Target Frame", this);
-
-    connect(setTargetFrame, &QAction::triggered, this, &Wild3::setTargetFrameGenerator);
-    connect(jumpToTarget, &QAction::triggered, this, &Wild3::jumpToTargetGenerator);
-    connect(centerTo1Second, &QAction::triggered, this, &Wild3::centerTo1SecondGenerator);
-
-    contextMenu->addAction(setTargetFrame);
-    contextMenu->addAction(jumpToTarget);
-    contextMenu->addSeparator();
-    contextMenu->addAction(centerTo1Second);
 
     contextMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
 }

@@ -30,6 +30,7 @@
 #include <Forms/ProfileManager/ProfileManager3.hpp>
 #include <Models/Gen3/Wild3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
+#include <QMenu>
 #include <thread>
 
 namespace Ui {
@@ -53,6 +54,7 @@ private:
     bool isSearching = false;
     Searcher3Model *s = new Searcher3Model(this, Method1);
     Wild3Model *g = new Wild3Model(this);
+    QMenu *contextMenu = new QMenu(this);
     QModelIndex lastIndex;
     QModelIndex targetFrame;
 
