@@ -37,7 +37,22 @@ GameCubeRTC::GameCubeRTC(QWidget *parent) :
 GameCubeRTC::~GameCubeRTC()
 {
     delete ui;
-    delete m;
+    delete model;
+}
+
+void GameCubeRTC::changeEvent(QEvent *event)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void GameCubeRTC::setupModels()
@@ -47,14 +62,14 @@ void GameCubeRTC::setupModels()
     ui->textBoxMinFrame->setValues(1, 32, true);
     ui->textBoxMaxFrame->setValues(2, 32, true);
 
-    m->setHorizontalHeaderLabels(QStringList() << "Time" << "Frame" << "Seed");
-    ui->tableViewGenerator->setModel(m);
+    model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seed"));
+    ui->tableViewGenerator->setModel(model);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void GameCubeRTC::updateTableView(QList<QStandardItem*> row)
 {
-    m->appendRow(row);
+    model->appendRow(row);
 }
 
 void GameCubeRTC::calcRTC()
@@ -112,7 +127,7 @@ void GameCubeRTC::on_pushButtonSearch_clicked()
 {
     if (isSearching)
         return;
-    m->removeRows(0, m->rowCount());
+    model->removeRows(0, model->rowCount());
     ui->tableViewGenerator->viewport()->update();
 
     std::thread job(&GameCubeRTC::calcRTC, this);

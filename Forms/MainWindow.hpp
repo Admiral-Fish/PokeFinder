@@ -43,9 +43,20 @@ class MainWindow : public QMainWindow
 protected:
     void changeEvent(QEvent*);
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+private:
+    Ui::MainWindow *ui;
+    QTranslator translator;
+    QString currLang;
+    QString langPath = QApplication::applicationDirPath().append("/Languages/");
+    Stationary3 stationary3;
+    Wild3 wild3;
+    Eggs3 egg3;
+
+    void setupLanguage();
+    void setupModels();
+    void loadLanguage(const QString &lang);
+    void switchTranslator(QTranslator& translator, const QString& filename);
+    void createProfileXml();
 
 private slots:
     void on_pushButtonStationary3_clicked();
@@ -61,19 +72,9 @@ private slots:
     void on_actionGameCube_RTC_triggered();
     void on_actionPID_to_IV_triggered();
 
-private:
-    Ui::MainWindow *ui;
-    QTranslator translator;
-    QString currLang;
-    QString langPath = QApplication::applicationDirPath().append("/Languages/");
-    Stationary3 stationary3;
-    Wild3 wild3;
-    Eggs3 egg3;
-
-    void setupLanguage();
-    void setupModels();
-    void loadLanguage(const QString &lang);
-    void switchTranslator(QTranslator& translator, const QString& filename);
+public:
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
 };
 

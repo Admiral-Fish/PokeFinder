@@ -34,15 +34,30 @@ PIDtoIVs::PIDtoIVs(QWidget *parent) :
 PIDtoIVs::~PIDtoIVs()
 {
     delete ui;
-    delete m;
+    delete model;
+}
+
+void PIDtoIVs::changeEvent(QEvent *)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void PIDtoIVs::setupModels()
 {
     ui->pidInput->setValues(0, 32, false);
 
-    m->setHorizontalHeaderLabels(QStringList() << "Seed" << "Method" << "IVs");
-    ui->tabePIDToIV->setModel(m);
+    model->setHorizontalHeaderLabels(QStringList() << "Seed" << "Method" << "IVs");
+    ui->tabePIDToIV->setModel(model);
     ui->tabePIDToIV->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
@@ -89,14 +104,14 @@ void PIDtoIVs::calcMethodXD(u32 pid)
 void PIDtoIVs::addSeed(u32 seed, u32 iv1)
 {
     QString monsterSeed = QString::number(seed, 16);
-    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 1")) << new QStandardItem(calcIVs1(iv1)));
-    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 2")) << new QStandardItem(calcIVs2(iv1)));
-    m->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 4")) << new QStandardItem(calcIVs4(iv1)));
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 1")) << new QStandardItem(calcIVs1(iv1)));
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 2")) << new QStandardItem(calcIVs2(iv1)));
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(QString("Method 4")) << new QStandardItem(calcIVs4(iv1)));
 }
 
 void PIDtoIVs::addSeedGC(u32 seed, u32 iv1, u32 iv2)
 {
-    m->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper())<< new QStandardItem(QString("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper())<< new QStandardItem(QString("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
 }
 
 QString PIDtoIVs::calcIVs1(u32 iv1)
@@ -216,7 +231,7 @@ QString PIDtoIVs::calcIVsXD(u32 iv1, u32 iv2)
 
 void PIDtoIVs::on_pushButtonGenerate_clicked()
 {
-    m->removeRows(0, m->rowCount());
+    model->removeRows(0, model->rowCount());
     u32 pid = ui->pidInput->text().toUInt(NULL, 16);
     calcFromPID(pid);
 }

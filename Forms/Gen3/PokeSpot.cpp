@@ -30,15 +30,6 @@ PokeSpot::PokeSpot(QWidget *parent) :
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
-
-    ui->textBoxSeed->setValues(0, 32, false);
-    ui->textBoxStartingFrame->setValues(1, 32, true);
-    ui->textBoxMaxResults->setValues(1, 32, true);
-    ui->textBoxTID->setValues(0, 48, true);
-    ui->textBoxSID->setValues(0, 48, true);
-
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableView->setModel(model);
 }
 
 PokeSpot::~PokeSpot()
@@ -55,7 +46,7 @@ void PokeSpot::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                setupModels();
+                translate();
                 break;
             default:
                 break;
@@ -79,6 +70,20 @@ void PokeSpot::on_pushButtonAnySpotType_clicked()
 }
 
 void PokeSpot::setupModels()
+{
+    ui->textBoxSeed->setValues(0, 32, false);
+    ui->textBoxStartingFrame->setValues(1, 32, true);
+    ui->textBoxMaxResults->setValues(1, 32, true);
+    ui->textBoxTID->setValues(0, 48, true);
+    ui->textBoxSID->setValues(0, 48, true);
+
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setModel(model);
+
+    translate();
+}
+
+void PokeSpot::translate()
 {
     vector<QString> natures = Nature::getNatures();
     ui->comboBoxNature->addCheckItems(natures, QVariant(), Qt::Unchecked);

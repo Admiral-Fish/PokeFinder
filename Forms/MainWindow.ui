@@ -98,7 +98,7 @@
      <x>0</x>
      <y>0</y>
      <width>463</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLanguage">
@@ -124,8 +124,8 @@
     <addaction name="actionPID_to_IV"/>
    </widget>
    <addaction name="menuLanguage"/>
-   <addaction name="menuTools"/>
    <addaction name="menuGen_3_Tools"/>
+   <addaction name="menuTools"/>
   </widget>
   <action name="actionResearcher">
    <property name="text">

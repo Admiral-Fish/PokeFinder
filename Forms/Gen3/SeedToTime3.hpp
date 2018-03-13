@@ -41,20 +41,21 @@ class SeedToTime3 : public QMainWindow
 protected:
     void changeEvent(QEvent*);
 
-public:
-    explicit SeedToTime3(QWidget *parent = 0);
-    ~SeedToTime3();
-
-private slots:
-    void on_pushButtonFind_clicked();
-
 private:
     Ui::SeedToTime3 *ui;
-    QStandardItemModel *m = new QStandardItemModel(this);
+    QStandardItemModel *model = new QStandardItemModel(this);
 
     void setupModels();
     u32 originSeed(u32 seed);
     void seedToTime(u32 seed, u32 year);
+
+private slots:
+    void on_pushButtonFind_clicked();
+
+public:
+    explicit SeedToTime3(QWidget *parent = 0);
+    ~SeedToTime3();
+
 };
 
 #endif // SEEDTOTIME3_HPP

@@ -29,37 +29,6 @@ Researcher::Researcher(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
 
     setupModels();
-
-    ui->tableView->setModel(model);
-    ui->tableView->verticalHeader()->setVisible(false);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
-    ui->textBoxStartingFrame->setValues(1, 0, true);
-    ui->textBoxMaxFrames->setValues(1, 0, true);
-    ui->textBoxSeed->setValues(0, 0, false);
-    ui->textBoxSearch->setValues(0, 0, false);
-
-    ui->textBoxMult32Bit->setValues(0, 32, false);
-    ui->textBoxAdd32Bit->setValues(0, 32, false);
-
-    ui->textBoxMult64Bit->setValues(0, 0, false);
-    ui->textBoxAdd64Bit->setValues(0, 0, false);
-
-    ui->textBoxStatus3->setValues(0, 32, false);
-    ui->textBoxStatus2->setValues(0, 32, false);
-    ui->textBoxStatus1->setValues(0, 32, false);
-    ui->textBoxStatus0->setValues(0, 32, false);
-
-    ui->lineEditRValue1->setValues(0, 32, false);
-    ui->lineEditRValue2->setValues(0, 32, false);
-    ui->lineEditRValue3->setValues(0, 32, false);
-    ui->lineEditRValue4->setValues(0, 32, false);
-    ui->lineEditRValue5->setValues(0, 32, false);
-    ui->lineEditRValue6->setValues(0, 32, false);
-    ui->lineEditRValue7->setValues(0, 32, false);
-    ui->lineEditRValue8->setValues(0, 32, false);
-    ui->lineEditRValue9->setValues(0, 32, false);
-    ui->lineEditRValue10->setValues(0, 32, false);
 }
 
 void Researcher::changeEvent(QEvent *event)
@@ -70,7 +39,7 @@ void Researcher::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                setupModels();
+                translate();
                 break;
             default:
                 break;
@@ -431,6 +400,42 @@ u64 Researcher::getCustom(QString text, ResearcherFrame frame, vector<Researcher
 }
 
 void Researcher::setupModels()
+{
+    ui->tableView->setModel(model);
+    ui->tableView->verticalHeader()->setVisible(false);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    ui->textBoxStartingFrame->setValues(1, 0, true);
+    ui->textBoxMaxFrames->setValues(1, 0, true);
+    ui->textBoxSeed->setValues(0, 0, false);
+    ui->textBoxSearch->setValues(0, 0, false);
+
+    ui->textBoxMult32Bit->setValues(0, 32, false);
+    ui->textBoxAdd32Bit->setValues(0, 32, false);
+
+    ui->textBoxMult64Bit->setValues(0, 0, false);
+    ui->textBoxAdd64Bit->setValues(0, 0, false);
+
+    ui->textBoxStatus3->setValues(0, 32, false);
+    ui->textBoxStatus2->setValues(0, 32, false);
+    ui->textBoxStatus1->setValues(0, 32, false);
+    ui->textBoxStatus0->setValues(0, 32, false);
+
+    ui->lineEditRValue1->setValues(0, 32, false);
+    ui->lineEditRValue2->setValues(0, 32, false);
+    ui->lineEditRValue3->setValues(0, 32, false);
+    ui->lineEditRValue4->setValues(0, 32, false);
+    ui->lineEditRValue5->setValues(0, 32, false);
+    ui->lineEditRValue6->setValues(0, 32, false);
+    ui->lineEditRValue7->setValues(0, 32, false);
+    ui->lineEditRValue8->setValues(0, 32, false);
+    ui->lineEditRValue9->setValues(0, 32, false);
+    ui->lineEditRValue10->setValues(0, 32, false);
+
+    translate();
+}
+
+void Researcher::translate()
 {
     keys.clear();
     keys[tr("64Bit")] = 0;

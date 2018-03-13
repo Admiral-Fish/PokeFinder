@@ -431,7 +431,11 @@ QPushButton {
      </widget>
     </item>
     <item row="1" column="0" colspan="2">
-     <widget class="QTableView" name="tableView"/>
+     <widget class="QTableView" name="tableView">
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
     </item>
    </layout>
   </widget>

@@ -30,27 +30,41 @@ JirachiGeneration::JirachiGeneration(QWidget *parent) :
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
-
-    ui->tableViewGenerator->setModel(s);
-    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 JirachiGeneration::~JirachiGeneration()
 {
     delete ui;
-    delete s;
+    delete model;
+}
+
+void JirachiGeneration::changeEvent(QEvent *event)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void JirachiGeneration::setupModels()
 {
     ui->jirachiGenerationSeed->setValues(0, 32, false);
 
-    s->setHorizontalHeaderLabels(QStringList() << tr("Probable"));
+    model->setHorizontalHeaderLabels(QStringList() << tr("Probable"));
+    ui->tableViewGenerator->setModel(model);
+    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void JirachiGeneration::on_pushButtonGenerate_clicked()
 {
-    s->removeRows(0, s->rowCount());
+    model->removeRows(0, model->rowCount());
     u32 seed = ui->jirachiGenerationSeed->text().toUInt(NULL, 16);
     genListOut(seed);
 }
@@ -60,7 +74,7 @@ void JirachiGeneration::genListOut(u32 seed)
     QString genlistout = calcProbable(seed);
 
     QString result = genlistout.replace("|", " | ");
-    s->appendRow(new QStandardItem(result));
+    model->appendRow(new QStandardItem(result));
 }
 
 QString JirachiGeneration::calcProbable(u32 seed)

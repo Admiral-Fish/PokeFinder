@@ -6,18 +6,19 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(QWidget *parent) :
     ui(new Ui::ProfileManager3NewEdit)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    ui->textBoxTID->setValues(0, 48, true);
-    ui->textBoxSID->setValues(0, 48, true);
+    setupModels();
 }
 
 ProfileManager3NewEdit::ProfileManager3NewEdit(Profile3 profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManager3NewEdit)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+    setAttribute(Qt::WA_DeleteOnClose);
 
-    ui->textBoxTID->setValues(0, 48, true);
-    ui->textBoxSID->setValues(0, 48, true);
+    setupModels();
 
     ui->lineEditProfile->setText(profile.profileName);
     ui->comboBoxVersion->setCurrentIndex(profile.version);
@@ -32,6 +33,27 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(Profile3 profile, QWidget *parent
 ProfileManager3NewEdit::~ProfileManager3NewEdit()
 {
     delete ui;
+}
+
+void ProfileManager3NewEdit::changeEvent(QEvent *event)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void ProfileManager3NewEdit::setupModels()
+{
+    ui->textBoxTID->setValues(0, 48, true);
+    ui->textBoxSID->setValues(0, 48, true);
 }
 
 void ProfileManager3NewEdit::on_pushButtonAccept_clicked()

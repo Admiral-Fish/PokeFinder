@@ -30,11 +30,6 @@ Wild3::Wild3(QWidget *parent) :
     setupModels();
     updateProfiles();
 
-    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
-
-    if(!file.exists())
-        createProfileXml();
-
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
     connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
 }
@@ -47,7 +42,7 @@ void Wild3::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                setupModels();
+                translate();
                 break;
             default:
                 break;
@@ -97,35 +92,11 @@ void Wild3::updateProfiles()
 
 void Wild3::setupModels()
 {
-    vector<QString> natureList = Nature::getNatures();
-    ui->comboBoxNatureGenerator->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureSearcher->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-
-    vector<QString> powerList = Power::getPowers();
-    ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-
-    if (g != NULL)
-        delete g;
-    g = new Wild3Model(this);
     ui->tableViewGenerator->setModel(g);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    if (s != NULL)
-        delete s;
-    s = new Searcher3Model(this, MethodH1);
     ui->tableViewSearcher->setModel(s);
     ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    ui->comboBoxMethodGenerator->clear();
-    ui->comboBoxMethodGenerator->addItem(tr("Method H1"), MethodH1);
-    ui->comboBoxMethodGenerator->addItem(tr("Method H2"), MethodH2);
-    ui->comboBoxMethodGenerator->addItem(tr("Method H4"), MethodH4);
-
-    ui->comboBoxMethodSearcher->clear();
-    ui->comboBoxMethodSearcher->addItem(tr("Method H1"), MethodH1);
-    ui->comboBoxMethodSearcher->addItem(tr("Method H2"), MethodH2);
-    ui->comboBoxMethodSearcher->addItem(tr("Method H4"), MethodH4);
 
     ui->initialSeedGenerator->setValues(0, 32, false);
     ui->idGenerator->setValues(0, 48, true);
@@ -138,18 +109,25 @@ void Wild3::setupModels()
     ui->sidSearcher->setValues(0, 48, true);
 }
 
-void Wild3::createProfileXml()
+void Wild3::translate()
 {
-    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
-    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        QDomDocument doc;
-        QDomElement profiles = doc.createElement(QString("Profiles"));
-        doc.appendChild(profiles);
-        QTextStream stream( &file );
-        stream << doc.toString();
-        file.close();
-    }
+    vector<QString> natureList = Nature::getNatures();
+    ui->comboBoxNatureGenerator->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->comboBoxNatureSearcher->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+
+    vector<QString> powerList = Power::getPowers();
+    ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+
+    ui->comboBoxMethodGenerator->clear();
+    ui->comboBoxMethodGenerator->addItem(tr("Method H1"), MethodH1);
+    ui->comboBoxMethodGenerator->addItem(tr("Method H2"), MethodH2);
+    ui->comboBoxMethodGenerator->addItem(tr("Method H4"), MethodH4);
+
+    ui->comboBoxMethodSearcher->clear();
+    ui->comboBoxMethodSearcher->addItem(tr("Method H1"), MethodH1);
+    ui->comboBoxMethodSearcher->addItem(tr("Method H2"), MethodH2);
+    ui->comboBoxMethodSearcher->addItem(tr("Method H4"), MethodH4);
 }
 
 void Wild3::on_saveProfileGenerator_clicked()
@@ -159,7 +137,6 @@ void Wild3::on_saveProfileGenerator_clicked()
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
 }
-
 
 void Wild3::on_saveSearcher_clicked()
 {

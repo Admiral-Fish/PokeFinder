@@ -26,7 +26,6 @@
 #include <libPokeFinder/Objects/FrameCompare.hpp>
 #include <libPokeFinder/Objects/Nature.hpp>
 #include <libPokeFinder/Objects/Power.hpp>
-#include <QDir>
 #include <libPokeFinder/Gen3/Profile3.hpp>
 #include <Forms/ProfileManager/ProfileManager3.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
@@ -56,7 +55,7 @@ private:
     vector<Profile3> profiles;
 
     void setupModels();
-    void createProfileXml();
+    void translate();
     void search();
 
 private slots:
