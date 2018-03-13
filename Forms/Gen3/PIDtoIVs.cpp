@@ -37,7 +37,7 @@ PIDtoIVs::~PIDtoIVs()
     delete model;
 }
 
-void PIDtoIVs::changeEvent(QEvent *)
+void PIDtoIVs::changeEvent(QEvent *event)
 {
     if (event != NULL)
     {

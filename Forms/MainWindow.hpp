@@ -31,6 +31,7 @@
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Forms/Gen3/PIDtoIVs.hpp>
+#include <QDir>
 
 namespace Ui {
 class MainWindow;
