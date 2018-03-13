@@ -31,6 +31,7 @@
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Forms/Gen3/PIDtoIVs.hpp>
+#include <Forms/Util/Pandora.hpp>
 #include <QDir>
 
 namespace Ui {
@@ -72,6 +73,8 @@ private slots:
     void on_actionIV_to_PID_triggered();
     void on_actionGameCube_RTC_triggered();
     void on_actionPID_to_IV_triggered();
+    void on_actionPandora_triggered();
+
 
 public:
     explicit MainWindow(QWidget *parent = 0);

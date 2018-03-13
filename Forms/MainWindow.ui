@@ -111,6 +111,7 @@
      <string>Tools</string>
     </property>
     <addaction name="actionResearcher"/>
+    <addaction name="actionPandora"/>
    </widget>
    <widget class="QMenu" name="menuGen_3_Tools">
     <property name="title">
@@ -160,6 +161,11 @@
   <action name="actionPID_to_IV">
    <property name="text">
     <string>PID to IV</string>
+   </property>
+  </action>
+  <action name="actionPandora">
+   <property name="text">
+    <string>Pandora</string>
    </property>
   </action>
  </widget>

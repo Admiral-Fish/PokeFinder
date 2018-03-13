@@ -230,3 +230,10 @@ void MainWindow::on_actionPID_to_IV_triggered()
     pidToIV->show();
     pidToIV->raise();
 }
+
+void MainWindow::on_actionPandora_triggered()
+{
+    Pandora *pandora = new Pandora();
+    pandora->show();
+    pandora->raise();
+}
