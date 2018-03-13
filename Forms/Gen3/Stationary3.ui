@@ -249,6 +249,31 @@ QPushButton {
              <property name="frame">
               <bool>true</bool>
              </property>
+             <item>
+              <property name="text">
+               <string>Method 1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Method 2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Method 4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>XD/Colo</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Channel</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item row="3" column="0">
@@ -783,6 +808,41 @@ QPushButton {
              <property name="frame">
               <bool>true</bool>
              </property>
+             <item>
+              <property name="text">
+               <string>Method 1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Method 2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Method 4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>XD/Colo</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Gales</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Colo</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Channel</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item row="0" column="0">

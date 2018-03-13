@@ -107,6 +107,16 @@ void Wild3::setupModels()
 
     ui->idSearcher->setValues(0, 48, true);
     ui->sidSearcher->setValues(0, 48, true);
+
+    ui->comboBoxMethodGenerator->setItemData(0, MethodH1);
+    ui->comboBoxMethodGenerator->setItemData(1, MethodH2);
+    ui->comboBoxMethodGenerator->setItemData(2, MethodH4);
+
+    ui->comboBoxMethodSearcher->setItemData(0, MethodH1);
+    ui->comboBoxMethodSearcher->setItemData(1, MethodH2);
+    ui->comboBoxMethodSearcher->setItemData(2, MethodH4);
+
+    translate();
 }
 
 void Wild3::translate()
@@ -118,16 +128,6 @@ void Wild3::translate()
     vector<QString> powerList = Power::getPowers();
     ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
     ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-
-    ui->comboBoxMethodGenerator->clear();
-    ui->comboBoxMethodGenerator->addItem(tr("Method H1"), MethodH1);
-    ui->comboBoxMethodGenerator->addItem(tr("Method H2"), MethodH2);
-    ui->comboBoxMethodGenerator->addItem(tr("Method H4"), MethodH4);
-
-    ui->comboBoxMethodSearcher->clear();
-    ui->comboBoxMethodSearcher->addItem(tr("Method H1"), MethodH1);
-    ui->comboBoxMethodSearcher->addItem(tr("Method H2"), MethodH2);
-    ui->comboBoxMethodSearcher->addItem(tr("Method H4"), MethodH4);
 }
 
 void Wild3::on_saveProfileGenerator_clicked()

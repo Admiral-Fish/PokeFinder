@@ -266,6 +266,21 @@ QPushButton {
              <property name="frame">
               <bool>true</bool>
              </property>
+             <item>
+              <property name="text">
+               <string>Method H1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Method H2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Method H4</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item row="2" column="0">
@@ -813,6 +828,21 @@ QPushButton {
              <property name="frame">
               <bool>true</bool>
              </property>
+             <item>
+              <property name="text">
+               <string>Method H1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Method H2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Method H4</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item row="2" column="0">

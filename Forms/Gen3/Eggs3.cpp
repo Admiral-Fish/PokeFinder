@@ -95,6 +95,18 @@ void Eggs3::setupModels()
     ui->textBoxTIDFRLG->setValues(0, 48, true);
     ui->textBoxSIDFRLG->setValues(0, 48, true);
 
+    ui->comboBoxCompatibilityEmerald->setItemData(0, 20);
+    ui->comboBoxCompatibilityEmerald->setItemData(1, 50);
+    ui->comboBoxCompatibilityEmerald->setItemData(2, 70);
+
+    ui->comboBoxCompatibilityRS->setItemData(0, 20);
+    ui->comboBoxCompatibilityRS->setItemData(1, 50);
+    ui->comboBoxCompatibilityRS->setItemData(2, 70);
+
+    ui->comboBoxCompatibilityFRLG->setItemData(0, 20);
+    ui->comboBoxCompatibilityFRLG->setItemData(1, 50);
+    ui->comboBoxCompatibilityFRLG->setItemData(2, 70);
+
     translate();
 }
 
@@ -109,21 +121,6 @@ void Eggs3::translate()
     ui->comboBoxHiddenPowerEmerald->addCheckItems(hpList, QVariant(), Qt::Unchecked);
     ui->comboBoxHiddenPowerRS->addCheckItems(hpList, QVariant(), Qt::Unchecked);
     ui->comboBoxHiddenPowerFRLG->addCheckItems(hpList, QVariant(), Qt::Unchecked);
-
-    ui->comboBoxCompatibilityEmerald->clear();
-    ui->comboBoxCompatibilityEmerald->addItem(tr("The two don't seem to like each other"), 20);
-    ui->comboBoxCompatibilityEmerald->addItem(tr("The two seem to get along"), 50);
-    ui->comboBoxCompatibilityEmerald->addItem(tr("The two seem to get along very well"), 70);
-
-    ui->comboBoxCompatibilityRS->clear();
-    ui->comboBoxCompatibilityRS->addItem(tr("The two don't seem to like each other"), 20);
-    ui->comboBoxCompatibilityRS->addItem(tr("The two seem to get along"), 50);
-    ui->comboBoxCompatibilityRS->addItem(tr("The two seem to get along very well"), 70);
-
-    ui->comboBoxCompatibilityFRLG->clear();
-    ui->comboBoxCompatibilityFRLG->addItem(tr("The two don't seem to like each other"), 20);
-    ui->comboBoxCompatibilityFRLG->addItem(tr("The two seem to get along"), 50);
-    ui->comboBoxCompatibilityFRLG->addItem(tr("The two seem to get along very well"), 70);
 }
 
 void Eggs3::changeEvent(QEvent *event)

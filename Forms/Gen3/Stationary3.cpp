@@ -78,6 +78,20 @@ void Stationary3::setupModels()
     ui->idSearcher->setValues(0, 48, true);
     ui->sidSearcher->setValues(0, 48, true);
 
+    ui->comboBoxMethodGenerator->setItemData(0, Method1);
+    ui->comboBoxMethodGenerator->setItemData(1, Method2);
+    ui->comboBoxMethodGenerator->setItemData(2, Method4);
+    ui->comboBoxMethodGenerator->setItemData(3, XDColo);
+    ui->comboBoxMethodGenerator->setItemData(4, Channel);
+
+    ui->comboBoxMethodSearcher->setItemData(0, Method1);
+    ui->comboBoxMethodSearcher->setItemData(1, Method2);
+    ui->comboBoxMethodSearcher->setItemData(2, Method4);
+    ui->comboBoxMethodSearcher->setItemData(3, XDColo);
+    ui->comboBoxMethodSearcher->setItemData(4, XD);
+    ui->comboBoxMethodSearcher->setItemData(5, Colo);
+    ui->comboBoxMethodSearcher->setItemData(6, Channel);
+
     translate();
 }
 
@@ -90,22 +104,6 @@ void Stationary3::translate()
     vector<QString> powerList = Power::getPowers();
     ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
     ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-
-    ui->comboBoxMethodGenerator->clear();
-    ui->comboBoxMethodGenerator->addItem(tr("Method 1"), Method1);
-    ui->comboBoxMethodGenerator->addItem(tr("Method 2"), Method2);
-    ui->comboBoxMethodGenerator->addItem(tr("Method 4"), Method4);
-    ui->comboBoxMethodGenerator->addItem(tr("XD/Colo"), XDColo);
-    ui->comboBoxMethodGenerator->addItem(tr("Channel"), Channel);
-
-    ui->comboBoxMethodSearcher->clear();
-    ui->comboBoxMethodSearcher->addItem(tr("Method 1"), Method1);
-    ui->comboBoxMethodSearcher->addItem(tr("Method 2"), Method2);
-    ui->comboBoxMethodSearcher->addItem(tr("Method 4"), Method4);
-    ui->comboBoxMethodSearcher->addItem(tr("XD/Colo"), XDColo);
-    ui->comboBoxMethodSearcher->addItem(tr("Gales"), XD);
-    ui->comboBoxMethodSearcher->addItem(tr("Colo"), Colo);
-    ui->comboBoxMethodSearcher->addItem(tr("Channel"), Channel);
 }
 
 void Stationary3::on_saveProfileGenerator_clicked()
