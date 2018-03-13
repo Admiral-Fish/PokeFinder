@@ -282,3 +282,67 @@ void Wild3::search()
     }
     isSearching = false;
 }
+
+void Wild3::centerFramesAndSetTargetGenerator(u32 centerFrames)
+{
+    ui->ivFilterGenerator->clearValues();
+    on_anyNatureGenerator_clicked();
+    on_anyHiddenPowerGenerator_clicked();
+    ui->checkBoxShinyGenerator->setChecked(false);
+    ui->comboBoxGenderGenerator->setCurrentIndex(0);
+    ui->comboBoxGenderRatioGenerator->setCurrentIndex(0);
+    ui->comboBoxAbilityGenerator->setCurrentIndex(0);
+    ui->checkBoxDelayGenerator->setChecked(false);
+    ui->checkBoxDisableGenerator->setChecked(false);
+    on_checkBoxDelayGenerator_clicked();
+
+    u32 frameNumber = ui->tableViewGenerator->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 0)).toString().toUInt();
+
+    u32 startingFrame = frameNumber < centerFrames + 1U ? 1U : frameNumber - centerFrames;
+    u32 selectedIndex = frameNumber < centerFrames + 1U ? frameNumber - 1U : centerFrames;
+    u32 maxFrames = frameNumber < centerFrames + 1U ? frameNumber - 1U + centerFrames + 1 : centerFrames * 2 + 1;
+
+    ui->startingFrameGenerator->setText(QString::number(startingFrame));
+    ui->maxResultsGenerator->setText(QString::number(maxFrames));
+
+    on_generate_clicked();
+
+    ui->tableViewGenerator->scrollTo(ui->tableViewGenerator->model()->index(selectedIndex, 0), QAbstractItemView::PositionAtTop);
+}
+
+void Wild3::setTargetFrameGenerator()
+{
+    targetFrame = lastIndex;
+}
+
+void Wild3::jumpToTargetGenerator()
+{
+    ui->tableViewGenerator->scrollTo(targetFrame, QAbstractItemView::PositionAtTop);
+}
+
+void Wild3::centerTo1SecondGenerator()
+{
+    centerFramesAndSetTargetGenerator(60);
+}
+
+void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+{
+    lastIndex = ui->tableViewGenerator->indexAt(pos);
+
+    QMenu *contextMenu = new QMenu(this);
+
+    QAction *setTargetFrame = new QAction("Set Target Frame", this);
+    QAction *jumpToTarget = new QAction("Jump to Target Frame", this);
+    QAction *centerTo1Second = new QAction("Center to +/- 1 Second and Set as Target Frame", this);
+
+    connect(setTargetFrame, &QAction::triggered, this, &Wild3::setTargetFrameGenerator);
+    connect(jumpToTarget, &QAction::triggered, this, &Wild3::jumpToTargetGenerator);
+    connect(centerTo1Second, &QAction::triggered, this, &Wild3::centerTo1SecondGenerator);
+
+    contextMenu->addAction(setTargetFrame);
+    contextMenu->addAction(jumpToTarget);
+    contextMenu->addSeparator();
+    contextMenu->addAction(centerTo1Second);
+
+    contextMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+}

@@ -53,9 +53,12 @@ private:
     bool isSearching = false;
     Searcher3Model *s = new Searcher3Model(this, Method1);
     Wild3Model *g = new Wild3Model(this);
+    QModelIndex lastIndex;
+    QModelIndex targetFrame;
 
     void setupModels();
     void search();
+    void centerFramesAndSetTargetGenerator(u32 centerFrames);
 
 private slots:
     void on_generate_clicked();
@@ -70,6 +73,10 @@ private slots:
     void updateViewSearcher(vector<Frame3> frames);
     void on_checkBoxDelayGenerator_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
+    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
+    void setTargetFrameGenerator();
+    void jumpToTargetGenerator();
+    void centerTo1SecondGenerator();
 
 public:
     explicit Wild3(QWidget *parent = 0);

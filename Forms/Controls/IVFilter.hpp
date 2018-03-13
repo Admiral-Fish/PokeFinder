@@ -40,6 +40,8 @@ public:
     vector<u32> getEvals();
     vector<u32> getValues();
 
+    void clearValues();
+
 private slots:
     void on_pushButton31HP_clicked();
     void on_pushButton30HP_clicked();

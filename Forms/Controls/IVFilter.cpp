@@ -50,6 +50,16 @@ vector<u32> IVFilter::getValues()
     return values;
 }
 
+void IVFilter::clearValues()
+{
+    on_pushButtonClearAtk_clicked();
+    on_pushButtonClearDef_clicked();
+    on_pushButtonClearHP_clicked();
+    on_pushButtonClearSpA_clicked();
+    on_pushButtonClearSpD_clicked();
+    on_pushButtonClearSpe_clicked();
+}
+
 void IVFilter::on_pushButton31HP_clicked()
 {
     ui->comboBoxHP->setCurrentIndex(1);
