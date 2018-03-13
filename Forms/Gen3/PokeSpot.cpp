@@ -46,7 +46,6 @@ void PokeSpot::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                translate();
                 break;
             default:
                 break;
@@ -80,18 +79,8 @@ void PokeSpot::setupModels()
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->setModel(model);
 
-    translate();
-}
-
-void PokeSpot::translate()
-{
-    vector<QString> natures = Nature::getNatures();
-    ui->comboBoxNature->addCheckItems(natures, QVariant(), Qt::Unchecked);
-
-    ui->comboBoxSpotType->clear();
-    ui->comboBoxSpotType->addCheckItem(tr("Common"), QVariant(), Qt::Unchecked);
-    ui->comboBoxSpotType->addCheckItem(tr("Uncommon"), QVariant(), Qt::Unchecked);
-    ui->comboBoxSpotType->addCheckItem(tr("Rare"), QVariant(), Qt::Unchecked);
+    ui->comboBoxNature->setup();
+    ui->comboBoxSpotType->setup();
 }
 
 void PokeSpot::on_pushButtonGenerate_clicked()

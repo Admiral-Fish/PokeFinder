@@ -8,9 +8,7 @@ QCheckList::QCheckList(QWidget *_parent) : QComboBox(_parent)
     setEditable(true);
     lineEdit()->setReadOnly(true);
     lineEdit()->installEventFilter(this);
-    setItemDelegate(new QCheckListStyledItemDelegate(this));
 
-    connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
     connect((QListView*) view(), SIGNAL(pressed(QModelIndex)), this, SLOT(on_itemPressed(QModelIndex)));
     connect(model, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(on_modelDataChanged()));
 }
@@ -18,6 +16,16 @@ QCheckList::QCheckList(QWidget *_parent) : QComboBox(_parent)
 QCheckList::~QCheckList()
 {
     delete model;
+}
+
+void QCheckList::setup()
+{
+    for (int i = 0; i < model->rowCount(); i++)
+    {
+        QStandardItem *item = model->item(i);
+        item->setCheckState(Qt::Unchecked);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+    }
 }
 
 void QCheckList::setAllCheckedText(const QString &text)
@@ -29,41 +37,6 @@ void QCheckList::setAllCheckedText(const QString &text)
 void QCheckList::setNoneCheckedText(const QString &text)
 {
     noneCheckedText = text;
-    updateText();
-}
-
-void QCheckList::setUnknownlyCheckedText(const QString &text)
-{
-    unknownlyCheckedText = text;
-    updateText();
-}
-
-QStandardItem *QCheckList::addCheckItem(const QString &label, const QVariant &data, const Qt::CheckState checkState)
-{
-    QStandardItem* item = new QStandardItem(label);
-    item->setCheckState(checkState);
-    item->setData(data);
-    item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-
-    model->appendRow(item);
-
-    updateText();
-
-    return item;
-}
-
-void QCheckList::addCheckItems(const vector<QString> &label, const QVariant &data, const Qt::CheckState checkState)
-{
-    model->clear();
-    for (auto i = 0; i < label.size(); i++)
-    {
-        QStandardItem* item = new QStandardItem(label[i]);
-        item->setCheckState(checkState);
-        item->setData(data);
-        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-
-        model->appendRow(item);
-    }
     updateText();
 }
 
@@ -112,7 +85,7 @@ int QCheckList::globalCheckState()
     int nbRows = model->rowCount(), nbChecked = 0, nbUnchecked = 0;
 
     if (nbRows == 0)
-        return STATEUNKNOWN;
+        return 3;
 
     for (int i = 0; i < nbRows; i++)
     {
@@ -126,7 +99,7 @@ int QCheckList::globalCheckState()
         }
         else
         {
-            return STATEUNKNOWN;
+            return 3;
         }
     }
 
@@ -142,6 +115,21 @@ bool QCheckList::eventFilter(QObject *object, QEvent *event)
     }
 
     return false;
+}
+
+void QCheckList::changeEvent(QEvent *event)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                updateText();
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void QCheckList::updateText()
@@ -166,13 +154,13 @@ void QCheckList::updateText()
                     if (!text.isEmpty())
                         text+= ", ";
 
-                    text += model->item(i)->text();
+                    text += itemText(i);
                 }
             }
             break;
 
         default:
-            text = unknownlyCheckedText;
+            text = tr("Any");
     }
 
     lineEdit()->setText(text);

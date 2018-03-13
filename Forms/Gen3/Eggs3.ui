@@ -191,16 +191,6 @@ QSpinBox::down-button {
            <string>Egg PID</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="4" column="2" colspan="2">
-            <widget class="QTextBox" name="textBoxSIDEmerald">
-             <property name="text">
-              <string notr="true">54321</string>
-             </property>
-             <property name="maxLength">
-              <number>5</number>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="label_2">
              <property name="text">
@@ -208,14 +198,7 @@ QSpinBox::down-button {
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_3">
-             <property name="text">
-              <string>Redraws:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
+           <item row="0" column="1">
             <widget class="QTextBox" name="textBoxMinFrameEmeraldPID">
              <property name="minimumSize">
               <size>
@@ -231,7 +214,23 @@ QSpinBox::down-button {
              </property>
             </widget>
            </item>
-           <item row="0" column="4" rowspan="7">
+           <item row="0" column="2">
+            <widget class="QTextBox" name="textBoxMaxFrameEmeraldPID">
+             <property name="minimumSize">
+              <size>
+               <width>70</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string notr="true">5000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3" rowspan="7">
             <layout class="QGridLayout" name="gridLayout_2">
              <item row="0" column="0">
               <widget class="QLabel" name="label_5">
@@ -310,9 +309,6 @@ QSpinBox::down-button {
                 <string>Nature:</string>
                </property>
               </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QCheckList" name="comboBoxNatureEmerald"/>
              </item>
              <item row="2" column="2">
               <widget class="QPushButton" name="pushButtonAnyNatureEmerald">
@@ -560,9 +556,155 @@ QSpinBox::down-button {
                </property>
               </widget>
              </item>
+             <item row="2" column="1">
+              <widget class="QCheckList" name="comboBoxNatureEmerald">
+               <item>
+                <property name="text">
+                 <string>Adamant</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bold</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Brave</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Calm</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Careful</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hasty</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Impish</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Jolly</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lonely</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mild</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Modest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Naive</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Naughty</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quiet</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rash</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Relaxed</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sassy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Timid</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Gentle</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lax</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bashful</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Docile</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hardy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quirky</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Serious</string>
+                </property>
+               </item>
+              </widget>
+             </item>
             </layout>
            </item>
-           <item row="1" column="3">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Redraws:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QTextBox" name="textBoxMinRedraws">
+             <property name="text">
+              <string notr="true">0</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
             <widget class="QTextBox" name="textBoxMaxRedraws">
              <property name="text">
               <string notr="true">5</string>
@@ -572,19 +714,20 @@ QSpinBox::down-button {
              </property>
             </widget>
            </item>
-           <item row="0" column="3">
-            <widget class="QTextBox" name="textBoxMaxFrameEmeraldPID">
-             <property name="minimumSize">
-              <size>
-               <width>70</width>
-               <height>0</height>
-              </size>
-             </property>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_4">
              <property name="text">
-              <string notr="true">5000</string>
+              <string>Calibration:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <widget class="QTextBox" name="textBoxCalibration">
+             <property name="text">
+              <string notr="true">18</string>
              </property>
              <property name="maxLength">
-              <number>10</number>
+              <number>3</number>
              </property>
             </widget>
            </item>
@@ -595,24 +738,7 @@ QSpinBox::down-button {
              </property>
             </widget>
            </item>
-           <item row="2" column="2" colspan="2">
-            <widget class="QTextBox" name="textBoxCalibration">
-             <property name="text">
-              <string notr="true">18</string>
-             </property>
-             <property name="maxLength">
-              <number>3</number>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0" colspan="2">
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>Calibration:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="2" colspan="2">
+           <item row="3" column="1" colspan="2">
             <widget class="QTextBox" name="textBoxTIDEmerald">
              <property name="text">
               <string notr="true">12345</string>
@@ -629,17 +755,17 @@ QSpinBox::down-button {
              </property>
             </widget>
            </item>
-           <item row="1" column="2">
-            <widget class="QTextBox" name="textBoxMinRedraws">
+           <item row="4" column="1" colspan="2">
+            <widget class="QTextBox" name="textBoxSIDEmerald">
              <property name="text">
-              <string notr="true">0</string>
+              <string notr="true">54321</string>
              </property>
              <property name="maxLength">
               <number>5</number>
              </property>
             </widget>
            </item>
-           <item row="5" column="0" colspan="4">
+           <item row="5" column="0" colspan="3">
             <widget class="QPushButton" name="pushButtonGenerateEmeraldPID">
              <property name="minimumSize">
               <size>
@@ -657,7 +783,7 @@ QSpinBox::down-button {
              </property>
             </widget>
            </item>
-           <item row="6" column="0" colspan="4">
+           <item row="6" column="0" colspan="3">
             <widget class="QPushButton" name="pushButtonProfileManagerEmerald">
              <property name="minimumSize">
               <size>
@@ -785,6 +911,90 @@ QRadioButton {
              <property name="text">
               <string>Hidden Power:</string>
              </property>
+            </widget>
+           </item>
+           <item row="4" column="2" colspan="2">
+            <widget class="QCheckList" name="comboBoxHiddenPowerEmerald">
+             <item>
+              <property name="text">
+               <string>Fighting</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Flying</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Poison</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Ground</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Rock</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Bug</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Ghost</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Steel</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Fire</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Water</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Grass</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Electric</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Psychic</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Ice</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Dragon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Dark</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item row="6" column="0" colspan="5">
@@ -936,9 +1146,6 @@ QRadioButton {
               </widget>
              </item>
             </layout>
-           </item>
-           <item row="4" column="2" colspan="2">
-            <widget class="QCheckList" name="comboBoxHiddenPowerEmerald"/>
            </item>
            <item row="5" column="0" colspan="4">
             <widget class="QPushButton" name="pushButtonGenerateEmeraldIVs">
@@ -1178,212 +1385,6 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="0" column="1" rowspan="2">
-            <layout class="QGridLayout" name="gridLayout_10">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_29">
-               <property name="text">
-                <string>Gender:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_30">
-               <property name="text">
-                <string>Ability:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QComboBox" name="comboBoxGenderRS">
-               <item>
-                <property name="text">
-                 <string notr="true">-</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">♂</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">♀</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QComboBox" name="comboBoxAbilityRS">
-               <item>
-                <property name="text">
-                 <string>Any</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">0</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">1</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QPushButton" name="pushButtonAnyAbilityRS">
-               <property name="minimumSize">
-                <size>
-                 <width>50</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>60</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-               </property>
-               <property name="text">
-                <string>Any</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_31">
-               <property name="text">
-                <string>Nature:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QCheckList" name="comboBoxNatureRS"/>
-             </item>
-             <item row="2" column="2">
-              <widget class="QPushButton" name="pushButtonAnyNatureRS">
-               <property name="minimumSize">
-                <size>
-                 <width>50</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-               </property>
-               <property name="text">
-                <string>Any</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_32">
-               <property name="text">
-                <string>Hidden Power:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QCheckList" name="comboBoxHiddenPowerRS"/>
-             </item>
-             <item row="4" column="1">
-              <widget class="QComboBox" name="comboBoxCompatibilityRS">
-               <item>
-                <property name="text">
-                 <string>The two don't seem to like each other</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>The two seem to get along</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>The two seem to get along very well</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_34">
-               <property name="text">
-                <string>Gender Ratio:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QComboBox" name="comboBoxGenderRatioRS">
-               <item>
-                <property name="text">
-                 <string>Genderless</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>50% Male / 50% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>25% Male / 75% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>75% Male / 25% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>87.5% Male / 12.5% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>100% Male</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>100% Female</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_33">
-               <property name="text">
-                <string>Compatibility:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="label_35">
-               <property name="text">
-                <string>Shiny Only?</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="1">
-              <widget class="QCheckBox" name="checkBoxShinyRS">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
            <item row="1" column="0">
             <layout class="QGridLayout" name="gridLayout_11">
              <item row="0" column="0">
@@ -1482,6 +1483,419 @@ QRadioButton {
                <property name="maximum">
                 <number>31</number>
                </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="1" rowspan="2">
+            <layout class="QGridLayout" name="gridLayout_10">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_29">
+               <property name="text">
+                <string>Gender:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_30">
+               <property name="text">
+                <string>Ability:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="comboBoxGenderRS">
+               <item>
+                <property name="text">
+                 <string notr="true">-</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">♂</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">♀</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboBoxAbilityRS">
+               <item>
+                <property name="text">
+                 <string>Any</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">1</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="pushButtonAnyAbilityRS">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_31">
+               <property name="text">
+                <string>Nature:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QPushButton" name="pushButtonAnyNatureRS">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_32">
+               <property name="text">
+                <string>Hidden Power:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QComboBox" name="comboBoxCompatibilityRS">
+               <item>
+                <property name="text">
+                 <string>The two don't seem to like each other</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>The two seem to get along</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>The two seem to get along very well</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_34">
+               <property name="text">
+                <string>Gender Ratio:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QComboBox" name="comboBoxGenderRatioRS">
+               <item>
+                <property name="text">
+                 <string>Genderless</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>50% Male / 50% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>25% Male / 75% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>75% Male / 25% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>87.5% Male / 12.5% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Male</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Female</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_33">
+               <property name="text">
+                <string>Compatibility:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_35">
+               <property name="text">
+                <string>Shiny Only?</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QCheckBox" name="checkBoxShinyRS">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QCheckList" name="comboBoxNatureRS">
+               <item>
+                <property name="text">
+                 <string>Adamant</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bold</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Brave</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Calm</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Careful</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hasty</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Impish</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Jolly</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lonely</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mild</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Modest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Naive</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Naughty</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quiet</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rash</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Relaxed</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sassy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Timid</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Gentle</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lax</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bashful</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Docile</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hardy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quirky</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Serious</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QCheckList" name="comboBoxHiddenPowerRS">
+               <item>
+                <property name="text">
+                 <string>Fighting</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Flying</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Poison</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ground</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rock</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bug</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ghost</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Steel</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fire</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Water</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Grass</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Electric</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Psychic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ice</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dragon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dark</string>
+                </property>
+               </item>
               </widget>
              </item>
             </layout>
@@ -1696,212 +2110,6 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="0" column="1" rowspan="2">
-            <layout class="QGridLayout" name="gridLayout_14">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_38">
-               <property name="text">
-                <string>Gender:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_39">
-               <property name="text">
-                <string>Ability:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QComboBox" name="comboBoxGenderFRLG">
-               <item>
-                <property name="text">
-                 <string notr="true">-</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">♂</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">♀</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QComboBox" name="comboBoxAbilityFRLG">
-               <item>
-                <property name="text">
-                 <string>Any</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">0</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">1</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QPushButton" name="pushButtonAnyAbilityFRLG">
-               <property name="minimumSize">
-                <size>
-                 <width>50</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>60</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-               </property>
-               <property name="text">
-                <string>Any</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_40">
-               <property name="text">
-                <string>Nature:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QCheckList" name="comboBoxNatureFRLG"/>
-             </item>
-             <item row="2" column="2">
-              <widget class="QPushButton" name="pushButtonAnyNatureFRLG">
-               <property name="minimumSize">
-                <size>
-                 <width>50</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-               </property>
-               <property name="text">
-                <string>Any</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_41">
-               <property name="text">
-                <string>Hidden Power:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QCheckList" name="comboBoxHiddenPowerFRLG"/>
-             </item>
-             <item row="4" column="1">
-              <widget class="QComboBox" name="comboBoxCompatibilityFRLG">
-               <item>
-                <property name="text">
-                 <string>The two don't seem to like each other</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>The two seem to get along</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>The two seem to get along very well</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_42">
-               <property name="text">
-                <string>Gender Ratio:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QComboBox" name="comboBoxGenderRatioFRLG">
-               <item>
-                <property name="text">
-                 <string>Genderless</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>50% Male / 50% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>25% Male / 75% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>75% Male / 25% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>87.5% Male / 12.5% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>100% Male</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>100% Female</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_43">
-               <property name="text">
-                <string>Compatibility:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="label_44">
-               <property name="text">
-                <string>Shiny Only?</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="1">
-              <widget class="QCheckBox" name="checkBoxShinyFRLG">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
            <item row="1" column="0">
             <layout class="QGridLayout" name="gridLayout_13">
              <item row="0" column="0">
@@ -2000,6 +2208,419 @@ QRadioButton {
                <property name="maximum">
                 <number>31</number>
                </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="1" rowspan="2">
+            <layout class="QGridLayout" name="gridLayout_14">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_38">
+               <property name="text">
+                <string>Gender:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_39">
+               <property name="text">
+                <string>Ability:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="comboBoxGenderFRLG">
+               <item>
+                <property name="text">
+                 <string notr="true">-</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">♂</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">♀</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboBoxAbilityFRLG">
+               <item>
+                <property name="text">
+                 <string>Any</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">0</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">1</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="pushButtonAnyAbilityFRLG">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_40">
+               <property name="text">
+                <string>Nature:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QPushButton" name="pushButtonAnyNatureFRLG">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_41">
+               <property name="text">
+                <string>Hidden Power:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QComboBox" name="comboBoxCompatibilityFRLG">
+               <item>
+                <property name="text">
+                 <string>The two don't seem to like each other</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>The two seem to get along</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>The two seem to get along very well</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_42">
+               <property name="text">
+                <string>Gender Ratio:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QComboBox" name="comboBoxGenderRatioFRLG">
+               <item>
+                <property name="text">
+                 <string>Genderless</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>50% Male / 50% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>25% Male / 75% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>75% Male / 25% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>87.5% Male / 12.5% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Male</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Female</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_43">
+               <property name="text">
+                <string>Compatibility:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_44">
+               <property name="text">
+                <string>Shiny Only?</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QCheckBox" name="checkBoxShinyFRLG">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QCheckList" name="comboBoxNatureFRLG">
+               <item>
+                <property name="text">
+                 <string>Adamant</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bold</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Brave</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Calm</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Careful</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hasty</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Impish</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Jolly</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lonely</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mild</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Modest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Naive</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Naughty</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quiet</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rash</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Relaxed</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sassy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Timid</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Gentle</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lax</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bashful</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Docile</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hardy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quirky</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Serious</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QCheckList" name="comboBoxHiddenPowerFRLG">
+               <item>
+                <property name="text">
+                 <string>Fighting</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Flying</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Poison</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ground</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rock</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bug</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ghost</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Steel</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fire</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Water</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Grass</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Electric</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Psychic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ice</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dragon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dark</string>
+                </property>
+               </item>
               </widget>
              </item>
             </layout>

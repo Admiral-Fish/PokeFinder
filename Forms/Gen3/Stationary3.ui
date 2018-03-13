@@ -533,7 +533,133 @@ QPushButton {
               </widget>
              </item>
              <item row="2" column="1">
-              <widget class="QCheckList" name="comboBoxNatureGenerator"/>
+              <widget class="QCheckList" name="comboBoxNatureGenerator">
+               <item>
+                <property name="text">
+                 <string>Adamant</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bold</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Brave</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Calm</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Careful</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hasty</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Impish</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Jolly</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lonely</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mild</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Modest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Naive</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Naughty</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quiet</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rash</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Relaxed</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sassy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Timid</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Gentle</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lax</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bashful</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Docile</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hardy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quirky</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Serious</string>
+                </property>
+               </item>
+              </widget>
              </item>
              <item row="3" column="0">
               <widget class="QLabel" name="hiddenPLabel">
@@ -605,9 +731,6 @@ QPushButton {
                 </property>
                </item>
               </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QCheckList" name="comboBoxHiddenPowerGenerator"/>
              </item>
              <item row="4" column="0">
               <widget class="QLabel" name="genderRLabel">
@@ -731,6 +854,90 @@ QPushButton {
                <property name="text">
                 <string>(F)</string>
                </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QCheckList" name="comboBoxHiddenPowerGenerator">
+               <item>
+                <property name="text">
+                 <string>Fighting</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Flying</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Poison</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ground</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rock</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bug</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ghost</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Steel</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fire</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Water</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Grass</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Electric</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Psychic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ice</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dragon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dark</string>
+                </property>
+               </item>
               </widget>
              </item>
             </layout>
@@ -1099,7 +1306,88 @@ QPushButton {
               </widget>
              </item>
              <item row="3" column="1">
-              <widget class="QCheckList" name="comboBoxHiddenPowerSearcher"/>
+              <widget class="QCheckList" name="comboBoxHiddenPowerSearcher">
+               <item>
+                <property name="text">
+                 <string>Fighting</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Flying</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Poison</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ground</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rock</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bug</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ghost</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Steel</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fire</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Water</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Grass</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Electric</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Psychic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ice</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dragon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dark</string>
+                </property>
+               </item>
+              </widget>
              </item>
              <item row="5" column="0">
               <widget class="QLabel" name="shinyLabel_3">
@@ -1155,7 +1443,133 @@ QPushButton {
               </widget>
              </item>
              <item row="2" column="1">
-              <widget class="QCheckList" name="comboBoxNatureSearcher"/>
+              <widget class="QCheckList" name="comboBoxNatureSearcher">
+               <item>
+                <property name="text">
+                 <string>Adamant</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bold</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Brave</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Calm</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Careful</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hasty</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Impish</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Jolly</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lonely</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Mild</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Modest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Naive</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Naughty</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quiet</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Rash</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Relaxed</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Sassy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Timid</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Gentle</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lax</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Bashful</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Docile</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hardy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Quirky</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Serious</string>
+                </property>
+               </item>
+              </widget>
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="abilityLabel_3">
