@@ -54,15 +54,12 @@ private slots:
     void on_actionResearcher_triggered();
     void slotLanguageChanged(QAction *action);
     void updateProfiles(int num);
-    void on_pushButtonSeedToTime3_clicked();
-    void on_pushButtonJirachiGeneration_clicked();
-    void on_pushButtonPokeSpot_clicked();
-
-    void on_pushButtonIVToPID_clicked();
-
-    void on_pushButtonGameCubeRTC_clicked();
-
-    void on_pushButtonPIDtoIV_clicked();
+    void on_action16_Bit_Seed_to_Time_triggered();
+    void on_actionJirachi_Generation_triggered();
+    void on_actionPokeSpot_triggered();
+    void on_actionIV_to_PID_triggered();
+    void on_actionGameCube_RTC_triggered();
+    void on_actionPID_to_IV_triggered();
 
 private:
     Ui::MainWindow *ui;
