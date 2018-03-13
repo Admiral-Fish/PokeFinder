@@ -318,6 +318,7 @@ void Wild3::setTargetFrameGenerator()
 void Wild3::jumpToTargetGenerator()
 {
     ui->tableViewGenerator->scrollTo(targetFrame, QAbstractItemView::PositionAtTop);
+    ui->tableViewGenerator->selectionModel()->select(targetFrame, QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
 }
 
 void Wild3::centerTo1SecondGenerator()
@@ -327,6 +328,9 @@ void Wild3::centerTo1SecondGenerator()
 
 void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
 {
+    if (g->rowCount() == 0)
+        return;
+
     lastIndex = ui->tableViewGenerator->indexAt(pos);
 
     QMenu *contextMenu = new QMenu(this);
