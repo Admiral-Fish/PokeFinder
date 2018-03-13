@@ -69,12 +69,6 @@ private:
     Stationary3 stationary3;
     Wild3 wild3;
     Eggs3 egg3;
-    SeedToTime3 seedtotime3;
-    JirachiGeneration jirachiGeneration;
-    PokeSpot pokeSpot;
-    IVtoPID ivToPID;
-    GameCubeRTC GCRTC;
-    PIDtoIVs pidToIV;
 
     void setupLanguage();
     void setupModels();
