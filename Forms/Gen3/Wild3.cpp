@@ -306,16 +306,7 @@ void Wild3::search()
 
 void Wild3::centerFramesAndSetTargetGenerator(u32 centerFrames)
 {
-    ui->ivFilterGenerator->clearValues();
-    on_anyNatureGenerator_clicked();
-    on_anyHiddenPowerGenerator_clicked();
-    ui->checkBoxShinyGenerator->setChecked(false);
-    ui->comboBoxGenderGenerator->setCurrentIndex(0);
-    ui->comboBoxGenderRatioGenerator->setCurrentIndex(0);
-    ui->comboBoxAbilityGenerator->setCurrentIndex(0);
-    ui->checkBoxDelayGenerator->setChecked(false);
-    ui->checkBoxDisableGenerator->setChecked(false);
-    on_checkBoxDelayGenerator_clicked();
+    ui->checkBoxDisableGenerator->setChecked(true);
 
     u32 frameNumber = ui->tableViewGenerator->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 0)).toString().toUInt();
 
