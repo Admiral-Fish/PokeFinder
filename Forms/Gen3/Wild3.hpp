@@ -55,7 +55,6 @@ private:
     Wild3Model *g = new Wild3Model(this);
 
     void setupModels();
-    void translate();
     void search();
 
 private slots:

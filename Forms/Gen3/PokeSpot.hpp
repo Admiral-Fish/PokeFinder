@@ -45,7 +45,6 @@ private:
     vector<u32> rngList;
 
     void setupModels();
-    void translate();
 
 private slots:
     void on_pushButtonAnyAbility_clicked();

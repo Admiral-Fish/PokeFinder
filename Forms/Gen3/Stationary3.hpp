@@ -55,7 +55,6 @@ private:
     vector<Profile3> profiles;
 
     void setupModels();
-    void translate();
     void search();
 
 private slots:

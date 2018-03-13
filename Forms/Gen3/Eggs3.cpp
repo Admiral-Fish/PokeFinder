@@ -107,20 +107,13 @@ void Eggs3::setupModels()
     ui->comboBoxCompatibilityFRLG->setItemData(1, 50);
     ui->comboBoxCompatibilityFRLG->setItemData(2, 70);
 
-    translate();
-}
+    ui->comboBoxNatureEmerald->setup();
+    ui->comboBoxNatureFRLG->setup();
+    ui->comboBoxNatureRS->setup();
 
-void Eggs3::translate()
-{
-    vector<QString> natureList = Nature::getNatures();
-    //ui->comboBoxNatureEmerald->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    //ui->comboBoxNatureRS->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    //ui->comboBoxNatureFRLG->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-
-    vector<QString> hpList = Power::getPowers();
-    //ui->comboBoxHiddenPowerEmerald->addCheckItems(hpList, QVariant(), Qt::Unchecked);
-    //ui->comboBoxHiddenPowerRS->addCheckItems(hpList, QVariant(), Qt::Unchecked);
-    //ui->comboBoxHiddenPowerFRLG->addCheckItems(hpList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerEmerald->setup();
+    ui->comboBoxHiddenPowerFRLG->setup();
+    ui->comboBoxHiddenPowerRS->setup();
 }
 
 void Eggs3::changeEvent(QEvent *event)
@@ -131,7 +124,6 @@ void Eggs3::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                translate();
                 break;
             default:
                 break;
@@ -183,6 +175,36 @@ void Eggs3::on_pushButtonProfileManagerFRLG_clicked()
     manager->setAttribute(Qt::WA_QuitOnClose, false);
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
+}
+
+void Eggs3::on_pushButtonAnyAbilityEmerald_clicked()
+{
+    ui->comboBoxAbilityEmerald->setCurrentIndex(0);
+}
+
+void Eggs3::on_pushButtonAnyNatureEmerald_clicked()
+{
+    ui->comboBoxNatureEmerald->uncheckAll();
+}
+
+void Eggs3::on_pushButtonAnyAbilityRS_clicked()
+{
+    ui->comboBoxAbilityRS->setCurrentIndex(0);
+}
+
+void Eggs3::on_pushButtonAnyNatureRS_clicked()
+{
+    ui->comboBoxNatureRS->uncheckAll();
+}
+
+void Eggs3::on_pushButtonAnyAbilityFRLG_clicked()
+{
+    ui->comboBoxAbilityFRLG->setCurrentIndex(0);
+}
+
+void Eggs3::on_pushButtonAnyNatureFRLG_clicked()
+{
+    ui->comboBoxNatureFRLG->uncheckAll();
 }
 
 void Eggs3::refreshProfiles()

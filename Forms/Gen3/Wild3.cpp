@@ -42,7 +42,6 @@ void Wild3::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                translate();
                 break;
             default:
                 break;
@@ -116,18 +115,11 @@ void Wild3::setupModels()
     ui->comboBoxMethodSearcher->setItemData(1, MethodH2);
     ui->comboBoxMethodSearcher->setItemData(2, MethodH4);
 
-    translate();
-}
+    ui->comboBoxNatureGenerator->setup();
+    ui->comboBoxNatureSearcher->setup();
 
-void Wild3::translate()
-{
-    vector<QString> natureList = Nature::getNatures();
-    //ui->comboBoxNatureGenerator->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    //ui->comboBoxNatureSearcher->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-
-    vector<QString> powerList = Power::getPowers();
-    //ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-    //ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerGenerator->setup();
+    ui->comboBoxHiddenPowerSearcher->setup();
 }
 
 void Wild3::on_saveProfileGenerator_clicked()
