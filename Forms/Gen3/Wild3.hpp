@@ -47,10 +47,16 @@ signals:
     void updateView(vector<Frame3>);
     void alertProfiles(int);
 
-public:
-    explicit Wild3(QWidget *parent = 0);
-    ~Wild3();
-    void updateProfiles();
+private:
+    Ui::Wild3 *ui;
+    vector<Profile3> profiles;
+    bool isSearching = false;
+    Searcher3Model *s = new Searcher3Model(this, Method1);
+    Wild3Model *g = new Wild3Model(this);
+
+    void setupModels();
+    void translate();
+    void search();
 
 private slots:
     void on_generate_clicked();
@@ -66,16 +72,10 @@ private slots:
     void on_checkBoxDelayGenerator_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
 
-private:
-    Ui::Wild3 *ui;
-    vector<Profile3> profiles;
-    bool isSearching = false;
-    Searcher3Model *s = new Searcher3Model(this, Method1);
-    Wild3Model *g = new Wild3Model(this);
-
-    void setupModels();
-    void createProfileXml();
-    void search();
+public:
+    explicit Wild3(QWidget *parent = 0);
+    ~Wild3();
+    void updateProfiles();
 
 };
 

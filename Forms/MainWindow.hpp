@@ -32,6 +32,7 @@
 #include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Forms/Gen3/PIDtoIVs.hpp>
 #include <Forms/Util/Pandora.hpp>
+#include <QDir>
 
 namespace Ui {
 class MainWindow;
@@ -43,26 +44,6 @@ class MainWindow : public QMainWindow
 
 protected:
     void changeEvent(QEvent*);
-
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-
-private slots:
-    void on_pushButtonStationary3_clicked();
-    void on_pushButtonWild3_clicked();
-    void on_pushButtonEgg3_clicked();
-    void on_actionResearcher_triggered();
-    void slotLanguageChanged(QAction *action);
-    void updateProfiles(int num);
-    void on_action16_Bit_Seed_to_Time_triggered();
-    void on_actionJirachi_Generation_triggered();
-    void on_actionPokeSpot_triggered();
-    void on_actionIV_to_PID_triggered();
-    void on_actionGameCube_RTC_triggered();
-    void on_actionPID_to_IV_triggered();
-
-    void on_actionPandora_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -77,6 +58,27 @@ private:
     void setupModels();
     void loadLanguage(const QString &lang);
     void switchTranslator(QTranslator& translator, const QString& filename);
+    void createProfileXml();
+
+private slots:
+    void on_pushButtonStationary3_clicked();
+    void on_pushButtonWild3_clicked();
+    void on_pushButtonEgg3_clicked();
+    void on_actionResearcher_triggered();
+    void slotLanguageChanged(QAction *action);
+    void updateProfiles(int num);
+    void on_action16_Bit_Seed_to_Time_triggered();
+    void on_actionJirachi_Generation_triggered();
+    void on_actionPokeSpot_triggered();
+    void on_actionIV_to_PID_triggered();
+    void on_actionGameCube_RTC_triggered();
+    void on_actionPID_to_IV_triggered();
+    void on_actionPandora_triggered();
+
+
+public:
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
 };
 

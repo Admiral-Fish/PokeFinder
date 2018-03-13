@@ -40,25 +40,29 @@ class GameCubeRTC : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    explicit GameCubeRTC(QWidget *parent = 0);
-    ~GameCubeRTC();
+protected:
+    void changeEvent(QEvent*);
 
 signals:
     void updateView(QList<QStandardItem *>);
+
+private:
+    Ui::GameCubeRTC *ui;
+    bool isSearching = false;
+    QStandardItemModel *model = new QStandardItemModel(this);
+    QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
+
+    void setupModels();
+    void calcRTC();
 
 private slots:
     void on_pushButtonSearch_clicked();
     void updateTableView(QList<QStandardItem *> row);
 
-private:
-    Ui::GameCubeRTC *ui;
-    bool isSearching = false;
-    QStandardItemModel *m = new QStandardItemModel(this);
-    QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
+public:
+    explicit GameCubeRTC(QWidget *parent = 0);
+    ~GameCubeRTC();
 
-    void setupModels();
-    void calcRTC();
 };
 
 #endif // GAMECUBERTC_HPP

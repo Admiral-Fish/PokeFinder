@@ -38,24 +38,29 @@ class ProfileManager3NewEdit : public QDialog
 {
     Q_OBJECT
 
+protected:
+    void changeEvent(QEvent*);
+
 signals:
     void newProfile(Profile3);
     void editProfile(Profile3, Profile3);
 
-public:
-    explicit ProfileManager3NewEdit(QWidget *parent = 0);
-    explicit ProfileManager3NewEdit( Profile3 profile, QWidget *parent = 0);
-    ~ProfileManager3NewEdit();
+private:
+    Ui::ProfileManager3NewEdit *ui;
+    bool isEditing = false;
+    Profile3 original;
+
+    void setupModels();
 
 private slots:
     void on_pushButtonAccept_clicked();
     void on_pushButtonCancel_clicked();
     void on_comboBoxVersion_currentIndexChanged(int index);
 
-private:
-    Ui::ProfileManager3NewEdit *ui;
-    bool isEditing = false;
-    Profile3 original;
+public:
+    explicit ProfileManager3NewEdit(QWidget *parent = 0);
+    explicit ProfileManager3NewEdit( Profile3 profile, QWidget *parent = 0);
+    ~ProfileManager3NewEdit();
 
 };
 

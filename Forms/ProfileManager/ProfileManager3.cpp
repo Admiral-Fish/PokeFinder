@@ -25,17 +25,38 @@ ProfileManager3::ProfileManager3(QWidget *parent) :
     ui(new Ui::ProfileManager3)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    model = new Profile3Model(this);
-    model->setModel(Profile3::loadProfileList());
-    ui->tableView->setModel(model);
+    setupModels();
 }
 
 ProfileManager3::~ProfileManager3()
 {
     delete ui;
     delete model;
+}
+
+void ProfileManager3::changeEvent(QEvent *event)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void ProfileManager3::setupModels()
+{
+    model->setModel(Profile3::loadProfileList());
+    ui->tableView->setModel(model);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void ProfileManager3::on_pushButtonNew_clicked()

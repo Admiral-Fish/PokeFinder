@@ -37,14 +37,12 @@ class JirachiGeneration : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    explicit JirachiGeneration(QWidget *parent = 0);
-    ~JirachiGeneration();
-
-    QString flip(QString text);
+protected:
+    void changeEvent(QEvent*);
 
 private:
-    QStandardItemModel *s = new QStandardItemModel(this);
+    Ui::JirachiGeneration *ui;
+    QStandardItemModel *model = new QStandardItemModel(this);
 
     void setupModels();
     void genListOut(u32 seed);
@@ -53,8 +51,12 @@ private:
 private slots:
     void on_pushButtonGenerate_clicked();
 
-private:
-    Ui::JirachiGeneration *ui;
+public:
+    explicit JirachiGeneration(QWidget *parent = 0);
+    ~JirachiGeneration();
+
+    QString flip(QString text);
+
 };
 
 #endif // JIRACHIGENERATION_HPP

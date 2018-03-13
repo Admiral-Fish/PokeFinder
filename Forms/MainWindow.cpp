@@ -28,6 +28,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
+    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
+    if(!file.exists())
+        createProfileXml();
+
     setupLanguage();
     setupModels();
 
@@ -117,6 +121,20 @@ void MainWindow::switchTranslator(QTranslator &translator, const QString &filena
     qApp->removeTranslator(&translator);
     if(translator.load(langPath + filename))
         qApp->installTranslator(&translator);
+}
+
+void MainWindow::createProfileXml()
+{
+    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QDomDocument doc;
+        QDomElement profiles = doc.createElement(QString("Profiles"));
+        doc.appendChild(profiles);
+        QTextStream stream( &file );
+        stream << doc.toString();
+        file.close();
+    }
 }
 
 void MainWindow::changeEvent(QEvent *event)

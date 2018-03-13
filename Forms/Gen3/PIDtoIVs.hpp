@@ -40,6 +40,9 @@ class PIDtoIVs : public QMainWindow
 {
     Q_OBJECT
 
+protected:
+    void changeEvent(QEvent*);
+
 public:
     explicit PIDtoIVs(QWidget *parent = 0);
     ~PIDtoIVs();
@@ -49,7 +52,7 @@ private slots:
 
 private:
     Ui::PIDtoIVs *ui;
-    QStandardItemModel *m = new QStandardItemModel(this);
+    QStandardItemModel *model = new QStandardItemModel(this);
 
     void setupModels();
     void calcFromPID(u32 pid);

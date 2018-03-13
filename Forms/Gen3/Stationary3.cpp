@@ -33,19 +33,6 @@ Stationary3::Stationary3(QWidget *parent) :
     setupModels();
     updateProfiles();
 
-    ui->tableViewGenerator->setModel(g);
-    ui->tableViewGenerator->verticalHeader()->setVisible(false);
-    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    ui->tableViewSearcher->setModel(s);
-    ui->tableViewSearcher->verticalHeader()->setVisible(false);
-    ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
-
-    if(!file.exists())
-        createProfileXml();
-
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
     connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
 }
@@ -53,30 +40,8 @@ Stationary3::Stationary3(QWidget *parent) :
 Stationary3::~Stationary3()
 {
     delete ui;
-    if (s != NULL)
-    {
-        delete s;
-        s = NULL;
-    }
-    if (g != NULL)
-    {
-        delete g;
-        g = NULL;
-    }
-}
-
-void Stationary3::createProfileXml()
-{
-    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
-    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        QDomDocument doc;
-        QDomElement profiles = doc.createElement(QString("Profiles"));
-        doc.appendChild(profiles);
-        QTextStream stream( &file );
-        stream << doc.toString();
-        file.close();
-    }
+    delete s;
+    delete g;
 }
 
 void Stationary3::changeEvent(QEvent *event)
@@ -87,7 +52,7 @@ void Stationary3::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                setupModels();
+                translate();
                 break;
             default:
                 break;
@@ -96,6 +61,27 @@ void Stationary3::changeEvent(QEvent *event)
 }
 
 void Stationary3::setupModels()
+{
+    ui->tableViewGenerator->setModel(g);
+    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->tableViewSearcher->setModel(s);
+    ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->initialSeedGenerator->setValues(0, 32, false);
+    ui->idGenerator->setValues(0, 48, true);
+    ui->sidGenerator->setValues(0, 48, true);
+    ui->startingFrameGenerator->setValues(1, 32, true);
+    ui->maxResultsGenerator->setValues(1, 32, true);
+    ui->delayGenerator->setValues(1, 32, true);
+
+    ui->idSearcher->setValues(0, 48, true);
+    ui->sidSearcher->setValues(0, 48, true);
+
+    translate();
+}
+
+void Stationary3::translate()
 {
     vector<QString> natureList = Nature::getNatures();
     ui->comboBoxNatureGenerator->addCheckItems(natureList, QVariant(), Qt::Unchecked);
@@ -120,16 +106,6 @@ void Stationary3::setupModels()
     ui->comboBoxMethodSearcher->addItem(tr("Gales"), XD);
     ui->comboBoxMethodSearcher->addItem(tr("Colo"), Colo);
     ui->comboBoxMethodSearcher->addItem(tr("Channel"), Channel);
-
-    ui->initialSeedGenerator->setValues(0, 32, false);
-    ui->idGenerator->setValues(0, 48, true);
-    ui->sidGenerator->setValues(0, 48, true);
-    ui->startingFrameGenerator->setValues(1, 32, true);
-    ui->maxResultsGenerator->setValues(1, 32, true);
-    ui->delayGenerator->setValues(1, 32, true);
-
-    ui->idSearcher->setValues(0, 48, true);
-    ui->sidSearcher->setValues(0, 48, true);
 }
 
 void Stationary3::on_saveProfileGenerator_clicked()

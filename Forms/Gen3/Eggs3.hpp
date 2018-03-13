@@ -41,10 +41,16 @@ protected:
 signals:
     void alertProfiles(int);
 
-public:
-    explicit Eggs3(QWidget *parent = 0);
-    ~Eggs3();
-    void updateProfiles();
+private:
+    Ui::Eggs3 *ui;
+    vector<Profile3> profiles;
+    Egg3Model *emeraldIVs = new Egg3Model(this, EBred);
+    Egg3Model *emeraldPID = new Egg3Model(this, EBredPID);
+    Egg3Model *rs = new Egg3Model(this, RSBred);
+    Egg3Model *frlg = new Egg3Model(this, FRLGBred);
+
+    void setupModels();
+    void translate();
 
 private slots:
     void on_pushButtonProfileManagerEmerald_clicked();
@@ -57,15 +63,11 @@ private slots:
     void on_pushButtonGenerateFRLG_clicked();
     void on_pushButtonProfileManagerFRLG_clicked();
 
-private:
-    Ui::Eggs3 *ui;
-    vector<Profile3> profiles;
-    Egg3Model *emeraldIVs = new Egg3Model(this, EBred);
-    Egg3Model *emeraldPID = new Egg3Model(this, EBredPID);
-    Egg3Model *rs = new Egg3Model(this, RSBred);
-    Egg3Model *frlg = new Egg3Model(this, FRLGBred);
+public:
+    explicit Eggs3(QWidget *parent = 0);
+    ~Eggs3();
+    void updateProfiles();
 
-    void setupModels();
 };
 
 #endif // EGGS3_HPP

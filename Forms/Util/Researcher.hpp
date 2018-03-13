@@ -57,6 +57,7 @@ private:
 
     u64 getCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames);
     void setupModels();
+    void translate();
     static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
     static inline u64 modulo(u64 x, u64 y) { return x % y; }
     static inline u64 shiftRight(u64 x, u64 y) { return x >> y; }
@@ -68,16 +69,15 @@ private:
     static inline u64 subtract(u64 x, u64 y) { return x - y; }
     static inline u64 multiply(u64 x, u64 y) { return x * y; }
 
-
-public:
-    explicit Researcher(QWidget *parent = 0);
-    ~Researcher();
-
 private slots:
     void on_pushButtonGenerate32Bit_clicked();
     void on_rngSelection_currentChanged(int index);
     void on_pushButtonSearch_clicked();
     void on_pushButtonNext_clicked();
+
+public:
+    explicit Researcher(QWidget *parent = 0);
+    ~Researcher();
 
 };
 

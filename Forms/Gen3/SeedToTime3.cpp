@@ -30,7 +30,6 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
-    ui->tableViewGenerator->setModel(m);
 }
 
 void SeedToTime3::setupModels()
@@ -38,15 +37,16 @@ void SeedToTime3::setupModels()
     ui->seedToTimeSeed->setValues(0, 32, false);
     ui->seedToTimeYear->setValues(0, 53, true);
 
-    m->setColumnCount(2);
-    m->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Seconds"));
+    model->setColumnCount(2);
+    model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Seconds"));
+    ui->tableViewGenerator->setModel(model);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 SeedToTime3::~SeedToTime3()
 {
     delete ui;
-    delete m;
+    delete model;
 }
 
 void SeedToTime3::changeEvent(QEvent *event)
@@ -57,7 +57,6 @@ void SeedToTime3::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                setupModels();
                 break;
             default:
                 break;
@@ -80,7 +79,7 @@ void SeedToTime3::on_pushButtonFind_clicked()
 
 void SeedToTime3::seedToTime(u32 seed, u32 year)
 {
-    m->removeRows(0, m->rowCount());
+    model->removeRows(0, model->rowCount());
 
     u32 minDay = 0;
     u32 maxDay = 0;
@@ -89,7 +88,7 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
     QDateTime start = QDateTime(QDate(year == 2000 ? 2000 : 2001, 1, 1), QTime(0, 0));
 
     // Hard cap upper year since game seems to crash above year 2037
-    // Maybe some kind of overflow error
+    // Signed overflow error due to how the clock is setup
     if (year < 2000 || year > 2037)
     {
         QMessageBox error;
@@ -132,7 +131,7 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
                         QStandardItem *text = new QStandardItem(result);
                         QStandardItem *secondsText = new QStandardItem(QString::number(seconds, 10));
                         list << text << secondsText;
-                        m->appendRow(list);
+                        model->appendRow(list);
                     }
                 }
             }

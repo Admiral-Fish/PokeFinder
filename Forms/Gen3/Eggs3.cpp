@@ -29,22 +29,6 @@ Eggs3::Eggs3(QWidget *parent) :
 
     setupModels();
     updateProfiles();
-
-    ui->tableViewEmeraldIVs->setModel(emeraldIVs);
-    ui->tableViewEmeraldIVs->verticalHeader()->setVisible(false);
-    ui->tableViewEmeraldIVs->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    ui->tableViewEmeraldPID->setModel(emeraldPID);
-    ui->tableViewEmeraldPID->verticalHeader()->setVisible(false);
-    ui->tableViewEmeraldPID->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    ui->tableViewRS->setModel(rs);
-    ui->tableViewRS->verticalHeader()->setVisible(false);
-    ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    ui->tableViewFRLG->setModel(frlg);
-    ui->tableViewFRLG->verticalHeader()->setVisible(false);
-    ui->tableViewFRLG->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 Eggs3::~Eggs3()
@@ -73,15 +57,17 @@ void Eggs3::updateProfiles()
 
 void Eggs3::setupModels()
 {
-    vector<QString> natureList = Nature::getNatures();
-    ui->comboBoxNatureEmerald->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureRS->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureFRLG->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->tableViewEmeraldIVs->setModel(emeraldIVs);
+    ui->tableViewEmeraldIVs->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    vector<QString> hpList = Power::getPowers();
-    ui->comboBoxHiddenPowerEmerald->addCheckItems(hpList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerRS->addCheckItems(hpList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerFRLG->addCheckItems(hpList, QVariant(), Qt::Unchecked);
+    ui->tableViewEmeraldPID->setModel(emeraldPID);
+    ui->tableViewEmeraldPID->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->tableViewRS->setModel(rs);
+    ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    ui->tableViewFRLG->setModel(frlg);
+    ui->tableViewFRLG->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->textBoxMinFrameEmeraldPID->setValues(1, 32, true);
     ui->textBoxMaxFrameEmeraldPID->setValues(1, 32, true);
@@ -109,6 +95,21 @@ void Eggs3::setupModels()
     ui->textBoxTIDFRLG->setValues(0, 48, true);
     ui->textBoxSIDFRLG->setValues(0, 48, true);
 
+    translate();
+}
+
+void Eggs3::translate()
+{
+    vector<QString> natureList = Nature::getNatures();
+    ui->comboBoxNatureEmerald->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->comboBoxNatureRS->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    ui->comboBoxNatureFRLG->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+
+    vector<QString> hpList = Power::getPowers();
+    ui->comboBoxHiddenPowerEmerald->addCheckItems(hpList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerRS->addCheckItems(hpList, QVariant(), Qt::Unchecked);
+    ui->comboBoxHiddenPowerFRLG->addCheckItems(hpList, QVariant(), Qt::Unchecked);
+
     ui->comboBoxCompatibilityEmerald->clear();
     ui->comboBoxCompatibilityEmerald->addItem(tr("The two don't seem to like each other"), 20);
     ui->comboBoxCompatibilityEmerald->addItem(tr("The two seem to get along"), 50);
@@ -133,7 +134,7 @@ void Eggs3::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
-                setupModels();
+                translate();
                 break;
             default:
                 break;

@@ -38,17 +38,6 @@ class PokeSpot : public QMainWindow
 protected:
     void changeEvent(QEvent*);
 
-public:
-    explicit PokeSpot(QWidget *parent = 0);
-    ~PokeSpot();
-
-private slots:
-    void on_pushButtonAnyAbility_clicked();
-    void on_pushButtonAnyNature_clicked();
-    void on_pushButtonAnySpotType_clicked();
-
-    void on_pushButtonGenerate_clicked();
-
 private:
     Ui::PokeSpot *ui;
     PokeSpotModel *model = new PokeSpotModel(this);
@@ -56,6 +45,17 @@ private:
     vector<u32> rngList;
 
     void setupModels();
+    void translate();
+
+private slots:
+    void on_pushButtonAnyAbility_clicked();
+    void on_pushButtonAnyNature_clicked();
+    void on_pushButtonAnySpotType_clicked();
+    void on_pushButtonGenerate_clicked();
+
+public:
+    explicit PokeSpot(QWidget *parent = 0);
+    ~PokeSpot();
 
 };
 
