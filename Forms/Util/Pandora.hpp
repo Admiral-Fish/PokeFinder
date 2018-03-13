@@ -37,6 +37,7 @@ private slots:
     void on_pushButtonFindRS_clicked();
     void on_radioButtonDateRS_toggled(bool checked);
     void on_radioButtonInitSeedRS_toggled(bool checked);
+    void on_pushButtonFindXD_clicked();
 
 private:
     Ui::Pandora *ui;
@@ -47,6 +48,7 @@ private:
     void setupModels();
     void searchFRLGE();
     void searchRS();
+    void searchXDColo();
 };
 
 #endif // PANDORA_HPP

@@ -34,6 +34,11 @@ void Pandora::setupModels()
     ui->textBoxMinFrameRS->setValues(0, 32, true);
     ui->textBoxMaxFrameRS->setValues(0, 32, true);
 
+    ui->textBoxPIDXD->setValues(0, 32, false);
+    ui->textBoxPRNG->setValues(0, 32, false);
+    ui->textBoxMinFrameXD->setValues(0, 32, true);
+    ui->textBoxMaxFrameXD->setValues(0, 32, true);
+
     gen3->setHorizontalHeaderLabels(QStringList() << "Frame" << "ID" << "SID");
     ui->tableViewGenerator->setModel(gen3);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -64,9 +69,7 @@ void Pandora::searchFRLGE()
         sid = rng.nextUShort();
 
         if(Utilities::shiny(pid, id, sid))
-        {
             emit updateGen3(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(id)) << new QStandardItem(QString::number(sid)));
-        }
     }
 
     isSearching = false;
@@ -105,9 +108,34 @@ void Pandora::searchRS()
         id = rng.nextUShort();
 
         if((!usePID || Utilities::shiny(pid, id, sid)) && (!useTID || searchTID == id) && (!useSID || searchSID == sid))
-        {
             emit updateGen3(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(id)) << new QStandardItem(QString::number(sid)));
-        }
+    }
+
+    isSearching = false;
+}
+
+void Pandora::searchXDColo()
+{
+    u32 prng = ui->textBoxPRNG->text().toUInt(NULL, 16);
+    u32 pid = ui->textBoxPIDXD->text().toUInt(NULL, 16);
+    u32 minFrame = ui->textBoxMinFrameXD->text().toUInt();
+    u32 maxFrame = ui->textBoxMaxFrameXD->text().toUInt();
+
+    LCRNG rng = XDRNG(prng);
+
+    isSearching = true;
+
+    for(auto i = 0; i <= minFrame; ++i) rng.nextUInt();
+
+    u32 sid = rng.nextUShort();
+
+    for(int frame = minFrame; frame <= maxFrame; ++frame)
+    {
+        u32 id = sid;
+        sid = rng.nextUShort();
+
+        if(Utilities::shiny(pid, id, sid))
+            emit updateGen3(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(id)) << new QStandardItem(QString::number(sid)));
     }
 
     isSearching = false;
@@ -136,6 +164,19 @@ void Pandora::on_pushButtonFindRS_clicked()
     ui->tableViewGenerator->viewport()->update();
 
     std::thread job(&Pandora::searchRS, this);
+    job.detach();
+}
+
+void Pandora::on_pushButtonFindXD_clicked()
+{
+    if(isSearching)
+        return;
+
+    gen3->removeRows(0, gen3->rowCount());
+    ui->tableViewGenerator->setModel(gen3);
+    ui->tableViewGenerator->viewport()->update();
+
+    std::thread job(&Pandora::searchXDColo, this);
     job.detach();
 }
 

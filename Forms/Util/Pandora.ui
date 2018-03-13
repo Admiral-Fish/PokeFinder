@@ -24,8 +24,163 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>XD/Colo</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBoxSearchBy_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>231</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Search By</string>
+      </property>
+      <widget class="QLabel" name="labelPIDXD">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PID</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelPRNG">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PRNG</string>
+       </property>
+      </widget>
+      <widget class="QTextBox" name="textBoxPIDXD">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>30</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTextBox" name="textBoxPRNG">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>70</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxParameters_3">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>10</y>
+        <width>231</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Search Parameters</string>
+      </property>
+      <widget class="QLabel" name="labelMaxFrame_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Max Frame</string>
+       </property>
+      </widget>
+      <widget class="QTextBox" name="textBoxMaxFrameXD">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>70</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelMinFrame_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Min Frame</string>
+       </property>
+      </widget>
+      <widget class="QTextBox" name="textBoxMinFrameXD">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>30</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="pushButtonFindXD">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>231</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Find ID Frames</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonCancelXD">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>120</y>
+        <width>231</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="gen3FRLGE">
      <attribute name="title">
       <string>Gen III FRLGE</string>
