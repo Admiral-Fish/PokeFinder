@@ -18,31 +18,23 @@ class QCheckList : public QComboBox
 
 protected:
     bool eventFilter(QObject* object, QEvent* event);
-    void changeEvent(QEvent*);
-
-signals:
-    void globalCheckStateChanged(int);
 
 private:
     QStandardItemModel* model;
-    QString noneCheckedText;
-    QString allCheckedText;
 
     void updateText();
+    int globalCheckState();
 
 private slots:
     void on_modelDataChanged();
     void on_itemPressed(const QModelIndex &index);
 
 public:
-    QCheckList(QWidget* _parent = 0);
+    QCheckList(QWidget* parent = 0);
     ~QCheckList();
     void setup();
-    void setAllCheckedText(const QString &text);
-    void setNoneCheckedText(const QString &text);
     vector<bool> getChecked();
     void uncheckAll();
-    int globalCheckState();
 
     class QCheckListStyledItemDelegate : public QStyledItemDelegate
     {
