@@ -40,11 +40,11 @@ void Wild3::changeEvent(QEvent *event)
     {
         switch (event->type())
         {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
+        case QEvent::LanguageChange:
+            ui->retranslateUi(this);
+            break;
+        default:
+            break;
         }
     }
 }
@@ -125,15 +125,46 @@ void Wild3::setupModels()
     QAction *setTargetFrame = new QAction("Set Target Frame", this);
     QAction *jumpToTarget = new QAction("Jump to Target Frame", this);
     QAction *centerTo1Second = new QAction("Center to +/- 1 Second and Set as Target Frame", this);
+    QAction *centerTo2Seconds = new QAction("Center to +/- 2 Seconds and Set as Target Frame", this);
+    QAction *centerTo3Seconds = new QAction("Center to +/- 3 Seconds and Set as Target Frame", this);
+    QAction *centerTo5Seconds = new QAction("Center to +/- 5 Seconds and Set as Target Frame", this);
+    QAction *centerTo10Seconds = new QAction("Center to +/- 10 Seconds and Set as Target Frame", this);
+    QAction *centerTo1Minute = new QAction("Center to +/- 1 Minute and Set as Target Frame", this);
+    QAction *outputToTxt = new QAction("Output Results to TXT", this);
 
     connect(setTargetFrame, &QAction::triggered, this, &Wild3::setTargetFrameGenerator);
     connect(jumpToTarget, &QAction::triggered, this, &Wild3::jumpToTargetGenerator);
-    connect(centerTo1Second, &QAction::triggered, this, &Wild3::centerTo1SecondGenerator);
+    connect(centerTo1Second, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(60);
+    });
+    connect(centerTo2Seconds, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(120);
+    });
+    connect(centerTo3Seconds, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(180);
+    });
+    connect(centerTo5Seconds, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(300);
+    });
+    connect(centerTo10Seconds, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(600);
+    });
+    connect(centerTo1Minute, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(3600);
+    });
+    connect(outputToTxt, &QAction::triggered, this, &Wild3::outputToTxt);
 
     contextMenu->addAction(setTargetFrame);
     contextMenu->addAction(jumpToTarget);
     contextMenu->addSeparator();
     contextMenu->addAction(centerTo1Second);
+    contextMenu->addAction(centerTo2Seconds);
+    contextMenu->addAction(centerTo3Seconds);
+    contextMenu->addAction(centerTo5Seconds);
+    contextMenu->addAction(centerTo10Seconds);
+    contextMenu->addAction(centerTo1Minute);
+    contextMenu->addSeparator();
+    contextMenu->addAction(outputToTxt);
 }
 
 void Wild3::on_saveProfileGenerator_clicked()
@@ -206,7 +237,7 @@ void Wild3::on_generate_clicked()
     u32 sid = ui->sidGenerator->text().toUInt(NULL, 10);
     u32 offset = 0;
     if(ui->checkBoxDelayGenerator->isChecked())
-         offset = ui->delayGenerator->text().toUInt(NULL, 10);
+        offset = ui->delayGenerator->text().toUInt(NULL, 10);
 
     int genderRatioIndex = ui->comboBoxGenderRatioGenerator->currentIndex();
     Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
@@ -254,21 +285,21 @@ void Wild3::search()
     {
         switch (eval[i])
         {
-            case 0:
-                min[i] = 0;
-                max[i] = 31;
-                break;
-            case 1:
-                min[i] = max[i] = ivs[i];
-                break;
-            case 2:
-                min[i] = ivs[i];
-                max[i] = 31;
-                break;
-            case 3:
-                min[i] = 0;
-                max[i] = ivs[i];
-                break;
+        case 0:
+            min[i] = 0;
+            max[i] = 31;
+            break;
+        case 1:
+            min[i] = max[i] = ivs[i];
+            break;
+        case 2:
+            min[i] = ivs[i];
+            max[i] = 31;
+            break;
+        case 3:
+            min[i] = 0;
+            max[i] = ivs[i];
+            break;
         }
     }
 
@@ -321,7 +352,9 @@ void Wild3::centerFramesAndSetTargetGenerator(u32 centerFrames)
 
     on_generate_clicked();
 
-    ui->tableViewGenerator->scrollTo(ui->tableViewGenerator->model()->index(selectedIndex, 0), QAbstractItemView::PositionAtTop);
+    targetFrame = ui->tableViewGenerator->model()->index(selectedIndex, 0);
+
+    jumpToTargetGenerator();
 }
 
 void Wild3::setTargetFrameGenerator()
@@ -335,9 +368,39 @@ void Wild3::jumpToTargetGenerator()
     ui->tableViewGenerator->selectionModel()->select(targetFrame, QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
 }
 
-void Wild3::centerTo1SecondGenerator()
+void Wild3::outputToTxt()
 {
-    centerFramesAndSetTargetGenerator(60);
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to TXT"), "", tr("Text File (*.txt);;All Files (*)"));
+
+    if(fileName.isEmpty())
+        return;
+    QFile file(fileName);
+    if(!file.open(QIODevice::WriteOnly))
+        return;
+
+    QString textData = "";
+    int rows = g->rowCount();
+    int columns = g->columnCount();
+
+    for(int i = 0; i < columns; i++)
+    {
+        textData += g->headerData(i, Qt::Horizontal, 0).toString() + "\t\t";
+    }
+
+    textData += "\r\n";
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            textData += (g->data(g->index(i,j), 0).toString() != "" ? g->data(g->index(i,j), 0).toString() + "\t" : "\t") + "\t\t";
+        }
+        textData += "\r\n";             // (optional: for new line segmentation)
+    }
+
+    QTextStream out(&file);
+    out << textData;
+    file.close();
 }
 
 void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)

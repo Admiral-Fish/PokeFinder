@@ -32,6 +32,7 @@
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <QMenu>
 #include <thread>
+#include <QFileDialog>
 
 namespace Ui {
 class Wild3;
@@ -60,7 +61,6 @@ private:
 
     void setupModels();
     void search();
-    void centerFramesAndSetTargetGenerator(u32 centerFrames);
 
 private slots:
     void on_generate_clicked();
@@ -78,7 +78,8 @@ private slots:
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void setTargetFrameGenerator();
     void jumpToTargetGenerator();
-    void centerTo1SecondGenerator();
+    void centerFramesAndSetTargetGenerator(u32 centerFrames);
+    void outputToTxt();
 
 public:
     explicit Wild3(QWidget *parent = 0);
