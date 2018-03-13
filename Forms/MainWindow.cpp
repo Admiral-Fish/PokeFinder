@@ -34,10 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setupLanguage();
     setupModels();
-
-    connect(&stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
-    connect(&wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
-    connect(&egg3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
 }
 
 void MainWindow::setupLanguage()
@@ -98,9 +94,9 @@ void MainWindow::updateProfiles(int num)
 {
     if (num == 3)
     {
-        stationary3.updateProfiles();
-        wild3.updateProfiles();
-        egg3.updateProfiles();
+        if (stationary3 != NULL) stationary3->updateProfiles();
+        if (wild3 != NULL) wild3->updateProfiles();
+        if (egg3 != NULL) egg3->updateProfiles();
     }
 }
 
@@ -162,12 +158,9 @@ void MainWindow::changeEvent(QEvent *event)
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::on_pushButtonStationary3_clicked()
-{
-    stationary3.show();
-    stationary3.raise();
+    delete stationary3;
+    delete wild3;
+    delete egg3;
 }
 
 void MainWindow::on_actionResearcher_triggered()
@@ -177,16 +170,37 @@ void MainWindow::on_actionResearcher_triggered()
     r->raise();
 }
 
+void MainWindow::on_pushButtonStationary3_clicked()
+{
+    if (stationary3 == NULL)
+    {
+        stationary3 = new Stationary3();
+        connect(stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    }
+    stationary3->show();
+    stationary3->raise();
+}
+
 void MainWindow::on_pushButtonWild3_clicked()
 {
-    wild3.show();
-    wild3.raise();
+    if (wild3 == NULL)
+    {
+        wild3 = new Wild3();
+        connect(wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    }
+    wild3->show();
+    wild3->raise();
 }
 
 void MainWindow::on_pushButtonEgg3_clicked()
 {
-    egg3.show();
-    egg3.raise();
+    if (egg3 == NULL)
+    {
+        egg3 = new Eggs3();
+        connect(egg3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    }
+    egg3->show();
+    egg3->raise();
 }
 
 void MainWindow::on_action16_Bit_Seed_to_Time_triggered()

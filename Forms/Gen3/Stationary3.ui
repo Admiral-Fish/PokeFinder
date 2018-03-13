@@ -28,7 +28,7 @@
     <item row="0" column="0">
      <widget class="QLabel" name="labelProfiles">
       <property name="text">
-       <string>Profile:</string>
+       <string>Profile</string>
       </property>
      </widget>
     </item>
@@ -220,21 +220,21 @@ QPushButton {
            <item row="0" column="0">
             <widget class="QLabel" name="methodLabel">
              <property name="text">
-              <string>Method:</string>
+              <string>Method</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="maxResultsLabel">
              <property name="text">
-              <string>Max Results:</string>
+              <string>Max Results</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="startingFrameLabel">
              <property name="text">
-              <string>Starting Frame:</string>
+              <string>Starting Frame</string>
              </property>
             </widget>
            </item>
@@ -279,7 +279,7 @@ QPushButton {
            <item row="3" column="0">
             <widget class="QLabel" name="idLabel">
              <property name="text">
-              <string>Trainer ID:</string>
+              <string>TID</string>
              </property>
             </widget>
            </item>
@@ -363,7 +363,7 @@ QPushButton {
            <item row="4" column="0">
             <widget class="QLabel" name="sidLabel">
              <property name="text">
-              <string>Trainer SID:</string>
+              <string>SID</string>
              </property>
             </widget>
            </item>
@@ -383,7 +383,7 @@ QPushButton {
            <item row="5" column="0">
             <widget class="QLabel" name="seedLabel">
              <property name="text">
-              <string>Seed:</string>
+              <string>Seed</string>
              </property>
             </widget>
            </item>
@@ -476,7 +476,7 @@ QPushButton {
              <item row="0" column="0">
               <widget class="QLabel" name="genderLabel">
                <property name="text">
-                <string>Gender:</string>
+                <string>Gender</string>
                </property>
               </widget>
              </item>
@@ -502,7 +502,7 @@ QPushButton {
              <item row="1" column="0">
               <widget class="QLabel" name="abilityLabel">
                <property name="text">
-                <string>Ability:</string>
+                <string>Ability</string>
                </property>
               </widget>
              </item>
@@ -528,7 +528,7 @@ QPushButton {
              <item row="2" column="0">
               <widget class="QLabel" name="natureLabel">
                <property name="text">
-                <string>Nature:</string>
+                <string>Nature</string>
                </property>
               </widget>
              </item>
@@ -664,7 +664,7 @@ QPushButton {
              <item row="3" column="0">
               <widget class="QLabel" name="hiddenPLabel">
                <property name="text">
-                <string>Hidden Power:</string>
+                <string>Hidden Power</string>
                </property>
               </widget>
              </item>
@@ -735,7 +735,7 @@ QPushButton {
              <item row="4" column="0">
               <widget class="QLabel" name="genderRLabel">
                <property name="text">
-                <string>Gender Ratio:</string>
+                <string>Gender Ratio</string>
                </property>
               </widget>
              </item>
@@ -793,7 +793,7 @@ QPushButton {
              <item row="6" column="0">
               <widget class="QLabel" name="disableLabel">
                <property name="text">
-                <string>Disable Filters:</string>
+                <string>Disable Filters</string>
                </property>
               </widget>
              </item>
@@ -1055,21 +1055,21 @@ QPushButton {
            <item row="0" column="0">
             <widget class="QLabel" name="methodLabel_3">
              <property name="text">
-              <string>Method:</string>
+              <string>Method</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="sidLabel_3">
              <property name="text">
-              <string>Trainer SID:</string>
+              <string>SID</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="idLabel_3">
              <property name="text">
-              <string>Trainer ID:</string>
+              <string>TID</string>
              </property>
             </widget>
            </item>
@@ -1089,7 +1089,7 @@ QPushButton {
            <item row="3" column="0">
             <widget class="QLabel" name="label">
              <property name="text">
-              <string>Shadow:</string>
+              <string>Shadow</string>
              </property>
             </widget>
            </item>
@@ -1212,7 +1212,7 @@ QPushButton {
              <item row="0" column="0">
               <widget class="QLabel" name="genderLabel_3">
                <property name="text">
-                <string>Gender:</string>
+                <string>Gender</string>
                </property>
               </widget>
              </item>
@@ -1263,7 +1263,7 @@ QPushButton {
              <item row="4" column="0">
               <widget class="QLabel" name="genderRLabel_3">
                <property name="text">
-                <string>Gender Ratio:</string>
+                <string>Gender Ratio</string>
                </property>
               </widget>
              </item>
@@ -1301,7 +1301,7 @@ QPushButton {
              <item row="3" column="0">
               <widget class="QLabel" name="hiddenPLabel_3">
                <property name="text">
-                <string>Hidden Power:</string>
+                <string>Hidden Power</string>
                </property>
               </widget>
              </item>
@@ -1574,7 +1574,7 @@ QPushButton {
              <item row="1" column="0">
               <widget class="QLabel" name="abilityLabel_3">
                <property name="text">
-                <string>Ability:</string>
+                <string>Ability</string>
                </property>
               </widget>
              </item>
@@ -1600,7 +1600,7 @@ QPushButton {
              <item row="2" column="0">
               <widget class="QLabel" name="natureLabel_3">
                <property name="text">
-                <string>Nature:</string>
+                <string>Nature</string>
                </property>
               </widget>
              </item>
@@ -1650,24 +1650,19 @@ QPushButton {
     </rect>
    </property>
   </widget>
-  <action name="actionResearcher">
-   <property name="text">
-    <string notr="true">Researcher</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
+  <customwidget>
+   <class>QTextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/QTextBox.hpp</header>
+  </customwidget>
   <customwidget>
    <class>IVFilter</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/IVFilter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>QTextBox</class>
-   <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>QCheckList</class>

@@ -20,16 +20,19 @@ class Pandora : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    explicit Pandora(QWidget *parent = 0);
-    ~Pandora();
+protected:
+    void changeEvent(QEvent*);
 
-signals:
-    void updateGen3(QList<QStandardItem *>);
+private:
+    Ui::Pandora *ui;
+    QStandardItemModel *xdcolo = new QStandardItemModel(this);
+    QStandardItemModel *frlge = new QStandardItemModel(this);
+    QStandardItemModel *rs = new QStandardItemModel(this);
+
+    void setupModels();
 
 private slots:
     void on_pushButtonFindFRLGE_clicked();
-    void updateGen3Model(QList<QStandardItem *> row);
     void on_checkBoxBattery_stateChanged(int arg1);
     void on_checkBoxPID_stateChanged(int arg1);
     void on_checkBoxTID_stateChanged(int arg1);
@@ -39,16 +42,10 @@ private slots:
     void on_radioButtonInitSeedRS_toggled(bool checked);
     void on_pushButtonFindXD_clicked();
 
-private:
-    Ui::Pandora *ui;
+public:
+    explicit Pandora(QWidget *parent = 0);
+    ~Pandora();
 
-    bool isSearching = false;
-    QStandardItemModel *gen3 = new QStandardItemModel(this);
-
-    void setupModels();
-    void searchFRLGE();
-    void searchRS();
-    void searchXDColo();
 };
 
 #endif // PANDORA_HPP

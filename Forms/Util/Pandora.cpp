@@ -10,14 +10,29 @@ Pandora::Pandora(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
 
     setupModels();
-
-    qRegisterMetaType<QList<QStandardItem *>>("QList<QStandardItem *>");
-    connect(this, SIGNAL(updateGen3(QList<QStandardItem *>)), this, SLOT(updateGen3Model(QList<QStandardItem *>)));
 }
 
 Pandora::~Pandora()
 {
     delete ui;
+    delete xdcolo;
+    delete frlge;
+    delete rs;
+}
+
+void Pandora::changeEvent(QEvent *event)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void Pandora::setupModels()
@@ -39,45 +54,48 @@ void Pandora::setupModels()
     ui->textBoxMinFrameXD->setValues(0, 32, true);
     ui->textBoxMaxFrameXD->setValues(0, 32, true);
 
-    gen3->setHorizontalHeaderLabels(QStringList() << "Frame" << "ID" << "SID");
-    ui->tableViewGenerator->setModel(gen3);
-    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    xdcolo->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("ID") << tr("SID"));
+    ui->tableViewXDColo->setModel(xdcolo);
+    ui->tableViewXDColo->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    frlge->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("ID") << tr("SID"));
+    ui->tableViewFRLGE->setModel(frlge);
+    ui->tableViewFRLGE->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    rs->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("ID") << tr("SID"));
+    ui->tableViewRS->setModel(rs);
+    ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void Pandora::updateGen3Model(QList<QStandardItem *> row)
+void Pandora::on_pushButtonFindFRLGE_clicked()
 {
-    gen3->appendRow(row);
-}
+    frlge->removeRows(0, frlge->rowCount());
 
-void Pandora::searchFRLGE()
-{
     u32 id = ui->textBoxTID->text().toUInt();
     u32 pid = ui->textBoxPID->text().toUInt(NULL, 16);
     LCRNG rng = PokeRNG(id);
 
     u32 minFrame = ui->textBoxMinFrame->text().toUInt();
-    u32 maxFrame = ui->textBoxMaxFrame->text().toUInt();
+    u32 maxResults = ui->textBoxMaxFrame->text().toUInt();
 
-    isSearching = true;
-
-    for(auto i = 1; i < minFrame; ++i) rng.nextUInt();
+    rng.advanceFrames(minFrame - 1);
 
     u32 sid = rng.nextUShort();
 
-    for(int frame = minFrame; frame <= maxFrame; ++frame)
+    u32 max = minFrame + maxResults;
+    for (u32 frame = minFrame; frame <= max; ++frame)
     {
         sid = rng.nextUShort();
 
-        if(Utilities::shiny(pid, id, sid))
-            emit updateGen3(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(id)) << new QStandardItem(QString::number(sid)));
+        if (Utilities::shiny(pid, id, sid))
+            frlge->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(id)) << new QStandardItem(QString::number(sid)));
     }
-
-    isSearching = false;
-
 }
 
-void Pandora::searchRS()
+void Pandora::on_pushButtonFindRS_clicked()
 {
+    rs->removeRows(0, frlge->rowCount());
+
     u32 seed;
     bool usePID = ui->checkBoxPID->isChecked();
     bool useSID = ui->checkBoxSID->isChecked();
@@ -87,7 +105,7 @@ void Pandora::searchRS()
     u32 searchTID = ui->textBoxTIDRS->text().toUInt();
 
     u32 minFrame = ui->textBoxMinFrameRS->text().toUInt();
-    u32 maxFrame = ui->textBoxMaxFrameRS->text().toUInt();
+    u32 maxResults = ui->textBoxMaxFrameRS->text().toUInt();
 
     if(ui->radioButtonInitSeedRS->isChecked())
         seed = ui->textBoxInitSeedRS->text().toUInt(NULL, 16);
@@ -96,93 +114,52 @@ void Pandora::searchRS()
 
     LCRNG rng = PokeRNG(seed);
 
-    isSearching = true;
+    rng.advanceFrames(minFrame);
 
-    for(int i = 0; i < minFrame; ++i) rng.nextUInt();
+    u32 tid = rng.nextUShort();
+    u32 sid;
 
-    u32 id = rng.nextUShort();
-
-    for(int frame = minFrame; frame <= maxFrame; ++frame)
+    u32 max = minFrame + maxResults;
+    for (u32 frame = minFrame; frame <= max; ++frame)
     {
-        u32 sid = id;
-        id = rng.nextUShort();
+        sid = tid;
+        tid = rng.nextUShort();
 
-        if((!usePID || Utilities::shiny(pid, id, sid)) && (!useTID || searchTID == id) && (!useSID || searchSID == sid))
-            emit updateGen3(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(id)) << new QStandardItem(QString::number(sid)));
+        if ((!usePID || Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid) && (!useSID || searchSID == sid))
+            rs->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
     }
-
-    isSearching = false;
-}
-
-void Pandora::searchXDColo()
-{
-    u32 prng = ui->textBoxPRNG->text().toUInt(NULL, 16);
-    u32 pid = ui->textBoxPIDXD->text().toUInt(NULL, 16);
-    u32 minFrame = ui->textBoxMinFrameXD->text().toUInt();
-    u32 maxFrame = ui->textBoxMaxFrameXD->text().toUInt();
-
-    LCRNG rng = XDRNG(prng);
-
-    isSearching = true;
-
-    for(auto i = 0; i <= minFrame; ++i) rng.nextUInt();
-
-    u32 sid = rng.nextUShort();
-
-    for(int frame = minFrame; frame <= maxFrame; ++frame)
-    {
-        u32 id = sid;
-        sid = rng.nextUShort();
-
-        if(Utilities::shiny(pid, id, sid))
-            emit updateGen3(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(id)) << new QStandardItem(QString::number(sid)));
-    }
-
-    isSearching = false;
-}
-
-void Pandora::on_pushButtonFindFRLGE_clicked()
-{
-    if(isSearching)
-        return;
-
-    gen3->removeRows(0, gen3->rowCount());
-    ui->tableViewGenerator->setModel(gen3);
-    ui->tableViewGenerator->viewport()->update();
-
-    std::thread job(&Pandora::searchFRLGE, this);
-    job.detach();
-}
-
-void Pandora::on_pushButtonFindRS_clicked()
-{
-    if(isSearching)
-        return;
-
-    gen3->removeRows(0, gen3->rowCount());
-    ui->tableViewGenerator->setModel(gen3);
-    ui->tableViewGenerator->viewport()->update();
-
-    std::thread job(&Pandora::searchRS, this);
-    job.detach();
 }
 
 void Pandora::on_pushButtonFindXD_clicked()
 {
-    if(isSearching)
-        return;
+    xdcolo->removeRows(0, frlge->rowCount());
 
-    gen3->removeRows(0, gen3->rowCount());
-    ui->tableViewGenerator->setModel(gen3);
-    ui->tableViewGenerator->viewport()->update();
+    u32 prng = ui->textBoxPRNG->text().toUInt(NULL, 16);
+    u32 pid = ui->textBoxPIDXD->text().toUInt(NULL, 16);
+    u32 minFrame = ui->textBoxMinFrameXD->text().toUInt();
+    u32 maxResults = ui->textBoxMaxFrameXD->text().toUInt();
 
-    std::thread job(&Pandora::searchXDColo, this);
-    job.detach();
+    LCRNG rng = XDRNG(prng);
+
+    rng.advanceFrames(minFrame + 1);
+
+    u32 sid = rng.nextUShort();
+    u32 tid;
+
+    u32 max = minFrame + maxResults;
+    for (u32 frame = minFrame; frame <= max; ++frame)
+    {
+        tid = sid;
+        sid = rng.nextUShort();
+
+        if (Utilities::shiny(pid, tid, sid))
+            xdcolo->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+    }
 }
 
 void Pandora::on_checkBoxBattery_stateChanged(int arg1)
 {
-    if(arg1 == Qt::Unchecked)
+    if (arg1 == Qt::Unchecked)
     {
         ui->radioButtonDateRS->setEnabled(true);
         ui->radioButtonInitSeedRS->setEnabled(true);
@@ -200,7 +177,7 @@ void Pandora::on_checkBoxBattery_stateChanged(int arg1)
 
 void Pandora::on_checkBoxPID_stateChanged(int arg1)
 {
-    if(arg1 == Qt::Checked)
+    if (arg1 == Qt::Checked)
         ui->textBoxPIDRS->setEnabled(true);
     else
         ui->textBoxPIDRS->setEnabled(false);
@@ -208,7 +185,7 @@ void Pandora::on_checkBoxPID_stateChanged(int arg1)
 
 void Pandora::on_checkBoxTID_stateChanged(int arg1)
 {
-    if(arg1 == Qt::Checked)
+    if (arg1 == Qt::Checked)
         ui->textBoxTIDRS->setEnabled(true);
     else
         ui->textBoxTIDRS->setEnabled(false);
@@ -216,7 +193,7 @@ void Pandora::on_checkBoxTID_stateChanged(int arg1)
 
 void Pandora::on_checkBoxSID_stateChanged(int arg1)
 {
-    if(arg1 == Qt::Checked)
+    if (arg1 == Qt::Checked)
         ui->textBoxSIDRS->setEnabled(true);
     else
         ui->textBoxSIDRS->setEnabled(false);
@@ -224,7 +201,7 @@ void Pandora::on_checkBoxSID_stateChanged(int arg1)
 
 void Pandora::on_radioButtonDateRS_toggled(bool checked)
 {
-    if(checked)
+    if (checked)
     {
         ui->dateEdit->setEnabled(true);
         ui->spinBoxHr->setEnabled(true);
@@ -240,7 +217,7 @@ void Pandora::on_radioButtonDateRS_toggled(bool checked)
 
 void Pandora::on_radioButtonInitSeedRS_toggled(bool checked)
 {
-    if(checked)
+    if (checked)
     {
         ui->textBoxInitSeedRS->setEnabled(true);
     }

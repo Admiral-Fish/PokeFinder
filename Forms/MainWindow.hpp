@@ -50,9 +50,9 @@ private:
     QTranslator translator;
     QString currLang;
     QString langPath = QApplication::applicationDirPath().append("/Languages/");
-    Stationary3 stationary3;
-    Wild3 wild3;
-    Eggs3 egg3;
+    Stationary3 *stationary3 = NULL;
+    Wild3 *wild3 = NULL;
+    Eggs3 *egg3 = NULL;
 
     void setupLanguage();
     void setupModels();
@@ -74,7 +74,6 @@ private slots:
     void on_actionGameCube_RTC_triggered();
     void on_actionPID_to_IV_triggered();
     void on_actionPandora_triggered();
-
 
 public:
     explicit MainWindow(QWidget *parent = 0);

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>981</width>
-    <height>544</height>
+    <width>568</width>
+    <height>514</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -333,7 +333,7 @@ QPushButton {
    <widget class="QPushButton" name="pushButtonFind">
     <property name="geometry">
      <rect>
-      <x>890</x>
+      <x>480</x>
       <y>220</y>
       <width>81</width>
       <height>21</height>
@@ -353,7 +353,7 @@ QPushButton {
      <rect>
       <x>10</x>
       <y>250</y>
-      <width>961</width>
+      <width>551</width>
       <height>235</height>
      </rect>
     </property>
@@ -413,23 +413,23 @@ QPushButton {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>981</width>
-     <height>23</height>
+     <width>568</width>
+     <height>20</height>
     </rect>
    </property>
   </widget>
  </widget>
  <customwidgets>
   <customwidget>
+   <class>QTextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/QTextBox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>IVFilter</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/IVFilter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>QTextBox</class>
-   <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

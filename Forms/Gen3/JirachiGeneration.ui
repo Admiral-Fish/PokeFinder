@@ -42,7 +42,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Seed (Hex)</string>
+     <string>Seed</string>
     </property>
    </widget>
    <widget class="QTextBox" name="jirachiGenerationSeed">

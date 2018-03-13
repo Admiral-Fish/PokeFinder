@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>752</width>
-    <height>464</height>
+    <width>498</width>
+    <height>433</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,7 +63,7 @@
    <widget class="QTextBox" name="textBoxMinFrame">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>220</x>
       <y>10</y>
       <width>131</width>
       <height>21</height>
@@ -73,7 +73,7 @@
    <widget class="QLabel" name="labelMinFrame">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>220</x>
       <y>30</y>
       <width>71</width>
       <height>31</height>
@@ -86,9 +86,9 @@
    <widget class="QLabel" name="labelMaxFrame">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>220</x>
       <y>80</y>
-      <width>71</width>
+      <width>61</width>
       <height>31</height>
      </rect>
     </property>
@@ -99,7 +99,7 @@
    <widget class="QTextBox" name="textBoxMaxFrame">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>220</x>
       <y>60</y>
       <width>131</width>
       <height>21</height>
@@ -111,7 +111,7 @@
      <rect>
       <x>10</x>
       <y>150</y>
-      <width>731</width>
+      <width>481</width>
       <height>251</height>
      </rect>
     </property>
@@ -149,7 +149,7 @@
    <widget class="QPushButton" name="pushButtonSearch">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>310</x>
       <y>120</y>
       <width>81</width>
       <height>26</height>
@@ -162,7 +162,7 @@
    <widget class="QPushButton" name="pushButtonCancel">
     <property name="geometry">
      <rect>
-      <x>660</x>
+      <x>400</x>
       <y>120</y>
       <width>81</width>
       <height>26</height>
@@ -178,12 +178,11 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>752</width>
-     <height>25</height>
+     <width>498</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <customwidgets>
   <customwidget>

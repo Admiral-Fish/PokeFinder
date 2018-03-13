@@ -17,10 +17,10 @@ class QCheckList : public QComboBox
     Q_OBJECT
 
 protected:
-    bool eventFilter(QObject* object, QEvent* event);
+    bool eventFilter(QObject *object, QEvent *event);
 
 private:
-    QStandardItemModel* model;
+    QStandardItemModel *model;
 
     void updateText();
     int globalCheckState();
@@ -30,7 +30,7 @@ private slots:
     void on_itemPressed(const QModelIndex &index);
 
 public:
-    QCheckList(QWidget* parent = 0);
+    QCheckList(QWidget *parent = 0);
     ~QCheckList();
     void setup();
     vector<bool> getChecked();
