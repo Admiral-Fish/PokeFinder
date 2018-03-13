@@ -53,6 +53,7 @@ void Stationary3::changeEvent(QEvent *event)
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
                 translate();
+                ui->tableViewGenerator->viewport()->repaint();
                 break;
             default:
                 break;
@@ -92,18 +93,21 @@ void Stationary3::setupModels()
     ui->comboBoxMethodSearcher->setItemData(5, Colo);
     ui->comboBoxMethodSearcher->setItemData(6, Channel);
 
+    ui->comboBoxNatureGenerator->setup();
+
     translate();
 }
 
 void Stationary3::translate()
 {
     vector<QString> natureList = Nature::getNatures();
-    ui->comboBoxNatureGenerator->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureSearcher->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxNatureGenerator->setup();
+    //ui->comboBoxNatureGenerator->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxNatureSearcher->addCheckItems(natureList, QVariant(), Qt::Unchecked);
 
     vector<QString> powerList = Power::getPowers();
-    ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
 }
 
 void Stationary3::on_saveProfileGenerator_clicked()

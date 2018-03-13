@@ -113,14 +113,14 @@ void Eggs3::setupModels()
 void Eggs3::translate()
 {
     vector<QString> natureList = Nature::getNatures();
-    ui->comboBoxNatureEmerald->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureRS->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureFRLG->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxNatureEmerald->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxNatureRS->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxNatureFRLG->addCheckItems(natureList, QVariant(), Qt::Unchecked);
 
     vector<QString> hpList = Power::getPowers();
-    ui->comboBoxHiddenPowerEmerald->addCheckItems(hpList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerRS->addCheckItems(hpList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerFRLG->addCheckItems(hpList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxHiddenPowerEmerald->addCheckItems(hpList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxHiddenPowerRS->addCheckItems(hpList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxHiddenPowerFRLG->addCheckItems(hpList, QVariant(), Qt::Unchecked);
 }
 
 void Eggs3::changeEvent(QEvent *event)

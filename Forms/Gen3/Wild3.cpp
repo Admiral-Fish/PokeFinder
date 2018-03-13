@@ -122,12 +122,12 @@ void Wild3::setupModels()
 void Wild3::translate()
 {
     vector<QString> natureList = Nature::getNatures();
-    ui->comboBoxNatureGenerator->addCheckItems(natureList, QVariant(), Qt::Unchecked);
-    ui->comboBoxNatureSearcher->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxNatureGenerator->addCheckItems(natureList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxNatureSearcher->addCheckItems(natureList, QVariant(), Qt::Unchecked);
 
     vector<QString> powerList = Power::getPowers();
-    ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
-    ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxHiddenPowerGenerator->addCheckItems(powerList, QVariant(), Qt::Unchecked);
+    //ui->comboBoxHiddenPowerSearcher->addCheckItems(powerList, QVariant(), Qt::Unchecked);
 }
 
 void Wild3::on_saveProfileGenerator_clicked()

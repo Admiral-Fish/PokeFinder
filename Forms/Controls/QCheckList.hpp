@@ -4,50 +4,30 @@
 #include <QWidget>
 #include <QComboBox>
 #include <QStandardItemModel>
-#include <QLineEdit>
 #include <QEvent>
-#include <QStyledItemDelegate>
+#include <QLineEdit>
 #include <QListView>
 #include <vector>
+#include <QStyledItemDelegate>
 
 using std::vector;
 
-/**
- * @brief QComboBox with support of checkboxes
- * http://stackoverflow.com/questions/8422760/combobox-of-checkboxes
- */
 class QCheckList : public QComboBox
 {
     Q_OBJECT
 
-public:
-    static const int STATEUNKNOWN = 3;
+protected:
+    bool eventFilter(QObject* object, QEvent* event);
+    void changeEvent(QEvent*);
+
+signals:
+    void globalCheckStateChanged(int);
 
 private:
     QStandardItemModel* model;
     QString noneCheckedText;
     QString allCheckedText;
-    QString unknownlyCheckedText;
 
-signals:
-    void globalCheckStateChanged(int);
-
-public:
-    QCheckList(QWidget* _parent = 0);
-    ~QCheckList();
-    void setAllCheckedText(const QString &text);
-    void setNoneCheckedText(const QString &text);
-    void setUnknownlyCheckedText(const QString &text);
-    QStandardItem *addCheckItem(const QString &label, const QVariant &data, const Qt::CheckState checkState);
-    void addCheckItems(const std::vector<QString> &label, const QVariant &data, const Qt::CheckState checkState);
-    vector<bool> getChecked();
-    void uncheckAll();
-    int globalCheckState();
-
-protected:
-    bool eventFilter(QObject* object, QEvent* event);
-
-private:
     void updateText();
 
 private slots:
@@ -55,6 +35,15 @@ private slots:
     void on_itemPressed(const QModelIndex &index);
 
 public:
+    QCheckList(QWidget* _parent = 0);
+    ~QCheckList();
+    void setup();
+    void setAllCheckedText(const QString &text);
+    void setNoneCheckedText(const QString &text);
+    vector<bool> getChecked();
+    void uncheckAll();
+    int globalCheckState();
+
     class QCheckListStyledItemDelegate : public QStyledItemDelegate
     {
 
@@ -63,6 +52,7 @@ public:
         void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
     };
+
 };
 
 #endif // QCHECKLIST

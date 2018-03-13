@@ -86,12 +86,12 @@ void PokeSpot::setupModels()
 void PokeSpot::translate()
 {
     vector<QString> natures = Nature::getNatures();
-    ui->comboBoxNature->addCheckItems(natures, QVariant(), Qt::Unchecked);
+    //ui->comboBoxNature->addCheckItems(natures, QVariant(), Qt::Unchecked);
 
-    ui->comboBoxSpotType->clear();
-    ui->comboBoxSpotType->addCheckItem(tr("Common"), QVariant(), Qt::Unchecked);
-    ui->comboBoxSpotType->addCheckItem(tr("Uncommon"), QVariant(), Qt::Unchecked);
-    ui->comboBoxSpotType->addCheckItem(tr("Rare"), QVariant(), Qt::Unchecked);
+    //ui->comboBoxSpotType->clear();
+    //ui->comboBoxSpotType->addCheckItem(tr("Common"), QVariant(), Qt::Unchecked);
+    //ui->comboBoxSpotType->addCheckItem(tr("Uncommon"), QVariant(), Qt::Unchecked);
+    //ui->comboBoxSpotType->addCheckItem(tr("Rare"), QVariant(), Qt::Unchecked);
 }
 
 void PokeSpot::on_pushButtonGenerate_clicked()
