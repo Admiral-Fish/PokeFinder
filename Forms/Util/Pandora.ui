@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>732</width>
-    <height>471</height>
+    <height>567</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,11 @@
       <x>10</x>
       <y>10</y>
       <width>711</width>
-      <height>181</height>
+      <height>281</height>
      </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
     </property>
     <widget class="QWidget" name="gen3FRLGE">
      <attribute name="title">
@@ -43,7 +46,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>30</y>
          <width>61</width>
          <height>21</height>
         </rect>
@@ -56,7 +59,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>60</y>
+         <y>70</y>
          <width>61</width>
          <height>21</height>
         </rect>
@@ -69,7 +72,7 @@
        <property name="geometry">
         <rect>
          <x>110</x>
-         <y>20</y>
+         <y>30</y>
          <width>113</width>
          <height>21</height>
         </rect>
@@ -79,7 +82,7 @@
        <property name="geometry">
         <rect>
          <x>110</x>
-         <y>60</y>
+         <y>70</y>
          <width>113</width>
          <height>21</height>
         </rect>
@@ -102,7 +105,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>60</y>
+         <y>70</y>
          <width>71</width>
          <height>21</height>
         </rect>
@@ -115,7 +118,7 @@
        <property name="geometry">
         <rect>
          <x>110</x>
-         <y>60</y>
+         <y>70</y>
          <width>113</width>
          <height>21</height>
         </rect>
@@ -128,7 +131,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>30</y>
          <width>81</width>
          <height>21</height>
         </rect>
@@ -141,7 +144,7 @@
        <property name="geometry">
         <rect>
          <x>110</x>
-         <y>20</y>
+         <y>30</y>
          <width>113</width>
          <height>21</height>
         </rect>
@@ -164,7 +167,7 @@
        <string>Find ID Frames</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButtonCancel">
+     <widget class="QPushButton" name="pushButtonCancelRS_2">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -178,17 +181,347 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="gen3RS">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Gen III RS</string>
      </attribute>
+     <widget class="QGroupBox" name="groupBoxSearchBy_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>231</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Search By</string>
+      </property>
+      <widget class="QTextBox" name="textBoxPIDRS">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>30</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTextBox" name="textBoxTIDRS">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>70</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTextBox" name="textBoxSIDRS">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>110</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBoxPID">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PID</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBoxTID">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>70</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>TID</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBoxSID">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SID</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBoxParameters_2">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>10</y>
+        <width>441</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Search Parameters</string>
+      </property>
+      <widget class="QLabel" name="labelMaxFrame_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>170</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Max Frame</string>
+       </property>
+      </widget>
+      <widget class="QTextBox" name="textBoxMaxFrameRS">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>170</y>
+         <width>113</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelMinFrame_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>81</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Min Frame</string>
+       </property>
+      </widget>
+      <widget class="QTextBox" name="textBoxMinFrameRS">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>140</y>
+         <width>113</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBoxBattery">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>101</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Dead Battery</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QDateEdit" name="dateEdit">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>50</y>
+         <width>110</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="minimumDate">
+        <date>
+         <year>2000</year>
+         <month>1</month>
+         <day>1</day>
+        </date>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBoxHr">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>80</y>
+         <width>42</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>23</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBoxMin">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>110</y>
+         <width>42</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="maximum">
+        <number>59</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelHr">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>80</y>
+         <width>61</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Hour</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelMin">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>110</y>
+         <width>61</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Minute</string>
+       </property>
+      </widget>
+      <widget class="QTextBox" name="textBoxInitSeedRS">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>342</x>
+         <y>50</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButtonDateRS">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>90</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Date</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButtonInitSeedRS">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>50</y>
+         <width>90</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Initial Seed</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="pushButtonFindRS">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>220</y>
+        <width>231</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Find ID Frames</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonCancelRS">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>220</y>
+        <width>231</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QTableView" name="tableViewGenerator">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>200</y>
+      <y>300</y>
       <width>711</width>
       <height>211</height>
      </rect>

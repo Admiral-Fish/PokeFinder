@@ -30,6 +30,13 @@ signals:
 private slots:
     void on_pushButtonFindFRLGE_clicked();
     void updateGen3Model(QList<QStandardItem *> row);
+    void on_checkBoxBattery_stateChanged(int arg1);
+    void on_checkBoxPID_stateChanged(int arg1);
+    void on_checkBoxTID_stateChanged(int arg1);
+    void on_checkBoxSID_stateChanged(int arg1);
+    void on_pushButtonFindRS_clicked();
+    void on_radioButtonDateRS_toggled(bool checked);
+    void on_radioButtonInitSeedRS_toggled(bool checked);
 
 private:
     Ui::Pandora *ui;
@@ -39,6 +46,7 @@ private:
 
     void setupModels();
     void searchFRLGE();
+    void searchRS();
 };
 
 #endif // PANDORA_HPP
