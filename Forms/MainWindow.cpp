@@ -170,37 +170,37 @@ void MainWindow::on_pushButtonEgg3_clicked()
     egg3.raise();
 }
 
-void MainWindow::on_pushButtonSeedToTime3_clicked()
+void MainWindow::on_action16_Bit_Seed_to_Time_triggered()
 {
     seedtotime3.show();
     seedtotime3.raise();
 }
 
-void MainWindow::on_pushButtonJirachiGeneration_clicked()
+void MainWindow::on_actionJirachi_Generation_triggered()
 {
     jirachiGeneration.show();
     jirachiGeneration.raise();
 }
 
-void MainWindow::on_pushButtonPokeSpot_clicked()
+void MainWindow::on_actionPokeSpot_triggered()
 {
     pokeSpot.show();
     pokeSpot.raise();
 }
 
-void MainWindow::on_pushButtonIVToPID_clicked()
+void MainWindow::on_actionIV_to_PID_triggered()
 {
     ivToPID.show();
     ivToPID.raise();
 }
 
-void MainWindow::on_pushButtonGameCubeRTC_clicked()
+void MainWindow::on_actionGameCube_RTC_triggered()
 {
     GCRTC.show();
     GCRTC.raise();
 }
 
-void MainWindow::on_pushButtonPIDtoIV_clicked()
+void MainWindow::on_actionPID_to_IV_triggered()
 {
     pidToIV.show();
     pidToIV.raise();

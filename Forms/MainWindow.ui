@@ -81,84 +81,6 @@
         <string>Egg</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButtonSeedToTime3">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>120</y>
-         <width>191</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>16-Bit Seed to Time</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButtonJirachiGeneration">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>150</y>
-         <width>191</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Jirachi Generation</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButtonPokeSpot">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>180</y>
-         <width>191</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>PokeSpot</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButtonIVToPID">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>210</y>
-         <width>191</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>IV to PID</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButtonGameCubeRTC">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>240</y>
-         <width>191</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>GameCube RTC</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButtonPIDtoIV">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>270</y>
-         <width>191</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>PID to IV</string>
-       </property>
-      </widget>
      </widget>
     </item>
     <item row="0" column="1">
@@ -190,12 +112,54 @@
     </property>
     <addaction name="actionResearcher"/>
    </widget>
+   <widget class="QMenu" name="menuGen_3_Tools">
+    <property name="title">
+     <string>Gen 3 Tools</string>
+    </property>
+    <addaction name="action16_Bit_Seed_to_Time"/>
+    <addaction name="actionJirachi_Generation"/>
+    <addaction name="actionPokeSpot"/>
+    <addaction name="actionIV_to_PID"/>
+    <addaction name="actionGameCube_RTC"/>
+    <addaction name="actionPID_to_IV"/>
+   </widget>
    <addaction name="menuLanguage"/>
    <addaction name="menuTools"/>
+   <addaction name="menuGen_3_Tools"/>
   </widget>
   <action name="actionResearcher">
    <property name="text">
     <string>Researcher</string>
+   </property>
+  </action>
+  <action name="action16_Bit_Seed_to_Time">
+   <property name="text">
+    <string>16-Bit Seed to Time</string>
+   </property>
+  </action>
+  <action name="actionJirachi_Generation">
+   <property name="text">
+    <string>Jirachi Generation</string>
+   </property>
+  </action>
+  <action name="actionPokeSpot">
+   <property name="text">
+    <string>PokeSpot</string>
+   </property>
+  </action>
+  <action name="actionIV_to_PID">
+   <property name="text">
+    <string>IV to PID</string>
+   </property>
+  </action>
+  <action name="actionGameCube_RTC">
+   <property name="text">
+    <string>GameCube RTC</string>
+   </property>
+  </action>
+  <action name="actionPID_to_IV">
+   <property name="text">
+    <string>PID to IV</string>
    </property>
   </action>
  </widget>
