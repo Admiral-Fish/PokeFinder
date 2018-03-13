@@ -39,7 +39,8 @@ public:
     ~IVFilter();
     vector<u32> getEvals();
     vector<u32> getValues();
-
+    vector<u32> getLower();
+    vector<u32> getUpper();
     void clearValues();
 
 private slots:

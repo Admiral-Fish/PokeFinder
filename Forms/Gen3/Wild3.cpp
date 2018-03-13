@@ -268,40 +268,16 @@ void Wild3::search()
     u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
-    vector<u32> eval = ui->ivFilterSearcher->getEvals();
-    vector<u32> ivs = ui->ivFilterSearcher->getValues();
-
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
     Searcher3 searcher = Searcher3(tid, sid, genderRatioIndex);
-    FrameCompare compare = FrameCompare(eval, ivs, ui->comboBoxGenderSearcher->currentIndex(), genderRatioIndex,
-                                        ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
+    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
+                                        genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
                                         ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
 
     searcher.setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
 
-    u32 min[6], max[6];
-
-    for (int i = 0; i < 6; i++)
-    {
-        switch (eval[i])
-        {
-        case 0:
-            min[i] = 0;
-            max[i] = 31;
-            break;
-        case 1:
-            min[i] = max[i] = ivs[i];
-            break;
-        case 2:
-            min[i] = ivs[i];
-            max[i] = 31;
-            break;
-        case 3:
-            min[i] = 0;
-            max[i] = ivs[i];
-            break;
-        }
-    }
+    vector<u32> min = ui->ivFilterSearcher->getLower();
+    vector<u32> max = ui->ivFilterSearcher->getUpper();
 
     for (u32 a = min[0]; a <= max[0]; a++)
     {

@@ -50,6 +50,64 @@ vector<u32> IVFilter::getValues()
     return values;
 }
 
+vector<u32> IVFilter::getLower()
+{
+    vector<u32> eval = getEvals();
+    vector<u32> ivs = getValues();
+
+    vector<u32> low;
+
+    for (int i = 0; i < 6; i++)
+    {
+        switch (eval[i])
+        {
+            case 0:
+                low.push_back(0);
+                break;
+            case 1:
+                low.push_back(ivs[i]);
+                break;
+            case 2:
+                low.push_back(ivs[i]);
+                break;
+            case 3:
+                low.push_back(0);
+                break;
+        }
+    }
+
+    return low;
+}
+
+vector<u32> IVFilter::getUpper()
+{
+    vector<u32> eval = getEvals();
+    vector<u32> ivs = getValues();
+
+    vector<u32> high;
+
+    for (int i = 0; i < 6; i++)
+    {
+        switch (eval[i])
+        {
+            case 0:
+                high.push_back(31);
+                break;
+            case 1:
+                high.push_back(ivs[i]);
+                break;
+            case 2:
+                high.push_back(31);
+                break;
+            case 3:
+                high.push_back(ivs[i]);
+                break;
+        }
+    }
+
+    return high;
+}
+
 void IVFilter::clearValues()
 {
     on_pushButtonClearAtk_clicked();
