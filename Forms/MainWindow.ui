@@ -35,6 +35,53 @@
    <iconset>
     <normaloff>../pokefinder.ico</normaloff>../pokefinder.ico</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+	color: white;
+	background-color: DodgerBlue;
+}
+
+QMenuBar {
+	color: white;
+	background-color: #1D303C;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QMenu {
+	color: white;
+	background-color: #1D303C;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QMenu::item::selected {
+	background: #003941;
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
@@ -98,7 +145,7 @@
      <x>0</x>
      <y>0</y>
      <width>463</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLanguage">
@@ -113,7 +160,7 @@
     <addaction name="actionResearcher"/>
     <addaction name="actionPandora"/>
    </widget>
-   <widget class="QMenu" name="menuGen_3_Tools">
+   <widget class="QMenu" name="menuGen3Tools">
     <property name="title">
      <string>Gen 3 Tools</string>
     </property>
@@ -125,7 +172,7 @@
     <addaction name="actionPID_to_IV"/>
    </widget>
    <addaction name="menuLanguage"/>
-   <addaction name="menuGen_3_Tools"/>
+   <addaction name="menuGen3Tools"/>
    <addaction name="menuTools"/>
   </widget>
   <action name="actionResearcher">
