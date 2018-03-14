@@ -35,6 +35,7 @@
 #include <QAction>
 #include <QModelIndex>
 #include <QFileDialog>
+#include <QClipboard>
 
 namespace Ui {
 class Stationary3;
@@ -58,8 +59,10 @@ private:
     bool isSearching = false;
     vector<Profile3> profiles;
     QMenu *generatorMenu = new QMenu();
+    QMenu *searcherMenu = new QMenu();
     QModelIndex lastIndex;
     QModelIndex targetFrame;
+    QClipboard *clipboard;
 
     void setupModels();
     void search();
@@ -84,6 +87,8 @@ private slots:
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void outputToTxt();
     void outputToCSV();
+    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
+    void copySeedToClipboard();
 
 public:
     explicit Stationary3(QWidget *parent = 0);

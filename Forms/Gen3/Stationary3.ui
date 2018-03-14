@@ -1614,6 +1614,9 @@ QPushButton {
         </item>
         <item row="1" column="0" colspan="2">
          <widget class="QTableView" name="tableViewSearcher">
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>

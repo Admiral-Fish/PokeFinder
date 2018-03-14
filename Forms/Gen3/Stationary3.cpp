@@ -33,6 +33,8 @@ Stationary3::Stationary3(QWidget *parent) :
     setupModels();
     updateProfiles();
 
+    clipboard = QApplication::clipboard();
+
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
     connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
 }
@@ -144,6 +146,12 @@ void Stationary3::setupModels()
     generatorMenu->addSeparator();
     generatorMenu->addAction(outputToTxt);
     generatorMenu->addAction(outputToCSV);
+
+    QAction *copySeedToClipboard = new QAction("Copy Seed to Clipboard", this);
+
+    connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
+
+    searcherMenu->addAction(copySeedToClipboard);
 }
 
 void Stationary3::on_saveProfileGenerator_clicked()
@@ -485,6 +493,11 @@ void Stationary3::outputToCSV()
     file.close();
 }
 
+void Stationary3::copySeedToClipboard()
+{
+    clipboard->setText(ui->tableViewSearcher->model()->data(lastIndex).toString());
+}
+
 void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
 {   
     if (g->rowCount() == 0)
@@ -493,4 +506,14 @@ void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint 
     lastIndex = ui->tableViewGenerator->indexAt(pos);
 
     generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+}
+
+void Stationary3::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+{
+    if (s->rowCount() == 0)
+        return;
+
+    lastIndex = ui->tableViewSearcher->indexAt(pos);
+
+    searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
 }
