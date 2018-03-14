@@ -39,6 +39,7 @@ GameCubeRTC::~GameCubeRTC()
 {
     delete ui;
     delete model;
+    delete contextMenu;
 }
 
 void GameCubeRTC::changeEvent(QEvent *event)
@@ -66,6 +67,12 @@ void GameCubeRTC::setupModels()
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seed"));
     ui->tableViewGenerator->setModel(model);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    QAction *copySeed = new QAction("Copy Seed to Clipboard", this);
+
+    connect(copySeed, &QAction::triggered, this, &GameCubeRTC::copySeed);
+
+    contextMenu->addAction(copySeed);
 }
 
 void GameCubeRTC::updateTableView(QList<QStandardItem*> row)
@@ -133,4 +140,19 @@ void GameCubeRTC::on_pushButtonSearch_clicked()
 
     std::thread job(&GameCubeRTC::calcRTC, this);
     job.detach();
+}
+
+void GameCubeRTC::copySeed()
+{
+    QApplication::clipboard()->setText(ui->tableViewGenerator->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 2)).toString());
+}
+
+void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+{
+    if (model->rowCount() == 0)
+        return;
+
+    lastIndex = ui->tableViewGenerator->indexAt(pos);
+
+    contextMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
 }

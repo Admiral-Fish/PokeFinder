@@ -29,6 +29,10 @@
 #include <QDateTime>
 #include <QDate>
 #include <QTime>
+#include <QMenu>
+#include <QAction>
+#include <QModelIndex>
+#include <QClipboard>
 
 typedef uint32_t u32;
 
@@ -51,6 +55,9 @@ private:
     bool isSearching = false;
     QStandardItemModel *model = new QStandardItemModel(this);
     QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
+    QMenu *contextMenu = new QMenu();
+    QModelIndex lastIndex;
+    QModelIndex targetFrame;
 
     void setupModels();
     void calcRTC();
@@ -58,6 +65,9 @@ private:
 private slots:
     void on_pushButtonSearch_clicked();
     void updateTableView(QList<QStandardItem *> row);
+    void copySeed();
+
+    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
 
 public:
     explicit GameCubeRTC(QWidget *parent = 0);
