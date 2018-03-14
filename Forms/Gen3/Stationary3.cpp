@@ -42,6 +42,7 @@ Stationary3::~Stationary3()
     delete ui;
     delete s;
     delete g;
+    delete generatorMenu;
 }
 
 void Stationary3::changeEvent(QEvent *event)
@@ -50,11 +51,11 @@ void Stationary3::changeEvent(QEvent *event)
     {
         switch (event->type())
         {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
+        case QEvent::LanguageChange:
+            ui->retranslateUi(this);
+            break;
+        default:
+            break;
         }
     }
 }
@@ -96,6 +97,53 @@ void Stationary3::setupModels()
 
     ui->comboBoxHiddenPowerGenerator->setup();
     ui->comboBoxHiddenPowerSearcher->setup();
+
+    QAction *setTargetFrame = new QAction("Set Target Frame", this);
+    QAction *jumpToTarget = new QAction("Jump to Target Frame", this);
+    QAction *centerTo1Second = new QAction("Center to +/- 1 Second and Set as Target Frame", this);
+    QAction *centerTo2Seconds = new QAction("Center to +/- 2 Seconds and Set as Target Frame", this);
+    QAction *centerTo3Seconds = new QAction("Center to +/- 3 Seconds and Set as Target Frame", this);
+    QAction *centerTo5Seconds = new QAction("Center to +/- 5 Seconds and Set as Target Frame", this);
+    QAction *centerTo10Seconds = new QAction("Center to +/- 10 Seconds and Set as Target Frame", this);
+    QAction *centerTo1Minute = new QAction("Center to +/- 1 Minute and Set as Target Frame", this);
+    QAction *outputToTxt = new QAction("Output Results to TXT", this);
+    QAction *outputToCSV = new QAction("Output Results to CSV", this);
+
+    connect(setTargetFrame, &QAction::triggered, this, &Stationary3::setTargetFrameGenerator);
+    connect(jumpToTarget, &QAction::triggered, this, &Stationary3::jumpToTargetGenerator);
+    connect(centerTo1Second, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(60);
+    });
+    connect(centerTo2Seconds, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(120);
+    });
+    connect(centerTo3Seconds, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(180);
+    });
+    connect(centerTo5Seconds, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(300);
+    });
+    connect(centerTo10Seconds, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(600);
+    });
+    connect(centerTo1Minute, &QAction::triggered, this, [=](){
+        centerFramesAndSetTargetGenerator(3600);
+    });
+    connect(outputToTxt, &QAction::triggered, this, &Stationary3::outputToTxt);
+    connect(outputToCSV, &QAction::triggered, this, &Stationary3::outputToCSV);
+
+    generatorMenu->addAction(setTargetFrame);
+    generatorMenu->addAction(jumpToTarget);
+    generatorMenu->addSeparator();
+    generatorMenu->addAction(centerTo1Second);
+    generatorMenu->addAction(centerTo2Seconds);
+    generatorMenu->addAction(centerTo3Seconds);
+    generatorMenu->addAction(centerTo5Seconds);
+    generatorMenu->addAction(centerTo10Seconds);
+    generatorMenu->addAction(centerTo1Minute);
+    generatorMenu->addSeparator();
+    generatorMenu->addAction(outputToTxt);
+    generatorMenu->addAction(outputToCSV);
 }
 
 void Stationary3::on_saveProfileGenerator_clicked()
@@ -322,4 +370,127 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
         ui->comboBoxShadow->setVisible(false);
         ui->label->setVisible(false);
     }
+}
+
+void Stationary3::centerFramesAndSetTargetGenerator(u32 centerFrames)
+{
+    ui->checkBoxDisableGenerator->setChecked(true);
+
+    u32 frameNumber = ui->tableViewGenerator->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 0)).toString().toUInt();
+
+    u32 startingFrame = frameNumber < centerFrames + 1U ? 1U : frameNumber - centerFrames;
+    u32 selectedIndex = frameNumber < centerFrames + 1U ? frameNumber - 1U : centerFrames;
+    u32 maxFrames = frameNumber < centerFrames + 1U ? frameNumber - 1U + centerFrames + 1 : centerFrames * 2 + 1;
+
+    ui->startingFrameGenerator->setText(QString::number(startingFrame));
+    ui->maxResultsGenerator->setText(QString::number(maxFrames));
+
+    on_generate_clicked();
+
+    targetFrame = ui->tableViewGenerator->model()->index(selectedIndex, 0);
+
+    jumpToTargetGenerator();
+}
+
+void Stationary3::setTargetFrameGenerator()
+{
+    targetFrame = lastIndex;
+}
+
+void Stationary3::jumpToTargetGenerator()
+{
+    ui->tableViewGenerator->scrollTo(targetFrame, QAbstractItemView::PositionAtTop);
+    ui->tableViewGenerator->selectionModel()->select(targetFrame, QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
+}
+
+void Stationary3::outputToTxt()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to TXT"), "", tr("Text File (*.txt);;All Files (*)"));
+
+    if(fileName.isEmpty())
+        return;
+    QFile file(fileName);
+    if(!file.open(QIODevice::WriteOnly))
+        return;
+
+    QString textData = "";
+    int rows = g->rowCount();
+    int columns = g->columnCount();
+
+    for(int i = 0; i < columns; i++)
+    {
+        textData += g->headerData(i, Qt::Horizontal, 0).toString();
+        if(i == 1 ||i == 11)
+            textData += "\t\t";
+        else
+            textData += "\t";
+    }
+
+    textData += "\r\n";
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            textData += (g->data(g->index(i,j), 0).toString() != "" ? g->data(g->index(i,j), 0).toString() + "\t" : "-\t");
+            if(j == 11 && g->data(g->index(i,j), 0).toString().length() < 8)
+            {
+                textData += "\t";
+            }
+        }
+        textData += "\r\n";             // (optional: for new line segmentation)
+    }
+
+    QTextStream out(&file);
+    out << textData;
+    file.close();
+}
+
+void Stationary3::outputToCSV()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to CSV"), "", tr("CSV File (*.csv);;All Files (*)"));
+
+    if(fileName.isEmpty())
+        return;
+    QFile file(fileName);
+    if(!file.open(QIODevice::WriteOnly))
+        return;
+
+    QString textData = "";
+    int rows = g->rowCount();
+    int columns = g->columnCount();
+
+    for(int i = 0; i < columns; i++)
+    {
+        textData += g->headerData(i, Qt::Horizontal, 0).toString();
+        if(i != columns - 1)
+            textData += ", ";
+    }
+
+    textData += "\n";
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            textData += (g->data(g->index(i,j), 0).toString() != "" ? g->data(g->index(i,j), 0).toString() + "\t" : "-\t");
+            if(j != columns - 1)
+                textData += ", ";
+        }
+        textData += "\n";             // (optional: for new line segmentation)
+    }
+
+    QTextStream out(&file);
+    out << textData;
+    file.close();
+}
+
+void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+{   
+    if (g->rowCount() == 0)
+        return;
+
+    lastIndex = ui->tableViewGenerator->indexAt(pos);
+
+    generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
 }

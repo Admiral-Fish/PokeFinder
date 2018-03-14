@@ -31,6 +31,10 @@
 #include <Models/Gen3/Stationary3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <thread>
+#include <QMenu>
+#include <QAction>
+#include <QModelIndex>
+#include <QFileDialog>
 
 namespace Ui {
 class Stationary3;
@@ -53,6 +57,9 @@ private:
     Stationary3Model *g = new Stationary3Model(this);
     bool isSearching = false;
     vector<Profile3> profiles;
+    QMenu *generatorMenu = new QMenu();
+    QModelIndex lastIndex;
+    QModelIndex targetFrame;
 
     void setupModels();
     void search();
@@ -71,6 +78,12 @@ private slots:
     void on_anyHiddenPowerSearcher_clicked();
     void updateViewSearcher(vector<Frame3> frames);
     void on_comboBoxMethodSearcher_currentIndexChanged(int index);
+    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
+    void setTargetFrameGenerator();
+    void jumpToTargetGenerator();
+    void centerFramesAndSetTargetGenerator(u32 centerFrames);
+    void outputToTxt();
+    void outputToCSV();
 
 public:
     explicit Stationary3(QWidget *parent = 0);
