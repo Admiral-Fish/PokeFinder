@@ -128,6 +128,19 @@ QMenu::item::selected {
         <string>Egg</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButtonIDs3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>IDs</string>
+       </property>
+      </widget>
      </widget>
     </item>
     <item row="0" column="1">
@@ -158,18 +171,17 @@ QMenu::item::selected {
      <string>Tools</string>
     </property>
     <addaction name="actionResearcher"/>
-    <addaction name="actionPandora"/>
    </widget>
    <widget class="QMenu" name="menuGen3Tools">
     <property name="title">
      <string>Gen 3 Tools</string>
     </property>
-    <addaction name="action16_Bit_Seed_to_Time"/>
-    <addaction name="actionJirachi_Generation"/>
+    <addaction name="action16BitSeedtoTime"/>
+    <addaction name="actionJirachiGeneration"/>
     <addaction name="actionPokeSpot"/>
-    <addaction name="actionIV_to_PID"/>
-    <addaction name="actionGameCube_RTC"/>
-    <addaction name="actionPID_to_IV"/>
+    <addaction name="actionIVtoPID"/>
+    <addaction name="actionGameCubeRTC"/>
+    <addaction name="actionPIDtoIV"/>
    </widget>
    <addaction name="menuLanguage"/>
    <addaction name="menuGen3Tools"/>
@@ -180,12 +192,12 @@ QMenu::item::selected {
     <string>Researcher</string>
    </property>
   </action>
-  <action name="action16_Bit_Seed_to_Time">
+  <action name="action16BitSeedtoTime">
    <property name="text">
     <string>16-Bit Seed to Time</string>
    </property>
   </action>
-  <action name="actionJirachi_Generation">
+  <action name="actionJirachiGeneration">
    <property name="text">
     <string>Jirachi Generation</string>
    </property>
@@ -195,24 +207,19 @@ QMenu::item::selected {
     <string>PokeSpot</string>
    </property>
   </action>
-  <action name="actionIV_to_PID">
+  <action name="actionIVtoPID">
    <property name="text">
     <string>IV to PID</string>
    </property>
   </action>
-  <action name="actionGameCube_RTC">
+  <action name="actionGameCubeRTC">
    <property name="text">
     <string>GameCube RTC</string>
    </property>
   </action>
-  <action name="actionPID_to_IV">
+  <action name="actionPIDtoIV">
    <property name="text">
     <string>PID to IV</string>
-   </property>
-  </action>
-  <action name="actionPandora">
-   <property name="text">
-    <string>Pandora</string>
    </property>
   </action>
  </widget>

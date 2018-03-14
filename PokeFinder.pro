@@ -85,7 +85,7 @@ SOURCES += \
     Forms/Util/IVtoPID.cpp \
     Forms/Gen3/GameCubeRTC.cpp \
     Forms/Gen3/PIDtoIVs.cpp \
-    Forms/Util/Pandora.cpp
+    Forms/Gen3/Pandora.cpp
 
 HEADERS += \
     Forms/ProfileManager/ProfileManager3.hpp \
@@ -140,7 +140,7 @@ HEADERS += \
     Forms/Util/IVtoPID.hpp \
     Forms/Gen3/GameCubeRTC.hpp \
     Forms/Gen3/PIDtoIVs.hpp \
-    Forms/Util/Pandora.hpp
+    Forms/Gen3/Pandora.hpp
 
 FORMS += \
     Forms/ProfileManager/ProfileManager3.ui \
@@ -157,7 +157,7 @@ FORMS += \
     Forms/Util/IVtoPID.ui \
     Forms/Gen3/GameCubeRTC.ui \
     Forms/Gen3/PIDtoIVs.ui \
-    Forms/Util/Pandora.ui
+    Forms/Gen3/Pandora.ui
 
 RESOURCES += \
     resources.qrc

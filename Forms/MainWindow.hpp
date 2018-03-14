@@ -31,7 +31,7 @@
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Forms/Gen3/PIDtoIVs.hpp>
-#include <Forms/Util/Pandora.hpp>
+#include <Forms/Gen3/Pandora.hpp>
 #include <QDir>
 
 namespace Ui {
@@ -53,6 +53,7 @@ private:
     Stationary3 *stationary3 = NULL;
     Wild3 *wild3 = NULL;
     Eggs3 *egg3 = NULL;
+    Pandora *ids3 = NULL;
 
     void setupLanguage();
     void setupModels();
@@ -67,13 +68,13 @@ private slots:
     void on_actionResearcher_triggered();
     void slotLanguageChanged(QAction *action);
     void updateProfiles(int num);
-    void on_action16_Bit_Seed_to_Time_triggered();
-    void on_actionJirachi_Generation_triggered();
+    void on_action16BitSeedtoTime_triggered();
+    void on_actionJirachiGeneration_triggered();
     void on_actionPokeSpot_triggered();
-    void on_actionIV_to_PID_triggered();
-    void on_actionGameCube_RTC_triggered();
-    void on_actionPID_to_IV_triggered();
-    void on_actionPandora_triggered();
+    void on_actionIVtoPID_triggered();
+    void on_actionGameCubeRTC_triggered();
+    void on_actionPIDtoIV_triggered();
+    void on_pushButtonIDs3_clicked();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

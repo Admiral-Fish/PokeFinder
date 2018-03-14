@@ -29,11 +29,43 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     QFile file(QApplication::applicationDirPath() + "/profiles.xml");
-    if(!file.exists())
+    if (!file.exists())
         createProfileXml();
 
     setupLanguage();
     setupModels();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+    delete stationary3;
+    delete wild3;
+    delete egg3;
+    delete ids3;
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if (event != NULL)
+    {
+        switch (event->type())
+        {
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                setupModels();
+                break;
+            case QEvent::LocaleChange:
+            {
+                QString locale = QLocale::system().name();
+                locale.truncate(locale.lastIndexOf('_'));
+                loadLanguage(locale);
+                break;
+            }
+            default:
+                break;
+        }
+    }
 }
 
 void MainWindow::setupLanguage()
@@ -133,36 +165,6 @@ void MainWindow::createProfileXml()
     }
 }
 
-void MainWindow::changeEvent(QEvent *event)
-{
-    if (event != NULL)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            case QEvent::LocaleChange:
-            {
-                QString locale = QLocale::system().name();
-                locale.truncate(locale.lastIndexOf('_'));
-                loadLanguage(locale);
-                break;
-            }
-            default:
-                break;
-        }
-    }
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-    delete stationary3;
-    delete wild3;
-    delete egg3;
-}
-
 void MainWindow::on_actionResearcher_triggered()
 {
     Researcher *r = new Researcher();
@@ -203,14 +205,24 @@ void MainWindow::on_pushButtonEgg3_clicked()
     egg3->raise();
 }
 
-void MainWindow::on_action16_Bit_Seed_to_Time_triggered()
+void MainWindow::on_pushButtonIDs3_clicked()
+{
+    if (ids3 == NULL)
+    {
+        ids3 = new Pandora();
+    }
+    ids3->show();
+    ids3->raise();
+}
+
+void MainWindow::on_action16BitSeedtoTime_triggered()
 {
     SeedToTime3 *seedToTime = new SeedToTime3();
     seedToTime->show();
     seedToTime->raise();
 }
 
-void MainWindow::on_actionJirachi_Generation_triggered()
+void MainWindow::on_actionJirachiGeneration_triggered()
 {
     JirachiGeneration *jirachi = new JirachiGeneration();
     jirachi->show();
@@ -224,30 +236,23 @@ void MainWindow::on_actionPokeSpot_triggered()
     pokeSpot->raise();
 }
 
-void MainWindow::on_actionIV_to_PID_triggered()
+void MainWindow::on_actionIVtoPID_triggered()
 {
     IVtoPID *ivToPID = new IVtoPID();
     ivToPID->show();
     ivToPID->raise();
 }
 
-void MainWindow::on_actionGameCube_RTC_triggered()
+void MainWindow::on_actionGameCubeRTC_triggered()
 {
     GameCubeRTC *rtc = new GameCubeRTC();
     rtc->show();
     rtc->raise();
 }
 
-void MainWindow::on_actionPID_to_IV_triggered()
+void MainWindow::on_actionPIDtoIV_triggered()
 {
     PIDtoIVs *pidToIV = new PIDtoIVs();
     pidToIV->show();
     pidToIV->raise();
-}
-
-void MainWindow::on_actionPandora_triggered()
-{
-    Pandora *pandora = new Pandora();
-    pandora->show();
-    pandora->raise();
 }
