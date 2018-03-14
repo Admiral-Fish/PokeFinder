@@ -342,17 +342,17 @@ void Wild3::outputToTxt()
 {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to TXT"), "", tr("Text File (*.txt);;All Files (*)"));
 
-    if(fileName.isEmpty())
+    if (fileName.isEmpty())
         return;
     QFile file(fileName);
-    if(!file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::WriteOnly))
         return;
 
     QString textData = "";
     int rows = g->rowCount();
     int columns = g->columnCount();
 
-    for(int i = 0; i < columns; i++)
+    for (int i = 0; i < columns; i++)
     {
         textData += g->headerData(i, Qt::Horizontal, 0).toString();
         if(i == 3 ||i == 13)
@@ -368,7 +368,7 @@ void Wild3::outputToTxt()
         for (int j = 0; j < columns; j++)
         {
             textData += (g->data(g->index(i,j), 0).toString() != "" ? g->data(g->index(i,j), 0).toString() + "\t" : "-\t");
-            if(j == 1 || (j == 13 && g->data(g->index(i,j), 0).toString().length() < 8))
+            if (j == 1 || (j == 13 && g->data(g->index(i,j), 0).toString().length() < 8))
             {
                 textData += "\t";
             }
@@ -385,17 +385,17 @@ void Wild3::outputToCSV()
 {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to CSV"), "", tr("CSV File (*.csv);;All Files (*)"));
 
-    if(fileName.isEmpty())
+    if (fileName.isEmpty())
         return;
     QFile file(fileName);
-    if(!file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::WriteOnly))
         return;
 
     QString textData = "";
     int rows = g->rowCount();
     int columns = g->columnCount();
 
-    for(int i = 0; i < columns; i++)
+    for (int i = 0; i < columns; i++)
     {
         textData += g->headerData(i, Qt::Horizontal, 0).toString();
         textData += ", ";
@@ -407,8 +407,9 @@ void Wild3::outputToCSV()
     {
         for (int j = 0; j < columns; j++)
         {
-            textData += (g->data(g->index(i,j), 0).toString() != "" ? g->data(g->index(i,j), 0).toString() + "\t" : "-\t");
-            textData += ", ";
+            textData += g->data(g->index(i, j), 0).toString();
+            if (j != columns - 1)
+                textData += ", ";
         }
         textData += "\n";             // (optional: for new line segmentation)
     }
