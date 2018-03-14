@@ -29,6 +29,7 @@
 }
 
 .QTabWidget * {
+	background-color: #274050;
 	font-family: &quot;Myriad Pro&quot;, Montserrat;
 	font-weight: 500;
 }
@@ -125,11 +126,11 @@ QRadioButton::indicator {
 }
 
 QRadioButton::indicator:checked {
-	background-color: #274050;
+	background-color: white;
 }
 
 QRadioButton::indicator:unchecked {
-	background-color: white;
+	background-color: #274050;
 }
 
 QRadioButton {
@@ -147,6 +148,7 @@ QLineEdit {
 QPushButton {
 	border: none;
 	border-radius: 6px;
+	color: white;
 }
 
 QCheckBox::indicator {
@@ -197,6 +199,11 @@ QCheckBox::indicator:checked {
         </item>
         <item row="0" column="2">
          <widget class="QComboBox" name="comboBoxRNG32Bit">
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+	background-color: #1D303C;
+}</string>
+          </property>
           <item>
            <property name="text">
             <string>LCRNG</string>
@@ -260,6 +267,11 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="2">
          <widget class="QTextBox" name="textBoxMult32Bit">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color: #1D303C;
+}</string>
+          </property>
           <property name="maxLength">
            <number>8</number>
           </property>
@@ -274,6 +286,11 @@ QCheckBox::indicator:checked {
         </item>
         <item row="2" column="2">
          <widget class="QTextBox" name="textBoxAdd32Bit">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color: #1D303C;
+}</string>
+          </property>
           <property name="maxLength">
            <number>8</number>
           </property>
@@ -298,6 +315,11 @@ QCheckBox::indicator:checked {
         </item>
         <item row="0" column="2">
          <widget class="QComboBox" name="comboBoxRNG64Bit">
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+	background-color: #1D303C;
+}</string>
+          </property>
           <item>
            <property name="text">
             <string>BWRNG</string>
@@ -331,6 +353,11 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="2">
          <widget class="QTextBox" name="textBoxMult64Bit">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color: #1D303C;
+}</string>
+          </property>
           <property name="maxLength">
            <number>16</number>
           </property>
@@ -345,6 +372,11 @@ QCheckBox::indicator:checked {
         </item>
         <item row="2" column="2">
          <widget class="QTextBox" name="textBoxAdd64Bit">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color: #1D303C;
+}</string>
+          </property>
           <property name="maxLength">
            <number>16</number>
           </property>
@@ -373,6 +405,11 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="1">
          <widget class="QTextBox" name="textBoxStatus3">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color: #1D303C;
+}</string>
+          </property>
           <property name="maxLength">
            <number>8</number>
           </property>
@@ -387,6 +424,11 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="3">
          <widget class="QTextBox" name="textBoxStatus2">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color: #1D303C;
+}</string>
+          </property>
           <property name="maxLength">
            <number>8</number>
           </property>
@@ -401,6 +443,11 @@ QCheckBox::indicator:checked {
         </item>
         <item row="2" column="1">
          <widget class="QTextBox" name="textBoxStatus1">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color: #1D303C;
+}</string>
+          </property>
           <property name="maxLength">
            <number>8</number>
           </property>
@@ -415,6 +462,11 @@ QCheckBox::indicator:checked {
         </item>
         <item row="2" column="3">
          <widget class="QTextBox" name="textBoxStatus0">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color: #1D303C;
+}</string>
+          </property>
           <property name="maxLength">
            <number>8</number>
           </property>

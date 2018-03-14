@@ -10,6 +10,12 @@
     <height>355</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
     <width>504</width>
@@ -26,29 +32,21 @@
    <string>Gen 3 Seed to Time</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QTabWidget {
+   <string notr="true">QMainWindow {
 	background-color: #274050;
-	border-radius: 10px;
-	margin-top: 7px;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
 }
 
 QPushButton {
 	border: none;
 	border-radius: 6px;
 	color: white;
+	background-color: DodgerBlue;
 	font-family: &quot;Myriad Pro&quot;, Montserrat;
 	font-weight: 500;
 }
 
 QLabel {
-	color: black;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QWidget QLineEdit {
+	color: white;
 	font-family: &quot;Myriad Pro&quot;, Montserrat;
 	font-weight: 500;
 }
@@ -59,6 +57,8 @@ QLineEdit {
 	border:none;
 	border-radius: 6px;
 	color: white;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
 }
 
 QTableView {
@@ -139,9 +139,7 @@ QHeaderView::section {
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton {
-	background-color: DodgerBlue;
-}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Find</string>

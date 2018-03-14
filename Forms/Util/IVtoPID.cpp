@@ -27,6 +27,7 @@ IVtoPID::IVtoPID(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
+    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
@@ -58,18 +59,25 @@ void IVtoPID::setupModels()
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("PID") << tr("Method") << tr("Ability") << "50%" << "12.5%" << "25%" << "75%" << tr("SID"));
     ui->tableView->setModel(model);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setColumnWidth(0, 106);
+    ui->tableView->setColumnWidth(1, 106);
+    ui->tableView->setColumnWidth(2, 150);
+    ui->tableView->setColumnWidth(3, 50);
+    ui->tableView->setColumnWidth(4, 50);
+    ui->tableView->setColumnWidth(5, 50);
+    ui->tableView->setColumnWidth(6, 50);
+    ui->tableView->setColumnWidth(7, 50);
+    ui->tableView->setColumnWidth(8, 70);
 }
 
 void IVtoPID::on_pushButtonFind_clicked()
 {
-    vector<u32> vals = ui->ivFilterGenerator->getValues();
-    u32 hp = vals[0];
-    u32 atk = vals[1];
-    u32 def = vals[2];
-    u32 spa = vals[3];
-    u32 spd = vals[4];
-    u32 spe = vals[5];
+    u32 hp = ui->spinBoxHP->value();
+    u32 atk = ui->spinBoxAtk->value();
+    u32 def = ui->spinBoxDef->value();
+    u32 spa = ui->spinBoxSpA->value();
+    u32 spd = ui->spinBoxSpD->value();
+    u32 spe = ui->spinBoxSpe->value();
 
     model->removeRows(0, model->rowCount());
 

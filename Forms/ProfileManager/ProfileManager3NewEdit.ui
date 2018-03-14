@@ -10,7 +10,19 @@
     <height>110</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
+   <size>
+    <width>490</width>
+    <height>110</height>
+   </size>
+  </property>
+  <property name="maximumSize">
    <size>
     <width>490</width>
     <height>110</height>
@@ -107,11 +119,11 @@ QCheckBox::indicator {
 }
 
 QCheckBox::indicator:unchecked {
-	background-color: white;
+	background-color: #274050;
 }
 
 QCheckBox::indicator:checked {
-	background-color: #274050;
+	background-color: white;
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
