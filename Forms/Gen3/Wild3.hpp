@@ -80,6 +80,7 @@ private slots:
     void jumpToTargetGenerator();
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void outputToTxt();
+    void outputToCSV();
 
 public:
     explicit Wild3(QWidget *parent = 0);

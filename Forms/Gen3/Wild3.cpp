@@ -131,6 +131,7 @@ void Wild3::setupModels()
     QAction *centerTo10Seconds = new QAction("Center to +/- 10 Seconds and Set as Target Frame", this);
     QAction *centerTo1Minute = new QAction("Center to +/- 1 Minute and Set as Target Frame", this);
     QAction *outputToTxt = new QAction("Output Results to TXT", this);
+    QAction *outputToCSV = new QAction("Output Results to CSV", this);
 
     connect(setTargetFrame, &QAction::triggered, this, &Wild3::setTargetFrameGenerator);
     connect(jumpToTarget, &QAction::triggered, this, &Wild3::jumpToTargetGenerator);
@@ -153,6 +154,7 @@ void Wild3::setupModels()
         centerFramesAndSetTargetGenerator(3600);
     });
     connect(outputToTxt, &QAction::triggered, this, &Wild3::outputToTxt);
+    connect(outputToCSV, &QAction::triggered, this, &Wild3::outputToCSV);
 
     contextMenu->addAction(setTargetFrame);
     contextMenu->addAction(jumpToTarget);
@@ -165,6 +167,7 @@ void Wild3::setupModels()
     contextMenu->addAction(centerTo1Minute);
     contextMenu->addSeparator();
     contextMenu->addAction(outputToTxt);
+    contextMenu->addAction(outputToCSV);
 }
 
 void Wild3::on_saveProfileGenerator_clicked()
@@ -351,7 +354,11 @@ void Wild3::outputToTxt()
 
     for(int i = 0; i < columns; i++)
     {
-        textData += g->headerData(i, Qt::Horizontal, 0).toString() + "\t\t";
+        textData += g->headerData(i, Qt::Horizontal, 0).toString();
+        if(i == 3 ||i == 13)
+            textData += "\t\t";
+        else
+            textData += "\t";
     }
 
     textData += "\r\n";
@@ -360,9 +367,50 @@ void Wild3::outputToTxt()
     {
         for (int j = 0; j < columns; j++)
         {
-            textData += (g->data(g->index(i,j), 0).toString() != "" ? g->data(g->index(i,j), 0).toString() + "\t" : "\t") + "\t\t";
+            textData += (g->data(g->index(i,j), 0).toString() != "" ? g->data(g->index(i,j), 0).toString() + "\t" : "-\t");
+            if(j == 1 || (j == 13 && g->data(g->index(i,j), 0).toString().length() < 8))
+            {
+                textData += "\t";
+            }
         }
         textData += "\r\n";             // (optional: for new line segmentation)
+    }
+
+    QTextStream out(&file);
+    out << textData;
+    file.close();
+}
+
+void Wild3::outputToCSV()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to CSV"), "", tr("CSV File (*.csv);;All Files (*)"));
+
+    if(fileName.isEmpty())
+        return;
+    QFile file(fileName);
+    if(!file.open(QIODevice::WriteOnly))
+        return;
+
+    QString textData = "";
+    int rows = g->rowCount();
+    int columns = g->columnCount();
+
+    for(int i = 0; i < columns; i++)
+    {
+        textData += g->headerData(i, Qt::Horizontal, 0).toString();
+        textData += ", ";
+    }
+
+    textData += "\n";
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            textData += (g->data(g->index(i,j), 0).toString() != "" ? g->data(g->index(i,j), 0).toString() + "\t" : "-\t");
+            textData += ", ";
+        }
+        textData += "\n";             // (optional: for new line segmentation)
     }
 
     QTextStream out(&file);
