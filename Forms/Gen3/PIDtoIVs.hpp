@@ -28,6 +28,11 @@
 #include <libPokeFinder/Objects/Method.hpp>
 #include <libPokeFinder/RNG/RNGEuclidean.hpp>
 #include <libPokeFinder/RNG/LCRNG.hpp>
+#include <QMenu>
+#include <QAction>
+#include <QModelIndex>
+#include <QClipboard>
+#include <QStringList>
 
 typedef uint32_t u32;
 
@@ -47,12 +52,20 @@ public:
     explicit PIDtoIVs(QWidget *parent = 0);
     ~PIDtoIVs();
 
+signals:
+    void moveResultsToStationary(QString, QString, u32, u32, u32, u32, u32, u32);
+
 private slots:
     void on_pushButtonGenerate_clicked();
+    void on_tabePIDToIV_customContextMenuRequested(const QPoint &pos);
+    void copySeed();
 
 private:
     Ui::PIDtoIVs *ui;
     QStandardItemModel *model = new QStandardItemModel(this);
+    QMenu *contextMenu = new QMenu();
+    QModelIndex lastIndex;
+    QModelIndex targetFrame;
 
     void setupModels();
     void calcFromPID(u32 pid);

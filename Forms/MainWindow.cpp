@@ -253,6 +253,10 @@ void MainWindow::on_actionGameCubeRTC_triggered()
 void MainWindow::on_actionPIDtoIV_triggered()
 {
     PIDtoIVs *pidToIV = new PIDtoIVs();
+    if(stationary3 != NULL)
+    {
+        connect(pidToIV, &PIDtoIVs::moveResultsToStationary, stationary3, &Stationary3::moveResults);
+    }
     pidToIV->show();
     pidToIV->raise();
 }

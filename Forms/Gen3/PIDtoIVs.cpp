@@ -30,12 +30,14 @@ PIDtoIVs::PIDtoIVs(QWidget *parent) :
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
+
 }
 
 PIDtoIVs::~PIDtoIVs()
 {
     delete ui;
     delete model;
+    delete contextMenu;
 }
 
 void PIDtoIVs::changeEvent(QEvent *event)
@@ -60,6 +62,25 @@ void PIDtoIVs::setupModels()
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("Method") << tr("IVs"));
     ui->tabePIDToIV->setModel(model);
     ui->tabePIDToIV->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    QAction *copySeed = new QAction("Copy Seed to Clipboard", this);
+    QAction *moveResults = new QAction("Move Result to Stationary Generator", this);
+    QAction *moveIVs = new QAction("Move IVs to Stationary Generator", this);
+
+    connect(copySeed, &QAction::triggered, this, &PIDtoIVs::copySeed);
+    connect(moveResults, &QAction::triggered, this, [=]{
+        QStringList ivs = ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 2)).toString().split(".");
+        emit moveResultsToStationary(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString(), ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 1)).toString(), ((QString)ivs[0]).toUInt(), ((QString)ivs[1]).toUInt(), ((QString)ivs[2]).toUInt(), ((QString)ivs[3]).toUInt(), ((QString)ivs[4]).toUInt(), ((QString)ivs[5]).toUInt());
+    });
+    connect(moveIVs, &QAction::triggered, this, [=]{
+        QStringList ivs = ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 2)).toString().split(".");
+        emit moveResultsToStationary("", "", ((QString)ivs[0]).toUInt(), ((QString)ivs[1]).toUInt(), ((QString)ivs[2]).toUInt(), ((QString)ivs[3]).toUInt(), ((QString)ivs[4]).toUInt(), ((QString)ivs[5]).toUInt());
+    });
+
+    contextMenu->addAction(copySeed);
+    contextMenu->addAction(moveResults);
+    contextMenu->addAction(moveIVs);
+
 }
 
 void PIDtoIVs::calcFromPID(u32 pid)
@@ -235,4 +256,19 @@ void PIDtoIVs::on_pushButtonGenerate_clicked()
     model->removeRows(0, model->rowCount());
     u32 pid = ui->pidInput->text().toUInt(NULL, 16);
     calcFromPID(pid);
+}
+
+void PIDtoIVs::copySeed()
+{
+    QApplication::clipboard()->setText(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString());
+}
+
+void PIDtoIVs::on_tabePIDToIV_customContextMenuRequested(const QPoint &pos)
+{
+    if (model->rowCount() == 0)
+        return;
+
+    lastIndex = ui->tabePIDToIV->indexAt(pos);
+
+    contextMenu->popup(ui->tabePIDToIV->viewport()->mapToGlobal(pos));
 }

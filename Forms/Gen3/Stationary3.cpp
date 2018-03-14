@@ -33,8 +33,6 @@ Stationary3::Stationary3(QWidget *parent) :
     setupModels();
     updateProfiles();
 
-    clipboard = QApplication::clipboard();
-
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
     connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
 }
@@ -326,6 +324,21 @@ void Stationary3::on_search_clicked()
     job.detach();
 }
 
+void Stationary3::moveResults(QString seed, QString method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe)
+{
+    if(seed != "")
+        ui->initialSeedGenerator->setText(seed);
+    for(auto i = 0; i < ui->comboBoxMethodGenerator->model()->rowCount(); i++)
+    {
+        if(ui->comboBoxMethodGenerator->model()->data(ui->comboBoxMethodGenerator->model()->index(i, 0)).toString() == method)
+        {
+            ui->comboBoxMethodGenerator->setCurrentIndex(i);
+            break;
+        }
+    }
+    ui->ivFilterGenerator->setValues(hp, atk, def, spa, spd, spe);
+}
+
 void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
 {
     (void) index;
@@ -495,7 +508,7 @@ void Stationary3::outputToCSV()
 
 void Stationary3::copySeedToClipboard()
 {
-    clipboard->setText(ui->tableViewSearcher->model()->data(lastIndex).toString());
+    QApplication::clipboard()->setText(ui->tableViewSearcher->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 0)).toString());
 }
 
 void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)

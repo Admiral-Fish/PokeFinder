@@ -42,6 +42,7 @@ public:
     vector<u32> getLower();
     vector<u32> getUpper();
     void clearValues();
+    void setValues(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
 
 private slots:
     void on_pushButton31HP_clicked();

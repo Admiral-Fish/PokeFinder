@@ -62,10 +62,12 @@ private:
     QMenu *searcherMenu = new QMenu();
     QModelIndex lastIndex;
     QModelIndex targetFrame;
-    QClipboard *clipboard;
 
     void setupModels();
     void search();
+
+public slots:
+    void moveResults(QString seed, QString method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
 
 private slots:
     void on_generate_clicked();

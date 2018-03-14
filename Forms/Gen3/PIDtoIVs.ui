@@ -96,6 +96,9 @@ QPushButton {
         <height>16777215</height>
        </size>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
@@ -160,7 +163,7 @@ QPushButton {
      <x>0</x>
      <y>0</y>
      <width>482</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
