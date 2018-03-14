@@ -398,7 +398,8 @@ void Wild3::outputToCSV()
     for (int i = 0; i < columns; i++)
     {
         textData += g->headerData(i, Qt::Horizontal, 0).toString();
-        textData += ", ";
+        if (i != columns - 1)
+            textData += ", ";
     }
 
     textData += "\n";
