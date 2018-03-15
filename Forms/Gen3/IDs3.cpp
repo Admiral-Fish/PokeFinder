@@ -120,7 +120,7 @@ void IDs3::on_pushButtonFindFRLGE_clicked()
 
 void IDs3::on_pushButtonFindRS_clicked()
 {
-    rs->removeRows(0, frlge->rowCount());
+    rs->removeRows(0, rs->rowCount());
 
     u32 seed;
     bool usePID = ui->checkBoxPIDRS->isChecked();
@@ -158,7 +158,7 @@ void IDs3::on_pushButtonFindRS_clicked()
 
 void IDs3::on_pushButtonFindXD_clicked()
 {
-    xdcolo->removeRows(0, frlge->rowCount());
+    xdcolo->removeRows(0, xdcolo->rowCount());
 
     u32 seed = ui->textBoxSeedXD->text().toUInt(NULL, 16);
     bool usePID = ui->checkBoxPIDXD->isChecked();
