@@ -72,6 +72,7 @@ int Searcher3Model::columnCount(const QModelIndex &parent) const
         case Colo:
             return 15;
         case Method1:
+        case Method1Reverse:
         case Method2:
         case Method4:
         case XDColo:
@@ -132,6 +133,7 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                         return frame.getGender();
                 }
             case Method1:
+            case Method1Reverse:
             case Method2:
             case Method4:
             case XDColo:
@@ -254,6 +256,7 @@ QVariant Searcher3Model::headerData(int section, Qt::Orientation orientation, in
                             return tr("Gender");
                     }
                 case Method1:
+                case Method1Reverse:
                 case Method2:
                 case Method4:
                 case XDColo:

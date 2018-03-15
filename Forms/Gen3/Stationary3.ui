@@ -191,6 +191,12 @@ QPushButton {
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBoxRNGInfoStationary3">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>231</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
             <width>249</width>
@@ -204,19 +210,6 @@ QPushButton {
            <string>RNG Info</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
-           <item row="2" column="1">
-            <widget class="QTextBox" name="maxResultsGenerator">
-             <property name="inputMask">
-              <string/>
-             </property>
-             <property name="text">
-              <string notr="true">100000</string>
-             </property>
-             <property name="maxLength">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="methodLabel">
              <property name="text">
@@ -256,6 +249,11 @@ QPushButton {
              </item>
              <item>
               <property name="text">
+               <string>Method 1 Reverse</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string>Method 2</string>
               </property>
              </item>
@@ -276,13 +274,6 @@ QPushButton {
              </item>
             </widget>
            </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="idLabel">
-             <property name="text">
-              <string>TID</string>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="1">
             <widget class="QTextBox" name="startingFrameGenerator">
              <property name="styleSheet">
@@ -299,7 +290,14 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="7" column="0" colspan="2">
+           <item row="3" column="0">
+            <widget class="QLabel" name="idLabel">
+             <property name="text">
+              <string>TID</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0" colspan="2">
             <widget class="QPushButton" name="generate">
              <property name="enabled">
               <bool>true</bool>
@@ -336,8 +334,8 @@ QPushButton {
              </property>
              <property name="maximumSize">
               <size>
-               <width>153</width>
-               <height>100</height>
+               <width>16777215</width>
+               <height>16</height>
               </size>
              </property>
              <property name="inputMask">
@@ -387,20 +385,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
-            <widget class="QTextBox" name="idGenerator">
-             <property name="inputMask">
-              <string/>
-             </property>
-             <property name="text">
-              <string notr="true">12345</string>
-             </property>
-             <property name="maxLength">
-              <number>5</number>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="0" colspan="2">
+           <item row="7" column="0" colspan="2">
             <widget class="QPushButton" name="saveProfileGenerator">
              <property name="minimumSize">
               <size>
@@ -424,18 +409,31 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="6" column="0">
-            <spacer name="verticalSpacer">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
+           <item row="3" column="1">
+            <widget class="QTextBox" name="idGenerator">
+             <property name="inputMask">
+              <string/>
              </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
+             <property name="text">
+              <string notr="true">12345</string>
              </property>
-            </spacer>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QTextBox" name="maxResultsGenerator">
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="text">
+              <string notr="true">100000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -1007,6 +1005,20 @@ QPushButton {
            <string>RNG Info</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
+           <item row="2" column="0">
+            <widget class="QLabel" name="sidLabel_3">
+             <property name="text">
+              <string>SID</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="methodLabel_3">
+             <property name="text">
+              <string>Method</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="1">
             <widget class="QComboBox" name="comboBoxMethodSearcher">
              <property name="layoutDirection">
@@ -1021,6 +1033,11 @@ QPushButton {
              <item>
               <property name="text">
                <string>Method 1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Method 1 Reverse</string>
               </property>
              </item>
              <item>
@@ -1055,24 +1072,23 @@ QPushButton {
              </item>
             </widget>
            </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="methodLabel_3">
-             <property name="text">
-              <string>Method</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="sidLabel_3">
-             <property name="text">
-              <string>SID</string>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="0">
             <widget class="QLabel" name="idLabel_3">
              <property name="text">
               <string>TID</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QTextBox" name="sidSearcher">
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="text">
+              <string notr="true">54321</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
              </property>
             </widget>
            </item>
@@ -1096,23 +1112,31 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
-            <widget class="QTextBox" name="sidSearcher">
-             <property name="inputMask">
-              <string/>
+           <item row="5" column="0" colspan="2">
+            <widget class="QPushButton" name="saveSearcher">
+             <property name="minimumSize">
+              <size>
+               <width>231</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: orange;
+}</string>
              </property>
              <property name="text">
-              <string notr="true">54321</string>
+              <string>Profile Manager</string>
              </property>
-             <property name="maxLength">
-              <number>5</number>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
-            <widget class="QComboBox" name="comboBoxShadow"/>
-           </item>
-           <item row="5" column="0" colspan="2">
+           <item row="4" column="0" colspan="2">
             <widget class="QPushButton" name="search">
              <property name="enabled">
               <bool>true</bool>
@@ -1139,42 +1163,8 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="6" column="0" colspan="2">
-            <widget class="QPushButton" name="saveSearcher">
-             <property name="minimumSize">
-              <size>
-               <width>231</width>
-               <height>23</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: orange;
-}</string>
-             </property>
-             <property name="text">
-              <string>Profile Manager</string>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-             <property name="autoDefault">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <spacer name="verticalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
+           <item row="3" column="1">
+            <widget class="QComboBox" name="comboBoxShadow"/>
            </item>
           </layout>
          </widget>
@@ -1652,7 +1642,7 @@ QPushButton {
      <x>0</x>
      <y>0</y>
      <width>1182</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

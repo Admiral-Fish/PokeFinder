@@ -79,18 +79,20 @@ void Stationary3::setupModels()
     ui->sidSearcher->setValues(0, 48, true);
 
     ui->comboBoxMethodGenerator->setItemData(0, Method1);
-    ui->comboBoxMethodGenerator->setItemData(1, Method2);
-    ui->comboBoxMethodGenerator->setItemData(2, Method4);
-    ui->comboBoxMethodGenerator->setItemData(3, XDColo);
-    ui->comboBoxMethodGenerator->setItemData(4, Channel);
+    ui->comboBoxMethodGenerator->setItemData(1, Method1Reverse);
+    ui->comboBoxMethodGenerator->setItemData(2, Method2);
+    ui->comboBoxMethodGenerator->setItemData(3, Method4);
+    ui->comboBoxMethodGenerator->setItemData(4, XDColo);
+    ui->comboBoxMethodGenerator->setItemData(5, Channel);
 
     ui->comboBoxMethodSearcher->setItemData(0, Method1);
-    ui->comboBoxMethodSearcher->setItemData(1, Method2);
-    ui->comboBoxMethodSearcher->setItemData(2, Method4);
-    ui->comboBoxMethodSearcher->setItemData(3, XDColo);
-    ui->comboBoxMethodSearcher->setItemData(4, XD);
-    ui->comboBoxMethodSearcher->setItemData(5, Colo);
-    ui->comboBoxMethodSearcher->setItemData(6, Channel);
+    ui->comboBoxMethodSearcher->setItemData(1, Method1Reverse);
+    ui->comboBoxMethodSearcher->setItemData(2, Method2);
+    ui->comboBoxMethodSearcher->setItemData(3, Method4);
+    ui->comboBoxMethodSearcher->setItemData(4, XDColo);
+    ui->comboBoxMethodSearcher->setItemData(5, XD);
+    ui->comboBoxMethodSearcher->setItemData(6, Colo);
+    ui->comboBoxMethodSearcher->setItemData(7, Channel);
 
     ui->comboBoxNatureGenerator->setup();
     ui->comboBoxNatureSearcher->setup();
