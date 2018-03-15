@@ -516,7 +516,8 @@ void Stationary3::outputToCSV()
 
 void Stationary3::copySeedToClipboard()
 {
-    QApplication::clipboard()->setText(ui->tableViewSearcher->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 0)).toString());
+    int r = lastIndex.row();
+    QApplication::clipboard()->setText(ui->tableViewSearcher->model()->data(ui->tableViewSearcher->model()->index(lastIndex.row(), 0)).toString());
 }
 
 void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
