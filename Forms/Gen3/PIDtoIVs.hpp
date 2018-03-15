@@ -24,10 +24,10 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QList>
-#include <libPokeFinder/RNG/RNGCache.hpp>
-#include <libPokeFinder/Objects/Method.hpp>
-#include <libPokeFinder/RNG/RNGEuclidean.hpp>
-#include <libPokeFinder/RNG/LCRNG.hpp>
+#include <PokeFinderCore/RNG/RNGCache.hpp>
+#include <PokeFinderCore/Objects/Method.hpp>
+#include <PokeFinderCore/RNG/RNGEuclidean.hpp>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <QMenu>
 #include <QAction>
 #include <QModelIndex>

@@ -21,7 +21,7 @@
 #define POKESPOTMODEL_HPP
 
 #include <QAbstractTableModel>
-#include <libPokeFinder/Gen3/Frame3.hpp>
+#include <PokeFinderCore/Gen3/Frame3.hpp>
 
 class PokeSpotModel : public QAbstractTableModel
 {

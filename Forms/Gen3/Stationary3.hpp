@@ -20,13 +20,13 @@
 #ifndef STATIONARY3_H
 #define STATIONARY3_H
 
-#include <libPokeFinder/Gen3/Frame3.hpp>
-#include <libPokeFinder/Gen3/Generator3.hpp>
-#include <libPokeFinder/Gen3/Searcher3.hpp>
-#include <libPokeFinder/Objects/FrameCompare.hpp>
-#include <libPokeFinder/Objects/Nature.hpp>
-#include <libPokeFinder/Objects/Power.hpp>
-#include <libPokeFinder/Gen3/Profile3.hpp>
+#include <PokeFinderCore/Gen3/Frame3.hpp>
+#include <PokeFinderCore/Gen3/Generator3.hpp>
+#include <PokeFinderCore/Gen3/Searcher3.hpp>
+#include <PokeFinderCore/Objects/FrameCompare.hpp>
+#include <PokeFinderCore/Objects/Nature.hpp>
+#include <PokeFinderCore/Objects/Power.hpp>
+#include <PokeFinderCore/Gen3/Profile3.hpp>
 #include <Forms/ProfileManager/ProfileManager3.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>

@@ -25,7 +25,7 @@
 #include <QStandardItem>
 #include <thread>
 #include <QList>
-#include <libPokeFinder/RNG/LCRNG.hpp>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <QDateTime>
 #include <QDate>
 #include <QTime>

@@ -21,7 +21,7 @@
 #define WILD3MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <libPokeFinder/Gen3/Frame3.hpp>
+#include <PokeFinderCore/Gen3/Frame3.hpp>
 
 class Wild3Model : public QAbstractTableModel
 {

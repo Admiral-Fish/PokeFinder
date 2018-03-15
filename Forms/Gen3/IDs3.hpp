@@ -23,8 +23,8 @@
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <libPokeFinder/RNG/LCRNG.hpp>
-#include <libPokeFinder/Objects/Utilities.hpp>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
+#include <PokeFinderCore/Objects/Utilities.hpp>
 #include <QStringList>
 #include <QList>
 #include <thread>

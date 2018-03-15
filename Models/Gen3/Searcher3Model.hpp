@@ -21,8 +21,8 @@
 #define SEARCHER3MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <libPokeFinder/Gen3/Frame3.hpp>
-#include <libPokeFinder/Objects/Method.hpp>
+#include <PokeFinderCore/Gen3/Frame3.hpp>
+#include <PokeFinderCore/Objects/Method.hpp>
 
 class Searcher3Model : public QAbstractTableModel
 {

@@ -25,11 +25,11 @@
 #include <QStandardItemModel>
 #include <vector>
 #include <unordered_map>
-#include <libPokeFinder/RNG/LCRNG.hpp>
-#include <libPokeFinder/RNG/LCRNG64.hpp>
-#include <libPokeFinder/RNG/MTRNG.hpp>
-#include <libPokeFinder/RNG/SFMT.hpp>
-#include <libPokeFinder/RNG/TinyMT.hpp>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
+#include <PokeFinderCore/RNG/LCRNG64.hpp>
+#include <PokeFinderCore/RNG/MTRNG.hpp>
+#include <PokeFinderCore/RNG/SFMT.hpp>
+#include <PokeFinderCore/RNG/TinyMT.hpp>
 #include <Models/ResearcherModel.hpp>
 #include <Util/ResearcherFrame.hpp>
 

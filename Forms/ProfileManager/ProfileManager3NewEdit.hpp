@@ -26,7 +26,7 @@
 #include <QObject>
 #include <QStandardItemModel>
 #include <QList>
-#include <libPokeFinder/Gen3/Profile3.hpp>
+#include <PokeFinderCore/Gen3/Profile3.hpp>
 
 typedef uint32_t u32;
 

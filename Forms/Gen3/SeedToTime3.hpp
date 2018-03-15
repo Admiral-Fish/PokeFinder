@@ -26,7 +26,7 @@
 #include <QList>
 #include <QStandardItem>
 #include <QMessageBox>
-#include <libPokeFinder/RNG/LCRNG.hpp>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
 
 typedef uint32_t u32;
 

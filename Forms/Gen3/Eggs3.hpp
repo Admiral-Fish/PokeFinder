@@ -21,11 +21,11 @@
 #define EGGS3_HPP
 
 #include <QMainWindow>
-#include <libPokeFinder/Gen3/Frame3.hpp>
+#include <PokeFinderCore/Gen3/Frame3.hpp>
 #include <Forms/ProfileManager/ProfileManager3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
-#include <libPokeFinder/Objects/FrameCompare.hpp>
-#include <libPokeFinder/Gen3/Egg3.hpp>
+#include <PokeFinderCore/Objects/FrameCompare.hpp>
+#include <PokeFinderCore/Gen3/Egg3.hpp>
 
 namespace Ui
 {

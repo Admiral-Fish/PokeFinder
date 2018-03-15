@@ -21,11 +21,11 @@
 #define POKESPOT_HPP
 
 #include <QMainWindow>
-#include <libPokeFinder/RNG/LCRNG.hpp>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <Models/Gen3/PokeSpotModel.hpp>
-#include <libPokeFinder/Objects/Nature.hpp>
-#include <libPokeFinder/Gen3/Frame3.hpp>
-#include <libPokeFinder/Objects/FrameCompare.hpp>
+#include <PokeFinderCore/Objects/Nature.hpp>
+#include <PokeFinderCore/Gen3/Frame3.hpp>
+#include <PokeFinderCore/Objects/FrameCompare.hpp>
 
 namespace Ui
 {

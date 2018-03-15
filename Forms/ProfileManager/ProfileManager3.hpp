@@ -25,7 +25,7 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QObject>
-#include <libPokeFinder/Gen3/Profile3.hpp>
+#include <PokeFinderCore/Gen3/Profile3.hpp>
 #include <Models/Gen3/Profile3Model.hpp>
 
 using std::vector;

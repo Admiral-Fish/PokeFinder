@@ -24,9 +24,9 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QList>
-#include <libPokeFinder/RNG/RNGEuclidean.hpp>
-#include <libPokeFinder/RNG/LCRNG.hpp>
-#include <libPokeFinder/Objects/Nature.hpp>
+#include <PokeFinderCore/RNG/RNGEuclidean.hpp>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
+#include <PokeFinderCore/Objects/Nature.hpp>
 
 typedef uint32_t u32;
 
