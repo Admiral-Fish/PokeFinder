@@ -76,6 +76,8 @@ void IDs3::setupModels()
     ui->textBoxMinFrameXD->setValues(0, 32, true);
     ui->textBoxMaxFrameXD->setValues(0, 32, true);
 
+    ui->dateTimeEdit->setDisplayFormat(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
+
     xdcolo->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
     ui->tableViewXDColo->setModel(xdcolo);
     ui->tableViewXDColo->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -136,7 +138,7 @@ void IDs3::on_pushButtonFindRS_clicked()
     if (ui->radioButtonInitSeedRS->isChecked())
         seed = ui->textBoxInitSeedRS->text().toUInt(NULL, 16);
     else
-        seed = Utilities::calcGen3Seed(ui->dateEdit->date(), ui->spinBoxHr->value(), ui->spinBoxMin->value());
+        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->date(), ui->dateTimeEdit->time().hour(), ui->dateTimeEdit->time().minute());
 
     LCRNG rng = PokeRNG(seed);
 
@@ -274,27 +276,15 @@ void IDs3::on_checkBoxSIDFRLGE_stateChanged(int arg1)
 void IDs3::on_radioButtonDateRS_toggled(bool checked)
 {
     if (checked)
-    {
-        ui->dateEdit->setEnabled(true);
-        ui->spinBoxHr->setEnabled(true);
-        ui->spinBoxMin->setEnabled(true);
-    }
+        ui->dateTimeEdit->setEnabled(true);
     else
-    {
-        ui->dateEdit->setEnabled(false);
-        ui->spinBoxHr->setEnabled(false);
-        ui->spinBoxMin->setEnabled(false);
-    }
+        ui->dateTimeEdit->setEnabled(false);
 }
 
 void IDs3::on_radioButtonInitSeedRS_toggled(bool checked)
 {
     if (checked)
-    {
         ui->textBoxInitSeedRS->setEnabled(true);
-    }
     else
-    {
         ui->textBoxInitSeedRS->setEnabled(false);
-    }
 }

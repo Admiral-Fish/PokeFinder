@@ -531,7 +531,17 @@ QRadioButton {
            <string>Search Parameters</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
-           <item row="0" column="0">
+           <item row="1" column="3">
+            <widget class="QRadioButton" name="radioButtonInitSeedRS">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Initial Seed</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
             <widget class="QCheckBox" name="checkBoxBattery">
              <property name="text">
               <string>Dead Battery</string>
@@ -557,10 +567,40 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QDateEdit" name="dateEdit">
+           <item row="1" column="1" colspan="2">
+            <widget class="QDateTimeEdit" name="dateTimeEdit">
              <property name="enabled">
               <bool>false</bool>
+             </property>
+             <property name="dateTime">
+              <datetime>
+               <hour>0</hour>
+               <minute>0</minute>
+               <second>0</second>
+               <year>2000</year>
+               <month>1</month>
+               <day>1</day>
+              </datetime>
+             </property>
+             <property name="maximumDateTime">
+              <datetime>
+               <hour>23</hour>
+               <minute>59</minute>
+               <second>59</second>
+               <year>2037</year>
+               <month>12</month>
+               <day>31</day>
+              </datetime>
+             </property>
+             <property name="minimumDateTime">
+              <datetime>
+               <hour>0</hour>
+               <minute>0</minute>
+               <second>0</second>
+               <year>2000</year>
+               <month>1</month>
+               <day>1</day>
+              </datetime>
              </property>
              <property name="minimumDate">
               <date>
@@ -571,17 +611,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="1" column="2">
-            <widget class="QRadioButton" name="radioButtonInitSeedRS">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Initial Seed</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
+           <item row="1" column="4">
             <widget class="QTextBox" name="textBoxInitSeedRS">
              <property name="enabled">
               <bool>false</bool>
@@ -594,48 +624,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="labelHr">
-             <property name="text">
-              <string>Hour</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QSpinBox" name="spinBoxHr">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="maximum">
-              <number>23</number>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="labelMin">
-             <property name="text">
-              <string>Minute</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QSpinBox" name="spinBoxMin">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="maximum">
-              <number>59</number>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="labelMinFrame_2">
-             <property name="text">
-              <string>Starting Frame</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
+           <item row="2" column="2">
             <widget class="QTextBox" name="textBoxMinFrameRS">
              <property name="text">
               <string notr="true">5000</string>
@@ -645,20 +634,27 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="labelMaxFrame_2">
-             <property name="text">
-              <string>Max Results</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
+           <item row="3" column="2">
             <widget class="QTextBox" name="textBoxMaxFrameRS">
              <property name="text">
               <string notr="true">10000</string>
              </property>
              <property name="maxLength">
               <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QLabel" name="labelMinFrame_2">
+             <property name="text">
+              <string>Starting Frame</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="labelMaxFrame_2">
+             <property name="text">
+              <string>Max Results</string>
              </property>
             </widget>
            </item>
