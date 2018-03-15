@@ -516,7 +516,6 @@ void Stationary3::outputToCSV()
 
 void Stationary3::copySeedToClipboard()
 {
-    int r = lastIndex.row();
     QApplication::clipboard()->setText(ui->tableViewSearcher->model()->data(ui->tableViewSearcher->model()->index(lastIndex.row(), 0)).toString());
 }
 
