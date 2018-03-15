@@ -78,34 +78,34 @@ HEADERS += \
     Forms/Util/IVtoPID.hpp \
     Forms/Util/Researcher.hpp \
     Forms/MainWindow.hpp \
-    libPokeFinder/Gen3/Egg3.hpp \
-    libPokeFinder/Gen3/Frame3.hpp \
-    libPokeFinder/Gen3/Generator3.hpp \
-    libPokeFinder/Gen3/NatureLock.hpp \
-    libPokeFinder/Gen3/Profile3.hpp \
-    libPokeFinder/Gen3/Searcher3.hpp \
-    libPokeFinder/Objects/Egg.hpp \
-    libPokeFinder/Objects/Encounter.hpp \
-    libPokeFinder/Objects/EncounterSlot.hpp \
-    libPokeFinder/Objects/Frame.hpp \
-    libPokeFinder/Objects/FrameCompare.hpp \
-    libPokeFinder/Objects/Generator.hpp \
-    libPokeFinder/Objects/Lead.hpp \
-    libPokeFinder/Objects/Method.hpp \
-    libPokeFinder/Objects/Nature.hpp \
-    libPokeFinder/Objects/Power.hpp \
-    libPokeFinder/Objects/Profile.hpp \
-    libPokeFinder/Objects/Searcher.hpp \
-    libPokeFinder/Objects/Utilities.hpp \
-    libPokeFinder/RNG/IRNG.hpp \
-    libPokeFinder/RNG/IRNG64.hpp \
-    libPokeFinder/RNG/LCRNG.hpp \
-    libPokeFinder/RNG/LCRNG64.hpp \
-    libPokeFinder/RNG/MTRNG.hpp \
-    libPokeFinder/RNG/RNGCache.hpp \
-    libPokeFinder/RNG/RNGEuclidean.hpp \
-    libPokeFinder/RNG/SFMT.hpp \
-    libPokeFinder/RNG/TinyMT.hpp \
+    PokeFinderCore/Gen3/Egg3.hpp \
+    PokeFinderCore/Gen3/Frame3.hpp \
+    PokeFinderCore/Gen3/Generator3.hpp \
+    PokeFinderCore/Gen3/NatureLock.hpp \
+    PokeFinderCore/Gen3/Profile3.hpp \
+    PokeFinderCore/Gen3/Searcher3.hpp \
+    PokeFinderCore/Objects/Egg.hpp \
+    PokeFinderCore/Objects/Encounter.hpp \
+    PokeFinderCore/Objects/EncounterSlot.hpp \
+    PokeFinderCore/Objects/Frame.hpp \
+    PokeFinderCore/Objects/FrameCompare.hpp \
+    PokeFinderCore/Objects/Generator.hpp \
+    PokeFinderCore/Objects/Lead.hpp \
+    PokeFinderCore/Objects/Method.hpp \
+    PokeFinderCore/Objects/Nature.hpp \
+    PokeFinderCore/Objects/Power.hpp \
+    PokeFinderCore/Objects/Profile.hpp \
+    PokeFinderCore/Objects/Searcher.hpp \
+    PokeFinderCore/Objects/Utilities.hpp \
+    PokeFinderCore/RNG/IRNG.hpp \
+    PokeFinderCore/RNG/IRNG64.hpp \
+    PokeFinderCore/RNG/LCRNG.hpp \
+    PokeFinderCore/RNG/LCRNG64.hpp \
+    PokeFinderCore/RNG/MTRNG.hpp \
+    PokeFinderCore/RNG/RNGCache.hpp \
+    PokeFinderCore/RNG/RNGEuclidean.hpp \
+    PokeFinderCore/RNG/SFMT.hpp \
+    PokeFinderCore/RNG/TinyMT.hpp \
     Models/Gen3/Egg3Model.hpp \
     Models/Gen3/PokeSpotModel.hpp \
     Models/Gen3/Profile3Model.hpp \
@@ -133,25 +133,25 @@ SOURCES += \
     Forms/Util/IVtoPID.cpp \
     Forms/Util/Researcher.cpp \
     Forms/MainWindow.cpp \
-    libPokeFinder/Gen3/Egg3.cpp \
-    libPokeFinder/Gen3/Frame3.cpp \
-    libPokeFinder/Gen3/Generator3.cpp \
-    libPokeFinder/Gen3/NatureLock.cpp \
-    libPokeFinder/Gen3/Profile3.cpp \
-    libPokeFinder/Gen3/Searcher3.cpp \
-    libPokeFinder/Objects/EncounterSlot.cpp \
-    libPokeFinder/Objects/Frame.cpp \
-    libPokeFinder/Objects/FrameCompare.cpp \
-    libPokeFinder/Objects/Nature.cpp \
-    libPokeFinder/Objects/Power.cpp \
-    libPokeFinder/Objects/Utilities.cpp \
-    libPokeFinder/RNG/LCRNG.cpp \
-    libPokeFinder/RNG/LCRNG64.cpp \
-    libPokeFinder/RNG/MTRNG.cpp \
-    libPokeFinder/RNG/RNGCache.cpp \
-    libPokeFinder/RNG/RNGEuclidean.cpp \
-    libPokeFinder/RNG/SFMT.cpp \
-    libPokeFinder/RNG/TinyMT.cpp \
+    PokeFinderCore/Gen3/Egg3.cpp \
+    PokeFinderCore/Gen3/Frame3.cpp \
+    PokeFinderCore/Gen3/Generator3.cpp \
+    PokeFinderCore/Gen3/NatureLock.cpp \
+    PokeFinderCore/Gen3/Profile3.cpp \
+    PokeFinderCore/Gen3/Searcher3.cpp \
+    PokeFinderCore/Objects/EncounterSlot.cpp \
+    PokeFinderCore/Objects/Frame.cpp \
+    PokeFinderCore/Objects/FrameCompare.cpp \
+    PokeFinderCore/Objects/Nature.cpp \
+    PokeFinderCore/Objects/Power.cpp \
+    PokeFinderCore/Objects/Utilities.cpp \
+    PokeFinderCore/RNG/LCRNG.cpp \
+    PokeFinderCore/RNG/LCRNG64.cpp \
+    PokeFinderCore/RNG/MTRNG.cpp \
+    PokeFinderCore/RNG/RNGCache.cpp \
+    PokeFinderCore/RNG/RNGEuclidean.cpp \
+    PokeFinderCore/RNG/SFMT.cpp \
+    PokeFinderCore/RNG/TinyMT.cpp \
     Models/Gen3/Egg3Model.cpp \
     Models/Gen3/PokeSpotModel.cpp \
     Models/Gen3/Profile3Model.cpp \
