@@ -243,7 +243,7 @@ QPushButton {
     </font>
    </property>
    <property name="text">
-    <string>SpA:</string>
+    <string>SpA</string>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinBoxSpA">
@@ -500,7 +500,7 @@ QPushButton {
     </font>
    </property>
    <property name="text">
-    <string>Def:</string>
+    <string>Def</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBoxHP">
@@ -577,7 +577,7 @@ QPushButton {
     </font>
    </property>
    <property name="text">
-    <string>SpD:</string>
+    <string>SpD</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBoxAtk">
@@ -700,7 +700,7 @@ QPushButton {
     </font>
    </property>
    <property name="text">
-    <string>Spe:</string>
+    <string>Spe</string>
    </property>
   </widget>
   <widget class="QLabel" name="atkLabel">
@@ -720,7 +720,7 @@ QPushButton {
     </font>
    </property>
    <property name="text">
-    <string>Atk:</string>
+    <string>Atk</string>
    </property>
   </widget>
   <widget class="QLabel" name="hpLabel">
@@ -752,7 +752,7 @@ QPushButton {
     </font>
    </property>
    <property name="text">
-    <string>HP:</string>
+    <string>HP</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonG30HP">

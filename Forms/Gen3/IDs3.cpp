@@ -72,15 +72,15 @@ void IDs3::setupModels()
     ui->textBoxMinFrameXD->setValues(0, 32, true);
     ui->textBoxMaxFrameXD->setValues(0, 32, true);
 
-    xdcolo->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("ID") << tr("SID"));
+    xdcolo->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
     ui->tableViewXDColo->setModel(xdcolo);
     ui->tableViewXDColo->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    frlge->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("ID") << tr("SID"));
+    frlge->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
     ui->tableViewFRLGE->setModel(frlge);
     ui->tableViewFRLGE->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    rs->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("ID") << tr("SID"));
+    rs->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
     ui->tableViewRS->setModel(rs);
     ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
