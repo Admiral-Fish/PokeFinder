@@ -54,13 +54,18 @@ private:
 private slots:
     void on_pushButtonFindFRLGE_clicked();
     void on_checkBoxBattery_stateChanged(int arg1);
-    void on_checkBoxPID_stateChanged(int arg1);
-    void on_checkBoxTID_stateChanged(int arg1);
-    void on_checkBoxSID_stateChanged(int arg1);
+    void on_checkBoxPIDRS_stateChanged(int arg1);
+    void on_checkBoxTIDRS_stateChanged(int arg1);
+    void on_checkBoxSIDRS_stateChanged(int arg1);
     void on_pushButtonFindRS_clicked();
     void on_radioButtonDateRS_toggled(bool checked);
     void on_radioButtonInitSeedRS_toggled(bool checked);
     void on_pushButtonFindXD_clicked();
+    void on_checkBoxPIDXD_stateChanged(int arg1);
+    void on_checkBoxTIDXD_stateChanged(int arg1);
+    void on_checkBoxSIDXD_stateChanged(int arg1);
+    void on_checkBoxPIDFRLGE_stateChanged(int arg1);
+    void on_checkBoxSIDFRLGE_stateChanged(int arg1);
 
 public:
     explicit IDs3(QWidget *parent = 0);
