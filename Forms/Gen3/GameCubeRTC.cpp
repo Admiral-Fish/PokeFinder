@@ -75,7 +75,7 @@ void GameCubeRTC::setupModels()
     contextMenu->addAction(copySeed);
 }
 
-void GameCubeRTC::updateTableView(QList<QStandardItem*> row)
+void GameCubeRTC::updateTableView(QList<QStandardItem *> row)
 {
     model->appendRow(row);
 }
@@ -109,7 +109,7 @@ void GameCubeRTC::calcRTC()
             if (rng.nextUInt() == targetSeed)
             {
                 QDateTime finalTime = date.addSecs(seconds);
-                QList<QStandardItem*> row;
+                QList<QStandardItem *> row;
                 QString time = finalTime.toString(Qt::SystemLocaleShortDate);
                 row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
                     << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initSeed, 16).toUpper());
