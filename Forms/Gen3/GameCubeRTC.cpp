@@ -136,7 +136,6 @@ void GameCubeRTC::on_pushButtonSearch_clicked()
     if (isSearching)
         return;
     model->removeRows(0, model->rowCount());
-    ui->tableViewGenerator->viewport()->update();
 
     std::thread job(&GameCubeRTC::calcRTC, this);
     job.detach();
