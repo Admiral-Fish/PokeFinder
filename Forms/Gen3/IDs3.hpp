@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PANDORA_HPP
-#define PANDORA_HPP
+#ifndef IDS3_HPP
+#define IDS3_HPP
 
 #include <QMainWindow>
 #include <QStandardItemModel>
@@ -33,10 +33,10 @@ typedef uint32_t u32;
 
 namespace Ui
 {
-    class Pandora;
+    class IDs3;
 }
 
-class Pandora : public QMainWindow
+class IDs3 : public QMainWindow
 {
     Q_OBJECT
 
@@ -44,7 +44,7 @@ protected:
     void changeEvent(QEvent *);
 
 private:
-    Ui::Pandora *ui;
+    Ui::IDs3 *ui;
     QStandardItemModel *xdcolo = new QStandardItemModel(this);
     QStandardItemModel *frlge = new QStandardItemModel(this);
     QStandardItemModel *rs = new QStandardItemModel(this);
@@ -63,9 +63,9 @@ private slots:
     void on_pushButtonFindXD_clicked();
 
 public:
-    explicit Pandora(QWidget *parent = 0);
-    ~Pandora();
+    explicit IDs3(QWidget *parent = 0);
+    ~IDs3();
 
 };
 
-#endif // PANDORA_HPP
+#endif // IDS3_HPP

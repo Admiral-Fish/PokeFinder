@@ -17,12 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Pandora.hpp"
-#include "ui_Pandora.h"
+#include "IDs3.hpp"
+#include "ui_IDs3.h"
 
-Pandora::Pandora(QWidget *parent) :
+IDs3::IDs3(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::Pandora)
+    ui(new Ui::IDs3)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -30,7 +30,7 @@ Pandora::Pandora(QWidget *parent) :
     setupModels();
 }
 
-Pandora::~Pandora()
+IDs3::~IDs3()
 {
     delete ui;
     delete xdcolo;
@@ -38,7 +38,7 @@ Pandora::~Pandora()
     delete rs;
 }
 
-void Pandora::changeEvent(QEvent *event)
+void IDs3::changeEvent(QEvent *event)
 {
     if (event != NULL)
     {
@@ -53,7 +53,7 @@ void Pandora::changeEvent(QEvent *event)
     }
 }
 
-void Pandora::setupModels()
+void IDs3::setupModels()
 {
     ui->textBoxPID->setValues(0, 32, false);
     ui->textBoxTID->setValues(0, 48, true);
@@ -85,7 +85,7 @@ void Pandora::setupModels()
     ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void Pandora::on_pushButtonFindFRLGE_clicked()
+void IDs3::on_pushButtonFindFRLGE_clicked()
 {
     frlge->removeRows(0, frlge->rowCount());
 
@@ -110,7 +110,7 @@ void Pandora::on_pushButtonFindFRLGE_clicked()
     }
 }
 
-void Pandora::on_pushButtonFindRS_clicked()
+void IDs3::on_pushButtonFindRS_clicked()
 {
     rs->removeRows(0, frlge->rowCount());
 
@@ -148,7 +148,7 @@ void Pandora::on_pushButtonFindRS_clicked()
     }
 }
 
-void Pandora::on_pushButtonFindXD_clicked()
+void IDs3::on_pushButtonFindXD_clicked()
 {
     xdcolo->removeRows(0, frlge->rowCount());
 
@@ -175,7 +175,7 @@ void Pandora::on_pushButtonFindXD_clicked()
     }
 }
 
-void Pandora::on_checkBoxBattery_stateChanged(int arg1)
+void IDs3::on_checkBoxBattery_stateChanged(int arg1)
 {
     if (arg1 == Qt::Unchecked)
     {
@@ -193,7 +193,7 @@ void Pandora::on_checkBoxBattery_stateChanged(int arg1)
     }
 }
 
-void Pandora::on_checkBoxPID_stateChanged(int arg1)
+void IDs3::on_checkBoxPID_stateChanged(int arg1)
 {
     if (arg1 == Qt::Checked)
         ui->textBoxPIDRS->setEnabled(true);
@@ -201,7 +201,7 @@ void Pandora::on_checkBoxPID_stateChanged(int arg1)
         ui->textBoxPIDRS->setEnabled(false);
 }
 
-void Pandora::on_checkBoxTID_stateChanged(int arg1)
+void IDs3::on_checkBoxTID_stateChanged(int arg1)
 {
     if (arg1 == Qt::Checked)
         ui->textBoxTIDRS->setEnabled(true);
@@ -209,7 +209,7 @@ void Pandora::on_checkBoxTID_stateChanged(int arg1)
         ui->textBoxTIDRS->setEnabled(false);
 }
 
-void Pandora::on_checkBoxSID_stateChanged(int arg1)
+void IDs3::on_checkBoxSID_stateChanged(int arg1)
 {
     if (arg1 == Qt::Checked)
         ui->textBoxSIDRS->setEnabled(true);
@@ -217,7 +217,7 @@ void Pandora::on_checkBoxSID_stateChanged(int arg1)
         ui->textBoxSIDRS->setEnabled(false);
 }
 
-void Pandora::on_radioButtonDateRS_toggled(bool checked)
+void IDs3::on_radioButtonDateRS_toggled(bool checked)
 {
     if (checked)
     {
@@ -233,7 +233,7 @@ void Pandora::on_radioButtonDateRS_toggled(bool checked)
     }
 }
 
-void Pandora::on_radioButtonInitSeedRS_toggled(bool checked)
+void IDs3::on_radioButtonInitSeedRS_toggled(bool checked)
 {
     if (checked)
     {

@@ -31,7 +31,7 @@
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Forms/Gen3/PIDtoIVs.hpp>
-#include <Forms/Gen3/Pandora.hpp>
+#include <Forms/Gen3/IDs3.hpp>
 #include <QDir>
 
 namespace Ui
@@ -54,7 +54,7 @@ private:
     Stationary3 *stationary3 = NULL;
     Wild3 *wild3 = NULL;
     Eggs3 *egg3 = NULL;
-    Pandora *ids3 = NULL;
+    IDs3 *ids3 = NULL;
 
     void setupLanguage();
     void setupModels();

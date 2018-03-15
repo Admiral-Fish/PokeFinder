@@ -40,64 +40,51 @@ TRANSLATIONS += \
     Languages/PokeFinder_ko.ts \
     Languages/PokeFinder_zh_Hans_CN.ts
 
-SOURCES += \
-    Forms/ProfileManager/ProfileManager3.cpp \
-    Forms/ProfileManager/ProfileManager3NewEdit.cpp \
-    Forms/Controls/QCheckList.cpp \
-    Forms/Controls/QTextBox.cpp \
-    Forms/Util/Researcher.cpp \
-    libPokeFinder/Gen3/Frame3.cpp \
-    libPokeFinder/Gen3/Generator3.cpp \
-    libPokeFinder/Gen3/NatureLock.cpp \
-    libPokeFinder/Gen3/Profile3.cpp \
-    libPokeFinder/Gen3/Searcher3.cpp \
-    libPokeFinder/Objects/EncounterSlot.cpp \
-    libPokeFinder/Objects/Frame.cpp \
-    libPokeFinder/Objects/FrameCompare.cpp \
-    libPokeFinder/Objects/Nature.cpp \
-    libPokeFinder/Objects/Power.cpp \
-    libPokeFinder/Objects/Utilities.cpp \
-    libPokeFinder/RNG/LCRNG.cpp \
-    libPokeFinder/RNG/LCRNG64.cpp \
-    libPokeFinder/RNG/MTRNG.cpp \
-    libPokeFinder/RNG/RNGCache.cpp \
-    libPokeFinder/RNG/RNGEuclidean.cpp \
-    libPokeFinder/RNG/SFMT.cpp \
-    libPokeFinder/RNG/TinyMT.cpp \
-    Models/Gen3/Stationary3Model.cpp \
-    Models/ResearcherModel.cpp \
-    Util/ResearcherFrame.cpp \
-    main.cpp \
-    Models/Gen3/Wild3Model.cpp \
-    Models/Gen3/Searcher3Model.cpp \
-    Forms/Gen3/Stationary3.cpp \
-    Forms/MainWindow.cpp \
-    Forms/Gen3/Wild3.cpp \
-    Forms/Controls/IVFilter.cpp \
-    Models/Gen3/Profile3Model.cpp \
-    Models/Gen3/Egg3Model.cpp \
-    Forms/Gen3/Eggs3.cpp \
-    libPokeFinder/Gen3/Egg3.cpp \
-    Forms/Gen3/SeedToTime3.cpp \
-    Forms/Gen3/JirachiGeneration.cpp \
-    Forms/Gen3/PokeSpot.cpp \
-    Models/Gen3/PokeSpotModel.cpp \
-    Forms/Util/IVtoPID.cpp \
-    Forms/Gen3/GameCubeRTC.cpp \
-    Forms/Gen3/PIDtoIVs.cpp \
-    Forms/Gen3/Pandora.cpp
+RESOURCES += \
+    resources.qrc
+
+FORMS += \
+    Forms/Controls/IVFilter.ui \
+    Forms/Gen3/Eggs3.ui \
+    Forms/Gen3/GameCubeRTC.ui \
+    Forms/Gen3/IDs3.ui \
+    Forms/Gen3/JirachiGeneration.ui \
+    Forms/Gen3/PIDtoIVs.ui \
+    Forms/Gen3/PokeSpot.ui \
+    Forms/Gen3/SeedToTime3.ui \
+    Forms/Gen3/Stationary3.ui \
+    Forms/Gen3/Wild3.ui \
+    Forms/ProfileManager/ProfileManager3.ui \
+    Forms/ProfileManager/ProfileManager3NewEdit.ui \
+    Forms/Util/IVtoPID.ui \
+    Forms/Util/Researcher.ui \
+    Forms/MainWindow.ui
 
 HEADERS += \
-    Forms/ProfileManager/ProfileManager3.hpp \
-    Forms/ProfileManager/ProfileManager3NewEdit.hpp \
+    Forms/Controls/IVFilter.hpp \
     Forms/Controls/QCheckList.hpp \
     Forms/Controls/QTextBox.hpp \
+    Forms/Gen3/Eggs3.hpp \
+    Forms/Gen3/GameCubeRTC.hpp \
+    Forms/Gen3/IDs3.hpp \
+    Forms/Gen3/JirachiGeneration.hpp \
+    Forms/Gen3/PIDtoIVs.hpp \
+    Forms/Gen3/PokeSpot.hpp \
+    Forms/Gen3/SeedToTime3.hpp \
+    Forms/Gen3/Stationary3.hpp \
+    Forms/Gen3/Wild3.hpp \
+    Forms/ProfileManager/ProfileManager3.hpp \
+    Forms/ProfileManager/ProfileManager3NewEdit.hpp \
+    Forms/Util/IVtoPID.hpp \
     Forms/Util/Researcher.hpp \
+    Forms/MainWindow.hpp \
+    libPokeFinder/Gen3/Egg3.hpp \
     libPokeFinder/Gen3/Frame3.hpp \
     libPokeFinder/Gen3/Generator3.hpp \
     libPokeFinder/Gen3/NatureLock.hpp \
     libPokeFinder/Gen3/Profile3.hpp \
     libPokeFinder/Gen3/Searcher3.hpp \
+    libPokeFinder/Objects/Egg.hpp \
     libPokeFinder/Objects/Encounter.hpp \
     libPokeFinder/Objects/EncounterSlot.hpp \
     libPokeFinder/Objects/Frame.hpp \
@@ -119,45 +106,58 @@ HEADERS += \
     libPokeFinder/RNG/RNGEuclidean.hpp \
     libPokeFinder/RNG/SFMT.hpp \
     libPokeFinder/RNG/TinyMT.hpp \
-    Models/Gen3/Stationary3Model.hpp \
-    Models/ResearcherModel.hpp \
-    Util/ResearcherFrame.hpp \
-    Models/Gen3/Wild3Model.hpp \
-    Models/Gen3/Searcher3Model.hpp \
-    Forms/Gen3/Stationary3.hpp \
-    Forms/MainWindow.hpp \
-    Forms/Gen3/Wild3.hpp \
-    Forms/Controls/IVFilter.hpp \
-    Models/Gen3/Profile3Model.hpp \
     Models/Gen3/Egg3Model.hpp \
-    Forms/Gen3/Eggs3.hpp \
-    libPokeFinder/Objects/Egg.hpp \
-    libPokeFinder/Gen3/Egg3.hpp \
-    Forms/Gen3/SeedToTime3.hpp \
-    Forms/Gen3/JirachiGeneration.hpp \
-    Forms/Gen3/PokeSpot.hpp \
     Models/Gen3/PokeSpotModel.hpp \
-    Forms/Util/IVtoPID.hpp \
-    Forms/Gen3/GameCubeRTC.hpp \
-    Forms/Gen3/PIDtoIVs.hpp \
-    Forms/Gen3/Pandora.hpp
+    Models/Gen3/Profile3Model.hpp \
+    Models/Gen3/Searcher3Model.hpp \
+    Models/Gen3/Stationary3Model.hpp \
+    Models/Gen3/Wild3Model.hpp \
+    Models/ResearcherModel.hpp \
+    Util/ResearcherFrame.hpp
 
-FORMS += \
-    Forms/ProfileManager/ProfileManager3.ui \
-    Forms/ProfileManager/ProfileManager3NewEdit.ui \
-    Forms/Util/Researcher.ui \
-    Forms/Gen3/Stationary3.ui \
-    Forms/MainWindow.ui \
-    Forms/Gen3/Wild3.ui \
-    Forms/Controls/IVFilter.ui \
-    Forms/Gen3/Eggs3.ui \
-    Forms/Gen3/SeedToTime3.ui \
-    Forms/Gen3/JirachiGeneration.ui \
-    Forms/Gen3/PokeSpot.ui \
-    Forms/Util/IVtoPID.ui \
-    Forms/Gen3/GameCubeRTC.ui \
-    Forms/Gen3/PIDtoIVs.ui \
-    Forms/Gen3/Pandora.ui
-
-RESOURCES += \
-    resources.qrc
+SOURCES += \
+    Forms/Controls/IVFilter.cpp \
+    Forms/Controls/QCheckList.cpp \
+    Forms/Controls/QTextBox.cpp \
+    Forms/Gen3/Eggs3.cpp \
+    Forms/Gen3/GameCubeRTC.cpp \
+    Forms/Gen3/IDs3.cpp \
+    Forms/Gen3/JirachiGeneration.cpp \
+    Forms/Gen3/PIDtoIVs.cpp \
+    Forms/Gen3/PokeSpot.cpp \
+    Forms/Gen3/SeedToTime3.cpp \
+    Forms/Gen3/Stationary3.cpp \
+    Forms/Gen3/Wild3.cpp \
+    Forms/ProfileManager/ProfileManager3.cpp \
+    Forms/ProfileManager/ProfileManager3NewEdit.cpp \
+    Forms/Util/IVtoPID.cpp \
+    Forms/Util/Researcher.cpp \
+    Forms/MainWindow.cpp \
+    libPokeFinder/Gen3/Egg3.cpp \
+    libPokeFinder/Gen3/Frame3.cpp \
+    libPokeFinder/Gen3/Generator3.cpp \
+    libPokeFinder/Gen3/NatureLock.cpp \
+    libPokeFinder/Gen3/Profile3.cpp \
+    libPokeFinder/Gen3/Searcher3.cpp \
+    libPokeFinder/Objects/EncounterSlot.cpp \
+    libPokeFinder/Objects/Frame.cpp \
+    libPokeFinder/Objects/FrameCompare.cpp \
+    libPokeFinder/Objects/Nature.cpp \
+    libPokeFinder/Objects/Power.cpp \
+    libPokeFinder/Objects/Utilities.cpp \
+    libPokeFinder/RNG/LCRNG.cpp \
+    libPokeFinder/RNG/LCRNG64.cpp \
+    libPokeFinder/RNG/MTRNG.cpp \
+    libPokeFinder/RNG/RNGCache.cpp \
+    libPokeFinder/RNG/RNGEuclidean.cpp \
+    libPokeFinder/RNG/SFMT.cpp \
+    libPokeFinder/RNG/TinyMT.cpp \
+    Models/Gen3/Egg3Model.cpp \
+    Models/Gen3/PokeSpotModel.cpp \
+    Models/Gen3/Profile3Model.cpp \
+    Models/Gen3/Searcher3Model.cpp \
+    Models/Gen3/Stationary3Model.cpp \
+    Models/Gen3/Wild3Model.cpp \
+    Models/ResearcherModel.cpp \
+    Util/ResearcherFrame.cpp \
+    main.cpp

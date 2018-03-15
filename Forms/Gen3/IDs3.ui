@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Pandora</class>
- <widget class="QMainWindow" name="Pandora">
+ <class>IDs3</class>
+ <widget class="QMainWindow" name="IDs3">
   <property name="geometry">
    <rect>
     <x>0</x>

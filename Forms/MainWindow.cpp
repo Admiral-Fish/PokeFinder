@@ -209,7 +209,7 @@ void MainWindow::on_pushButtonIDs3_clicked()
 {
     if (ids3 == NULL)
     {
-        ids3 = new Pandora();
+        ids3 = new IDs3();
     }
     ids3->show();
     ids3->raise();
