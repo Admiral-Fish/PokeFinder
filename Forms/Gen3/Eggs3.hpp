@@ -27,8 +27,9 @@
 #include <libPokeFinder/Objects/FrameCompare.hpp>
 #include <libPokeFinder/Gen3/Egg3.hpp>
 
-namespace Ui {
-class Eggs3;
+namespace Ui
+{
+    class Eggs3;
 }
 
 class Eggs3 : public QMainWindow
@@ -36,7 +37,7 @@ class Eggs3 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 signals:
     void alertProfiles(int);

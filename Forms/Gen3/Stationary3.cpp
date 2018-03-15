@@ -51,11 +51,11 @@ void Stationary3::changeEvent(QEvent *event)
     {
         switch (event->type())
         {
-        case QEvent::LanguageChange:
-            ui->retranslateUi(this);
-            break;
-        default:
-            break;
+            case QEvent::LanguageChange:
+                ui->retranslateUi(this);
+                break;
+            default:
+                break;
         }
     }
 }
@@ -111,22 +111,28 @@ void Stationary3::setupModels()
 
     connect(setTargetFrame, &QAction::triggered, this, &Stationary3::setTargetFrameGenerator);
     connect(jumpToTarget, &QAction::triggered, this, &Stationary3::jumpToTargetGenerator);
-    connect(centerTo1Second, &QAction::triggered, this, [=](){
+    connect(centerTo1Second, &QAction::triggered, this, [ = ]()
+    {
         centerFramesAndSetTargetGenerator(60);
     });
-    connect(centerTo2Seconds, &QAction::triggered, this, [=](){
+    connect(centerTo2Seconds, &QAction::triggered, this, [ = ]()
+    {
         centerFramesAndSetTargetGenerator(120);
     });
-    connect(centerTo3Seconds, &QAction::triggered, this, [=](){
+    connect(centerTo3Seconds, &QAction::triggered, this, [ = ]()
+    {
         centerFramesAndSetTargetGenerator(180);
     });
-    connect(centerTo5Seconds, &QAction::triggered, this, [=](){
+    connect(centerTo5Seconds, &QAction::triggered, this, [ = ]()
+    {
         centerFramesAndSetTargetGenerator(300);
     });
-    connect(centerTo10Seconds, &QAction::triggered, this, [=](){
+    connect(centerTo10Seconds, &QAction::triggered, this, [ = ]()
+    {
         centerFramesAndSetTargetGenerator(600);
     });
-    connect(centerTo1Minute, &QAction::triggered, this, [=](){
+    connect(centerTo1Minute, &QAction::triggered, this, [ = ]()
+    {
         centerFramesAndSetTargetGenerator(3600);
     });
     connect(outputToTxt, &QAction::triggered, this, &Stationary3::outputToTxt);
@@ -154,7 +160,7 @@ void Stationary3::setupModels()
 
 void Stationary3::on_saveProfileGenerator_clicked()
 {
-    ProfileManager3* manager = new ProfileManager3();
+    ProfileManager3 *manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
@@ -162,7 +168,7 @@ void Stationary3::on_saveProfileGenerator_clicked()
 
 void Stationary3::on_saveSearcher_clicked()
 {
-    ProfileManager3* manager = new ProfileManager3();
+    ProfileManager3 *manager = new ProfileManager3();
     manager->setAttribute(Qt::WA_QuitOnClose, false);
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
@@ -178,11 +184,11 @@ void Stationary3::updateProfiles()
     profiles = Profile3::loadProfileList();
 
     QStandardItemModel *profile = new QStandardItemModel((int)profiles.size() + 1, 1, this);
-    QStandardItem* firstProfile = new QStandardItem(tr("None"));
+    QStandardItem *firstProfile = new QStandardItem(tr("None"));
     profile->setItem(0, firstProfile);
-    for(int i = 0; i < (int)profiles.size(); i++)
+    for (int i = 0; i < (int)profiles.size(); i++)
     {
-        QStandardItem* item = new QStandardItem(profiles.at(i).profileName);
+        QStandardItem *item = new QStandardItem(profiles.at(i).profileName);
         profile->setItem(i + 1, item);
     }
     ui->comboBoxProfiles->setModel(profile);
@@ -190,7 +196,7 @@ void Stationary3::updateProfiles()
 
 void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
 {
-    if(index == 0)
+    if (index == 0)
     {
         ui->idGenerator->setText("12345");
         ui->sidGenerator->setText("54321");
@@ -254,7 +260,7 @@ void Stationary3::on_generate_clicked()
     u32 tid = ui->idGenerator->text().toUInt(NULL, 10);
     u32 sid = ui->sidGenerator->text().toUInt(NULL, 10);
     u32 offset = 0;
-    if(ui->checkBoxDelayGenerator->isChecked())
+    if (ui->checkBoxDelayGenerator->isChecked())
         offset = ui->delayGenerator->text().toUInt(NULL, 10);
 
     int genderRatioIndex = ui->comboBoxGenderRatioGenerator->currentIndex();
@@ -326,11 +332,11 @@ void Stationary3::on_search_clicked()
 
 void Stationary3::moveResults(QString seed, QString method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe)
 {
-    if(seed != "")
+    if (seed != "")
         ui->initialSeedGenerator->setText(seed);
-    for(auto i = 0; i < ui->comboBoxMethodGenerator->model()->rowCount(); i++)
+    for (auto i = 0; i < ui->comboBoxMethodGenerator->model()->rowCount(); i++)
     {
-        if(ui->comboBoxMethodGenerator->model()->data(ui->comboBoxMethodGenerator->model()->index(i, 0)).toString() == method)
+        if (ui->comboBoxMethodGenerator->model()->data(ui->comboBoxMethodGenerator->model()->index(i, 0)).toString() == method)
         {
             ui->comboBoxMethodGenerator->setCurrentIndex(i);
             break;
@@ -365,7 +371,7 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
         s << tr("Poliwrath") << tr("Poochyena") << tr("Primeape");
         s << tr("Ralts") << tr("Rapidash") << tr("Raticate");
         s << tr("Roselia") << tr("Sableye") << tr("Salamence");
-        s << tr("Scyther") <<tr("Seedot (Citadark)") << tr("Seedot (Initial)");
+        s << tr("Scyther") << tr("Seedot (Citadark)") << tr("Seedot (Initial)");
         s << tr("Seedot (Phenac)") << tr("Seel") << tr("Shroomish");
         s << tr("Snorlax") << tr("Snorunt") << tr("Solrock");
         s << tr("Spearow") << tr("Spheal (Citadark)") << tr("Spheal (Initial)");
@@ -421,27 +427,27 @@ void Stationary3::setTargetFrameGenerator()
 void Stationary3::jumpToTargetGenerator()
 {
     ui->tableViewGenerator->scrollTo(targetFrame, QAbstractItemView::PositionAtTop);
-    ui->tableViewGenerator->selectionModel()->select(targetFrame, QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
+    ui->tableViewGenerator->selectionModel()->select(targetFrame, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 }
 
 void Stationary3::outputToTxt()
 {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to TXT"), "", tr("Text File (*.txt);;All Files (*)"));
 
-    if(fileName.isEmpty())
+    if (fileName.isEmpty())
         return;
     QFile file(fileName);
-    if(!file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::WriteOnly))
         return;
 
     QString textData = "";
     int rows = g->rowCount();
     int columns = g->columnCount();
 
-    for(int i = 0; i < columns; i++)
+    for (int i = 0; i < columns; i++)
     {
         textData += g->headerData(i, Qt::Horizontal, 0).toString();
-        if(i == 1 ||i == 11)
+        if (i == 1 || i == 11)
             textData += "\t\t";
         else
             textData += "\t";
@@ -453,8 +459,8 @@ void Stationary3::outputToTxt()
     {
         for (int j = 0; j < columns; j++)
         {
-            textData += (g->data(g->index(i,j), 0).toString() != "" ? g->data(g->index(i,j), 0).toString() + "\t" : "-\t");
-            if(j == 11 && g->data(g->index(i,j), 0).toString().length() < 8)
+            textData += (g->data(g->index(i, j), 0).toString() != "" ? g->data(g->index(i, j), 0).toString() + "\t" : "-\t");
+            if (j == 11 && g->data(g->index(i, j), 0).toString().length() < 8)
             {
                 textData += "\t";
             }
@@ -471,20 +477,20 @@ void Stationary3::outputToCSV()
 {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to CSV"), "", tr("CSV File (*.csv);;All Files (*)"));
 
-    if(fileName.isEmpty())
+    if (fileName.isEmpty())
         return;
     QFile file(fileName);
-    if(!file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::WriteOnly))
         return;
 
     QString textData = "";
     int rows = g->rowCount();
     int columns = g->columnCount();
 
-    for(int i = 0; i < columns; i++)
+    for (int i = 0; i < columns; i++)
     {
         textData += g->headerData(i, Qt::Horizontal, 0).toString();
-        if(i != columns - 1)
+        if (i != columns - 1)
             textData += ", ";
     }
 
@@ -494,8 +500,8 @@ void Stationary3::outputToCSV()
     {
         for (int j = 0; j < columns; j++)
         {
-            textData += (g->data(g->index(i,j), 0).toString() != "" ? g->data(g->index(i,j), 0).toString() + "\t" : "-\t");
-            if(j != columns - 1)
+            textData += (g->data(g->index(i, j), 0).toString() != "" ? g->data(g->index(i, j), 0).toString() + "\t" : "-\t");
+            if (j != columns - 1)
                 textData += ", ";
         }
         textData += "\n";             // (optional: for new line segmentation)
@@ -512,7 +518,7 @@ void Stationary3::copySeedToClipboard()
 }
 
 void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
-{   
+{
     if (g->rowCount() == 0)
         return;
 

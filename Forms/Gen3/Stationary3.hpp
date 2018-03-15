@@ -37,8 +37,9 @@
 #include <QFileDialog>
 #include <QClipboard>
 
-namespace Ui {
-class Stationary3;
+namespace Ui
+{
+    class Stationary3;
 }
 
 class Stationary3 : public QMainWindow
@@ -46,7 +47,7 @@ class Stationary3 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 signals:
     void updateView(vector<Frame3>);

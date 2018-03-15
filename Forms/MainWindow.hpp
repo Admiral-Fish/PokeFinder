@@ -34,8 +34,9 @@
 #include <Forms/Gen3/Pandora.hpp>
 #include <QDir>
 
-namespace Ui {
-class MainWindow;
+namespace Ui
+{
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -43,7 +44,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 private:
     Ui::MainWindow *ui;
@@ -58,7 +59,7 @@ private:
     void setupLanguage();
     void setupModels();
     void loadLanguage(const QString &lang);
-    void switchTranslator(QTranslator& translator, const QString& filename);
+    void switchTranslator(QTranslator &translator, const QString &filename);
     void createProfileXml();
 
 private slots:

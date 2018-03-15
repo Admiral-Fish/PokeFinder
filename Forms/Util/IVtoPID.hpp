@@ -30,8 +30,9 @@
 
 typedef uint32_t u32;
 
-namespace Ui {
-class IVtoPID;
+namespace Ui
+{
+    class IVtoPID;
 }
 
 class IVtoPID : public QMainWindow
@@ -39,7 +40,7 @@ class IVtoPID : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 private:
     Ui::IVtoPID *ui;

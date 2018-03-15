@@ -36,8 +36,9 @@
 
 typedef uint32_t u32;
 
-namespace Ui {
-class GameCubeRTC;
+namespace Ui
+{
+    class GameCubeRTC;
 }
 
 class GameCubeRTC : public QMainWindow
@@ -45,7 +46,7 @@ class GameCubeRTC : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 signals:
     void updateView(QList<QStandardItem *>);

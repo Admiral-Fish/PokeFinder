@@ -110,7 +110,7 @@ void ProfileManager3NewEdit::on_pushButtonCancel_clicked()
 
 void ProfileManager3NewEdit::on_comboBoxVersion_currentIndexChanged(int index)
 {
-    if(index > 1)
+    if (index > 1)
     {
         ui->checkBoxDeadBattery->setEnabled(false);
         ui->checkBoxDeadBattery->setChecked(false);

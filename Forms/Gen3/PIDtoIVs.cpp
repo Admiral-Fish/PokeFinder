@@ -68,11 +68,13 @@ void PIDtoIVs::setupModels()
     QAction *moveIVs = new QAction("Move IVs to Stationary Generator", this);
 
     connect(copySeed, &QAction::triggered, this, &PIDtoIVs::copySeed);
-    connect(moveResults, &QAction::triggered, this, [=]{
+    connect(moveResults, &QAction::triggered, this, [ = ]
+    {
         QStringList ivs = ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 2)).toString().split(".");
         emit moveResultsToStationary(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString(), ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 1)).toString(), ((QString)ivs[0]).toUInt(), ((QString)ivs[1]).toUInt(), ((QString)ivs[2]).toUInt(), ((QString)ivs[3]).toUInt(), ((QString)ivs[4]).toUInt(), ((QString)ivs[5]).toUInt());
     });
-    connect(moveIVs, &QAction::triggered, this, [=]{
+    connect(moveIVs, &QAction::triggered, this, [ = ]
+    {
         QStringList ivs = ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 2)).toString().split(".");
         emit moveResultsToStationary("", "", ((QString)ivs[0]).toUInt(), ((QString)ivs[1]).toUInt(), ((QString)ivs[2]).toUInt(), ((QString)ivs[3]).toUInt(), ((QString)ivs[4]).toUInt(), ((QString)ivs[5]).toUInt());
     });
@@ -99,7 +101,7 @@ void PIDtoIVs::calcMethod124(u32 pid)
     u32 pidh = pid & 0xFFFF0000;
 
     vector<u32> seeds = cache.recoverLower16BitsPID(pidl, pidh);
-    for(int i = 0; i < seeds.size(); i++)
+    for (int i = 0; i < seeds.size(); i++)
     {
         forward.seed = backward.seed = seeds[i];
         forward.nextUInt();
@@ -133,7 +135,7 @@ void PIDtoIVs::addSeed(u32 seed, u32 iv1)
 
 void PIDtoIVs::addSeedGC(u32 seed, u32 iv1, u32 iv2)
 {
-    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper())<< new QStandardItem(tr("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
 }
 
 QString PIDtoIVs::calcIVs1(u32 iv1)
@@ -143,7 +145,7 @@ QString PIDtoIVs::calcIVs1(u32 iv1)
     u32 iv2 = rng.nextUShort();
     iv1 >>= 16;
 
-    for(u32 x = 0; x < 3; x++)
+    for (u32 x = 0; x < 3; x++)
     {
         u32 q = x * 5;
         u32 iv = (iv1 >> q) & 31;

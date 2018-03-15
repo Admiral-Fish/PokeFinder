@@ -125,7 +125,7 @@ void Pandora::on_pushButtonFindRS_clicked()
     u32 minFrame = ui->textBoxMinFrameRS->text().toUInt();
     u32 maxResults = ui->textBoxMaxFrameRS->text().toUInt();
 
-    if(ui->radioButtonInitSeedRS->isChecked())
+    if (ui->radioButtonInitSeedRS->isChecked())
         seed = ui->textBoxInitSeedRS->text().toUInt(NULL, 16);
     else
         seed = Utilities::calcGen3Seed(ui->dateEdit->date(), ui->spinBoxHr->value(), ui->spinBoxMin->value());

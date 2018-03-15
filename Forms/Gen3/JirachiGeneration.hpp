@@ -29,8 +29,9 @@
 
 typedef uint32_t u32;
 
-namespace Ui {
-class JirachiGeneration;
+namespace Ui
+{
+    class JirachiGeneration;
 }
 
 class JirachiGeneration : public QMainWindow
@@ -38,7 +39,7 @@ class JirachiGeneration : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 private:
     Ui::JirachiGeneration *ui;

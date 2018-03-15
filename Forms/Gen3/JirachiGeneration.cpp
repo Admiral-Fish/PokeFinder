@@ -122,7 +122,7 @@ QString JirachiGeneration::calcProbable(u32 seed)
     genlistend = genlistout.mid(index);
     string2Search = flip(string2Search);
     checker[QString(targetNum).toInt(NULL, 10)] = 1;
-    for(int x = 0; x < string2Search.length(); x++)
+    for (int x = 0; x < string2Search.length(); x++)
     {
         if (!xCheck)
         {

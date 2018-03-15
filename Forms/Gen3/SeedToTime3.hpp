@@ -30,8 +30,9 @@
 
 typedef uint32_t u32;
 
-namespace Ui {
-class SeedToTime3;
+namespace Ui
+{
+    class SeedToTime3;
 }
 
 class SeedToTime3 : public QMainWindow
@@ -39,7 +40,7 @@ class SeedToTime3 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 private:
     Ui::SeedToTime3 *ui;

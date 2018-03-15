@@ -31,8 +31,9 @@
 
 typedef uint32_t u32;
 
-namespace Ui {
-class Pandora;
+namespace Ui
+{
+    class Pandora;
 }
 
 class Pandora : public QMainWindow
@@ -40,7 +41,7 @@ class Pandora : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 private:
     Ui::Pandora *ui;

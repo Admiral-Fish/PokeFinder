@@ -56,12 +56,12 @@ void MainWindow::changeEvent(QEvent *event)
                 setupModels();
                 break;
             case QEvent::LocaleChange:
-            {
-                QString locale = QLocale::system().name();
-                locale.truncate(locale.lastIndexOf('_'));
-                loadLanguage(locale);
-                break;
-            }
+                {
+                    QString locale = QLocale::system().name();
+                    locale.truncate(locale.lastIndexOf('_'));
+                    loadLanguage(locale);
+                    break;
+                }
             default:
                 break;
         }
@@ -70,7 +70,7 @@ void MainWindow::changeEvent(QEvent *event)
 
 void MainWindow::setupLanguage()
 {
-    QActionGroup* langGroup = new QActionGroup(ui->menuLanguage);
+    QActionGroup *langGroup = new QActionGroup(ui->menuLanguage);
     connect(langGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotLanguageChanged(QAction *)));
     langGroup->setExclusive(true);
     QStringList files = QDir(langPath).entryList(QStringList("PokeFinder_*.qm"));
@@ -100,7 +100,7 @@ void MainWindow::setupLanguage()
 
 void MainWindow::setupModels()
 {
-    QList<QAction*> actions = ui->menuLanguage->actions();
+    QList<QAction *> actions = ui->menuLanguage->actions();
     QStringList langs = QStringList() << tr("German") << tr("English") << tr("Spanish") << tr("French") << tr("Italian") << tr("Japanese") << tr("Korean") << tr("Chinese");
     QMap<QString, int> keys;
     keys["de"] = 0;
@@ -134,7 +134,7 @@ void MainWindow::updateProfiles(int num)
 
 void MainWindow::loadLanguage(const QString &lang)
 {
-    if(currLang != lang)
+    if (currLang != lang)
     {
         currLang = lang;
         QLocale locale = QLocale(currLang);
@@ -147,7 +147,7 @@ void MainWindow::loadLanguage(const QString &lang)
 void MainWindow::switchTranslator(QTranslator &translator, const QString &filename)
 {
     qApp->removeTranslator(&translator);
-    if(translator.load(langPath + filename))
+    if (translator.load(langPath + filename))
         qApp->installTranslator(&translator);
 }
 
@@ -253,7 +253,7 @@ void MainWindow::on_actionGameCubeRTC_triggered()
 void MainWindow::on_actionPIDtoIV_triggered()
 {
     PIDtoIVs *pidToIV = new PIDtoIVs();
-    if(stationary3 != NULL)
+    if (stationary3 != NULL)
     {
         connect(pidToIV, &PIDtoIVs::moveResultsToStationary, stationary3, &Stationary3::moveResults);
     }

@@ -27,8 +27,9 @@
 #include <libPokeFinder/Gen3/Frame3.hpp>
 #include <libPokeFinder/Objects/FrameCompare.hpp>
 
-namespace Ui {
-class PokeSpot;
+namespace Ui
+{
+    class PokeSpot;
 }
 
 class PokeSpot : public QMainWindow
@@ -36,7 +37,7 @@ class PokeSpot : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 private:
     Ui::PokeSpot *ui;

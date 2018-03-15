@@ -37,8 +37,9 @@
 typedef uint32_t u32;
 
 using std::vector;
-namespace Ui {
-class PIDtoIVs;
+namespace Ui
+{
+    class PIDtoIVs;
 }
 
 class PIDtoIVs : public QMainWindow
@@ -46,7 +47,7 @@ class PIDtoIVs : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 public:
     explicit PIDtoIVs(QWidget *parent = 0);

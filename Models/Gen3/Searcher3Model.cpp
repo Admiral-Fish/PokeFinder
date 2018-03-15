@@ -98,10 +98,10 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return QString::number(frame.seed, 16).toUpper().rightJustified(8, '0');
                     case 1:
-                    {
-                        Lead type = frame.leadType;
-                        return type == None ? tr("None") : type == Synchronize ? tr("Synch") : tr("Cute Charm");
-                    }
+                        {
+                            Lead type = frame.leadType;
+                            return type == None ? tr("None") : type == Synchronize ? tr("Synch") : tr("Cute Charm");
+                        }
                     case 2:
                         return frame.encounterSlot;
                     case 3:

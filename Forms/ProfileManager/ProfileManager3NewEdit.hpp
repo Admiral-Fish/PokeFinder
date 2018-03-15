@@ -30,8 +30,9 @@
 
 typedef uint32_t u32;
 
-namespace Ui {
-class ProfileManager3NewEdit;
+namespace Ui
+{
+    class ProfileManager3NewEdit;
 }
 
 class ProfileManager3NewEdit : public QDialog
@@ -39,7 +40,7 @@ class ProfileManager3NewEdit : public QDialog
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 signals:
     void newProfile(Profile3);

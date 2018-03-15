@@ -1,3 +1,22 @@
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 #include "QCheckList.hpp"
 
 QCheckList::QCheckList(QWidget *parent) : QComboBox(parent)
@@ -11,7 +30,7 @@ QCheckList::QCheckList(QWidget *parent) : QComboBox(parent)
     setItemDelegate(new QCheckListStyledItemDelegate(this));
 
     connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
-    connect((QListView*) view(), SIGNAL(pressed(QModelIndex)), this, SLOT(on_itemPressed(QModelIndex)));
+    connect((QListView *) view(), SIGNAL(pressed(QModelIndex)), this, SLOT(on_itemPressed(QModelIndex)));
     connect(model, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(on_modelDataChanged()));
 }
 
@@ -133,7 +152,7 @@ void QCheckList::on_modelDataChanged()
 
 void QCheckList::on_itemPressed(const QModelIndex &index)
 {
-    QStandardItem* item = model->itemFromIndex(index);
+    QStandardItem *item = model->itemFromIndex(index);
 
     if (item->checkState() == Qt::Checked)
     {

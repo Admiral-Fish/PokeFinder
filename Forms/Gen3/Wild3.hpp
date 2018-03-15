@@ -34,8 +34,9 @@
 #include <thread>
 #include <QFileDialog>
 
-namespace Ui {
-class Wild3;
+namespace Ui
+{
+    class Wild3;
 }
 
 class Wild3 : public QMainWindow
@@ -43,7 +44,7 @@ class Wild3 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 signals:
     void updateView(vector<Frame3>);

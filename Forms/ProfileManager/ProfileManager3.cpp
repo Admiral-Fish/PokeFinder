@@ -61,7 +61,7 @@ void ProfileManager3::setupModels()
 
 void ProfileManager3::on_pushButtonNew_clicked()
 {
-    ProfileManager3NewEdit* dialog = new ProfileManager3NewEdit();
+    ProfileManager3NewEdit *dialog = new ProfileManager3NewEdit();
     connect(dialog, SIGNAL (newProfile(Profile3)), this, SLOT (registerProfile(Profile3)));
     dialog->exec();
 }
@@ -98,7 +98,7 @@ void ProfileManager3::on_pushButtonEdit_clicked()
         return;
     }
 
-    ProfileManager3NewEdit* dialog = new ProfileManager3NewEdit(model->getProfile(r));
+    ProfileManager3NewEdit *dialog = new ProfileManager3NewEdit(model->getProfile(r));
     connect(dialog, SIGNAL (editProfile(Profile3, Profile3)), this, SLOT (editProfile(Profile3, Profile3)));
     dialog->exec();
 }

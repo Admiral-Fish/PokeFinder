@@ -39,8 +39,9 @@ typedef uint64_t u64;
 typedef u64 (*func)(u64, u64);
 typedef QMap<QString, func> Calculator;
 
-namespace Ui {
-class Researcher;
+namespace Ui
+{
+    class Researcher;
 }
 
 class Researcher : public QMainWindow
@@ -48,7 +49,7 @@ class Researcher : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 private:
     Ui::Researcher *ui;

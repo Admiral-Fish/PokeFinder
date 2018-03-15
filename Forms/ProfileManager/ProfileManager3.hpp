@@ -31,8 +31,9 @@
 using std::vector;
 typedef uint32_t u32;
 
-namespace Ui {
-class ProfileManager3;
+namespace Ui
+{
+    class ProfileManager3;
 }
 
 class ProfileManager3 : public QMainWindow
@@ -40,7 +41,7 @@ class ProfileManager3 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent*);
+    void changeEvent(QEvent *);
 
 signals:
     void updateProfiles();

@@ -26,8 +26,9 @@
 typedef uint32_t u32;
 using std::vector;
 
-namespace Ui {
-class IVFilter;
+namespace Ui
+{
+    class IVFilter;
 }
 
 class IVFilter : public QWidget

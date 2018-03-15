@@ -76,15 +76,15 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
                 case 0:
                     return frame.frame;
                 case 1:
-                    return QString::number(frame.full64, 16).toUpper().rightJustified(16,'0');
+                    return QString::number(frame.full64, 16).toUpper().rightJustified(16, '0');
                 case 2:
-                    return QString::number(frame.high32(), 16).toUpper().rightJustified(8,'0');
+                    return QString::number(frame.high32(), 16).toUpper().rightJustified(8, '0');
                 case 3:
-                    return QString::number(frame.low32(), 16).toUpper().rightJustified(8,'0');
+                    return QString::number(frame.low32(), 16).toUpper().rightJustified(8, '0');
                 case 4:
-                    return QString::number(frame.high16(), 16).toUpper().rightJustified(4,'0');
+                    return QString::number(frame.high16(), 16).toUpper().rightJustified(4, '0');
                 case 5:
-                    return QString::number(frame.low16(), 16).toUpper().rightJustified(4,'0');
+                    return QString::number(frame.low16(), 16).toUpper().rightJustified(4, '0');
                 case 6:
                     return frame.custom[0];
                 case 7:
@@ -121,7 +121,7 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
         }
         else
         {
-            switch(column)
+            switch (column)
             {
                 case 0:
                     return frame.frame;
@@ -285,12 +285,12 @@ QModelIndex ResearcherModel::search(QString string, u64 result, int row)
         column = 1;
         getResult = &ResearcherModel::get64Bit;
     }
-    else if(string == tr("32Bit High"))
+    else if (string == tr("32Bit High"))
     {
         column = 2;
         getResult = &ResearcherModel::get32BitHigh;
     }
-    else if(string == tr("32Bit Low"))
+    else if (string == tr("32Bit Low"))
     {
         column = 3;
         getResult = &ResearcherModel::get32BitLow;

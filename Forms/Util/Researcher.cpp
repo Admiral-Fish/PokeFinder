@@ -108,7 +108,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                         error.exec();
                         return;
                     }
-                        rng = new MersenneTwisterFast(seed, maxFrames);
+                    rng = new MersenneTwisterFast(seed, maxFrames);
                     break;
             }
         }
@@ -148,7 +148,8 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     else
     {
         u32 status[4] = { ui->textBoxStatus0->text().toUInt(NULL, 16), ui->textBoxStatus1->text().toUInt(NULL, 16),
-                          ui->textBoxStatus2->text().toUInt(NULL, 16), ui->textBoxStatus3->text().toUInt(NULL, 16) };
+                          ui->textBoxStatus2->text().toUInt(NULL, 16), ui->textBoxStatus3->text().toUInt(NULL, 16)
+                        };
         rng = new TinyMT(status);
     }
 
@@ -249,13 +250,15 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                           ui->comboBoxLValue3->currentText(), ui->comboBoxLValue4->currentText(),
                           ui->comboBoxLValue5->currentText(), ui->comboBoxLValue6->currentText(),
                           ui->comboBoxLValue7->currentText(), ui->comboBoxLValue8->currentText(),
-                          ui->comboBoxLValue9->currentText(), ui->comboBoxLValue10->currentText() };
+                          ui->comboBoxLValue9->currentText(), ui->comboBoxLValue10->currentText()
+                        };
 
     QString textR[10] = { tr("None"), ui->comboBoxRValue2->currentText(),
                           ui->comboBoxRValue3->currentText(), ui->comboBoxRValue4->currentText(),
                           ui->comboBoxRValue5->currentText(), ui->comboBoxRValue6->currentText(),
                           ui->comboBoxRValue7->currentText(), ui->comboBoxRValue8->currentText(),
-                          ui->comboBoxRValue9->currentText(), ui->comboBoxRValue10->currentText() };
+                          ui->comboBoxRValue9->currentText(), ui->comboBoxRValue10->currentText()
+                        };
 
     for (u32 i = startingFrame; i < maxFrames + startingFrame; i++)
     {
@@ -470,6 +473,6 @@ void Researcher::on_rngSelection_currentChanged(int index)
     ui->label_14->setVisible(index != 2);
     ui->comboBoxSearch->clear();
     QStringList items = index != 1 ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low") :
-                                     QStringList() << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low") ;
+                        QStringList() << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low") ;
     ui->comboBoxSearch->addItems(items);
 }
