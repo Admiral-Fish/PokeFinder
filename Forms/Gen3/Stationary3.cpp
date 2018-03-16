@@ -35,6 +35,7 @@ Stationary3::Stationary3(QWidget *parent) :
 
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
     connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
+    connect(this, &Stationary3::updateProgess, this, &Stationary3::updateProgressBar);
 }
 
 Stationary3::~Stationary3()
@@ -280,6 +281,7 @@ void Stationary3::on_generate_clicked()
 
 void Stationary3::search()
 {
+    ui->progressBar->setValue(0);
     u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
@@ -295,6 +297,8 @@ void Stationary3::search()
 
     vector<u32> min = ui->ivFilterSearcher->getLower();
     vector<u32> max = ui->ivFilterSearcher->getUpper();
+
+    ui->progressBar->setMaximum((max[0] - min[0] + 1) * (max[1] - min[1] + 1) * (max[2] - min[2] + 1) * (max[3] - min[3] + 1) * (max[4] - min[4] + 1) * (max[5] - min[5] + 1));
 
     for (u32 a = min[0]; a <= max[0]; a++)
     {
@@ -312,6 +316,8 @@ void Stationary3::search()
 
                             if (!frames.empty())
                                 emit updateView(frames);
+
+                            emit updateProgess(1);
 
                             if (cancel)
                             {
@@ -414,6 +420,11 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
         ui->comboBoxShadow->setVisible(false);
         ui->label->setVisible(false);
     }
+}
+
+void Stationary3::updateProgressBar(int i)
+{
+    ui->progressBar->setValue(ui->progressBar->value() + i);
 }
 
 void Stationary3::centerFramesAndSetTargetGenerator(u32 centerFrames)

@@ -52,6 +52,7 @@ protected:
 signals:
     void updateView(vector<Frame3>);
     void alertProfiles(int);
+    void updateProgess(int);
 
 private:
     Ui::Stationary3 *ui;
@@ -93,6 +94,7 @@ private slots:
     void outputToCSV();
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void copySeedToClipboard();
+    void updateProgressBar(int i);
 
 public:
     explicit Stationary3(QWidget *parent = 0);
