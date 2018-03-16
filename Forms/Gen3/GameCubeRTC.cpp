@@ -112,8 +112,7 @@ void GameCubeRTC::calcRTC()
                 row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
                     << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initSeed, 16).toUpper());
                 emit updateView(row);
-                isSearching = false;
-                return;
+                targetHit = true;
             }
         }
 
@@ -128,6 +127,7 @@ void GameCubeRTC::calcRTC()
         }
     }
     isSearching = false;
+    ui->pushButtonSearch->setText(tr("Search"));
 }
 
 void GameCubeRTC::on_pushButtonSearch_clicked()
@@ -135,7 +135,6 @@ void GameCubeRTC::on_pushButtonSearch_clicked()
     if (isSearching)
     {
         cancel = true;
-        ui->pushButtonSearch->setText(tr("Search"));
     }
     else
     {
