@@ -137,38 +137,6 @@ QPushButton {
       </item>
      </layout>
     </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="pushButtonSearch">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>23</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>Search</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="pushButtonCancel">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>23</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>Cancel</string>
-      </property>
-     </widget>
-    </item>
     <item row="2" column="0" colspan="2">
      <widget class="QTableView" name="tableViewGenerator">
       <property name="maximumSize">
@@ -206,6 +174,22 @@ QPushButton {
       </attribute>
      </widget>
     </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QPushButton" name="pushButtonSearch">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>23</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Search</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -214,7 +198,7 @@ QPushButton {
      <x>0</x>
      <y>0</y>
      <width>356</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -82,8 +82,6 @@ void GameCubeRTC::updateTableView(QList<QStandardItem *> row)
 
 void GameCubeRTC::calcRTC()
 {
-    isSearching = true;
-
     u32 initSeed = ui->textBoxStartSeed->text().toUInt(NULL, 16);
     u32 targetSeed = ui->textBoxEndSeed->text().toUInt(NULL, 16);
     u32 minFrame = ui->textBoxMinFrame->text().toUInt(NULL, 10);
@@ -100,7 +98,7 @@ void GameCubeRTC::calcRTC()
     bool targetHit = false;
     int minutes = 0;
 
-    while (!targetHit)
+    while (!targetHit && !cancel)
     {
         rng.seed = initSeed;
 
@@ -129,16 +127,26 @@ void GameCubeRTC::calcRTC()
             secoundCount = 0;
         }
     }
+    isSearching = false;
 }
 
 void GameCubeRTC::on_pushButtonSearch_clicked()
 {
     if (isSearching)
-        return;
-    model->removeRows(0, model->rowCount());
+    {
+        cancel = true;
+        ui->pushButtonSearch->setText(tr("Search"));
+    }
+    else
+    {
+        cancel = false;
+        isSearching = true;
+        model->removeRows(0, model->rowCount());
+        ui->pushButtonSearch->setText(tr("Cancel"));
 
-    std::thread job(&GameCubeRTC::calcRTC, this);
-    job.detach();
+        std::thread job(&GameCubeRTC::calcRTC, this);
+        job.detach();
+    }
 }
 
 void GameCubeRTC::copySeed()

@@ -54,6 +54,7 @@ signals:
 private:
     Ui::GameCubeRTC *ui;
     bool isSearching = false;
+    bool cancel = false;
     QStandardItemModel *model = new QStandardItemModel(this);
     QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
     QMenu *contextMenu = new QMenu();
@@ -67,7 +68,6 @@ private slots:
     void on_pushButtonSearch_clicked();
     void updateTableView(QList<QStandardItem *> row);
     void copySeed();
-
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
 
 public:
