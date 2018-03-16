@@ -54,6 +54,7 @@ private:
     Ui::Wild3 *ui;
     vector<Profile3> profiles;
     bool isSearching = false;
+    bool cancel = false;
     Searcher3Model *s = new Searcher3Model(this, Method1);
     Wild3Model *g = new Wild3Model(this);
     QMenu *contextMenu = new QMenu(this);

@@ -264,16 +264,23 @@ void Wild3::on_generate_clicked()
 void Wild3::on_search_clicked()
 {
     if (isSearching == true)
-        return;
-    s->clear();
-    s->setMethod((Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL));
-    std::thread job(&Wild3::search, this);
-    job.detach();
+    {
+        cancel = true;
+    }
+    else
+    {
+        s->clear();
+        s->setMethod((Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL));
+        isSearching = true;
+        cancel = false;
+        ui->search->setText(tr("Cancel"));
+        std::thread job(&Wild3::search, this);
+        job.detach();
+    }
 }
 
 void Wild3::search()
 {
-    isSearching = true;
     u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
@@ -304,6 +311,13 @@ void Wild3::search()
 
                             if (!frames.empty())
                                 emit updateView(frames);
+
+                            if (cancel)
+                            {
+                                isSearching = false;
+                                ui->search->setText(tr("Search"));
+                                return;
+                            }
                         }
                     }
                 }
@@ -311,6 +325,7 @@ void Wild3::search()
         }
     }
     isSearching = false;
+    ui->search->setText(tr("Search"));
 }
 
 void Wild3::centerFramesAndSetTargetGenerator(u32 centerFrames)

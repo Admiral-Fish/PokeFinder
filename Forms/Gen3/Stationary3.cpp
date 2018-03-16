@@ -280,7 +280,6 @@ void Stationary3::on_generate_clicked()
 
 void Stationary3::search()
 {
-    isSearching = true;
     u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
@@ -313,6 +312,13 @@ void Stationary3::search()
 
                             if (!frames.empty())
                                 emit updateView(frames);
+
+                            if (cancel)
+                            {
+                                isSearching = false;
+                                ui->search->setText(tr("Search"));
+                                return;
+                            }
                         }
                     }
                 }
@@ -320,16 +326,25 @@ void Stationary3::search()
         }
     }
     isSearching = false;
+    ui->search->setText(tr("Search"));
 }
 
 void Stationary3::on_search_clicked()
 {
-    if (isSearching == true)
-        return;
-    s->clear();
-    s->setMethod((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
-    std::thread job(&Stationary3::search, this);
-    job.detach();
+    if (isSearching)
+    {
+        cancel = true;
+    }
+    else
+    {
+        s->clear();
+        s->setMethod((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
+        isSearching = true;
+        cancel = false;
+        ui->search->setText(tr("Cancel"));
+        std::thread job(&Stationary3::search, this);
+        job.detach();
+    }
 }
 
 void Stationary3::moveResults(QString seed, QString method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe)

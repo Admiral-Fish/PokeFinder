@@ -58,6 +58,7 @@ private:
     Searcher3Model *s = new Searcher3Model(this, Method1);
     Stationary3Model *g = new Stationary3Model(this);
     bool isSearching = false;
+    bool cancel = false;
     vector<Profile3> profiles;
     QMenu *generatorMenu = new QMenu();
     QMenu *searcherMenu = new QMenu();
