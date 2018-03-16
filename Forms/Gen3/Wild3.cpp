@@ -32,6 +32,7 @@ Wild3::Wild3(QWidget *parent) :
 
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
     connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
+    connect(this, &Wild3::updateProgress, this, &Wild3::updateProgressBar);
 }
 
 void Wild3::changeEvent(QEvent *event)
@@ -281,6 +282,8 @@ void Wild3::on_search_clicked()
 
 void Wild3::search()
 {
+    ui->progressBar->setValue(0);
+
     u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
@@ -294,6 +297,8 @@ void Wild3::search()
 
     vector<u32> min = ui->ivFilterSearcher->getLower();
     vector<u32> max = ui->ivFilterSearcher->getUpper();
+
+    ui->progressBar->setMaximum((max[0] - min[0] + 1) * (max[1] - min[1] + 1) * (max[2] - min[2] + 1) * (max[3] - min[3] + 1) * (max[4] - min[4] + 1) * (max[5] - min[5] + 1));
 
     for (u32 a = min[0]; a <= max[0]; a++)
     {
@@ -312,6 +317,8 @@ void Wild3::search()
                             if (!frames.empty())
                                 emit updateView(frames);
 
+                            emit updateProgress(1);
+
                             if (cancel)
                             {
                                 isSearching = false;
@@ -326,6 +333,11 @@ void Wild3::search()
     }
     isSearching = false;
     ui->search->setText(tr("Search"));
+}
+
+void Wild3::updateProgressBar(int i)
+{
+    ui->progressBar->setValue(ui->progressBar->value() + i);
 }
 
 void Wild3::centerFramesAndSetTargetGenerator(u32 centerFrames)

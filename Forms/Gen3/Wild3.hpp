@@ -49,6 +49,7 @@ protected:
 signals:
     void updateView(vector<Frame3>);
     void alertProfiles(int);
+    void updateProgress(int);
 
 private:
     Ui::Wild3 *ui;
@@ -83,6 +84,7 @@ private slots:
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void outputToTxt();
     void outputToCSV();
+    void updateProgressBar(int i);
 
 public:
     explicit Wild3(QWidget *parent = 0);
