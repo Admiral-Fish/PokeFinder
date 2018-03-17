@@ -36,7 +36,6 @@
 #include <QModelIndex>
 #include <QFileDialog>
 #include <QClipboard>
-#include <QTimer>
 
 namespace Ui
 {
