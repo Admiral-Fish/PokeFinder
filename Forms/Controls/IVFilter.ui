@@ -97,1103 +97,887 @@ QPushButton {
 	border-radius: 6px;
 }</string>
   </property>
-  <widget class="QPushButton" name="pushButton31HP">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>0</y>
-     <width>41</width>
-     <height>16</height>
+     <x>9</x>
+     <y>3</y>
+     <width>91</width>
+     <height>171</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==31</string>
-   </property>
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
+     <widget class="QLabel" name="hpLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>30</width>
+        <height>16</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>HP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QComboBox" name="comboBoxHP">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <property name="duplicatesEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>None</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">==</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&gt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&lt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">!=</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="atkLabel">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Atk</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QComboBox" name="comboBoxAtk">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <property name="duplicatesEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>None</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">==</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&gt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&lt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">!=</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="defLabel">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Def</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QComboBox" name="comboBoxDef">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <property name="duplicatesEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>None</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">==</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&gt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&lt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">!=</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="spaLabel">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>SpA</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QComboBox" name="comboBoxSpA">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <property name="duplicatesEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>None</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">==</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&gt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&lt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">!=</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="spdLabel">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>SpD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QComboBox" name="comboBoxSpD">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <property name="duplicatesEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>None</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">==</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&gt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&lt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">!=</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="speLabel">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Spe</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QComboBox" name="comboBoxSpe">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>53</width>
+        <height>13</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+      </property>
+      <property name="duplicatesEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>None</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">==</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&gt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">&lt;=</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string notr="true">!=</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton30HP">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>0</y>
-     <width>41</width>
-     <height>16</height>
+     <x>104</x>
+     <y>3</y>
+     <width>38</width>
+     <height>171</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==30</string>
-   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QSpinBox" name="spinBoxHP">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QSpinBox" name="spinBoxAtk">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QSpinBox" name="spinBoxDef">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QSpinBox" name="spinBoxSpA">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QSpinBox" name="spinBoxSpD">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QSpinBox" name="spinBoxSpe">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QComboBox" name="comboBoxSpe">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>36</x>
-     <y>160</y>
-     <width>53</width>
-     <height>16</height>
+     <x>150</x>
+     <y>4</y>
+     <width>181</width>
+     <height>171</height>
     </rect>
    </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>53</width>
-     <height>13</height>
-    </size>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="sizeAdjustPolicy">
-    <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-   </property>
-   <property name="duplicatesEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>None</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">==</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&gt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&lt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">!=</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QSpinBox" name="spinBoxAtk">
-   <property name="geometry">
-    <rect>
-     <x>95</x>
-     <y>32</y>
-     <width>36</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="maximum">
-    <number>31</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="spaLabel">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>96</y>
-     <width>27</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>SpA</string>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBoxSpA">
-   <property name="geometry">
-    <rect>
-     <x>95</x>
-     <y>96</y>
-     <width>36</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="maximum">
-    <number>31</number>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBoxSpD">
-   <property name="geometry">
-    <rect>
-     <x>95</x>
-     <y>128</y>
-     <width>36</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="maximum">
-    <number>31</number>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBoxSpD">
-   <property name="geometry">
-    <rect>
-     <x>36</x>
-     <y>128</y>
-     <width>53</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="sizeAdjustPolicy">
-    <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-   </property>
-   <property name="duplicatesEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>None</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">==</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&gt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&lt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">!=</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QSpinBox" name="spinBoxSpe">
-   <property name="geometry">
-    <rect>
-     <x>95</x>
-     <y>160</y>
-     <width>36</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="maximum">
-    <number>31</number>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBoxSpA">
-   <property name="geometry">
-    <rect>
-     <x>36</x>
-     <y>96</y>
-     <width>53</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="sizeAdjustPolicy">
-    <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-   </property>
-   <property name="duplicatesEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>None</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">==</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&gt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&lt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">!=</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QComboBox" name="comboBoxDef">
-   <property name="geometry">
-    <rect>
-     <x>36</x>
-     <y>64</y>
-     <width>53</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="sizeAdjustPolicy">
-    <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-   </property>
-   <property name="duplicatesEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>None</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">==</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&gt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&lt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">!=</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QLabel" name="defLabel">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>64</y>
-     <width>25</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Def</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBoxHP">
-   <property name="geometry">
-    <rect>
-     <x>36</x>
-     <y>0</y>
-     <width>53</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="sizeAdjustPolicy">
-    <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-   </property>
-   <property name="duplicatesEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>None</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">==</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&gt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&lt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">!=</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QLabel" name="spdLabel">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>128</y>
-     <width>27</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>SpD</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBoxAtk">
-   <property name="geometry">
-    <rect>
-     <x>36</x>
-     <y>32</y>
-     <width>53</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="sizeAdjustPolicy">
-    <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-   </property>
-   <property name="duplicatesEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>None</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">==</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&gt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">&lt;=</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string notr="true">!=</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QSpinBox" name="spinBoxDef">
-   <property name="geometry">
-    <rect>
-     <x>95</x>
-     <y>64</y>
-     <width>36</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="maximum">
-    <number>31</number>
-   </property>
-  </widget>
-  <widget class="QSpinBox" name="spinBoxHP">
-   <property name="geometry">
-    <rect>
-     <x>95</x>
-     <y>0</y>
-     <width>36</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="maximum">
-    <number>31</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="speLabel">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>160</y>
-     <width>26</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Spe</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="atkLabel">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>32</y>
-     <width>24</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Atk</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="hpLabel">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>30</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>30</width>
-     <height>16</height>
-    </size>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>HP</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonG30HP">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>0</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">&gt;=30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonClearHP">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>0</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Clear</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton31Atk">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>32</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==31</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonG30Atk">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>32</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">&gt;=30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton30Atk">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>32</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonClearAtk">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>32</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Clear</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton31Def">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>64</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==31</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonG30Def">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>64</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">&gt;=30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton30Def">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>64</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonClearDef">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>64</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Clear</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton31SpA">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>96</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==31</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonG30SpA">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>96</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">&gt;=30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton30SpA">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>96</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonClearSpA">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>96</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Clear</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton31SpD">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>128</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==31</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonG30SpD">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>128</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">&gt;=30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton30SpD">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>128</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonClearSpD">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>128</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Clear</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton31Spe">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>160</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==31</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonG30Spe">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>160</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">&gt;=30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton30Spe">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>160</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string notr="true">==30</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonClearSpe">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>160</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Myriad Pro,Montserrat</family>
-     <weight>62</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Clear</string>
-   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QPushButton" name="pushButton31HP">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==31</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="pushButton30HP">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="pushButtonG30HP">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">&gt;=30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="pushButtonClearHP">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Clear</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="pushButton31Atk">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==31</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="pushButton30Atk">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="pushButtonG30Atk">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">&gt;=30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QPushButton" name="pushButtonClearAtk">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Clear</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="pushButton31Def">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==31</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="pushButton30Def">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QPushButton" name="pushButtonG30Def">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">&gt;=30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QPushButton" name="pushButtonClearDef">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Clear</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="pushButton31SpA">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==31</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="pushButton30SpA">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QPushButton" name="pushButtonG30SpA">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">&gt;=30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QPushButton" name="pushButtonClearSpA">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Clear</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="pushButton31SpD">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==31</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="pushButton30SpD">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QPushButton" name="pushButtonG30SpD">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">&gt;=30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QPushButton" name="pushButtonClearSpD">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Clear</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QPushButton" name="pushButton31Spe">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==31</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QPushButton" name="pushButton30Spe">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">==30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QPushButton" name="pushButtonG30Spe">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string notr="true">&gt;=30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QPushButton" name="pushButtonClearSpe">
+      <property name="font">
+       <font>
+        <family>Myriad Pro,Montserrat</family>
+        <weight>62</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Clear</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

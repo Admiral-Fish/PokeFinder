@@ -36,6 +36,7 @@
 #include <QModelIndex>
 #include <QFileDialog>
 #include <QClipboard>
+#include <QTimer>
 
 namespace Ui
 {
@@ -52,7 +53,7 @@ protected:
 signals:
     void updateView(vector<Frame3>);
     void alertProfiles(int);
-    void updateProgess(int);
+    void updateProgress();
 
 private:
     Ui::Stationary3 *ui;
@@ -60,6 +61,7 @@ private:
     Stationary3Model *g = new Stationary3Model(this);
     bool isSearching = false;
     bool cancel = false;
+    u32 progress;
     vector<Profile3> profiles;
     QMenu *generatorMenu = new QMenu();
     QMenu *searcherMenu = new QMenu();
@@ -68,6 +70,7 @@ private:
 
     void setupModels();
     void search();
+    void updateSearch();
 
 public slots:
     void moveResults(QString seed, QString method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
@@ -94,7 +97,7 @@ private slots:
     void outputToCSV();
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void copySeedToClipboard();
-    void updateProgressBar(int i);
+    void updateProgressBar();
 
 public:
     explicit Stationary3(QWidget *parent = 0);

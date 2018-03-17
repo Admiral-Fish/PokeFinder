@@ -49,13 +49,14 @@ protected:
 signals:
     void updateView(vector<Frame3>);
     void alertProfiles(int);
-    void updateProgress(int);
+    void updateProgress();
 
 private:
     Ui::Wild3 *ui;
     vector<Profile3> profiles;
     bool isSearching = false;
     bool cancel = false;
+    u32 progress;
     Searcher3Model *s = new Searcher3Model(this, Method1);
     Wild3Model *g = new Wild3Model(this);
     QMenu *contextMenu = new QMenu(this);
@@ -64,6 +65,7 @@ private:
 
     void setupModels();
     void search();
+    void updateSearch();
 
 private slots:
     void on_generate_clicked();
@@ -84,7 +86,7 @@ private slots:
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void outputToTxt();
     void outputToCSV();
-    void updateProgressBar(int i);
+    void updateProgressBar();
 
 public:
     explicit Wild3(QWidget *parent = 0);

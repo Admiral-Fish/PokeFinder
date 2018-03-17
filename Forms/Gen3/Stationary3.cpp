@@ -35,7 +35,7 @@ Stationary3::Stationary3(QWidget *parent) :
 
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
     connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
-    connect(this, &Stationary3::updateProgess, this, &Stationary3::updateProgressBar);
+    connect(this, &Stationary3::updateProgress, this, &Stationary3::updateProgressBar);
 }
 
 Stationary3::~Stationary3()
@@ -281,7 +281,6 @@ void Stationary3::on_generate_clicked()
 
 void Stationary3::search()
 {
-    ui->progressBar->setValue(0);
     u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
@@ -317,12 +316,13 @@ void Stationary3::search()
                             if (!frames.empty())
                                 emit updateView(frames);
 
-                            emit updateProgess(1);
+                            progress++;
 
                             if (cancel)
                             {
                                 isSearching = false;
                                 ui->search->setText(tr("Search"));
+                                emit updateProgress();
                                 return;
                             }
                         }
@@ -333,6 +333,16 @@ void Stationary3::search()
     }
     isSearching = false;
     ui->search->setText(tr("Search"));
+    emit updateProgress();
+}
+
+void Stationary3::updateSearch()
+{
+    while (isSearching && !cancel)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        emit updateProgress();
+    }
 }
 
 void Stationary3::on_search_clicked()
@@ -345,11 +355,19 @@ void Stationary3::on_search_clicked()
     {
         s->clear();
         s->setMethod((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
+
+        ui->progressBar->setValue(0);
+        progress = 0;
+
         isSearching = true;
         cancel = false;
         ui->search->setText(tr("Cancel"));
+
         std::thread job(&Stationary3::search, this);
         job.detach();
+
+        std::thread update(&Stationary3::updateSearch, this);
+        update.detach();
     }
 }
 
@@ -420,11 +438,6 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
         ui->comboBoxShadow->setVisible(false);
         ui->label->setVisible(false);
     }
-}
-
-void Stationary3::updateProgressBar(int i)
-{
-    ui->progressBar->setValue(ui->progressBar->value() + i);
 }
 
 void Stationary3::centerFramesAndSetTargetGenerator(u32 centerFrames)
@@ -543,6 +556,11 @@ void Stationary3::outputToCSV()
 void Stationary3::copySeedToClipboard()
 {
     QApplication::clipboard()->setText(ui->tableViewSearcher->model()->data(ui->tableViewSearcher->model()->index(lastIndex.row(), 0)).toString());
+}
+
+void Stationary3::updateProgressBar()
+{
+    ui->progressBar->setValue(progress);
 }
 
 void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)

@@ -272,18 +272,24 @@ void Wild3::on_search_clicked()
     {
         s->clear();
         s->setMethod((Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL));
+
+        ui->progressBar->setValue(0);
+        progress = 0;
+
         isSearching = true;
         cancel = false;
         ui->search->setText(tr("Cancel"));
+
         std::thread job(&Wild3::search, this);
         job.detach();
+
+        std::thread update(&Wild3::updateSearch, this);
+        update.detach();
     }
 }
 
 void Wild3::search()
 {
-    ui->progressBar->setValue(0);
-
     u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
@@ -317,12 +323,13 @@ void Wild3::search()
                             if (!frames.empty())
                                 emit updateView(frames);
 
-                            emit updateProgress(1);
+                            progress++;
 
                             if (cancel)
                             {
                                 isSearching = false;
                                 ui->search->setText(tr("Search"));
+                                emit updateProgress();
                                 return;
                             }
                         }
@@ -333,11 +340,21 @@ void Wild3::search()
     }
     isSearching = false;
     ui->search->setText(tr("Search"));
+    emit updateProgress();
 }
 
-void Wild3::updateProgressBar(int i)
+void Wild3::updateSearch()
 {
-    ui->progressBar->setValue(ui->progressBar->value() + i);
+    while (isSearching && !cancel)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        emit updateProgress();
+    }
+}
+
+void Wild3::updateProgressBar()
+{
+    ui->progressBar->setValue(progress);
 }
 
 void Wild3::centerFramesAndSetTargetGenerator(u32 centerFrames)
