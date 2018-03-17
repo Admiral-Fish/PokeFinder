@@ -44,6 +44,7 @@ Stationary3::~Stationary3()
     delete s;
     delete g;
     delete generatorMenu;
+    delete searcherMenu;
 }
 
 void Stationary3::changeEvent(QEvent *event)
