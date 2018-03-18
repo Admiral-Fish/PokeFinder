@@ -26,9 +26,10 @@ Egg3Model::Egg3Model(QObject *parent, Method method) : QAbstractTableModel(paren
 
 void Egg3Model::setModel(vector<Frame3> frames)
 {
+    if (frames.empty())
+        return;
     int i = rowCount();
-    int size = i + frames.size();
-    emit beginInsertRows(QModelIndex(), i, size == 0 ? 0 : size);
+    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
     model.insert(model.end(), frames.begin(), frames.end());
     emit endInsertRows();
 }
