@@ -25,7 +25,6 @@
 
 class PokeSpotModel : public QAbstractTableModel
 {
-
     Q_OBJECT
 
 private:

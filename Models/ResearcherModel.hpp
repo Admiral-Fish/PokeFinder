@@ -29,7 +29,6 @@ using std::vector;
 
 class ResearcherModel : public QAbstractTableModel
 {
-
     Q_OBJECT
 
 private:
