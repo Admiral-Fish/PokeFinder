@@ -26,7 +26,6 @@
 
 class Searcher3Model : public QAbstractTableModel
 {
-
     Q_OBJECT
 
 private:
@@ -39,6 +38,7 @@ public:
     void addItems(vector<Frame3> frames);
     void clear();
     void setMethod(Method method);
+    void sort(int column, Qt::SortOrder order);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
