@@ -27,8 +27,8 @@ Wild3::Wild3(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
     updateProfiles();
+    setupModels();
 
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
     connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
@@ -52,6 +52,9 @@ void Wild3::changeEvent(QEvent *event)
 
 Wild3::~Wild3()
 {
+    QSettings setting;
+    setting.setValue("wild3Profile", ui->comboBoxProfiles->currentIndex());
+
     delete ui;
     delete s;
     delete g;
@@ -175,6 +178,9 @@ void Wild3::setupModels()
     contextMenu->addSeparator();
     contextMenu->addAction(outputToTxt);
     contextMenu->addAction(outputToCSV);
+
+    QSettings setting;
+    ui->comboBoxProfiles->setCurrentIndex(setting.value("wild3Profile").toInt());
 }
 
 void Wild3::on_saveProfileGenerator_clicked()

@@ -33,6 +33,7 @@
 #include <QMenu>
 #include <thread>
 #include <QFileDialog>
+#include <QSettings>
 
 namespace Ui
 {

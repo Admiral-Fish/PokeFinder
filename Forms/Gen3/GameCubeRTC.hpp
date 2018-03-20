@@ -33,6 +33,7 @@
 #include <QAction>
 #include <QModelIndex>
 #include <QClipboard>
+#include <QSettings>
 
 typedef uint32_t u32;
 

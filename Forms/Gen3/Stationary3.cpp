@@ -30,8 +30,8 @@ Stationary3::Stationary3(QWidget *parent) :
     ui->label->setVisible(false);
     ui->comboBoxShadow->setVisible(false);
 
-    setupModels();
     updateProfiles();
+    setupModels();
 
     qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
     connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
@@ -40,6 +40,9 @@ Stationary3::Stationary3(QWidget *parent) :
 
 Stationary3::~Stationary3()
 {
+    QSettings setting;
+    setting.setValue("stationary3Profile", ui->comboBoxProfiles->currentIndex());
+
     delete ui;
     delete s;
     delete g;
@@ -160,6 +163,9 @@ void Stationary3::setupModels()
     connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
 
     searcherMenu->addAction(copySeedToClipboard);
+
+    QSettings setting;
+    ui->comboBoxProfiles->setCurrentIndex(setting.value("stationary3Profile").toInt());
 }
 
 void Stationary3::on_saveProfileGenerator_clicked()

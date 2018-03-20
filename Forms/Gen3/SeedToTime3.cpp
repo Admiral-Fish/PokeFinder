@@ -41,10 +41,16 @@ void SeedToTime3::setupModels()
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Seconds"));
     ui->tableViewGenerator->setModel(model);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    QSettings setting;
+    ui->seedToTimeYear->setText(setting.value("seed3Year").toString());
 }
 
 SeedToTime3::~SeedToTime3()
 {
+    QSettings setting;
+    setting.setValue("seed3Year", ui->seedToTimeYear->text());
+
     delete ui;
     delete model;
 }

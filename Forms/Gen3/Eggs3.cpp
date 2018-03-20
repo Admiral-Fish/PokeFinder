@@ -27,12 +27,15 @@ Eggs3::Eggs3(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
     updateProfiles();
+    setupModels();
 }
 
 Eggs3::~Eggs3()
 {
+    QSettings setting;
+    setting.setValue("egg3Profile", ui->comboBoxProfiles->currentIndex());
+
     delete ui;
     delete emeraldIVs;
     delete emeraldPID;
@@ -114,6 +117,9 @@ void Eggs3::setupModels()
     ui->comboBoxHiddenPowerEmerald->setup();
     ui->comboBoxHiddenPowerFRLG->setup();
     ui->comboBoxHiddenPowerRS->setup();
+
+    QSettings setting;
+    ui->comboBoxProfiles->setCurrentIndex(setting.value("egg3Profile").toInt());
 }
 
 void Eggs3::changeEvent(QEvent *event)

@@ -26,6 +26,7 @@
 #include <Models/Gen3/Egg3Model.hpp>
 #include <PokeFinderCore/Objects/FrameCompare.hpp>
 #include <PokeFinderCore/Gen3/Egg3.hpp>
+#include <QSettings>
 
 namespace Ui
 {

@@ -21,6 +21,7 @@
 #define POKESPOT_HPP
 
 #include <QMainWindow>
+#include <QSettings>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <Models/Gen3/PokeSpotModel.hpp>
 #include <PokeFinderCore/Objects/Nature.hpp>
