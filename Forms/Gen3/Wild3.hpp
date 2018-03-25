@@ -87,6 +87,7 @@ private slots:
     void outputToCSV();
     void updateProgressBar();
     void on_pushButtonLeadGenerator_clicked();
+    void on_pushButtonProfileManager_clicked();
 
 public:
     explicit Wild3(QWidget *parent = 0);

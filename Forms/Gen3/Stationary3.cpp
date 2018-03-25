@@ -163,25 +163,6 @@ void Stationary3::setupModels()
     connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
 
     searcherMenu->addAction(copySeedToClipboard);
-
-    QSettings setting;
-    ui->comboBoxProfiles->setCurrentIndex(setting.value("stationary3Profile").toInt());
-}
-
-void Stationary3::on_saveProfileGenerator_clicked()
-{
-    ProfileManager3 *manager = new ProfileManager3();
-    manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
-    manager->show();
-}
-
-void Stationary3::on_saveSearcher_clicked()
-{
-    ProfileManager3 *manager = new ProfileManager3();
-    manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
-    manager->show();
 }
 
 void Stationary3::refreshProfiles()
@@ -202,6 +183,9 @@ void Stationary3::updateProfiles()
         profile->setItem(i + 1, item);
     }
     ui->comboBoxProfiles->setModel(profile);
+
+    QSettings setting;
+    ui->comboBoxProfiles->setCurrentIndex(setting.value("stationary3Profile").toInt());
 }
 
 void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
@@ -212,6 +196,9 @@ void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
         ui->sidGenerator->setText("54321");
         ui->idSearcher->setText("12345");
         ui->sidSearcher->setText("54321");
+        ui->profileTID->setText("12345");
+        ui->profileSID->setText("54321");
+        ui->profileGame->setText(tr("Emerald"));
     }
     else
     {
@@ -219,6 +206,9 @@ void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
         ui->sidGenerator->setText(QString::number(profiles.at(index - 1).sid));
         ui->idSearcher->setText(QString::number(profiles.at(index - 1).tid));
         ui->sidSearcher->setText(QString::number(profiles.at(index - 1).sid));
+        ui->profileTID->setText(QString::number(profiles.at(index - 1).tid));
+        ui->profileSID->setText(QString::number(profiles.at(index - 1).sid));
+        ui->profileGame->setText(profiles.at(index - 1).getVersion());
     }
 }
 
@@ -588,4 +578,11 @@ void Stationary3::on_tableViewSearcher_customContextMenuRequested(const QPoint &
     lastIndex = ui->tableViewSearcher->indexAt(pos);
 
     searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
+}
+
+void Stationary3::on_pushButtonProfileManager_clicked()
+{
+    ProfileManager3 *manager = new ProfileManager3();
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
+    manager->show();
 }

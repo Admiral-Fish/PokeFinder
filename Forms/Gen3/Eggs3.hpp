@@ -54,21 +54,19 @@ private:
     void setupModels();
 
 private slots:
-    void on_pushButtonProfileManagerEmerald_clicked();
     void refreshProfiles();
     void on_pushButtonGenerateEmeraldPID_clicked();
     void on_pushButtonGenerateEmeraldIVs_clicked();
-    void on_pushButtonProfileManagerRS_clicked();
     void on_pushButtonGenerateRS_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonGenerateFRLG_clicked();
-    void on_pushButtonProfileManagerFRLG_clicked();
     void on_pushButtonAnyAbilityEmerald_clicked();
     void on_pushButtonAnyNatureEmerald_clicked();
     void on_pushButtonAnyAbilityRS_clicked();
     void on_pushButtonAnyNatureRS_clicked();
     void on_pushButtonAnyAbilityFRLG_clicked();
     void on_pushButtonAnyNatureFRLG_clicked();
+    void on_pushButtonProfileManager_clicked();
 
 public:
     explicit Eggs3(QWidget *parent = 0);

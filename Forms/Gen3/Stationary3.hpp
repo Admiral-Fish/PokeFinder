@@ -78,12 +78,10 @@ public slots:
 private slots:
     void on_generate_clicked();
     void refreshProfiles();
-    void on_saveProfileGenerator_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_anyNatureGenerator_clicked();
     void on_anyHiddenPowerGenerator_clicked();
     void on_checkBoxDelayGenerator_clicked();
-    void on_saveSearcher_clicked();
     void on_search_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
@@ -98,6 +96,7 @@ private slots:
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void copySeedToClipboard();
     void updateProgressBar();
+    void on_pushButtonProfileManager_clicked();
 
 public:
     explicit Stationary3(QWidget *parent = 0);

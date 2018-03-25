@@ -92,6 +92,9 @@ void Wild3::updateProfiles()
         profile->setItem(i + 1, item);
     }
     ui->comboBoxProfiles->setModel(profile);
+
+    QSettings setting;
+    ui->comboBoxProfiles->setCurrentIndex(setting.value("wild3Profile").toInt());
 }
 
 void Wild3::setupModels()
@@ -198,9 +201,6 @@ void Wild3::setupModels()
     contextMenu->addSeparator();
     contextMenu->addAction(outputToTxt);
     contextMenu->addAction(outputToCSV);
-
-    QSettings setting;
-    ui->comboBoxProfiles->setCurrentIndex(setting.value("wild3Profile").toInt());
 }
 
 void Wild3::on_anyNatureGenerator_clicked()
@@ -231,6 +231,9 @@ void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
         ui->sidGenerator->setText("54321");
         ui->idSearcher->setText("12345");
         ui->sidSearcher->setText("54321");
+        ui->profileTID->setText("12345");
+        ui->profileSID->setText("54321");
+        ui->profileGame->setText(tr("Emerald"));
     }
     else
     {
@@ -238,6 +241,9 @@ void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
         ui->sidGenerator->setText(QString::number(profiles.at(index - 1).sid));
         ui->idSearcher->setText(QString::number(profiles.at(index - 1).tid));
         ui->sidSearcher->setText(QString::number(profiles.at(index - 1).sid));
+        ui->profileTID->setText(QString::number(profiles.at(index - 1).tid));
+        ui->profileSID->setText(QString::number(profiles.at(index - 1).sid));
+        ui->profileGame->setText(profiles.at(index - 1).getVersion());
     }
 }
 
@@ -532,4 +538,11 @@ void Wild3::on_pushButtonLeadGenerator_clicked()
         ui->comboBoxLeadGenerator->addItem("None");
         ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
     }
+}
+
+void Wild3::on_pushButtonProfileManager_clicked()
+{
+    ProfileManager3 *manager = new ProfileManager3();
+    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
+    manager->show();
 }
