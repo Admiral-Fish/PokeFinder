@@ -205,7 +205,7 @@ QPushButton {
           <property name="title">
            <string>Filters</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_4">
+          <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
             <widget class="IVFilter" name="ivFilterGenerator" native="true">
              <property name="minimumSize">
@@ -438,176 +438,23 @@ QPushButton {
               </widget>
              </item>
              <item row="3" column="0">
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>Encounter Slot</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QCheckList" name="comboBoxSlotGenerator"/>
+             </item>
+             <item row="4" column="0">
               <widget class="QLabel" name="hiddenPLabel">
                <property name="text">
                 <string>Hidden Power</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="2">
-              <widget class="QPushButton" name="anyHiddenPowerGenerator">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>50</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-               </property>
-               <property name="text">
-                <string>Any</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="genderRLabel">
-               <property name="text">
-                <string>Gender Ratio</string>
-               </property>
-              </widget>
-             </item>
              <item row="4" column="1">
-              <widget class="QComboBox" name="comboBoxGenderRatioGenerator">
-               <item>
-                <property name="text">
-                 <string>Genderless</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>50% Male / 50% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>25% Male / 75% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>75% Male / 25% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>87.5% Male / 12.5% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>100% Male</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>100% Female</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="shinyLabel">
-               <property name="text">
-                <string>Shiny Only?</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QCheckBox" name="checkBoxShinyGenerator">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="2">
-              <widget class="QLabel" name="labelDelay">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Use Delay?</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="3">
-              <widget class="QCheckBox" name="checkBoxDelayGenerator">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="disableLabel">
-               <property name="text">
-                <string>Disable Filters</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="1">
-              <widget class="QCheckBox" name="checkBoxDisableGenerator">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="2">
-              <widget class="QTextBox" name="delayGenerator">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>63</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>63</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="maxLength">
-                <number>10</number>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="3">
-              <widget class="QLabel" name="labelF">
-               <property name="text">
-                <string>(F)</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
               <widget class="QCheckList" name="comboBoxHiddenPowerGenerator">
                <item>
                 <property name="text">
@@ -689,6 +536,194 @@ QPushButton {
                  <string>Dark</string>
                 </property>
                </item>
+              </widget>
+             </item>
+             <item row="4" column="2">
+              <widget class="QPushButton" name="anyHiddenPowerGenerator">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="genderRLabel">
+               <property name="text">
+                <string>Gender Ratio</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QComboBox" name="comboBoxGenderRatioGenerator">
+               <item>
+                <property name="text">
+                 <string>Genderless</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>50% Male / 50% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>25% Male / 75% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>75% Male / 25% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>87.5% Male / 12.5% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Male</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Female</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="shinyLabel">
+               <property name="text">
+                <string>Shiny Only?</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QCheckBox" name="checkBoxShinyGenerator">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="2">
+              <widget class="QLabel" name="labelDelay">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Use Delay?</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="3">
+              <widget class="QCheckBox" name="checkBoxDelayGenerator">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="disableLabel">
+               <property name="text">
+                <string>Disable Filters</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QCheckBox" name="checkBoxDisableGenerator">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="2">
+              <widget class="QTextBox" name="delayGenerator">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>63</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>63</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="maxLength">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="3">
+              <widget class="QLabel" name="labelF">
+               <property name="text">
+                <string>(F)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QPushButton" name="anySlotGenerator">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -1202,7 +1237,7 @@ QHeaderView::section {
           <property name="title">
            <string>Filters</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_7">
+          <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
             <widget class="IVFilter" name="ivFilterSearcher" native="true">
              <property name="minimumSize">
@@ -1435,20 +1470,17 @@ QHeaderView::section {
               </widget>
              </item>
              <item row="3" column="0">
-              <widget class="QLabel" name="hiddenPLabel_3">
+              <widget class="QLabel" name="label_7">
                <property name="text">
-                <string>Hidden Power</string>
+                <string>Encounter Slot</string>
                </property>
               </widget>
              </item>
+             <item row="3" column="1">
+              <widget class="QCheckList" name="comboBoxSlotSearcher"/>
+             </item>
              <item row="3" column="2">
-              <widget class="QPushButton" name="anyHiddenPowerSearcher">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
+              <widget class="QPushButton" name="pushButton">
                <property name="minimumSize">
                 <size>
                  <width>50</width>
@@ -1473,66 +1505,13 @@ QHeaderView::section {
               </widget>
              </item>
              <item row="4" column="0">
-              <widget class="QLabel" name="genderRLabel_3">
+              <widget class="QLabel" name="hiddenPLabel_3">
                <property name="text">
-                <string>Gender Ratio</string>
+                <string>Hidden Power</string>
                </property>
               </widget>
              </item>
              <item row="4" column="1">
-              <widget class="QComboBox" name="comboBoxGenderRatioSearcher">
-               <item>
-                <property name="text">
-                 <string>Genderless</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>50% Male / 50% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>25% Male / 75% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>75% Male / 25% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>87.5% Male / 12.5% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>100% Male</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>100% Female</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="shinyLabel_3">
-               <property name="text">
-                <string>Shiny Only?</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QCheckBox" name="checkBoxShinySearcher">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
               <widget class="QCheckList" name="comboBoxHiddenPowerSearcher">
                <item>
                 <property name="text">
@@ -1614,6 +1593,97 @@ QHeaderView::section {
                  <string>Dark</string>
                 </property>
                </item>
+              </widget>
+             </item>
+             <item row="4" column="2">
+              <widget class="QPushButton" name="anyHiddenPowerSearcher">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>13</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+               </property>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="genderRLabel_3">
+               <property name="text">
+                <string>Gender Ratio</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QComboBox" name="comboBoxGenderRatioSearcher">
+               <item>
+                <property name="text">
+                 <string>Genderless</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>50% Male / 50% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>25% Male / 75% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>75% Male / 25% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>87.5% Male / 12.5% Female</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Male</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>100% Female</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="shinyLabel_3">
+               <property name="text">
+                <string>Shiny Only?</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QCheckBox" name="checkBoxShinySearcher">
+               <property name="text">
+                <string/>
+               </property>
               </widget>
              </item>
             </layout>

@@ -149,6 +149,9 @@ void Wild3::setupModels()
     ui->comboBoxHiddenPowerGenerator->setup();
     ui->comboBoxHiddenPowerSearcher->setup();
 
+    on_comboBoxEncounterGenerator_currentIndexChanged(0);
+    on_comboBoxEncounterSearcher_currentIndexChanged(0);
+
     QAction *setTargetFrame = new QAction("Set Target Frame", this);
     QAction *jumpToTarget = new QAction("Jump to Target Frame", this);
     QAction *centerTo1Second = new QAction("Center to +/- 1 Second and Set as Target Frame", this);
@@ -223,6 +226,16 @@ void Wild3::on_anyHiddenPowerSearcher_clicked()
     ui->comboBoxHiddenPowerSearcher->uncheckAll();
 }
 
+void Wild3::on_anySlotGenerator_clicked()
+{
+    ui->comboBoxSlotGenerator->uncheckAll();
+}
+
+void Wild3::on_pushButton_clicked()
+{
+    ui->comboBoxSlotSearcher->uncheckAll();
+}
+
 void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     if (index == 0)
@@ -270,7 +283,7 @@ void Wild3::on_generate_clicked()
     FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getEvals(), ui->ivFilterGenerator->getValues(),
                                         ui->comboBoxGenderGenerator->currentIndex(), genderRatioIndex, ui->comboBoxAbilityGenerator->currentIndex(),
                                         ui->comboBoxNatureGenerator->getChecked(), ui->comboBoxHiddenPowerGenerator->getChecked(),
-                                        ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked());
+                                        ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked(), ui->comboBoxSlotGenerator->getChecked());
 
     generator.setup((Method)ui->comboBoxMethodGenerator->currentData().toInt());
     generator.encounterType = (Encounter)ui->comboBoxEncounterGenerator->currentData().toInt();
@@ -328,7 +341,8 @@ void Wild3::search()
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
                                         genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
-                                        ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
+                                        ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false,
+                                        ui->comboBoxSlotSearcher->getChecked());
     Searcher3 searcher = Searcher3(tid, sid, genderRatioIndex, compare);
 
     searcher.setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
@@ -545,4 +559,56 @@ void Wild3::on_pushButtonProfileManager_clicked()
     ProfileManager3 *manager = new ProfileManager3();
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
+}
+
+void Wild3::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
+{
+    QStringList t;
+    switch ((Encounter)index)
+    {
+        case Wild:
+            t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
+            break;
+        case Surfing:
+            t << "0" << "1" << "2" << "3" << "4" << "5";
+            break;
+        case OldRod:
+            t << "0" << "1";
+            break;
+        case GoodRod:
+            t << "0" << "1" << "2";
+            break;
+        case SuperRod:
+            t << "0" << "1" << "2" << "3" << "4";
+            break;
+    }
+    ui->comboBoxSlotGenerator->clear();
+    ui->comboBoxSlotGenerator->addItems(t);
+    ui->comboBoxSlotGenerator->setup();
+}
+
+void Wild3::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
+{
+    QStringList t;
+    switch ((Encounter)index)
+    {
+        case Wild:
+            t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
+            break;
+        case Surfing:
+            t << "0" << "1" << "2" << "3" << "4" << "5";
+            break;
+        case OldRod:
+            t << "0" << "1";
+            break;
+        case GoodRod:
+            t << "0" << "1" << "2";
+            break;
+        case SuperRod:
+            t << "0" << "1" << "2" << "3" << "4";
+            break;
+    }
+    ui->comboBoxSlotSearcher->clear();
+    ui->comboBoxSlotSearcher->addItems(t);
+    ui->comboBoxSlotSearcher->setup();
 }

@@ -88,6 +88,10 @@ private slots:
     void updateProgressBar();
     void on_pushButtonLeadGenerator_clicked();
     void on_pushButtonProfileManager_clicked();
+    void on_comboBoxEncounterGenerator_currentIndexChanged(int index);
+    void on_anySlotGenerator_clicked();
+    void on_comboBoxEncounterSearcher_currentIndexChanged(int index);
+    void on_pushButton_clicked();
 
 public:
     explicit Wild3(QWidget *parent = 0);
