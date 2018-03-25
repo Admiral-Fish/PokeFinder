@@ -35,15 +35,11 @@ class IVFilter : public QWidget
 {
     Q_OBJECT
 
-public:
-    explicit IVFilter(QWidget *parent = 0);
-    ~IVFilter();
-    vector<u32> getEvals();
-    vector<u32> getValues();
-    vector<u32> getLower();
-    vector<u32> getUpper();
-    void clearValues();
-    void setValues(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
+protected:
+    void changeEvent(QEvent *);
+
+private:
+    Ui::IVFilter *ui;
 
 private slots:
     void on_pushButton31HP_clicked();
@@ -71,8 +67,15 @@ private slots:
     void on_pushButtonG30Spe_clicked();
     void on_pushButtonClearSpe_clicked();
 
-private:
-    Ui::IVFilter *ui;
+public:
+    explicit IVFilter(QWidget *parent = 0);
+    ~IVFilter();
+    vector<u32> getEvals();
+    vector<u32> getValues();
+    vector<u32> getLower();
+    vector<u32> getUpper();
+    void clearValues();
+    void setValues(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
 
 };
 
