@@ -120,6 +120,26 @@ void Wild3::setupModels()
     ui->comboBoxMethodSearcher->setItemData(1, MethodH2);
     ui->comboBoxMethodSearcher->setItemData(2, MethodH4);
 
+    ui->comboBoxEncounterGenerator->setItemData(0, Wild);
+    ui->comboBoxEncounterGenerator->setItemData(1, Surfing);
+    ui->comboBoxEncounterGenerator->setItemData(2, OldRod);
+    ui->comboBoxEncounterGenerator->setItemData(3, GoodRod);
+    ui->comboBoxEncounterGenerator->setItemData(4, SuperRod);
+
+    ui->comboBoxEncounterSearcher->setItemData(0, Wild);
+    ui->comboBoxEncounterSearcher->setItemData(1, Surfing);
+    ui->comboBoxEncounterSearcher->setItemData(2, OldRod);
+    ui->comboBoxEncounterSearcher->setItemData(3, GoodRod);
+    ui->comboBoxEncounterSearcher->setItemData(4, SuperRod);
+
+    ui->comboBoxLeadGenerator->addItem(tr("None"));
+    ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
+
+    ui->comboBoxLeadSearcher->setItemData(0, Search);
+    ui->comboBoxLeadSearcher->setItemData(1, Synchronize);
+    ui->comboBoxLeadSearcher->setItemData(2, CuteCharm);
+    ui->comboBoxLeadSearcher->setItemData(3, None);
+
     ui->comboBoxNatureGenerator->setup();
     ui->comboBoxNatureSearcher->setup();
 
@@ -181,22 +201,6 @@ void Wild3::setupModels()
 
     QSettings setting;
     ui->comboBoxProfiles->setCurrentIndex(setting.value("wild3Profile").toInt());
-}
-
-void Wild3::on_saveProfileGenerator_clicked()
-{
-    ProfileManager3 *manager = new ProfileManager3();
-    manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
-    manager->show();
-}
-
-void Wild3::on_saveSearcher_clicked()
-{
-    ProfileManager3 *manager = new ProfileManager3();
-    manager->setAttribute(Qt::WA_QuitOnClose, false);
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
-    manager->show();
 }
 
 void Wild3::on_anyNatureGenerator_clicked()
@@ -262,7 +266,23 @@ void Wild3::on_generate_clicked()
                                         ui->comboBoxNatureGenerator->getChecked(), ui->comboBoxHiddenPowerGenerator->getChecked(),
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked());
 
-    generator.setup((Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL));
+    generator.setup((Method)ui->comboBoxMethodGenerator->currentData().toInt());
+    generator.encounterType = (Encounter)ui->comboBoxEncounterGenerator->currentData().toInt();
+    if (ui->pushButtonLeadGenerator->text() == tr("Cute Charm"))
+        generator.leadType = (Lead)ui->comboBoxLeadGenerator->currentData().toInt();
+    else
+    {
+        int num = ui->comboBoxLeadGenerator->currentIndex();
+        if (num == 0)
+        {
+            generator.leadType = None;
+        }
+        else
+        {
+            generator.leadType = Synchronize;
+            generator.synchNature = Nature::getAdjustedNature(ui->comboBoxLeadGenerator->currentIndex() - 1);
+        }
+    }
 
     vector<Frame3> frames = generator.generate(compare);
     g->setModel(frames);
@@ -300,12 +320,14 @@ void Wild3::search()
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
-    Searcher3 searcher = Searcher3(tid, sid, genderRatioIndex);
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
                                         genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
                                         ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
+    Searcher3 searcher = Searcher3(tid, sid, genderRatioIndex, compare);
 
     searcher.setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
+    searcher.encounterType = (Encounter)ui->comboBoxEncounterSearcher->currentData().toInt();
+    searcher.leadType = (Lead)ui->comboBoxLeadSearcher->currentData().toInt();
 
     vector<u32> min = ui->ivFilterSearcher->getLower();
     vector<u32> max = ui->ivFilterSearcher->getUpper();
@@ -324,7 +346,7 @@ void Wild3::search()
                     {
                         for (u32 f = min[5]; f <= max[5]; f++)
                         {
-                            vector<Frame3> frames = searcher.search(a, b, c, d, e, f, compare);
+                            vector<Frame3> frames = searcher.search(a, b, c, d, e, f);
 
                             if (!frames.empty())
                                 emit updateView(frames);
@@ -484,4 +506,30 @@ void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
     lastIndex = ui->tableViewGenerator->indexAt(pos);
 
     contextMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+}
+
+void Wild3::on_pushButtonLeadGenerator_clicked()
+{
+    ui->comboBoxLeadGenerator->clear();
+    QString text = ui->pushButtonLeadGenerator->text();
+    if (text == tr("Synchronize"))
+    {
+        ui->pushButtonLeadGenerator->setText(tr("Cute Charm"));
+
+        ui->comboBoxLeadGenerator->addItem("♂ Lead (50% ♀ Target)", Lead::CuteCharm50F);
+        ui->comboBoxLeadGenerator->addItem("♂ Lead (75% ♀ Target)", Lead::CuteCharm75F);
+        ui->comboBoxLeadGenerator->addItem("♂ Lead (25% ♀ Target)", Lead::CuteCharm25F);
+        ui->comboBoxLeadGenerator->addItem("♂ Lead (12.5% ♀ Target)", Lead::CuteCharm125F);
+        ui->comboBoxLeadGenerator->addItem("♀ Lead (50% ♂ Target)", Lead::CuteCharm50M);
+        ui->comboBoxLeadGenerator->addItem("♀ Lead (75% ♂ Target)", Lead::CuteCharm75M);
+        ui->comboBoxLeadGenerator->addItem("♀ Lead (25% ♂ Target)", Lead::CuteCharm25M);
+        ui->comboBoxLeadGenerator->addItem("♀ Lead (87.5% ♂ Target)", Lead::CuteCharm875M);
+    }
+    else
+    {
+        ui->pushButtonLeadGenerator->setText(tr("Synchronize"));
+
+        ui->comboBoxLeadGenerator->addItem("None");
+        ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
+    }
 }

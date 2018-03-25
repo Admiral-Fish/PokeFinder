@@ -704,13 +704,13 @@ QPushButton {
          <widget class="QGroupBox" name="groupBoxRNGInfoStationary3">
           <property name="minimumSize">
            <size>
-            <width>249</width>
+            <width>300</width>
             <height>231</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>249</width>
+            <width>300</width>
             <height>231</height>
            </size>
           </property>
@@ -721,7 +721,74 @@ QPushButton {
            <string>RNG Info</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="1" column="1">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Encounter</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="pushButtonLeadGenerator">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	color: black;
+	background-color: yellow;
+}</string>
+             </property>
+             <property name="text">
+              <string>Synchronize</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QTextBox" name="initialSeedGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="maxLength">
+              <number>8</number>
+             </property>
+             <property name="cursorPosition">
+              <number>0</number>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QTextBox" name="idGenerator">
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="text">
+              <string notr="true">12345</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
             <widget class="QTextBox" name="startingFrameGenerator">
              <property name="styleSheet">
               <string notr="true"/>
@@ -737,20 +804,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
-            <widget class="QTextBox" name="idGenerator">
-             <property name="inputMask">
-              <string/>
-             </property>
-             <property name="text">
-              <string notr="true">12345</string>
-             </property>
-             <property name="maxLength">
-              <number>5</number>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
+           <item row="6" column="1">
             <widget class="QTextBox" name="sidGenerator">
              <property name="inputMask">
               <string/>
@@ -763,41 +817,37 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="7" column="0" colspan="2">
-            <widget class="QPushButton" name="saveProfileGenerator">
-             <property name="minimumSize">
-              <size>
-               <width>231</width>
-               <height>23</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: orange;
-}</string>
-             </property>
+           <item row="3" column="0">
+            <widget class="QLabel" name="startingFrameLabel">
              <property name="text">
-              <string>Profile Manager</string>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-             <property name="autoDefault">
-              <bool>false</bool>
+              <string>Starting Frame</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
+           <item row="4" column="0">
             <widget class="QLabel" name="maxResultsLabel">
              <property name="text">
               <string>Max Results</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="startingFrameLabel">
+           <item row="4" column="1">
+            <widget class="QTextBox" name="maxResultsGenerator">
+             <property name="inputMask">
+              <string/>
+             </property>
              <property name="text">
-              <string>Starting Frame</string>
+              <string notr="true">100000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="seedLabel">
+             <property name="text">
+              <string>Seed</string>
              </property>
             </widget>
            </item>
@@ -829,41 +879,7 @@ QPushButton {
              </item>
             </widget>
            </item>
-           <item row="2" column="1">
-            <widget class="QTextBox" name="maxResultsGenerator">
-             <property name="inputMask">
-              <string/>
-             </property>
-             <property name="text">
-              <string notr="true">100000</string>
-             </property>
-             <property name="maxLength">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="seedLabel">
-             <property name="text">
-              <string>Seed</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="sidLabel">
-             <property name="text">
-              <string>SID</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="methodLabel">
-             <property name="text">
-              <string>Method</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0" colspan="2">
+           <item row="8" column="0" colspan="2">
             <widget class="QPushButton" name="generate">
              <property name="enabled">
               <bool>true</bool>
@@ -890,46 +906,58 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="0">
+           <item row="5" column="0">
             <widget class="QLabel" name="idLabel">
              <property name="text">
               <string>TID</string>
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
-            <widget class="QTextBox" name="initialSeedGenerator">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>153</width>
-               <height>16</height>
-              </size>
-             </property>
-             <property name="inputMask">
-              <string/>
-             </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="methodLabel">
              <property name="text">
-              <string/>
-             </property>
-             <property name="maxLength">
-              <number>8</number>
-             </property>
-             <property name="cursorPosition">
-              <number>0</number>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="clearButtonEnabled">
-              <bool>false</bool>
+              <string>Method</string>
              </property>
             </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="sidLabel">
+             <property name="text">
+              <string>SID</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="comboBoxEncounterGenerator">
+             <item>
+              <property name="text">
+               <string>Wild</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Surfing</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Old Rod</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Good Rod</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Super Rod</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="comboBoxLeadGenerator"/>
            </item>
           </layout>
          </widget>
@@ -981,13 +1009,13 @@ QHeaderView::section {
          <widget class="QGroupBox" name="groupBoxRNGInfoSearcher3">
           <property name="minimumSize">
            <size>
-            <width>249</width>
+            <width>300</width>
             <height>231</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>249</width>
+            <width>300</width>
             <height>231</height>
            </size>
           </property>
@@ -999,26 +1027,27 @@ QHeaderView::section {
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="1" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Encounter</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
             <widget class="QLabel" name="idLabel_3">
              <property name="text">
               <string>TID</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QTextBox" name="idSearcher">
-             <property name="inputMask">
-              <string/>
-             </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="methodLabel_3">
              <property name="text">
-              <string notr="true">12345</string>
-             </property>
-             <property name="maxLength">
-              <number>5</number>
+              <string>Method</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
+           <item row="4" column="1">
             <widget class="QTextBox" name="sidSearcher">
              <property name="inputMask">
               <string/>
@@ -1031,34 +1060,23 @@ QHeaderView::section {
              </property>
             </widget>
            </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="methodLabel_3">
+           <item row="3" column="1">
+            <widget class="QTextBox" name="idSearcher">
+             <property name="inputMask">
+              <string/>
+             </property>
              <property name="text">
-              <string>Method</string>
+              <string notr="true">12345</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
              </property>
             </widget>
            </item>
-           <item row="5" column="0" colspan="2">
-            <widget class="QPushButton" name="saveSearcher">
-             <property name="minimumSize">
-              <size>
-               <width>231</width>
-               <height>23</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: orange;
-}</string>
-             </property>
+           <item row="4" column="0">
+            <widget class="QLabel" name="sidLabel_3">
              <property name="text">
-              <string>Profile Manager</string>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-             <property name="autoDefault">
-              <bool>false</bool>
+              <string>SID</string>
              </property>
             </widget>
            </item>
@@ -1090,14 +1108,7 @@ QHeaderView::section {
              </item>
             </widget>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="sidLabel_3">
-             <property name="text">
-              <string>SID</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0" colspan="2">
+           <item row="6" column="0" colspan="2">
             <widget class="QPushButton" name="search">
              <property name="enabled">
               <bool>true</bool>
@@ -1121,6 +1132,66 @@ QHeaderView::section {
              </property>
              <property name="autoDefault">
               <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="comboBoxEncounterSearcher">
+             <item>
+              <property name="text">
+               <string>Wild</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Surfing</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Old Rod</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Good Rod</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Super Rod</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="comboBoxLeadSearcher">
+             <item>
+              <property name="text">
+               <string>Any</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Synchronize</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Cute Charm</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>None</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Lead</string>
              </property>
             </widget>
            </item>

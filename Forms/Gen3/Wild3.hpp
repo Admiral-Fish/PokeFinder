@@ -71,11 +71,9 @@ private:
 private slots:
     void on_generate_clicked();
     void refreshProfiles();
-    void on_saveProfileGenerator_clicked();
     void on_anyNatureGenerator_clicked();
     void on_anyHiddenPowerGenerator_clicked();
     void on_search_clicked();
-    void on_saveSearcher_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
     void updateViewSearcher(vector<Frame3> frames);
@@ -88,6 +86,7 @@ private slots:
     void outputToTxt();
     void outputToCSV();
     void updateProgressBar();
+    void on_pushButtonLeadGenerator_clicked();
 
 public:
     explicit Wild3(QWidget *parent = 0);

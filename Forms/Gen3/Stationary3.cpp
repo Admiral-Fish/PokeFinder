@@ -292,10 +292,10 @@ void Stationary3::search()
     u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
 
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
-    Searcher3 searcher = Searcher3(tid, sid, genderRatioIndex);
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
                                         genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
                                         ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
+    Searcher3 searcher = Searcher3(tid, sid, genderRatioIndex, compare);
 
     searcher.setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
     if (searcher.frameType == XD || searcher.frameType == Colo)
@@ -318,7 +318,7 @@ void Stationary3::search()
                     {
                         for (u32 f = min[5]; f <= max[5]; f++)
                         {
-                            vector<Frame3> frames = searcher.search(a, b, c, d, e, f, compare);
+                            vector<Frame3> frames = searcher.search(a, b, c, d, e, f);
 
                             if (!frames.empty())
                                 emit updateView(frames);
