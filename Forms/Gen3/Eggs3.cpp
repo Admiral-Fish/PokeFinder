@@ -47,15 +47,11 @@ void Eggs3::updateProfiles()
 {
     profiles = Profile3::loadProfileList();
 
-    QStandardItemModel *profile = new QStandardItemModel((int)profiles.size() + 1, 1, this);
-    QStandardItem *firstProfile = new QStandardItem(tr("None"));
-    profile->setItem(0, firstProfile);
+    ui->comboBoxProfiles->clear();
+
+    ui->comboBoxProfiles->addItem(tr("None"));
     for (int i = 0; i < (int)profiles.size(); i++)
-    {
-        QStandardItem *item = new QStandardItem(profiles.at(i).profileName);
-        profile->setItem(i + 1, item);
-    }
-    ui->comboBoxProfiles->setModel(profile);
+        ui->comboBoxProfiles->addItem(profiles.at(i).profileName);
 
     QSettings setting;
     int val = setting.value("egg3Profile").toInt();
