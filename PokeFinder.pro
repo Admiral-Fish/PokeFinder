@@ -41,7 +41,8 @@ TRANSLATIONS += \
     Languages/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
-    resources.qrc
+    resources.qrc \
+    PokeFinderCore/encountertables.qrc
 
 FORMS += \
     Forms/Controls/IVFilter.ui \
@@ -113,7 +114,9 @@ HEADERS += \
     Models/Gen3/Stationary3Model.hpp \
     Models/Gen3/Wild3Model.hpp \
     Models/ResearcherModel.hpp \
-    Util/ResearcherFrame.hpp
+    Util/ResearcherFrame.hpp \
+    PokeFinderCore/Gen3/EncounterArea3.hpp \
+    PokeFinderCore/Objects/EncounterArea.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -160,4 +163,6 @@ SOURCES += \
     Models/Gen3/Wild3Model.cpp \
     Models/ResearcherModel.cpp \
     Util/ResearcherFrame.cpp \
-    main.cpp
+    main.cpp \
+    PokeFinderCore/Gen3/EncounterArea3.cpp \
+    PokeFinderCore/Objects/EncounterArea.cpp
