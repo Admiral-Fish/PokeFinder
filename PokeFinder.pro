@@ -83,7 +83,6 @@ HEADERS += \
     PokeFinderCore/Gen3/Frame3.hpp \
     PokeFinderCore/Gen3/Generator3.hpp \
     PokeFinderCore/Gen3/NatureLock.hpp \
-    PokeFinderCore/Gen3/Profile3.hpp \
     PokeFinderCore/Gen3/Searcher3.hpp \
     PokeFinderCore/Objects/Egg.hpp \
     PokeFinderCore/Objects/Encounter.hpp \
@@ -95,7 +94,6 @@ HEADERS += \
     PokeFinderCore/Objects/Method.hpp \
     PokeFinderCore/Objects/Nature.hpp \
     PokeFinderCore/Objects/Power.hpp \
-    PokeFinderCore/Objects/Profile.hpp \
     PokeFinderCore/Objects/Searcher.hpp \
     PokeFinderCore/Objects/Utilities.hpp \
     PokeFinderCore/RNG/IRNG.hpp \
@@ -116,7 +114,10 @@ HEADERS += \
     Models/ResearcherModel.hpp \
     Util/ResearcherFrame.hpp \
     PokeFinderCore/Gen3/EncounterArea3.hpp \
-    PokeFinderCore/Objects/EncounterArea.hpp
+    PokeFinderCore/Objects/EncounterArea.hpp \
+    PokeFinderCore/Objects/Profile.hpp \
+    PokeFinderCore/Objects/Games.hpp \
+    PokeFinderCore/Gen3/Profile3.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -140,7 +141,6 @@ SOURCES += \
     PokeFinderCore/Gen3/Frame3.cpp \
     PokeFinderCore/Gen3/Generator3.cpp \
     PokeFinderCore/Gen3/NatureLock.cpp \
-    PokeFinderCore/Gen3/Profile3.cpp \
     PokeFinderCore/Gen3/Searcher3.cpp \
     PokeFinderCore/Objects/EncounterSlot.cpp \
     PokeFinderCore/Objects/Frame.cpp \
@@ -165,4 +165,5 @@ SOURCES += \
     Util/ResearcherFrame.cpp \
     main.cpp \
     PokeFinderCore/Gen3/EncounterArea3.cpp \
-    PokeFinderCore/Objects/EncounterArea.cpp
+    PokeFinderCore/Objects/EncounterArea.cpp \
+    PokeFinderCore/Gen3/Profile3.cpp

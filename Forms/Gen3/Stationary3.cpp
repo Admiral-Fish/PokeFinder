@@ -185,7 +185,9 @@ void Stationary3::updateProfiles()
     ui->comboBoxProfiles->setModel(profile);
 
     QSettings setting;
-    ui->comboBoxProfiles->setCurrentIndex(setting.value("stationary3Profile").toInt());
+    int val = setting.value("stationary3Profile").toInt();
+    if (val < ui->comboBoxProfiles->count())
+        ui->comboBoxProfiles->setCurrentIndex(val);
 }
 
 void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)

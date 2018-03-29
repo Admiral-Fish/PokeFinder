@@ -58,7 +58,9 @@ void Eggs3::updateProfiles()
     ui->comboBoxProfiles->setModel(profile);
 
     QSettings setting;
-    ui->comboBoxProfiles->setCurrentIndex(setting.value("egg3Profile").toInt());
+    int val = setting.value("egg3Profile").toInt();
+    if (val < ui->comboBoxProfiles->count())
+        ui->comboBoxProfiles->setCurrentIndex(val);
 }
 
 void Eggs3::setupModels()
