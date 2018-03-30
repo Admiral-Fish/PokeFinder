@@ -30,6 +30,7 @@
 #include <Forms/ProfileManager/ProfileManager3.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
+#include <PokeFinderCore/Translator.hpp>
 #include <thread>
 #include <QMenu>
 #include <QAction>

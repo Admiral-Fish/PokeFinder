@@ -58,6 +58,7 @@ void Stationary3::changeEvent(QEvent *event)
         {
             case QEvent::LanguageChange:
                 ui->retranslateUi(this);
+                on_comboBoxMethodSearcher_currentIndexChanged(ui->comboBoxMethodSearcher->currentIndex());
                 break;
             default:
                 break;
@@ -389,31 +390,22 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
 
     if (method == XD)
     {
-        QStringList s;
-        s << tr("Altaria") << tr("Arbok") << tr("Banette");
-        s << tr("Butterfree") << tr("Chansey") << tr("Delcatty");
-        s << tr("Dodrio") << tr("Dragonite") << tr("Dugtrio");
-        s << tr("Duskull") << tr("Electabuzz") << tr("Farfetch'd");
-        s << tr("Golduck") << tr("Grimer") << tr("Growlithe");
-        s << tr("Gulpin (Citadark)") << tr("Gulpin (Initial)") << tr("Gulpin (Phenac)");
-        s << tr("Hitmonchan") << tr("Hitmonlee") << tr("Hypno");
-        s << tr("Kangaskhan") << tr("Lapras") << tr("Ledyba");
-        s << tr("Lickitung") << tr("Lunatone") << tr("Magcargo");
-        s << tr("Magmar") << tr("Magneton") << tr("Makuhita");
-        s << tr("Manectric") << tr("Marowak") << tr("Mawile");
-        s << tr("Meowth") << tr("Mr. Mime") << tr("Natu");
-        s << tr("Nosepass") << tr("Numel") << tr("Paras");
-        s << tr("Pidgeotto") << tr("Pineco") << tr("Pinsir");
-        s << tr("Poliwrath") << tr("Poochyena") << tr("Primeape");
-        s << tr("Ralts") << tr("Rapidash") << tr("Raticate");
-        s << tr("Roselia") << tr("Sableye") << tr("Salamence");
-        s << tr("Scyther") << tr("Seedot (Citadark)") << tr("Seedot (Initial)");
-        s << tr("Seedot (Phenac)") << tr("Seel") << tr("Shroomish");
-        s << tr("Snorlax") << tr("Snorunt") << tr("Solrock");
-        s << tr("Spearow") << tr("Spheal (Citadark)") << tr("Spheal (Initial)");
-        s << tr("Spheal (Phenac)") << tr("Spinarak") << tr("Starmie");
-        s << tr("Swinub") << tr("Tangela") << tr("Venomoth");
-        s << tr("Voltorb") << tr("Vulpix") << tr("Weepinbell");
+        QStringList s = Translator::getSpecies({ 334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125, 83, 55, 88, 58, 316,
+                                               316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82, 296, 310,
+                                               105, 303, 52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261, 57, 280, 78,
+                                               20, 315, 302, 373, 123, 273, 273, 273, 86, 285, 143, 361, 338, 21, 363, 363,
+                                               363, 167, 121, 220, 114, 49, 100, 37, 70
+                                               });
+
+        s[15] += tr(" (Citadark)");
+        s[16] += tr(" (Initial)");
+        s[17] += tr(" (Phenac)");
+        s[52] += tr(" (Citadark)");
+        s[53] += tr(" (Initial)");
+        s[54] += tr(" (Phenac)");
+        s[61] += tr(" (Citadark)");
+        s[62] += tr(" (Initial)");
+        s[63] += tr(" (Phenac)");
 
         ui->comboBoxShadow->addItems(s);
         ui->comboBoxShadow->setVisible(true);
@@ -421,9 +413,7 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
     }
     else if (method == Colo)
     {
-        QStringList s;
-        s << tr("Gligar") << tr("Heracross") << tr("Makuhita") << tr("Murkrow") << tr("Ursaring");
-
+        QStringList s = Translator::getSpecies({207, 214, 296, 198, 217});
         ui->comboBoxShadow->addItems(s);
         ui->comboBoxShadow->setVisible(true);
         ui->label->setVisible(true);
