@@ -42,7 +42,8 @@ TRANSLATIONS += \
 
 RESOURCES += \
     resources.qrc \
-    PokeFinderCore/encountertables.qrc
+    PokeFinderCore/encountertables.qrc \
+    PokeFinderCore/text.qrc
 
 FORMS += \
     Forms/Controls/IVFilter.ui \
@@ -117,7 +118,8 @@ HEADERS += \
     PokeFinderCore/Objects/EncounterArea.hpp \
     PokeFinderCore/Objects/Profile.hpp \
     PokeFinderCore/Objects/Games.hpp \
-    PokeFinderCore/Gen3/Profile3.hpp
+    PokeFinderCore/Gen3/Profile3.hpp \
+    PokeFinderCore/Translator.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -166,4 +168,5 @@ SOURCES += \
     main.cpp \
     PokeFinderCore/Gen3/EncounterArea3.cpp \
     PokeFinderCore/Objects/EncounterArea.cpp \
-    PokeFinderCore/Gen3/Profile3.cpp
+    PokeFinderCore/Gen3/Profile3.cpp \
+    PokeFinderCore/Translator.cpp
