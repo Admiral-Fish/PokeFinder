@@ -162,16 +162,16 @@ void Wild3::setupModels()
     on_comboBoxEncounterGenerator_currentIndexChanged(0);
     on_comboBoxEncounterSearcher_currentIndexChanged(0);
 
-    QAction *setTargetFrame = new QAction("Set Target Frame", this);
-    QAction *jumpToTarget = new QAction("Jump to Target Frame", this);
-    QAction *centerTo1Second = new QAction("Center to +/- 1 Second and Set as Target Frame", this);
-    QAction *centerTo2Seconds = new QAction("Center to +/- 2 Seconds and Set as Target Frame", this);
-    QAction *centerTo3Seconds = new QAction("Center to +/- 3 Seconds and Set as Target Frame", this);
-    QAction *centerTo5Seconds = new QAction("Center to +/- 5 Seconds and Set as Target Frame", this);
-    QAction *centerTo10Seconds = new QAction("Center to +/- 10 Seconds and Set as Target Frame", this);
-    QAction *centerTo1Minute = new QAction("Center to +/- 1 Minute and Set as Target Frame", this);
-    QAction *outputToTxt = new QAction("Output Results to TXT", this);
-    QAction *outputToCSV = new QAction("Output Results to CSV", this);
+    QAction *setTargetFrame = new QAction(tr("Set Target Frame"), this);
+    QAction *jumpToTarget = new QAction(tr("Jump to Target Frame"), this);
+    QAction *centerTo1Second = new QAction(tr("Center to +/- 1 Second and Set as Target Frame"), this);
+    QAction *centerTo2Seconds = new QAction(tr("Center to +/- 2 Seconds and Set as Target Frame"), this);
+    QAction *centerTo3Seconds = new QAction(tr("Center to +/- 3 Seconds and Set as Target Frame"), this);
+    QAction *centerTo5Seconds = new QAction(tr("Center to +/- 5 Seconds and Set as Target Frame"), this);
+    QAction *centerTo10Seconds = new QAction(tr("Center to +/- 10 Seconds and Set as Target Frame"), this);
+    QAction *centerTo1Minute = new QAction(tr("Center to +/- 1 Minute and Set as Target Frame"), this);
+    QAction *outputToTxt = new QAction(tr("Output Results to TXT"), this);
+    QAction *outputToCSV = new QAction(tr("Output Results to CSV"), this);
 
     connect(setTargetFrame, &QAction::triggered, this, &Wild3::setTargetFrameGenerator);
     connect(jumpToTarget, &QAction::triggered, this, &Wild3::jumpToTargetGenerator);
@@ -619,14 +619,14 @@ void Wild3::on_pushButtonLeadGenerator_clicked()
     {
         ui->pushButtonLeadGenerator->setText(tr("Cute Charm"));
 
-        ui->comboBoxLeadGenerator->addItem("♂ Lead (50% ♀ Target)", Lead::CuteCharm50F);
-        ui->comboBoxLeadGenerator->addItem("♂ Lead (75% ♀ Target)", Lead::CuteCharm75F);
-        ui->comboBoxLeadGenerator->addItem("♂ Lead (25% ♀ Target)", Lead::CuteCharm25F);
-        ui->comboBoxLeadGenerator->addItem("♂ Lead (12.5% ♀ Target)", Lead::CuteCharm125F);
-        ui->comboBoxLeadGenerator->addItem("♀ Lead (50% ♂ Target)", Lead::CuteCharm50M);
-        ui->comboBoxLeadGenerator->addItem("♀ Lead (75% ♂ Target)", Lead::CuteCharm75M);
-        ui->comboBoxLeadGenerator->addItem("♀ Lead (25% ♂ Target)", Lead::CuteCharm25M);
-        ui->comboBoxLeadGenerator->addItem("♀ Lead (87.5% ♂ Target)", Lead::CuteCharm875M);
+        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (50% ♀ Target)"), Lead::CuteCharm50F);
+        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (75% ♀ Target)"), Lead::CuteCharm75F);
+        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (25% ♀ Target)"), Lead::CuteCharm25F);
+        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (12.5% ♀ Target)"), Lead::CuteCharm125F);
+        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
+        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
+        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
+        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
     }
     else
     {

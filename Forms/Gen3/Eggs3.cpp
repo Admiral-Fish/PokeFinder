@@ -151,15 +151,16 @@ void Eggs3::on_comboBoxProfiles_currentIndexChanged(int index)
     }
     else
     {
-        ui->textBoxTIDEmerald->setText(QString::number(profiles.at(index - 1).tid));
-        ui->textBoxSIDEmerald->setText(QString::number(profiles.at(index - 1).sid));
-        ui->textBoxTIDRS->setText(QString::number(profiles.at(index - 1).tid));
-        ui->textBoxSIDRS->setText(QString::number(profiles.at(index - 1).sid));
-        ui->textBoxTIDFRLG->setText(QString::number(profiles.at(index - 1).tid));
-        ui->textBoxSIDFRLG->setText(QString::number(profiles.at(index - 1).sid));
-        ui->profileTID->setText(QString::number(profiles.at(index - 1).tid));
-        ui->profileSID->setText(QString::number(profiles.at(index - 1).sid));
-        ui->profileGame->setText(profiles.at(index - 1).getVersion());
+        auto profile = profiles.at(index - 1);
+        ui->textBoxTIDEmerald->setText(QString::number(profile.tid));
+        ui->textBoxSIDEmerald->setText(QString::number(profile.sid));
+        ui->textBoxTIDRS->setText(QString::number(profile.tid));
+        ui->textBoxSIDRS->setText(QString::number(profile.sid));
+        ui->textBoxTIDFRLG->setText(QString::number(profile.tid));
+        ui->textBoxSIDFRLG->setText(QString::number(profile.sid));
+        ui->profileTID->setText(QString::number(profile.tid));
+        ui->profileSID->setText(QString::number(profile.sid));
+        ui->profileGame->setText(profile.getVersion());
     }
 }
 

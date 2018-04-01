@@ -106,16 +106,16 @@ void Stationary3::setupModels()
     ui->comboBoxHiddenPowerGenerator->setup();
     ui->comboBoxHiddenPowerSearcher->setup();
 
-    QAction *setTargetFrame = new QAction("Set Target Frame", this);
-    QAction *jumpToTarget = new QAction("Jump to Target Frame", this);
-    QAction *centerTo1Second = new QAction("Center to +/- 1 Second and Set as Target Frame", this);
-    QAction *centerTo2Seconds = new QAction("Center to +/- 2 Seconds and Set as Target Frame", this);
-    QAction *centerTo3Seconds = new QAction("Center to +/- 3 Seconds and Set as Target Frame", this);
-    QAction *centerTo5Seconds = new QAction("Center to +/- 5 Seconds and Set as Target Frame", this);
-    QAction *centerTo10Seconds = new QAction("Center to +/- 10 Seconds and Set as Target Frame", this);
-    QAction *centerTo1Minute = new QAction("Center to +/- 1 Minute and Set as Target Frame", this);
-    QAction *outputToTxt = new QAction("Output Results to TXT", this);
-    QAction *outputToCSV = new QAction("Output Results to CSV", this);
+    QAction *setTargetFrame = new QAction(tr("Set Target Frame"), this);
+    QAction *jumpToTarget = new QAction(tr("Jump to Target Frame"), this);
+    QAction *centerTo1Second = new QAction(tr("Center to +/- 1 Second and Set as Target Frame"), this);
+    QAction *centerTo2Seconds = new QAction(tr("Center to +/- 2 Seconds and Set as Target Frame"), this);
+    QAction *centerTo3Seconds = new QAction(tr("Center to +/- 3 Seconds and Set as Target Frame"), this);
+    QAction *centerTo5Seconds = new QAction(tr("Center to +/- 5 Seconds and Set as Target Frame"), this);
+    QAction *centerTo10Seconds = new QAction(tr("Center to +/- 10 Seconds and Set as Target Frame"), this);
+    QAction *centerTo1Minute = new QAction(tr("Center to +/- 1 Minute and Set as Target Frame"), this);
+    QAction *outputToTxt = new QAction(tr("Output Results to TXT"), this);
+    QAction *outputToCSV = new QAction(tr("Output Results to CSV"), this);
 
     connect(setTargetFrame, &QAction::triggered, this, &Stationary3::setTargetFrameGenerator);
     connect(jumpToTarget, &QAction::triggered, this, &Stationary3::jumpToTargetGenerator);
@@ -159,7 +159,7 @@ void Stationary3::setupModels()
     generatorMenu->addAction(outputToTxt);
     generatorMenu->addAction(outputToCSV);
 
-    QAction *copySeedToClipboard = new QAction("Copy Seed to Clipboard", this);
+    QAction *copySeedToClipboard = new QAction(tr("Copy Seed to Clipboard"), this);
 
     connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
 
@@ -201,13 +201,14 @@ void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
     }
     else
     {
-        ui->idGenerator->setText(QString::number(profiles.at(index - 1).tid));
-        ui->sidGenerator->setText(QString::number(profiles.at(index - 1).sid));
-        ui->idSearcher->setText(QString::number(profiles.at(index - 1).tid));
-        ui->sidSearcher->setText(QString::number(profiles.at(index - 1).sid));
-        ui->profileTID->setText(QString::number(profiles.at(index - 1).tid));
-        ui->profileSID->setText(QString::number(profiles.at(index - 1).sid));
-        ui->profileGame->setText(profiles.at(index - 1).getVersion());
+        auto profile = profiles.at(index - 1);
+        ui->idGenerator->setText(QString::number(profile.tid));
+        ui->sidGenerator->setText(QString::number(profile.sid));
+        ui->idSearcher->setText(QString::number(profile.tid));
+        ui->sidSearcher->setText(QString::number(profile.sid));
+        ui->profileTID->setText(QString::number(profile.tid));
+        ui->profileSID->setText(QString::number(profile.sid));
+        ui->profileGame->setText(profile.getVersion());
     }
 }
 
