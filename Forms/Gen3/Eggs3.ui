@@ -2597,7 +2597,7 @@ QRadioButton {
        </size>
       </property>
       <property name="title">
-       <string>GroupBox</string>
+       <string>Profile</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_17">
        <item row="0" column="0">
