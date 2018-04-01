@@ -41,9 +41,9 @@ TRANSLATIONS += \
     Languages/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
-    resources.qrc \
     PokeFinderCore/encountertables.qrc \
-    PokeFinderCore/text.qrc
+    PokeFinderCore/text.qrc \
+    resources.qrc
 
 FORMS += \
     Forms/Controls/IVFilter.ui \
@@ -80,21 +80,34 @@ HEADERS += \
     Forms/Util/IVtoPID.hpp \
     Forms/Util/Researcher.hpp \
     Forms/MainWindow.hpp \
+    Models/Gen3/Egg3Model.hpp \
+    Models/Gen3/PokeSpotModel.hpp \
+    Models/Gen3/Profile3Model.hpp \
+    Models/Gen3/Searcher3Model.hpp \
+    Models/Gen3/Stationary3Model.hpp \
+    Models/Gen3/Wild3Model.hpp \
+    Models/ResearcherModel.hpp \
     PokeFinderCore/Gen3/Egg3.hpp \
+    PokeFinderCore/Gen3/EncounterArea3.hpp \
     PokeFinderCore/Gen3/Frame3.hpp \
     PokeFinderCore/Gen3/Generator3.hpp \
     PokeFinderCore/Gen3/NatureLock.hpp \
+    PokeFinderCore/Gen3/Profile3.hpp \
     PokeFinderCore/Gen3/Searcher3.hpp \
+    PokeFinderCore/Gen4/Profile4.hpp \
     PokeFinderCore/Objects/Egg.hpp \
     PokeFinderCore/Objects/Encounter.hpp \
+    PokeFinderCore/Objects/EncounterArea.hpp \
     PokeFinderCore/Objects/EncounterSlot.hpp \
     PokeFinderCore/Objects/Frame.hpp \
     PokeFinderCore/Objects/FrameCompare.hpp \
+    PokeFinderCore/Objects/Game.hpp \
     PokeFinderCore/Objects/Generator.hpp \
     PokeFinderCore/Objects/Lead.hpp \
     PokeFinderCore/Objects/Method.hpp \
     PokeFinderCore/Objects/Nature.hpp \
     PokeFinderCore/Objects/Power.hpp \
+    PokeFinderCore/Objects/Profile.hpp \
     PokeFinderCore/Objects/Searcher.hpp \
     PokeFinderCore/Objects/Utilities.hpp \
     PokeFinderCore/RNG/IRNG.hpp \
@@ -106,20 +119,8 @@ HEADERS += \
     PokeFinderCore/RNG/RNGEuclidean.hpp \
     PokeFinderCore/RNG/SFMT.hpp \
     PokeFinderCore/RNG/TinyMT.hpp \
-    Models/Gen3/Egg3Model.hpp \
-    Models/Gen3/PokeSpotModel.hpp \
-    Models/Gen3/Profile3Model.hpp \
-    Models/Gen3/Searcher3Model.hpp \
-    Models/Gen3/Stationary3Model.hpp \
-    Models/Gen3/Wild3Model.hpp \
-    Models/ResearcherModel.hpp \
-    Util/ResearcherFrame.hpp \
-    PokeFinderCore/Gen3/EncounterArea3.hpp \
-    PokeFinderCore/Objects/EncounterArea.hpp \
-    PokeFinderCore/Objects/Profile.hpp \
-    PokeFinderCore/Objects/Game.hpp \
-    PokeFinderCore/Gen3/Profile3.hpp \
-    PokeFinderCore/Translator.hpp
+    PokeFinderCore/Translator.hpp \
+    Util/ResearcherFrame.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -139,11 +140,22 @@ SOURCES += \
     Forms/Util/IVtoPID.cpp \
     Forms/Util/Researcher.cpp \
     Forms/MainWindow.cpp \
+    Models/Gen3/Egg3Model.cpp \
+    Models/Gen3/PokeSpotModel.cpp \
+    Models/Gen3/Profile3Model.cpp \
+    Models/Gen3/Searcher3Model.cpp \
+    Models/Gen3/Stationary3Model.cpp \
+    Models/Gen3/Wild3Model.cpp \
+    Models/ResearcherModel.cpp \
     PokeFinderCore/Gen3/Egg3.cpp \
+    PokeFinderCore/Gen3/EncounterArea3.cpp \
     PokeFinderCore/Gen3/Frame3.cpp \
     PokeFinderCore/Gen3/Generator3.cpp \
     PokeFinderCore/Gen3/NatureLock.cpp \
+    PokeFinderCore/Gen3/Profile3.cpp \
     PokeFinderCore/Gen3/Searcher3.cpp \
+    PokeFinderCore/Gen4/Profile4.cpp \
+    PokeFinderCore/Objects/EncounterArea.cpp \
     PokeFinderCore/Objects/EncounterSlot.cpp \
     PokeFinderCore/Objects/Frame.cpp \
     PokeFinderCore/Objects/FrameCompare.cpp \
@@ -157,16 +169,6 @@ SOURCES += \
     PokeFinderCore/RNG/RNGEuclidean.cpp \
     PokeFinderCore/RNG/SFMT.cpp \
     PokeFinderCore/RNG/TinyMT.cpp \
-    Models/Gen3/Egg3Model.cpp \
-    Models/Gen3/PokeSpotModel.cpp \
-    Models/Gen3/Profile3Model.cpp \
-    Models/Gen3/Searcher3Model.cpp \
-    Models/Gen3/Stationary3Model.cpp \
-    Models/Gen3/Wild3Model.cpp \
-    Models/ResearcherModel.cpp \
+    PokeFinderCore/Translator.cpp \
     Util/ResearcherFrame.cpp \
-    main.cpp \
-    PokeFinderCore/Gen3/EncounterArea3.cpp \
-    PokeFinderCore/Objects/EncounterArea.cpp \
-    PokeFinderCore/Gen3/Profile3.cpp \
-    PokeFinderCore/Translator.cpp
+    main.cpp
