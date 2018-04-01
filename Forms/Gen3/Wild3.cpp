@@ -450,7 +450,7 @@ void Wild3::updatePokemonSearcher()
 
 void Wild3::updateLocationsGenerator()
 {
-    Encounter encounter = (Encounter)ui->comboBoxEncounterSearcher->currentData().toInt();
+    Encounter encounter = (Encounter)ui->comboBoxEncounterGenerator->currentData().toInt();
     Game game = Emerald;
 
     if (ui->comboBoxProfiles->currentIndex() > 0)
