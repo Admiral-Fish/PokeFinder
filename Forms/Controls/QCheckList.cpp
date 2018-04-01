@@ -81,6 +81,17 @@ void QCheckList::uncheckAll()
         model->item(i)->setCheckState(Qt::Unchecked);
 }
 
+void QCheckList::setChecks(vector<bool> flags)
+{
+    for (auto i = 0; i < model->rowCount(); i++)
+    {
+        if (flags[i])
+            model->item(i)->setCheckState(Qt::Checked);
+        else
+            model->item(i)->setCheckState(Qt::Unchecked);
+    }
+}
+
 int QCheckList::globalCheckState()
 {
     int total = model->rowCount(), checked = 0, unchecked = 0;

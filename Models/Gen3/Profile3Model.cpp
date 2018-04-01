@@ -124,7 +124,8 @@ Profile3 Profile3Model::getProfile(int index)
 
 void Profile3Model::removeProfile(int index)
 {
-    emit beginRemoveRows(QModelIndex(), index, index + 1);
+    emit beginRemoveRows(QModelIndex(), index, index);
     model.erase(model.begin() + index);
     model.shrink_to_fit();
+    emit endRemoveRows();
 }

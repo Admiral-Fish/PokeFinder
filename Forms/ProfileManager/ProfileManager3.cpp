@@ -119,6 +119,8 @@ void ProfileManager3::on_pushButtonDelete_clicked()
     profile.deleteProfile();
 
     model->removeProfile(r);
+
+    emit updateProfiles();
 }
 
 

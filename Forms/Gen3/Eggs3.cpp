@@ -137,7 +137,7 @@ void Eggs3::changeEvent(QEvent *event)
 
 void Eggs3::on_comboBoxProfiles_currentIndexChanged(int index)
 {
-    if (index == 0)
+    if (index <= 0)
     {
         ui->textBoxTIDEmerald->setText("12345");
         ui->textBoxSIDEmerald->setText("54321");

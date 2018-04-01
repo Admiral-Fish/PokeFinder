@@ -54,6 +54,7 @@ public:
     void setup();
     vector<bool> getChecked();
     void uncheckAll();
+    void setChecks(vector<bool> flags);
 
     class QCheckListStyledItemDelegate : public QStyledItemDelegate
     {

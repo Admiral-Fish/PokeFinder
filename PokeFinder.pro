@@ -117,7 +117,7 @@ HEADERS += \
     PokeFinderCore/Gen3/EncounterArea3.hpp \
     PokeFinderCore/Objects/EncounterArea.hpp \
     PokeFinderCore/Objects/Profile.hpp \
-    PokeFinderCore/Objects/Games.hpp \
+    PokeFinderCore/Objects/Game.hpp \
     PokeFinderCore/Gen3/Profile3.hpp \
     PokeFinderCore/Translator.hpp
 

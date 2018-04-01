@@ -95,7 +95,7 @@ void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
         return;
     }
 
-    Profile3 profile(ui->lineEditProfile->text(), (Games)ui->comboBoxVersion->currentData().toInt(), ui->textBoxTID->text().toUInt(NULL, 10),
+    Profile3 profile(ui->lineEditProfile->text(), (Game)ui->comboBoxVersion->currentData().toInt(), ui->textBoxTID->text().toUInt(NULL, 10),
                      ui->textBoxSID->text().toUInt(NULL, 10), ui->comboBoxLanguage->currentIndex(), ui->checkBoxDeadBattery->isChecked());
 
     if (isEditing)

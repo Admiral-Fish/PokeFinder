@@ -28,6 +28,8 @@
 #include <PokeFinderCore/Objects/Power.hpp>
 #include <PokeFinderCore/Gen3/Profile3.hpp>
 #include <Forms/ProfileManager/ProfileManager3.hpp>
+#include <PokeFinderCore/Gen3/EncounterArea3.hpp>
+#include <PokeFinderCore/Translator.hpp>
 #include <Models/Gen3/Wild3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <QMenu>
@@ -63,10 +65,16 @@ private:
     QMenu *contextMenu = new QMenu(this);
     QModelIndex lastIndex;
     QModelIndex targetFrame;
+    vector<EncounterArea3> encounterGenerator;
+    vector<EncounterArea3> encounterSearcher;
 
     void setupModels();
     void search();
     void updateSearch();
+    void updateLocationsSearcher();
+    void updatePokemonSearcher();
+    void updateLocationsGenerator();
+    void updatePokemonGenerator();
 
 private slots:
     void on_generate_clicked();
@@ -92,6 +100,10 @@ private slots:
     void on_anySlotGenerator_clicked();
     void on_comboBoxEncounterSearcher_currentIndexChanged(int index);
     void on_pushButton_clicked();
+    void on_comboBoxLocationSearcher_currentIndexChanged(int index);
+    void on_comboBoxPokemonSearcher_currentIndexChanged(int index);
+    void on_comboBoxLocationGenerator_currentIndexChanged(int index);
+    void on_comboBoxPokemonGenerator_currentIndexChanged(int index);
 
 public:
     explicit Wild3(QWidget *parent = 0);
