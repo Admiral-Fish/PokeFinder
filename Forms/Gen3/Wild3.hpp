@@ -27,7 +27,7 @@
 #include <PokeFinderCore/Objects/Nature.hpp>
 #include <PokeFinderCore/Objects/Power.hpp>
 #include <PokeFinderCore/Gen3/Profile3.hpp>
-#include <Forms/ProfileManager/ProfileManager3.hpp>
+#include <Forms/Gen3/ProfileManager3.hpp>
 #include <PokeFinderCore/Gen3/EncounterArea3.hpp>
 #include <PokeFinderCore/Translator.hpp>
 #include <Models/Gen3/Wild3Model.hpp>

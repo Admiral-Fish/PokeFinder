@@ -22,7 +22,7 @@
 
 #include <QMainWindow>
 #include <PokeFinderCore/Gen3/Frame3.hpp>
-#include <Forms/ProfileManager/ProfileManager3.hpp>
+#include <Forms/Gen3/ProfileManager3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
 #include <PokeFinderCore/Objects/FrameCompare.hpp>
 #include <PokeFinderCore/Gen3/Egg3.hpp>

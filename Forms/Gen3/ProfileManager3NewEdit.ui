@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProfileManager3NewEdit</class>
+ <widget class="QDialog" name="ProfileManager3NewEdit">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>490</width>
+    <height>110</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>490</width>
+    <height>110</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>490</width>
+    <height>110</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Profile Editor Gen 3</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color: #274050;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+	color: black;
+	background-color: yellow;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QComboBox {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	padding-left: 13px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QComboBox QListView{
+	color: white;
+	background-color: #1D303C;
+	border:1px solid black;
+	padding-left: 3px;
+}
+
+QComboBox::item:alternate {
+	background: #1D303C;
+}
+
+QComboBox::item:selected {
+	border: 1px solid transparent;
+	background: #003941;
+}
+
+QComboBox::indicator{
+	background-color:transparent;
+	selection-background-color:transparent;
+	color:transparent;
+	selection-color:transparent;
+}
+
+QComboBox::editable {
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+
+QComboBox::down-arrow {
+	image: url(noimg);
+	border-width: 0px;
+}
+
+QComboBox::drop-down {
+	background: transparent;
+	width: 0px;
+}
+
+QLabel {
+	color: white;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+	background-color: white;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelProfile">
+     <property name="text">
+      <string>Profile Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEditProfile"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelTID">
+     <property name="text">
+      <string>TID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QTextBox" name="textBoxTID"/>
+   </item>
+   <item row="0" column="4">
+    <widget class="QPushButton" name="pushButtonAccept">
+     <property name="text">
+      <string>Accept</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelVersion">
+     <property name="text">
+      <string>Version</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="comboBoxVersion">
+     <item>
+      <property name="text">
+       <string>Ruby</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Sapphire</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Fire Red</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Leaf Green</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Emerald</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>XD</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Colosseum</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelSID">
+     <property name="text">
+      <string>SID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QTextBox" name="textBoxSID"/>
+   </item>
+   <item row="1" column="4">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelLanguage">
+     <property name="text">
+      <string>Language</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QComboBox" name="comboBoxLanguage">
+     <item>
+      <property name="text">
+       <string notr="true">-</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ENG</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>SPA</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FRE</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ITA</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>DEU</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>JPN</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="labelDeadBattery">
+     <property name="text">
+      <string>Dead Battery?</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QCheckBox" name="checkBoxDeadBattery">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QTextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/QTextBox.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

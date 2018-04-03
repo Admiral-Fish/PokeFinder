@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ProfileManager3NewEdit</class>
- <widget class="QDialog" name="ProfileManager3NewEdit">
+ <class>ProfileManager4NewEdit</class>
+ <widget class="QDialog" name="ProfileManager4NewEdit">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Profile Editor Gen 4</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
@@ -165,37 +165,27 @@ QCheckBox::indicator:checked {
     <widget class="QComboBox" name="comboBoxVersion">
      <item>
       <property name="text">
-       <string>Ruby</string>
+       <string>Diamond</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Sapphire</string>
+       <string>Pearl</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Fire Red</string>
+       <string>Platinum</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Leaf Green</string>
+       <string>Heart Gold</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Emerald</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>XD</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Colosseum</string>
+       <string>Soul Silver</string>
       </property>
      </item>
     </widget>
@@ -261,20 +251,6 @@ QCheckBox::indicator:checked {
        <string>JPN</string>
       </property>
      </item>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QLabel" name="labelDeadBattery">
-     <property name="text">
-      <string>Dead Battery?</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="3">
-    <widget class="QCheckBox" name="checkBoxDeadBattery">
-     <property name="text">
-      <string/>
-     </property>
     </widget>
    </item>
   </layout>

@@ -53,11 +53,13 @@ FORMS += \
     Forms/Gen3/JirachiGeneration.ui \
     Forms/Gen3/PIDtoIVs.ui \
     Forms/Gen3/PokeSpot.ui \
+    Forms/Gen3/ProfileManager3.ui \
+    Forms/Gen3/ProfileManager3NewEdit.ui \
     Forms/Gen3/SeedToTime3.ui \
     Forms/Gen3/Stationary3.ui \
     Forms/Gen3/Wild3.ui \
-    Forms/ProfileManager/ProfileManager3.ui \
-    Forms/ProfileManager/ProfileManager3NewEdit.ui \
+    Forms/Gen4/ProfileManager4.ui \
+    Forms/Gen4/ProfileManager4NewEdit.ui \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
     Forms/MainWindow.ui
@@ -72,11 +74,13 @@ HEADERS += \
     Forms/Gen3/JirachiGeneration.hpp \
     Forms/Gen3/PIDtoIVs.hpp \
     Forms/Gen3/PokeSpot.hpp \
+    Forms/Gen3/ProfileManager3.hpp \
+    Forms/Gen3/ProfileManager3NewEdit.hpp \
     Forms/Gen3/SeedToTime3.hpp \
     Forms/Gen3/Stationary3.hpp \
     Forms/Gen3/Wild3.hpp \
-    Forms/ProfileManager/ProfileManager3.hpp \
-    Forms/ProfileManager/ProfileManager3NewEdit.hpp \
+    Forms/Gen4/ProfileManager4.hpp \
+    Forms/Gen4/ProfileManager4NewEdit.hpp \
     Forms/Util/IVtoPID.hpp \
     Forms/Util/Researcher.hpp \
     Forms/MainWindow.hpp \
@@ -86,6 +90,7 @@ HEADERS += \
     Models/Gen3/Searcher3Model.hpp \
     Models/Gen3/Stationary3Model.hpp \
     Models/Gen3/Wild3Model.hpp \
+    Models/Gen4/Profile4Model.hpp \
     Models/ResearcherModel.hpp \
     PokeFinderCore/Gen3/Egg3.hpp \
     PokeFinderCore/Gen3/EncounterArea3.hpp \
@@ -132,11 +137,14 @@ SOURCES += \
     Forms/Gen3/JirachiGeneration.cpp \
     Forms/Gen3/PIDtoIVs.cpp \
     Forms/Gen3/PokeSpot.cpp \
+    Forms/Gen3/ProfileManager3.cpp \
+    Forms/Gen3/ProfileManager3NewEdit.cpp \
     Forms/Gen3/SeedToTime3.cpp \
     Forms/Gen3/Stationary3.cpp \
     Forms/Gen3/Wild3.cpp \
-    Forms/ProfileManager/ProfileManager3.cpp \
-    Forms/ProfileManager/ProfileManager3NewEdit.cpp \
+    Forms/Gen4/help.cpp \
+    Forms/Gen4/ProfileManager4.cpp \
+    Forms/Gen4/ProfileManager4NewEdit.cpp \
     Forms/Util/IVtoPID.cpp \
     Forms/Util/Researcher.cpp \
     Forms/MainWindow.cpp \
@@ -146,6 +154,7 @@ SOURCES += \
     Models/Gen3/Searcher3Model.cpp \
     Models/Gen3/Stationary3Model.cpp \
     Models/Gen3/Wild3Model.cpp \
+    Models/Gen4/Profile4Model.cpp \
     Models/ResearcherModel.cpp \
     PokeFinderCore/Gen3/Egg3.cpp \
     PokeFinderCore/Gen3/EncounterArea3.cpp \
@@ -161,6 +170,7 @@ SOURCES += \
     PokeFinderCore/Objects/FrameCompare.cpp \
     PokeFinderCore/Objects/Nature.cpp \
     PokeFinderCore/Objects/Power.cpp \
+    PokeFinderCore/Objects/Profile.cpp \
     PokeFinderCore/Objects/Utilities.cpp \
     PokeFinderCore/RNG/LCRNG.cpp \
     PokeFinderCore/RNG/LCRNG64.cpp \
