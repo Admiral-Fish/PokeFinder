@@ -142,7 +142,6 @@ SOURCES += \
     Forms/Gen3/SeedToTime3.cpp \
     Forms/Gen3/Stationary3.cpp \
     Forms/Gen3/Wild3.cpp \
-    Forms/Gen4/help.cpp \
     Forms/Gen4/ProfileManager4.cpp \
     Forms/Gen4/ProfileManager4NewEdit.cpp \
     Forms/Util/IVtoPID.cpp \

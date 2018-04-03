@@ -22,9 +22,6 @@
 
 #include <QMainWindow>
 #include <Forms/Gen3/ProfileManager3NewEdit.hpp>
-#include <QStandardItemModel>
-#include <QStandardItem>
-#include <QObject>
 #include <PokeFinderCore/Gen3/Profile3.hpp>
 #include <Models/Gen3/Profile3Model.hpp>
 
