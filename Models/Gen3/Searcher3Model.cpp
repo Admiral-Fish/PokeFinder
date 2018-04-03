@@ -90,76 +90,82 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 3:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.pid < frame2.pid;
+                            return frame1.level < frame2.level;
                         });
                         break;
                     case 4:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.shiny < frame2.shiny;
+                            return frame1.pid < frame2.pid;
                         });
                         break;
                     case 5:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.nature < frame2.nature;
+                            return frame1.shiny < frame2.shiny;
                         });
                         break;
                     case 6:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ability < frame2.ability;
+                            return frame1.nature < frame2.nature;
                         });
                         break;
                     case 7:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[0] < frame2.ivs[0];
+                            return frame1.ability < frame2.ability;
                         });
                         break;
                     case 8:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[1] < frame2.ivs[1];
+                            return frame1.ivs[0] < frame2.ivs[0];
                         });
                         break;
                     case 9:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[2] < frame2.ivs[2];
+                            return frame1.ivs[1] < frame2.ivs[1];
                         });
                         break;
                     case 10:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[3] < frame2.ivs[3];
+                            return frame1.ivs[2] < frame2.ivs[2];
                         });
                         break;
                     case 11:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[4] < frame2.ivs[4];
+                            return frame1.ivs[3] < frame2.ivs[3];
                         });
                         break;
                     case 12:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[5] < frame2.ivs[5];
+                            return frame1.ivs[4] < frame2.ivs[4];
                         });
                         break;
                     case 13:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.hidden < frame2.hidden;
+                            return frame1.ivs[5] < frame2.ivs[5];
                         });
                         break;
                     case 14:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.power < frame2.power;
+                            return frame1.hidden < frame2.hidden;
                         });
                         break;
                     case 15:
+                        std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
+                        {
+                            return frame1.power < frame2.power;
+                        });
+                        break;
+                    case 16:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
                             return frame1.gender < frame2.gender;
@@ -389,76 +395,82 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 3:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.pid > frame2.pid;
+                            return frame1.level > frame2.level;
                         });
                         break;
                     case 4:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.shiny > frame2.shiny;
+                            return frame1.pid > frame2.pid;
                         });
                         break;
                     case 5:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.nature > frame2.nature;
+                            return frame1.shiny > frame2.shiny;
                         });
                         break;
                     case 6:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ability > frame2.ability;
+                            return frame1.nature > frame2.nature;
                         });
                         break;
                     case 7:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[0] > frame2.ivs[0];
+                            return frame1.ability > frame2.ability;
                         });
                         break;
                     case 8:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[1] > frame2.ivs[1];
+                            return frame1.ivs[0] > frame2.ivs[0];
                         });
                         break;
                     case 9:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[2] > frame2.ivs[2];
+                            return frame1.ivs[1] > frame2.ivs[1];
                         });
                         break;
                     case 10:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[3] > frame2.ivs[3];
+                            return frame1.ivs[2] > frame2.ivs[2];
                         });
                         break;
                     case 11:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[4] > frame2.ivs[4];
+                            return frame1.ivs[3] > frame2.ivs[3];
                         });
                         break;
                     case 12:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.ivs[5] > frame2.ivs[5];
+                            return frame1.ivs[4] > frame2.ivs[4];
                         });
                         break;
                     case 13:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.hidden > frame2.hidden;
+                            return frame1.ivs[5] > frame2.ivs[5];
                         });
                         break;
                     case 14:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
-                            return frame1.power > frame2.power;
+                            return frame1.hidden > frame2.hidden;
                         });
                         break;
                     case 15:
+                        std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
+                        {
+                            return frame1.power > frame2.power;
+                        });
+                        break;
+                    case 16:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frame1, const Frame3 & frame2)
                         {
                             return frame1.gender > frame2.gender;
@@ -676,7 +688,7 @@ int Searcher3Model::columnCount(const QModelIndex &parent) const
         case MethodH1:
         case MethodH2:
         case MethodH4:
-            return 16;
+            return 17;
         case XD:
         case Colo:
             return 15;
@@ -715,30 +727,32 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 2:
                         return frame.encounterSlot;
                     case 3:
-                        return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
+                        return frame.level;
                     case 4:
-                        return frame.getShiny();
+                        return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 5:
-                        return frame.getNature();
+                        return frame.getShiny();
                     case 6:
-                        return frame.ability;
+                        return frame.getNature();
                     case 7:
-                        return frame.ivs[0];
+                        return frame.ability;
                     case 8:
-                        return frame.ivs[1];
+                        return frame.ivs[0];
                     case 9:
-                        return frame.ivs[2];
+                        return frame.ivs[1];
                     case 10:
-                        return frame.ivs[3];
+                        return frame.ivs[2];
                     case 11:
-                        return frame.ivs[4];
+                        return frame.ivs[3];
                     case 12:
-                        return frame.ivs[5];
+                        return frame.ivs[4];
                     case 13:
-                        return frame.getPower();
+                        return frame.ivs[5];
                     case 14:
-                        return frame.power;
+                        return frame.getPower();
                     case 15:
+                        return frame.power;
+                    case 16:
                         return frame.getGender();
                 }
             case Method1:
@@ -838,30 +852,32 @@ QVariant Searcher3Model::headerData(int section, Qt::Orientation orientation, in
                         case 2:
                             return tr("Slot");
                         case 3:
-                            return tr("PID");
+                            return tr("Level");
                         case 4:
-                            return "!!!";
+                            return tr("PID");
                         case 5:
-                            return tr("Nature");
+                            return "!!!";
                         case 6:
-                            return tr("Ability");
+                            return tr("Nature");
                         case 7:
-                            return tr("HP");
+                            return tr("Ability");
                         case 8:
-                            return tr("Atk");
+                            return tr("HP");
                         case 9:
-                            return tr("Def");
+                            return tr("Atk");
                         case 10:
-                            return tr("SpA");
+                            return tr("Def");
                         case 11:
-                            return tr("SpD");
+                            return tr("SpA");
                         case 12:
-                            return tr("Spe");
+                            return tr("SpD");
                         case 13:
-                            return tr("Hidden");
+                            return tr("Spe");
                         case 14:
-                            return tr("Power");
+                            return tr("Hidden");
                         case 15:
+                            return tr("Power");
+                        case 16:
                             return tr("Gender");
                     }
                 case Method1:

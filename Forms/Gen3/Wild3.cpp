@@ -315,6 +315,7 @@ void Wild3::on_generate_clicked()
             generator.synchNature = Nature::getAdjustedNature(ui->comboBoxLeadGenerator->currentIndex() - 1);
         }
     }
+    generator.encounter = encounterGenerator[ui->comboBoxLocationGenerator->currentIndex()];
 
     vector<Frame3> frames = generator.generate(compare);
     g->setModel(frames);
@@ -361,6 +362,7 @@ void Wild3::search()
     searcher.setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
     searcher.encounterType = (Encounter)ui->comboBoxEncounterSearcher->currentData().toInt();
     searcher.leadType = (Lead)ui->comboBoxLeadSearcher->currentData().toInt();
+    searcher.encounter = encounterSearcher[ui->comboBoxLocationSearcher->currentIndex()];
 
     vector<u32> min = ui->ivFilterSearcher->getLower();
     vector<u32> max = ui->ivFilterSearcher->getUpper();

@@ -52,7 +52,7 @@ int Wild3Model::rowCount(const QModelIndex &parent) const
 int Wild3Model::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return 17;
+    return 18;
 }
 
 QVariant Wild3Model::data(const QModelIndex &index, int role) const
@@ -71,32 +71,34 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
             case 2:
                 return frame.encounterSlot;
             case 3:
-                return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
+                return frame.level;
             case 4:
-                return frame.getShiny();
+                return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
             case 5:
-                return frame.getNature();
+                return frame.getShiny();
             case 6:
-                return frame.ability;
+                return frame.getNature();
             case 7:
-                return frame.ivs[0];
+                return frame.ability;
             case 8:
-                return frame.ivs[1];
+                return frame.ivs[0];
             case 9:
-                return frame.ivs[2];
+                return frame.ivs[1];
             case 10:
-                return frame.ivs[3];
+                return frame.ivs[2];
             case 11:
-                return frame.ivs[4];
+                return frame.ivs[3];
             case 12:
-                return frame.ivs[5];
+                return frame.ivs[4];
             case 13:
-                return frame.getPower();
+                return frame.ivs[5];
             case 14:
-                return frame.power;
+                return frame.getPower();
             case 15:
-                return frame.getGender();
+                return frame.power;
             case 16:
+                return frame.getGender();
+            case 17:
                 return frame.getTime();
         }
     }
@@ -118,32 +120,34 @@ QVariant Wild3Model::headerData(int section, Qt::Orientation orientation, int ro
                 case 2:
                     return tr("Slot");
                 case 3:
-                    return tr("PID");
+                    return tr("Level");
                 case 4:
-                    return "!!!";
+                    return tr("PID");
                 case 5:
-                    return tr("Nature");
+                    return "!!!";
                 case 6:
-                    return tr("Ability");
+                    return tr("Nature");
                 case 7:
-                    return tr("HP");
+                    return tr("Ability");
                 case 8:
-                    return tr("Atk");
+                    return tr("HP");
                 case 9:
-                    return tr("Def");
+                    return tr("Atk");
                 case 10:
-                    return tr("SpA");
+                    return tr("Def");
                 case 11:
-                    return tr("SpD");
+                    return tr("SpA");
                 case 12:
-                    return tr("Spe");
+                    return tr("SpD");
                 case 13:
-                    return tr("Hidden");
+                    return tr("Spe");
                 case 14:
-                    return tr("Power");
+                    return tr("Hidden");
                 case 15:
-                    return tr("Gender");
+                    return tr("Power");
                 case 16:
+                    return tr("Gender");
+                case 17:
                     return tr("Time");
             }
         }
