@@ -654,6 +654,9 @@ void Wild3::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
         case Wild:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;
+        case RockSmash:
+            t << "0" << "1" << "2" << "3" << "4";
+            break;
         case Surfing:
             t << "0" << "1" << "2" << "3" << "4" << "5";
             break;
@@ -683,6 +686,9 @@ void Wild3::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
     {
         case Wild:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
+            break;
+        case RockSmash:
+            t << "0" << "1" << "2" << "3" << "4";
             break;
         case Surfing:
             t << "0" << "1" << "2" << "3" << "4" << "5";
