@@ -74,6 +74,7 @@ QComboBox {
 	border-radius: 6px;
 	color: white;
 	padding-left: 13px;
+	combobox-popup: 0;
 }
 
 QComboBox QListView{
@@ -131,7 +132,7 @@ QPushButton {
 	border: none;
 	border-radius: 6px;
 	color: white;
-}</string>
+}s</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">

@@ -66,6 +66,7 @@ QComboBox {
 	padding-left: 13px;
 	font-family: &quot;Myriad Pro&quot;, Montserrat;
 	font-weight: 500;
+	combobox-popup: 0;
 }
 
 QComboBox QListView{
