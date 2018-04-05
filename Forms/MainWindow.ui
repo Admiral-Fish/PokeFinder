@@ -148,6 +148,19 @@ QMenu::item::selected {
       <property name="title">
        <string>Gen 4</string>
       </property>
+      <widget class="QPushButton" name="pushButtonStationary4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Stationary</string>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>

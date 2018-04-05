@@ -130,6 +130,10 @@ void MainWindow::updateProfiles(int num)
         if (wild3 != NULL) wild3->updateProfiles();
         if (egg3 != NULL) egg3->updateProfiles();
     }
+    else if (num == 4)
+    {
+        if (stationary4 != NULL) stationary4->updateProfiles();
+    }
 }
 
 void MainWindow::loadLanguage(const QString &lang)
@@ -259,4 +263,15 @@ void MainWindow::on_actionPIDtoIV_triggered()
     }
     pidToIV->show();
     pidToIV->raise();
+}
+
+void MainWindow::on_pushButtonStationary4_clicked()
+{
+    if (stationary4 == NULL)
+    {
+        stationary4 = new Stationary4();
+        connect(stationary4, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    }
+    stationary4->show();
+    stationary4->raise();
 }

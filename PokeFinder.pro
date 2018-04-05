@@ -62,7 +62,8 @@ FORMS += \
     Forms/Gen4/ProfileManager4NewEdit.ui \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
-    Forms/MainWindow.ui
+    Forms/MainWindow.ui \
+    Forms/Gen4/Stationary4.ui
 
 HEADERS += \
     Forms/Controls/IVFilter.hpp \
@@ -125,7 +126,11 @@ HEADERS += \
     PokeFinderCore/RNG/SFMT.hpp \
     PokeFinderCore/RNG/TinyMT.hpp \
     PokeFinderCore/Translator.hpp \
-    Util/ResearcherFrame.hpp
+    Util/ResearcherFrame.hpp \
+    PokeFinderCore/Gen4/Frame4.hpp \
+    PokeFinderCore/Gen4/Generator4.hpp \
+    Models/Gen4/Stationary4Model.hpp \
+    Forms/Gen4/Stationary4.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -180,4 +185,8 @@ SOURCES += \
     PokeFinderCore/RNG/TinyMT.cpp \
     PokeFinderCore/Translator.cpp \
     Util/ResearcherFrame.cpp \
-    main.cpp
+    main.cpp \
+    PokeFinderCore/Gen4/Frame4.cpp \
+    PokeFinderCore/Gen4/Generator4.cpp \
+    Models/Gen4/Stationary4Model.cpp \
+    Forms/Gen4/Stationary4.cpp
