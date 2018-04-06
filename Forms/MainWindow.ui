@@ -98,6 +98,12 @@ QMenu::item::selected {
          <height>23</height>
         </rect>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
+       </property>
        <property name="text">
         <string>Stationary</string>
        </property>
@@ -110,6 +116,12 @@ QMenu::item::selected {
          <width>191</width>
          <height>23</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
        </property>
        <property name="text">
         <string>Wild</string>
@@ -124,6 +136,12 @@ QMenu::item::selected {
          <height>23</height>
         </rect>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
+       </property>
        <property name="text">
         <string>Egg</string>
        </property>
@@ -136,6 +154,12 @@ QMenu::item::selected {
          <width>191</width>
          <height>23</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
        </property>
        <property name="text">
         <string>IDs</string>
@@ -159,6 +183,63 @@ QMenu::item::selected {
        </property>
        <property name="text">
         <string>Stationary</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonWild4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Wild</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonEgg4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Egg</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonIDs4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>IDs</string>
        </property>
       </widget>
      </widget>

@@ -43,6 +43,10 @@ MainWindow::~MainWindow()
     delete wild3;
     delete egg3;
     delete ids3;
+    delete stationary4;
+    delete wild4;
+    delete egg4;
+    delete ids4;
 }
 
 void MainWindow::changeEvent(QEvent *event)
@@ -274,4 +278,36 @@ void MainWindow::on_pushButtonStationary4_clicked()
     }
     stationary4->show();
     stationary4->raise();
+}
+
+void MainWindow::on_pushButtonWild4_clicked()
+{
+    if (wild4 == NULL)
+    {
+        wild4 = new Wild4();
+        connect(wild4, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    }
+    wild4->show();
+    wild4->raise();
+}
+
+void MainWindow::on_pushButtonEgg4_clicked()
+{
+    if (egg4 == NULL)
+    {
+        egg4 = new Eggs4();
+        connect(egg4, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+    }
+    egg4->show();
+    egg4->raise();
+}
+
+void MainWindow::on_pushButtonIDs4_clicked()
+{
+    if (ids4 == NULL)
+    {
+        ids4 = new IDs4();
+    }
+    ids4->show();
+    ids4->raise();
 }

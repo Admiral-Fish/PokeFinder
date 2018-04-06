@@ -63,7 +63,10 @@ FORMS += \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
     Forms/MainWindow.ui \
-    Forms/Gen4/Stationary4.ui
+    Forms/Gen4/Stationary4.ui \
+    Forms/Gen4/Wild4.ui \
+    Forms/Gen4/Eggs4.ui \
+    Forms/Gen4/IDs4.ui
 
 HEADERS += \
     Forms/Controls/IVFilter.hpp \
@@ -130,7 +133,11 @@ HEADERS += \
     PokeFinderCore/Gen4/Frame4.hpp \
     PokeFinderCore/Gen4/Generator4.hpp \
     Models/Gen4/Stationary4Model.hpp \
-    Forms/Gen4/Stationary4.hpp
+    Forms/Gen4/Stationary4.hpp \
+    Forms/Gen4/Wild4.hpp \
+    Forms/Gen4/Eggs4.hpp \
+    Forms/Gen4/IDs4.hpp \
+    Models/Gen4/Wild4Model.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -189,4 +196,8 @@ SOURCES += \
     PokeFinderCore/Gen4/Frame4.cpp \
     PokeFinderCore/Gen4/Generator4.cpp \
     Models/Gen4/Stationary4Model.cpp \
-    Forms/Gen4/Stationary4.cpp
+    Forms/Gen4/Stationary4.cpp \
+    Forms/Gen4/Wild4.cpp \
+    Forms/Gen4/Eggs4.cpp \
+    Forms/Gen4/IDs4.cpp \
+    Models/Gen4/Wild4Model.cpp
