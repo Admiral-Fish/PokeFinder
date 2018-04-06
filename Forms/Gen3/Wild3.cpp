@@ -655,19 +655,15 @@ void Wild3::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;
         case RockSmash:
-            t << "0" << "1" << "2" << "3" << "4";
-            break;
         case Surfing:
-            t << "0" << "1" << "2" << "3" << "4" << "5";
+        case SuperRod:
+            t << "0" << "1" << "2" << "3" << "4";
             break;
         case OldRod:
             t << "0" << "1";
             break;
         case GoodRod:
             t << "0" << "1" << "2";
-            break;
-        case SuperRod:
-            t << "0" << "1" << "2" << "3" << "4";
             break;
     }
     ui->comboBoxSlotGenerator->clear();
@@ -688,19 +684,15 @@ void Wild3::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;
         case RockSmash:
-            t << "0" << "1" << "2" << "3" << "4";
-            break;
         case Surfing:
-            t << "0" << "1" << "2" << "3" << "4" << "5";
+        case SuperRod:
+            t << "0" << "1" << "2" << "3" << "4";
             break;
         case OldRod:
             t << "0" << "1";
             break;
         case GoodRod:
             t << "0" << "1" << "2";
-            break;
-        case SuperRod:
-            t << "0" << "1" << "2" << "3" << "4";
             break;
     }
     ui->comboBoxSlotSearcher->clear();
