@@ -38,7 +38,7 @@ void SeedToTime3::setupModels()
     ui->seedToTimeYear->setValues(0, 53, true);
 
     model->setColumnCount(2);
-    model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Seconds"));
+    model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seconds"));
     ui->tableViewGenerator->setModel(model);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -74,6 +74,7 @@ void SeedToTime3::on_pushButtonFind_clicked()
 {
     u32 seed = ui->seedToTimeSeed->text().toUInt(NULL, 16);
     u32 year = ui->seedToTimeYear->text().toUInt(NULL, 10);
+    frame = 1;
     if (seed > 0xFFFF)
     {
         seed = originSeed(seed);
@@ -135,8 +136,9 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
                         int seconds = day * 86400 + hour * 3600 + minute * 60;
                         QList<QStandardItem *> list;
                         QStandardItem *text = new QStandardItem(result);
+                        QStandardItem *cnt = new QStandardItem(QString::number(frame, 10));
                         QStandardItem *secondsText = new QStandardItem(QString::number(seconds, 10));
-                        list << text << secondsText;
+                        list << text << cnt << secondsText;
                         model->appendRow(list);
                     }
                 }
@@ -150,6 +152,9 @@ u32 SeedToTime3::originSeed(u32 seed)
 {
     LCRNG rng = PokeRNGR(seed);
     while (rng.seed > 0xFFFF)
+    {
         rng.nextUInt();
+        frame++;
+    }
     return rng.seed;
 }

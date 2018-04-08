@@ -46,6 +46,7 @@ protected:
 private:
     Ui::SeedToTime3 *ui;
     QStandardItemModel *model = new QStandardItemModel(this);
+    u32 frame = 1;
 
     void setupModels();
     u32 originSeed(u32 seed);
