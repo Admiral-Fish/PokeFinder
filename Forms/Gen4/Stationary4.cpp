@@ -80,6 +80,7 @@ void Stationary4::setupModels()
     ui->comboBoxMethodSearcher->setItemData(0, Method1);
     ui->comboBoxMethodSearcher->setItemData(1, MethodJ);
     ui->comboBoxMethodSearcher->setItemData(2, MethodK);
+    ui->comboBoxMethodSearcher->setItemData(3, WondercardIVs);
 
     ui->comboBoxNatureGenerator->setup();
     ui->comboBoxNatureSearcher->setup();
