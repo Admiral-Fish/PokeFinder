@@ -66,6 +66,8 @@ int Stationary4Model::columnCount(const QModelIndex &parent) const
             return 16;
         case MethodK:
             return 17;
+        case WondercardIVs:
+            return 10;
     }
     return 0;
 }
@@ -189,6 +191,32 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 16:
                         return frame.getGender();
                 }
+            case WondercardIVs:
+                switch (column)
+                {
+                    case 0:
+                        return frame.frame;
+                    case 1:
+                        return "Elm"; // TODO
+                    case 2:
+                        return "Chatot"; // TODO
+                    case 3:
+                        return frame.ivs[0];
+                    case 4:
+                        return frame.ivs[1];
+                    case 5:
+                        return frame.ivs[2];
+                    case 6:
+                        return frame.ivs[3];
+                    case 7:
+                        return frame.ivs[4];
+                    case 8:
+                        return frame.ivs[5];
+                    case 9:
+                        return frame.getPower();
+                    case 10:
+                        return frame.power;
+                }
         }
     }
     return QVariant();
@@ -311,6 +339,32 @@ QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, 
                             return tr("Power");
                         case 16:
                             return tr("Gender");
+                    }
+                case WondercardIVs:
+                    switch (section)
+                    {
+                        case 0:
+                            return tr("Frame");
+                        case 1:
+                            return tr("Elm");
+                        case 2:
+                            return tr("Chatot Pitch");
+                        case 3:
+                            return tr("HP");
+                        case 4:
+                            return tr("Atk");
+                        case 5:
+                            return tr("Def");
+                        case 6:
+                            return tr("SpA");
+                        case 7:
+                            return tr("SpD");
+                        case 8:
+                            return tr("Spe");
+                        case 9:
+                            return tr("Hidden");
+                        case 10:
+                            return tr("Power");
                     }
             }
         }

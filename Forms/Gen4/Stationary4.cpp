@@ -76,6 +76,7 @@ void Stationary4::setupModels()
     ui->comboBoxMethodGenerator->setItemData(0, Method1);
     ui->comboBoxMethodGenerator->setItemData(1, MethodJ);
     ui->comboBoxMethodGenerator->setItemData(2, MethodK);
+    ui->comboBoxMethodGenerator->setItemData(3, WondercardIVs);
 
     ui->comboBoxMethodSearcher->setItemData(0, Method1);
     ui->comboBoxMethodSearcher->setItemData(1, MethodJ);
