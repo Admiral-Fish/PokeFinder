@@ -76,6 +76,10 @@ void Stationary4::setupModels()
 
     ui->idSearcher->setValues(0, 48, true);
     ui->sidSearcher->setValues(0, 48, true);
+    ui->minDelay->setValues(0, 48, true);
+    ui->maxDelay->setValues(0, 48, true);
+    ui->minFrame->setValues(0, 48, true);
+    ui->maxFrame->setValues(0, 48, true);
 
     ui->comboBoxMethodGenerator->setItemData(0, Method1);
     ui->comboBoxMethodGenerator->setItemData(1, MethodJ);
@@ -196,7 +200,7 @@ void Stationary4::search()
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
                                         genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
                                         ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
-    Searcher4 searcher = Searcher4(tid, sid, genderRatioIndex, compare, (Method)ui->comboBoxMethodSearcher->currentData().toInt());
+    Searcher4 searcher = Searcher4(tid, sid, genderRatioIndex, ui->minDelay->text().toUInt(), ui->maxDelay->text().toUInt(), ui->minFrame->text().toUInt(), ui->maxFrame->text().toUInt(), compare, (Method)ui->comboBoxMethodSearcher->currentData().toInt());
 
     vector<u32> min = ui->ivFilterSearcher->getLower();
     vector<u32> max = ui->ivFilterSearcher->getUpper();
