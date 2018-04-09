@@ -22,7 +22,7 @@
 
 #include <PokeFinderCore/Gen4/Frame4.hpp>
 #include <PokeFinderCore/Gen4/Generator4.hpp>
-//#include <PokeFinderCore/Gen4/Searcher4.hpp>
+#include <PokeFinderCore/Gen4/Searcher4.hpp>
 #include <PokeFinderCore/Objects/FrameCompare.hpp>
 #include <PokeFinderCore/Objects/Nature.hpp>
 #include <PokeFinderCore/Objects/Power.hpp>
@@ -31,7 +31,7 @@
 //#include <PokeFinderCore/Gen4/EncounterArea4.hpp>
 #include <PokeFinderCore/Translator.hpp>
 #include <Models/Gen4/Wild4Model.hpp>
-//#include <Models/Gen4/Searcher4Model.hpp>
+#include <Models/Gen4/Searcher4Model.hpp>
 #include <QMenu>
 #include <thread>
 #include <QFileDialog>
@@ -50,9 +50,9 @@ protected:
     void changeEvent(QEvent *);
 
 signals:
-    //void updateView(vector<Frame4>);
+    void updateView(vector<Frame4>);
     void alertProfiles(int);
-    //void updateProgress();
+    void updateProgress();
 
 private:
     Ui::Wild4 *ui;
@@ -60,7 +60,7 @@ private:
     bool isSearching = false;
     bool cancel = false;
     u32 progress;
-    //Searcher3Model *s = new Searcher3Model(this, Method1);
+    Searcher4Model *s = new Searcher4Model(this, Method1);
     Wild4Model *g = new Wild4Model(this, MethodJ);
     //QMenu *contextMenu = new QMenu(this);
     //QModelIndex lastIndex;
@@ -69,8 +69,8 @@ private:
     //vector<EncounterArea4> encounterSearcher;
 
     void setupModels();
-    //void search();
-    //void updateSearch();
+    void search();
+    void updateSearch();
     //void updateLocationsSearcher();
     //void updatePokemonSearcher();
     //void updateLocationsGenerator();
@@ -84,7 +84,7 @@ private slots:
     void on_search_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    //void updateViewSearcher(vector<Frame4> frames);
+    void updateViewSearcher(vector<Frame4> frames);
     void on_comboBoxProfiles_currentIndexChanged(int index);
     //void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     //void setTargetFrameGenerator();
@@ -92,7 +92,7 @@ private slots:
     //void centerFramesAndSetTargetGenerator(u32 centerFrames);
     //void outputToTxt();
     //void outputToCSV();
-    //void updateProgressBar();
+    void updateProgressBar();
     void on_pushButtonLeadGenerator_clicked();
     void on_pushButtonProfileManager_clicked();
     void on_comboBoxEncounterGenerator_currentIndexChanged(int index);

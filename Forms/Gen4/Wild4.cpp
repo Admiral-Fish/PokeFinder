@@ -32,8 +32,8 @@ Wild4::Wild4(QWidget *parent) :
     setupModels();
 
     qRegisterMetaType<vector<Frame4>>("vector<Frame4>");
-    //connect(this, SIGNAL(updateView(vector<Frame4>)), this, SLOT(updateViewSearcher(vector<Frame4>)));
-    //connect(this, &Wild3::updateProgress, this, &Wild3::updateProgressBar);
+    connect(this, &Wild4::updateView, this, &Wild4::updateViewSearcher);
+    connect(this, &Wild4::updateProgress, this, &Wild4::updateProgressBar);
 }
 
 void Wild4::changeEvent(QEvent *event)
@@ -347,7 +347,104 @@ void Wild4::on_generate_clicked()
     g->setModel(frames);
 }
 
+void Wild4::search()
+{
+    u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
+    u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
+
+    int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
+    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
+                                        genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
+                                        ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false,
+                                        ui->comboBoxSlotSearcher->getChecked());
+    Searcher4 searcher = Searcher4(tid, sid, genderRatioIndex, ui->minDelay->text().toUInt(), ui->maxDelay->text().toUInt(), ui->minFrame->text().toUInt(), ui->maxFrame->text().toUInt(), compare, (Method)ui->comboBoxMethodSearcher->currentData().toInt());
+
+    searcher.encounterType = (Encounter)ui->comboBoxEncounterSearcher->currentData().toInt();
+    searcher.leadType = (Lead)ui->comboBoxLeadSearcher->currentData().toInt();
+
+    vector<u32> min = ui->ivFilterSearcher->getLower();
+    vector<u32> max = ui->ivFilterSearcher->getUpper();
+
+    ui->progressBar->setMaximum((max[0] - min[0] + 1) * (max[1] - min[1] + 1) * (max[2] - min[2] + 1) * (max[3] - min[3] + 1) * (max[4] - min[4] + 1) * (max[5] - min[5] + 1));
+
+    for (u32 a = min[0]; a <= max[0]; a++)
+    {
+        for (u32 b = min[1]; b <= max[1]; b++)
+        {
+            for (u32 c = min[2]; c <= max[2]; c++)
+            {
+                for (u32 d = min[3]; d <= max[3]; d++)
+                {
+                    for (u32 e = min[4]; e <= max[4]; e++)
+                    {
+                        for (u32 f = min[5]; f <= max[5]; f++)
+                        {
+                            vector<Frame4> frames = searcher.search(a, b, c, d, e, f);
+
+                            if (!frames.empty())
+                                emit updateView(frames);
+
+                            progress++;
+
+                            if (cancel)
+                            {
+                                isSearching = false;
+                                ui->search->setText(tr("Search"));
+                                emit updateProgress();
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    isSearching = false;
+    ui->search->setText(tr("Search"));
+    emit updateProgress();
+}
+
 void Wild4::on_search_clicked()
 {
+    if (isSearching == true)
+    {
+        cancel = true;
+    }
+    else
+    {
+        s->clear();
+        s->setMethod((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
 
+        ui->progressBar->setValue(0);
+        progress = 0;
+
+        isSearching = true;
+        cancel = false;
+        ui->search->setText(tr("Cancel"));
+
+        std::thread job(&Wild4::search, this);
+        job.detach();
+
+        std::thread update(&Wild4::updateSearch, this);
+        update.detach();
+    }
+}
+
+void Wild4::updateSearch()
+{
+    while (isSearching && !cancel)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        emit updateProgress();
+    }
+}
+
+void Wild4::updateProgressBar()
+{
+    ui->progressBar->setValue(progress);
+}
+
+void Wild4::updateViewSearcher(vector<Frame4> frames)
+{
+    s->addItems(frames);
 }

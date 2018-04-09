@@ -747,6 +747,7 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                     case 16:
                         return frame.getGender();
                 }
+                break;
         }
     }
     return QVariant();
@@ -795,6 +796,7 @@ QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, in
                         case 14:
                             return tr("Gender");
                     }
+                    break;
                 case WondercardIVs:
                     switch (section)
                     {
@@ -819,6 +821,7 @@ QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, in
                         case 9:
                             return tr("Power");
                     }
+                    break;
                 case MethodJ:
                 case MethodK:
                     switch (section)
