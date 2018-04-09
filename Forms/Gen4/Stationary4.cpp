@@ -30,6 +30,7 @@ Stationary4::Stationary4(QWidget *parent) :
     updateProfiles();
     setupModels();
 
+    qRegisterMetaType<vector<Frame4>>("vector<Frame4>");
     connect(this, &Stationary4::updateView, this, &Stationary4::updateViewSearcher);
     connect(this, &Stationary4::updateProgress, this, &Stationary4::updateProgressBar);
 }
@@ -195,7 +196,7 @@ void Stationary4::search()
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
                                         genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
                                         ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
-    Searcher4 searcher = Searcher4(tid, sid, genderRatioIndex, compare, (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
+    Searcher4 searcher = Searcher4(tid, sid, genderRatioIndex, compare, (Method)ui->comboBoxMethodSearcher->currentData().toInt());
 
     vector<u32> min = ui->ivFilterSearcher->getLower();
     vector<u32> max = ui->ivFilterSearcher->getUpper();

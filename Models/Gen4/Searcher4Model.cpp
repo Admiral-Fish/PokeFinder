@@ -680,7 +680,7 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.frame;
                     case 2:
-                        return frame.pid;
+                        return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 3:
                         return frame.getShiny();
                     case 4:
@@ -719,7 +719,7 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                     case 2:
                         return frame.leadType;
                     case 3:
-                        return frame.pid;
+                        return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 4:
                         return frame.encounterSlot;
                     case 5:
@@ -819,7 +819,6 @@ QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, in
                         case 9:
                             return tr("Power");
                     }
-
                 case MethodJ:
                 case MethodK:
                     switch (section)
