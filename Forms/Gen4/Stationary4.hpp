@@ -22,14 +22,14 @@
 
 #include <PokeFinderCore/Gen4/Frame4.hpp>
 #include <PokeFinderCore/Gen4/Generator4.hpp>
-//#include <PokeFinderCore/Gen4/Searcher4.hpp>
+#include <PokeFinderCore/Gen4/Searcher4.hpp>
 #include <PokeFinderCore/Objects/FrameCompare.hpp>
 #include <PokeFinderCore/Objects/Nature.hpp>
 #include <PokeFinderCore/Objects/Power.hpp>
 #include <PokeFinderCore/Gen4/Profile4.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Models/Gen4/Stationary4Model.hpp>
-//#include <Models/Gen4/Searcher4Model.hpp>
+#include <Models/Gen4/Searcher4Model.hpp>
 #include <PokeFinderCore/Translator.hpp>
 #include <thread>
 #include <QMenu>
@@ -53,10 +53,12 @@ protected:
 
 signals:
     void alertProfiles(int);
+    void updateView(vector<Frame4>);
+    void updateProgress();
 
 private:
     Ui::Stationary4 *ui;
-    //Searcher3Model *s = new Searcher3Model(this, Method1);
+    Searcher4Model *s = new Searcher4Model(this, Method1);
     Stationary4Model *g = new Stationary4Model(this, Method1);
     bool isSearching = false;
     bool cancel = false;
@@ -67,7 +69,9 @@ private:
     //QModelIndex lastIndex;
     //QModelIndex targetFrame;
 
+    void search();
     void setupModels();
+    void updateSearch();
 
 private slots:
     void on_generate_clicked();
@@ -79,6 +83,8 @@ private slots:
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
     void on_pushButtonProfileManager_clicked();
+    void updateProgressBar();
+    void updateViewSearcher(vector<Frame4> frames);
 
 public:
     explicit Stationary4(QWidget *parent = 0);

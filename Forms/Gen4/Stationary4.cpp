@@ -29,6 +29,9 @@ Stationary4::Stationary4(QWidget *parent) :
 
     updateProfiles();
     setupModels();
+
+    connect(this, &Stationary4::updateView, this, &Stationary4::updateViewSearcher);
+    connect(this, &Stationary4::updateProgress, this, &Stationary4::updateProgressBar);
 }
 
 Stationary4::~Stationary4()
@@ -60,8 +63,8 @@ void Stationary4::setupModels()
     ui->tableViewGenerator->setModel(g);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    //ui->tableViewSearcher->setModel(s);
-    //ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableViewSearcher->setModel(s);
+    ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->initialSeedGenerator->setValues(0, 32, false);
     ui->idGenerator->setValues(0, 48, true);
@@ -183,9 +186,92 @@ void Stationary4::on_generate_clicked()
     g->setModel(frames);
 }
 
+void Stationary4::search()
+{
+    u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
+    u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
+
+    int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
+    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
+                                        genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
+                                        ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
+    Searcher4 searcher = Searcher4(tid, sid, genderRatioIndex, compare, (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
+
+    vector<u32> min = ui->ivFilterSearcher->getLower();
+    vector<u32> max = ui->ivFilterSearcher->getUpper();
+
+    ui->progressBar->setMaximum((max[0] - min[0] + 1) * (max[1] - min[1] + 1) * (max[2] - min[2] + 1) * (max[3] - min[3] + 1) * (max[4] - min[4] + 1) * (max[5] - min[5] + 1));
+
+    for (u32 a = min[0]; a <= max[0]; a++)
+    {
+        for (u32 b = min[1]; b <= max[1]; b++)
+        {
+            for (u32 c = min[2]; c <= max[2]; c++)
+            {
+                for (u32 d = min[3]; d <= max[3]; d++)
+                {
+                    for (u32 e = min[4]; e <= max[4]; e++)
+                    {
+                        for (u32 f = min[5]; f <= max[5]; f++)
+                        {
+                            vector<Frame4> frames = searcher.search(a, b, c, d, e, f);
+
+                            if (!frames.empty())
+                                emit updateView(frames);
+
+                            progress++;
+
+                            if (cancel)
+                            {
+                                isSearching = false;
+                                ui->search->setText(tr("Search"));
+                                emit updateProgress();
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    isSearching = false;
+    ui->search->setText(tr("Search"));
+    emit updateProgress();
+}
+
+void Stationary4::updateSearch()
+{
+    while (isSearching && !cancel)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        emit updateProgress();
+    }
+}
+
 void Stationary4::on_search_clicked()
 {
-    // TODO
+    if (isSearching)
+    {
+        cancel = true;
+    }
+    else
+    {
+        s->clear();
+        s->setMethod((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
+
+        ui->progressBar->setValue(0);
+        progress = 0;
+
+        isSearching = true;
+        cancel = false;
+        ui->search->setText(tr("Cancel"));
+
+        std::thread job(&Stationary4::search, this);
+        job.detach();
+
+        std::thread update(&Stationary4::updateSearch, this);
+        update.detach();
+    }
 }
 
 void Stationary4::on_pushButtonProfileManager_clicked()
@@ -193,4 +279,14 @@ void Stationary4::on_pushButtonProfileManager_clicked()
     ProfileManager4 *manager = new ProfileManager4();
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
+}
+
+void Stationary4::updateProgressBar()
+{
+    ui->progressBar->setValue(progress);
+}
+
+void Stationary4::updateViewSearcher(vector<Frame4> frames)
+{
+    s->addItems(frames);
 }

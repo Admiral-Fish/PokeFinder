@@ -67,7 +67,7 @@ int Stationary4Model::columnCount(const QModelIndex &parent) const
         case MethodK:
             return 17;
         case WondercardIVs:
-            return 10;
+            return 11;
     }
     return 0;
 }
