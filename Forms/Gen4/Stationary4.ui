@@ -249,7 +249,7 @@ QPushButton {
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabStationary">
        <attribute name="title">
@@ -1063,62 +1063,44 @@ QPushButton {
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0">
-             <widget class="QLabel" name="genderLabel_3">
+            <item row="7" column="2">
+             <widget class="QLabel" name="maxDelayLabel">
               <property name="text">
-               <string>Gender</string>
+               <string>Max Delay</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="comboBoxGenderSearcher">
-              <item>
-               <property name="text">
-                <string notr="true">-</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string notr="true">♂</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string notr="true">♀</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="abilityLabel_3">
+            <item row="8" column="0">
+             <widget class="QLabel" name="minFrameLabel">
               <property name="text">
-               <string>Ability</string>
+               <string>Min Frame</string>
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="comboBoxAbilitySearcher">
-              <item>
-               <property name="text">
-                <string>Any</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string notr="true">0</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string notr="true">1</string>
-               </property>
-              </item>
+            <item row="8" column="2">
+             <widget class="QLabel" name="maxFrameLabel">
+              <property name="text">
+               <string>Max Frame</string>
+              </property>
              </widget>
             </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="natureLabel_3">
+            <item row="7" column="1">
+             <widget class="QTextBox" name="minDelay">
+              <property name="inputMask">
+               <string/>
+              </property>
               <property name="text">
-               <string>Nature</string>
+               <string notr="true">600</string>
+              </property>
+              <property name="maxLength">
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QLabel" name="minDelayLabel">
+              <property name="text">
+               <string>Min Delay</string>
               </property>
              </widget>
             </item>
@@ -1251,35 +1233,10 @@ QPushButton {
               </item>
              </widget>
             </item>
-            <item row="2" column="2">
-             <widget class="QPushButton" name="anyNatureSearcher">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>13</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>13</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-              </property>
+            <item row="1" column="0">
+             <widget class="QLabel" name="abilityLabel_3">
               <property name="text">
-               <string>Any</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="hiddenPLabel_3">
-              <property name="text">
-               <string>Hidden Power</string>
+               <string>Ability</string>
               </property>
              </widget>
             </item>
@@ -1367,41 +1324,10 @@ QPushButton {
               </item>
              </widget>
             </item>
-            <item row="3" column="2">
-             <widget class="QPushButton" name="anyHiddenPowerSearcher">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>13</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>13</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-              </property>
+            <item row="3" column="0">
+             <widget class="QLabel" name="hiddenPLabel_3">
               <property name="text">
-               <string>Any</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="genderRLabel_3">
-              <property name="text">
-               <string>Gender Ratio</string>
+               <string>Hidden Power</string>
               </property>
              </widget>
             </item>
@@ -1444,10 +1370,10 @@ QPushButton {
               </item>
              </widget>
             </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="shinyLabel_3">
+            <item row="4" column="0">
+             <widget class="QLabel" name="genderRLabel_3">
               <property name="text">
-               <string>Shiny Only?</string>
+               <string>Gender Ratio</string>
               </property>
              </widget>
             </item>
@@ -1458,54 +1384,122 @@ QPushButton {
               </property>
              </widget>
             </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="minDelayLabel">
+            <item row="5" column="0">
+             <widget class="QLabel" name="shinyLabel_3">
               <property name="text">
-               <string>Min Delay</string>
+               <string>Shiny Only?</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
-             <widget class="QTextBox" name="minDelay">
-              <property name="inputMask">
-               <string/>
-              </property>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="comboBoxAbilitySearcher">
+              <item>
+               <property name="text">
+                <string>Any</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">0</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="genderLabel_3">
               <property name="text">
-               <string notr="true">600</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
+               <string>Gender</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="2">
-             <widget class="QLabel" name="minFrameLabel">
+            <item row="3" column="2">
+             <widget class="QPushButton" name="anyHiddenPowerSearcher">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>13</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>13</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+              </property>
               <property name="text">
-               <string>Min Frame</string>
+               <string>Any</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="3">
-             <widget class="QTextBox" name="minFrame">
-              <property name="inputMask">
-               <string/>
+            <item row="2" column="2">
+             <widget class="QPushButton" name="anyNatureSearcher">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>13</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>13</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
               </property>
               <property name="text">
-               <string notr="true">1</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
+               <string>Any</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="0">
-             <widget class="QLabel" name="maxDelayLabel">
+            <item row="2" column="0">
+             <widget class="QLabel" name="natureLabel_3">
               <property name="text">
-               <string>Max Delay</string>
+               <string>Nature</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="1">
+            <item row="0" column="1">
+             <widget class="QComboBox" name="comboBoxGenderSearcher">
+              <item>
+               <property name="text">
+                <string notr="true">-</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">♂</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">♀</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="8" column="3">
              <widget class="QTextBox" name="maxDelay">
               <property name="inputMask">
                <string/>
@@ -1518,13 +1512,6 @@ QPushButton {
               </property>
              </widget>
             </item>
-            <item row="7" column="2">
-             <widget class="QLabel" name="maxFrameLabel">
-              <property name="text">
-               <string>Max Frame</string>
-              </property>
-             </widget>
-            </item>
             <item row="7" column="3">
              <widget class="QTextBox" name="maxFrame">
               <property name="inputMask">
@@ -1532,6 +1519,19 @@ QPushButton {
               </property>
               <property name="text">
                <string notr="true">1000</string>
+              </property>
+              <property name="maxLength">
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="1">
+             <widget class="QTextBox" name="minFrame">
+              <property name="inputMask">
+               <string/>
+              </property>
+              <property name="text">
+               <string notr="true">1</string>
               </property>
               <property name="maxLength">
                <number>5</number>
