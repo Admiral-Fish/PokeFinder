@@ -160,10 +160,13 @@ void Stationary3::setupModels()
     generatorMenu->addAction(outputToCSV);
 
     QAction *copySeedToClipboard = new QAction(tr("Copy Seed to Clipboard"), this);
+    QAction *seedToTime = new QAction(tr("Generates times for seed"), this);
 
     connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
+    connect(seedToTime, &QAction::triggered, this, &Stationary3::seedToTime);
 
     searcherMenu->addAction(copySeedToClipboard);
+    searcherMenu->addAction(seedToTime);
 }
 
 void Stationary3::refreshProfiles()
@@ -446,6 +449,14 @@ void Stationary3::centerFramesAndSetTargetGenerator(u32 centerFrames)
     jumpToTargetGenerator();
 }
 
+void Stationary3::seedToTime()
+{
+    u32 seed = s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(NULL, 16);
+    SeedToTime3 *seedToTime = new SeedToTime3(seed);
+    seedToTime->show();
+    seedToTime->raise();
+}
+
 void Stationary3::setTargetFrameGenerator()
 {
     targetFrame = lastIndex;
@@ -541,7 +552,7 @@ void Stationary3::outputToCSV()
 
 void Stationary3::copySeedToClipboard()
 {
-    QApplication::clipboard()->setText(ui->tableViewSearcher->model()->data(ui->tableViewSearcher->model()->index(lastIndex.row(), 0)).toString());
+    QApplication::clipboard()->setText(s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
 }
 
 void Stationary3::updateProgressBar()

@@ -31,6 +31,7 @@
 #include <Models/Gen3/Stationary3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <PokeFinderCore/Translator.hpp>
+#include <Forms/Gen3/SeedToTime3.hpp>
 #include <thread>
 #include <QMenu>
 #include <QAction>
@@ -92,6 +93,7 @@ private slots:
     void setTargetFrameGenerator();
     void jumpToTargetGenerator();
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
+    void seedToTime();
     void outputToTxt();
     void outputToCSV();
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);

@@ -57,6 +57,7 @@ private slots:
 
 public:
     explicit SeedToTime3(QWidget *parent = 0);
+    explicit SeedToTime3(u32 seed, QWidget *parent = 0);
     ~SeedToTime3();
 
 };

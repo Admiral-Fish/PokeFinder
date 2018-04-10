@@ -32,6 +32,21 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
     setupModels();
 }
 
+SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::SeedToTime3)
+{
+    ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
+
+    setupModels();
+
+    ui->seedToTimeSeed->setText(QString::number(seed, 16));
+    on_pushButtonFind_clicked();
+}
+
 void SeedToTime3::setupModels()
 {
     ui->seedToTimeSeed->setValues(0, 32, false);

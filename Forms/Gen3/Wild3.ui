@@ -1106,6 +1106,9 @@ QPushButton {
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="2" column="0" colspan="2">
          <widget class="QTableView" name="tableViewSearcher">
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
           <property name="styleSheet">
            <string notr="true">QTableView {
 	border: 4px solid DodgerBlue;

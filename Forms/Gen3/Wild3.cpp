@@ -60,7 +60,8 @@ Wild3::~Wild3()
     delete ui;
     delete s;
     delete g;
-    delete contextMenu;
+    delete generatorMenu;
+    delete searcherMenu;
 }
 
 void Wild3::on_checkBoxDelayGenerator_clicked()
@@ -202,18 +203,27 @@ void Wild3::setupModels()
     connect(outputToTxt, &QAction::triggered, this, &Wild3::outputToTxt);
     connect(outputToCSV, &QAction::triggered, this, &Wild3::outputToCSV);
 
-    contextMenu->addAction(setTargetFrame);
-    contextMenu->addAction(jumpToTarget);
-    contextMenu->addSeparator();
-    contextMenu->addAction(centerTo1Second);
-    contextMenu->addAction(centerTo2Seconds);
-    contextMenu->addAction(centerTo3Seconds);
-    contextMenu->addAction(centerTo5Seconds);
-    contextMenu->addAction(centerTo10Seconds);
-    contextMenu->addAction(centerTo1Minute);
-    contextMenu->addSeparator();
-    contextMenu->addAction(outputToTxt);
-    contextMenu->addAction(outputToCSV);
+    generatorMenu->addAction(setTargetFrame);
+    generatorMenu->addAction(jumpToTarget);
+    generatorMenu->addSeparator();
+    generatorMenu->addAction(centerTo1Second);
+    generatorMenu->addAction(centerTo2Seconds);
+    generatorMenu->addAction(centerTo3Seconds);
+    generatorMenu->addAction(centerTo5Seconds);
+    generatorMenu->addAction(centerTo10Seconds);
+    generatorMenu->addAction(centerTo1Minute);
+    generatorMenu->addSeparator();
+    generatorMenu->addAction(outputToTxt);
+    generatorMenu->addAction(outputToCSV);
+
+    QAction *copySeedToClipboard = new QAction(tr("Copy Seed to Clipboard"), this);
+    QAction *seedToTime = new QAction(tr("Generates times for seed"), this);
+
+    connect(copySeedToClipboard, &QAction::triggered, this, &Wild3::copySeedToClipboard);
+    connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
+
+    searcherMenu->addAction(copySeedToClipboard);
+    searcherMenu->addAction(seedToTime);
 }
 
 void Wild3::on_anyNatureGenerator_clicked()
@@ -510,6 +520,14 @@ void Wild3::centerFramesAndSetTargetGenerator(u32 centerFrames)
     jumpToTargetGenerator();
 }
 
+void Wild3::seedToTime()
+{
+    u32 seed = s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(NULL, 16);
+    SeedToTime3 *seedToTime = new SeedToTime3(seed);
+    seedToTime->show();
+    seedToTime->raise();
+}
+
 void Wild3::setTargetFrameGenerator()
 {
     targetFrame = lastIndex;
@@ -610,7 +628,22 @@ void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
 
     lastIndex = ui->tableViewGenerator->indexAt(pos);
 
-    contextMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+    generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+}
+
+void Wild3::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+{
+    if (s->rowCount() == 0)
+        return;
+
+    lastIndex = ui->tableViewSearcher->indexAt(pos);
+
+    searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
+}
+
+void Wild3::copySeedToClipboard()
+{
+    QApplication::clipboard()->setText(s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
 }
 
 void Wild3::on_pushButtonLeadGenerator_clicked()

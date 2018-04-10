@@ -32,9 +32,11 @@
 #include <PokeFinderCore/Translator.hpp>
 #include <Models/Gen3/Wild3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
+#include <Forms/Gen3/SeedToTime3.hpp>
 #include <QMenu>
 #include <thread>
 #include <QFileDialog>
+#include <QClipboard>
 #include <QSettings>
 
 namespace Ui
@@ -62,7 +64,8 @@ private:
     u32 progress;
     Searcher3Model *s = new Searcher3Model(this, Method1);
     Wild3Model *g = new Wild3Model(this);
-    QMenu *contextMenu = new QMenu(this);
+    QMenu *generatorMenu = new QMenu(this);
+    QMenu *searcherMenu = new QMenu(this);
     QModelIndex lastIndex;
     QModelIndex targetFrame;
     vector<EncounterArea3> encounterGenerator;
@@ -88,9 +91,12 @@ private slots:
     void on_checkBoxDelayGenerator_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
+    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
+    void copySeedToClipboard();
     void setTargetFrameGenerator();
     void jumpToTargetGenerator();
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
+    void seedToTime();
     void outputToTxt();
     void outputToCSV();
     void updateProgressBar();
