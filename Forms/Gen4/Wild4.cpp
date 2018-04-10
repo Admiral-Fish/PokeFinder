@@ -60,7 +60,7 @@ Wild4::~Wild4()
 
     delete ui;
     delete g;
-    //delete s;
+    delete s;
 }
 
 void Wild4::setupModels()
