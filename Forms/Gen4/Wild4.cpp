@@ -116,8 +116,8 @@ void Wild4::setupModels()
     ui->comboBoxHiddenPowerGenerator->setup();
     ui->comboBoxHiddenPowerSearcher->setup();
 
-    //on_comboBoxEncounterGenerator_currentIndexChanged(0);
-    //on_comboBoxEncounterSearcher_currentIndexChanged(0);
+    on_comboBoxEncounterGenerator_currentIndexChanged(0);
+    on_comboBoxEncounterSearcher_currentIndexChanged(0);
 }
 
 void Wild4::updateProfiles()
@@ -240,7 +240,9 @@ void Wild4::on_anySlotSearcher_clicked()
 void Wild4::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
 {
     QStringList t;
-    switch ((Encounter)index)
+    Encounter encounter = (Encounter)ui->comboBoxEncounterGenerator->currentData().toInt();
+
+    switch (encounter)
     {
         case Wild:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
@@ -262,7 +264,7 @@ void Wild4::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
 void Wild4::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
 {
     QStringList t;
-    Encounter encounter = (Encounter)index;
+    Encounter encounter = (Encounter)ui->comboBoxEncounterSearcher->currentData().toInt();
 
     switch (encounter)
     {
