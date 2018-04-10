@@ -93,7 +93,11 @@ void Stationary4::setupModels()
 
     ui->comboBoxLeadSearcher->setItemData(0, Search);
     ui->comboBoxLeadSearcher->setItemData(1, Synchronize);
-    ui->comboBoxLeadSearcher->setItemData(2, None);
+    ui->comboBoxLeadSearcher->setItemData(2, CuteCharm);
+    ui->comboBoxLeadSearcher->setItemData(3, None);
+
+    ui->comboBoxLeadGenerator->addItem(tr("None"));
+    ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
 
     ui->comboBoxNatureGenerator->setup();
     ui->comboBoxNatureSearcher->setup();
@@ -190,6 +194,21 @@ void Stationary4::on_generate_clicked()
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked());
 
     generator.encounterType = Stationary;
+    if (ui->pushButtonLeadGenerator->text() == tr("Cute Charm"))
+        generator.leadType = (Lead)ui->comboBoxLeadGenerator->currentData().toInt();
+    else
+    {
+        int num = ui->comboBoxLeadGenerator->currentIndex();
+        if (num == 0)
+        {
+            generator.leadType = None;
+        }
+        else
+        {
+            generator.leadType = Synchronize;
+            generator.synchNature = Nature::getAdjustedNature(ui->comboBoxLeadGenerator->currentIndex() - 1);
+        }
+    }
 
     vector<Frame4> frames = generator.generate(compare);
     g->setModel(frames);
@@ -299,4 +318,31 @@ void Stationary4::updateProgressBar()
 void Stationary4::updateViewSearcher(vector<Frame4> frames)
 {
     s->addItems(frames);
+}
+
+void Stationary4::on_pushButtonLeadGenerator_clicked()
+{
+    ui->comboBoxLeadGenerator->clear();
+    QString text = ui->pushButtonLeadGenerator->text();
+    if (text == tr("Synchronize"))
+    {
+        ui->pushButtonLeadGenerator->setText(tr("Cute Charm"));
+        ui->comboBoxLeadGenerator->setEnabled(true);
+
+        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (50% ♀ Target)"), Lead::CuteCharm50F);
+        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (75% ♀ Target)"), Lead::CuteCharm75F);
+        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (25% ♀ Target)"), Lead::CuteCharm25F);
+        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (12.5% ♀ Target)"), Lead::CuteCharm125F);
+        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
+        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
+        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
+        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
+    }
+    else
+    {
+        ui->pushButtonLeadGenerator->setText(tr("Synchronize"));
+
+        ui->comboBoxLeadGenerator->addItem("None");
+        ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
+    }
 }

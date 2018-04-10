@@ -249,7 +249,7 @@ QPushButton {
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabStationary">
        <attribute name="title">
@@ -277,13 +277,6 @@ QPushButton {
            <string>RNG Info</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
-           <item row="1" column="0">
-            <widget class="QLabel" name="startingFrameLabel">
-             <property name="text">
-              <string>Starting Frame</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="methodLabel">
              <property name="text">
@@ -292,16 +285,16 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="maxResultsLabel">
+            <widget class="QLabel" name="startingFrameLabel">
              <property name="text">
-              <string>Max Results</string>
+              <string>Starting Frame</string>
              </property>
             </widget>
            </item>
            <item row="3" column="0">
-            <widget class="QLabel" name="idLabel">
+            <widget class="QLabel" name="maxResultsLabel">
              <property name="text">
-              <string>TID</string>
+              <string>Max Results</string>
              </property>
             </widget>
            </item>
@@ -338,30 +331,14 @@ QPushButton {
              </item>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QTextBox" name="startingFrameGenerator">
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="inputMask">
-              <string/>
-             </property>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-             <property name="maxLength">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="sidLabel">
+            <widget class="QLabel" name="idLabel">
              <property name="text">
-              <string>SID</string>
+              <string>TID</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
+           <item row="5" column="1">
             <widget class="QTextBox" name="sidGenerator">
              <property name="inputMask">
               <string/>
@@ -374,7 +351,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="6" column="0" colspan="2">
+           <item row="7" column="0" colspan="2">
             <widget class="QPushButton" name="generate">
              <property name="enabled">
               <bool>true</bool>
@@ -401,7 +378,30 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
+           <item row="2" column="1">
+            <widget class="QTextBox" name="startingFrameGenerator">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="sidLabel">
+             <property name="text">
+              <string>SID</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
             <widget class="QTextBox" name="initialSeedGenerator">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -436,19 +436,6 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QTextBox" name="idGenerator">
-             <property name="inputMask">
-              <string/>
-             </property>
-             <property name="text">
-              <string notr="true">12345</string>
-             </property>
-             <property name="maxLength">
-              <number>5</number>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
             <widget class="QTextBox" name="maxResultsGenerator">
              <property name="inputMask">
               <string/>
@@ -461,12 +448,41 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="5" column="0">
+           <item row="6" column="0">
             <widget class="QLabel" name="seedLabel">
              <property name="text">
               <string>Seed</string>
              </property>
             </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QTextBox" name="idGenerator">
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="text">
+              <string notr="true">12345</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="pushButtonLeadGenerator">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+             </property>
+             <property name="text">
+              <string>Synchronize</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="comboBoxLeadGenerator"/>
            </item>
           </layout>
          </widget>
@@ -1619,14 +1635,7 @@ QPushButton {
              </item>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="idLabel_3">
-             <property name="text">
-              <string>TID</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
+           <item row="2" column="1">
             <widget class="QTextBox" name="idSearcher">
              <property name="inputMask">
               <string/>
@@ -1640,13 +1649,20 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="0">
+            <widget class="QLabel" name="idLabel_3">
+             <property name="text">
+              <string>TID</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
             <widget class="QLabel" name="sidLabel_3">
              <property name="text">
               <string>SID</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
+           <item row="3" column="1">
             <widget class="QTextBox" name="sidSearcher">
              <property name="inputMask">
               <string/>
@@ -1659,33 +1675,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>Lead</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QComboBox" name="comboBoxLeadSearcher">
-             <item>
-              <property name="text">
-               <string>Any</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Synchronize</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>None</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="4" column="0" colspan="2">
+           <item row="5" column="0" colspan="2">
             <widget class="QPushButton" name="search">
              <property name="enabled">
               <bool>true</bool>
@@ -1712,6 +1702,37 @@ QPushButton {
              </property>
             </widget>
            </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="comboBoxLeadSearcher">
+             <item>
+              <property name="text">
+               <string>Any</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Synchronize</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Cute Charm</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>None</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Lead</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -1734,7 +1755,7 @@ QPushButton {
      <x>0</x>
      <y>0</y>
      <width>1182</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

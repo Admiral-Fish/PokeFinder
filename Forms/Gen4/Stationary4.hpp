@@ -85,6 +85,7 @@ private slots:
     void on_pushButtonProfileManager_clicked();
     void updateProgressBar();
     void updateViewSearcher(vector<Frame4> frames);
+    void on_pushButtonLeadGenerator_clicked();
 
 public:
     explicit Stationary4(QWidget *parent = 0);
