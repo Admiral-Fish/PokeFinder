@@ -217,7 +217,7 @@ void Wild3::setupModels()
     generatorMenu->addAction(outputToCSV);
 
     QAction *copySeedToClipboard = new QAction(tr("Copy Seed to Clipboard"), this);
-    QAction *seedToTime = new QAction(tr("Generates times for seed"), this);
+    QAction *seedToTime = new QAction(tr("Generate times for seed"), this);
 
     connect(copySeedToClipboard, &QAction::triggered, this, &Wild3::copySeedToClipboard);
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);

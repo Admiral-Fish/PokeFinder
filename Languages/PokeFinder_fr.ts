@@ -121,603 +121,603 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="182"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2650"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="183"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2695"/>
         <location filename="../Forms/Gen3/Eggs3.cpp" line="150"/>
         <source>Emerald</source>
         <translation>Emeraude</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="194"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="195"/>
         <source>Egg PID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="275"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="305"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="331"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1496"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1532"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1558"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2203"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2239"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2265"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="325"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="355"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="533"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1722"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1741"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1796"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2248"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2284"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2310"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="200"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="827"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="201"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1074"/>
         <source>Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="241"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1462"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2169"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="252"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1762"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2214"/>
         <source>Gender</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="267"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1469"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2176"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="317"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1769"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2221"/>
         <source>Ability</source>
         <translation>Talent</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="312"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1539"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2246"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="385"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1697"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2291"/>
         <source>Nature</source>
         <translation>Nature</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="338"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="540"/>
         <source>Everstone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="346"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="548"/>
         <location filename="../Forms/Gen3/Eggs3.cpp" line="52"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="351"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="566"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1659"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2366"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="393"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="553"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1555"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2411"/>
         <source>Adamant</source>
         <translation>Rigide</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="356"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="576"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1669"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2376"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="403"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="558"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1565"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2421"/>
         <source>Brave</source>
         <translation>Brave</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="361"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="571"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1664"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2371"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="398"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="563"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1560"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2416"/>
         <source>Bold</source>
         <translation>Assuré</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="366"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="581"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1674"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2381"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="408"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="568"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1570"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2426"/>
         <source>Calm</source>
         <translation>Calme</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="371"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="586"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1679"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2386"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="413"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="573"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1575"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2431"/>
         <source>Careful</source>
         <translation>Prudent</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="376"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="591"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1684"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2391"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="418"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="578"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1580"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2436"/>
         <source>Hasty</source>
         <translation>Pressé</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="381"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="596"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1689"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2396"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="423"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="583"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1585"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2441"/>
         <source>Impish</source>
         <translation>Malin</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="386"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="601"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1694"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2401"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="428"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="588"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1590"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2446"/>
         <source>Jolly</source>
         <translation>Jovial</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="391"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="606"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1699"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2406"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="433"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="593"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1595"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2451"/>
         <source>Lonely</source>
         <translation>Solo</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="396"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="611"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1704"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2411"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="438"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="598"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1600"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2456"/>
         <source>Mild</source>
         <translation>Doux</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="401"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="616"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1709"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2416"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="443"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="603"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1605"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2461"/>
         <source>Modest</source>
         <translation>Modeste</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="406"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="621"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1714"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2421"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="448"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="608"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1610"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2466"/>
         <source>Naive</source>
         <translation>Naïf</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="411"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="626"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1719"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2426"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="453"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="613"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1615"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2471"/>
         <source>Naughty</source>
         <translation>Mauvais</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="416"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="631"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1724"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2431"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="458"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="618"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1620"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2476"/>
         <source>Quiet</source>
         <translation>Discret</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="421"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="636"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1729"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2436"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="463"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="623"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1625"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2481"/>
         <source>Rash</source>
         <translation>Foufou</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="426"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="641"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1734"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2441"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="468"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="628"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1630"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2486"/>
         <source>Relaxed</source>
         <translation>Relax</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="431"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="646"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1739"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2446"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="473"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="633"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1635"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2491"/>
         <source>Sassy</source>
         <translation>Malpoli</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="436"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="651"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1744"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2451"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="478"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="638"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1640"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2496"/>
         <source>Timid</source>
         <translation>Timide</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="441"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="656"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1749"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2456"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="483"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="643"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1645"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2501"/>
         <source>Gentle</source>
         <translation>Gentil</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="446"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="661"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1754"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2461"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="488"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="648"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1650"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2506"/>
         <source>Lax</source>
         <translation>Lâche</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="451"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="666"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1759"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2466"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="493"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="653"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1655"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2511"/>
         <source>Bashful</source>
         <translation>Pudique</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="456"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="671"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1764"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2471"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="498"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="658"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1660"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2516"/>
         <source>Docile</source>
         <translation>Docile</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="461"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="676"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1769"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2476"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="503"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="663"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1665"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2521"/>
         <source>Hardy</source>
         <translation>Hardi</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="466"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="681"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1774"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2481"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="508"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="668"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1670"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2526"/>
         <source>Quirky</source>
         <translation>Bizarre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="471"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="686"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1779"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2486"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="513"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="673"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1675"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2531"/>
         <source>Serious</source>
         <translation>Sérieux</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="479"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1637"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2344"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="704"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1690"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2389"/>
         <source>Compatibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="505"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1591"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2298"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="753"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1683"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2343"/>
         <source>Gender Ratio</source>
         <translation>Ratio du genre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="696"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="278"/>
         <source>Redraws</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="723"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="362"/>
         <source>Calibration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="740"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1257"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1988"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2629"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="681"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1302"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2033"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2674"/>
         <source>TID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="757"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1274"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2015"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2669"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="730"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1319"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2060"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2714"/>
         <source>SID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="990"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1360"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2067"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="966"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1818"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2112"/>
         <source>Parent 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1075"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1409"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2116"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="973"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1867"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2161"/>
         <source>Parent 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1326"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1908"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1371"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1953"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2643"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2688"/>
         <source>Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2662"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2707"/>
         <source>Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1319"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1948"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1364"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1993"/>
         <source>Frame Held</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1224"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1981"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1269"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2026"/>
         <source>Pickup Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2600"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2612"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2645"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2657"/>
         <source>Profile</source>
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="513"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1599"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2306"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="761"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1425"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2351"/>
         <source>Genderless</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="518"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1604"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2311"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="766"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1430"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2356"/>
         <source>50% Male / 50% Female</source>
         <translation>50% mâle / 50% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="523"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1609"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2316"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="771"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1435"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2361"/>
         <source>25% Male / 75% Female</source>
         <translation>25% mâle / 75% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="528"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1614"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2321"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="776"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1440"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2366"/>
         <source>75% Male / 25% Female</source>
         <translation>75% mâle / 25% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="533"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1619"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2326"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="781"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1445"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2371"/>
         <source>87.5% Male / 12.5% Female</source>
         <translation>87.5% mâle / 12.5% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="538"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1624"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2331"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="786"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1450"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2376"/>
         <source>100% Male</source>
         <translation>100% mâle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="543"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1629"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2336"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="791"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1455"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2381"/>
         <source>100% Female</source>
         <translation>100% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="551"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1644"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2351"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="799"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1755"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2396"/>
         <source>Shiny Only?</source>
         <translation>Shiny uniquement ?</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="785"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1149"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1312"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2033"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="830"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="903"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1357"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2078"/>
         <source>Generate</source>
         <translation>Générer</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="821"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="866"/>
         <source>Egg IVs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="864"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="872"/>
         <source>Normal Spreads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="877"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1175"/>
         <source>Split Spreads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="887"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1081"/>
         <source>Alternate Spreads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="897"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="885"/>
         <source>Hidden Power:</source>
         <translation>Puissance cachée:</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="905"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1788"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2495"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1092"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1471"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2540"/>
         <source>Fighting</source>
         <translation>Combat</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="910"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1793"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2500"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1097"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1476"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2545"/>
         <source>Flying</source>
         <translation>Vol</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="915"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1798"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2505"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1102"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1481"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2550"/>
         <source>Poison</source>
         <translation>Poison</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="920"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1803"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2510"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1107"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1486"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2555"/>
         <source>Ground</source>
         <translation>Sol</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="925"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1808"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2515"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1112"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1491"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2560"/>
         <source>Rock</source>
         <translation>Roche</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="930"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1813"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2520"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1117"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1496"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2565"/>
         <source>Bug</source>
         <translation>Insecte</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="935"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1818"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2525"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1122"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1501"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2570"/>
         <source>Ghost</source>
         <translation>Spectre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="940"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1823"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2530"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1127"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1506"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2575"/>
         <source>Steel</source>
         <translation>Acier</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="945"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1828"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2535"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1132"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1511"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2580"/>
         <source>Fire</source>
         <translation>Feu</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="950"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1833"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2540"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1137"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1516"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2585"/>
         <source>Water</source>
         <translation>Eau</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="955"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1838"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2545"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1142"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1521"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2590"/>
         <source>Grass</source>
         <translation>Plante</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="960"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1843"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2550"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1147"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1526"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2595"/>
         <source>Electric</source>
         <translation>Électrik</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="965"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1848"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2555"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1152"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1531"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2600"/>
         <source>Psychic</source>
         <translation>Psy</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="970"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1853"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2560"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1157"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1536"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2605"/>
         <source>Ice</source>
         <translation>Glace</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="975"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1858"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2565"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1162"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1541"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2610"/>
         <source>Dragon</source>
         <translation>Dragon</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="980"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1863"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2570"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1167"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1546"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2615"/>
         <source>Dark</source>
         <translation>Ténèbres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1174"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1219"/>
         <source>Ruby/Sapphire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1192"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1902"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1237"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1947"/>
         <source>RNG Info</source>
         <translation>RNG Info</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1336"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2043"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1381"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2088"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1565"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2272"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1748"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2317"/>
         <source>Hidden Power</source>
         <translation>Puissance cachée</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1884"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1929"/>
         <source>Fire Red/Leaf Green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="487"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1573"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2280"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="712"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1406"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2325"/>
         <source>The two don&apos;t seem to like each other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="492"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1578"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2285"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="717"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1411"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2330"/>
         <source>The two seem to get along</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="497"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="1583"/>
-        <location filename="../Forms/Gen3/Eggs3.ui" line="2290"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="722"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="1416"/>
+        <location filename="../Forms/Gen3/Eggs3.ui" line="2335"/>
         <source>The two seem to get along very well</source>
         <translation type="unfinished"></translation>
     </message>
@@ -949,172 +949,172 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="152"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="153"/>
         <source>HP</source>
         <translation>PV</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="159"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="160"/>
         <source>Atk</source>
         <translation>Attaque</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="166"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="167"/>
         <source>Def</source>
         <translation>Déf</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="173"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="174"/>
         <source>SpA</source>
         <translation>Attaque spé</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="180"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="181"/>
         <source>SpD</source>
         <translation>Déf spé</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="187"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="188"/>
         <source>Spe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="227"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="228"/>
         <source>TID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="241"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="242"/>
         <source>Adamant</source>
         <translation>Rigide</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="246"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="247"/>
         <source>Bold</source>
         <translation>Assuré</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="251"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="252"/>
         <source>Brave</source>
         <translation>Brave</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="256"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="257"/>
         <source>Calm</source>
         <translation>Calme</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="261"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="262"/>
         <source>Careful</source>
         <translation>Prudent</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="266"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="267"/>
         <source>Hasty</source>
         <translation>Pressé</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="271"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="272"/>
         <source>Impish</source>
         <translation>Malin</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="276"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="277"/>
         <source>Jolly</source>
         <translation>Jovial</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="281"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="282"/>
         <source>Lonely</source>
         <translation>Solo</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="286"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="287"/>
         <source>Mild</source>
         <translation>Doux</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="291"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="292"/>
         <source>Modest</source>
         <translation>Modeste</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="296"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="297"/>
         <source>Naive</source>
         <translation>Naïf</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="301"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="302"/>
         <source>Naughty</source>
         <translation>Mauvais</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="306"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="307"/>
         <source>Quiet</source>
         <translation>Discret</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="311"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="312"/>
         <source>Rash</source>
         <translation>Foufou</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="316"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="317"/>
         <source>Relaxed</source>
         <translation>Relax</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="321"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="322"/>
         <source>Sassy</source>
         <translation>Malpoli</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="326"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="327"/>
         <source>Timid</source>
         <translation>Timide</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="331"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="332"/>
         <source>Gentle</source>
         <translation>Gentil</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="336"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="337"/>
         <source>Lax</source>
         <translation>Lâche</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="341"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="342"/>
         <source>Bashful</source>
         <translation>Pudique</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="346"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="347"/>
         <source>Docile</source>
         <translation>Docile</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="351"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="352"/>
         <source>Hardy</source>
         <translation>Hardi</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="356"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="357"/>
         <source>Quirky</source>
         <translation>Bizarre</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="361"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="362"/>
         <source>Serious</source>
         <translation>Sérieux</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="217"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="218"/>
         <source>Nature</source>
         <translation>Nature</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.ui" line="378"/>
+        <location filename="../Forms/Util/IVtoPID.ui" line="379"/>
         <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1399,257 +1399,257 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="147"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="148"/>
         <source>RNG Info</source>
         <translation>RNG Info</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="246"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="247"/>
         <source>Generate</source>
         <translation>Générer</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="262"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="263"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="302"/>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="326"/>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="475"/>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="574"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="303"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="327"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="476"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="575"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="153"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="154"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="167"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="168"/>
         <source>Starting Frame</source>
         <translation>Frame de départ</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="184"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="185"/>
         <source>Max Results</source>
         <translation>Nombre de résultats maximum</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="201"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="202"/>
         <source>TID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="218"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="219"/>
         <source>SID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="268"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="269"/>
         <source>Gender</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="294"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="295"/>
         <source>Ability</source>
         <translation>Talent</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="333"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="334"/>
         <source>Nature</source>
         <translation>Nature</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="341"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="342"/>
         <source>Adamant</source>
         <translation>Rigide</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="346"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="347"/>
         <source>Bold</source>
         <translation>Assuré</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="351"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="352"/>
         <source>Brave</source>
         <translation>Brave</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="356"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="357"/>
         <source>Calm</source>
         <translation>Calme</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="361"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="362"/>
         <source>Careful</source>
         <translation>Prudent</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="366"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="367"/>
         <source>Hasty</source>
         <translation>Pressé</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="371"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="372"/>
         <source>Impish</source>
         <translation>Malin</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="376"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="377"/>
         <source>Jolly</source>
         <translation>Jovial</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="381"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="382"/>
         <source>Lonely</source>
         <translation>Solo</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="386"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="387"/>
         <source>Mild</source>
         <translation>Doux</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="391"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="392"/>
         <source>Modest</source>
         <translation>Modeste</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="396"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="397"/>
         <source>Naive</source>
         <translation>Naïf</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="401"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="402"/>
         <source>Naughty</source>
         <translation>Mauvais</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="406"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="407"/>
         <source>Quiet</source>
         <translation>Discret</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="411"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="412"/>
         <source>Rash</source>
         <translation>Foufou</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="416"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="417"/>
         <source>Relaxed</source>
         <translation>Relax</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="421"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="422"/>
         <source>Sassy</source>
         <translation>Malpoli</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="426"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="427"/>
         <source>Timid</source>
         <translation>Timide</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="431"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="432"/>
         <source>Gentle</source>
         <translation>Gentil</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="436"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="437"/>
         <source>Lax</source>
         <translation>Lâche</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="441"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="442"/>
         <source>Bashful</source>
         <translation>Pudique</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="446"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="447"/>
         <source>Docile</source>
         <translation>Docile</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="451"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="452"/>
         <source>Hardy</source>
         <translation>Hardi</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="456"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="457"/>
         <source>Quirky</source>
         <translation>Bizarre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="461"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="462"/>
         <source>Serious</source>
         <translation>Sérieux</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="482"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="483"/>
         <source>Gender Ratio</source>
         <translation>Ratio du genre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="528"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="529"/>
         <source>Shiny Only?</source>
         <translation>Shiny uniquement ?</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="542"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="543"/>
         <source>Spot Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="490"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="491"/>
         <source>Genderless</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="495"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="496"/>
         <source>50% Male / 50% Female</source>
         <translation>50% mâle / 50% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="500"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="501"/>
         <source>25% Male / 75% Female</source>
         <translation>25% mâle / 75% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="505"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="506"/>
         <source>75% Male / 25% Female</source>
         <translation>75% mâle / 25% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="510"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="511"/>
         <source>87.5% Male / 12.5% Female</source>
         <translation>87.5% mâle / 12.5% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="515"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="516"/>
         <source>100% Male</source>
         <translation>100% mâle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="520"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="521"/>
         <source>100% Female</source>
         <translation>100% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="550"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="551"/>
         <location filename="../Forms/Gen3/PokeSpot.cpp" line="143"/>
         <source>Common</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="555"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="556"/>
         <location filename="../Forms/Gen3/PokeSpot.cpp" line="149"/>
         <source>Uncommon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui" line="560"/>
+        <location filename="../Forms/Gen3/PokeSpot.ui" line="561"/>
         <location filename="../Forms/Gen3/PokeSpot.cpp" line="155"/>
         <source>Rare</source>
         <translation type="unfinished"></translation>
@@ -2161,31 +2161,31 @@
         <translation>Colosseum</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="304"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="324"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="367"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="386"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="355"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="384"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="436"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="459"/>
         <source>First shadow unset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="310"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="330"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="373"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="392"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="364"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="393"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="444"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="467"/>
         <source>First shadow set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="316"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="336"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="379"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="398"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="373"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="402"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="452"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="475"/>
         <source>Shiny Skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="592"/>
+        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="678"/>
         <source>Pass NL</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2193,211 +2193,211 @@
 <context>
     <name>Researcher</name>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="193"/>
-        <location filename="../Forms/Util/Researcher.ui" line="309"/>
+        <location filename="../Forms/Util/Researcher.ui" line="194"/>
+        <location filename="../Forms/Util/Researcher.ui" line="310"/>
         <source>Common RNGs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="257"/>
-        <location filename="../Forms/Util/Researcher.ui" line="343"/>
+        <location filename="../Forms/Util/Researcher.ui" line="258"/>
+        <location filename="../Forms/Util/Researcher.ui" line="344"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="209"/>
+        <location filename="../Forms/Util/Researcher.ui" line="210"/>
         <source>LCRNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="214"/>
+        <location filename="../Forms/Util/Researcher.ui" line="215"/>
         <source>LCRNG[R]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="219"/>
+        <location filename="../Forms/Util/Researcher.ui" line="220"/>
         <source>XDRNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="224"/>
+        <location filename="../Forms/Util/Researcher.ui" line="225"/>
         <source>XDRNG[R]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="229"/>
+        <location filename="../Forms/Util/Researcher.ui" line="230"/>
         <source>ARNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="234"/>
+        <location filename="../Forms/Util/Researcher.ui" line="235"/>
         <source>ARNG[R]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="239"/>
+        <location filename="../Forms/Util/Researcher.ui" line="240"/>
         <source>Mersenne Twister</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="244"/>
+        <location filename="../Forms/Util/Researcher.ui" line="245"/>
         <source>M. Twister (Untempered)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="249"/>
+        <location filename="../Forms/Util/Researcher.ui" line="250"/>
         <source>M. Twister (Fast)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="325"/>
+        <location filename="../Forms/Util/Researcher.ui" line="326"/>
         <source>BWRNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="330"/>
+        <location filename="../Forms/Util/Researcher.ui" line="331"/>
         <source>BWRNG[R]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="335"/>
+        <location filename="../Forms/Util/Researcher.ui" line="336"/>
         <source>SFMT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="395"/>
+        <location filename="../Forms/Util/Researcher.ui" line="396"/>
         <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="303"/>
-        <location filename="../Forms/Util/Researcher.ui" line="499"/>
-        <location filename="../Forms/Util/Researcher.ui" line="604"/>
-        <location filename="../Forms/Util/Researcher.ui" line="717"/>
+        <location filename="../Forms/Util/Researcher.ui" line="304"/>
+        <location filename="../Forms/Util/Researcher.ui" line="506"/>
+        <location filename="../Forms/Util/Researcher.ui" line="636"/>
         <location filename="../Forms/Util/Researcher.ui" line="768"/>
-        <location filename="../Forms/Util/Researcher.ui" line="891"/>
-        <location filename="../Forms/Util/Researcher.ui" line="952"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1085"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1156"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1299"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1380"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1533"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1624"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1787"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1888"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2061"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2172"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2355"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2476"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2669"/>
+        <location filename="../Forms/Util/Researcher.ui" line="825"/>
+        <location filename="../Forms/Util/Researcher.ui" line="967"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1034"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1186"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1263"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1425"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1512"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1684"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1781"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1963"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2070"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2262"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2379"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2581"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2708"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2920"/>
         <location filename="../Forms/Util/Researcher.cpp" line="444"/>
         <location filename="../Forms/Util/Researcher.cpp" line="476"/>
         <source>64Bit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="187"/>
-        <location filename="../Forms/Util/Researcher.ui" line="504"/>
-        <location filename="../Forms/Util/Researcher.ui" line="609"/>
-        <location filename="../Forms/Util/Researcher.ui" line="722"/>
+        <location filename="../Forms/Util/Researcher.ui" line="188"/>
+        <location filename="../Forms/Util/Researcher.ui" line="511"/>
+        <location filename="../Forms/Util/Researcher.ui" line="641"/>
         <location filename="../Forms/Util/Researcher.ui" line="773"/>
-        <location filename="../Forms/Util/Researcher.ui" line="896"/>
-        <location filename="../Forms/Util/Researcher.ui" line="957"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1090"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1161"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1304"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1385"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1538"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1629"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1802"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1893"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2066"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2177"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2360"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2481"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2674"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2893"/>
+        <location filename="../Forms/Util/Researcher.ui" line="830"/>
+        <location filename="../Forms/Util/Researcher.ui" line="972"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1039"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1191"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1268"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1430"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1517"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1689"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1786"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1978"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2075"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2267"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2384"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2586"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2713"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2925"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3156"/>
         <location filename="../Forms/Util/Researcher.cpp" line="445"/>
         <location filename="../Forms/Util/Researcher.cpp" line="475"/>
         <source>32Bit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="485"/>
+        <location filename="../Forms/Util/Researcher.ui" line="486"/>
         <source>Customs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="509"/>
-        <location filename="../Forms/Util/Researcher.ui" line="614"/>
-        <location filename="../Forms/Util/Researcher.ui" line="727"/>
+        <location filename="../Forms/Util/Researcher.ui" line="516"/>
+        <location filename="../Forms/Util/Researcher.ui" line="646"/>
         <location filename="../Forms/Util/Researcher.ui" line="778"/>
-        <location filename="../Forms/Util/Researcher.ui" line="901"/>
-        <location filename="../Forms/Util/Researcher.ui" line="962"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1095"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1166"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1309"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1390"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1543"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1634"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1792"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1898"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2071"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2182"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2365"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2486"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2679"/>
+        <location filename="../Forms/Util/Researcher.ui" line="835"/>
+        <location filename="../Forms/Util/Researcher.ui" line="977"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1044"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1196"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1273"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1435"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1522"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1694"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1791"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1968"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2080"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2272"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2389"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2591"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2718"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2930"/>
         <location filename="../Forms/Util/Researcher.cpp" line="446"/>
         <location filename="../Forms/Util/Researcher.cpp" line="476"/>
         <source>32Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="514"/>
-        <location filename="../Forms/Util/Researcher.ui" line="619"/>
-        <location filename="../Forms/Util/Researcher.ui" line="732"/>
+        <location filename="../Forms/Util/Researcher.ui" line="521"/>
+        <location filename="../Forms/Util/Researcher.ui" line="651"/>
         <location filename="../Forms/Util/Researcher.ui" line="783"/>
-        <location filename="../Forms/Util/Researcher.ui" line="906"/>
-        <location filename="../Forms/Util/Researcher.ui" line="967"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1100"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1171"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1314"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1395"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1548"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1639"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1797"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1903"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2076"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2187"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2370"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2491"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2684"/>
+        <location filename="../Forms/Util/Researcher.ui" line="840"/>
+        <location filename="../Forms/Util/Researcher.ui" line="982"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1049"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1201"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1278"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1440"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1527"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1699"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1796"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1973"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2085"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2277"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2394"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2596"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2723"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2935"/>
         <location filename="../Forms/Util/Researcher.cpp" line="447"/>
         <location filename="../Forms/Util/Researcher.cpp" line="476"/>
         <source>32Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="519"/>
-        <location filename="../Forms/Util/Researcher.ui" line="624"/>
-        <location filename="../Forms/Util/Researcher.ui" line="737"/>
+        <location filename="../Forms/Util/Researcher.ui" line="526"/>
+        <location filename="../Forms/Util/Researcher.ui" line="656"/>
         <location filename="../Forms/Util/Researcher.ui" line="788"/>
-        <location filename="../Forms/Util/Researcher.ui" line="911"/>
-        <location filename="../Forms/Util/Researcher.ui" line="972"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1105"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1176"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1319"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1400"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1553"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1644"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1807"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1908"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2081"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2192"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2375"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2496"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2689"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2898"/>
+        <location filename="../Forms/Util/Researcher.ui" line="845"/>
+        <location filename="../Forms/Util/Researcher.ui" line="987"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1054"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1206"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1283"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1445"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1532"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1704"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1801"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1983"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2090"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2282"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2399"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2601"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2728"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2940"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3161"/>
         <location filename="../Forms/Util/Researcher.cpp" line="448"/>
         <location filename="../Forms/Util/Researcher.cpp" line="475"/>
         <location filename="../Forms/Util/Researcher.cpp" line="476"/>
@@ -2405,26 +2405,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="524"/>
-        <location filename="../Forms/Util/Researcher.ui" line="629"/>
-        <location filename="../Forms/Util/Researcher.ui" line="742"/>
+        <location filename="../Forms/Util/Researcher.ui" line="531"/>
+        <location filename="../Forms/Util/Researcher.ui" line="661"/>
         <location filename="../Forms/Util/Researcher.ui" line="793"/>
-        <location filename="../Forms/Util/Researcher.ui" line="916"/>
-        <location filename="../Forms/Util/Researcher.ui" line="977"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1110"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1181"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1324"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1405"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1558"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1649"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1812"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1913"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2086"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2197"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2380"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2501"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2694"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2903"/>
+        <location filename="../Forms/Util/Researcher.ui" line="850"/>
+        <location filename="../Forms/Util/Researcher.ui" line="992"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1059"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1211"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1288"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1450"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1537"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1709"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1806"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1988"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2095"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2287"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2404"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2606"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2733"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2945"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3166"/>
         <location filename="../Forms/Util/Researcher.cpp" line="449"/>
         <location filename="../Forms/Util/Researcher.cpp" line="475"/>
         <location filename="../Forms/Util/Researcher.cpp" line="476"/>
@@ -2432,361 +2432,361 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="712"/>
-        <location filename="../Forms/Util/Researcher.ui" line="886"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1080"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1294"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1528"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1782"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2056"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2350"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2664"/>
+        <location filename="../Forms/Util/Researcher.ui" line="763"/>
+        <location filename="../Forms/Util/Researcher.ui" line="962"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1181"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1420"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1679"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1958"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2257"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2576"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2915"/>
         <location filename="../Forms/Util/Researcher.cpp" line="256"/>
         <location filename="../Forms/Util/Researcher.cpp" line="281"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2798"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3055"/>
         <source>Parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2804"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3061"/>
         <source>Starting Frame</source>
         <translation>Frame de départ</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2882"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3145"/>
         <source>Search Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2876"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2922"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3139"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3185"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2940"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3203"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2821"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3078"/>
         <source>Max Results</source>
         <translation>Nombre de résultats maximum</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="1983"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2156"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2272"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2455"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2581"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2774"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2165"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2357"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2479"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2681"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2813"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3025"/>
         <location filename="../Forms/Util/Researcher.cpp" line="465"/>
         <source>Previous 7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2277"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2460"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2586"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2779"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2484"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2686"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2818"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3030"/>
         <location filename="../Forms/Util/Researcher.cpp" line="466"/>
         <source>Previous 8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2591"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2784"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2823"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3035"/>
         <location filename="../Forms/Util/Researcher.cpp" line="467"/>
         <source>Previous 9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2838"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3095"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2863"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3120"/>
         <source>Generate</source>
         <translation>Générer</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="389"/>
+        <location filename="../Forms/Util/Researcher.ui" line="390"/>
         <source>TinyMT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="491"/>
-        <location filename="../Forms/Util/Researcher.ui" line="634"/>
-        <location filename="../Forms/Util/Researcher.ui" line="747"/>
+        <location filename="../Forms/Util/Researcher.ui" line="498"/>
+        <location filename="../Forms/Util/Researcher.ui" line="666"/>
         <location filename="../Forms/Util/Researcher.ui" line="798"/>
-        <location filename="../Forms/Util/Researcher.ui" line="921"/>
-        <location filename="../Forms/Util/Researcher.ui" line="982"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1115"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1186"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1329"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1410"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1563"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1654"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1817"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1918"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2091"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2202"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2385"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2506"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2699"/>
+        <location filename="../Forms/Util/Researcher.ui" line="855"/>
+        <location filename="../Forms/Util/Researcher.ui" line="997"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1064"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1216"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1293"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1455"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1542"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1714"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1811"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1993"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2100"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2292"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2409"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2611"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2738"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2950"/>
         <location filename="../Forms/Util/Researcher.cpp" line="450"/>
         <source>Custom 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="596"/>
-        <location filename="../Forms/Util/Researcher.ui" line="803"/>
-        <location filename="../Forms/Util/Researcher.ui" line="926"/>
-        <location filename="../Forms/Util/Researcher.ui" line="987"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1120"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1191"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1334"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1415"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1568"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1659"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1822"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1923"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2096"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2207"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2390"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2511"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2704"/>
+        <location filename="../Forms/Util/Researcher.ui" line="628"/>
+        <location filename="../Forms/Util/Researcher.ui" line="860"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1002"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1069"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1221"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1298"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1460"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1547"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1719"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1816"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1998"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2105"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2297"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2414"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2616"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2743"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2955"/>
         <location filename="../Forms/Util/Researcher.cpp" line="451"/>
         <source>Custom 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="760"/>
-        <location filename="../Forms/Util/Researcher.ui" line="992"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1125"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1196"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1339"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1420"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1573"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1664"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1827"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1928"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2101"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2212"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2395"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2516"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2709"/>
+        <location filename="../Forms/Util/Researcher.ui" line="817"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1074"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1226"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1303"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1465"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1552"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1724"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1821"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2003"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2110"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2302"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2419"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2621"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2748"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2960"/>
         <location filename="../Forms/Util/Researcher.cpp" line="452"/>
         <source>Custom 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="639"/>
-        <location filename="../Forms/Util/Researcher.ui" line="752"/>
-        <location filename="../Forms/Util/Researcher.ui" line="808"/>
-        <location filename="../Forms/Util/Researcher.ui" line="931"/>
-        <location filename="../Forms/Util/Researcher.ui" line="997"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1130"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1206"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1349"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1435"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1588"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1684"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1847"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1953"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2126"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2242"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2425"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2551"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2744"/>
+        <location filename="../Forms/Util/Researcher.ui" line="671"/>
+        <location filename="../Forms/Util/Researcher.ui" line="803"/>
+        <location filename="../Forms/Util/Researcher.ui" line="865"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1007"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1079"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1231"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1313"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1475"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1567"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1739"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1841"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2023"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2135"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2327"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2449"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2651"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2783"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2995"/>
         <location filename="../Forms/Util/Researcher.cpp" line="459"/>
         <source>Previous 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="813"/>
-        <location filename="../Forms/Util/Researcher.ui" line="936"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1002"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1135"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1211"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1354"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1440"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1593"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1689"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1852"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1958"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2131"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2247"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2430"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2556"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2749"/>
+        <location filename="../Forms/Util/Researcher.ui" line="870"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1012"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1084"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1236"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1318"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1480"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1572"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1744"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1846"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2028"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2140"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2332"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2454"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2656"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2788"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3000"/>
         <location filename="../Forms/Util/Researcher.cpp" line="460"/>
         <source>Previous 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="944"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1201"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1344"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1425"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1578"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1669"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1832"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1933"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2106"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2217"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2400"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2521"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2714"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1026"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1308"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1470"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1557"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1729"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1826"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2008"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2115"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2307"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2424"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2626"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2753"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2965"/>
         <location filename="../Forms/Util/Researcher.cpp" line="453"/>
         <source>Custom 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="1007"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1140"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1216"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1359"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1445"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1598"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1694"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1857"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1963"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2136"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2252"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2435"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2561"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2754"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1089"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1241"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1323"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1485"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1577"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1749"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1851"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2033"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2145"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2337"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2459"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2661"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2793"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3005"/>
         <location filename="../Forms/Util/Researcher.cpp" line="461"/>
         <source>Previous 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="1148"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1430"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1583"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1674"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1837"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1938"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2111"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2222"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2405"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2526"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2719"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1255"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1562"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1734"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1831"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2013"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2120"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2312"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2429"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2631"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2758"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2970"/>
         <location filename="../Forms/Util/Researcher.cpp" line="454"/>
         <source>Custom 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="1372"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1679"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1842"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1943"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2116"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2227"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2410"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2531"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2724"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1504"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1836"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2018"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2125"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2317"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2434"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2636"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2763"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2975"/>
         <location filename="../Forms/Util/Researcher.cpp" line="455"/>
         <source>Custom 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="1221"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1364"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1450"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1603"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1699"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1862"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1968"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2141"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2257"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2440"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2566"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2759"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1328"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1490"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1582"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1754"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1856"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2038"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2150"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2342"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2464"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2666"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2798"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3010"/>
         <location filename="../Forms/Util/Researcher.cpp" line="462"/>
         <source>Previous 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="1455"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1608"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1704"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1867"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1973"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2146"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2262"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2445"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2571"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2764"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1587"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1759"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1861"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2043"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2155"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2347"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2469"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2671"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2803"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3015"/>
         <location filename="../Forms/Util/Researcher.cpp" line="463"/>
         <source>Previous 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="1709"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1872"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1978"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2151"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2267"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2450"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2576"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2769"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1866"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2048"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2160"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2352"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2474"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2676"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2808"/>
+        <location filename="../Forms/Util/Researcher.ui" line="3020"/>
         <location filename="../Forms/Util/Researcher.cpp" line="464"/>
         <source>Previous 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="1616"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1948"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2121"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2232"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2415"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2536"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2729"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1773"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2130"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2322"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2439"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2641"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2768"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2980"/>
         <location filename="../Forms/Util/Researcher.cpp" line="456"/>
         <source>Custom 7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="1880"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2237"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2420"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2541"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2734"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2062"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2444"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2646"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2773"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2985"/>
         <location filename="../Forms/Util/Researcher.cpp" line="457"/>
         <source>Custom 8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2164"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2546"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2739"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2371"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2778"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2990"/>
         <location filename="../Forms/Util/Researcher.cpp" line="458"/>
         <source>Custom 9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="2468"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2700"/>
         <source>Custom 10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.ui" line="589"/>
-        <location filename="../Forms/Util/Researcher.ui" line="704"/>
-        <location filename="../Forms/Util/Researcher.ui" line="878"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1072"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1286"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1520"/>
-        <location filename="../Forms/Util/Researcher.ui" line="1774"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2048"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2342"/>
-        <location filename="../Forms/Util/Researcher.ui" line="2656"/>
+        <location filename="../Forms/Util/Researcher.ui" line="615"/>
+        <location filename="../Forms/Util/Researcher.ui" line="755"/>
+        <location filename="../Forms/Util/Researcher.ui" line="954"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1173"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1412"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1671"/>
+        <location filename="../Forms/Util/Researcher.ui" line="1950"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2249"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2568"/>
+        <location filename="../Forms/Util/Researcher.ui" line="2907"/>
         <source>Hex</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2929,123 +2929,128 @@
 <context>
     <name>Searcher3Model</name>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="713"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="725"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="713"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="725"/>
         <source>Synch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="713"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="725"/>
         <source>Cute Charm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="835"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="876"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="909"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="849"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="892"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="925"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="837"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="851"/>
         <source>Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="839"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="853"/>
         <source>Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="841"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="878"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="911"/>
-        <source>PID</source>
-        <translation>PID</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="845"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="882"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="915"/>
-        <source>Nature</source>
-        <translation>Nature</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="847"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="884"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="917"/>
-        <source>Ability</source>
-        <translation>Talent</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="849"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="886"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="919"/>
-        <source>HP</source>
-        <translation>PV</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="851"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="888"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="921"/>
-        <source>Atk</source>
-        <translation>Attaque</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="853"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="890"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="923"/>
-        <source>Def</source>
-        <translation>Déf</translation>
-    </message>
-    <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="855"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="892"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="925"/>
-        <source>SpA</source>
-        <translation>Attaque spé</translation>
+        <source>Level</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="857"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="894"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="927"/>
-        <source>SpD</source>
-        <translation>Déf spé</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="859"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="896"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="929"/>
-        <source>Spe</source>
-        <translation type="unfinished"></translation>
+        <source>PID</source>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="861"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="898"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="931"/>
-        <source>Hidden</source>
-        <translation>Caché</translation>
+        <source>Nature</source>
+        <translation>Nature</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="863"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="900"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="933"/>
-        <source>Power</source>
-        <translation>Puissance</translation>
+        <source>Ability</source>
+        <translation>Talent</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="865"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="902"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="935"/>
+        <source>HP</source>
+        <translation>PV</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="867"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="904"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="937"/>
+        <source>Atk</source>
+        <translation>Attaque</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="869"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="906"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="939"/>
+        <source>Def</source>
+        <translation>Déf</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="871"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="908"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="941"/>
+        <source>SpA</source>
+        <translation>Attaque spé</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="873"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="910"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="943"/>
+        <source>SpD</source>
+        <translation>Déf spé</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="875"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="912"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="945"/>
+        <source>Spe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="877"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="914"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="947"/>
+        <source>Hidden</source>
+        <translation>Caché</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="879"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="916"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="949"/>
+        <source>Power</source>
+        <translation>Puissance</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="881"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="918"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="951"/>
         <source>Gender</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="937"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="953"/>
         <source>Reason</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3088,17 +3093,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="41"/>
+        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="56"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="41"/>
+        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="56"/>
         <source>Seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="101"/>
+        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="56"/>
+        <source>Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="117"/>
         <source>Please enter a year between 2000 and 2037</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3106,498 +3116,498 @@
 <context>
     <name>Stationary3</name>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="168"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="169"/>
         <source>Generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="189"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1421"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="190"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1588"/>
         <source>RNG Info</source>
         <translation>RNG Info</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="316"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="347"/>
         <source>Generate</source>
         <translation>Générer</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="408"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="954"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="451"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1089"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="466"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="645"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="722"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1022"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1060"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1348"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="531"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="721"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="855"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1157"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1335"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1463"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="735"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="946"/>
         <source>Use Delay?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="180"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="183"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="801"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1158"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="926"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1528"/>
         <source>Shiny Only?</source>
         <translation>Shiny uniquement ?</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="653"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1173"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="882"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1484"/>
         <source>Genderless</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1584"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1596"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1751"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1763"/>
         <source>Profile</source>
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="202"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1434"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="215"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1601"/>
         <source>Method</source>
         <translation>Méthode</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="209"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="228"/>
         <source>Max Results</source>
         <translation>Nombre de résultats maximum</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="195"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="202"/>
         <source>Starting Frame</source>
         <translation>Frame de départ</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="216"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1494"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1613"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="241"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1661"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1780"/>
         <source>TID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="238"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1456"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="263"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1623"/>
         <source>Method 1 Reverse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="282"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1427"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1653"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="313"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1594"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1820"/>
         <source>SID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="389"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="426"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="432"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="978"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="479"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1117"/>
         <source>Gender</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="458"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1340"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="517"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1149"/>
         <source>Ability</source>
         <translation>Talent</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="484"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1366"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="555"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1181"/>
         <source>Nature</source>
         <translation>Nature</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="492"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1212"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="569"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1189"/>
         <source>Adamant</source>
         <translation>Rigide</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="497"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1217"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="574"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1194"/>
         <source>Bold</source>
         <translation>Assuré</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="502"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1222"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="579"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1199"/>
         <source>Brave</source>
         <translation>Brave</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="507"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1227"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="584"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1204"/>
         <source>Calm</source>
         <translation>Calme</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="512"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1232"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="589"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1209"/>
         <source>Careful</source>
         <translation>Prudent</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="517"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1237"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="594"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1214"/>
         <source>Hasty</source>
         <translation>Pressé</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="522"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1242"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="599"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1219"/>
         <source>Impish</source>
         <translation>Malin</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="527"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1247"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="604"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1224"/>
         <source>Jolly</source>
         <translation>Jovial</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="532"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1252"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="609"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1229"/>
         <source>Lonely</source>
         <translation>Solo</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="537"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1257"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="614"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1234"/>
         <source>Mild</source>
         <translation>Doux</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="542"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1262"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="619"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1239"/>
         <source>Modest</source>
         <translation>Modeste</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="547"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1267"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="624"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1244"/>
         <source>Naive</source>
         <translation>Naïf</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="552"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1272"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="629"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1249"/>
         <source>Naughty</source>
         <translation>Mauvais</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="557"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1277"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="634"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1254"/>
         <source>Quiet</source>
         <translation>Discret</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="562"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1282"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="639"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1259"/>
         <source>Rash</source>
         <translation>Foufou</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="567"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1287"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="644"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1264"/>
         <source>Relaxed</source>
         <translation>Relax</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="572"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1292"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="649"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1269"/>
         <source>Sassy</source>
         <translation>Malpoli</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="577"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1297"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="654"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1274"/>
         <source>Timid</source>
         <translation>Timide</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="582"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1302"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="659"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1279"/>
         <source>Gentle</source>
         <translation>Gentil</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="587"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1307"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="664"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1284"/>
         <source>Lax</source>
         <translation>Lâche</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="592"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1312"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="669"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1289"/>
         <source>Bashful</source>
         <translation>Pudique</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="597"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1317"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="674"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1294"/>
         <source>Docile</source>
         <translation>Docile</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="602"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1322"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="679"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1299"/>
         <source>Hardy</source>
         <translation>Hardi</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="607"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1327"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="684"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1304"/>
         <source>Quirky</source>
         <translation>Bizarre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="612"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1332"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="689"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1309"/>
         <source>Serious</source>
         <translation>Sérieux</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="620"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1067"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="734"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1348"/>
         <source>Hidden Power</source>
         <translation>Puissance cachée</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="658"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1178"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="887"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1489"/>
         <source>50% Male / 50% Female</source>
         <translation>50% mâle / 50% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="663"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1183"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="892"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1494"/>
         <source>25% Male / 75% Female</source>
         <translation>25% mâle / 75% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="668"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1188"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="897"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1499"/>
         <source>75% Male / 25% Female</source>
         <translation>75% mâle / 25% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="673"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1193"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="902"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1504"/>
         <source>87.5% Male / 12.5% Female</source>
         <translation>87.5% mâle / 12.5% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="678"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1198"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="907"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1509"/>
         <source>100% Male</source>
         <translation>100% mâle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="683"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1203"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="912"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1514"/>
         <source>100% Female</source>
         <translation>100% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="691"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1029"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="868"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1476"/>
         <source>Gender Ratio</source>
         <translation>Ratio du genre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="749"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="972"/>
         <source>Disable Filters</source>
         <translation>Désactiver les filtres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="808"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1023"/>
         <source>(F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="816"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1075"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="748"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1356"/>
         <source>Fighting</source>
         <translation>Combat</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="821"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1080"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="753"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1361"/>
         <source>Flying</source>
         <translation>Vol</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="826"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1085"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="758"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1366"/>
         <source>Poison</source>
         <translation>Poison</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="831"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1090"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="763"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1371"/>
         <source>Ground</source>
         <translation>Sol</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="836"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1095"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="768"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1376"/>
         <source>Rock</source>
         <translation>Roche</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="841"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1100"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="773"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1381"/>
         <source>Bug</source>
         <translation>Insecte</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="846"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1105"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="778"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1386"/>
         <source>Ghost</source>
         <translation>Spectre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="851"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1110"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="783"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1391"/>
         <source>Steel</source>
         <translation>Acier</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="856"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1115"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="788"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1396"/>
         <source>Fire</source>
         <translation>Feu</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="861"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1120"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="793"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1401"/>
         <source>Water</source>
         <translation>Eau</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="866"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1125"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="798"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1406"/>
         <source>Grass</source>
         <translation>Plante</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="871"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1130"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="803"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1411"/>
         <source>Electric</source>
         <translation>Électrik</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="876"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1135"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="808"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1416"/>
         <source>Psychic</source>
         <translation>Psy</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="881"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1140"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="813"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1421"/>
         <source>Ice</source>
         <translation>Glace</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="886"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1145"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="818"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1426"/>
         <source>Dragon</source>
         <translation>Dragon</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="891"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1150"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="823"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1431"/>
         <source>Dark</source>
         <translation>Ténèbres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="939"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1068"/>
         <source>Searcher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1527"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1694"/>
         <source>Shadow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1548"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="321"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="332"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1715"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="324"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="335"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1627"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1794"/>
         <source>Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1634"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="200"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1801"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="203"/>
         <source>Emerald</source>
         <translation>Emeraude</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1646"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1813"/>
         <source>Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="233"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1451"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="258"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1618"/>
         <source>Method 1</source>
         <translation>Méthode 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="243"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1461"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="268"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1628"/>
         <source>Method 2</source>
         <translation>Méthode 2</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="248"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1466"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="273"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1633"/>
         <source>Method 4</source>
         <translation>Méthode 4</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="253"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1471"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="278"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1638"/>
         <source>XD/Colo</source>
         <translation>XD/Colo</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="258"/>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1486"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="283"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1653"/>
         <source>Channel</source>
         <translation>Channel</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1476"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1643"/>
         <source>Gales</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.ui" line="1481"/>
+        <location filename="../Forms/Gen3/Stationary3.ui" line="1648"/>
         <source>Colo</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3657,48 +3667,53 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="361"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="163"/>
+        <source>Generate times for seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="364"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="401"/>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="404"/>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="407"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="410"/>
         <source> (Citadark)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="402"/>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="405"/>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="408"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="411"/>
         <source> (Initial)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="403"/>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="406"/>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="409"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="412"/>
         <source> (Phenac)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="462"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="473"/>
         <source>Save Output to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="462"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="473"/>
         <source>Text File (*.txt);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="505"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="516"/>
         <source>Save Output to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="505"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="516"/>
         <source>CSV File (*.csv);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3784,665 +3799,675 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="169"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="170"/>
         <source>Generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="190"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1088"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="191"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1164"/>
         <source>RNG Info</source>
         <translation>RNG Info</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="446"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="451"/>
         <source>Generate</source>
         <translation>Générer</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="471"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1298"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="476"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1374"/>
         <source>Filters</source>
         <translation>Filtres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="529"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="701"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="833"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="990"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1184"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1356"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1528"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1563"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1685"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="544"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="728"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="775"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="903"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1260"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1442"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1620"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1661"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1789"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="906"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="988"/>
         <source>Use Delay?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1199"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="98"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="148"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1275"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="99"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="149"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="165"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="166"/>
         <source>Set Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="166"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="167"/>
         <source>Jump to Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="167"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="168"/>
         <source>Center to +/- 1 Second and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="168"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="169"/>
         <source>Center to +/- 2 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="169"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="170"/>
         <source>Center to +/- 3 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="170"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="171"/>
         <source>Center to +/- 5 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="171"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="172"/>
         <source>Center to +/- 10 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="172"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="173"/>
         <source>Center to +/- 1 Minute and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="173"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="174"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="174"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="175"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="339"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="219"/>
+        <source>Copy Seed to Clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="220"/>
+        <source>Generate times for seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="350"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="524"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="544"/>
         <source>Save Output to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="524"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="544"/>
         <source>Text File (*.txt);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="567"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="587"/>
         <source>Save Output to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="567"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="587"/>
         <source>CSV File (*.csv);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="622"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="657"/>
         <source>♂ Lead (50% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="623"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="658"/>
         <source>♂ Lead (75% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="624"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="659"/>
         <source>♂ Lead (25% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="625"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="660"/>
         <source>♂ Lead (12.5% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="626"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="661"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="627"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="662"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="628"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="663"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="629"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="664"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="886"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1738"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="968"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1854"/>
         <source>Shiny Only?</source>
         <translation>Shiny uniquement ?</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="848"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1700"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="924"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1810"/>
         <source>Genderless</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1774"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1786"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1888"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1900"/>
         <source>Profile</source>
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="308"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="313"/>
         <source>Starting Frame</source>
         <translation>Frame de départ</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="331"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="336"/>
         <source>Max Results</source>
         <translation>Nombre de résultats maximum</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="371"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1148"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1843"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="376"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1224"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1957"/>
         <source>SID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="391"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="396"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="351"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1101"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1803"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="356"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1177"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1917"/>
         <source>TID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="196"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1115"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="197"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1191"/>
         <source>Method</source>
         <translation>Méthode</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="231"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1094"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="232"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1170"/>
         <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="241"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1275"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="242"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1351"/>
         <source>Pokémon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="251"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1108"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="256"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1184"/>
         <source>Encounter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="259"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1235"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="264"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1311"/>
         <source>Wild</source>
         <translation>Sauvage</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="264"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1240"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="269"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1316"/>
         <source>Rock Smash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="269"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1245"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="274"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1321"/>
         <source>Surfing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="274"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1250"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="279"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1326"/>
         <source>Old Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="279"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1255"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="284"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1331"/>
         <source>Good Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="284"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1260"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="289"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1336"/>
         <source>Super Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="298"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1189"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="618"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="633"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="303"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1265"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="653"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="668"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="495"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1322"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="504"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1402"/>
         <source>Gender</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="521"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1348"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="536"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1434"/>
         <source>Ability</source>
         <translation>Talent</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="547"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1374"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="568"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1466"/>
         <source>Nature</source>
         <translation>Nature</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="555"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1382"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="576"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1474"/>
         <source>Adamant</source>
         <translation>Rigide</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="560"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1387"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="581"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1479"/>
         <source>Bold</source>
         <translation>Assuré</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="565"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1392"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="586"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1484"/>
         <source>Brave</source>
         <translation>Brave</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="570"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1397"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="591"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1489"/>
         <source>Calm</source>
         <translation>Calme</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="575"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1402"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="596"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1494"/>
         <source>Careful</source>
         <translation>Prudent</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="580"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1407"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="601"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1499"/>
         <source>Hasty</source>
         <translation>Pressé</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="585"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1412"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="606"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1504"/>
         <source>Impish</source>
         <translation>Malin</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="590"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1417"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="611"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1509"/>
         <source>Jolly</source>
         <translation>Jovial</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="595"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1422"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="616"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1514"/>
         <source>Lonely</source>
         <translation>Solo</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="600"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1427"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="621"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1519"/>
         <source>Mild</source>
         <translation>Doux</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="605"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1432"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="626"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1524"/>
         <source>Modest</source>
         <translation>Modeste</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="610"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1437"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="631"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1529"/>
         <source>Naive</source>
         <translation>Naïf</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="615"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1442"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="636"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1534"/>
         <source>Naughty</source>
         <translation>Mauvais</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="620"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1447"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="641"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1539"/>
         <source>Quiet</source>
         <translation>Discret</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="625"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1452"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="646"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1544"/>
         <source>Rash</source>
         <translation>Foufou</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="630"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1457"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="651"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1549"/>
         <source>Relaxed</source>
         <translation>Relax</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="635"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1462"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="656"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1554"/>
         <source>Sassy</source>
         <translation>Malpoli</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="640"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1467"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="661"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1559"/>
         <source>Timid</source>
         <translation>Timide</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="645"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1472"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="666"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1564"/>
         <source>Gentle</source>
         <translation>Gentil</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="650"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1477"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="671"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1569"/>
         <source>Lax</source>
         <translation>Lâche</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="655"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1482"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="676"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1574"/>
         <source>Bashful</source>
         <translation>Pudique</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="660"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1487"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="681"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1579"/>
         <source>Docile</source>
         <translation>Docile</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="665"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1492"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="686"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1584"/>
         <source>Hardy</source>
         <translation>Hardi</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="670"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1497"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="691"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1589"/>
         <source>Quirky</source>
         <translation>Bizarre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="675"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1502"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="696"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1594"/>
         <source>Serious</source>
         <translation>Sérieux</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="708"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1535"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="741"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1633"/>
         <source>Encounter Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="718"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1570"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="788"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1674"/>
         <source>Hidden Power</source>
         <translation>Puissance cachée</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="840"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1692"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="916"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1802"/>
         <source>Gender Ratio</source>
         <translation>Ratio du genre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="853"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1705"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="929"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1815"/>
         <source>50% Male / 50% Female</source>
         <translation>50% mâle / 50% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="858"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1710"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="934"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1820"/>
         <source>25% Male / 75% Female</source>
         <translation>25% mâle / 75% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="863"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1715"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="939"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1825"/>
         <source>75% Male / 25% Female</source>
         <translation>75% mâle / 25% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="868"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1720"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="944"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1830"/>
         <source>87.5% Male / 12.5% Female</source>
         <translation>87.5% mâle / 12.5% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="873"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1725"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="949"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1835"/>
         <source>100% Male</source>
         <translation>100% mâle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="878"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1730"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="954"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1840"/>
         <source>100% Female</source>
         <translation>100% femelle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="920"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1014"/>
         <source>Disable Filters</source>
         <translation>Désactiver les filtres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="965"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1065"/>
         <source>(F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1268"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1344"/>
         <source>Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1817"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1931"/>
         <source>Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1824"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="259"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1938"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="269"/>
         <source>Emerald</source>
         <translation>Emeraude</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1836"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1950"/>
         <source>Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="726"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1578"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="796"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1682"/>
         <source>Fighting</source>
         <translation>Combat</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="731"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1583"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="801"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1687"/>
         <source>Flying</source>
         <translation>Vol</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="736"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1588"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="806"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1692"/>
         <source>Poison</source>
         <translation>Poison</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="741"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1593"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="811"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1697"/>
         <source>Ground</source>
         <translation>Sol</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="746"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1598"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="816"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1702"/>
         <source>Rock</source>
         <translation>Roche</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="751"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1603"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="821"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1707"/>
         <source>Bug</source>
         <translation>Insecte</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="756"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1608"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="826"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1712"/>
         <source>Ghost</source>
         <translation>Spectre</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="761"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1613"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="831"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1717"/>
         <source>Steel</source>
         <translation>Acier</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="766"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1618"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="836"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1722"/>
         <source>Fire</source>
         <translation>Feu</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="771"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1623"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="841"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1727"/>
         <source>Water</source>
         <translation>Eau</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="776"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1628"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="846"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1732"/>
         <source>Grass</source>
         <translation>Plante</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="781"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1633"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="851"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1737"/>
         <source>Electric</source>
         <translation>Électrik</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="786"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1638"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="856"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1742"/>
         <source>Psychic</source>
         <translation>Psy</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="791"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1643"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="861"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1747"/>
         <source>Ice</source>
         <translation>Glace</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="796"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1648"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="866"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1752"/>
         <source>Dragon</source>
         <translation>Dragon</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="801"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1653"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="871"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1757"/>
         <source>Dark</source>
         <translation>Ténèbres</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1031"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1104"/>
         <source>Searcher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1194"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="303"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="620"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1270"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="313"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="655"/>
         <source>Cute Charm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1221"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="392"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="403"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1297"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="404"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="415"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="213"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1165"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="214"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1241"/>
         <source>Method H1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="218"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1170"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="219"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1246"/>
         <source>Method H2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.ui" line="223"/>
-        <location filename="../Forms/Gen3/Wild3.ui" line="1175"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="224"/>
+        <location filename="../Forms/Gen3/Wild3.ui" line="1251"/>
         <source>Method H4</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4450,82 +4475,87 @@
 <context>
     <name>Wild3Model</name>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="115"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="117"/>
         <source>Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="117"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="119"/>
         <source>Occidentary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="119"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="121"/>
         <source>Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="121"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="123"/>
+        <source>Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="125"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="125"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="129"/>
         <source>Nature</source>
         <translation>Nature</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="127"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="131"/>
         <source>Ability</source>
         <translation>Talent</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="129"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="133"/>
         <source>HP</source>
         <translation>PV</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="131"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="135"/>
         <source>Atk</source>
         <translation>Attaque</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="133"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="137"/>
         <source>Def</source>
         <translation>Déf</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="135"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="139"/>
         <source>SpA</source>
         <translation>Attaque spé</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="137"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="141"/>
         <source>SpD</source>
         <translation>Déf spé</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="139"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="143"/>
         <source>Spe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="141"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="145"/>
         <source>Hidden</source>
         <translation>Caché</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="143"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="147"/>
         <source>Power</source>
         <translation>Puissance</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="145"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="149"/>
         <source>Gender</source>
         <translation>Genre</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="147"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="151"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
