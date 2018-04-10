@@ -260,13 +260,13 @@ QPushButton {
          <widget class="QGroupBox" name="groupBoxRNGInfoStationary3">
           <property name="minimumSize">
            <size>
-            <width>0</width>
+            <width>300</width>
             <height>231</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>249</width>
+            <width>300</width>
             <height>231</height>
            </size>
           </property>
@@ -1578,14 +1578,14 @@ QPushButton {
          <widget class="QGroupBox" name="groupBoxRNGInfoSearcher3">
           <property name="minimumSize">
            <size>
-            <width>249</width>
+            <width>300</width>
             <height>231</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>249</width>
-            <height>231</height>
+            <height>300</height>
            </size>
           </property>
           <property name="styleSheet">
