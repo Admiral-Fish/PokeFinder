@@ -717,9 +717,27 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.frame;
                     case 2:
+                        switch (frame.leadType)
                         {
-                            Lead type = frame.leadType;
-                            return type == None ? tr("None") : tr("Synch");
+                            case None:
+                                return tr("None");
+                            case Synchronize:
+                                return tr("Synchronize");
+                            case SuctionCups:
+                                return tr("Suction Cups");
+                            case CuteCharm25F:
+                            case CuteCharm50F:
+                            case CuteCharm75F:
+                            case CuteCharm125F:
+                                return tr("Cute Charm (♀)");
+                            case CuteCharm25M:
+                                return tr("Cute Charm (25% ♂");
+                            case CuteCharm50M:
+                                return tr("Cute Charm (50% ♂");
+                            case CuteCharm75M:
+                                return tr("Cute Charm (75% ♂");
+                            case CuteCharm875M:
+                                return tr("Cute Charm (87.5% ♂");
                         }
                     case 3:
                         return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
