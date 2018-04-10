@@ -19,13 +19,13 @@
         <location filename="../Models/Gen3/Egg3Model.cpp" line="194"/>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="251"/>
         <source>HP</source>
-        <translation>体力</translation>
+        <translation>HP</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="196"/>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="253"/>
         <source>Atk</source>
-        <translation>攻击力</translation>
+        <translation>攻击</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="198"/>
@@ -55,7 +55,7 @@
         <location filename="../Models/Gen3/Egg3Model.cpp" line="206"/>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="263"/>
         <source>Hidden</source>
-        <translation>隐藏</translation>
+        <translation>觉醒</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="208"/>
@@ -66,13 +66,13 @@
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="218"/>
         <source>Redraws</source>
-        <translation type="unfinished"></translation>
+        <translation>重抽</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="220"/>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="243"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="224"/>
@@ -84,7 +84,7 @@
         <location filename="../Models/Gen3/Egg3Model.cpp" line="226"/>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="249"/>
         <source>Ability</source>
-        <translation>能力</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="228"/>
@@ -95,42 +95,42 @@
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="235"/>
         <source>Held Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>持有帧数</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="237"/>
         <source>Held Time</source>
-        <translation type="unfinished"></translation>
+        <translation>持有时间</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="239"/>
         <source>Pickup Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>领取帧数</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Egg3Model.cpp" line="241"/>
         <source>Pickup Time</source>
-        <translation type="unfinished"></translation>
+        <translation>领取时间</translation>
     </message>
 </context>
 <context>
     <name>Eggs3</name>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="20"/>
-        <source>Gen 3 Eggs</source>
-        <translation type="unfinished"></translation>
+        <source>Gen 3 Egg</source>
+        <translation>Gen 3 孵化乱数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="183"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2695"/>
         <location filename="../Forms/Gen3/Eggs3.cpp" line="150"/>
         <source>Emerald</source>
-        <translation type="unfinished"></translation>
+        <translation>绿宝石</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="195"/>
         <source>Egg PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="325"/>
@@ -163,7 +163,7 @@
         <location filename="../Forms/Gen3/Eggs3.ui" line="1769"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2221"/>
         <source>Ability</source>
-        <translation>能力</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="385"/>
@@ -175,13 +175,13 @@
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="540"/>
         <source>Everstone</source>
-        <translation type="unfinished"></translation>
+        <translation>不变之石</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="548"/>
         <location filename="../Forms/Gen3/Eggs3.cpp" line="52"/>
         <source>None</source>
-        <translation>不指定</translation>
+        <translation>任意</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="393"/>
@@ -388,24 +388,24 @@
         <location filename="../Forms/Gen3/Eggs3.ui" line="1690"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2389"/>
         <source>Compatibility</source>
-        <translation type="unfinished"></translation>
+        <translation>好感度</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="753"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1683"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2343"/>
         <source>Gender Ratio</source>
-        <translation>性别比例</translation>
+        <translation>性别比</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="278"/>
         <source>Redraws</source>
-        <translation type="unfinished"></translation>
+        <translation>重抽</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="362"/>
         <source>Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>标定</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="681"/>
@@ -428,42 +428,42 @@
         <location filename="../Forms/Gen3/Eggs3.ui" line="1818"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2112"/>
         <source>Parent 1</source>
-        <translation type="unfinished"></translation>
+        <translation>亲代1</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="973"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1867"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2161"/>
         <source>Parent 2</source>
-        <translation type="unfinished"></translation>
+        <translation>亲代2</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1371"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1953"/>
         <source>Seed</source>
-        <translation>种子</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2688"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>游戏</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2707"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>管理</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1364"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1993"/>
         <source>Frame Held</source>
-        <translation type="unfinished"></translation>
+        <translation>持有帧数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1269"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2026"/>
         <source>Pickup Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>领取帧数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2645"/>
@@ -476,49 +476,49 @@
         <location filename="../Forms/Gen3/Eggs3.ui" line="1425"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2351"/>
         <source>Genderless</source>
-        <translation>不关心</translation>
+        <translation>无性别</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="766"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1430"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2356"/>
         <source>50% Male / 50% Female</source>
-        <translation>50% 雄 / 50% 雌</translation>
+        <translation>50%公/50%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="771"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1435"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2361"/>
         <source>25% Male / 75% Female</source>
-        <translation>25% 雄 / 75% 雌</translation>
+        <translation>25%公/75%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="776"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1440"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2366"/>
         <source>75% Male / 25% Female</source>
-        <translation>75% 雄 / 25% 雌</translation>
+        <translation>75%公/25%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="781"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1445"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2371"/>
         <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% 雄 / 12.5% 雌</translation>
+        <translation>87.5%公/12.5%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="786"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1450"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2376"/>
         <source>100% Male</source>
-        <translation>100% 雄性</translation>
+        <translation>100%公</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="791"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1455"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2381"/>
         <source>100% Female</source>
-        <translation>100% 雌性</translation>
+        <translation>100%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="799"/>
@@ -538,27 +538,27 @@
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="866"/>
         <source>Egg IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>个体</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="872"/>
         <source>Normal Spreads</source>
-        <translation type="unfinished"></translation>
+        <translation>正常个体分布</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1175"/>
         <source>Split Spreads</source>
-        <translation type="unfinished"></translation>
+        <translation>分开个体分布</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1081"/>
         <source>Alternate Spreads</source>
-        <translation type="unfinished"></translation>
+        <translation>替换个体分布</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="885"/>
         <source>Hidden Power:</source>
-        <translation>隐藏特性:</translation>
+        <translation>觉醒力量:</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1092"/>
@@ -675,7 +675,7 @@
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1219"/>
         <source>Ruby/Sapphire</source>
-        <translation type="unfinished"></translation>
+        <translation>红/蓝宝石</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1237"/>
@@ -693,33 +693,33 @@
         <location filename="../Forms/Gen3/Eggs3.ui" line="1748"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2317"/>
         <source>Hidden Power</source>
-        <translation>隐藏特性</translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1929"/>
         <source>Fire Red/Leaf Green</source>
-        <translation type="unfinished"></translation>
+        <translation>火红/叶绿</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="712"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1406"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2325"/>
         <source>The two don&apos;t seem to like each other</source>
-        <translation type="unfinished"></translation>
+        <translation>它们似乎不喜欢对方</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="717"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1411"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2330"/>
         <source>The two seem to get along</source>
-        <translation type="unfinished"></translation>
+        <translation>它们似乎合得来</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui" line="722"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="1416"/>
         <location filename="../Forms/Gen3/Eggs3.ui" line="2335"/>
         <source>The two seem to get along very well</source>
-        <translation type="unfinished"></translation>
+        <translation>他们相处得十分好</translation>
     </message>
 </context>
 <context>
@@ -727,33 +727,33 @@
     <message>
         <location filename="../Forms/Gen3/GameCubeRTC.ui" line="32"/>
         <source>GameCube RTC</source>
-        <translation type="unfinished"></translation>
+        <translation>GameCube 时间计算器</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCubeRTC.ui" line="86"/>
         <source>Seed at 1/1/2000 at 00:00:00</source>
-        <translation type="unfinished"></translation>
+        <translation>Seed在2000年1月1日0点0分0秒</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCubeRTC.ui" line="96"/>
         <source>Target Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>目标Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCubeRTC.ui" line="117"/>
         <source>Min Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>最小帧数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCubeRTC.ui" line="134"/>
         <source>Max Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>最大帧数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCubeRTC.ui" line="189"/>
         <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="136"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>检索</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="150"/>
@@ -773,7 +773,7 @@
     <message>
         <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="70"/>
         <source>Seed</source>
-        <translation>种子</translation>
+        <translation>Seed</translation>
     </message>
 </context>
 <context>
@@ -781,45 +781,45 @@
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="32"/>
         <source>Gen 3 TID\SID</source>
-        <translation type="unfinished"></translation>
+        <translation>Gen3 ID乱数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="148"/>
         <source>XD/Colo</source>
-        <translation type="unfinished"></translation>
+        <translation>XD/竞技场</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="160"/>
         <location filename="../Forms/Gen3/IDs3.ui" line="315"/>
         <location filename="../Forms/Gen3/IDs3.ui" line="453"/>
         <source>Search By</source>
-        <translation type="unfinished"></translation>
+        <translation>通过..检索</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="166"/>
         <location filename="../Forms/Gen3/IDs3.ui" line="321"/>
         <location filename="../Forms/Gen3/IDs3.ui" line="459"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="228"/>
         <location filename="../Forms/Gen3/IDs3.ui" line="366"/>
         <location filename="../Forms/Gen3/IDs3.ui" line="521"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>检索</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="238"/>
         <location filename="../Forms/Gen3/IDs3.ui" line="376"/>
         <location filename="../Forms/Gen3/IDs3.ui" line="531"/>
         <source>Search Parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>检索参数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="244"/>
         <source>Seed</source>
-        <translation>种子</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="258"/>
@@ -833,12 +833,12 @@
         <location filename="../Forms/Gen3/IDs3.ui" line="413"/>
         <location filename="../Forms/Gen3/IDs3.ui" line="657"/>
         <source>Max Results</source>
-        <translation>最大帧数</translation>
+        <translation>最大结果数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="303"/>
         <source>Gen III FRLGE</source>
-        <translation type="unfinished"></translation>
+        <translation>Gen3 火红叶绿 绿宝石</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="183"/>
@@ -853,7 +853,7 @@
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="441"/>
         <source>Gen III RS</source>
-        <translation type="unfinished"></translation>
+        <translation>Gen3 红蓝宝石</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="200"/>
@@ -873,12 +873,12 @@
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="563"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>日期</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.ui" line="540"/>
         <source>Initial Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>初始Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/IDs3.cpp" line="81"/>
@@ -898,7 +898,7 @@
         <location filename="../Forms/Controls/IVFilter.ui" line="428"/>
         <location filename="../Forms/Controls/IVFilter.ui" line="505"/>
         <source>None</source>
-        <translation>不指定</translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../Forms/Controls/IVFilter.ui" line="333"/>
@@ -923,12 +923,12 @@
     <message>
         <location filename="../Forms/Controls/IVFilter.ui" line="197"/>
         <source>Atk</source>
-        <translation>攻击力</translation>
+        <translation>攻击</translation>
     </message>
     <message>
         <location filename="../Forms/Controls/IVFilter.ui" line="132"/>
         <source>HP</source>
-        <translation>体力</translation>
+        <translation>HP</translation>
     </message>
     <message>
         <location filename="../Forms/Controls/IVFilter.ui" line="696"/>
@@ -938,7 +938,7 @@
         <location filename="../Forms/Controls/IVFilter.ui" line="920"/>
         <location filename="../Forms/Controls/IVFilter.ui" line="976"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>清空</translation>
     </message>
 </context>
 <context>
@@ -946,17 +946,17 @@
     <message>
         <location filename="../Forms/Util/IVtoPID.ui" line="32"/>
         <source>IVs to PID</source>
-        <translation type="unfinished"></translation>
+        <translation>个体到PID</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.ui" line="153"/>
         <source>HP</source>
-        <translation>体力</translation>
+        <translation>HP</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.ui" line="160"/>
         <source>Atk</source>
-        <translation>攻击力</translation>
+        <translation>攻击</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.ui" line="167"/>
@@ -1116,17 +1116,17 @@
     <message>
         <location filename="../Forms/Util/IVtoPID.ui" line="379"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>查找</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="60"/>
         <source>Seed</source>
-        <translation>种子</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="60"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="60"/>
@@ -1136,7 +1136,7 @@
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="60"/>
         <source>Ability</source>
-        <translation>能力</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="60"/>
@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="123"/>
         <source>XD/Colo</source>
-        <translation type="unfinished"></translation>
+        <translation>XD/竞技场</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="152"/>
@@ -1156,7 +1156,7 @@
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="163"/>
         <source>Reverse Method 1</source>
-        <translation type="unfinished"></translation>
+        <translation>反转 方式 1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="175"/>
@@ -1170,7 +1170,7 @@
         <location filename="../Forms/Util/IVtoPID.cpp" line="223"/>
         <location filename="../Forms/Util/IVtoPID.cpp" line="234"/>
         <source>Cute Charm (DPPt)</source>
-        <translation type="unfinished"></translation>
+        <translation>迷人身躯（珍珠钻石白金）</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="251"/>
@@ -1179,7 +1179,7 @@
         <location filename="../Forms/Util/IVtoPID.cpp" line="284"/>
         <location filename="../Forms/Util/IVtoPID.cpp" line="295"/>
         <source>Cute Charm (HGSS)</source>
-        <translation type="unfinished"></translation>
+        <translation>迷人身躯（心金魂银）</translation>
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="311"/>
@@ -1189,7 +1189,7 @@
     <message>
         <location filename="../Forms/Util/IVtoPID.cpp" line="345"/>
         <source>Channel</source>
-        <translation type="unfinished"></translation>
+        <translation>频道</translation>
     </message>
 </context>
 <context>
@@ -1197,12 +1197,12 @@
     <message>
         <location filename="../Forms/Gen3/JirachiGeneration.ui" line="32"/>
         <source>Channel Jirachi Probable Generation</source>
-        <translation type="unfinished"></translation>
+        <translation>频道基拉祈生成</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/JirachiGeneration.ui" line="83"/>
         <source>Seed</source>
-        <translation>种子</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/JirachiGeneration.ui" line="122"/>
@@ -1212,7 +1212,7 @@
     <message>
         <location filename="../Forms/Gen3/JirachiGeneration.cpp" line="60"/>
         <source>Probable</source>
-        <translation type="unfinished"></translation>
+        <translation>可能</translation>
     </message>
 </context>
 <context>
@@ -1220,77 +1220,77 @@
     <message>
         <location filename="../Forms/MainWindow.ui" line="90"/>
         <source>Gen 3</source>
-        <translation type="unfinished"></translation>
+        <translation>第三世代</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="102"/>
         <source>Stationary</source>
-        <translation>静态</translation>
+        <translation>定点乱数</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="128"/>
         <source>Egg</source>
-        <translation type="unfinished"></translation>
+        <translation>孵化乱数</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="141"/>
         <source>IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>ID乱数</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="149"/>
         <source>Gen 4</source>
-        <translation type="unfinished"></translation>
+        <translation>第四世代</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="177"/>
         <source>Gen 3 Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>第三世代工具</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="192"/>
         <source>Researcher</source>
-        <translation type="unfinished"></translation>
+        <translation>研究工具</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="197"/>
         <source>16-Bit Seed to Time</source>
-        <translation type="unfinished"></translation>
+        <translation>16位Seed到时间</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="202"/>
         <source>Jirachi Generation</source>
-        <translation type="unfinished"></translation>
+        <translation>基拉祈生成</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="207"/>
         <source>PokeSpot</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可地点</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="212"/>
         <source>IV to PID</source>
-        <translation type="unfinished"></translation>
+        <translation>个体到PID</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="217"/>
         <source>GameCube RTC</source>
-        <translation type="unfinished"></translation>
+        <translation>GameCube 时间计算器</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="222"/>
         <source>PID to IV</source>
-        <translation type="unfinished"></translation>
+        <translation>PID到个体</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="115"/>
         <source>Wild</source>
-        <translation>野外</translation>
+        <translation>野生乱数</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="171"/>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>工具</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.ui" line="166"/>
@@ -1300,42 +1300,42 @@
     <message>
         <location filename="../Forms/MainWindow.cpp" line="104"/>
         <source>German</source>
-        <translation type="unfinished"></translation>
+        <translation>德语</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.cpp" line="104"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>英语</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.cpp" line="104"/>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>西班牙语</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.cpp" line="104"/>
         <source>French</source>
-        <translation type="unfinished"></translation>
+        <translation>法语</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.cpp" line="104"/>
         <source>Italian</source>
-        <translation type="unfinished"></translation>
+        <translation>意大利语</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.cpp" line="104"/>
         <source>Japanese</source>
-        <translation type="unfinished"></translation>
+        <translation>日语</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.cpp" line="104"/>
         <source>Korean</source>
-        <translation type="unfinished"></translation>
+        <translation>韩语</translation>
     </message>
     <message>
         <location filename="../Forms/MainWindow.cpp" line="104"/>
         <source>Chinese</source>
-        <translation type="unfinished"></translation>
+        <translation>简体中文</translation>
     </message>
 </context>
 <context>
@@ -1343,12 +1343,12 @@
     <message>
         <location filename="../Forms/Gen3/PIDtoIVs.ui" line="32"/>
         <source>PID to IV</source>
-        <translation type="unfinished"></translation>
+        <translation>PID到个体</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PIDtoIVs.ui" line="141"/>
         <source>PID </source>
-        <translation type="unfinished"></translation>
+        <translation>PID </translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PIDtoIVs.ui" line="87"/>
@@ -1368,7 +1368,7 @@
     <message>
         <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="62"/>
         <source>IVs</source>
-        <translation type="unfinished"></translation>
+        <translation>个体</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="131"/>
@@ -1388,7 +1388,7 @@
     <message>
         <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="138"/>
         <source>XD/Colo</source>
-        <translation type="unfinished"></translation>
+        <translation>XD/竞技场</translation>
     </message>
 </context>
 <context>
@@ -1396,7 +1396,7 @@
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="20"/>
         <source>PokeSpot</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可地点</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="148"/>
@@ -1434,7 +1434,7 @@
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="185"/>
         <source>Max Results</source>
-        <translation>最大帧数</translation>
+        <translation>最大结果数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="202"/>
@@ -1454,7 +1454,7 @@
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="295"/>
         <source>Ability</source>
-        <translation>能力</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="334"/>
@@ -1589,7 +1589,7 @@
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="483"/>
         <source>Gender Ratio</source>
-        <translation>性别比例</translation>
+        <translation>性别比</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="529"/>
@@ -1599,60 +1599,60 @@
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="543"/>
         <source>Spot Type</source>
-        <translation type="unfinished"></translation>
+        <translation>地点类型</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="491"/>
         <source>Genderless</source>
-        <translation>不关心</translation>
+        <translation>无性别</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="496"/>
         <source>50% Male / 50% Female</source>
-        <translation>50% 雄 / 50% 雌</translation>
+        <translation>50%公/50%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="501"/>
         <source>25% Male / 75% Female</source>
-        <translation>25% 雄 / 75% 雌</translation>
+        <translation>25%公/75%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="506"/>
         <source>75% Male / 25% Female</source>
-        <translation>75% 雄 / 25% 雌</translation>
+        <translation>75%公/25%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="511"/>
-        <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% 雄 / 12.5% 雌</translation>
+        <source>87.5% Male/12.5% Female</source>
+        <translation>87.5%公/2.5%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="516"/>
         <source>100% Male</source>
-        <translation>100% 雄性</translation>
+        <translation>100%公</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="521"/>
         <source>100% Female</source>
-        <translation>100% 雌性</translation>
+        <translation>100%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="551"/>
         <location filename="../Forms/Gen3/PokeSpot.cpp" line="143"/>
         <source>Common</source>
-        <translation type="unfinished"></translation>
+        <translation>常见</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="556"/>
         <location filename="../Forms/Gen3/PokeSpot.cpp" line="149"/>
         <source>Uncommon</source>
-        <translation type="unfinished"></translation>
+        <translation>不常见</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui" line="561"/>
         <location filename="../Forms/Gen3/PokeSpot.cpp" line="155"/>
         <source>Rare</source>
-        <translation type="unfinished"></translation>
+        <translation>稀有</translation>
     </message>
 </context>
 <context>
@@ -1665,12 +1665,12 @@
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.cpp" line="97"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.cpp" line="101"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>类型</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.cpp" line="103"/>
@@ -1680,7 +1680,7 @@
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.cpp" line="105"/>
         <source>Ability</source>
-        <translation>能力</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/PokeSpotModel.cpp" line="107"/>
@@ -1693,12 +1693,12 @@
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="83"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>是</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="83"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>否</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Profile3Model.cpp" line="103"/>
@@ -1736,7 +1736,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="20"/>
         <source>Profile Manager Gen 3</source>
-        <translation type="unfinished"></translation>
+        <translation>配置管理 Gen3</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3.ui" line="59"/>
@@ -1762,7 +1762,7 @@
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="96"/>
         <location filename="../Forms/ProfileManager/ProfileManager3.cpp" line="113"/>
         <source>Please select a profile.</source>
-        <translation type="unfinished"></translation>
+        <translation>请选择一个配置。</translation>
     </message>
 </context>
 <context>
@@ -1770,42 +1770,42 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="32"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>窗口</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="168"/>
         <source>Ruby</source>
-        <translation type="unfinished"></translation>
+        <translation>红宝石</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="173"/>
         <source>Sapphire</source>
-        <translation type="unfinished"></translation>
+        <translation>蓝宝石</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="178"/>
         <source>Fire Red</source>
-        <translation type="unfinished"></translation>
+        <translation>火红</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="183"/>
         <source>Leaf Green</source>
-        <translation type="unfinished"></translation>
+        <translation>叶绿</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="188"/>
         <source>Emerald</source>
-        <translation type="unfinished"></translation>
+        <translation>绿宝石</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="193"/>
         <source>XD</source>
-        <translation type="unfinished"></translation>
+        <translation>XD</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="198"/>
         <source>Colosseum</source>
-        <translation type="unfinished"></translation>
+        <translation>圆形竞技场</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="223"/>
@@ -1815,32 +1815,32 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="236"/>
         <source>ENG</source>
-        <translation type="unfinished"></translation>
+        <translation>英</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="241"/>
         <source>SPA</source>
-        <translation type="unfinished"></translation>
+        <translation>西</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="246"/>
         <source>FRE</source>
-        <translation type="unfinished"></translation>
+        <translation>法</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="251"/>
         <source>ITA</source>
-        <translation type="unfinished"></translation>
+        <translation>意</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="256"/>
         <source>DEU</source>
-        <translation type="unfinished"></translation>
+        <translation>德</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="261"/>
         <source>JPN</source>
-        <translation type="unfinished"></translation>
+        <translation>日</translation>
     </message>
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.ui" line="269"/>
@@ -1880,7 +1880,7 @@
     <message>
         <location filename="../Forms/ProfileManager/ProfileManager3NewEdit.cpp" line="93"/>
         <source>Enter a Profile Name.</source>
-        <translation type="unfinished"></translation>
+        <translation>输入一个配置名。</translation>
     </message>
 </context>
 <context>
@@ -2128,37 +2128,37 @@
     <message>
         <location filename="../PokeFinderCore/Gen3/Profile3.cpp" line="276"/>
         <source>Ruby</source>
-        <translation></translation>
+        <translation>红宝石</translation>
     </message>
     <message>
         <location filename="../PokeFinderCore/Gen3/Profile3.cpp" line="278"/>
         <source>Sapphire</source>
-        <translation></translation>
+        <translation>蓝宝石</translation>
     </message>
     <message>
         <location filename="../PokeFinderCore/Gen3/Profile3.cpp" line="280"/>
         <source>Fire Red</source>
-        <translation></translation>
+        <translation>火红</translation>
     </message>
     <message>
         <location filename="../PokeFinderCore/Gen3/Profile3.cpp" line="282"/>
         <source>Leaf Green</source>
-        <translation></translation>
+        <translation>叶绿</translation>
     </message>
     <message>
         <location filename="../PokeFinderCore/Gen3/Profile3.cpp" line="284"/>
         <source>Emerald</source>
-        <translation></translation>
+        <translation>绿宝石</translation>
     </message>
     <message>
         <location filename="../PokeFinderCore/Gen3/Profile3.cpp" line="286"/>
         <source>XD</source>
-        <translation></translation>
+        <translation>XD</translation>
     </message>
     <message>
         <location filename="../PokeFinderCore/Gen3/Profile3.cpp" line="288"/>
         <source>Colosseum</source>
-        <translation></translation>
+        <translation>圆形竞技场</translation>
     </message>
     <message>
         <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="355"/>
@@ -2166,7 +2166,7 @@
         <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="436"/>
         <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="459"/>
         <source>First shadow unset</source>
-        <translation type="unfinished"></translation>
+        <translation>第一只黑暗未设置</translation>
     </message>
     <message>
         <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="364"/>
@@ -2174,7 +2174,7 @@
         <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="444"/>
         <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="467"/>
         <source>First shadow set</source>
-        <translation type="unfinished"></translation>
+        <translation>第一只黑暗已设置</translation>
     </message>
     <message>
         <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="373"/>
@@ -2182,12 +2182,12 @@
         <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="452"/>
         <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="475"/>
         <source>Shiny Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>跳过异色</translation>
     </message>
     <message>
         <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="678"/>
         <source>Pass NL</source>
-        <translation type="unfinished"></translation>
+        <translation>通过性格锁</translation>
     </message>
 </context>
 <context>
@@ -2196,13 +2196,13 @@
         <location filename="../Forms/Util/Researcher.ui" line="194"/>
         <location filename="../Forms/Util/Researcher.ui" line="310"/>
         <source>Common RNGs</source>
-        <translation type="unfinished"></translation>
+        <translation>常用乱数</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="258"/>
         <location filename="../Forms/Util/Researcher.ui" line="344"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="210"/>
@@ -2267,7 +2267,7 @@
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="396"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>状态</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="304"/>
@@ -2293,7 +2293,7 @@
         <location filename="../Forms/Util/Researcher.cpp" line="444"/>
         <location filename="../Forms/Util/Researcher.cpp" line="476"/>
         <source>64Bit</source>
-        <translation type="unfinished"></translation>
+        <translation>64位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="188"/>
@@ -2320,12 +2320,12 @@
         <location filename="../Forms/Util/Researcher.cpp" line="445"/>
         <location filename="../Forms/Util/Researcher.cpp" line="475"/>
         <source>32Bit</source>
-        <translation type="unfinished"></translation>
+        <translation>32位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="486"/>
         <source>Customs</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="516"/>
@@ -2350,7 +2350,7 @@
         <location filename="../Forms/Util/Researcher.cpp" line="446"/>
         <location filename="../Forms/Util/Researcher.cpp" line="476"/>
         <source>32Bit High</source>
-        <translation type="unfinished"></translation>
+        <translation>前32位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="521"/>
@@ -2375,7 +2375,7 @@
         <location filename="../Forms/Util/Researcher.cpp" line="447"/>
         <location filename="../Forms/Util/Researcher.cpp" line="476"/>
         <source>32Bit Low</source>
-        <translation type="unfinished"></translation>
+        <translation>后32位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="526"/>
@@ -2402,7 +2402,7 @@
         <location filename="../Forms/Util/Researcher.cpp" line="475"/>
         <location filename="../Forms/Util/Researcher.cpp" line="476"/>
         <source>16Bit High</source>
-        <translation type="unfinished"></translation>
+        <translation>前16位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="531"/>
@@ -2429,7 +2429,7 @@
         <location filename="../Forms/Util/Researcher.cpp" line="475"/>
         <location filename="../Forms/Util/Researcher.cpp" line="476"/>
         <source>16Bit Low</source>
-        <translation type="unfinished"></translation>
+        <translation>后16位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="763"/>
@@ -2444,12 +2444,12 @@
         <location filename="../Forms/Util/Researcher.cpp" line="256"/>
         <location filename="../Forms/Util/Researcher.cpp" line="281"/>
         <source>None</source>
-        <translation>不指定</translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="3055"/>
         <source>Parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>参数</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="3061"/>
@@ -2459,23 +2459,23 @@
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="3145"/>
         <source>Search Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>检索Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="3139"/>
         <location filename="../Forms/Util/Researcher.ui" line="3185"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>检索</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="3203"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>下一个</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="3078"/>
         <source>Max Results</source>
-        <translation>最大帧数</translation>
+        <translation>最大结果数</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="2165"/>
@@ -2486,7 +2486,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="3025"/>
         <location filename="../Forms/Util/Researcher.cpp" line="465"/>
         <source>Previous 7</source>
-        <translation type="unfinished"></translation>
+        <translation>前7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="2484"/>
@@ -2495,19 +2495,19 @@
         <location filename="../Forms/Util/Researcher.ui" line="3030"/>
         <location filename="../Forms/Util/Researcher.cpp" line="466"/>
         <source>Previous 8</source>
-        <translation type="unfinished"></translation>
+        <translation>前8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="2823"/>
         <location filename="../Forms/Util/Researcher.ui" line="3035"/>
         <location filename="../Forms/Util/Researcher.cpp" line="467"/>
         <source>Previous 9</source>
-        <translation type="unfinished"></translation>
+        <translation>前9</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="3095"/>
         <source>Seed</source>
-        <translation>种子</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="3120"/>
@@ -2541,7 +2541,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="2950"/>
         <location filename="../Forms/Util/Researcher.cpp" line="450"/>
         <source>Custom 1</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="628"/>
@@ -2563,7 +2563,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="2955"/>
         <location filename="../Forms/Util/Researcher.cpp" line="451"/>
         <source>Custom 2</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="817"/>
@@ -2583,7 +2583,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="2960"/>
         <location filename="../Forms/Util/Researcher.cpp" line="452"/>
         <source>Custom 3</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="671"/>
@@ -2606,7 +2606,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="2995"/>
         <location filename="../Forms/Util/Researcher.cpp" line="459"/>
         <source>Previous 1</source>
-        <translation type="unfinished"></translation>
+        <translation>前1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="870"/>
@@ -2627,7 +2627,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="3000"/>
         <location filename="../Forms/Util/Researcher.cpp" line="460"/>
         <source>Previous 2</source>
-        <translation type="unfinished"></translation>
+        <translation>前2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="1026"/>
@@ -2645,7 +2645,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="2965"/>
         <location filename="../Forms/Util/Researcher.cpp" line="453"/>
         <source>Custom 4</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="1089"/>
@@ -2664,7 +2664,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="3005"/>
         <location filename="../Forms/Util/Researcher.cpp" line="461"/>
         <source>Previous 3</source>
-        <translation type="unfinished"></translation>
+        <translation>前3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="1255"/>
@@ -2680,7 +2680,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="2970"/>
         <location filename="../Forms/Util/Researcher.cpp" line="454"/>
         <source>Custom 5</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="1504"/>
@@ -2694,7 +2694,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="2975"/>
         <location filename="../Forms/Util/Researcher.cpp" line="455"/>
         <source>Custom 6</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="1328"/>
@@ -2711,7 +2711,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="3010"/>
         <location filename="../Forms/Util/Researcher.cpp" line="462"/>
         <source>Previous 4</source>
-        <translation type="unfinished"></translation>
+        <translation>前4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="1587"/>
@@ -2726,7 +2726,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="3015"/>
         <location filename="../Forms/Util/Researcher.cpp" line="463"/>
         <source>Previous 5</source>
-        <translation type="unfinished"></translation>
+        <translation>前5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="1866"/>
@@ -2739,7 +2739,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="3020"/>
         <location filename="../Forms/Util/Researcher.cpp" line="464"/>
         <source>Previous 6</source>
-        <translation type="unfinished"></translation>
+        <translation>前6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="1773"/>
@@ -2751,7 +2751,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="2980"/>
         <location filename="../Forms/Util/Researcher.cpp" line="456"/>
         <source>Custom 7</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="2062"/>
@@ -2761,7 +2761,7 @@
         <location filename="../Forms/Util/Researcher.ui" line="2985"/>
         <location filename="../Forms/Util/Researcher.cpp" line="457"/>
         <source>Custom 8</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="2371"/>
@@ -2769,12 +2769,12 @@
         <location filename="../Forms/Util/Researcher.ui" line="2990"/>
         <location filename="../Forms/Util/Researcher.cpp" line="458"/>
         <source>Custom 9</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义9</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="2700"/>
         <source>Custom 10</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义10</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui" line="615"/>
@@ -2788,23 +2788,23 @@
         <location filename="../Forms/Util/Researcher.ui" line="2568"/>
         <location filename="../Forms/Util/Researcher.ui" line="2907"/>
         <source>Hex</source>
-        <translation type="unfinished"></translation>
+        <translation>16进制</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.cpp" line="107"/>
         <source>Please enter a search range lower then 228</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入小于228的输入范围</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.cpp" line="221"/>
         <source>You must check the Hex box in order to use Hex values.</source>
-        <translation type="unfinished"></translation>
+        <translation>请勾上16进制以输入16进制数。</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.cpp" line="314"/>
         <location filename="../Forms/Util/Researcher.cpp" line="342"/>
         <source>No result found</source>
-        <translation type="unfinished"></translation>
+        <translation>无结果</translation>
     </message>
 </context>
 <context>
@@ -2819,111 +2819,111 @@
         <location filename="../Models/ResearcherModel.cpp" line="185"/>
         <location filename="../Models/ResearcherModel.cpp" line="283"/>
         <source>64Bit</source>
-        <translation type="unfinished"></translation>
+        <translation>64位</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="187"/>
         <location filename="../Models/ResearcherModel.cpp" line="288"/>
         <source>32Bit High</source>
-        <translation type="unfinished"></translation>
+        <translation>前32位</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="189"/>
         <location filename="../Models/ResearcherModel.cpp" line="293"/>
         <source>32Bit Low</source>
-        <translation type="unfinished"></translation>
+        <translation>后32位</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="191"/>
         <location filename="../Models/ResearcherModel.cpp" line="237"/>
         <location filename="../Models/ResearcherModel.cpp" line="303"/>
         <source>16Bit High</source>
-        <translation type="unfinished"></translation>
+        <translation>前16位</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="193"/>
         <location filename="../Models/ResearcherModel.cpp" line="239"/>
         <location filename="../Models/ResearcherModel.cpp" line="308"/>
         <source>16Bit Low</source>
-        <translation type="unfinished"></translation>
+        <translation>后16位</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="195"/>
         <location filename="../Models/ResearcherModel.cpp" line="241"/>
         <source>Custom 1</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义1</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="197"/>
         <location filename="../Models/ResearcherModel.cpp" line="243"/>
         <source>Custom 2</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义2</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="199"/>
         <location filename="../Models/ResearcherModel.cpp" line="245"/>
         <source>Custom 3</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义3</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="201"/>
         <location filename="../Models/ResearcherModel.cpp" line="247"/>
         <source>Custom 4</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义4</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="203"/>
         <location filename="../Models/ResearcherModel.cpp" line="249"/>
         <source>Custom 5</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义5</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="205"/>
         <location filename="../Models/ResearcherModel.cpp" line="251"/>
         <source>Custom 6</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义6</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="207"/>
         <location filename="../Models/ResearcherModel.cpp" line="253"/>
         <source>Custom 7</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义7</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="209"/>
         <location filename="../Models/ResearcherModel.cpp" line="255"/>
         <source>Custom 8</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义8</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="211"/>
         <location filename="../Models/ResearcherModel.cpp" line="257"/>
         <source>Custom 9</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义9</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="213"/>
         <location filename="../Models/ResearcherModel.cpp" line="259"/>
         <source>Custom 10</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义10</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="223"/>
         <location filename="../Models/ResearcherModel.cpp" line="269"/>
         <source>LBit</source>
-        <translation type="unfinished"></translation>
+        <translation>最低位</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="225"/>
         <location filename="../Models/ResearcherModel.cpp" line="271"/>
         <source>HBit</source>
-        <translation type="unfinished"></translation>
+        <translation>最高位</translation>
     </message>
     <message>
         <location filename="../Models/ResearcherModel.cpp" line="235"/>
         <location filename="../Models/ResearcherModel.cpp" line="298"/>
         <source>32Bit</source>
-        <translation type="unfinished"></translation>
+        <translation>32位</translation>
     </message>
 </context>
 <context>
@@ -2931,46 +2931,46 @@
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="725"/>
         <source>None</source>
-        <translation>不指定</translation>
+        <translation>任意</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="725"/>
         <source>Synch</source>
-        <translation type="unfinished"></translation>
+        <translation>同步</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="725"/>
         <source>Cute Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>迷人身躯</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="849"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="892"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="925"/>
         <source>Seed</source>
-        <translation>种子</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="851"/>
         <source>Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>队首</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="853"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>种类</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="855"/>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation>等级</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="857"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="894"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="927"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="861"/>
@@ -2984,21 +2984,21 @@
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="900"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="933"/>
         <source>Ability</source>
-        <translation>能力</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="865"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="902"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="935"/>
         <source>HP</source>
-        <translation>体力</translation>
+        <translation>HP</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="867"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="904"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="937"/>
         <source>Atk</source>
-        <translation>攻击力</translation>
+        <translation>攻击</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="869"/>
@@ -3033,7 +3033,7 @@
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="914"/>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="947"/>
         <source>Hidden</source>
-        <translation>隐藏</translation>
+        <translation>觉醒</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Searcher3Model.cpp" line="879"/>
@@ -3060,37 +3060,37 @@
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.ui" line="32"/>
         <source>Gen 3 Seed to Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Gen3 Seed到时间</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.ui" line="84"/>
         <source>16/32-Bit Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>16/32位Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.ui" line="98"/>
         <source>Enter a 16-bit seed</source>
-        <translation type="unfinished"></translation>
+        <translation>输入一个16位Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.ui" line="105"/>
         <source>Year</source>
-        <translation type="unfinished"></translation>
+        <translation>年份</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.ui" line="122"/>
         <source>Or 32-bit seed for closest 16-bit match</source>
-        <translation type="unfinished"></translation>
+        <translation>或32位Seed为了最接近的16位Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.ui" line="129"/>
         <source>This feature only works for Ruby/Sapphire with a live battery</source>
-        <translation type="unfinished"></translation>
+        <translation>该功能只能在有电池的红蓝宝石上使用</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.ui" line="145"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>查找</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.cpp" line="56"/>
@@ -3100,7 +3100,7 @@
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.cpp" line="56"/>
         <source>Seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>秒</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.cpp" line="56"/>
@@ -3110,7 +3110,7 @@
     <message>
         <location filename="../Forms/Gen3/SeedToTime3.cpp" line="117"/>
         <source>Please enter a year between 2000 and 2037</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入2000到2037的一个年份</translation>
     </message>
 </context>
 <context>
@@ -3118,7 +3118,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="169"/>
         <source>Generator</source>
-        <translation type="unfinished"></translation>
+        <translation>生成器</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="190"/>
@@ -3155,7 +3155,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="183"/>
         <source>None</source>
-        <translation>不指定</translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="926"/>
@@ -3167,7 +3167,7 @@
         <location filename="../Forms/Gen3/Stationary3.ui" line="882"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1484"/>
         <source>Genderless</source>
-        <translation>不关心</translation>
+        <translation>无性别</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1751"/>
@@ -3184,7 +3184,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="228"/>
         <source>Max Results</source>
-        <translation>最大帧数</translation>
+        <translation>最大结果数</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="202"/>
@@ -3202,7 +3202,7 @@
         <location filename="../Forms/Gen3/Stationary3.ui" line="263"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1623"/>
         <source>Method 1 Reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>方式 1 反转</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="313"/>
@@ -3214,7 +3214,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="426"/>
         <source>Seed</source>
-        <translation>种子</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="479"/>
@@ -3226,7 +3226,7 @@
         <location filename="../Forms/Gen3/Stationary3.ui" line="517"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1149"/>
         <source>Ability</source>
-        <translation>能力</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="555"/>
@@ -3388,49 +3388,49 @@
         <location filename="../Forms/Gen3/Stationary3.ui" line="734"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1348"/>
         <source>Hidden Power</source>
-        <translation>隐藏特性</translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="887"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1489"/>
         <source>50% Male / 50% Female</source>
-        <translation>50% 雄 / 50% 雌</translation>
+        <translation>50%公/50%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="892"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1494"/>
         <source>25% Male / 75% Female</source>
-        <translation>25% 雄 / 75% 雌</translation>
+        <translation>25%公/75%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="897"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1499"/>
         <source>75% Male / 25% Female</source>
-        <translation>75% 雄 / 25% 雌</translation>
+        <translation>75%公/25%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="902"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1504"/>
         <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% 雄 / 12.5% 雌</translation>
+        <translation>87.5%公/12.5%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="907"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1509"/>
         <source>100% Male</source>
-        <translation>100% 雄性</translation>
+        <translation>100%公</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="912"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1514"/>
         <source>100% Female</source>
-        <translation>100% 雌性</translation>
+        <translation>100%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="868"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1476"/>
         <source>Gender Ratio</source>
-        <translation>性别比例</translation>
+        <translation>性别比</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="972"/>
@@ -3541,35 +3541,35 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1068"/>
         <source>Searcher</source>
-        <translation type="unfinished"></translation>
+        <translation>检索器</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1694"/>
         <source>Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>黑暗</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1715"/>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="324"/>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="335"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>检索</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1794"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>游戏</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1801"/>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="203"/>
         <source>Emerald</source>
-        <translation type="unfinished"></translation>
+        <translation>绿宝石</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1813"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>管理</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="258"/>
@@ -3593,83 +3593,83 @@
         <location filename="../Forms/Gen3/Stationary3.ui" line="278"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1638"/>
         <source>XD/Colo</source>
-        <translation type="unfinished"></translation>
+        <translation>XD/竞技场</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="283"/>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1653"/>
         <source>Channel</source>
-        <translation type="unfinished"></translation>
+        <translation>频道</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1643"/>
         <source>Gales</source>
-        <translation type="unfinished"></translation>
+        <translation>XD</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui" line="1648"/>
         <source>Colo</source>
-        <translation type="unfinished"></translation>
+        <translation>竞技场</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="109"/>
         <source>Set Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>设置目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="110"/>
         <source>Jump to Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>跳转至目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="111"/>
         <source>Center to +/- 1 Second and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-1秒并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="112"/>
         <source>Center to +/- 2 Seconds and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-2秒并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="113"/>
         <source>Center to +/- 3 Seconds and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-3秒并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="114"/>
         <source>Center to +/- 5 Seconds and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-5秒并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="115"/>
         <source>Center to +/- 10 Seconds and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-10秒并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="116"/>
         <source>Center to +/- 1 Minute and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-1分并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="117"/>
         <source>Output Results to TXT</source>
-        <translation type="unfinished"></translation>
+        <translation>导出结果至TXT</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="118"/>
         <source>Output Results to CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>导出结果至CSV</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="162"/>
         <source>Copy Seed to Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>复制Seed至剪贴板</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="163"/>
         <source>Generate times for seed</source>
-        <translation type="unfinished"></translation>
+        <translation>为Seed生成时间</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="364"/>
@@ -3700,7 +3700,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="473"/>
         <source>Save Output to TXT</source>
-        <translation type="unfinished"></translation>
+        <translation>导出结果至TXT</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="473"/>
@@ -3710,7 +3710,7 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="516"/>
         <source>Save Output to CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>导出结果至CSV</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="516"/>
@@ -3728,7 +3728,7 @@
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="113"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="117"/>
@@ -3738,17 +3738,17 @@
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="119"/>
         <source>Ability</source>
-        <translation>能力</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="121"/>
         <source>HP</source>
-        <translation>体力</translation>
+        <translation>HP</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="123"/>
         <source>Atk</source>
-        <translation>攻击力</translation>
+        <translation>攻击</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="125"/>
@@ -3773,7 +3773,7 @@
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="133"/>
         <source>Hidden</source>
-        <translation>隐藏</translation>
+        <translation>觉醒</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Stationary3Model.cpp" line="135"/>
@@ -3796,12 +3796,12 @@
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="20"/>
         <source>Gen 3 Wild</source>
-        <translation type="unfinished"></translation>
+        <translation>Gen3 野生</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="170"/>
         <source>Generator</source>
-        <translation type="unfinished"></translation>
+        <translation>生成器</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="191"/>
@@ -3843,67 +3843,67 @@
         <location filename="../Forms/Gen3/Wild3.cpp" line="99"/>
         <location filename="../Forms/Gen3/Wild3.cpp" line="149"/>
         <source>None</source>
-        <translation>不指定</translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="166"/>
         <source>Set Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>设目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="167"/>
         <source>Jump to Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>跳向目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="168"/>
         <source>Center to +/- 1 Second and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-1秒并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="169"/>
         <source>Center to +/- 2 Seconds and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-2秒并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="170"/>
         <source>Center to +/- 3 Seconds and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-2秒并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="171"/>
         <source>Center to +/- 5 Seconds and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-5秒并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="172"/>
         <source>Center to +/- 10 Seconds and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-10秒并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="173"/>
         <source>Center to +/- 1 Minute and Set as Target Frame</source>
-        <translation type="unfinished"></translation>
+        <translation>居中至+/-1分并设为目标帧</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="174"/>
         <source>Output Results to TXT</source>
-        <translation type="unfinished"></translation>
+        <translation>导出结果至TXT</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="175"/>
         <source>Output Results to CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>导出结果至CSV</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="219"/>
         <source>Copy Seed to Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>复制Seed到剪贴板</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="220"/>
         <source>Generate times for seed</source>
-        <translation type="unfinished"></translation>
+        <translation>为Seed生成时间</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="350"/>
@@ -3913,7 +3913,7 @@
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="544"/>
         <source>Save Output to TXT</source>
-        <translation type="unfinished"></translation>
+        <translation>导出结果至TXT</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="544"/>
@@ -3923,7 +3923,7 @@
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="587"/>
         <source>Save Output to CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>导出结果至CSV</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="587"/>
@@ -3933,42 +3933,42 @@
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="657"/>
         <source>♂ Lead (50% ♀ Target)</source>
-        <translation type="unfinished"></translation>
+        <translation>♂ 队首（50% ♀ 目标）</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="658"/>
         <source>♂ Lead (75% ♀ Target)</source>
-        <translation type="unfinished"></translation>
+        <translation>♂ 队首（75% ♀ 目标）</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="659"/>
         <source>♂ Lead (25% ♀ Target)</source>
-        <translation type="unfinished"></translation>
+        <translation>♂ 队首（25% ♀ 目标）</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="660"/>
         <source>♂ Lead (12.5% ♀ Target)</source>
-        <translation type="unfinished"></translation>
+        <translation>♂ 队首（12.5% ♀ 目标）</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="661"/>
         <source>♀ Lead (50% ♂ Target)</source>
-        <translation type="unfinished"></translation>
+        <translation>♀ 队首（50% ♂ 目标）</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="662"/>
         <source>♀ Lead (75% ♂ Target)</source>
-        <translation type="unfinished"></translation>
+        <translation>♀ 队首（75% ♂ 目标）</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="663"/>
         <source>♀ Lead (25% ♂ Target)</source>
-        <translation type="unfinished"></translation>
+        <translation>♀ 队首（25% ♂ 目标）</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="664"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
-        <translation type="unfinished"></translation>
+        <translation>♀ 队首（87.5% ♂ 目标）</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="968"/>
@@ -3980,7 +3980,7 @@
         <location filename="../Forms/Gen3/Wild3.ui" line="924"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1810"/>
         <source>Genderless</source>
-        <translation>不关心</translation>
+        <translation>无性别</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="1888"/>
@@ -3996,7 +3996,7 @@
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="336"/>
         <source>Max Results</source>
-        <translation>最大帧数</translation>
+        <translation>最大结果</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="376"/>
@@ -4008,7 +4008,7 @@
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="396"/>
         <source>Seed</source>
-        <translation>种子</translation>
+        <translation>Seed</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="356"/>
@@ -4027,19 +4027,19 @@
         <location filename="../Forms/Gen3/Wild3.ui" line="232"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1170"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>地点</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="242"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1351"/>
         <source>Pokémon</source>
-        <translation type="unfinished"></translation>
+        <translation>宝可梦</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="256"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1184"/>
         <source>Encounter</source>
-        <translation type="unfinished"></translation>
+        <translation>遇敌</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="264"/>
@@ -4051,31 +4051,31 @@
         <location filename="../Forms/Gen3/Wild3.ui" line="269"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1316"/>
         <source>Rock Smash</source>
-        <translation type="unfinished"></translation>
+        <translation>碎岩</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="274"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1321"/>
         <source>Surfing</source>
-        <translation type="unfinished"></translation>
+        <translation>冲浪</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="279"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1326"/>
         <source>Old Rod</source>
-        <translation type="unfinished"></translation>
+        <translation>好钓竿</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="284"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1331"/>
         <source>Good Rod</source>
-        <translation type="unfinished"></translation>
+        <translation>中级钓竿</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="289"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1336"/>
         <source>Super Rod</source>
-        <translation type="unfinished"></translation>
+        <translation>高级钓竿</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="303"/>
@@ -4083,7 +4083,7 @@
         <location filename="../Forms/Gen3/Wild3.cpp" line="653"/>
         <location filename="../Forms/Gen3/Wild3.cpp" line="668"/>
         <source>Synchronize</source>
-        <translation type="unfinished"></translation>
+        <translation>同步</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="504"/>
@@ -4095,7 +4095,7 @@
         <location filename="../Forms/Gen3/Wild3.ui" line="536"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1434"/>
         <source>Ability</source>
-        <translation>能力</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="568"/>
@@ -4257,55 +4257,55 @@
         <location filename="../Forms/Gen3/Wild3.ui" line="741"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1633"/>
         <source>Encounter Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>遇敌种类</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="788"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1674"/>
         <source>Hidden Power</source>
-        <translation>隐藏特性</translation>
+        <translation>觉醒力量</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="916"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1802"/>
         <source>Gender Ratio</source>
-        <translation>性别比例</translation>
+        <translation>性别比</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="929"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1815"/>
         <source>50% Male / 50% Female</source>
-        <translation>50% 雄 / 50% 雌</translation>
+        <translation>50%公/50%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="934"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1820"/>
         <source>25% Male / 75% Female</source>
-        <translation>25% 雄 / 75% 雌</translation>
+        <translation>25%公/75%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="939"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1825"/>
         <source>75% Male / 25% Female</source>
-        <translation>75% 雄 / 25% 雌</translation>
+        <translation>75%公/25%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="944"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1830"/>
         <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% 雄 / 12.5% 雌</translation>
+        <translation>87.5%公/12.5%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="949"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1835"/>
         <source>100% Male</source>
-        <translation>100% 雄性</translation>
+        <translation>100%公</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="954"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1840"/>
         <source>100% Female</source>
-        <translation>100% 雌性</translation>
+        <translation>100%母</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="1014"/>
@@ -4320,23 +4320,23 @@
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="1344"/>
         <source>Lead</source>
-        <translation type="unfinished"></translation>
+        <translation>队首</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="1931"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>游戏</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="1938"/>
         <location filename="../Forms/Gen3/Wild3.cpp" line="269"/>
         <source>Emerald</source>
-        <translation type="unfinished"></translation>
+        <translation>绿宝石</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="1950"/>
         <source>Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>管理器</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="796"/>
@@ -4437,39 +4437,39 @@
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="1104"/>
         <source>Searcher</source>
-        <translation type="unfinished"></translation>
+        <translation>检索器</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="1270"/>
         <location filename="../Forms/Gen3/Wild3.cpp" line="313"/>
         <location filename="../Forms/Gen3/Wild3.cpp" line="655"/>
         <source>Cute Charm</source>
-        <translation type="unfinished"></translation>
+        <translation>迷人身躯</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="1297"/>
         <location filename="../Forms/Gen3/Wild3.cpp" line="404"/>
         <location filename="../Forms/Gen3/Wild3.cpp" line="415"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>检索</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="214"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1241"/>
         <source>Method H1</source>
-        <translation type="unfinished"></translation>
+        <translation>方式 H1</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="219"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1246"/>
         <source>Method H2</source>
-        <translation type="unfinished"></translation>
+        <translation>方式 H2</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui" line="224"/>
         <location filename="../Forms/Gen3/Wild3.ui" line="1251"/>
         <source>Method H4</source>
-        <translation type="unfinished"></translation>
+        <translation>方式 H4</translation>
     </message>
 </context>
 <context>
@@ -4487,17 +4487,17 @@
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="121"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>遇敌槽</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="123"/>
         <source>Level</source>
-        <translation type="unfinished"></translation>
+        <translation>等级</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="125"/>
         <source>PID</source>
-        <translation type="unfinished"></translation>
+        <translation>PID</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="129"/>
@@ -4507,17 +4507,17 @@
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="131"/>
         <source>Ability</source>
-        <translation>能力</translation>
+        <translation>特性</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="133"/>
         <source>HP</source>
-        <translation>体力</translation>
+        <translation>HP</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="135"/>
         <source>Atk</source>
-        <translation>攻击力</translation>
+        <translation>攻击</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="137"/>
@@ -4542,7 +4542,7 @@
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="145"/>
         <source>Hidden</source>
-        <translation>隐藏</translation>
+        <translation>觉醒</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.cpp" line="147"/>
