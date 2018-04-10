@@ -87,9 +87,9 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return frame.frame;
                     case 1:
-                        return "Elm"; // TODO
+                        return frame.elmCall();
                     case 2:
-                        return "Chatot"; // TODO
+                        return frame.chatotPitch();
                     case 3:
                         return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 4:
@@ -125,7 +125,7 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.occidentary;
                     case 2:
-                        return "Chatot"; // TODO
+                        return frame.chatotPitch();
                     case 3:
                         return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 4:
@@ -159,11 +159,11 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return frame.frame;
                     case 1:
-                        return frame.occidentary; // TODO
+                        return frame.occidentary;
                     case 2:
-                        return "Elm"; // TODO
+                        return frame.elmCall();
                     case 3:
-                        return "Chatot"; // TODO
+                        return frame.chatotPitch();
                     case 4:
                         return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 5:
@@ -197,9 +197,9 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return frame.frame;
                     case 1:
-                        return "Elm"; // TODO
+                        return frame.elmCall();
                     case 2:
-                        return "Chatot"; // TODO
+                        return frame.chatotPitch();
                     case 3:
                         return frame.ivs[0];
                     case 4:

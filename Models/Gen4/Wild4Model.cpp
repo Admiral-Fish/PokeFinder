@@ -88,7 +88,7 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.occidentary;
                     case 2:
-                        return "Chatot"; // TODO
+                        return frame.chatotPitch();
                     case 3:
                         return frame.encounterSlot;
                     case 4:
@@ -126,9 +126,9 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.occidentary;
                     case 2:
-                        return "Elm"; // TODO
+                        return frame.elmCall();
                     case 3:
-                        return "Chatot"; // TODO
+                        return frame.chatotPitch();
                     case 4:
                         return frame.encounterSlot;
                     case 5:
