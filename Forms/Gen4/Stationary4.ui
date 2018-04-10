@@ -249,7 +249,7 @@ QPushButton {
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabStationary">
        <attribute name="title">
@@ -1579,13 +1579,6 @@ QPushButton {
            <string>RNG Info</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="2" column="0">
-            <widget class="QLabel" name="sidLabel_3">
-             <property name="text">
-              <string>SID</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="methodLabel_3">
              <property name="text">
@@ -1633,19 +1626,6 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
-            <widget class="QTextBox" name="sidSearcher">
-             <property name="inputMask">
-              <string/>
-             </property>
-             <property name="text">
-              <string notr="true">54321</string>
-             </property>
-             <property name="maxLength">
-              <number>5</number>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="1">
             <widget class="QTextBox" name="idSearcher">
              <property name="inputMask">
@@ -1659,7 +1639,53 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="0" colspan="2">
+           <item row="2" column="0">
+            <widget class="QLabel" name="sidLabel_3">
+             <property name="text">
+              <string>SID</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QTextBox" name="sidSearcher">
+             <property name="inputMask">
+              <string/>
+             </property>
+             <property name="text">
+              <string notr="true">54321</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Lead</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QComboBox" name="comboBoxLeadSearcher">
+             <item>
+              <property name="text">
+               <string>Any</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Synchronize</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>None</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="4" column="0" colspan="2">
             <widget class="QPushButton" name="search">
              <property name="enabled">
               <bool>true</bool>
@@ -1708,7 +1734,7 @@ QPushButton {
      <x>0</x>
      <y>0</y>
      <width>1182</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

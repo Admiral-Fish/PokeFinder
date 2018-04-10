@@ -717,7 +717,10 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.frame;
                     case 2:
-                        return frame.leadType;
+                        {
+                            Lead type = frame.leadType;
+                            return type == None ? tr("None") : tr("Synch");
+                        }
                     case 3:
                         return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
                     case 4:

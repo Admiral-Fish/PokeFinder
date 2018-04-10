@@ -91,6 +91,10 @@ void Stationary4::setupModels()
     ui->comboBoxMethodSearcher->setItemData(2, MethodK);
     ui->comboBoxMethodSearcher->setItemData(3, WondercardIVs);
 
+    ui->comboBoxLeadSearcher->setItemData(0, Search);
+    ui->comboBoxLeadSearcher->setItemData(1, Synchronize);
+    ui->comboBoxLeadSearcher->setItemData(2, None);
+
     ui->comboBoxNatureGenerator->setup();
     ui->comboBoxNatureSearcher->setup();
 
@@ -201,6 +205,7 @@ void Stationary4::search()
                                         genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
                                         ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
     Searcher4 searcher = Searcher4(tid, sid, genderRatioIndex, ui->minDelay->text().toUInt(), ui->maxDelay->text().toUInt(), ui->minFrame->text().toUInt(), ui->maxFrame->text().toUInt(), compare, (Method)ui->comboBoxMethodSearcher->currentData().toInt());
+    searcher.leadType = (Lead)ui->comboBoxLeadSearcher->currentData().toInt();
 
     vector<u32> min = ui->ivFilterSearcher->getLower();
     vector<u32> max = ui->ivFilterSearcher->getUpper();
