@@ -38,6 +38,7 @@ after_build:
     - 7z a PokeFinder-windows-%ARCH%.7z PokeFinder-windows\
     
 artifacts:
+    - path: PokeFinder-windows-%ARCH%.zip
     - path: PokeFinder-windows-%ARCH%.7z
 
 deploy:
