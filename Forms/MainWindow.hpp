@@ -32,6 +32,10 @@
 #include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Forms/Gen3/PIDtoIVs.hpp>
 #include <Forms/Gen3/IDs3.hpp>
+#include <Forms/Gen4/Stationary4.hpp>
+#include <Forms/Gen4/Wild4.hpp>
+#include <Forms/Gen4/Eggs4.hpp>
+#include <Forms/Gen4/IDs4.hpp>
 #include <QDir>
 
 namespace Ui
@@ -55,6 +59,10 @@ private:
     Wild3 *wild3 = NULL;
     Eggs3 *egg3 = NULL;
     IDs3 *ids3 = NULL;
+    Stationary4 *stationary4 = NULL;
+    Wild4 *wild4 = NULL;
+    Eggs4 *egg4 = NULL;
+    IDs4 *ids4 = NULL;
 
     void setupLanguage();
     void setupModels();
@@ -76,6 +84,10 @@ private slots:
     void on_actionGameCubeRTC_triggered();
     void on_actionPIDtoIV_triggered();
     void on_pushButtonIDs3_clicked();
+    void on_pushButtonStationary4_clicked();
+    void on_pushButtonWild4_clicked();
+    void on_pushButtonEgg4_clicked();
+    void on_pushButtonIDs4_clicked();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

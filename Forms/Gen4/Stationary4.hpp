@@ -17,21 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIONARY3_H
-#define STATIONARY3_H
+#ifndef STATIONARY4_HPP
+#define STATIONARY4_HPP
 
-#include <PokeFinderCore/Gen3/Frame3.hpp>
-#include <PokeFinderCore/Gen3/Generator3.hpp>
-#include <PokeFinderCore/Gen3/Searcher3.hpp>
+#include <PokeFinderCore/Gen4/Frame4.hpp>
+#include <PokeFinderCore/Gen4/Generator4.hpp>
+#include <PokeFinderCore/Gen4/Searcher4.hpp>
 #include <PokeFinderCore/Objects/FrameCompare.hpp>
 #include <PokeFinderCore/Objects/Nature.hpp>
 #include <PokeFinderCore/Objects/Power.hpp>
-#include <PokeFinderCore/Gen3/Profile3.hpp>
-#include <Forms/Gen3/ProfileManager3.hpp>
-#include <Models/Gen3/Stationary3Model.hpp>
-#include <Models/Gen3/Searcher3Model.hpp>
+#include <PokeFinderCore/Gen4/Profile4.hpp>
+#include <Forms/Gen4/ProfileManager4.hpp>
+#include <Models/Gen4/Stationary4Model.hpp>
+#include <Models/Gen4/Searcher4Model.hpp>
 #include <PokeFinderCore/Translator.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
 #include <thread>
 #include <QMenu>
 #include <QAction>
@@ -42,10 +41,10 @@
 
 namespace Ui
 {
-    class Stationary3;
+    class Stationary4;
 }
 
-class Stationary3 : public QMainWindow
+class Stationary4 : public QMainWindow
 {
     Q_OBJECT
 
@@ -53,29 +52,26 @@ protected:
     void changeEvent(QEvent *);
 
 signals:
-    void updateView(vector<Frame3>);
     void alertProfiles(int);
+    void updateView(vector<Frame4>);
     void updateProgress();
 
 private:
-    Ui::Stationary3 *ui;
-    Searcher3Model *s = new Searcher3Model(this, Method1);
-    Stationary3Model *g = new Stationary3Model(this);
+    Ui::Stationary4 *ui;
+    Searcher4Model *s = new Searcher4Model(this, Method1);
+    Stationary4Model *g = new Stationary4Model(this, Method1);
     bool isSearching = false;
     bool cancel = false;
     u32 progress;
-    vector<Profile3> profiles;
-    QMenu *generatorMenu = new QMenu();
-    QMenu *searcherMenu = new QMenu();
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
+    vector<Profile4> profiles;
+    //QMenu *generatorMenu = new QMenu();
+    //QMenu *searcherMenu = new QMenu();
+    //QModelIndex lastIndex;
+    //QModelIndex targetFrame;
 
-    void setupModels();
     void search();
+    void setupModels();
     void updateSearch();
-
-public slots:
-    void moveResults(QString seed, QString method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
 
 private slots:
     void on_generate_clicked();
@@ -83,29 +79,18 @@ private slots:
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_anyNatureGenerator_clicked();
     void on_anyHiddenPowerGenerator_clicked();
-    void on_checkBoxDelayGenerator_clicked();
     void on_search_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void updateViewSearcher(vector<Frame3> frames);
-    void on_comboBoxMethodSearcher_currentIndexChanged(int index);
-    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
-    void setTargetFrameGenerator();
-    void jumpToTargetGenerator();
-    void centerFramesAndSetTargetGenerator(u32 centerFrames);
-    void seedToTime();
-    void outputToTxt();
-    void outputToCSV();
-    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
-    void copySeedToClipboard();
-    void updateProgressBar();
     void on_pushButtonProfileManager_clicked();
+    void updateProgressBar();
+    void updateViewSearcher(vector<Frame4> frames);
+    void on_pushButtonLeadGenerator_clicked();
 
 public:
-    explicit Stationary3(QWidget *parent = 0);
-    ~Stationary3();
+    explicit Stationary4(QWidget *parent = 0);
+    ~Stationary4();
     void updateProfiles();
-
 };
 
-#endif // STATIONARY3_H
+#endif // STATIONARY4_HPP
