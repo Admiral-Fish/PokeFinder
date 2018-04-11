@@ -39,6 +39,8 @@ Stationary4::~Stationary4()
 {
     QSettings setting;
     setting.setValue("stationary4Profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("stationary4MinDelay", ui->minDelay->text().toInt());
+    setting.setValue("stationary4MaxDelay", ui->maxDelay->text().toInt());
 
     delete ui;
     delete g;
@@ -104,6 +106,14 @@ void Stationary4::setupModels()
 
     ui->comboBoxHiddenPowerGenerator->setup();
     ui->comboBoxHiddenPowerSearcher->setup();
+
+    QSettings setting;
+    int val = setting.value("stationary4MinDelay").toInt();
+    if (val != 0)
+        ui->minDelay->setText(QString::number(val));
+    val = setting.value("stationary4MaxDelay").toInt();
+    if (val != 0)
+        ui->maxDelay->setText(QString::number(val));
 }
 
 void Stationary4::updateProfiles()

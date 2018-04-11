@@ -1503,12 +1503,12 @@ QPushButton {
               </widget>
              </item>
              <item row="8" column="3">
-              <widget class="QTextBox" name="maxDelay">
+              <widget class="QTextBox" name="maxFrame">
                <property name="inputMask">
                 <string/>
                </property>
                <property name="text">
-                <string notr="true">2000</string>
+                <string notr="true">1000</string>
                </property>
                <property name="maxLength">
                 <number>5</number>
@@ -1516,12 +1516,12 @@ QPushButton {
               </widget>
              </item>
              <item row="7" column="3">
-              <widget class="QTextBox" name="maxFrame">
+              <widget class="QTextBox" name="maxDelay">
                <property name="inputMask">
                 <string/>
                </property>
                <property name="text">
-                <string notr="true">1000</string>
+                <string notr="true">2000</string>
                </property>
                <property name="maxLength">
                 <number>5</number>

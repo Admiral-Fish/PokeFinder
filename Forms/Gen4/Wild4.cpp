@@ -57,6 +57,8 @@ Wild4::~Wild4()
 {
     QSettings setting;
     setting.setValue("wild4Profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("wild4MinDelay", ui->minDelay->text().toInt());
+    setting.setValue("wild4MaxDelay", ui->maxDelay->text().toInt());
 
     delete ui;
     delete g;
@@ -118,6 +120,14 @@ void Wild4::setupModels()
 
     on_comboBoxEncounterGenerator_currentIndexChanged(0);
     on_comboBoxEncounterSearcher_currentIndexChanged(0);
+
+    QSettings setting;
+    int val = setting.value("wild4MinDelay").toInt();
+    if (val != 0)
+        ui->minDelay->setText(QString::number(val));
+    val = setting.value("wild4MaxDelay").toInt();
+    if (val != 0)
+        ui->maxDelay->setText(QString::number(val));
 }
 
 void Wild4::updateProfiles()
