@@ -725,10 +725,7 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                                 return tr("Synchronize");
                             case SuctionCups:
                                 return tr("Suction Cups");
-                            case CuteCharm25F:
-                            case CuteCharm50F:
-                            case CuteCharm75F:
-                            case CuteCharm125F:
+                            case CuteCharmFemale:
                                 return tr("Cute Charm (♀)");
                             case CuteCharm25M:
                                 return tr("Cute Charm (25% ♂");
