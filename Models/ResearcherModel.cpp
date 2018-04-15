@@ -50,6 +50,11 @@ void ResearcherModel::setFlag(bool is64Bit)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
+void ResearcherModel::setHex(vector<bool> hex)
+{
+    this->hex = hex;
+}
+
 int ResearcherModel::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
@@ -86,25 +91,25 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
                 case 5:
                     return QString::number(frame.low16(), 16).toUpper().rightJustified(4, '0');
                 case 6:
-                    return frame.custom[0];
+                    return QString::number(frame.custom[0], hex[0] ? 16 : 10).toUpper();
                 case 7:
-                    return frame.custom[1];
+                    return QString::number(frame.custom[1], hex[1] ? 16 : 10).toUpper();
                 case 8:
-                    return frame.custom[2];
+                    return QString::number(frame.custom[2], hex[2] ? 16 : 10).toUpper();
                 case 9:
-                    return frame.custom[3];
+                    return QString::number(frame.custom[3], hex[3] ? 16 : 10).toUpper();
                 case 10:
-                    return frame.custom[4];
+                    return QString::number(frame.custom[4], hex[4] ? 16 : 10).toUpper();
                 case 11:
-                    return frame.custom[5];
+                    return QString::number(frame.custom[5], hex[5] ? 16 : 10).toUpper();
                 case 12:
-                    return frame.custom[6];
+                    return QString::number(frame.custom[6], hex[6] ? 16 : 10).toUpper();
                 case 13:
-                    return frame.custom[7];
+                    return QString::number(frame.custom[7], hex[7] ? 16 : 10).toUpper();
                 case 14:
-                    return frame.custom[8];
+                    return QString::number(frame.custom[8], hex[8] ? 16 : 10).toUpper();
                 case 15:
-                    return frame.custom[9];
+                    return QString::number(frame.custom[9], hex[9] ? 16 : 10).toUpper();
                 case 16:
                     return frame.mod3();
                 case 17:
@@ -132,25 +137,25 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
                 case 3:
                     return QString::number(frame.low16(), 16).toUpper().rightJustified(4, '0');
                 case 4:
-                    return frame.custom[0];
+                    return QString::number(frame.custom[0], hex[0] ? 16 : 10).toUpper();
                 case 5:
-                    return frame.custom[1];
+                    return QString::number(frame.custom[1], hex[1] ? 16 : 10).toUpper();
                 case 6:
-                    return frame.custom[2];
+                    return QString::number(frame.custom[2], hex[2] ? 16 : 10).toUpper();
                 case 7:
-                    return frame.custom[3];
+                    return QString::number(frame.custom[3], hex[3] ? 16 : 10).toUpper();
                 case 8:
-                    return frame.custom[4];
+                    return QString::number(frame.custom[4], hex[4] ? 16 : 10).toUpper();
                 case 9:
-                    return frame.custom[5];
+                    return QString::number(frame.custom[5], hex[5] ? 16 : 10).toUpper();
                 case 10:
-                    return frame.custom[6];
+                    return QString::number(frame.custom[6], hex[6] ? 16 : 10).toUpper();
                 case 11:
-                    return frame.custom[7];
+                    return QString::number(frame.custom[7], hex[7] ? 16 : 10).toUpper();
                 case 12:
-                    return frame.custom[8];
+                    return QString::number(frame.custom[8], hex[8] ? 16 : 10).toUpper();
                 case 13:
-                    return frame.custom[9];
+                    return QString::number(frame.custom[9], hex[9] ? 16 : 10).toUpper();
                 case 14:
                     return frame.mod3();
                 case 15:

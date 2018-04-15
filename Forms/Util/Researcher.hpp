@@ -59,6 +59,7 @@ private:
     u64 getCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames);
     void setupModels();
     void translate();
+    vector<bool> getHexCheck();
     static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
     static inline u64 modulo(u64 x, u64 y) { return x % y; }
     static inline u64 shiftRight(u64 x, u64 y) { return x >> y; }

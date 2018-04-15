@@ -287,6 +287,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         frames.push_back(frame);
     }
 
+    model->setHex(getHexCheck());
     model->setModel(frames);
 
     delete rng;
@@ -465,6 +466,24 @@ void Researcher::translate()
     keys[tr("Previous 7")] = 21;
     keys[tr("Previous 8")] = 22;
     keys[tr("Previous 9")] = 23;
+}
+
+vector<bool> Researcher::getHexCheck()
+{
+    vector<bool> hex;
+
+    hex.push_back(ui->checkBoxHex1->isChecked());
+    hex.push_back(ui->checkBoxHex2->isChecked());
+    hex.push_back(ui->checkBoxHex3->isChecked());
+    hex.push_back(ui->checkBoxHex4->isChecked());
+    hex.push_back(ui->checkBoxHex5->isChecked());
+    hex.push_back(ui->checkBoxHex6->isChecked());
+    hex.push_back(ui->checkBoxHex7->isChecked());
+    hex.push_back(ui->checkBoxHex8->isChecked());
+    hex.push_back(ui->checkBoxHex9->isChecked());
+    hex.push_back(ui->checkBoxHex10->isChecked());
+
+    return hex;
 }
 
 void Researcher::on_rngSelection_currentChanged(int index)
