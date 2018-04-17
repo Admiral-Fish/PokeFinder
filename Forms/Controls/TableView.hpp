@@ -23,7 +23,6 @@
 #include <QTableView>
 #include <QHeaderView>
 
-
 class TableView : public QTableView
 {
 
