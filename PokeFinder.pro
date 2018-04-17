@@ -139,7 +139,8 @@ HEADERS += \
     Forms/Gen4/IDs4.hpp \
     Models/Gen4/Wild4Model.hpp \
     PokeFinderCore/Gen4/Searcher4.hpp \
-    Models/Gen4/Searcher4Model.hpp
+    Models/Gen4/Searcher4Model.hpp \
+    Forms/Controls/TableView.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -204,4 +205,5 @@ SOURCES += \
     Forms/Gen4/IDs4.cpp \
     Models/Gen4/Wild4Model.cpp \
     PokeFinderCore/Gen4/Searcher4.cpp \
-    Models/Gen4/Searcher4Model.cpp
+    Models/Gen4/Searcher4Model.cpp \
+    Forms/Controls/TableView.cpp

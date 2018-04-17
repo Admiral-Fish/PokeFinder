@@ -1199,7 +1199,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QTableView" name="tableViewEmeraldPID">
+         <widget class="TableView" name="tableViewEmeraldPID">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -1916,7 +1916,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewRS">
+         <widget class="TableView" name="tableViewRS">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -2623,7 +2623,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewFRLG">
+         <widget class="TableView" name="tableViewFRLG">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -2754,6 +2754,11 @@ QRadioButton {
    <class>QCheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/QCheckList.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

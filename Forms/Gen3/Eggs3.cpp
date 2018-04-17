@@ -62,16 +62,12 @@ void Eggs3::updateProfiles()
 void Eggs3::setupModels()
 {
     ui->tableViewEmeraldIVs->setModel(emeraldIVs);
-    ui->tableViewEmeraldIVs->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->tableViewEmeraldPID->setModel(emeraldPID);
-    ui->tableViewEmeraldPID->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->tableViewRS->setModel(rs);
-    ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->tableViewFRLG->setModel(frlg);
-    ui->tableViewFRLG->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->textBoxMinFrameEmeraldPID->setValues(1, 32, true);
     ui->textBoxMaxFrameEmeraldPID->setValues(1, 32, true);
