@@ -136,9 +136,9 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
         maxDay += temp.daysInMonth();
         for (u32 day = minDay; day < maxDay; day++)
         {
-            for (u32 hour = 0; hour < 23; hour++)
+            for (u32 hour = 0; hour < 24; hour++)
             {
-                for (u32 minute = 0; minute < 59; minute++)
+                for (u32 minute = 0; minute < 60; minute++)
                 {
                     // Formula to generate intial seed
                     u32 v = 1440 * day + 960 * (hour / 10) + 60 * (hour % 10) + 16 * (minute / 10) + (minute % 10) + 0x5A0;
@@ -150,10 +150,7 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
                         QString result = finalTime.toString(Qt::SystemLocaleShortDate);
                         int seconds = day * 86400 + hour * 3600 + minute * 60;
                         QList<QStandardItem *> list;
-                        QStandardItem *text = new QStandardItem(result);
-                        QStandardItem *cnt = new QStandardItem(QString::number(frame, 10));
-                        QStandardItem *secondsText = new QStandardItem(QString::number(seconds, 10));
-                        list << text << cnt << secondsText;
+                        list << new QStandardItem(result) << new QStandardItem(QString::number(frame, 10)) << new QStandardItem(QString::number(seconds, 10));
                         model->appendRow(list);
                     }
                 }
