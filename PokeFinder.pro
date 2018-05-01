@@ -66,7 +66,8 @@ FORMS += \
     Forms/Gen4/Stationary4.ui \
     Forms/Gen4/Wild4.ui \
     Forms/Gen4/Eggs4.ui \
-    Forms/Gen4/IDs4.ui
+    Forms/Gen4/IDs4.ui \
+    Forms/Gen4/SeedtoTime4.ui
 
 HEADERS += \
     Forms/Controls/IVFilter.hpp \
@@ -139,7 +140,10 @@ HEADERS += \
     Forms/Gen4/IDs4.hpp \
     Models/Gen4/Wild4Model.hpp \
     PokeFinderCore/Gen4/Searcher4.hpp \
-    Models/Gen4/Searcher4Model.hpp
+    Models/Gen4/Searcher4Model.hpp \
+    Forms/Gen4/SeedtoTime4.hpp \
+    Models/Gen4/SeedtoTime4Model.hpp \
+    Util/DateTime.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -204,4 +208,7 @@ SOURCES += \
     Forms/Gen4/IDs4.cpp \
     Models/Gen4/Wild4Model.cpp \
     PokeFinderCore/Gen4/Searcher4.cpp \
-    Models/Gen4/Searcher4Model.cpp
+    Models/Gen4/Searcher4Model.cpp \
+    Forms/Gen4/SeedtoTime4.cpp \
+    Models/Gen4/SeedtoTime4Model.cpp \
+    Util/DateTime.cpp

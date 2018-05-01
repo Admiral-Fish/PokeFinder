@@ -311,3 +311,17 @@ void MainWindow::on_pushButtonIDs4_clicked()
     ids4->show();
     ids4->raise();
 }
+
+void MainWindow::on_actionSeed_to_Time_triggered()
+{
+    SeedtoTime4 *seedToTime = new SeedtoTime4();
+    seedToTime->show();
+    seedToTime->raise();
+}
+
+void MainWindow::on_actionIV_to_PID_triggered()
+{
+    IVtoPID *ivToPID = new IVtoPID();
+    ivToPID->show();
+    ivToPID->raise();
+}
