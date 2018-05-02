@@ -946,6 +946,44 @@ QPushButton {
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>comboBoxHP</tabstop>
+  <tabstop>comboBoxAtk</tabstop>
+  <tabstop>comboBoxDef</tabstop>
+  <tabstop>comboBoxSpA</tabstop>
+  <tabstop>comboBoxSpD</tabstop>
+  <tabstop>comboBoxSpe</tabstop>
+  <tabstop>spinBoxHP</tabstop>
+  <tabstop>spinBoxAtk</tabstop>
+  <tabstop>spinBoxDef</tabstop>
+  <tabstop>spinBoxSpA</tabstop>
+  <tabstop>spinBoxSpD</tabstop>
+  <tabstop>spinBoxSpe</tabstop>
+  <tabstop>pushButton31HP</tabstop>
+  <tabstop>pushButton30HP</tabstop>
+  <tabstop>pushButtonG30HP</tabstop>
+  <tabstop>pushButtonClearHP</tabstop>
+  <tabstop>pushButton31Atk</tabstop>
+  <tabstop>pushButton30Atk</tabstop>
+  <tabstop>pushButtonG30Atk</tabstop>
+  <tabstop>pushButtonClearAtk</tabstop>
+  <tabstop>pushButton31Def</tabstop>
+  <tabstop>pushButton30Def</tabstop>
+  <tabstop>pushButtonG30Def</tabstop>
+  <tabstop>pushButtonClearDef</tabstop>
+  <tabstop>pushButton31SpA</tabstop>
+  <tabstop>pushButton30SpA</tabstop>
+  <tabstop>pushButtonG30SpA</tabstop>
+  <tabstop>pushButtonClearSpA</tabstop>
+  <tabstop>pushButton31SpD</tabstop>
+  <tabstop>pushButton30SpD</tabstop>
+  <tabstop>pushButtonG30SpD</tabstop>
+  <tabstop>pushButtonClearSpD</tabstop>
+  <tabstop>pushButton31Spe</tabstop>
+  <tabstop>pushButton30Spe</tabstop>
+  <tabstop>pushButtonG30Spe</tabstop>
+  <tabstop>pushButtonClearSpe</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
