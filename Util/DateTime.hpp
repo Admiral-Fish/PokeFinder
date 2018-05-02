@@ -47,6 +47,7 @@ public:
     u32 getSeed();
     int getDelay();
     Game getVersion();
+    QDateTime getDateTime();
 
 };
 

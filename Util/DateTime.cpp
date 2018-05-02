@@ -59,3 +59,8 @@ Game DateTime::getVersion()
 {
     return version;
 }
+
+QDateTime DateTime::getDateTime()
+{
+    return dateTime;
+}

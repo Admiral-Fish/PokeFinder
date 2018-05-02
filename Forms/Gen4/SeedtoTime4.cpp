@@ -33,8 +33,13 @@ SeedtoTime4::SeedtoTime4(QWidget *parent) :
 
 SeedtoTime4::~SeedtoTime4()
 {
+    saveSettings();
+
     delete ui;
     delete dppt;
+    delete dpptCalibrate;
+    delete hgss;
+    delete hgssCalibrate;
 }
 
 void SeedtoTime4::changeEvent(QEvent *event)
@@ -54,23 +59,56 @@ void SeedtoTime4::changeEvent(QEvent *event)
 
 void SeedtoTime4::setupModels()
 {
+    loadSettings();
+
+    ui->textBoxSeedDPPt->setValues(0, 32, false);
+    ui->textBoxSeedHGSS->setValues(0, 32, false);
+
     ui->tableViewDPPt->setModel(dppt);
+    ui->tableViewDPPtCalibrate->setModel(dpptCalibrate);
+
+    ui->tableViewHGSS->setModel(hgss);
+    ui->tableViewHGSSCalibrate->setModel(hgssCalibrate);
 }
 
-void SeedtoTime4::on_pushButtonGenerateDPPt_clicked()
+void SeedtoTime4::saveSettings()
 {
-    u32 seed = ui->textBoxSeedDPPt->text().toUInt(NULL, 16);
-    u32 year = ui->lineEditYearDPPt->text().toUInt();
+    QSettings settings;
+    settings.setValue("dpptYear", ui->lineEditYearDPPt->text());
+    settings.setValue("minusDelayDPPt", ui->lineEditMinusDelayDPPt->text());
+    settings.setValue("plusDelayDPPt", ui->lineEditPlusDelayDPPt->text());
+    settings.setValue("minusSecondsDPPt", ui->lineEditMinusSecondsDPPt->text());
+    settings.setValue("plusSecondsDPPt", ui->lineEditPlusSecondsDPPt->text());
+    settings.setValue("hgssYear", ui->lineEditYearHGSS->text());
+    settings.setValue("minusDelayHGSS", ui->lineEditMinusDelayHGSS->text());
+    settings.setValue("plusDelayHGSS", ui->lineEditPlusDelayHGSS->text());
+    settings.setValue("minusSecondsHGSS", ui->lineEditMinusSecondsHGSS->text());
+    settings.setValue("plusSecondsHGSS", ui->lineEditPlusSecondsHGSS->text());
+}
 
-    bool forceSecond = ui->checkBoxSecondsDPPt->isChecked();
-    int forcedSecond = ui->lineEditSecondsDPPt->text().toInt();
+void SeedtoTime4::loadSettings()
+{
+    QSettings setting;
+    if (setting.contains("dpptYear")) ui->lineEditYearDPPt->setText(setting.value("dpptYear").toString());
+    if (setting.contains("minusDelayDPPt")) ui->lineEditMinusDelayDPPt->setText(setting.value("minusDelayDPPt").toString());
+    if (setting.contains("plusDelayDPPt")) ui->lineEditPlusDelayDPPt->setText(setting.value("plusDelayDPPt").toString());
+    if (setting.contains("minusSecondsDPPt")) ui->lineEditMinusSecondsDPPt->setText(setting.value("minusSecondsDPPt").toString());
+    if (setting.contains("plusSecondsDPPt")) ui->lineEditPlusSecondsDPPt->setText(setting.value("plusSecondsDPPt").toString());
+    if (setting.contains("hgssYear")) ui->lineEditYearHGSS->setText(setting.value("hgssYear").toString());
+    if (setting.contains("minusDelayHGSS")) ui->lineEditMinusDelayHGSS->setText(setting.value("minusDelayHGSS").toString());
+    if (setting.contains("plusDelayHGSS")) ui->lineEditPlusDelayHGSS->setText(setting.value("plusDelayHGSS").toString());
+    if (setting.contains("minusSecondsHGSS")) ui->lineEditMinusSecondsHGSS->setText(setting.value("minusSecondsHGSS").toString());
+    if (setting.contains("plusSecondsHGSS")) ui->lineEditPlusSecondsHGSS->setText(setting.value("plusSecondsHGSS").toString());
+}
 
+vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int forcedSecond)
+{
     if (year < 2000 || year > 2099)
     {
         QMessageBox error;
         error.setText(tr("Please enter a year between 2000 and 2099"));
         error.exec();
-        return;
+        return vector<DateTime>();
     }
 
     u32 ab = seed >> 24;
@@ -85,13 +123,8 @@ void SeedtoTime4::on_pushButtonGenerateDPPt_clicked()
         QMessageBox error;
         error.setText(tr("Seed is invalid. Please enter a valid seed."));
         error.exec();
-        return;
+        return vector<DateTime>();
     }
-
-    dppt->clear();
-    dppt->setFlags();
-
-    ui->labelCoinFlips->setText("Coin Flips: " + Utilities::coinFlips(seed, 15));
 
     vector<DateTime> results;
     for (int month = 0; month < 13; month++)
@@ -115,12 +148,64 @@ void SeedtoTime4::on_pushButtonGenerateDPPt_clicked()
             }
         }
     }
+    return results;
+}
+
+vector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, DateTime target)
+{
+    QDateTime time = target.getDateTime();
+
+    int delay = target.getDelay();
+
+    vector<DateTime> results;
+    for (int i = minusDelay; i > 0; i--)
+    {
+        for (int j = minusSecond; j > 0; j--)
+        {
+            QDateTime offset = time.addSecs(-1 * j);
+            DateTime result = DateTime(offset, delay - i, Diamond);
+            results.push_back(result);
+        }
+    }
+
+    results.push_back(target);
+
+    for (int i = 1; i <= plusDelay; i++)
+    {
+        for (int j = 1; j <= plusSecond; j++)
+        {
+            QDateTime offset = time.addSecs(j);
+            DateTime result = DateTime(offset, delay + i, Diamond);
+            results.push_back(result);
+        }
+    }
+    return results;
+}
+
+void SeedtoTime4::on_pushButtonGenerateDPPt_clicked()
+{
+    u32 seed = ui->textBoxSeedDPPt->text().toUInt(NULL, 16);
+    u32 year = ui->lineEditYearDPPt->text().toUInt();
+
+    bool forceSecond = ui->checkBoxSecondsDPPt->isChecked();
+    int forcedSecond = ui->lineEditSecondsDPPt->text().toInt();
+
+    dppt->clear();
+
+    vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond);
+    ui->labelCoinFlips->setText(tr("Coin Flips: ") + Utilities::coinFlips(seed, 15));
+
     dppt->setModel(results);
 }
 
 void SeedtoTime4::on_checkBoxSecondsDPPt_clicked(bool checked)
 {
     ui->lineEditSecondsDPPt->setEnabled(checked);
+}
+
+void SeedtoTime4::on_checkBoxSecondsHGSS_clicked(bool checked)
+{
+    ui->lineEditSecondsHGSS->setEnabled(checked);
 }
 
 void SeedtoTime4::on_pushButtonSearchFlips_clicked()
@@ -130,5 +215,87 @@ void SeedtoTime4::on_pushButtonSearchFlips_clicked()
 
 void SeedtoTime4::on_pushButtonCalibrateDPPt_clicked()
 {
+    int minusDelay = ui->lineEditMinusDelayDPPt->text().toInt();
+    int plusDelay = ui->lineEditPlusDelayDPPt->text().toInt();
 
+    int minusSecond = ui->lineEditMinusSecondsDPPt->text().toInt();
+    int plusSecond = ui->lineEditPlusSecondsDPPt->text().toInt();
+
+    QModelIndex index = ui->tableViewDPPt->currentIndex();
+
+    if (!index.isValid())
+    {
+        QMessageBox error;
+        error.setText("Please select a result from Seed to Time.");
+        error.exec();
+        return;
+    }
+
+    dpptCalibrate->clear();
+
+    DateTime target = dppt->getData(index.row());
+    vector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
+
+    dpptCalibrate->setModel(results);
+
+    int count = results.size();
+    count = (count - 1) / 2;
+    QModelIndex scroll = dpptCalibrate->index(count, 0);
+    ui->tableViewDPPtCalibrate->setCurrentIndex(scroll);
+    ui->tableViewDPPtCalibrate->scrollTo(scroll);
+    ui->tableViewDPPtCalibrate->setFocus();
+}
+
+void SeedtoTime4::on_pushButtonGenerateHGSS_clicked()
+{
+    u32 seed = ui->textBoxSeedHGSS->text().toUInt(NULL, 16);
+    u32 year = ui->lineEditYearHGSS->text().toUInt();
+
+    bool forceSecond = ui->checkBoxSecondsHGSS->isChecked();
+    int forcedSecond = ui->lineEditSecondsHGSS->text().toInt();
+
+    hgss->clear();
+
+    vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond);
+    ui->labelElmCalls->setText(tr("Elm Calls: ") + Utilities::elmCalls(seed, 15));
+
+    hgss->setModel(results);
+}
+
+void SeedtoTime4::on_pushButtonSearchCalls_clicked()
+{
+
+}
+
+void SeedtoTime4::on_pushButtonCalibrateHGSS_clicked()
+{
+    int minusDelay = ui->lineEditMinusDelayHGSS->text().toInt();
+    int plusDelay = ui->lineEditPlusDelayHGSS->text().toInt();
+
+    int minusSecond = ui->lineEditMinusSecondsHGSS->text().toInt();
+    int plusSecond = ui->lineEditPlusSecondsHGSS->text().toInt();
+
+    QModelIndex index = ui->tableViewHGSS->currentIndex();
+
+    if (!index.isValid())
+    {
+        QMessageBox error;
+        error.setText("Please select a result from Seed to Time.");
+        error.exec();
+        return;
+    }
+
+    hgssCalibrate->clear();
+
+    DateTime target = hgss->getData(index.row());
+    vector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
+
+    hgssCalibrate->setModel(results);
+
+    int count = results.size();
+    count = (count - 1) / 2;
+    QModelIndex scroll = hgssCalibrate->index(count, 0);
+    ui->tableViewHGSSCalibrate->setCurrentIndex(scroll);
+    ui->tableViewHGSSCalibrate->scrollTo(scroll);
+    ui->tableViewHGSSCalibrate->setFocus();
 }

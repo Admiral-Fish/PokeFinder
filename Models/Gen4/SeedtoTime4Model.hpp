@@ -36,9 +36,10 @@ private:
     Game version;
 
 public:
-    SeedtoTime4Model(QObject *parent, bool flag = false);
+    SeedtoTime4Model(QObject *parent, bool flag = false, Game version = Diamond);
     void setModel(vector<DateTime> times);
     void clear();
+    DateTime getData(int row);
     void setFlags(bool flag = false, Game version = Diamond);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;

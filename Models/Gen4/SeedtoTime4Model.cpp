@@ -19,9 +19,10 @@
 
 #include "SeedtoTime4Model.hpp"
 
-SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag) : QAbstractTableModel(parent)
+SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, Game version) : QAbstractTableModel(parent)
 {
     calibrate = flag;
+    this->version = version;
 }
 
 void SeedtoTime4Model::setModel(vector<DateTime> times)
@@ -42,6 +43,11 @@ void SeedtoTime4Model::clear()
     model.clear();
     model.shrink_to_fit();
     emit endRemoveRows();
+}
+
+DateTime SeedtoTime4Model::getData(int row)
+{
+    return model[row];
 }
 
 void SeedtoTime4Model::setFlags(bool flag, Game version)

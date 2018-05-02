@@ -22,6 +22,8 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QModelIndex>
+#include <QSettings>
 #include <Models/Gen4/SeedtoTime4Model.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
 
@@ -40,14 +42,25 @@ protected:
 private:
     Ui::SeedtoTime4 *ui;
     SeedtoTime4Model *dppt = new SeedtoTime4Model(this, false);
+    SeedtoTime4Model *dpptCalibrate = new SeedtoTime4Model(this, true);
+    SeedtoTime4Model *hgss = new SeedtoTime4Model(this, false, HeartGold);
+    SeedtoTime4Model *hgssCalibrate = new SeedtoTime4Model(this, true, HeartGold);
 
     void setupModels();
+    void saveSettings();
+    void loadSettings();
+    vector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond);
+    vector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, DateTime target);
 
 private slots:
     void on_pushButtonGenerateDPPt_clicked();
     void on_checkBoxSecondsDPPt_clicked(bool checked);
     void on_pushButtonSearchFlips_clicked();
     void on_pushButtonCalibrateDPPt_clicked();
+    void on_checkBoxSecondsHGSS_clicked(bool checked);
+    void on_pushButtonGenerateHGSS_clicked();
+    void on_pushButtonSearchCalls_clicked();
+    void on_pushButtonCalibrateHGSS_clicked();
 
 public:
     explicit SeedtoTime4(QWidget *parent = 0);

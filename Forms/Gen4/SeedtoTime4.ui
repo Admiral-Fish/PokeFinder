@@ -107,124 +107,19 @@ QPushButton {
         <string>DPPt</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>Seed to Time</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="2">
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Year</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QCheckBox" name="checkBoxSecondsDPPt">
-             <property name="text">
-              <string notr="true"/>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxSeedDPPt">
-             <property name="maxLength">
-              <number>8</number>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0" colspan="7">
-            <widget class="QTableView" name="tableViewDPPt"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label">
-             <property name="text">
-              <string>Seed</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLineEdit" name="lineEditYearDPPt">
-             <property name="text">
-              <string notr="true">2000</string>
-             </property>
-             <property name="maxLength">
-              <number>4</number>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="4">
-            <widget class="QLabel" name="label_3">
-             <property name="text">
-              <string>Second</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="4">
-            <widget class="QLineEdit" name="lineEditSecondsDPPt">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="maxLength">
-              <number>2</number>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="6">
-            <widget class="QPushButton" name="pushButtonGenerateDPPt">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>23</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: DodgerBlue;
-}</string>
-             </property>
-             <property name="text">
-              <string>Generate</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="5">
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="2" column="0" colspan="3">
-            <widget class="QLabel" name="labelCoinFlips">
-             <property name="text">
-              <string>Coin Flips:</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QGroupBox" name="groupBox_2">
           <property name="title">
            <string>Calibration</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="0" column="2">
-            <widget class="QLabel" name="label_7">
+           <item row="1" column="5">
+            <widget class="QLineEdit" name="lineEditPlusSecondsDPPt">
              <property name="text">
-              <string notr="true">+</string>
+              <string notr="true">1</string>
              </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
+             <property name="maxLength">
+              <number>8</number>
              </property>
             </widget>
            </item>
@@ -235,8 +130,21 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="1" column="5">
-            <widget class="QLineEdit" name="lineEditPlusSecondsDPPt">
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string notr="true">+</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineEditMinusDelayDPPt">
+             <property name="text">
+              <string notr="true">10</string>
+             </property>
              <property name="maxLength">
               <number>8</number>
              </property>
@@ -288,27 +196,6 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="lineEditMinusDelayDPPt">
-             <property name="maxLength">
-              <number>8</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="4">
-            <widget class="QLineEdit" name="lineEditMinusSecondsDPPt">
-             <property name="maxLength">
-              <number>8</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLineEdit" name="lineEditPlusDelayDPPt">
-             <property name="maxLength">
-              <number>8</number>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="1">
             <widget class="QLabel" name="label_6">
              <property name="text">
@@ -319,13 +206,23 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="0" column="5">
-            <widget class="QLabel" name="label_9">
+           <item row="1" column="4">
+            <widget class="QLineEdit" name="lineEditMinusSecondsDPPt">
              <property name="text">
-              <string notr="true">+</string>
+              <string notr="true">1</string>
              </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
+             <property name="maxLength">
+              <number>8</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="lineEditPlusDelayDPPt">
+             <property name="text">
+              <string notr="true">10</string>
+             </property>
+             <property name="maxLength">
+              <number>8</number>
              </property>
             </widget>
            </item>
@@ -333,6 +230,16 @@ QPushButton {
             <widget class="QLabel" name="label_5">
              <property name="text">
               <string>Delay</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string notr="true">+</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -355,12 +262,379 @@ QPushButton {
           </layout>
          </widget>
         </item>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Seed to Time</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="1" column="1">
+            <widget class="QTextBox" name="textBoxSeedDPPt">
+             <property name="maxLength">
+              <number>8</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="8">
+            <widget class="QTableView" name="tableViewDPPt"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Seed</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="lineEditYearDPPt">
+             <property name="text">
+              <string notr="true">2000</string>
+             </property>
+             <property name="maxLength">
+              <number>4</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QLineEdit" name="lineEditSecondsDPPt">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="maxLength">
+              <number>2</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Second</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="7">
+            <widget class="QPushButton" name="pushButtonGenerateDPPt">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+             </property>
+             <property name="text">
+              <string>Generate</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="6">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="2" column="0" colspan="3">
+            <widget class="QLabel" name="labelCoinFlips">
+             <property name="text">
+              <string>Coin Flips:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Year</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QCheckBox" name="checkBoxSecondsDPPt">
+             <property name="text">
+              <string notr="true"/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tabHGSS">
        <attribute name="title">
         <string>HGSS</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string>Seed to Time</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Year</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QCheckBox" name="checkBoxSecondsHGSS">
+             <property name="text">
+              <string notr="true"/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QTextBox" name="textBoxSeedHGSS">
+             <property name="maxLength">
+              <number>8</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="7">
+            <widget class="QTableView" name="tableViewHGSS"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Seed</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="lineEditYearHGSS">
+             <property name="text">
+              <string notr="true">2000</string>
+             </property>
+             <property name="maxLength">
+              <number>4</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Second</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QLineEdit" name="lineEditSecondsHGSS">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="maxLength">
+              <number>2</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="6">
+            <widget class="QPushButton" name="pushButtonGenerateHGSS">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+             </property>
+             <property name="text">
+              <string>Generate</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="5">
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="2" column="0" colspan="3">
+            <widget class="QLabel" name="labelElmCalls">
+             <property name="text">
+              <string>Elm Calls:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="title">
+           <string>Calibration</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string notr="true">+</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string>Second</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="5">
+            <widget class="QLineEdit" name="lineEditPlusSecondsHGSS">
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+             <property name="maxLength">
+              <number>8</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="7">
+            <widget class="QPushButton" name="pushButtonSearchCalls">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+             </property>
+             <property name="text">
+              <string>Search Calls</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="8">
+            <widget class="QPushButton" name="pushButtonCalibrateHGSS">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+             </property>
+             <property name="text">
+              <string>Generate</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string notr="true">-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineEditMinusDelayHGSS">
+             <property name="text">
+              <string notr="true">10</string>
+             </property>
+             <property name="maxLength">
+              <number>8</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QLineEdit" name="lineEditMinusSecondsHGSS">
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+             <property name="maxLength">
+              <number>8</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="lineEditPlusDelayHGSS">
+             <property name="text">
+              <string notr="true">10</string>
+             </property>
+             <property name="maxLength">
+              <number>8</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string notr="true">-</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string notr="true">+</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>Delay</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="9">
+            <widget class="QTableView" name="tableViewHGSSCalibrate"/>
+           </item>
+           <item row="1" column="6">
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -384,6 +658,34 @@ QPushButton {
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>textBoxSeedDPPt</tabstop>
+  <tabstop>lineEditYearDPPt</tabstop>
+  <tabstop>lineEditSecondsDPPt</tabstop>
+  <tabstop>pushButtonGenerateDPPt</tabstop>
+  <tabstop>tableViewDPPt</tabstop>
+  <tabstop>lineEditMinusDelayDPPt</tabstop>
+  <tabstop>lineEditPlusDelayDPPt</tabstop>
+  <tabstop>lineEditMinusSecondsDPPt</tabstop>
+  <tabstop>lineEditPlusSecondsDPPt</tabstop>
+  <tabstop>pushButtonSearchFlips</tabstop>
+  <tabstop>pushButtonCalibrateDPPt</tabstop>
+  <tabstop>tableViewDPPtCalibrate</tabstop>
+  <tabstop>textBoxSeedHGSS</tabstop>
+  <tabstop>lineEditYearHGSS</tabstop>
+  <tabstop>checkBoxSecondsHGSS</tabstop>
+  <tabstop>lineEditSecondsHGSS</tabstop>
+  <tabstop>pushButtonGenerateHGSS</tabstop>
+  <tabstop>tableViewHGSS</tabstop>
+  <tabstop>lineEditMinusDelayHGSS</tabstop>
+  <tabstop>lineEditPlusDelayHGSS</tabstop>
+  <tabstop>lineEditMinusSecondsHGSS</tabstop>
+  <tabstop>lineEditPlusSecondsHGSS</tabstop>
+  <tabstop>pushButtonSearchCalls</tabstop>
+  <tabstop>pushButtonCalibrateHGSS</tabstop>
+  <tabstop>tableViewHGSSCalibrate</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
