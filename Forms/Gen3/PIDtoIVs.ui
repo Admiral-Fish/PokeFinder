@@ -175,6 +175,11 @@ QPushButton {
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>pidInput</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>tabePIDToIV</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

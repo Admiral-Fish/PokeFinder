@@ -199,6 +199,12 @@ QHeaderView::section {
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>seedToTimeSeed</tabstop>
+  <tabstop>seedToTimeYear</tabstop>
+  <tabstop>pushButtonFind</tabstop>
+  <tabstop>tableViewGenerator</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

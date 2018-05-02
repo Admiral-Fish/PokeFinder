@@ -611,6 +611,24 @@ QPushButton {
    <header>Forms/Controls/QCheckList.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>textBoxSeed</tabstop>
+  <tabstop>textBoxStartingFrame</tabstop>
+  <tabstop>textBoxMaxResults</tabstop>
+  <tabstop>textBoxTID</tabstop>
+  <tabstop>textBoxSID</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>comboBoxGender</tabstop>
+  <tabstop>comboBoxAbility</tabstop>
+  <tabstop>pushButtonAnyAbility</tabstop>
+  <tabstop>comboBoxNature</tabstop>
+  <tabstop>pushButtonAnyNature</tabstop>
+  <tabstop>comboBoxGenderRatio</tabstop>
+  <tabstop>checkBoxShinyOnly</tabstop>
+  <tabstop>comboBoxSpotType</tabstop>
+  <tabstop>pushButtonAnySpotType</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

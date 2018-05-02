@@ -141,7 +141,7 @@ QRadioButton {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -692,6 +692,44 @@ QRadioButton {
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>checkBoxPIDXD</tabstop>
+  <tabstop>textBoxPIDXD</tabstop>
+  <tabstop>checkBoxTIDXD</tabstop>
+  <tabstop>textBoxTIDXD</tabstop>
+  <tabstop>checkBoxSIDXD</tabstop>
+  <tabstop>textBoxSIDXD</tabstop>
+  <tabstop>pushButtonFindXD</tabstop>
+  <tabstop>textBoxSeedXD</tabstop>
+  <tabstop>textBoxMinFrameXD</tabstop>
+  <tabstop>textBoxMaxFrameXD</tabstop>
+  <tabstop>tableViewXDColo</tabstop>
+  <tabstop>checkBoxPIDFRLGE</tabstop>
+  <tabstop>textBoxPIDFRLGE</tabstop>
+  <tabstop>checkBoxSIDFRLGE</tabstop>
+  <tabstop>textBoxSIDFRLGE</tabstop>
+  <tabstop>pushButtonFindFRLGE</tabstop>
+  <tabstop>textBoxTIDFRLGE</tabstop>
+  <tabstop>textBoxMinFrameFRLGE</tabstop>
+  <tabstop>textBoxMaxFrameFRLGE</tabstop>
+  <tabstop>tableViewFRLGE</tabstop>
+  <tabstop>checkBoxPIDRS</tabstop>
+  <tabstop>textBoxPIDRS</tabstop>
+  <tabstop>checkBoxTIDRS</tabstop>
+  <tabstop>textBoxTIDRS</tabstop>
+  <tabstop>checkBoxSIDRS</tabstop>
+  <tabstop>textBoxSIDRS</tabstop>
+  <tabstop>pushButtonFindRS</tabstop>
+  <tabstop>checkBoxBattery</tabstop>
+  <tabstop>radioButtonDateRS</tabstop>
+  <tabstop>dateTimeEdit</tabstop>
+  <tabstop>radioButtonInitSeedRS</tabstop>
+  <tabstop>textBoxInitSeedRS</tabstop>
+  <tabstop>textBoxMinFrameRS</tabstop>
+  <tabstop>textBoxMaxFrameRS</tabstop>
+  <tabstop>tableViewRS</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

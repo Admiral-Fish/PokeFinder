@@ -119,6 +119,13 @@ QHeaderView::section {
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>pushButtonNew</tabstop>
+  <tabstop>pushButtonEdit</tabstop>
+  <tabstop>pushButtonDelete</tabstop>
+  <tabstop>tableView</tabstop>
+  <tabstop>pushButtonOk</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

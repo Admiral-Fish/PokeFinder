@@ -454,6 +454,18 @@ QSpinBox::down-button {
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>comboBoxNatureGenerator</tabstop>
+  <tabstop>textBoxID</tabstop>
+  <tabstop>spinBoxHP</tabstop>
+  <tabstop>spinBoxAtk</tabstop>
+  <tabstop>spinBoxDef</tabstop>
+  <tabstop>spinBoxSpA</tabstop>
+  <tabstop>spinBoxSpD</tabstop>
+  <tabstop>spinBoxSpe</tabstop>
+  <tabstop>pushButtonFind</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

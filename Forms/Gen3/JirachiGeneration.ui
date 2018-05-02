@@ -177,6 +177,11 @@ QPushButton {
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>jirachiGenerationSeed</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>tableViewGenerator</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

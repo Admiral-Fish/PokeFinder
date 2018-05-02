@@ -163,7 +163,7 @@ QPushButton {
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabStationary">
        <attribute name="title">
@@ -2004,6 +2004,56 @@ QHeaderView::section {
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>comboBoxProfiles</tabstop>
+  <tabstop>pushButtonProfileManager</tabstop>
+  <tabstop>tabRNGSelector</tabstop>
+  <tabstop>comboBoxMethodGenerator</tabstop>
+  <tabstop>comboBoxLocationGenerator</tabstop>
+  <tabstop>comboBoxPokemonGenerator</tabstop>
+  <tabstop>comboBoxEncounterGenerator</tabstop>
+  <tabstop>pushButtonLeadGenerator</tabstop>
+  <tabstop>comboBoxLeadGenerator</tabstop>
+  <tabstop>startingFrameGenerator</tabstop>
+  <tabstop>maxResultsGenerator</tabstop>
+  <tabstop>idGenerator</tabstop>
+  <tabstop>sidGenerator</tabstop>
+  <tabstop>initialSeedGenerator</tabstop>
+  <tabstop>comboBoxGenderGenerator</tabstop>
+  <tabstop>comboBoxAbilityGenerator</tabstop>
+  <tabstop>comboBoxNatureGenerator</tabstop>
+  <tabstop>anyNatureGenerator</tabstop>
+  <tabstop>comboBoxSlotGenerator</tabstop>
+  <tabstop>anySlotGenerator</tabstop>
+  <tabstop>comboBoxHiddenPowerGenerator</tabstop>
+  <tabstop>anyHiddenPowerGenerator</tabstop>
+  <tabstop>comboBoxGenderRatioGenerator</tabstop>
+  <tabstop>checkBoxShinyGenerator</tabstop>
+  <tabstop>checkBoxDisableGenerator</tabstop>
+  <tabstop>checkBoxDelayGenerator</tabstop>
+  <tabstop>delayGenerator</tabstop>
+  <tabstop>generate</tabstop>
+  <tabstop>tableViewGenerator</tabstop>
+  <tabstop>comboBoxMethodSearcher</tabstop>
+  <tabstop>comboBoxLocationSearcher</tabstop>
+  <tabstop>comboBoxPokemonSearcher</tabstop>
+  <tabstop>comboBoxEncounterSearcher</tabstop>
+  <tabstop>comboBoxLeadSearcher</tabstop>
+  <tabstop>idSearcher</tabstop>
+  <tabstop>sidSearcher</tabstop>
+  <tabstop>comboBoxGenderSearcher</tabstop>
+  <tabstop>comboBoxAbilitySearcher</tabstop>
+  <tabstop>comboBoxNatureSearcher</tabstop>
+  <tabstop>anyNatureSearcher</tabstop>
+  <tabstop>comboBoxSlotSearcher</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>comboBoxHiddenPowerSearcher</tabstop>
+  <tabstop>anyHiddenPowerSearcher</tabstop>
+  <tabstop>comboBoxGenderRatioSearcher</tabstop>
+  <tabstop>checkBoxShinySearcher</tabstop>
+  <tabstop>search</tabstop>
+  <tabstop>tableViewSearcher</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
