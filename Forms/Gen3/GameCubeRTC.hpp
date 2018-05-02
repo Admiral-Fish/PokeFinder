@@ -27,8 +27,6 @@
 #include <QList>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <QDateTime>
-#include <QDate>
-#include <QTime>
 #include <QMenu>
 #include <QAction>
 #include <QModelIndex>
@@ -63,6 +61,8 @@ private:
     QModelIndex targetFrame;
 
     void setupModels();
+    void saveSettings();
+    void loadSettings();
     void calcRTC();
 
 private slots:

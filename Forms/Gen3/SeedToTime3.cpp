@@ -47,6 +47,14 @@ SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
     on_pushButtonFind_clicked();
 }
 
+SeedToTime3::~SeedToTime3()
+{
+    saveSettings();
+
+    delete ui;
+    delete model;
+}
+
 void SeedToTime3::setupModels()
 {
     ui->seedToTimeSeed->setValues(0, 32, false);
@@ -57,17 +65,19 @@ void SeedToTime3::setupModels()
     ui->tableViewGenerator->setModel(model);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    QSettings setting;
-    ui->seedToTimeYear->setText(setting.value("seed3Year").toString());
+    loadSettings();
 }
 
-SeedToTime3::~SeedToTime3()
+void SeedToTime3::saveSettings()
 {
     QSettings setting;
     setting.setValue("seed3Year", ui->seedToTimeYear->text());
+}
 
-    delete ui;
-    delete model;
+void SeedToTime3::loadSettings()
+{
+    QSettings setting;
+    if (setting.contains("seed3Year")) ui->seedToTimeYear->setText(setting.value("seed3Year").toString());
 }
 
 void SeedToTime3::changeEvent(QEvent *event)
