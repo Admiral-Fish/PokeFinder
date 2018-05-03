@@ -101,7 +101,7 @@ void SeedtoTime4::loadSettings()
     if (setting.contains("plusSecondsHGSS")) ui->lineEditPlusSecondsHGSS->setText(setting.value("plusSecondsHGSS").toString());
 }
 
-vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int forcedSecond)
+vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version)
 {
     if (year < 2000 || year > 2099)
     {
@@ -142,7 +142,7 @@ vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int
                     if (!forceSecond || second == forcedSecond)
                     {
                         QDateTime dateTime = QDateTime(QDate(year, month, day), QTime(hour, minute, second));
-                        results.push_back(DateTime(dateTime, delay, Diamond));
+                        results.push_back(DateTime(dateTime, delay, version));
                     }
                 }
             }
@@ -158,24 +158,24 @@ vector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minus
     int delay = target.getDelay();
 
     vector<DateTime> results;
-    for (int i = minusDelay; i > 0; i--)
+    for (int i = minusSecond; i > 0; i--)
     {
-        for (int j = minusSecond; j > 0; j--)
+        for (int j = minusDelay; j > 0; j--)
         {
-            QDateTime offset = time.addSecs(-1 * j);
-            DateTime result = DateTime(offset, delay - i, Diamond);
+            QDateTime offset = time.addSecs(-1 * i);
+            DateTime result = DateTime(offset, delay - j, target.getVersion());
             results.push_back(result);
         }
     }
 
     results.push_back(target);
 
-    for (int i = 1; i <= plusDelay; i++)
+    for (int i = 1; i <= plusSecond; i++)
     {
-        for (int j = 1; j <= plusSecond; j++)
+        for (int j = 1; j <= plusDelay; j++)
         {
-            QDateTime offset = time.addSecs(j);
-            DateTime result = DateTime(offset, delay + i, Diamond);
+            QDateTime offset = time.addSecs(i);
+            DateTime result = DateTime(offset, delay + j, target.getVersion());
             results.push_back(result);
         }
     }
@@ -192,7 +192,7 @@ void SeedtoTime4::on_pushButtonGenerateDPPt_clicked()
 
     dppt->clear();
 
-    vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond);
+    vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Diamond);
     ui->labelCoinFlips->setText(tr("Coin Flips: ") + Utilities::coinFlips(seed, 15));
 
     dppt->setModel(results);
@@ -256,7 +256,7 @@ void SeedtoTime4::on_pushButtonGenerateHGSS_clicked()
 
     hgss->clear();
 
-    vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond);
+    vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, HeartGold);
     ui->labelElmCalls->setText(tr("Elm Calls: ") + Utilities::elmCalls(seed, 15));
 
     hgss->setModel(results);

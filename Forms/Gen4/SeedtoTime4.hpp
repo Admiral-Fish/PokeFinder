@@ -49,7 +49,7 @@ private:
     void setupModels();
     void saveSettings();
     void loadSettings();
-    vector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond);
+    vector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);
     vector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, DateTime target);
 
 private slots:
