@@ -696,6 +696,8 @@ void Wild3::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
         case GoodRod:
             t << "0" << "1" << "2";
             break;
+        default:
+            break;
     }
     ui->comboBoxSlotGenerator->clear();
     ui->comboBoxSlotGenerator->addItems(t);
@@ -724,6 +726,8 @@ void Wild3::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
             break;
         case GoodRod:
             t << "0" << "1" << "2";
+            break;
+        default:
             break;
     }
     ui->comboBoxSlotSearcher->clear();

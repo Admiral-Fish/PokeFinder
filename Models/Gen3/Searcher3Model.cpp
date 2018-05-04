@@ -363,6 +363,8 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
+            default:
+                break;
         }
     }
     else
@@ -668,6 +670,8 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
+            default:
+                break;
         }
     }
 
@@ -698,8 +702,9 @@ int Searcher3Model::columnCount(const QModelIndex &parent) const
         case Method4:
         case XDColo:
         case Channel:
-        default:
             return 14;
+        default:
+            return 0;
     }
 }
 
@@ -827,6 +832,8 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 14:
                         return frame.lockReason;
                 }
+            default:
+                break;
         }
     }
     return QVariant();
@@ -952,6 +959,8 @@ QVariant Searcher3Model::headerData(int section, Qt::Orientation orientation, in
                         case 14:
                             return tr("Reason");
                     }
+                default:
+                    break;
             }
         }
     }

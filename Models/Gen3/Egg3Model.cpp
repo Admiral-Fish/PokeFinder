@@ -69,8 +69,9 @@ int Egg3Model::columnCount(const QModelIndex &parent) const
             return 8;
         case RSBred:
         case FRLGBred:
-        default:
             return 17;
+        default:
+            return 0;
     }
 }
 
@@ -168,6 +169,8 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 16:
                         return frame.getGender();
                 }
+            default:
+                break;
         }
     }
 
@@ -267,6 +270,8 @@ QVariant Egg3Model::headerData(int section, Qt::Orientation orientation, int rol
                         case 16:
                             return tr("Gender");
                     }
+                default:
+                    break;
             }
         }
     }

@@ -82,7 +82,6 @@ QString JirachiGeneration::calcProbable(u32 seed)
     QString genlistout = QString::number(seed >> 30, 16);
     u32 f = seed >> 30;
     u32 checker[] = { 0, 0, 0, 0};
-    u32 compare[] = { 0, 1, 1, 1};
     u32 backseed = seed;
     LCRNG rng = XDRNGR(backseed);
     u32 advance = 8;
