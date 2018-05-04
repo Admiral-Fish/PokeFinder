@@ -26,7 +26,6 @@ SearchElmCalls::SearchElmCalls(vector<DateTime> model, QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setAttribute(Qt::WA_DeleteOnClose);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     data = model;
@@ -36,6 +35,11 @@ SearchElmCalls::SearchElmCalls(vector<DateTime> model, QWidget *parent) :
 SearchElmCalls::~SearchElmCalls()
 {
     delete ui;
+}
+
+vector<bool> SearchElmCalls::possibleResults()
+{
+    return possible;
 }
 
 void SearchElmCalls::on_pushButtonK_clicked()
@@ -104,7 +108,6 @@ void SearchElmCalls::on_lineEditCalls_textChanged(const QString &arg1)
 
 void SearchElmCalls::on_buttonBox_accepted()
 {
-    emit possibleResults(possible);
     done(QDialog::Accepted);
 }
 

@@ -63,8 +63,6 @@ private slots:
     void on_pushButtonGenerateHGSS_clicked();
     void on_pushButtonSearchCalls_clicked();
     void on_pushButtonCalibrateHGSS_clicked();
-    void selectResultDPPt(vector<bool> results);
-    void selectResultHGSS(vector<bool> results);
 
 public:
     explicit SeedtoTime4(QWidget *parent = 0);

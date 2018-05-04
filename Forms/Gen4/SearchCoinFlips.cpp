@@ -26,7 +26,6 @@ SearchCoinFlips::SearchCoinFlips(vector<DateTime> model, QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setAttribute(Qt::WA_DeleteOnClose);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     data = model;
@@ -42,6 +41,11 @@ SearchCoinFlips::SearchCoinFlips(vector<DateTime> model, QWidget *parent) :
 SearchCoinFlips::~SearchCoinFlips()
 {
     delete ui;
+}
+
+vector<bool> SearchCoinFlips::possibleResults()
+{
+    return possible;
 }
 
 void SearchCoinFlips::on_pushButtonHeads_clicked()
@@ -98,7 +102,6 @@ void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &arg1)
 
 void SearchCoinFlips::on_buttonBox_accepted()
 {
-    emit possibleResults(possible);
     done(QDialog::Accepted);
 }
 

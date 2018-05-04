@@ -218,9 +218,26 @@ void SeedtoTime4::on_pushButtonSearchFlips_clicked()
 {
     if (dpptCalibrate->rowCount() == 0)
         return;
+
     SearchCoinFlips *search = new SearchCoinFlips(dpptCalibrate->getData());
-    connect(search, &SearchCoinFlips::possibleResults, this, &SeedtoTime4::selectResultDPPt);
-    search->exec();
+    if (search->exec() == QDialog::Rejected)
+        return;
+
+    vector<bool> results = search->possibleResults();
+
+    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->tableViewDPPtCalibrate->clearSelection();
+
+    for (int i = 0; i < results.size(); i++)
+    {
+        if (results[i])
+            ui->tableViewDPPtCalibrate->selectRow(i);
+    }
+
+    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableViewDPPtCalibrate->setFocus();
+
+    delete search;
 }
 
 void SeedtoTime4::on_pushButtonCalibrateDPPt_clicked()
@@ -248,8 +265,7 @@ void SeedtoTime4::on_pushButtonCalibrateDPPt_clicked()
 
     dpptCalibrate->setModel(results);
 
-    int count = results.size();
-    count = (count - 1) / 2;
+    int count = (results.size() - 1) / 2;
     QModelIndex scroll = dpptCalibrate->index(count, 0);
     ui->tableViewDPPtCalibrate->setCurrentIndex(scroll);
     ui->tableViewDPPtCalibrate->scrollTo(scroll);
@@ -276,9 +292,26 @@ void SeedtoTime4::on_pushButtonSearchCalls_clicked()
 {
     if (hgssCalibrate->rowCount() == 0)
         return;
+
     SearchElmCalls *search = new SearchElmCalls(hgssCalibrate->getData());
-    connect(search, &SearchElmCalls::possibleResults, this, &SeedtoTime4::selectResultHGSS);
-    search->exec();
+    if (search->exec() == QDialog::Rejected)
+        return;
+
+    vector<bool> results = search->possibleResults();
+
+    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->tableViewHGSSCalibrate->clearSelection();
+
+    for (int i = 0; i < results.size(); i++)
+    {
+        if (results[i])
+            ui->tableViewHGSSCalibrate->selectRow(i);
+    }
+
+    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableViewHGSSCalibrate->setFocus();
+
+    delete search;
 }
 
 void SeedtoTime4::on_pushButtonCalibrateHGSS_clicked()
@@ -306,40 +339,9 @@ void SeedtoTime4::on_pushButtonCalibrateHGSS_clicked()
 
     hgssCalibrate->setModel(results);
 
-    int count = results.size();
-    count = (count - 1) / 2;
+    int count = (results.size() - 1) / 2;
     QModelIndex scroll = hgssCalibrate->index(count, 0);
     ui->tableViewHGSSCalibrate->setCurrentIndex(scroll);
     ui->tableViewHGSSCalibrate->scrollTo(scroll);
-    ui->tableViewHGSSCalibrate->setFocus();
-}
-
-void SeedtoTime4::selectResultDPPt(vector<bool> results)
-{
-    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
-    ui->tableViewDPPtCalibrate->clearSelection();
-
-    for (int i = 0; i < results.size(); i++)
-    {
-        if (results[i])
-            ui->tableViewDPPtCalibrate->selectRow(i);
-    }
-
-    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->tableViewDPPtCalibrate->setFocus();
-}
-
-void SeedtoTime4::selectResultHGSS(vector<bool> results)
-{
-    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
-    ui->tableViewHGSSCalibrate->clearSelection();
-
-    for (int i = 0; i < results.size(); i++)
-    {
-        if (results[i])
-            ui->tableViewHGSSCalibrate->selectRow(i);
-    }
-
-    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableViewHGSSCalibrate->setFocus();
 }

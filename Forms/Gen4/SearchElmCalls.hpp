@@ -50,12 +50,10 @@ private slots:
     void on_radioButtonElm_clicked();
     void on_radioButtonIrwin_clicked();
 
-signals:
-    void possibleResults(vector<bool>);
-
 public:
     explicit SearchElmCalls(vector<DateTime> model, QWidget *parent = 0);
     ~SearchElmCalls();
+    vector<bool> possibleResults();
 
 };
 

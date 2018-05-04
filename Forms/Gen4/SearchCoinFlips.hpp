@@ -49,12 +49,10 @@ private slots:
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
 
-signals:
-    void possibleResults(vector<bool>);
-
 public:
     explicit SearchCoinFlips(vector<DateTime> model, QWidget *parent = 0);
     ~SearchCoinFlips();
+    vector<bool> possibleResults();
 };
 
 #endif // SEARCHCOINFLIPS_HPP
