@@ -163,7 +163,7 @@ QPushButton {
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabStationary">
        <attribute name="title">

@@ -580,7 +580,7 @@ QPushButton {
      </widget>
     </item>
     <item row="1" column="0" colspan="2">
-     <widget class="QTableView" name="tableView">
+     <widget class="TableView" name="tableView">
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
@@ -609,6 +609,11 @@ QPushButton {
    <class>QCheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/QCheckList.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

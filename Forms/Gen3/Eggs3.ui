@@ -1246,7 +1246,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QTableView" name="tableViewEmeraldIVs">
+         <widget class="TableView" name="tableViewEmeraldIVs">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>

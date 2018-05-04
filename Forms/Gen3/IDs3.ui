@@ -141,7 +141,7 @@ QRadioButton {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -290,7 +290,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewXDColo">
+         <widget class="TableView" name="tableViewXDColo">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -428,7 +428,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewFRLGE">
+         <widget class="TableView" name="tableViewFRLGE">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -662,7 +662,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewRS">
+         <widget class="TableView" name="tableViewRS">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -690,6 +690,11 @@ QRadioButton {
    <class>QTextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/QTextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

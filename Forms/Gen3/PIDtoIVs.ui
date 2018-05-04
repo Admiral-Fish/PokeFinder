@@ -89,7 +89,7 @@ QPushButton {
      </widget>
     </item>
     <item row="2" column="0" colspan="3">
-     <widget class="QTableView" name="tabePIDToIV">
+     <widget class="TableView" name="tabePIDToIV">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -173,6 +173,11 @@ QPushButton {
    <class>QTextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/QTextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -27,7 +27,7 @@ class TableView : public QTableView
 {
 
 public:
-    TableView(QWidget *parent = 0) : QTableView(parent) {}
+    TableView(QWidget *parent = 0): QTableView(parent) {}
     void resizeEvent(QResizeEvent *event) override;
 
 };
