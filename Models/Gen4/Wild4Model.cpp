@@ -66,8 +66,9 @@ int Wild4Model::columnCount(const QModelIndex &parent) const
             return 17;
         case MethodK:
             return 18;
+        default:
+            return 0;
     }
-    return 0;
 }
 
 QVariant Wild4Model::data(const QModelIndex &index, int role) const
@@ -158,6 +159,8 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
                     case 17:
                         return frame.getGender();
                 }
+            default:
+                break;
         }
     }
     return QVariant();
@@ -250,6 +253,8 @@ QVariant Wild4Model::headerData(int section, Qt::Orientation orientation, int ro
                         case 17:
                             return tr("Gender");
                     }
+                default:
+                    break;
             }
         }
     }

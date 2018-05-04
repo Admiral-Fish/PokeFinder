@@ -260,6 +260,8 @@ void Wild4::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
         case SuperRod:
             t << "0" << "1" << "2" << "3" << "4" << "5";
             break;
+        default:
+            break;
     }
     ui->comboBoxSlotGenerator->clear();
     ui->comboBoxSlotGenerator->addItems(t);
@@ -283,6 +285,8 @@ void Wild4::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
         case GoodRod:
         case SuperRod:
             t << "0" << "1" << "2" << "3" << "4" << "5";
+            break;
+        default:
             break;
     }
     ui->comboBoxSlotSearcher->clear();

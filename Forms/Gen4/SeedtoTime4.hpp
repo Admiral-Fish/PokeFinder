@@ -28,8 +28,6 @@
 #include <PokeFinderCore/Objects/Utilities.hpp>
 #include <Forms/Gen4/SearchCoinFlips.hpp>
 #include <Forms/Gen4/SearchElmCalls.hpp>
-#include <QDebug>
-#include <QCloseEvent>
 
 namespace Ui
 {

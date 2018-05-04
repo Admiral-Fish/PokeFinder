@@ -68,8 +68,9 @@ int Stationary4Model::columnCount(const QModelIndex &parent) const
             return 17;
         case WondercardIVs:
             return 11;
+        default:
+            return 0;
     }
-    return 0;
 }
 
 QVariant Stationary4Model::data(const QModelIndex &index, int role) const
@@ -217,6 +218,8 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 10:
                         return frame.power;
                 }
+            default:
+                break;
         }
     }
     return QVariant();
@@ -366,6 +369,8 @@ QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, 
                         case 10:
                             return tr("Power");
                     }
+                default:
+                    break;
             }
         }
     }
