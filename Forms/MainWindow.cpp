@@ -47,6 +47,8 @@ MainWindow::~MainWindow()
     delete wild4;
     delete egg4;
     delete ids4;
+
+    emit close();
 }
 
 void MainWindow::changeEvent(QEvent *event)
@@ -315,6 +317,7 @@ void MainWindow::on_pushButtonIDs4_clicked()
 void MainWindow::on_actionSeed_to_Time_triggered()
 {
     SeedtoTime4 *seedToTime = new SeedtoTime4();
+    connect(this, &MainWindow::close, seedToTime, &SeedtoTime4::closeWindow);
     seedToTime->show();
     seedToTime->raise();
 }

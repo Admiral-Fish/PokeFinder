@@ -23,7 +23,7 @@ DateTime::DateTime(QDateTime dateTime, u32 delay, Game version)
 {
     this->dateTime = dateTime;
     this->delay = delay;
-    seed = Utilities::calcGen4Seed(dateTime, delay);
+    seed = Utilities::calcGen4Seed(dateTime, delay - (2000 - dateTime.date().year()));
     this->version = version;
 }
 

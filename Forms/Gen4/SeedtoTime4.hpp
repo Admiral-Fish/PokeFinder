@@ -26,6 +26,9 @@
 #include <QSettings>
 #include <Models/Gen4/SeedtoTime4Model.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
+#include <Forms/Gen4/SearchCoinFlips.hpp>
+#include <QDebug>
+#include <QCloseEvent>
 
 namespace Ui
 {
@@ -61,10 +64,15 @@ private slots:
     void on_pushButtonGenerateHGSS_clicked();
     void on_pushButtonSearchCalls_clicked();
     void on_pushButtonCalibrateHGSS_clicked();
+    void selectResultDPPt(vector<bool> results);
 
 public:
     explicit SeedtoTime4(QWidget *parent = 0);
     ~SeedtoTime4();
+
+public slots:
+    void closeWindow();
+
 };
 
 #endif // SEEDTOTIME4_HPP

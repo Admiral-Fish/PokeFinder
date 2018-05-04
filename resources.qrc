@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>pokefinder.ico</file>
+		<file alias="heads.png">Images/heads.png</file>
+		<file alias="tails.png">Images/tails.png</file>
     </qresource>
 </RCC>

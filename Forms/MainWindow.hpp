@@ -92,6 +92,9 @@ private slots:
     void on_actionSeed_to_Time_triggered();
     void on_actionIV_to_PID_triggered();
 
+signals:
+    void close();
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

@@ -50,6 +50,11 @@ DateTime SeedtoTime4Model::getData(int row)
     return model[row];
 }
 
+vector<DateTime> SeedtoTime4Model::getData()
+{
+    return model;
+}
+
 void SeedtoTime4Model::setFlags(bool flag, Game version)
 {
     calibrate = flag;

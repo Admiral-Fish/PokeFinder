@@ -40,6 +40,7 @@ public:
     void setModel(vector<DateTime> times);
     void clear();
     DateTime getData(int row);
+    vector<DateTime> getData();
     void setFlags(bool flag = false, Game version = Diamond);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;

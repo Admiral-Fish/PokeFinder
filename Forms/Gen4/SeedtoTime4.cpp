@@ -42,6 +42,12 @@ SeedtoTime4::~SeedtoTime4()
     delete hgssCalibrate;
 }
 
+void SeedtoTime4::closeWindow()
+{
+    this->close();
+    delete this;
+}
+
 void SeedtoTime4::changeEvent(QEvent *event)
 {
     if (event != NULL)
@@ -158,7 +164,7 @@ vector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minus
     int delay = target.getDelay();
 
     vector<DateTime> results;
-    for (int i = minusSecond; i > 0; i--)
+    for (int i = minusSecond; i >= 0; i--)
     {
         for (int j = minusDelay; j > 0; j--)
         {
@@ -170,7 +176,7 @@ vector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minus
 
     results.push_back(target);
 
-    for (int i = 1; i <= plusSecond; i++)
+    for (int i = 0; i <= plusSecond; i++)
     {
         for (int j = 1; j <= plusDelay; j++)
         {
@@ -210,7 +216,9 @@ void SeedtoTime4::on_checkBoxSecondsHGSS_clicked(bool checked)
 
 void SeedtoTime4::on_pushButtonSearchFlips_clicked()
 {
-
+    SearchCoinFlips *search = new SearchCoinFlips(dpptCalibrate->getData());
+    connect(search, &SearchCoinFlips::possibleResults, this, &SeedtoTime4::selectResultDPPt);
+    search->exec();
 }
 
 void SeedtoTime4::on_pushButtonCalibrateDPPt_clicked()
@@ -298,4 +306,19 @@ void SeedtoTime4::on_pushButtonCalibrateHGSS_clicked()
     ui->tableViewHGSSCalibrate->setCurrentIndex(scroll);
     ui->tableViewHGSSCalibrate->scrollTo(scroll);
     ui->tableViewHGSSCalibrate->setFocus();
+}
+
+void SeedtoTime4::selectResultDPPt(vector<bool> results)
+{
+    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->tableViewDPPtCalibrate->clearSelection();
+
+    for (int i = 0; i < results.size(); i++)
+    {
+        if (results[i])
+            ui->tableViewDPPtCalibrate->selectRow(i);
+    }
+
+    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableViewDPPtCalibrate->setFocus();
 }
