@@ -17,12 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SEARCHCOINFLIPS_HPP
-#define SEARCHCOINFLIPS_HPP
+#ifndef SEARCHELMCALLS_HPP
+#define SEARCHELMCALLS_HPP
 
 #include <QDialog>
-#include <QPixmap>
-#include <QImage>
 #include <Util/DateTime.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
 
@@ -30,31 +28,35 @@ using std::vector;
 
 namespace Ui
 {
-    class SearchCoinFlips;
+    class SearchElmCalls;
 }
 
-class SearchCoinFlips : public QDialog
+class SearchElmCalls : public QDialog
 {
     Q_OBJECT
 
 private:
-    Ui::SearchCoinFlips *ui;
+    Ui::SearchElmCalls *ui;
     vector<DateTime> data;
     vector<bool> possible;
 
 private slots:
-    void on_pushButtonHeads_clicked();
-    void on_pushButtonTails_clicked();
-    void on_lineEditFlips_textChanged(const QString &arg1);
+    void on_pushButtonK_clicked();
+    void on_pushButtonE_clicked();
+    void on_pushButtonP_clicked();
+    void on_lineEditCalls_textChanged(const QString &arg1);
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
+    void on_radioButtonElm_clicked();
+    void on_radioButtonIrwin_clicked();
 
 signals:
     void possibleResults(vector<bool>);
 
 public:
-    explicit SearchCoinFlips(vector<DateTime> model, QWidget *parent = 0);
-    ~SearchCoinFlips();
+    explicit SearchElmCalls(vector<DateTime> model, QWidget *parent = 0);
+    ~SearchElmCalls();
+
 };
 
-#endif // SEARCHCOINFLIPS_HPP
+#endif // SEARCHELMCALLS_HPP

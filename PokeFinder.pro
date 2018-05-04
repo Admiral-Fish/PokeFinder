@@ -68,7 +68,8 @@ FORMS += \
     Forms/Gen4/Eggs4.ui \
     Forms/Gen4/IDs4.ui \
     Forms/Gen4/SeedtoTime4.ui \
-    Forms/Gen4/SearchCoinFlips.ui
+    Forms/Gen4/SearchCoinFlips.ui \
+    Forms/Gen4/SearchElmCalls.ui
 
 HEADERS += \
     Forms/Controls/IVFilter.hpp \
@@ -145,7 +146,8 @@ HEADERS += \
     Forms/Gen4/SeedtoTime4.hpp \
     Models/Gen4/SeedtoTime4Model.hpp \
     Util/DateTime.hpp \
-    Forms/Gen4/SearchCoinFlips.hpp
+    Forms/Gen4/SearchCoinFlips.hpp \
+    Forms/Gen4/SearchElmCalls.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -214,4 +216,5 @@ SOURCES += \
     Forms/Gen4/SeedtoTime4.cpp \
     Models/Gen4/SeedtoTime4Model.cpp \
     Util/DateTime.cpp \
-    Forms/Gen4/SearchCoinFlips.cpp
+    Forms/Gen4/SearchCoinFlips.cpp \
+    Forms/Gen4/SearchElmCalls.cpp

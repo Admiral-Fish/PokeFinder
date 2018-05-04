@@ -216,6 +216,8 @@ void SeedtoTime4::on_checkBoxSecondsHGSS_clicked(bool checked)
 
 void SeedtoTime4::on_pushButtonSearchFlips_clicked()
 {
+    if (dpptCalibrate->rowCount() == 0)
+        return;
     SearchCoinFlips *search = new SearchCoinFlips(dpptCalibrate->getData());
     connect(search, &SearchCoinFlips::possibleResults, this, &SeedtoTime4::selectResultDPPt);
     search->exec();
@@ -272,7 +274,11 @@ void SeedtoTime4::on_pushButtonGenerateHGSS_clicked()
 
 void SeedtoTime4::on_pushButtonSearchCalls_clicked()
 {
-
+    if (hgssCalibrate->rowCount() == 0)
+        return;
+    SearchElmCalls *search = new SearchElmCalls(hgssCalibrate->getData());
+    connect(search, &SearchElmCalls::possibleResults, this, &SeedtoTime4::selectResultHGSS);
+    search->exec();
 }
 
 void SeedtoTime4::on_pushButtonCalibrateHGSS_clicked()
@@ -321,4 +327,19 @@ void SeedtoTime4::selectResultDPPt(vector<bool> results)
 
     ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableViewDPPtCalibrate->setFocus();
+}
+
+void SeedtoTime4::selectResultHGSS(vector<bool> results)
+{
+    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->tableViewHGSSCalibrate->clearSelection();
+
+    for (int i = 0; i < results.size(); i++)
+    {
+        if (results[i])
+            ui->tableViewHGSSCalibrate->selectRow(i);
+    }
+
+    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableViewHGSSCalibrate->setFocus();
 }
