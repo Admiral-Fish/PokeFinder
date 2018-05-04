@@ -56,13 +56,13 @@ private:
 
 private slots:
     void on_pushButtonGenerateDPPt_clicked();
-    void on_checkBoxSecondsDPPt_clicked(bool checked);
-    void on_pushButtonSearchFlips_clicked();
-    void on_pushButtonCalibrateDPPt_clicked();
-    void on_checkBoxSecondsHGSS_clicked(bool checked);
     void on_pushButtonGenerateHGSS_clicked();
-    void on_pushButtonSearchCalls_clicked();
+    void on_pushButtonCalibrateDPPt_clicked();
     void on_pushButtonCalibrateHGSS_clicked();
+    void on_pushButtonSearchFlips_clicked();
+    void on_pushButtonSearchCalls_clicked();
+    void on_checkBoxSecondsHGSS_clicked(bool checked);
+    void on_checkBoxSecondsDPPt_clicked(bool checked);
 
 public:
     explicit SeedtoTime4(QWidget *parent = 0);

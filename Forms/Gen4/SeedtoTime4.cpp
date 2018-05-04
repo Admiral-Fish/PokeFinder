@@ -204,40 +204,20 @@ void SeedtoTime4::on_pushButtonGenerateDPPt_clicked()
     dppt->setModel(results);
 }
 
-void SeedtoTime4::on_checkBoxSecondsDPPt_clicked(bool checked)
+void SeedtoTime4::on_pushButtonGenerateHGSS_clicked()
 {
-    ui->lineEditSecondsDPPt->setEnabled(checked);
-}
+    u32 seed = ui->textBoxSeedHGSS->text().toUInt(NULL, 16);
+    u32 year = ui->lineEditYearHGSS->text().toUInt();
 
-void SeedtoTime4::on_checkBoxSecondsHGSS_clicked(bool checked)
-{
-    ui->lineEditSecondsHGSS->setEnabled(checked);
-}
+    bool forceSecond = ui->checkBoxSecondsHGSS->isChecked();
+    int forcedSecond = ui->lineEditSecondsHGSS->text().toInt();
 
-void SeedtoTime4::on_pushButtonSearchFlips_clicked()
-{
-    if (dpptCalibrate->rowCount() == 0)
-        return;
+    hgss->clear();
 
-    SearchCoinFlips *search = new SearchCoinFlips(dpptCalibrate->getData());
-    if (search->exec() == QDialog::Rejected)
-        return;
+    vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, HeartGold);
+    ui->labelElmCalls->setText(tr("Elm Calls: ") + Utilities::elmCalls(seed, 15));
 
-    vector<bool> results = search->possibleResults();
-
-    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
-    ui->tableViewDPPtCalibrate->clearSelection();
-
-    for (int i = 0; i < results.size(); i++)
-    {
-        if (results[i])
-            ui->tableViewDPPtCalibrate->selectRow(i);
-    }
-
-    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->tableViewDPPtCalibrate->setFocus();
-
-    delete search;
+    hgss->setModel(results);
 }
 
 void SeedtoTime4::on_pushButtonCalibrateDPPt_clicked()
@@ -272,48 +252,6 @@ void SeedtoTime4::on_pushButtonCalibrateDPPt_clicked()
     ui->tableViewDPPtCalibrate->setFocus();
 }
 
-void SeedtoTime4::on_pushButtonGenerateHGSS_clicked()
-{
-    u32 seed = ui->textBoxSeedHGSS->text().toUInt(NULL, 16);
-    u32 year = ui->lineEditYearHGSS->text().toUInt();
-
-    bool forceSecond = ui->checkBoxSecondsHGSS->isChecked();
-    int forcedSecond = ui->lineEditSecondsHGSS->text().toInt();
-
-    hgss->clear();
-
-    vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, HeartGold);
-    ui->labelElmCalls->setText(tr("Elm Calls: ") + Utilities::elmCalls(seed, 15));
-
-    hgss->setModel(results);
-}
-
-void SeedtoTime4::on_pushButtonSearchCalls_clicked()
-{
-    if (hgssCalibrate->rowCount() == 0)
-        return;
-
-    SearchElmCalls *search = new SearchElmCalls(hgssCalibrate->getData());
-    if (search->exec() == QDialog::Rejected)
-        return;
-
-    vector<bool> results = search->possibleResults();
-
-    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
-    ui->tableViewHGSSCalibrate->clearSelection();
-
-    for (int i = 0; i < results.size(); i++)
-    {
-        if (results[i])
-            ui->tableViewHGSSCalibrate->selectRow(i);
-    }
-
-    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->tableViewHGSSCalibrate->setFocus();
-
-    delete search;
-}
-
 void SeedtoTime4::on_pushButtonCalibrateHGSS_clicked()
 {
     int minusDelay = ui->lineEditMinusDelayHGSS->text().toInt();
@@ -344,4 +282,72 @@ void SeedtoTime4::on_pushButtonCalibrateHGSS_clicked()
     ui->tableViewHGSSCalibrate->setCurrentIndex(scroll);
     ui->tableViewHGSSCalibrate->scrollTo(scroll);
     ui->tableViewHGSSCalibrate->setFocus();
+}
+
+void SeedtoTime4::on_pushButtonSearchFlips_clicked()
+{
+    if (dpptCalibrate->rowCount() == 0)
+        return;
+
+    SearchCoinFlips *search = new SearchCoinFlips(dpptCalibrate->getData());
+    if (search->exec() == QDialog::Rejected)
+    {
+        delete search;
+        return;
+    }
+
+    vector<bool> results = search->possibleResults();
+
+    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->tableViewDPPtCalibrate->clearSelection();
+
+    for (int i = 0; i < results.size(); i++)
+    {
+        if (results[i])
+            ui->tableViewDPPtCalibrate->selectRow(i);
+    }
+
+    ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableViewDPPtCalibrate->setFocus();
+
+    delete search;
+}
+
+void SeedtoTime4::on_pushButtonSearchCalls_clicked()
+{
+    if (hgssCalibrate->rowCount() == 0)
+        return;
+
+    SearchElmCalls *search = new SearchElmCalls(hgssCalibrate->getData());
+    if (search->exec() == QDialog::Rejected)
+    {
+        delete search;
+        return;
+    }
+
+    vector<bool> results = search->possibleResults();
+
+    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->tableViewHGSSCalibrate->clearSelection();
+
+    for (int i = 0; i < results.size(); i++)
+    {
+        if (results[i])
+            ui->tableViewHGSSCalibrate->selectRow(i);
+    }
+
+    ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableViewHGSSCalibrate->setFocus();
+
+    delete search;
+}
+
+void SeedtoTime4::on_checkBoxSecondsDPPt_clicked(bool checked)
+{
+    ui->lineEditSecondsDPPt->setEnabled(checked);
+}
+
+void SeedtoTime4::on_checkBoxSecondsHGSS_clicked(bool checked)
+{
+    ui->lineEditSecondsHGSS->setEnabled(checked);
 }
