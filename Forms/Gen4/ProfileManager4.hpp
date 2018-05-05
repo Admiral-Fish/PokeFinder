@@ -52,8 +52,6 @@ private:
 private slots:
     void on_pushButtonNew_clicked();
     void on_pushButtonOk_clicked();
-    void registerProfile(Profile4 profile);
-    void editProfile(Profile4 profile, Profile4 original);
     void on_pushButtonEdit_clicked();
     void on_pushButtonDelete_clicked();
 

@@ -47,6 +47,7 @@ private:
     Ui::ProfileManager4NewEdit *ui;
     bool isEditing = false;
     Profile4 original;
+    Profile4 fresh;
 
     void setupModels();
 
@@ -58,6 +59,8 @@ public:
     explicit ProfileManager4NewEdit(QWidget *parent = 0);
     explicit ProfileManager4NewEdit(Profile4 profile, QWidget *parent = 0);
     ~ProfileManager4NewEdit();
+    Profile4 getNewProfile();
+    Profile4 getOriginal();
 
 };
 
