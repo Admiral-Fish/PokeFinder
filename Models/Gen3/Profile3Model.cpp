@@ -44,6 +44,7 @@ void Profile3Model::addItem(Profile3 profile)
 void Profile3Model::updateProfile(Profile3 profile, int row)
 {
     model[row] = profile;
+    emit dataChanged(index(row, 0), index(row, columnCount()));
 }
 
 int Profile3Model::rowCount(const QModelIndex &parent) const

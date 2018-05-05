@@ -62,23 +62,14 @@ void ProfileManager3::setupModels()
 void ProfileManager3::on_pushButtonNew_clicked()
 {
     ProfileManager3NewEdit *dialog = new ProfileManager3NewEdit();
-    connect(dialog, SIGNAL (newProfile(Profile3)), this, SLOT (registerProfile(Profile3)));
-    dialog->exec();
-}
-
-void ProfileManager3::registerProfile(Profile3 profile)
-{
-    profile.saveProfile();
-    model->addItem(profile);
-    emit updateProfiles();
-}
-
-void ProfileManager3::editProfile(Profile3 profile, Profile3 original)
-{
-    profile.updateProfile(original);
-    int r = ui->tableView->currentIndex().row();
-    model->updateProfile(profile, r);
-    emit updateProfiles();
+    if (dialog->exec() == QDialog::Accepted)
+    {
+        Profile3 profile = dialog->getNewProfile();
+        profile.saveProfile();
+        model->addItem(profile);
+        emit updateProfiles();
+    }
+    delete dialog;
 }
 
 void ProfileManager3::on_pushButtonOk_clicked()
@@ -99,8 +90,15 @@ void ProfileManager3::on_pushButtonEdit_clicked()
     }
 
     ProfileManager3NewEdit *dialog = new ProfileManager3NewEdit(model->getProfile(r));
-    connect(dialog, SIGNAL (editProfile(Profile3, Profile3)), this, SLOT (editProfile(Profile3, Profile3)));
-    dialog->exec();
+    if (dialog->exec() == QDialog::Accepted)
+    {
+        Profile3 profile = dialog->getNewProfile();
+        profile.updateProfile(dialog->getOriginal());
+        int r = ui->tableView->currentIndex().row();
+        model->updateProfile(profile, r);
+        emit updateProfiles();
+    }
+    delete dialog;
 }
 
 void ProfileManager3::on_pushButtonDelete_clicked()
