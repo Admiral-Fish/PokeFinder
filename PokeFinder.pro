@@ -149,7 +149,8 @@ HEADERS += \
     Util/DateTime.hpp \
     Forms/Gen4/SearchCoinFlips.hpp \
     Forms/Gen4/SearchElmCalls.hpp \
-    Forms/Gen4/RoamerMap.hpp
+    Forms/Gen4/RoamerMap.hpp \
+    PokeFinderCore/Gen4/EncounterArea4.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -220,4 +221,5 @@ SOURCES += \
     Util/DateTime.cpp \
     Forms/Gen4/SearchCoinFlips.cpp \
     Forms/Gen4/SearchElmCalls.cpp \
-    Forms/Gen4/RoamerMap.cpp
+    Forms/Gen4/RoamerMap.cpp \
+    PokeFinderCore/Gen4/EncounterArea4.cpp

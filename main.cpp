@@ -20,6 +20,7 @@
 #include "Forms/MainWindow.hpp"
 #include <QApplication>
 #include <QStyleFactory>
+#include <PokeFinderCore/Gen4/EncounterArea4.hpp>
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +32,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     w.raise();
-
     return a.exec();
 }

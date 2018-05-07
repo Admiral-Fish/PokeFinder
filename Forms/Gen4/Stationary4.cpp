@@ -37,13 +37,11 @@ Stationary4::Stationary4(QWidget *parent) :
 
 Stationary4::~Stationary4()
 {
-    QSettings setting;
-    setting.setValue("stationary4Profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("stationary4MinDelay", ui->minDelay->text().toInt());
-    setting.setValue("stationary4MaxDelay", ui->maxDelay->text().toInt());
+    saveSettings();
 
     delete ui;
     delete g;
+    delete s;
 }
 
 void Stationary4::changeEvent(QEvent *event)
@@ -59,6 +57,21 @@ void Stationary4::changeEvent(QEvent *event)
                 break;
         }
     }
+}
+
+void Stationary4::loadSettings()
+{
+    QSettings setting;
+    if (setting.contains("stationary4MinDelay")) ui->minDelay->setText(setting.value("stationary4MinDelay").toString());
+    if (setting.contains("stationary4MaxDelay")) ui->maxDelay->setText(setting.value("stationary4MaxDelay").toString());
+}
+
+void Stationary4::saveSettings()
+{
+    QSettings setting;
+    setting.setValue("stationary4Profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("stationary4MinDelay", ui->minDelay->text().toInt());
+    setting.setValue("stationary4MaxDelay", ui->maxDelay->text().toInt());
 }
 
 void Stationary4::setupModels()
@@ -107,13 +120,7 @@ void Stationary4::setupModels()
     ui->comboBoxHiddenPowerGenerator->setup();
     ui->comboBoxHiddenPowerSearcher->setup();
 
-    QSettings setting;
-    int val = setting.value("stationary4MinDelay").toInt();
-    if (val != 0)
-        ui->minDelay->setText(QString::number(val));
-    val = setting.value("stationary4MaxDelay").toInt();
-    if (val != 0)
-        ui->maxDelay->setText(QString::number(val));
+    loadSettings();
 }
 
 void Stationary4::updateProfiles()

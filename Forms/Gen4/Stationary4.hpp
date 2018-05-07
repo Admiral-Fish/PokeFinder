@@ -69,6 +69,8 @@ private:
     //QModelIndex lastIndex;
     //QModelIndex targetFrame;
 
+    void loadSettings();
+    void saveSettings();
     void search();
     void setupModels();
     void updateSearch();
