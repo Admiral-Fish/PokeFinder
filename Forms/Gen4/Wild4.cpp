@@ -148,6 +148,7 @@ void Wild4::updateProfiles()
 
 void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
 {
+    Game version = Diamond;
     if (index <= 0)
     {
         ui->idGenerator->setText("12345");
@@ -168,7 +169,24 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
         ui->profileTID->setText(QString::number(profile.tid));
         ui->profileSID->setText(QString::number(profile.sid));
         ui->profileGame->setText(profile.getVersion());
+        version = profile.version;
     }
+
+    if (version == HeartGold || version == SoulSilver)
+    {
+        if (ui->comboBoxEncounterGenerator->count() == 5)
+             ui->comboBoxEncounterGenerator->insertItem(1, tr("Rock Smash"), RockSmash);
+        if (ui->comboBoxEncounterSearcher->count() == 5)
+             ui->comboBoxEncounterSearcher->insertItem(1, tr("Rock Smash"), RockSmash);
+    }
+    else
+    {
+        if (ui->comboBoxEncounterGenerator->count() == 6)
+             ui->comboBoxEncounterGenerator->removeItem(1);
+        if (ui->comboBoxEncounterSearcher->count() == 6)
+             ui->comboBoxEncounterSearcher->removeItem(1);
+    }
+
     updateLocationsSearcher();
     updateLocationsGenerator();
 }
@@ -520,7 +538,7 @@ void Wild4::updateLocationsGenerator()
     for (EncounterArea4 area : encounterGenerator)
         locs.push_back(area.getLocation());
 
-    QStringList locations = Translator::getLocations(locs);
+    QStringList locations = Translator::getLocationsGen4(locs);
 
     ui->comboBoxLocationGenerator->clear();
     ui->comboBoxLocationGenerator->addItems(locations);
