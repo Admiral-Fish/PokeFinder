@@ -230,9 +230,9 @@ void MainWindow::on_action16BitSeedtoTime_triggered()
     seedToTime->raise();
 }
 
-void MainWindow::on_actionJirachiGeneration_triggered()
+void MainWindow::on_actionJirachiPattern_triggered()
 {
-    JirachiGeneration *jirachi = new JirachiGeneration();
+    JirachiPattern *jirachi = new JirachiPattern();
     jirachi->show();
     jirachi->raise();
 }

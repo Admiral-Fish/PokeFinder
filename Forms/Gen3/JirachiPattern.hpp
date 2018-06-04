@@ -17,24 +17,26 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef JIRACHIGENERATION_HPP
-#define JIRACHIGENERATION_HPP
+#ifndef JIRACHIPATTERN_HPP
+#define JIRACHIPATTERN_HPP
 
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <QStandardItem>
+#include <QStringList>
 #include <QString>
 #include <QChar>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 
 typedef uint32_t u32;
+using std::vector;
 
 namespace Ui
 {
-    class JirachiGeneration;
+    class JirachiPattern;
 }
 
-class JirachiGeneration : public QMainWindow
+class JirachiPattern : public QMainWindow
 {
     Q_OBJECT
 
@@ -42,22 +44,22 @@ protected:
     void changeEvent(QEvent *);
 
 private:
-    Ui::JirachiGeneration *ui;
+    Ui::JirachiPattern *ui;
     QStandardItemModel *model = new QStandardItemModel(this);
+    vector<u32> data;
 
     void setupModels();
-    void genListOut(u32 seed);
-    QString calcProbable(u32 seed);
+    void generate(u32 seed);
+    QStringList getPatterns(u32 seed);
+    QString getTarget(QString in, int index);
 
 private slots:
     void on_pushButtonGenerate_clicked();
 
 public:
-    explicit JirachiGeneration(QWidget *parent = 0);
-    ~JirachiGeneration();
-
-    QString flip(QString text);
+    explicit JirachiPattern(QWidget *parent = 0);
+    ~JirachiPattern();
 
 };
 
-#endif // JIRACHIGENERATION_HPP
+#endif // JIRACHIPATTERN_HPP
