@@ -69,8 +69,8 @@ FORMS += \
     Forms/Gen4/IDs4.ui \
     Forms/Gen4/SeedtoTime4.ui \
     Forms/Gen4/SearchCoinFlips.ui \
-    Forms/Gen4/SearchElmCalls.ui \
-    Forms/Gen4/RoamerMap.ui
+    Forms/Gen4/RoamerMap.ui \
+    Forms/Gen4/SearchCalls.ui
 
 HEADERS += \
     Forms/Controls/IVFilter.hpp \
@@ -148,11 +148,12 @@ HEADERS += \
     Models/Gen4/SeedtoTime4Model.hpp \
     Util/DateTime.hpp \
     Forms/Gen4/SearchCoinFlips.hpp \
-    Forms/Gen4/SearchElmCalls.hpp \
     Forms/Gen4/RoamerMap.hpp \
     PokeFinderCore/Gen4/EncounterArea4.hpp \
     PokeFinderCore/Gen4/Egg4.hpp \
-    Models/Gen4/Egg4Model.hpp
+    Models/Gen4/Egg4Model.hpp \
+    PokeFinderCore/Gen4/HGSSRoamer.hpp \
+    Forms/Gen4/SearchCalls.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -222,8 +223,9 @@ SOURCES += \
     Models/Gen4/SeedtoTime4Model.cpp \
     Util/DateTime.cpp \
     Forms/Gen4/SearchCoinFlips.cpp \
-    Forms/Gen4/SearchElmCalls.cpp \
     Forms/Gen4/RoamerMap.cpp \
     PokeFinderCore/Gen4/EncounterArea4.cpp \
     PokeFinderCore/Gen4/Egg4.cpp \
-    Models/Gen4/Egg4Model.cpp
+    Models/Gen4/Egg4Model.cpp \
+    PokeFinderCore/Gen4/HGSSRoamer.cpp \
+    Forms/Gen4/SearchCalls.cpp

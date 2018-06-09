@@ -88,7 +88,7 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return frame.frame;
                     case 1:
-                        return frame.elmCall();
+                        return frame.getCall();
                     case 2:
                         return frame.chatotPitch();
                     case 3:
@@ -162,7 +162,7 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.occidentary;
                     case 2:
-                        return frame.elmCall();
+                        return frame.getCall();
                     case 3:
                         return frame.chatotPitch();
                     case 4:
@@ -198,7 +198,7 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return frame.frame;
                     case 1:
-                        return frame.elmCall();
+                        return frame.getCall();
                     case 2:
                         return frame.chatotPitch();
                     case 3:
@@ -239,9 +239,9 @@ QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, 
                         case 0:
                             return tr("Frame");
                         case 1:
-                            return tr("Elm");
+                            return tr("Call");
                         case 2:
-                            return tr("Chatot Pitch");
+                            return tr("Chatot");
                         case 3:
                             return tr("PID");
                         case 4:
@@ -277,7 +277,7 @@ QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, 
                         case 1:
                             return tr("Occidentary");
                         case 2:
-                            return tr("Chatot Pitch");
+                            return tr("Chatot");
                         case 3:
                             return tr("PID");
                         case 4:
@@ -313,9 +313,9 @@ QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, 
                         case 1:
                             return tr("Occidentary");
                         case 2:
-                            return tr("Elm");
+                            return tr("Call");
                         case 3:
-                            return tr("Chatot Pitch");
+                            return tr("Chatot");
                         case 4:
                             return tr("PID");
                         case 5:
@@ -349,9 +349,9 @@ QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, 
                         case 0:
                             return tr("Frame");
                         case 1:
-                            return tr("Elm");
+                            return tr("Call");
                         case 2:
-                            return tr("Chatot Pitch");
+                            return tr("Chatot");
                         case 3:
                             return tr("HP");
                         case 4:

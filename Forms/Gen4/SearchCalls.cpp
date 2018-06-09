@@ -17,32 +17,35 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "SearchElmCalls.hpp"
-#include "ui_SearchElmCalls.h"
+#include "SearchCalls.hpp"
+#include "ui_SearchCalls.h"
 
-SearchElmCalls::SearchElmCalls(vector<DateTime> model, QWidget *parent) :
+SearchCalls::SearchCalls(vector<DateTime> model, vector<bool> roamers, vector<u32> routes, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SearchElmCalls)
+    ui(new Ui::SearchCalls)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
+    this->roamers = roamers;
+    this->routes = routes;
+
     data = model;
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
 }
 
-SearchElmCalls::~SearchElmCalls()
+SearchCalls::~SearchCalls()
 {
     delete ui;
 }
 
-vector<bool> SearchElmCalls::possibleResults()
+vector<bool> SearchCalls::possibleResults()
 {
     return possible;
 }
 
-void SearchElmCalls::on_pushButtonK_clicked()
+void SearchCalls::on_pushButtonK_clicked()
 {
     QString string = ui->lineEditCalls->text();
 
@@ -54,7 +57,7 @@ void SearchElmCalls::on_pushButtonK_clicked()
     ui->lineEditCalls->setText(string);
 }
 
-void SearchElmCalls::on_pushButtonE_clicked()
+void SearchCalls::on_pushButtonE_clicked()
 {
     QString string = ui->lineEditCalls->text();
 
@@ -66,7 +69,7 @@ void SearchElmCalls::on_pushButtonE_clicked()
     ui->lineEditCalls->setText(string);
 }
 
-void SearchElmCalls::on_pushButtonP_clicked()
+void SearchCalls::on_pushButtonP_clicked()
 {
     QString string = ui->lineEditCalls->text();
 
@@ -78,7 +81,7 @@ void SearchElmCalls::on_pushButtonP_clicked()
     ui->lineEditCalls->setText(string);
 }
 
-void SearchElmCalls::on_lineEditCalls_textChanged(const QString &arg1)
+void SearchCalls::on_lineEditCalls_textChanged(const QString &arg1)
 {
     QStringList results = arg1.split(",", QString::SkipEmptyParts);
 
@@ -87,7 +90,15 @@ void SearchElmCalls::on_lineEditCalls_textChanged(const QString &arg1)
     possible.clear();
     for (int i = 0; i < data.size(); i++)
     {
-        QStringList compare = Utilities::elmCalls(data[i].getSeed(), 15).split(",", QString::SkipEmptyParts);
+        QString str = Utilities::getCalls(data[i].getSeed(), 15, data[i].getInfo());
+
+        if (str.contains("skipped"))
+        {
+            int index = str.indexOf(")", 1);
+            str = str.mid(index + 3);
+        }
+
+        QStringList compare = str.split(",", QString::SkipEmptyParts);
 
         bool pass = true;
         for (int j = 0; j < results.size(); j++)
@@ -106,24 +117,24 @@ void SearchElmCalls::on_lineEditCalls_textChanged(const QString &arg1)
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
 }
 
-void SearchElmCalls::on_buttonBox_accepted()
+void SearchCalls::on_pushButtonOkay_clicked()
 {
     done(QDialog::Accepted);
 }
 
-void SearchElmCalls::on_buttonBox_rejected()
+void SearchCalls::on_pushButtonCancel_clicked()
 {
     done(QDialog::Rejected);
 }
 
-void SearchElmCalls::on_radioButtonElm_clicked()
+void SearchCalls::on_radioButtonElm_clicked()
 {
     ui->labelKResponse->setText(tr("K - I expect there are some Pokémon in the Kanto region that I don't know. There are probably methods of evolution that I'm not familiar with yet. I should use that perspective and discover what I can!"));
     ui->labelEResponse->setText(tr("E - There are so many different ways that Pokémon evolve, aren't there?! Some Pokémon don't even evolve until they meet certain conditions first!"));
     ui->labelPResponse->setText(tr("P - It seems that Pokémon that have been infected with Pokérus level up better. We're not quite sure why..."));
 }
 
-void SearchElmCalls::on_radioButtonIrwin_clicked()
+void SearchCalls::on_radioButtonIrwin_clicked()
 {
     ui->labelKResponse->setText(tr("K - I'm so glad you called! I was just about to call you, too! I guess we must be a good match!"));
     ui->labelEResponse->setText(tr("E - Hearing about your escapades rocks my soul! It sure does!"));

@@ -46,8 +46,8 @@ private slots:
     void on_pushButtonHeads_clicked();
     void on_pushButtonTails_clicked();
     void on_lineEditFlips_textChanged(const QString &arg1);
-    void on_buttonBox_accepted();
-    void on_buttonBox_rejected();
+    void on_pushButtonOkay_clicked();
+    void on_pushButtonCancel_clicked();
 
 public:
     explicit SearchCoinFlips(vector<DateTime> model, QWidget *parent = 0);

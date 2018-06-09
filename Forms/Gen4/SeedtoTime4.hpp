@@ -27,7 +27,8 @@
 #include <Models/Gen4/SeedtoTime4Model.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
 #include <Forms/Gen4/SearchCoinFlips.hpp>
-#include <Forms/Gen4/SearchElmCalls.hpp>
+#include <Forms/Gen4/SearchCalls.hpp>
+#include <Forms/Gen4/RoamerMap.hpp>
 
 namespace Ui
 {
@@ -63,6 +64,8 @@ private slots:
     void on_pushButtonSearchCalls_clicked();
     void on_checkBoxSecondsHGSS_clicked(bool checked);
     void on_checkBoxSecondsDPPt_clicked(bool checked);
+
+    void on_pushButtonMap_clicked();
 
 public:
     explicit SeedtoTime4(QWidget *parent = 0);

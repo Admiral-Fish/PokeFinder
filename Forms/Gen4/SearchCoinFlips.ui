@@ -25,7 +25,36 @@
   <property name="windowTitle">
    <string>Search Coin Flips</string>
   </property>
-  <layout class="QFormLayout" name="formLayout">
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color: #274050;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+	color: black;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QLabel {
+	color: white;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QPushButton" name="pushButtonHeads">
      <property name="minimumSize">
@@ -39,6 +68,11 @@
        <width>66</width>
        <height>60</height>
       </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	background-color: white;
+}</string>
      </property>
      <property name="text">
       <string/>
@@ -65,6 +99,11 @@
        <height>60</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	background-color: white;
+}</string>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -76,9 +115,6 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QLineEdit" name="lineEditFlips"/>
-   </item>
    <item row="2" column="0" colspan="2">
     <widget class="QLabel" name="labelPossibleResults">
      <property name="text">
@@ -86,51 +122,35 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="2">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	background-color: yellow;
+}</string>
      </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     <property name="text">
+      <string>Ok</string>
      </property>
     </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	background-color: yellow;
+}</string>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QLineEdit" name="lineEditFlips"/>
    </item>
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>SearchCoinFlips</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>SearchCoinFlips</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

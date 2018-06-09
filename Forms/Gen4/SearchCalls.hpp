@@ -17,44 +17,47 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SEARCHELMCALLS_HPP
-#define SEARCHELMCALLS_HPP
+#ifndef SEARCHCALLS_HPP
+#define SEARCHCALLS_HPP
 
 #include <QDialog>
 #include <Util/DateTime.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
+#include <PokeFinderCore/Gen4/HGSSRoamer.hpp>
 
 using std::vector;
 
 namespace Ui
 {
-    class SearchElmCalls;
+    class SearchCalls;
 }
 
-class SearchElmCalls : public QDialog
+class SearchCalls : public QDialog
 {
     Q_OBJECT
 
 private:
-    Ui::SearchElmCalls *ui;
+    Ui::SearchCalls *ui;
     vector<DateTime> data;
     vector<bool> possible;
+    vector<bool> roamers;
+    vector<u32> routes;
 
 private slots:
     void on_pushButtonK_clicked();
     void on_pushButtonE_clicked();
     void on_pushButtonP_clicked();
     void on_lineEditCalls_textChanged(const QString &arg1);
-    void on_buttonBox_accepted();
-    void on_buttonBox_rejected();
     void on_radioButtonElm_clicked();
     void on_radioButtonIrwin_clicked();
+    void on_pushButtonOkay_clicked();
+    void on_pushButtonCancel_clicked();
 
 public:
-    explicit SearchElmCalls(vector<DateTime> model, QWidget *parent = 0);
-    ~SearchElmCalls();
+    explicit SearchCalls(vector<DateTime> model, vector<bool> roamers, vector<u32> routes, QWidget *parent = 0);
+    ~SearchCalls();
     vector<bool> possibleResults();
 
 };
 
-#endif // SEARCHELMCALLS_HPP
+#endif // SEARCHCALLS_HPP

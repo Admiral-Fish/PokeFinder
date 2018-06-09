@@ -130,7 +130,7 @@ QVariant Egg4GeneratorModel::data(const QModelIndex &index, int role) const
                 case 0:
                     return frame.frame;
                 case 1:
-                    return frame.elmCall();
+                    return frame.getCall();
                 case 2:
                     return frame.chatotPitch();
                 case 3:
@@ -209,7 +209,7 @@ QVariant Egg4GeneratorModel::headerData(int section, Qt::Orientation orientation
                 case 0:
                     return tr("Frame");
                 case 1:
-                    return tr("Elm");
+                    return tr("Call");
                 case 2:
                     return tr("Chatot");
                 case 3:

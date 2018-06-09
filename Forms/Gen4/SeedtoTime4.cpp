@@ -132,6 +132,9 @@ vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int
         return vector<DateTime>();
     }
 
+    vector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
+    vector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
+
     vector<DateTime> results;
     for (int month = 0; month < 13; month++)
     {
@@ -148,7 +151,7 @@ vector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int
                     if (!forceSecond || second == forcedSecond)
                     {
                         QDateTime dateTime = QDateTime(QDate(year, month, day), QTime(hour, minute, second));
-                        results.push_back(DateTime(dateTime, delay, version));
+                        results.push_back(DateTime(dateTime, delay, version, roamer, routes));
                     }
                 }
             }
@@ -163,13 +166,16 @@ vector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minus
 
     int delay = target.getDelay();
 
+    vector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
+    vector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
+
     vector<DateTime> results;
     for (int i = minusSecond; i >= 0; i--)
     {
         for (int j = minusDelay; j > 0; j--)
         {
             QDateTime offset = time.addSecs(-1 * i);
-            DateTime result = DateTime(offset, delay - j, target.getVersion());
+            DateTime result = DateTime(offset, delay - j, target.getVersion(), target.getInfo());
             results.push_back(result);
         }
     }
@@ -181,7 +187,7 @@ vector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minus
         for (int j = 1; j <= plusDelay; j++)
         {
             QDateTime offset = time.addSecs(i);
-            DateTime result = DateTime(offset, delay + j, target.getVersion());
+            DateTime result = DateTime(offset, delay + j, target.getVersion(), target.getInfo());
             results.push_back(result);
         }
     }
@@ -206,16 +212,24 @@ void SeedtoTime4::on_pushButtonGenerateDPPt_clicked()
 
 void SeedtoTime4::on_pushButtonGenerateHGSS_clicked()
 {
+    hgss->clear();
+
     u32 seed = ui->textBoxSeedHGSS->text().toUInt(NULL, 16);
     u32 year = ui->lineEditYearHGSS->text().toUInt();
 
     bool forceSecond = ui->checkBoxSecondsHGSS->isChecked();
     int forcedSecond = ui->lineEditSecondsHGSS->text().toInt();
 
-    hgss->clear();
+    vector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
+    vector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
+
+    HGSSRoamer info(seed, roamer, routes);
 
     vector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, HeartGold);
-    ui->labelElmCalls->setText(tr("Elm Calls: ") + Utilities::elmCalls(seed, 15));
+    ui->labelElmCalls->setText(tr("Elm Calls: ") + Utilities::getCalls(seed, 15, info));
+    QString str = info.getRoutes();
+    str = str == "" ? tr("No roamers") : str;
+    ui->labelRoamers->setText(tr("Roamers: ") + str);
 
     hgss->setModel(results);
 }
@@ -254,6 +268,8 @@ void SeedtoTime4::on_pushButtonCalibrateDPPt_clicked()
 
 void SeedtoTime4::on_pushButtonCalibrateHGSS_clicked()
 {
+    hgssCalibrate->clear();
+
     int minusDelay = ui->lineEditMinusDelayHGSS->text().toInt();
     int plusDelay = ui->lineEditPlusDelayHGSS->text().toInt();
 
@@ -269,8 +285,6 @@ void SeedtoTime4::on_pushButtonCalibrateHGSS_clicked()
         error.exec();
         return;
     }
-
-    hgssCalibrate->clear();
 
     DateTime target = hgss->getData(index.row());
     vector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
@@ -318,7 +332,10 @@ void SeedtoTime4::on_pushButtonSearchCalls_clicked()
     if (hgssCalibrate->rowCount() == 0)
         return;
 
-    SearchElmCalls *search = new SearchElmCalls(hgssCalibrate->getData());
+    vector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
+    vector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
+
+    SearchCalls *search = new SearchCalls(hgssCalibrate->getData(), roamer, routes);
     if (search->exec() == QDialog::Rejected)
     {
         delete search;
@@ -350,4 +367,11 @@ void SeedtoTime4::on_checkBoxSecondsDPPt_clicked(bool checked)
 void SeedtoTime4::on_checkBoxSecondsHGSS_clicked(bool checked)
 {
     ui->lineEditSecondsHGSS->setEnabled(checked);
+}
+
+void SeedtoTime4::on_pushButtonMap_clicked()
+{
+    RoamerMap *map = new RoamerMap();
+    map->show();
+    map->raise();
 }

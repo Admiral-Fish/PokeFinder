@@ -98,9 +98,12 @@ QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
                 case 3:
                     return frame.getDelay();
                 case 4:
-                    return (version == HeartGold || version == SoulSilver) ? Utilities::elmCalls(frame.getSeed(), 15) : Utilities::coinFlips(frame.getSeed(), 15);
+                    return (version == HeartGold || version == SoulSilver) ? Utilities::getCalls(frame.getSeed(), 15, frame.getInfo()) : Utilities::coinFlips(frame.getSeed(), 15);
                 case 5:
-                    return "Roamer"; // TODO
+                    {
+                        QString str = frame.getInfo().getRoutes();
+                        return str == "" ? tr("No roamers") : str;
+                    }
             }
         }
         else
@@ -138,7 +141,7 @@ QVariant SeedtoTime4Model::headerData(int section, Qt::Orientation orientation, 
                     case 3:
                         return tr("Delay");
                     case 4:
-                        return (version == HeartGold || version == SoulSilver) ? tr("Elm calls") : tr("Coin flips");
+                        return (version == HeartGold || version == SoulSilver) ? tr("Calls") : tr("Coin flips");
                     case 5 :
                         return tr("Roamer locations");
                 }
