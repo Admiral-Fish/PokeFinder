@@ -316,6 +316,8 @@ void Eggs4::searchPID()
                 if (!frames.empty())
                     emit updatePID(frames);
 
+                progressPID++;
+
                 if (searcherPID->rowCount() > 10000)
                 {
                     progressPID = 256 * 24 * (maxDelay - minDelay + 1);
@@ -373,6 +375,8 @@ void Eggs4::searchIVs()
 
                 if (!frames.empty())
                     emit updateIVs(frames);
+
+                progressIVs++;
 
                 if (searcherIVs->rowCount() > 10000)
                 {
