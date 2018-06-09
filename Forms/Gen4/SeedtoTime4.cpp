@@ -42,12 +42,6 @@ SeedtoTime4::~SeedtoTime4()
     delete hgssCalibrate;
 }
 
-void SeedtoTime4::closeWindow()
-{
-    this->close();
-    delete this;
-}
-
 void SeedtoTime4::changeEvent(QEvent *event)
 {
     if (event != NULL)

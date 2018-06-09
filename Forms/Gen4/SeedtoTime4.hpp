@@ -71,9 +71,6 @@ public:
     explicit SeedtoTime4(QWidget *parent = 0);
     ~SeedtoTime4();
 
-public slots:
-    void closeWindow();
-
 };
 
 #endif // SEEDTOTIME4_HPP
