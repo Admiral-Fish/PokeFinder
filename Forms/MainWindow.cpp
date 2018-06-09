@@ -140,7 +140,7 @@ void MainWindow::updateProfiles(int num)
     {
         if (stationary4 != NULL) stationary4->updateProfiles();
         if (wild4 != NULL) wild4->updateProfiles();
-        //if (egg4) != NULL) egg4->updateProfiles();
+        if (egg4 != NULL) egg4->updateProfiles();
     }
 }
 

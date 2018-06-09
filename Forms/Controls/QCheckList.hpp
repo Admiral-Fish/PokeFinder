@@ -56,15 +56,6 @@ public:
     void uncheckAll();
     void setChecks(vector<bool> flags);
 
-    class QCheckListStyledItemDelegate : public QStyledItemDelegate
-    {
-
-    public:
-        QCheckListStyledItemDelegate(QObject *parent = 0) : QStyledItemDelegate(parent) {}
-        void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-
-    };
-
 };
 
 #endif // QCHECKLIST

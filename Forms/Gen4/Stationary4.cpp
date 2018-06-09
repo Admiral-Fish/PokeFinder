@@ -126,17 +126,17 @@ void Stationary4::setupModels()
 void Stationary4::updateProfiles()
 {
     profiles = Profile4::loadProfileList();
+    profiles.insert(profiles.begin(), Profile4());
 
     ui->comboBoxProfiles->clear();
 
-    ui->comboBoxProfiles->addItem(tr("None"));
     for (int i = 0; i < (int)profiles.size(); i++)
         ui->comboBoxProfiles->addItem(profiles.at(i).profileName);
 
     QSettings setting;
     int val = setting.value("stationary4Profile").toInt();
     if (val < ui->comboBoxProfiles->count())
-        ui->comboBoxProfiles->setCurrentIndex(val);
+        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
 }
 
 void Stationary4::refreshProfiles()
@@ -146,27 +146,15 @@ void Stationary4::refreshProfiles()
 
 void Stationary4::on_comboBoxProfiles_currentIndexChanged(int index)
 {
-    if (index <= 0)
-    {
-        ui->idGenerator->setText("12345");
-        ui->sidGenerator->setText("54321");
-        ui->idSearcher->setText("12345");
-        ui->sidSearcher->setText("54321");
-        ui->profileTID->setText("12345");
-        ui->profileSID->setText("54321");
-        ui->profileGame->setText(tr("Diamond"));
-    }
-    else
-    {
-        auto profile = profiles.at(index - 1);
-        ui->idGenerator->setText(QString::number(profile.tid));
-        ui->sidGenerator->setText(QString::number(profile.sid));
-        ui->idSearcher->setText(QString::number(profile.tid));
-        ui->sidSearcher->setText(QString::number(profile.sid));
-        ui->profileTID->setText(QString::number(profile.tid));
-        ui->profileSID->setText(QString::number(profile.sid));
-        ui->profileGame->setText(profile.getVersion());
-    }
+    auto profile = profiles[index >= 0 ? index : 0];
+
+    ui->idGenerator->setText(QString::number(profile.tid));
+    ui->sidGenerator->setText(QString::number(profile.sid));
+    ui->idSearcher->setText(QString::number(profile.tid));
+    ui->sidSearcher->setText(QString::number(profile.sid));
+    ui->profileTID->setText(QString::number(profile.tid));
+    ui->profileSID->setText(QString::number(profile.sid));
+    ui->profileGame->setText(profile.getVersion());
 }
 
 void Stationary4::on_anyNatureGenerator_clicked()

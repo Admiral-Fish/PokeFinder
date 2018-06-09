@@ -150,7 +150,9 @@ HEADERS += \
     Forms/Gen4/SearchCoinFlips.hpp \
     Forms/Gen4/SearchElmCalls.hpp \
     Forms/Gen4/RoamerMap.hpp \
-    PokeFinderCore/Gen4/EncounterArea4.hpp
+    PokeFinderCore/Gen4/EncounterArea4.hpp \
+    PokeFinderCore/Gen4/Egg4.hpp \
+    Models/Gen4/Egg4Model.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -222,4 +224,6 @@ SOURCES += \
     Forms/Gen4/SearchCoinFlips.cpp \
     Forms/Gen4/SearchElmCalls.cpp \
     Forms/Gen4/RoamerMap.cpp \
-    PokeFinderCore/Gen4/EncounterArea4.cpp
+    PokeFinderCore/Gen4/EncounterArea4.cpp \
+    PokeFinderCore/Gen4/Egg4.cpp \
+    Models/Gen4/Egg4Model.cpp

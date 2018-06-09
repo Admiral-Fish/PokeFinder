@@ -27,7 +27,6 @@ QCheckList::QCheckList(QWidget *parent) : QComboBox(parent)
     setEditable(true);
     lineEdit()->setReadOnly(true);
     lineEdit()->installEventFilter(this);
-    setItemDelegate(new QCheckListStyledItemDelegate(this));
 
     connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
     connect((QListView *) view(), SIGNAL(pressed(QModelIndex)), this, SLOT(on_itemPressed(QModelIndex)));
@@ -99,13 +98,9 @@ int QCheckList::globalCheckState()
     for (int i = 0; i < total; i++)
     {
         if (model->item(i)->checkState() == Qt::Checked)
-        {
             checked++;
-        }
         else if (model->item(i)->checkState() == Qt::Unchecked)
-        {
             unchecked++;
-        }
     }
 
     return checked == total ? Qt::Checked : unchecked == total ? Qt::Unchecked : Qt::PartiallyChecked;
@@ -166,18 +161,7 @@ void QCheckList::on_itemPressed(const QModelIndex &index)
     QStandardItem *item = model->itemFromIndex(index);
 
     if (item->checkState() == Qt::Checked)
-    {
         item->setCheckState(Qt::Unchecked);
-    }
     else
-    {
         item->setCheckState(Qt::Checked);
-    }
-}
-
-void QCheckList::QCheckListStyledItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-    QStyleOptionViewItem &refToNonConstOption = const_cast<QStyleOptionViewItem &>(option);
-    refToNonConstOption.showDecorationSelected = false;
-    QStyledItemDelegate::paint(painter, refToNonConstOption, index);
 }
