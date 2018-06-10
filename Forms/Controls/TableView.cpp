@@ -17,47 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef JIRACHIGENERATION_HPP
-#define JIRACHIGENERATION_HPP
+#include "TableView.hpp"
 
-#include <QMainWindow>
-#include <QStandardItemModel>
-#include <QStandardItem>
-#include <QString>
-#include <QChar>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
-
-typedef uint32_t u32;
-
-namespace Ui
+void TableView::resizeEvent(QResizeEvent *event)
 {
-    class JirachiGeneration;
+    QTableView::resizeEvent(event);
+
+    QHeaderView *header = horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
+
+    for (int column = 0; column < header->count(); column++)
+    {
+        int width = header->sectionSize(column);
+        header->setSectionResizeMode(column, QHeaderView::Interactive);
+        header->resizeSection(column, width);
+    }
 }
-
-class JirachiGeneration : public QMainWindow
-{
-    Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *);
-
-private:
-    Ui::JirachiGeneration *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
-
-    void setupModels();
-    void genListOut(u32 seed);
-    QString calcProbable(u32 seed);
-
-private slots:
-    void on_pushButtonGenerate_clicked();
-
-public:
-    explicit JirachiGeneration(QWidget *parent = 0);
-    ~JirachiGeneration();
-
-    QString flip(QString text);
-
-};
-
-#endif // JIRACHIGENERATION_HPP

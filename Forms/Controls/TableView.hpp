@@ -17,48 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGER3_HPP
-#define PROFILEMANAGER3_HPP
+#ifndef TABLEVIEW_HPP
+#define TABLEVIEW_HPP
 
-#include <QMainWindow>
-#include <Forms/Gen3/ProfileManager3NewEdit.hpp>
-#include <PokeFinderCore/Gen3/Profile3.hpp>
-#include <Models/Gen3/Profile3Model.hpp>
+#include <QTableView>
+#include <QHeaderView>
 
-using std::vector;
-typedef uint32_t u32;
-
-namespace Ui
+class TableView : public QTableView
 {
-    class ProfileManager3;
-}
-
-class ProfileManager3 : public QMainWindow
-{
-    Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *);
-
-signals:
-    void updateProfiles();
-
-private:
-    Ui::ProfileManager3 *ui;
-    Profile3Model *model = new Profile3Model(this);
-
-    void setupModels();
-
-private slots:
-    void on_pushButtonNew_clicked();
-    void on_pushButtonOk_clicked();
-    void on_pushButtonEdit_clicked();
-    void on_pushButtonDelete_clicked();
 
 public:
-    explicit ProfileManager3(QWidget *parent = 0);
-    ~ProfileManager3();
+    TableView(QWidget *parent = 0): QTableView(parent) {}
+    void resizeEvent(QResizeEvent *event) override;
 
 };
 
-#endif // PROFILEMANAGER3_HPP
+#endif // TABLEVIEW_HPP

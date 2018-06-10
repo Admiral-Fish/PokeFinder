@@ -34,6 +34,7 @@ class ResearcherModel : public QAbstractTableModel
 private:
     vector<ResearcherFrame> model;
     bool flag;
+    vector<bool> hex;
 
     static inline u64 get64Bit(ResearcherFrame f) { return f.full64; }
     static inline u64 get32BitHigh(ResearcherFrame f) { return f.high32(); }
@@ -47,6 +48,7 @@ public:
     void setModel(vector<ResearcherFrame>);
     void clear();
     void setFlag(bool is64Bit);
+    void setHex(vector<bool> hex);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;

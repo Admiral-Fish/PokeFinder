@@ -74,71 +74,79 @@ QPushButton {
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_3">
+   <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QTextBox" name="textBoxStartSeed"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelStartSeed">
-        <property name="text">
-         <string>Seed at 1/1/2000 at 00:00:00</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QTextBox" name="textBoxEndSeed"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelEndSeed">
-        <property name="text">
-         <string>Target Seed</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QTextBox" name="textBoxStartSeed"/>
     </item>
     <item row="0" column="1">
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QTextBox" name="textBoxMinFrame">
-        <property name="text">
-         <string notr="true">500000</string>
-        </property>
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelMinFrame">
-        <property name="text">
-         <string>Min Frame</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QTextBox" name="textBoxMaxFrame">
-        <property name="text">
-         <string notr="true">1000000</string>
-        </property>
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelMaxFrame">
-        <property name="text">
-         <string>Max Frame</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QTextBox" name="textBoxEndSeed"/>
     </item>
-    <item row="2" column="0" colspan="2">
-     <widget class="QTableView" name="tableViewGenerator">
+    <item row="1" column="0">
+     <widget class="QLabel" name="labelStartSeed">
+      <property name="text">
+       <string>Seed at 1/1/2000 at 00:00:00</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="labelEndSeed">
+      <property name="text">
+       <string>Target Seed</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QTextBox" name="textBoxMinFrame">
+      <property name="text">
+       <string notr="true">500000</string>
+      </property>
+      <property name="maxLength">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QTextBox" name="textBoxMaxFrame">
+      <property name="text">
+       <string notr="true">1000000</string>
+      </property>
+      <property name="maxLength">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="labelMinFrame">
+      <property name="text">
+       <string>Min Frame</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="labelMaxFrame">
+      <property name="text">
+       <string>Max Frame</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="2">
+     <widget class="QPushButton" name="pushButtonSearch">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>23</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Search</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0" colspan="2">
+     <widget class="TableView" name="tableViewGenerator">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -174,22 +182,6 @@ QPushButton {
       </attribute>
      </widget>
     </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="QPushButton" name="pushButtonSearch">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>23</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>Search</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -209,7 +201,20 @@ QPushButton {
    <extends>QLineEdit</extends>
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>textBoxStartSeed</tabstop>
+  <tabstop>textBoxEndSeed</tabstop>
+  <tabstop>textBoxMinFrame</tabstop>
+  <tabstop>textBoxMaxFrame</tabstop>
+  <tabstop>pushButtonSearch</tabstop>
+  <tabstop>tableViewGenerator</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

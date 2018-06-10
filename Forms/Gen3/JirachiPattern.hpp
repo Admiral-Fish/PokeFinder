@@ -17,52 +17,49 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGER3NEWEDIT_HPP
-#define PROFILEMANAGER3NEWEDIT_HPP
+#ifndef JIRACHIPATTERN_HPP
+#define JIRACHIPATTERN_HPP
 
-#include <QDialog>
+#include <QMainWindow>
+#include <QStandardItemModel>
+#include <QStandardItem>
+#include <QStringList>
 #include <QString>
-#include <QMessageBox>
-#include <PokeFinderCore/Gen3/Profile3.hpp>
+#include <QChar>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
 
 typedef uint32_t u32;
+using std::vector;
 
 namespace Ui
 {
-    class ProfileManager3NewEdit;
+    class JirachiPattern;
 }
 
-class ProfileManager3NewEdit : public QDialog
+class JirachiPattern : public QMainWindow
 {
     Q_OBJECT
 
 protected:
     void changeEvent(QEvent *);
 
-signals:
-    void newProfile(Profile3);
-    void editProfile(Profile3, Profile3);
-
 private:
-    Ui::ProfileManager3NewEdit *ui;
-    bool isEditing = false;
-    Profile3 original;
-    Profile3 fresh;
+    Ui::JirachiPattern *ui;
+    QStandardItemModel *model = new QStandardItemModel(this);
+    vector<u32> data;
 
     void setupModels();
+    void generate(u32 seed);
+    QStringList getPatterns(u32 seed);
+    QString getTarget(QString in, int index);
 
 private slots:
-    void on_pushButtonAccept_clicked();
-    void on_pushButtonCancel_clicked();
-    void on_comboBoxVersion_currentIndexChanged(int index);
+    void on_pushButtonGenerate_clicked();
 
 public:
-    explicit ProfileManager3NewEdit(QWidget *parent = 0);
-    explicit ProfileManager3NewEdit(Profile3 profile, QWidget *parent = 0);
-    ~ProfileManager3NewEdit();
-    Profile3 getNewProfile();
-    Profile3 getOriginal();
+    explicit JirachiPattern(QWidget *parent = 0);
+    ~JirachiPattern();
 
 };
 
-#endif // PROFILEMANAGER3NEWEDIT_HPP
+#endif // JIRACHIPATTERN_HPP

@@ -2,51 +2,66 @@ version: 1.3.1.{build}
 
 environment:
     matrix:
+        # Windows 64-bit
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
           QTDIR: C:\Qt\5.10\msvc2017_64
           BUILDER: NMAKE
           ARCH: x64
+          OS: windows
+        # Windows 32-Bit
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           QTDIR: C:\Qt\5.10\mingw53_32
           BUILDER: MINGW
           ARCH: x86
-
-configuration:
-    - Release
+          OS: windows
+        # Linux
+        - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
+          BUILDER: MAKE
+          ARCH: x64
+          OS: linux
 
 install:
-    - set PATH=%QTDIR%\bin;%PATH%
-    - if "%BUILDER%"=="MINGW" set PATH=C:\Qt\Tools\mingw530_32\bin;%PATH%
-    - if "%BUILDER%"=="NMAKE" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
     - git submodule update --init --recursive
+    # Windows
+    - cmd: set PATH=%QTDIR%\bin;%PATH%
+    - cmd: if "%BUILDER%"=="MINGW" set PATH=C:\Qt\Tools\mingw530_32\bin;%PATH%
+    - cmd: if "%BUILDER%"=="NMAKE" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+    # Linux
+    - sh: sudo apt-get -qq update
+    - sh: sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default
     
 build_script:
     - qmake PokeFinder.pro
-    - if "%BUILDER%"=="MINGW" mingw32-make
-    - if "%BUILDER%"=="NMAKE" nmake
+    # Windows
+    - cmd: if "%BUILDER%"=="MINGW" mingw32-make
+    - cmd: if "%BUILDER%"=="NMAKE" nmake
+    # Linux
+    - sh: make
 
 after_build:
-    - md PokeFinder-windows
-    - del Languages\*.ts
-    - move Languages PokeFinder-windows\Languages
-    - move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe 
-    - windeployqt --release --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
-    - del PokeFinder-windows\vcredist*.exe
-    - del PokeFinder-windows\vc_redist*.exe
-    - xcopy /I %QTDIR%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
-    - 7z a PokeFinder-windows-%ARCH%.zip PokeFinder-windows\
-    - 7z a PokeFinder-windows-%ARCH%.7z PokeFinder-windows\
+    # Windows
+    - cmd: md PokeFinder-windows
+    - cmd: del Languages\*.ts
+    - cmd: move Languages PokeFinder-windows\Languages
+    - cmd: move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe 
+    - cmd: windeployqt --release --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
+    - cmd: del PokeFinder-windows\vcredist*.exe
+    - cmd: del PokeFinder-windows\vc_redist*.exe
+    - cmd: xcopy /I %QTDIR%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
+    - cmd: 7z a PokeFinder-windows-%ARCH%.zip PokeFinder-windows\
+    # Linux
+    - sh: rm Languages/*.ts
+    - sh: zip -r PokeFinder-linux-x64.zip PokeFinder Languages
     
 artifacts:
-    - path: PokeFinder-windows-%ARCH%.zip
-    - path: PokeFinder-windows-%ARCH%.7z
+    - path: PokeFinder-%OS%-%ARCH%.zip
 
 deploy:
     provider: GitHub
     description: ''
     auth_token:
-        secure: f1bnm7cWsq0pNja+DdwEkQLCMUxczFH5O8eWDEnfNnhbHKuotQ7YFS6jLYyqFbGe
-    artifact: PokeFinder-windows-%ARCH%.zip
+        secure: KPKgc2JaeXV8NBnz+72ILmsh7hKA3v7fWYG4D7X4Oxn7zplWJwP/eeWoObEg9YDHs
+    artifact: PokeFinder-%OS%-%ARCH%.zip
     draft: false
     prerelease: true
     on:

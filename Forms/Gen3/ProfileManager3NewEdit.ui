@@ -286,6 +286,16 @@ QCheckBox::indicator:checked {
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>lineEditProfile</tabstop>
+  <tabstop>comboBoxVersion</tabstop>
+  <tabstop>comboBoxLanguage</tabstop>
+  <tabstop>textBoxTID</tabstop>
+  <tabstop>pushButtonAccept</tabstop>
+  <tabstop>textBoxSID</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>checkBoxDeadBattery</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

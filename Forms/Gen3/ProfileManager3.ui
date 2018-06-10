@@ -87,7 +87,7 @@ QHeaderView::section {
      </widget>
     </item>
     <item row="1" column="0" colspan="3">
-     <widget class="QTableView" name="tableView">
+     <widget class="TableView" name="tableView">
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
@@ -119,6 +119,20 @@ QHeaderView::section {
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>pushButtonNew</tabstop>
+  <tabstop>pushButtonEdit</tabstop>
+  <tabstop>pushButtonDelete</tabstop>
+  <tabstop>tableView</tabstop>
+  <tabstop>pushButtonOk</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

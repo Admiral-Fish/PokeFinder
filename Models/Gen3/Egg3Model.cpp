@@ -36,8 +36,9 @@ void Egg3Model::setModel(vector<Frame3> frames)
 
 void Egg3Model::clear()
 {
-    int i = rowCount();
-    emit beginRemoveRows(QModelIndex(), 0, i == 0 ? 0 : i - 1);
+    if (model.empty())
+        return;
+    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
     model.shrink_to_fit();
     emit endRemoveRows();
@@ -68,8 +69,9 @@ int Egg3Model::columnCount(const QModelIndex &parent) const
             return 8;
         case RSBred:
         case FRLGBred:
-        default:
             return 17;
+        default:
+            return 0;
     }
 }
 
@@ -167,6 +169,8 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 16:
                         return frame.getGender();
                 }
+            default:
+                break;
         }
     }
 
@@ -266,6 +270,8 @@ QVariant Egg3Model::headerData(int section, Qt::Orientation orientation, int rol
                         case 16:
                             return tr("Gender");
                     }
+                default:
+                    break;
             }
         }
     }

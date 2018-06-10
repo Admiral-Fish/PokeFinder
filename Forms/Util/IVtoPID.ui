@@ -381,7 +381,7 @@ QSpinBox::down-button {
      </widget>
     </item>
     <item row="4" column="0" colspan="4">
-     <widget class="QTableView" name="tableView">
+     <widget class="TableView" name="tableView">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -453,7 +453,24 @@ QSpinBox::down-button {
    <extends>QLineEdit</extends>
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>comboBoxNatureGenerator</tabstop>
+  <tabstop>textBoxID</tabstop>
+  <tabstop>spinBoxHP</tabstop>
+  <tabstop>spinBoxAtk</tabstop>
+  <tabstop>spinBoxDef</tabstop>
+  <tabstop>spinBoxSpA</tabstop>
+  <tabstop>spinBoxSpD</tabstop>
+  <tabstop>spinBoxSpe</tabstop>
+  <tabstop>pushButtonFind</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

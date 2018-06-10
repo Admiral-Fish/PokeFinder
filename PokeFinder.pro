@@ -50,7 +50,6 @@ FORMS += \
     Forms/Gen3/Eggs3.ui \
     Forms/Gen3/GameCubeRTC.ui \
     Forms/Gen3/IDs3.ui \
-    Forms/Gen3/JirachiGeneration.ui \
     Forms/Gen3/PIDtoIVs.ui \
     Forms/Gen3/PokeSpot.ui \
     Forms/Gen3/ProfileManager3.ui \
@@ -70,7 +69,8 @@ FORMS += \
     Forms/Gen4/SeedtoTime4.ui \
     Forms/Gen4/SearchCoinFlips.ui \
     Forms/Gen4/RoamerMap.ui \
-    Forms/Gen4/SearchCalls.ui
+    Forms/Gen4/SearchCalls.ui \
+    Forms/Gen3/JirachiPattern.ui
 
 HEADERS += \
     Forms/Controls/IVFilter.hpp \
@@ -79,7 +79,6 @@ HEADERS += \
     Forms/Gen3/Eggs3.hpp \
     Forms/Gen3/GameCubeRTC.hpp \
     Forms/Gen3/IDs3.hpp \
-    Forms/Gen3/JirachiGeneration.hpp \
     Forms/Gen3/PIDtoIVs.hpp \
     Forms/Gen3/PokeSpot.hpp \
     Forms/Gen3/ProfileManager3.hpp \
@@ -153,7 +152,9 @@ HEADERS += \
     PokeFinderCore/Gen4/Egg4.hpp \
     Models/Gen4/Egg4Model.hpp \
     PokeFinderCore/Gen4/HGSSRoamer.hpp \
-    Forms/Gen4/SearchCalls.hpp
+    Forms/Gen4/SearchCalls.hpp \
+    Forms/Controls/TableView.hpp \
+    Forms/Gen3/JirachiPattern.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -162,7 +163,6 @@ SOURCES += \
     Forms/Gen3/Eggs3.cpp \
     Forms/Gen3/GameCubeRTC.cpp \
     Forms/Gen3/IDs3.cpp \
-    Forms/Gen3/JirachiGeneration.cpp \
     Forms/Gen3/PIDtoIVs.cpp \
     Forms/Gen3/PokeSpot.cpp \
     Forms/Gen3/ProfileManager3.cpp \
@@ -228,4 +228,6 @@ SOURCES += \
     PokeFinderCore/Gen4/Egg4.cpp \
     Models/Gen4/Egg4Model.cpp \
     PokeFinderCore/Gen4/HGSSRoamer.cpp \
-    Forms/Gen4/SearchCalls.cpp
+    Forms/Gen4/SearchCalls.cpp \
+    Forms/Controls/TableView.cpp \
+    Forms/Gen3/JirachiPattern.cpp

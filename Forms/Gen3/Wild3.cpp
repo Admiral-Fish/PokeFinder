@@ -109,10 +109,8 @@ void Wild3::updateProfiles()
 void Wild3::setupModels()
 {
     ui->tableViewGenerator->setModel(g);
-    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->tableViewSearcher->setModel(s);
-    ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->initialSeedGenerator->setValues(0, 32, false);
     ui->idGenerator->setValues(0, 48, true);
@@ -698,6 +696,8 @@ void Wild3::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
         case GoodRod:
             t << "0" << "1" << "2";
             break;
+        default:
+            break;
     }
     ui->comboBoxSlotGenerator->clear();
     ui->comboBoxSlotGenerator->addItems(t);
@@ -726,6 +726,8 @@ void Wild3::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
             break;
         case GoodRod:
             t << "0" << "1" << "2";
+            break;
+        default:
             break;
     }
     ui->comboBoxSlotSearcher->clear();
@@ -757,7 +759,11 @@ void Wild3::on_comboBoxPokemonSearcher_currentIndexChanged(int index)
 
 void Wild3::on_comboBoxLocationGenerator_currentIndexChanged(int index)
 {
-    (void) index;
+    if (index >= 0)
+    {
+        ui->checkBoxDelayGenerator->setChecked(true);
+        //ui->delayGenerator->setText(QString::number(encounterGenerator[index].getDelay()));
+    }
     updatePokemonGenerator();
 }
 

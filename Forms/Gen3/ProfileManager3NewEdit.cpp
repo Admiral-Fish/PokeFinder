@@ -26,7 +26,6 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setAttribute(Qt::WA_DeleteOnClose);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
@@ -36,7 +35,7 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(Profile3 profile, QWidget *parent
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setAttribute(Qt::WA_DeleteOnClose);
+    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 
@@ -53,6 +52,16 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(Profile3 profile, QWidget *parent
 ProfileManager3NewEdit::~ProfileManager3NewEdit()
 {
     delete ui;
+}
+
+Profile3 ProfileManager3NewEdit::getNewProfile()
+{
+    return fresh;
+}
+
+Profile3 ProfileManager3NewEdit::getOriginal()
+{
+    return original;
 }
 
 void ProfileManager3NewEdit::changeEvent(QEvent *event)
@@ -95,17 +104,8 @@ void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
         return;
     }
 
-    Profile3 profile(ui->lineEditProfile->text(), (Game)ui->comboBoxVersion->currentData().toInt(), ui->textBoxTID->text().toUInt(NULL, 10),
+    fresh = Profile3(ui->lineEditProfile->text(), (Game)ui->comboBoxVersion->currentData().toInt(), ui->textBoxTID->text().toUInt(NULL, 10),
                      ui->textBoxSID->text().toUInt(NULL, 10), ui->comboBoxLanguage->currentIndex(), ui->checkBoxDeadBattery->isChecked());
-
-    if (isEditing)
-    {
-        emit editProfile(profile, original);
-    }
-    else
-    {
-        emit newProfile(profile);
-    }
 
     done(QDialog::Accepted);
 }

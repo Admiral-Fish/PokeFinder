@@ -287,7 +287,16 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         frames.push_back(frame);
     }
 
+    model->setHex(getHexCheck());
     model->setModel(frames);
+
+    for (int i = 1; i < (rng64Bit ? 4 : 2); i++)
+    {
+        ui->tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+        int width = ui->tableView->horizontalHeader()->sectionSize(i);
+        ui->tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Interactive);
+        ui->tableView->horizontalHeader()->resizeSection(i, width);
+    }
 
     delete rng;
     delete rng64;
@@ -405,8 +414,7 @@ u64 Researcher::getCustom(QString text, ResearcherFrame frame, vector<Researcher
 void Researcher::setupModels()
 {
     ui->tableView->setModel(model);
-    ui->tableView->verticalHeader()->setVisible(false);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    resizeHeader();
 
     ui->textBoxStartingFrame->setValues(1, 0, true);
     ui->textBoxMaxFrames->setValues(1, 0, true);
@@ -465,6 +473,36 @@ void Researcher::translate()
     keys[tr("Previous 7")] = 21;
     keys[tr("Previous 8")] = 22;
     keys[tr("Previous 9")] = 23;
+}
+
+void Researcher::resizeHeader()
+{
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    for (int column = 0; column < model->columnCount(); column++)
+    {
+        int width = ui->tableView->horizontalHeader()->sectionSize(column);
+        ui->tableView->horizontalHeader()->setSectionResizeMode(column, QHeaderView::Interactive);
+        ui->tableView->horizontalHeader()->resizeSection(column, width);
+    }
+}
+
+vector<bool> Researcher::getHexCheck()
+{
+    vector<bool> hex;
+
+    hex.push_back(ui->checkBoxHex1->isChecked());
+    hex.push_back(ui->checkBoxHex2->isChecked());
+    hex.push_back(ui->checkBoxHex3->isChecked());
+    hex.push_back(ui->checkBoxHex4->isChecked());
+    hex.push_back(ui->checkBoxHex5->isChecked());
+    hex.push_back(ui->checkBoxHex6->isChecked());
+    hex.push_back(ui->checkBoxHex7->isChecked());
+    hex.push_back(ui->checkBoxHex8->isChecked());
+    hex.push_back(ui->checkBoxHex9->isChecked());
+    hex.push_back(ui->checkBoxHex10->isChecked());
+
+    return hex;
 }
 
 void Researcher::on_rngSelection_currentChanged(int index)

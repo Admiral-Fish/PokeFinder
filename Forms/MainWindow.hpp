@@ -26,7 +26,7 @@
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Util/Researcher.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
-#include <Forms/Gen3/JirachiGeneration.hpp>
+#include <Forms/Gen3/JirachiPattern.hpp>
 #include <Forms/Gen3/PokeSpot.hpp>
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Gen3/GameCubeRTC.hpp>
@@ -79,7 +79,7 @@ private slots:
     void slotLanguageChanged(QAction *action);
     void updateProfiles(int num);
     void on_action16BitSeedtoTime_triggered();
-    void on_actionJirachiGeneration_triggered();
+    void on_actionJirachiPattern_triggered();
     void on_actionPokeSpot_triggered();
     void on_actionIVtoPID_triggered();
     void on_actionGameCubeRTC_triggered();

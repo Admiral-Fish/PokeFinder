@@ -290,7 +290,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewXDColo">
+         <widget class="TableView" name="tableViewXDColo">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -428,7 +428,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewFRLGE">
+         <widget class="TableView" name="tableViewFRLGE">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -662,7 +662,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewRS">
+         <widget class="TableView" name="tableViewRS">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -691,7 +691,50 @@ QRadioButton {
    <extends>QLineEdit</extends>
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>checkBoxPIDXD</tabstop>
+  <tabstop>textBoxPIDXD</tabstop>
+  <tabstop>checkBoxTIDXD</tabstop>
+  <tabstop>textBoxTIDXD</tabstop>
+  <tabstop>checkBoxSIDXD</tabstop>
+  <tabstop>textBoxSIDXD</tabstop>
+  <tabstop>pushButtonFindXD</tabstop>
+  <tabstop>textBoxSeedXD</tabstop>
+  <tabstop>textBoxMinFrameXD</tabstop>
+  <tabstop>textBoxMaxFrameXD</tabstop>
+  <tabstop>tableViewXDColo</tabstop>
+  <tabstop>checkBoxPIDFRLGE</tabstop>
+  <tabstop>textBoxPIDFRLGE</tabstop>
+  <tabstop>checkBoxSIDFRLGE</tabstop>
+  <tabstop>textBoxSIDFRLGE</tabstop>
+  <tabstop>pushButtonFindFRLGE</tabstop>
+  <tabstop>textBoxTIDFRLGE</tabstop>
+  <tabstop>textBoxMinFrameFRLGE</tabstop>
+  <tabstop>textBoxMaxFrameFRLGE</tabstop>
+  <tabstop>tableViewFRLGE</tabstop>
+  <tabstop>checkBoxPIDRS</tabstop>
+  <tabstop>textBoxPIDRS</tabstop>
+  <tabstop>checkBoxTIDRS</tabstop>
+  <tabstop>textBoxTIDRS</tabstop>
+  <tabstop>checkBoxSIDRS</tabstop>
+  <tabstop>textBoxSIDRS</tabstop>
+  <tabstop>pushButtonFindRS</tabstop>
+  <tabstop>checkBoxBattery</tabstop>
+  <tabstop>radioButtonDateRS</tabstop>
+  <tabstop>dateTimeEdit</tabstop>
+  <tabstop>radioButtonInitSeedRS</tabstop>
+  <tabstop>textBoxInitSeedRS</tabstop>
+  <tabstop>textBoxMinFrameRS</tabstop>
+  <tabstop>textBoxMaxFrameRS</tabstop>
+  <tabstop>tableViewRS</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

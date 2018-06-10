@@ -271,7 +271,7 @@ QMenu::item::selected {
      <string>Gen 3 Tools</string>
     </property>
     <addaction name="action16BitSeedtoTime"/>
-    <addaction name="actionJirachiGeneration"/>
+    <addaction name="actionJirachiPattern"/>
     <addaction name="actionPokeSpot"/>
     <addaction name="actionIVtoPID"/>
     <addaction name="actionGameCubeRTC"/>
@@ -299,9 +299,9 @@ QMenu::item::selected {
     <string>16-Bit Seed to Time</string>
    </property>
   </action>
-  <action name="actionJirachiGeneration">
+  <action name="actionJirachiPattern">
    <property name="text">
-    <string>Jirachi Generation</string>
+    <string>Jirachi Pattern</string>
    </property>
   </action>
   <action name="actionPokeSpot">

@@ -49,6 +49,8 @@ private:
     u32 frame = 1;
 
     void setupModels();
+    void saveSettings();
+    void loadSettings();
     u32 originSeed(u32 seed);
     void seedToTime(u32 seed, u32 year);
 

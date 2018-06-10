@@ -149,7 +149,7 @@ QHeaderView::section {
      </layout>
     </item>
     <item row="1" column="0">
-     <widget class="QTableView" name="tableViewGenerator">
+     <widget class="TableView" name="tableViewGenerator">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -198,7 +198,18 @@ QHeaderView::section {
    <extends>QLineEdit</extends>
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>seedToTimeSeed</tabstop>
+  <tabstop>seedToTimeYear</tabstop>
+  <tabstop>pushButtonFind</tabstop>
+  <tabstop>tableViewGenerator</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
