@@ -485,7 +485,7 @@ void Wild4::updateLocationsSearcher()
     if (ui->comboBoxProfiles->currentIndex() >= 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
-    encounterSearcher = EncounterArea4::getEncounters(encounter, game);
+    encounterSearcher = EncounterArea4::getEncounters(encounter, game, ui->comboBoxTimeSearcher->currentIndex() + 1);
     vector<u32> locs;
     for (EncounterArea4 area : encounterSearcher)
         locs.push_back(area.getLocation());
@@ -520,7 +520,7 @@ void Wild4::updateLocationsGenerator()
     if (ui->comboBoxProfiles->currentIndex() >= 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
-    encounterGenerator = EncounterArea4::getEncounters(encounter, game);
+    encounterGenerator = EncounterArea4::getEncounters(encounter, game, ui->comboBoxTimeGenerator->currentIndex() + 1);
     vector<u32> locs;
     for (EncounterArea4 area : encounterGenerator)
         locs.push_back(area.getLocation());
@@ -555,4 +555,18 @@ void Wild4::updateProgressBar()
 void Wild4::updateViewSearcher(vector<Frame4> frames)
 {
     s->addItems(frames);
+}
+
+void Wild4::on_comboBoxTimeGenerator_currentIndexChanged(int index)
+{
+    index = ui->comboBoxLocationGenerator->currentIndex();
+    updateLocationsGenerator();
+    ui->comboBoxLocationGenerator->setCurrentIndex(index);
+}
+
+void Wild4::on_comboBoxTimeSearcher_currentIndexChanged(int index)
+{
+    index = ui->comboBoxLocationSearcher->currentIndex();
+    updateLocationsSearcher();
+    ui->comboBoxLocationSearcher->setCurrentIndex(index);
 }

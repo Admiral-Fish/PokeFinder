@@ -103,6 +103,8 @@ private slots:
     void on_comboBoxPokemonSearcher_currentIndexChanged(int index);
     void on_comboBoxLocationGenerator_currentIndexChanged(int index);
     void on_comboBoxPokemonGenerator_currentIndexChanged(int index);
+    void on_comboBoxTimeGenerator_currentIndexChanged(int index);
+    void on_comboBoxTimeSearcher_currentIndexChanged(int index);
 
 public:
     explicit Wild4(QWidget *parent = 0);
