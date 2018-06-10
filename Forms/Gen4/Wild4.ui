@@ -1095,7 +1095,7 @@ QPushButton {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewGenerator">
+         <widget class="TableView" name="tableViewGenerator">
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
@@ -1130,7 +1130,7 @@ QPushButton {
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="2" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewSearcher">
+         <widget class="TableView" name="tableViewSearcher">
           <property name="styleSheet">
            <string notr="true">QTableView {
 	border: 4px solid DodgerBlue;
@@ -1987,6 +1987,11 @@ QHeaderView::section {
    <class>QCheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/QCheckList.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

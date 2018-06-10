@@ -244,7 +244,7 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="0" colspan="9">
-            <widget class="QTableView" name="tableViewDPPtCalibrate"/>
+            <widget class="TableView" name="tableViewDPPtCalibrate"/>
            </item>
            <item row="1" column="6">
             <spacer name="horizontalSpacer_2">
@@ -276,7 +276,7 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="0" colspan="8">
-            <widget class="QTableView" name="tableViewDPPt"/>
+            <widget class="TableView" name="tableViewDPPt"/>
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label">
@@ -545,7 +545,7 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="0" colspan="3">
-            <widget class="QTableView" name="tableViewHGSS"/>
+            <widget class="TableView" name="tableViewHGSS"/>
            </item>
           </layout>
          </widget>
@@ -687,7 +687,7 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="0" colspan="9">
-            <widget class="QTableView" name="tableViewHGSSCalibrate"/>
+            <widget class="TableView" name="tableViewHGSSCalibrate"/>
            </item>
            <item row="1" column="6">
             <spacer name="horizontalSpacer_4">
@@ -727,6 +727,11 @@ QPushButton {
    <class>QTextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/QTextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

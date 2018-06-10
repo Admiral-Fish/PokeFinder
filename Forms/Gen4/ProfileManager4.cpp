@@ -56,7 +56,6 @@ void ProfileManager4::setupModels()
 {
     model->setModel(Profile4::loadProfileList());
     ui->tableView->setModel(model);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void ProfileManager4::on_pushButtonNew_clicked()

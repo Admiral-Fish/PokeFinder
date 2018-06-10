@@ -960,7 +960,7 @@ QSpinBox::down-button {
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
-         <widget class="QTableView" name="tableViewGenerator">
+         <widget class="TableView" name="tableViewGenerator">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -974,7 +974,7 @@ QSpinBox::down-button {
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="2" column="0">
-         <widget class="QTableView" name="tableViewPID">
+         <widget class="TableView" name="tableViewPID">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -1783,7 +1783,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QTableView" name="tableViewIVs">
+         <widget class="TableView" name="tableViewIVs">
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -1836,6 +1836,11 @@ QRadioButton {
    <class>QCheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/QCheckList.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

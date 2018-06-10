@@ -66,13 +66,10 @@ void Eggs4::changeEvent(QEvent *event)
 void Eggs4::setupModels()
 {
     ui->tableViewGenerator->setModel(generatorModel);
-    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->tableViewIVs->setModel(searcherIVs);
-    ui->tableViewIVs->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->tableViewPID->setModel(searcherPID);
-    ui->tableViewPID->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->textBoxStartingFrame->setValues(1, 32, true);
     ui->textBoxMaxResults->setValues(1, 32, true);

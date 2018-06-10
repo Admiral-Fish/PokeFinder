@@ -68,10 +68,8 @@ Wild4::~Wild4()
 void Wild4::setupModels()
 {
     ui->tableViewGenerator->setModel(g);
-    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->tableViewSearcher->setModel(s);
-    ui->tableViewSearcher->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->initialSeedGenerator->setValues(0, 32, false);
     ui->idGenerator->setValues(0, 48, true);
