@@ -17,48 +17,36 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGER4_HPP
-#define PROFILEMANAGER4_HPP
+#ifndef SEEDTOTIME4MODEL_HPP
+#define SEEDTOTIME4MODEL_HPP
 
-#include <QMainWindow>
-#include <Forms/Gen4/ProfileManager4NewEdit.hpp>
-#include <PokeFinderCore/Gen4/Profile4.hpp>
-#include <Models/Gen4/Profile4Model.hpp>
+#include <QAbstractTableModel>
+#include <PokeFinderCore/Objects/Game.hpp>
+#include <Util/DateTime.hpp>
 
 using std::vector;
-typedef uint32_t u32;
 
-namespace Ui
-{
-    class ProfileManager4;
-}
-
-class ProfileManager4 : public QMainWindow
+class SeedtoTime4Model : public QAbstractTableModel
 {
     Q_OBJECT
 
-protected:
-    void changeEvent(QEvent *);
-
-signals:
-    void updateProfiles();
-
 private:
-    Ui::ProfileManager4 *ui;
-    Profile4Model *model = new Profile4Model(this);
-
-    void setupModels();
-
-private slots:
-    void on_pushButtonNew_clicked();
-    void on_pushButtonOk_clicked();
-    void on_pushButtonEdit_clicked();
-    void on_pushButtonDelete_clicked();
+    vector<DateTime> model;
+    bool calibrate;
+    Game version;
 
 public:
-    explicit ProfileManager4(QWidget *parent = 0);
-    ~ProfileManager4();
+    SeedtoTime4Model(QObject *parent, bool flag = false, Game version = Diamond);
+    void setModel(vector<DateTime> times);
+    void clear();
+    DateTime getData(int row);
+    vector<DateTime> getData();
+    void setFlags(bool flag = false, Game version = Diamond);
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
 };
 
-#endif // PROFILEMANAGER4_HPP
+#endif // SEEDTOTIME4MODEL_HPP

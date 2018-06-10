@@ -37,13 +37,11 @@ Stationary4::Stationary4(QWidget *parent) :
 
 Stationary4::~Stationary4()
 {
-    QSettings setting;
-    setting.setValue("stationary4Profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("stationary4MinDelay", ui->minDelay->text().toInt());
-    setting.setValue("stationary4MaxDelay", ui->maxDelay->text().toInt());
+    saveSettings();
 
     delete ui;
     delete g;
+    delete s;
 }
 
 void Stationary4::changeEvent(QEvent *event)
@@ -59,6 +57,21 @@ void Stationary4::changeEvent(QEvent *event)
                 break;
         }
     }
+}
+
+void Stationary4::loadSettings()
+{
+    QSettings setting;
+    if (setting.contains("stationary4MinDelay")) ui->minDelay->setText(setting.value("stationary4MinDelay").toString());
+    if (setting.contains("stationary4MaxDelay")) ui->maxDelay->setText(setting.value("stationary4MaxDelay").toString());
+}
+
+void Stationary4::saveSettings()
+{
+    QSettings setting;
+    setting.setValue("stationary4Profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("stationary4MinDelay", ui->minDelay->text().toInt());
+    setting.setValue("stationary4MaxDelay", ui->maxDelay->text().toInt());
 }
 
 void Stationary4::setupModels()
@@ -107,29 +120,23 @@ void Stationary4::setupModels()
     ui->comboBoxHiddenPowerGenerator->setup();
     ui->comboBoxHiddenPowerSearcher->setup();
 
-    QSettings setting;
-    int val = setting.value("stationary4MinDelay").toInt();
-    if (val != 0)
-        ui->minDelay->setText(QString::number(val));
-    val = setting.value("stationary4MaxDelay").toInt();
-    if (val != 0)
-        ui->maxDelay->setText(QString::number(val));
+    loadSettings();
 }
 
 void Stationary4::updateProfiles()
 {
     profiles = Profile4::loadProfileList();
+    profiles.insert(profiles.begin(), Profile4());
 
     ui->comboBoxProfiles->clear();
 
-    ui->comboBoxProfiles->addItem(tr("None"));
     for (int i = 0; i < (int)profiles.size(); i++)
         ui->comboBoxProfiles->addItem(profiles.at(i).profileName);
 
     QSettings setting;
     int val = setting.value("stationary4Profile").toInt();
     if (val < ui->comboBoxProfiles->count())
-        ui->comboBoxProfiles->setCurrentIndex(val);
+        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
 }
 
 void Stationary4::refreshProfiles()
@@ -139,27 +146,15 @@ void Stationary4::refreshProfiles()
 
 void Stationary4::on_comboBoxProfiles_currentIndexChanged(int index)
 {
-    if (index <= 0)
-    {
-        ui->idGenerator->setText("12345");
-        ui->sidGenerator->setText("54321");
-        ui->idSearcher->setText("12345");
-        ui->sidSearcher->setText("54321");
-        ui->profileTID->setText("12345");
-        ui->profileSID->setText("54321");
-        ui->profileGame->setText(tr("Diamond"));
-    }
-    else
-    {
-        auto profile = profiles.at(index - 1);
-        ui->idGenerator->setText(QString::number(profile.tid));
-        ui->sidGenerator->setText(QString::number(profile.sid));
-        ui->idSearcher->setText(QString::number(profile.tid));
-        ui->sidSearcher->setText(QString::number(profile.sid));
-        ui->profileTID->setText(QString::number(profile.tid));
-        ui->profileSID->setText(QString::number(profile.sid));
-        ui->profileGame->setText(profile.getVersion());
-    }
+    auto profile = profiles[index >= 0 ? index : 0];
+
+    ui->idGenerator->setText(QString::number(profile.tid));
+    ui->sidGenerator->setText(QString::number(profile.sid));
+    ui->idSearcher->setText(QString::number(profile.tid));
+    ui->sidSearcher->setText(QString::number(profile.sid));
+    ui->profileTID->setText(QString::number(profile.tid));
+    ui->profileSID->setText(QString::number(profile.sid));
+    ui->profileGame->setText(profile.getVersion());
 }
 
 void Stationary4::on_anyNatureGenerator_clicked()
@@ -339,10 +334,7 @@ void Stationary4::on_pushButtonLeadGenerator_clicked()
         ui->pushButtonLeadGenerator->setText(tr("Cute Charm"));
         ui->comboBoxLeadGenerator->setEnabled(true);
 
-        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (50% ♀ Target)"), Lead::CuteCharm50F);
-        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (75% ♀ Target)"), Lead::CuteCharm75F);
-        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (25% ♀ Target)"), Lead::CuteCharm25F);
-        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead (12.5% ♀ Target)"), Lead::CuteCharm125F);
+        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead"), Lead::CuteCharmFemale);
         ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
         ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
         ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);

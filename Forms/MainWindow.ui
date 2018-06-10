@@ -277,8 +277,16 @@ QMenu::item::selected {
     <addaction name="actionGameCubeRTC"/>
     <addaction name="actionPIDtoIV"/>
    </widget>
+   <widget class="QMenu" name="menuGen_4_Tools">
+    <property name="title">
+     <string>Gen 4 Tools</string>
+    </property>
+    <addaction name="actionSeed_to_Time"/>
+    <addaction name="actionIV_to_PID"/>
+   </widget>
    <addaction name="menuLanguage"/>
    <addaction name="menuGen3Tools"/>
+   <addaction name="menuGen_4_Tools"/>
    <addaction name="menuTools"/>
   </widget>
   <action name="actionResearcher">
@@ -314,6 +322,16 @@ QMenu::item::selected {
   <action name="actionPIDtoIV">
    <property name="text">
     <string>PID to IV</string>
+   </property>
+  </action>
+  <action name="actionSeed_to_Time">
+   <property name="text">
+    <string>Seed to Time</string>
+   </property>
+  </action>
+  <action name="actionIV_to_PID">
+   <property name="text">
+    <string>IV to PID</string>
    </property>
   </action>
  </widget>

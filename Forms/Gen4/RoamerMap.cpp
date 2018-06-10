@@ -17,45 +17,26 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef QCHECKLIST
-#define QCHECKLIST
+#include "RoamerMap.hpp"
+#include "ui_RoamerMap.h"
 
-#include <QWidget>
-#include <QComboBox>
-#include <QStandardItemModel>
-#include <QEvent>
-#include <QLineEdit>
-#include <QListView>
-#include <vector>
-#include <QStyledItemDelegate>
-
-using std::vector;
-
-class QCheckList : public QComboBox
+RoamerMap::RoamerMap(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::RoamerMap)
 {
-    Q_OBJECT
+    ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
-protected:
-    bool eventFilter(QObject *object, QEvent *event);
+    ui->labelMap->setPixmap(QPixmap::fromImage(QImage(":/roamers.png")));
+    ui->labelEntei->setPixmap(QPixmap::fromImage(QImage(":/entei.png")));
+    ui->labelRaikou->setPixmap(QPixmap::fromImage(QImage(":/raikou.png")));
+    ui->labelLatias->setPixmap(QPixmap::fromImage(QImage(":/latias.png")));
+    ui->labelLatios->setPixmap(QPixmap::fromImage(QImage(":/latios.png")));
+}
 
-private:
-    QStandardItemModel *model;
-
-    void updateText();
-    int globalCheckState();
-
-private slots:
-    void on_modelDataChanged();
-    void on_itemPressed(const QModelIndex &index);
-
-public:
-    QCheckList(QWidget *parent = 0);
-    ~QCheckList();
-    void setup();
-    vector<bool> getChecked();
-    void uncheckAll();
-    void setChecks(vector<bool> flags);
-
-};
-
-#endif // QCHECKLIST
+RoamerMap::~RoamerMap()
+{
+    delete ui;
+}

@@ -36,6 +36,7 @@
 #include <Forms/Gen4/Wild4.hpp>
 #include <Forms/Gen4/Eggs4.hpp>
 #include <Forms/Gen4/IDs4.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
 #include <QDir>
 
 namespace Ui
@@ -88,6 +89,8 @@ private slots:
     void on_pushButtonWild4_clicked();
     void on_pushButtonEgg4_clicked();
     void on_pushButtonIDs4_clicked();
+    void on_actionSeed_to_Time_triggered();
+    void on_actionIV_to_PID_triggered();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

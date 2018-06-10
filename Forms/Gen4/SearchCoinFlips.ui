@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SearchCoinFlips</class>
+ <widget class="QDialog" name="SearchCoinFlips">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>370</width>
+    <height>152</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>370</width>
+    <height>152</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>370</width>
+    <height>152</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Search Coin Flips</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color: #274050;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+	color: black;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QLabel {
+	color: white;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="pushButtonHeads">
+     <property name="minimumSize">
+      <size>
+       <width>66</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>66</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	background-color: white;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>66</width>
+       <height>60</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="pushButtonTails">
+     <property name="minimumSize">
+      <size>
+       <width>66</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>66</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	background-color: white;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>66</width>
+       <height>60</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QLabel" name="labelPossibleResults">
+     <property name="text">
+      <string>Possible Results:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	background-color: yellow;
+}</string>
+     </property>
+     <property name="text">
+      <string>Ok</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	background-color: yellow;
+}</string>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QLineEdit" name="lineEditFlips"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

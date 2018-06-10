@@ -66,6 +66,10 @@ FORMS += \
     Forms/Gen4/Wild4.ui \
     Forms/Gen4/Eggs4.ui \
     Forms/Gen4/IDs4.ui \
+    Forms/Gen4/SeedtoTime4.ui \
+    Forms/Gen4/SearchCoinFlips.ui \
+    Forms/Gen4/RoamerMap.ui \
+    Forms/Gen4/SearchCalls.ui \
     Forms/Gen3/JirachiPattern.ui
 
 HEADERS += \
@@ -139,6 +143,16 @@ HEADERS += \
     Models/Gen4/Wild4Model.hpp \
     PokeFinderCore/Gen4/Searcher4.hpp \
     Models/Gen4/Searcher4Model.hpp \
+    Forms/Gen4/SeedtoTime4.hpp \
+    Models/Gen4/SeedtoTime4Model.hpp \
+    Util/DateTime.hpp \
+    Forms/Gen4/SearchCoinFlips.hpp \
+    Forms/Gen4/RoamerMap.hpp \
+    PokeFinderCore/Gen4/EncounterArea4.hpp \
+    PokeFinderCore/Gen4/Egg4.hpp \
+    Models/Gen4/Egg4Model.hpp \
+    PokeFinderCore/Gen4/HGSSRoamer.hpp \
+    Forms/Gen4/SearchCalls.hpp \
     Forms/Controls/TableView.hpp \
     Forms/Gen3/JirachiPattern.hpp
 
@@ -205,5 +219,15 @@ SOURCES += \
     Models/Gen4/Wild4Model.cpp \
     PokeFinderCore/Gen4/Searcher4.cpp \
     Models/Gen4/Searcher4Model.cpp \
+    Forms/Gen4/SeedtoTime4.cpp \
+    Models/Gen4/SeedtoTime4Model.cpp \
+    Util/DateTime.cpp \
+    Forms/Gen4/SearchCoinFlips.cpp \
+    Forms/Gen4/RoamerMap.cpp \
+    PokeFinderCore/Gen4/EncounterArea4.cpp \
+    PokeFinderCore/Gen4/Egg4.cpp \
+    Models/Gen4/Egg4Model.cpp \
+    PokeFinderCore/Gen4/HGSSRoamer.cpp \
+    Forms/Gen4/SearchCalls.cpp \
     Forms/Controls/TableView.cpp \
     Forms/Gen3/JirachiPattern.cpp

@@ -1,7 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>IDs4</class>
  <widget class="QMainWindow" name="IDs4">
   <property name="geometry">
@@ -13,12 +11,556 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Gen 4 TID/SID</string>
   </property>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QStatusBar" name="statusbar"/>
+  <property name="styleSheet">
+   <string notr="true">.QTabWidget &gt;  QWidget &gt; QWidget {
+	background-color: #E6E6E6;
+}
+
+QCheckBox {
+	color: white;
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+	background-color: white;
+}
+
+QTableView {
+	border: 4px solid DodgerBlue;
+}
+
+QHeaderView::section {
+	border: none;
+	background-color: #274050;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: white;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+}
+
+QGroupBox {
+	background-color: #274050;
+	border-radius: 10px;
+	margin-top: 7px;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+.QGroupBox * {
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	left: 20px;
+	padding: 3px 5px 3px 5px;
+	background-color: #969F91;
+	border-radius: 5px;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+	color: white;
+	background-color: DodgerBlue;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="groupBoxShinyPID">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Shiny PID</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>PID</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QTextBox" name="textBoxPID">
+         <property name="maxLength">
+          <number>8</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxSearchTIDShinyPID">
+         <property name="text">
+          <string>Search for TID</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>TID</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QTextBox" name="textBoxTIDShinyPID">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="maxLength">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Year</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QTextBox" name="textBoxYearShinyPID">
+         <property name="text">
+          <string notr="true">2000</string>
+         </property>
+         <property name="maxLength">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Min Delay</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QTextBox" name="textBoxMinDelayShinyPID">
+         <property name="text">
+          <string notr="true">5000</string>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Max Delay</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QTextBox" name="textBoxMaxDelayShinyPID">
+         <property name="text">
+          <string notr="true">6000</string>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxInfiniteSearchShinyPID">
+         <property name="text">
+          <string>Infinite Search</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="QPushButton" name="pushButtonSearchShinyPID">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Search</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBoxTIDSID">
+      <property name="title">
+       <string>TID / SID</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>TID</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QTextBox" name="textBoxTIDTIDSID">
+         <property name="maxLength">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxSearchSID">
+         <property name="text">
+          <string>Search for SID</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>SID</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QTextBox" name="textBoxSIDTIDSID">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="maxLength">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Year</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QTextBox" name="textBoxYearTIDSID">
+         <property name="text">
+          <string notr="true">2000</string>
+         </property>
+         <property name="maxLength">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>Min Delay</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QTextBox" name="textBoxMinDelayTIDSID">
+         <property name="text">
+          <string notr="true">5000</string>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Max Delay</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QTextBox" name="textBoxMaxDelayTIDSID">
+         <property name="text">
+          <string notr="true">6000</string>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxInfiniteSearchTIDSID">
+         <property name="text">
+          <string>Infinite Search</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="QPushButton" name="pushButtonSearchTIDSID">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Search</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QGroupBox" name="groupBoxSeedFinder">
+      <property name="title">
+       <string>Seed Finder</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>TID Obtained</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="textBoxTIDSeedFinder"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>Month</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="textBoxMonthSeedFinder">
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+         <property name="maxLength">
+          <number>2</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>Day</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="textBoxDaySeedFinder">
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+         <property name="maxLength">
+          <number>2</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_14">
+         <property name="text">
+          <string>Year</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="textBoxYearSeedFinder">
+         <property name="text">
+          <string notr="true">2000</string>
+         </property>
+         <property name="maxLength">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>Hour</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="textBoxHourSeedFinder">
+         <property name="text">
+          <string notr="true">0</string>
+         </property>
+         <property name="maxLength">
+          <number>2</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>Minute</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="textBoxMinuteSeedFinder">
+         <property name="text">
+          <string notr="true">0</string>
+         </property>
+         <property name="maxLength">
+          <number>2</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>Min Delay</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="textBoxMinDelaySeedFinder">
+         <property name="text">
+          <string notr="true">5000</string>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>Max Delay</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="textBoxMaxDelaySeedFinder">
+         <property name="text">
+          <string notr="true">6000</string>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0" colspan="2">
+        <widget class="QPushButton" name="pushButtonSearchSeedFinder">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Search</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="3">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="3">
+     <widget class="QTableView" name="tableView">
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
- <pixmapfunction/>
+ <customwidgets>
+  <customwidget>
+   <class>QTextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/QTextBox.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>textBoxPID</tabstop>
+  <tabstop>checkBoxSearchTIDShinyPID</tabstop>
+  <tabstop>textBoxTIDShinyPID</tabstop>
+  <tabstop>textBoxYearShinyPID</tabstop>
+  <tabstop>textBoxMinDelayShinyPID</tabstop>
+  <tabstop>textBoxMaxDelayShinyPID</tabstop>
+  <tabstop>checkBoxInfiniteSearchShinyPID</tabstop>
+  <tabstop>pushButtonSearchShinyPID</tabstop>
+  <tabstop>textBoxTIDTIDSID</tabstop>
+  <tabstop>checkBoxSearchSID</tabstop>
+  <tabstop>textBoxSIDTIDSID</tabstop>
+  <tabstop>textBoxYearTIDSID</tabstop>
+  <tabstop>textBoxMinDelayTIDSID</tabstop>
+  <tabstop>textBoxMaxDelayTIDSID</tabstop>
+  <tabstop>checkBoxInfiniteSearchTIDSID</tabstop>
+  <tabstop>pushButtonSearchTIDSID</tabstop>
+  <tabstop>textBoxTIDSeedFinder</tabstop>
+  <tabstop>textBoxMonthSeedFinder</tabstop>
+  <tabstop>textBoxDaySeedFinder</tabstop>
+  <tabstop>textBoxYearSeedFinder</tabstop>
+  <tabstop>textBoxHourSeedFinder</tabstop>
+  <tabstop>textBoxMinuteSeedFinder</tabstop>
+  <tabstop>textBoxMinDelaySeedFinder</tabstop>
+  <tabstop>textBoxMaxDelaySeedFinder</tabstop>
+  <tabstop>pushButtonSearchSeedFinder</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
+ <resources/>
  <connections/>
 </ui>

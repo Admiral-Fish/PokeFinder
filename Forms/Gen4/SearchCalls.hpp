@@ -17,48 +17,47 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGER4_HPP
-#define PROFILEMANAGER4_HPP
+#ifndef SEARCHCALLS_HPP
+#define SEARCHCALLS_HPP
 
-#include <QMainWindow>
-#include <Forms/Gen4/ProfileManager4NewEdit.hpp>
-#include <PokeFinderCore/Gen4/Profile4.hpp>
-#include <Models/Gen4/Profile4Model.hpp>
+#include <QDialog>
+#include <Util/DateTime.hpp>
+#include <PokeFinderCore/Objects/Utilities.hpp>
+#include <PokeFinderCore/Gen4/HGSSRoamer.hpp>
 
 using std::vector;
-typedef uint32_t u32;
 
 namespace Ui
 {
-    class ProfileManager4;
+    class SearchCalls;
 }
 
-class ProfileManager4 : public QMainWindow
+class SearchCalls : public QDialog
 {
     Q_OBJECT
 
-protected:
-    void changeEvent(QEvent *);
-
-signals:
-    void updateProfiles();
-
 private:
-    Ui::ProfileManager4 *ui;
-    Profile4Model *model = new Profile4Model(this);
-
-    void setupModels();
+    Ui::SearchCalls *ui;
+    vector<DateTime> data;
+    vector<bool> possible;
+    vector<bool> roamers;
+    vector<u32> routes;
 
 private slots:
-    void on_pushButtonNew_clicked();
-    void on_pushButtonOk_clicked();
-    void on_pushButtonEdit_clicked();
-    void on_pushButtonDelete_clicked();
+    void on_pushButtonK_clicked();
+    void on_pushButtonE_clicked();
+    void on_pushButtonP_clicked();
+    void on_lineEditCalls_textChanged(const QString &arg1);
+    void on_radioButtonElm_clicked();
+    void on_radioButtonIrwin_clicked();
+    void on_pushButtonOkay_clicked();
+    void on_pushButtonCancel_clicked();
 
 public:
-    explicit ProfileManager4(QWidget *parent = 0);
-    ~ProfileManager4();
+    explicit SearchCalls(vector<DateTime> model, vector<bool> roamers, vector<u32> routes, QWidget *parent = 0);
+    ~SearchCalls();
+    vector<bool> possibleResults();
 
 };
 
-#endif // PROFILEMANAGER4_HPP
+#endif // SEARCHCALLS_HPP

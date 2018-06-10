@@ -28,7 +28,7 @@
 #include <PokeFinderCore/Objects/Power.hpp>
 #include <PokeFinderCore/Gen4/Profile4.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
-//#include <PokeFinderCore/Gen4/EncounterArea4.hpp>
+#include <PokeFinderCore/Gen4/EncounterArea4.hpp>
 #include <PokeFinderCore/Translator.hpp>
 #include <Models/Gen4/Wild4Model.hpp>
 #include <Models/Gen4/Searcher4Model.hpp>
@@ -65,16 +65,16 @@ private:
     //QMenu *contextMenu = new QMenu(this);
     //QModelIndex lastIndex;
     //QModelIndex targetFrame;
-    //vector<EncounterArea4> encounterGenerator;
-    //vector<EncounterArea4> encounterSearcher;
+    vector<EncounterArea4> encounterGenerator;
+    vector<EncounterArea4> encounterSearcher;
 
     void setupModels();
     void search();
     void updateSearch();
-    //void updateLocationsSearcher();
-    //void updatePokemonSearcher();
-    //void updateLocationsGenerator();
-    //void updatePokemonGenerator();
+    void updateLocationsSearcher();
+    void updatePokemonSearcher();
+    void updateLocationsGenerator();
+    void updatePokemonGenerator();
 
 private slots:
     void on_generate_clicked();

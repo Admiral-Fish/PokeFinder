@@ -17,48 +17,42 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGER4_HPP
-#define PROFILEMANAGER4_HPP
+#ifndef SEARCHCOINFLIPS_HPP
+#define SEARCHCOINFLIPS_HPP
 
-#include <QMainWindow>
-#include <Forms/Gen4/ProfileManager4NewEdit.hpp>
-#include <PokeFinderCore/Gen4/Profile4.hpp>
-#include <Models/Gen4/Profile4Model.hpp>
+#include <QDialog>
+#include <QPixmap>
+#include <QImage>
+#include <Util/DateTime.hpp>
+#include <PokeFinderCore/Objects/Utilities.hpp>
 
 using std::vector;
-typedef uint32_t u32;
 
 namespace Ui
 {
-    class ProfileManager4;
+    class SearchCoinFlips;
 }
 
-class ProfileManager4 : public QMainWindow
+class SearchCoinFlips : public QDialog
 {
     Q_OBJECT
 
-protected:
-    void changeEvent(QEvent *);
-
-signals:
-    void updateProfiles();
-
 private:
-    Ui::ProfileManager4 *ui;
-    Profile4Model *model = new Profile4Model(this);
-
-    void setupModels();
+    Ui::SearchCoinFlips *ui;
+    vector<DateTime> data;
+    vector<bool> possible;
 
 private slots:
-    void on_pushButtonNew_clicked();
-    void on_pushButtonOk_clicked();
-    void on_pushButtonEdit_clicked();
-    void on_pushButtonDelete_clicked();
+    void on_pushButtonHeads_clicked();
+    void on_pushButtonTails_clicked();
+    void on_lineEditFlips_textChanged(const QString &arg1);
+    void on_pushButtonOkay_clicked();
+    void on_pushButtonCancel_clicked();
 
 public:
-    explicit ProfileManager4(QWidget *parent = 0);
-    ~ProfileManager4();
-
+    explicit SearchCoinFlips(vector<DateTime> model, QWidget *parent = 0);
+    ~SearchCoinFlips();
+    vector<bool> possibleResults();
 };
 
-#endif // PROFILEMANAGER4_HPP
+#endif // SEARCHCOINFLIPS_HPP

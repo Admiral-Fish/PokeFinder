@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SearchCalls</class>
+ <widget class="QDialog" name="SearchCalls">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>634</width>
+    <height>501</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Search Calls</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color: #274050;
+}
+
+QLineEdit {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border:none;
+	border-radius: 6px;
+	color: white;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QPushButton {
+	border: none;
+	border-radius: 6px;
+	color: black;
+	background-color: yellow;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QLabel {
+	color: white;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QRadioButton::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QRadioButton::indicator:checked {
+	background-color: white;
+}
+
+QRadioButton::indicator:unchecked {
+	background-color: #274050;
+}
+
+QRadioButton {
+	color: white;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="2" column="0">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="labelPossibleResults">
+       <property name="text">
+        <string>Possible Results:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QRadioButton" name="radioButtonElm">
+       <property name="text">
+        <string>Elm</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <attribute name="buttonGroup">
+        <string notr="true">buttonGroup</string>
+       </attribute>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QRadioButton" name="radioButtonIrwin">
+       <property name="text">
+        <string>Irwin</string>
+       </property>
+       <attribute name="buttonGroup">
+        <string notr="true">buttonGroup</string>
+       </attribute>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="6" column="1">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="minimumSize">
+      <size>
+       <width>80</width>
+       <height>23</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Ok</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="minimumSize">
+      <size>
+       <width>80</width>
+       <height>23</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="3">
+    <widget class="QLabel" name="labelPResponse">
+     <property name="text">
+      <string>P - It seems that Pokémon that have been infected with Pokérus level up better. We're not quite sure why...</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="3">
+    <widget class="QLabel" name="labelEResponse">
+     <property name="text">
+      <string>E - There are so many different ways that Pokémon evolve, aren't there?! Some Pokémon don't even evolve until they meet certain conditions first!</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QLabel" name="labelKResponse">
+     <property name="text">
+      <string>K - I expect there are some Pokémon in the Kanto region that I don't know. There are probably methods of evolution that I'm not familiar with yet. I should use that perspective and discover what I can!</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButtonK">
+       <property name="minimumSize">
+        <size>
+         <width>66</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>66</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Myriad Pro,Montserrat</family>
+         <weight>62</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string notr="true">K</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="pushButtonE">
+       <property name="minimumSize">
+        <size>
+         <width>66</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>66</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Myriad Pro,Montserrat</family>
+         <weight>62</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string notr="true">E</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="pushButtonP">
+       <property name="minimumSize">
+        <size>
+         <width>66</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>66</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Myriad Pro,Montserrat</family>
+         <weight>62</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string notr="true">P</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QLineEdit" name="lineEditCalls"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
+</ui>

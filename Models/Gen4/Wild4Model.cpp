@@ -66,8 +66,9 @@ int Wild4Model::columnCount(const QModelIndex &parent) const
             return 17;
         case MethodK:
             return 18;
+        default:
+            return 0;
     }
-    return 0;
 }
 
 QVariant Wild4Model::data(const QModelIndex &index, int role) const
@@ -126,7 +127,7 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.occidentary;
                     case 2:
-                        return frame.elmCall();
+                        return frame.getCall();
                     case 3:
                         return frame.chatotPitch();
                     case 4:
@@ -158,6 +159,8 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
                     case 17:
                         return frame.getGender();
                 }
+            default:
+                break;
         }
     }
     return QVariant();
@@ -180,7 +183,7 @@ QVariant Wild4Model::headerData(int section, Qt::Orientation orientation, int ro
                         case 1:
                             return tr("Occidentary");
                         case 2:
-                            return tr("Chatot Pitch");
+                            return tr("Chatot");
                         case 3:
                             return tr("Slot");
                         case 4:
@@ -218,9 +221,9 @@ QVariant Wild4Model::headerData(int section, Qt::Orientation orientation, int ro
                         case 1:
                             return tr("Occidentary");
                         case 2:
-                            return tr("Elm");
+                            return tr("Call");
                         case 3:
-                            return tr("Chatot Pitch");
+                            return tr("Chatot");
                         case 4:
                             return tr("Slot");
                         case 5:
@@ -250,6 +253,8 @@ QVariant Wild4Model::headerData(int section, Qt::Orientation orientation, int ro
                         case 17:
                             return tr("Gender");
                     }
+                default:
+                    break;
             }
         }
     }

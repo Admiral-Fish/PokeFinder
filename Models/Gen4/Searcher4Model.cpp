@@ -333,6 +333,8 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
+            default:
+                break;
         }
     }
     else
@@ -608,6 +610,8 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
+            default:
+                break;
         }
     }
 
@@ -632,8 +636,9 @@ int Searcher4Model::columnCount(const QModelIndex &parent) const
             return 10;
         case MethodJ:
         case MethodK:
-        default:
             return 17;
+        default:
+            return 0;
     }
 }
 
@@ -725,10 +730,7 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                                 return tr("Synchronize");
                             case SuctionCups:
                                 return tr("Suction Cups");
-                            case CuteCharm25F:
-                            case CuteCharm50F:
-                            case CuteCharm75F:
-                            case CuteCharm125F:
+                            case CuteCharmFemale:
                                 return tr("Cute Charm (♀)");
                             case CuteCharm25M:
                                 return tr("Cute Charm (25% ♂");
@@ -768,6 +770,8 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                     case 16:
                         return frame.getGender();
                 }
+                break;
+            default:
                 break;
         }
     }
@@ -882,6 +886,8 @@ QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, in
                         case 16:
                             return tr("Gender");
                     }
+                default:
+                    break;
             }
         }
     }

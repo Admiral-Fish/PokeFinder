@@ -17,48 +17,42 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGER4_HPP
-#define PROFILEMANAGER4_HPP
+#ifndef DATETIME_HPP
+#define DATETIME_HPP
 
-#include <QMainWindow>
-#include <Forms/Gen4/ProfileManager4NewEdit.hpp>
-#include <PokeFinderCore/Gen4/Profile4.hpp>
-#include <Models/Gen4/Profile4Model.hpp>
+#include <cstdint>
+#include <QDateTime>
+#include <QDate>
+#include <QTime>
+#include <QString>
+#include <PokeFinderCore/Objects/Game.hpp>
+#include <PokeFinderCore/Objects/Utilities.hpp>
+#include <PokeFinderCore/Gen4/HGSSRoamer.hpp>
 
-using std::vector;
 typedef uint32_t u32;
 
-namespace Ui
+class DateTime
 {
-    class ProfileManager4;
-}
-
-class ProfileManager4 : public QMainWindow
-{
-    Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *);
-
-signals:
-    void updateProfiles();
 
 private:
-    Ui::ProfileManager4 *ui;
-    Profile4Model *model = new Profile4Model(this);
-
-    void setupModels();
-
-private slots:
-    void on_pushButtonNew_clicked();
-    void on_pushButtonOk_clicked();
-    void on_pushButtonEdit_clicked();
-    void on_pushButtonDelete_clicked();
+    u32 seed;
+    int delay;
+    QDateTime dateTime;
+    Game version;
+    HGSSRoamer info;
 
 public:
-    explicit ProfileManager4(QWidget *parent = 0);
-    ~ProfileManager4();
+    DateTime(QDateTime dateTime, u32 delay, Game version, vector<bool> roamers, vector<u32> routes);
+    DateTime(QDateTime dateTime, u32 delay, Game version, HGSSRoamer info);
+    QString sequence();
+    QString getDate();
+    QString getTime();
+    u32 getSeed();
+    int getDelay();
+    Game getVersion();
+    QDateTime getDateTime();
+    HGSSRoamer getInfo();
 
 };
 
-#endif // PROFILEMANAGER4_HPP
+#endif // DATETIME_HPP
