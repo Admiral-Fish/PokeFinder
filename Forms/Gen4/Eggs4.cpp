@@ -104,7 +104,7 @@ void Eggs4::updateProfiles()
     ui->comboBoxProfiles->clear();
 
     for (int i = 0; i < (int)profiles.size(); i++)
-        ui->comboBoxProfiles->addItem(profiles.at(i).profileName);
+        ui->comboBoxProfiles->addItem(profiles[i].getProfileName());
 
     QSettings setting;
     int val = setting.value("egg4Profile").toInt();
@@ -136,13 +136,13 @@ void Eggs4::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     auto profile = profiles[index >= 0 ? index : 0];
 
-    ui->textBoxTIDGenerator->setText(QString::number(profile.tid));
-    ui->textBoxSIDGenerator->setText(QString::number(profile.sid));
-    ui->textBoxTIDSearcher->setText(QString::number(profile.tid));
-    ui->textBoxSIDGenerator->setText(QString::number(profile.sid));
-    ui->profileTID->setText(QString::number(profile.tid));
-    ui->profileSID->setText(QString::number(profile.sid));
-    ui->profileGame->setText(profile.getVersion());
+    ui->textBoxTIDGenerator->setText(QString::number(profile.getTid()));
+    ui->textBoxSIDGenerator->setText(QString::number(profile.getSid()));
+    ui->textBoxTIDSearcher->setText(QString::number(profile.getTid()));
+    ui->textBoxSIDGenerator->setText(QString::number(profile.getSid()));
+    ui->profileTID->setText(QString::number(profile.getTid()));
+    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->profileGame->setText(profile.getVersionString());
 }
 
 void Eggs4::on_pushButtonProfileManager_clicked()
@@ -200,7 +200,7 @@ void Eggs4::on_pushButtonGenerate_clicked()
     }
     else
     {
-        Game version = profiles[ui->comboBoxProfiles->currentIndex()].version;
+        Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
         if (version == Diamond || version == Pearl || version == Platinum)
             method = DPPtIVs;
         else
@@ -262,7 +262,7 @@ void Eggs4::on_pushButtonGenerateIVs_clicked()
     else
     {
         searcherIVs->clear();
-        Game version = profiles[ui->comboBoxProfiles->currentIndex()].version;
+        Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
         searcherIVs->setMethod(version == HeartGold || version == SoulSilver ? HGSSIVs : DPPtIVs);
 
         ui->progressBarIVs->setValue(0);
@@ -352,7 +352,7 @@ void Eggs4::searchIVs()
     u32 minFrame = ui->textBoxMinFrameIVs->text().toUInt();
     u32 maxFrame = ui->textBoxMaxFrameIVs->text().toUInt();
 
-    Game version = profiles[ui->comboBoxProfiles->currentIndex()].version;
+    Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
     Method type = version == HeartGold || version == SoulSilver ? HGSSIVs : DPPtIVs;
     Egg4 generator = Egg4(maxFrame - minFrame + 1, minFrame, 0, 0, type, 0);
     generator.setParents(parent1, parent2);

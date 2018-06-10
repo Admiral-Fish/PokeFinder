@@ -39,11 +39,11 @@ ProfileManager4NewEdit::ProfileManager4NewEdit(Profile4 profile, QWidget *parent
 
     setupModels();
 
-    ui->lineEditProfile->setText(profile.profileName);
-    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.version));
-    ui->comboBoxLanguage->setCurrentIndex(profile.language);
-    ui->textBoxTID->setText(QString::number(profile.tid));
-    ui->textBoxSID->setText(QString::number(profile.sid));
+    ui->lineEditProfile->setText(profile.getProfileName());
+    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
+    ui->comboBoxLanguage->setCurrentIndex(profile.getLanguage());
+    ui->textBoxTID->setText(QString::number(profile.getTid()));
+    ui->textBoxSID->setText(QString::number(profile.getSid()));
     isEditing = true;
     original = profile;
 }

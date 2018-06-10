@@ -62,13 +62,9 @@ vector<bool> QCheckList::getChecked()
         for (auto i = 0; i < model->rowCount(); i++)
         {
             if (model->item(i)->checkState() == Qt::Checked)
-            {
                 result.push_back(true);
-            }
             else
-            {
                 result.push_back(false);
-            }
         }
     }
     return result;

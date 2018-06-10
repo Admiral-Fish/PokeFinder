@@ -69,15 +69,15 @@ QVariant Profile4Model::data(const QModelIndex &index, int role) const
         switch (column)
         {
             case 0:
-                return profile.profileName;
+                return profile.getProfileName();
             case 1:
                 return profile.getVersion();
             case 2:
                 return profile.getLanguage();
             case 3:
-                return profile.tid;
+                return profile.getTid();
             case 4:
-                return profile.sid;
+                return profile.getSid();
         }
     }
     return QVariant();

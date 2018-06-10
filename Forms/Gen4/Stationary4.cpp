@@ -129,7 +129,7 @@ void Stationary4::updateProfiles()
     ui->comboBoxProfiles->clear();
 
     for (int i = 0; i < (int)profiles.size(); i++)
-        ui->comboBoxProfiles->addItem(profiles.at(i).profileName);
+        ui->comboBoxProfiles->addItem(profiles[i].getProfileName());
 
     QSettings setting;
     int val = setting.value("stationary4Profile").toInt();
@@ -146,13 +146,13 @@ void Stationary4::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     auto profile = profiles[index >= 0 ? index : 0];
 
-    ui->idGenerator->setText(QString::number(profile.tid));
-    ui->sidGenerator->setText(QString::number(profile.sid));
-    ui->idSearcher->setText(QString::number(profile.tid));
-    ui->sidSearcher->setText(QString::number(profile.sid));
-    ui->profileTID->setText(QString::number(profile.tid));
-    ui->profileSID->setText(QString::number(profile.sid));
-    ui->profileGame->setText(profile.getVersion());
+    ui->idGenerator->setText(QString::number(profile.getTid()));
+    ui->sidGenerator->setText(QString::number(profile.getSid()));
+    ui->idSearcher->setText(QString::number(profile.getTid()));
+    ui->sidSearcher->setText(QString::number(profile.getSid()));
+    ui->profileTID->setText(QString::number(profile.getTid()));
+    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->profileGame->setText(profile.getVersionString());
 }
 
 void Stationary4::on_anyNatureGenerator_clicked()

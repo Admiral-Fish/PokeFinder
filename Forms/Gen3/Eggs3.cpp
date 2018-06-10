@@ -46,12 +46,12 @@ Eggs3::~Eggs3()
 void Eggs3::updateProfiles()
 {
     profiles = Profile3::loadProfileList();
+    profiles.insert(profiles.begin(), Profile3());
 
     ui->comboBoxProfiles->clear();
 
-    ui->comboBoxProfiles->addItem(tr("None"));
     for (int i = 0; i < (int)profiles.size(); i++)
-        ui->comboBoxProfiles->addItem(profiles.at(i).profileName);
+        ui->comboBoxProfiles->addItem(profiles[i].getProfileName());
 
     QSettings setting;
     int val = setting.value("egg3Profile").toInt();
@@ -133,31 +133,17 @@ void Eggs3::changeEvent(QEvent *event)
 
 void Eggs3::on_comboBoxProfiles_currentIndexChanged(int index)
 {
-    if (index <= 0)
-    {
-        ui->textBoxTIDEmerald->setText("12345");
-        ui->textBoxSIDEmerald->setText("54321");
-        ui->textBoxTIDRS->setText("12345");
-        ui->textBoxSIDRS->setText("54321");
-        ui->textBoxTIDFRLG->setText("12345");
-        ui->textBoxSIDFRLG->setText("54321");
-        ui->profileTID->setText("12345");
-        ui->profileSID->setText("54321");
-        ui->profileGame->setText(tr("Emerald"));
-    }
-    else
-    {
-        auto profile = profiles.at(index - 1);
-        ui->textBoxTIDEmerald->setText(QString::number(profile.tid));
-        ui->textBoxSIDEmerald->setText(QString::number(profile.sid));
-        ui->textBoxTIDRS->setText(QString::number(profile.tid));
-        ui->textBoxSIDRS->setText(QString::number(profile.sid));
-        ui->textBoxTIDFRLG->setText(QString::number(profile.tid));
-        ui->textBoxSIDFRLG->setText(QString::number(profile.sid));
-        ui->profileTID->setText(QString::number(profile.tid));
-        ui->profileSID->setText(QString::number(profile.sid));
-        ui->profileGame->setText(profile.getVersion());
-    }
+    auto profile = profiles[index >= 0 ? index : 0];
+
+    ui->textBoxTIDEmerald->setText(QString::number(profile.getTid()));
+    ui->textBoxSIDEmerald->setText(QString::number(profile.getSid()));
+    ui->textBoxTIDRS->setText(QString::number(profile.getTid()));
+    ui->textBoxSIDRS->setText(QString::number(profile.getSid()));
+    ui->textBoxTIDFRLG->setText(QString::number(profile.getTid()));
+    ui->textBoxSIDFRLG->setText(QString::number(profile.getSid()));
+    ui->profileTID->setText(QString::number(profile.getTid()));
+    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->profileGame->setText(profile.getVersionString());
 }
 
 void Eggs3::on_pushButtonAnyAbilityEmerald_clicked()

@@ -136,7 +136,7 @@ void Wild4::updateProfiles()
     ui->comboBoxProfiles->clear();
 
     for (int i = 0; i < (int)profiles.size(); i++)
-        ui->comboBoxProfiles->addItem(profiles.at(i).profileName);
+        ui->comboBoxProfiles->addItem(profiles[i].getProfileName());
 
     QSettings setting;
     int val = setting.value("wild4Profile").toInt();
@@ -148,15 +148,15 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     auto profile = profiles[index >= 0 ? index : 0];
 
-    ui->idGenerator->setText(QString::number(profile.tid));
-    ui->sidGenerator->setText(QString::number(profile.sid));
-    ui->idSearcher->setText(QString::number(profile.tid));
-    ui->sidSearcher->setText(QString::number(profile.sid));
-    ui->profileTID->setText(QString::number(profile.tid));
-    ui->profileSID->setText(QString::number(profile.sid));
-    ui->profileGame->setText(profile.getVersion());
+    ui->idGenerator->setText(QString::number(profile.getTid()));
+    ui->sidGenerator->setText(QString::number(profile.getSid()));
+    ui->idSearcher->setText(QString::number(profile.getTid()));
+    ui->sidSearcher->setText(QString::number(profile.getSid()));
+    ui->profileTID->setText(QString::number(profile.getTid()));
+    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->profileGame->setText(profile.getVersionString());
 
-    Game version = profile.version;
+    Game version = profile.getVersion();
     if (version == HeartGold || version == SoulSilver)
     {
         if (ui->comboBoxEncounterGenerator->count() == 5)
@@ -482,8 +482,8 @@ void Wild4::updateLocationsSearcher()
     Encounter encounter = (Encounter)ui->comboBoxEncounterSearcher->currentData().toInt();
     Game game = Diamond;
 
-    if (ui->comboBoxProfiles->currentIndex() > 0)
-        game = profiles.at(ui->comboBoxProfiles->currentIndex() - 1).version;
+    if (ui->comboBoxProfiles->currentIndex() >= 0)
+        game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
     encounterSearcher = EncounterArea4::getEncounters(encounter, game);
     vector<u32> locs;
@@ -517,8 +517,8 @@ void Wild4::updateLocationsGenerator()
     Encounter encounter = (Encounter)ui->comboBoxEncounterGenerator->currentData().toInt();
     Game game = Diamond;
 
-    if (ui->comboBoxProfiles->currentIndex() > 0)
-        game = profiles.at(ui->comboBoxProfiles->currentIndex() - 1).version;
+    if (ui->comboBoxProfiles->currentIndex() >= 0)
+        game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
     encounterGenerator = EncounterArea4::getEncounters(encounter, game);
     vector<u32> locs;

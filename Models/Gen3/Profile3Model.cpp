@@ -69,19 +69,19 @@ QVariant Profile3Model::data(const QModelIndex &index, int role) const
         switch (column)
         {
             case 0:
-                return profile.profileName;
+                return profile.getProfileName();
             case 1:
                 return profile.getVersion();
             case 2:
                 return profile.getLanguage();
             case 3:
-                return profile.tid;
+                return profile.getTid();
             case 4:
-                return profile.sid;
+                return profile.getSid();
             case 5:
-                if (profile.version == 0 || profile.version == 1)
+                if (profile.getVersion() == 0 || profile.getVersion() == 1)
                 {
-                    return profile.deadBattery ? tr("Yes") : tr("No");
+                    return profile.getDeadBattery() ? tr("Yes") : tr("No");
                 }
                 else
                 {

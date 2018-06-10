@@ -85,11 +85,12 @@ void Wild3::updateViewSearcher(vector<Frame3> frames)
 void Wild3::updateProfiles()
 {
     profiles = Profile3::loadProfileList();
+    profiles.insert(profiles.begin(), Profile3());
 
     vector<Profile3> temp;
 
     for (auto profile : profiles)
-        if (profile.version != Colosseum && profile.version != Gales)
+        if (profile.getVersion() != Colosseum && profile.getVersion() != Gales)
             temp.push_back(profile);
 
     profiles = temp;
@@ -98,7 +99,7 @@ void Wild3::updateProfiles()
 
     ui->comboBoxProfiles->addItem(tr("None"));
     for (int i = 0; i < (int)profiles.size(); i++)
-        ui->comboBoxProfiles->addItem(profiles.at(i).profileName);
+        ui->comboBoxProfiles->addItem(profiles[i].getProfileName());
 
     QSettings setting;
     int val = setting.value("wild3Profile").toInt();
@@ -256,27 +257,16 @@ void Wild3::on_pushButton_clicked()
 
 void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
 {
-    if (index <= 0)
-    {
-        ui->idGenerator->setText("12345");
-        ui->sidGenerator->setText("54321");
-        ui->idSearcher->setText("12345");
-        ui->sidSearcher->setText("54321");
-        ui->profileTID->setText("12345");
-        ui->profileSID->setText("54321");
-        ui->profileGame->setText(tr("Emerald"));
-    }
-    else
-    {
-        auto profile = profiles.at(index - 1);
-        ui->idGenerator->setText(QString::number(profile.tid));
-        ui->sidGenerator->setText(QString::number(profile.sid));
-        ui->idSearcher->setText(QString::number(profile.tid));
-        ui->sidSearcher->setText(QString::number(profile.sid));
-        ui->profileTID->setText(QString::number(profile.tid));
-        ui->profileSID->setText(QString::number(profile.sid));
-        ui->profileGame->setText(profile.getVersion());
-    }
+    auto profile = profiles[index >= 0 ? index : 0];
+
+    ui->idGenerator->setText(QString::number(profile.getTid()));
+    ui->sidGenerator->setText(QString::number(profile.getSid()));
+    ui->idSearcher->setText(QString::number(profile.getTid()));
+    ui->sidSearcher->setText(QString::number(profile.getSid()));
+    ui->profileTID->setText(QString::number(profile.getTid()));
+    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->profileGame->setText(profile.getVersionString());
+
     updateLocationsSearcher();
     updateLocationsGenerator();
 }
@@ -429,7 +419,7 @@ void Wild3::updateLocationsSearcher()
     Game game = Emerald;
 
     if (ui->comboBoxProfiles->currentIndex() > 0)
-        game = profiles.at(ui->comboBoxProfiles->currentIndex() - 1).version;
+        game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
     encounterSearcher = EncounterArea3::getEncounters(encounter, game);
     vector<u32> locs;
@@ -464,7 +454,7 @@ void Wild3::updateLocationsGenerator()
     Game game = Emerald;
 
     if (ui->comboBoxProfiles->currentIndex() > 0)
-        game = profiles.at(ui->comboBoxProfiles->currentIndex() - 1).version;
+        game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
     encounterGenerator = EncounterArea3::getEncounters(encounter, game);
     vector<u32> locs;
