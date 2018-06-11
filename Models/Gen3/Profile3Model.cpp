@@ -71,9 +71,9 @@ QVariant Profile3Model::data(const QModelIndex &index, int role) const
             case 0:
                 return profile.getProfileName();
             case 1:
-                return profile.getVersion();
+                return profile.getVersionString();
             case 2:
-                return profile.getLanguage();
+                return profile.getLanguageString();
             case 3:
                 return profile.getTid();
             case 4:
