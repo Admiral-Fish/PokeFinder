@@ -28,8 +28,8 @@ Wild4::Wild4(QWidget *parent) :
 
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    updateProfiles();
     setupModels();
+    updateProfiles();
 
     qRegisterMetaType<vector<Frame4>>("vector<Frame4>");
     connect(this, &Wild4::updateView, this, &Wild4::updateViewSearcher);
@@ -156,7 +156,8 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->profileSID->setText(QString::number(profile.getSid()));
     ui->profileGame->setText(profile.getVersionString());
 
-    Game version = profile.getVersion();
+    // Rock smash needs more research
+    /*Game version = profile.getVersion();
     if (version == HeartGold || version == SoulSilver)
     {
         if (ui->comboBoxEncounterGenerator->count() == 5)
@@ -170,7 +171,7 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
             ui->comboBoxEncounterGenerator->removeItem(1);
         if (ui->comboBoxEncounterSearcher->count() == 6)
             ui->comboBoxEncounterSearcher->removeItem(1);
-    }
+    }*/
 
     updateLocationsSearcher();
     updateLocationsGenerator();
@@ -264,6 +265,9 @@ void Wild4::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
         case SuperRod:
             t << "0" << "1" << "2" << "3" << "4";
             break;
+        case RockSmash:
+            t << "0" << "1";
+            break;
         default:
             break;
     }
@@ -290,6 +294,9 @@ void Wild4::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
         case GoodRod:
         case SuperRod:
             t << "0" << "1" << "2" << "3" << "4";
+            break;
+        case RockSmash:
+            t << "0" << "1";
             break;
         default:
             break;
