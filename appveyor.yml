@@ -60,7 +60,7 @@ deploy:
     provider: GitHub
     description: ''
     auth_token:
-        secure: KPKgc2JaeXV8NBnz+72ILmsh7hKA3v7fWYG4D7X4Oxn7zplWJwP/eeWoObEg9YDHs
+        secure: KPKgc2JaeXV8NBnz+72ILmsh7hKA3v7fWYG4D7X4Oxn7zplWJwP/eeWoObEg9YDH
     artifact: PokeFinder-%OS%-%ARCH%.zip
     draft: false
     prerelease: true
