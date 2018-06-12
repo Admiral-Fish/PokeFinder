@@ -139,7 +139,7 @@ void Eggs4::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->textBoxTIDGenerator->setText(QString::number(profile.getTid()));
     ui->textBoxSIDGenerator->setText(QString::number(profile.getSid()));
     ui->textBoxTIDSearcher->setText(QString::number(profile.getTid()));
-    ui->textBoxSIDGenerator->setText(QString::number(profile.getSid()));
+    ui->textBoxSIDSearcher->setText(QString::number(profile.getSid()));
     ui->profileTID->setText(QString::number(profile.getTid()));
     ui->profileSID->setText(QString::number(profile.getSid()));
     ui->profileGame->setText(profile.getVersionString());
