@@ -23,7 +23,7 @@ void TableView::resizeEvent(QResizeEvent *event)
 {
     QTableView::resizeEvent(event);
 
-    QHeaderView *header = horizontalHeader();
+    QHeaderView *header = this->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
 
     for (int column = 0; column < header->count(); column++)
@@ -31,5 +31,31 @@ void TableView::resizeEvent(QResizeEvent *event)
         int width = header->sectionSize(column);
         header->setSectionResizeMode(column, QHeaderView::Interactive);
         header->resizeSection(column, width);
+    }
+}
+
+void TableView::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if (event->type() == QMouseEvent::MouseButtonDblClick)
+    {
+        QModelIndex index = this->currentIndex();
+        if (index.isValid())
+        {
+            QString str = this->model()->data(index).toString();
+            QApplication::clipboard()->setText(str);
+        }
+    }
+}
+
+void TableView::keyPressEvent(QKeyEvent *event)
+{
+    if ((event->key() == Qt::Key_C) && (event->modifiers() & Qt::ControlModifier))
+    {
+        QModelIndex index = this->currentIndex();
+        if (index.isValid())
+        {
+            QString str = this->model()->data(index).toString();
+            QApplication::clipboard()->setText(str);
+        }
     }
 }

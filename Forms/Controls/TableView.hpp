@@ -22,6 +22,10 @@
 
 #include <QTableView>
 #include <QHeaderView>
+#include <QMouseEvent>
+#include <QKeyEvent>
+#include <QClipboard>
+#include <QApplication>
 
 class TableView : public QTableView
 {
@@ -29,6 +33,8 @@ class TableView : public QTableView
 public:
     TableView(QWidget *parent = 0): QTableView(parent) {}
     void resizeEvent(QResizeEvent *event) override;
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
 
 };
 
