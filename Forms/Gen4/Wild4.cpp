@@ -369,22 +369,22 @@ void Wild4::on_generate_clicked()
                                         ui->comboBoxNatureGenerator->getChecked(), ui->comboBoxHiddenPowerGenerator->getChecked(),
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked(), ui->comboBoxSlotGenerator->getChecked());
 
-    generator.encounterType = (Encounter)ui->comboBoxEncounterGenerator->currentData().toInt();
+    generator.setEncounterType((Encounter)ui->comboBoxEncounterGenerator->currentData().toInt());
     if (ui->pushButtonLeadGenerator->text() == tr("Cute Charm"))
-        generator.leadType = (Lead)ui->comboBoxLeadGenerator->currentData().toInt();
+        generator.setLeadType((Lead)ui->comboBoxLeadGenerator->currentData().toInt());
     else if (ui->pushButtonLeadGenerator->text() == tr("Suction Cups"))
-        generator.leadType = SuctionCups;
+        generator.setLeadType(SuctionCups);
     else
     {
         int num = ui->comboBoxLeadGenerator->currentIndex();
         if (num == 0)
         {
-            generator.leadType = None;
+            generator.setLeadType(None);
         }
         else
         {
-            generator.leadType = Synchronize;
-            generator.synchNature = Nature::getAdjustedNature(ui->comboBoxLeadGenerator->currentIndex() - 1);
+            generator.setLeadType(Synchronize);
+            generator.setSynchNature(Nature::getAdjustedNature(ui->comboBoxLeadGenerator->currentIndex() - 1));
         }
     }
 
@@ -404,8 +404,8 @@ void Wild4::search()
                                         ui->comboBoxSlotSearcher->getChecked());
     Searcher4 searcher = Searcher4(tid, sid, genderRatioIndex, ui->minDelay->text().toUInt(), ui->maxDelay->text().toUInt(), ui->minFrame->text().toUInt(), ui->maxFrame->text().toUInt(), compare, (Method)ui->comboBoxMethodSearcher->currentData().toInt());
 
-    searcher.encounterType = (Encounter)ui->comboBoxEncounterSearcher->currentData().toInt();
-    searcher.leadType = (Lead)ui->comboBoxLeadSearcher->currentData().toInt();
+    searcher.setEncounterType((Encounter)ui->comboBoxEncounterSearcher->currentData().toInt());
+    searcher.setLeadType((Lead)ui->comboBoxLeadSearcher->currentData().toInt());
 
     vector<u32> min = ui->ivFilterSearcher->getLower();
     vector<u32> max = ui->ivFilterSearcher->getUpper();

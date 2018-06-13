@@ -38,6 +38,7 @@ PokeSpot::~PokeSpot()
 
     delete ui;
     delete model;
+    delete rng;
 }
 
 void PokeSpot::changeEvent(QEvent *event)
@@ -107,6 +108,9 @@ void PokeSpot::on_pushButtonGenerate_clicked()
 
     vector<Frame3> frames;
 
+    if (rng != NULL)
+        rng = new XDRNG(0);
+
     u32 seed = ui->textBoxSeed->text().toUInt(NULL, 16);
     u32 initialFrame = ui->textBoxStartingFrame->text().toUInt(NULL, 10);
     u32 maxFrames = ui->textBoxMaxResults->text().toUInt(NULL, 10);
@@ -115,12 +119,12 @@ void PokeSpot::on_pushButtonGenerate_clicked()
 
     int genderRatio = ui->comboBoxGenderRatio->currentIndex();
 
-    rng.seed = seed;
-    rng.advanceFrames(initialFrame - 1);
+    rng->setSeed(seed);
+    rng->advanceFrames(initialFrame - 1);
 
-    rngList.clear();
+    vector<u32> rngList;
     for (int x = 0; x < 5; x++)
-        rngList.push_back(rng.nextUShort());
+        rngList.push_back(rng->nextUShort());
 
     u32 max = initialFrame + maxFrames;
     u32 call1, call2, call3;
@@ -128,11 +132,11 @@ void PokeSpot::on_pushButtonGenerate_clicked()
     Frame3 frame = Frame3(tid, sid, tid ^ sid);
     FrameCompare compare = FrameCompare(ui->comboBoxGender->currentIndex(), genderRatio, ui->comboBoxAbility->currentIndex(),
                                         ui->comboBoxNature->getChecked(), ui->checkBoxShinyOnly->isChecked());
-    frame.genderRatio = genderRatio;
+    frame.setGenderRatio(genderRatio);
 
     vector<bool> spots = ui->comboBoxSpotType->getChecked();
 
-    for (u32 cnt = initialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng.nextUShort()))
+    for (u32 cnt = initialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng->nextUShort()))
     {
         // Check if frame is a valid pokespot call
         call1 = rngList[0] % 3;
@@ -168,7 +172,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         frame.setPID(rngList[4], rngList[3]);
         if (compare.comparePID(frame))
         {
-            frame.frame = cnt;
+            frame.setFrame(cnt);
             frames.push_back(frame);
         }
     }

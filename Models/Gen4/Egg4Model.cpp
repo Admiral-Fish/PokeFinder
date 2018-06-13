@@ -88,67 +88,67 @@ QVariant Egg4GeneratorModel::data(const QModelIndex &index, int role) const
             switch (column)
             {
                 case 0:
-                    return frame.frame;
+                    return frame.getFrame();
                 case 1:
-                    return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
+                    return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
                 case 2:
-                    return frame.getShiny();
+                    return frame.getShinyString();
                 case 3:
-                    return frame.getNature();
+                    return frame.getNatureString();
                 case 4:
-                    return frame.ability;
+                    return frame.getAbility();
                 case 5:
-                    return frame.getGender();
+                    return frame.getGenderString();
             }
         case DPPtIVs:
             switch (column)
             {
                 case 0:
-                    return frame.frame;
+                    return frame.getFrame();
                 case 1:
                     return frame.chatotPitch();
                 case 2:
-                    return frame.ivs[0];
+                    return frame.getIV(0);
                 case 3:
-                    return frame.ivs[1];
+                    return frame.getIV(1);
                 case 4:
-                    return frame.ivs[2];
+                    return frame.getIV(2);
                 case 5:
-                    return frame.ivs[3];
+                    return frame.getIV(3);
                 case 6:
-                    return frame.ivs[4];
+                    return frame.getIV(4);
                 case 7:
-                    return frame.ivs[5];
+                    return frame.getIV(5);
                 case 8:
-                    return frame.getPower();
+                    return frame.getPowerString();
                 case 9:
-                    return frame.power;
+                    return frame.getPower();
             }
         case HGSSIVs:
             switch (column)
             {
                 case 0:
-                    return frame.frame;
+                    return frame.getFrame();
                 case 1:
                     return frame.getCall();
                 case 2:
                     return frame.chatotPitch();
                 case 3:
-                    return frame.ivs[0];
+                    return frame.getIV(0);
                 case 4:
-                    return frame.ivs[1];
+                    return frame.getIV(1);
                 case 5:
-                    return frame.ivs[2];
+                    return frame.getIV(2);
                 case 6:
-                    return frame.ivs[3];
+                    return frame.getIV(3);
                 case 7:
-                    return frame.ivs[4];
+                    return frame.getIV(4);
                 case 8:
-                    return frame.ivs[5];
+                    return frame.getIV(5);
                 case 9:
-                    return frame.getPower();
+                    return frame.getPowerString();
                 case 10:
-                    return frame.power;
+                    return frame.getPower();
             }
     }
 
@@ -313,17 +313,17 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
                 case 0:
                     return QString::number(frame.initialSeed, 16).toUpper().rightJustified(8, '0');
                 case 1:
-                    return frame.frame;
+                    return frame.getFrame();
                 case 2:
-                    return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
+                    return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
                 case 3:
-                    return frame.getShiny();
+                    return frame.getShinyString();
                 case 4:
-                    return frame.getNature();
+                    return frame.getNatureString();
                 case 5:
-                    return frame.ability;
+                    return frame.getAbility();
                 case 6:
-                    return frame.getGender();
+                    return frame.getGenderString();
             }
         case DPPtIVs:
         case HGSSIVs:
@@ -332,23 +332,23 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
                 case 0:
                     return QString::number(frame.initialSeed, 16).toUpper().rightJustified(8, '0');
                 case 1:
-                    return frame.frame;
+                    return frame.getFrame();
                 case 2:
-                    return frame.ivs[0];
+                    return frame.getIV(0);
                 case 3:
-                    return frame.ivs[1];
+                    return frame.getIV(1);
                 case 4:
-                    return frame.ivs[2];
+                    return frame.getIV(2);
                 case 5:
-                    return frame.ivs[3];
+                    return frame.getIV(3);
                 case 6:
-                    return frame.ivs[4];
+                    return frame.getIV(4);
                 case 7:
-                    return frame.ivs[5];
+                    return frame.getIV(5);
                 case 8:
-                    return frame.getPower();
+                    return frame.getPowerString();
                 case 9:
-                    return frame.power;
+                    return frame.getPower();
             }
     }
 

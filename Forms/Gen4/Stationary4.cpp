@@ -196,20 +196,20 @@ void Stationary4::on_generate_clicked()
                                         ui->comboBoxNatureGenerator->getChecked(), ui->comboBoxHiddenPowerGenerator->getChecked(),
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked());
 
-    generator.encounterType = Stationary;
+    generator.setEncounterType(Stationary);
     if (ui->pushButtonLeadGenerator->text() == tr("Cute Charm"))
-        generator.leadType = (Lead)ui->comboBoxLeadGenerator->currentData().toInt();
+        generator.setLeadType((Lead)ui->comboBoxLeadGenerator->currentData().toInt());
     else
     {
         int num = ui->comboBoxLeadGenerator->currentIndex();
         if (num == 0)
         {
-            generator.leadType = None;
+            generator.setLeadType(None);
         }
         else
         {
-            generator.leadType = Synchronize;
-            generator.synchNature = Nature::getAdjustedNature(ui->comboBoxLeadGenerator->currentIndex() - 1);
+            generator.setLeadType(Synchronize);
+            generator.setSynchNature(Nature::getAdjustedNature(ui->comboBoxLeadGenerator->currentIndex() - 1));
         }
     }
 
@@ -227,7 +227,7 @@ void Stationary4::search()
                                         genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
                                         ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
     Searcher4 searcher = Searcher4(tid, sid, genderRatioIndex, ui->minDelay->text().toUInt(), ui->maxDelay->text().toUInt(), ui->minFrame->text().toUInt(), ui->maxFrame->text().toUInt(), compare, (Method)ui->comboBoxMethodSearcher->currentData().toInt());
-    searcher.leadType = (Lead)ui->comboBoxLeadSearcher->currentData().toInt();
+    searcher.setLeadType((Lead)ui->comboBoxLeadSearcher->currentData().toInt());
 
     vector<u32> min = ui->ivFilterSearcher->getLower();
     vector<u32> max = ui->ivFilterSearcher->getUpper();

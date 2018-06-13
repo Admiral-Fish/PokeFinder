@@ -68,12 +68,9 @@ void GameCubeRTC::setupModels()
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seed"));
     ui->tableViewGenerator->setModel(model);
-    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     QAction *copySeed = new QAction("Copy Seed to Clipboard", this);
-
     connect(copySeed, &QAction::triggered, this, &GameCubeRTC::copySeed);
-
     contextMenu->addAction(copySeed);
 
     loadSettings();
@@ -103,11 +100,11 @@ void GameCubeRTC::calcRTC()
     u32 minFrame = ui->textBoxMinFrame->text().toUInt(NULL, 10);
     u32 maxFrame = ui->textBoxMaxFrame->text().toUInt(NULL, 10);
 
-    LCRNG back = XDRNGR(targetSeed);
+    XDRNGR back(targetSeed);
     back.advanceFrames(minFrame);
-    targetSeed = back.seed;
+    targetSeed = back.getSeed();
 
-    LCRNG rng = XDRNG(initSeed);
+    XDRNG rng(initSeed);
 
     u32 seconds = 0;
     u32 secoundCount = 0;
@@ -116,7 +113,7 @@ void GameCubeRTC::calcRTC()
 
     while (!targetHit && !cancel)
     {
-        rng.seed = initSeed;
+        rng.setSeed(initSeed);
 
         for (u32 x = 0; x < maxFrame; x++)
         {

@@ -297,20 +297,20 @@ void Wild3::on_generate_clicked()
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked(), ui->comboBoxSlotGenerator->getChecked());
 
     generator.setup((Method)ui->comboBoxMethodGenerator->currentData().toInt());
-    generator.encounterType = (Encounter)ui->comboBoxEncounterGenerator->currentData().toInt();
+    generator.setEncounterType((Encounter)ui->comboBoxEncounterGenerator->currentData().toInt());
     if (ui->pushButtonLeadGenerator->text() == tr("Cute Charm"))
-        generator.leadType = (Lead)ui->comboBoxLeadGenerator->currentData().toInt();
+        generator.setLeadType((Lead)ui->comboBoxLeadGenerator->currentData().toInt());
     else
     {
         int num = ui->comboBoxLeadGenerator->currentIndex();
         if (num == 0)
         {
-            generator.leadType = None;
+            generator.setLeadType(None);
         }
         else
         {
-            generator.leadType = Synchronize;
-            generator.synchNature = Nature::getAdjustedNature(ui->comboBoxLeadGenerator->currentIndex() - 1);
+            generator.setLeadType(Synchronize);
+            generator.setSynchNature(Nature::getAdjustedNature(ui->comboBoxLeadGenerator->currentIndex() - 1));
         }
     }
     generator.encounter = encounterGenerator[ui->comboBoxLocationGenerator->currentIndex()];
@@ -357,9 +357,9 @@ void Wild3::search()
                                         ui->comboBoxSlotSearcher->getChecked());
     Searcher3 searcher = Searcher3(tid, sid, genderRatioIndex, compare);
 
-    searcher.setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
-    searcher.encounterType = (Encounter)ui->comboBoxEncounterSearcher->currentData().toInt();
-    searcher.leadType = (Lead)ui->comboBoxLeadSearcher->currentData().toInt();
+    searcher.setup((Method)ui->comboBoxMethodSearcher->currentData().toInt());
+    searcher.setEncounterType((Encounter)ui->comboBoxEncounterSearcher->currentData().toInt());
+    searcher.setLeadType((Lead)ui->comboBoxLeadSearcher->currentData().toInt());
     searcher.encounter = encounterSearcher[ui->comboBoxLocationSearcher->currentIndex()];
 
     vector<u32> min = ui->ivFilterSearcher->getLower();

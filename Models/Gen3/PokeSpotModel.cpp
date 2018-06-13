@@ -65,19 +65,19 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
         switch (column)
         {
             case 0:
-                return frame.frame;
+                return frame.getFrame();
             case 1:
-                return QString::number(frame.pid, 16).toUpper().rightJustified(8, '0');
+                return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
             case 2:
-                return frame.getShiny();
+                return frame.getShinyString();
             case 3:
                 return frame.lockReason;
             case 4:
-                return frame.getNature();
+                return frame.getNatureString();
             case 5:
-                return frame.ability;
+                return frame.getAbility();
             case 6:
-                return frame.getGender();
+                return frame.getGenderString();
         }
     }
     return QVariant();

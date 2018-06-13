@@ -195,7 +195,7 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
             seed |= (hour << 16);
             seed |= efgh;
 
-            mt.reseed(seed);
+            mt.setSeed(seed);
             u32 val = mt.nextUInt();
             val = mt.nextUInt();
 
@@ -238,7 +238,7 @@ void IDs4::searchPID()
             for (u32 cd = 0; cd < 24; cd++)
             {
                 u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                mt.reseed(seed);
+                mt.setSeed(seed);
 
                 u32 y = mt.nextUInt();
                 y = mt.nextUInt();
@@ -296,7 +296,7 @@ void IDs4::searchTIDSID()
             for (u32 cd = 0; cd < 24; cd++)
             {
                 u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                mt.reseed(seed);
+                mt.setSeed(seed);
 
                 u32 y = mt.nextUInt();
                 y = mt.nextUInt();

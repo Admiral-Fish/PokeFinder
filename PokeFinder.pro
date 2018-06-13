@@ -230,4 +230,7 @@ SOURCES += \
     PokeFinderCore/Translator.cpp \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
-    main.cpp
+    main.cpp \
+    PokeFinderCore/Objects/Searcher.cpp \
+    PokeFinderCore/Objects/Generator.cpp \
+    PokeFinderCore/Objects/Egg.cpp

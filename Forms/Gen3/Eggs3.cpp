@@ -198,7 +198,7 @@ void Eggs3::on_pushButtonGenerateEmeraldPID_clicked()
     generator.compatability = ui->comboBoxCompatibilityEmerald->currentData().toUInt(NULL);
     generator.everstone = ui->comboBoxEverstone->currentIndex() != 0;
     if (ui->comboBoxEverstone->currentIndex() != 0)
-        generator.everstoneNature = Nature::getAdjustedNature(ui->comboBoxEverstone->currentIndex() - 1);
+        generator.setEverstoneNature(Nature::getAdjustedNature(ui->comboBoxEverstone->currentIndex() - 1));
 
     FrameCompare compare = FrameCompare(ui->comboBoxGenderEmerald->currentIndex(), genderRatioIndex, ui->comboBoxAbilityEmerald->currentIndex(),
                                         ui->comboBoxNatureEmerald->getChecked(), ui->checkBoxShinyEmerald->isChecked());

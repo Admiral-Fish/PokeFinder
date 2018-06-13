@@ -172,11 +172,11 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
 
 u32 SeedToTime3::originSeed(u32 seed)
 {
-    LCRNG rng = PokeRNGR(seed);
-    while (rng.seed > 0xFFFF)
+    PokeRNGR rng(seed);
+    while (rng.getSeed() > 0xFFFF)
     {
         rng.nextUInt();
         frame++;
     }
-    return rng.seed;
+    return rng.getSeed();
 }

@@ -94,8 +94,8 @@ void PIDtoIVs::calcFromPID(u32 pid)
 void PIDtoIVs::calcMethod124(u32 pid)
 {
     RNGCache cache = RNGCache(Method1);
-    LCRNG forward = PokeRNG(0);
-    LCRNG backward = PokeRNGR(0);
+    PokeRNG forward(0);
+    PokeRNGR backward(0);
 
     u32 pidl = (pid & 0xFFFF) << 16;
     u32 pidh = pid & 0xFFFF0000;
@@ -103,7 +103,8 @@ void PIDtoIVs::calcMethod124(u32 pid)
     vector<u32> seeds = cache.recoverLower16BitsPID(pidl, pidh);
     for (int i = 0; i < seeds.size(); i++)
     {
-        forward.seed = backward.seed = seeds[i];
+        forward.setSeed(seeds[i]);
+        backward.setSeed(seeds[i]);
         forward.nextUInt();
         addSeed(backward.nextUInt(), forward.nextUInt());
     }
@@ -112,12 +113,12 @@ void PIDtoIVs::calcMethod124(u32 pid)
 void PIDtoIVs::calcMethodXD(u32 pid)
 {
     RNGEuclidean euclidean = RNGEuclidean(XDColo);
-    LCRNG rng = XDRNGR(0);
+    XDRNGR rng(0);
 
     vector<u32> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
     for (auto i = 0; i < seeds.size(); i += 2)
     {
-        rng.seed = seeds[i];
+        rng.setSeed(seeds[i]);
         rng.nextUInt();
         u32 iv2 = rng.nextUShort();
         u32 iv1 = rng.nextUShort();

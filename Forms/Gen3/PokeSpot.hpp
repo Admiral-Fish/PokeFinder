@@ -43,8 +43,7 @@ protected:
 private:
     Ui::PokeSpot *ui;
     PokeSpotModel *model = new PokeSpotModel(this);
-    LCRNG rng = XDRNG(0);
-    vector<u32> rngList;
+    XDRNG *rng = NULL;
 
     void setupModels();
     void saveSettings();

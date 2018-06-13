@@ -135,7 +135,7 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid)
         u32 rng3 = rng.nextUShort();
         u32 rng4 = rng.nextUShort();
 
-        u32 method1Seed = rng.seed;
+        u32 method1Seed = rng.getSeed();
         sid = (rng2 ^ rng3 ^ tid) & 0xFFF8;
 
         u32 method234Seed = rng.nextUInt();
@@ -319,14 +319,14 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid)
 
 void IVtoPID::getSeedsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe, u32 nature)
 {
-    RNGEuclidean euclidean = RNGEuclidean(Channel);
-    LCRNG rng = XDRNGR(0);
+    RNGEuclidean euclidean(Channel);
+    XDRNGR rng(0);
 
     vector<u32> seeds = euclidean.recoverLower27BitsChannel(hp, atk, def, spa, spd, spe);
 
     for (auto i = 0; i < seeds.size(); i++)
     {
-        rng.seed = seeds[i];
+        rng.setSeed(seeds[i]);
         rng.advanceFrames(3);
 
         u32 pid2 = rng.nextUShort();

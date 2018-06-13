@@ -277,7 +277,7 @@ void Stationary3::search()
     Searcher3 searcher = Searcher3(tid, sid, genderRatioIndex, compare);
 
     searcher.setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
-    if (searcher.frameType == XD || searcher.frameType == Colo)
+    if (searcher.getFrameType() == XD || searcher.getFrameType() == Colo)
         searcher.setupNatureLock(ui->comboBoxShadow->currentIndex());
 
     vector<u32> min = ui->ivFilterSearcher->getLower();
