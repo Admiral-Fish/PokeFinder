@@ -426,7 +426,7 @@ void Wild3::updateLocationsSearcher()
     for (EncounterArea3 area : encounterSearcher)
         locs.push_back(area.getLocation());
 
-    QStringList locations = Translator::getLocations(locs);
+    QStringList locations = Translator::getLocationsGen3(locs);
 
     ui->comboBoxLocationSearcher->clear();
     ui->comboBoxLocationSearcher->addItems(locations);
@@ -461,7 +461,7 @@ void Wild3::updateLocationsGenerator()
     for (EncounterArea3 area : encounterGenerator)
         locs.push_back(area.getLocation());
 
-    QStringList locations = Translator::getLocations(locs);
+    QStringList locations = Translator::getLocationsGen3(locs);
 
     ui->comboBoxLocationGenerator->clear();
     ui->comboBoxLocationGenerator->addItems(locations);
