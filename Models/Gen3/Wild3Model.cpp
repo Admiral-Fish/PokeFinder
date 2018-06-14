@@ -67,7 +67,7 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
             case 0:
                 return frame.getFrame();
             case 1:
-                return frame.occidentary;
+                return frame.getOccidentary();
             case 2:
                 return frame.getEncounterSlot();
             case 3:

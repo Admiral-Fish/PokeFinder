@@ -154,19 +154,19 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         {
             if (!spots[0])
                 continue;
-            frame.lockReason = tr("Common");
+            frame.setLockReason(tr("Common"));
         }
         else if (call3 > 49 && call3 < 85)
         {
             if (!spots[1])
                 continue;
-            frame.lockReason = tr("Uncommon");
+            frame.setLockReason(tr("Uncommon"));
         }
         else
         {
             if (!spots[2])
                 continue;
-            frame.lockReason = tr("Rare");
+            frame.setLockReason(tr("Rare"));
         }
 
         frame.setPID(rngList[4], rngList[3]);

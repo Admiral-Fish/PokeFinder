@@ -71,7 +71,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame4 & frameA, const Frame4 & frameB)
                         {
-                            return frameA.seed < frameB.seed;
+                            return frameA.getSeed() < frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -166,7 +166,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame4 & frameA, const Frame4 & frameB)
                         {
-                            return frameA.seed < frameB.seed;
+                            return frameA.getSeed() < frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -232,7 +232,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame4 & frameA, const Frame4 & frameB)
                         {
-                            return frameA.seed < frameB.seed;
+                            return frameA.getSeed() < frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -348,7 +348,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame4 & frameA, const Frame4 & frameB)
                         {
-                            return frameA.seed > frameB.seed;
+                            return frameA.getSeed() > frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -443,7 +443,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame4 & frameA, const Frame4 & frameB)
                         {
-                            return frameA.seed > frameB.seed;
+                            return frameA.getSeed() > frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -509,7 +509,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame4 & frameA, const Frame4 & frameB)
                         {
-                            return frameA.seed > frameB.seed;
+                            return frameA.getSeed() > frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -655,7 +655,7 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                 switch (column)
                 {
                     case 0:
-                        return QString::number(frame.seed, 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
                         return frame.getFrame();
                     case 2:
@@ -681,7 +681,7 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                 switch (column)
                 {
                     case 0:
-                        return QString::number(frame.seed, 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
                         return frame.getFrame();
                     case 2:
@@ -718,7 +718,7 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                 switch (column)
                 {
                     case 0:
-                        return QString::number(frame.seed, 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
                         return frame.getFrame();
                     case 2:

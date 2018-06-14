@@ -71,7 +71,7 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
             case 2:
                 return frame.getShinyString();
             case 3:
-                return frame.lockReason;
+                return frame.getLockReason();
             case 4:
                 return frame.getNatureString();
             case 5:

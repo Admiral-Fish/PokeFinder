@@ -118,7 +118,7 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.getTime();
                     case 2:
-                        return frame.occidentary;
+                        return frame.getOccidentary();
                     case 3:
                         return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
                     case 4:
@@ -139,7 +139,7 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.getTime();
                     case 2:
-                        return frame.occidentary;
+                        return frame.getOccidentary();
                     case 3:
                         return frame.getTimeEgg();
                     case 4:

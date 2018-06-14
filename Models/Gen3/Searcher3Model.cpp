@@ -72,7 +72,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.seed < frameB.seed;
+                            return frameA.getSeed() < frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -180,7 +180,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.seed < frameB.seed;
+                            return frameA.getSeed() < frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -264,7 +264,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 14:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.lockReason < frameB.lockReason;
+                            return frameA.getLockReason() < frameB.getLockReason();
                         });
                         break;
                 }
@@ -280,7 +280,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.seed < frameB.seed;
+                            return frameA.getSeed() < frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -379,7 +379,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.seed > frameB.seed;
+                            return frameA.getSeed() > frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -487,7 +487,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.seed > frameB.seed;
+                            return frameA.getSeed() > frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -571,7 +571,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 14:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.lockReason > frameB.lockReason;
+                            return frameA.getLockReason() > frameB.getLockReason();
                         });
                         break;
                 }
@@ -587,7 +587,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 0:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.seed > frameB.seed;
+                            return frameA.getSeed() > frameB.getSeed();
                         });
                         break;
                     case 1:
@@ -723,7 +723,7 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                 switch (column)
                 {
                     case 0:
-                        return QString::number(frame.seed, 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
                         {
                             Lead type = frame.getLeadType();
@@ -769,7 +769,7 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                 switch (column)
                 {
                     case 0:
-                        return QString::number(frame.seed, 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
                         return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
                     case 2:
@@ -802,7 +802,7 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                 switch (column)
                 {
                     case 0:
-                        return QString::number(frame.seed, 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
                         return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
                     case 2:
@@ -830,7 +830,7 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 13:
                         return frame.getGenderString();
                     case 14:
-                        return frame.lockReason;
+                        return frame.getLockReason();
                 }
             default:
                 break;

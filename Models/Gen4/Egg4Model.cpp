@@ -311,7 +311,7 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
             switch (column)
             {
                 case 0:
-                    return QString::number(frame.initialSeed, 16).toUpper().rightJustified(8, '0');
+                    return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
                 case 1:
                     return frame.getFrame();
                 case 2:
@@ -330,7 +330,7 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
             switch (column)
             {
                 case 0:
-                    return QString::number(frame.initialSeed, 16).toUpper().rightJustified(8, '0');
+                    return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
                 case 1:
                     return frame.getFrame();
                 case 2:

@@ -124,7 +124,7 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return frame.getFrame();
                     case 1:
-                        return frame.occidentary;
+                        return frame.getOccidentary();
                     case 2:
                         return frame.chatotPitch();
                     case 3:
@@ -160,7 +160,7 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return frame.getFrame();
                     case 1:
-                        return frame.occidentary;
+                        return frame.getOccidentary();
                     case 2:
                         return frame.getCall();
                     case 3:

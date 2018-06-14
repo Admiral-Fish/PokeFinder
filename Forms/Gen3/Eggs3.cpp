@@ -185,18 +185,18 @@ void Eggs3::on_pushButtonGenerateEmeraldPID_clicked()
 {
     emeraldPID->clear();
 
-    u32 startingFrame = ui->textBoxMinFrameEmeraldPID->text().toUInt(NULL, 10);
-    u32 maxResults = ui->textBoxMaxFrameEmeraldPID->text().toUInt(NULL, 10);
-    u32 tid = ui->textBoxTIDEmerald->text().toUInt(NULL, 10);
-    u32 sid = ui->textBoxSIDEmerald->text().toUInt(NULL, 10);
+    u32 startingFrame = ui->textBoxMinFrameEmeraldPID->text().toUInt();
+    u32 maxResults = ui->textBoxMaxFrameEmeraldPID->text().toUInt();
+    u32 tid = ui->textBoxTIDEmerald->text().toUInt();
+    u32 sid = ui->textBoxSIDEmerald->text().toUInt();
     int genderRatioIndex = ui->comboBoxGenderRatioEmerald->currentIndex();
 
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, EBredPID);
-    generator.minRedraw = ui->textBoxMinRedraws->text().toUInt(NULL, 10);
-    generator.maxRedraw = ui->textBoxMaxRedraws->text().toUInt(NULL, 10);
-    generator.calibration = ui->textBoxCalibration->text().toUInt(NULL, 10);
-    generator.compatability = ui->comboBoxCompatibilityEmerald->currentData().toUInt(NULL);
-    generator.everstone = ui->comboBoxEverstone->currentIndex() != 0;
+    generator.setMinRedraw(ui->textBoxMinRedraws->text().toUInt());
+    generator.setMaxRedraw(ui->textBoxMaxRedraws->text().toUInt());
+    generator.setCalibration(ui->textBoxCalibration->text().toUInt());
+    generator.setCompatability(ui->comboBoxCompatibilityEmerald->currentData().toUInt());
+    generator.setEverstone(ui->comboBoxEverstone->currentIndex() != 0);
     if (ui->comboBoxEverstone->currentIndex() != 0)
         generator.setEverstoneNature(Nature::getAdjustedNature(ui->comboBoxEverstone->currentIndex() - 1));
 
@@ -254,13 +254,12 @@ void Eggs3::on_pushButtonGenerateRS_clicked()
                             (u32)ui->parent2SpARS->value(), (u32)ui->parent2SpDRS->value(), (u32)ui->parent2SpeRS->value()
                           };
 
-    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, RSBred);
+    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, RSBred, ui->textBoxSeedRS->text().toUInt(NULL, 16));
     generator.setParents(parent1, parent2);
-    generator.seed = ui->textBoxSeedRS->text().toUInt(NULL, 16);
 
-    generator.minPickup = ui->textBoxMinPickupRS->text().toUInt(NULL, 10);
-    generator.maxPickup = ui->textBoxMaxPickupRS->text().toUInt(NULL, 10);
-    generator.compatability = ui->comboBoxCompatibilityRS->currentData().toUInt(NULL);
+    generator.setMinPickup(ui->textBoxMinPickupRS->text().toUInt());
+    generator.setMaxPickup(ui->textBoxMaxPickupRS->text().toUInt());
+    generator.setCompatability(ui->comboBoxCompatibilityRS->currentData().toUInt());
 
     FrameCompare compare = FrameCompare(ui->ivFilterRS->getEvals(), ui->ivFilterRS->getValues(), ui->comboBoxGenderRS->currentIndex(),
                                         ui->comboBoxGenderRatioRS->currentIndex(), ui->comboBoxAbilityRS->currentIndex(), ui->comboBoxNatureRS->getChecked(),
@@ -286,13 +285,12 @@ void Eggs3::on_pushButtonGenerateFRLG_clicked()
                             (u32)ui->parent2SpAFRLG->value(), (u32)ui->parent2SpDFRLG->value(), (u32)ui->parent2SpeFRLG->value()
                           };
 
-    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, FRLGBred);
+    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, FRLGBred, ui->textBoxSeedFRLG->text().toUInt(NULL, 16));
     generator.setParents(parent1, parent2);
-    generator.seed = ui->textBoxSeedFRLG->text().toUInt(NULL, 16);
 
-    generator.minPickup = ui->textBoxMinPickupFRLG->text().toUInt(NULL, 10);
-    generator.maxPickup = ui->textBoxMaxPickupFRLG->text().toUInt(NULL, 10);
-    generator.compatability = ui->comboBoxCompatibilityFRLG->currentData().toUInt(NULL);
+    generator.setMinPickup(ui->textBoxMinPickupFRLG->text().toUInt());
+    generator.setMaxPickup(ui->textBoxMaxPickupFRLG->text().toUInt());
+    generator.setCompatability(ui->comboBoxCompatibilityFRLG->currentData().toUInt());
 
     FrameCompare compare = FrameCompare(ui->ivFilterFRLG->getEvals(), ui->ivFilterFRLG->getValues(), ui->comboBoxGenderFRLG->currentIndex(),
                                         ui->comboBoxGenderRatioFRLG->currentIndex(), ui->comboBoxAbilityFRLG->currentIndex(), ui->comboBoxNatureFRLG->getChecked(),
