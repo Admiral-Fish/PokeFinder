@@ -263,7 +263,7 @@ void Eggs4::on_pushButtonGenerateIVs_clicked()
     {
         searcherIVs->clear();
         Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
-        searcherIVs->setMethod(version == HeartGold || version == SoulSilver ? HGSSIVs : DPPtIVs);
+        searcherIVs->setMethod((version == HeartGold || version == SoulSilver) ? HGSSIVs : DPPtIVs);
 
         ui->progressBarIVs->setValue(0);
         progressIVs = 0;
@@ -353,7 +353,7 @@ void Eggs4::searchIVs()
     u32 maxFrame = ui->textBoxMaxFrameIVs->text().toUInt();
 
     Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
-    Method type = version == HeartGold || version == SoulSilver ? HGSSIVs : DPPtIVs;
+    Method type = (version == HeartGold || version == SoulSilver) ? HGSSIVs : DPPtIVs;
     Egg4 generator = Egg4(maxFrame - minFrame + 1, minFrame, 0, 0, type, 0);
     generator.setParents(parent1, parent2);
 

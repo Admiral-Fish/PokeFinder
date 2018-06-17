@@ -868,11 +868,17 @@ QSpinBox::down-button {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="0" column="2">
               <widget class="QSpinBox" name="parent1AtkGenerator">
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
@@ -882,11 +888,17 @@ QSpinBox::down-button {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="0" column="4">
               <widget class="QSpinBox" name="parent1SpAGenerator">
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
@@ -896,11 +908,17 @@ QSpinBox::down-button {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="0" column="6">
               <widget class="QSpinBox" name="parent1SpeGenerator">
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
@@ -917,11 +935,17 @@ QSpinBox::down-button {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="1" column="2">
               <widget class="QSpinBox" name="parent2AtkGenerator">
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
@@ -931,11 +955,17 @@ QSpinBox::down-button {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="1" column="4">
               <widget class="QSpinBox" name="parent2SpAGenerator">
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
@@ -945,11 +975,17 @@ QSpinBox::down-button {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="1" column="6">
               <widget class="QSpinBox" name="parent2SpeGenerator">
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
@@ -1192,6 +1228,9 @@ QRadioButton {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="1" column="5">
@@ -1199,11 +1238,17 @@ QRadioButton {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="1" column="4">
               <widget class="QSpinBox" name="parent2SpASearcher">
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
@@ -1219,6 +1264,9 @@ QRadioButton {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="0" column="2">
@@ -1230,6 +1278,9 @@ QRadioButton {
                 </size>
                </property>
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
@@ -1259,6 +1310,9 @@ QRadioButton {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="0" column="5">
@@ -1270,6 +1324,9 @@ QRadioButton {
                 </size>
                </property>
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
@@ -1285,6 +1342,9 @@ QRadioButton {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="0" column="6">
@@ -1296,6 +1356,9 @@ QRadioButton {
                 </size>
                </property>
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
@@ -1311,6 +1374,9 @@ QRadioButton {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="1" column="1">
@@ -1324,11 +1390,17 @@ QRadioButton {
                <property name="maximum">
                 <number>31</number>
                </property>
+               <property name="value">
+                <number>31</number>
+               </property>
               </widget>
              </item>
              <item row="1" column="3">
               <widget class="QSpinBox" name="parent2DefSearcher">
                <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
                 <number>31</number>
                </property>
               </widget>
