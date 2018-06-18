@@ -29,6 +29,7 @@
 #include <Forms/Gen4/SearchCoinFlips.hpp>
 #include <Forms/Gen4/SearchCalls.hpp>
 #include <Forms/Gen4/RoamerMap.hpp>
+#include <PokeFinderCore/Gen4/Profile4.hpp>
 
 namespace Ui
 {
@@ -69,6 +70,7 @@ private slots:
 
 public:
     explicit SeedtoTime4(QWidget *parent = 0);
+    explicit SeedtoTime4(QString seed, Profile4 profile, QWidget *parent = 0);
     ~SeedtoTime4();
 
 };

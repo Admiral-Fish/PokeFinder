@@ -32,6 +32,7 @@
 #include <PokeFinderCore/Translator.hpp>
 #include <Models/Gen4/Wild4Model.hpp>
 #include <Models/Gen4/Searcher4Model.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
 #include <QMenu>
 #include <thread>
 #include <QFileDialog>
@@ -62,9 +63,7 @@ private:
     u32 progress;
     Searcher4Model *s = new Searcher4Model(this, Method1);
     Wild4Model *g = new Wild4Model(this, MethodJ);
-    //QMenu *contextMenu = new QMenu(this);
-    //QModelIndex lastIndex;
-    //QModelIndex targetFrame;
+    QMenu *searcherMenu = new QMenu(this);
     vector<EncounterArea4> encounterGenerator;
     vector<EncounterArea4> encounterSearcher;
 
@@ -75,6 +74,8 @@ private:
     void updatePokemonSearcher();
     void updateLocationsGenerator();
     void updatePokemonGenerator();
+    void loadSettings();
+    void saveSettings();
 
 private slots:
     void on_generate_clicked();
@@ -86,12 +87,7 @@ private slots:
     void on_anyHiddenPowerSearcher_clicked();
     void updateViewSearcher(vector<Frame4> frames);
     void on_comboBoxProfiles_currentIndexChanged(int index);
-    //void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
-    //void setTargetFrameGenerator();
-    //void jumpToTargetGenerator();
-    //void centerFramesAndSetTargetGenerator(u32 centerFrames);
-    //void outputToTxt();
-    //void outputToCSV();
+    void seedToTime();
     void updateProgressBar();
     void on_pushButtonLeadGenerator_clicked();
     void on_pushButtonProfileManager_clicked();
@@ -105,6 +101,7 @@ private slots:
     void on_comboBoxPokemonGenerator_currentIndexChanged(int index);
     void on_comboBoxTimeGenerator_currentIndexChanged(int index);
     void on_comboBoxTimeSearcher_currentIndexChanged(int index);
+    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
 
 public:
     explicit Wild4(QWidget *parent = 0);

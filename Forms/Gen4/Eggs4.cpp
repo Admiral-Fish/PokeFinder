@@ -39,13 +39,13 @@ Eggs4::Eggs4(QWidget *parent) :
 
 Eggs4::~Eggs4()
 {
-    QSettings setting;
-    setting.setValue("egg4Profile", ui->comboBoxProfiles->currentIndex());
+    saveSettings();
 
     delete ui;
     delete generatorModel;
     delete searcherIVs;
     delete searcherPID;
+    delete searcherMenu;
 }
 
 void Eggs4::changeEvent(QEvent *event)
@@ -94,6 +94,13 @@ void Eggs4::setupModels()
     ui->comboBoxNatureGenerator->setup();
     ui->comboBoxHiddenPowerGenerator->setup();
     ui->comboBoxNatureSearcher->setup();
+
+    QAction *seedToTime = new QAction(tr("Generate times for seed"), this);
+    connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
+
+    searcherMenu->addAction(seedToTime);
+
+    loadSettings();
 }
 
 void Eggs4::updateProfiles()
@@ -179,6 +186,33 @@ void Eggs4::updateSearch(int i)
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         emit updateProgress();
     }
+}
+
+void Eggs4::loadSettings()
+{
+    QSettings setting;
+    if (setting.contains("egg4MinDelayIVs")) ui->textBoxMinDelayPID->setText(setting.value("egg4MinDelayPID").toString());
+    if (setting.contains("egg4MaxDelayIVs")) ui->textBoxMaxDelayPID->setText(setting.value("egg4MaxDelayPID").toString());
+    if (setting.contains("egg4MinFrameIVs")) ui->textBoxMinFramePID->setText(setting.value("egg4MinFramePID").toString());
+    if (setting.contains("egg4MaxFrameIVs")) ui->textBoxMaxFramePID->setText(setting.value("egg4MaxFramePID").toString());
+    if (setting.contains("egg4MinDelayPID")) ui->textBoxMinDelayPID->setText(setting.value("egg4MinDelayPID").toString());
+    if (setting.contains("egg4MaxDelayPID")) ui->textBoxMaxDelayPID->setText(setting.value("egg4MaxDelayPID").toString());
+    if (setting.contains("egg4MinFramePID")) ui->textBoxMinFramePID->setText(setting.value("egg4MinFramePID").toString());
+    if (setting.contains("egg4MaxFramePID")) ui->textBoxMaxFramePID->setText(setting.value("egg4MaxFramePID").toString());
+}
+
+void Eggs4::saveSettings()
+{
+    QSettings setting;
+    setting.setValue("egg4Profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("egg4MinDelayIVs", ui->textBoxMinDelayIVs->text());
+    setting.setValue("egg4MaxDelayIVs", ui->textBoxMaxDelayIVs->text());
+    setting.setValue("egg4MinFrameIVs", ui->textBoxMinFrameIVs->text());
+    setting.setValue("egg4MaxFrameIVs", ui->textBoxMaxFrameIVs->text());
+    setting.setValue("egg4MinDelayPID", ui->textBoxMinDelayPID->text());
+    setting.setValue("egg4MaxDelayPID", ui->textBoxMaxDelayPID->text());
+    setting.setValue("egg4MinFramePID", ui->textBoxMinFramePID->text());
+    setting.setValue("egg4MaxFramePID", ui->textBoxMaxFramePID->text());
 }
 
 void Eggs4::on_pushButtonGenerate_clicked()
@@ -394,4 +428,44 @@ void Eggs4::searchIVs()
     isSearching[1] = false;
     ui->pushButtonGenerateIVs->setText(tr("Search"));
     emit updateProgress();
+}
+
+void Eggs4::on_tableViewPID_customContextMenuRequested(const QPoint &pos)
+{
+    if (searcherPID->rowCount() == 0)
+        return;
+
+    flag = false;
+
+    searcherMenu->popup(ui->tableViewPID->viewport()->mapToGlobal(pos));
+}
+
+void Eggs4::on_tableViewIVs_customContextMenuRequested(const QPoint &pos)
+{
+    if (searcherIVs->rowCount() == 0)
+        return;
+
+    flag = true;
+
+    searcherMenu->popup(ui->tableViewIVs->viewport()->mapToGlobal(pos));
+}
+
+void Eggs4::seedToTime()
+{
+    QString seed;
+
+    if (flag)
+    {
+        QModelIndex index = ui->tableViewIVs->currentIndex();
+        seed = searcherIVs->data(searcherIVs->index(index.row(), 0), Qt::DisplayRole).toString();
+    }
+    else
+    {
+        QModelIndex index = ui->tableViewPID->currentIndex();
+        seed = searcherPID->data(searcherPID->index(index.row(), 0), Qt::DisplayRole).toString();
+    }
+
+    SeedtoTime4 *time = new SeedtoTime4(seed, profiles[ui->comboBoxProfiles->currentIndex()]);
+    time->show();
+    time->raise();
 }

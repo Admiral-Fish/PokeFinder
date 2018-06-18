@@ -82,7 +82,6 @@ void PIDtoIVs::setupModels()
     contextMenu->addAction(copySeed);
     contextMenu->addAction(moveResults);
     contextMenu->addAction(moveIVs);
-
 }
 
 void PIDtoIVs::calcFromPID(u32 pid)

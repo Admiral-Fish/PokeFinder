@@ -31,6 +31,31 @@ SeedtoTime4::SeedtoTime4(QWidget *parent) :
     setupModels();
 }
 
+SeedtoTime4::SeedtoTime4(QString seed, Profile4 profile, QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::SeedtoTime4)
+{
+    ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+    setAttribute(Qt::WA_DeleteOnClose);
+
+    setupModels();
+
+    Game version = profile.getVersion();
+
+    if (version == HeartGold || version == SoulSilver)
+    {
+        ui->tabWidget->setCurrentIndex(1);
+        ui->textBoxSeedHGSS->setText(seed);
+        on_pushButtonGenerateHGSS_clicked();
+    }
+    else
+    {
+        ui->textBoxSeedDPPt->setText(seed);
+        on_pushButtonGenerateDPPt_clicked();
+    }
+}
+
 SeedtoTime4::~SeedtoTime4()
 {
     saveSettings();

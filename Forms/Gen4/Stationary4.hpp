@@ -31,12 +31,12 @@
 #include <Models/Gen4/Stationary4Model.hpp>
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <PokeFinderCore/Translator.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
 #include <thread>
 #include <QMenu>
 #include <QAction>
 #include <QModelIndex>
 #include <QFileDialog>
-#include <QClipboard>
 #include <QSettings>
 
 namespace Ui
@@ -64,10 +64,7 @@ private:
     bool cancel = false;
     u32 progress;
     vector<Profile4> profiles;
-    //QMenu *generatorMenu = new QMenu();
-    //QMenu *searcherMenu = new QMenu();
-    //QModelIndex lastIndex;
-    //QModelIndex targetFrame;
+    QMenu *searcherMenu = new QMenu(this);
 
     void loadSettings();
     void saveSettings();
@@ -88,6 +85,8 @@ private slots:
     void updateProgressBar();
     void updateViewSearcher(vector<Frame4> frames);
     void on_pushButtonLeadGenerator_clicked();
+    void seedToTime();
+    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
 
 public:
     explicit Stationary4(QWidget *parent = 0);

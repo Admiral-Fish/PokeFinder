@@ -55,14 +55,12 @@ void Wild4::changeEvent(QEvent *event)
 
 Wild4::~Wild4()
 {
-    QSettings setting;
-    setting.setValue("wild4Profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("wild4MinDelay", ui->minDelay->text().toInt());
-    setting.setValue("wild4MaxDelay", ui->maxDelay->text().toInt());
+    saveSettings();
 
     delete ui;
     delete g;
     delete s;
+    delete searcherMenu;
 }
 
 void Wild4::setupModels()
@@ -119,13 +117,12 @@ void Wild4::setupModels()
     on_comboBoxEncounterGenerator_currentIndexChanged(0);
     on_comboBoxEncounterSearcher_currentIndexChanged(0);
 
-    QSettings setting;
-    int val = setting.value("wild4MinDelay").toInt();
-    if (val != 0)
-        ui->minDelay->setText(QString::number(val));
-    val = setting.value("wild4MaxDelay").toInt();
-    if (val != 0)
-        ui->maxDelay->setText(QString::number(val));
+    QAction *seedToTime = new QAction(tr("Generate times for seed"), this);
+    connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
+
+    searcherMenu->addAction(seedToTime);
+
+    loadSettings();
 }
 
 void Wild4::updateProfiles()
@@ -175,6 +172,14 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
 
     updateLocationsSearcher();
     updateLocationsGenerator();
+}
+
+void Wild4::seedToTime()
+{
+    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    SeedtoTime4 *time = new SeedtoTime4(s->data(s->index(index.row(), 0), Qt::DisplayRole).toString(), profiles[ui->comboBoxProfiles->currentIndex()]);
+    time->show();
+    time->raise();
 }
 
 void Wild4::refreshProfiles()
@@ -554,6 +559,25 @@ void Wild4::updatePokemonGenerator()
         ui->comboBoxPokemonGenerator->addItem(names[i], species[i]);
 }
 
+void Wild4::loadSettings()
+{
+    QSettings setting;
+    if (setting.contains("wild4MinDelay")) ui->minDelay->setText(setting.value("wild4MinDelay").toString());
+    if (setting.contains("wild4MaxDelay")) ui->maxDelay->setText(setting.value("wild4MaxDelay").toString());
+    if (setting.contains("wild4MinFrame")) ui->minFrame->setText(setting.value("wild4MinFrame").toString());
+    if (setting.contains("wild4MaxFrame")) ui->maxFrame->setText(setting.value("wild4MaxFrame").toString());
+}
+
+void Wild4::saveSettings()
+{
+    QSettings setting;
+    setting.setValue("wild4Profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("wild4MinDelay", ui->minDelay->text());
+    setting.setValue("wild4MaxDelay", ui->maxDelay->text());
+    setting.setValue("wild4MinFrame", ui->minFrame->text());
+    setting.setValue("wild4MaxFrame", ui->maxFrame->text());
+}
+
 void Wild4::updateProgressBar()
 {
     ui->progressBar->setValue(progress);
@@ -576,4 +600,12 @@ void Wild4::on_comboBoxTimeSearcher_currentIndexChanged(int index)
     index = ui->comboBoxLocationSearcher->currentIndex();
     updateLocationsSearcher();
     ui->comboBoxLocationSearcher->setCurrentIndex(index);
+}
+
+void Wild4::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+{
+    if (s->rowCount() == 0)
+        return;
+
+    searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
 }

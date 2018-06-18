@@ -26,7 +26,9 @@
 #include <Models/Gen4/Egg4Model.hpp>
 #include <PokeFinderCore/Objects/FrameCompare.hpp>
 #include <PokeFinderCore/Gen4/Egg4.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
 #include <QSettings>
+#include <QMenu>
 #include <thread>
 
 namespace Ui
@@ -55,13 +57,17 @@ private:
     Egg4GeneratorModel *generatorModel = new Egg4GeneratorModel(this, DPPtIVs);
     Egg4SearcherModel *searcherIVs = new Egg4SearcherModel(this, DPPtIVs);
     Egg4SearcherModel *searcherPID = new Egg4SearcherModel(this, Gen4Normal);
+    QMenu *searcherMenu = new QMenu(this);
     u32 progressPID;
     u32 progressIVs;
+    bool flag;
 
     void setupModels();
     void searchPID();
     void searchIVs();
     void updateSearch(int i);
+    void loadSettings();
+    void saveSettings();
 
 private slots:
     void refreshProfiles();
@@ -77,6 +83,9 @@ private slots:
     void updateViewIVs(vector<Frame4> frames);
     void updateProgressPID();
     void updateProgressIVs();
+    void on_tableViewPID_customContextMenuRequested(const QPoint &pos);
+    void on_tableViewIVs_customContextMenuRequested(const QPoint &pos);
+    void seedToTime();
 
 public:
     explicit Eggs4(QWidget *parent = 0);

@@ -1011,6 +1011,9 @@ QSpinBox::down-button {
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="2" column="0">
          <widget class="TableView" name="tableViewPID">
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -1856,6 +1859,9 @@ QRadioButton {
         </item>
         <item row="2" column="1">
          <widget class="TableView" name="tableViewIVs">
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>

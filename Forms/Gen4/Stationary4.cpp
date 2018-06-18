@@ -42,6 +42,7 @@ Stationary4::~Stationary4()
     delete ui;
     delete g;
     delete s;
+    delete searcherMenu;
 }
 
 void Stationary4::changeEvent(QEvent *event)
@@ -64,14 +65,18 @@ void Stationary4::loadSettings()
     QSettings setting;
     if (setting.contains("stationary4MinDelay")) ui->minDelay->setText(setting.value("stationary4MinDelay").toString());
     if (setting.contains("stationary4MaxDelay")) ui->maxDelay->setText(setting.value("stationary4MaxDelay").toString());
+    if (setting.contains("stationary4MinFrame")) ui->minFrame->setText(setting.value("stationary4MinFrame").toString());
+    if (setting.contains("stationary4MaxFrame")) ui->maxFrame->setText(setting.value("stationary4MaxFrame").toString());
 }
 
 void Stationary4::saveSettings()
 {
     QSettings setting;
     setting.setValue("stationary4Profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("stationary4MinDelay", ui->minDelay->text().toInt());
-    setting.setValue("stationary4MaxDelay", ui->maxDelay->text().toInt());
+    setting.setValue("stationary4MinDelay", ui->minDelay->text());
+    setting.setValue("stationary4MaxDelay", ui->maxDelay->text());
+    setting.setValue("stationary4MinFrame", ui->minFrame->text());
+    setting.setValue("stationary4MaxFrame", ui->maxFrame->text());
 }
 
 void Stationary4::setupModels()
@@ -117,6 +122,11 @@ void Stationary4::setupModels()
 
     ui->comboBoxHiddenPowerGenerator->setup();
     ui->comboBoxHiddenPowerSearcher->setup();
+
+    QAction *seedToTime = new QAction(tr("Generate times for seed"), this);
+    connect(seedToTime, &QAction::triggered, this, &Stationary4::seedToTime);
+
+    searcherMenu->addAction(seedToTime);
 
     loadSettings();
 }
@@ -345,4 +355,20 @@ void Stationary4::on_pushButtonLeadGenerator_clicked()
         ui->comboBoxLeadGenerator->addItem("None");
         ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
     }
+}
+
+void Stationary4::seedToTime()
+{
+    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    SeedtoTime4 *time = new SeedtoTime4(s->data(s->index(index.row(), 0), Qt::DisplayRole).toString(), profiles[ui->comboBoxProfiles->currentIndex()]);
+    time->show();
+    time->raise();
+}
+
+void Stationary4::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+{
+    if (s->rowCount() == 0)
+        return;
+
+    searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
 }
