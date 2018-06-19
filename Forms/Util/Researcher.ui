@@ -38,6 +38,7 @@ QTabBar::tab {
 	color: black;
 	background-color: #A1ABB3;
 	font-family: &quot;Myriad Pro&quot;;
+	width: 100px;
 }
 
 QTabBar::tab:selected {
@@ -103,16 +104,6 @@ QComboBox::editable {
 	border: none;
 	border-radius: 6px;
 	color: white;
-}
-
-QComboBox::down-arrow {
-	image: url(noimg);
-	border-width: 0px;
-}
-
-QComboBox::drop-down {
-	background: transparent;
-	width: 0px;
 }
 
 QLabel {

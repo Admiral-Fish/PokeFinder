@@ -32,6 +32,7 @@ QTabBar::tab {
 	color: black;
 	background-color: #A1ABB3;
 	font-family: &quot;Myriad Pro&quot;;
+	width: 150px;
 }
 
 QTabBar::tab:selected {
@@ -124,16 +125,6 @@ QComboBox::editable {
 	border: none;
 	border-radius: 6px;
 	color: white;
-}
-
-QComboBox::down-arrow {
-	image: url(noimg);
-	border-width: 0px;
-}
-
-QComboBox::drop-down {
-	background: transparent;
-	width: 0px;
 }
 
 QLabel {
@@ -245,7 +236,7 @@ QPushButton {
            <item row="0" column="1">
             <widget class="QComboBox" name="comboBoxMethodGenerator">
              <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
+              <enum>Qt::LeftToRight</enum>
              </property>
              <property name="editable">
               <bool>false</bool>
@@ -1605,7 +1596,7 @@ QPushButton {
            <item row="0" column="1">
             <widget class="QComboBox" name="comboBoxMethodSearcher">
              <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
+              <enum>Qt::LeftToRight</enum>
              </property>
              <property name="editable">
               <bool>false</bool>
@@ -1852,6 +1843,11 @@ QPushButton {
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
   <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>IVFilter</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/IVFilter.hpp</header>
@@ -1861,11 +1857,6 @@ QPushButton {
    <class>QCheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/QCheckList.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>TableView</class>
-   <extends>QTableView</extends>
-   <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

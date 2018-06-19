@@ -106,16 +106,6 @@ QComboBox::editable {
 	color: white;
 }
 
-QComboBox::down-arrow {
-	image: url(noimg);
-	border-width: 0px;
-}
-
-QComboBox::drop-down {
-	background: transparent;
-	width: 0px;
-}
-
 QLabel {
 	color: white;
 }
@@ -606,14 +596,14 @@ QPushButton {
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>QCheckList</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/QCheckList.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>QCheckList</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/QCheckList.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

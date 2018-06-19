@@ -95,16 +95,6 @@ QComboBox::editable {
 	color: white;
 }
 
-QComboBox::down-arrow {
-	image: url(noimg);
-	border-width: 0px;
-}
-
-QComboBox::drop-down {
-	background: transparent;
-	width: 0px;
-}
-
 QLabel {
 	color: white;
 	font-family: &quot;Myriad Pro&quot;, Montserrat;
@@ -262,6 +252,15 @@ QCheckBox::indicator:checked {
    <header>Forms/Controls/QTextBox.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>lineEditProfile</tabstop>
+  <tabstop>comboBoxVersion</tabstop>
+  <tabstop>comboBoxLanguage</tabstop>
+  <tabstop>textBoxTID</tabstop>
+  <tabstop>textBoxSID</tabstop>
+  <tabstop>pushButtonAccept</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

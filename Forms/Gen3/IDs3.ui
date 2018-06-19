@@ -31,12 +31,8 @@
   <property name="windowTitle">
    <string>Gen 3 TID\SID</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_5">
-    <item row="0" column="0">
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="styleSheet">
-       <string notr="true">.QTabWidget &gt;  QWidget &gt; QWidget {
+  <property name="styleSheet">
+   <string notr="true">.QTabWidget &gt;  QWidget &gt; QWidget {
 	background-color: #E6E6E6;
 }
 
@@ -44,6 +40,7 @@ QTabBar::tab {
 	color: black;
 	background-color: #A1ABB3;
 	font-family: &quot;Myriad Pro&quot;;
+	width: 150px;
 }
 
 QTabBar::tab:selected {
@@ -139,6 +136,13 @@ QRadioButton::indicator:unchecked {
 QRadioButton {
 	color: white;
 }</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_5">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <property name="currentIndex">
        <number>0</number>

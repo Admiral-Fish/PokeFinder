@@ -22,6 +22,7 @@ QTabBar::tab {
 	color: black;
 	background-color: #A1ABB3;
 	font-family: &quot;Myriad Pro&quot;;
+	width: 150px;
 }
 
 QTabBar::tab:selected {

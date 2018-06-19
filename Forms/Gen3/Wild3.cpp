@@ -85,7 +85,6 @@ void Wild3::updateViewSearcher(vector<Frame3> frames)
 void Wild3::updateProfiles()
 {
     profiles = Profile3::loadProfileList();
-    profiles.insert(profiles.begin(), Profile3());
 
     vector<Profile3> temp;
 
@@ -94,10 +93,10 @@ void Wild3::updateProfiles()
             temp.push_back(profile);
 
     profiles = temp;
+    profiles.insert(profiles.begin(), Profile3());
 
     ui->comboBoxProfiles->clear();
 
-    ui->comboBoxProfiles->addItem(tr("None"));
     for (int i = 0; i < (int)profiles.size(); i++)
         ui->comboBoxProfiles->addItem(profiles[i].getProfileName());
 

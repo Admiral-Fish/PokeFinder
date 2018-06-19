@@ -62,16 +62,6 @@ QComboBox::editable {
 	color: white;
 }
 
-QComboBox::down-arrow {
-	image: url(noimg);
-	border-width: 0px;
-}
-
-QComboBox::drop-down {
-	background: transparent;
-	width: 0px;
-}
-
 QSpinBox {
 	qproperty-alignment: AlignCenter;
 	background-color: #1D303C;
