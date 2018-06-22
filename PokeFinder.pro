@@ -154,7 +154,8 @@ HEADERS += \
     PokeFinderCore/RNG/TinyMT.hpp \
     PokeFinderCore/Translator.hpp \
     Util/DateTime.hpp \
-    Util/ResearcherFrame.hpp
+    Util/ResearcherFrame.hpp \
+    Forms/Controls/Label.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
@@ -233,4 +234,5 @@ SOURCES += \
     main.cpp \
     PokeFinderCore/Objects/Searcher.cpp \
     PokeFinderCore/Objects/Generator.cpp \
-    PokeFinderCore/Objects/Egg.cpp
+    PokeFinderCore/Objects/Egg.cpp \
+    Forms/Controls/Label.cpp

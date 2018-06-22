@@ -25,6 +25,13 @@ IVFilter::IVFilter(QWidget *parent) :
     ui(new Ui::IVFilter)
 {
     ui->setupUi(this);
+
+    connect(ui->hpLabel, &Label::pressed, this, &IVFilter::changeCompareHP);
+    connect(ui->atkLabel, &Label::pressed, this, &IVFilter::changeCompareAtk);
+    connect(ui->defLabel, &Label::pressed, this, &IVFilter::changeCompareDef);
+    connect(ui->spaLabel, &Label::pressed, this, &IVFilter::changeCompareSpA);
+    connect(ui->spdLabel, &Label::pressed, this, &IVFilter::changeCompareSpD);
+    connect(ui->speLabel, &Label::pressed, this, &IVFilter::changeCompareSpe);
 }
 
 IVFilter::~IVFilter()
@@ -294,4 +301,64 @@ void IVFilter::on_pushButtonClearSpe_clicked()
 {
     ui->comboBoxSpe->setCurrentIndex(0);
     ui->spinBoxSpe->setValue(0);
+}
+
+void IVFilter::changeCompareHP(int type)
+{
+    if (type == Qt::NoModifier)
+        ui->comboBoxHP->setCurrentIndex(0);
+    else if (type == Qt::ControlModifier)
+        ui->comboBoxHP->setCurrentIndex(1);
+    else if (type == Qt::AltModifier)
+        ui->comboBoxHP->setCurrentIndex(2);
+}
+
+void IVFilter::changeCompareAtk(int type)
+{
+    if (type == Qt::NoModifier)
+        ui->comboBoxAtk->setCurrentIndex(0);
+    else if (type == Qt::ControlModifier)
+        ui->comboBoxAtk->setCurrentIndex(1);
+    else if (type == Qt::AltModifier)
+        ui->comboBoxAtk->setCurrentIndex(2);
+}
+
+void IVFilter::changeCompareDef(int type)
+{
+    if (type == Qt::NoModifier)
+        ui->comboBoxDef->setCurrentIndex(0);
+    else if (type == Qt::ControlModifier)
+        ui->comboBoxDef->setCurrentIndex(1);
+    else if (type == Qt::AltModifier)
+        ui->comboBoxDef->setCurrentIndex(2);
+}
+
+void IVFilter::changeCompareSpA(int type)
+{
+    if (type == Qt::NoModifier)
+        ui->comboBoxSpA->setCurrentIndex(0);
+    else if (type == Qt::ControlModifier)
+        ui->comboBoxSpA->setCurrentIndex(1);
+    else if (type == Qt::AltModifier)
+        ui->comboBoxSpA->setCurrentIndex(2);
+}
+
+void IVFilter::changeCompareSpD(int type)
+{
+    if (type == Qt::NoModifier)
+        ui->comboBoxSpD->setCurrentIndex(0);
+    else if (type == Qt::ControlModifier)
+        ui->comboBoxSpD->setCurrentIndex(1);
+    else if (type == Qt::AltModifier)
+        ui->comboBoxSpD->setCurrentIndex(2);
+}
+
+void IVFilter::changeCompareSpe(int type)
+{
+    if (type == Qt::NoModifier)
+        ui->comboBoxSpe->setCurrentIndex(0);
+    else if (type == Qt::ControlModifier)
+        ui->comboBoxSpe->setCurrentIndex(1);
+    else if (type == Qt::AltModifier)
+        ui->comboBoxSpe->setCurrentIndex(2);
 }

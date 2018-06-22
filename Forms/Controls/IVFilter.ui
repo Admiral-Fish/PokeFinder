@@ -89,7 +89,7 @@ QPushButton {
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLabel" name="hpLabel">
+    <widget class="Label" name="hpLabel">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -242,7 +242,7 @@ QPushButton {
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="atkLabel">
+    <widget class="Label" name="atkLabel">
      <property name="font">
       <font>
        <family>Myriad Pro,Montserrat</family>
@@ -377,7 +377,7 @@ QPushButton {
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QLabel" name="defLabel">
+    <widget class="Label" name="defLabel">
      <property name="font">
       <font>
        <family>Myriad Pro,Montserrat</family>
@@ -518,7 +518,7 @@ QPushButton {
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QLabel" name="spaLabel">
+    <widget class="Label" name="spaLabel">
      <property name="font">
       <font>
        <family>Myriad Pro,Montserrat</family>
@@ -653,7 +653,7 @@ QPushButton {
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QLabel" name="spdLabel">
+    <widget class="Label" name="spdLabel">
      <property name="font">
       <font>
        <family>Myriad Pro,Montserrat</family>
@@ -788,7 +788,7 @@ QPushButton {
     </widget>
    </item>
    <item row="5" column="0">
-    <widget class="QLabel" name="speLabel">
+    <widget class="Label" name="speLabel">
      <property name="font">
       <font>
        <family>Myriad Pro,Montserrat</family>
@@ -936,6 +936,13 @@ QPushButton {
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Label</class>
+   <extends>QLabel</extends>
+   <header>Forms/Controls/Label.hpp</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>comboBoxHP</tabstop>
   <tabstop>comboBoxAtk</tabstop>

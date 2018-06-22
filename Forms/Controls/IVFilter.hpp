@@ -21,6 +21,7 @@
 #define IVFILTER_HPP
 
 #include <QWidget>
+#include <QLabel>
 #include <vector>
 
 typedef uint32_t u32;
@@ -66,6 +67,12 @@ private slots:
     void on_pushButton30Spe_clicked();
     void on_pushButtonG30Spe_clicked();
     void on_pushButtonClearSpe_clicked();
+    void changeCompareHP(int type);
+    void changeCompareAtk(int type);
+    void changeCompareDef(int type);
+    void changeCompareSpA(int type);
+    void changeCompareSpD(int type);
+    void changeCompareSpe(int type);
 
 public:
     explicit IVFilter(QWidget *parent = 0);
