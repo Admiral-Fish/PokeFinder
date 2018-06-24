@@ -127,7 +127,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         // Determine if spread is possible
         // Need to work backwards to see if going forward with 1, 2, and 3 lands on our target
         bool valid = true;
-        for (int x = ((copy.length() - index + 3) / 2); x < data.size(); x++)
+        for (int x = ((copy.length() - index + 2) / 2); x < data.size(); x++)
         {
             int temp = data[x] >> 30;
             if (temp == 1 || temp == 2 || temp == 3)
