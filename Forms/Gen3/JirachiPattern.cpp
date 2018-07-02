@@ -90,7 +90,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     QString pattern = QString::number(seed >> 30);
     data.push_back(seed);
 
-    LCRNG rng = XDRNGR(seed);
+    XDRNGR rng(seed);
 
     // Populate backwards data
     for (u32 m = 0; m < 35; m++)
@@ -130,23 +130,18 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         for (int x = ((copy.length() - index + 2) / 2); x < data.size(); x++)
         {
             int temp = data[x] >> 30;
-            if (temp == 1 || temp == 2 || temp == 3)
+            if (temp == target)
             {
-                if (temp == target)
+                // Check if remaining numbers haven't occured yet
+                if (obtain[remain[0]] == 0 || obtain[remain[1]] == 0)
                 {
-                    // Check if remaining numbers haven't occured yet
-                    if (obtain[remain[0]] == 0 || obtain[remain[1]] == 0)
-                    {
-                        // Spread impossible
-                        valid = false;
-                        break;
-                    }
-                }
-                else
-                {
-                    obtain[temp] = 1;
+                    // Spread impossible
+                    valid = false;
+                    break;
                 }
             }
+
+            obtain[temp] = 1;
 
             // Check to see if pattern passes
             if (obtain[1] == 1 && obtain[2] == 1 && obtain[3] == 1)
@@ -168,31 +163,32 @@ QString JirachiPattern::getTarget(QString in, int index)
     // (prng >> 30 == 0) then advance 1
     // (prng >> 30 == 2) then advance 1, (next prng >> 25 > 41) then advance 1 more
     // (prng >> 30 == 1) or (prng >> 30 == 3) then advance 3
+    // After all this game advances 1 without doing any kind of check
 
     // Return an empty string if math doesn't fit
     switch (index)
     {
         case 0:
-            if ((data[1] >> 30) == 0)
+            if ((data[2] >> 30) == 0) // 6 advances total
                 in = in.mid(0, in.length() - 13) + "T:" + in.mid(in.length() - 13);
             else
                 return QString();
             break;
         case 1:
-            if ((data[3] >> 30) == 1 || (data[3] >> 30) == 3)
+            if ((data[4] >> 30) == 1 || (data[4] >> 30) == 3) // 8 advances total
                 in = in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
             else
                 return QString();
             break;
         case 2:
-            if ((data[2] >> 30) == 2 && (data[1] >> 25) <= 41)
+            if ((data[3] >> 30) == 2 && (data[2] >> 25) <= 41) // 6 advances total
                 in = in.mid(0, in.length() - 13) + "T:" + in.mid(in.length() - 13);
             else
                 return QString();
             break;
         case 3:
         default:
-            if ((data[2] >> 30) == 2 && (data[1] >> 25) > 41)
+            if ((data[3] >> 30) == 2 && (data[2] >> 25) > 41) // 7 advances total
                 in = in.mid(0, in.length() - 15) + "T:" + in.mid(in.length() - 15);
             else
                 return QString();
