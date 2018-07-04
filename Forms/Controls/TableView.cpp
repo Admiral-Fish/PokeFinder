@@ -49,6 +49,8 @@ void TableView::mouseDoubleClickEvent(QMouseEvent *event)
 
 void TableView::keyPressEvent(QKeyEvent *event)
 {
+    QTableView::keyPressEvent(event);
+
     if ((event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
     {
         QModelIndex index = this->currentIndex();

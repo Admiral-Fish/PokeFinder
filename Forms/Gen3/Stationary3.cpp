@@ -381,7 +381,7 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
     if (method == XD)
     {
         QStringList s = Translator::getSpecies({ 334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125, 83, 55, 88, 58, 316,
-                                               316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 179, 126, 82, 296, 310,
+                                               316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82, 296, 310,
                                                105, 303, 52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261, 57, 280, 78,
                                                20, 315, 302, 373, 123, 273, 273, 273, 86, 285, 143, 361, 338, 21, 363, 363,
                                                363, 167, 121, 220, 114, 49, 100, 37, 70
@@ -390,13 +390,12 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
         s[15] += tr(" (Citadark)");
         s[16] += tr(" (Initial)");
         s[17] += tr(" (Phenac)");
-        s[53] += tr(" (Citadark)");
-        s[54] += tr(" (Initial)");
-        s[55] += tr(" (Phenac)");
-        s[62] += tr(" (Citadark)");
-        s[63] += tr(" (Initial)");
-        s[64] += tr(" (Phenac)");
-        s[27] += tr(" (E-Reader)");
+        s[52] += tr(" (Citadark)");
+        s[53] += tr(" (Initial)");
+        s[54] += tr(" (Phenac)");
+        s[61] += tr(" (Citadark)");
+        s[62] += tr(" (Initial)");
+        s[63] += tr(" (Phenac)");
 
         ui->comboBoxShadow->addItems(s);
         ui->comboBoxShadow->setVisible(true);
