@@ -88,11 +88,12 @@ void PIDtoIVs::calcFromPID(u32 pid)
 {
     calcMethod124(pid);
     calcMethodXD(pid);
+    calcMethodChannel(pid);
 }
 
 void PIDtoIVs::calcMethod124(u32 pid)
 {
-    RNGCache cache = RNGCache(Method1);
+    RNGCache cache(Method1);
     PokeRNG forward(0);
     PokeRNGR backward(0);
 
@@ -111,7 +112,7 @@ void PIDtoIVs::calcMethod124(u32 pid)
 
 void PIDtoIVs::calcMethodXD(u32 pid)
 {
-    RNGEuclidean euclidean = RNGEuclidean(XDColo);
+    RNGEuclidean euclidean(XDColo);
     XDRNGR rng(0);
 
     vector<u32> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
@@ -125,12 +126,68 @@ void PIDtoIVs::calcMethodXD(u32 pid)
     }
 }
 
+void PIDtoIVs::calcMethodChannel(u32 pid)
+{
+    RNGEuclidean euclidean(XDColo);
+    XDRNGR rng(0);
+    XDRNG forward(0);
+
+    u32 pid1 = pid >> 16;
+    u32 pid2 = pid & 0xFFFF;
+
+    // Whether PID is xored or unxored is determined by SID which we don't know by only providing a PID
+    // So we have to check both xored and unxored and recalculate the PID to see if we have a match
+
+    vector<u32> seeds = euclidean.recoverLower16BitsPID(pid1 << 16, pid2 << 16);
+    for (auto i = 0; i < seeds.size(); i += 2)
+    {
+        rng.setSeed(seeds[i]);
+        u32 sid = rng.nextUShort();
+        u32 seed = rng.nextUInt();
+
+        forward.setSeed(seed);
+        forward.nextUInt();
+        u32 val1 = forward.nextUShort();
+        u32 val2 = forward.nextUShort();
+
+        if ((val2 > 7 ? 0 : 1) != (val1 ^ 40122 ^ sid))
+            val1 ^= 0x8000;
+        u32 val = (val1 << 16) | val2;
+        if (val == pid) // PID matches based on SID
+        {
+            forward.advanceFrames(3);
+            addSeedChannel(seed, forward.nextUInt());
+        }
+    }
+
+    vector<u32> seedsXOR = euclidean.recoverLower16BitsPID((pid1 ^ 0x8000) << 16, pid2 << 16);
+    for (auto i = 0; i < seeds.size(); i += 2)
+    {
+        rng.setSeed(seedsXOR[i]);
+        u32 sid = rng.nextUShort();
+        u32 seed = rng.nextUInt();
+
+        forward.setSeed(seed);
+        forward.nextUInt();
+        u32 val1 = forward.nextUShort();
+        u32 val2 = forward.nextUShort();
+
+        if ((val2 > 7 ? 0 : 1) != (val1 ^ 40122 ^ sid))
+            val1 ^= 0x8000;
+        u32 val = (val1 << 16) | val2;
+        if (val == pid) // PID matches based on SID
+        {
+            forward.advanceFrames(3);
+            addSeedChannel(seed, forward.nextUInt());
+        }
+    }
+}
+
 void PIDtoIVs::addSeed(u32 seed, u32 iv1)
 {
-    QString monsterSeed = QString::number(seed, 16);
-    model->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(tr("Method 1")) << new QStandardItem(calcIVs1(iv1)));
-    model->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(tr("Method 2")) << new QStandardItem(calcIVs2(iv1)));
-    model->appendRow(QList<QStandardItem *>() << new QStandardItem(monsterSeed.toUpper()) << new QStandardItem(tr("Method 4")) << new QStandardItem(calcIVs4(iv1)));
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 1")) << new QStandardItem(calcIVs(iv1, 1)));
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 2")) << new QStandardItem(calcIVs(iv1, 2)));
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 4")) << new QStandardItem(calcIVs(iv1, 4)));
 }
 
 void PIDtoIVs::addSeedGC(u32 seed, u32 iv1, u32 iv2)
@@ -138,91 +195,47 @@ void PIDtoIVs::addSeedGC(u32 seed, u32 iv1, u32 iv2)
     model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
 }
 
-QString PIDtoIVs::calcIVs1(u32 iv1)
+void PIDtoIVs::addSeedChannel(u32 seed, u32 iv1)
 {
-    QString ivs = "";
-    LCRNG rng = PokeRNG(iv1);
-    u32 iv2 = rng.nextUShort();
-    iv1 >>= 16;
-
-    for (u32 x = 0; x < 3; x++)
-    {
-        u32 q = x * 5;
-        u32 iv = (iv1 >> q) & 31;
-        ivs += QString::number(iv);
-        ivs += ".";
-    }
-
-    u32 val = (iv2 >> 5) & 31;
-    ivs += QString::number(val);
-    ivs += ".";
-
-    val = (iv2 >> 10) & 31;
-    ivs += QString::number(val);
-    ivs += ".";
-
-    val = iv2 & 31;
-    ivs += QString::number(val);
-
-    return ivs;
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Channel")) << new QStandardItem(calcIVsChannel(iv1)));
 }
 
-QString PIDtoIVs::calcIVs2(u32 iv1)
+QString PIDtoIVs::calcIVs(u32 iv1, int num)
 {
     QString ivs = "";
-    LCRNG rng = PokeRNG(iv1);
-    iv1 = rng.nextUInt();
-    u32 iv2 = rng.nextUShort();
-    iv1 >>= 16;
+    PokeRNG rng(iv1);
+    u32 iv2;
+
+    if (num == 1)
+    {
+        iv2 = rng.nextUShort();
+        iv1 >>= 16;
+    }
+    else if (num == 2)
+    {
+        iv1 = rng.nextUShort();
+        iv2 = rng.nextUShort();
+    }
+    else if (num == 4)
+    {
+        rng.nextUInt();
+        iv2 = rng.nextUShort();
+        iv1 >>= 16;
+    }
 
     for (u32 x = 0; x < 3; x++)
     {
-        u32 q = x * 5;
-        uint iv = (iv1 >> q) & 31;
-        ivs += QString::number(iv);
+        ivs += QString::number((iv1 >> (x * 5)) & 31);
         ivs += ".";
     }
 
-    u32 val = (iv2 >> 5) & 31;
-    ivs += QString::number(val);
+    ivs += QString::number((iv2 >> 5) & 31);
     ivs += ".";
 
-    val = (iv2 >> 10) & 31;
-    ivs += QString::number(val);
+    ivs += QString::number((iv2 >> 10) & 31);
     ivs += ".";
 
-    val = iv2 & 31;
-    ivs += QString::number(val);
-
-    return ivs;
-}
-
-QString PIDtoIVs::calcIVs4(u32 iv1)
-{
-    QString ivs = "";
-    LCRNG rng = PokeRNG(iv1);
-    rng.nextUInt();
-    u32 iv2 = rng.nextUShort();
-    iv1 >>= 16;
-
-    for (u32 x = 0; x < 3; x++)
-    {
-        u32 q = x * 5;
-        u32 iv = (iv1 >> q) & 31;
-        ivs += QString::number(iv);
-        ivs += ".";
-    }
-
-    u32 val = (iv2 >> 5) & 31;
-    ivs += QString::number(val);
-    ivs += ".";
-
-    val = (iv2 >> 10) & 31;
-    ivs += QString::number(val);
-    ivs += ".";
-
-    val = iv2 & 31;
-    ivs += QString::number(val);
+    ivs += QString::number(iv2 & 31);
 
     return ivs;
 }
@@ -233,22 +246,38 @@ QString PIDtoIVs::calcIVsXD(u32 iv1, u32 iv2)
 
     for (u32 x = 0; x < 3; x++)
     {
-        u32 q = x * 5;
-        u32 iv = (iv1 >> q) & 31;
-        ivs += QString::number(iv);
+        ivs += QString::number((iv1 >> (x * 5)) & 31);
         ivs += ".";
     }
 
-    u32 val = (iv2 >> 5) & 31;
-    ivs += QString::number(val);
+    ivs += QString::number((iv2 >> 5) & 31);
     ivs += ".";
 
-    val = (iv2 >> 10) & 31;
-    ivs += QString::number(val);
+    ivs += QString::number((iv2 >> 10) & 31);
     ivs += ".";
 
-    val = iv2 & 31;
-    ivs += QString::number(val);
+    ivs += QString::number(iv2 & 31);
+
+    return ivs;
+}
+
+QString PIDtoIVs::calcIVsChannel(u32 iv1)
+{
+    QString ivs = "";
+    XDRNG rng(iv1);
+
+    u32 val[6];
+    val[0] = iv1 >> 27;
+    for (int x = 1; x < 6; x++)
+        val[x] = rng.nextUInt() >> 27;
+
+    vector<int> order = { 0, 1, 2, 4, 5, 3};
+    for (auto x : order)
+    {
+        ivs += QString::number(val[x]);
+        if (x != 3)
+            ivs += ".";
+    }
 
     return ivs;
 }

@@ -72,12 +72,13 @@ private:
     void calcFromPID(u32 pid);
     void calcMethod124(u32 pid);
     void calcMethodXD(u32 pid);
-    QString calcIVs1(u32 iv1);
-    QString calcIVs2(u32 iv1);
-    QString calcIVs4(u32 iv1);
+    void calcMethodChannel(u32 pid);
+    QString calcIVs(u32 iv1, int num);
     QString calcIVsXD(u32 iv1, u32 iv2);
+    QString calcIVsChannel(u32 iv1);
     void addSeed(u32 seed, u32 iv1);
     void addSeedGC(u32 seed, u32 iv1, u32 iv2);
+    void addSeedChannel(u32 seed, u32 iv1);
 
 };
 
