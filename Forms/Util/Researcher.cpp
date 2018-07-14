@@ -238,13 +238,9 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     vector<ResearcherFrame> frames;
 
     if (rng64Bit)
-    {
         rng64->advanceFrames(startingFrame - 1);
-    }
     else
-    {
         rng->advanceFrames(startingFrame - 1);
-    }
 
     QString textL[10] = { ui->comboBoxLValue1->currentText(), ui->comboBoxLValue2->currentText(),
                           ui->comboBoxLValue3->currentText(), ui->comboBoxLValue4->currentText(),
@@ -262,15 +258,11 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 
     for (u32 i = startingFrame; i < maxFrames + startingFrame; i++)
     {
-        ResearcherFrame frame = ResearcherFrame(rng64Bit, i);
+        ResearcherFrame frame(rng64Bit, i);
         if (rng64Bit)
-        {
-            frame.full64 = rng64->nextULong();
-        }
+            frame.setFull64(rng64->nextULong());
         else
-        {
-            frame.full32 = rng->nextUInt();
-        }
+            frame.setFull32(rng->nextUInt());
 
         for (int j = 0; j < 10; j++)
         {
@@ -281,7 +273,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                 if (textR[j] != tr("None"))
                     customRValue[j] = getCustom(textR[j], frame, frames);
 
-                frame.custom[j] = Calculators[j](temp, customRValue[j]);
+                frame.setCustom(j, Calculators[j](temp, customRValue[j]));
             }
         }
         frames.push_back(frame);
@@ -359,53 +351,53 @@ u64 Researcher::getCustom(QString text, ResearcherFrame frame, vector<Researcher
     switch (keys[text])
     {
         case 0:
-            return frame.full64;
+            return frame.getFull64();
         case 1:
-            return frame.full32;
+            return frame.getFull32();
         case 2:
-            return frame.high32();
+            return frame.getHigh32();
         case 3:
-            return frame.low32();
+            return frame.getLow32();
         case 4:
-            return frame.high16();
+            return frame.getHigh16();
         case 5:
-            return frame.low16();
+            return frame.getLow16();
         case 6:
-            return frame.custom[0];
+            return frame.getCustom(0);
         case 7:
-            return frame.custom[1];
+            return frame.getCustom(1);
         case 8:
-            return frame.custom[2];
+            return frame.getCustom(2);
         case 9:
-            return frame.custom[3];
+            return frame.getCustom(3);
         case 10:
-            return frame.custom[4];
+            return frame.getCustom(4);
         case 11:
-            return frame.custom[5];
+            return frame.getCustom(5);
         case 12:
-            return frame.custom[6];
+            return frame.getCustom(6);
         case 13:
-            return frame.custom[7];
+            return frame.getCustom(7);
         case 14:
-            return frame.custom[8];
+            return frame.getCustom(8);
         case 15:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[0];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(0);
         case 16:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[1];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(1);
         case 17:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[2];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(2);
         case 18:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[3];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(3);
         case 19:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[4];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(4);
         case 20:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[5];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(5);
         case 21:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[6];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(6);
         case 22:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[7];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(7);
         case 23:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].custom[8];
+            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(8);
         default:
             return 0;
     }

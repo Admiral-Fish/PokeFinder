@@ -79,49 +79,49 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
             switch (column)
             {
                 case 0:
-                    return frame.frame;
+                    return frame.getFrame();
                 case 1:
-                    return QString::number(frame.full64, 16).toUpper().rightJustified(16, '0');
+                    return QString::number(frame.getFull64(), 16).toUpper().rightJustified(16, '0');
                 case 2:
-                    return QString::number(frame.high32(), 16).toUpper().rightJustified(8, '0');
+                    return QString::number(frame.getHigh32(), 16).toUpper().rightJustified(8, '0');
                 case 3:
-                    return QString::number(frame.low32(), 16).toUpper().rightJustified(8, '0');
+                    return QString::number(frame.getLow32(), 16).toUpper().rightJustified(8, '0');
                 case 4:
-                    return QString::number(frame.high16(), 16).toUpper().rightJustified(4, '0');
+                    return QString::number(frame.getHigh16(), 16).toUpper().rightJustified(4, '0');
                 case 5:
-                    return QString::number(frame.low16(), 16).toUpper().rightJustified(4, '0');
+                    return QString::number(frame.getLow16(), 16).toUpper().rightJustified(4, '0');
                 case 6:
-                    return QString::number(frame.custom[0], hex[0] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(0), hex[0] ? 16 : 10).toUpper();
                 case 7:
-                    return QString::number(frame.custom[1], hex[1] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(1), hex[1] ? 16 : 10).toUpper();
                 case 8:
-                    return QString::number(frame.custom[2], hex[2] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(2), hex[2] ? 16 : 10).toUpper();
                 case 9:
-                    return QString::number(frame.custom[3], hex[3] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(3), hex[3] ? 16 : 10).toUpper();
                 case 10:
-                    return QString::number(frame.custom[4], hex[4] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(4), hex[4] ? 16 : 10).toUpper();
                 case 11:
-                    return QString::number(frame.custom[5], hex[5] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(5), hex[5] ? 16 : 10).toUpper();
                 case 12:
-                    return QString::number(frame.custom[6], hex[6] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(6), hex[6] ? 16 : 10).toUpper();
                 case 13:
-                    return QString::number(frame.custom[7], hex[7] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(7), hex[7] ? 16 : 10).toUpper();
                 case 14:
-                    return QString::number(frame.custom[8], hex[8] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(8), hex[8] ? 16 : 10).toUpper();
                 case 15:
-                    return QString::number(frame.custom[9], hex[9] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(9), hex[9] ? 16 : 10).toUpper();
                 case 16:
-                    return frame.mod3();
+                    return frame.getMod3();
                 case 17:
-                    return frame.mod25();
+                    return frame.getMod25();
                 case 18:
-                    return frame.mod100();
+                    return frame.getMod100();
                 case 19:
-                    return frame.div656();
+                    return frame.getDiv656();
                 case 20:
-                    return frame.lowBit();
+                    return frame.getLowBit();
                 case 21:
-                    return frame.highBit();
+                    return frame.getHighBit();
             }
         }
         else
@@ -129,45 +129,45 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
             switch (column)
             {
                 case 0:
-                    return frame.frame;
+                    return frame.getFrame();
                 case 1:
-                    return QString::number(frame.full32, 16).toUpper().rightJustified(8, '0');
+                    return QString::number(frame.getFull32(), 16).toUpper().rightJustified(8, '0');
                 case 2:
-                    return QString::number(frame.high16(), 16).toUpper().rightJustified(4, '0');
+                    return QString::number(frame.getHigh16(), 16).toUpper().rightJustified(4, '0');
                 case 3:
-                    return QString::number(frame.low16(), 16).toUpper().rightJustified(4, '0');
+                    return QString::number(frame.getLow16(), 16).toUpper().rightJustified(4, '0');
                 case 4:
-                    return QString::number(frame.custom[0], hex[0] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(0), hex[0] ? 16 : 10).toUpper();
                 case 5:
-                    return QString::number(frame.custom[1], hex[1] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(1), hex[1] ? 16 : 10).toUpper();
                 case 6:
-                    return QString::number(frame.custom[2], hex[2] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(2), hex[2] ? 16 : 10).toUpper();
                 case 7:
-                    return QString::number(frame.custom[3], hex[3] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(3), hex[3] ? 16 : 10).toUpper();
                 case 8:
-                    return QString::number(frame.custom[4], hex[4] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(4), hex[4] ? 16 : 10).toUpper();
                 case 9:
-                    return QString::number(frame.custom[5], hex[5] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(5), hex[5] ? 16 : 10).toUpper();
                 case 10:
-                    return QString::number(frame.custom[6], hex[6] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(6), hex[6] ? 16 : 10).toUpper();
                 case 11:
-                    return QString::number(frame.custom[7], hex[7] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(7), hex[7] ? 16 : 10).toUpper();
                 case 12:
-                    return QString::number(frame.custom[8], hex[8] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(8), hex[8] ? 16 : 10).toUpper();
                 case 13:
-                    return QString::number(frame.custom[9], hex[9] ? 16 : 10).toUpper();
+                    return QString::number(frame.getCustom(9), hex[9] ? 16 : 10).toUpper();
                 case 14:
-                    return frame.mod3();
+                    return frame.getMod3();
                 case 15:
-                    return frame.mod25();
+                    return frame.getMod25();
                 case 16:
-                    return frame.mod100();
+                    return frame.getMod100();
                 case 17:
-                    return frame.div656();
+                    return frame.getDiv656();
                 case 18:
-                    return frame.lowBit();
+                    return frame.getLowBit();
                 case 19:
-                    return frame.highBit();
+                    return frame.getHighBit();
             }
         }
     }

@@ -28,24 +28,33 @@ typedef uint64_t u64;
 class ResearcherFrame
 {
 
-public:
+private:
     quint64 custom[10];
     bool rng64Bit;
     u64 full64;
     u32 full32;
     u32 frame;
 
+public:
     ResearcherFrame(bool rng64Bit, u32 frame);
-    inline u32 high32() { return (u32)(full64 >> 32); }
-    inline u32 low32() { return (u32)(full64 & 0xFFFFFFFF); }
-    inline u32 high16() { return rng64Bit ? high32() >> 16 : full32 >> 16; }
-    inline u32 low16() { return rng64Bit ? high32() & 0xFFFF : full32 & 0xFFFF; }
-    inline u32 mod25() { return rng64Bit ? high32() % 25 : high16() % 25; }
-    inline u32 mod100() { return rng64Bit ? high32() % 100 : high16() % 100; }
-    inline u32 mod3() { return rng64Bit ? high32() % 3 : high16() % 3; }
-    inline u32 div656() { return high16() / 656; }
-    inline u32 highBit() { return rng64Bit ? high32() >> 31 : high16() >> 15; }
-    inline u32 lowBit() { return rng64Bit ? high32() & 1 : high16() & 1; }
+    u32 getFull32() { return full32; }
+    void setFull32(u32 seed) { full32 = seed; }
+    u64 getFull64() { return full64; }
+    void setFull64(u64 seed) { full64 = seed; }
+    u32 getFrame() { return frame; }
+    void setFrame(u32 val) { frame = val; }
+    u32 getCustom(int x) { return custom[x]; }
+    void setCustom(int x, quint64 val) { custom[x] = val; }
+    inline u32 getHigh32() { return (u32)(full64 >> 32); }
+    inline u32 getLow32() { return (u32)(full64 & 0xFFFFFFFF); }
+    inline u32 getHigh16() { return rng64Bit ? getHigh32() >> 16 : full32 >> 16; }
+    inline u32 getLow16() { return rng64Bit ? getHigh32() & 0xFFFF : full32 & 0xFFFF; }
+    inline u32 getMod25() { return rng64Bit ? getHigh32() % 25 : getHigh16() % 25; }
+    inline u32 getMod100() { return rng64Bit ? getHigh32() % 100 : getHigh16() % 100; }
+    inline u32 getMod3() { return rng64Bit ? getHigh32() % 3 : getHigh16() % 3; }
+    inline u32 getDiv656() { return getHigh16() / 656; }
+    inline u32 getHighBit() { return rng64Bit ? getHigh32() >> 31 : getHigh16() >> 15; }
+    inline u32 getLowBit() { return rng64Bit ? getHigh32() & 1 : getHigh16() & 1; }
 
 };
 

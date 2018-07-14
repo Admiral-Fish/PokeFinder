@@ -36,12 +36,12 @@ private:
     bool flag;
     vector<bool> hex;
 
-    static inline u64 get64Bit(ResearcherFrame f) { return f.full64; }
-    static inline u64 get32BitHigh(ResearcherFrame f) { return f.high32(); }
-    static inline u64 get32BitLow(ResearcherFrame f) { return f.low32(); }
-    static inline u64 get32(ResearcherFrame f) { return f.full32; }
-    static inline u64 get16BitHigh(ResearcherFrame f) { return f.high16(); }
-    static inline u64 get16BitLow(ResearcherFrame f) { return f.low16(); }
+    static inline u64 get64Bit(ResearcherFrame f) { return f.getFull64(); }
+    static inline u64 get32BitHigh(ResearcherFrame f) { return f.getHigh32(); }
+    static inline u64 get32BitLow(ResearcherFrame f) { return f.getLow32(); }
+    static inline u64 get32(ResearcherFrame f) { return f.getFull32(); }
+    static inline u64 get16BitHigh(ResearcherFrame f) { return f.getHigh16(); }
+    static inline u64 get16BitLow(ResearcherFrame f) { return f.getLow16(); }
 
 public:
     ResearcherModel(QObject *parent, bool is64Bit);
