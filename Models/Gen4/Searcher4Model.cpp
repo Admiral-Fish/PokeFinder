@@ -43,7 +43,7 @@ void Searcher4Model::clear()
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
-    model.shrink_to_fit();
+    model.squeeze();
     emit endRemoveRows();
 }
 

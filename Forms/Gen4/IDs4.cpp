@@ -191,7 +191,7 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
     {
         for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
         {
-            u32 seed = ((month * day) + (minute + second) & 0xFF) << 24;
+            u32 seed = (((month * day) + (minute + second)) & 0xFF) << 24;
             seed |= (hour << 16);
             seed |= efgh;
 
