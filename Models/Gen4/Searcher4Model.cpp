@@ -24,16 +24,16 @@ Searcher4Model::Searcher4Model(QObject *parent, Method method) : QAbstractTableM
     this->method = method;
 }
 
-void Searcher4Model::setModel(vector<Frame4> frames)
+void Searcher4Model::setModel(QVector<Frame4> frames)
 {
     model = frames;
 }
 
-void Searcher4Model::addItems(vector<Frame4> frames)
+void Searcher4Model::addItems(QVector<Frame4> frames)
 {
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.insert(model.end(), frames.begin(), frames.end());
+    model.append(frames);
     emit endInsertRows();
 }
 
@@ -621,7 +621,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
 int Searcher4Model::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return (int)model.size();
+    return model.size();
 }
 
 int Searcher4Model::columnCount(const QModelIndex &parent) const
@@ -646,9 +646,8 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int row = index.row();
         int column = index.column();
-        Frame4 frame = model[row];
+        Frame4 frame = model[index.row()];
         switch (method)
         {
             case WondercardIVs:
@@ -739,6 +738,7 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                             case CuteCharm75M:
                                 return tr("Cute Charm (75% ♂");
                             case CuteCharm875M:
+                            default:
                                 return tr("Cute Charm (87.5% ♂");
                         }
                     case 3:
@@ -780,115 +780,112 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
 
 QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (orientation == Qt::Horizontal)
+        switch (method)
         {
-            switch (method)
-            {
-                case Method1:
-                case ChainedShiny:
-                    switch (section)
-                    {
-                        case 0:
-                            return tr("Seed");
-                        case 1:
-                            return tr("Frame");
-                        case 2:
-                            return tr("PID");
-                        case 3:
-                            return "!!!";
-                        case 4:
-                            return tr("Nature");
-                        case 5:
-                            return tr("Ability");
-                        case 6:
-                            return tr("HP");
-                        case 7:
-                            return tr("Atk");
-                        case 8:
-                            return tr("Def");
-                        case 9:
-                            return tr("SpA");
-                        case 10:
-                            return tr("SpD");
-                        case 11:
-                            return tr("Spe");
-                        case 12:
-                            return tr("Hidden");
-                        case 13:
-                            return tr("Power");
-                        case 14:
-                            return tr("Gender");
-                    }
-                    break;
-                case WondercardIVs:
-                    switch (section)
-                    {
-                        case 0:
-                            return tr("Seed");
-                        case 1:
-                            return tr("Frame");
-                        case 2:
-                            return tr("HP");
-                        case 3:
-                            return tr("Atk");
-                        case 4:
-                            return tr("Def");
-                        case 5:
-                            return tr("SpA");
-                        case 6:
-                            return tr("SpD");
-                        case 7:
-                            return tr("Spe");
-                        case 8:
-                            return tr("Hidden");
-                        case 9:
-                            return tr("Power");
-                    }
-                    break;
-                case MethodJ:
-                case MethodK:
-                    switch (section)
-                    {
-                        case 0:
-                            return tr("Seed");
-                        case 1:
-                            return tr("Frame");
-                        case 2:
-                            return tr("Lead");
-                        case 3:
-                            return tr("PID");
-                        case 4:
-                            return tr("Slot");
-                        case 5:
-                            return "!!!";
-                        case 6:
-                            return tr("Nature");
-                        case 7:
-                            return tr("Ability");
-                        case 8:
-                            return tr("HP");
-                        case 9:
-                            return tr("Atk");
-                        case 10:
-                            return tr("Def");
-                        case 11:
-                            return tr("SpA");
-                        case 12:
-                            return tr("SpD");
-                        case 13:
-                            return tr("Spe");
-                        case 14:
-                            return tr("Hidden");
-                        case 15:
-                            return tr("Power");
-                        case 16:
-                            return tr("Gender");
-                    }
-                default:
-                    break;
-            }
+            case Method1:
+            case ChainedShiny:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Seed");
+                    case 1:
+                        return tr("Frame");
+                    case 2:
+                        return tr("PID");
+                    case 3:
+                        return "!!!";
+                    case 4:
+                        return tr("Nature");
+                    case 5:
+                        return tr("Ability");
+                    case 6:
+                        return tr("HP");
+                    case 7:
+                        return tr("Atk");
+                    case 8:
+                        return tr("Def");
+                    case 9:
+                        return tr("SpA");
+                    case 10:
+                        return tr("SpD");
+                    case 11:
+                        return tr("Spe");
+                    case 12:
+                        return tr("Hidden");
+                    case 13:
+                        return tr("Power");
+                    case 14:
+                        return tr("Gender");
+                }
+                break;
+            case WondercardIVs:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Seed");
+                    case 1:
+                        return tr("Frame");
+                    case 2:
+                        return tr("HP");
+                    case 3:
+                        return tr("Atk");
+                    case 4:
+                        return tr("Def");
+                    case 5:
+                        return tr("SpA");
+                    case 6:
+                        return tr("SpD");
+                    case 7:
+                        return tr("Spe");
+                    case 8:
+                        return tr("Hidden");
+                    case 9:
+                        return tr("Power");
+                }
+                break;
+            case MethodJ:
+            case MethodK:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Seed");
+                    case 1:
+                        return tr("Frame");
+                    case 2:
+                        return tr("Lead");
+                    case 3:
+                        return tr("PID");
+                    case 4:
+                        return tr("Slot");
+                    case 5:
+                        return "!!!";
+                    case 6:
+                        return tr("Nature");
+                    case 7:
+                        return tr("Ability");
+                    case 8:
+                        return tr("HP");
+                    case 9:
+                        return tr("Atk");
+                    case 10:
+                        return tr("Def");
+                    case 11:
+                        return tr("SpA");
+                    case 12:
+                        return tr("SpD");
+                    case 13:
+                        return tr("Spe");
+                    case 14:
+                        return tr("Hidden");
+                    case 15:
+                        return tr("Power");
+                    case 16:
+                        return tr("Gender");
+                }
+            default:
+                break;
         }
     }
     return QVariant();

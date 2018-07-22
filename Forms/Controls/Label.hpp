@@ -31,7 +31,7 @@ signals:
     void pressed(int);
 
 public:
-    Label(QWidget *parent = 0);
+    Label(QWidget *parent = nullptr);
     void mousePressEvent(QMouseEvent *event);
 
 };

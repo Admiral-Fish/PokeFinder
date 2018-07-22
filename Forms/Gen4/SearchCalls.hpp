@@ -21,11 +21,10 @@
 #define SEARCHCALLS_HPP
 
 #include <QDialog>
+#include <QVector>
 #include <Util/DateTime.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
 #include <PokeFinderCore/Gen4/HGSSRoamer.hpp>
-
-using std::vector;
 
 namespace Ui
 {
@@ -38,10 +37,10 @@ class SearchCalls : public QDialog
 
 private:
     Ui::SearchCalls *ui;
-    vector<DateTime> data;
-    vector<bool> possible;
-    vector<bool> roamers;
-    vector<u32> routes;
+    QVector<DateTime> data;
+    QVector<bool> possible;
+    QVector<bool> roamers;
+    QVector<u32> routes;
 
 private slots:
     void on_pushButtonK_clicked();
@@ -54,9 +53,9 @@ private slots:
     void on_pushButtonCancel_clicked();
 
 public:
-    explicit SearchCalls(vector<DateTime> model, vector<bool> roamers, vector<u32> routes, QWidget *parent = 0);
+    explicit SearchCalls(QVector<DateTime> model, QVector<bool> roamers, QVector<u32> routes, QWidget *parent = nullptr);
     ~SearchCalls();
-    vector<bool> possibleResults();
+    QVector<bool> possibleResults();
 
 };
 

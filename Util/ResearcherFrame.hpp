@@ -36,6 +36,7 @@ private:
     u32 frame;
 
 public:
+    ResearcherFrame();
     ResearcherFrame(bool rng64Bit, u32 frame);
     u32 getFull32() { return full32; }
     void setFull32(u32 seed) { full32 = seed; }
@@ -43,10 +44,10 @@ public:
     void setFull64(u64 seed) { full64 = seed; }
     u32 getFrame() { return frame; }
     void setFrame(u32 val) { frame = val; }
-    u32 getCustom(int x) { return custom[x]; }
+    u64 getCustom(int x) { return custom[x]; }
     void setCustom(int x, quint64 val) { custom[x] = val; }
-    inline u32 getHigh32() { return (u32)(full64 >> 32); }
-    inline u32 getLow32() { return (u32)(full64 & 0xFFFFFFFF); }
+    inline u32 getHigh32() { return static_cast<u32>((full64 >> 32)); }
+    inline u32 getLow32() { return static_cast<u32>((full64 & 0xFFFFFFFF)); }
     inline u32 getHigh16() { return rng64Bit ? getHigh32() >> 16 : full32 >> 16; }
     inline u32 getLow16() { return rng64Bit ? getHigh32() & 0xFFFF : full32 & 0xFFFF; }
     inline u32 getMod25() { return rng64Bit ? getHigh32() % 25 : getHigh16() % 25; }

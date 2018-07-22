@@ -41,7 +41,7 @@ IDs3::~IDs3()
 
 void IDs3::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -98,7 +98,7 @@ void IDs3::on_pushButtonFindFRLGE_clicked()
     u32 tid = ui->textBoxTIDFRLGE->text().toUInt();
     bool usePID = ui->checkBoxPIDFRLGE->isChecked();
     bool useSID = ui->checkBoxSIDFRLGE->isChecked();
-    u32 pid = ui->textBoxPIDFRLGE->text().toUInt(NULL, 16);
+    u32 pid = ui->textBoxPIDFRLGE->text().toUInt(nullptr, 16);
     u32 searchSID = ui->textBoxSIDFRLGE->text().toUInt();
 
     LCRNG rng = PokeRNG(tid);
@@ -128,7 +128,7 @@ void IDs3::on_pushButtonFindRS_clicked()
     bool usePID = ui->checkBoxPIDRS->isChecked();
     bool useSID = ui->checkBoxSIDRS->isChecked();
     bool useTID = ui->checkBoxTIDRS->isChecked();
-    u32 pid = ui->textBoxPIDRS->text().toUInt(NULL, 16);
+    u32 pid = ui->textBoxPIDRS->text().toUInt(nullptr, 16);
     u32 searchSID = ui->textBoxSIDRS->text().toUInt();
     u32 searchTID = ui->textBoxTIDRS->text().toUInt();
 
@@ -136,9 +136,9 @@ void IDs3::on_pushButtonFindRS_clicked()
     u32 maxResults = ui->textBoxMaxFrameRS->text().toUInt();
 
     if (ui->radioButtonInitSeedRS->isChecked())
-        seed = ui->textBoxInitSeedRS->text().toUInt(NULL, 16);
+        seed = ui->textBoxInitSeedRS->text().toUInt(nullptr, 16);
     else
-        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->date(), ui->dateTimeEdit->time().hour(), ui->dateTimeEdit->time().minute());
+        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->date(), static_cast<u32>(ui->dateTimeEdit->time().hour()), static_cast<u32>(ui->dateTimeEdit->time().minute()));
 
     LCRNG rng = PokeRNG(seed);
 
@@ -162,11 +162,11 @@ void IDs3::on_pushButtonFindXD_clicked()
 {
     xdcolo->removeRows(0, xdcolo->rowCount());
 
-    u32 seed = ui->textBoxSeedXD->text().toUInt(NULL, 16);
+    u32 seed = ui->textBoxSeedXD->text().toUInt(nullptr, 16);
     bool usePID = ui->checkBoxPIDXD->isChecked();
     bool useSID = ui->checkBoxSIDXD->isChecked();
     bool useTID = ui->checkBoxTIDXD->isChecked();
-    u32 pid = ui->textBoxPIDXD->text().toUInt(NULL, 16);
+    u32 pid = ui->textBoxPIDXD->text().toUInt(nullptr, 16);
     u32 searchSID = ui->textBoxSIDXD->text().toUInt();
     u32 searchTID = ui->textBoxTIDXD->text().toUInt();
 

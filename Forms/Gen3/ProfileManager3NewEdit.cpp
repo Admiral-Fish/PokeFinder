@@ -66,7 +66,7 @@ Profile3 ProfileManager3NewEdit::getOriginal()
 
 void ProfileManager3NewEdit::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -104,8 +104,8 @@ void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
         return;
     }
 
-    fresh = Profile3(ui->lineEditProfile->text(), (Game)ui->comboBoxVersion->currentData().toInt(), ui->textBoxTID->text().toUInt(NULL, 10),
-                     ui->textBoxSID->text().toUInt(NULL, 10), ui->comboBoxLanguage->currentIndex(), ui->checkBoxDeadBattery->isChecked());
+    fresh = Profile3(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->text().toUShort(),
+                     ui->textBoxSID->text().toUShort(), ui->comboBoxLanguage->currentIndex(), ui->checkBoxDeadBattery->isChecked());
 
     done(QDialog::Accepted);
 }

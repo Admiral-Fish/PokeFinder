@@ -1110,7 +1110,7 @@ QPushButton {
             </widget>
            </item>
            <item row="11" column="0" colspan="2">
-            <widget class="QPushButton" name="generate">
+            <widget class="QPushButton" name="pushButtonGenerate">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -1152,18 +1152,7 @@ QPushButton {
            <enum>Qt::CustomContextMenu</enum>
           </property>
           <property name="styleSheet">
-           <string notr="true">QTableView {
-	border: 4px solid DodgerBlue;
-}
-
-QHeaderView::section {
-	border: none;
-	background-color: #274050;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	color: white;
-}
-</string>
+           <string notr="true"/>
           </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
@@ -1404,7 +1393,7 @@ QHeaderView::section {
             </widget>
            </item>
            <item row="8" column="0" colspan="2">
-            <widget class="QPushButton" name="search">
+            <widget class="QPushButton" name="pushButtonSearch">
              <property name="enabled">
               <bool>true</bool>
              </property>

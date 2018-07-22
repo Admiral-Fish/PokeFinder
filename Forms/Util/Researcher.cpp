@@ -33,7 +33,7 @@ Researcher::Researcher(QWidget *parent) :
 
 void Researcher::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -60,12 +60,12 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     model->clear();
     model->setFlag(rng64Bit);
 
-    u64 seed = ui->textBoxSeed->text().toULongLong(NULL, 16);
-    u32 maxFrames = ui->textBoxMaxFrames->text().toUInt(NULL, 10);
-    u32 startingFrame = ui->textBoxStartingFrame->text().toUInt(NULL, 10);
+    u64 seed = ui->textBoxSeed->text().toULongLong(nullptr, 16);
+    u32 maxFrames = ui->textBoxMaxFrames->text().toUInt();
+    u32 startingFrame = ui->textBoxStartingFrame->text().toUInt();
 
-    IRNG *rng = NULL;
-    IRNG64 *rng64 = NULL;
+    IRNG *rng = nullptr;
+    IRNG64 *rng64 = nullptr;
 
     if (ui->rngSelection->currentIndex() != 1 && (seed > 0xffffffff))
         seed >>= 32;
@@ -77,28 +77,28 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
             switch (ui->comboBoxRNG32Bit->currentIndex())
             {
                 case 0:
-                    rng = new PokeRNG(seed);
+                    rng = new PokeRNG(static_cast<u32>(seed));
                     break;
                 case 1:
-                    rng = new PokeRNGR(seed);
+                    rng = new PokeRNGR(static_cast<u32>(seed));
                     break;
                 case 2:
-                    rng = new XDRNG(seed);
+                    rng = new XDRNG(static_cast<u32>(seed));
                     break;
                 case 3:
-                    rng = new XDRNGR(seed);
+                    rng = new XDRNGR(static_cast<u32>(seed));
                     break;
                 case 4:
-                    rng = new ARNG(seed);
+                    rng = new ARNG(static_cast<u32>(seed));
                     break;
                 case 5:
-                    rng = new ARNGR(seed);
+                    rng = new ARNGR(static_cast<u32>(seed));
                     break;
                 case 6:
-                    rng = new MersenneTwister(seed);
+                    rng = new MersenneTwister(static_cast<u32>(seed));
                     break;
                 case 7:
-                    rng = new MersenneTwisterUntempered(seed);
+                    rng = new MersenneTwisterUntempered(static_cast<u32>(seed));
                     break;
                 case 8:
                     if (maxFrames > 227 || startingFrame > 227 || (startingFrame + maxFrames > 227))
@@ -108,15 +108,15 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                         error.exec();
                         return;
                     }
-                    rng = new MersenneTwisterFast(seed, maxFrames);
+                    rng = new MersenneTwisterFast(static_cast<u32>(seed), maxFrames);
                     break;
             }
         }
         else
         {
-            u32 add = ui->textBoxAdd32Bit->text().toUInt(NULL, 16);
-            u32 mult = ui->textBoxMult32Bit->text().toUInt(NULL, 16);
-            rng = new LCRNG(add, mult, seed);
+            u32 add = ui->textBoxAdd32Bit->text().toUInt(nullptr, 16);
+            u32 mult = ui->textBoxMult32Bit->text().toUInt(nullptr, 16);
+            rng = new LCRNG(add, mult, static_cast<u32>(seed));
         }
     }
     else if (ui->rngSelection->currentIndex() == 1)
@@ -134,21 +134,21 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                 case 2:
                     if (seed > 0xffffffff)
                         seed >>= 32;
-                    rng64 = new SFMT(seed);
+                    rng64 = new SFMT(static_cast<u32>(seed));
                     break;
             }
         }
         else
         {
-            u64 add = ui->textBoxAdd64Bit->text().toUInt(NULL, 16);
-            u64 mult = ui->textBoxMult64Bit->text().toUInt(NULL, 16);
+            u64 add = ui->textBoxAdd64Bit->text().toUInt(nullptr, 16);
+            u64 mult = ui->textBoxMult64Bit->text().toUInt(nullptr, 16);
             rng64 = new LCRNG64(add, mult, seed);
         }
     }
     else
     {
-        u32 status[4] = { ui->textBoxStatus0->text().toUInt(NULL, 16), ui->textBoxStatus1->text().toUInt(NULL, 16),
-                          ui->textBoxStatus2->text().toUInt(NULL, 16), ui->textBoxStatus3->text().toUInt(NULL, 16)
+        u32 status[4] = { ui->textBoxStatus0->text().toUInt(nullptr, 16), ui->textBoxStatus1->text().toUInt(nullptr, 16),
+                          ui->textBoxStatus2->text().toUInt(nullptr, 16), ui->textBoxStatus3->text().toUInt(nullptr, 16)
                         };
         rng = new TinyMT(status);
     }
@@ -184,34 +184,34 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 
     customRValue[0] = ui->checkBoxHex1->isChecked()
                       ? ui->lineEditRValue1->text().toULongLong(&pass[0], 16)
-                      : ui->lineEditRValue1->text().toULongLong(&pass[0], 10);
+                      : ui->lineEditRValue1->text().toULongLong(&pass[0]);
     customRValue[1] = ui->checkBoxHex2->isChecked()
                       ? ui->lineEditRValue2->text().toULongLong(&pass[1], 16)
-                      : ui->lineEditRValue2->text().toULongLong(&pass[1], 10);
+                      : ui->lineEditRValue2->text().toULongLong(&pass[1]);
     customRValue[2] = ui->checkBoxHex3->isChecked()
                       ? ui->lineEditRValue3->text().toULongLong(&pass[2], 16)
-                      : ui->lineEditRValue3->text().toULongLong(&pass[2], 10);
+                      : ui->lineEditRValue3->text().toULongLong(&pass[2]);
     customRValue[3] = ui->checkBoxHex4->isChecked()
                       ? ui->lineEditRValue4->text().toULongLong(&pass[3], 16)
-                      : ui->lineEditRValue4->text().toULongLong(&pass[3], 10);
+                      : ui->lineEditRValue4->text().toULongLong(&pass[3]);
     customRValue[4] = ui->checkBoxHex5->isChecked()
                       ? ui->lineEditRValue5->text().toULongLong(&pass[4], 16)
-                      : ui->lineEditRValue5->text().toULongLong(&pass[4], 10);
+                      : ui->lineEditRValue5->text().toULongLong(&pass[4]);
     customRValue[5] = ui->checkBoxHex6->isChecked()
                       ? ui->lineEditRValue6->text().toULongLong(&pass[5], 16)
-                      : ui->lineEditRValue6->text().toULongLong(&pass[5], 10);
+                      : ui->lineEditRValue6->text().toULongLong(&pass[5]);
     customRValue[6] = ui->checkBoxHex7->isChecked()
                       ? ui->lineEditRValue7->text().toULongLong(&pass[6], 16)
-                      : ui->lineEditRValue7->text().toULongLong(&pass[6], 10);
+                      : ui->lineEditRValue7->text().toULongLong(&pass[6]);
     customRValue[7] = ui->checkBoxHex8->isChecked()
                       ? ui->lineEditRValue8->text().toULongLong(&pass[7], 16)
-                      : ui->lineEditRValue8->text().toULongLong(&pass[7], 10);
+                      : ui->lineEditRValue8->text().toULongLong(&pass[7]);
     customRValue[8] = ui->checkBoxHex9->isChecked()
                       ? ui->lineEditRValue9->text().toULongLong(&pass[8], 16)
-                      : ui->lineEditRValue9->text().toULongLong(&pass[8], 10);
+                      : ui->lineEditRValue9->text().toULongLong(&pass[8]);
     customRValue[9] = ui->checkBoxHex10->isChecked()
                       ? ui->lineEditRValue10->text().toULongLong(&pass[9], 16)
-                      : ui->lineEditRValue10->text().toULongLong(&pass[9], 10);
+                      : ui->lineEditRValue10->text().toULongLong(&pass[9]);
 
     for (int i = 0; i < 10; i++)
     {
@@ -235,7 +235,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     Calculators[8] = calc[ui->comboBoxOperator9->currentText()];
     Calculators[9] = calc[ui->comboBoxOperator10->currentText()];
 
-    vector<ResearcherFrame> frames;
+    QVector<ResearcherFrame> frames;
 
     if (rng64Bit)
         rng64->advanceFrames(startingFrame - 1);
@@ -276,7 +276,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                 frame.setCustom(j, Calculators[j](temp, customRValue[j]));
             }
         }
-        frames.push_back(frame);
+        frames.append(frame);
     }
 
     model->setHex(getHexCheck());
@@ -300,7 +300,7 @@ void Researcher::on_pushButtonSearch_clicked()
         return;
 
     QString string = ui->comboBoxSearch->currentText();
-    u64 result = ui->textBoxSearch->text().toULongLong(NULL, 16);
+    u64 result = ui->textBoxSearch->text().toULongLong(nullptr, 16);
 
     QModelIndex end = model->search(string, result, 0);
     if (end.isValid())
@@ -325,7 +325,7 @@ void Researcher::on_pushButtonNext_clicked()
 
     QString string = ui->comboBoxSearch->currentText();
     QModelIndex start = ui->tableView->currentIndex();
-    u64 result = ui->textBoxSearch->text().toULongLong(NULL, 16);
+    u64 result = ui->textBoxSearch->text().toULongLong(nullptr, 16);
 
     if (!start.isValid())
         return;
@@ -346,7 +346,7 @@ void Researcher::on_pushButtonNext_clicked()
     }
 }
 
-u64 Researcher::getCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames)
+u64 Researcher::getCustom(QString text, ResearcherFrame frame, QVector<ResearcherFrame> frames)
 {
     switch (keys[text])
     {
@@ -479,20 +479,20 @@ void Researcher::resizeHeader()
     }
 }
 
-vector<bool> Researcher::getHexCheck()
+QVector<bool> Researcher::getHexCheck()
 {
-    vector<bool> hex;
+    QVector<bool> hex;
 
-    hex.push_back(ui->checkBoxHex1->isChecked());
-    hex.push_back(ui->checkBoxHex2->isChecked());
-    hex.push_back(ui->checkBoxHex3->isChecked());
-    hex.push_back(ui->checkBoxHex4->isChecked());
-    hex.push_back(ui->checkBoxHex5->isChecked());
-    hex.push_back(ui->checkBoxHex6->isChecked());
-    hex.push_back(ui->checkBoxHex7->isChecked());
-    hex.push_back(ui->checkBoxHex8->isChecked());
-    hex.push_back(ui->checkBoxHex9->isChecked());
-    hex.push_back(ui->checkBoxHex10->isChecked());
+    hex.append(ui->checkBoxHex1->isChecked());
+    hex.append(ui->checkBoxHex2->isChecked());
+    hex.append(ui->checkBoxHex3->isChecked());
+    hex.append(ui->checkBoxHex4->isChecked());
+    hex.append(ui->checkBoxHex5->isChecked());
+    hex.append(ui->checkBoxHex6->isChecked());
+    hex.append(ui->checkBoxHex7->isChecked());
+    hex.append(ui->checkBoxHex8->isChecked());
+    hex.append(ui->checkBoxHex9->isChecked());
+    hex.append(ui->checkBoxHex10->isChecked());
 
     return hex;
 }

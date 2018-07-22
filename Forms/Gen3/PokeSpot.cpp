@@ -43,7 +43,7 @@ PokeSpot::~PokeSpot()
 
 void PokeSpot::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -106,25 +106,25 @@ void PokeSpot::on_pushButtonGenerate_clicked()
 {
     model->clear();
 
-    vector<Frame3> frames;
+    QVector<Frame3> frames;
 
-    if (rng != NULL)
+    if (!rng)
         rng = new XDRNG(0);
 
-    u32 seed = ui->textBoxSeed->text().toUInt(NULL, 16);
-    u32 initialFrame = ui->textBoxStartingFrame->text().toUInt(NULL, 10);
-    u32 maxFrames = ui->textBoxMaxResults->text().toUInt(NULL, 10);
-    u32 tid = ui->textBoxTID->text().toUInt(NULL, 10);
-    u32 sid = ui->textBoxSID->text().toUInt(NULL, 10);
+    u32 seed = ui->textBoxSeed->text().toUInt(nullptr, 16);
+    u32 initialFrame = ui->textBoxStartingFrame->text().toUInt();
+    u32 maxFrames = ui->textBoxMaxResults->text().toUInt();
+    u16 tid = ui->textBoxTID->text().toUShort();
+    u16 sid = ui->textBoxSID->text().toUShort();
 
     int genderRatio = ui->comboBoxGenderRatio->currentIndex();
 
     rng->setSeed(seed);
     rng->advanceFrames(initialFrame - 1);
 
-    vector<u32> rngList;
+    QVector<u16> rngList;
     for (int x = 0; x < 5; x++)
-        rngList.push_back(rng->nextUShort());
+        rngList.append(rng->nextUShort());
 
     u32 max = initialFrame + maxFrames;
     u32 call1, call2, call3;
@@ -132,11 +132,11 @@ void PokeSpot::on_pushButtonGenerate_clicked()
     Frame3 frame = Frame3(tid, sid, tid ^ sid);
     FrameCompare compare = FrameCompare(ui->comboBoxGender->currentIndex(), genderRatio, ui->comboBoxAbility->currentIndex(),
                                         ui->comboBoxNature->getChecked(), ui->checkBoxShinyOnly->isChecked());
-    frame.setGenderRatio(genderRatio);
+    frame.setGenderRatio(static_cast<u32>(genderRatio));
 
-    vector<bool> spots = ui->comboBoxSpotType->getChecked();
+    QVector<bool> spots = ui->comboBoxSpotType->getChecked();
 
-    for (u32 cnt = initialFrame; cnt < max; cnt++, rngList.erase(rngList.begin()), rngList.push_back(rng->nextUShort()))
+    for (u32 cnt = initialFrame; cnt < max; cnt++, rngList.removeFirst(), rngList.append(rng->nextUShort()))
     {
         // Check if frame is a valid pokespot call
         call1 = rngList[0] % 3;
@@ -173,7 +173,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         if (compare.comparePID(frame))
         {
             frame.setFrame(cnt);
-            frames.push_back(frame);
+            frames.append(frame);
         }
     }
     model->setModel(frames);

@@ -22,6 +22,7 @@
 
 #include <QMainWindow>
 #include <QSettings>
+#include <QVector>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <Models/Gen3/PokeSpotModel.hpp>
 #include <PokeFinderCore/Objects/Nature.hpp>
@@ -43,7 +44,7 @@ protected:
 private:
     Ui::PokeSpot *ui;
     PokeSpotModel *model = new PokeSpotModel(this);
-    XDRNG *rng = NULL;
+    XDRNG *rng = nullptr;
 
     void setupModels();
     void saveSettings();
@@ -56,7 +57,7 @@ private slots:
     void on_pushButtonGenerate_clicked();
 
 public:
-    explicit PokeSpot(QWidget *parent = 0);
+    explicit PokeSpot(QWidget *parent = nullptr);
     ~PokeSpot();
 
 };

@@ -23,10 +23,10 @@
 #include <QDialog>
 #include <QPixmap>
 #include <QImage>
+#include <QVector>
 #include <Util/DateTime.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
 
-using std::vector;
 
 namespace Ui
 {
@@ -39,8 +39,8 @@ class SearchCoinFlips : public QDialog
 
 private:
     Ui::SearchCoinFlips *ui;
-    vector<DateTime> data;
-    vector<bool> possible;
+    QVector<DateTime> data;
+    QVector<bool> possible;
 
 private slots:
     void on_pushButtonHeads_clicked();
@@ -50,9 +50,9 @@ private slots:
     void on_pushButtonCancel_clicked();
 
 public:
-    explicit SearchCoinFlips(vector<DateTime> model, QWidget *parent = 0);
+    explicit SearchCoinFlips(QVector<DateTime> model, QWidget *parent = nullptr);
     ~SearchCoinFlips();
-    vector<bool> possibleResults();
+    QVector<bool> possibleResults();
 };
 
 #endif // SEARCHCOINFLIPS_HPP

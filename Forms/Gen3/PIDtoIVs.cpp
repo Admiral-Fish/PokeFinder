@@ -42,7 +42,7 @@ PIDtoIVs::~PIDtoIVs()
 
 void PIDtoIVs::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -71,12 +71,12 @@ void PIDtoIVs::setupModels()
     connect(moveResults, &QAction::triggered, this, [ = ]
     {
         QStringList ivs = ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 2)).toString().split(".");
-        emit moveResultsToStationary(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString(), ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 1)).toString(), ((QString)ivs[0]).toUInt(), ((QString)ivs[1]).toUInt(), ((QString)ivs[2]).toUInt(), ((QString)ivs[3]).toUInt(), ((QString)ivs[4]).toUInt(), ((QString)ivs[5]).toUInt());
+        emit moveResultsToStationary(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString(), ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 1)).toString(), ivs.at(0).toUInt(), ivs.at(1).toUInt(), ivs.at(2).toUInt(), ivs.at(3).toUInt(), ivs.at(4).toUInt(), ivs.at(5).toUInt());
     });
     connect(moveIVs, &QAction::triggered, this, [ = ]
     {
         QStringList ivs = ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 2)).toString().split(".");
-        emit moveResultsToStationary("", "", ((QString)ivs[0]).toUInt(), ((QString)ivs[1]).toUInt(), ((QString)ivs[2]).toUInt(), ((QString)ivs[3]).toUInt(), ((QString)ivs[4]).toUInt(), ((QString)ivs[5]).toUInt());
+        emit moveResultsToStationary("", "", ivs.at(0).toUInt(), ivs.at(1).toUInt(), ivs.at(2).toUInt(), ivs.at(3).toUInt(), ivs.at(4).toUInt(), ivs.at(5).toUInt());
     });
 
     contextMenu->addAction(copySeed);
@@ -100,7 +100,7 @@ void PIDtoIVs::calcMethod124(u32 pid)
     u32 pidl = (pid & 0xFFFF) << 16;
     u32 pidh = pid & 0xFFFF0000;
 
-    vector<u32> seeds = cache.recoverLower16BitsPID(pidl, pidh);
+    QVector<u32> seeds = cache.recoverLower16BitsPID(pidl, pidh);
     for (int i = 0; i < seeds.size(); i++)
     {
         forward.setSeed(seeds[i]);
@@ -115,8 +115,8 @@ void PIDtoIVs::calcMethodXD(u32 pid)
     RNGEuclidean euclidean(XDColo);
     XDRNGR rng(0);
 
-    vector<u32> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
-    for (auto i = 0; i < seeds.size(); i += 2)
+    QVector<u32> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
+    for (int i = 0; i < seeds.size(); i += 2)
     {
         rng.setSeed(seeds[i]);
         rng.nextUInt();
@@ -138,8 +138,8 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
     // Whether PID is xored or unxored is determined by SID which we don't know by only providing a PID
     // So we have to check both xored and unxored and recalculate the PID to see if we have a match
 
-    vector<u32> seeds = euclidean.recoverLower16BitsPID(pid1 << 16, pid2 << 16);
-    for (auto i = 0; i < seeds.size(); i += 2)
+    QVector<u32> seeds = euclidean.recoverLower16BitsPID(pid1 << 16, pid2 << 16);
+    for (int i = 0; i < seeds.size(); i += 2)
     {
         rng.setSeed(seeds[i]);
         u32 sid = rng.nextUShort();
@@ -160,8 +160,8 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
         }
     }
 
-    vector<u32> seedsXOR = euclidean.recoverLower16BitsPID((pid1 ^ 0x8000) << 16, pid2 << 16);
-    for (auto i = 0; i < seeds.size(); i += 2)
+    QVector<u32> seedsXOR = euclidean.recoverLower16BitsPID((pid1 ^ 0x8000) << 16, pid2 << 16);
+    for (int i = 0; i < seeds.size(); i += 2)
     {
         rng.setSeed(seedsXOR[i]);
         u32 sid = rng.nextUShort();
@@ -216,7 +216,7 @@ QString PIDtoIVs::calcIVs(u32 iv1, int num)
         iv1 = rng.nextUShort();
         iv2 = rng.nextUShort();
     }
-    else if (num == 4)
+    else // method == 4
     {
         rng.nextUInt();
         iv2 = rng.nextUShort();
@@ -271,8 +271,8 @@ QString PIDtoIVs::calcIVsChannel(u32 iv1)
     for (int x = 1; x < 6; x++)
         val[x] = rng.nextUInt() >> 27;
 
-    vector<int> order = { 0, 1, 2, 4, 5, 3};
-    for (auto x : order)
+    QVector<int> order = { 0, 1, 2, 4, 5, 3};
+    for (int x : order)
     {
         ivs += QString::number(val[x]);
         if (x != 3)
@@ -285,7 +285,7 @@ QString PIDtoIVs::calcIVsChannel(u32 iv1)
 void PIDtoIVs::on_pushButtonGenerate_clicked()
 {
     model->removeRows(0, model->rowCount());
-    u32 pid = ui->pidInput->text().toUInt(NULL, 16);
+    u32 pid = ui->pidInput->text().toUInt(nullptr, 16);
     calcFromPID(pid);
 }
 

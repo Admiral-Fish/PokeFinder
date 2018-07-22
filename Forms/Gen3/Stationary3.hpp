@@ -39,6 +39,7 @@
 #include <QFileDialog>
 #include <QClipboard>
 #include <QSettings>
+#include <QVector>
 
 namespace Ui
 {
@@ -53,7 +54,7 @@ protected:
     void changeEvent(QEvent *);
 
 signals:
-    void updateView(vector<Frame3>);
+    void updateView(QVector<Frame3>);
     void alertProfiles(int);
     void updateProgress();
 
@@ -63,8 +64,8 @@ private:
     Stationary3Model *g = new Stationary3Model(this);
     bool isSearching = false;
     bool cancel = false;
-    u32 progress;
-    vector<Profile3> profiles;
+    int progress;
+    QVector<Profile3> profiles;
     QMenu *generatorMenu = new QMenu();
     QMenu *searcherMenu = new QMenu();
     QModelIndex lastIndex;
@@ -87,7 +88,7 @@ private slots:
     void on_search_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void updateViewSearcher(vector<Frame3> frames);
+    void updateViewSearcher(QVector<Frame3> frames);
     void on_comboBoxMethodSearcher_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void setTargetFrameGenerator();
@@ -102,7 +103,7 @@ private slots:
     void on_pushButtonProfileManager_clicked();
 
 public:
-    explicit Stationary3(QWidget *parent = 0);
+    explicit Stationary3(QWidget *parent = nullptr);
     ~Stationary3();
     void updateProfiles();
 

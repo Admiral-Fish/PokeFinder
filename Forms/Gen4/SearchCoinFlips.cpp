@@ -20,7 +20,7 @@
 #include "SearchCoinFlips.hpp"
 #include "ui_SearchCoinFlips.h"
 
-SearchCoinFlips::SearchCoinFlips(vector<DateTime> model, QWidget *parent) :
+SearchCoinFlips::SearchCoinFlips(QVector<DateTime> model, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchCoinFlips)
 {
@@ -43,7 +43,7 @@ SearchCoinFlips::~SearchCoinFlips()
     delete ui;
 }
 
-vector<bool> SearchCoinFlips::possibleResults()
+QVector<bool> SearchCoinFlips::possibleResults()
 {
     return possible;
 }
@@ -92,7 +92,7 @@ void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &arg1)
                 break;
             }
         }
-        possible.push_back(pass);
+        possible.append(pass);
         if (pass)
             num++;
     }

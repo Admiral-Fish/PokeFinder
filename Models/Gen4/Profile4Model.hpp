@@ -21,6 +21,7 @@
 #define PROFILE4MODEL_HPP
 
 #include <QAbstractTableModel>
+#include <QVector>
 #include <PokeFinderCore/Gen4/Profile4.hpp>
 
 class Profile4Model : public QAbstractTableModel
@@ -28,11 +29,11 @@ class Profile4Model : public QAbstractTableModel
     Q_OBJECT
 
 private:
-    vector<Profile4> model;
+    QVector<Profile4> model;
 
 public:
     Profile4Model(QObject *parent);
-    void setModel(vector<Profile4> profiles);
+    void setModel(QVector<Profile4> profiles);
     void addItem(Profile4 profile);
     void updateProfile(Profile4 profile, int row);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;

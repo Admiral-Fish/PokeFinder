@@ -50,8 +50,8 @@ void Eggs3::updateProfiles()
 
     ui->comboBoxProfiles->clear();
 
-    for (int i = 0; i < (int)profiles.size(); i++)
-        ui->comboBoxProfiles->addItem(profiles[i].getProfileName());
+    for (auto profile : profiles)
+        ui->comboBoxProfiles->addItem(profile.getProfileName());
 
     QSettings setting;
     int val = setting.value("egg3Profile").toInt();
@@ -118,7 +118,7 @@ void Eggs3::setupModels()
 
 void Eggs3::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -187,8 +187,8 @@ void Eggs3::on_pushButtonGenerateEmeraldPID_clicked()
 
     u32 startingFrame = ui->textBoxMinFrameEmeraldPID->text().toUInt();
     u32 maxResults = ui->textBoxMaxFrameEmeraldPID->text().toUInt();
-    u32 tid = ui->textBoxTIDEmerald->text().toUInt();
-    u32 sid = ui->textBoxSIDEmerald->text().toUInt();
+    u16 tid = ui->textBoxTIDEmerald->text().toUShort();
+    u16 sid = ui->textBoxSIDEmerald->text().toUShort();
     int genderRatioIndex = ui->comboBoxGenderRatioEmerald->currentIndex();
 
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, EBredPID);
@@ -198,12 +198,12 @@ void Eggs3::on_pushButtonGenerateEmeraldPID_clicked()
     generator.setCompatability(ui->comboBoxCompatibilityEmerald->currentData().toUInt());
     generator.setEverstone(ui->comboBoxEverstone->currentIndex() != 0);
     if (ui->comboBoxEverstone->currentIndex() != 0)
-        generator.setEverstoneNature(Nature::getAdjustedNature(ui->comboBoxEverstone->currentIndex() - 1));
+        generator.setEverstoneNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxEverstone->currentIndex() - 1)));
 
     FrameCompare compare = FrameCompare(ui->comboBoxGenderEmerald->currentIndex(), genderRatioIndex, ui->comboBoxAbilityEmerald->currentIndex(),
                                         ui->comboBoxNatureEmerald->getChecked(), ui->checkBoxShinyEmerald->isChecked());
 
-    vector<Frame3> frames = generator.generate(compare);
+    QVector<Frame3> frames = generator.generate(compare);
     emeraldPID->setModel(frames);
 }
 
@@ -211,10 +211,10 @@ void Eggs3::on_pushButtonGenerateEmeraldIVs_clicked()
 {
     emeraldIVs->clear();
 
-    u32 startingFrame = ui->textBoxMinFrameEmeraldIVs->text().toUInt(NULL, 10);
-    u32 maxResults = ui->textBoxMaxFrameEmeraldIVs->text().toUInt(NULL, 10);
-    u32 tid = ui->textBoxTIDEmerald->text().toUInt(NULL, 10);
-    u32 sid = ui->textBoxSIDEmerald->text().toUInt(NULL, 10);
+    u32 startingFrame = ui->textBoxMinFrameEmeraldIVs->text().toUInt();
+    u32 maxResults = ui->textBoxMaxFrameEmeraldIVs->text().toUInt();
+    u16 tid = ui->textBoxTIDEmerald->text().toUShort();
+    u16 sid = ui->textBoxSIDEmerald->text().toUShort();
 
     Method method = EBredAlternate;
     if (ui->radioButtonNormal->isChecked())
@@ -222,19 +222,19 @@ void Eggs3::on_pushButtonGenerateEmeraldIVs_clicked()
     else if (ui->radioButtonSplit->isChecked())
         method = EBredSplit;
 
-    vector<u32> parent1 = { (u32)ui->parent1HPEmerald->value(), (u32)ui->parent1AtkEmerald->value(), (u32)ui->parent1DefEmerald->value(),
-                            (u32)ui->parent1SpAEmerald->value(), (u32)ui->parent1SpDEmerald->value(), (u32)ui->parent1SpeEmerald->value()
-                          };
-    vector<u32> parent2 = { (u32)ui->parent2HPEmerald->value(), (u32)ui->parent2AtkEmerald->value(), (u32)ui->parent2DefEmerald->value(),
-                            (u32)ui->parent2SpAEmerald->value(), (u32)ui->parent2SpDEmerald->value(), (u32)ui->parent2SpeEmerald->value()
-                          };
+    QVector<u32> parent1 = { static_cast<u32>(ui->parent1HPEmerald->value()), static_cast<u32>(ui->parent1AtkEmerald->value()), static_cast<u32>(ui->parent1DefEmerald->value()),
+                             static_cast<u32>(ui->parent1SpAEmerald->value()), static_cast<u32>(ui->parent1SpDEmerald->value()), static_cast<u32>(ui->parent1SpeEmerald->value())
+                           };
+    QVector<u32> parent2 = { static_cast<u32>(ui->parent2HPEmerald->value()), static_cast<u32>(ui->parent2AtkEmerald->value()), static_cast<u32>(ui->parent2DefEmerald->value()),
+                             static_cast<u32>(ui->parent2SpAEmerald->value()), static_cast<u32>(ui->parent2SpDEmerald->value()), static_cast<u32>(ui->parent2SpeEmerald->value())
+                           };
 
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, method);
     generator.setParents(parent1, parent2);
 
     FrameCompare compare = FrameCompare(ui->ivFilterEmerald->getEvals(), ui->ivFilterEmerald->getValues(), ui->comboBoxHiddenPowerEmerald->getChecked());
 
-    vector<Frame3> frames = generator.generate(compare);
+    QVector<Frame3> frames = generator.generate(compare);
     emeraldIVs->setModel(frames);
 }
 
@@ -242,19 +242,19 @@ void Eggs3::on_pushButtonGenerateRS_clicked()
 {
     rs->clear();
 
-    u32 minHeld = ui->textBoxMinHeldRS->text().toUInt(NULL, 10);
-    u32 maxHeld = ui->textBoxMaxHeldRS->text().toUInt(NULL, 10);
-    u32 tid = ui->textBoxTIDRS->text().toUInt(NULL, 10);
-    u32 sid = ui->textBoxSIDRS->text().toUInt(NULL, 10);
+    u32 minHeld = ui->textBoxMinHeldRS->text().toUInt();
+    u32 maxHeld = ui->textBoxMaxHeldRS->text().toUInt();
+    u16 tid = ui->textBoxTIDRS->text().toUShort();
+    u16 sid = ui->textBoxSIDRS->text().toUShort();
 
-    vector<u32> parent1 = { (u32)ui->parent1HPRS->value(), (u32)ui->parent1AtkRS->value(), (u32)ui->parent1DefRS->value(),
-                            (u32)ui->parent1SpARS->value(), (u32)ui->parent1SpDRS->value(), (u32)ui->parent1SpeRS->value()
-                          };
-    vector<u32> parent2 = { (u32)ui->parent2HPRS->value(), (u32)ui->parent2AtkRS->value(), (u32)ui->parent2DefRS->value(),
-                            (u32)ui->parent2SpARS->value(), (u32)ui->parent2SpDRS->value(), (u32)ui->parent2SpeRS->value()
-                          };
+    QVector<u32> parent1 = { static_cast<u32>(ui->parent1HPRS->value()), static_cast<u32>(ui->parent1AtkRS->value()), static_cast<u32>(ui->parent1DefRS->value()),
+                             static_cast<u32>(ui->parent1SpARS->value()), static_cast<u32>(ui->parent1SpDRS->value()), static_cast<u32>(ui->parent1SpeRS->value())
+                           };
+    QVector<u32> parent2 = { static_cast<u32>(ui->parent2HPRS->value()), static_cast<u32>(ui->parent2AtkRS->value()), static_cast<u32>(ui->parent2DefRS->value()),
+                             static_cast<u32>(ui->parent2SpARS->value()), static_cast<u32>(ui->parent2SpDRS->value()), static_cast<u32>(ui->parent2SpeRS->value())
+                           };
 
-    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, RSBred, ui->textBoxSeedRS->text().toUInt(NULL, 16));
+    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, RSBred, ui->textBoxSeedRS->text().toUInt(nullptr, 16));
     generator.setParents(parent1, parent2);
 
     generator.setMinPickup(ui->textBoxMinPickupRS->text().toUInt());
@@ -265,7 +265,7 @@ void Eggs3::on_pushButtonGenerateRS_clicked()
                                         ui->comboBoxGenderRatioRS->currentIndex(), ui->comboBoxAbilityRS->currentIndex(), ui->comboBoxNatureRS->getChecked(),
                                         ui->comboBoxHiddenPowerRS->getChecked(), ui->checkBoxShinyRS->isChecked(), false);
 
-    vector<Frame3> frames = generator.generate(compare);
+    QVector<Frame3> frames = generator.generate(compare);
     rs->setModel(frames);
 }
 
@@ -273,19 +273,19 @@ void Eggs3::on_pushButtonGenerateFRLG_clicked()
 {
     frlg->clear();
 
-    u32 minHeld = ui->textBoxMinHeldFRLG->text().toUInt(NULL, 10);
-    u32 maxHeld = ui->textBoxMaxHeldFRLG->text().toUInt(NULL, 10);
-    u32 tid = ui->textBoxTIDFRLG->text().toUInt(NULL, 10);
-    u32 sid = ui->textBoxSIDFRLG->text().toUInt(NULL, 10);
+    u32 minHeld = ui->textBoxMinHeldFRLG->text().toUInt();
+    u32 maxHeld = ui->textBoxMaxHeldFRLG->text().toUInt();
+    u16 tid = ui->textBoxTIDFRLG->text().toUShort();
+    u16 sid = ui->textBoxSIDFRLG->text().toUShort();
 
-    vector<u32> parent1 = { (u32)ui->parent1HPFRLG->value(), (u32)ui->parent1AtkFRLG->value(), (u32)ui->parent1DefFRLG->value(),
-                            (u32)ui->parent1SpAFRLG->value(), (u32)ui->parent1SpDFRLG->value(), (u32)ui->parent1SpeFRLG->value()
-                          };
-    vector<u32> parent2 = { (u32)ui->parent2HPFRLG->value(), (u32)ui->parent2AtkFRLG->value(), (u32)ui->parent2DefFRLG->value(),
-                            (u32)ui->parent2SpAFRLG->value(), (u32)ui->parent2SpDFRLG->value(), (u32)ui->parent2SpeFRLG->value()
-                          };
+    QVector<u32> parent1 = { static_cast<u32>(ui->parent1HPFRLG->value()), static_cast<u32>(ui->parent1AtkFRLG->value()), static_cast<u32>(ui->parent1DefFRLG->value()),
+                             static_cast<u32>(ui->parent1SpAFRLG->value()), static_cast<u32>(ui->parent1SpDFRLG->value()), static_cast<u32>(ui->parent1SpeFRLG->value())
+                           };
+    QVector<u32> parent2 = { static_cast<u32>(ui->parent2HPFRLG->value()), static_cast<u32>(ui->parent2AtkFRLG->value()), static_cast<u32>(ui->parent2DefFRLG->value()),
+                             static_cast<u32>(ui->parent2SpAFRLG->value()), static_cast<u32>(ui->parent2SpDFRLG->value()), static_cast<u32>(ui->parent2SpeFRLG->value())
+                           };
 
-    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, FRLGBred, ui->textBoxSeedFRLG->text().toUInt(NULL, 16));
+    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, FRLGBred, ui->textBoxSeedFRLG->text().toUInt(nullptr, 16));
     generator.setParents(parent1, parent2);
 
     generator.setMinPickup(ui->textBoxMinPickupFRLG->text().toUInt());
@@ -296,7 +296,7 @@ void Eggs3::on_pushButtonGenerateFRLG_clicked()
                                         ui->comboBoxGenderRatioFRLG->currentIndex(), ui->comboBoxAbilityFRLG->currentIndex(), ui->comboBoxNatureFRLG->getChecked(),
                                         ui->comboBoxHiddenPowerFRLG->getChecked(), ui->checkBoxShinyFRLG->isChecked(), false);
 
-    vector<Frame3> frames = generator.generate(compare);
+    QVector<Frame3> frames = generator.generate(compare);
     frlg->setModel(frames);
 }
 

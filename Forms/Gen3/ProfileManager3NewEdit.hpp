@@ -57,8 +57,8 @@ private slots:
     void on_comboBoxVersion_currentIndexChanged(int index);
 
 public:
-    explicit ProfileManager3NewEdit(QWidget *parent = 0);
-    explicit ProfileManager3NewEdit(Profile3 profile, QWidget *parent = 0);
+    explicit ProfileManager3NewEdit(QWidget *parent = nullptr);
+    explicit ProfileManager3NewEdit(Profile3 profile, QWidget *parent = nullptr);
     ~ProfileManager3NewEdit();
     Profile3 getNewProfile();
     Profile3 getOriginal();

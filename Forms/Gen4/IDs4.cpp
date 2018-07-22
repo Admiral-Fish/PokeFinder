@@ -41,7 +41,7 @@ IDs4::~IDs4()
 
 void IDs4::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -164,7 +164,7 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
     u32 minDelay = ui->textBoxMinDelaySeedFinder->text().toUInt();
     u32 maxDelay = ui->textBoxMaxDelaySeedFinder->text().toUInt();
 
-    QDate date(year, month, day);
+    QDate date(static_cast<int>(year), static_cast<int>(month), static_cast<int>(day));
     if (!date.isValid())
     {
         QMessageBox error;
@@ -173,7 +173,7 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
         return;
     }
 
-    QTime time(hour, minute);
+    QTime time(static_cast<int>(hour), static_cast<int>(minute));
     if (!time.isValid())
     {
         QMessageBox error;
@@ -215,7 +215,7 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
 
 void IDs4::searchPID()
 {
-    u32 pid = ui->textBoxPID->text().toUInt(NULL, 16);
+    u32 pid = ui->textBoxPID->text().toUInt(nullptr, 16);
     u32 psv = (pid >> 16) ^ (pid & 0xFFFF);
     bool useTID = ui->checkBoxSearchTIDShinyPID->isChecked();
     u32 tid = ui->textBoxTIDShinyPID->text().toUInt();
@@ -224,7 +224,7 @@ void IDs4::searchPID()
     u32 maxDelay = ui->textBoxMaxDelayShinyPID->text().toUInt();
     bool infinite = ui->checkBoxInfiniteSearchShinyPID->isChecked();
 
-    ui->progressBar->setMaximum(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1)));
+    ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
     minDelay += (year - 2000);
     maxDelay += (year - 2000);
@@ -282,7 +282,7 @@ void IDs4::searchTIDSID()
     u32 maxDelay = ui->textBoxMaxDelayTIDSID->text().toUInt();
     bool infinite = ui->checkBoxInfiniteSearchTIDSID->isChecked();
 
-    ui->progressBar->setMaximum(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1)));
+    ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
     minDelay += (year - 2000);
     maxDelay += (year - 2000);

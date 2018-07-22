@@ -72,7 +72,7 @@ private slots:
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
 
 public:
-    explicit GameCubeRTC(QWidget *parent = 0);
+    explicit GameCubeRTC(QWidget *parent = nullptr);
     ~GameCubeRTC();
 
 };

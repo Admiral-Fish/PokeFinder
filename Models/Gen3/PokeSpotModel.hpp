@@ -21,6 +21,7 @@
 #define POKESPOTMODEL_HPP
 
 #include <QAbstractTableModel>
+#include <QVector>
 #include <PokeFinderCore/Gen3/Frame3.hpp>
 
 class PokeSpotModel : public QAbstractTableModel
@@ -28,11 +29,11 @@ class PokeSpotModel : public QAbstractTableModel
     Q_OBJECT
 
 private:
-    vector<Frame3> model;
+    QVector<Frame3> model;
 
 public:
     PokeSpotModel(QObject *parent);
-    void setModel(vector<Frame3> frames);
+    void setModel(QVector<Frame3> frames);
     void clear();
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;

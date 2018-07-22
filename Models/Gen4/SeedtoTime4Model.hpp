@@ -21,6 +21,7 @@
 #define SEEDTOTIME4MODEL_HPP
 
 #include <QAbstractTableModel>
+#include <QVector>
 #include <PokeFinderCore/Objects/Game.hpp>
 #include <Util/DateTime.hpp>
 
@@ -31,16 +32,16 @@ class SeedtoTime4Model : public QAbstractTableModel
     Q_OBJECT
 
 private:
-    vector<DateTime> model;
+    QVector<DateTime> model;
     bool calibrate;
     Game version;
 
 public:
     SeedtoTime4Model(QObject *parent, bool flag = false, Game version = Diamond);
-    void setModel(vector<DateTime> times);
+    void setModel(QVector<DateTime> times);
     void clear();
     DateTime getData(int row);
-    vector<DateTime> getData();
+    QVector<DateTime> getData();
     void setFlags(bool flag = false, Game version = Diamond);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;

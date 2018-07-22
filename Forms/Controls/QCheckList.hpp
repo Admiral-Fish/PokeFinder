@@ -26,10 +26,8 @@
 #include <QEvent>
 #include <QLineEdit>
 #include <QListView>
-#include <vector>
+#include <QVector>
 #include <QStyledItemDelegate>
-
-using std::vector;
 
 class QCheckList : public QComboBox
 {
@@ -49,12 +47,12 @@ private slots:
     void on_itemPressed(const QModelIndex &index);
 
 public:
-    QCheckList(QWidget *parent = 0);
+    QCheckList(QWidget *parent = nullptr);
     ~QCheckList();
     void setup();
-    vector<bool> getChecked();
+    QVector<bool> getChecked();
     void uncheckAll();
-    void setChecks(vector<bool> flags);
+    void setChecks(QVector<bool> flags);
 
 };
 

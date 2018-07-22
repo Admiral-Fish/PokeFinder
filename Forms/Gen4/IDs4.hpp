@@ -30,6 +30,7 @@
 #include <PokeFinderCore/Objects/Utilities.hpp>
 #include <QStringList>
 #include <QList>
+#include <QVector>
 #include <thread>
 
 namespace Ui
@@ -52,7 +53,7 @@ private:
     QStandardItemModel *model = new QStandardItemModel(this);
     bool isSearching = false;
     bool cancel = false;
-    u32 progress;
+    int progress;
 
     void setupModels();
     void searchPID();
@@ -70,7 +71,7 @@ private slots:
     void updateProgressBar();
 
 public:
-    explicit IDs4(QWidget *parent = 0);
+    explicit IDs4(QWidget *parent = nullptr);
     ~IDs4();
 
 };

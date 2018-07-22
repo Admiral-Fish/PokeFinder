@@ -23,8 +23,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QStandardItemModel>
-#include <vector>
-#include <unordered_map>
+#include <QVector>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <PokeFinderCore/RNG/LCRNG64.hpp>
 #include <PokeFinderCore/RNG/MTRNG.hpp>
@@ -33,11 +32,10 @@
 #include <Models/ResearcherModel.hpp>
 #include <Util/ResearcherFrame.hpp>
 
-using std::vector;
 typedef uint32_t u32;
 typedef uint64_t u64;
 typedef u64 (*func)(u64, u64);
-typedef QMap<QString, func> Calculator;
+typedef QHash<QString, func> Calculator;
 
 namespace Ui
 {
@@ -54,13 +52,13 @@ protected:
 private:
     Ui::Researcher *ui;
     ResearcherModel *model = new ResearcherModel(this, false);
-    QMap<QString, int> keys;
+    QHash<QString, int> keys;
 
-    u64 getCustom(QString text, ResearcherFrame frame, vector<ResearcherFrame> frames);
+    u64 getCustom(QString text, ResearcherFrame frame, QVector<ResearcherFrame> frames);
     void setupModels();
     void translate();
     void resizeHeader();
-    vector<bool> getHexCheck();
+    QVector<bool> getHexCheck();
     static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
     static inline u64 modulo(u64 x, u64 y) { return x % y; }
     static inline u64 shiftRight(u64 x, u64 y) { return x >> y; }
@@ -79,7 +77,7 @@ private slots:
     void on_pushButtonNext_clicked();
 
 public:
-    explicit Researcher(QWidget *parent = 0);
+    explicit Researcher(QWidget *parent = nullptr);
     ~Researcher();
 
 };

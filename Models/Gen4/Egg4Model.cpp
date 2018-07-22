@@ -25,13 +25,13 @@ Egg4GeneratorModel::Egg4GeneratorModel(QObject *parent, Method method)
     this->method = method;
 }
 
-void Egg4GeneratorModel::setModel(vector<Frame4> frames)
+void Egg4GeneratorModel::setModel(QVector<Frame4> frames)
 {
     if (frames.empty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.insert(model.end(), frames.begin(), frames.end());
+    model.append(frames);
     emit endInsertRows();
 }
 
@@ -40,7 +40,7 @@ void Egg4GeneratorModel::clear()
     int i = rowCount();
     emit beginRemoveRows(QModelIndex(), 0, i == 0 ? 0 : i - 1);
     model.clear();
-    model.shrink_to_fit();
+    model.squeeze();
     emit endRemoveRows();
 }
 
@@ -53,7 +53,7 @@ void Egg4GeneratorModel::setMethod(Method method)
 int Egg4GeneratorModel::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return (int)model.size();
+    return model.size();
 }
 
 int Egg4GeneratorModel::columnCount(const QModelIndex &parent) const
@@ -68,8 +68,9 @@ int Egg4GeneratorModel::columnCount(const QModelIndex &parent) const
             return 10;
         case HGSSIVs:
             return 11;
+        default:
+            return 0;
     }
-    return 0;
 }
 
 QVariant Egg4GeneratorModel::data(const QModelIndex &index, int role) const
@@ -77,9 +78,8 @@ QVariant Egg4GeneratorModel::data(const QModelIndex &index, int role) const
     if (role != Qt::DisplayRole)
         return QVariant();
 
-    int row = index.row();
     int column = index.column();
-    Frame4 frame = model[row];
+    Frame4 frame = model[index.row()];
 
     switch (method)
     {
@@ -150,9 +150,9 @@ QVariant Egg4GeneratorModel::data(const QModelIndex &index, int role) const
                 case 10:
                     return frame.getPower();
             }
+        default:
+            return QVariant();
     }
-
-    return QVariant();
 }
 
 QVariant Egg4GeneratorModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -229,9 +229,9 @@ QVariant Egg4GeneratorModel::headerData(int section, Qt::Orientation orientation
                 case 10:
                     return tr("Power");
             }
+        default:
+            return QVariant();
     }
-
-    return QVariant();
 }
 
 
@@ -241,21 +241,21 @@ Egg4SearcherModel::Egg4SearcherModel(QObject *parent, Method method)
     this->method = method;
 }
 
-void Egg4SearcherModel::setModel(vector<Frame4> frames)
+void Egg4SearcherModel::setModel(QVector<Frame4> frames)
 {
     if (frames.empty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.insert(model.end(), frames.begin(), frames.end());
+    model.append(frames);
     emit endInsertRows();
 }
 
-void Egg4SearcherModel::addItems(vector<Frame4> frames)
+void Egg4SearcherModel::addItems(QVector<Frame4> frames)
 {
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.insert(model.end(), frames.begin(), frames.end());
+    model.append(frames);
     emit endInsertRows();
 }
 
@@ -264,7 +264,7 @@ void Egg4SearcherModel::clear()
     int i = rowCount();
     emit beginRemoveRows(QModelIndex(), 0, i == 0 ? 0 : i - 1);
     model.clear();
-    model.shrink_to_fit();
+    model.squeeze();
     emit endRemoveRows();
 }
 
@@ -277,7 +277,7 @@ void Egg4SearcherModel::setMethod(Method method)
 int Egg4SearcherModel::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return (int)model.size();
+    return model.size();
 }
 
 int Egg4SearcherModel::columnCount(const QModelIndex &parent) const
@@ -291,122 +291,124 @@ int Egg4SearcherModel::columnCount(const QModelIndex &parent) const
         case DPPtIVs:
         case HGSSIVs:
             return 10;
+        default:
+            return 0;
     }
-    return 0;
 }
 
 QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
 {
-    if (role != Qt::DisplayRole)
-        return QVariant();
-
-    int row = index.row();
-    int column = index.column();
-    Frame4 frame = model[row];
-
-    switch (method)
+    if (role == Qt::DisplayRole)
     {
-        case Gen4Normal:
-        case Gen4Masuada:
-            switch (column)
-            {
-                case 0:
-                    return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
-                case 1:
-                    return frame.getFrame();
-                case 2:
-                    return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
-                case 3:
-                    return frame.getShinyString();
-                case 4:
-                    return frame.getNatureString();
-                case 5:
-                    return frame.getAbility();
-                case 6:
-                    return frame.getGenderString();
-            }
-        case DPPtIVs:
-        case HGSSIVs:
-            switch (column)
-            {
-                case 0:
-                    return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
-                case 1:
-                    return frame.getFrame();
-                case 2:
-                    return frame.getIV(0);
-                case 3:
-                    return frame.getIV(1);
-                case 4:
-                    return frame.getIV(2);
-                case 5:
-                    return frame.getIV(3);
-                case 6:
-                    return frame.getIV(4);
-                case 7:
-                    return frame.getIV(5);
-                case 8:
-                    return frame.getPowerString();
-                case 9:
-                    return frame.getPower();
-            }
-    }
+        int column = index.column();
+        Frame4 frame = model[index.row()];
 
+        switch (method)
+        {
+            case Gen4Normal:
+            case Gen4Masuada:
+                switch (column)
+                {
+                    case 0:
+                        return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
+                    case 1:
+                        return frame.getFrame();
+                    case 2:
+                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                    case 3:
+                        return frame.getShinyString();
+                    case 4:
+                        return frame.getNatureString();
+                    case 5:
+                        return frame.getAbility();
+                    case 6:
+                        return frame.getGenderString();
+                }
+            case DPPtIVs:
+            case HGSSIVs:
+                switch (column)
+                {
+                    case 0:
+                        return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
+                    case 1:
+                        return frame.getFrame();
+                    case 2:
+                        return frame.getIV(0);
+                    case 3:
+                        return frame.getIV(1);
+                    case 4:
+                        return frame.getIV(2);
+                    case 5:
+                        return frame.getIV(3);
+                    case 6:
+                        return frame.getIV(4);
+                    case 7:
+                        return frame.getIV(5);
+                    case 8:
+                        return frame.getPowerString();
+                    case 9:
+                        return frame.getPower();
+                }
+            default:
+                break;
+        }
+    }
     return QVariant();
 }
 
 QVariant Egg4SearcherModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role != Qt::DisplayRole || orientation != Qt::Horizontal)
-        return QVariant();
-
-    switch (method)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        case Gen4Normal:
-        case Gen4Masuada:
-            switch (section)
-            {
-                case 0:
-                    return tr("Seed");
-                case 1:
-                    return tr("Frame");
-                case 2:
-                    return tr("PID");
-                case 3:
-                    return "!!!";
-                case 4:
-                    return tr("Nature");
-                case 5:
-                    return tr("Ability");
-                case 6:
-                    return tr("Gender");
-            }
-        case DPPtIVs:
-        case HGSSIVs:
-            switch (section)
-            {
-                case 0:
-                    return tr("Seed");
-                case 1:
-                    return tr("Frame");
-                case 2:
-                    return tr("HP");
-                case 3:
-                    return tr("Atk");
-                case 4:
-                    return tr("Def");
-                case 5:
-                    return tr("SpA");
-                case 6:
-                    return tr("SpD");
-                case 7:
-                    return tr("Spe");
-                case 8:
-                    return tr("Hidden");
-                case 9:
-                    return tr("Power");
-            }
+        switch (method)
+        {
+            case Gen4Normal:
+            case Gen4Masuada:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Seed");
+                    case 1:
+                        return tr("Frame");
+                    case 2:
+                        return tr("PID");
+                    case 3:
+                        return "!!!";
+                    case 4:
+                        return tr("Nature");
+                    case 5:
+                        return tr("Ability");
+                    case 6:
+                        return tr("Gender");
+                }
+            case DPPtIVs:
+            case HGSSIVs:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Seed");
+                    case 1:
+                        return tr("Frame");
+                    case 2:
+                        return tr("HP");
+                    case 3:
+                        return tr("Atk");
+                    case 4:
+                        return tr("Def");
+                    case 5:
+                        return tr("SpA");
+                    case 6:
+                        return tr("SpD");
+                    case 7:
+                        return tr("Spe");
+                    case 8:
+                        return tr("Hidden");
+                    case 9:
+                        return tr("Power");
+                }
+            default:
+                break;
+        }
     }
-
     return QVariant();
 }

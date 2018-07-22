@@ -25,7 +25,6 @@
 #include <PokeFinderCore/Gen4/Profile4.hpp>
 #include <Models/Gen4/Profile4Model.hpp>
 
-using std::vector;
 typedef uint32_t u32;
 
 namespace Ui
@@ -56,7 +55,7 @@ private slots:
     void on_pushButtonDelete_clicked();
 
 public:
-    explicit ProfileManager4(QWidget *parent = 0);
+    explicit ProfileManager4(QWidget *parent = nullptr);
     ~ProfileManager4();
 
 };

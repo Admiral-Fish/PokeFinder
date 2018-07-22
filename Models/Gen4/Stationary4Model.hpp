@@ -21,6 +21,7 @@
 #define STATIONARY4MODEL_HPP
 
 #include <QAbstractTableModel>
+#include <QVector>
 #include <PokeFinderCore/Objects/Method.hpp>
 #include <PokeFinderCore/Gen4/Frame4.hpp>
 
@@ -29,12 +30,12 @@ class Stationary4Model : public QAbstractTableModel
     Q_OBJECT
 
 private:
-    vector<Frame4> model;
+    QVector<Frame4> model;
     Method method;
 
 public:
     Stationary4Model(QObject *parent, Method method);
-    void setModel(vector<Frame4> frames);
+    void setModel(QVector<Frame4> frames);
     void clear();
     void setMethod(Method method);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;

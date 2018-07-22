@@ -29,7 +29,7 @@ QCheckList::QCheckList(QWidget *parent) : QComboBox(parent)
     lineEdit()->installEventFilter(this);
 
     connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
-    connect((QListView *) view(), SIGNAL(pressed(QModelIndex)), this, SLOT(on_itemPressed(QModelIndex)));
+    connect(static_cast<QListView *>(view()), SIGNAL(pressed(QModelIndex)), this, SLOT(on_itemPressed(QModelIndex)));
     connect(model, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(on_modelDataChanged()));
 }
 
@@ -48,23 +48,23 @@ void QCheckList::setup()
     }
 }
 
-vector<bool> QCheckList::getChecked()
+QVector<bool> QCheckList::getChecked()
 {
-    vector<bool> result;
+    QVector<bool> result;
 
     if (globalCheckState() == Qt::Unchecked || globalCheckState() == Qt::Checked)
     {
         for (auto i = 0; i < model->rowCount(); i++)
-            result.push_back(true);
+            result.append(true);
     }
     else
     {
         for (auto i = 0; i < model->rowCount(); i++)
         {
             if (model->item(i)->checkState() == Qt::Checked)
-                result.push_back(true);
+                result.append(true);
             else
-                result.push_back(false);
+                result.append(false);
         }
     }
     return result;
@@ -76,7 +76,7 @@ void QCheckList::uncheckAll()
         model->item(i)->setCheckState(Qt::Unchecked);
 }
 
-void QCheckList::setChecks(vector<bool> flags)
+void QCheckList::setChecks(QVector<bool> flags)
 {
     for (auto i = 0; i < model->rowCount(); i++)
     {

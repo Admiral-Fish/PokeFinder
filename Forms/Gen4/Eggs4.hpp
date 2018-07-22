@@ -29,6 +29,7 @@
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <QSettings>
 #include <QMenu>
+#include <QVector>
 #include <thread>
 
 namespace Ui
@@ -44,22 +45,22 @@ protected:
     void changeEvent(QEvent *);
 
 signals:
-    void updatePID(vector<Frame4>);
-    void updateIVs(vector<Frame4>);
+    void updatePID(QVector<Frame4>);
+    void updateIVs(QVector<Frame4>);
     void alertProfiles(int);
     void updateProgress();
 
 private:
     Ui::Eggs4 *ui;
-    vector<Profile4> profiles;
+    QVector<Profile4> profiles;
     bool isSearching[2] = {false, false};
     bool cancel[2] = { false, false };
     Egg4GeneratorModel *generatorModel = new Egg4GeneratorModel(this, DPPtIVs);
     Egg4SearcherModel *searcherIVs = new Egg4SearcherModel(this, DPPtIVs);
     Egg4SearcherModel *searcherPID = new Egg4SearcherModel(this, Gen4Normal);
     QMenu *searcherMenu = new QMenu(this);
-    u32 progressPID;
-    u32 progressIVs;
+    int progressPID;
+    int progressIVs;
     bool flag;
 
     void setupModels();
@@ -79,8 +80,8 @@ private slots:
     void on_pushButtonGenerate_clicked();
     void on_pushButtonGeneratePID_clicked();
     void on_pushButtonGenerateIVs_clicked();
-    void updateViewPID(vector<Frame4> frames);
-    void updateViewIVs(vector<Frame4> frames);
+    void updateViewPID(QVector<Frame4> frames);
+    void updateViewIVs(QVector<Frame4> frames);
     void updateProgressPID();
     void updateProgressIVs();
     void on_tableViewPID_customContextMenuRequested(const QPoint &pos);
@@ -88,7 +89,7 @@ private slots:
     void seedToTime();
 
 public:
-    explicit Eggs4(QWidget *parent = 0);
+    explicit Eggs4(QWidget *parent = nullptr);
     ~Eggs4();
     void updateProfiles();
 

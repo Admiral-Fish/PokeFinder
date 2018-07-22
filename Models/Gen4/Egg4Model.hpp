@@ -21,6 +21,7 @@
 #define EGG4MODEL_HPP
 
 #include <QAbstractTableModel>
+#include <QVector>
 #include <PokeFinderCore/Gen4/Frame4.hpp>
 
 class Egg4GeneratorModel : public QAbstractTableModel
@@ -28,12 +29,12 @@ class Egg4GeneratorModel : public QAbstractTableModel
     Q_OBJECT
 
 private:
-    vector<Frame4> model;
+    QVector<Frame4> model;
     Method method;
 
 public:
     Egg4GeneratorModel(QObject *parent, Method method);
-    void setModel(vector<Frame4> frames);
+    void setModel(QVector<Frame4> frames);
     void clear();
     void setMethod(Method method);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
@@ -48,13 +49,13 @@ class Egg4SearcherModel : public QAbstractTableModel
     Q_OBJECT
 
 private:
-    vector<Frame4> model;
+    QVector<Frame4> model;
     Method method;
 
 public:
     Egg4SearcherModel(QObject *parent, Method method);
-    void setModel(vector<Frame4> frames);
-    void addItems(vector<Frame4> frames);
+    void setModel(QVector<Frame4> frames);
+    void addItems(QVector<Frame4> frames);
     void clear();
     void setMethod(Method method);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;

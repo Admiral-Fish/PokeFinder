@@ -40,7 +40,7 @@ IVtoPID::~IVtoPID()
 
 void IVtoPID::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -72,18 +72,18 @@ void IVtoPID::setupModels()
 
 void IVtoPID::on_pushButtonFind_clicked()
 {
-    u32 hp = ui->spinBoxHP->value();
-    u32 atk = ui->spinBoxAtk->value();
-    u32 def = ui->spinBoxDef->value();
-    u32 spa = ui->spinBoxSpA->value();
-    u32 spd = ui->spinBoxSpD->value();
-    u32 spe = ui->spinBoxSpe->value();
+    u32 hp = static_cast<u32>(ui->spinBoxHP->value());
+    u32 atk = static_cast<u32>(ui->spinBoxAtk->value());
+    u32 def = static_cast<u32>(ui->spinBoxDef->value());
+    u32 spa = static_cast<u32>(ui->spinBoxSpA->value());
+    u32 spd = static_cast<u32>(ui->spinBoxSpD->value());
+    u32 spe = static_cast<u32>(ui->spinBoxSpe->value());
 
     model->removeRows(0, model->rowCount());
 
-    u32 nature = Nature::getAdjustedNature(ui->comboBoxNatureGenerator->currentIndex());
+    u32 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNatureGenerator->currentIndex()));
 
-    u32 tid = ui->textBoxID->text().toUInt(NULL, 10);
+    u32 tid = ui->textBoxID->text().toUInt();
 
     u32 ivs2 = spe | (spa << 5) | (spd << 10);
     u32 ivs1 = hp | (atk << 5) | (def << 10);
@@ -103,8 +103,8 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid)
     for (u32 cnt = 0; cnt <= 0xFFFF; cnt++)
     {
         u32 seedXD = x_testXD | cnt;
-        LCRNG rngXD = XDRNG(seedXD);
-        LCRNG rngXDR = XDRNGR(seedXD);
+        XDRNG rngXD(seedXD);
+        XDRNGR rngXDR(seedXD);
         u32 rng1XD = rngXD.nextUShort();
 
         // Gales/Colo
@@ -128,7 +128,7 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid)
         }
 
         u32 seed = x_test | cnt;
-        LCRNG rng = PokeRNGR(seed);
+        PokeRNGR rng(seed);
         u32 rng1 = rng.nextUShort();
 
         u32 rng2 = rng.nextUShort();
@@ -322,9 +322,10 @@ void IVtoPID::getSeedsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 sp
     RNGEuclidean euclidean(Channel);
     XDRNGR rng(0);
 
-    vector<u32> seeds = euclidean.recoverLower27BitsChannel(hp, atk, def, spa, spd, spe);
+    QVector<u32> seeds = euclidean.recoverLower27BitsChannel(hp, atk, def, spa, spd, spe);
+    int size = seeds.size();
 
-    for (auto i = 0; i < seeds.size(); i++)
+    for (int i = 0; i < size; i++)
     {
         rng.setSeed(seeds[i]);
         rng.advanceFrames(3);

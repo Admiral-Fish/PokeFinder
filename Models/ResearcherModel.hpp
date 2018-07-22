@@ -22,19 +22,17 @@
 
 #include <QAbstractTableModel>
 #include <Util/ResearcherFrame.hpp>
-#include <vector>
+#include <QVector>
 #include <cstdint>
-
-using std::vector;
 
 class ResearcherModel : public QAbstractTableModel
 {
     Q_OBJECT
 
 private:
-    vector<ResearcherFrame> model;
+    QVector<ResearcherFrame> model;
     bool flag;
-    vector<bool> hex;
+    QVector<bool> hex;
 
     static inline u64 get64Bit(ResearcherFrame f) { return f.getFull64(); }
     static inline u64 get32BitHigh(ResearcherFrame f) { return f.getHigh32(); }
@@ -45,10 +43,10 @@ private:
 
 public:
     ResearcherModel(QObject *parent, bool is64Bit);
-    void setModel(vector<ResearcherFrame>);
+    void setModel(QVector<ResearcherFrame>);
     void clear();
     void setFlag(bool is64Bit);
-    void setHex(vector<bool> hex);
+    void setHex(QVector<bool> hex);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;

@@ -58,8 +58,8 @@ private slots:
     void on_pushButtonFind_clicked();
 
 public:
-    explicit SeedToTime3(QWidget *parent = 0);
-    explicit SeedToTime3(u32 seed, QWidget *parent = 0);
+    explicit SeedToTime3(QWidget *parent = nullptr);
+    explicit SeedToTime3(u32 seed, QWidget *parent = nullptr);
     ~SeedToTime3();
 
 };

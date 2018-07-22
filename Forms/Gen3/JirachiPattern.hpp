@@ -25,11 +25,11 @@
 #include <QStandardItem>
 #include <QStringList>
 #include <QString>
+#include <QVector>
 #include <QChar>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 
 typedef uint32_t u32;
-using std::vector;
 
 namespace Ui
 {
@@ -46,7 +46,7 @@ protected:
 private:
     Ui::JirachiPattern *ui;
     QStandardItemModel *model = new QStandardItemModel(this);
-    vector<u32> data;
+    QVector<u32> data;
 
     void setupModels();
     void generate(u32 seed);
@@ -57,7 +57,7 @@ private slots:
     void on_pushButtonGenerate_clicked();
 
 public:
-    explicit JirachiPattern(QWidget *parent = 0);
+    explicit JirachiPattern(QWidget *parent = nullptr);
     ~JirachiPattern();
 
 };

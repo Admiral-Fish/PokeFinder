@@ -260,6 +260,11 @@ QPushButton {
              </item>
              <item>
               <property name="text">
+               <string>Safari Zone</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string>Rock Smash</string>
               </property>
              </item>
@@ -1303,6 +1308,11 @@ QHeaderView::section {
              <item>
               <property name="text">
                <string>Wild</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Safari Zone</string>
               </property>
              </item>
              <item>

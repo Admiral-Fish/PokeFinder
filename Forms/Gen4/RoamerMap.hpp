@@ -37,7 +37,7 @@ private:
     Ui::RoamerMap *ui;
 
 public:
-    explicit RoamerMap(QWidget *parent = 0);
+    explicit RoamerMap(QWidget *parent = nullptr);
     ~RoamerMap();
 
 };

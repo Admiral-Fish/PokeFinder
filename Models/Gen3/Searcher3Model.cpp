@@ -24,16 +24,16 @@ Searcher3Model::Searcher3Model(QObject *parent, Method method) : QAbstractTableM
     this->method = method;
 }
 
-void Searcher3Model::setModel(vector<Frame3> frames)
+void Searcher3Model::setModel(QVector<Frame3> frames)
 {
     model = frames;
 }
 
-void Searcher3Model::addItems(vector<Frame3> frames)
+void Searcher3Model::addItems(QVector<Frame3> frames)
 {
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.insert(model.end(), frames.begin(), frames.end());
+    model.append(frames);
     emit endInsertRows();
 }
 
@@ -43,7 +43,7 @@ void Searcher3Model::clear()
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
-    model.shrink_to_fit();
+    model.squeeze();
     emit endRemoveRows();
 }
 
@@ -681,7 +681,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
 int Searcher3Model::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return (int)model.size();
+    return model.size();
 }
 
 int Searcher3Model::columnCount(const QModelIndex &parent) const
@@ -712,9 +712,8 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int row = index.row();
         int column = index.column();
-        Frame3 frame = model[row];
+        Frame3 frame = model[index.row()];
         switch (method)
         {
             case MethodH1:
@@ -841,127 +840,124 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
 
 QVariant Searcher3Model::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (orientation == Qt::Horizontal)
+        switch (method)
         {
-            switch (method)
-            {
-                case MethodH1:
-                case MethodH2:
-                case MethodH4:
-                    switch (section)
-                    {
-                        case 0:
-                            return tr("Seed");
-                        case 1:
-                            return tr("Lead");
-                        case 2:
-                            return tr("Slot");
-                        case 3:
-                            return tr("Level");
-                        case 4:
-                            return tr("PID");
-                        case 5:
-                            return "!!!";
-                        case 6:
-                            return tr("Nature");
-                        case 7:
-                            return tr("Ability");
-                        case 8:
-                            return tr("HP");
-                        case 9:
-                            return tr("Atk");
-                        case 10:
-                            return tr("Def");
-                        case 11:
-                            return tr("SpA");
-                        case 12:
-                            return tr("SpD");
-                        case 13:
-                            return tr("Spe");
-                        case 14:
-                            return tr("Hidden");
-                        case 15:
-                            return tr("Power");
-                        case 16:
-                            return tr("Gender");
-                    }
-                case Method1:
-                case Method1Reverse:
-                case Method2:
-                case Method4:
-                case XDColo:
-                case Channel:
-                    switch (section)
-                    {
-                        case 0:
-                            return tr("Seed");
-                        case 1:
-                            return tr("PID");
-                        case 2:
-                            return "!!!";
-                        case 3:
-                            return tr("Nature");
-                        case 4:
-                            return tr("Ability");
-                        case 5:
-                            return tr("HP");
-                        case 6:
-                            return tr("Atk");
-                        case 7:
-                            return tr("Def");
-                        case 8:
-                            return tr("SpA");
-                        case 9:
-                            return tr("SpD");
-                        case 10:
-                            return tr("Spe");
-                        case 11:
-                            return tr("Hidden");
-                        case 12:
-                            return tr("Power");
-                        case 13:
-                            return tr("Gender");
-                    }
-                case XD:
-                case Colo:
-                    switch (section)
-                    {
-                        case 0:
-                            return tr("Seed");
-                        case 1:
-                            return tr("PID");
-                        case 2:
-                            return "!!!";
-                        case 3:
-                            return tr("Nature");
-                        case 4:
-                            return tr("Ability");
-                        case 5:
-                            return tr("HP");
-                        case 6:
-                            return tr("Atk");
-                        case 7:
-                            return tr("Def");
-                        case 8:
-                            return tr("SpA");
-                        case 9:
-                            return tr("SpD");
-                        case 10:
-                            return tr("Spe");
-                        case 11:
-                            return tr("Hidden");
-                        case 12:
-                            return tr("Power");
-                        case 13:
-                            return tr("Gender");
-                        case 14:
-                            return tr("Reason");
-                    }
-                default:
-                    break;
-            }
+            case MethodH1:
+            case MethodH2:
+            case MethodH4:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Seed");
+                    case 1:
+                        return tr("Lead");
+                    case 2:
+                        return tr("Slot");
+                    case 3:
+                        return tr("Level");
+                    case 4:
+                        return tr("PID");
+                    case 5:
+                        return "!!!";
+                    case 6:
+                        return tr("Nature");
+                    case 7:
+                        return tr("Ability");
+                    case 8:
+                        return tr("HP");
+                    case 9:
+                        return tr("Atk");
+                    case 10:
+                        return tr("Def");
+                    case 11:
+                        return tr("SpA");
+                    case 12:
+                        return tr("SpD");
+                    case 13:
+                        return tr("Spe");
+                    case 14:
+                        return tr("Hidden");
+                    case 15:
+                        return tr("Power");
+                    case 16:
+                        return tr("Gender");
+                }
+            case Method1:
+            case Method1Reverse:
+            case Method2:
+            case Method4:
+            case XDColo:
+            case Channel:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Seed");
+                    case 1:
+                        return tr("PID");
+                    case 2:
+                        return "!!!";
+                    case 3:
+                        return tr("Nature");
+                    case 4:
+                        return tr("Ability");
+                    case 5:
+                        return tr("HP");
+                    case 6:
+                        return tr("Atk");
+                    case 7:
+                        return tr("Def");
+                    case 8:
+                        return tr("SpA");
+                    case 9:
+                        return tr("SpD");
+                    case 10:
+                        return tr("Spe");
+                    case 11:
+                        return tr("Hidden");
+                    case 12:
+                        return tr("Power");
+                    case 13:
+                        return tr("Gender");
+                }
+            case XD:
+            case Colo:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Seed");
+                    case 1:
+                        return tr("PID");
+                    case 2:
+                        return "!!!";
+                    case 3:
+                        return tr("Nature");
+                    case 4:
+                        return tr("Ability");
+                    case 5:
+                        return tr("HP");
+                    case 6:
+                        return tr("Atk");
+                    case 7:
+                        return tr("Def");
+                    case 8:
+                        return tr("SpA");
+                    case 9:
+                        return tr("SpD");
+                    case 10:
+                        return tr("Spe");
+                    case 11:
+                        return tr("Hidden");
+                    case 12:
+                        return tr("Power");
+                    case 13:
+                        return tr("Gender");
+                    case 14:
+                        return tr("Reason");
+                }
+            default:
+                break;
         }
     }
     return QVariant();

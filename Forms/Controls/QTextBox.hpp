@@ -32,18 +32,18 @@ class QTextBox : public QLineEdit
 private:
     u64 maxValue = 0;
     u64 minValue;
-    u32 base;
+    int base;
     QRegExp filter;
 
 private slots:
     void onTextChanged(QString string);
 
 public:
-    QTextBox(QWidget *parent = 0);
+    QTextBox(QWidget *parent = nullptr);
     void setValues(u64 min, u64 shift, bool isDecimal);
     void setFilter(QString string);
     void setValue(u64 value);
-    void setBase(u32 base);
+    void setBase(int base);
 
 };
 

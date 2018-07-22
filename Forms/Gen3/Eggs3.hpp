@@ -45,7 +45,7 @@ signals:
 
 private:
     Ui::Eggs3 *ui;
-    vector<Profile3> profiles;
+    QVector<Profile3> profiles;
     Egg3Model *emeraldIVs = new Egg3Model(this, EBred);
     Egg3Model *emeraldPID = new Egg3Model(this, EBredPID);
     Egg3Model *rs = new Egg3Model(this, RSBred);
@@ -69,7 +69,7 @@ private slots:
     void on_pushButtonProfileManager_clicked();
 
 public:
-    explicit Eggs3(QWidget *parent = 0);
+    explicit Eggs3(QWidget *parent = nullptr);
     ~Eggs3();
     void updateProfiles();
 

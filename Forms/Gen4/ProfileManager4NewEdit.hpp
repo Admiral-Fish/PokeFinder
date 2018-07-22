@@ -56,8 +56,8 @@ private slots:
     void on_pushButtonCancel_clicked();
 
 public:
-    explicit ProfileManager4NewEdit(QWidget *parent = 0);
-    explicit ProfileManager4NewEdit(Profile4 profile, QWidget *parent = 0);
+    explicit ProfileManager4NewEdit(QWidget *parent = nullptr);
+    explicit ProfileManager4NewEdit(Profile4 profile, QWidget *parent = nullptr);
     ~ProfileManager4NewEdit();
     Profile4 getNewProfile();
     Profile4 getOriginal();

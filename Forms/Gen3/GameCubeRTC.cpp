@@ -46,7 +46,7 @@ GameCubeRTC::~GameCubeRTC()
 
 void GameCubeRTC::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -95,10 +95,10 @@ void GameCubeRTC::updateTableView(QList<QStandardItem *> row)
 
 void GameCubeRTC::calcRTC()
 {
-    u32 initSeed = ui->textBoxStartSeed->text().toUInt(NULL, 16);
-    u32 targetSeed = ui->textBoxEndSeed->text().toUInt(NULL, 16);
-    u32 minFrame = ui->textBoxMinFrame->text().toUInt(NULL, 10);
-    u32 maxFrame = ui->textBoxMaxFrame->text().toUInt(NULL, 10);
+    u32 initSeed = ui->textBoxStartSeed->text().toUInt(nullptr, 16);
+    u32 targetSeed = ui->textBoxEndSeed->text().toUInt(nullptr, 16);
+    u32 minFrame = ui->textBoxMinFrame->text().toUInt();
+    u32 maxFrame = ui->textBoxMaxFrame->text().toUInt();
 
     XDRNGR back(targetSeed);
     back.advanceFrames(minFrame);

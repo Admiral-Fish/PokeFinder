@@ -82,7 +82,7 @@ void SeedToTime3::loadSettings()
 
 void SeedToTime3::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -97,8 +97,8 @@ void SeedToTime3::changeEvent(QEvent *event)
 
 void SeedToTime3::on_pushButtonFind_clicked()
 {
-    u32 seed = ui->seedToTimeSeed->text().toUInt(NULL, 16);
-    u32 year = ui->seedToTimeYear->text().toUInt(NULL, 10);
+    u32 seed = ui->seedToTimeSeed->text().toUInt(nullptr, 16);
+    u32 year = ui->seedToTimeYear->text().toUInt();
     frame = 1;
     if (seed > 0xFFFF)
     {
@@ -134,16 +134,16 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
     // Game decides to ignore a year of counting days
     for (u32 x = 2001; x < year; x++)
     {
-        temp.setDate(x, 1, 1);
-        minDay += temp.daysInYear();
-        maxDay += temp.daysInYear();
+        temp.setDate(static_cast<int>(x), 1, 1);
+        minDay += static_cast<u32>(temp.daysInYear());
+        maxDay += static_cast<u32>(temp.daysInYear());
     }
 
     // Loop through the year generating seeds to check against user input
     for (u32 month = 1; month < 13; month++)
     {
-        temp.setDate(2000, month, 1);
-        maxDay += temp.daysInMonth();
+        temp.setDate(2000, static_cast<int>(month), 1);
+        maxDay += static_cast<u32>(temp.daysInMonth());
         for (u32 day = minDay; day < maxDay; day++)
         {
             for (u32 hour = 0; hour < 24; hour++)
@@ -158,15 +158,15 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
                     {
                         QDateTime finalTime = start.addDays(day).addSecs((hour * 60 * 60) + (minute * 60));
                         QString result = finalTime.toString(Qt::SystemLocaleShortDate);
-                        int seconds = day * 86400 + hour * 3600 + minute * 60;
+                        u32 seconds = day * 86400 + hour * 3600 + minute * 60;
                         QList<QStandardItem *> list;
-                        list << new QStandardItem(result) << new QStandardItem(QString::number(frame, 10)) << new QStandardItem(QString::number(seconds, 10));
+                        list << new QStandardItem(result) << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(seconds));
                         model->appendRow(list);
                     }
                 }
             }
         }
-        minDay += temp.daysInMonth();
+        minDay += static_cast<u32>(temp.daysInMonth());
     }
 }
 

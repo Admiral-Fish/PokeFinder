@@ -24,13 +24,13 @@ ResearcherModel::ResearcherModel(QObject *parent, bool is64Bit) : QAbstractTable
     flag = is64Bit;
 }
 
-void ResearcherModel::setModel(vector<ResearcherFrame> frames)
+void ResearcherModel::setModel(QVector<ResearcherFrame> frames)
 {
     if (frames.empty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.insert(model.end(), frames.begin(), frames.end());
+    model.append(frames);
     emit endInsertRows();
 }
 
@@ -40,7 +40,7 @@ void ResearcherModel::clear()
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
-    model.shrink_to_fit();
+    model.squeeze();
     emit endRemoveRows();
 }
 
@@ -50,7 +50,7 @@ void ResearcherModel::setFlag(bool is64Bit)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-void ResearcherModel::setHex(vector<bool> hex)
+void ResearcherModel::setHex(QVector<bool> hex)
 {
     this->hex = hex;
 }
@@ -58,7 +58,7 @@ void ResearcherModel::setHex(vector<bool> hex)
 int ResearcherModel::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return (int)model.size();
+    return model.size();
 }
 
 int ResearcherModel::columnCount(const QModelIndex &parent) const
@@ -71,9 +71,8 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int row = index.row();
         int column = index.column();
-        ResearcherFrame frame = model[row];
+        ResearcherFrame frame = model[index.row()];
         if (flag)
         {
             switch (column)
@@ -176,105 +175,102 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
 
 QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (orientation == Qt::Horizontal)
+        if (flag)
         {
-            if (flag)
+            switch (section)
             {
-                switch (section)
-                {
-                    case 0:
-                        return tr("Frame");
-                    case 1:
-                        return tr("64Bit");
-                    case 2:
-                        return tr("32Bit High");
-                    case 3:
-                        return tr("32Bit Low");
-                    case 4:
-                        return tr("16Bit High");
-                    case 5:
-                        return tr("16Bit Low");
-                    case 6:
-                        return tr("Custom 1");
-                    case 7:
-                        return tr("Custom 2");
-                    case 8:
-                        return tr("Custom 3");
-                    case 9:
-                        return tr("Custom 4");
-                    case 10:
-                        return tr("Custom 5");
-                    case 11:
-                        return tr("Custom 6");
-                    case 12:
-                        return tr("Custom 7");
-                    case 13:
-                        return tr("Custom 8");
-                    case 14:
-                        return tr("Custom 9");
-                    case 15:
-                        return tr("Custom 10");
-                    case 16:
-                        return "%3";
-                    case 17:
-                        return "%25";
-                    case 18:
-                        return "%100";
-                    case 19:
-                        return "/656";
-                    case 20:
-                        return tr("LBit");
-                    case 21:
-                        return tr("HBit");
-                }
+                case 0:
+                    return tr("Frame");
+                case 1:
+                    return tr("64Bit");
+                case 2:
+                    return tr("32Bit High");
+                case 3:
+                    return tr("32Bit Low");
+                case 4:
+                    return tr("16Bit High");
+                case 5:
+                    return tr("16Bit Low");
+                case 6:
+                    return tr("Custom 1");
+                case 7:
+                    return tr("Custom 2");
+                case 8:
+                    return tr("Custom 3");
+                case 9:
+                    return tr("Custom 4");
+                case 10:
+                    return tr("Custom 5");
+                case 11:
+                    return tr("Custom 6");
+                case 12:
+                    return tr("Custom 7");
+                case 13:
+                    return tr("Custom 8");
+                case 14:
+                    return tr("Custom 9");
+                case 15:
+                    return tr("Custom 10");
+                case 16:
+                    return "%3";
+                case 17:
+                    return "%25";
+                case 18:
+                    return "%100";
+                case 19:
+                    return "/656";
+                case 20:
+                    return tr("LBit");
+                case 21:
+                    return tr("HBit");
             }
-            else
+        }
+        else
+        {
+            switch (section)
             {
-                switch (section)
-                {
-                    case 0:
-                        return tr("Frame");
-                    case 1:
-                        return tr("32Bit");
-                    case 2:
-                        return tr("16Bit High");
-                    case 3:
-                        return tr("16Bit Low");
-                    case 4:
-                        return tr("Custom 1");
-                    case 5:
-                        return tr("Custom 2");
-                    case 6:
-                        return tr("Custom 3");
-                    case 7:
-                        return tr("Custom 4");
-                    case 8:
-                        return tr("Custom 5");
-                    case 9:
-                        return tr("Custom 6");
-                    case 10:
-                        return tr("Custom 7");
-                    case 11:
-                        return tr("Custom 8");
-                    case 12:
-                        return tr("Custom 9");
-                    case 13:
-                        return tr("Custom 10");
-                    case 14:
-                        return "%3";
-                    case 15:
-                        return "%25";
-                    case 16:
-                        return "%100";
-                    case 17:
-                        return "/656";
-                    case 18:
-                        return tr("LBit");
-                    case 19:
-                        return tr("HBit");
-                }
+                case 0:
+                    return tr("Frame");
+                case 1:
+                    return tr("32Bit");
+                case 2:
+                    return tr("16Bit High");
+                case 3:
+                    return tr("16Bit Low");
+                case 4:
+                    return tr("Custom 1");
+                case 5:
+                    return tr("Custom 2");
+                case 6:
+                    return tr("Custom 3");
+                case 7:
+                    return tr("Custom 4");
+                case 8:
+                    return tr("Custom 5");
+                case 9:
+                    return tr("Custom 6");
+                case 10:
+                    return tr("Custom 7");
+                case 11:
+                    return tr("Custom 8");
+                case 12:
+                    return tr("Custom 9");
+                case 13:
+                    return tr("Custom 10");
+                case 14:
+                    return "%3";
+                case 15:
+                    return "%25";
+                case 16:
+                    return "%100";
+                case 17:
+                    return "/656";
+                case 18:
+                    return tr("LBit");
+                case 19:
+                    return tr("HBit");
             }
         }
     }
@@ -283,8 +279,8 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
 
 QModelIndex ResearcherModel::search(QString string, u64 result, int row)
 {
-    int column;
-    u64 (*getResult)(ResearcherFrame);
+    int column = 0;
+    u64 (*getResult)(ResearcherFrame) = nullptr;
     if (string == tr("64Bit"))
     {
         column = 1;

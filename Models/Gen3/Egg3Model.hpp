@@ -21,6 +21,7 @@
 #define EGG3MODEL_HPP
 
 #include <QAbstractTableModel>
+#include <QVector>
 #include <PokeFinderCore/Gen3/Frame3.hpp>
 
 class Egg3Model : public QAbstractTableModel
@@ -28,12 +29,12 @@ class Egg3Model : public QAbstractTableModel
     Q_OBJECT
 
 private:
-    vector<Frame3> model;
+    QVector<Frame3> model;
     Method method;
 
 public:
     Egg3Model(QObject *parent, Method method);
-    void setModel(vector<Frame3> frames);
+    void setModel(QVector<Frame3> frames);
     void clear();
     void setMethod(Method method);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;

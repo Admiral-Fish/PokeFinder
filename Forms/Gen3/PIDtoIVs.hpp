@@ -24,6 +24,7 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QList>
+#include <QVector>
 #include <PokeFinderCore/RNG/RNGCache.hpp>
 #include <PokeFinderCore/Objects/Method.hpp>
 #include <PokeFinderCore/RNG/RNGEuclidean.hpp>
@@ -36,7 +37,6 @@
 
 typedef uint32_t u32;
 
-using std::vector;
 namespace Ui
 {
     class PIDtoIVs;
@@ -49,17 +49,8 @@ class PIDtoIVs : public QMainWindow
 protected:
     void changeEvent(QEvent *);
 
-public:
-    explicit PIDtoIVs(QWidget *parent = 0);
-    ~PIDtoIVs();
-
 signals:
     void moveResultsToStationary(QString, QString, u32, u32, u32, u32, u32, u32);
-
-private slots:
-    void on_pushButtonGenerate_clicked();
-    void on_tabePIDToIV_customContextMenuRequested(const QPoint &pos);
-    void copySeed();
 
 private:
     Ui::PIDtoIVs *ui;
@@ -79,6 +70,15 @@ private:
     void addSeed(u32 seed, u32 iv1);
     void addSeedGC(u32 seed, u32 iv1, u32 iv2);
     void addSeedChannel(u32 seed, u32 iv1);
+
+private slots:
+    void on_pushButtonGenerate_clicked();
+    void on_tabePIDToIV_customContextMenuRequested(const QPoint &pos);
+    void copySeed();
+
+public:
+    explicit PIDtoIVs(QWidget *parent = nullptr);
+    ~PIDtoIVs();
 
 };
 

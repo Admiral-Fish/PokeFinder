@@ -19,11 +19,15 @@
 
 #include "DateTime.hpp"
 
-DateTime::DateTime(QDateTime dateTime, u32 delay, Game version, vector<bool> roamers, vector<u32> routes)
+DateTime::DateTime()
+{
+}
+
+DateTime::DateTime(QDateTime dateTime, u32 delay, Game version, QVector<bool> roamers, QVector<u32> routes)
 {
     this->dateTime = dateTime;
     this->delay = delay;
-    seed = Utilities::calcGen4Seed(dateTime, delay - (2000 - dateTime.date().year()));
+    seed = Utilities::calcGen4Seed(dateTime, delay - (2000 - static_cast<u32>(dateTime.date().year())));
     this->version = version;
     info = HGSSRoamer(seed, roamers, routes);
 }
@@ -32,7 +36,7 @@ DateTime::DateTime(QDateTime dateTime, u32 delay, Game version, HGSSRoamer info)
 {
     this->dateTime = dateTime;
     this->delay = delay;
-    seed = Utilities::calcGen4Seed(dateTime, delay - (2000 - dateTime.date().year()));
+    seed = Utilities::calcGen4Seed(dateTime, delay - (2000 - static_cast<u32>(dateTime.date().year())));
     this->version = version;
     this->info = info;
 }
@@ -60,7 +64,7 @@ u32 DateTime::getSeed()
     return seed;
 }
 
-int DateTime::getDelay()
+u32 DateTime::getDelay()
 {
     return delay;
 }

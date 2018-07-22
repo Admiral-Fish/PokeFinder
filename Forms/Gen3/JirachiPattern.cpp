@@ -40,7 +40,7 @@ JirachiPattern::~JirachiPattern()
 
 void JirachiPattern::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -65,7 +65,7 @@ void JirachiPattern::on_pushButtonGenerate_clicked()
 {
     model->removeRows(0, model->rowCount());
     data.clear();
-    generate(ui->jirachiPatternSeed->text().toUInt(NULL, 16));
+    generate(ui->jirachiPatternSeed->text().toUInt(nullptr, 16));
 }
 
 void JirachiPattern::generate(u32 seed)
@@ -88,7 +88,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     QStringList results;
 
     QString pattern = QString::number(seed >> 30);
-    data.push_back(seed);
+    data.append(seed);
 
     XDRNGR rng(seed);
 
@@ -96,7 +96,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     for (u32 m = 0; m < 35; m++)
     {
         seed = rng.nextUInt();
-        data.push_back(seed);
+        data.append(seed);
         pattern = QString::number(seed >> 30, 16) + "|" + pattern;
     }
 
@@ -118,8 +118,8 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         // From start, game advances frames until (prng >> 30) gives a 1, 2, and 3
         // (prng >> 30) being 0 just acts as a filler
         // Map remaining numbers from 1, 2, 3 without target for later use
-        vector<u32> remain = { 1, 2, 3 };
-        remain.erase(std::remove(remain.begin(), remain.end(), target), remain.end());
+        QVector<u32> remain = { 1, 2, 3 };
+        remain.removeAll(static_cast<u32>(target));
 
         u32 obtain[] = { 0, 0, 0, 0};
         obtain[target] = 1;
@@ -152,7 +152,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         if (!valid)
             continue;
 
-        results.push_back(copy.replace("|", " | "));
+        results.append(copy.replace("|", " | "));
     }
 
     return results;
@@ -163,32 +163,31 @@ QString JirachiPattern::getTarget(QString in, int index)
     // (prng >> 30 == 0) then advance 1
     // (prng >> 30 == 2) then advance 1, (next prng >> 25 > 41) then advance 1 more
     // (prng >> 30 == 1) or (prng >> 30 == 3) then advance 3
-    // After all this game advances 1 without doing any kind of check
 
     // Return an empty string if math doesn't fit
     switch (index)
     {
         case 0:
-            if ((data[2] >> 30) == 0) // 6 advances total
+            if ((data[1] >> 30) == 0) // 6 advances total
                 in = in.mid(0, in.length() - 13) + "T:" + in.mid(in.length() - 13);
             else
                 return QString();
             break;
         case 1:
-            if ((data[4] >> 30) == 1 || (data[4] >> 30) == 3) // 8 advances total
+            if ((data[3] >> 30) == 1 || (data[3] >> 30) == 3) // 8 advances total
                 in = in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
             else
                 return QString();
             break;
         case 2:
-            if ((data[3] >> 30) == 2 && (data[2] >> 25) <= 41) // 6 advances total
+            if ((data[2] >> 30) == 2 && (data[1] >> 25) <= 41) // 6 advances total
                 in = in.mid(0, in.length() - 13) + "T:" + in.mid(in.length() - 13);
             else
                 return QString();
             break;
         case 3:
         default:
-            if ((data[3] >> 30) == 2 && (data[2] >> 25) > 41) // 7 advances total
+            if ((data[2] >> 30) == 2 && (data[1] >> 25) > 41) // 7 advances total
                 in = in.mid(0, in.length() - 15) + "T:" + in.mid(in.length() - 15);
             else
                 return QString();

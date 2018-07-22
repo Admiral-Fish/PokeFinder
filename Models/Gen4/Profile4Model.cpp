@@ -23,13 +23,13 @@ Profile4Model::Profile4Model(QObject *parent) : QAbstractTableModel(parent)
 {
 }
 
-void Profile4Model::setModel(vector<Profile4> profiles)
+void Profile4Model::setModel(QVector<Profile4> profiles)
 {
     if (profiles.empty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + profiles.size() - 1);
-    model.insert(model.end(), profiles.begin(), profiles.end());
+    model.append(profiles);
     emit endInsertRows();
 }
 
@@ -50,7 +50,7 @@ void Profile4Model::updateProfile(Profile4 profile, int row)
 int Profile4Model::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return (int)model.size();
+    return model.size();
 }
 
 int Profile4Model::columnCount(const QModelIndex &parent) const
@@ -63,10 +63,8 @@ QVariant Profile4Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int row = index.row();
-        int column = index.column();
-        Profile4 profile = model[row];
-        switch (column)
+        Profile4 profile = model[index.row()];
+        switch (index.column())
         {
             case 0:
                 return profile.getProfileName();
@@ -85,23 +83,20 @@ QVariant Profile4Model::data(const QModelIndex &index, int role) const
 
 QVariant Profile4Model::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (orientation == Qt::Horizontal)
+        switch (section)
         {
-            switch (section)
-            {
-                case 0:
-                    return tr("Profile Name");
-                case 1:
-                    return tr("Version");
-                case 2:
-                    return tr("Language");
-                case 3:
-                    return tr("TID");
-                case 4:
-                    return tr("SID");
-            }
+            case 0:
+                return tr("Profile Name");
+            case 1:
+                return tr("Version");
+            case 2:
+                return tr("Language");
+            case 3:
+                return tr("TID");
+            case 4:
+                return tr("SID");
         }
     }
     return QVariant();
@@ -116,6 +111,6 @@ void Profile4Model::removeProfile(int index)
 {
     emit beginRemoveRows(QModelIndex(), index, index);
     model.erase(model.begin() + index);
-    model.shrink_to_fit();
+    model.squeeze();
     emit endRemoveRows();
 }

@@ -25,13 +25,13 @@ SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, Game version) : Q
     this->version = version;
 }
 
-void SeedtoTime4Model::setModel(vector<DateTime> times)
+void SeedtoTime4Model::setModel(QVector<DateTime> times)
 {
     if (times.empty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + times.size() - 1);
-    model.insert(model.end(), times.begin(), times.end());
+    model.append(times);
     emit endInsertRows();
 }
 
@@ -41,7 +41,7 @@ void SeedtoTime4Model::clear()
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
-    model.shrink_to_fit();
+    model.squeeze();
     emit endRemoveRows();
 }
 
@@ -50,7 +50,7 @@ DateTime SeedtoTime4Model::getData(int row)
     return model[row];
 }
 
-vector<DateTime> SeedtoTime4Model::getData()
+QVector<DateTime> SeedtoTime4Model::getData()
 {
     return model;
 }
@@ -65,7 +65,7 @@ void SeedtoTime4Model::setFlags(bool flag, Game version)
 int SeedtoTime4Model::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return (int)model.size();
+    return model.size();
 }
 
 int SeedtoTime4Model::columnCount(const QModelIndex &parent) const
@@ -81,9 +81,8 @@ QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int row = index.row();
         int column = index.column();
-        DateTime frame = model[row];
+        DateTime frame = model[index.row()];
 
         if (calibrate)
         {
@@ -124,39 +123,36 @@ QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
 
 QVariant SeedtoTime4Model::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (orientation == Qt::Horizontal)
+        if (calibrate)
         {
-            if (calibrate)
+            switch (section)
             {
-                switch (section)
-                {
-                    case 0:
-                        return tr("Seed");
-                    case 1:
-                        return tr("Date");
-                    case 2:
-                        return tr("Time");
-                    case 3:
-                        return tr("Delay");
-                    case 4:
-                        return (version == HeartGold || version == SoulSilver) ? tr("Calls") : tr("Coin flips");
-                    case 5 :
-                        return tr("Roamer locations");
-                }
+                case 0:
+                    return tr("Seed");
+                case 1:
+                    return tr("Date");
+                case 2:
+                    return tr("Time");
+                case 3:
+                    return tr("Delay");
+                case 4:
+                    return (version == HeartGold || version == SoulSilver) ? tr("Calls") : tr("Coin flips");
+                case 5 :
+                    return tr("Roamer locations");
             }
-            else
+        }
+        else
+        {
+            switch (section)
             {
-                switch (section)
-                {
-                    case 0:
-                        return tr("Date");
-                    case 1:
-                        return tr("Time");
-                    case 2:
-                        return tr("Delay");
-                }
+                case 0:
+                    return tr("Date");
+                case 1:
+                    return tr("Time");
+                case 2:
+                    return tr("Delay");
             }
         }
     }

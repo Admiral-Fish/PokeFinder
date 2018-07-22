@@ -23,13 +23,13 @@ Wild3Model::Wild3Model(QObject *parent) : QAbstractTableModel(parent)
 {
 }
 
-void Wild3Model::setModel(vector<Frame3> frames)
+void Wild3Model::setModel(QVector<Frame3> frames)
 {
     if (frames.empty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.insert(model.end(), frames.begin(), frames.end());
+    model.append(frames);
     emit endInsertRows();
 }
 
@@ -39,14 +39,14 @@ void Wild3Model::clear()
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
-    model.shrink_to_fit();
+    model.squeeze();
     emit endRemoveRows();
 }
 
 int Wild3Model::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return (int)model.size();
+    return model.size();
 }
 
 int Wild3Model::columnCount(const QModelIndex &parent) const
@@ -59,10 +59,8 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int row = index.row();
-        int column = index.column();
-        Frame3 frame = model[row];
-        switch (column)
+        Frame3 frame = model[index.row()];
+        switch (index.column())
         {
             case 0:
                 return frame.getFrame();
@@ -107,49 +105,46 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
 
 QVariant Wild3Model::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (orientation == Qt::Horizontal)
+        switch (section)
         {
-            switch (section)
-            {
-                case 0:
-                    return tr("Frame");
-                case 1:
-                    return tr("Occidentary");
-                case 2:
-                    return tr("Slot");
-                case 3:
-                    return tr("Level");
-                case 4:
-                    return tr("PID");
-                case 5:
-                    return "!!!";
-                case 6:
-                    return tr("Nature");
-                case 7:
-                    return tr("Ability");
-                case 8:
-                    return tr("HP");
-                case 9:
-                    return tr("Atk");
-                case 10:
-                    return tr("Def");
-                case 11:
-                    return tr("SpA");
-                case 12:
-                    return tr("SpD");
-                case 13:
-                    return tr("Spe");
-                case 14:
-                    return tr("Hidden");
-                case 15:
-                    return tr("Power");
-                case 16:
-                    return tr("Gender");
-                case 17:
-                    return tr("Time");
-            }
+            case 0:
+                return tr("Frame");
+            case 1:
+                return tr("Occidentary");
+            case 2:
+                return tr("Slot");
+            case 3:
+                return tr("Level");
+            case 4:
+                return tr("PID");
+            case 5:
+                return "!!!";
+            case 6:
+                return tr("Nature");
+            case 7:
+                return tr("Ability");
+            case 8:
+                return tr("HP");
+            case 9:
+                return tr("Atk");
+            case 10:
+                return tr("Def");
+            case 11:
+                return tr("SpA");
+            case 12:
+                return tr("SpD");
+            case 13:
+                return tr("Spe");
+            case 14:
+                return tr("Hidden");
+            case 15:
+                return tr("Power");
+            case 16:
+                return tr("Gender");
+            case 17:
+                return tr("Time");
         }
     }
     return QVariant();

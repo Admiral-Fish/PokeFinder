@@ -22,10 +22,9 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <vector>
+#include <QVector>
 
 typedef uint32_t u32;
-using std::vector;
 
 namespace Ui
 {
@@ -75,12 +74,12 @@ private slots:
     void changeCompareSpe(int type);
 
 public:
-    explicit IVFilter(QWidget *parent = 0);
+    explicit IVFilter(QWidget *parent = nullptr);
     ~IVFilter();
-    vector<u32> getEvals();
-    vector<u32> getValues();
-    vector<u32> getLower();
-    vector<u32> getUpper();
+    QVector<u32> getEvals();
+    QVector<u32> getValues();
+    QVector<u32> getLower();
+    QVector<u32> getUpper();
     void clearValues();
     void setValues(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
 

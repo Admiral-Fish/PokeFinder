@@ -22,6 +22,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QVector>
 #include <QModelIndex>
 #include <QSettings>
 #include <Models/Gen4/SeedtoTime4Model.hpp>
@@ -53,8 +54,8 @@ private:
     void setupModels();
     void saveSettings();
     void loadSettings();
-    vector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);
-    vector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, DateTime target);
+    QVector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);
+    QVector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, DateTime target);
 
 private slots:
     void on_pushButtonGenerateDPPt_clicked();
@@ -69,8 +70,8 @@ private slots:
     void on_pushButtonMap_clicked();
 
 public:
-    explicit SeedtoTime4(QWidget *parent = 0);
-    explicit SeedtoTime4(QString seed, Profile4 profile, QWidget *parent = 0);
+    explicit SeedtoTime4(QWidget *parent = nullptr);
+    explicit SeedtoTime4(QString seed, Profile4 profile, QWidget *parent = nullptr);
     ~SeedtoTime4();
 
 };

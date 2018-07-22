@@ -56,7 +56,7 @@ private slots:
     void on_pushButtonDelete_clicked();
 
 public:
-    explicit ProfileManager3(QWidget *parent = 0);
+    explicit ProfileManager3(QWidget *parent = nullptr);
     ~ProfileManager3();
 
 };

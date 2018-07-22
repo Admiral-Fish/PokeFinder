@@ -23,13 +23,13 @@ PokeSpotModel::PokeSpotModel(QObject *parent) : QAbstractTableModel(parent)
 {
 }
 
-void PokeSpotModel::setModel(vector<Frame3> frames)
+void PokeSpotModel::setModel(QVector<Frame3> frames)
 {
     if (frames.empty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.insert(model.end(), frames.begin(), frames.end());
+    model.append(frames);
     emit endInsertRows();
 }
 
@@ -39,14 +39,14 @@ void PokeSpotModel::clear()
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
-    model.shrink_to_fit();
+    model.squeeze();
     emit endRemoveRows();
 }
 
 int PokeSpotModel::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return (int)model.size();
+    return model.size();
 }
 
 int PokeSpotModel::columnCount(const QModelIndex &parent) const
@@ -59,10 +59,8 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int row = index.row();
-        int column = index.column();
-        Frame3 frame = model[row];
-        switch (column)
+        Frame3 frame = model[index.row()];
+        switch (index.column())
         {
             case 0:
                 return frame.getFrame();
@@ -85,27 +83,24 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
 
 QVariant PokeSpotModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (orientation == Qt::Horizontal)
+        switch (section)
         {
-            switch (section)
-            {
-                case 0:
-                    return tr("Frame");
-                case 1:
-                    return tr("PID");
-                case 2:
-                    return "!!!";
-                case 3:
-                    return tr("Type");
-                case 4:
-                    return tr("Nature");
-                case 5:
-                    return tr("Ability");
-                case 6:
-                    return tr("Gender");
-            }
+            case 0:
+                return tr("Frame");
+            case 1:
+                return tr("PID");
+            case 2:
+                return "!!!";
+            case 3:
+                return tr("Type");
+            case 4:
+                return tr("Nature");
+            case 5:
+                return tr("Ability");
+            case 6:
+                return tr("Gender");
         }
     }
     return QVariant();

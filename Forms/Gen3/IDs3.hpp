@@ -68,7 +68,7 @@ private slots:
     void on_checkBoxSIDFRLGE_stateChanged(int arg1);
 
 public:
-    explicit IDs3(QWidget *parent = 0);
+    explicit IDs3(QWidget *parent = nullptr);
     ~IDs3();
 
 };

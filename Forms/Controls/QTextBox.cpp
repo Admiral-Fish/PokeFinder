@@ -30,7 +30,7 @@ void QTextBox::onTextChanged(QString string)
     {
         string = string.toUpper();
         string.remove(filter);
-        u64 temp = string.toULongLong(NULL, base);
+        u64 temp = string.toULongLong(nullptr, base);
 
         if (temp > maxValue)
             string = QString::number(maxValue, base);
@@ -59,7 +59,7 @@ void QTextBox::setValue(u64 value)
     maxValue = value;
 }
 
-void QTextBox::setBase(u32 base)
+void QTextBox::setBase(int base)
 {
     this->base = base;
 }

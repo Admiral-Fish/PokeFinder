@@ -38,6 +38,7 @@
 #include <QFileDialog>
 #include <QClipboard>
 #include <QSettings>
+#include <QVector>
 
 namespace Ui
 {
@@ -52,24 +53,24 @@ protected:
     void changeEvent(QEvent *);
 
 signals:
-    void updateView(vector<Frame3>);
+    void updateView(QVector<Frame3>);
     void alertProfiles(int);
     void updateProgress();
 
 private:
     Ui::Wild3 *ui;
-    vector<Profile3> profiles;
+    QVector<Profile3> profiles;
     bool isSearching = false;
     bool cancel = false;
-    u32 progress;
+    int progress;
     Searcher3Model *s = new Searcher3Model(this, Method1);
     Wild3Model *g = new Wild3Model(this);
     QMenu *generatorMenu = new QMenu(this);
     QMenu *searcherMenu = new QMenu(this);
     QModelIndex lastIndex;
     QModelIndex targetFrame;
-    vector<EncounterArea3> encounterGenerator;
-    vector<EncounterArea3> encounterSearcher;
+    QVector<EncounterArea3> encounterGenerator;
+    QVector<EncounterArea3> encounterSearcher;
 
     void setupModels();
     void search();
@@ -87,7 +88,7 @@ private slots:
     void on_search_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void updateViewSearcher(vector<Frame3> frames);
+    void updateViewSearcher(QVector<Frame3> frames);
     void on_checkBoxDelayGenerator_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
@@ -112,7 +113,7 @@ private slots:
     void on_comboBoxPokemonGenerator_currentIndexChanged(int index);
 
 public:
-    explicit Wild3(QWidget *parent = 0);
+    explicit Wild3(QWidget *parent = nullptr);
     ~Wild3();
     void updateProfiles();
 

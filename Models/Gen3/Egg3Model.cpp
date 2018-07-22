@@ -24,13 +24,13 @@ Egg3Model::Egg3Model(QObject *parent, Method method) : QAbstractTableModel(paren
     this->method = method;
 }
 
-void Egg3Model::setModel(vector<Frame3> frames)
+void Egg3Model::setModel(QVector<Frame3> frames)
 {
     if (frames.empty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.insert(model.end(), frames.begin(), frames.end());
+    model.append(frames);
     emit endInsertRows();
 }
 
@@ -40,7 +40,7 @@ void Egg3Model::clear()
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
-    model.shrink_to_fit();
+    model.squeeze();
     emit endRemoveRows();
 }
 
@@ -53,7 +53,7 @@ void Egg3Model::setMethod(Method method)
 int Egg3Model::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return (int)model.size();
+    return model.size();
 }
 
 int Egg3Model::columnCount(const QModelIndex &parent) const
@@ -79,9 +79,8 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int row = index.row();
         int column = index.column();
-        Frame3 frame = model[row];
+        Frame3 frame = model[index.row()];
         switch (method)
         {
             case EBred:
@@ -173,108 +172,103 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                 break;
         }
     }
-
     return QVariant();
 }
 
 QVariant Egg3Model::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role == Qt::DisplayRole)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (orientation == Qt::Horizontal)
+        switch (method)
         {
-            switch (method)
-            {
-                case EBred:
-                case EBredSplit:
-                case EBredAlternate:
-                    switch (section)
-                    {
-                        case 0:
-                            return tr("Frame");
-                        case 1:
-                            return tr("Time");
-                        case 2:
-                            return tr("HP");
-                        case 3:
-                            return tr("Atk");
-                        case 4:
-                            return tr("Def");
-                        case 5:
-                            return tr("SpA");
-                        case 6:
-                            return tr("SpD");
-                        case 7:
-                            return tr("Spe");
-                        case 8:
-                            return tr("Hidden");
-                        case 9:
-                            return tr("Power");
-                    }
-                case EBredPID:
-                    switch (section)
-                    {
-                        case 0:
-                            return tr("Frame");
-                        case 1:
-                            return tr("Time");
-                        case 2:
-                            return tr("Redraws");
-                        case 3:
-                            return tr("PID");
-                        case 4:
-                            return "!!!";
-                        case 5:
-                            return tr("Nature");
-                        case 6:
-                            return tr("Ability");
-                        case 7:
-                            return tr("Gender");
-                    }
-                case RSBred:
-                case FRLGBred:
-                    switch (section)
-                    {
-                        case 0:
-                            return tr("Held Frame");
-                        case 1:
-                            return tr("Held Time");
-                        case 2:
-                            return tr("Pickup Frame");
-                        case 3:
-                            return tr("Pickup Time");
-                        case 4:
-                            return tr("PID");
-                        case 5:
-                            return "!!!";
-                        case 6:
-                            return tr("Nature");
-                        case 7:
-                            return tr("Ability");
-                        case 8:
-                            return tr("HP");
-                        case 9:
-                            return tr("Atk");
-                        case 10:
-                            return tr("Def");
-                        case 11:
-                            return tr("SpA");
-                        case 12:
-                            return tr("SpD");
-                        case 13:
-                            return tr("Spe");
-                        case 14:
-                            return tr("Hidden");
-                        case 15:
-                            return tr("Power");
-                        case 16:
-                            return tr("Gender");
-                    }
-                default:
-                    break;
-            }
+            case EBred:
+            case EBredSplit:
+            case EBredAlternate:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Frame");
+                    case 1:
+                        return tr("Time");
+                    case 2:
+                        return tr("HP");
+                    case 3:
+                        return tr("Atk");
+                    case 4:
+                        return tr("Def");
+                    case 5:
+                        return tr("SpA");
+                    case 6:
+                        return tr("SpD");
+                    case 7:
+                        return tr("Spe");
+                    case 8:
+                        return tr("Hidden");
+                    case 9:
+                        return tr("Power");
+                }
+            case EBredPID:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Frame");
+                    case 1:
+                        return tr("Time");
+                    case 2:
+                        return tr("Redraws");
+                    case 3:
+                        return tr("PID");
+                    case 4:
+                        return "!!!";
+                    case 5:
+                        return tr("Nature");
+                    case 6:
+                        return tr("Ability");
+                    case 7:
+                        return tr("Gender");
+                }
+            case RSBred:
+            case FRLGBred:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Held Frame");
+                    case 1:
+                        return tr("Held Time");
+                    case 2:
+                        return tr("Pickup Frame");
+                    case 3:
+                        return tr("Pickup Time");
+                    case 4:
+                        return tr("PID");
+                    case 5:
+                        return "!!!";
+                    case 6:
+                        return tr("Nature");
+                    case 7:
+                        return tr("Ability");
+                    case 8:
+                        return tr("HP");
+                    case 9:
+                        return tr("Atk");
+                    case 10:
+                        return tr("Def");
+                    case 11:
+                        return tr("SpA");
+                    case 12:
+                        return tr("SpD");
+                    case 13:
+                        return tr("Spe");
+                    case 14:
+                        return tr("Hidden");
+                    case 15:
+                        return tr("Power");
+                    case 16:
+                        return tr("Gender");
+                }
+            default:
+                break;
         }
     }
-
     return QVariant();
 }

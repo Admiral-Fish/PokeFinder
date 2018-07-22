@@ -30,7 +30,7 @@ Eggs4::Eggs4(QWidget *parent) :
     updateProfiles();
     setupModels();
 
-    qRegisterMetaType<vector<Frame4>>("vector<Frame4>");
+    qRegisterMetaType<QVector<Frame4>>("QVector<Frame4>");
     connect(this, &Eggs4::updatePID, this, &Eggs4::updateViewPID);
     connect(this, &Eggs4::updateIVs, this, &Eggs4::updateViewIVs);
     connect(this, &Eggs4::updateProgress, this, &Eggs4::updateProgressPID);
@@ -50,7 +50,7 @@ Eggs4::~Eggs4()
 
 void Eggs4::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -110,8 +110,8 @@ void Eggs4::updateProfiles()
 
     ui->comboBoxProfiles->clear();
 
-    for (int i = 0; i < (int)profiles.size(); i++)
-        ui->comboBoxProfiles->addItem(profiles[i].getProfileName());
+    for (auto profile : profiles)
+        ui->comboBoxProfiles->addItem(profile.getProfileName());
 
     QSettings setting;
     int val = setting.value("egg4Profile").toInt();
@@ -159,12 +159,12 @@ void Eggs4::on_pushButtonProfileManager_clicked()
     manager->show();
 }
 
-void Eggs4::updateViewPID(vector<Frame4> frames)
+void Eggs4::updateViewPID(QVector<Frame4> frames)
 {
     searcherPID->addItems(frames);
 }
 
-void Eggs4::updateViewIVs(vector<Frame4> frames)
+void Eggs4::updateViewIVs(QVector<Frame4> frames)
 {
     searcherIVs->addItems(frames);
 }
@@ -221,11 +221,11 @@ void Eggs4::on_pushButtonGenerate_clicked()
 
     u32 startingFrame = ui->textBoxStartingFrame->text().toUInt();
     u32 maxResults = ui->textBoxMaxResults->text().toUInt();
-    u32 seed = ui->textBoxSeedGenerator->text().toUInt(NULL, 16);
-    u32 tid = ui->textBoxTIDGenerator->text().toUInt();
-    u32 sid = ui->textBoxSIDGenerator->text().toUInt();
+    u32 seed = ui->textBoxSeedGenerator->text().toUInt(nullptr, 16);
+    u16 tid = ui->textBoxTIDGenerator->text().toUShort();
+    u16 sid = ui->textBoxSIDGenerator->text().toUShort();
 
-    Method method = (Method)ui->comboBoxMethod->currentData().toInt();
+    Method method = static_cast<Method>(ui->comboBoxMethod->currentData().toInt());
 
     if (method == Gen4Normal)
     {
@@ -243,12 +243,12 @@ void Eggs4::on_pushButtonGenerate_clicked()
 
     generatorModel->setMethod(method);
 
-    vector<u32> parent1 = { (u32)ui->parent1HPGenerator->value(), (u32)ui->parent1AtkGenerator->value(), (u32)ui->parent1DefGenerator->value(),
-                            (u32)ui->parent1SpAGenerator->value(), (u32)ui->parent1SpDGenerator->value(), (u32)ui->parent1SpeGenerator->value()
-                          };
-    vector<u32> parent2 = { (u32)ui->parent2HPGenerator->value(), (u32)ui->parent2AtkGenerator->value(), (u32)ui->parent2DefGenerator->value(),
-                            (u32)ui->parent2SpAGenerator->value(), (u32)ui->parent2SpDGenerator->value(), (u32)ui->parent2SpeGenerator->value()
-                          };
+    QVector<u32> parent1 = { static_cast<u32>(ui->parent1HPGenerator->value()), static_cast<u32>(ui->parent1AtkGenerator->value()), static_cast<u32>(ui->parent1DefGenerator->value()),
+                             static_cast<u32>(ui->parent1SpAGenerator->value()), static_cast<u32>(ui->parent1SpDGenerator->value()), static_cast<u32>(ui->parent1SpeGenerator->value())
+                           };
+    QVector<u32> parent2 = { static_cast<u32>(ui->parent2HPGenerator->value()), static_cast<u32>(ui->parent2AtkGenerator->value()), static_cast<u32>(ui->parent2DefGenerator->value()),
+                             static_cast<u32>(ui->parent2SpAGenerator->value()), static_cast<u32>(ui->parent2SpDGenerator->value()), static_cast<u32>(ui->parent2SpeGenerator->value())
+                           };
 
     Egg4 generator = Egg4(maxResults, startingFrame, tid, sid, method, seed);
     generator.setParents(parent1, parent2);
@@ -257,7 +257,7 @@ void Eggs4::on_pushButtonGenerate_clicked()
                                         ui->comboBoxGenderRatioGenerator->currentIndex(), ui->comboBoxAbilityGenerator->currentIndex(), ui->comboBoxNatureGenerator->getChecked(),
                                         ui->comboBoxHiddenPowerGenerator->getChecked(), ui->checkBoxShinyGenerator->isChecked(), false);
 
-    vector<Frame4> frames = generator.generate(compare);
+    QVector<Frame4> frames = generator.generate(compare);
     generatorModel->setModel(frames);
 }
 
@@ -316,8 +316,8 @@ void Eggs4::on_pushButtonGenerateIVs_clicked()
 
 void Eggs4::searchPID()
 {
-    u32 tid = ui->textBoxTIDSearcher->text().toUInt(NULL, 10);
-    u32 sid = ui->textBoxSIDSearcher->text().toUInt(NULL, 10);
+    u16 tid = ui->textBoxTIDSearcher->text().toUShort();
+    u16 sid = ui->textBoxSIDSearcher->text().toUShort();
 
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
     FrameCompare compare = FrameCompare(ui->comboBoxGenderSearcher->currentIndex(), genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(),
@@ -331,7 +331,7 @@ void Eggs4::searchPID()
     Method type = ui->checkBoxMasuadaSearcher->isChecked() ? Gen4Masuada : Gen4Normal;
     Egg4 generator = Egg4(maxFrame - minFrame + 1, minFrame, tid, sid, type, 0);
 
-    ui->progressBarPID->setMaximum(256 * 24 * (maxDelay - minDelay + 1));
+    ui->progressBarPID->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
     for (u32 ab = 0; ab < 256; ab++)
     {
@@ -351,7 +351,7 @@ void Eggs4::searchPID()
 
                 if (searcherPID->rowCount() > 10000)
                 {
-                    progressPID = 256 * 24 * (maxDelay - minDelay + 1);
+                    progressPID = static_cast<int>(256 * 24 * (maxDelay - minDelay + 1));
                     break;
                 }
 
@@ -372,12 +372,12 @@ void Eggs4::searchPID()
 
 void Eggs4::searchIVs()
 {
-    vector<u32> parent1 = { (u32)ui->parent1HPSearcher->value(), (u32)ui->parent1AtkSearcher->value(), (u32)ui->parent1DefSearcher->value(),
-                            (u32)ui->parent1SpASearcher->value(), (u32)ui->parent1SpDSearcher->value(), (u32)ui->parent1SpeSearcher->value()
-                          };
-    vector<u32> parent2 = { (u32)ui->parent2HPSearcher->value(), (u32)ui->parent2AtkSearcher->value(), (u32)ui->parent2DefSearcher->value(),
-                            (u32)ui->parent2SpASearcher->value(), (u32)ui->parent2SpDSearcher->value(), (u32)ui->parent2SpeSearcher->value()
-                          };
+    QVector<u32> parent1 = { static_cast<u32>(ui->parent1HPSearcher->value()), static_cast<u32>(ui->parent1AtkSearcher->value()), static_cast<u32>(ui->parent1DefSearcher->value()),
+                             static_cast<u32>(ui->parent1SpASearcher->value()), static_cast<u32>(ui->parent1SpDSearcher->value()), static_cast<u32>(ui->parent1SpeSearcher->value())
+                           };
+    QVector<u32> parent2 = { static_cast<u32>(ui->parent2HPSearcher->value()), static_cast<u32>(ui->parent2AtkSearcher->value()), static_cast<u32>(ui->parent2DefSearcher->value()),
+                             static_cast<u32>(ui->parent2SpASearcher->value()), static_cast<u32>(ui->parent2SpDSearcher->value()), static_cast<u32>(ui->parent2SpeSearcher->value())
+                           };
 
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxHiddenPowerSearcher->getChecked());
 
@@ -391,7 +391,7 @@ void Eggs4::searchIVs()
     Egg4 generator = Egg4(maxFrame - minFrame + 1, minFrame, 0, 0, type, 0);
     generator.setParents(parent1, parent2);
 
-    ui->progressBarIVs->setMaximum(256 * 24 * (maxDelay - minDelay + 1));
+    ui->progressBarIVs->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
     for (u32 ab = 0; ab < 256; ab++)
     {
@@ -411,7 +411,7 @@ void Eggs4::searchIVs()
 
                 if (searcherIVs->rowCount() > 10000)
                 {
-                    progressIVs = 256 * 24 * (maxDelay - minDelay + 1);
+                    progressIVs = static_cast<int>(256 * 24 * (maxDelay - minDelay + 1));
                     break;
                 }
 

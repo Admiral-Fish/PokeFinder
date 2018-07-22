@@ -51,13 +51,16 @@ void TableView::keyPressEvent(QKeyEvent *event)
 {
     QTableView::keyPressEvent(event);
 
-    if ((event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
+    if (event)
     {
-        QModelIndex index = this->currentIndex();
-        if (index.isValid())
+        if ((event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
         {
-            QString str = this->model()->data(index).toString();
-            QApplication::clipboard()->setText(str);
+            QModelIndex index = this->currentIndex();
+            if (index.isValid())
+            {
+                QString str = this->model()->data(index).toString();
+                QApplication::clipboard()->setText(str);
+            }
         }
     }
 }

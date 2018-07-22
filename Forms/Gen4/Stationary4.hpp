@@ -34,6 +34,7 @@
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <thread>
 #include <QMenu>
+#include <QVector>
 #include <QAction>
 #include <QModelIndex>
 #include <QFileDialog>
@@ -53,7 +54,7 @@ protected:
 
 signals:
     void alertProfiles(int);
-    void updateView(vector<Frame4>);
+    void updateView(QVector<Frame4>);
     void updateProgress();
 
 private:
@@ -62,8 +63,8 @@ private:
     Stationary4Model *g = new Stationary4Model(this, Method1);
     bool isSearching = false;
     bool cancel = false;
-    u32 progress;
-    vector<Profile4> profiles;
+    int progress;
+    QVector<Profile4> profiles;
     QMenu *searcherMenu = new QMenu(this);
 
     void loadSettings();
@@ -83,13 +84,13 @@ private slots:
     void on_anyHiddenPowerSearcher_clicked();
     void on_pushButtonProfileManager_clicked();
     void updateProgressBar();
-    void updateViewSearcher(vector<Frame4> frames);
+    void updateViewSearcher(QVector<Frame4> frames);
     void on_pushButtonLeadGenerator_clicked();
     void seedToTime();
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
 
 public:
-    explicit Stationary4(QWidget *parent = 0);
+    explicit Stationary4(QWidget *parent = nullptr);
     ~Stationary4();
     void updateProfiles();
 };

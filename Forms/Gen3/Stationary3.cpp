@@ -33,8 +33,8 @@ Stationary3::Stationary3(QWidget *parent) :
     updateProfiles();
     setupModels();
 
-    qRegisterMetaType<vector<Frame3>>("vector<Frame3>");
-    connect(this, SIGNAL(updateView(vector<Frame3>)), this, SLOT(updateViewSearcher(vector<Frame3>)));
+    qRegisterMetaType<QVector<Frame3>>("QVector<Frame3>");
+    connect(this, SIGNAL(updateView(QVector<Frame3>)), this, SLOT(updateViewSearcher(QVector<Frame3>)));
     connect(this, &Stationary3::updateProgress, this, &Stationary3::updateProgressBar);
 }
 
@@ -52,7 +52,7 @@ Stationary3::~Stationary3()
 
 void Stationary3::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -179,8 +179,8 @@ void Stationary3::updateProfiles()
 
     ui->comboBoxProfiles->clear();
 
-    for (int i = 0; i < (int)profiles.size(); i++)
-        ui->comboBoxProfiles->addItem(profiles[i].getProfileName());
+    for (auto profile : profiles)
+        ui->comboBoxProfiles->addItem(profile.getProfileName());
 
     QSettings setting;
     int val = setting.value("stationary3Profile").toInt();
@@ -221,7 +221,7 @@ void Stationary3::on_anyHiddenPowerSearcher_clicked()
     ui->comboBoxHiddenPowerSearcher->uncheckAll();
 }
 
-void Stationary3::updateViewSearcher(vector<Frame3> frames)
+void Stationary3::updateViewSearcher(QVector<Frame3> frames)
 {
     s->addItems(frames);
 }
@@ -243,14 +243,14 @@ void Stationary3::on_generate_clicked()
 {
     g->clear();
 
-    u32 seed = ui->initialSeedGenerator->text().toUInt(NULL, 16);
-    u32 startingFrame = ui->startingFrameGenerator->text().toUInt(NULL, 10);
-    u32 maxResults = ui->maxResultsGenerator->text().toUInt(NULL, 10);
-    u32 tid = ui->idGenerator->text().toUInt(NULL, 10);
-    u32 sid = ui->sidGenerator->text().toUInt(NULL, 10);
+    u32 seed = ui->initialSeedGenerator->text().toUInt(nullptr, 16);
+    u32 startingFrame = ui->startingFrameGenerator->text().toUInt();
+    u32 maxResults = ui->maxResultsGenerator->text().toUInt();
+    u16 tid = ui->idGenerator->text().toUShort();
+    u16 sid = ui->sidGenerator->text().toUShort();
     u32 offset = 0;
     if (ui->checkBoxDelayGenerator->isChecked())
-        offset = ui->delayGenerator->text().toUInt(NULL, 10);
+        offset = ui->delayGenerator->text().toUInt();
 
     int genderRatioIndex = ui->comboBoxGenderRatioGenerator->currentIndex();
     Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
@@ -259,31 +259,31 @@ void Stationary3::on_generate_clicked()
                                         ui->comboBoxNatureGenerator->getChecked(), ui->comboBoxHiddenPowerGenerator->getChecked(),
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked());
 
-    generator.setup((Method)ui->comboBoxMethodGenerator->currentData().toInt(NULL));
+    generator.setup(static_cast<Method>(ui->comboBoxMethodGenerator->currentData().toInt()));
 
-    vector<Frame3> frames = generator.generate(compare);
+    QVector<Frame3> frames = generator.generate(compare);
     g->setModel(frames);
 }
 
 void Stationary3::search()
 {
-    u32 tid = ui->idSearcher->text().toUInt(NULL, 10);
-    u32 sid = ui->sidSearcher->text().toUInt(NULL, 10);
+    u16 tid = ui->idSearcher->text().toUShort();
+    u16 sid = ui->sidSearcher->text().toUShort();
 
     int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
                                         genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
                                         ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false);
-    Searcher3 searcher = Searcher3(tid, sid, genderRatioIndex, compare);
+    Searcher3 searcher = Searcher3(tid, sid, static_cast<u32>(genderRatioIndex), compare);
 
-    searcher.setup((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
+    searcher.setup(static_cast<Method>(ui->comboBoxMethodSearcher->currentData().toInt()));
     if (searcher.getFrameType() == XD || searcher.getFrameType() == Colo)
         searcher.setupNatureLock(ui->comboBoxShadow->currentIndex());
 
-    vector<u32> min = ui->ivFilterSearcher->getLower();
-    vector<u32> max = ui->ivFilterSearcher->getUpper();
+    QVector<u32> min = ui->ivFilterSearcher->getLower();
+    QVector<u32> max = ui->ivFilterSearcher->getUpper();
 
-    ui->progressBar->setMaximum((max[0] - min[0] + 1) * (max[1] - min[1] + 1) * (max[2] - min[2] + 1) * (max[3] - min[3] + 1) * (max[4] - min[4] + 1) * (max[5] - min[5] + 1));
+    ui->progressBar->setMaximum(static_cast<int>((max[0] - min[0] + 1) * (max[1] - min[1] + 1) * (max[2] - min[2] + 1) * (max[3] - min[3] + 1) * (max[4] - min[4] + 1) * (max[5] - min[5] + 1)));
 
     for (u32 a = min[0]; a <= max[0]; a++)
     {
@@ -297,7 +297,7 @@ void Stationary3::search()
                     {
                         for (u32 f = min[5]; f <= max[5]; f++)
                         {
-                            vector<Frame3> frames = searcher.search(a, b, c, d, e, f);
+                            QVector<Frame3> frames = searcher.search(a, b, c, d, e, f);
 
                             if (!frames.empty())
                                 emit updateView(frames);
@@ -340,7 +340,7 @@ void Stationary3::on_search_clicked()
     else
     {
         s->clear();
-        s->setMethod((Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL));
+        s->setMethod(static_cast<Method>(ui->comboBoxMethodSearcher->currentData().toInt()));
 
         ui->progressBar->setValue(0);
         progress = 0;
@@ -375,7 +375,7 @@ void Stationary3::moveResults(QString seed, QString method, u32 hp, u32 atk, u32
 void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
 {
     (void) index;
-    Method method = (Method)ui->comboBoxMethodSearcher->currentData().toInt(NULL);
+    Method method = static_cast<Method>(ui->comboBoxMethodSearcher->currentData().toInt());
     ui->comboBoxShadow->clear();
 
     if (method == XD)
@@ -421,23 +421,23 @@ void Stationary3::centerFramesAndSetTargetGenerator(u32 centerFrames)
 
     u32 frameNumber = ui->tableViewGenerator->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 0)).toString().toUInt();
 
-    u32 startingFrame = frameNumber < centerFrames + 1U ? 1U : frameNumber - centerFrames;
-    u32 selectedIndex = frameNumber < centerFrames + 1U ? frameNumber - 1U : centerFrames;
-    u32 maxFrames = frameNumber < centerFrames + 1U ? frameNumber - 1U + centerFrames + 1 : centerFrames * 2 + 1;
+    u32 startingFrame = frameNumber < centerFrames + 1 ? 1 : frameNumber - centerFrames;
+    u32 selectedIndex = frameNumber < centerFrames + 1 ? frameNumber - 1 : centerFrames;
+    u32 maxFrames = frameNumber < centerFrames + 1 ? frameNumber - 1 + centerFrames + 1 : centerFrames * 2 + 1;
 
     ui->startingFrameGenerator->setText(QString::number(startingFrame));
     ui->maxResultsGenerator->setText(QString::number(maxFrames));
 
     on_generate_clicked();
 
-    targetFrame = ui->tableViewGenerator->model()->index(selectedIndex, 0);
+    targetFrame = ui->tableViewGenerator->model()->index(static_cast<int>(selectedIndex), 0);
 
     jumpToTargetGenerator();
 }
 
 void Stationary3::seedToTime()
 {
-    u32 seed = s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(NULL, 16);
+    u32 seed = s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
     SeedToTime3 *seedToTime = new SeedToTime3(seed);
     seedToTime->show();
     seedToTime->raise();

@@ -51,7 +51,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -122,7 +122,7 @@ void MainWindow::setupModels()
 
 void MainWindow::slotLanguageChanged(QAction *action)
 {
-    if (action != NULL)
+    if (action != nullptr)
         loadLanguage(action->data().toString());
 }
 
@@ -130,15 +130,15 @@ void MainWindow::updateProfiles(int num)
 {
     if (num == 3)
     {
-        if (stationary3 != NULL) stationary3->updateProfiles();
-        if (wild3 != NULL) wild3->updateProfiles();
-        if (egg3 != NULL) egg3->updateProfiles();
+        if (stationary3) stationary3->updateProfiles();
+        if (wild3) wild3->updateProfiles();
+        if (egg3) egg3->updateProfiles();
     }
     else if (num == 4)
     {
-        if (stationary4 != NULL) stationary4->updateProfiles();
-        if (wild4 != NULL) wild4->updateProfiles();
-        if (egg4 != NULL) egg4->updateProfiles();
+        if (stationary4) stationary4->updateProfiles();
+        if (wild4) wild4->updateProfiles();
+        if (egg4) egg4->updateProfiles();
     }
 }
 
@@ -184,7 +184,7 @@ void MainWindow::on_actionResearcher_triggered()
 
 void MainWindow::on_pushButtonStationary3_clicked()
 {
-    if (stationary3 == NULL)
+    if (!stationary3)
     {
         stationary3 = new Stationary3();
         connect(stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
@@ -195,7 +195,7 @@ void MainWindow::on_pushButtonStationary3_clicked()
 
 void MainWindow::on_pushButtonWild3_clicked()
 {
-    if (wild3 == NULL)
+    if (!wild3)
     {
         wild3 = new Wild3();
         connect(wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
@@ -206,7 +206,7 @@ void MainWindow::on_pushButtonWild3_clicked()
 
 void MainWindow::on_pushButtonEgg3_clicked()
 {
-    if (egg3 == NULL)
+    if (!egg3)
     {
         egg3 = new Eggs3();
         connect(egg3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
@@ -217,7 +217,7 @@ void MainWindow::on_pushButtonEgg3_clicked()
 
 void MainWindow::on_pushButtonIDs3_clicked()
 {
-    if (ids3 == NULL)
+    if (!ids3)
     {
         ids3 = new IDs3();
     }
@@ -263,7 +263,7 @@ void MainWindow::on_actionGameCubeRTC_triggered()
 void MainWindow::on_actionPIDtoIV_triggered()
 {
     PIDtoIVs *pidToIV = new PIDtoIVs();
-    if (stationary3 != NULL)
+    if (stationary3)
     {
         connect(pidToIV, &PIDtoIVs::moveResultsToStationary, stationary3, &Stationary3::moveResults);
     }
@@ -273,7 +273,7 @@ void MainWindow::on_actionPIDtoIV_triggered()
 
 void MainWindow::on_pushButtonStationary4_clicked()
 {
-    if (stationary4 == NULL)
+    if (!stationary4)
     {
         stationary4 = new Stationary4();
         connect(stationary4, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
@@ -284,7 +284,7 @@ void MainWindow::on_pushButtonStationary4_clicked()
 
 void MainWindow::on_pushButtonWild4_clicked()
 {
-    if (wild4 == NULL)
+    if (!wild4)
     {
         wild4 = new Wild4();
         connect(wild4, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
@@ -295,7 +295,7 @@ void MainWindow::on_pushButtonWild4_clicked()
 
 void MainWindow::on_pushButtonEgg4_clicked()
 {
-    if (egg4 == NULL)
+    if (!egg4)
     {
         egg4 = new Eggs4();
         connect(egg4, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
@@ -306,7 +306,7 @@ void MainWindow::on_pushButtonEgg4_clicked()
 
 void MainWindow::on_pushButtonIDs4_clicked()
 {
-    if (ids4 == NULL)
+    if (!ids4)
     {
         ids4 = new IDs4();
     }

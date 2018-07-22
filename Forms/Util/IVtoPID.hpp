@@ -24,6 +24,7 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QList>
+#include <QVector>
 #include <PokeFinderCore/RNG/RNGEuclidean.hpp>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <PokeFinderCore/Objects/Nature.hpp>
@@ -54,7 +55,7 @@ private slots:
     void on_pushButtonFind_clicked();
 
 public:
-    explicit IVtoPID(QWidget *parent = 0);
+    explicit IVtoPID(QWidget *parent = nullptr);
     ~IVtoPID();
 
 };

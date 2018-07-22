@@ -34,6 +34,7 @@
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <QMenu>
+#include <QVector>
 #include <thread>
 #include <QFileDialog>
 #include <QSettings>
@@ -51,21 +52,21 @@ protected:
     void changeEvent(QEvent *);
 
 signals:
-    void updateView(vector<Frame4>);
+    void updateView(QVector<Frame4>);
     void alertProfiles(int);
     void updateProgress();
 
 private:
     Ui::Wild4 *ui;
-    vector<Profile4> profiles;
+    QVector<Profile4> profiles;
     bool isSearching = false;
     bool cancel = false;
-    u32 progress;
+    int progress;
     Searcher4Model *s = new Searcher4Model(this, Method1);
     Wild4Model *g = new Wild4Model(this, MethodJ);
     QMenu *searcherMenu = new QMenu(this);
-    vector<EncounterArea4> encounterGenerator;
-    vector<EncounterArea4> encounterSearcher;
+    QVector<EncounterArea4> encounterGenerator;
+    QVector<EncounterArea4> encounterSearcher;
 
     void setupModels();
     void search();
@@ -78,14 +79,14 @@ private:
     void saveSettings();
 
 private slots:
-    void on_generate_clicked();
+    void on_pushButtonGenerate_clicked();
     void refreshProfiles();
     void on_anyNatureGenerator_clicked();
     void on_anyHiddenPowerGenerator_clicked();
-    void on_search_clicked();
+    void on_pushButtonSearch_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void updateViewSearcher(vector<Frame4> frames);
+    void updateViewSearcher(QVector<Frame4> frames);
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void seedToTime();
     void updateProgressBar();
@@ -104,7 +105,7 @@ private slots:
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
 
 public:
-    explicit Wild4(QWidget *parent = 0);
+    explicit Wild4(QWidget *parent = nullptr);
     ~Wild4();
     void updateProfiles();
 

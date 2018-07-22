@@ -39,7 +39,7 @@ ProfileManager3::~ProfileManager3()
 
 void ProfileManager3::changeEvent(QEvent *event)
 {
-    if (event != NULL)
+    if (event)
     {
         switch (event->type())
         {
@@ -81,7 +81,7 @@ void ProfileManager3::on_pushButtonEdit_clicked()
 {
     int r = ui->tableView->currentIndex().row();
 
-    if (r == -1)
+    if (r < 0)
     {
         QMessageBox error;
         error.setText(tr("Please select a profile."));
@@ -105,7 +105,7 @@ void ProfileManager3::on_pushButtonDelete_clicked()
 {
     int r = ui->tableView->currentIndex().row();
 
-    if (r == -1)
+    if (r < 0)
     {
         QMessageBox error;
         error.setText(tr("Please select a profile."));

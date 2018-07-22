@@ -21,6 +21,7 @@
 #define SEARCHER4MODEL_HPP
 
 #include <QAbstractTableModel>
+#include <QVector>
 #include <PokeFinderCore/Gen4/Frame4.hpp>
 #include <PokeFinderCore/Objects/Method.hpp>
 
@@ -29,13 +30,13 @@ class Searcher4Model : public QAbstractTableModel
     Q_OBJECT
 
 private:
-    vector<Frame4> model;
+    QVector<Frame4> model;
     Method method;
 
 public:
     Searcher4Model(QObject *parent, Method method);
-    void setModel(vector<Frame4> frames);
-    void addItems(vector<Frame4> frames);
+    void setModel(QVector<Frame4> frames);
+    void addItems(QVector<Frame4> frames);
     void clear();
     void setMethod(Method method);
     void sort(int column, Qt::SortOrder order);

@@ -20,7 +20,7 @@
 #include "SearchCalls.hpp"
 #include "ui_SearchCalls.h"
 
-SearchCalls::SearchCalls(vector<DateTime> model, vector<bool> roamers, vector<u32> routes, QWidget *parent) :
+SearchCalls::SearchCalls(QVector<DateTime> model, QVector<bool> roamers, QVector<u32> routes, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchCalls)
 {
@@ -40,7 +40,7 @@ SearchCalls::~SearchCalls()
     delete ui;
 }
 
-vector<bool> SearchCalls::possibleResults()
+QVector<bool> SearchCalls::possibleResults()
 {
     return possible;
 }
@@ -109,7 +109,7 @@ void SearchCalls::on_lineEditCalls_textChanged(const QString &arg1)
                 break;
             }
         }
-        possible.push_back(pass);
+        possible.append(pass);
         if (pass)
             num++;
     }

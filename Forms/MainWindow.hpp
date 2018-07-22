@@ -56,14 +56,14 @@ private:
     QTranslator translator;
     QString currLang;
     QString langPath = QApplication::applicationDirPath().append("/Languages/");
-    Stationary3 *stationary3 = NULL;
-    Wild3 *wild3 = NULL;
-    Eggs3 *egg3 = NULL;
-    IDs3 *ids3 = NULL;
-    Stationary4 *stationary4 = NULL;
-    Wild4 *wild4 = NULL;
-    Eggs4 *egg4 = NULL;
-    IDs4 *ids4 = NULL;
+    Stationary3 *stationary3 = nullptr;
+    Wild3 *wild3 = nullptr;
+    Eggs3 *egg3 = nullptr;
+    IDs3 *ids3 = nullptr;
+    Stationary4 *stationary4 = nullptr;
+    Wild4 *wild4 = nullptr;
+    Eggs4 *egg4 = nullptr;
+    IDs4 *ids4 = nullptr;
 
     void setupLanguage();
     void setupModels();
@@ -93,7 +93,7 @@ private slots:
     void on_actionIV_to_PID_triggered();
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 };
