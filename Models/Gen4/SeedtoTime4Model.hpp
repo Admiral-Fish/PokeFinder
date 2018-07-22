@@ -25,8 +25,6 @@
 #include <PokeFinderCore/Objects/Game.hpp>
 #include <Util/DateTime.hpp>
 
-using std::vector;
-
 class SeedtoTime4Model : public QAbstractTableModel
 {
     Q_OBJECT

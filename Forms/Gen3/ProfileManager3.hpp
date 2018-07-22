@@ -25,7 +25,6 @@
 #include <PokeFinderCore/Gen3/Profile3.hpp>
 #include <Models/Gen3/Profile3Model.hpp>
 
-using std::vector;
 typedef uint32_t u32;
 
 namespace Ui
