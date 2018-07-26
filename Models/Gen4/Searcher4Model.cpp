@@ -732,14 +732,14 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                             case CuteCharmFemale:
                                 return tr("Cute Charm (♀)");
                             case CuteCharm25M:
-                                return tr("Cute Charm (25% ♂");
+                                return tr("Cute Charm (25% ♂)");
                             case CuteCharm50M:
-                                return tr("Cute Charm (50% ♂");
+                                return tr("Cute Charm (50% ♂)");
                             case CuteCharm75M:
-                                return tr("Cute Charm (75% ♂");
+                                return tr("Cute Charm (75% ♂)");
                             case CuteCharm875M:
                             default:
-                                return tr("Cute Charm (87.5% ♂");
+                                return tr("Cute Charm (87.5% ♂)");
                         }
                     case 3:
                         return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');

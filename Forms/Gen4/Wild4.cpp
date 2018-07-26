@@ -28,8 +28,8 @@ Wild4::Wild4(QWidget *parent) :
 
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
     updateProfiles();
+    setupModels();
 
     qRegisterMetaType<QVector<Frame4>>("QVector<Frame4>");
     connect(this, &Wild4::updateView, this, &Wild4::updateViewSearcher);
@@ -412,6 +412,7 @@ void Wild4::search()
 
     searcher.setEncounterType(static_cast<Encounter>(ui->comboBoxEncounterSearcher->currentData().toInt()));
     searcher.setLeadType(static_cast<Lead>(ui->comboBoxLeadSearcher->currentData().toInt()));
+    searcher.setEncounter(encounterSearcher[ui->comboBoxLocationSearcher->currentIndex()]);
 
     QVector<u32> min = ui->ivFilterSearcher->getLower();
     QVector<u32> max = ui->ivFilterSearcher->getUpper();
