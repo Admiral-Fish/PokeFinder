@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
-    <height>638</height>
+    <width>872</width>
+    <height>665</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>797</width>
-    <height>638</height>
+    <width>872</width>
+    <height>665</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -162,17 +162,23 @@ QCheckBox::indicator:checked {
    <layout class="QGridLayout" name="gridLayout_7">
     <item row="0" column="0">
      <widget class="QTabWidget" name="rngSelection">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="maximumSize">
        <size>
-        <width>373</width>
-        <height>119</height>
+        <width>16777215</width>
+        <height>16777215</height>
        </size>
       </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab32Bit">
        <attribute name="title">
@@ -252,6 +258,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="1">
          <widget class="QLabel" name="label_11">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string notr="true">X</string>
           </property>
@@ -259,6 +271,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="2">
          <widget class="QTextBox" name="textBoxMult32Bit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit {
 	background-color: #1D303C;
@@ -271,6 +289,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="2" column="1">
          <widget class="QLabel" name="label_12">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string notr="true">+</string>
           </property>
@@ -278,6 +302,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="2" column="2">
          <widget class="QTextBox" name="textBoxAdd32Bit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit {
 	background-color: #1D303C;
@@ -297,6 +327,12 @@ QCheckBox::indicator:checked {
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
          <widget class="QRadioButton" name="radioButtonCommon64Bit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Common RNGs</string>
           </property>
@@ -307,6 +343,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="0" column="2">
          <widget class="QComboBox" name="comboBoxRNG64Bit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">QComboBox {
 	background-color: #1D303C;
@@ -331,6 +373,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="0">
          <widget class="QRadioButton" name="radioButtonCustom64Bit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Custom</string>
           </property>
@@ -338,6 +386,18 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="1">
          <widget class="QLabel" name="label_15">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="text">
            <string notr="true">X</string>
           </property>
@@ -345,6 +405,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="2">
          <widget class="QTextBox" name="textBoxMult64Bit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit {
 	background-color: #1D303C;
@@ -357,6 +423,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="2" column="1">
          <widget class="QLabel" name="label_16">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string notr="true">+</string>
           </property>
@@ -364,6 +436,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="2" column="2">
          <widget class="QTextBox" name="textBoxAdd64Bit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit {
 	background-color: #1D303C;
@@ -397,6 +475,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="1">
          <widget class="QTextBox" name="textBoxStatus3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit {
 	background-color: #1D303C;
@@ -416,6 +500,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="1" column="3">
          <widget class="QTextBox" name="textBoxStatus2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit {
 	background-color: #1D303C;
@@ -435,6 +525,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="2" column="1">
          <widget class="QTextBox" name="textBoxStatus1">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit {
 	background-color: #1D303C;
@@ -454,6 +550,12 @@ QCheckBox::indicator:checked {
         </item>
         <item row="2" column="3">
          <widget class="QTextBox" name="textBoxStatus0">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit {
 	background-color: #1D303C;
@@ -470,6 +572,12 @@ QCheckBox::indicator:checked {
     </item>
     <item row="0" column="1" rowspan="3">
      <widget class="QGroupBox" name="groupBoxCustoms">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
@@ -3033,10 +3141,16 @@ QCheckBox::indicator:checked {
     </item>
     <item row="1" column="0">
      <widget class="QGroupBox" name="groupBoxParameters">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="maximumSize">
        <size>
-        <width>373</width>
-        <height>89</height>
+        <width>16777215</width>
+        <height>16777215</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -3055,6 +3169,12 @@ QCheckBox::indicator:checked {
        </item>
        <item row="0" column="1">
         <widget class="QTextBox" name="textBoxStartingFrame">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string notr="true">1</string>
          </property>
@@ -3072,6 +3192,12 @@ QCheckBox::indicator:checked {
        </item>
        <item row="1" column="1">
         <widget class="QTextBox" name="textBoxMaxFrames">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string notr="true">1000</string>
          </property>
@@ -3089,6 +3215,12 @@ QCheckBox::indicator:checked {
        </item>
        <item row="2" column="1">
         <widget class="QTextBox" name="textBoxSeed">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="maxLength">
           <number>16</number>
          </property>
@@ -3096,6 +3228,12 @@ QCheckBox::indicator:checked {
        </item>
        <item row="2" column="2">
         <widget class="QPushButton" name="pushButtonGenerate32Bit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -3117,10 +3255,16 @@ QCheckBox::indicator:checked {
     </item>
     <item row="2" column="0">
      <widget class="QGroupBox" name="groupBoxSearch">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="maximumSize">
        <size>
-        <width>373</width>
-        <height>67</height>
+        <width>16777215</width>
+        <height>16777215</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -3138,7 +3282,14 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="0" column="1" colspan="2">
-        <widget class="QTextBox" name="textBoxSearch"/>
+        <widget class="QTextBox" name="textBoxSearch">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
        <item row="0" column="3">
         <widget class="QComboBox" name="comboBoxSearch">
@@ -3161,6 +3312,12 @@ QCheckBox::indicator:checked {
        </item>
        <item row="1" column="0" colspan="2">
         <widget class="QPushButton" name="pushButtonSearch">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -3179,6 +3336,12 @@ QCheckBox::indicator:checked {
        </item>
        <item row="1" column="2" colspan="2">
         <widget class="QPushButton" name="pushButtonNext">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -3200,6 +3363,12 @@ QCheckBox::indicator:checked {
     </item>
     <item row="3" column="0" colspan="2">
      <widget class="QTableView" name="tableView">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>3</verstretch>
+       </sizepolicy>
+      </property>
       <property name="styleSheet">
        <string notr="true">QTableView {
 	border: 4px solid DodgerBlue;
@@ -3229,7 +3398,7 @@ QHeaderView::section {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>850</width>
+     <width>872</width>
      <height>21</height>
     </rect>
    </property>
