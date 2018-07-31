@@ -2,8 +2,6 @@ language: cpp
 
 matrix:
   include:
-    - os: linux
-      sudo: required
     - os: osx
 
 before_install:

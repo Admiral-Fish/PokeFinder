@@ -111,7 +111,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         int index = copy.indexOf(QChar(':')) + 1;
 
         // Menu advances can't stop on 0 so skip
-        int target = QString(copy.at(index)).toInt();
+        u32 target = QString(copy.at(index)).toUInt();
         if (target == 0)
             continue;
 
@@ -119,7 +119,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         // (prng >> 30) being 0 just acts as a filler
         // Map remaining numbers from 1, 2, 3 without target for later use
         QVector<u32> remain = { 1, 2, 3 };
-        remain.erase(std::remove(remain.begin(), remain.end(), target), remain.end());
+        remain.removeAll(target);
 
         u32 obtain[] = { 0, 0, 0, 0 };
         obtain[target] = 1;
@@ -129,7 +129,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         bool valid = true;
         for (int x = ((copy.length() - index + 2) / 2); x < data.size(); x++)
         {
-            int temp = data[x] >> 30;
+            u32 temp = data[x] >> 30;
             if (temp == target)
             {
                 // Check if remaining numbers haven't occured yet
