@@ -119,9 +119,9 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         // (prng >> 30) being 0 just acts as a filler
         // Map remaining numbers from 1, 2, 3 without target for later use
         QVector<u32> remain = { 1, 2, 3 };
-        remain.removeAll(static_cast<u32>(target));
+        remain.erase(std::remove(remain.begin(), remain.end(), target), remain.end());
 
-        u32 obtain[] = { 0, 0, 0, 0};
+        u32 obtain[] = { 0, 0, 0, 0 };
         obtain[target] = 1;
 
         // Determine if spread is possible
@@ -149,10 +149,8 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         }
 
         // This part actually skips when a pattern is impossible
-        if (!valid)
-            continue;
-
-        results.append(copy.replace("|", " | "));
+        if (valid)
+            results.append(copy.replace("|", " | "));
     }
 
     return results;
