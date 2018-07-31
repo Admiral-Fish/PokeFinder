@@ -125,7 +125,14 @@ QCheckBox::indicator:checked {
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QLineEdit" name="lineEditProfile"/>
+    <widget class="QLineEdit" name="lineEditProfile">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
    </item>
    <item row="0" column="2">
     <widget class="QLabel" name="labelTID">
@@ -135,10 +142,23 @@ QCheckBox::indicator:checked {
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QTextBox" name="textBoxTID"/>
+    <widget class="QTextBox" name="textBoxTID">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
    </item>
    <item row="0" column="4">
     <widget class="QPushButton" name="pushButtonAccept">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>Accept</string>
      </property>
@@ -153,6 +173,12 @@ QCheckBox::indicator:checked {
    </item>
    <item row="1" column="1">
     <widget class="QComboBox" name="comboBoxVersion">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <item>
       <property name="text">
        <string>Diamond</string>
@@ -188,10 +214,23 @@ QCheckBox::indicator:checked {
     </widget>
    </item>
    <item row="1" column="3">
-    <widget class="QTextBox" name="textBoxSID"/>
+    <widget class="QTextBox" name="textBoxSID">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
    </item>
    <item row="1" column="4">
     <widget class="QPushButton" name="pushButtonCancel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>Cancel</string>
      </property>
@@ -206,6 +245,12 @@ QCheckBox::indicator:checked {
    </item>
    <item row="2" column="1">
     <widget class="QComboBox" name="comboBoxLanguage">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <item>
       <property name="text">
        <string notr="true">-</string>

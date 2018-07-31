@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1182</width>
+    <width>1200</width>
     <height>700</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1182</width>
+    <width>1200</width>
     <height>700</height>
    </size>
   </property>
@@ -267,16 +267,22 @@ QSpinBox::down-button {
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBoxRNGInfoRS">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>261</height>
+            <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>271</width>
-            <height>261</height>
+            <width>16777215</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="title">
@@ -285,6 +291,12 @@ QSpinBox::down-button {
           <layout class="QGridLayout" name="gridLayout_9">
            <item row="1" column="0">
             <widget class="QLabel" name="label_44">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Seed</string>
              </property>
@@ -292,6 +304,12 @@ QSpinBox::down-button {
            </item>
            <item row="2" column="1">
             <widget class="QTextBox" name="textBoxStartingFrame">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>80</width>
@@ -308,6 +326,12 @@ QSpinBox::down-button {
            </item>
            <item row="4" column="1">
             <widget class="QTextBox" name="textBoxTIDGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string notr="true">12345</string>
              </property>
@@ -318,6 +342,12 @@ QSpinBox::down-button {
            </item>
            <item row="1" column="1">
             <widget class="QTextBox" name="textBoxSeedGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string notr="true"/>
              </property>
@@ -328,6 +358,12 @@ QSpinBox::down-button {
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="label_43">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Starting Frame</string>
              </property>
@@ -335,6 +371,12 @@ QSpinBox::down-button {
            </item>
            <item row="5" column="0">
             <widget class="QLabel" name="label_42">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>SID</string>
              </property>
@@ -342,6 +384,12 @@ QSpinBox::down-button {
            </item>
            <item row="4" column="0">
             <widget class="QLabel" name="label_41">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>TID</string>
              </property>
@@ -349,6 +397,12 @@ QSpinBox::down-button {
            </item>
            <item row="5" column="1">
             <widget class="QTextBox" name="textBoxSIDGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string notr="true">54321</string>
              </property>
@@ -359,6 +413,12 @@ QSpinBox::down-button {
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Max Results</string>
              </property>
@@ -384,6 +444,12 @@ QSpinBox::down-button {
            </item>
            <item row="3" column="1">
             <widget class="QTextBox" name="textBoxMaxResults">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string notr="true">100000</string>
              </property>
@@ -394,6 +460,12 @@ QSpinBox::down-button {
            </item>
            <item row="0" column="0">
             <widget class="QLabel" name="label_10">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Method</string>
              </property>
@@ -401,6 +473,12 @@ QSpinBox::down-button {
            </item>
            <item row="0" column="1">
             <widget class="QComboBox" name="comboBoxMethod">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <item>
               <property name="text">
                <string>IVs</string>
@@ -418,11 +496,17 @@ QSpinBox::down-button {
         </item>
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBoxFiltersRS">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>2</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="title">
            <string>Filters</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0" rowspan="6" colspan="7">
             <widget class="IVFilter" name="ivFilterGenerator" native="true">
              <property name="minimumSize">
               <size>
@@ -432,562 +516,638 @@ QSpinBox::down-button {
              </property>
              <property name="maximumSize">
               <size>
-               <width>335</width>
-               <height>180</height>
+               <width>16777215</width>
+               <height>16777215</height>
               </size>
              </property>
             </widget>
            </item>
-           <item row="0" column="1" rowspan="2">
-            <layout class="QGridLayout" name="gridLayout_2">
-             <item row="2" column="2">
-              <widget class="QPushButton" name="pushButtonAnyNatureGenerator">
-               <property name="minimumSize">
-                <size>
-                 <width>50</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>60</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-               </property>
-               <property name="text">
-                <string>Any</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_36">
-               <property name="text">
-                <string>Gender</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QCheckList" name="comboBoxNatureGenerator">
-               <item>
-                <property name="text">
-                 <string>Adamant</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Bold</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Brave</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Calm</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Careful</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Hasty</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Impish</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Jolly</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Lonely</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Mild</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Modest</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Naive</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Naughty</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Quiet</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Rash</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Relaxed</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Sassy</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Timid</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Gentle</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Lax</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Bashful</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Docile</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Hardy</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Quirky</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Serious</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_31">
-               <property name="text">
-                <string>Nature</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_37">
-               <property name="text">
-                <string>Ability</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QComboBox" name="comboBoxGenderGenerator">
-               <item>
-                <property name="text">
-                 <string notr="true">-</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">♂</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">♀</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QComboBox" name="comboBoxAbilityGenerator">
-               <item>
-                <property name="text">
-                 <string>Any</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">0</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">1</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QComboBox" name="comboBoxGenderRatioGenerator">
-               <item>
-                <property name="text">
-                 <string>Genderless</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>50% Male / 50% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>25% Male / 75% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>75% Male / 25% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>87.5% Male / 12.5% Female</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>100% Male</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>100% Female</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QCheckList" name="comboBoxHiddenPowerGenerator">
-               <item>
-                <property name="text">
-                 <string>Fighting</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Flying</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Poison</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Ground</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Rock</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Bug</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Ghost</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Steel</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Fire</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Water</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Grass</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Electric</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Psychic</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Ice</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Dragon</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Dark</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_32">
-               <property name="text">
-                <string>Hidden Power</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="label_35">
-               <property name="text">
-                <string>Shiny Only?</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_34">
-               <property name="text">
-                <string>Gender Ratio</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_12">
-               <property name="text">
-                <string>Masuada</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="2">
-              <widget class="QPushButton" name="pushButtonAnyHiddenPowerGenerator">
-               <property name="minimumSize">
-                <size>
-                 <width>50</width>
-                 <height>13</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>60</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-               </property>
-               <property name="text">
-                <string>Any</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QCheckBox" name="checkBoxMasuadaGenerator">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="1">
-              <widget class="QCheckBox" name="checkBoxShinyGenerator">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
+           <item row="0" column="7">
+            <widget class="QLabel" name="label_36">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Gender</string>
+             </property>
+            </widget>
            </item>
-           <item row="1" column="0">
-            <layout class="QGridLayout" name="gridLayout_13">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_38">
-               <property name="text">
-                <string>Parent 1</string>
-               </property>
-              </widget>
+           <item row="0" column="8">
+            <widget class="QComboBox" name="comboBoxGenderGenerator">
+             <item>
+              <property name="text">
+               <string notr="true">-</string>
+              </property>
              </item>
-             <item row="0" column="1">
-              <widget class="QSpinBox" name="parent1HPGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string notr="true">♂</string>
+              </property>
              </item>
-             <item row="0" column="2">
-              <widget class="QSpinBox" name="parent1AtkGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string notr="true">♀</string>
+              </property>
              </item>
-             <item row="0" column="3">
-              <widget class="QSpinBox" name="parent1DefGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+            </widget>
+           </item>
+           <item row="1" column="7">
+            <widget class="QLabel" name="label_37">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Ability</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="8">
+            <widget class="QComboBox" name="comboBoxAbilityGenerator">
+             <item>
+              <property name="text">
+               <string>Any</string>
+              </property>
              </item>
-             <item row="0" column="4">
-              <widget class="QSpinBox" name="parent1SpAGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string notr="true">0</string>
+              </property>
              </item>
-             <item row="0" column="5">
-              <widget class="QSpinBox" name="parent1SpDGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string notr="true">1</string>
+              </property>
              </item>
-             <item row="0" column="6">
-              <widget class="QSpinBox" name="parent1SpeGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+            </widget>
+           </item>
+           <item row="2" column="7">
+            <widget class="QLabel" name="label_31">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Nature</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="8">
+            <widget class="QCheckList" name="comboBoxNatureGenerator">
+             <item>
+              <property name="text">
+               <string>Adamant</string>
+              </property>
              </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_39">
-               <property name="text">
-                <string>Parent 2</string>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string>Bold</string>
+              </property>
              </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="parent2HPGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string>Brave</string>
+              </property>
              </item>
-             <item row="1" column="2">
-              <widget class="QSpinBox" name="parent2AtkGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string>Calm</string>
+              </property>
              </item>
-             <item row="1" column="3">
-              <widget class="QSpinBox" name="parent2DefGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string>Careful</string>
+              </property>
              </item>
-             <item row="1" column="4">
-              <widget class="QSpinBox" name="parent2SpAGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string>Hasty</string>
+              </property>
              </item>
-             <item row="1" column="5">
-              <widget class="QSpinBox" name="parent2SpDGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string>Impish</string>
+              </property>
              </item>
-             <item row="1" column="6">
-              <widget class="QSpinBox" name="parent2SpeGenerator">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
+             <item>
+              <property name="text">
+               <string>Jolly</string>
+              </property>
              </item>
-            </layout>
+             <item>
+              <property name="text">
+               <string>Lonely</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Mild</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Modest</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Naive</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Naughty</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Quiet</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Rash</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Relaxed</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Sassy</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Timid</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Gentle</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Lax</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Bashful</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Docile</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Hardy</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Quirky</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Serious</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="9">
+            <widget class="QPushButton" name="pushButtonAnyNatureGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>13</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>60</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+             </property>
+             <property name="text">
+              <string>Any</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="7">
+            <widget class="QLabel" name="label_32">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Hidden Power</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="8">
+            <widget class="QCheckList" name="comboBoxHiddenPowerGenerator">
+             <item>
+              <property name="text">
+               <string>Fighting</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Flying</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Poison</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Ground</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Rock</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Bug</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Ghost</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Steel</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Fire</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Water</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Grass</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Electric</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Psychic</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Ice</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Dragon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Dark</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="9">
+            <widget class="QPushButton" name="pushButtonAnyHiddenPowerGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>13</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>60</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+             </property>
+             <property name="text">
+              <string>Any</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="7">
+            <widget class="QLabel" name="label_34">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Gender Ratio</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="8">
+            <widget class="QComboBox" name="comboBoxGenderRatioGenerator">
+             <item>
+              <property name="text">
+               <string>Genderless</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>50% Male / 50% Female</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>25% Male / 75% Female</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>75% Male / 25% Female</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>87.5% Male / 12.5% Female</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>100% Male</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>100% Female</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="5" column="7">
+            <widget class="QLabel" name="label_12">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Masuada</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="8">
+            <widget class="QCheckBox" name="checkBoxMasuadaGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_38">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Parent 1</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QSpinBox" name="parent1HPGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="2">
+            <widget class="QSpinBox" name="parent1AtkGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="3">
+            <widget class="QSpinBox" name="parent1DefGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="4">
+            <widget class="QSpinBox" name="parent1SpAGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="5">
+            <widget class="QSpinBox" name="parent1SpDGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="6">
+            <widget class="QSpinBox" name="parent1SpeGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="7">
+            <widget class="QLabel" name="label_35">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Shiny Only?</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="8">
+            <widget class="QCheckBox" name="checkBoxShinyGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="label_39">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Parent 2</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QSpinBox" name="parent2HPGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="2">
+            <widget class="QSpinBox" name="parent2AtkGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="3">
+            <widget class="QSpinBox" name="parent2DefGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="4">
+            <widget class="QSpinBox" name="parent2SpAGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="5">
+            <widget class="QSpinBox" name="parent2SpDGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="6">
+            <widget class="QSpinBox" name="parent2SpeGenerator">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
          <widget class="TableView" name="tableViewGenerator">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -1002,6 +1162,12 @@ QSpinBox::down-button {
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="2" column="0">
          <widget class="TableView" name="tableViewPID">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
@@ -1012,10 +1178,16 @@ QSpinBox::down-button {
         </item>
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBoxIVs">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
-            <width>567</width>
-            <height>261</height>
+            <width>0</width>
+            <height>0</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -1041,29 +1213,96 @@ QRadioButton {
           <property name="title">
            <string>Egg IVs</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_20">
-             <property name="text">
-              <string>Frame</string>
-             </property>
-            </widget>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0" colspan="4">
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_20">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Frame</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QTextBox" name="textBoxMinFrameIVs">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QTextBox" name="textBoxMaxFrameIVs">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string notr="true">10</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Delay</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QTextBox" name="textBoxMinDelayIVs">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string notr="true">600</string>
+               </property>
+               <property name="maxLength">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QTextBox" name="textBoxMaxDelayIVs">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string notr="true">2000</string>
+               </property>
+               <property name="maxLength">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
-           <item row="0" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxMinFrameIVs">
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QTextBox" name="textBoxMaxFrameIVs">
-             <property name="text">
-              <string notr="true">10</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="4" rowspan="4">
+           <item row="0" column="4" rowspan="3" colspan="4">
             <widget class="IVFilter" name="ivFilterSearcher" native="true">
              <property name="minimumSize">
               <size>
@@ -1073,47 +1312,26 @@ QRadioButton {
              </property>
              <property name="maximumSize">
               <size>
-               <width>335</width>
-               <height>180</height>
+               <width>16777215</width>
+               <height>16777215</height>
               </size>
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_8">
-             <property name="text">
-              <string>Delay</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxMinDelayIVs">
-             <property name="text">
-              <string notr="true">600</string>
-             </property>
-             <property name="maxLength">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QTextBox" name="textBoxMaxDelayIVs">
-             <property name="text">
-              <string notr="true">2000</string>
-             </property>
-             <property name="maxLength">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0" colspan="2">
+           <item row="1" column="0" colspan="2">
             <widget class="QLabel" name="label_46">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Hidden Power:</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="2" colspan="2">
+           <item row="1" column="2" colspan="2">
             <widget class="QCheckList" name="comboBoxHiddenPowerSearcher">
              <item>
               <property name="text">
@@ -1197,7 +1415,201 @@ QRadioButton {
              </item>
             </widget>
            </item>
-           <item row="3" column="0" colspan="4">
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_21">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Parent 1</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" colspan="2">
+            <widget class="QSpinBox" name="parent1HPSearcher">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3">
+            <widget class="QSpinBox" name="parent1AtkSearcher">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="4">
+            <widget class="QSpinBox" name="parent1DefSearcher">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="5">
+            <widget class="QSpinBox" name="parent1SpASearcher">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="6">
+            <widget class="QSpinBox" name="parent1SpDSearcher">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="7">
+            <widget class="QSpinBox" name="parent1SpeSearcher">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_22">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Parent 2</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="QSpinBox" name="parent2HPSearcher">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3">
+            <widget class="QSpinBox" name="parent2AtkSearcher">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="4">
+            <widget class="QSpinBox" name="parent2DefSearcher">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="5">
+            <widget class="QSpinBox" name="parent2SpASearcher">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="6">
+            <widget class="QSpinBox" name="parent2SpDSearcher">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="7">
+            <widget class="QSpinBox" name="parent2SpeSearcher">
+             <property name="maximum">
+              <number>31</number>
+             </property>
+             <property name="value">
+              <number>31</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="4">
             <widget class="QPushButton" name="pushButtonGenerateIVs">
              <property name="minimumSize">
               <size>
@@ -1215,201 +1627,21 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="0" colspan="5">
-            <layout class="QGridLayout" name="gridLayout_6">
-             <item row="1" column="6">
-              <widget class="QSpinBox" name="parent2SpeSearcher">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="5">
-              <widget class="QSpinBox" name="parent2SpDSearcher">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="4">
-              <widget class="QSpinBox" name="parent2SpASearcher">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QSpinBox" name="parent1HPSearcher">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <widget class="QSpinBox" name="parent1AtkSearcher">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_21">
-               <property name="text">
-                <string>Parent 1</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_22">
-               <property name="text">
-                <string>Parent 2</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QSpinBox" name="parent2AtkSearcher">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="5">
-              <widget class="QSpinBox" name="parent1SpDSearcher">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="3">
-              <widget class="QSpinBox" name="parent1DefSearcher">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="6">
-              <widget class="QSpinBox" name="parent1SpeSearcher">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="4">
-              <widget class="QSpinBox" name="parent1SpASearcher">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="parent2HPSearcher">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="3">
-              <widget class="QSpinBox" name="parent2DefSearcher">
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
           </layout>
          </widget>
         </item>
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBoxPID">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
-            <width>567</width>
-            <height>261</height>
+            <width>0</width>
+            <height>0</height>
            </size>
           </property>
           <property name="title">
@@ -1418,6 +1650,12 @@ QRadioButton {
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
             <widget class="QLabel" name="label_7">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Frame</string>
              </property>
@@ -1469,6 +1707,12 @@ QRadioButton {
            </item>
            <item row="0" column="3">
             <widget class="QLabel" name="label_9">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Gender</string>
              </property>
@@ -1495,6 +1739,12 @@ QRadioButton {
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_5">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Delay</string>
              </property>
@@ -1522,6 +1772,12 @@ QRadioButton {
            </item>
            <item row="1" column="3">
             <widget class="QLabel" name="label_23">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Ability</string>
              </property>
@@ -1548,6 +1804,12 @@ QRadioButton {
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="label_6">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Masuada</string>
              </property>
@@ -1562,6 +1824,12 @@ QRadioButton {
            </item>
            <item row="2" column="3">
             <widget class="QLabel" name="label_24">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Nature</string>
              </property>
@@ -1698,6 +1966,12 @@ QRadioButton {
            </item>
            <item row="2" column="5">
             <widget class="QPushButton" name="pushButtonAnyNatureSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>50</width>
@@ -1717,6 +1991,12 @@ QRadioButton {
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="label_26">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>TID</string>
              </property>
@@ -1740,6 +2020,12 @@ QRadioButton {
            </item>
            <item row="3" column="3">
             <widget class="QLabel" name="label_29">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Gender Ratio</string>
              </property>
@@ -1786,6 +2072,12 @@ QRadioButton {
            </item>
            <item row="4" column="0">
             <widget class="QLabel" name="label_28">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>SID</string>
              </property>
@@ -1809,6 +2101,12 @@ QRadioButton {
            </item>
            <item row="4" column="3">
             <widget class="QLabel" name="label_30">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Shiny Only?</string>
              </property>
@@ -1816,12 +2114,18 @@ QRadioButton {
            </item>
            <item row="4" column="4">
             <widget class="QCheckBox" name="checkBoxShinySearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string/>
              </property>
             </widget>
            </item>
-           <item row="5" column="0" colspan="3">
+           <item row="5" column="0" colspan="4">
             <widget class="QPushButton" name="pushButtonGeneratePID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1850,6 +2154,12 @@ QRadioButton {
         </item>
         <item row="2" column="1">
          <widget class="TableView" name="tableViewIVs">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
@@ -1883,7 +2193,7 @@ QRadioButton {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1182</width>
+     <width>1200</width>
      <height>21</height>
     </rect>
    </property>
