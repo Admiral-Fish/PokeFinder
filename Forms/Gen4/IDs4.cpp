@@ -26,7 +26,6 @@ IDs4::IDs4(QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 

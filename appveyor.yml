@@ -4,13 +4,13 @@ environment:
     matrix:
         # Windows 64-bit
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-          QTDIR: C:\Qt\5.10\msvc2017_64
+          QTDIR: C:\Qt\5.11\msvc2017_64
           BUILDER: NMAKE
           ARCH: x64
           OS: windows
         # Windows 32-Bit
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          QTDIR: C:\Qt\5.10\mingw53_32
+          QTDIR: C:\Qt\5.11\mingw53_32
           BUILDER: MINGW
           ARCH: x86
           OS: windows

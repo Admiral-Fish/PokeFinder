@@ -97,7 +97,6 @@ QComboBox {
 	border-radius: 6px;
 	color: white;
 	padding-left: 13px;
-	combobox-popup: 0;
 }
 
 QComboBox QListView{
