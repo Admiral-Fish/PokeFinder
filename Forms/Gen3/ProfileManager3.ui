@@ -6,14 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>625</width>
-    <height>301</height>
+    <width>630</width>
+    <height>300</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>625</width>
-    <height>301</height>
+    <width>630</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>630</width>
+    <height>300</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -49,10 +61,16 @@ QHeaderView::section {
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QPushButton" name="pushButtonNew">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>23</height>
+        <height>0</height>
        </size>
       </property>
       <property name="text">
@@ -62,10 +80,16 @@ QHeaderView::section {
     </item>
     <item row="0" column="1">
      <widget class="QPushButton" name="pushButtonEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>23</height>
+        <height>0</height>
        </size>
       </property>
       <property name="text">
@@ -75,10 +99,16 @@ QHeaderView::section {
     </item>
     <item row="0" column="2">
      <widget class="QPushButton" name="pushButtonDelete">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>23</height>
+        <height>0</height>
        </size>
       </property>
       <property name="text">
@@ -88,6 +118,12 @@ QHeaderView::section {
     </item>
     <item row="1" column="0" colspan="3">
      <widget class="TableView" name="tableView">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>8</verstretch>
+       </sizepolicy>
+      </property>
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
@@ -95,10 +131,16 @@ QHeaderView::section {
     </item>
     <item row="2" column="0" colspan="3">
      <widget class="QPushButton" name="pushButtonOk">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>23</height>
+        <height>0</height>
        </size>
       </property>
       <property name="text">
@@ -113,8 +155,8 @@ QHeaderView::section {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>625</width>
-     <height>21</height>
+     <width>630</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

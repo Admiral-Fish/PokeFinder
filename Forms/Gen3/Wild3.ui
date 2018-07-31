@@ -166,16 +166,22 @@ QPushButton {
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBoxRNGInfoStationary3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
-            <width>300</width>
-            <height>270</height>
+            <width>0</width>
+            <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>300</width>
-            <height>270</height>
+            <width>16777215</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -187,6 +193,12 @@ QPushButton {
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
             <widget class="QLabel" name="methodLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Method</string>
              </property>
@@ -222,6 +234,12 @@ QPushButton {
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_11">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Location</string>
              </property>
@@ -232,6 +250,12 @@ QPushButton {
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="label_12">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Pokémon</string>
              </property>
@@ -246,6 +270,12 @@ QPushButton {
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Encounter</string>
              </property>
@@ -292,6 +322,12 @@ QPushButton {
            </item>
            <item row="4" column="0">
             <widget class="QPushButton" name="pushButtonLeadGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton {
 	color: black;
@@ -308,6 +344,12 @@ QPushButton {
            </item>
            <item row="5" column="0">
             <widget class="QLabel" name="startingFrameLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Starting Frame</string>
              </property>
@@ -315,6 +357,12 @@ QPushButton {
            </item>
            <item row="5" column="1">
             <widget class="QTextBox" name="startingFrameGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="styleSheet">
               <string notr="true"/>
              </property>
@@ -331,6 +379,12 @@ QPushButton {
            </item>
            <item row="6" column="0">
             <widget class="QLabel" name="maxResultsLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Max Results</string>
              </property>
@@ -338,6 +392,12 @@ QPushButton {
            </item>
            <item row="6" column="1">
             <widget class="QTextBox" name="maxResultsGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
@@ -351,6 +411,12 @@ QPushButton {
            </item>
            <item row="7" column="0">
             <widget class="QLabel" name="idLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>TID</string>
              </property>
@@ -358,6 +424,12 @@ QPushButton {
            </item>
            <item row="7" column="1">
             <widget class="QTextBox" name="idGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
@@ -371,6 +443,12 @@ QPushButton {
            </item>
            <item row="8" column="0">
             <widget class="QLabel" name="sidLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>SID</string>
              </property>
@@ -378,6 +456,12 @@ QPushButton {
            </item>
            <item row="8" column="1">
             <widget class="QTextBox" name="sidGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
@@ -391,6 +475,12 @@ QPushButton {
            </item>
            <item row="9" column="0">
             <widget class="QLabel" name="seedLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Seed</string>
              </property>
@@ -399,7 +489,7 @@ QPushButton {
            <item row="9" column="1">
             <widget class="QTextBox" name="initialSeedGenerator">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -407,7 +497,7 @@ QPushButton {
              <property name="maximumSize">
               <size>
                <width>16777215</width>
-               <height>16</height>
+               <height>16777215</height>
               </size>
              </property>
              <property name="inputMask">
@@ -434,6 +524,12 @@ QPushButton {
             <widget class="QPushButton" name="generate">
              <property name="enabled">
               <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
              <property name="minimumSize">
               <size>
@@ -462,10 +558,16 @@ QPushButton {
         </item>
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBoxFiltersStationary3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>2</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>270</height>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -485,8 +587,8 @@ QPushButton {
              </property>
              <property name="maximumSize">
               <size>
-               <width>335</width>
-               <height>180</height>
+               <width>16777215</width>
+               <height>16777215</height>
               </size>
              </property>
             </widget>
@@ -970,6 +1072,12 @@ QPushButton {
            </item>
            <item row="6" column="2">
             <widget class="QCheckBox" name="checkBoxShinyGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -1016,6 +1124,12 @@ QPushButton {
            </item>
            <item row="7" column="2">
             <widget class="QCheckBox" name="checkBoxDisableGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -1055,7 +1169,7 @@ QPushButton {
            <item row="7" column="4">
             <widget class="QLabel" name="labelF">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -1070,6 +1184,12 @@ QPushButton {
         </item>
         <item row="1" column="0" colspan="2">
          <widget class="TableView" name="tableViewGenerator">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
@@ -1105,6 +1225,12 @@ QPushButton {
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="2" column="0" colspan="2">
          <widget class="TableView" name="tableViewSearcher">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
@@ -1144,16 +1270,22 @@ QHeaderView::section {
         </item>
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBoxRNGInfoSearcher3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
-            <width>300</width>
-            <height>231</height>
+            <width>0</width>
+            <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>300</width>
-            <height>231</height>
+            <width>16777215</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -1165,6 +1297,12 @@ QHeaderView::section {
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="1" column="0">
             <widget class="QLabel" name="label_9">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Location</string>
              </property>
@@ -1172,6 +1310,12 @@ QHeaderView::section {
            </item>
            <item row="5" column="0">
             <widget class="QLabel" name="idLabel_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>TID</string>
              </property>
@@ -1179,6 +1323,12 @@ QHeaderView::section {
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="label_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Encounter</string>
              </property>
@@ -1186,6 +1336,12 @@ QHeaderView::section {
            </item>
            <item row="0" column="0">
             <widget class="QLabel" name="methodLabel_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Method</string>
              </property>
@@ -1193,6 +1349,12 @@ QHeaderView::section {
            </item>
            <item row="5" column="1">
             <widget class="QTextBox" name="idSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
@@ -1206,6 +1368,12 @@ QHeaderView::section {
            </item>
            <item row="6" column="1">
             <widget class="QTextBox" name="sidSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
@@ -1219,6 +1387,12 @@ QHeaderView::section {
            </item>
            <item row="6" column="0">
             <widget class="QLabel" name="sidLabel_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>SID</string>
              </property>
@@ -1226,6 +1400,12 @@ QHeaderView::section {
            </item>
            <item row="0" column="1">
             <widget class="QComboBox" name="comboBoxMethodSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="layoutDirection">
               <enum>Qt::LeftToRight</enum>
              </property>
@@ -1254,6 +1434,12 @@ QHeaderView::section {
            </item>
            <item row="4" column="1">
             <widget class="QComboBox" name="comboBoxLeadSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <item>
               <property name="text">
                <string>Any</string>
@@ -1305,6 +1491,12 @@ QHeaderView::section {
            </item>
            <item row="3" column="1">
             <widget class="QComboBox" name="comboBoxEncounterSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <item>
               <property name="text">
                <string>Wild</string>
@@ -1344,6 +1536,12 @@ QHeaderView::section {
            </item>
            <item row="4" column="0">
             <widget class="QLabel" name="label_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Lead</string>
              </property>
@@ -1351,6 +1549,12 @@ QHeaderView::section {
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="label_10">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Pokémon</string>
              </property>
@@ -1358,19 +1562,38 @@ QHeaderView::section {
            </item>
            <item row="1" column="1">
             <widget class="QComboBox" name="comboBoxLocationSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="maxVisibleItems">
               <number>10</number>
              </property>
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QComboBox" name="comboBoxPokemonSearcher"/>
+            <widget class="QComboBox" name="comboBoxPokemonSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
         </item>
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBoxFiltersSearcher3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>2</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -1388,8 +1611,8 @@ QHeaderView::section {
              </property>
              <property name="maximumSize">
               <size>
-               <width>335</width>
-               <height>180</height>
+               <width>16777215</width>
+               <height>16777215</height>
               </size>
              </property>
             </widget>
@@ -1602,6 +1825,12 @@ QHeaderView::section {
            </item>
            <item row="2" column="3">
             <widget class="QPushButton" name="anyNatureSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>50</width>
@@ -1643,6 +1872,12 @@ QHeaderView::section {
            </item>
            <item row="3" column="3">
             <widget class="QPushButton" name="pushButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>50</width>
@@ -1861,6 +2096,12 @@ QHeaderView::section {
            </item>
            <item row="6" column="2">
             <widget class="QCheckBox" name="checkBoxShinySearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -1871,6 +2112,12 @@ QHeaderView::section {
         </item>
         <item row="1" column="0" colspan="2">
          <widget class="QProgressBar" name="progressBar">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="value">
            <number>0</number>
           </property>
@@ -1980,7 +2227,7 @@ QHeaderView::section {
      <x>0</x>
      <y>0</y>
      <width>1182</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -1997,15 +2244,15 @@ QHeaderView::section {
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
+   <class>QCheckList</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/QCheckList.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>IVFilter</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/IVFilter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>QCheckList</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/QCheckList.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

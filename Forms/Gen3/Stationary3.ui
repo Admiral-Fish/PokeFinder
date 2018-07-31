@@ -162,16 +162,22 @@ QPushButton {
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBoxRNGInfoStationary3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
-            <width>300</width>
-            <height>231</height>
+            <width>0</width>
+            <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>300</width>
-            <height>231</height>
+            <width>16777215</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -278,6 +284,12 @@ QPushButton {
            </item>
            <item row="1" column="1">
             <widget class="QTextBox" name="startingFrameGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="styleSheet">
               <string notr="true"/>
              </property>
@@ -307,6 +319,12 @@ QPushButton {
            </item>
            <item row="4" column="1">
             <widget class="QTextBox" name="sidGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
@@ -322,6 +340,12 @@ QPushButton {
             <widget class="QPushButton" name="generate">
              <property name="enabled">
               <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
              <property name="minimumSize">
               <size>
@@ -348,7 +372,7 @@ QPushButton {
            <item row="5" column="1">
             <widget class="QTextBox" name="initialSeedGenerator">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -381,6 +405,12 @@ QPushButton {
            </item>
            <item row="3" column="1">
             <widget class="QTextBox" name="idGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
@@ -394,6 +424,12 @@ QPushButton {
            </item>
            <item row="2" column="1">
             <widget class="QTextBox" name="maxResultsGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
@@ -423,16 +459,22 @@ QPushButton {
         </item>
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBoxFiltersStationary3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>2</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>231</height>
+            <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>231</height>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -452,8 +494,8 @@ QPushButton {
              </property>
              <property name="maximumSize">
               <size>
-               <width>335</width>
-               <height>180</height>
+               <width>16777215</width>
+               <height>16777215</height>
               </size>
              </property>
             </widget>
@@ -920,6 +962,12 @@ QPushButton {
            </item>
            <item row="5" column="2">
             <widget class="QCheckBox" name="checkBoxShinyGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -966,6 +1014,12 @@ QPushButton {
            </item>
            <item row="6" column="2">
             <widget class="QCheckBox" name="checkBoxDisableGenerator">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -1020,6 +1074,12 @@ QPushButton {
         </item>
         <item row="1" column="0" colspan="2">
          <widget class="TableView" name="tableViewGenerator">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
@@ -1061,16 +1121,22 @@ QPushButton {
        <layout class="QGridLayout" name="gridLayout_9">
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBoxFiltersSearcher3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>2</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>231</height>
+            <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>231</height>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -1090,8 +1156,8 @@ QPushButton {
              </property>
              <property name="maximumSize">
               <size>
-               <width>335</width>
-               <height>180</height>
+               <width>16777215</width>
+               <height>16777215</height>
               </size>
              </property>
             </widget>
@@ -1304,6 +1370,12 @@ QPushButton {
            </item>
            <item row="2" column="3">
             <widget class="QPushButton" name="anyNatureSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>50</width>
@@ -1522,6 +1594,12 @@ QPushButton {
            </item>
            <item row="5" column="2">
             <widget class="QCheckBox" name="checkBoxShinySearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -1532,6 +1610,12 @@ QPushButton {
         </item>
         <item row="2" column="0" colspan="2">
          <widget class="TableView" name="tableViewSearcher">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
@@ -1560,16 +1644,22 @@ QPushButton {
         </item>
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBoxRNGInfoSearcher3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
-            <width>300</width>
-            <height>231</height>
+            <width>0</width>
+            <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>300</width>
-            <height>231</height>
+            <width>16777215</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -1581,6 +1671,12 @@ QPushButton {
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="2" column="0">
             <widget class="QLabel" name="sidLabel_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>SID</string>
              </property>
@@ -1588,6 +1684,12 @@ QPushButton {
            </item>
            <item row="0" column="0">
             <widget class="QLabel" name="methodLabel_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Method</string>
              </property>
@@ -1648,6 +1750,12 @@ QPushButton {
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="idLabel_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>TID</string>
              </property>
@@ -1655,6 +1763,12 @@ QPushButton {
            </item>
            <item row="2" column="1">
             <widget class="QTextBox" name="sidSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
@@ -1668,6 +1782,12 @@ QPushButton {
            </item>
            <item row="1" column="1">
             <widget class="QTextBox" name="idSearcher">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="inputMask">
               <string/>
              </property>
@@ -1681,6 +1801,12 @@ QPushButton {
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Shadow</string>
              </property>
@@ -1691,10 +1817,16 @@ QPushButton {
              <property name="enabled">
               <bool>true</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
-               <width>231</width>
-               <height>23</height>
+               <width>0</width>
+               <height>0</height>
               </size>
              </property>
              <property name="styleSheet">
@@ -1721,6 +1853,12 @@ QPushButton {
         </item>
         <item row="1" column="0" colspan="2">
          <widget class="QProgressBar" name="progressBar">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="value">
            <number>0</number>
           </property>
@@ -1795,6 +1933,12 @@ QPushButton {
        </item>
        <item row="1" column="1">
         <widget class="QPushButton" name="pushButtonProfileManager">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	background-color: orange;
@@ -1830,7 +1974,7 @@ QPushButton {
      <x>0</x>
      <y>0</y>
      <width>1182</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -1848,15 +1992,15 @@ QPushButton {
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
+   <class>QCheckList</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/QCheckList.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>IVFilter</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/IVFilter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>QCheckList</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/QCheckList.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

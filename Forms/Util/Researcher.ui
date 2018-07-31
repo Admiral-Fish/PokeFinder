@@ -178,7 +178,7 @@ QCheckBox::indicator:checked {
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab32Bit">
        <attribute name="title">
@@ -3399,7 +3399,7 @@ QHeaderView::section {
      <x>0</x>
      <y>0</y>
      <width>872</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

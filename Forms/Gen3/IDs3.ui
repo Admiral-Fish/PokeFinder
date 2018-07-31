@@ -6,26 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>631</width>
-    <height>567</height>
+    <width>711</width>
+    <height>570</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>631</width>
-    <height>567</height>
+    <width>710</width>
+    <height>570</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>631</width>
-    <height>567</height>
+    <width>16777215</width>
+    <height>16777215</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -145,7 +145,7 @@ QRadioButton {
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -154,10 +154,16 @@ QRadioButton {
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBoxSearchBy_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>200</height>
+            <height>0</height>
            </size>
           </property>
           <property name="title">
@@ -166,6 +172,12 @@ QRadioButton {
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
             <widget class="QCheckBox" name="checkBoxPIDXD">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>PID</string>
              </property>
@@ -176,6 +188,12 @@ QRadioButton {
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="maxLength">
               <number>8</number>
              </property>
@@ -183,6 +201,12 @@ QRadioButton {
            </item>
            <item row="1" column="0">
             <widget class="QCheckBox" name="checkBoxTIDXD">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>TID</string>
              </property>
@@ -193,6 +217,12 @@ QRadioButton {
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="maxLength">
               <number>5</number>
              </property>
@@ -200,6 +230,12 @@ QRadioButton {
            </item>
            <item row="2" column="0">
             <widget class="QCheckBox" name="checkBoxSIDXD">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>SID</string>
              </property>
@@ -209,6 +245,12 @@ QRadioButton {
             <widget class="QTextBox" name="textBoxSIDXD">
              <property name="enabled">
               <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
              <property name="maxLength">
               <number>5</number>
@@ -238,6 +280,12 @@ QRadioButton {
         </item>
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBoxParameters_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="title">
            <string>Search Parameters</string>
           </property>
@@ -295,6 +343,12 @@ QRadioButton {
         </item>
         <item row="1" column="0" colspan="2">
          <widget class="TableView" name="tableViewXDColo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -309,10 +363,16 @@ QRadioButton {
        <layout class="QGridLayout" name="gridLayout_7">
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBoxSearchBy">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>200</height>
+            <height>0</height>
            </size>
           </property>
           <property name="title">
@@ -321,6 +381,12 @@ QRadioButton {
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
             <widget class="QCheckBox" name="checkBoxPIDFRLGE">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>PID</string>
              </property>
@@ -331,6 +397,12 @@ QRadioButton {
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="maxLength">
               <number>8</number>
              </property>
@@ -338,6 +410,12 @@ QRadioButton {
            </item>
            <item row="1" column="0">
             <widget class="QCheckBox" name="checkBoxSIDFRLGE">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>SID</string>
              </property>
@@ -348,6 +426,12 @@ QRadioButton {
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="maxLength">
               <number>5</number>
              </property>
@@ -355,6 +439,12 @@ QRadioButton {
            </item>
            <item row="2" column="0" colspan="2">
             <widget class="QPushButton" name="pushButtonFindFRLGE">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -376,6 +466,12 @@ QRadioButton {
         </item>
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBoxParameters">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="title">
            <string>Search Parameters</string>
           </property>
@@ -389,6 +485,12 @@ QRadioButton {
            </item>
            <item row="0" column="1">
             <widget class="QTextBox" name="textBoxTIDFRLGE">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="maxLength">
               <number>5</number>
              </property>
@@ -403,6 +505,12 @@ QRadioButton {
            </item>
            <item row="1" column="1">
             <widget class="QTextBox" name="textBoxMinFrameFRLGE">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string notr="true">5000</string>
              </property>
@@ -420,6 +528,12 @@ QRadioButton {
            </item>
            <item row="2" column="1">
             <widget class="QTextBox" name="textBoxMaxFrameFRLGE">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string notr="true">10000</string>
              </property>
@@ -433,6 +547,12 @@ QRadioButton {
         </item>
         <item row="1" column="0" colspan="2">
          <widget class="TableView" name="tableViewFRLGE">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -447,6 +567,12 @@ QRadioButton {
        <layout class="QGridLayout" name="gridLayout_10">
         <item row="0" column="0">
          <widget class="QGroupBox" name="groupBoxSearchBy_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>200</width>
@@ -459,6 +585,12 @@ QRadioButton {
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="0" column="0">
             <widget class="QCheckBox" name="checkBoxPIDRS">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>PID</string>
              </property>
@@ -469,6 +601,12 @@ QRadioButton {
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="maxLength">
               <number>8</number>
              </property>
@@ -476,6 +614,12 @@ QRadioButton {
            </item>
            <item row="1" column="0">
             <widget class="QCheckBox" name="checkBoxTIDRS">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>TID</string>
              </property>
@@ -486,6 +630,12 @@ QRadioButton {
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="maxLength">
               <number>5</number>
              </property>
@@ -493,6 +643,12 @@ QRadioButton {
            </item>
            <item row="2" column="0">
             <widget class="QCheckBox" name="checkBoxSIDRS">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>SID</string>
              </property>
@@ -503,6 +659,12 @@ QRadioButton {
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="maxLength">
               <number>5</number>
              </property>
@@ -510,10 +672,16 @@ QRadioButton {
            </item>
            <item row="3" column="0" colspan="2">
             <widget class="QPushButton" name="pushButtonFindRS">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>0</width>
-               <height>23</height>
+               <height>0</height>
               </size>
              </property>
              <property name="styleSheet">
@@ -531,6 +699,12 @@ QRadioButton {
         </item>
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBoxParameters_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
           <property name="title">
            <string>Search Parameters</string>
           </property>
@@ -547,6 +721,12 @@ QRadioButton {
            </item>
            <item row="0" column="0" colspan="2">
             <widget class="QCheckBox" name="checkBoxBattery">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Dead Battery</string>
              </property>
@@ -563,6 +743,12 @@ QRadioButton {
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Date</string>
              </property>
@@ -575,6 +761,12 @@ QRadioButton {
             <widget class="QDateTimeEdit" name="dateTimeEdit">
              <property name="enabled">
               <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
              <property name="dateTime">
               <datetime>
@@ -620,6 +812,12 @@ QRadioButton {
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -630,6 +828,12 @@ QRadioButton {
            </item>
            <item row="2" column="2">
             <widget class="QTextBox" name="textBoxMinFrameRS">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string notr="true">5000</string>
              </property>
@@ -640,6 +844,12 @@ QRadioButton {
            </item>
            <item row="3" column="2">
             <widget class="QTextBox" name="textBoxMaxFrameRS">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string notr="true">10000</string>
              </property>
@@ -667,6 +877,12 @@ QRadioButton {
         </item>
         <item row="1" column="0" colspan="2">
          <widget class="TableView" name="tableViewRS">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -683,8 +899,8 @@ QRadioButton {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>631</width>
-     <height>21</height>
+     <width>711</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

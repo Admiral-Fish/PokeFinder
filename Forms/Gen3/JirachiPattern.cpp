@@ -93,11 +93,11 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     XDRNGR rng(seed);
 
     // Populate backwards data
-    for (u32 m = 0; m < 35; m++)
+    for (u32 m = 0; m < 25; m++)
     {
         seed = rng.nextUInt();
         data.append(seed);
-        pattern = QString::number(seed >> 30, 16) + "|" + pattern;
+        pattern = QString::number(seed >> 30) + "|" + pattern;
     }
 
     // Loop through 4 possible cases that would make a valid pattern
