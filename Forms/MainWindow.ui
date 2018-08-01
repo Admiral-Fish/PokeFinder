@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>463</width>
+    <width>460</width>
     <height>390</height>
    </rect>
   </property>
@@ -18,18 +18,18 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>463</width>
+    <width>460</width>
     <height>390</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>463</width>
+    <width>460</width>
     <height>390</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string notr="true">PokéFinder 2.0.1</string>
+   <string notr="true">PokéFinder 2.1.0</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -251,7 +251,7 @@ QMenu::item::selected {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>463</width>
+     <width>460</width>
      <height>20</height>
     </rect>
    </property>
