@@ -8,17 +8,17 @@ environment:
           BUILDER: NMAKE
           ARCH: x64
           OS: windows
+        # Linux
+        - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
+          BUILDER: MAKE
+          ARCH: x64
+          OS: linux
         # Windows 32-Bit
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           QTDIR: C:\Qt\5.11\mingw53_32
           BUILDER: MINGW
           ARCH: x86
           OS: windows
-        # Linux
-        - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
-          BUILDER: MAKE
-          ARCH: x64
-          OS: linux
 
 install:
     - git submodule update --init --recursive
