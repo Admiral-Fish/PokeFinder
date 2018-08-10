@@ -72,7 +72,7 @@ void IDs3::setupModels()
     ui->textBoxPIDXD->setValues(0, 32, false);
     ui->textBoxTIDXD->setValues(0, 48, true);
     ui->textBoxSIDXD->setValues(0, 48, true);
-    ui->textBoxSeedXD->setValues(0, 48, false);
+    ui->textBoxSeedXD->setValues(0, 32, false);
     ui->textBoxMinFrameXD->setValues(0, 32, true);
     ui->textBoxMaxFrameXD->setValues(0, 32, true);
 
