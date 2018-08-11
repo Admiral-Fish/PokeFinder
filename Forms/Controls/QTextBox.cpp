@@ -37,7 +37,9 @@ void QTextBox::onTextChanged(QString string)
         if (temp < minValue)
             string = QString::number(minValue, base);
 
+        int position = cursorPosition();
         setText(string);
+        setCursorPosition(position);
     }
 }
 
