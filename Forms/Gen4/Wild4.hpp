@@ -38,6 +38,7 @@
 #include <thread>
 #include <QFileDialog>
 #include <QSettings>
+#include <QtDebug>
 
 namespace Ui
 {

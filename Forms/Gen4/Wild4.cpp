@@ -154,7 +154,7 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->profileGame->setText(profile.getVersionString());
 
     // Rock smash needs more research
-    /*Game version = profile.getVersion();
+    Game version = profile.getVersion();
     if (version == HeartGold || version == SoulSilver)
     {
         if (ui->comboBoxEncounterGenerator->count() == 5)
@@ -168,7 +168,7 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
             ui->comboBoxEncounterGenerator->removeItem(1);
         if (ui->comboBoxEncounterSearcher->count() == 6)
             ui->comboBoxEncounterSearcher->removeItem(1);
-    }*/
+    }
 
     updateLocationsSearcher();
     updateLocationsGenerator();
@@ -374,7 +374,8 @@ void Wild4::on_pushButtonGenerate_clicked()
                                         ui->comboBoxNatureGenerator->getChecked(), ui->comboBoxHiddenPowerGenerator->getChecked(),
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked(), ui->comboBoxSlotGenerator->getChecked());
 
-    generator.setEncounterType(static_cast<Encounter>(ui->comboBoxEncounterGenerator->currentData().toInt()));
+    //generator.setEncounterType(static_cast<Encounter>(ui->comboBoxEncounterGenerator->currentData().toInt()));
+    generator.setEncounterType(RockSmash);
     if (ui->pushButtonLeadGenerator->text() == tr("Cute Charm"))
         generator.setLeadType((static_cast<Lead>(ui->comboBoxLeadGenerator->currentData().toInt())));
     else if (ui->pushButtonLeadGenerator->text() == tr("Suction Cups"))

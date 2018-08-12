@@ -403,7 +403,10 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
     }
     else if (method == Colo)
     {
-        QStringList s = Translator::getSpecies({207, 214, 296, 198, 217});
+        QStringList s = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
+        s[3] += tr(" (E-Reader)");
+        s[5] += tr(" (E-Reader)");
+        s[6] += tr(" (E-Reader)");
         ui->comboBoxShadow->addItems(s);
         ui->comboBoxShadow->setVisible(true);
         ui->label->setVisible(true);
