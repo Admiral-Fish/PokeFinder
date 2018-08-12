@@ -161,7 +161,7 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
     }
 
     QVector<u32> seedsXOR = euclidean.recoverLower16BitsPID((pid1 ^ 0x8000) << 16, pid2 << 16);
-    for (int i = 0; i < seeds.size(); i += 2)
+    for (int i = 0; i < seedsXOR.size(); i += 2)
     {
         rng.setSeed(seedsXOR[i]);
         u32 sid = rng.nextUShort();
