@@ -119,7 +119,7 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
     // For whatever reason the start date is different if the year is greater then 2000
     QDateTime start = QDateTime(QDate(year == 2000 ? 2000 : 2001, 1, 1), QTime(0, 0));
 
-    // Hard cap upper year since game seems to crash above year 2037
+    // Hard cap upper year since game crashes above year 2037
     // Signed overflow error due to how the clock is setup
     if (year < 2000 || year > 2037)
     {

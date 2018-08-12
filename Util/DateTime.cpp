@@ -23,7 +23,7 @@ DateTime::DateTime()
 {
 }
 
-DateTime::DateTime(QDateTime dateTime, u32 delay, Game version, QVector<bool> roamers, QVector<u32> routes)
+DateTime::DateTime(QDateTime dateTime, u32 delay, Game version, QVector<bool> roamers, QVector<u16> routes)
 {
     this->dateTime = dateTime;
     this->delay = delay;

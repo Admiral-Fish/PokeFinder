@@ -84,6 +84,8 @@ void PokeSpot::setupModels()
     ui->comboBoxNature->setup();
     ui->comboBoxSpotType->setup();
 
+    rng = new XDRNG(0);
+
     loadSettings();
 }
 
@@ -107,9 +109,6 @@ void PokeSpot::on_pushButtonGenerate_clicked()
 
     QVector<Frame3> frames;
 
-    if (!rng)
-        rng = new XDRNG(0);
-
     u32 seed = ui->textBoxSeed->text().toUInt(nullptr, 16);
     u32 initialFrame = ui->textBoxStartingFrame->text().toUInt();
     u32 maxFrames = ui->textBoxMaxResults->text().toUInt();
@@ -118,8 +117,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
 
     int genderRatio = ui->comboBoxGenderRatio->currentIndex();
 
-    rng->setSeed(seed);
-    rng->advanceFrames(initialFrame - 1);
+    rng->setSeed(seed, initialFrame - 1);
 
     QVector<u16> rngList;
     for (int x = 0; x < 5; x++)

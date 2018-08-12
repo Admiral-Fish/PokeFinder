@@ -190,16 +190,13 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
     {
         for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
         {
-            u32 seed = (((month * day) + (minute + second)) & 0xFF) << 24;
-            seed |= (hour << 16);
-            seed |= efgh;
+            u32 seed = (((((month * day) + (minute + second)) & 0xFF) << 24) | (hour << 16)) + efgh;
 
-            mt.setSeed(seed);
-            u32 val = mt.nextUInt();
-            val = mt.nextUInt();
+            mt.setSeed(seed, 1);
+            u32 y = mt.nextUInt();
 
-            u32 id = val & 0xFFFF;
-            u32 sid = val >> 16;
+            u32 id = y & 0xFFFF;
+            u32 sid = y >> 16;
 
             if (tid == id)
             {
@@ -237,10 +234,9 @@ void IDs4::searchPID()
             for (u32 cd = 0; cd < 24; cd++)
             {
                 u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                mt.setSeed(seed);
+                mt.setSeed(seed, 1);
 
                 u32 y = mt.nextUInt();
-                y = mt.nextUInt();
 
                 u32 id = y & 0xFFFF;
                 u32 sid = y >> 16;
@@ -295,10 +291,9 @@ void IDs4::searchTIDSID()
             for (u32 cd = 0; cd < 24; cd++)
             {
                 u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                mt.setSeed(seed);
+                mt.setSeed(seed, 1);
 
                 u32 y = mt.nextUInt();
-                y = mt.nextUInt();
 
                 u32 id = y & 0xFFFF;
                 u32 sid = y >> 16;

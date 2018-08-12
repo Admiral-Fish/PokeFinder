@@ -327,8 +327,7 @@ void IVtoPID::getSeedsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 sp
 
     for (int i = 0; i < size; i++)
     {
-        rng.setSeed(seeds[i]);
-        rng.advanceFrames(3);
+        rng.setSeed(seeds[i], 3);
 
         u32 pid2 = rng.nextUShort();
         u32 pid1 = rng.nextUShort();

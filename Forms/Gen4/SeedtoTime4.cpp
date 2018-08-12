@@ -152,7 +152,7 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
     }
 
     QVector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
-    QVector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
+    QVector<u16> routes = { ui->lineEditR->text().toUShort(), ui->lineEditE->text().toUShort(), ui->lineEditL->text().toUShort() };
 
     QVector<DateTime> results;
     for (int month = 0; month < 13; month++)
@@ -240,7 +240,7 @@ void SeedtoTime4::on_pushButtonGenerateHGSS_clicked()
     int forcedSecond = ui->lineEditSecondsHGSS->text().toInt();
 
     QVector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
-    QVector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
+    QVector<u16> routes = { ui->lineEditR->text().toUShort(), ui->lineEditE->text().toUShort(), ui->lineEditL->text().toUShort() };
 
     HGSSRoamer info(seed, roamer, routes);
 

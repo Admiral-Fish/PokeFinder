@@ -44,7 +44,7 @@ private:
 
 public:
     DateTime();
-    DateTime(QDateTime dateTime, u32 delay, Game version, QVector<bool> roamers, QVector<u32> routes);
+    DateTime(QDateTime dateTime, u32 delay, Game version, QVector<bool> roamers, QVector<u16> routes);
     DateTime(QDateTime dateTime, u32 delay, Game version, HGSSRoamer info);
     QString sequence();
     QString getDate();

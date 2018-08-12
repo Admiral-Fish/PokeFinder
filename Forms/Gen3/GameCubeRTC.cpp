@@ -100,8 +100,7 @@ void GameCubeRTC::calcRTC()
     u32 minFrame = ui->textBoxMinFrame->text().toUInt();
     u32 maxFrame = ui->textBoxMaxFrame->text().toUInt();
 
-    XDRNGR back(targetSeed);
-    back.advanceFrames(minFrame);
+    XDRNGR back(targetSeed, minFrame);
     targetSeed = back.getSeed();
 
     XDRNG rng(initSeed);
@@ -130,12 +129,12 @@ void GameCubeRTC::calcRTC()
         }
 
         initSeed += 40500000;
-        seconds += 1;
-        secoundCount += 1;
+        seconds++;
+        secoundCount++;
 
         if (secoundCount == 60)
         {
-            minutes += 1;
+            minutes++;
             secoundCount = 0;
         }
     }

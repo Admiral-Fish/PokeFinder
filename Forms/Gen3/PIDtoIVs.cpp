@@ -103,9 +103,8 @@ void PIDtoIVs::calcMethod124(u32 pid)
     QVector<u32> seeds = cache.recoverLower16BitsPID(pidl, pidh);
     for (int i = 0; i < seeds.size(); i++)
     {
-        forward.setSeed(seeds[i]);
+        forward.setSeed(seeds[i], 1);
         backward.setSeed(seeds[i]);
-        forward.nextUInt();
         addSeed(backward.nextUInt(), forward.nextUInt());
     }
 }
@@ -113,23 +112,22 @@ void PIDtoIVs::calcMethod124(u32 pid)
 void PIDtoIVs::calcMethodXD(u32 pid)
 {
     RNGEuclidean euclidean(XDColo);
-    XDRNGR rng(0);
+    XDRNGR backward(0);
 
     QVector<u32> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
     for (int i = 0; i < seeds.size(); i += 2)
     {
-        rng.setSeed(seeds[i]);
-        rng.nextUInt();
-        u32 iv2 = rng.nextUShort();
-        u32 iv1 = rng.nextUShort();
-        addSeedGC(rng.nextUInt(), iv1, iv2);
+        backward.setSeed(seeds[i], 1);
+        u32 iv2 = backward.nextUShort();
+        u32 iv1 = backward.nextUShort();
+        addSeedGC(backward.nextUInt(), iv1, iv2);
     }
 }
 
 void PIDtoIVs::calcMethodChannel(u32 pid)
 {
     RNGEuclidean euclidean(XDColo);
-    XDRNGR rng(0);
+    XDRNGR backward(0);
     XDRNG forward(0);
 
     u32 pid1 = pid >> 16;
@@ -141,12 +139,11 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
     QVector<u32> seeds = euclidean.recoverLower16BitsPID(pid1 << 16, pid2 << 16);
     for (int i = 0; i < seeds.size(); i += 2)
     {
-        rng.setSeed(seeds[i]);
-        u32 sid = rng.nextUShort();
-        u32 seed = rng.nextUInt();
+        backward.setSeed(seeds[i]);
+        u32 sid = backward.nextUShort();
+        u32 seed = backward.nextUInt();
 
-        forward.setSeed(seed);
-        forward.nextUInt();
+        forward.setSeed(seed, 1);
         u32 val1 = forward.nextUShort();
         u32 val2 = forward.nextUShort();
 
@@ -163,12 +160,11 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
     QVector<u32> seedsXOR = euclidean.recoverLower16BitsPID((pid1 ^ 0x8000) << 16, pid2 << 16);
     for (int i = 0; i < seedsXOR.size(); i += 2)
     {
-        rng.setSeed(seedsXOR[i]);
-        u32 sid = rng.nextUShort();
-        u32 seed = rng.nextUInt();
+        backward.setSeed(seedsXOR[i]);
+        u32 sid = backward.nextUShort();
+        u32 seed = backward.nextUInt();
 
-        forward.setSeed(seed);
-        forward.nextUInt();
+        forward.setSeed(seed, 1);
         u32 val1 = forward.nextUShort();
         u32 val2 = forward.nextUShort();
 
@@ -229,13 +225,12 @@ QString PIDtoIVs::calcIVs(u32 iv1, int num)
         ivs += ".";
     }
 
-    ivs += QString::number((iv2 >> 5) & 31);
-    ivs += ".";
-
-    ivs += QString::number((iv2 >> 10) & 31);
-    ivs += ".";
-
-    ivs += QString::number(iv2 & 31);
+    for (u32 x : { 1u, 2u, 0u })
+    {
+        ivs += QString::number((iv2 >> (x * 5)) & 31);
+        if (x != 0)
+            ivs += ".";
+    }
 
     return ivs;
 }
@@ -250,13 +245,12 @@ QString PIDtoIVs::calcIVsXD(u32 iv1, u32 iv2)
         ivs += ".";
     }
 
-    ivs += QString::number((iv2 >> 5) & 31);
-    ivs += ".";
-
-    ivs += QString::number((iv2 >> 10) & 31);
-    ivs += ".";
-
-    ivs += QString::number(iv2 & 31);
+    for (u32 x : { 1u, 2u, 0u })
+    {
+        ivs += QString::number((iv2 >> (x * 5)) & 31);
+        if (x != 0)
+            ivs += ".";
+    }
 
     return ivs;
 }
@@ -300,6 +294,5 @@ void PIDtoIVs::on_tabePIDToIV_customContextMenuRequested(const QPoint &pos)
         return;
 
     lastIndex = ui->tabePIDToIV->indexAt(pos);
-
     contextMenu->popup(ui->tabePIDToIV->viewport()->mapToGlobal(pos));
 }
