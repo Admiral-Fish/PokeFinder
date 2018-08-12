@@ -324,26 +324,6 @@ QPushButton {
              <property name="frame">
               <bool>true</bool>
              </property>
-             <item>
-              <property name="text">
-               <string>Method 1</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Method J</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Method K</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Wondercard IVs</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item row="4" column="0">
@@ -1783,26 +1763,6 @@ QPushButton {
              <property name="frame">
               <bool>true</bool>
              </property>
-             <item>
-              <property name="text">
-               <string>Method 1</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Method J</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Method K</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Wondercard IVs</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item row="2" column="1">

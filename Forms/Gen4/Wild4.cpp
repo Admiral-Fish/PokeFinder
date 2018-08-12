@@ -87,18 +87,6 @@ void Wild4::setupModels()
     ui->comboBoxMethodSearcher->setItemData(1, MethodK);
     ui->comboBoxMethodSearcher->setItemData(2, ChainedShiny);
 
-    ui->comboBoxEncounterGenerator->setItemData(0, Wild);
-    ui->comboBoxEncounterGenerator->setItemData(1, Surfing);
-    ui->comboBoxEncounterGenerator->setItemData(2, OldRod);
-    ui->comboBoxEncounterGenerator->setItemData(3, GoodRod);
-    ui->comboBoxEncounterGenerator->setItemData(4, SuperRod);
-
-    ui->comboBoxEncounterSearcher->setItemData(0, Wild);
-    ui->comboBoxEncounterSearcher->setItemData(1, Surfing);
-    ui->comboBoxEncounterSearcher->setItemData(2, OldRod);
-    ui->comboBoxEncounterSearcher->setItemData(3, GoodRod);
-    ui->comboBoxEncounterSearcher->setItemData(4, SuperRod);
-
     ui->comboBoxLeadGenerator->addItem(tr("None"));
     ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
 
@@ -153,22 +141,35 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->profileSID->setText(QString::number(profile.getSid()));
     ui->profileGame->setText(profile.getVersionString());
 
-    // Rock smash needs more research
-    Game version = profile.getVersion();
-    if (version == HeartGold || version == SoulSilver)
-    {
-        if (ui->comboBoxEncounterGenerator->count() == 5)
-            ui->comboBoxEncounterGenerator->insertItem(1, tr("Rock Smash"), RockSmash);
-        if (ui->comboBoxEncounterSearcher->count() == 5)
-            ui->comboBoxEncounterSearcher->insertItem(1, tr("Rock Smash"), RockSmash);
-    }
-    else
-    {
-        if (ui->comboBoxEncounterGenerator->count() == 6)
-            ui->comboBoxEncounterGenerator->removeItem(1);
-        if (ui->comboBoxEncounterSearcher->count() == 6)
-            ui->comboBoxEncounterSearcher->removeItem(1);
-    }
+    bool flag = profile.getVersion() == HeartGold || profile.getVersion() == SoulSilver;
+
+    ui->comboBoxMethodGenerator->clear();
+    ui->comboBoxMethodGenerator->addItem(flag ? tr("Method K") : tr("Method J"), flag ? MethodK : MethodJ);
+    if (!flag)
+        ui->comboBoxMethodGenerator->addItem(tr("Chained Shiny"), ChainedShiny);
+
+    ui->comboBoxMethodSearcher->clear();
+    ui->comboBoxMethodSearcher->addItem(flag ? tr("Method K") : tr("Method J"), flag ? MethodK : MethodJ);
+    if (!flag)
+        ui->comboBoxMethodSearcher->addItem(tr("Chained Shiny"), ChainedShiny);
+
+    ui->comboBoxEncounterGenerator->clear();
+    ui->comboBoxEncounterGenerator->addItem(tr("Wild"), Wild);
+    if (flag)
+        ui->comboBoxEncounterGenerator->addItem(tr("Rock Smash"), RockSmash);
+    ui->comboBoxEncounterGenerator->addItem(tr("Surfing"), Surfing);
+    ui->comboBoxEncounterGenerator->addItem(tr("Old Rod"), OldRod);
+    ui->comboBoxEncounterGenerator->addItem(tr("Good Rod"), GoodRod);
+    ui->comboBoxEncounterGenerator->addItem(tr("Super Rod"), SuperRod);
+
+    ui->comboBoxEncounterSearcher->clear();
+    ui->comboBoxEncounterSearcher->addItem(tr("Wild"), Wild);
+    if (flag)
+        ui->comboBoxEncounterSearcher->addItem(tr("Rock Smash"), RockSmash);
+    ui->comboBoxEncounterSearcher->addItem(tr("Surfing"), Surfing);
+    ui->comboBoxEncounterSearcher->addItem(tr("Old Rod"), OldRod);
+    ui->comboBoxEncounterSearcher->addItem(tr("Good Rod"), GoodRod);
+    ui->comboBoxEncounterSearcher->addItem(tr("Super Rod"), SuperRod);
 
     updateLocationsSearcher();
     updateLocationsGenerator();

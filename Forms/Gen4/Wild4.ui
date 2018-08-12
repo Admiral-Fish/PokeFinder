@@ -947,21 +947,6 @@ QPushButton {
              <property name="frame">
               <bool>true</bool>
              </property>
-             <item>
-              <property name="text">
-               <string>Method J</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Method K</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Chained Shiny</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item row="1" column="0">
@@ -1368,21 +1353,6 @@ QPushButton {
              <property name="frame">
               <bool>true</bool>
              </property>
-             <item>
-              <property name="text">
-               <string>Method J</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Method K</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Chained Shiny</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item row="1" column="0">

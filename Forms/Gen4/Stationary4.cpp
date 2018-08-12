@@ -99,16 +99,6 @@ void Stationary4::setupModels()
     ui->minFrame->setValues(0, 48, true);
     ui->maxFrame->setValues(0, 48, true);
 
-    ui->comboBoxMethodGenerator->setItemData(0, Method1);
-    ui->comboBoxMethodGenerator->setItemData(1, MethodJ);
-    ui->comboBoxMethodGenerator->setItemData(2, MethodK);
-    ui->comboBoxMethodGenerator->setItemData(3, WondercardIVs);
-
-    ui->comboBoxMethodSearcher->setItemData(0, Method1);
-    ui->comboBoxMethodSearcher->setItemData(1, MethodJ);
-    ui->comboBoxMethodSearcher->setItemData(2, MethodK);
-    ui->comboBoxMethodSearcher->setItemData(3, WondercardIVs);
-
     ui->comboBoxLeadSearcher->setItemData(0, Search);
     ui->comboBoxLeadSearcher->setItemData(1, Synchronize);
     ui->comboBoxLeadSearcher->setItemData(2, CuteCharm);
@@ -163,6 +153,18 @@ void Stationary4::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->profileTID->setText(QString::number(profile.getTid()));
     ui->profileSID->setText(QString::number(profile.getSid()));
     ui->profileGame->setText(profile.getVersionString());
+
+    bool flag = profile.getVersion() == HeartGold || profile.getVersion() == SoulSilver;
+
+    ui->comboBoxMethodGenerator->clear();
+    ui->comboBoxMethodGenerator->addItem(tr("Method 1"), Method1);
+    ui->comboBoxMethodGenerator->addItem(flag ? tr("Method K") : tr("Method J"), flag ? MethodK : MethodJ);
+    ui->comboBoxMethodGenerator->addItem(tr("Wondercard IVs"), WondercardIVs);
+
+    ui->comboBoxMethodSearcher->clear();
+    ui->comboBoxMethodSearcher->addItem(tr("Method 1"), Method1);
+    ui->comboBoxMethodSearcher->addItem(flag ? tr("Method K") : tr("Method J"), flag ? MethodK : MethodJ);
+    ui->comboBoxMethodSearcher->addItem(tr("Wondercard IVs"), WondercardIVs);
 }
 
 void Stationary4::on_anyNatureGenerator_clicked()
