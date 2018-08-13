@@ -48,8 +48,8 @@ private:
     Ui::SeedtoTime4 *ui;
     SeedtoTime4Model *dppt = new SeedtoTime4Model(this, false);
     SeedtoTime4Model *dpptCalibrate = new SeedtoTime4Model(this, true);
-    SeedtoTime4Model *hgss = new SeedtoTime4Model(this, false, HeartGold);
-    SeedtoTime4Model *hgssCalibrate = new SeedtoTime4Model(this, true, HeartGold);
+    SeedtoTime4Model *hgss = new SeedtoTime4Model(this, false, Game::HeartGold);
+    SeedtoTime4Model *hgssCalibrate = new SeedtoTime4Model(this, true, Game::HeartGold);
 
     void setupModels();
     void saveSettings();

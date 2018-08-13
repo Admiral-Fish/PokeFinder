@@ -23,11 +23,10 @@
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
-#include <PokeFinderCore/Objects/Utilities.hpp>
 #include <QStringList>
 #include <QList>
-#include <thread>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
+#include <PokeFinderCore/Objects/Utilities.hpp>
 
 typedef uint32_t u32;
 

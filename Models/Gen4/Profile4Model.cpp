@@ -73,9 +73,9 @@ QVariant Profile4Model::data(const QModelIndex &index, int role) const
             case 2:
                 return profile.getLanguageString();
             case 3:
-                return profile.getTid();
+                return profile.getTID();
             case 4:
-                return profile.getSid();
+                return profile.getSID();
         }
     }
     return QVariant();

@@ -25,15 +25,15 @@
 #include <QStandardItemModel>
 #include <QList>
 #include <QVector>
-#include <PokeFinderCore/RNG/RNGCache.hpp>
-#include <PokeFinderCore/Objects/Method.hpp>
-#include <PokeFinderCore/RNG/RNGEuclidean.hpp>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <QMenu>
 #include <QAction>
 #include <QModelIndex>
 #include <QClipboard>
 #include <QStringList>
+#include <PokeFinderCore/RNG/RNGCache.hpp>
+#include <PokeFinderCore/Objects/Method.hpp>
+#include <PokeFinderCore/RNG/RNGEuclidean.hpp>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
 
 typedef uint32_t u32;
 

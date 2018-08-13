@@ -82,7 +82,6 @@ void Stationary4::saveSettings()
 void Stationary4::setupModels()
 {
     ui->tableViewGenerator->setModel(g);
-
     ui->tableViewSearcher->setModel(s);
 
     ui->initialSeedGenerator->setValues(0, 32, false);
@@ -99,10 +98,10 @@ void Stationary4::setupModels()
     ui->minFrame->setValues(0, 48, true);
     ui->maxFrame->setValues(0, 48, true);
 
-    ui->comboBoxLeadSearcher->setItemData(0, Search);
-    ui->comboBoxLeadSearcher->setItemData(1, Synchronize);
-    ui->comboBoxLeadSearcher->setItemData(2, CuteCharm);
-    ui->comboBoxLeadSearcher->setItemData(3, None);
+    ui->comboBoxLeadSearcher->setItemData(0, Lead::Search);
+    ui->comboBoxLeadSearcher->setItemData(1, Lead::Synchronize);
+    ui->comboBoxLeadSearcher->setItemData(2, Lead::CuteCharm);
+    ui->comboBoxLeadSearcher->setItemData(3, Lead::None);
 
     ui->comboBoxLeadGenerator->addItem(tr("None"));
     ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
@@ -145,26 +144,28 @@ void Stationary4::refreshProfiles()
 void Stationary4::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     auto profile = profiles[index >= 0 ? index : 0];
+    QString tid = QString::number(profile.getTID());
+    QString sid = QString::number(profile.getSID());
 
-    ui->idGenerator->setText(QString::number(profile.getTid()));
-    ui->sidGenerator->setText(QString::number(profile.getSid()));
-    ui->idSearcher->setText(QString::number(profile.getTid()));
-    ui->sidSearcher->setText(QString::number(profile.getSid()));
-    ui->profileTID->setText(QString::number(profile.getTid()));
-    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->idGenerator->setText(tid);
+    ui->sidGenerator->setText(sid);
+    ui->idSearcher->setText(tid);
+    ui->sidSearcher->setText(sid);
+    ui->profileTID->setText(tid);
+    ui->profileSID->setText(sid);
     ui->profileGame->setText(profile.getVersionString());
 
-    bool flag = profile.getVersion() == HeartGold || profile.getVersion() == SoulSilver;
+    bool flag = profile.getVersion() == Game::HeartGold || profile.getVersion() == Game::SoulSilver;
 
     ui->comboBoxMethodGenerator->clear();
-    ui->comboBoxMethodGenerator->addItem(tr("Method 1"), Method1);
-    ui->comboBoxMethodGenerator->addItem(flag ? tr("Method K") : tr("Method J"), flag ? MethodK : MethodJ);
-    ui->comboBoxMethodGenerator->addItem(tr("Wondercard IVs"), WondercardIVs);
+    ui->comboBoxMethodGenerator->addItem(tr("Method 1"), Method::Method1);
+    ui->comboBoxMethodGenerator->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
+    ui->comboBoxMethodGenerator->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
 
     ui->comboBoxMethodSearcher->clear();
-    ui->comboBoxMethodSearcher->addItem(tr("Method 1"), Method1);
-    ui->comboBoxMethodSearcher->addItem(flag ? tr("Method K") : tr("Method J"), flag ? MethodK : MethodJ);
-    ui->comboBoxMethodSearcher->addItem(tr("Wondercard IVs"), WondercardIVs);
+    ui->comboBoxMethodSearcher->addItem(tr("Method 1"), Method::Method1);
+    ui->comboBoxMethodSearcher->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
+    ui->comboBoxMethodSearcher->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
 }
 
 void Stationary4::on_anyNatureGenerator_clicked()
@@ -216,11 +217,11 @@ void Stationary4::on_generate_clicked()
         int num = ui->comboBoxLeadGenerator->currentIndex();
         if (num == 0)
         {
-            generator.setLeadType(None);
+            generator.setLeadType(Lead::None);
         }
         else
         {
-            generator.setLeadType(Synchronize);
+            generator.setLeadType(Lead::Synchronize);
             generator.setSynchNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxLeadGenerator->currentIndex() - 1)));
         }
     }

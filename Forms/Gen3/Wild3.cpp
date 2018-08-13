@@ -89,7 +89,7 @@ void Wild3::updateProfiles()
     QVector<Profile3> temp;
 
     for (auto profile : profiles)
-        if (profile.getVersion() != Colosseum && profile.getVersion() != Gales)
+        if (profile.getVersion() != Game::Colosseum && profile.getVersion() != Game::Gales)
             temp.append(profile);
 
     profiles = temp;
@@ -122,37 +122,37 @@ void Wild3::setupModels()
     ui->idSearcher->setValues(0, 48, true);
     ui->sidSearcher->setValues(0, 48, true);
 
-    ui->comboBoxMethodGenerator->setItemData(0, MethodH1);
-    ui->comboBoxMethodGenerator->setItemData(1, MethodH2);
-    ui->comboBoxMethodGenerator->setItemData(2, MethodH4);
+    ui->comboBoxMethodGenerator->setItemData(0, Method::MethodH1);
+    ui->comboBoxMethodGenerator->setItemData(1, Method::MethodH2);
+    ui->comboBoxMethodGenerator->setItemData(2, Method::MethodH4);
 
-    ui->comboBoxMethodSearcher->setItemData(0, MethodH1);
-    ui->comboBoxMethodSearcher->setItemData(1, MethodH2);
-    ui->comboBoxMethodSearcher->setItemData(2, MethodH4);
+    ui->comboBoxMethodSearcher->setItemData(0, Method:: MethodH1);
+    ui->comboBoxMethodSearcher->setItemData(1, Method::MethodH2);
+    ui->comboBoxMethodSearcher->setItemData(2, Method::MethodH4);
 
-    ui->comboBoxEncounterGenerator->setItemData(0, Wild);
-    ui->comboBoxEncounterGenerator->setItemData(1, SafariZone);
-    ui->comboBoxEncounterGenerator->setItemData(2, RockSmash);
-    ui->comboBoxEncounterGenerator->setItemData(3, Surfing);
-    ui->comboBoxEncounterGenerator->setItemData(4, OldRod);
-    ui->comboBoxEncounterGenerator->setItemData(5, GoodRod);
-    ui->comboBoxEncounterGenerator->setItemData(6, SuperRod);
+    ui->comboBoxEncounterGenerator->setItemData(0, Encounter::Wild);
+    ui->comboBoxEncounterGenerator->setItemData(1, Encounter::SafariZone);
+    ui->comboBoxEncounterGenerator->setItemData(2, Encounter::RockSmash);
+    ui->comboBoxEncounterGenerator->setItemData(3, Encounter::Surfing);
+    ui->comboBoxEncounterGenerator->setItemData(4, Encounter::OldRod);
+    ui->comboBoxEncounterGenerator->setItemData(5, Encounter::GoodRod);
+    ui->comboBoxEncounterGenerator->setItemData(6, Encounter::SuperRod);
 
-    ui->comboBoxEncounterSearcher->setItemData(0, Wild);
-    ui->comboBoxEncounterSearcher->setItemData(1, SafariZone);
-    ui->comboBoxEncounterSearcher->setItemData(2, RockSmash);
-    ui->comboBoxEncounterSearcher->setItemData(3, Surfing);
-    ui->comboBoxEncounterSearcher->setItemData(4, OldRod);
-    ui->comboBoxEncounterSearcher->setItemData(5, GoodRod);
-    ui->comboBoxEncounterSearcher->setItemData(6, SuperRod);
+    ui->comboBoxEncounterSearcher->setItemData(0, Encounter::Wild);
+    ui->comboBoxEncounterSearcher->setItemData(1, Encounter::SafariZone);
+    ui->comboBoxEncounterSearcher->setItemData(2, Encounter::RockSmash);
+    ui->comboBoxEncounterSearcher->setItemData(3, Encounter::Surfing);
+    ui->comboBoxEncounterSearcher->setItemData(4, Encounter::OldRod);
+    ui->comboBoxEncounterSearcher->setItemData(5, Encounter::GoodRod);
+    ui->comboBoxEncounterSearcher->setItemData(6, Encounter::SuperRod);
 
     ui->comboBoxLeadGenerator->addItem(tr("None"));
     ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
 
-    ui->comboBoxLeadSearcher->setItemData(0, Search);
-    ui->comboBoxLeadSearcher->setItemData(1, Synchronize);
-    ui->comboBoxLeadSearcher->setItemData(2, CuteCharm);
-    ui->comboBoxLeadSearcher->setItemData(3, None);
+    ui->comboBoxLeadSearcher->setItemData(0, Lead::Search);
+    ui->comboBoxLeadSearcher->setItemData(1, Lead::Synchronize);
+    ui->comboBoxLeadSearcher->setItemData(2, Lead::CuteCharm);
+    ui->comboBoxLeadSearcher->setItemData(3, Lead::None);
 
     ui->comboBoxNatureGenerator->setup();
     ui->comboBoxNatureSearcher->setup();
@@ -259,13 +259,15 @@ void Wild3::on_pushButton_clicked()
 void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     auto profile = profiles[index >= 0 ? index : 0];
+    QString tid = QString::number(profile.getTID());
+    QString sid = QString::number(profile.getSID());
 
-    ui->idGenerator->setText(QString::number(profile.getTid()));
-    ui->sidGenerator->setText(QString::number(profile.getSid()));
-    ui->idSearcher->setText(QString::number(profile.getTid()));
-    ui->sidSearcher->setText(QString::number(profile.getSid()));
-    ui->profileTID->setText(QString::number(profile.getTid()));
-    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->idGenerator->setText(tid);
+    ui->sidGenerator->setText(sid);
+    ui->idSearcher->setText(tid);
+    ui->sidSearcher->setText(sid);
+    ui->profileTID->setText(tid);
+    ui->profileSID->setText(sid);
     ui->profileGame->setText(profile.getVersionString());
 
     updateLocationsSearcher();
@@ -306,11 +308,11 @@ void Wild3::on_generate_clicked()
         int num = ui->comboBoxLeadGenerator->currentIndex();
         if (num == 0)
         {
-            generator.setLeadType(None);
+            generator.setLeadType(Lead::None);
         }
         else
         {
-            generator.setLeadType(Synchronize);
+            generator.setLeadType(Lead::Synchronize);
             generator.setSynchNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxLeadGenerator->currentIndex() - 1)));
         }
     }
@@ -417,7 +419,7 @@ void Wild3::updateSearch()
 void Wild3::updateLocationsSearcher()
 {
     Encounter encounter = static_cast<Encounter>(ui->comboBoxEncounterSearcher->currentData().toInt());
-    Game game = Emerald;
+    Game game = Game::Emerald;
 
     if (ui->comboBoxProfiles->currentIndex() > 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
@@ -452,7 +454,7 @@ void Wild3::updatePokemonSearcher()
 void Wild3::updateLocationsGenerator()
 {
     Encounter encounter = static_cast<Encounter>(ui->comboBoxEncounterGenerator->currentData().toInt());
-    Game game = Emerald;
+    Game game = Game::Emerald;
 
     if (ui->comboBoxProfiles->currentIndex() > 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
@@ -676,19 +678,19 @@ void Wild3::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
 
     switch (encounter)
     {
-        case Wild:
-        case SafariZone:
+        case Encounter::Wild:
+        case Encounter::SafariZone:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;
-        case RockSmash:
-        case Surfing:
-        case SuperRod:
+        case Encounter::RockSmash:
+        case Encounter::Surfing:
+        case Encounter::SuperRod:
             t << "0" << "1" << "2" << "3" << "4";
             break;
-        case OldRod:
+        case Encounter::OldRod:
             t << "0" << "1";
             break;
-        case GoodRod:
+        case Encounter::GoodRod:
             t << "0" << "1" << "2";
             break;
         default:
@@ -709,19 +711,19 @@ void Wild3::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
 
     switch (encounter)
     {
-        case Wild:
-        case SafariZone:
+        case Encounter::Wild:
+        case Encounter::SafariZone:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;
-        case RockSmash:
-        case Surfing:
-        case SuperRod:
+        case Encounter::RockSmash:
+        case Encounter::Surfing:
+        case Encounter::SuperRod:
             t << "0" << "1" << "2" << "3" << "4";
             break;
-        case OldRod:
+        case Encounter::OldRod:
             t << "0" << "1";
             break;
-        case GoodRod:
+        case Encounter::GoodRod:
             t << "0" << "1" << "2";
             break;
         default:

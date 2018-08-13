@@ -20,6 +20,12 @@
 #ifndef WILD3_HPP
 #define WILD3_HPP
 
+#include <QMenu>
+#include <QFileDialog>
+#include <QClipboard>
+#include <QSettings>
+#include <QVector>
+#include <thread>
 #include <PokeFinderCore/Gen3/Frame3.hpp>
 #include <PokeFinderCore/Gen3/Generator3.hpp>
 #include <PokeFinderCore/Gen3/Searcher3.hpp>
@@ -33,12 +39,6 @@
 #include <Models/Gen3/Wild3Model.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
-#include <QMenu>
-#include <thread>
-#include <QFileDialog>
-#include <QClipboard>
-#include <QSettings>
-#include <QVector>
 
 namespace Ui
 {
@@ -63,7 +63,7 @@ private:
     bool isSearching = false;
     bool cancel = false;
     int progress;
-    Searcher3Model *s = new Searcher3Model(this, Method1);
+    Searcher3Model *s = new Searcher3Model(this, Method::Method1);
     Wild3Model *g = new Wild3Model(this);
     QMenu *generatorMenu = new QMenu(this);
     QMenu *searcherMenu = new QMenu(this);

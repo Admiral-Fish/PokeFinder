@@ -43,7 +43,7 @@ DateTime::DateTime(QDateTime dateTime, u32 delay, Game version, HGSSRoamer info)
 
 QString DateTime::sequence()
 {
-    if (version == HeartGold || version == SoulSilver)
+    if (version == Game::HeartGold || version == Game::SoulSilver)
         return Utilities::getCalls(seed, 15, info);
     else // DPPt
         return Utilities::coinFlips(seed, 15);

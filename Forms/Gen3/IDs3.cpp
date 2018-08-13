@@ -100,14 +100,10 @@ void IDs3::on_pushButtonFindFRLGE_clicked()
     bool useSID = ui->checkBoxSIDFRLGE->isChecked();
     u32 pid = ui->textBoxPIDFRLGE->text().toUInt(nullptr, 16);
     u32 searchSID = ui->textBoxSIDFRLGE->text().toUInt();
-
-    LCRNG rng = PokeRNG(tid);
-
     u32 minFrame = ui->textBoxMinFrameFRLGE->text().toUInt();
     u32 maxResults = ui->textBoxMaxFrameFRLGE->text().toUInt();
 
-    rng.advanceFrames(minFrame - 1);
-
+    PokeRNG rng(tid, minFrame - 1);
     u32 sid = rng.nextUShort();
 
     u32 max = minFrame + maxResults;
@@ -131,7 +127,6 @@ void IDs3::on_pushButtonFindRS_clicked()
     u32 pid = ui->textBoxPIDRS->text().toUInt(nullptr, 16);
     u32 searchSID = ui->textBoxSIDRS->text().toUInt();
     u32 searchTID = ui->textBoxTIDRS->text().toUInt();
-
     u32 minFrame = ui->textBoxMinFrameRS->text().toUInt();
     u32 maxResults = ui->textBoxMaxFrameRS->text().toUInt();
 
@@ -140,9 +135,7 @@ void IDs3::on_pushButtonFindRS_clicked()
     else
         seed = Utilities::calcGen3Seed(ui->dateTimeEdit->date(), static_cast<u32>(ui->dateTimeEdit->time().hour()), static_cast<u32>(ui->dateTimeEdit->time().minute()));
 
-    LCRNG rng = PokeRNG(seed);
-
-    rng.advanceFrames(minFrame);
+    PokeRNG rng(seed, minFrame);
 
     u32 tid = rng.nextUShort();
     u32 sid;
@@ -169,14 +162,10 @@ void IDs3::on_pushButtonFindXD_clicked()
     u32 pid = ui->textBoxPIDXD->text().toUInt(nullptr, 16);
     u32 searchSID = ui->textBoxSIDXD->text().toUInt();
     u32 searchTID = ui->textBoxTIDXD->text().toUInt();
-
     u32 minFrame = ui->textBoxMinFrameXD->text().toUInt();
     u32 maxResults = ui->textBoxMaxFrameXD->text().toUInt();
 
-    LCRNG rng = XDRNG(seed);
-
-    rng.advanceFrames(minFrame + 1);
-
+    XDRNG rng(seed, minFrame + 1);
     u32 sid = rng.nextUShort();
     u32 tid;
 

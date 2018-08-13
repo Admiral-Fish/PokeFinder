@@ -43,7 +43,7 @@ SeedtoTime4::SeedtoTime4(QString seed, Profile4 profile, QWidget *parent) :
 
     Game version = profile.getVersion();
 
-    if (version == HeartGold || version == SoulSilver)
+    if (version == Game::HeartGold || version == Game::SoulSilver)
     {
         ui->tabWidget->setCurrentIndex(1);
         ui->textBoxSeedHGSS->setText(seed);
@@ -223,7 +223,7 @@ void SeedtoTime4::on_pushButtonGenerateDPPt_clicked()
 
     dppt->clear();
 
-    QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Diamond);
+    QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::Diamond);
     ui->labelCoinFlips->setText(tr("Coin Flips: ") + Utilities::coinFlips(seed, 15));
 
     dppt->setModel(results);
@@ -244,7 +244,7 @@ void SeedtoTime4::on_pushButtonGenerateHGSS_clicked()
 
     HGSSRoamer info(seed, roamer, routes);
 
-    QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, HeartGold);
+    QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HeartGold);
     ui->labelElmCalls->setText(tr("Elm Calls: ") + Utilities::getCalls(seed, 15, info));
     QString str = info.getRoutes();
     str = str == "" ? tr("No roamers") : str;

@@ -24,8 +24,6 @@
 #include <QLabel>
 #include <QVector>
 
-typedef uint32_t u32;
-
 namespace Ui
 {
     class IVFilter;
@@ -76,12 +74,12 @@ private slots:
 public:
     explicit IVFilter(QWidget *parent = nullptr);
     ~IVFilter();
-    QVector<u32> getEvals();
-    QVector<u32> getValues();
-    QVector<u32> getLower();
-    QVector<u32> getUpper();
+    QVector<quint32> getEvals();
+    QVector<quint32> getValues();
+    QVector<quint32> getLower();
+    QVector<quint32> getUpper();
     void clearValues();
-    void setValues(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
+    void setValues(quint32 hp, quint32 atk, quint32 def, quint32 spa, quint32 spd, quint32 spe);
 
 };
 

@@ -61,12 +61,12 @@ int Stationary4Model::columnCount(const QModelIndex &parent) const
     (void) parent;
     switch (method)
     {
-        case Method1:
-        case MethodJ:
+        case Method::Method1:
+        case Method::MethodJ:
             return 16;
-        case MethodK:
+        case Method::MethodK:
             return 17;
-        case WondercardIVs:
+        case Method::WondercardIVs:
             return 11;
         default:
             return 0;
@@ -77,12 +77,11 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int column = index.column();
         Frame4 frame = model[index.row()];
         switch (method)
         {
-            case Method1:
-                switch (column)
+            case Method::Method1:
+                switch (index.column())
                 {
                     case 0:
                         return frame.getFrame();
@@ -91,7 +90,7 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 2:
                         return frame.chatotPitch();
                     case 3:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 4:
                         return frame.getShinyString();
                     case 5:
@@ -117,8 +116,8 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 15:
                         return frame.getGenderString();
                 }
-            case MethodJ:
-                switch (column)
+            case Method::MethodJ:
+                switch (index.column())
                 {
                     case 0:
                         return frame.getFrame();
@@ -127,7 +126,7 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 2:
                         return frame.chatotPitch();
                     case 3:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 4:
                         return frame.getShinyString();
                     case 5:
@@ -153,8 +152,8 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 15:
                         return frame.getGenderString();
                 }
-            case MethodK:
-                switch (column)
+            case Method::MethodK:
+                switch (index.column())
                 {
                     case 0:
                         return frame.getFrame();
@@ -165,7 +164,7 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 3:
                         return frame.chatotPitch();
                     case 4:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 5:
                         return frame.getShinyString();
                     case 6:
@@ -191,8 +190,8 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 16:
                         return frame.getGenderString();
                 }
-            case WondercardIVs:
-                switch (column)
+            case Method::WondercardIVs:
+                switch (index.column())
                 {
                     case 0:
                         return frame.getFrame();
@@ -230,7 +229,7 @@ QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, 
     {
         switch (method)
         {
-            case Method1:
+            case Method::Method1:
                 switch (section)
                 {
                     case 0:
@@ -266,7 +265,7 @@ QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, 
                     case 15:
                         return tr("Gender");
                 }
-            case MethodJ:
+            case Method::MethodJ:
                 switch (section)
                 {
                     case 0:
@@ -302,7 +301,7 @@ QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, 
                     case 15:
                         return tr("Gender");
                 }
-            case MethodK:
+            case Method::MethodK:
                 switch (section)
                 {
                     case 0:
@@ -340,7 +339,7 @@ QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, 
                     case 16:
                         return tr("Gender");
                 }
-            case WondercardIVs:
+            case Method::WondercardIVs:
                 switch (section)
                 {
                     case 0:

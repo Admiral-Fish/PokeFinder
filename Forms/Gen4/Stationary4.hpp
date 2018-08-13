@@ -20,6 +20,13 @@
 #ifndef STATIONARY4_HPP
 #define STATIONARY4_HPP
 
+#include <QMenu>
+#include <QVector>
+#include <QAction>
+#include <QModelIndex>
+#include <QFileDialog>
+#include <QSettings>
+#include <thread>
 #include <PokeFinderCore/Gen4/Frame4.hpp>
 #include <PokeFinderCore/Gen4/Generator4.hpp>
 #include <PokeFinderCore/Gen4/Searcher4.hpp>
@@ -32,13 +39,6 @@
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <PokeFinderCore/Translator.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
-#include <thread>
-#include <QMenu>
-#include <QVector>
-#include <QAction>
-#include <QModelIndex>
-#include <QFileDialog>
-#include <QSettings>
 
 namespace Ui
 {
@@ -59,8 +59,8 @@ signals:
 
 private:
     Ui::Stationary4 *ui;
-    Searcher4Model *s = new Searcher4Model(this, Method1);
-    Stationary4Model *g = new Stationary4Model(this, Method1);
+    Searcher4Model *s = new Searcher4Model(this, Method::Method1);
+    Stationary4Model *g = new Stationary4Model(this, Method::Method1);
     bool isSearching = false;
     bool cancel = false;
     int progress;

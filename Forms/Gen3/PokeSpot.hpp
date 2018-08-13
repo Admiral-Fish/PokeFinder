@@ -44,7 +44,6 @@ protected:
 private:
     Ui::PokeSpot *ui;
     PokeSpotModel *model = new PokeSpotModel(this);
-    XDRNG *rng = nullptr;
 
     void setupModels();
     void saveSettings();

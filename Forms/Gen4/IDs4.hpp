@@ -26,12 +26,12 @@
 #include <QMessageBox>
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
-#include <PokeFinderCore/Objects/Utilities.hpp>
 #include <QStringList>
 #include <QList>
 #include <QVector>
 #include <thread>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
+#include <PokeFinderCore/Objects/Utilities.hpp>
 
 namespace Ui
 {

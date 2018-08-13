@@ -64,9 +64,9 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
     {
         switch (method)
         {
-            case MethodH1:
-            case MethodH2:
-            case MethodH4:
+            case Method::MethodH1:
+            case Method::MethodH2:
+            case Method::MethodH4:
                 switch (column)
                 {
                     case 0:
@@ -96,7 +96,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 4:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.getPid() < frameB.getPid();
+                            return frameA.getPID() < frameB.getPID();
                         });
                         break;
                     case 5:
@@ -173,8 +173,8 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
-            case XD:
-            case Colo:
+            case Method::XD:
+            case Method::Colo:
                 switch (column)
                 {
                     case 0:
@@ -186,7 +186,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 1:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.getPid() < frameB.getPid();
+                            return frameA.getPID() < frameB.getPID();
                         });
                         break;
                     case 2:
@@ -269,12 +269,12 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
-            case Method1:
-            case Method1Reverse:
-            case Method2:
-            case Method4:
-            case XDColo:
-            case Channel:
+            case Method::Method1:
+            case Method::Method1Reverse:
+            case Method::Method2:
+            case Method::Method4:
+            case Method::XDColo:
+            case Method::Channel:
                 switch (column)
                 {
                     case 0:
@@ -286,7 +286,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 1:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.getPid() < frameB.getPid();
+                            return frameA.getPID() < frameB.getPID();
                         });
                         break;
                     case 2:
@@ -371,9 +371,9 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
     {
         switch (method)
         {
-            case MethodH1:
-            case MethodH2:
-            case MethodH4:
+            case Method::MethodH1:
+            case Method::MethodH2:
+            case Method::MethodH4:
                 switch (column)
                 {
                     case 0:
@@ -403,7 +403,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 4:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.getPid() > frameB.getPid();
+                            return frameA.getPID() > frameB.getPID();
                         });
                         break;
                     case 5:
@@ -480,8 +480,8 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
-            case XD:
-            case Colo:
+            case Method::XD:
+            case Method::Colo:
                 switch (column)
                 {
                     case 0:
@@ -493,7 +493,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 1:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.getPid() > frameB.getPid();
+                            return frameA.getPID() > frameB.getPID();
                         });
                         break;
                     case 2:
@@ -576,12 +576,12 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
-            case Method1:
-            case Method1Reverse:
-            case Method2:
-            case Method4:
-            case XDColo:
-            case Channel:
+            case Method::Method1:
+            case Method::Method1Reverse:
+            case Method::Method2:
+            case Method::Method4:
+            case Method::XDColo:
+            case Method::Channel:
                 switch (column)
                 {
                     case 0:
@@ -593,7 +593,7 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
                     case 1:
                         std::sort(model.begin(), model.end(), [] (const Frame3 & frameA, const Frame3 & frameB)
                         {
-                            return frameA.getPid() > frameB.getPid();
+                            return frameA.getPID() > frameB.getPID();
                         });
                         break;
                     case 2:
@@ -689,19 +689,19 @@ int Searcher3Model::columnCount(const QModelIndex &parent) const
     (void) parent;
     switch (method)
     {
-        case MethodH1:
-        case MethodH2:
-        case MethodH4:
+        case Method::MethodH1:
+        case Method::MethodH2:
+        case Method::MethodH4:
             return 17;
-        case XD:
-        case Colo:
+        case Method::XD:
+        case Method::Colo:
             return 15;
-        case Method1:
-        case Method1Reverse:
-        case Method2:
-        case Method4:
-        case XDColo:
-        case Channel:
+        case Method::Method1:
+        case Method::Method1Reverse:
+        case Method::Method2:
+        case Method::Method4:
+        case Method::XDColo:
+        case Method::Channel:
             return 14;
         default:
             return 0;
@@ -712,28 +712,27 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int column = index.column();
         Frame3 frame = model[index.row()];
         switch (method)
         {
-            case MethodH1:
-            case MethodH2:
-            case MethodH4:
-                switch (column)
+            case Method::MethodH1:
+            case Method::MethodH2:
+            case Method::MethodH4:
+                switch (index.column())
                 {
                     case 0:
                         return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
                         {
                             Lead type = frame.getLeadType();
-                            return type == None ? tr("None") : type == Synchronize ? tr("Synch") : tr("Cute Charm");
+                            return type == Lead::None ? tr("None") : type == Lead::Synchronize ? tr("Synch") : tr("Cute Charm");
                         }
                     case 2:
                         return frame.getEncounterSlot();
                     case 3:
                         return frame.getLevel();
                     case 4:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 5:
                         return frame.getShinyString();
                     case 6:
@@ -759,18 +758,18 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 16:
                         return frame.getGenderString();
                 }
-            case Method1:
-            case Method1Reverse:
-            case Method2:
-            case Method4:
-            case XDColo:
-            case Channel:
-                switch (column)
+            case Method::Method1:
+            case Method::Method1Reverse:
+            case Method::Method2:
+            case Method::Method4:
+            case Method::XDColo:
+            case Method::Channel:
+                switch (index.column())
                 {
                     case 0:
                         return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 2:
                         return frame.getShinyString();
                     case 3:
@@ -796,14 +795,14 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                     case 13:
                         return frame.getGenderString();
                 }
-            case XD:
-            case Colo:
-                switch (column)
+            case Method::XD:
+            case Method::Colo:
+                switch (index.column())
                 {
                     case 0:
                         return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 2:
                         return frame.getShinyString();
                     case 3:
@@ -844,9 +843,9 @@ QVariant Searcher3Model::headerData(int section, Qt::Orientation orientation, in
     {
         switch (method)
         {
-            case MethodH1:
-            case MethodH2:
-            case MethodH4:
+            case Method::MethodH1:
+            case Method::MethodH2:
+            case Method::MethodH4:
                 switch (section)
                 {
                     case 0:
@@ -884,12 +883,12 @@ QVariant Searcher3Model::headerData(int section, Qt::Orientation orientation, in
                     case 16:
                         return tr("Gender");
                 }
-            case Method1:
-            case Method1Reverse:
-            case Method2:
-            case Method4:
-            case XDColo:
-            case Channel:
+            case Method::Method1:
+            case Method::Method1Reverse:
+            case Method::Method2:
+            case Method::Method4:
+            case Method::XDColo:
+            case Method::Channel:
                 switch (section)
                 {
                     case 0:
@@ -921,8 +920,8 @@ QVariant Searcher3Model::headerData(int section, Qt::Orientation orientation, in
                     case 13:
                         return tr("Gender");
                 }
-            case XD:
-            case Colo:
+            case Method::XD:
+            case Method::Colo:
                 switch (section)
                 {
                     case 0:

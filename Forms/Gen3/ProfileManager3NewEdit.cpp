@@ -42,8 +42,8 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(Profile3 profile, QWidget *parent
     ui->lineEditProfile->setText(profile.getProfileName());
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
     ui->comboBoxLanguage->setCurrentIndex(profile.getLanguage());
-    ui->textBoxTID->setText(QString::number(profile.getTid()));
-    ui->textBoxSID->setText(QString::number(profile.getSid()));
+    ui->textBoxTID->setText(QString::number(profile.getTID()));
+    ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->checkBoxDeadBattery->setChecked(profile.getDeadBattery());
     isEditing = true;
     original = profile;
@@ -84,13 +84,13 @@ void ProfileManager3NewEdit::setupModels()
     ui->textBoxTID->setValues(0, 48, true);
     ui->textBoxSID->setValues(0, 48, true);
 
-    ui->comboBoxVersion->setItemData(0, Ruby);
-    ui->comboBoxVersion->setItemData(1, Sapphire);
-    ui->comboBoxVersion->setItemData(2, FireRed);
-    ui->comboBoxVersion->setItemData(3, LeafGreen);
-    ui->comboBoxVersion->setItemData(4, Emerald);
-    ui->comboBoxVersion->setItemData(5, Gales);
-    ui->comboBoxVersion->setItemData(6, Colosseum);
+    ui->comboBoxVersion->setItemData(0, Game::Ruby);
+    ui->comboBoxVersion->setItemData(1, Game::Sapphire);
+    ui->comboBoxVersion->setItemData(2, Game::FireRed);
+    ui->comboBoxVersion->setItemData(3, Game::LeafGreen);
+    ui->comboBoxVersion->setItemData(4, Game::Emerald);
+    ui->comboBoxVersion->setItemData(5, Game::Gales);
+    ui->comboBoxVersion->setItemData(6, Game::Colosseum);
 }
 
 void ProfileManager3NewEdit::on_pushButtonAccept_clicked()

@@ -65,7 +65,7 @@ QVariant Stationary3Model::data(const QModelIndex &index, int role) const
             case 0:
                 return frame.getFrame();
             case 1:
-                return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
             case 2:
                 return frame.getShinyString();
             case 3:

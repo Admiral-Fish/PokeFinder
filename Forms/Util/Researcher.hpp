@@ -32,8 +32,8 @@
 #include <Models/ResearcherModel.hpp>
 #include <Util/ResearcherFrame.hpp>
 
-typedef uint32_t u32;
 typedef uint64_t u64;
+typedef uint32_t u32;
 typedef u64 (*func)(u64, u64);
 typedef QHash<QString, func> Calculator;
 

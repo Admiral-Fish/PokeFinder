@@ -62,11 +62,9 @@ void Eggs3::updateProfiles()
 void Eggs3::setupModels()
 {
     ui->tableViewEmeraldIVs->setModel(emeraldIVs);
-
     ui->tableViewEmeraldPID->setModel(emeraldPID);
 
     ui->tableViewRS->setModel(rs);
-
     ui->tableViewFRLG->setModel(frlg);
 
     ui->textBoxMinFrameEmeraldPID->setValues(1, 32, true);
@@ -134,15 +132,17 @@ void Eggs3::changeEvent(QEvent *event)
 void Eggs3::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     auto profile = profiles[index >= 0 ? index : 0];
+    QString tid = QString::number(profile.getTID());
+    QString sid = QString::number(profile.getSID());
 
-    ui->textBoxTIDEmerald->setText(QString::number(profile.getTid()));
-    ui->textBoxSIDEmerald->setText(QString::number(profile.getSid()));
-    ui->textBoxTIDRS->setText(QString::number(profile.getTid()));
-    ui->textBoxSIDRS->setText(QString::number(profile.getSid()));
-    ui->textBoxTIDFRLG->setText(QString::number(profile.getTid()));
-    ui->textBoxSIDFRLG->setText(QString::number(profile.getSid()));
-    ui->profileTID->setText(QString::number(profile.getTid()));
-    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->textBoxTIDEmerald->setText(tid);
+    ui->textBoxSIDEmerald->setText(sid);
+    ui->textBoxTIDRS->setText(tid);
+    ui->textBoxSIDRS->setText(sid);
+    ui->textBoxTIDFRLG->setText(tid);
+    ui->textBoxSIDFRLG->setText(sid);
+    ui->profileTID->setText(tid);
+    ui->profileSID->setText(sid);
     ui->profileGame->setText(profile.getVersionString());
 }
 
@@ -216,11 +216,11 @@ void Eggs3::on_pushButtonGenerateEmeraldIVs_clicked()
     u16 tid = ui->textBoxTIDEmerald->text().toUShort();
     u16 sid = ui->textBoxSIDEmerald->text().toUShort();
 
-    Method method = EBredAlternate;
+    Method method = Method::EBredAlternate;
     if (ui->radioButtonNormal->isChecked())
-        method = EBred;
+        method = Method::EBred;
     else if (ui->radioButtonSplit->isChecked())
-        method = EBredSplit;
+        method = Method::EBredSplit;
 
     QVector<u32> parent1 = { static_cast<u32>(ui->parent1HPEmerald->value()), static_cast<u32>(ui->parent1AtkEmerald->value()), static_cast<u32>(ui->parent1DefEmerald->value()),
                              static_cast<u32>(ui->parent1SpAEmerald->value()), static_cast<u32>(ui->parent1SpDEmerald->value()), static_cast<u32>(ui->parent1SpeEmerald->value())

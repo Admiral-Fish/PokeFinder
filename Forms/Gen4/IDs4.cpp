@@ -154,7 +154,7 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
 
     model->removeRows(0, model->rowCount());
 
-    u32 tid = ui->textBoxTIDSeedFinder->text().toUInt();
+    u16 tid = ui->textBoxTIDSeedFinder->text().toUShort();
     u32 month = ui->textBoxMonthSeedFinder->text().toUInt();
     u32 day = ui->textBoxDaySeedFinder->text().toUInt();
     u32 year = ui->textBoxYearSeedFinder->text().toUInt();
@@ -195,8 +195,8 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
             mt.setSeed(seed, 1);
             u32 y = mt.nextUInt();
 
-            u32 id = y & 0xFFFF;
-            u32 sid = y >> 16;
+            u16 id = y & 0xFFFF;
+            u16 sid = y >> 16;
 
             if (tid == id)
             {
@@ -212,9 +212,9 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
 void IDs4::searchPID()
 {
     u32 pid = ui->textBoxPID->text().toUInt(nullptr, 16);
-    u32 psv = (pid >> 16) ^ (pid & 0xFFFF);
+    u16 psv = (pid >> 16) ^ (pid & 0xFFFF);
     bool useTID = ui->checkBoxSearchTIDShinyPID->isChecked();
-    u32 tid = ui->textBoxTIDShinyPID->text().toUInt();
+    u16 tid = ui->textBoxTIDShinyPID->text().toUShort();
     u32 year = ui->textBoxYearShinyPID->text().toUInt();
     u32 minDelay = ui->textBoxMinDelayShinyPID->text().toUInt();
     u32 maxDelay = ui->textBoxMaxDelayShinyPID->text().toUInt();
@@ -238,9 +238,9 @@ void IDs4::searchPID()
 
                 u32 y = mt.nextUInt();
 
-                u32 id = y & 0xFFFF;
-                u32 sid = y >> 16;
-                u32 tsv = id ^ sid;
+                u16 id = y & 0xFFFF;
+                u16 sid = y >> 16;
+                u16 tsv = id ^ sid;
 
                 if ((tsv ^ psv) < 8 && (!useTID || id == tid))
                 {
@@ -269,9 +269,9 @@ void IDs4::searchPID()
 
 void IDs4::searchTIDSID()
 {
-    u32 tid = ui->textBoxTIDTIDSID->text().toUInt();
+    u16 tid = ui->textBoxTIDTIDSID->text().toUShort();
     bool useSID = ui->checkBoxSearchSID->isChecked();
-    u32 searchSID = ui->textBoxSIDTIDSID->text().toUInt();
+    u16 searchSID = ui->textBoxSIDTIDSID->text().toUShort();
     u32 year = ui->textBoxYearTIDSID->text().toUInt();
     u32 minDelay = ui->textBoxMinDelayTIDSID->text().toUInt();
     u32 maxDelay = ui->textBoxMaxDelayTIDSID->text().toUInt();
@@ -295,8 +295,8 @@ void IDs4::searchTIDSID()
 
                 u32 y = mt.nextUInt();
 
-                u32 id = y & 0xFFFF;
-                u32 sid = y >> 16;
+                u16 id = y & 0xFFFF;
+                u16 sid = y >> 16;
 
                 if (id == tid && (!useSID || sid == searchSID))
                 {

@@ -20,6 +20,11 @@
 #ifndef WILD4_HPP
 #define WILD4_HPP
 
+#include <QMenu>
+#include <QVector>
+#include <QFileDialog>
+#include <QSettings>
+#include <thread>
 #include <PokeFinderCore/Gen4/Frame4.hpp>
 #include <PokeFinderCore/Gen4/Generator4.hpp>
 #include <PokeFinderCore/Gen4/Searcher4.hpp>
@@ -33,12 +38,6 @@
 #include <Models/Gen4/Wild4Model.hpp>
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
-#include <QMenu>
-#include <QVector>
-#include <thread>
-#include <QFileDialog>
-#include <QSettings>
-#include <QtDebug>
 
 namespace Ui
 {
@@ -63,8 +62,8 @@ private:
     bool isSearching = false;
     bool cancel = false;
     int progress;
-    Searcher4Model *s = new Searcher4Model(this, Method1);
-    Wild4Model *g = new Wild4Model(this, MethodJ);
+    Searcher4Model *s = new Searcher4Model(this, Method::Method1);
+    Wild4Model *g = new Wild4Model(this, Method::MethodJ);
     QMenu *searcherMenu = new QMenu(this);
     QVector<EncounterArea4> encounterGenerator;
     QVector<EncounterArea4> encounterSearcher;

@@ -66,7 +66,6 @@ Wild4::~Wild4()
 void Wild4::setupModels()
 {
     ui->tableViewGenerator->setModel(g);
-
     ui->tableViewSearcher->setModel(s);
 
     ui->initialSeedGenerator->setValues(0, 32, false);
@@ -79,22 +78,14 @@ void Wild4::setupModels()
     ui->idSearcher->setValues(0, 48, true);
     ui->sidSearcher->setValues(0, 48, true);
 
-    ui->comboBoxMethodGenerator->setItemData(0, MethodJ);
-    ui->comboBoxMethodGenerator->setItemData(1, MethodK);
-    ui->comboBoxMethodGenerator->setItemData(2, ChainedShiny);
-
-    ui->comboBoxMethodSearcher->setItemData(0, MethodJ);
-    ui->comboBoxMethodSearcher->setItemData(1, MethodK);
-    ui->comboBoxMethodSearcher->setItemData(2, ChainedShiny);
-
     ui->comboBoxLeadGenerator->addItem(tr("None"));
     ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
 
-    ui->comboBoxLeadSearcher->setItemData(0, Search);
-    ui->comboBoxLeadSearcher->setItemData(1, Synchronize);
-    ui->comboBoxLeadSearcher->setItemData(2, CuteCharm);
-    ui->comboBoxLeadSearcher->setItemData(3, SuctionCups);
-    ui->comboBoxLeadSearcher->setItemData(4, None);
+    ui->comboBoxLeadSearcher->setItemData(0, Lead::Search);
+    ui->comboBoxLeadSearcher->setItemData(1, Lead::Synchronize);
+    ui->comboBoxLeadSearcher->setItemData(2, Lead::CuteCharm);
+    ui->comboBoxLeadSearcher->setItemData(3, Lead::SuctionCups);
+    ui->comboBoxLeadSearcher->setItemData(4, Lead::None);
 
     ui->comboBoxNatureGenerator->setup();
     ui->comboBoxNatureSearcher->setup();
@@ -132,44 +123,46 @@ void Wild4::updateProfiles()
 void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     auto profile = profiles[index >= 0 ? index : 0];
+    QString tid = QString::number(profile.getTID());
+    QString sid = QString::number(profile.getSID());
 
-    ui->idGenerator->setText(QString::number(profile.getTid()));
-    ui->sidGenerator->setText(QString::number(profile.getSid()));
-    ui->idSearcher->setText(QString::number(profile.getTid()));
-    ui->sidSearcher->setText(QString::number(profile.getSid()));
-    ui->profileTID->setText(QString::number(profile.getTid()));
-    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->idGenerator->setText(tid);
+    ui->sidGenerator->setText(sid);
+    ui->idSearcher->setText(tid);
+    ui->sidSearcher->setText(sid);
+    ui->profileTID->setText(tid);
+    ui->profileSID->setText(sid);
     ui->profileGame->setText(profile.getVersionString());
 
-    bool flag = profile.getVersion() == HeartGold || profile.getVersion() == SoulSilver;
+    bool flag = profile.getVersion() == Game::HeartGold || profile.getVersion() == Game::SoulSilver;
 
     ui->comboBoxMethodGenerator->clear();
-    ui->comboBoxMethodGenerator->addItem(flag ? tr("Method K") : tr("Method J"), flag ? MethodK : MethodJ);
+    ui->comboBoxMethodGenerator->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
     if (!flag)
         ui->comboBoxMethodGenerator->addItem(tr("Chained Shiny"), ChainedShiny);
 
     ui->comboBoxMethodSearcher->clear();
-    ui->comboBoxMethodSearcher->addItem(flag ? tr("Method K") : tr("Method J"), flag ? MethodK : MethodJ);
+    ui->comboBoxMethodSearcher->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
     if (!flag)
-        ui->comboBoxMethodSearcher->addItem(tr("Chained Shiny"), ChainedShiny);
+        ui->comboBoxMethodSearcher->addItem(tr("Chained Shiny"), Method::ChainedShiny);
 
     ui->comboBoxEncounterGenerator->clear();
-    ui->comboBoxEncounterGenerator->addItem(tr("Wild"), Wild);
+    ui->comboBoxEncounterGenerator->addItem(tr("Wild"), Encounter::Wild);
     if (flag)
-        ui->comboBoxEncounterGenerator->addItem(tr("Rock Smash"), RockSmash);
-    ui->comboBoxEncounterGenerator->addItem(tr("Surfing"), Surfing);
-    ui->comboBoxEncounterGenerator->addItem(tr("Old Rod"), OldRod);
-    ui->comboBoxEncounterGenerator->addItem(tr("Good Rod"), GoodRod);
-    ui->comboBoxEncounterGenerator->addItem(tr("Super Rod"), SuperRod);
+        ui->comboBoxEncounterGenerator->addItem(tr("Rock Smash"), Encounter::RockSmash);
+    ui->comboBoxEncounterGenerator->addItem(tr("Surfing"), Encounter::Surfing);
+    ui->comboBoxEncounterGenerator->addItem(tr("Old Rod"), Encounter::OldRod);
+    ui->comboBoxEncounterGenerator->addItem(tr("Good Rod"), Encounter::GoodRod);
+    ui->comboBoxEncounterGenerator->addItem(tr("Super Rod"), Encounter::SuperRod);
 
     ui->comboBoxEncounterSearcher->clear();
-    ui->comboBoxEncounterSearcher->addItem(tr("Wild"), Wild);
+    ui->comboBoxEncounterSearcher->addItem(tr("Wild"), Encounter::Wild);
     if (flag)
-        ui->comboBoxEncounterSearcher->addItem(tr("Rock Smash"), RockSmash);
-    ui->comboBoxEncounterSearcher->addItem(tr("Surfing"), Surfing);
-    ui->comboBoxEncounterSearcher->addItem(tr("Old Rod"), OldRod);
-    ui->comboBoxEncounterSearcher->addItem(tr("Good Rod"), GoodRod);
-    ui->comboBoxEncounterSearcher->addItem(tr("Super Rod"), SuperRod);
+        ui->comboBoxEncounterSearcher->addItem(tr("Rock Smash"), Encounter::RockSmash);
+    ui->comboBoxEncounterSearcher->addItem(tr("Surfing"), Encounter::Surfing);
+    ui->comboBoxEncounterSearcher->addItem(tr("Old Rod"), Encounter::OldRod);
+    ui->comboBoxEncounterSearcher->addItem(tr("Good Rod"), Encounter::GoodRod);
+    ui->comboBoxEncounterSearcher->addItem(tr("Super Rod"), Encounter::SuperRod);
 
     updateLocationsSearcher();
     updateLocationsGenerator();
@@ -262,16 +255,16 @@ void Wild4::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
 
     switch (encounter)
     {
-        case Wild:
+        case Encounter::Wild:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;
-        case Surfing:
-        case OldRod:
-        case GoodRod:
-        case SuperRod:
+        case Encounter::Surfing:
+        case Encounter::OldRod:
+        case Encounter::GoodRod:
+        case Encounter::SuperRod:
             t << "0" << "1" << "2" << "3" << "4";
             break;
-        case RockSmash:
+        case Encounter::RockSmash:
             t << "0" << "1";
             break;
         default:
@@ -292,16 +285,16 @@ void Wild4::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
 
     switch (encounter)
     {
-        case Wild:
+        case Encounter::Wild:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;
-        case Surfing:
-        case OldRod:
-        case GoodRod:
-        case SuperRod:
+        case Encounter::Surfing:
+        case Encounter::OldRod:
+        case Encounter::GoodRod:
+        case Encounter::SuperRod:
             t << "0" << "1" << "2" << "3" << "4";
             break;
-        case RockSmash:
+        case Encounter::RockSmash:
             t << "0" << "1";
             break;
         default:
@@ -375,22 +368,21 @@ void Wild4::on_pushButtonGenerate_clicked()
                                         ui->comboBoxNatureGenerator->getChecked(), ui->comboBoxHiddenPowerGenerator->getChecked(),
                                         ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked(), ui->comboBoxSlotGenerator->getChecked());
 
-    //generator.setEncounterType(static_cast<Encounter>(ui->comboBoxEncounterGenerator->currentData().toInt()));
-    generator.setEncounterType(RockSmash);
+    generator.setEncounterType(static_cast<Encounter>(ui->comboBoxEncounterGenerator->currentData().toInt()));
     if (ui->pushButtonLeadGenerator->text() == tr("Cute Charm"))
         generator.setLeadType((static_cast<Lead>(ui->comboBoxLeadGenerator->currentData().toInt())));
     else if (ui->pushButtonLeadGenerator->text() == tr("Suction Cups"))
-        generator.setLeadType(SuctionCups);
+        generator.setLeadType(Lead::SuctionCups);
     else
     {
         int num = ui->comboBoxLeadGenerator->currentIndex();
         if (num == 0)
         {
-            generator.setLeadType(None);
+            generator.setLeadType(Lead::None);
         }
         else
         {
-            generator.setLeadType(Synchronize);
+            generator.setLeadType(Lead::Synchronize);
             generator.setSynchNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxLeadGenerator->currentIndex() - 1)));
         }
     }
@@ -496,7 +488,7 @@ void Wild4::updateSearch()
 void Wild4::updateLocationsSearcher()
 {
     Encounter encounter = static_cast<Encounter>(ui->comboBoxEncounterSearcher->currentData().toInt());
-    Game game = Diamond;
+    Game game = Game::Diamond;
 
     if (ui->comboBoxProfiles->currentIndex() >= 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
@@ -531,7 +523,7 @@ void Wild4::updatePokemonSearcher()
 void Wild4::updateLocationsGenerator()
 {
     Encounter encounter = static_cast<Encounter>(ui->comboBoxEncounterGenerator->currentData().toInt());
-    Game game = Diamond;
+    Game game = Game::Diamond;
 
     if (ui->comboBoxProfiles->currentIndex() >= 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();

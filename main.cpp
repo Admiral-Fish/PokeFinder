@@ -17,9 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "Forms/MainWindow.hpp"
 #include <QApplication>
 #include <QStyleFactory>
+#include "Forms/MainWindow.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -31,5 +31,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     w.raise();
+
     return a.exec();
 }

@@ -23,15 +23,15 @@
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <thread>
 #include <QList>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <QDateTime>
 #include <QMenu>
 #include <QAction>
 #include <QModelIndex>
 #include <QClipboard>
 #include <QSettings>
+#include <thread>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
 
 typedef uint32_t u32;
 

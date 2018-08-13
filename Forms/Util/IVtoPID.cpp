@@ -59,15 +59,6 @@ void IVtoPID::setupModels()
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("PID") << tr("Method") << tr("Ability") << "50%" << "12.5%" << "25%" << "75%" << tr("SID"));
     ui->tableView->setModel(model);
-    ui->tableView->setColumnWidth(0, 106);
-    ui->tableView->setColumnWidth(1, 106);
-    ui->tableView->setColumnWidth(2, 150);
-    ui->tableView->setColumnWidth(3, 50);
-    ui->tableView->setColumnWidth(4, 50);
-    ui->tableView->setColumnWidth(5, 50);
-    ui->tableView->setColumnWidth(6, 50);
-    ui->tableView->setColumnWidth(7, 50);
-    ui->tableView->setColumnWidth(8, 70);
 }
 
 void IVtoPID::on_pushButtonFind_clicked()

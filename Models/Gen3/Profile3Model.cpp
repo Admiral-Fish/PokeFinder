@@ -73,9 +73,9 @@ QVariant Profile3Model::data(const QModelIndex &index, int role) const
             case 2:
                 return profile.getLanguageString();
             case 3:
-                return profile.getTid();
+                return profile.getTID();
             case 4:
-                return profile.getSid();
+                return profile.getSID();
             case 5:
                 if (profile.getVersion() == Ruby || profile.getVersion() == Sapphire)
                     return profile.getDeadBattery() ? tr("Yes") : tr("No");

@@ -30,7 +30,7 @@ void QTextBox::onTextChanged(QString string)
     {
         string = string.toUpper();
         string.remove(filter);
-        u64 temp = string.toULongLong(nullptr, base);
+        quint64 temp = string.toULongLong(nullptr, base);
 
         if (temp > maxValue)
             string = QString::number(maxValue, base);
@@ -43,7 +43,7 @@ void QTextBox::onTextChanged(QString string)
     }
 }
 
-void QTextBox::setValues(u64 min, u64 shift, bool isDecimal)
+void QTextBox::setValues(quint64 min, quint64 shift, bool isDecimal)
 {
     maxValue = 0xFFFFFFFFFFFFFFFF >> shift;
     minValue = min;
@@ -56,7 +56,7 @@ void QTextBox::setFilter(QString string)
     filter = QRegExp(string);
 }
 
-void QTextBox::setValue(u64 value)
+void QTextBox::setValue(quint64 value)
 {
     maxValue = value;
 }

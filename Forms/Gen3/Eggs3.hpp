@@ -21,12 +21,12 @@
 #define EGGS3_HPP
 
 #include <QMainWindow>
+#include <QSettings>
 #include <PokeFinderCore/Gen3/Frame3.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
 #include <PokeFinderCore/Objects/FrameCompare.hpp>
 #include <PokeFinderCore/Gen3/Egg3.hpp>
-#include <QSettings>
 
 namespace Ui
 {
@@ -46,10 +46,10 @@ signals:
 private:
     Ui::Eggs3 *ui;
     QVector<Profile3> profiles;
-    Egg3Model *emeraldIVs = new Egg3Model(this, EBred);
-    Egg3Model *emeraldPID = new Egg3Model(this, EBredPID);
-    Egg3Model *rs = new Egg3Model(this, RSBred);
-    Egg3Model *frlg = new Egg3Model(this, FRLGBred);
+    Egg3Model *emeraldIVs = new Egg3Model(this, Method::EBred);
+    Egg3Model *emeraldPID = new Egg3Model(this, Method::EBredPID);
+    Egg3Model *rs = new Egg3Model(this, Method::RSBred);
+    Egg3Model *frlg = new Egg3Model(this, Method::FRLGBred);
 
     void setupModels();
 

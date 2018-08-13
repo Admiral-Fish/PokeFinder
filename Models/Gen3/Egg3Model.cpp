@@ -61,14 +61,14 @@ int Egg3Model::columnCount(const QModelIndex &parent) const
     (void) parent;
     switch (method)
     {
-        case EBred:
-        case EBredAlternate:
-        case EBredSplit:
+        case Method::EBred:
+        case Method::EBredAlternate:
+        case Method::EBredSplit:
             return 10;
-        case EBredPID:
+        case Method::EBredPID:
             return 8;
-        case RSBred:
-        case FRLGBred:
+        case Method::RSBred:
+        case Method::FRLGBred:
             return 17;
         default:
             return 0;
@@ -79,14 +79,13 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int column = index.column();
         Frame3 frame = model[index.row()];
         switch (method)
         {
-            case EBred:
-            case EBredAlternate:
-            case EBredSplit:
-                switch (column)
+            case Method::EBred:
+            case Method::EBredAlternate:
+            case Method::EBredSplit:
+                switch (index.column())
                 {
                     case 0:
                         return frame.getFrame();
@@ -109,8 +108,8 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 9:
                         return frame.getPower();
                 }
-            case EBredPID:
-                switch (column)
+            case Method::EBredPID:
+                switch (index.column())
                 {
                     case 0:
                         return frame.getFrame();
@@ -119,7 +118,7 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 2:
                         return frame.getOccidentary();
                     case 3:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 4:
                         return frame.getShinyString();
                     case 5:
@@ -129,9 +128,9 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 7:
                         return frame.getGenderString();
                 }
-            case RSBred:
-            case FRLGBred:
-                switch (column)
+            case Method::RSBred:
+            case Method::FRLGBred:
+                switch (index.column())
                 {
                     case 0:
                         return frame.getFrame();
@@ -142,7 +141,7 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 3:
                         return frame.getTimeEgg();
                     case 4:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 5:
                         return frame.getShinyString();
                     case 6:
@@ -181,9 +180,9 @@ QVariant Egg3Model::headerData(int section, Qt::Orientation orientation, int rol
     {
         switch (method)
         {
-            case EBred:
-            case EBredSplit:
-            case EBredAlternate:
+            case Method::EBred:
+            case Method::EBredSplit:
+            case Method::EBredAlternate:
                 switch (section)
                 {
                     case 0:
@@ -207,7 +206,7 @@ QVariant Egg3Model::headerData(int section, Qt::Orientation orientation, int rol
                     case 9:
                         return tr("Power");
                 }
-            case EBredPID:
+            case Method::EBredPID:
                 switch (section)
                 {
                     case 0:
@@ -227,8 +226,8 @@ QVariant Egg3Model::headerData(int section, Qt::Orientation orientation, int rol
                     case 7:
                         return tr("Gender");
                 }
-            case RSBred:
-            case FRLGBred:
+            case Method::RSBred:
+            case Method::FRLGBred:
                 switch (section)
                 {
                     case 0:

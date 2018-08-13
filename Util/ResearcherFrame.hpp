@@ -20,16 +20,16 @@
 #ifndef RESEARCHERFRAME_HPP
 #define RESEARCHERFRAME_HPP
 
-#include <QObject>
+#include <cstdint>
 
-typedef uint32_t u32;
 typedef uint64_t u64;
+typedef uint32_t u32;
 
 class ResearcherFrame
 {
 
 private:
-    quint64 custom[10];
+    u64 custom[10];
     bool rng64Bit;
     u64 full64;
     u32 full32;
@@ -45,7 +45,7 @@ public:
     u32 getFrame() { return frame; }
     void setFrame(u32 val) { frame = val; }
     u64 getCustom(int x) { return custom[x]; }
-    void setCustom(int x, quint64 val) { custom[x] = val; }
+    void setCustom(int x, u64 val) { custom[x] = val; }
     inline u32 getHigh32() { return static_cast<u32>((full64 >> 32)); }
     inline u32 getLow32() { return static_cast<u32>((full64 & 0xFFFFFFFF)); }
     inline u32 getHigh16() { return rng64Bit ? getHigh32() >> 16 : full32 >> 16; }

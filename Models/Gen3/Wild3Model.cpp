@@ -71,7 +71,7 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
             case 3:
                 return frame.getLevel();
             case 4:
-                return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
             case 5:
                 return frame.getShinyString();
             case 6:

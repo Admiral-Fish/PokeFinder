@@ -82,22 +82,6 @@ void Stationary3::setupModels()
     ui->idSearcher->setValues(0, 48, true);
     ui->sidSearcher->setValues(0, 48, true);
 
-    ui->comboBoxMethodGenerator->setItemData(0, Method1);
-    ui->comboBoxMethodGenerator->setItemData(1, Method1Reverse);
-    ui->comboBoxMethodGenerator->setItemData(2, Method2);
-    ui->comboBoxMethodGenerator->setItemData(3, Method4);
-    ui->comboBoxMethodGenerator->setItemData(4, XDColo);
-    ui->comboBoxMethodGenerator->setItemData(5, Channel);
-
-    ui->comboBoxMethodSearcher->setItemData(0, Method1);
-    ui->comboBoxMethodSearcher->setItemData(1, Method1Reverse);
-    ui->comboBoxMethodSearcher->setItemData(2, Method2);
-    ui->comboBoxMethodSearcher->setItemData(3, Method4);
-    ui->comboBoxMethodSearcher->setItemData(4, XDColo);
-    ui->comboBoxMethodSearcher->setItemData(5, XD);
-    ui->comboBoxMethodSearcher->setItemData(6, Colo);
-    ui->comboBoxMethodSearcher->setItemData(7, Channel);
-
     ui->comboBoxNatureGenerator->setup();
     ui->comboBoxNatureSearcher->setup();
 
@@ -191,14 +175,41 @@ void Stationary3::updateProfiles()
 void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     auto profile = profiles[index >= 0 ? index : 0];
+    QString tid = QString::number(profile.getTID());
+    QString sid = QString::number(profile.getSID());
 
-    ui->idGenerator->setText(QString::number(profile.getTid()));
-    ui->sidGenerator->setText(QString::number(profile.getSid()));
-    ui->idSearcher->setText(QString::number(profile.getTid()));
-    ui->sidSearcher->setText(QString::number(profile.getSid()));
-    ui->profileTID->setText(QString::number(profile.getTid()));
-    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->idGenerator->setText(tid);
+    ui->sidGenerator->setText(sid);
+    ui->idSearcher->setText(tid);
+    ui->sidSearcher->setText(sid);
+    ui->profileTID->setText(tid);
+    ui->profileSID->setText(sid);
     ui->profileGame->setText(profile.getVersionString());
+
+    bool flag = profile.getVersion() == Game::Gales || profile.getVersion() == Game::Colosseum;
+
+    ui->comboBoxMethodGenerator->clear();
+    ui->comboBoxMethodSearcher->clear();
+    if (flag)
+    {
+        ui->comboBoxMethodGenerator->addItem(tr("XD/Colo"), Method::XDColo);
+        ui->comboBoxMethodGenerator->addItem(tr("Channel"), Method::Channel);
+        ui->comboBoxMethodSearcher->addItem(tr("XD/Colo"), Method::XDColo);
+        ui->comboBoxMethodSearcher->addItem(tr("Gales"), Method::XD);
+        ui->comboBoxMethodSearcher->addItem(tr("Colo"), Method::Colo);
+        ui->comboBoxMethodSearcher->addItem(tr("Channel"), Method::Channel);
+    }
+    else
+    {
+        ui->comboBoxMethodGenerator->addItem(tr("Method 1"), Method::Method1);
+        ui->comboBoxMethodGenerator->addItem(tr("Method 1 Reverse"), Method::Method1Reverse);
+        ui->comboBoxMethodGenerator->addItem(tr("Method 2"), Method::Method2);
+        ui->comboBoxMethodGenerator->addItem(tr("Method 4"), Method::Method4);
+        ui->comboBoxMethodSearcher->addItem(tr("Method 1"), Method::Method1);
+        ui->comboBoxMethodSearcher->addItem(tr("Method 1 Reverse"), Method::Method1Reverse);
+        ui->comboBoxMethodSearcher->addItem(tr("Method 2"), Method::Method2);
+        ui->comboBoxMethodSearcher->addItem(tr("Method 4"), Method::Method4);
+    }
 }
 
 void Stationary3::on_anyNatureGenerator_clicked()
@@ -277,7 +288,7 @@ void Stationary3::search()
     Searcher3 searcher = Searcher3(tid, sid, static_cast<u32>(genderRatioIndex), compare);
 
     searcher.setup(static_cast<Method>(ui->comboBoxMethodSearcher->currentData().toInt()));
-    if (searcher.getFrameType() == XD || searcher.getFrameType() == Colo)
+    if (searcher.getFrameType() == Method::XD || searcher.getFrameType() == Method::Colo)
         searcher.setupNatureLock(ui->comboBoxShadow->currentIndex());
 
     QVector<u32> min = ui->ivFilterSearcher->getLower();
@@ -378,7 +389,7 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
     Method method = static_cast<Method>(ui->comboBoxMethodSearcher->currentData().toInt());
     ui->comboBoxShadow->clear();
 
-    if (method == XD)
+    if (method == Method::XD)
     {
         QStringList s = Translator::getSpecies({ 334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125, 83, 55, 88, 58, 316,
                                                316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82, 296, 310,
@@ -401,7 +412,7 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
         ui->comboBoxShadow->setVisible(true);
         ui->label->setVisible(true);
     }
-    else if (method == Colo)
+    else if (method == Method::Colo)
     {
         QStringList s = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
         s[3] += tr(" (E-Reader)");

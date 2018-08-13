@@ -142,13 +142,15 @@ void Eggs4::on_pushButtonAnyNatureSearcher_clicked()
 void Eggs4::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     auto profile = profiles[index >= 0 ? index : 0];
+    QString tid = QString::number(profile.getTID());
+    QString sid = QString::number(profile.getSID());
 
-    ui->textBoxTIDGenerator->setText(QString::number(profile.getTid()));
-    ui->textBoxSIDGenerator->setText(QString::number(profile.getSid()));
-    ui->textBoxTIDSearcher->setText(QString::number(profile.getTid()));
-    ui->textBoxSIDSearcher->setText(QString::number(profile.getSid()));
-    ui->profileTID->setText(QString::number(profile.getTid()));
-    ui->profileSID->setText(QString::number(profile.getSid()));
+    ui->textBoxTIDGenerator->setText(tid);
+    ui->textBoxSIDGenerator->setText(sid);
+    ui->textBoxTIDSearcher->setText(tid);
+    ui->textBoxSIDSearcher->setText(sid);
+    ui->profileTID->setText(tid);
+    ui->profileSID->setText(sid);
     ui->profileGame->setText(profile.getVersionString());
 }
 
@@ -227,18 +229,18 @@ void Eggs4::on_pushButtonGenerate_clicked()
 
     Method method = static_cast<Method>(ui->comboBoxMethod->currentData().toInt());
 
-    if (method == Gen4Normal)
+    if (method == Method::Gen4Normal)
     {
         if (ui->checkBoxMasuadaGenerator->isChecked())
-            method = Gen4Masuada;
+            method = Method::Gen4Masuada;
     }
     else
     {
         Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
-        if (version == Diamond || version == Pearl || version == Platinum)
-            method = DPPtIVs;
+        if (version == Game::HeartGold || version == Game::SoulSilver)
+            method = Method::HGSSIVs;
         else
-            method = HGSSIVs;
+            method = Method::DPPtIVs;
     }
 
     generatorModel->setMethod(method);
@@ -270,7 +272,7 @@ void Eggs4::on_pushButtonGeneratePID_clicked()
     else
     {
         searcherPID->clear();
-        searcherPID->setMethod(ui->checkBoxMasuadaSearcher->isChecked() ? Gen4Masuada : Gen4Normal);
+        searcherPID->setMethod(ui->checkBoxMasuadaSearcher->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal);
 
         ui->progressBarPID->setValue(0);
         progressPID = 0;
@@ -297,7 +299,7 @@ void Eggs4::on_pushButtonGenerateIVs_clicked()
     {
         searcherIVs->clear();
         Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
-        searcherIVs->setMethod((version == HeartGold || version == SoulSilver) ? HGSSIVs : DPPtIVs);
+        searcherIVs->setMethod((version == Game::HeartGold || version == Game::SoulSilver) ? Method::HGSSIVs : Method::DPPtIVs);
 
         ui->progressBarIVs->setValue(0);
         progressIVs = 0;
@@ -328,7 +330,7 @@ void Eggs4::searchPID()
     u32 minFrame = ui->textBoxMinFramePID->text().toUInt();
     u32 maxFrame = ui->textBoxMaxFramePID->text().toUInt();
 
-    Method type = ui->checkBoxMasuadaSearcher->isChecked() ? Gen4Masuada : Gen4Normal;
+    Method type = ui->checkBoxMasuadaSearcher->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal;
     Egg4 generator = Egg4(maxFrame - minFrame + 1, minFrame, tid, sid, type, 0);
 
     ui->progressBarPID->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
@@ -387,7 +389,7 @@ void Eggs4::searchIVs()
     u32 maxFrame = ui->textBoxMaxFrameIVs->text().toUInt();
 
     Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
-    Method type = (version == HeartGold || version == SoulSilver) ? HGSSIVs : DPPtIVs;
+    Method type = (version == Game::HeartGold || version == Game::SoulSilver) ? Method::HGSSIVs : Method::DPPtIVs;
     Egg4 generator = Egg4(maxFrame - minFrame + 1, minFrame, 0, 0, type, 0);
     generator.setParents(parent1, parent2);
 

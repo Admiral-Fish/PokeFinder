@@ -42,8 +42,8 @@ ProfileManager4NewEdit::ProfileManager4NewEdit(Profile4 profile, QWidget *parent
     ui->lineEditProfile->setText(profile.getProfileName());
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
     ui->comboBoxLanguage->setCurrentIndex(profile.getLanguage());
-    ui->textBoxTID->setText(QString::number(profile.getTid()));
-    ui->textBoxSID->setText(QString::number(profile.getSid()));
+    ui->textBoxTID->setText(QString::number(profile.getTID()));
+    ui->textBoxSID->setText(QString::number(profile.getSID()));
     isEditing = true;
     original = profile;
 }
@@ -83,11 +83,11 @@ void ProfileManager4NewEdit::setupModels()
     ui->textBoxTID->setValues(0, 48, true);
     ui->textBoxSID->setValues(0, 48, true);
 
-    ui->comboBoxVersion->setItemData(0, Diamond);
-    ui->comboBoxVersion->setItemData(1, Pearl);
-    ui->comboBoxVersion->setItemData(2, Platinum);
-    ui->comboBoxVersion->setItemData(3, HeartGold);
-    ui->comboBoxVersion->setItemData(4, SoulSilver);
+    ui->comboBoxVersion->setItemData(0, Game::Diamond);
+    ui->comboBoxVersion->setItemData(1, Game::Pearl);
+    ui->comboBoxVersion->setItemData(2, Game::Platinum);
+    ui->comboBoxVersion->setItemData(3, Game::HeartGold);
+    ui->comboBoxVersion->setItemData(4, Game::SoulSilver);
 }
 
 void ProfileManager4NewEdit::on_pushButtonAccept_clicked()

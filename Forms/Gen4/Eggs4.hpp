@@ -21,16 +21,16 @@
 #define EGGS4_HPP
 
 #include <QMainWindow>
+#include <QSettings>
+#include <QMenu>
+#include <QVector>
+#include <thread>
 #include <PokeFinderCore/Gen4/Frame4.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Models/Gen4/Egg4Model.hpp>
 #include <PokeFinderCore/Objects/FrameCompare.hpp>
 #include <PokeFinderCore/Gen4/Egg4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
-#include <QSettings>
-#include <QMenu>
-#include <QVector>
-#include <thread>
 
 namespace Ui
 {
@@ -55,9 +55,9 @@ private:
     QVector<Profile4> profiles;
     bool isSearching[2] = {false, false};
     bool cancel[2] = { false, false };
-    Egg4GeneratorModel *generatorModel = new Egg4GeneratorModel(this, DPPtIVs);
-    Egg4SearcherModel *searcherIVs = new Egg4SearcherModel(this, DPPtIVs);
-    Egg4SearcherModel *searcherPID = new Egg4SearcherModel(this, Gen4Normal);
+    Egg4GeneratorModel *generatorModel = new Egg4GeneratorModel(this, Method::DPPtIVs);
+    Egg4SearcherModel *searcherIVs = new Egg4SearcherModel(this, Method::DPPtIVs);
+    Egg4SearcherModel *searcherPID = new Egg4SearcherModel(this, Method::Gen4Normal);
     QMenu *searcherMenu = new QMenu(this);
     int progressPID;
     int progressIVs;

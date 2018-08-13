@@ -21,6 +21,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include <QDir>
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen3/Eggs3.hpp>
@@ -37,7 +38,6 @@
 #include <Forms/Gen4/Eggs4.hpp>
 #include <Forms/Gen4/IDs4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
-#include <QDir>
 
 namespace Ui
 {

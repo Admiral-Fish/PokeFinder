@@ -64,8 +64,8 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
     {
         switch (method)
         {
-            case Method1:
-            case ChainedShiny:
+            case Method::Method1:
+            case Method::ChainedShiny:
                 switch (column)
                 {
                     case 0:
@@ -83,7 +83,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 2:
                         std::sort(model.begin(), model.end(), [] (const Frame4 & frameA, const Frame4 & frameB)
                         {
-                            return frameA.getPid() < frameB.getPid();
+                            return frameA.getPID() < frameB.getPID();
                         });
                         break;
                     case 3:
@@ -160,7 +160,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
-            case WondercardIVs:
+            case Method::WondercardIVs:
                 switch (column)
                 {
                     case 0:
@@ -225,8 +225,8 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
-            case MethodJ:
-            case MethodK:
+            case Method::MethodJ:
+            case Method::MethodK:
                 switch (column)
                 {
                     case 0:
@@ -250,7 +250,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 3:
                         std::sort(model.begin(), model.end(), [] (const Frame4 & frameA, const Frame4 & frameB)
                         {
-                            return frameA.getPid() < frameB.getPid();
+                            return frameA.getPID() < frameB.getPID();
                         });
                         break;
                     case 4:
@@ -341,8 +341,8 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
     {
         switch (method)
         {
-            case Method1:
-            case ChainedShiny:
+            case Method::Method1:
+            case Method::ChainedShiny:
                 switch (column)
                 {
                     case 0:
@@ -360,7 +360,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 2:
                         std::sort(model.begin(), model.end(), [] (const Frame4 & frameA, const Frame4 & frameB)
                         {
-                            return frameA.getPid() > frameB.getPid();
+                            return frameA.getPID() > frameB.getPID();
                         });
                         break;
                     case 3:
@@ -437,7 +437,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
-            case WondercardIVs:
+            case Method::WondercardIVs:
                 switch (column)
                 {
                     case 0:
@@ -502,8 +502,8 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                         break;
                 }
                 break;
-            case MethodJ:
-            case MethodK:
+            case Method::MethodJ:
+            case Method::MethodK:
                 switch (column)
                 {
                     case 0:
@@ -527,7 +527,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 3:
                         std::sort(model.begin(), model.end(), [] (const Frame4 & frameA, const Frame4 & frameB)
                         {
-                            return frameA.getPid() > frameB.getPid();
+                            return frameA.getPID() > frameB.getPID();
                         });
                         break;
                     case 4:
@@ -629,13 +629,13 @@ int Searcher4Model::columnCount(const QModelIndex &parent) const
     (void) parent;
     switch (method)
     {
-        case Method1:
-        case ChainedShiny:
+        case Method::Method1:
+        case Method::ChainedShiny:
             return 15;
-        case WondercardIVs:
+        case Method::WondercardIVs:
             return 10;
-        case MethodJ:
-        case MethodK:
+        case Method::MethodJ:
+        case Method::MethodK:
             return 17;
         default:
             return 0;
@@ -646,12 +646,11 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int column = index.column();
         Frame4 frame = model[index.row()];
         switch (method)
         {
-            case WondercardIVs:
-                switch (column)
+            case Method::WondercardIVs:
+                switch (index.column())
                 {
                     case 0:
                         return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
@@ -675,16 +674,16 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                         return frame.getPower();
                 }
                 break;
-            case Method1:
-            case ChainedShiny:
-                switch (column)
+            case Method::Method1:
+            case Method::ChainedShiny:
+                switch (index.column())
                 {
                     case 0:
                         return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
                         return frame.getFrame();
                     case 2:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 3:
                         return frame.getShinyString();
                     case 4:
@@ -712,9 +711,9 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
 
                 }
                 break;
-            case MethodJ:
-            case MethodK:
-                switch (column)
+            case Method::MethodJ:
+            case Method::MethodK:
+                switch (index.column())
                 {
                     case 0:
                         return QString::number(frame.getSeed(), 16).toUpper().rightJustified(8, '0');
@@ -723,26 +722,26 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                     case 2:
                         switch (frame.getLeadType())
                         {
-                            case None:
+                            case Lead::None:
                                 return tr("None");
-                            case Synchronize:
+                            case Lead::Synchronize:
                                 return tr("Synchronize");
-                            case SuctionCups:
+                            case Lead::SuctionCups:
                                 return tr("Suction Cups");
-                            case CuteCharmFemale:
+                            case Lead::CuteCharmFemale:
                                 return tr("Cute Charm (♀)");
-                            case CuteCharm25M:
+                            case Lead::CuteCharm25M:
                                 return tr("Cute Charm (25% ♂)");
-                            case CuteCharm50M:
+                            case Lead::CuteCharm50M:
                                 return tr("Cute Charm (50% ♂)");
-                            case CuteCharm75M:
+                            case Lead::CuteCharm75M:
                                 return tr("Cute Charm (75% ♂)");
-                            case CuteCharm875M:
+                            case Lead::CuteCharm875M:
                             default:
                                 return tr("Cute Charm (87.5% ♂)");
                         }
                     case 3:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 4:
                         return frame.getEncounterSlot();
                     case 5:
@@ -784,8 +783,8 @@ QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, in
     {
         switch (method)
         {
-            case Method1:
-            case ChainedShiny:
+            case Method::Method1:
+            case Method::ChainedShiny:
                 switch (section)
                 {
                     case 0:
@@ -820,7 +819,7 @@ QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, in
                         return tr("Gender");
                 }
                 break;
-            case WondercardIVs:
+            case Method::WondercardIVs:
                 switch (section)
                 {
                     case 0:
@@ -845,8 +844,8 @@ QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, in
                         return tr("Power");
                 }
                 break;
-            case MethodJ:
-            case MethodK:
+            case Method::MethodJ:
+            case Method::MethodK:
                 switch (section)
                 {
                     case 0:

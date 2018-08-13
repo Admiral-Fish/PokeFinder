@@ -22,16 +22,13 @@
 
 #include <QLineEdit>
 
-typedef uint64_t u64;
-typedef uint32_t u32;
-
 class QTextBox : public QLineEdit
 {
     Q_OBJECT
 
 private:
-    u64 maxValue = 0;
-    u64 minValue;
+    quint64 maxValue = 0;
+    quint64 minValue;
     int base;
     QRegExp filter;
 
@@ -40,9 +37,9 @@ private slots:
 
 public:
     QTextBox(QWidget *parent = nullptr);
-    void setValues(u64 min, u64 shift, bool isDecimal);
+    void setValues(quint64 min, quint64 shift, bool isDecimal);
     void setFilter(QString string);
-    void setValue(u64 value);
+    void setValue(quint64 value);
     void setBase(int base);
 
 };

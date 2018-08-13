@@ -20,6 +20,14 @@
 #ifndef STATIONARY3_H
 #define STATIONARY3_H
 
+#include <QMenu>
+#include <QAction>
+#include <QModelIndex>
+#include <QFileDialog>
+#include <QClipboard>
+#include <QSettings>
+#include <QVector>
+#include <thread>
 #include <PokeFinderCore/Gen3/Frame3.hpp>
 #include <PokeFinderCore/Gen3/Generator3.hpp>
 #include <PokeFinderCore/Gen3/Searcher3.hpp>
@@ -32,14 +40,6 @@
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <PokeFinderCore/Translator.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
-#include <thread>
-#include <QMenu>
-#include <QAction>
-#include <QModelIndex>
-#include <QFileDialog>
-#include <QClipboard>
-#include <QSettings>
-#include <QVector>
 
 namespace Ui
 {
@@ -60,7 +60,7 @@ signals:
 
 private:
     Ui::Stationary3 *ui;
-    Searcher3Model *s = new Searcher3Model(this, Method1);
+    Searcher3Model *s = new Searcher3Model(this, Method::Method1);
     Stationary3Model *g = new Stationary3Model(this);
     bool isSearching = false;
     bool cancel = false;

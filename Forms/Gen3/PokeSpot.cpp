@@ -37,7 +37,6 @@ PokeSpot::~PokeSpot()
 
     delete ui;
     delete model;
-    delete rng;
 }
 
 void PokeSpot::changeEvent(QEvent *event)
@@ -84,8 +83,6 @@ void PokeSpot::setupModels()
     ui->comboBoxNature->setup();
     ui->comboBoxSpotType->setup();
 
-    rng = new XDRNG(0);
-
     loadSettings();
 }
 
@@ -117,11 +114,11 @@ void PokeSpot::on_pushButtonGenerate_clicked()
 
     int genderRatio = ui->comboBoxGenderRatio->currentIndex();
 
-    rng->setSeed(seed, initialFrame - 1);
+    XDRNG rng(seed, initialFrame - 1);
 
     QVector<u16> rngList;
     for (int x = 0; x < 5; x++)
-        rngList.append(rng->nextUShort());
+        rngList.append(rng.nextUShort());
 
     u32 max = initialFrame + maxFrames;
     u32 call1, call2, call3;
@@ -133,7 +130,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
 
     QVector<bool> spots = ui->comboBoxSpotType->getChecked();
 
-    for (u32 cnt = initialFrame; cnt < max; cnt++, rngList.removeFirst(), rngList.append(rng->nextUShort()))
+    for (u32 cnt = initialFrame; cnt < max; cnt++, rngList.removeFirst(), rngList.append(rng.nextUShort()))
     {
         // Check if frame is a valid pokespot call
         call1 = rngList[0] % 3;

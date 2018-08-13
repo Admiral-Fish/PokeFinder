@@ -72,7 +72,7 @@ int SeedtoTime4Model::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
     if (calibrate)
-        return (version == HeartGold || version == SoulSilver) ? 6 : 5;
+        return (version == Game::HeartGold || version == Game::SoulSilver) ? 6 : 5;
     else
         return 3;
 }
@@ -81,12 +81,10 @@ QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int column = index.column();
         DateTime frame = model[index.row()];
-
         if (calibrate)
         {
-            switch (column)
+            switch (index.column())
             {
                 case 0:
                     return QString::number(frame.getSeed(), 16).toUpper().toUpper().rightJustified(8, '0');
@@ -97,7 +95,7 @@ QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
                 case 3:
                     return frame.getDelay();
                 case 4:
-                    return (version == HeartGold || version == SoulSilver) ? Utilities::getCalls(frame.getSeed(), 15, frame.getInfo()) : Utilities::coinFlips(frame.getSeed(), 15);
+                    return (version == Game::HeartGold || version == Game::SoulSilver) ? Utilities::getCalls(frame.getSeed(), 15, frame.getInfo()) : Utilities::coinFlips(frame.getSeed(), 15);
                 case 5:
                     {
                         QString str = frame.getInfo().getRoutes();
@@ -107,7 +105,7 @@ QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
         }
         else
         {
-            switch (column)
+            switch (index.column())
             {
                 case 0:
                     return frame.getDate();
@@ -138,7 +136,7 @@ QVariant SeedtoTime4Model::headerData(int section, Qt::Orientation orientation, 
                 case 3:
                     return tr("Delay");
                 case 4:
-                    return (version == HeartGold || version == SoulSilver) ? tr("Calls") : tr("Coin flips");
+                    return (version == Game::HeartGold || version == Game::SoulSilver) ? tr("Calls") : tr("Coin flips");
                 case 5 :
                     return tr("Roamer locations");
             }

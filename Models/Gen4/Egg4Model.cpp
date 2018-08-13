@@ -61,12 +61,12 @@ int Egg4GeneratorModel::columnCount(const QModelIndex &parent) const
     (void) parent;
     switch (method)
     {
-        case Gen4Normal:
-        case Gen4Masuada:
+        case Method::Gen4Normal:
+        case Method::Gen4Masuada:
             return 6;
-        case DPPtIVs:
+        case Method::DPPtIVs:
             return 10;
-        case HGSSIVs:
+        case Method::HGSSIVs:
             return 11;
         default:
             return 0;
@@ -75,163 +75,163 @@ int Egg4GeneratorModel::columnCount(const QModelIndex &parent) const
 
 QVariant Egg4GeneratorModel::data(const QModelIndex &index, int role) const
 {
-    if (role != Qt::DisplayRole)
-        return QVariant();
-
-    int column = index.column();
-    Frame4 frame = model[index.row()];
-
-    switch (method)
+    if (role == Qt::DisplayRole)
     {
-        case Gen4Normal:
-        case Gen4Masuada:
-            switch (column)
-            {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
-                case 2:
-                    return frame.getShinyString();
-                case 3:
-                    return frame.getNatureString();
-                case 4:
-                    return frame.getAbility();
-                case 5:
-                    return frame.getGenderString();
-            }
-        case DPPtIVs:
-            switch (column)
-            {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return frame.chatotPitch();
-                case 2:
-                    return frame.getIV(0);
-                case 3:
-                    return frame.getIV(1);
-                case 4:
-                    return frame.getIV(2);
-                case 5:
-                    return frame.getIV(3);
-                case 6:
-                    return frame.getIV(4);
-                case 7:
-                    return frame.getIV(5);
-                case 8:
-                    return frame.getPowerString();
-                case 9:
-                    return frame.getPower();
-            }
-        case HGSSIVs:
-            switch (column)
-            {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return frame.getCall();
-                case 2:
-                    return frame.chatotPitch();
-                case 3:
-                    return frame.getIV(0);
-                case 4:
-                    return frame.getIV(1);
-                case 5:
-                    return frame.getIV(2);
-                case 6:
-                    return frame.getIV(3);
-                case 7:
-                    return frame.getIV(4);
-                case 8:
-                    return frame.getIV(5);
-                case 9:
-                    return frame.getPowerString();
-                case 10:
-                    return frame.getPower();
-            }
-        default:
-            return QVariant();
+        Frame4 frame = model[index.row()];
+        switch (method)
+        {
+            case Method::Gen4Normal:
+            case Method::Gen4Masuada:
+                switch (index.column())
+                {
+                    case 0:
+                        return frame.getFrame();
+                    case 1:
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+                    case 2:
+                        return frame.getShinyString();
+                    case 3:
+                        return frame.getNatureString();
+                    case 4:
+                        return frame.getAbility();
+                    case 5:
+                        return frame.getGenderString();
+                }
+            case Method::DPPtIVs:
+                switch (index.column())
+                {
+                    case 0:
+                        return frame.getFrame();
+                    case 1:
+                        return frame.chatotPitch();
+                    case 2:
+                        return frame.getIV(0);
+                    case 3:
+                        return frame.getIV(1);
+                    case 4:
+                        return frame.getIV(2);
+                    case 5:
+                        return frame.getIV(3);
+                    case 6:
+                        return frame.getIV(4);
+                    case 7:
+                        return frame.getIV(5);
+                    case 8:
+                        return frame.getPowerString();
+                    case 9:
+                        return frame.getPower();
+                }
+            case Method::HGSSIVs:
+                switch (index.column())
+                {
+                    case 0:
+                        return frame.getFrame();
+                    case 1:
+                        return frame.getCall();
+                    case 2:
+                        return frame.chatotPitch();
+                    case 3:
+                        return frame.getIV(0);
+                    case 4:
+                        return frame.getIV(1);
+                    case 5:
+                        return frame.getIV(2);
+                    case 6:
+                        return frame.getIV(3);
+                    case 7:
+                        return frame.getIV(4);
+                    case 8:
+                        return frame.getIV(5);
+                    case 9:
+                        return frame.getPowerString();
+                    case 10:
+                        return frame.getPower();
+                }
+            default:
+                break;
+        }
     }
+    return QVariant();
 }
 
 QVariant Egg4GeneratorModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role != Qt::DisplayRole || orientation != Qt::Horizontal)
-        return QVariant();
-
-    switch (method)
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        case Gen4Normal:
-        case Gen4Masuada:
-            switch (section)
-            {
-                case 0:
-                    return tr("Frame");
-                case 1:
-                    return tr("PID");
-                case 2:
-                    return "!!!";
-                case 3:
-                    return tr("Nature");
-                case 4:
-                    return tr("Ability");
-                case 5:
-                    return tr("Gender");
-            }
-        case DPPtIVs:
-            switch (section)
-            {
-                case 0:
-                    return tr("Frame");
-                case 1:
-                    return tr("Chatot");
-                case 2:
-                    return tr("HP");
-                case 3:
-                    return tr("Atk");
-                case 4:
-                    return tr("Def");
-                case 5:
-                    return tr("SpA");
-                case 6:
-                    return tr("SpD");
-                case 7:
-                    return tr("Spe");
-                case 8:
-                    return tr("Hidden");
-                case 9:
-                    return tr("Power");
-            }
-        case HGSSIVs:
-            switch (section)
-            {
-                case 0:
-                    return tr("Frame");
-                case 1:
-                    return tr("Call");
-                case 2:
-                    return tr("Chatot");
-                case 3:
-                    return tr("HP");
-                case 4:
-                    return tr("Atk");
-                case 5:
-                    return tr("Def");
-                case 6:
-                    return tr("SpA");
-                case 7:
-                    return tr("SpD");
-                case 8:
-                    return tr("Spe");
-                case 9:
-                    return tr("Hidden");
-                case 10:
-                    return tr("Power");
-            }
-        default:
-            return QVariant();
+        switch (method)
+        {
+            case Method::Gen4Normal:
+            case Method::Gen4Masuada:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Frame");
+                    case 1:
+                        return tr("PID");
+                    case 2:
+                        return "!!!";
+                    case 3:
+                        return tr("Nature");
+                    case 4:
+                        return tr("Ability");
+                    case 5:
+                        return tr("Gender");
+                }
+            case Method::DPPtIVs:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Frame");
+                    case 1:
+                        return tr("Chatot");
+                    case 2:
+                        return tr("HP");
+                    case 3:
+                        return tr("Atk");
+                    case 4:
+                        return tr("Def");
+                    case 5:
+                        return tr("SpA");
+                    case 6:
+                        return tr("SpD");
+                    case 7:
+                        return tr("Spe");
+                    case 8:
+                        return tr("Hidden");
+                    case 9:
+                        return tr("Power");
+                }
+            case Method::HGSSIVs:
+                switch (section)
+                {
+                    case 0:
+                        return tr("Frame");
+                    case 1:
+                        return tr("Call");
+                    case 2:
+                        return tr("Chatot");
+                    case 3:
+                        return tr("HP");
+                    case 4:
+                        return tr("Atk");
+                    case 5:
+                        return tr("Def");
+                    case 6:
+                        return tr("SpA");
+                    case 7:
+                        return tr("SpD");
+                    case 8:
+                        return tr("Spe");
+                    case 9:
+                        return tr("Hidden");
+                    case 10:
+                        return tr("Power");
+                }
+            default:
+                break;
+        }
     }
+    return QVariant();
 }
 
 
@@ -285,11 +285,11 @@ int Egg4SearcherModel::columnCount(const QModelIndex &parent) const
     (void) parent;
     switch (method)
     {
-        case Gen4Normal:
-        case Gen4Masuada:
+        case Method::Gen4Normal:
+        case Method::Gen4Masuada:
             return 7;
-        case DPPtIVs:
-        case HGSSIVs:
+        case Method::DPPtIVs:
+        case Method::HGSSIVs:
             return 10;
         default:
             return 0;
@@ -300,21 +300,19 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int column = index.column();
         Frame4 frame = model[index.row()];
-
         switch (method)
         {
-            case Gen4Normal:
-            case Gen4Masuada:
-                switch (column)
+            case Method::Gen4Normal:
+            case Method::Gen4Masuada:
+                switch (index.column())
                 {
                     case 0:
                         return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
                     case 1:
                         return frame.getFrame();
                     case 2:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 3:
                         return frame.getShinyString();
                     case 4:
@@ -324,9 +322,9 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
                     case 6:
                         return frame.getGenderString();
                 }
-            case DPPtIVs:
-            case HGSSIVs:
-                switch (column)
+            case Method::DPPtIVs:
+            case Method::HGSSIVs:
+                switch (index.column())
                 {
                     case 0:
                         return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
@@ -362,8 +360,8 @@ QVariant Egg4SearcherModel::headerData(int section, Qt::Orientation orientation,
     {
         switch (method)
         {
-            case Gen4Normal:
-            case Gen4Masuada:
+            case Method::Gen4Normal:
+            case Method::Gen4Masuada:
                 switch (section)
                 {
                     case 0:
@@ -381,8 +379,8 @@ QVariant Egg4SearcherModel::headerData(int section, Qt::Orientation orientation,
                     case 6:
                         return tr("Gender");
                 }
-            case DPPtIVs:
-            case HGSSIVs:
+            case Method::DPPtIVs:
+            case Method::HGSSIVs:
                 switch (section)
                 {
                     case 0:

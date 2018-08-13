@@ -61,11 +61,11 @@ int Wild4Model::columnCount(const QModelIndex &parent) const
     (void) parent;
     switch (method)
     {
-        case MethodJ:
+        case Method::MethodJ:
             return 18;
-        case MethodK:
+        case Method::MethodK:
             return 19;
-        case ChainedShiny:
+        case Method::ChainedShiny:
             return 15;
         default:
             return 0;
@@ -76,12 +76,11 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        int column = index.column();
         Frame4 frame = model[index.row()];
         switch (method)
         {
-            case MethodJ:
-                switch (column)
+            case Method::MethodJ:
+                switch (index.column())
                 {
                     case 0:
                         return frame.getFrame();
@@ -94,7 +93,7 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
                     case 4:
                         return frame.getLevel();
                     case 5:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 6:
                         return frame.getShinyString();
                     case 7:
@@ -120,8 +119,8 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
                     case 17:
                         return frame.getGenderString();
                 }
-            case MethodK:
-                switch (column)
+            case Method::MethodK:
+                switch (index.column())
                 {
                     case 0:
                         return frame.getFrame();
@@ -136,7 +135,7 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
                     case 5:
                         return frame.getLevel();
                     case 6:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 7:
                         return frame.getShinyString();
                     case 8:
@@ -162,15 +161,15 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
                     case 18:
                         return frame.getGenderString();
                 }
-            case ChainedShiny:
-                switch (column)
+            case Method::ChainedShiny:
+                switch (index.column())
                 {
                     case 0:
                         return frame.getFrame();
                     case 1:
                         return frame.chatotPitch();
                     case 2:
-                        return QString::number(frame.getPid(), 16).toUpper().rightJustified(8, '0');
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 3:
                         return frame.getShinyString();
                     case 4:
@@ -209,7 +208,7 @@ QVariant Wild4Model::headerData(int section, Qt::Orientation orientation, int ro
     {
         switch (method)
         {
-            case MethodJ:
+            case Method::MethodJ:
                 switch (section)
                 {
                     case 0:
@@ -249,7 +248,7 @@ QVariant Wild4Model::headerData(int section, Qt::Orientation orientation, int ro
                     case 17:
                         return tr("Gender");
                 }
-            case MethodK:
+            case Method::MethodK:
                 switch (section)
                 {
                     case 0:
@@ -291,7 +290,7 @@ QVariant Wild4Model::headerData(int section, Qt::Orientation orientation, int ro
                     case 18:
                         return tr("Gender");
                 }
-            case ChainedShiny:
+            case Method::ChainedShiny:
                 switch (section)
                 {
                     case 0:
