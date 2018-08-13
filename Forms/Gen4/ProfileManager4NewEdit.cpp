@@ -80,8 +80,8 @@ void ProfileManager4NewEdit::changeEvent(QEvent *event)
 
 void ProfileManager4NewEdit::setupModels()
 {
-    ui->textBoxTID->setValues(0, 48, true);
-    ui->textBoxSID->setValues(0, 48, true);
+    ui->textBoxTID->setValues(InputType::TIDSID);
+    ui->textBoxSID->setValues(InputType::TIDSID);
 
     ui->comboBoxVersion->setItemData(0, Game::Diamond);
     ui->comboBoxVersion->setItemData(1, Game::Pearl);

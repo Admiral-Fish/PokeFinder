@@ -57,8 +57,8 @@ SeedToTime3::~SeedToTime3()
 
 void SeedToTime3::setupModels()
 {
-    ui->seedToTimeSeed->setValues(0, 32, false);
-    ui->seedToTimeYear->setValues(0, 53, true);
+    ui->seedToTimeSeed->setValues(InputType::Seed32Bit);
+    ui->seedToTimeYear->setValues(2000, 2037);
 
     model->setColumnCount(2);
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seconds"));

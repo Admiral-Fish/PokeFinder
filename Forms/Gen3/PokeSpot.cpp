@@ -71,11 +71,11 @@ void PokeSpot::on_pushButtonAnySpotType_clicked()
 
 void PokeSpot::setupModels()
 {
-    ui->textBoxSeed->setValues(0, 32, false);
-    ui->textBoxStartingFrame->setValues(1, 32, true);
-    ui->textBoxMaxResults->setValues(1, 32, true);
-    ui->textBoxTID->setValues(0, 48, true);
-    ui->textBoxSID->setValues(0, 48, true);
+    ui->textBoxSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxStartingFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxTID->setValues(InputType::TIDSID);
+    ui->textBoxSID->setValues(InputType::TIDSID);
 
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->setModel(model);

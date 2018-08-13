@@ -71,22 +71,22 @@ void Eggs4::setupModels()
 
     ui->tableViewPID->setModel(searcherPID);
 
-    ui->textBoxStartingFrame->setValues(1, 32, true);
-    ui->textBoxMaxResults->setValues(1, 32, true);
-    ui->textBoxTIDGenerator->setValues(0, 48, true);
-    ui->textBoxSIDGenerator->setValues(0, 48, true);
-    ui->textBoxSeedGenerator->setValues(0, 32, false);
+    ui->textBoxStartingFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxTIDGenerator->setValues(InputType::TIDSID);
+    ui->textBoxSIDGenerator->setValues(InputType::TIDSID);
+    ui->textBoxSeedGenerator->setValues(InputType::Seed32Bit);
 
-    ui->textBoxMinFrameIVs->setValues(1, 32, true);
-    ui->textBoxMaxFrameIVs->setValues(1, 32, true);
-    ui->textBoxMinFramePID->setValues(1, 32, true);
-    ui->textBoxMaxFramePID->setValues(1, 32, true);
-    ui->textBoxMinDelayIVs->setValues(1, 32, true);
-    ui->textBoxMaxDelayIVs->setValues(1, 32, true);
-    ui->textBoxMinDelayPID->setValues(1, 32, true);
-    ui->textBoxMaxDelayPID->setValues(1, 32, true);
-    ui->textBoxTIDSearcher->setValues(0, 48, true);
-    ui->textBoxSIDSearcher->setValues(0, 48, true);
+    ui->textBoxMinFrameIVs->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxFrameIVs->setValues(InputType::Frame32Bit);
+    ui->textBoxMinFramePID->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxFramePID->setValues(InputType::Frame32Bit);
+    ui->textBoxMinDelayIVs->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxDelayIVs->setValues(InputType::Frame32Bit);
+    ui->textBoxMinDelayPID->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxDelayPID->setValues(InputType::Frame32Bit);
+    ui->textBoxTIDSearcher->setValues(InputType::TIDSID);
+    ui->textBoxSIDSearcher->setValues(InputType::TIDSID);
 
     ui->comboBoxMethod->setItemData(0, DPPtIVs);
     ui->comboBoxMethod->setItemData(1, Gen4Normal);

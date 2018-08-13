@@ -56,25 +56,25 @@ void IDs3::changeEvent(QEvent *event)
 
 void IDs3::setupModels()
 {
-    ui->textBoxPIDFRLGE->setValues(0, 32, false);
-    ui->textBoxTIDFRLGE->setValues(0, 48, true);
-    ui->textBoxSIDFRLGE->setValues(0, 48, true);
-    ui->textBoxMinFrameFRLGE->setValues(0, 32, true);
-    ui->textBoxMaxFrameFRLGE->setValues(0, 32, true);
+    ui->textBoxPIDFRLGE->setValues(InputType::Seed32Bit);
+    ui->textBoxTIDFRLGE->setValues(InputType::TIDSID);
+    ui->textBoxSIDFRLGE->setValues(InputType::TIDSID);
+    ui->textBoxMinFrameFRLGE->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxFrameFRLGE->setValues(InputType::Frame32Bit);
 
-    ui->textBoxPIDRS->setValues(0, 32, false);
-    ui->textBoxTIDRS->setValues(0, 48, true);
-    ui->textBoxSIDRS->setValues(0, 48, true);
-    ui->textBoxInitSeedRS->setValues(0, 48, false);
-    ui->textBoxMinFrameRS->setValues(0, 32, true);
-    ui->textBoxMaxFrameRS->setValues(0, 32, true);
+    ui->textBoxPIDRS->setValues(InputType::Seed32Bit);
+    ui->textBoxTIDRS->setValues(InputType::TIDSID);
+    ui->textBoxSIDRS->setValues(InputType::TIDSID);
+    ui->textBoxInitSeedRS->setValues(InputType::Seed16Bit);
+    ui->textBoxMinFrameRS->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxFrameRS->setValues(InputType::Frame32Bit);
 
-    ui->textBoxPIDXD->setValues(0, 32, false);
-    ui->textBoxTIDXD->setValues(0, 48, true);
-    ui->textBoxSIDXD->setValues(0, 48, true);
-    ui->textBoxSeedXD->setValues(0, 32, false);
-    ui->textBoxMinFrameXD->setValues(0, 32, true);
-    ui->textBoxMaxFrameXD->setValues(0, 32, true);
+    ui->textBoxPIDXD->setValues(InputType::Seed32Bit);
+    ui->textBoxTIDXD->setValues(InputType::TIDSID);
+    ui->textBoxSIDXD->setValues(InputType::TIDSID);
+    ui->textBoxSeedXD->setValues(InputType::Seed32Bit);
+    ui->textBoxMinFrameXD->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxFrameXD->setValues(InputType::Frame32Bit);
 
     ui->dateTimeEdit->setDisplayFormat(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
 

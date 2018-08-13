@@ -22,6 +22,17 @@
 
 #include <QLineEdit>
 
+enum InputType
+{
+    Seed64Bit,
+    Frame64Bit,
+    Seed32Bit,
+    Frame32Bit,
+    Seed16Bit,
+    Delay,
+    TIDSID
+};
+
 class QTextBox : public QLineEdit
 {
     Q_OBJECT
@@ -37,7 +48,8 @@ private slots:
 
 public:
     QTextBox(QWidget *parent = nullptr);
-    void setValues(quint64 min, quint64 shift, bool isDecimal);
+    void setValues(InputType type);
+    void setValues(quint64 minValue, quint64 maxValue, int base = 10);
     void setFilter(QString string);
     void setValue(quint64 value);
     void setBase(int base);

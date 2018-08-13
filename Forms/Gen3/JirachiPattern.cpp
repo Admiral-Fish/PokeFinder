@@ -55,7 +55,7 @@ void JirachiPattern::changeEvent(QEvent *event)
 
 void JirachiPattern::setupModels()
 {
-    ui->jirachiPatternSeed->setValues(0, 32, false);
+    ui->jirachiPatternSeed->setValues(InputType::Seed32Bit);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Pattern"));
     ui->tableViewGenerator->setModel(model);

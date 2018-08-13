@@ -61,10 +61,10 @@ void GameCubeRTC::changeEvent(QEvent *event)
 
 void GameCubeRTC::setupModels()
 {
-    ui->textBoxStartSeed->setValues(0, 32, false);
-    ui->textBoxEndSeed->setValues(0, 32, false);
-    ui->textBoxMinFrame->setValues(1, 32, true);
-    ui->textBoxMaxFrame->setValues(2, 32, true);
+    ui->textBoxStartSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxEndSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxMinFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxFrame->setValues(InputType::Frame32Bit);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seed"));
     ui->tableViewGenerator->setModel(model);

@@ -67,31 +67,31 @@ void Eggs3::setupModels()
     ui->tableViewRS->setModel(rs);
     ui->tableViewFRLG->setModel(frlg);
 
-    ui->textBoxMinFrameEmeraldPID->setValues(1, 32, true);
-    ui->textBoxMaxFrameEmeraldPID->setValues(1, 32, true);
-    ui->textBoxMinRedraws->setValues(0, 56, true);
-    ui->textBoxMaxRedraws->setValues(0, 56, true);
-    ui->textBoxCalibration->setValues(0, 56, true);
-    ui->textBoxTIDEmerald->setValues(0, 48, true);
-    ui->textBoxSIDEmerald->setValues(0, 48, true);
-    ui->textBoxMinFrameEmeraldIVs->setValues(1, 32, true);
-    ui->textBoxMaxFrameEmeraldIVs->setValues(1, 32, true);
+    ui->textBoxMinFrameEmeraldPID->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxFrameEmeraldPID->setValues(InputType::Frame32Bit);
+    ui->textBoxMinRedraws->setValues(0, 255);
+    ui->textBoxMaxRedraws->setValues(0, 255);
+    ui->textBoxCalibration->setValues(0, 255);
+    ui->textBoxTIDEmerald->setValues(InputType::TIDSID);
+    ui->textBoxSIDEmerald->setValues(InputType::TIDSID);
+    ui->textBoxMinFrameEmeraldIVs->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxFrameEmeraldIVs->setValues(InputType::Frame32Bit);
 
-    ui->textBoxSeedRS->setValues(0, 48, false);
-    ui->textBoxMinHeldRS->setValues(1, 32, true);
-    ui->textBoxMaxHeldRS->setValues(1, 32, true);
-    ui->textBoxMinPickupRS->setValues(1, 32, true);
-    ui->textBoxMaxPickupRS->setValues(1, 32, true);
-    ui->textBoxTIDRS->setValues(0, 48, true);
-    ui->textBoxSIDRS->setValues(0, 48, true);
+    ui->textBoxSeedRS->setValues(InputType::Seed16Bit);
+    ui->textBoxMinHeldRS->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxHeldRS->setValues(InputType::Frame32Bit);
+    ui->textBoxMinPickupRS->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxPickupRS->setValues(InputType::Frame32Bit);
+    ui->textBoxTIDRS->setValues(InputType::TIDSID);
+    ui->textBoxSIDRS->setValues(InputType::TIDSID);
 
-    ui->textBoxSeedFRLG->setValues(0, 48, false);
-    ui->textBoxMinHeldFRLG->setValues(1, 32, true);
-    ui->textBoxMaxHeldFRLG->setValues(1, 32, true);
-    ui->textBoxMinPickupFRLG->setValues(1, 32, true);
-    ui->textBoxMaxPickupFRLG->setValues(1, 32, true);
-    ui->textBoxTIDFRLG->setValues(0, 48, true);
-    ui->textBoxSIDFRLG->setValues(0, 48, true);
+    ui->textBoxSeedFRLG->setValues(InputType::Seed16Bit);
+    ui->textBoxMinHeldFRLG->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxHeldFRLG->setValues(InputType::Frame32Bit);
+    ui->textBoxMinPickupFRLG->setValues(InputType::Frame32Bit);
+    ui->textBoxMaxPickupFRLG->setValues(InputType::Frame32Bit);
+    ui->textBoxTIDFRLG->setValues(InputType::TIDSID);
+    ui->textBoxSIDFRLG->setValues(InputType::TIDSID);
 
     ui->comboBoxCompatibilityEmerald->setItemData(0, 20);
     ui->comboBoxCompatibilityEmerald->setItemData(1, 50);

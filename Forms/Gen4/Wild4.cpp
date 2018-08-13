@@ -68,15 +68,15 @@ void Wild4::setupModels()
     ui->tableViewGenerator->setModel(g);
     ui->tableViewSearcher->setModel(s);
 
-    ui->initialSeedGenerator->setValues(0, 32, false);
-    ui->idGenerator->setValues(0, 48, true);
-    ui->sidGenerator->setValues(0, 48, true);
-    ui->startingFrameGenerator->setValues(1, 32, true);
-    ui->maxResultsGenerator->setValues(1, 32, true);
-    ui->delayGenerator->setValues(1, 32, true);
+    ui->initialSeedGenerator->setValues(InputType::Seed32Bit);
+    ui->idGenerator->setValues(InputType::TIDSID);
+    ui->sidGenerator->setValues(InputType::TIDSID);
+    ui->startingFrameGenerator->setValues(InputType::Frame32Bit);
+    ui->maxResultsGenerator->setValues(InputType::Frame32Bit);
+    ui->delayGenerator->setValues(InputType::Frame32Bit);
 
-    ui->idSearcher->setValues(0, 48, true);
-    ui->sidSearcher->setValues(0, 48, true);
+    ui->idSearcher->setValues(InputType::TIDSID);
+    ui->sidSearcher->setValues(InputType::TIDSID);
 
     ui->comboBoxLeadGenerator->addItem(tr("None"));
     ui->comboBoxLeadGenerator->addItems(Nature::getNatures());

@@ -57,7 +57,7 @@ void PIDtoIVs::changeEvent(QEvent *event)
 
 void PIDtoIVs::setupModels()
 {
-    ui->pidInput->setValues(0, 32, false);
+    ui->pidInput->setValues(InputType::Seed32Bit);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("Method") << tr("IVs"));
     ui->tabePIDToIV->setModel(model);

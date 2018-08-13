@@ -178,7 +178,7 @@ QCheckBox::indicator:checked {
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab32Bit">
        <attribute name="title">
@@ -700,6 +700,9 @@ QCheckBox::indicator:checked {
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="maxLength">
+          <number>10</number>
+         </property>
         </widget>
        </item>
        <item row="0" column="4">
@@ -839,6 +842,9 @@ QCheckBox::indicator:checked {
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -1038,6 +1044,9 @@ QCheckBox::indicator:checked {
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -1257,6 +1266,9 @@ QCheckBox::indicator:checked {
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -1496,6 +1508,9 @@ QCheckBox::indicator:checked {
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -1755,6 +1770,9 @@ QCheckBox::indicator:checked {
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -2034,6 +2052,9 @@ QCheckBox::indicator:checked {
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -2333,6 +2354,9 @@ QCheckBox::indicator:checked {
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -2652,6 +2676,9 @@ QCheckBox::indicator:checked {
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maxLength">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -2992,6 +3019,9 @@ QCheckBox::indicator:checked {
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="maxLength">
+          <number>10</number>
+         </property>
         </widget>
        </item>
        <item row="9" column="4">
@@ -3289,6 +3319,9 @@ QCheckBox::indicator:checked {
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="maxLength">
+          <number>16</number>
+         </property>
         </widget>
        </item>
        <item row="0" column="3">
@@ -3399,7 +3432,7 @@ QHeaderView::section {
      <x>0</x>
      <y>0</y>
      <width>872</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

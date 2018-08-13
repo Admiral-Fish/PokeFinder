@@ -55,7 +55,7 @@ void IVtoPID::changeEvent(QEvent *event)
 
 void IVtoPID::setupModels()
 {
-    ui->textBoxID->setValues(0, 48, true);
+    ui->textBoxID->setValues(InputType::TIDSID);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("PID") << tr("Method") << tr("Ability") << "50%" << "12.5%" << "25%" << "75%" << tr("SID"));
     ui->tableView->setModel(model);

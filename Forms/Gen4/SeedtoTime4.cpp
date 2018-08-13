@@ -86,8 +86,8 @@ void SeedtoTime4::setupModels()
 {
     loadSettings();
 
-    ui->textBoxSeedDPPt->setValues(0, 32, false);
-    ui->textBoxSeedHGSS->setValues(0, 32, false);
+    ui->textBoxSeedDPPt->setValues(InputType::Seed32Bit);
+    ui->textBoxSeedHGSS->setValues(InputType::Seed32Bit);
 
     ui->tableViewDPPt->setModel(dppt);
     ui->tableViewDPPtCalibrate->setModel(dpptCalibrate);

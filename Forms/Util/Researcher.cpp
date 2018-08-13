@@ -401,32 +401,32 @@ void Researcher::setupModels()
     ui->tableView->setModel(model);
     resizeHeader();
 
-    ui->textBoxStartingFrame->setValues(1, 0, true);
-    ui->textBoxMaxFrames->setValues(1, 0, true);
-    ui->textBoxSeed->setValues(0, 0, false);
-    ui->textBoxSearch->setValues(0, 0, false);
+    ui->textBoxStartingFrame->setValues(InputType::Frame64Bit);
+    ui->textBoxMaxFrames->setValues(InputType::Frame64Bit);
+    ui->textBoxSeed->setValues(InputType::Seed64Bit);
+    ui->textBoxSearch->setValues(InputType::Seed64Bit);
 
-    ui->textBoxMult32Bit->setValues(0, 32, false);
-    ui->textBoxAdd32Bit->setValues(0, 32, false);
+    ui->textBoxMult32Bit->setValues(InputType::Seed32Bit);
+    ui->textBoxAdd32Bit->setValues(InputType::Seed32Bit);
 
-    ui->textBoxMult64Bit->setValues(0, 0, false);
-    ui->textBoxAdd64Bit->setValues(0, 0, false);
+    ui->textBoxMult64Bit->setValues(InputType::Seed64Bit);
+    ui->textBoxAdd64Bit->setValues(InputType::Seed64Bit);
 
-    ui->textBoxStatus3->setValues(0, 32, false);
-    ui->textBoxStatus2->setValues(0, 32, false);
-    ui->textBoxStatus1->setValues(0, 32, false);
-    ui->textBoxStatus0->setValues(0, 32, false);
+    ui->textBoxStatus3->setValues(InputType::Seed32Bit);
+    ui->textBoxStatus2->setValues(InputType::Seed32Bit);
+    ui->textBoxStatus1->setValues(InputType::Seed32Bit);
+    ui->textBoxStatus0->setValues(InputType::Seed32Bit);
 
-    ui->lineEditRValue1->setValues(0, 32, false);
-    ui->lineEditRValue2->setValues(0, 32, false);
-    ui->lineEditRValue3->setValues(0, 32, false);
-    ui->lineEditRValue4->setValues(0, 32, false);
-    ui->lineEditRValue5->setValues(0, 32, false);
-    ui->lineEditRValue6->setValues(0, 32, false);
-    ui->lineEditRValue7->setValues(0, 32, false);
-    ui->lineEditRValue8->setValues(0, 32, false);
-    ui->lineEditRValue9->setValues(0, 32, false);
-    ui->lineEditRValue10->setValues(0, 32, false);
+    ui->lineEditRValue1->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue2->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue3->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue4->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue5->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue6->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue7->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue8->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue9->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue10->setValues(1, 0xffffffff, 16);
 
     translate();
 }
