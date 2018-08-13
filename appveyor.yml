@@ -19,6 +19,9 @@ environment:
           BUILDER: MINGW
           ARCH: x86
           OS: windows
+          
+services:
+    - Docker
 
 install:
     - git submodule update --init --recursive
@@ -27,16 +30,16 @@ install:
     - cmd: if "%BUILDER%"=="MINGW" set PATH=C:\Qt\Tools\mingw530_32\bin;%PATH%
     - cmd: if "%BUILDER%"=="NMAKE" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
     # Linux
-    - sh: sudo apt-get -qq update
-    - sh: sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default
+    - sh: docker build . -t pokefinder-ci
     
 build_script:
-    - qmake PokeFinder.pro
     # Windows
+    - cmd: qmake PokeFinder.pro
     - cmd: if "%BUILDER%"=="MINGW" mingw32-make
     - cmd: if "%BUILDER%"=="NMAKE" nmake
     # Linux
-    - sh: make
+    - sh: docker run -w="/app" -v "$(pwd)":/app pokefinder-ci qmake
+    - sh: docker run -w="/app" -v "$(pwd)":/app pokefinder-ci make
 
 after_build:
     # Windows
