@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setupLanguage();
     setupModels();
+    checkUpdates();
 }
 
 MainWindow::~MainWindow()
@@ -169,10 +170,53 @@ void MainWindow::createProfileXml()
         QDomDocument doc;
         QDomElement profiles = doc.createElement(QString("Profiles"));
         doc.appendChild(profiles);
-        QTextStream stream( &file );
+        QTextStream stream(&file);
         stream << doc.toString();
         file.close();
     }
+}
+
+void MainWindow::checkUpdates()
+{
+    // Setup date program was last opened and today's date
+    QSettings setting;
+    QDate lastOpened = QDate::currentDate();
+    QDate today = QDate::currentDate();
+    if (setting.contains("lastOpened"))
+        lastOpened = setting.value("lastOpened").toDate();
+
+    // Only check for update once a day
+    if (lastOpened.daysTo(today) > 1)
+    {
+        // Access current version number from github
+        // TODO: Change this to check from master branch eventually
+        QNetworkAccessManager networkManager;
+        QNetworkRequest request(QUrl("https://raw.githubusercontent.com/Admiral-Fish/PokeFinder/develop/version.txt"));
+        QNetworkReply *reply = networkManager.get(request);
+
+        QEventLoop loop;
+        connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+        connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+        loop.exec();
+
+        // Check if online version does not match current version
+        QString webVersion(reply->readAll());
+        if (webVersion != VERSION && webVersion != "")
+        {
+            QMessageBox info;
+            info.setWindowTitle(tr("Update Check"));
+            info.setText(tr("An update is available. Would you like to download the newest version?"));
+            info.setStandardButtons(QMessageBox::Yes);
+            info.addButton(QMessageBox::No);
+            info.setDefaultButton(QMessageBox::No);
+            // If user wants the latest version open the page in browser
+            if (info.exec() == QMessageBox::Yes)
+                QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/tag/v" + webVersion));
+        }
+        delete reply;
+    }
+
+    setting.setValue("lastOpened", QDate::currentDate());
 }
 
 void MainWindow::on_actionResearcher_triggered()

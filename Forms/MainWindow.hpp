@@ -21,7 +21,9 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-#include <QDir>
+#include <QtNetwork>
+#include <QDate>
+#include <QDesktopServices>
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen3/Eggs3.hpp>
@@ -64,12 +66,14 @@ private:
     Wild4 *wild4 = nullptr;
     Eggs4 *egg4 = nullptr;
     IDs4 *ids4 = nullptr;
+    const QString VERSION = "2.1.0";
 
     void setupLanguage();
     void setupModels();
     void loadLanguage(const QString &lang);
     void switchTranslator(QTranslator &translator, const QString &filename);
     void createProfileXml();
+    void checkUpdates();
 
 private slots:
     void on_pushButtonStationary3_clicked();
