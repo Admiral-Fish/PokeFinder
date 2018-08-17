@@ -1027,33 +1027,7 @@ QPushButton {
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QComboBox" name="comboBoxEncounterGenerator">
-             <item>
-              <property name="text">
-               <string>Wild</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Surfing</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Old Rod</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Good Rod</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Super Rod</string>
-              </property>
-             </item>
-            </widget>
+            <widget class="QComboBox" name="comboBoxEncounterGenerator"/>
            </item>
            <item row="5" column="0">
             <widget class="QPushButton" name="pushButtonLeadGenerator">
@@ -1437,33 +1411,7 @@ QPushButton {
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QComboBox" name="comboBoxEncounterSearcher">
-             <item>
-              <property name="text">
-               <string>Wild</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Surfing</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Old Rod</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Good Rod</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Super Rod</string>
-              </property>
-             </item>
-            </widget>
+            <widget class="QComboBox" name="comboBoxEncounterSearcher"/>
            </item>
            <item row="5" column="0">
             <widget class="QLabel" name="label_3">

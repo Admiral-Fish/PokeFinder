@@ -130,7 +130,7 @@ void Wild3::setupModels()
     ui->comboBoxMethodSearcher->setItemData(1, Method::MethodH2);
     ui->comboBoxMethodSearcher->setItemData(2, Method::MethodH4);
 
-    ui->comboBoxEncounterGenerator->setItemData(0, Encounter::Wild);
+    ui->comboBoxEncounterGenerator->setItemData(0, Encounter::Grass);
     ui->comboBoxEncounterGenerator->setItemData(1, Encounter::SafariZone);
     ui->comboBoxEncounterGenerator->setItemData(2, Encounter::RockSmash);
     ui->comboBoxEncounterGenerator->setItemData(3, Encounter::Surfing);
@@ -138,7 +138,7 @@ void Wild3::setupModels()
     ui->comboBoxEncounterGenerator->setItemData(5, Encounter::GoodRod);
     ui->comboBoxEncounterGenerator->setItemData(6, Encounter::SuperRod);
 
-    ui->comboBoxEncounterSearcher->setItemData(0, Encounter::Wild);
+    ui->comboBoxEncounterSearcher->setItemData(0, Encounter::Grass);
     ui->comboBoxEncounterSearcher->setItemData(1, Encounter::SafariZone);
     ui->comboBoxEncounterSearcher->setItemData(2, Encounter::RockSmash);
     ui->comboBoxEncounterSearcher->setItemData(3, Encounter::Surfing);
@@ -678,7 +678,7 @@ void Wild3::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
 
     switch (encounter)
     {
-        case Encounter::Wild:
+        case Encounter::Grass:
         case Encounter::SafariZone:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;
@@ -711,7 +711,7 @@ void Wild3::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
 
     switch (encounter)
     {
-        case Encounter::Wild:
+        case Encounter::Grass:
         case Encounter::SafariZone:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;

@@ -284,7 +284,7 @@ QPushButton {
             <widget class="QComboBox" name="comboBoxEncounterGenerator">
              <item>
               <property name="text">
-               <string>Wild</string>
+               <string>Grass</string>
               </property>
              </item>
              <item>
@@ -1498,7 +1498,7 @@ QHeaderView::section {
              </property>
              <item>
               <property name="text">
-               <string>Wild</string>
+               <string>Grass</string>
               </property>
              </item>
              <item>

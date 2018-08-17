@@ -147,7 +147,7 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
         ui->comboBoxMethodSearcher->addItem(tr("Chained Shiny"), Method::ChainedShiny);
 
     ui->comboBoxEncounterGenerator->clear();
-    ui->comboBoxEncounterGenerator->addItem(tr("Wild"), Encounter::Wild);
+    ui->comboBoxEncounterGenerator->addItem(tr("Grass"), Encounter::Grass);
     if (flag)
         ui->comboBoxEncounterGenerator->addItem(tr("Rock Smash"), Encounter::RockSmash);
     ui->comboBoxEncounterGenerator->addItem(tr("Surfing"), Encounter::Surfing);
@@ -156,7 +156,7 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->comboBoxEncounterGenerator->addItem(tr("Super Rod"), Encounter::SuperRod);
 
     ui->comboBoxEncounterSearcher->clear();
-    ui->comboBoxEncounterSearcher->addItem(tr("Wild"), Encounter::Wild);
+    ui->comboBoxEncounterSearcher->addItem(tr("Grass"), Encounter::Grass);
     if (flag)
         ui->comboBoxEncounterSearcher->addItem(tr("Rock Smash"), Encounter::RockSmash);
     ui->comboBoxEncounterSearcher->addItem(tr("Surfing"), Encounter::Surfing);
@@ -255,7 +255,7 @@ void Wild4::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
 
     switch (encounter)
     {
-        case Encounter::Wild:
+        case Encounter::Grass:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;
         case Encounter::Surfing:
@@ -285,7 +285,7 @@ void Wild4::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
 
     switch (encounter)
     {
-        case Encounter::Wild:
+        case Encounter::Grass:
             t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
             break;
         case Encounter::Surfing:
