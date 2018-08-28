@@ -108,19 +108,17 @@ void PokeSpot::on_pushButtonGenerate_clicked()
 
     u32 seed = ui->textBoxSeed->text().toUInt(nullptr, 16);
     u32 initialFrame = ui->textBoxStartingFrame->text().toUInt();
-    u32 maxFrames = ui->textBoxMaxResults->text().toUInt();
+    u32 maxResults = ui->textBoxMaxResults->text().toUInt();
     u16 tid = ui->textBoxTID->text().toUShort();
     u16 sid = ui->textBoxSID->text().toUShort();
 
     int genderRatio = ui->comboBoxGenderRatio->currentIndex();
 
     XDRNG rng(seed, initialFrame - 1);
+    u16 *rngArray = new u16[maxResults + 5];
+    for (u32 x = 0; x < maxResults + 5; x++)
+        rngArray[x] = rng.nextUShort();
 
-    QVector<u16> rngList;
-    for (int x = 0; x < 5; x++)
-        rngList.append(rng.nextUShort());
-
-    u32 max = initialFrame + maxFrames;
     u32 call1, call2, call3;
 
     Frame3 frame = Frame3(tid, sid, tid ^ sid);
@@ -130,20 +128,20 @@ void PokeSpot::on_pushButtonGenerate_clicked()
 
     QVector<bool> spots = ui->comboBoxSpotType->getChecked();
 
-    for (u32 cnt = initialFrame; cnt < max; cnt++, rngList.removeFirst(), rngList.append(rng.nextUShort()))
+    for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
         // Check if frame is a valid pokespot call
-        call1 = rngList[0] % 3;
+        call1 = rngArray[cnt] % 3;
         if (call1 != 0)
             continue;
 
         // Munchlax provides a frame skip
-        call2 = rngList[1] % 100;
+        call2 = rngArray[1 + cnt] % 100;
         if (call2 < 10)
             continue;
 
         // Check what type the pokespot is
-        call3 = rngList[2] % 100;
+        call3 = rngArray[2 + cnt] % 100;
         if (call3 < 50)
         {
             if (!spots[0])
@@ -163,7 +161,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
             frame.setLockReason(tr("Rare"));
         }
 
-        frame.setPID(rngList[4], rngList[3]);
+        frame.setPID(rngArray[4 + cnt], rngArray[3 + cnt]);
         if (compare.comparePID(frame))
         {
             frame.setFrame(cnt);
