@@ -164,7 +164,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         frame.setPID(rngArray[4 + cnt], rngArray[3 + cnt]);
         if (compare.comparePID(frame))
         {
-            frame.setFrame(cnt);
+            frame.setFrame(cnt + initialFrame);
             frames.append(frame);
         }
     }
