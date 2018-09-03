@@ -121,8 +121,8 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         QVector<u32> remain = { 1, 2, 3 };
         remain.removeAll(target);
 
-        u32 obtain[] = { 0, 0, 0, 0 };
-        obtain[target] = 1;
+        bool obtain[] = { false, false, false, false };
+        obtain[target] = true;
 
         // Determine if spread is possible
         // Need to work backwards to see if going forward with 1, 2, and 3 lands on our target
@@ -133,7 +133,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
             if (temp == target)
             {
                 // Check if remaining numbers haven't occured yet
-                if (obtain[remain[0]] == 0 || obtain[remain[1]] == 0)
+                if (!obtain[remain[0]] || !obtain[remain[1]])
                 {
                     // Spread impossible
                     valid = false;
@@ -141,10 +141,10 @@ QStringList JirachiPattern::getPatterns(u32 seed)
                 }
             }
 
-            obtain[temp] = 1;
+            obtain[temp] = true;
 
             // Check to see if pattern passes
-            if (obtain[1] == 1 && obtain[2] == 1 && obtain[3] == 1)
+            if (obtain[1] && obtain[2] && obtain[3])
                 break;
         }
 
@@ -159,7 +159,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
 QString JirachiPattern::getTarget(QString in, int index)
 {
     // (prng >> 30 == 0) then advance 1
-    // (prng >> 30 == 2) then advance 1, (next prng >> 25 > 41) then advance 1 more
+    // (prng >> 30 == 2) then advance 2, (next prng >> 25 > 41) then advance 1 more
     // (prng >> 30 == 1) or (prng >> 30 == 3) then advance 3
 
     // Return an empty string if math doesn't fit
@@ -178,15 +178,15 @@ QString JirachiPattern::getTarget(QString in, int index)
                 return QString();
             break;
         case 2:
-            if ((data[2] >> 30) == 2 && (data[1] >> 25) <= 41) // 6 advances total
-                in = in.mid(0, in.length() - 13) + "T:" + in.mid(in.length() - 13);
+            if ((data[3] >> 30) == 2 && (data[1] >> 25) <= 41) // 7 advances total
+                in = in.mid(0, in.length() - 15) + "T:" + in.mid(in.length() - 15);
             else
                 return QString();
             break;
         case 3:
         default:
-            if ((data[2] >> 30) == 2 && (data[1] >> 25) > 41) // 7 advances total
-                in = in.mid(0, in.length() - 15) + "T:" + in.mid(in.length() - 15);
+            if ((data[3] >> 30) == 2 && (data[1] >> 25) > 41) // 8 advances total
+                in = in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
             else
                 return QString();
             break;
