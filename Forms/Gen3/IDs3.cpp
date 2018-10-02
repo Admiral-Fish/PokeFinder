@@ -95,16 +95,16 @@ void IDs3::on_pushButtonFindFRLGE_clicked()
 {
     frlge->removeRows(0, frlge->rowCount());
 
-    u32 tid = ui->textBoxTIDFRLGE->text().toUInt();
+    u16 tid = ui->textBoxTIDFRLGE->text().toUShort();
     bool usePID = ui->checkBoxPIDFRLGE->isChecked();
     bool useSID = ui->checkBoxSIDFRLGE->isChecked();
     u32 pid = ui->textBoxPIDFRLGE->text().toUInt(nullptr, 16);
-    u32 searchSID = ui->textBoxSIDFRLGE->text().toUInt();
+    u16 searchSID = ui->textBoxSIDFRLGE->text().toUShort();
     u32 minFrame = ui->textBoxMinFrameFRLGE->text().toUInt();
     u32 maxResults = ui->textBoxMaxFrameFRLGE->text().toUInt();
 
     PokeRNG rng(tid, minFrame - 1);
-    u32 sid = rng.nextUShort();
+    u16 sid = rng.nextUShort();
 
     u32 max = minFrame + maxResults;
     for (u32 frame = minFrame; frame <= max; ++frame)
@@ -125,8 +125,8 @@ void IDs3::on_pushButtonFindRS_clicked()
     bool useSID = ui->checkBoxSIDRS->isChecked();
     bool useTID = ui->checkBoxTIDRS->isChecked();
     u32 pid = ui->textBoxPIDRS->text().toUInt(nullptr, 16);
-    u32 searchSID = ui->textBoxSIDRS->text().toUInt();
-    u32 searchTID = ui->textBoxTIDRS->text().toUInt();
+    u16 searchSID = ui->textBoxSIDRS->text().toUShort();
+    u16 searchTID = ui->textBoxTIDRS->text().toUShort();
     u32 minFrame = ui->textBoxMinFrameRS->text().toUInt();
     u32 maxResults = ui->textBoxMaxFrameRS->text().toUInt();
 
@@ -137,8 +137,7 @@ void IDs3::on_pushButtonFindRS_clicked()
 
     PokeRNG rng(seed, minFrame);
 
-    u32 tid = rng.nextUShort();
-    u32 sid;
+    u16 tid = rng.nextUShort(), sid;
 
     u32 max = minFrame + maxResults;
     for (u32 frame = minFrame; frame <= max; ++frame)
@@ -160,14 +159,13 @@ void IDs3::on_pushButtonFindXD_clicked()
     bool useSID = ui->checkBoxSIDXD->isChecked();
     bool useTID = ui->checkBoxTIDXD->isChecked();
     u32 pid = ui->textBoxPIDXD->text().toUInt(nullptr, 16);
-    u32 searchSID = ui->textBoxSIDXD->text().toUInt();
-    u32 searchTID = ui->textBoxTIDXD->text().toUInt();
+    u16 searchSID = ui->textBoxSIDXD->text().toUShort();
+    u16 searchTID = ui->textBoxTIDXD->text().toUShort();
     u32 minFrame = ui->textBoxMinFrameXD->text().toUInt();
     u32 maxResults = ui->textBoxMaxFrameXD->text().toUInt();
 
     XDRNG rng(seed, minFrame + 1);
-    u32 sid = rng.nextUShort();
-    u32 tid;
+    u16 sid = rng.nextUShort(), tid;
 
     u32 max = minFrame + maxResults;
     for (u32 frame = minFrame; frame <= max; ++frame)

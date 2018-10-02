@@ -154,6 +154,8 @@ void Stationary4::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->profileTID->setText(tid);
     ui->profileSID->setText(sid);
     ui->profileGame->setText(profile.getVersionString());
+    ui->profileDualSlot->setText(profile.getDualSlotString());
+    ui->profileRadio->setText(profile.getRadioString());
 
     bool flag = profile.getVersion() == Game::HeartGold || profile.getVersion() == Game::SoulSilver;
 

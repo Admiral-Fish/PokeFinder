@@ -56,7 +56,7 @@ int Profile4Model::rowCount(const QModelIndex &parent) const
 int Profile4Model::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return 5;
+    return 7;
 }
 
 QVariant Profile4Model::data(const QModelIndex &index, int role) const
@@ -76,6 +76,10 @@ QVariant Profile4Model::data(const QModelIndex &index, int role) const
                 return profile.getTID();
             case 4:
                 return profile.getSID();
+            case 5:
+                return profile.getDualSlotString();
+            case 6:
+                return profile.getRadioString();
         }
     }
     return QVariant();
@@ -97,6 +101,10 @@ QVariant Profile4Model::headerData(int section, Qt::Orientation orientation, int
                 return tr("TID");
             case 4:
                 return tr("SID");
+            case 5:
+                return tr("Dual Slot");
+            case 6:
+                return tr("Radio");
         }
     }
     return QVariant();

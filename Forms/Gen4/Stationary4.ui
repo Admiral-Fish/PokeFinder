@@ -153,7 +153,7 @@ QPushButton {
       <property name="title">
        <string>Profile</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_10">
+      <layout class="QGridLayout" name="gridLayout_5">
        <item row="0" column="0">
         <widget class="QLabel" name="labelProfiles">
          <property name="maximumSize">
@@ -205,6 +205,20 @@ QPushButton {
          </property>
         </widget>
        </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Radio</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QLabel" name="profileRadio">
+         <property name="text">
+          <string>None</string>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="1">
         <widget class="QPushButton" name="pushButtonProfileManager">
          <property name="styleSheet">
@@ -228,6 +242,20 @@ QPushButton {
         <widget class="QLabel" name="profileSID">
          <property name="text">
           <string notr="true">54321</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Dual Slot</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QLabel" name="profileDualSlot">
+         <property name="text">
+          <string>None</string>
          </property>
         </widget>
        </item>

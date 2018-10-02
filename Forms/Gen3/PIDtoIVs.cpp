@@ -94,8 +94,6 @@ void PIDtoIVs::calcFromPID(u32 pid)
 void PIDtoIVs::calcMethod124(u32 pid)
 {
     RNGCache cache(Method1);
-    PokeRNG forward(0);
-    PokeRNGR backward(0);
 
     u32 pidl = (pid & 0xFFFF) << 16;
     u32 pidh = pid & 0xFFFF0000;
@@ -103,8 +101,8 @@ void PIDtoIVs::calcMethod124(u32 pid)
     QVector<u32> seeds = cache.recoverLower16BitsPID(pidl, pidh);
     for (int i = 0; i < seeds.size(); i++)
     {
-        forward.setSeed(seeds[i], 1);
-        backward.setSeed(seeds[i]);
+        PokeRNG forward(seeds[i], 1);
+        PokeRNGR backward(seeds[i]);
         addSeed(backward.nextUInt(), forward.nextUInt());
     }
 }
@@ -112,12 +110,11 @@ void PIDtoIVs::calcMethod124(u32 pid)
 void PIDtoIVs::calcMethodXD(u32 pid)
 {
     RNGEuclidean euclidean(XDColo);
-    XDRNGR backward(0);
 
-    QVector<u32> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
-    for (int i = 0; i < seeds.size(); i += 2)
+    QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
+    for (int i = 0; i < seeds.size(); i++)
     {
-        backward.setSeed(seeds[i], 1);
+        XDRNGR backward(seeds[i].first, 1);
         u32 iv2 = backward.nextUShort();
         u32 iv1 = backward.nextUShort();
         addSeedGC(backward.nextUInt(), iv1, iv2);
@@ -127,8 +124,6 @@ void PIDtoIVs::calcMethodXD(u32 pid)
 void PIDtoIVs::calcMethodChannel(u32 pid)
 {
     RNGEuclidean euclidean(XDColo);
-    XDRNGR backward(0);
-    XDRNG forward(0);
 
     u32 pid1 = pid >> 16;
     u32 pid2 = pid & 0xFFFF;
@@ -136,20 +131,20 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
     // Whether PID is xored or unxored is determined by SID which we don't know by only providing a PID
     // So we have to check both xored and unxored and recalculate the PID to see if we have a match
 
-    QVector<u32> seeds = euclidean.recoverLower16BitsPID(pid1 << 16, pid2 << 16);
-    for (int i = 0; i < seeds.size(); i += 2)
+    QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsPID(pid1 << 16, pid2 << 16);
+    for (int i = 0; i < seeds.size(); i++)
     {
-        backward.setSeed(seeds[i]);
+        XDRNGR backward(seeds[i].first);
         u32 sid = backward.nextUShort();
         u32 seed = backward.nextUInt();
 
-        forward.setSeed(seed, 1);
-        u32 val1 = forward.nextUShort();
-        u32 val2 = forward.nextUShort();
+        XDRNG forward(seed, 1);
+        u32 high = forward.nextUShort();
+        u32 low = forward.nextUShort();
 
-        if ((val2 > 7 ? 0 : 1) != (val1 ^ 40122 ^ sid))
-            val1 ^= 0x8000;
-        u32 val = (val1 << 16) | val2;
+        if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
+            high ^= 0x8000;
+        u32 val = (high << 16) | low;
         if (val == pid) // PID matches based on SID
         {
             forward.advanceFrames(3);
@@ -157,20 +152,20 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
         }
     }
 
-    QVector<u32> seedsXOR = euclidean.recoverLower16BitsPID((pid1 ^ 0x8000) << 16, pid2 << 16);
-    for (int i = 0; i < seedsXOR.size(); i += 2)
+    QVector<QPair<u32, u32>> seedsXOR = euclidean.recoverLower16BitsPID((pid1 ^ 0x8000) << 16, pid2 << 16);
+    for (int i = 0; i < seedsXOR.size(); i++)
     {
-        backward.setSeed(seedsXOR[i]);
+        XDRNGR backward(seedsXOR[i].first);
         u32 sid = backward.nextUShort();
         u32 seed = backward.nextUInt();
 
-        forward.setSeed(seed, 1);
-        u32 val1 = forward.nextUShort();
-        u32 val2 = forward.nextUShort();
+        XDRNG forward(seed, 1);
+        u32 high = forward.nextUShort();
+        u32 low = forward.nextUShort();
 
-        if ((val2 > 7 ? 0 : 1) != (val1 ^ 40122 ^ sid))
-            val1 ^= 0x8000;
-        u32 val = (val1 << 16) | val2;
+        if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
+            high ^= 0x8000;
+        u32 val = (high << 16) | low;
         if (val == pid) // PID matches based on SID
         {
             forward.advanceFrames(3);

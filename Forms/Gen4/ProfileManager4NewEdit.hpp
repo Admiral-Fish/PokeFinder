@@ -54,6 +54,7 @@ private:
 private slots:
     void on_pushButtonAccept_clicked();
     void on_pushButtonCancel_clicked();
+    void on_comboBoxVersion_currentIndexChanged(int index);
 
 public:
     explicit ProfileManager4NewEdit(QWidget *parent = nullptr);

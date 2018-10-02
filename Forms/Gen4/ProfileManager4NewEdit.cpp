@@ -44,6 +44,8 @@ ProfileManager4NewEdit::ProfileManager4NewEdit(Profile4 profile, QWidget *parent
     ui->comboBoxLanguage->setCurrentIndex(profile.getLanguage());
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
+    ui->comboBoxDualSlot->setCurrentIndex(ui->comboBoxDualSlot->findData(profile.getDualSlot()));
+    ui->comboBoxRadio->setCurrentIndex(profile.getRadio());
     isEditing = true;
     original = profile;
 }
@@ -88,6 +90,13 @@ void ProfileManager4NewEdit::setupModels()
     ui->comboBoxVersion->setItemData(2, Game::Platinum);
     ui->comboBoxVersion->setItemData(3, Game::HeartGold);
     ui->comboBoxVersion->setItemData(4, Game::SoulSilver);
+
+    ui->comboBoxDualSlot->setItemData(0, Game::Blank);
+    ui->comboBoxDualSlot->setItemData(1, Game::Ruby);
+    ui->comboBoxDualSlot->setItemData(2, Game::Sapphire);
+    ui->comboBoxDualSlot->setItemData(3, Game::FireRed);
+    ui->comboBoxDualSlot->setItemData(4, Game::LeafGreen);
+    ui->comboBoxDualSlot->setItemData(5, Game::Emerald);
 }
 
 void ProfileManager4NewEdit::on_pushButtonAccept_clicked()
@@ -102,7 +111,8 @@ void ProfileManager4NewEdit::on_pushButtonAccept_clicked()
     }
 
     fresh = Profile4(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->text().toUShort(),
-                     ui->textBoxSID->text().toUShort(), ui->comboBoxLanguage->currentIndex());
+                     ui->textBoxSID->text().toUShort(), static_cast<Game>(ui->comboBoxDualSlot->currentData().toInt()), ui->comboBoxRadio->currentIndex(),
+                     ui->comboBoxLanguage->currentIndex());
 
     done(QDialog::Accepted);
 }
@@ -111,4 +121,20 @@ void ProfileManager4NewEdit::on_pushButtonAccept_clicked()
 void ProfileManager4NewEdit::on_pushButtonCancel_clicked()
 {
     done(QDialog::Rejected);
+}
+
+void ProfileManager4NewEdit::on_comboBoxVersion_currentIndexChanged(int index)
+{
+    (void)index;
+
+    Game game = static_cast<Game>(ui->comboBoxVersion->currentData().toInt());
+    if (game == Game::HeartGold || game == Game::SoulSilver)
+    {
+        ui->comboBoxRadio->setEnabled(true);
+    }
+    else
+    {
+        ui->comboBoxRadio->setEnabled(false);
+        ui->comboBoxRadio->setCurrentIndex(0);
+    }
 }

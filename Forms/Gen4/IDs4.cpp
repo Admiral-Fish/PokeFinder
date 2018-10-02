@@ -184,15 +184,13 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
     minDelay += (year - 2000);
     maxDelay += (year - 2000);
 
-    MersenneTwister mt(0);
-
     for (u32 second = 0; second < 60; second++)
     {
         for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
         {
             u32 seed = (((((month * day) + (minute + second)) & 0xFF) << 24) | (hour << 16)) + efgh;
 
-            mt.setSeed(seed, 1);
+            MersenneTwister mt(seed, 1);
             u32 y = mt.nextUInt();
 
             u16 id = y & 0xFFFF;
@@ -212,7 +210,6 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
 void IDs4::searchPID()
 {
     u32 pid = ui->textBoxPID->text().toUInt(nullptr, 16);
-    u16 psv = (pid >> 16) ^ (pid & 0xFFFF);
     bool useTID = ui->checkBoxSearchTIDShinyPID->isChecked();
     u16 tid = ui->textBoxTIDShinyPID->text().toUShort();
     u32 year = ui->textBoxYearShinyPID->text().toUInt();
@@ -225,8 +222,6 @@ void IDs4::searchPID()
     minDelay += (year - 2000);
     maxDelay += (year - 2000);
 
-    MersenneTwister mt(0);
-
     for (u32 efgh = minDelay; efgh <= (infinite ? 0xE8FFFF : maxDelay); efgh++)
     {
         for (u32 ab = 0; ab < 256; ab++)
@@ -234,15 +229,14 @@ void IDs4::searchPID()
             for (u32 cd = 0; cd < 24; cd++)
             {
                 u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                mt.setSeed(seed, 1);
+                MersenneTwister mt(seed, 1);
 
                 u32 y = mt.nextUInt();
 
                 u16 id = y & 0xFFFF;
                 u16 sid = y >> 16;
-                u16 tsv = id ^ sid;
 
-                if ((tsv ^ psv) < 8 && (!useTID || id == tid))
+                if (Utilities::shiny(pid, id, sid) && (!useTID || id == tid))
                 {
                     u32 delay = efgh + 2000 - year;
                     auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
@@ -282,8 +276,6 @@ void IDs4::searchTIDSID()
     minDelay += (year - 2000);
     maxDelay += (year - 2000);
 
-    MersenneTwister mt(0);
-
     for (u32 efgh = minDelay; efgh <= (infinite ? 0xE8FFFF : maxDelay); efgh++)
     {
         for (u32 ab = 0; ab < 256; ab++)
@@ -291,7 +283,7 @@ void IDs4::searchTIDSID()
             for (u32 cd = 0; cd < 24; cd++)
             {
                 u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                mt.setSeed(seed, 1);
+                MersenneTwister mt(seed, 1);
 
                 u32 y = mt.nextUInt();
 
