@@ -34,7 +34,7 @@ class IVFilter : public QWidget
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::IVFilter *ui;
@@ -73,7 +73,7 @@ private slots:
 
 public:
     explicit IVFilter(QWidget *parent = nullptr);
-    ~IVFilter();
+    ~IVFilter() override;
     QVector<quint32> getEvals();
     QVector<quint32> getValues();
     QVector<quint32> getLower();

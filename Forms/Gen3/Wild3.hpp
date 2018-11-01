@@ -50,7 +50,7 @@ class Wild3 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void updateView(QVector<Frame3>);
@@ -114,7 +114,7 @@ private slots:
 
 public:
     explicit Wild3(QWidget *parent = nullptr);
-    ~Wild3();
+    ~Wild3() override;
     void updateProfiles();
 
 };

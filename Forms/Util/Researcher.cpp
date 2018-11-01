@@ -339,7 +339,7 @@ void Researcher::on_pushButtonNext_clicked()
     }
 }
 
-u64 Researcher::getCustom(QString text, ResearcherFrame frame, QVector<ResearcherFrame> frames)
+u64 Researcher::getCustom(const QString &text, ResearcherFrame frame, QVector<ResearcherFrame> frames)
 {
     switch (keys[text])
     {
@@ -374,23 +374,23 @@ u64 Researcher::getCustom(QString text, ResearcherFrame frame, QVector<Researche
         case 14:
             return frame.getCustom(8);
         case 15:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(0);
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(0);
         case 16:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(1);
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(1);
         case 17:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(2);
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(2);
         case 18:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(3);
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(3);
         case 19:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(4);
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(4);
         case 20:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(5);
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(5);
         case 21:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(6);
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(6);
         case 22:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(7);
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(7);
         case 23:
-            return frames.size() == 0 ? 0 : frames[frames.size() - 1].getCustom(8);
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(8);
         default:
             return 0;
     }

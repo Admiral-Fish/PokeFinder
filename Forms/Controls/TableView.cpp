@@ -19,6 +19,10 @@
 
 #include "TableView.hpp"
 
+TableView::TableView(QWidget *parent) : QTableView(parent)
+{
+}
+
 void TableView::resizeEvent(QResizeEvent *event)
 {
     QTableView::resizeEvent(event);

@@ -30,7 +30,7 @@
 #include <PokeFinderCore/Objects/Utilities.hpp>
 #include <PokeFinderCore/Gen4/HGSSRoamer.hpp>
 
-typedef uint32_t u32;
+using u32 = uint32_t;
 
 class DateTime
 {
@@ -43,9 +43,9 @@ private:
     HGSSRoamer info;
 
 public:
-    DateTime();
-    DateTime(QDateTime dateTime, u32 delay, Game version, QVector<bool> roamers, QVector<u16> routes);
-    DateTime(QDateTime dateTime, u32 delay, Game version, HGSSRoamer info);
+    DateTime() = default;
+    DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u16> &routes);
+    DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info);
     QString sequence();
     QString getDate();
     QString getTime();

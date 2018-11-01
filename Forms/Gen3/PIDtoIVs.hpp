@@ -35,7 +35,7 @@
 #include <PokeFinderCore/RNG/RNGEuclidean.hpp>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 
-typedef uint32_t u32;
+using u32 = uint32_t;
 
 namespace Ui
 {
@@ -47,7 +47,7 @@ class PIDtoIVs : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void moveResultsToStationary(QString, QString, u32, u32, u32, u32, u32, u32);
@@ -78,7 +78,7 @@ private slots:
 
 public:
     explicit PIDtoIVs(QWidget *parent = nullptr);
-    ~PIDtoIVs();
+    ~PIDtoIVs() override;
 
 };
 

@@ -50,8 +50,8 @@ private slots:
     void on_pushButtonCancel_clicked();
 
 public:
-    explicit SearchCoinFlips(QVector<DateTime> model, QWidget *parent = nullptr);
-    ~SearchCoinFlips();
+    explicit SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent = nullptr);
+    ~SearchCoinFlips() override;
     QVector<bool> possibleResults();
 };
 

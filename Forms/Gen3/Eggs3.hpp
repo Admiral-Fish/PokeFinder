@@ -38,7 +38,7 @@ class Eggs3 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void alertProfiles(int);
@@ -70,7 +70,7 @@ private slots:
 
 public:
     explicit Eggs3(QWidget *parent = nullptr);
-    ~Eggs3();
+    ~Eggs3() override;
     void updateProfiles();
 
 };

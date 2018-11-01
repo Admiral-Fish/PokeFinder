@@ -51,7 +51,7 @@ class Stationary3 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void updateView(QVector<Frame3>);
@@ -76,7 +76,7 @@ private:
     void updateSearch();
 
 public slots:
-    void moveResults(QString seed, QString method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
+    void moveResults(const QString &seed, const QString &method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
 
 private slots:
     void on_generate_clicked();
@@ -104,7 +104,7 @@ private slots:
 
 public:
     explicit Stationary3(QWidget *parent = nullptr);
-    ~Stationary3();
+    ~Stationary3() override;
     void updateProfiles();
 
 };

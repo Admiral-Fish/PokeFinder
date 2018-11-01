@@ -42,7 +42,7 @@ class Eggs4 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void updatePID(QVector<Frame4>);
@@ -90,7 +90,7 @@ private slots:
 
 public:
     explicit Eggs4(QWidget *parent = nullptr);
-    ~Eggs4();
+    ~Eggs4() override;
     void updateProfiles();
 
 };

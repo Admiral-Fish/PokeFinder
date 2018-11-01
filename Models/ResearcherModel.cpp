@@ -1,3 +1,5 @@
+#include <utility>
+
 /*
  * This file is part of PokéFinder
  * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
@@ -24,9 +26,9 @@ ResearcherModel::ResearcherModel(QObject *parent, bool is64Bit) : QAbstractTable
     flag = is64Bit;
 }
 
-void ResearcherModel::setModel(QVector<ResearcherFrame> frames)
+void ResearcherModel::setModel(const QVector<ResearcherFrame> &frames)
 {
-    if (frames.empty())
+    if (frames.isEmpty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
@@ -36,7 +38,7 @@ void ResearcherModel::setModel(QVector<ResearcherFrame> frames)
 
 void ResearcherModel::clear()
 {
-    if (model.empty())
+    if (model.isEmpty())
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
@@ -50,7 +52,7 @@ void ResearcherModel::setFlag(bool is64Bit)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-void ResearcherModel::setHex(QVector<bool> hex)
+void ResearcherModel::setHex(const QVector<bool> &hex)
 {
     this->hex = hex;
 }
@@ -71,7 +73,7 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        ResearcherFrame frame = model[index.row()];
+        auto frame = model.at(index.row());
         if (flag)
         {
             switch (index.column())
@@ -227,7 +229,7 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
     return QVariant();
 }
 
-QModelIndex ResearcherModel::search(QString string, u64 result, int row)
+QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
 {
     int column = 0;
     u64 (*getResult)(ResearcherFrame) = nullptr;

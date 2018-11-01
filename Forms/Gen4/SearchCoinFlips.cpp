@@ -20,7 +20,7 @@
 #include "SearchCoinFlips.hpp"
 #include "ui_SearchCoinFlips.h"
 
-SearchCoinFlips::SearchCoinFlips(QVector<DateTime> model, QWidget *parent) :
+SearchCoinFlips::SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchCoinFlips)
 {
@@ -79,9 +79,9 @@ void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &arg1)
     int num = 0;
 
     possible.clear();
-    for (int i = 0; i < data.size(); i++)
+    for (auto &i : data)
     {
-        QStringList compare = Utilities::coinFlips(data[i].getSeed(), 15).split(",", QString::SkipEmptyParts);
+        QStringList compare = Utilities::coinFlips(i.getSeed(), 15).split(",", QString::SkipEmptyParts);
 
         bool pass = true;
         for (int j = 0; j < results.size(); j++)

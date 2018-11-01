@@ -21,8 +21,8 @@
 
 ResearcherFrame::ResearcherFrame()
 {
-    for (int i = 0; i < 10; i++)
-        custom[i] = 0;
+    for (auto &i : custom)
+        i = 0;
 
     rng64Bit = false;
     full32 = 0;
@@ -32,8 +32,8 @@ ResearcherFrame::ResearcherFrame()
 
 ResearcherFrame::ResearcherFrame(bool rng64Bit, u32 frame)
 {
-    for (int i = 0; i < 10; i++)
-        custom[i] = 0;
+    for (auto &i : custom)
+        i = 0;
 
     this->rng64Bit = rng64Bit;
     full32 = 0;

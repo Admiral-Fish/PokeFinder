@@ -1,3 +1,7 @@
+#include <utility>
+
+#include <utility>
+
 /*
  * This file is part of PokéFinder
  * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
@@ -110,7 +114,7 @@ void Eggs4::updateProfiles()
 
     ui->comboBoxProfiles->clear();
 
-    for (auto profile : profiles)
+    for (const auto &profile : profiles)
         ui->comboBoxProfiles->addItem(profile.getProfileName());
 
     QSettings setting;
@@ -156,19 +160,19 @@ void Eggs4::on_comboBoxProfiles_currentIndexChanged(int index)
 
 void Eggs4::on_pushButtonProfileManager_clicked()
 {
-    ProfileManager4 *manager = new ProfileManager4();
+    auto *manager = new ProfileManager4();
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
 }
 
 void Eggs4::updateViewPID(QVector<Frame4> frames)
 {
-    searcherPID->addItems(frames);
+    searcherPID->addItems(std::move(frames));
 }
 
 void Eggs4::updateViewIVs(QVector<Frame4> frames)
 {
-    searcherIVs->addItems(frames);
+    searcherIVs->addItems(std::move(frames));
 }
 
 void Eggs4::updateProgressPID()
@@ -265,7 +269,7 @@ void Eggs4::on_pushButtonGenerate_clicked()
 
 void Eggs4::on_pushButtonGeneratePID_clicked()
 {
-    if (isSearching[0] == true)
+    if (isSearching[0])
     {
         cancel[0] = true;
     }
@@ -291,7 +295,7 @@ void Eggs4::on_pushButtonGeneratePID_clicked()
 
 void Eggs4::on_pushButtonGenerateIVs_clicked()
 {
-    if (isSearching[1] == true)
+    if (isSearching[1])
     {
         cancel[1] = true;
     }

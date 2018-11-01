@@ -20,7 +20,7 @@
 #include "SearchCalls.hpp"
 #include "ui_SearchCalls.h"
 
-SearchCalls::SearchCalls(QVector<DateTime> model, QVector<bool> roamers, QVector<u32> routes, QWidget *parent) :
+SearchCalls::SearchCalls(const QVector<DateTime> &model, QVector<bool> roamers, QVector<u32> routes, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchCalls)
 {
@@ -28,8 +28,8 @@ SearchCalls::SearchCalls(QVector<DateTime> model, QVector<bool> roamers, QVector
     setAttribute(Qt::WA_QuitOnClose, false);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
-    this->roamers = roamers;
-    this->routes = routes;
+    this->roamers = std::move(roamers);
+    this->routes = std::move(routes);
 
     data = model;
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
@@ -88,9 +88,9 @@ void SearchCalls::on_lineEditCalls_textChanged(const QString &arg1)
     int num = 0;
 
     possible.clear();
-    for (int i = 0; i < data.size(); i++)
+    for (auto &i : data)
     {
-        QString str = Utilities::getCalls(data[i].getSeed(), 15, data[i].getInfo());
+        QString str = Utilities::getCalls(i.getSeed(), 15, i.getInfo());
 
         if (str.contains("skipped"))
         {

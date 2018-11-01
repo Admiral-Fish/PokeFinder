@@ -24,9 +24,9 @@ Egg3Model::Egg3Model(QObject *parent, Method method) : QAbstractTableModel(paren
     this->method = method;
 }
 
-void Egg3Model::setModel(QVector<Frame3> frames)
+void Egg3Model::setModel(const QVector<Frame3> &frames)
 {
-    if (frames.empty())
+    if (frames.isEmpty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
@@ -36,7 +36,7 @@ void Egg3Model::setModel(QVector<Frame3> frames)
 
 void Egg3Model::clear()
 {
-    if (model.empty())
+    if (model.isEmpty())
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
@@ -79,7 +79,7 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        Frame3 frame = model[index.row()];
+        auto frame = model.at(index.row());
         switch (method)
         {
             case Method::EBred:

@@ -99,7 +99,7 @@ void IDs4::updateProgressBar()
 
 void IDs4::on_pushButtonSearchShinyPID_clicked()
 {
-    if (isSearching == true && ui->pushButtonSearchShinyPID->text() == tr("Cancel"))
+    if (isSearching && ui->pushButtonSearchShinyPID->text() == tr("Cancel"))
     {
         cancel = true;
     }
@@ -124,7 +124,7 @@ void IDs4::on_pushButtonSearchShinyPID_clicked()
 
 void IDs4::on_pushButtonSearchTIDSID_clicked()
 {
-    if (isSearching == true && ui->pushButtonSearchTIDSID->text() == tr("Cancel"))
+    if (isSearching && ui->pushButtonSearchTIDSID->text() == tr("Cancel"))
     {
         cancel = true;
     }

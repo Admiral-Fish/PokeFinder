@@ -75,7 +75,7 @@ void MainWindow::changeEvent(QEvent *event)
 
 void MainWindow::setupLanguage()
 {
-    QActionGroup *langGroup = new QActionGroup(ui->menuLanguage);
+    auto *langGroup = new QActionGroup(ui->menuLanguage);
     connect(langGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotLanguageChanged(QAction *)));
     langGroup->setExclusive(true);
     QStringList files = QDir(langPath).entryList(QStringList("PokeFinder_*.qm"));
@@ -89,7 +89,7 @@ void MainWindow::setupLanguage()
         locale.truncate(locale.lastIndexOf('.'));
         locale.remove(0, locale.indexOf('_') + 1);
 
-        QAction *action = new QAction(this);
+        auto *action = new QAction(this);
 
         action->setCheckable(true);
         action->setData(locale);
@@ -150,7 +150,6 @@ void MainWindow::loadLanguage(const QString &lang)
         currLang = lang;
         QLocale locale = QLocale(currLang);
         QLocale::setDefault(locale);
-        QString languageName = QLocale::languageToString(locale.language());
         switchTranslator(translator, QString("PokeFinder_%1.qm").arg(currLang));
     }
 }
@@ -221,7 +220,7 @@ void MainWindow::checkUpdates()
 
 void MainWindow::on_actionResearcher_triggered()
 {
-    Researcher *r = new Researcher();
+    auto *r = new Researcher();
     r->show();
     r->raise();
 }
@@ -231,7 +230,7 @@ void MainWindow::on_pushButtonStationary3_clicked()
     if (!stationary3)
     {
         stationary3 = new Stationary3();
-        connect(stationary3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+        connect(stationary3, &Stationary3::alertProfiles, this, &MainWindow::updateProfiles);
     }
     stationary3->show();
     stationary3->raise();
@@ -242,7 +241,7 @@ void MainWindow::on_pushButtonWild3_clicked()
     if (!wild3)
     {
         wild3 = new Wild3();
-        connect(wild3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+        connect(wild3, &Wild3::alertProfiles, this, &MainWindow::updateProfiles);
     }
     wild3->show();
     wild3->raise();
@@ -253,7 +252,7 @@ void MainWindow::on_pushButtonEgg3_clicked()
     if (!egg3)
     {
         egg3 = new Eggs3();
-        connect(egg3, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+        connect(egg3, &Eggs3::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg3->show();
     egg3->raise();
@@ -271,42 +270,42 @@ void MainWindow::on_pushButtonIDs3_clicked()
 
 void MainWindow::on_action16BitSeedtoTime_triggered()
 {
-    SeedToTime3 *seedToTime = new SeedToTime3();
+    auto *seedToTime = new SeedToTime3();
     seedToTime->show();
     seedToTime->raise();
 }
 
 void MainWindow::on_actionJirachiPattern_triggered()
 {
-    JirachiPattern *jirachi = new JirachiPattern();
+    auto *jirachi = new JirachiPattern();
     jirachi->show();
     jirachi->raise();
 }
 
 void MainWindow::on_actionPokeSpot_triggered()
 {
-    PokeSpot *pokeSpot = new PokeSpot();
+    auto *pokeSpot = new PokeSpot();
     pokeSpot->show();
     pokeSpot->raise();
 }
 
 void MainWindow::on_actionIVtoPID_triggered()
 {
-    IVtoPID *ivToPID = new IVtoPID();
+    auto *ivToPID = new IVtoPID();
     ivToPID->show();
     ivToPID->raise();
 }
 
 void MainWindow::on_actionGameCubeRTC_triggered()
 {
-    GameCubeRTC *rtc = new GameCubeRTC();
+    auto *rtc = new GameCubeRTC();
     rtc->show();
     rtc->raise();
 }
 
 void MainWindow::on_actionPIDtoIV_triggered()
 {
-    PIDtoIVs *pidToIV = new PIDtoIVs();
+    auto *pidToIV = new PIDtoIVs();
     if (stationary3)
     {
         connect(pidToIV, &PIDtoIVs::moveResultsToStationary, stationary3, &Stationary3::moveResults);
@@ -320,7 +319,7 @@ void MainWindow::on_pushButtonStationary4_clicked()
     if (!stationary4)
     {
         stationary4 = new Stationary4();
-        connect(stationary4, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+        connect(stationary4, &Stationary4::alertProfiles, this, &MainWindow::updateProfiles);
     }
     stationary4->show();
     stationary4->raise();
@@ -331,7 +330,8 @@ void MainWindow::on_pushButtonWild4_clicked()
     if (!wild4)
     {
         wild4 = new Wild4();
-        connect(wild4, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+        // TODO idk dude
+        //connect(wild4, &Wild4::alertProfiles, &MainWindow::updateProfiles);
     }
     wild4->show();
     wild4->raise();
@@ -342,7 +342,7 @@ void MainWindow::on_pushButtonEgg4_clicked()
     if (!egg4)
     {
         egg4 = new Eggs4();
-        connect(egg4, SIGNAL (alertProfiles(int)), this, SLOT (updateProfiles(int)));
+        connect(egg4, &Eggs4::alertProfiles, this, &MainWindow::updateProfiles);
     }
     egg4->show();
     egg4->raise();
@@ -360,14 +360,14 @@ void MainWindow::on_pushButtonIDs4_clicked()
 
 void MainWindow::on_actionSeed_to_Time_triggered()
 {
-    SeedtoTime4 *seedToTime = new SeedtoTime4();
+    auto *seedToTime = new SeedtoTime4();
     seedToTime->show();
     seedToTime->raise();
 }
 
 void MainWindow::on_actionIV_to_PID_triggered()
 {
-    IVtoPID *ivToPID = new IVtoPID();
+    auto *ivToPID = new IVtoPID();
     ivToPID->show();
     ivToPID->raise();
 }

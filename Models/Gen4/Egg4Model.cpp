@@ -25,9 +25,9 @@ Egg4GeneratorModel::Egg4GeneratorModel(QObject *parent, Method method)
     this->method = method;
 }
 
-void Egg4GeneratorModel::setModel(QVector<Frame4> frames)
+void Egg4GeneratorModel::setModel(const QVector<Frame4> &frames)
 {
-    if (frames.empty())
+    if (frames.isEmpty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
@@ -37,7 +37,7 @@ void Egg4GeneratorModel::setModel(QVector<Frame4> frames)
 
 void Egg4GeneratorModel::clear()
 {
-    if (model.empty())
+    if (model.isEmpty())
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
@@ -78,7 +78,7 @@ QVariant Egg4GeneratorModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        Frame4 frame = model[index.row()];
+        auto frame = model.at(index.row());
         switch (method)
         {
             case Method::Gen4Normal:
@@ -242,9 +242,9 @@ Egg4SearcherModel::Egg4SearcherModel(QObject *parent, Method method)
     this->method = method;
 }
 
-void Egg4SearcherModel::setModel(QVector<Frame4> frames)
+void Egg4SearcherModel::setModel(const QVector<Frame4> &frames)
 {
-    if (frames.empty())
+    if (frames.isEmpty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
@@ -252,7 +252,7 @@ void Egg4SearcherModel::setModel(QVector<Frame4> frames)
     emit endInsertRows();
 }
 
-void Egg4SearcherModel::addItems(QVector<Frame4> frames)
+void Egg4SearcherModel::addItems(const QVector<Frame4> &frames)
 {
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
@@ -301,7 +301,7 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        Frame4 frame = model[index.row()];
+        auto frame = model.at(index.row());
         switch (method)
         {
             case Method::Gen4Normal:

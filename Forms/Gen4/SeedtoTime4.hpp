@@ -42,7 +42,7 @@ class SeedtoTime4 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::SeedtoTime4 *ui;
@@ -71,8 +71,8 @@ private slots:
 
 public:
     explicit SeedtoTime4(QWidget *parent = nullptr);
-    explicit SeedtoTime4(QString seed, Profile4 profile, QWidget *parent = nullptr);
-    ~SeedtoTime4();
+    explicit SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *parent = nullptr);
+    ~SeedtoTime4() override;
 
 };
 

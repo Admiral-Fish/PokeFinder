@@ -1,3 +1,5 @@
+#include <utility>
+
 /*
  * This file is part of PokéFinder
  * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
@@ -79,7 +81,7 @@ void Wild3::on_checkBoxDelayGenerator_clicked()
 
 void Wild3::updateViewSearcher(QVector<Frame3> frames)
 {
-    s->addItems(frames);
+    s->addItems(std::move(frames));
 }
 
 void Wild3::updateProfiles()
@@ -88,7 +90,7 @@ void Wild3::updateProfiles()
 
     QVector<Profile3> temp;
 
-    for (auto profile : profiles)
+    for (const auto &profile : profiles)
         if (profile.getVersion() != Game::Colosseum && profile.getVersion() != Game::Gales)
             temp.append(profile);
 
@@ -97,7 +99,7 @@ void Wild3::updateProfiles()
 
     ui->comboBoxProfiles->clear();
 
-    for (auto profile : profiles)
+    for (const auto &profile : profiles)
         ui->comboBoxProfiles->addItem(profile.getProfileName());
 
     QSettings setting;
@@ -324,7 +326,7 @@ void Wild3::on_generate_clicked()
 
 void Wild3::on_search_clicked()
 {
-    if (isSearching == true)
+    if (isSearching)
     {
         cancel = true;
     }
@@ -514,7 +516,7 @@ void Wild3::centerFramesAndSetTargetGenerator(u32 centerFrames)
 void Wild3::seedToTime()
 {
     u32 seed = s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
-    SeedToTime3 *seedToTime = new SeedToTime3(seed);
+    auto *seedToTime = new SeedToTime3(seed);
     seedToTime->show();
     seedToTime->raise();
 }
@@ -665,8 +667,8 @@ void Wild3::on_pushButtonLeadGenerator_clicked()
 
 void Wild3::on_pushButtonProfileManager_clicked()
 {
-    ProfileManager3 *manager = new ProfileManager3();
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
+    auto *manager = new ProfileManager3();
+    connect(manager, &ProfileManager3::updateProfiles, this, &Wild3::refreshProfiles);
     manager->show();
 }
 

@@ -78,7 +78,7 @@ void JirachiPattern::generate(u32 seed)
     }
     else
     {
-        for (auto str : result)
+        for (const auto &str : result)
             model->appendRow(new QStandardItem(str));
     }
 }

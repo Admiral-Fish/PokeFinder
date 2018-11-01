@@ -50,7 +50,7 @@ public:
     QTextBox(QWidget *parent = nullptr);
     void setValues(InputType type);
     void setValues(quint64 minValue, quint64 maxValue, int base = 10);
-    void setFilter(QString string);
+    void setFilter(const QString &string);
     void setValue(quint64 value);
     void setBase(int base);
 

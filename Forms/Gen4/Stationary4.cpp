@@ -1,3 +1,5 @@
+#include <utility>
+
 /*
  * This file is part of PokéFinder
  * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
@@ -127,7 +129,7 @@ void Stationary4::updateProfiles()
 
     ui->comboBoxProfiles->clear();
 
-    for (auto profile : profiles)
+    for (const auto &profile : profiles)
         ui->comboBoxProfiles->addItem(profile.getProfileName());
 
     QSettings setting;
@@ -323,8 +325,8 @@ void Stationary4::on_search_clicked()
 
 void Stationary4::on_pushButtonProfileManager_clicked()
 {
-    ProfileManager4 *manager = new ProfileManager4();
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
+    auto *manager = new ProfileManager4();
+    connect(manager, &ProfileManager4::updateProfiles, this, &Stationary4::refreshProfiles);
     manager->show();
 }
 
@@ -335,7 +337,7 @@ void Stationary4::updateProgressBar()
 
 void Stationary4::updateViewSearcher(QVector<Frame4> frames)
 {
-    s->addItems(frames);
+    s->addItems(std::move(frames));
 }
 
 void Stationary4::on_pushButtonLeadGenerator_clicked()

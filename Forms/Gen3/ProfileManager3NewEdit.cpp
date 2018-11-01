@@ -31,7 +31,7 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(QWidget *parent) :
     setupModels();
 }
 
-ProfileManager3NewEdit::ProfileManager3NewEdit(Profile3 profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManager3NewEdit)
+ProfileManager3NewEdit::ProfileManager3NewEdit(const Profile3 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManager3NewEdit)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);

@@ -29,7 +29,7 @@
 #include <QChar>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 
-typedef uint32_t u32;
+using u32 = uint32_t;
 
 namespace Ui
 {
@@ -41,7 +41,7 @@ class JirachiPattern : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::JirachiPattern *ui;
@@ -58,7 +58,7 @@ private slots:
 
 public:
     explicit JirachiPattern(QWidget *parent = nullptr);
-    ~JirachiPattern();
+    ~JirachiPattern() override;
 
 };
 

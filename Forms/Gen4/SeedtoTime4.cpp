@@ -31,7 +31,7 @@ SeedtoTime4::SeedtoTime4(QWidget *parent) :
     setupModels();
 }
 
-SeedtoTime4::SeedtoTime4(QString seed, Profile4 profile, QWidget *parent) :
+SeedtoTime4::SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SeedtoTime4)
 {
@@ -185,6 +185,7 @@ QVector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minu
 
     u32 delay = target.getDelay();
 
+    // TODO Unused ???
     QVector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
     QVector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
 
@@ -322,7 +323,7 @@ void SeedtoTime4::on_pushButtonSearchFlips_clicked()
     if (dpptCalibrate->rowCount() == 0)
         return;
 
-    SearchCoinFlips *search = new SearchCoinFlips(dpptCalibrate->getData());
+    auto *search = new SearchCoinFlips(dpptCalibrate->getData());
     if (search->exec() == QDialog::Rejected)
     {
         delete search;
@@ -354,7 +355,7 @@ void SeedtoTime4::on_pushButtonSearchCalls_clicked()
     QVector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
     QVector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
 
-    SearchCalls *search = new SearchCalls(hgssCalibrate->getData(), roamer, routes);
+    auto *search = new SearchCalls(hgssCalibrate->getData(), roamer, routes);
     if (search->exec() == QDialog::Rejected)
     {
         delete search;
@@ -390,7 +391,7 @@ void SeedtoTime4::on_checkBoxSecondsHGSS_clicked(bool checked)
 
 void SeedtoTime4::on_pushButtonMap_clicked()
 {
-    RoamerMap *map = new RoamerMap();
+    auto *map = new RoamerMap();
     map->show();
     map->raise();
 }

@@ -43,15 +43,15 @@ private:
 
 public:
     ResearcherModel(QObject *parent, bool is64Bit);
-    void setModel(QVector<ResearcherFrame>);
+    void setModel(const QVector<ResearcherFrame> &);
     void clear();
     void setFlag(bool is64Bit);
-    void setHex(QVector<bool> hex);
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-    QModelIndex search(QString string, u64 result, int row);
+    void setHex(const QVector<bool> &hex);
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    QModelIndex search(const QString &string, u64 result, int row);
 
 };
 

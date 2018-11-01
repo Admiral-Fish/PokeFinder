@@ -1,3 +1,5 @@
+#include <utility>
+
 /*
  * This file is part of PokéFinder
  * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
@@ -163,7 +165,7 @@ void Stationary3::updateProfiles()
 
     ui->comboBoxProfiles->clear();
 
-    for (auto profile : profiles)
+    for (const auto &profile : profiles)
         ui->comboBoxProfiles->addItem(profile.getProfileName());
 
     QSettings setting;
@@ -234,7 +236,7 @@ void Stationary3::on_anyHiddenPowerSearcher_clicked()
 
 void Stationary3::updateViewSearcher(QVector<Frame3> frames)
 {
-    s->addItems(frames);
+    s->addItems(std::move(frames));
 }
 
 void Stationary3::on_checkBoxDelayGenerator_clicked()
@@ -368,7 +370,7 @@ void Stationary3::on_search_clicked()
     }
 }
 
-void Stationary3::moveResults(QString seed, QString method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe)
+void Stationary3::moveResults(const QString &seed, const QString &method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe)
 {
     if (seed != "")
         ui->initialSeedGenerator->setText(seed);
@@ -452,7 +454,7 @@ void Stationary3::centerFramesAndSetTargetGenerator(u32 centerFrames)
 void Stationary3::seedToTime()
 {
     u32 seed = s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
-    SeedToTime3 *seedToTime = new SeedToTime3(seed);
+    auto *seedToTime = new SeedToTime3(seed);
     seedToTime->show();
     seedToTime->raise();
 }
@@ -582,7 +584,7 @@ void Stationary3::on_tableViewSearcher_customContextMenuRequested(const QPoint &
 
 void Stationary3::on_pushButtonProfileManager_clicked()
 {
-    ProfileManager3 *manager = new ProfileManager3();
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
+    auto *manager = new ProfileManager3();
+    connect(manager, &ProfileManager3::updateProfiles, this, &Stationary3::refreshProfiles);
     manager->show();
 }

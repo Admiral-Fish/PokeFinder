@@ -24,12 +24,12 @@ Searcher3Model::Searcher3Model(QObject *parent, Method method) : QAbstractTableM
     this->method = method;
 }
 
-void Searcher3Model::setModel(QVector<Frame3> frames)
+void Searcher3Model::setModel(const QVector<Frame3> &frames)
 {
     model = frames;
 }
 
-void Searcher3Model::addItems(QVector<Frame3> frames)
+void Searcher3Model::addItems(const QVector<Frame3> &frames)
 {
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
@@ -39,7 +39,7 @@ void Searcher3Model::addItems(QVector<Frame3> frames)
 
 void Searcher3Model::clear()
 {
-    if (model.empty())
+    if (model.isEmpty())
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
@@ -712,7 +712,7 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        Frame3 frame = model[index.row()];
+        auto frame = model.at(index.row());
         switch (method)
         {
             case Method::MethodH1:

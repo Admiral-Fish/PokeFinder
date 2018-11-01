@@ -29,7 +29,7 @@
 #include <QSettings>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 
-typedef uint32_t u32;
+using u32 = uint32_t;
 
 namespace Ui
 {
@@ -41,7 +41,7 @@ class SeedToTime3 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::SeedToTime3 *ui;
@@ -60,7 +60,7 @@ private slots:
 public:
     explicit SeedToTime3(QWidget *parent = nullptr);
     explicit SeedToTime3(u32 seed, QWidget *parent = nullptr);
-    ~SeedToTime3();
+    ~SeedToTime3() override;
 
 };
 

@@ -25,7 +25,7 @@
 #include <QMessageBox>
 #include <PokeFinderCore/Gen4/Profile4.hpp>
 
-typedef uint32_t u32;
+using u32 = uint32_t;
 
 namespace Ui
 {
@@ -37,7 +37,7 @@ class ProfileManager4NewEdit : public QDialog
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void newProfile(Profile4);
@@ -59,7 +59,7 @@ private slots:
 public:
     explicit ProfileManager4NewEdit(QWidget *parent = nullptr);
     explicit ProfileManager4NewEdit(Profile4 profile, QWidget *parent = nullptr);
-    ~ProfileManager4NewEdit();
+    ~ProfileManager4NewEdit() override;
     Profile4 getNewProfile();
     Profile4 getOriginal();
 

@@ -23,9 +23,9 @@ Wild3Model::Wild3Model(QObject *parent) : QAbstractTableModel(parent)
 {
 }
 
-void Wild3Model::setModel(QVector<Frame3> frames)
+void Wild3Model::setModel(const QVector<Frame3> &frames)
 {
-    if (frames.empty())
+    if (frames.isEmpty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
@@ -35,7 +35,7 @@ void Wild3Model::setModel(QVector<Frame3> frames)
 
 void Wild3Model::clear()
 {
-    if (model.empty())
+    if (model.isEmpty())
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
@@ -59,7 +59,7 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        Frame3 frame = model[index.row()];
+        auto frame = model.at(index.row());
         switch (index.column())
         {
             case 0:

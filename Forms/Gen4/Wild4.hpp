@@ -49,7 +49,7 @@ class Wild4 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void updateView(QVector<Frame4>);
@@ -106,7 +106,7 @@ private slots:
 
 public:
     explicit Wild4(QWidget *parent = nullptr);
-    ~Wild4();
+    ~Wild4() override;
     void updateProfiles();
 
 };

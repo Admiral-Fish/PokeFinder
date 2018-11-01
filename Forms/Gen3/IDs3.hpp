@@ -28,7 +28,7 @@
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
 
-typedef uint32_t u32;
+using u32 = uint32_t;
 
 namespace Ui
 {
@@ -40,7 +40,7 @@ class IDs3 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::IDs3 *ui;
@@ -68,7 +68,7 @@ private slots:
 
 public:
     explicit IDs3(QWidget *parent = nullptr);
-    ~IDs3();
+    ~IDs3() override;
 
 };
 

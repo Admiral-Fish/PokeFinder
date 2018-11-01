@@ -39,7 +39,7 @@ class PokeSpot : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::PokeSpot *ui;
@@ -57,7 +57,7 @@ private slots:
 
 public:
     explicit PokeSpot(QWidget *parent = nullptr);
-    ~PokeSpot();
+    ~PokeSpot() override;
 
 };
 

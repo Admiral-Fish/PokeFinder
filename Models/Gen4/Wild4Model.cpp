@@ -24,9 +24,9 @@ Wild4Model::Wild4Model(QObject *parent, Method method) : QAbstractTableModel(par
     this->method = method;
 }
 
-void Wild4Model::setModel(QVector<Frame4> frames)
+void Wild4Model::setModel(const QVector<Frame4> &frames)
 {
-    if (frames.empty())
+    if (frames.isEmpty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
@@ -36,7 +36,7 @@ void Wild4Model::setModel(QVector<Frame4> frames)
 
 void Wild4Model::clear()
 {
-    if (model.empty())
+    if (model.isEmpty())
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
@@ -76,7 +76,7 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        Frame4 frame = model[index.row()];
+        auto frame = model.at(index.row());
         switch (method)
         {
             case Method::MethodJ:

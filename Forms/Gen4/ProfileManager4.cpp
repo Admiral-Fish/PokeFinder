@@ -61,7 +61,7 @@ void ProfileManager4::setupModels()
 
 void ProfileManager4::on_pushButtonNew_clicked()
 {
-    ProfileManager4NewEdit *dialog = new ProfileManager4NewEdit();
+    auto *dialog = new ProfileManager4NewEdit();
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile4 profile = dialog->getNewProfile();
@@ -89,7 +89,7 @@ void ProfileManager4::on_pushButtonEdit_clicked()
         return;
     }
 
-    ProfileManager4NewEdit *dialog = new ProfileManager4NewEdit(model->getProfile(r));
+    auto *dialog = new ProfileManager4NewEdit(model->getProfile(r));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile4 profile = dialog->getNewProfile();

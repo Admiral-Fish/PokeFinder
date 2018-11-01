@@ -32,7 +32,7 @@ signals:
 
 public:
     Label(QWidget *parent = nullptr);
-    void mousePressEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event) override;
 
 };
 

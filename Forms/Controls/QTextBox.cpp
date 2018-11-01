@@ -96,7 +96,7 @@ void QTextBox::setValues(quint64 minValue, quint64 maxValue, int base)
     filter = QRegExp(base == 10 ? "[^0-9]" : "[^0-9A-F]");
 }
 
-void QTextBox::setFilter(QString string)
+void QTextBox::setFilter(const QString &string)
 {
     filter = QRegExp(string);
 }

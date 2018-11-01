@@ -51,7 +51,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::MainWindow *ui;
@@ -98,7 +98,7 @@ private slots:
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 
 };
 

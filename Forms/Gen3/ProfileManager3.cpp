@@ -62,7 +62,7 @@ void ProfileManager3::setupModels()
 
 void ProfileManager3::on_pushButtonNew_clicked()
 {
-    ProfileManager3NewEdit *dialog = new ProfileManager3NewEdit();
+    auto *dialog = new ProfileManager3NewEdit();
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile3 profile = dialog->getNewProfile();
@@ -90,7 +90,7 @@ void ProfileManager3::on_pushButtonEdit_clicked()
         return;
     }
 
-    ProfileManager3NewEdit *dialog = new ProfileManager3NewEdit(model->getProfile(r));
+    auto *dialog = new ProfileManager3NewEdit(model->getProfile(r));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile3 profile = dialog->getNewProfile();

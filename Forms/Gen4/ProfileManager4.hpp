@@ -25,7 +25,7 @@
 #include <PokeFinderCore/Gen4/Profile4.hpp>
 #include <Models/Gen4/Profile4Model.hpp>
 
-typedef uint32_t u32;
+using u32 = uint32_t;
 
 namespace Ui
 {
@@ -37,7 +37,7 @@ class ProfileManager4 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void updateProfiles();
@@ -56,7 +56,7 @@ private slots:
 
 public:
     explicit ProfileManager4(QWidget *parent = nullptr);
-    ~ProfileManager4();
+    ~ProfileManager4() override;
 
 };
 

@@ -30,22 +30,24 @@
 #include <QModelIndex>
 #include <QClipboard>
 #include <QSettings>
-#include <thread>
+#include <QThread>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 
-typedef uint32_t u32;
+using u32 = uint32_t;
 
 namespace Ui
 {
     class GameCubeRTC;
 }
 
+class Search;
+
 class GameCubeRTC : public QMainWindow
 {
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void updateView(QList<QStandardItem *>);
@@ -55,7 +57,6 @@ private:
     bool isSearching = false;
     bool cancel = false;
     QStandardItemModel *model = new QStandardItemModel(this);
-    QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
     QMenu *contextMenu = new QMenu();
     QModelIndex lastIndex;
     QModelIndex targetFrame;
@@ -63,17 +64,38 @@ private:
     void setupModels();
     void saveSettings();
     void loadSettings();
-    void calcRTC();
 
 private slots:
     void on_pushButtonSearch_clicked();
-    void updateTableView(QList<QStandardItem *> row);
+    void updateTableView(const QList<QStandardItem *> &row);
     void copySeed();
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
 
 public:
     explicit GameCubeRTC(QWidget *parent = nullptr);
-    ~GameCubeRTC();
+    ~GameCubeRTC() override;
+
+};
+
+class Search : public QThread
+{
+    Q_OBJECT
+
+signals:
+    void result(QList<QStandardItem *>);
+
+private:
+    const QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
+    u32 initialSeed, targetSeed;
+    u32 minFrame, maxFrame;
+    bool cancel;
+
+public:
+    Search(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame);
+    void run() override;
+
+public slots:
+    void cancelSearch();
 
 };
 

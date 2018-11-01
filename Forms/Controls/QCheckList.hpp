@@ -34,7 +34,7 @@ class QCheckList : public QComboBox
     Q_OBJECT
 
 protected:
-    bool eventFilter(QObject *object, QEvent *event);
+    bool eventFilter(QObject *object, QEvent *event) override;
 
 private:
     QStandardItemModel *model;
@@ -48,7 +48,7 @@ private slots:
 
 public:
     QCheckList(QWidget *parent = nullptr);
-    ~QCheckList();
+    ~QCheckList() override;
     void setup();
     QVector<bool> getChecked();
     void uncheckAll();

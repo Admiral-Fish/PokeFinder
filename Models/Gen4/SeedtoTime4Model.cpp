@@ -25,9 +25,9 @@ SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, Game version) : Q
     this->version = version;
 }
 
-void SeedtoTime4Model::setModel(QVector<DateTime> times)
+void SeedtoTime4Model::setModel(const QVector<DateTime> &times)
 {
-    if (times.empty())
+    if (times.isEmpty())
         return;
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + times.size() - 1);
@@ -37,7 +37,7 @@ void SeedtoTime4Model::setModel(QVector<DateTime> times)
 
 void SeedtoTime4Model::clear()
 {
-    if (model.empty())
+    if (model.isEmpty())
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
@@ -81,7 +81,7 @@ QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        DateTime frame = model[index.row()];
+        auto frame = model.at(index.row());
         if (calibrate)
         {
             switch (index.column())

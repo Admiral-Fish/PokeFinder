@@ -34,13 +34,13 @@ private:
 
 public:
     Egg3Model(QObject *parent, Method method);
-    void setModel(QVector<Frame3> frames);
+    void setModel(const QVector<Frame3> &frames);
     void clear();
     void setMethod(Method method);
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 };
 

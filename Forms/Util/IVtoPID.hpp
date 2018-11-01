@@ -29,7 +29,7 @@
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <PokeFinderCore/Objects/Nature.hpp>
 
-typedef uint32_t u32;
+using u32 = uint32_t;
 
 namespace Ui
 {
@@ -41,7 +41,7 @@ class IVtoPID : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::IVtoPID *ui;
@@ -56,7 +56,7 @@ private slots:
 
 public:
     explicit IVtoPID(QWidget *parent = nullptr);
-    ~IVtoPID();
+    ~IVtoPID() override;
 
 };
 

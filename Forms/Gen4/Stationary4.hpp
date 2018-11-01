@@ -50,7 +50,7 @@ class Stationary4 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void alertProfiles(int);
@@ -91,7 +91,7 @@ private slots:
 
 public:
     explicit Stationary4(QWidget *parent = nullptr);
-    ~Stationary4();
+    ~Stationary4() override;
     void updateProfiles();
 };
 

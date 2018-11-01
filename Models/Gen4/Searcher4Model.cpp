@@ -24,12 +24,12 @@ Searcher4Model::Searcher4Model(QObject *parent, Method method) : QAbstractTableM
     this->method = method;
 }
 
-void Searcher4Model::setModel(QVector<Frame4> frames)
+void Searcher4Model::setModel(const QVector<Frame4> &frames)
 {
     model = frames;
 }
 
-void Searcher4Model::addItems(QVector<Frame4> frames)
+void Searcher4Model::addItems(const QVector<Frame4> &frames)
 {
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
@@ -39,7 +39,7 @@ void Searcher4Model::addItems(QVector<Frame4> frames)
 
 void Searcher4Model::clear()
 {
-    if (model.empty())
+    if (model.isEmpty())
         return;
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
@@ -646,7 +646,7 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        Frame4 frame = model[index.row()];
+        auto frame = model.at(index.row());
         switch (method)
         {
             case Method::WondercardIVs:

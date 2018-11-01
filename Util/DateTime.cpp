@@ -19,11 +19,7 @@
 
 #include "DateTime.hpp"
 
-DateTime::DateTime()
-{
-}
-
-DateTime::DateTime(QDateTime dateTime, u32 delay, Game version, QVector<bool> roamers, QVector<u16> routes)
+DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u16> &routes)
 {
     this->dateTime = dateTime;
     this->delay = delay;
@@ -32,7 +28,7 @@ DateTime::DateTime(QDateTime dateTime, u32 delay, Game version, QVector<bool> ro
     info = HGSSRoamer(seed, roamers, routes);
 }
 
-DateTime::DateTime(QDateTime dateTime, u32 delay, Game version, HGSSRoamer info)
+DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info)
 {
     this->dateTime = dateTime;
     this->delay = delay;

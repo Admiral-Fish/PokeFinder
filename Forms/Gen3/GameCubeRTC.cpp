@@ -62,7 +62,7 @@ void GameCubeRTC::changeEvent(QEvent *event)
 void GameCubeRTC::setupModels()
 {
     ui->textBoxStartSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxEndSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxTargetSeed->setValues(InputType::Seed32Bit);
     ui->textBoxMinFrame->setValues(InputType::Frame32Bit);
     ui->textBoxMaxFrame->setValues(InputType::Frame32Bit);
 
@@ -88,76 +88,28 @@ void GameCubeRTC::loadSettings()
     if (setting.contains("startSeed")) ui->textBoxStartSeed->setText(setting.value("startSeed").toString());
 }
 
-void GameCubeRTC::updateTableView(QList<QStandardItem *> row)
+void GameCubeRTC::updateTableView(const QList<QStandardItem *> &row)
 {
     model->appendRow(row);
 }
 
-void GameCubeRTC::calcRTC()
-{
-    u32 initSeed = ui->textBoxStartSeed->text().toUInt(nullptr, 16);
-    u32 targetSeed = ui->textBoxEndSeed->text().toUInt(nullptr, 16);
-    u32 minFrame = ui->textBoxMinFrame->text().toUInt();
-    u32 maxFrame = ui->textBoxMaxFrame->text().toUInt();
-
-    XDRNGR back(targetSeed, minFrame);
-    targetSeed = back.getSeed();
-
-    XDRNG rng(initSeed);
-
-    u32 seconds = 0;
-    u32 secoundCount = 0;
-    bool targetHit = false;
-    int minutes = 0;
-
-    while (!targetHit && !cancel)
-    {
-        rng.setSeed(initSeed);
-
-        for (u32 x = 0; x < maxFrame; x++)
-        {
-            if (rng.nextUInt() == targetSeed)
-            {
-                QDateTime finalTime = date.addSecs(seconds);
-                QList<QStandardItem *> row;
-                QString time = finalTime.toString(Qt::SystemLocaleShortDate);
-                row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
-                    << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initSeed, 16).toUpper());
-                emit updateView(row);
-                targetHit = true;
-            }
-        }
-
-        initSeed += 40500000;
-        seconds++;
-        secoundCount++;
-
-        if (secoundCount == 60)
-        {
-            minutes++;
-            secoundCount = 0;
-        }
-    }
-    isSearching = false;
-    ui->pushButtonSearch->setText(tr("Search"));
-}
-
 void GameCubeRTC::on_pushButtonSearch_clicked()
 {
-    if (isSearching)
-    {
-        cancel = true;
-    }
-    else
-    {
-        cancel = false;
-        isSearching = true;
-        model->removeRows(0, model->rowCount());
-        ui->pushButtonSearch->setText(tr("Cancel"));
+    ui->pushButtonSearch->setEnabled(false);
+    ui->pushButtonCancel->setEnabled(true);
 
-        std::thread job(&GameCubeRTC::calcRTC, this);
-        job.detach();
-    }
+    u32 initial = ui->textBoxStartSeed->text().toUInt(nullptr, 16);
+    u32 target = ui->textBoxTargetSeed->text().toUInt(nullptr, 16);
+    u32 start = ui->textBoxMinFrame->text().toUInt();
+    u32 end = ui->textBoxMaxFrame->text().toUInt();
+
+    auto *search = new Search(initial, target, start, end);
+
+    connect(search, &Search::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+    connect(search, &Search::result, this, &GameCubeRTC::updateTableView);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &Search::cancelSearch);
+
+    search->start();
 }
 
 void GameCubeRTC::copySeed()
@@ -173,4 +125,59 @@ void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint 
     lastIndex = ui->tableViewGenerator->indexAt(pos);
 
     contextMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+}
+
+Search::Search(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame)
+{
+    this->initialSeed = initialSeed;
+    this->targetSeed = targetSeed;
+    this->minFrame = minFrame;
+    this->maxFrame = maxFrame;
+    cancel = false;
+
+    connect(this, &QThread::finished, this, &QThread::deleteLater);
+}
+
+void Search::run()
+{
+    XDRNGR back(targetSeed, minFrame);
+    targetSeed = back.getSeed();
+
+    u32 seconds = 0;
+    int secoundCount = 0;
+    int minutes = 0;
+
+    while (!cancel)
+    {
+        XDRNG rng(initialSeed);
+
+        for (u32 x = 0; x < maxFrame; x++)
+        {
+            if (rng.nextUInt() == targetSeed)
+            {
+                QDateTime finalTime = date.addSecs(seconds);
+                QList<QStandardItem *> row;
+                QString time = finalTime.toString(Qt::SystemLocaleShortDate);
+                row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
+                    << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initialSeed, 16).toUpper());
+                emit result(row);
+                return;
+            }
+        }
+
+        initialSeed += 40500000;
+        seconds++;
+        secoundCount++;
+
+        if (secoundCount == 60)
+        {
+            minutes++;
+            secoundCount = 0;
+        }
+    }
+}
+
+void Search::cancelSearch()
+{
+    cancel = true;
 }

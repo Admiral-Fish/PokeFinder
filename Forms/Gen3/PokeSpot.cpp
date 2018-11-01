@@ -115,7 +115,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
     int genderRatio = ui->comboBoxGenderRatio->currentIndex();
 
     XDRNG rng(seed, initialFrame - 1);
-    u16 *rngArray = new u16[maxResults + 5];
+    auto *rngArray = new u16[maxResults + 5];
     for (u32 x = 0; x < maxResults + 5; x++)
         rngArray[x] = rng.nextUShort();
 

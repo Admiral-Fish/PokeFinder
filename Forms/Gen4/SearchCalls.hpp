@@ -53,8 +53,8 @@ private slots:
     void on_pushButtonCancel_clicked();
 
 public:
-    explicit SearchCalls(QVector<DateTime> model, QVector<bool> roamers, QVector<u32> routes, QWidget *parent = nullptr);
-    ~SearchCalls();
+    explicit SearchCalls(const QVector<DateTime> &model, QVector<bool> roamers, QVector<u32> routes, QWidget *parent = nullptr);
+    ~SearchCalls() override;
     QVector<bool> possibleResults();
 
 };

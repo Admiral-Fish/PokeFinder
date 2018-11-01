@@ -36,15 +36,15 @@ private:
 
 public:
     SeedtoTime4Model(QObject *parent, bool flag = false, Game version = Diamond);
-    void setModel(QVector<DateTime> times);
+    void setModel(const QVector<DateTime> &times);
     void clear();
     DateTime getData(int row);
     QVector<DateTime> getData();
     void setFlags(bool flag = false, Game version = Diamond);
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 };
 

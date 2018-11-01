@@ -86,7 +86,7 @@ QPushButton {
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QTextBox" name="textBoxEndSeed">
+     <widget class="QTextBox" name="textBoxTargetSeed">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -155,7 +155,7 @@ QPushButton {
       </property>
      </widget>
     </item>
-    <item row="4" column="0" colspan="2">
+    <item row="4" column="0">
      <widget class="QPushButton" name="pushButtonSearch">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -174,6 +174,16 @@ QPushButton {
       </property>
       <property name="text">
        <string>Search</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="pushButtonCancel">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Cancel</string>
       </property>
      </widget>
     </item>
@@ -222,7 +232,7 @@ QPushButton {
      <x>0</x>
      <y>0</y>
      <width>360</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -241,7 +251,7 @@ QPushButton {
  </customwidgets>
  <tabstops>
   <tabstop>textBoxStartSeed</tabstop>
-  <tabstop>textBoxEndSeed</tabstop>
+  <tabstop>textBoxTargetSeed</tabstop>
   <tabstop>textBoxMinFrame</tabstop>
   <tabstop>textBoxMaxFrame</tabstop>
   <tabstop>pushButtonSearch</tabstop>

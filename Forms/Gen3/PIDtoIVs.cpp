@@ -99,10 +99,10 @@ void PIDtoIVs::calcMethod124(u32 pid)
     u32 pidh = pid & 0xFFFF0000;
 
     QVector<u32> seeds = cache.recoverLower16BitsPID(pidl, pidh);
-    for (int i = 0; i < seeds.size(); i++)
+    for (const auto &seed : seeds)
     {
-        PokeRNG forward(seeds[i], 1);
-        PokeRNGR backward(seeds[i]);
+        PokeRNG forward(seed, 1);
+        PokeRNGR backward(seed);
         addSeed(backward.nextUInt(), forward.nextUInt());
     }
 }
@@ -112,9 +112,9 @@ void PIDtoIVs::calcMethodXD(u32 pid)
     RNGEuclidean euclidean(XDColo);
 
     QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
-    for (int i = 0; i < seeds.size(); i++)
+    for (const auto &pair : seeds)
     {
-        XDRNGR backward(seeds[i].first, 1);
+        XDRNGR backward(pair.first, 1);
         u32 iv2 = backward.nextUShort();
         u32 iv1 = backward.nextUShort();
         addSeedGC(backward.nextUInt(), iv1, iv2);
@@ -132,9 +132,9 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
     // So we have to check both xored and unxored and recalculate the PID to see if we have a match
 
     QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsPID(pid1 << 16, pid2 << 16);
-    for (int i = 0; i < seeds.size(); i++)
+    for (const auto &pair : seeds)
     {
-        XDRNGR backward(seeds[i].first);
+        XDRNGR backward(pair.first);
         u32 sid = backward.nextUShort();
         u32 seed = backward.nextUInt();
 
@@ -153,9 +153,9 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
     }
 
     QVector<QPair<u32, u32>> seedsXOR = euclidean.recoverLower16BitsPID((pid1 ^ 0x8000) << 16, pid2 << 16);
-    for (int i = 0; i < seedsXOR.size(); i++)
+    for (const auto &pair : seedsXOR)
     {
-        XDRNGR backward(seedsXOR[i].first);
+        XDRNGR backward(pair.first);
         u32 sid = backward.nextUShort();
         u32 seed = backward.nextUInt();
 

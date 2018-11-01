@@ -38,7 +38,7 @@ private:
 
 public:
     explicit RoamerMap(QWidget *parent = nullptr);
-    ~RoamerMap();
+    ~RoamerMap() override;
 
 };
 

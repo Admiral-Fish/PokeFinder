@@ -43,7 +43,7 @@ class IDs4 : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 signals:
     void updateProgress();
@@ -72,7 +72,7 @@ private slots:
 
 public:
     explicit IDs4(QWidget *parent = nullptr);
-    ~IDs4();
+    ~IDs4() override;
 
 };
 

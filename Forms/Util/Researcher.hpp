@@ -32,10 +32,10 @@
 #include <Models/ResearcherModel.hpp>
 #include <Util/ResearcherFrame.hpp>
 
-typedef uint64_t u64;
-typedef uint32_t u32;
-typedef u64 (*func)(u64, u64);
-typedef QHash<QString, func> Calculator;
+using u64 = uint64_t;
+using u32 = uint32_t;
+using func = u64 (*)(u64, u64);
+using Calculator = QHash<QString, func>;
 
 namespace Ui
 {
@@ -47,14 +47,14 @@ class Researcher : public QMainWindow
     Q_OBJECT
 
 protected:
-    void changeEvent(QEvent *);
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::Researcher *ui;
     ResearcherModel *model = new ResearcherModel(this, false);
     QHash<QString, int> keys;
 
-    u64 getCustom(QString text, ResearcherFrame frame, QVector<ResearcherFrame> frames);
+    u64 getCustom(const QString &text, ResearcherFrame frame, QVector<ResearcherFrame> frames);
     void setupModels();
     void translate();
     void resizeHeader();
@@ -78,7 +78,7 @@ private slots:
 
 public:
     explicit Researcher(QWidget *parent = nullptr);
-    ~Researcher();
+    ~Researcher() override;;
 
 };
 
