@@ -330,8 +330,7 @@ void MainWindow::on_pushButtonWild4_clicked()
     if (!wild4)
     {
         wild4 = new Wild4();
-        // TODO idk dude
-        //connect(wild4, &Wild4::alertProfiles, &MainWindow::updateProfiles);
+        connect(wild4, &Wild4::alertProfiles, this, &MainWindow::updateProfiles);
     }
     wild4->show();
     wild4->raise();
