@@ -51,6 +51,7 @@ after_build:
     - cmd: del PokeFinder-windows\vcredist*.exe
     - cmd: del PokeFinder-windows\vc_redist*.exe
     - cmd: xcopy /I %QTDIR%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
+    - cmd: xcopy /I %QTDIR%\plugins\styles\qwindowsvistastyle.dll Gen7TimeFinder-windows\styles\
     - cmd: 7z a PokeFinder-windows-%ARCH%.zip PokeFinder-windows\
     # Linux
     - sh: rm Languages/*.ts
