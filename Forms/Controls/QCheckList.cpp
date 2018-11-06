@@ -29,8 +29,8 @@ QCheckList::QCheckList(QWidget *parent) : QComboBox(parent)
     lineEdit()->installEventFilter(this);
 
     connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
-    connect(static_cast<QListView *>(view()), SIGNAL(pressed(QModelIndex)), this, SLOT(on_itemPressed(QModelIndex)));
-    connect(model, SIGNAL(dataChanged(QModelIndex, QModelIndex, QVector<int>)), this, SLOT(on_modelDataChanged()));
+    connect(dynamic_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &QCheckList::itemPressed);
+    connect(model, &QAbstractItemModel::dataChanged, this, &QCheckList::modelDataChanged);
 }
 
 QCheckList::~QCheckList()
@@ -147,12 +147,12 @@ void QCheckList::updateText()
     lineEdit()->setText(text);
 }
 
-void QCheckList::on_modelDataChanged()
+void QCheckList::modelDataChanged()
 {
     updateText();
 }
 
-void QCheckList::on_itemPressed(const QModelIndex &index)
+void QCheckList::itemPressed(const QModelIndex &index)
 {
     QStandardItem *item = model->itemFromIndex(index);
 

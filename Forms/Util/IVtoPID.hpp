@@ -22,14 +22,9 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
-#include <QStandardItem>
-#include <QList>
-#include <QVector>
-#include <PokeFinderCore/RNG/RNGEuclidean.hpp>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <PokeFinderCore/Objects/Nature.hpp>
-
-using u32 = uint32_t;
+#include <PokeFinderCore/RNG/LCRNG.hpp>
+#include <PokeFinderCore/RNG/RNGEuclidean.hpp>
 
 namespace Ui
 {
@@ -39,9 +34,6 @@ namespace Ui
 class IVtoPID : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 private:
     Ui::IVtoPID *ui;

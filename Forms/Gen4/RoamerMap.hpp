@@ -21,8 +21,6 @@
 #define ROAMERMAP_HPP
 
 #include <QDialog>
-#include <QPixmap>
-#include <QImage>
 
 namespace Ui
 {

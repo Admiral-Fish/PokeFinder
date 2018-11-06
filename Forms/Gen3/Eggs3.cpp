@@ -114,21 +114,6 @@ void Eggs3::setupModels()
     ui->comboBoxHiddenPowerRS->setup();
 }
 
-void Eggs3::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void Eggs3::on_comboBoxProfiles_currentIndexChanged(int index)
 {
     auto profile = profiles[index >= 0 ? index : 0];

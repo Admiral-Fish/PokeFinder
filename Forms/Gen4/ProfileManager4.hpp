@@ -22,10 +22,7 @@
 
 #include <QMainWindow>
 #include <Forms/Gen4/ProfileManager4NewEdit.hpp>
-#include <PokeFinderCore/Gen4/Profile4.hpp>
 #include <Models/Gen4/Profile4Model.hpp>
-
-using u32 = uint32_t;
 
 namespace Ui
 {
@@ -35,9 +32,6 @@ namespace Ui
 class ProfileManager4 : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 signals:
     void updateProfiles();

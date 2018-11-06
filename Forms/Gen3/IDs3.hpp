@@ -22,13 +22,8 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
-#include <QStandardItem>
-#include <QStringList>
-#include <QList>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
-
-using u32 = uint32_t;
+#include <PokeFinderCore/RNG/LCRNG.hpp>
 
 namespace Ui
 {
@@ -38,9 +33,6 @@ namespace Ui
 class IDs3 : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 private:
     Ui::IDs3 *ui;

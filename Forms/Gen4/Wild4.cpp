@@ -38,23 +38,6 @@ Wild4::Wild4(QWidget *parent) :
     connect(this, &Wild4::updateProgress, this, &Wild4::updateProgressBar);
 }
 
-void Wild4::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                updateLocationsSearcher();
-                updateLocationsGenerator();
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 Wild4::~Wild4()
 {
     saveSettings();
@@ -583,9 +566,9 @@ void Wild4::updateProgressBar()
     ui->progressBar->setValue(progress);
 }
 
-void Wild4::updateViewSearcher(QVector<Frame4> frames)
+void Wild4::updateViewSearcher(const QVector<Frame4> &frames)
 {
-    s->addItems(std::move(frames));
+    s->addItems(frames);
 }
 
 void Wild4::on_comboBoxTimeGenerator_currentIndexChanged(int index)

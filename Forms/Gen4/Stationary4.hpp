@@ -20,25 +20,18 @@
 #ifndef STATIONARY4_HPP
 #define STATIONARY4_HPP
 
+#include <QMainWindow>
 #include <QMenu>
-#include <QVector>
-#include <QAction>
-#include <QModelIndex>
 #include <QFileDialog>
 #include <QSettings>
 #include <thread>
-#include <PokeFinderCore/Gen4/Frame4.hpp>
+#include <Forms/Gen4/ProfileManager4.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
+#include <Models/Gen4/Searcher4Model.hpp>
+#include <Models/Gen4/Stationary4Model.hpp>
 #include <PokeFinderCore/Gen4/Generator4.hpp>
 #include <PokeFinderCore/Gen4/Searcher4.hpp>
-#include <PokeFinderCore/Objects/FrameCompare.hpp>
-#include <PokeFinderCore/Objects/Nature.hpp>
-#include <PokeFinderCore/Objects/Power.hpp>
-#include <PokeFinderCore/Gen4/Profile4.hpp>
-#include <Forms/Gen4/ProfileManager4.hpp>
-#include <Models/Gen4/Stationary4Model.hpp>
-#include <Models/Gen4/Searcher4Model.hpp>
 #include <PokeFinderCore/Translator.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
 
 namespace Ui
 {
@@ -48,9 +41,6 @@ namespace Ui
 class Stationary4 : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 signals:
     void alertProfiles(int);
@@ -84,7 +74,7 @@ private slots:
     void on_anyHiddenPowerSearcher_clicked();
     void on_pushButtonProfileManager_clicked();
     void updateProgressBar();
-    void updateViewSearcher(QVector<Frame4> frames);
+    void updateViewSearcher(const QVector<Frame4> &frames);
     void on_pushButtonLeadGenerator_clicked();
     void seedToTime();
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);

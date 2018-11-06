@@ -31,22 +31,6 @@ Researcher::Researcher(QWidget *parent) :
     setupModels();
 }
 
-void Researcher::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                translate();
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 Researcher::~Researcher()
 {
     delete ui;

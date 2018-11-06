@@ -20,24 +20,18 @@
 #ifndef WILD4_HPP
 #define WILD4_HPP
 
+#include <QMainWindow>
 #include <QMenu>
-#include <QVector>
 #include <QFileDialog>
 #include <QSettings>
 #include <thread>
-#include <PokeFinderCore/Gen4/Frame4.hpp>
+#include <Forms/Gen4/ProfileManager4.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
+#include <Models/Gen4/Searcher4Model.hpp>
+#include <Models/Gen4/Wild4Model.hpp>
 #include <PokeFinderCore/Gen4/Generator4.hpp>
 #include <PokeFinderCore/Gen4/Searcher4.hpp>
-#include <PokeFinderCore/Objects/FrameCompare.hpp>
-#include <PokeFinderCore/Objects/Nature.hpp>
-#include <PokeFinderCore/Objects/Power.hpp>
-#include <PokeFinderCore/Gen4/Profile4.hpp>
-#include <Forms/Gen4/ProfileManager4.hpp>
-#include <PokeFinderCore/Gen4/EncounterArea4.hpp>
 #include <PokeFinderCore/Translator.hpp>
-#include <Models/Gen4/Wild4Model.hpp>
-#include <Models/Gen4/Searcher4Model.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
 
 namespace Ui
 {
@@ -47,9 +41,6 @@ namespace Ui
 class Wild4 : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 signals:
     void updateView(QVector<Frame4>);
@@ -86,7 +77,7 @@ private slots:
     void on_pushButtonSearch_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void updateViewSearcher(QVector<Frame4> frames);
+    void updateViewSearcher(const QVector<Frame4> &frames);
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void seedToTime();
     void updateProgressBar();

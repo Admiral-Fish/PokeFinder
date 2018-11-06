@@ -39,21 +39,6 @@ PokeSpot::~PokeSpot()
     delete model;
 }
 
-void PokeSpot::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void PokeSpot::on_pushButtonAnyAbility_clicked()
 {
     ui->comboBoxAbility->setCurrentIndex(0);

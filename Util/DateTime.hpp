@@ -20,17 +20,9 @@
 #ifndef DATETIME_HPP
 #define DATETIME_HPP
 
-#include <QDateTime>
-#include <QDate>
-#include <QTime>
-#include <QString>
-#include <QVector>
-#include <cstdint>
+#include <PokeFinderCore/Gen4/HGSSRoamer.hpp>
 #include <PokeFinderCore/Objects/Game.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
-#include <PokeFinderCore/Gen4/HGSSRoamer.hpp>
-
-using u32 = uint32_t;
 
 class DateTime
 {

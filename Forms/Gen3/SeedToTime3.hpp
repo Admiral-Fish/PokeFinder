@@ -20,16 +20,12 @@
 #ifndef SEEDTOTIME3_HPP
 #define SEEDTOTIME3_HPP
 
-#include <QMainWindow>
-#include <QStandardItemModel>
 #include <QDateTime>
-#include <QList>
-#include <QStandardItem>
+#include <QMainWindow>
 #include <QMessageBox>
 #include <QSettings>
+#include <QStandardItemModel>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
-
-using u32 = uint32_t;
 
 namespace Ui
 {
@@ -39,9 +35,6 @@ namespace Ui
 class SeedToTime3 : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 private:
     Ui::SeedToTime3 *ui;

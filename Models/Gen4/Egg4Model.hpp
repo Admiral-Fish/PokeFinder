@@ -21,7 +21,6 @@
 #define EGG4MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <QVector>
 #include <PokeFinderCore/Gen4/Frame4.hpp>
 
 class Egg4GeneratorModel : public QAbstractTableModel

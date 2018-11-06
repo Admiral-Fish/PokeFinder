@@ -21,9 +21,7 @@
 #define SEARCHER4MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <QVector>
 #include <PokeFinderCore/Gen4/Frame4.hpp>
-#include <PokeFinderCore/Objects/Method.hpp>
 
 class Searcher4Model : public QAbstractTableModel
 {

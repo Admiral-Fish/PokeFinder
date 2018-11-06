@@ -67,21 +67,6 @@ SeedtoTime4::~SeedtoTime4()
     delete hgssCalibrate;
 }
 
-void SeedtoTime4::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void SeedtoTime4::setupModels()
 {
     loadSettings();

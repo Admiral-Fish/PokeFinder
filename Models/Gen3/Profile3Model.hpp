@@ -21,7 +21,6 @@
 #define PROFILE3MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <QVector>
 #include <PokeFinderCore/Gen3/Profile3.hpp>
 
 class Profile3Model : public QAbstractTableModel

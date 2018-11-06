@@ -52,22 +52,6 @@ Stationary3::~Stationary3()
     delete searcherMenu;
 }
 
-void Stationary3::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                on_comboBoxMethodSearcher_currentIndexChanged(ui->comboBoxMethodSearcher->currentIndex());
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void Stationary3::setupModels()
 {
     ui->tableViewGenerator->setModel(g);

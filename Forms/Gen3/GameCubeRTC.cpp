@@ -32,7 +32,6 @@ GameCubeRTC::GameCubeRTC(QWidget *parent) :
     setupModels();
 
     qRegisterMetaType<QList<QStandardItem *>>("QList<QStandardItem *>");
-    connect(this, SIGNAL(updateView(QList<QStandardItem *>)), this, SLOT(updateTableView(QList<QStandardItem *>)));
 }
 
 GameCubeRTC::~GameCubeRTC()
@@ -42,21 +41,6 @@ GameCubeRTC::~GameCubeRTC()
     delete ui;
     delete model;
     delete contextMenu;
-}
-
-void GameCubeRTC::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
 }
 
 void GameCubeRTC::setupModels()

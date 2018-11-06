@@ -21,17 +21,11 @@
 #define IDS4_HPP
 
 #include <QMainWindow>
-#include <QDate>
-#include <QTime>
 #include <QMessageBox>
 #include <QStandardItemModel>
-#include <QStandardItem>
-#include <QStringList>
-#include <QList>
-#include <QVector>
 #include <thread>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
 
 namespace Ui
 {
@@ -41,9 +35,6 @@ namespace Ui
 class IDs4 : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 signals:
     void updateProgress();

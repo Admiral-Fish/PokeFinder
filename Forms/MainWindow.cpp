@@ -40,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete langGroup;
     delete stationary3;
     delete wild3;
     delete egg3;
@@ -50,57 +51,34 @@ MainWindow::~MainWindow()
     delete ids4;
 }
 
-void MainWindow::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                setupModels();
-                break;
-            case QEvent::LocaleChange:
-                {
-                    QString locale = QLocale::system().name();
-                    locale.truncate(locale.lastIndexOf('_'));
-                    loadLanguage(locale);
-                    break;
-                }
-            default:
-                break;
-        }
-    }
-}
-
 void MainWindow::setupLanguage()
 {
-    auto *langGroup = new QActionGroup(ui->menuLanguage);
-    connect(langGroup, SIGNAL (triggered(QAction *)), this, SLOT (slotLanguageChanged(QAction *)));
+    langGroup = new QActionGroup(ui->menuLanguage);
     langGroup->setExclusive(true);
+    connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
+
+    QSettings setting;
+    currLang = setting.value("locale", "en").toString();
+
     QStringList files = QDir(langPath).entryList(QStringList("PokeFinder_*.qm"));
-
-    QString defaultLocale = QLocale::system().name();
-    defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
-
-    for (int i = 0; i < files.size(); i++)
+    for (QString lang : files)
     {
-        QString locale = files[i];
-        locale.truncate(locale.lastIndexOf('.'));
-        locale.remove(0, locale.indexOf('_') + 1);
+        lang.truncate(lang.lastIndexOf('.'));
+        lang.remove(0, lang.indexOf('_') + 1);
 
         auto *action = new QAction(this);
 
         action->setCheckable(true);
-        action->setData(locale);
+        action->setData(lang);
 
-        if (defaultLocale == locale)
+        if (currLang == lang)
             action->setChecked(true);
 
         ui->menuLanguage->addAction(action);
         langGroup->addAction(action);
     }
-    slotLanguageChanged(langGroup->checkedAction());
+    switchTranslator(translator, QString("PokeFinder_%1.qm").arg(currLang));
+    ui->retranslateUi(this);
 }
 
 void MainWindow::setupModels()
@@ -148,17 +126,20 @@ void MainWindow::loadLanguage(const QString &lang)
     if (currLang != lang)
     {
         currLang = lang;
-        QLocale locale = QLocale(currLang);
-        QLocale::setDefault(locale);
-        switchTranslator(translator, QString("PokeFinder_%1.qm").arg(currLang));
+        QSettings setting;
+        setting.setValue("locale", currLang);
+
+        QMessageBox message;
+        message.setText(tr("Language updated. Please restart for changes to take effect."));
+        message.exec();
     }
 }
 
 void MainWindow::switchTranslator(QTranslator &translator, const QString &filename)
 {
-    qApp->removeTranslator(&translator);
+    QApplication::removeTranslator(&translator);
     if (translator.load(langPath + filename))
-        qApp->installTranslator(&translator);
+        QApplication::installTranslator(&translator);
 }
 
 void MainWindow::createProfileXml()
@@ -179,13 +160,11 @@ void MainWindow::checkUpdates()
 {
     // Setup date program was last opened and today's date
     QSettings setting;
-    QDate lastOpened = QDate::currentDate();
     QDate today = QDate::currentDate();
-    if (setting.contains("lastOpened"))
-        lastOpened = setting.value("lastOpened").toDate();
+    QDate lastOpened = setting.value("lastOpened", today).toDate();
 
     // Only check for update once a day
-    if (lastOpened.daysTo(today) > 1)
+    if (lastOpened.daysTo(today) > 0)
     {
         // Access current version number from github
         // TODO: Change this to check from master branch eventually
@@ -215,7 +194,7 @@ void MainWindow::checkUpdates()
         delete reply;
     }
 
-    setting.setValue("lastOpened", QDate::currentDate());
+    setting.setValue("lastOpened", today);
 }
 
 void MainWindow::on_actionResearcher_triggered()

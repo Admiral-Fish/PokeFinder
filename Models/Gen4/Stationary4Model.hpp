@@ -21,8 +21,6 @@
 #define STATIONARY4MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <QVector>
-#include <PokeFinderCore/Objects/Method.hpp>
 #include <PokeFinderCore/Gen4/Frame4.hpp>
 
 class Stationary4Model : public QAbstractTableModel

@@ -20,22 +20,14 @@
 #ifndef PIDTOIVS_HPP
 #define PIDTOIVS_HPP
 
-#include <QMainWindow>
-#include <QStandardItem>
-#include <QStandardItemModel>
-#include <QList>
-#include <QVector>
-#include <QMenu>
-#include <QAction>
-#include <QModelIndex>
 #include <QClipboard>
-#include <QStringList>
-#include <PokeFinderCore/RNG/RNGCache.hpp>
+#include <QMainWindow>
+#include <QMenu>
+#include <QStandardItemModel>
 #include <PokeFinderCore/Objects/Method.hpp>
-#include <PokeFinderCore/RNG/RNGEuclidean.hpp>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
-
-using u32 = uint32_t;
+#include <PokeFinderCore/RNG/RNGCache.hpp>
+#include <PokeFinderCore/RNG/RNGEuclidean.hpp>
 
 namespace Ui
 {
@@ -45,9 +37,6 @@ namespace Ui
 class PIDtoIVs : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 signals:
     void moveResultsToStationary(QString, QString, u32, u32, u32, u32, u32, u32);

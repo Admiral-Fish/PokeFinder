@@ -38,21 +38,6 @@ IDs4::~IDs4()
     delete model;
 }
 
-void IDs4::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void IDs4::setupModels()
 {
     ui->tableView->setModel(model);

@@ -38,21 +38,6 @@ IVtoPID::~IVtoPID()
     delete model;
 }
 
-void IVtoPID::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void IVtoPID::setupModels()
 {
     ui->textBoxID->setValues(InputType::TIDSID);

@@ -20,18 +20,18 @@
 #ifndef TABLEVIEW_HPP
 #define TABLEVIEW_HPP
 
-#include <QTableView>
-#include <QHeaderView>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <QClipboard>
 #include <QApplication>
+#include <QClipboard>
+#include <QHeaderView>
+#include <QKeyEvent>
+#include <QMouseEvent>
+#include <QTableView>
 
 class TableView : public QTableView
 {
 
 public:
-    TableView(QWidget *parent = nullptr);
+    explicit TableView(QWidget *parent = nullptr);
     void resizeEvent(QResizeEvent *event) override;
     void mouseDoubleClickEvent(QMouseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;

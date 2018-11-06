@@ -39,21 +39,6 @@ IVFilter::~IVFilter()
     delete ui;
 }
 
-void IVFilter::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 QVector<quint32> IVFilter::getEvals()
 {
     QVector<quint32> evals = { static_cast<quint32>(ui->comboBoxHP->currentIndex()), static_cast<quint32>(ui->comboBoxAtk->currentIndex()),

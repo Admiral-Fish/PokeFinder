@@ -21,8 +21,6 @@
 #define IVFILTER_HPP
 
 #include <QWidget>
-#include <QLabel>
-#include <QVector>
 
 namespace Ui
 {
@@ -32,9 +30,6 @@ namespace Ui
 class IVFilter : public QWidget
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 private:
     Ui::IVFilter *ui;

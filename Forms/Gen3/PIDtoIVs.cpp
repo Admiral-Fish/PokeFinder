@@ -40,21 +40,6 @@ PIDtoIVs::~PIDtoIVs()
     delete contextMenu;
 }
 
-void PIDtoIVs::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void PIDtoIVs::setupModels()
 {
     ui->pidInput->setValues(InputType::Seed32Bit);
@@ -261,9 +246,9 @@ QString PIDtoIVs::calcIVsChannel(u32 iv1)
         val[x] = rng.nextUInt() >> 27;
 
     QVector<int> order = { 0, 1, 2, 4, 5, 3};
-    for (int x : order)
+    for (const int &x : order)
     {
-        ivs += QString::number(val[x]);
+        ivs += QString::number(x);
         if (x != 3)
             ivs += ".";
     }

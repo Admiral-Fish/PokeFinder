@@ -38,21 +38,6 @@ JirachiPattern::~JirachiPattern()
     delete model;
 }
 
-void JirachiPattern::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void JirachiPattern::setupModels()
 {
     ui->jirachiPatternSeed->setValues(InputType::Seed32Bit);
@@ -72,7 +57,7 @@ void JirachiPattern::generate(u32 seed)
 {
     QStringList result = getPatterns(seed).toSet().toList();
 
-    if (result.count() == 0)
+    if (result.isEmpty())
     {
         model->appendRow(new QStandardItem(tr("Spread Impossible")));
     }

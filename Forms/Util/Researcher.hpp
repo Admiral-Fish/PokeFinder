@@ -22,18 +22,14 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
-#include <QStandardItemModel>
-#include <QVector>
+#include <Models/ResearcherModel.hpp>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <PokeFinderCore/RNG/LCRNG64.hpp>
 #include <PokeFinderCore/RNG/MTRNG.hpp>
 #include <PokeFinderCore/RNG/SFMT.hpp>
 #include <PokeFinderCore/RNG/TinyMT.hpp>
-#include <Models/ResearcherModel.hpp>
 #include <Util/ResearcherFrame.hpp>
 
-using u64 = uint64_t;
-using u32 = uint32_t;
 using func = u64 (*)(u64, u64);
 using Calculator = QHash<QString, func>;
 
@@ -45,9 +41,6 @@ namespace Ui
 class Researcher : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 private:
     Ui::Researcher *ui;

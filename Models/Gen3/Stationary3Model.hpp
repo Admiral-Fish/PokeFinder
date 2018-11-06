@@ -21,7 +21,6 @@
 #define STATIONARY3MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <QVector>
 #include <PokeFinderCore/Gen3/Frame3.hpp>
 
 class Stationary3Model : public QAbstractTableModel

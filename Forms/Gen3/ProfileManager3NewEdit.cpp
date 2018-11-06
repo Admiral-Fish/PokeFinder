@@ -64,21 +64,6 @@ Profile3 ProfileManager3NewEdit::getOriginal()
     return original;
 }
 
-void ProfileManager3NewEdit::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void ProfileManager3NewEdit::setupModels()
 {
     ui->textBoxTID->setValues(InputType::TIDSID);

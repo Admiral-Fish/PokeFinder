@@ -22,14 +22,7 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
-#include <QStandardItem>
-#include <QStringList>
-#include <QString>
-#include <QVector>
-#include <QChar>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
-
-using u32 = uint32_t;
 
 namespace Ui
 {
@@ -39,9 +32,6 @@ namespace Ui
 class JirachiPattern : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 private:
     Ui::JirachiPattern *ui;

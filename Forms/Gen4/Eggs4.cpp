@@ -52,21 +52,6 @@ Eggs4::~Eggs4()
     delete searcherMenu;
 }
 
-void Eggs4::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void Eggs4::setupModels()
 {
     ui->tableViewGenerator->setModel(generatorModel);
@@ -165,14 +150,14 @@ void Eggs4::on_pushButtonProfileManager_clicked()
     manager->show();
 }
 
-void Eggs4::updateViewPID(QVector<Frame4> frames)
+void Eggs4::updateViewPID(const QVector<Frame4> &frames)
 {
-    searcherPID->addItems(std::move(frames));
+    searcherPID->addItems(frames);
 }
 
-void Eggs4::updateViewIVs(QVector<Frame4> frames)
+void Eggs4::updateViewIVs(const QVector<Frame4> &frames)
 {
-    searcherIVs->addItems(std::move(frames));
+    searcherIVs->addItems(frames);
 }
 
 void Eggs4::updateProgressPID()

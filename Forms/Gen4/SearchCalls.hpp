@@ -21,10 +21,9 @@
 #define SEARCHCALLS_HPP
 
 #include <QDialog>
-#include <QVector>
-#include <Util/DateTime.hpp>
-#include <PokeFinderCore/Objects/Utilities.hpp>
 #include <PokeFinderCore/Gen4/HGSSRoamer.hpp>
+#include <PokeFinderCore/Objects/Utilities.hpp>
+#include <Util/DateTime.hpp>
 
 namespace Ui
 {

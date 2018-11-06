@@ -20,20 +20,13 @@
 #ifndef GAMECUBERTC_HPP
 #define GAMECUBERTC_HPP
 
-#include <QMainWindow>
-#include <QStandardItemModel>
-#include <QStandardItem>
-#include <QList>
 #include <QDateTime>
+#include <QMainWindow>
 #include <QMenu>
-#include <QAction>
-#include <QModelIndex>
-#include <QClipboard>
 #include <QSettings>
+#include <QStandardItemModel>
 #include <QThread>
 #include <PokeFinderCore/RNG/LCRNG.hpp>
-
-using u32 = uint32_t;
 
 namespace Ui
 {
@@ -45,12 +38,6 @@ class Search;
 class GameCubeRTC : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
-
-signals:
-    void updateView(QList<QStandardItem *>);
 
 private:
     Ui::GameCubeRTC *ui;

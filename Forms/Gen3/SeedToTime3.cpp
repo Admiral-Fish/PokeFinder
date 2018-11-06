@@ -80,21 +80,6 @@ void SeedToTime3::loadSettings()
     if (setting.contains("seed3Year")) ui->seedToTimeYear->setText(setting.value("seed3Year").toString());
 }
 
-void SeedToTime3::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void SeedToTime3::on_pushButtonFind_clicked()
 {
     u32 seed = ui->seedToTimeSeed->text().toUInt(nullptr, 16);

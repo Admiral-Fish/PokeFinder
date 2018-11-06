@@ -38,21 +38,6 @@ ProfileManager3::~ProfileManager3()
     delete model;
 }
 
-void ProfileManager3::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void ProfileManager3::setupModels()
 {
     model->setModel(Profile3::loadProfileList());

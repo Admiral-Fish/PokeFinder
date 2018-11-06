@@ -22,15 +22,13 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
-#include <QVector>
-#include <QModelIndex>
 #include <QSettings>
-#include <Models/Gen4/SeedtoTime4Model.hpp>
-#include <PokeFinderCore/Objects/Utilities.hpp>
-#include <Forms/Gen4/SearchCoinFlips.hpp>
-#include <Forms/Gen4/SearchCalls.hpp>
 #include <Forms/Gen4/RoamerMap.hpp>
+#include <Forms/Gen4/SearchCalls.hpp>
+#include <Forms/Gen4/SearchCoinFlips.hpp>
+#include <Models/Gen4/SeedtoTime4Model.hpp>
 #include <PokeFinderCore/Gen4/Profile4.hpp>
+#include <PokeFinderCore/Objects/Utilities.hpp>
 
 namespace Ui
 {
@@ -40,9 +38,6 @@ namespace Ui
 class SeedtoTime4 : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 private:
     Ui::SeedtoTime4 *ui;

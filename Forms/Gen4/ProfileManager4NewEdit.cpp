@@ -65,21 +65,6 @@ Profile4 ProfileManager4NewEdit::getOriginal()
     return original;
 }
 
-void ProfileManager4NewEdit::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void ProfileManager4NewEdit::setupModels()
 {
     ui->textBoxTID->setValues(InputType::TIDSID);

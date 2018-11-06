@@ -21,8 +21,6 @@
 #define RESEARCHERMODEL_HPP
 
 #include <QAbstractTableModel>
-#include <QVector>
-#include <cstdint>
 #include <Util/ResearcherFrame.hpp>
 
 class ResearcherModel : public QAbstractTableModel
@@ -43,7 +41,7 @@ private:
 
 public:
     ResearcherModel(QObject *parent, bool is64Bit);
-    void setModel(const QVector<ResearcherFrame> &);
+    void setModel(const QVector<ResearcherFrame> &frames);
     void clear();
     void setFlag(bool is64Bit);
     void setHex(const QVector<bool> &hex);

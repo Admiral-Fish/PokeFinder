@@ -21,7 +21,7 @@
 
 QTextBox::QTextBox(QWidget *parent) : QLineEdit(parent)
 {
-    connect(this, SIGNAL (textChanged(QString)), this, SLOT (onTextChanged(QString)));
+    connect(this, &QTextBox::textChanged, this, &QTextBox::onTextChanged);
 }
 
 void QTextBox::onTextChanged(QString string)

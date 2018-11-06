@@ -20,26 +20,27 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include <QMainWindow>
-#include <QtNetwork>
 #include <QDate>
 #include <QDesktopServices>
+#include <QMainWindow>
+#include <QMessageBox>
+#include <QtNetwork>
+#include <Forms/Gen3/Eggs3.hpp>
+#include <Forms/Gen3/GameCubeRTC.hpp>
+#include <Forms/Gen3/IDs3.hpp>
+#include <Forms/Gen3/JirachiPattern.hpp>
+#include <Forms/Gen3/PIDtoIVs.hpp>
+#include <Forms/Gen3/SeedToTime3.hpp>
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Wild3.hpp>
-#include <Forms/Gen3/Eggs3.hpp>
-#include <Forms/Util/Researcher.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
-#include <Forms/Gen3/JirachiPattern.hpp>
 #include <Forms/Gen3/PokeSpot.hpp>
-#include <Forms/Util/IVtoPID.hpp>
-#include <Forms/Gen3/GameCubeRTC.hpp>
-#include <Forms/Gen3/PIDtoIVs.hpp>
-#include <Forms/Gen3/IDs3.hpp>
-#include <Forms/Gen4/Stationary4.hpp>
-#include <Forms/Gen4/Wild4.hpp>
 #include <Forms/Gen4/Eggs4.hpp>
 #include <Forms/Gen4/IDs4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
+#include <Forms/Gen4/Stationary4.hpp>
+#include <Forms/Gen4/Wild4.hpp>
+#include <Forms/Util/IVtoPID.hpp>
+#include <Forms/Util/Researcher.hpp>
 
 namespace Ui
 {
@@ -50,14 +51,14 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-protected:
-    void changeEvent(QEvent *event) override;
-
 private:
     Ui::MainWindow *ui;
     QTranslator translator;
+    QActionGroup *langGroup;
     QString currLang;
     QString langPath = QApplication::applicationDirPath().append("/Languages/");
+    const QString VERSION = "2.1.0";
+
     Stationary3 *stationary3 = nullptr;
     Wild3 *wild3 = nullptr;
     Eggs3 *egg3 = nullptr;
@@ -66,7 +67,6 @@ private:
     Wild4 *wild4 = nullptr;
     Eggs4 *egg4 = nullptr;
     IDs4 *ids4 = nullptr;
-    const QString VERSION = "2.1.0";
 
     void setupLanguage();
     void setupModels();

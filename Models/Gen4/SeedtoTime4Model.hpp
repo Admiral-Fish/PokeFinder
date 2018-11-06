@@ -21,8 +21,6 @@
 #define SEEDTOTIME4MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <QVector>
-#include <PokeFinderCore/Objects/Game.hpp>
 #include <Util/DateTime.hpp>
 
 class SeedtoTime4Model : public QAbstractTableModel

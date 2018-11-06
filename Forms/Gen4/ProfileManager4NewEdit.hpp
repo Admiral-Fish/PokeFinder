@@ -21,11 +21,8 @@
 #define PROFILEMANAGER4NEWEDIT_HPP
 
 #include <QDialog>
-#include <QString>
 #include <QMessageBox>
 #include <PokeFinderCore/Gen4/Profile4.hpp>
-
-using u32 = uint32_t;
 
 namespace Ui
 {
@@ -35,9 +32,6 @@ namespace Ui
 class ProfileManager4NewEdit : public QDialog
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 signals:
     void newProfile(Profile4);

@@ -21,11 +21,8 @@
 #define SEARCHCOINFLIPS_HPP
 
 #include <QDialog>
-#include <QPixmap>
-#include <QImage>
-#include <QVector>
-#include <Util/DateTime.hpp>
 #include <PokeFinderCore/Objects/Utilities.hpp>
+#include <Util/DateTime.hpp>
 
 
 namespace Ui

@@ -22,12 +22,11 @@
 
 #include <QMainWindow>
 #include <QSettings>
-#include <QVector>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
 #include <Models/Gen3/PokeSpotModel.hpp>
-#include <PokeFinderCore/Objects/Nature.hpp>
 #include <PokeFinderCore/Gen3/Frame3.hpp>
 #include <PokeFinderCore/Objects/FrameCompare.hpp>
+#include <PokeFinderCore/Objects/Nature.hpp>
+#include <PokeFinderCore/RNG/LCRNG.hpp>
 
 namespace Ui
 {
@@ -37,9 +36,6 @@ namespace Ui
 class PokeSpot : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 private:
     Ui::PokeSpot *ui;

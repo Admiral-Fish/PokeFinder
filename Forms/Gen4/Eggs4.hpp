@@ -21,16 +21,13 @@
 #define EGGS4_HPP
 
 #include <QMainWindow>
-#include <QSettings>
 #include <QMenu>
-#include <QVector>
+#include <QSettings>
 #include <thread>
-#include <PokeFinderCore/Gen4/Frame4.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Models/Gen4/Egg4Model.hpp>
-#include <PokeFinderCore/Objects/FrameCompare.hpp>
 #include <PokeFinderCore/Gen4/Egg4.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
 
 namespace Ui
 {
@@ -40,9 +37,6 @@ namespace Ui
 class Eggs4 : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 signals:
     void updatePID(QVector<Frame4>);
@@ -80,8 +74,8 @@ private slots:
     void on_pushButtonGenerate_clicked();
     void on_pushButtonGeneratePID_clicked();
     void on_pushButtonGenerateIVs_clicked();
-    void updateViewPID(QVector<Frame4> frames);
-    void updateViewIVs(QVector<Frame4> frames);
+    void updateViewPID(const QVector<Frame4> &frames);
+    void updateViewIVs(const QVector<Frame4> &frames);
     void updateProgressPID();
     void updateProgressIVs();
     void on_tableViewPID_customContextMenuRequested(const QPoint &pos);

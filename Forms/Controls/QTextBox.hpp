@@ -47,7 +47,7 @@ private slots:
     void onTextChanged(QString string);
 
 public:
-    QTextBox(QWidget *parent = nullptr);
+    explicit QTextBox(QWidget *parent = nullptr);
     void setValues(InputType type);
     void setValues(quint64 minValue, quint64 maxValue, int base = 10);
     void setFilter(const QString &string);

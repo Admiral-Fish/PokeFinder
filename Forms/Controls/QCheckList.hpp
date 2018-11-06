@@ -20,14 +20,11 @@
 #ifndef QCHECKLIST
 #define QCHECKLIST
 
-#include <QWidget>
 #include <QComboBox>
-#include <QStandardItemModel>
 #include <QEvent>
 #include <QLineEdit>
 #include <QListView>
-#include <QVector>
-#include <QStyledItemDelegate>
+#include <QStandardItemModel>
 
 class QCheckList : public QComboBox
 {
@@ -43,11 +40,11 @@ private:
     int globalCheckState();
 
 private slots:
-    void on_modelDataChanged();
-    void on_itemPressed(const QModelIndex &index);
+    void modelDataChanged();
+    void itemPressed(const QModelIndex &index);
 
 public:
-    QCheckList(QWidget *parent = nullptr);
+    explicit QCheckList(QWidget *parent = nullptr);
     ~QCheckList() override;
     void setup();
     QVector<bool> getChecked();

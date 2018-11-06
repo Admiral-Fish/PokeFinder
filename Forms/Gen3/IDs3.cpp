@@ -39,21 +39,6 @@ IDs3::~IDs3()
     delete rs;
 }
 
-void IDs3::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void IDs3::setupModels()
 {
     ui->textBoxPIDFRLGE->setValues(InputType::Seed32Bit);

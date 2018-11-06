@@ -20,25 +20,19 @@
 #ifndef WILD3_HPP
 #define WILD3_HPP
 
-#include <QMenu>
-#include <QFileDialog>
 #include <QClipboard>
+#include <QFileDialog>
+#include <QMainWindow>
+#include <QMenu>
 #include <QSettings>
-#include <QVector>
 #include <thread>
-#include <PokeFinderCore/Gen3/Frame3.hpp>
+#include <Forms/Gen3/ProfileManager3.hpp>
+#include <Forms/Gen3/SeedToTime3.hpp>
+#include <Models/Gen3/Searcher3Model.hpp>
+#include <Models/Gen3/Wild3Model.hpp>
 #include <PokeFinderCore/Gen3/Generator3.hpp>
 #include <PokeFinderCore/Gen3/Searcher3.hpp>
-#include <PokeFinderCore/Objects/FrameCompare.hpp>
-#include <PokeFinderCore/Objects/Nature.hpp>
-#include <PokeFinderCore/Objects/Power.hpp>
-#include <PokeFinderCore/Gen3/Profile3.hpp>
-#include <Forms/Gen3/ProfileManager3.hpp>
-#include <PokeFinderCore/Gen3/EncounterArea3.hpp>
 #include <PokeFinderCore/Translator.hpp>
-#include <Models/Gen3/Wild3Model.hpp>
-#include <Models/Gen3/Searcher3Model.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
 
 namespace Ui
 {
@@ -48,9 +42,6 @@ namespace Ui
 class Wild3 : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 signals:
     void updateView(QVector<Frame3>);

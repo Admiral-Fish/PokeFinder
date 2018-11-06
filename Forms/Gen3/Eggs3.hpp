@@ -22,11 +22,11 @@
 
 #include <QMainWindow>
 #include <QSettings>
-#include <PokeFinderCore/Gen3/Frame3.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
-#include <PokeFinderCore/Objects/FrameCompare.hpp>
 #include <PokeFinderCore/Gen3/Egg3.hpp>
+#include <PokeFinderCore/Gen3/Frame3.hpp>
+#include <PokeFinderCore/Objects/FrameCompare.hpp>
 
 namespace Ui
 {
@@ -36,9 +36,6 @@ namespace Ui
 class Eggs3 : public QMainWindow
 {
     Q_OBJECT
-
-protected:
-    void changeEvent(QEvent *event) override;
 
 signals:
     void alertProfiles(int);

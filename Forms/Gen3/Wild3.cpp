@@ -37,23 +37,6 @@ Wild3::Wild3(QWidget *parent) :
     connect(this, &Wild3::updateProgress, this, &Wild3::updateProgressBar);
 }
 
-void Wild3::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                updateLocationsSearcher();
-                updateLocationsGenerator();
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 Wild3::~Wild3()
 {
     QSettings setting;

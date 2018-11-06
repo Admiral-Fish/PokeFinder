@@ -47,21 +47,6 @@ Stationary4::~Stationary4()
     delete searcherMenu;
 }
 
-void Stationary4::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void Stationary4::loadSettings()
 {
     QSettings setting;
@@ -335,9 +320,9 @@ void Stationary4::updateProgressBar()
     ui->progressBar->setValue(progress);
 }
 
-void Stationary4::updateViewSearcher(QVector<Frame4> frames)
+void Stationary4::updateViewSearcher(const QVector<Frame4> &frames)
 {
-    s->addItems(std::move(frames));
+    s->addItems(frames);
 }
 
 void Stationary4::on_pushButtonLeadGenerator_clicked()

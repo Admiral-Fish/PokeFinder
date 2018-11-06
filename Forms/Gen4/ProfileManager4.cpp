@@ -38,21 +38,6 @@ ProfileManager4::~ProfileManager4()
     delete model;
 }
 
-void ProfileManager4::changeEvent(QEvent *event)
-{
-    if (event)
-    {
-        switch (event->type())
-        {
-            case QEvent::LanguageChange:
-                ui->retranslateUi(this);
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 void ProfileManager4::setupModels()
 {
     model->setModel(Profile4::loadProfileList());
