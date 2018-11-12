@@ -40,9 +40,8 @@ TRANSLATIONS += \
     Languages/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
-    PokeFinderCore/encountertables.qrc \
     PokeFinderCore/text.qrc \
-    resources.qrc
+    images.qrc
 
 FORMS += \
     Forms/Controls/IVFilter.ui \
@@ -73,6 +72,7 @@ FORMS += \
 
 HEADERS += \
     Forms/Controls/IVFilter.hpp \
+    Forms/Controls/Label.hpp \
     Forms/Controls/QCheckList.hpp \
     Forms/Controls/QTextBox.hpp \
     Forms/Controls/TableView.hpp \
@@ -115,6 +115,7 @@ HEADERS += \
     Models/ResearcherModel.hpp \
     PokeFinderCore/Gen3/Egg3.hpp \
     PokeFinderCore/Gen3/EncounterArea3.hpp \
+    PokeFinderCore/Gen3/Encounters3.hpp \
     PokeFinderCore/Gen3/Frame3.hpp \
     PokeFinderCore/Gen3/Generator3.hpp \
     PokeFinderCore/Gen3/NatureLock.hpp \
@@ -122,6 +123,7 @@ HEADERS += \
     PokeFinderCore/Gen3/Searcher3.hpp \
     PokeFinderCore/Gen4/Egg4.hpp \
     PokeFinderCore/Gen4/EncounterArea4.hpp \
+    PokeFinderCore/Gen4/Encounters4.hpp \
     PokeFinderCore/Gen4/Frame4.hpp \
     PokeFinderCore/Gen4/Generator4.hpp \
     PokeFinderCore/Gen4/HGSSRoamer.hpp \
@@ -153,11 +155,11 @@ HEADERS += \
     PokeFinderCore/RNG/TinyMT.hpp \
     PokeFinderCore/Translator.hpp \
     Util/DateTime.hpp \
-    Util/ResearcherFrame.hpp \
-    Forms/Controls/Label.hpp
+    Util/ResearcherFrame.hpp
 
 SOURCES += \
     Forms/Controls/IVFilter.cpp \
+    Forms/Controls/Label.cpp \
     Forms/Controls/QCheckList.cpp \
     Forms/Controls/QTextBox.cpp \
     Forms/Controls/TableView.cpp \
@@ -200,6 +202,7 @@ SOURCES += \
     Models/ResearcherModel.cpp \
     PokeFinderCore/Gen3/Egg3.cpp \
     PokeFinderCore/Gen3/EncounterArea3.cpp \
+    PokeFinderCore/Gen3/Encounters3.cpp \
     PokeFinderCore/Gen3/Frame3.cpp \
     PokeFinderCore/Gen3/Generator3.cpp \
     PokeFinderCore/Gen3/NatureLock.cpp \
@@ -207,18 +210,22 @@ SOURCES += \
     PokeFinderCore/Gen3/Searcher3.cpp \
     PokeFinderCore/Gen4/Egg4.cpp \
     PokeFinderCore/Gen4/EncounterArea4.cpp \
+    PokeFinderCore/Gen4/Encounters4.cpp \
     PokeFinderCore/Gen4/Frame4.cpp \
     PokeFinderCore/Gen4/Generator4.cpp \
     PokeFinderCore/Gen4/HGSSRoamer.cpp \
     PokeFinderCore/Gen4/Profile4.cpp \
     PokeFinderCore/Gen4/Searcher4.cpp \
+    PokeFinderCore/Objects/Egg.cpp \
     PokeFinderCore/Objects/EncounterArea.cpp \
     PokeFinderCore/Objects/EncounterSlot.cpp \
     PokeFinderCore/Objects/Frame.cpp \
     PokeFinderCore/Objects/FrameCompare.cpp \
+    PokeFinderCore/Objects/Generator.cpp \
     PokeFinderCore/Objects/Nature.cpp \
     PokeFinderCore/Objects/Power.cpp \
     PokeFinderCore/Objects/Profile.cpp \
+    PokeFinderCore/Objects/Searcher.cpp \
     PokeFinderCore/Objects/Utilities.cpp \
     PokeFinderCore/RNG/LCRNG.cpp \
     PokeFinderCore/RNG/LCRNG64.cpp \
@@ -230,8 +237,4 @@ SOURCES += \
     PokeFinderCore/Translator.cpp \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
-    main.cpp \
-    PokeFinderCore/Objects/Searcher.cpp \
-    PokeFinderCore/Objects/Generator.cpp \
-    PokeFinderCore/Objects/Egg.cpp \
-    Forms/Controls/Label.cpp
+    main.cpp

@@ -30,6 +30,7 @@
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Wild3Model.hpp>
+#include <PokeFinderCore/Gen3/Encounters3.hpp>
 #include <PokeFinderCore/Gen3/Generator3.hpp>
 #include <PokeFinderCore/Gen3/Searcher3.hpp>
 #include <PokeFinderCore/Translator.hpp>
@@ -79,7 +80,7 @@ private slots:
     void on_search_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void updateViewSearcher(QVector<Frame3> frames);
+    void updateViewSearcher(const QVector<Frame3> &frames);
     void on_checkBoxDelayGenerator_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);

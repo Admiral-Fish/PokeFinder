@@ -62,9 +62,9 @@ void Wild3::on_checkBoxDelayGenerator_clicked()
     }
 }
 
-void Wild3::updateViewSearcher(QVector<Frame3> frames)
+void Wild3::updateViewSearcher(const QVector<Frame3> &frames)
 {
-    s->addItems(std::move(frames));
+    s->addItems(frames);
 }
 
 void Wild3::updateProfiles()
@@ -409,7 +409,7 @@ void Wild3::updateLocationsSearcher()
     if (ui->comboBoxProfiles->currentIndex() > 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
-    encounterSearcher = EncounterArea3::getEncounters(encounter, game);
+    encounterSearcher = Encounters3::getEncounters(encounter, game);
     QVector<int> locs;
     for (EncounterArea3 area : encounterSearcher)
         locs.append(area.getLocation());
@@ -444,7 +444,7 @@ void Wild3::updateLocationsGenerator()
     if (ui->comboBoxProfiles->currentIndex() > 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
-    encounterGenerator = EncounterArea3::getEncounters(encounter, game);
+    encounterGenerator = Encounters3::getEncounters(encounter, game);
     QVector<int> locs;
     for (EncounterArea3 area : encounterGenerator)
         locs.append(area.getLocation());

@@ -480,7 +480,7 @@ void Wild4::updateLocationsSearcher()
     if (ui->comboBoxProfiles->currentIndex() >= 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
-    encounterSearcher = EncounterArea4::getEncounters(encounter, game, ui->comboBoxTimeSearcher->currentIndex() + 1);
+    encounterSearcher = Encounters4::getEncounters(encounter, game, ui->comboBoxTimeSearcher->currentIndex() + 1);
     QVector<int> locs;
     for (EncounterArea4 area : encounterSearcher)
         locs.push_back(area.getLocation());
@@ -515,7 +515,7 @@ void Wild4::updateLocationsGenerator()
     if (ui->comboBoxProfiles->currentIndex() >= 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
-    encounterGenerator = EncounterArea4::getEncounters(encounter, game, ui->comboBoxTimeGenerator->currentIndex() + 1);
+    encounterGenerator = Encounters4::getEncounters(encounter, game, ui->comboBoxTimeGenerator->currentIndex() + 1);
     QVector<int> locs;
     for (EncounterArea4 area : encounterGenerator)
         locs.append(area.getLocation());
