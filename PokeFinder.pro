@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT += xml network
-CONFIG += c++11
+CONFIG += c++14
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -40,6 +40,7 @@ TRANSLATIONS += \
     Languages/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
+    PokeFinderCore/encounters.qrc \
     PokeFinderCore/text.qrc \
     images.qrc
 

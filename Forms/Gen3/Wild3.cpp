@@ -409,9 +409,9 @@ void Wild3::updateLocationsSearcher()
     if (ui->comboBoxProfiles->currentIndex() > 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
-    encounterSearcher = Encounters3::getEncounters(encounter, game);
+    encounterSearcher = Encounters3(encounter, game).getEncounters();
     QVector<int> locs;
-    for (EncounterArea3 area : encounterSearcher)
+    for (const auto &area : encounterSearcher)
         locs.append(area.getLocation());
 
     QStringList locations = Translator::getLocationsGen3(locs);
@@ -444,9 +444,9 @@ void Wild3::updateLocationsGenerator()
     if (ui->comboBoxProfiles->currentIndex() > 0)
         game = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
 
-    encounterGenerator = Encounters3::getEncounters(encounter, game);
+    encounterGenerator = Encounters3(encounter, game).getEncounters();
     QVector<int> locs;
-    for (EncounterArea3 area : encounterGenerator)
+    for (const auto &area : encounterGenerator)
         locs.append(area.getLocation());
 
     QStringList locations = Translator::getLocationsGen3(locs);
