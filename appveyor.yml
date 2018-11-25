@@ -36,8 +36,8 @@ build_script:
     - cmd: if "%BUILDER%"=="MINGW" mingw32-make
     - cmd: if "%BUILDER%"=="NMAKE" nmake
     # Linux
-    - sh: sudo docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.11-desktop qmake
-    - sh: sudo docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.11-desktop make
+    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.11-desktop sudo qmake
+    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.11-desktop sudo make
 
 after_build:
     # Windows
