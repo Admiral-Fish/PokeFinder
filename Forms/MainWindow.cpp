@@ -144,14 +144,9 @@ void MainWindow::switchTranslator(QTranslator &translator, const QString &filena
 
 void MainWindow::createProfileXml()
 {
-    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text))
+    QFile file(QApplication::applicationDirPath() + "/profiles.json");
+    if (file.open(QIODevice::NewOnly | QIODevice::Text))
     {
-        QDomDocument doc;
-        QDomElement profiles = doc.createElement(QString("Profiles"));
-        doc.appendChild(profiles);
-        QTextStream stream(&file);
-        stream << doc.toString();
         file.close();
     }
 }
