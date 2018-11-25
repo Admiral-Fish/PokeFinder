@@ -29,7 +29,6 @@ install:
     - cmd: if "%BUILDER%"=="NMAKE" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
     # Linux
     - sh: sudo service docker start
-    - sh: docker build . -t pokefinder-ci
     
 build_script:
     # Windows
@@ -37,8 +36,8 @@ build_script:
     - cmd: if "%BUILDER%"=="MINGW" mingw32-make
     - cmd: if "%BUILDER%"=="NMAKE" nmake
     # Linux
-    - sh: docker run -w="/app" -v "$(pwd)":/app pokefinder-ci qmake
-    - sh: docker run -w="/app" -v "$(pwd)":/app pokefinder-ci make
+    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.11-desktop qmake
+    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.11-desktop make
 
 after_build:
     # Windows
