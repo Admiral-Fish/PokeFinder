@@ -9,14 +9,14 @@
         <file alias="latias.png">Images/latias.png</file>
         <file alias="latios.png">Images/latios.png</file>
     </qresource>
-	<qresource prefix="/translations">
-		<file alias="PokeFinder_de.qm">Languages/PokeFinder_de.qm</file>
-		<file alias="PokeFinder_en.qm">Languages/PokeFinder_en.qm</file>
-		<file alias="PokeFinder_es.qm">Languages/PokeFinder_es.qm</file>
-		<file alias="PokeFinder_fr.qm">Languages/PokeFinder_fr.qm</file>
-		<file alias="PokeFinder_it.qm">Languages/PokeFinder_it.qm</file>
-		<file alias="PokeFinder_ja.qm">Languages/PokeFinder_ja.qm</file>
-		<file alias="PokeFinder_ko.qm">Languages/PokeFinder_ko.qm</file>
-		<file alias="PokeFinder_zh_Hans_CN.qm">Languages/PokeFinder_zh_Hans_CN.qm</file>
-	</qresource>
+    <qresource prefix="/translations">
+        <file alias="PokeFinder_de.qm">Translations/PokeFinder_de.qm</file>
+        <file alias="PokeFinder_en.qm">Translations/PokeFinder_en.qm</file>
+        <file alias="PokeFinder_es.qm">Translations/PokeFinder_es.qm</file>
+        <file alias="PokeFinder_fr.qm">Translations/PokeFinder_fr.qm</file>
+        <file alias="PokeFinder_it.qm">Translations/PokeFinder_it.qm</file>
+        <file alias="PokeFinder_ja.qm">Translations/PokeFinder_ja.qm</file>
+        <file alias="PokeFinder_ko.qm">Translations/PokeFinder_ko.qm</file>
+        <file alias="PokeFinder_zh_Hans_CN.qm">Translations/PokeFinder_zh_Hans_CN.qm</file>
+    </qresource>
 </RCC>
