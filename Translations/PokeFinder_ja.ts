@@ -1844,57 +1844,57 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="87"/>
+        <location filename="../Forms/MainWindow.ui"/>
         <source>German</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="87"/>
+        <location filename="../Forms/MainWindow.ui"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="87"/>
+        <location filename="../Forms/MainWindow.ui"/>
         <source>Spanish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="87"/>
+        <location filename="../Forms/MainWindow.ui"/>
         <source>French</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="87"/>
+        <location filename="../Forms/MainWindow.ui"/>
         <source>Italian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="87"/>
+        <location filename="../Forms/MainWindow.ui"/>
         <source>Japanese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="87"/>
+        <location filename="../Forms/MainWindow.ui"/>
         <source>Korean</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="87"/>
+        <location filename="../Forms/MainWindow.ui"/>
         <source>Chinese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="133"/>
+        <location filename="../Forms/MainWindow.cpp" line="106"/>
         <source>Language updated. Please restart for changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="180"/>
+        <location filename="../Forms/MainWindow.cpp" line="153"/>
         <source>Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="181"/>
+        <location filename="../Forms/MainWindow.cpp" line="154"/>
         <source>An update is available. Would you like to download the newest version?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3599,7 +3599,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/SearchCoinFlips.cpp" line="32"/>
-        <location filename="../Forms/Gen4/SearchCoinFlips.cpp" line="100"/>
+        <location filename="../Forms/Gen4/SearchCoinFlips.cpp" line="94"/>
         <source>Possible Results: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -4588,50 +4588,50 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="387"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="390"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="393"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="389"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="392"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="395"/>
         <source> (Citadark)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="388"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="391"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="394"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="390"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="393"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="396"/>
         <source> (Initial)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="389"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="392"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="395"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="391"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="394"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="397"/>
         <source> (Phenac)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="404"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="405"/>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="406"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="407"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="408"/>
         <source> (E-Reader)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="459"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="461"/>
         <source>Save Output to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="459"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="461"/>
         <source>Text File (*.txt);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="502"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="504"/>
         <source>Save Output to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="502"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="504"/>
         <source>CSV File (*.csv);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
