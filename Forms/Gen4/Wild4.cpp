@@ -477,7 +477,7 @@ void Wild4::updateLocationsSearcher()
     Encounter encounter = static_cast<Encounter>(ui->comboBoxEncounterSearcher->currentData().toInt());
     Game game = Game::Diamond;
     Game dual = Game::Blank;
-    int time = ui->comboBoxTimeSearcher->currentIndex() + 1;
+    int time = ui->comboBoxTimeSearcher->currentIndex();
     int sound = 0;
 
     if (ui->comboBoxProfiles->currentIndex() >= 0)
@@ -493,7 +493,7 @@ void Wild4::updateLocationsSearcher()
     for (const auto &area : encounterSearcher)
         locs.push_back(area.getLocation());
 
-    QStringList locations = Translator::getLocationsGen4(locs);
+    QStringList locations = Translator::getLocationsGen4(locs, game);
 
     ui->comboBoxLocationSearcher->clear();
     ui->comboBoxLocationSearcher->addItems(locations);
@@ -520,7 +520,7 @@ void Wild4::updateLocationsGenerator()
     Encounter encounter = static_cast<Encounter>(ui->comboBoxEncounterGenerator->currentData().toInt());
     Game game = Game::Diamond;
     Game dual = Game::Blank;
-    int time = ui->comboBoxTimeGenerator->currentIndex() + 1;
+    int time = ui->comboBoxTimeGenerator->currentIndex();
     int sound = 0;
 
     if (ui->comboBoxProfiles->currentIndex() >= 0)
@@ -536,7 +536,7 @@ void Wild4::updateLocationsGenerator()
     for (const auto &area : encounterGenerator)
         locs.append(area.getLocation());
 
-    QStringList locations = Translator::getLocationsGen4(locs);
+    QStringList locations = Translator::getLocationsGen4(locs, game);
 
     ui->comboBoxLocationGenerator->clear();
     ui->comboBoxLocationGenerator->addItems(locations);

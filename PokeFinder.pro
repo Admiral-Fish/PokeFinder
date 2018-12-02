@@ -4,10 +4,12 @@
 #
 #-------------------------------------------------
 
-QT += network
-CONFIG += c++14
+lessThan(QT_MAJOR_VERSION, 5): error("You need at least Qt 5.11 to build PokeFinder")
+equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11): error("You need at least Qt 5.11 to build firebird")
+!exists("PokeFinderCore/resources_core.qrc"): error("You are missing the submodule required to build PokeFinder")
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += network widgets
+CONFIG += c++14
 
 TARGET = PokeFinder
 TEMPLATE = app
@@ -18,31 +20,21 @@ QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 RC_ICONS += pokefinder.ico
 ICON += pokefinder.icns
 
-# The following define makes your compiler emit warnings if you use
-# any feature of Qt which as been marked as deprecated (the exact warnings
-# depend on your compiler). Please consult the documentation of the
-# deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-# You can also make your code fail to compile if you use deprecated APIs.
-# In order to do so, uncomment the following line.
-# You can also select to disable deprecated APIs only up to a certain version of Qt.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
 TRANSLATIONS += \
-    Languages/PokeFinder_en.ts \
-    Languages/PokeFinder_fr.ts \
-    Languages/PokeFinder_es.ts \
-    Languages/PokeFinder_de.ts \
-    Languages/PokeFinder_it.ts \
-    Languages/PokeFinder_ja.ts \
-    Languages/PokeFinder_ko.ts \
-    Languages/PokeFinder_zh_Hans_CN.ts
+    Translations/PokeFinder_en.ts \
+    Translations/PokeFinder_fr.ts \
+    Translations/PokeFinder_es.ts \
+    Translations/PokeFinder_de.ts \
+    Translations/PokeFinder_it.ts \
+    Translations/PokeFinder_ja.ts \
+    Translations/PokeFinder_ko.ts \
+    Translations/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
-    PokeFinderCore/encounters.qrc \
-    PokeFinderCore/text.qrc \
-    images.qrc
+    PokeFinderCore/resources_core.qrc \
+    resources.qrc
 
 FORMS += \
     Forms/Controls/IVFilter.ui \

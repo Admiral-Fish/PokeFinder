@@ -28,12 +28,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
-    QFile file(QApplication::applicationDirPath() + "/profiles.xml");
-    if (!file.exists())
-        createProfileXml();
-
+    checkProfileJson();
     setupLanguage();
-    setupModels();
     checkUpdates();
 }
 
@@ -58,45 +54,23 @@ void MainWindow::setupLanguage()
     connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
 
     QSettings setting;
-    currLang = setting.value("locale", "en").toString();
+    QString currLang = setting.value("locale", "en").toString();
 
-    QStringList files = QDir(langPath).entryList(QStringList("PokeFinder_*.qm"));
-    for (QString lang : files)
+    QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh_Hans_CN" };
+    for (int i = 0; i < locales.size(); i++)
     {
-        lang.truncate(lang.lastIndexOf('.'));
-        lang.remove(0, lang.indexOf('_') + 1);
+        QString lang = locales[i];
 
-        auto *action = new QAction(this);
-
-        action->setCheckable(true);
+        auto *action = ui->menuLanguage->actions()[i];
         action->setData(lang);
 
         if (currLang == lang)
             action->setChecked(true);
 
-        ui->menuLanguage->addAction(action);
         langGroup->addAction(action);
     }
-    switchTranslator(translator, QString("PokeFinder_%1.qm").arg(currLang));
+    switchTranslator(translator, QString(":/translations/PokeFinder_%1.qm").arg(currLang));
     ui->retranslateUi(this);
-}
-
-void MainWindow::setupModels()
-{
-    QList<QAction *> actions = ui->menuLanguage->actions();
-    QStringList langs = QStringList() << tr("German") << tr("English") << tr("Spanish") << tr("French") << tr("Italian") << tr("Japanese") << tr("Korean") << tr("Chinese");
-    QMap<QString, int> keys;
-    keys["de"] = 0;
-    keys["en"] = 1;
-    keys["es"] = 2;
-    keys["fr"] = 3;
-    keys["it"] = 4;
-    keys["ja"] = 5;
-    keys["ko"] = 6;
-    keys["zh_Hans_CN"] = 7;
-
-    for (QAction *action : actions)
-        action->setText(langs[keys[action->data().toString()]]);
 }
 
 void MainWindow::slotLanguageChanged(QAction *action)
@@ -123,11 +97,10 @@ void MainWindow::updateProfiles(int num)
 
 void MainWindow::loadLanguage(const QString &lang)
 {
-    if (currLang != lang)
+    QSettings setting;
+    if (setting.value("locale", "en") != lang)
     {
-        currLang = lang;
-        QSettings setting;
-        setting.setValue("locale", currLang);
+        setting.setValue("locale", lang);
 
         QMessageBox message;
         message.setText(tr("Language updated. Please restart for changes to take effect."));
@@ -138,11 +111,11 @@ void MainWindow::loadLanguage(const QString &lang)
 void MainWindow::switchTranslator(QTranslator &translator, const QString &filename)
 {
     QApplication::removeTranslator(&translator);
-    if (translator.load(langPath + filename))
+    if (translator.load(filename))
         QApplication::installTranslator(&translator);
 }
 
-void MainWindow::createProfileXml()
+void MainWindow::checkProfileJson()
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
     if (file.open(QIODevice::NewOnly | QIODevice::Text))
@@ -163,9 +136,9 @@ void MainWindow::checkUpdates()
     {
         // Access current version number from github
         // TODO: Change this to check from master branch eventually
-        QNetworkAccessManager networkManager;
+        QNetworkAccessManager manager;
         QNetworkRequest request(QUrl("https://raw.githubusercontent.com/Admiral-Fish/PokeFinder/develop/version.txt"));
-        QNetworkReply *reply = networkManager.get(request);
+        QNetworkReply *reply = manager.get(request);
 
         QEventLoop loop;
         connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -174,7 +147,7 @@ void MainWindow::checkUpdates()
 
         // Check if online version does not match current version
         QString webVersion(reply->readAll());
-        if (webVersion != VERSION && webVersion != "")
+        if (webVersion != VERSION && !webVersion.isEmpty())
         {
             QMessageBox info;
             info.setWindowTitle(tr("Update Check"));

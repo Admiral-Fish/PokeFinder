@@ -20,7 +20,7 @@
 #include "SearchCalls.hpp"
 #include "ui_SearchCalls.h"
 
-SearchCalls::SearchCalls(const QVector<DateTime> &model, QVector<bool> roamers, QVector<u32> routes, QWidget *parent) :
+SearchCalls::SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u32> &routes, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchCalls)
 {
@@ -28,8 +28,8 @@ SearchCalls::SearchCalls(const QVector<DateTime> &model, QVector<bool> roamers, 
     setAttribute(Qt::WA_QuitOnClose, false);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
-    this->roamers = std::move(roamers);
-    this->routes = std::move(routes);
+    this->roamers = roamers;
+    this->routes = routes;
 
     data = model;
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));

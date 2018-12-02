@@ -78,7 +78,7 @@ private slots:
     void on_search_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void updateViewSearcher(QVector<Frame3> frames);
+    void updateViewSearcher(const QVector<Frame3> &frames);
     void on_comboBoxMethodSearcher_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void setTargetFrameGenerator();

@@ -28,12 +28,6 @@ RoamerMap::RoamerMap(QWidget *parent) :
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
-
-    ui->labelMap->setPixmap(QPixmap::fromImage(QImage(":/roamers.png")));
-    ui->labelEntei->setPixmap(QPixmap::fromImage(QImage(":/entei.png")));
-    ui->labelRaikou->setPixmap(QPixmap::fromImage(QImage(":/raikou.png")));
-    ui->labelLatias->setPixmap(QPixmap::fromImage(QImage(":/latias.png")));
-    ui->labelLatios->setPixmap(QPixmap::fromImage(QImage(":/latios.png")));
 }
 
 RoamerMap::~RoamerMap()

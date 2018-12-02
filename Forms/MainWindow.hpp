@@ -55,8 +55,6 @@ private:
     Ui::MainWindow *ui;
     QTranslator translator;
     QActionGroup *langGroup;
-    QString currLang;
-    QString langPath = QApplication::applicationDirPath().append("/Languages/");
     const QString VERSION = "2.1.0";
 
     Stationary3 *stationary3 = nullptr;
@@ -69,10 +67,9 @@ private:
     IDs4 *ids4 = nullptr;
 
     void setupLanguage();
-    void setupModels();
     void loadLanguage(const QString &lang);
     void switchTranslator(QTranslator &translator, const QString &filename);
-    void createProfileXml();
+    void checkProfileJson();
     void checkUpdates();
 
 private slots:

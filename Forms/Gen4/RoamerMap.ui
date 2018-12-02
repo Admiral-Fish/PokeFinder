@@ -49,6 +49,9 @@
      <property name="text">
       <string/>
      </property>
+     <property name="pixmap">
+      <pixmap resource="../../resources.qrc">:/images/roamers.png</pixmap>
+     </property>
     </widget>
    </item>
    <item row="1" column="0">
@@ -67,6 +70,9 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../resources.qrc">:/images/entei.png</pixmap>
      </property>
     </widget>
    </item>
@@ -94,6 +100,9 @@
      <property name="text">
       <string/>
      </property>
+     <property name="pixmap">
+      <pixmap resource="../../resources.qrc">:/images/raikou.png</pixmap>
+     </property>
     </widget>
    </item>
    <item row="1" column="3">
@@ -120,6 +129,9 @@
      <property name="text">
       <string/>
      </property>
+     <property name="pixmap">
+      <pixmap resource="../../resources.qrc">:/images/latias.png</pixmap>
+     </property>
     </widget>
    </item>
    <item row="1" column="5">
@@ -139,6 +151,9 @@
      <property name="text">
       <string/>
      </property>
+     <property name="pixmap">
+      <pixmap resource="../../resources.qrc">:/images/latios.png</pixmap>
+     </property>
     </widget>
    </item>
    <item row="1" column="6">
@@ -150,6 +165,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

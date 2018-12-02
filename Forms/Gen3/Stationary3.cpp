@@ -218,9 +218,9 @@ void Stationary3::on_anyHiddenPowerSearcher_clicked()
     ui->comboBoxHiddenPowerSearcher->uncheckAll();
 }
 
-void Stationary3::updateViewSearcher(QVector<Frame3> frames)
+void Stationary3::updateViewSearcher(const QVector<Frame3> &frames)
 {
-    s->addItems(std::move(frames));
+    s->addItems(frames);
 }
 
 void Stationary3::on_checkBoxDelayGenerator_clicked()
@@ -377,12 +377,14 @@ void Stationary3::on_comboBoxMethodSearcher_currentIndexChanged(int index)
 
     if (method == Method::XD)
     {
-        QStringList s = Translator::getSpecies({ 334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125, 83, 55, 88, 58, 316,
-                                               316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82, 296, 310,
-                                               105, 303, 52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261, 57, 280, 78,
-                                               20, 315, 302, 373, 123, 273, 273, 273, 86, 285, 143, 361, 338, 21, 363, 363,
-                                               363, 167, 121, 220, 114, 49, 100, 37, 70
-                                               });
+        QStringList s = Translator::getSpecies(
+        {
+            334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125, 83, 55, 88, 58,
+            316, 316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82,
+            296, 310, 105, 303, 52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261,
+            57, 280, 78, 20, 315, 302, 373, 123, 273, 273, 273, 86, 285, 143, 361,
+            338, 21, 363, 363, 363, 167, 121, 220, 114, 49, 100, 37, 70
+        });
 
         s[15] += tr(" (Citadark)");
         s[16] += tr(" (Initial)");

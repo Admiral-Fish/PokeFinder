@@ -30,12 +30,6 @@ SearchCoinFlips::SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent
 
     data = model;
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
-
-    QIcon heads(QPixmap::fromImage(QImage(":/heads.png")));
-    ui->pushButtonHeads->setIcon(heads);
-
-    QIcon tails(QPixmap::fromImage(QImage(":/tails.png")));
-    ui->pushButtonTails->setIcon(tails);
 }
 
 SearchCoinFlips::~SearchCoinFlips()

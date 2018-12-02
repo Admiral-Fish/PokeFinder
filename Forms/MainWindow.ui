@@ -71,6 +71,10 @@ QMenuBar {
 	font-weight: 500;
 }
 
+QMenuBar::item::selected {
+	background: #003941;
+}
+
 QMenu {
 	color: white;
 	background-color: #1D303C;
@@ -259,6 +263,14 @@ QMenu::item::selected {
     <property name="title">
      <string>Language</string>
     </property>
+    <addaction name="actionGerman"/>
+    <addaction name="actionEnglish"/>
+    <addaction name="actionSpanish"/>
+    <addaction name="actionFrench"/>
+    <addaction name="actionItalian"/>
+    <addaction name="actionJapanese"/>
+    <addaction name="actionKorean"/>
+    <addaction name="actionChinese"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -332,6 +344,70 @@ QMenu::item::selected {
   <action name="actionIV_to_PID">
    <property name="text">
     <string>IV to PID</string>
+   </property>
+  </action>
+  <action name="actionGerman">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>German</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="actionSpanish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Spanish</string>
+   </property>
+  </action>
+  <action name="actionFrench">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>French</string>
+   </property>
+  </action>
+  <action name="actionItalian">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Italian</string>
+   </property>
+  </action>
+  <action name="actionJapanese">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Japanese</string>
+   </property>
+  </action>
+  <action name="actionKorean">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Korean</string>
+   </property>
+  </action>
+  <action name="actionChinese">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Chinese</string>
    </property>
   </action>
  </widget>
