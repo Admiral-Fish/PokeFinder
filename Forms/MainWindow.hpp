@@ -55,7 +55,7 @@ private:
     Ui::MainWindow *ui;
     QTranslator translator;
     QActionGroup *langGroup;
-    const QString VERSION = "2.1.0";
+    const QString VERSION = "2.2.0";
 
     Stationary3 *stationary3 = nullptr;
     Wild3 *wild3 = nullptr;

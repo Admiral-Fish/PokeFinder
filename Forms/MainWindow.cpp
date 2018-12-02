@@ -135,9 +135,8 @@ void MainWindow::checkUpdates()
     if (lastOpened.daysTo(today) > 0)
     {
         // Access current version number from github
-        // TODO: Change this to check from master branch eventually
         QNetworkAccessManager manager;
-        QNetworkRequest request(QUrl("https://raw.githubusercontent.com/Admiral-Fish/PokeFinder/develop/version.txt"));
+        QNetworkRequest request(QUrl("https://raw.githubusercontent.com/Admiral-Fish/PokeFinder/master/version.txt"));
         QNetworkReply *reply = manager.get(request);
 
         QEventLoop loop;
