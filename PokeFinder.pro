@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 lessThan(QT_MAJOR_VERSION, 5): error("You need at least Qt 5.11 to build PokeFinder")
-equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11): error("You need at least Qt 5.11 to build firebird")
+equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11): error("You need at least Qt 5.11 to build PokeFinder")
 !exists("PokeFinderCore/resources_core.qrc"): error("You are missing the submodule required to build PokeFinder")
 
 QT += network widgets
