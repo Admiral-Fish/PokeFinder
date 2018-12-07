@@ -1,23 +1,3 @@
-environment:
-    matrix:
-        # Windows 64-bit
-        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-          QTDIR: C:\Qt\5.11\msvc2017_64
-          BUILDER: NMAKE
-          ARCH: x64
-          OS: windows
-        # Linux
-        - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
-          BUILDER: MAKE
-          ARCH: x64
-          OS: linux
-        # Windows 32-Bit
-        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          QTDIR: C:\Qt\5.11\mingw53_32
-          BUILDER: MINGW
-          ARCH: x86
-          OS: windows
-          
 services:
     - Docker
 
@@ -36,8 +16,7 @@ build_script:
     - cmd: if "%BUILDER%"=="MINGW" mingw32-make
     - cmd: if "%BUILDER%"=="NMAKE" nmake
     # Linux
-    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.12-desktop sudo /opt/Qt/5.12.0/gcc_64/bin/qmake
-    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.12-desktop sudo make
+    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:%Qt_Version%-desktop sudo /opt/Qt/%Qt_Version_Full%/gcc_64/bin/qmake && make
 
 after_build:
     # Windows
@@ -51,17 +30,3 @@ after_build:
     - cmd: 7z a PokeFinder-windows-%ARCH%.zip PokeFinder-windows\
     # Linux
     - sh: zip -r PokeFinder-linux-x64.zip PokeFinder
-    
-artifacts:
-    - path: PokeFinder-%OS%-%ARCH%.zip
-
-deploy:
-    provider: GitHub
-    description: ''
-    auth_token:
-        secure: KPKgc2JaeXV8NBnz+72ILmsh7hKA3v7fWYG4D7X4Oxn7zplWJwP/eeWoObEg9YDH
-    artifact: PokeFinder-%OS%-%ARCH%.zip
-    draft: false
-    prerelease: true
-    on:
-        APPVEYOR_REPO_TAG: true
