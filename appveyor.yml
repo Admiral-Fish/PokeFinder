@@ -1,3 +1,21 @@
+environment:
+  matrix:
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    QTDIR: C:\Qt\5.11\msvc2017_64
+    BUILDER: NMAKE
+    ARCH: x64
+    OS: windows
+  - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
+    BUILDER: MAKE
+    ARCH: x64
+    OS: linux
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    QTDIR: C:\Qt\5.11\mingw53_32
+    BUILDER: MINGW
+    ARCH: x86
+    OS: windows
+
+
 services:
     - Docker
 
@@ -30,3 +48,17 @@ after_build:
     - cmd: 7z a PokeFinder-windows-%ARCH%.zip PokeFinder-windows\
     # Linux
     - sh: zip -r PokeFinder-linux-x64.zip PokeFinder
+    
+artifacts:
+- path: PokeFinder-%OS%-%ARCH%.zip
+
+deploy:
+    provider: GitHub
+    description: ''
+    auth_token:
+        secure: u3c5wUq11csZ77TpgKMImu9U+ibNiviMcEpTuQXmqp1YGSHA/+u5FhqZ3KRZBAQX
+    artifact: PokeFinder-%OS%-%ARCH%.zip
+    draft: false
+    prerelease: true
+    on:
+        APPVEYOR_REPO_TAG: true
