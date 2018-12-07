@@ -21,7 +21,7 @@
 #define SEARCHCOINFLIPS_HPP
 
 #include <QDialog>
-#include <PokeFinderCore/Objects/Utilities.hpp>
+#include <Objects/Utilities.hpp>
 #include <Util/DateTime.hpp>
 
 

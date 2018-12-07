@@ -21,7 +21,7 @@
 #define PROFILE4MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <PokeFinderCore/Gen4/Profile4.hpp>
+#include <Gen4/Profile4.hpp>
 
 class Profile4Model : public QAbstractTableModel
 {

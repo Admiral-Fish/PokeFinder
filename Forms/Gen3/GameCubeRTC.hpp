@@ -26,7 +26,7 @@
 #include <QSettings>
 #include <QStandardItemModel>
 #include <QThread>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
+#include <RNG/LCRNG.hpp>
 
 namespace Ui
 {

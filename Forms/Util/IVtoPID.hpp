@@ -22,9 +22,9 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
-#include <PokeFinderCore/Objects/Nature.hpp>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
-#include <PokeFinderCore/RNG/RNGEuclidean.hpp>
+#include <Objects/Nature.hpp>
+#include <RNG/LCRNG.hpp>
+#include <RNG/RNGEuclidean.hpp>
 
 namespace Ui
 {

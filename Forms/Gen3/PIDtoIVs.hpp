@@ -24,10 +24,10 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QStandardItemModel>
-#include <PokeFinderCore/Objects/Method.hpp>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
-#include <PokeFinderCore/RNG/RNGCache.hpp>
-#include <PokeFinderCore/RNG/RNGEuclidean.hpp>
+#include <Objects/Method.hpp>
+#include <RNG/LCRNG.hpp>
+#include <RNG/RNGCache.hpp>
+#include <RNG/RNGEuclidean.hpp>
 
 namespace Ui
 {

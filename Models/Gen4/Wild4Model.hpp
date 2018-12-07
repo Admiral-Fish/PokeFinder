@@ -21,7 +21,7 @@
 #define WILD4MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <PokeFinderCore/Gen4/Frame4.hpp>
+#include <Gen4/Frame4.hpp>
 
 class Wild4Model : public QAbstractTableModel
 {

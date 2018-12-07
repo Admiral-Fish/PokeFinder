@@ -27,8 +27,8 @@
 #include <Forms/Gen4/SearchCalls.hpp>
 #include <Forms/Gen4/SearchCoinFlips.hpp>
 #include <Models/Gen4/SeedtoTime4Model.hpp>
-#include <PokeFinderCore/Gen4/Profile4.hpp>
-#include <PokeFinderCore/Objects/Utilities.hpp>
+#include <Gen4/Profile4.hpp>
+#include <Objects/Utilities.hpp>
 
 namespace Ui
 {

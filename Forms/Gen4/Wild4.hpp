@@ -29,10 +29,10 @@
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <Models/Gen4/Wild4Model.hpp>
-#include <PokeFinderCore/Gen4/Encounters4.hpp>
-#include <PokeFinderCore/Gen4/Generator4.hpp>
-#include <PokeFinderCore/Gen4/Searcher4.hpp>
-#include <PokeFinderCore/Translator.hpp>
+#include <Gen4/Encounters4.hpp>
+#include <Gen4/Generator4.hpp>
+#include <Gen4/Searcher4.hpp>
+#include <Translator.hpp>
 
 namespace Ui
 {

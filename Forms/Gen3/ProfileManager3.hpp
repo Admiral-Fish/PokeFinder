@@ -23,7 +23,7 @@
 #include <QMainWindow>
 #include <Forms/Gen3/ProfileManager3NewEdit.hpp>
 #include <Models/Gen3/Profile3Model.hpp>
-#include <PokeFinderCore/Gen3/Profile3.hpp>
+#include <Gen3/Profile3.hpp>
 
 namespace Ui
 {

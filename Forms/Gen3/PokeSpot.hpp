@@ -23,10 +23,10 @@
 #include <QMainWindow>
 #include <QSettings>
 #include <Models/Gen3/PokeSpotModel.hpp>
-#include <PokeFinderCore/Gen3/Frame3.hpp>
-#include <PokeFinderCore/Objects/FrameCompare.hpp>
-#include <PokeFinderCore/Objects/Nature.hpp>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
+#include <Gen3/Frame3.hpp>
+#include <Objects/FrameCompare.hpp>
+#include <Objects/Nature.hpp>
+#include <RNG/LCRNG.hpp>
 
 namespace Ui
 {

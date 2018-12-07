@@ -27,7 +27,7 @@
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Models/Gen4/Egg4Model.hpp>
-#include <PokeFinderCore/Gen4/Egg4.hpp>
+#include <Gen4/Egg4.hpp>
 
 namespace Ui
 {

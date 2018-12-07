@@ -21,8 +21,8 @@
 #define SEARCHCALLS_HPP
 
 #include <QDialog>
-#include <PokeFinderCore/Gen4/HGSSRoamer.hpp>
-#include <PokeFinderCore/Objects/Utilities.hpp>
+#include <Gen4/HGSSRoamer.hpp>
+#include <Objects/Utilities.hpp>
 #include <Util/DateTime.hpp>
 
 namespace Ui

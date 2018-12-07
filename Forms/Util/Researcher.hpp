@@ -23,11 +23,11 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <Models/ResearcherModel.hpp>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
-#include <PokeFinderCore/RNG/LCRNG64.hpp>
-#include <PokeFinderCore/RNG/MTRNG.hpp>
-#include <PokeFinderCore/RNG/SFMT.hpp>
-#include <PokeFinderCore/RNG/TinyMT.hpp>
+#include <RNG/LCRNG.hpp>
+#include <RNG/LCRNG64.hpp>
+#include <RNG/MTRNG.hpp>
+#include <RNG/SFMT.hpp>
+#include <RNG/TinyMT.hpp>
 #include <Util/ResearcherFrame.hpp>
 
 using func = u64 (*)(u64, u64);

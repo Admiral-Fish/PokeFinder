@@ -1,14 +1,4 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>pokefinder.ico</file>
-        <file alias="heads.png">Images/heads.png</file>
-        <file alias="tails.png">Images/tails.png</file>
-        <file alias="roamers.png">Images/roamers.png</file>
-        <file alias="raikou.png">Images/raikou.png</file>
-        <file alias="entei.png">Images/raikou.png</file>
-        <file alias="latias.png">Images/latias.png</file>
-        <file alias="latios.png">Images/latios.png</file>
-    </qresource>
     <qresource prefix="/translations">
         <file alias="PokeFinder_de.qm">Translations/PokeFinder_de.qm</file>
         <file alias="PokeFinder_en.qm">Translations/PokeFinder_en.qm</file>

@@ -22,7 +22,7 @@
 
 #include <QDialog>
 #include <QMessageBox>
-#include <PokeFinderCore/Gen3/Profile3.hpp>
+#include <Gen3/Profile3.hpp>
 
 namespace Ui
 {

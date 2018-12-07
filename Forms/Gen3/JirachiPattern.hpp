@@ -22,7 +22,7 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
+#include <RNG/LCRNG.hpp>
 
 namespace Ui
 {

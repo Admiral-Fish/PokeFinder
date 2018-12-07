@@ -24,9 +24,9 @@
 #include <QSettings>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
-#include <PokeFinderCore/Gen3/Egg3.hpp>
-#include <PokeFinderCore/Gen3/Frame3.hpp>
-#include <PokeFinderCore/Objects/FrameCompare.hpp>
+#include <Gen3/Egg3.hpp>
+#include <Gen3/Frame3.hpp>
+#include <Objects/FrameCompare.hpp>
 
 namespace Ui
 {

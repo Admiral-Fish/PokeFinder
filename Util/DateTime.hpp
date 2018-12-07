@@ -20,9 +20,9 @@
 #ifndef DATETIME_HPP
 #define DATETIME_HPP
 
-#include <PokeFinderCore/Gen4/HGSSRoamer.hpp>
-#include <PokeFinderCore/Objects/Game.hpp>
-#include <PokeFinderCore/Objects/Utilities.hpp>
+#include <Gen4/HGSSRoamer.hpp>
+#include <Objects/Game.hpp>
+#include <Objects/Utilities.hpp>
 
 class DateTime
 {

@@ -21,7 +21,7 @@
 #define EGG3MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <PokeFinderCore/Gen3/Frame3.hpp>
+#include <Gen3/Frame3.hpp>
 
 class Egg3Model : public QAbstractTableModel
 {

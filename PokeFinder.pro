@@ -6,7 +6,7 @@
 
 lessThan(QT_MAJOR_VERSION, 5): error("You need at least Qt 5.11 to build PokeFinder")
 equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11): error("You need at least Qt 5.11 to build PokeFinder")
-!exists("PokeFinderCore/resources_core.qrc"): error("You are missing the submodule required to build PokeFinder")
+!exists("PokeFinderCore/encounter.qrc"): error("You are missing the submodule required to build PokeFinder")
 
 QT += network widgets
 CONFIG += c++14
@@ -17,10 +17,12 @@ VERSION = 2.2.0
 QMAKE_TARGET_DESCRIPTION = PokeFinder
 QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
-RC_ICONS += pokefinder.ico
-ICON += pokefinder.icns
+RC_ICONS += Images/pokefinder.ico
+ICON += Images/pokefinder.icns
 
 DEFINES += QT_DEPRECATED_WARNINGS
+
+INCLUDEPATH += PokeFinderCore
 
 TRANSLATIONS += \
     Translations/PokeFinder_en.ts \
@@ -33,8 +35,10 @@ TRANSLATIONS += \
     Translations/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
-    PokeFinderCore/resources_core.qrc \
-    resources.qrc
+    PokeFinderCore/encounter.qrc \
+    PokeFinderCore/text.qrc \
+    images.qrc \
+    translations.qrc
 
 FORMS += \
     Forms/Controls/IVFilter.ui \

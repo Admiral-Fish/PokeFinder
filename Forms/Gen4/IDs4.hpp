@@ -24,8 +24,8 @@
 #include <QMessageBox>
 #include <QStandardItemModel>
 #include <thread>
-#include <PokeFinderCore/Objects/Utilities.hpp>
-#include <PokeFinderCore/RNG/LCRNG.hpp>
+#include <Objects/Utilities.hpp>
+#include <RNG/LCRNG.hpp>
 
 namespace Ui
 {

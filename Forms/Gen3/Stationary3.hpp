@@ -30,9 +30,9 @@
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
-#include <PokeFinderCore/Gen3/Generator3.hpp>
-#include <PokeFinderCore/Gen3/Searcher3.hpp>
-#include <PokeFinderCore/Translator.hpp>
+#include <Gen3/Generator3.hpp>
+#include <Gen3/Searcher3.hpp>
+#include <Translator.hpp>
 
 namespace Ui
 {
