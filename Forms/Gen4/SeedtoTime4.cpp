@@ -167,12 +167,7 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
 QVector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, DateTime target)
 {
     QDateTime time = target.getDateTime();
-
     u32 delay = target.getDelay();
-
-    // TODO Unused ???
-    QVector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
-    QVector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
 
     QVector<DateTime> results;
     for (int i = minusSecond; i >= 0; i--)
