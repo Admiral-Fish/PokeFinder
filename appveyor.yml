@@ -34,8 +34,9 @@ build_script:
     - cmd: if "%BUILDER%"=="MINGW" mingw32-make
     - cmd: if "%BUILDER%"=="NMAKE" nmake
     # Linux
-    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:%Qt_Version%-desktop sudo /opt/Qt/%Qt_Version_Full%/gcc_64/bin/qmake && make
-
+    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.12-desktop sudo /opt/Qt/5.12.0/gcc_64/bin/qmake
+    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.12-desktop sudo make
+    
 after_build:
     # Windows
     - cmd: md PokeFinder-windows
