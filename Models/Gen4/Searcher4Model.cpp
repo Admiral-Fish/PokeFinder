@@ -357,7 +357,7 @@ int Searcher4Model::columnCount(const QModelIndex &parent) const
             return 10;
         case Method::MethodJ:
         case Method::MethodK:
-            return 17;
+            return 18;
         default:
             return 0;
     }
@@ -466,28 +466,30 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                     case 4:
                         return frame.getEncounterSlot();
                     case 5:
-                        return frame.getShinyString();
+                        return frame.getLevel();
                     case 6:
-                        return frame.getNatureString();
+                        return frame.getShinyString();
                     case 7:
-                        return frame.getAbility();
+                        return frame.getNatureString();
                     case 8:
-                        return frame.getIV(0);
+                        return frame.getAbility();
                     case 9:
-                        return frame.getIV(1);
+                        return frame.getIV(0);
                     case 10:
-                        return frame.getIV(2);
+                        return frame.getIV(1);
                     case 11:
-                        return frame.getIV(3);
+                        return frame.getIV(2);
                     case 12:
-                        return frame.getIV(4);
+                        return frame.getIV(3);
                     case 13:
-                        return frame.getIV(5);
+                        return frame.getIV(4);
                     case 14:
-                        return frame.getPowerString();
+                        return frame.getIV(5);
                     case 15:
-                        return frame.getPower();
+                        return frame.getPowerString();
                     case 16:
+                        return frame.getPower();
+                    case 17:
                         return frame.getGenderString();
                 }
                 break;
@@ -580,28 +582,30 @@ QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, in
                     case 4:
                         return tr("Slot");
                     case 5:
-                        return "!!!";
+                        return tr("Level");
                     case 6:
-                        return tr("Nature");
+                        return "!!!";
                     case 7:
-                        return tr("Ability");
+                        return tr("Nature");
                     case 8:
-                        return tr("HP");
+                        return tr("Ability");
                     case 9:
-                        return tr("Atk");
+                        return tr("HP");
                     case 10:
-                        return tr("Def");
+                        return tr("Atk");
                     case 11:
-                        return tr("SpA");
+                        return tr("Def");
                     case 12:
-                        return tr("SpD");
+                        return tr("SpA");
                     case 13:
-                        return tr("Spe");
+                        return tr("SpD");
                     case 14:
-                        return tr("Hidden");
+                        return tr("Spe");
                     case 15:
-                        return tr("Power");
+                        return tr("Hidden");
                     case 16:
+                        return tr("Power");
+                    case 17:
                         return tr("Gender");
                 }
             default:

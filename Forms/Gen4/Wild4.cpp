@@ -66,12 +66,6 @@ void Wild4::setupModels()
     ui->comboBoxLeadGenerator->addItem(tr("None"));
     ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
 
-    ui->comboBoxLeadSearcher->setItemData(0, Lead::Search);
-    ui->comboBoxLeadSearcher->setItemData(1, Lead::Synchronize);
-    ui->comboBoxLeadSearcher->setItemData(2, Lead::CuteCharm);
-    ui->comboBoxLeadSearcher->setItemData(3, Lead::SuctionCups);
-    ui->comboBoxLeadSearcher->setItemData(4, Lead::None);
-
     ui->comboBoxNatureGenerator->setup();
     ui->comboBoxNatureSearcher->setup();
 
@@ -151,6 +145,18 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->comboBoxEncounterSearcher->addItem(tr("Good Rod"), Encounter::GoodRod);
     ui->comboBoxEncounterSearcher->addItem(tr("Super Rod"), Encounter::SuperRod);
 
+    ui->comboBoxLeadSearcher->clear();
+    ui->comboBoxLeadSearcher->addItem(tr("Any"), Lead::Search);
+    ui->comboBoxLeadSearcher->addItem(tr("Synchronize"), Lead::Synchronize);
+    ui->comboBoxLeadSearcher->addItem(tr("Cute Charm"), Lead::CuteCharm);
+    if (flag)
+        ui->comboBoxLeadSearcher->addItem("Suction Cups", Lead::SuctionCups);
+    ui->comboBoxLeadSearcher->addItem("None", Lead::None);
+
+    ui->pushButtonLeadGenerator->setText(tr("Synchronize"));
+    ui->comboBoxLeadGenerator->addItem("None");
+    ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
+
     updateLocationsSearcher();
     updateLocationsGenerator();
 }
@@ -194,8 +200,24 @@ void Wild4::on_pushButtonLeadGenerator_clicked()
     QString text = ui->pushButtonLeadGenerator->text();
     if (text == tr("Synchronize"))
     {
-        ui->pushButtonLeadGenerator->setText(tr("Suction Cups"));
-        ui->comboBoxLeadGenerator->setEnabled(false);
+        auto profile = profiles[ui->comboBoxProfiles->currentIndex()];
+        bool flag = profile.getVersion() == Game::HeartGold || profile.getVersion() == Game::SoulSilver;
+        if (flag)
+        {
+            ui->pushButtonLeadGenerator->setText(tr("Suction Cups"));
+            ui->comboBoxLeadGenerator->setEnabled(false);
+        }
+        else
+        {
+            ui->pushButtonLeadGenerator->setText(tr("Cute Charm"));
+            ui->comboBoxLeadGenerator->setEnabled(true);
+
+            ui->comboBoxLeadGenerator->addItem(tr("♂ Lead"), Lead::CuteCharmFemale);
+            ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
+            ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
+            ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
+            ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
+        }
     }
     else if (text == tr("Suction Cups"))
     {

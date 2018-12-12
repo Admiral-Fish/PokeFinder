@@ -303,7 +303,7 @@ QPushButton {
            <bool>false</bool>
           </attribute>
           <attribute name="verticalHeaderDefaultSectionSize">
-           <number>20</number>
+           <number>21</number>
           </attribute>
           <attribute name="verticalHeaderMinimumSectionSize">
            <number>20</number>
@@ -1297,7 +1297,7 @@ QPushButton {
            <bool>false</bool>
           </attribute>
           <attribute name="verticalHeaderDefaultSectionSize">
-           <number>20</number>
+           <number>21</number>
           </attribute>
           <attribute name="verticalHeaderMinimumSectionSize">
            <number>20</number>
