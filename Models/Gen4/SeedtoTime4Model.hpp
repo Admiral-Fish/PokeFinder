@@ -27,11 +27,6 @@ class SeedtoTime4Model : public QAbstractTableModel
 {
     Q_OBJECT
 
-private:
-    QVector<DateTime> model;
-    bool calibrate;
-    Game version;
-
 public:
     SeedtoTime4Model(QObject *parent, bool flag = false, Game version = Diamond);
     void setModel(const QVector<DateTime> &times);
@@ -43,6 +38,11 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+private:
+    QVector<DateTime> model;
+    bool calibrate;
+    Game version;
 
 };
 

@@ -128,7 +128,10 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
         u32 low = forward.nextUShort();
 
         if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
+        {
             high ^= 0x8000;
+        }
+
         u32 val = (high << 16) | low;
         if (val == pid) // PID matches based on SID
         {
@@ -149,7 +152,10 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
         u32 low = forward.nextUShort();
 
         if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
+        {
             high ^= 0x8000;
+        }
+
         u32 val = (high << 16) | low;
         if (val == pid) // PID matches based on SID
         {
@@ -157,23 +163,6 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
             addSeedChannel(seed, forward.nextUInt());
         }
     }
-}
-
-void PIDtoIVs::addSeed(u32 seed, u32 iv1)
-{
-    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 1")) << new QStandardItem(calcIVs(iv1, 1)));
-    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 2")) << new QStandardItem(calcIVs(iv1, 2)));
-    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 4")) << new QStandardItem(calcIVs(iv1, 4)));
-}
-
-void PIDtoIVs::addSeedGC(u32 seed, u32 iv1, u32 iv2)
-{
-    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
-}
-
-void PIDtoIVs::addSeedChannel(u32 seed, u32 iv1)
-{
-    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Channel")) << new QStandardItem(calcIVsChannel(iv1)));
 }
 
 QString PIDtoIVs::calcIVs(u32 iv1, int num)
@@ -209,7 +198,9 @@ QString PIDtoIVs::calcIVs(u32 iv1, int num)
     {
         ivs += QString::number((iv2 >> (x * 5)) & 31);
         if (x != 0)
+        {
             ivs += ".";
+        }
     }
 
     return ivs;
@@ -229,7 +220,9 @@ QString PIDtoIVs::calcIVsXD(u32 iv1, u32 iv2)
     {
         ivs += QString::number((iv2 >> (x * 5)) & 31);
         if (x != 0)
+        {
             ivs += ".";
+        }
     }
 
     return ivs;
@@ -240,20 +233,40 @@ QString PIDtoIVs::calcIVsChannel(u32 iv1)
     QString ivs = "";
     XDRNG rng(iv1);
 
-    u32 val[6];
-    val[0] = iv1 >> 27;
+    u32 val[6] = { iv1 >> 27, 0, 0, 0, 0, 0 };
     for (int x = 1; x < 6; x++)
+    {
         val[x] = rng.nextUInt() >> 27;
+    }
 
     QVector<int> order = { 0, 1, 2, 4, 5, 3};
     for (const int &x : order)
     {
         ivs += QString::number(x);
         if (x != 3)
+        {
             ivs += ".";
+        }
     }
 
     return ivs;
+}
+
+void PIDtoIVs::addSeed(u32 seed, u32 iv1)
+{
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 1")) << new QStandardItem(calcIVs(iv1, 1)));
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 2")) << new QStandardItem(calcIVs(iv1, 2)));
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 4")) << new QStandardItem(calcIVs(iv1, 4)));
+}
+
+void PIDtoIVs::addSeedGC(u32 seed, u32 iv1, u32 iv2)
+{
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
+}
+
+void PIDtoIVs::addSeedChannel(u32 seed, u32 iv1)
+{
+    model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Channel")) << new QStandardItem(calcIVsChannel(iv1)));
 }
 
 void PIDtoIVs::on_pushButtonGenerate_clicked()
@@ -263,16 +276,18 @@ void PIDtoIVs::on_pushButtonGenerate_clicked()
     calcFromPID(pid);
 }
 
-void PIDtoIVs::copySeed()
-{
-    QApplication::clipboard()->setText(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString());
-}
-
 void PIDtoIVs::on_tabePIDToIV_customContextMenuRequested(const QPoint &pos)
 {
     if (model->rowCount() == 0)
+    {
         return;
+    }
 
     lastIndex = ui->tabePIDToIV->indexAt(pos);
     contextMenu->popup(ui->tabePIDToIV->viewport()->mapToGlobal(pos));
+}
+
+void PIDtoIVs::copySeed()
+{
+    QApplication::clipboard()->setText(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString());
 }

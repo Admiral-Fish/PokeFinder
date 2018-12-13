@@ -34,6 +34,10 @@ class IDs3 : public QMainWindow
 {
     Q_OBJECT
 
+public:
+    explicit IDs3(QWidget *parent = nullptr);
+    ~IDs3() override;
+
 private:
     Ui::IDs3 *ui;
     QStandardItemModel *xdcolo = new QStandardItemModel(this);
@@ -43,24 +47,20 @@ private:
     void setupModels();
 
 private slots:
+    void on_pushButtonFindXD_clicked();
     void on_pushButtonFindFRLGE_clicked();
-    void on_checkBoxBattery_stateChanged(int arg1);
-    void on_checkBoxPIDRS_stateChanged(int arg1);
-    void on_checkBoxTIDRS_stateChanged(int arg1);
-    void on_checkBoxSIDRS_stateChanged(int arg1);
     void on_pushButtonFindRS_clicked();
+    void on_checkBoxPIDXD_stateChanged(int val);
+    void on_checkBoxTIDXD_stateChanged(int val);
+    void on_checkBoxSIDXD_stateChanged(int val);
+    void on_checkBoxPIDFRLGE_stateChanged(int val);
+    void on_checkBoxSIDFRLGE_stateChanged(int val);
+    void on_checkBoxBattery_stateChanged(int val);
+    void on_checkBoxPIDRS_stateChanged(int val);
+    void on_checkBoxTIDRS_stateChanged(int val);
+    void on_checkBoxSIDRS_stateChanged(int val);
     void on_radioButtonDateRS_toggled(bool checked);
     void on_radioButtonInitSeedRS_toggled(bool checked);
-    void on_pushButtonFindXD_clicked();
-    void on_checkBoxPIDXD_stateChanged(int arg1);
-    void on_checkBoxTIDXD_stateChanged(int arg1);
-    void on_checkBoxSIDXD_stateChanged(int arg1);
-    void on_checkBoxPIDFRLGE_stateChanged(int arg1);
-    void on_checkBoxSIDFRLGE_stateChanged(int arg1);
-
-public:
-    explicit IDs3(QWidget *parent = nullptr);
-    ~IDs3() override;
 
 };
 

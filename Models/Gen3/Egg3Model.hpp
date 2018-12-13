@@ -27,10 +27,6 @@ class Egg3Model : public QAbstractTableModel
 {
     Q_OBJECT
 
-private:
-    QVector<Frame3> model;
-    Method method;
-
 public:
     Egg3Model(QObject *parent, Method method);
     void setModel(const QVector<Frame3> &frames);
@@ -40,6 +36,10 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+private:
+    QVector<Frame3> model;
+    Method method;
 
 };
 

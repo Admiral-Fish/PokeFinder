@@ -27,18 +27,6 @@ class ResearcherModel : public QAbstractTableModel
 {
     Q_OBJECT
 
-private:
-    QVector<ResearcherFrame> model;
-    bool flag;
-    QVector<bool> hex;
-
-    static inline u64 get64Bit(ResearcherFrame f) { return f.getFull64(); }
-    static inline u64 get32BitHigh(ResearcherFrame f) { return f.getHigh32(); }
-    static inline u64 get32BitLow(ResearcherFrame f) { return f.getLow32(); }
-    static inline u64 get32(ResearcherFrame f) { return f.getFull32(); }
-    static inline u64 get16BitHigh(ResearcherFrame f) { return f.getHigh16(); }
-    static inline u64 get16BitLow(ResearcherFrame f) { return f.getLow16(); }
-
 public:
     ResearcherModel(QObject *parent, bool is64Bit);
     void setModel(const QVector<ResearcherFrame> &frames);
@@ -50,6 +38,18 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     QModelIndex search(const QString &string, u64 result, int row);
+
+private:
+    QVector<ResearcherFrame> model;
+    bool flag;
+    QVector<bool> hex;
+
+    static inline u64 get64Bit(ResearcherFrame f) { return f.getFull64(); }
+    static inline u64 get32BitHigh(ResearcherFrame f) { return f.getHigh32(); }
+    static inline u64 get32BitLow(ResearcherFrame f) { return f.getLow32(); }
+    static inline u64 get32(ResearcherFrame f) { return f.getFull32(); }
+    static inline u64 get16BitHigh(ResearcherFrame f) { return f.getHigh16(); }
+    static inline u64 get16BitLow(ResearcherFrame f) { return f.getLow16(); }
 
 };
 

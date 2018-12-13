@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef QCHECKLIST
-#define QCHECKLIST
+#ifndef CHECKLIST
+#define CHECKLIST
 
 #include <QComboBox>
 #include <QEvent>
@@ -26,9 +26,17 @@
 #include <QListView>
 #include <QStandardItemModel>
 
-class QCheckList : public QComboBox
+class CheckList : public QComboBox
 {
     Q_OBJECT
+
+public:
+    explicit CheckList(QWidget *parent = nullptr);
+    ~CheckList() override;
+    void setup();
+    QVector<bool> getChecked();
+    void uncheckAll();
+    void setChecks(QVector<bool> flags);
 
 protected:
     bool eventFilter(QObject *object, QEvent *event) override;
@@ -43,14 +51,6 @@ private slots:
     void modelDataChanged();
     void itemPressed(const QModelIndex &index);
 
-public:
-    explicit QCheckList(QWidget *parent = nullptr);
-    ~QCheckList() override;
-    void setup();
-    QVector<bool> getChecked();
-    void uncheckAll();
-    void setChecks(QVector<bool> flags);
-
 };
 
-#endif // QCHECKLIST
+#endif // CHECKLIST

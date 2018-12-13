@@ -17,9 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "QCheckList.hpp"
+#include "CheckList.hpp"
 
-QCheckList::QCheckList(QWidget *parent) : QComboBox(parent)
+CheckList::CheckList(QWidget *parent) : QComboBox(parent)
 {
     model = new QStandardItemModel();
     setModel(model);
@@ -29,16 +29,16 @@ QCheckList::QCheckList(QWidget *parent) : QComboBox(parent)
     lineEdit()->installEventFilter(this);
 
     connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
-    connect(dynamic_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &QCheckList::itemPressed);
-    connect(model, &QAbstractItemModel::dataChanged, this, &QCheckList::modelDataChanged);
+    connect(dynamic_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &CheckList::itemPressed);
+    connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
 }
 
-QCheckList::~QCheckList()
+CheckList::~CheckList()
 {
     delete model;
 }
 
-void QCheckList::setup()
+void CheckList::setup()
 {
     for (int i = 0; i < model->rowCount(); i++)
     {
@@ -48,61 +48,44 @@ void QCheckList::setup()
     }
 }
 
-QVector<bool> QCheckList::getChecked()
+QVector<bool> CheckList::getChecked()
 {
     QVector<bool> result;
 
     if (globalCheckState() == Qt::Unchecked || globalCheckState() == Qt::Checked)
     {
         for (auto i = 0; i < model->rowCount(); i++)
+        {
             result.append(true);
+        }
     }
     else
     {
         for (auto i = 0; i < model->rowCount(); i++)
         {
-            if (model->item(i)->checkState() == Qt::Checked)
-                result.append(true);
-            else
-                result.append(false);
+            result.append(model->item(i)->checkState() == Qt::Checked);
         }
     }
     return result;
 }
 
-void QCheckList::uncheckAll()
+void CheckList::uncheckAll()
 {
     for (auto i = 0; i < model->rowCount(); i++)
+    {
         model->item(i)->setCheckState(Qt::Unchecked);
+    }
 }
 
-void QCheckList::setChecks(QVector<bool> flags)
+void CheckList::setChecks(QVector<bool> flags)
 {
     for (auto i = 0; i < model->rowCount(); i++)
     {
-        if (flags[i])
-            model->item(i)->setCheckState(Qt::Checked);
-        else
-            model->item(i)->setCheckState(Qt::Unchecked);
+        model->item(i)->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
     }
 }
 
-int QCheckList::globalCheckState()
-{
-    int total = model->rowCount(), checked = 0, unchecked = 0;
-
-    for (int i = 0; i < total; i++)
-    {
-        if (model->item(i)->checkState() == Qt::Checked)
-            checked++;
-        else if (model->item(i)->checkState() == Qt::Unchecked)
-            unchecked++;
-    }
-
-    return checked == total ? Qt::Checked : unchecked == total ? Qt::Unchecked : Qt::PartiallyChecked;
-}
-
-bool QCheckList::eventFilter(QObject *object, QEvent *event)
+bool CheckList::eventFilter(QObject *object, QEvent *event)
 {
     if (object == lineEdit() && event->type() == QEvent::MouseButtonPress)
     {
@@ -113,7 +96,7 @@ bool QCheckList::eventFilter(QObject *object, QEvent *event)
     return false;
 }
 
-void QCheckList::updateText()
+void CheckList::updateText()
 {
     QString text;
 
@@ -122,24 +105,23 @@ void QCheckList::updateText()
         case Qt::Checked:
             text = tr("Any");
             break;
-
         case Qt::Unchecked:
             text = tr("Any");
             break;
-
         case Qt::PartiallyChecked:
             for (int i = 0; i < model->rowCount(); i++)
             {
                 if (model->item(i)->checkState() == Qt::Checked)
                 {
                     if (!text.isEmpty())
+                    {
                         text += ", ";
+                    }
 
                     text += model->item(i)->text();
                 }
             }
             break;
-
         default:
             text = tr("Any");
     }
@@ -147,17 +129,32 @@ void QCheckList::updateText()
     lineEdit()->setText(text);
 }
 
-void QCheckList::modelDataChanged()
+int CheckList::globalCheckState()
+{
+    int total = model->rowCount(), checked = 0, unchecked = 0;
+
+    for (int i = 0; i < total; i++)
+    {
+        if (model->item(i)->checkState() == Qt::Checked)
+        {
+            checked++;
+        }
+        else if (model->item(i)->checkState() == Qt::Unchecked)
+        {
+            unchecked++;
+        }
+    }
+
+    return checked == total ? Qt::Checked : unchecked == total ? Qt::Unchecked : Qt::PartiallyChecked;
+}
+
+void CheckList::modelDataChanged()
 {
     updateText();
 }
 
-void QCheckList::itemPressed(const QModelIndex &index)
+void CheckList::itemPressed(const QModelIndex &index)
 {
     QStandardItem *item = model->itemFromIndex(index);
-
-    if (item->checkState() == Qt::Checked)
-        item->setCheckState(Qt::Unchecked);
-    else
-        item->setCheckState(Qt::Checked);
+    item->setCheckState(item->checkState() == Qt::Checked ? Qt::Unchecked : Qt::Checked);
 }

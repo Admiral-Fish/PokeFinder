@@ -34,6 +34,11 @@ class SearchCoinFlips : public QDialog
 {
     Q_OBJECT
 
+public:
+    explicit SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent = nullptr);
+    ~SearchCoinFlips() override;
+    QVector<bool> possibleResults();
+
 private:
     Ui::SearchCoinFlips *ui;
     QVector<DateTime> data;
@@ -42,14 +47,10 @@ private:
 private slots:
     void on_pushButtonHeads_clicked();
     void on_pushButtonTails_clicked();
-    void on_lineEditFlips_textChanged(const QString &arg1);
+    void on_lineEditFlips_textChanged(const QString &val);
     void on_pushButtonOkay_clicked();
     void on_pushButtonCancel_clicked();
 
-public:
-    explicit SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent = nullptr);
-    ~SearchCoinFlips() override;
-    QVector<bool> possibleResults();
 };
 
 #endif // SEARCHCOINFLIPS_HPP

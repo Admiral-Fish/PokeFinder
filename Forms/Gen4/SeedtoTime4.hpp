@@ -39,6 +39,11 @@ class SeedtoTime4 : public QMainWindow
 {
     Q_OBJECT
 
+public:
+    explicit SeedtoTime4(QWidget *parent = nullptr);
+    explicit SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *parent = nullptr);
+    ~SeedtoTime4() override;
+
 private:
     Ui::SeedtoTime4 *ui;
     SeedtoTime4Model *dppt = new SeedtoTime4Model(this, false);
@@ -47,8 +52,6 @@ private:
     SeedtoTime4Model *hgssCalibrate = new SeedtoTime4Model(this, true, Game::HeartGold);
 
     void setupModels();
-    void saveSettings();
-    void loadSettings();
     QVector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);
     QVector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, DateTime target);
 
@@ -61,13 +64,7 @@ private slots:
     void on_pushButtonSearchCalls_clicked();
     void on_checkBoxSecondsHGSS_clicked(bool checked);
     void on_checkBoxSecondsDPPt_clicked(bool checked);
-
     void on_pushButtonMap_clicked();
-
-public:
-    explicit SeedtoTime4(QWidget *parent = nullptr);
-    explicit SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *parent = nullptr);
-    ~SeedtoTime4() override;
 
 };
 

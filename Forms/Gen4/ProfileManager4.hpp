@@ -36,6 +36,10 @@ class ProfileManager4 : public QMainWindow
 signals:
     void updateProfiles();
 
+public:
+    explicit ProfileManager4(QWidget *parent = nullptr);
+    ~ProfileManager4() override;
+
 private:
     Ui::ProfileManager4 *ui;
     Profile4Model *model = new Profile4Model(this);
@@ -47,10 +51,6 @@ private slots:
     void on_pushButtonOk_clicked();
     void on_pushButtonEdit_clicked();
     void on_pushButtonDelete_clicked();
-
-public:
-    explicit ProfileManager4(QWidget *parent = nullptr);
-    ~ProfileManager4() override;
 
 };
 

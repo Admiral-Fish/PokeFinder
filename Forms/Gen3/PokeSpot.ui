@@ -158,7 +158,7 @@ QPushButton {
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QTextBox" name="textBoxSeed">
+        <widget class="TextBox" name="textBoxSeed">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -184,7 +184,7 @@ QPushButton {
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QTextBox" name="textBoxStartingFrame">
+        <widget class="TextBox" name="textBoxStartingFrame">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -213,7 +213,7 @@ QPushButton {
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QTextBox" name="textBoxMaxResults">
+        <widget class="TextBox" name="textBoxMaxResults">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -242,7 +242,7 @@ QPushButton {
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QTextBox" name="textBoxTID">
+        <widget class="TextBox" name="textBoxTID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -271,7 +271,7 @@ QPushButton {
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QTextBox" name="textBoxSID">
+        <widget class="TextBox" name="textBoxSID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -404,7 +404,7 @@ QPushButton {
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QCheckList" name="comboBoxNature">
+        <widget class="CheckList" name="comboBoxNature">
          <item>
           <property name="text">
            <string>Adamant</string>
@@ -619,7 +619,7 @@ QPushButton {
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QCheckList" name="comboBoxSpotType">
+        <widget class="CheckList" name="comboBoxSpotType">
          <item>
           <property name="text">
            <string>Common</string>
@@ -687,9 +687,9 @@ QPushButton {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>TableView</class>
@@ -697,9 +697,9 @@ QPushButton {
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>QCheckList</class>
+   <class>CheckList</class>
    <extends>QComboBox</extends>
-   <header>Forms/Controls/QCheckList.hpp</header>
+   <header>Forms/Controls/CheckList.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

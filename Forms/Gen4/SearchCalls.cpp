@@ -48,43 +48,27 @@ QVector<bool> SearchCalls::possibleResults()
 void SearchCalls::on_pushButtonK_clicked()
 {
     QString string = ui->lineEditCalls->text();
-
-    if (string.isEmpty())
-        string = "K";
-    else
-        string += ", K";
-
+    string += string.isEmpty() ? "K" : ", K";
     ui->lineEditCalls->setText(string);
 }
 
 void SearchCalls::on_pushButtonE_clicked()
 {
     QString string = ui->lineEditCalls->text();
-
-    if (string.isEmpty())
-        string = "E";
-    else
-        string += ", E";
-
+    string += string.isEmpty() ? "E" : "< E";
     ui->lineEditCalls->setText(string);
 }
 
 void SearchCalls::on_pushButtonP_clicked()
 {
     QString string = ui->lineEditCalls->text();
-
-    if (string.isEmpty())
-        string = "P";
-    else
-        string += ", P";
-
+    string += string.isEmpty() ? "P" : ", P";
     ui->lineEditCalls->setText(string);
 }
 
-void SearchCalls::on_lineEditCalls_textChanged(const QString &arg1)
+void SearchCalls::on_lineEditCalls_textChanged(const QString &val)
 {
-    QStringList results = arg1.split(",", QString::SkipEmptyParts);
-
+    QStringList results = val.split(",", QString::SkipEmptyParts);
     int num = 0;
 
     possible.clear();
@@ -111,7 +95,9 @@ void SearchCalls::on_lineEditCalls_textChanged(const QString &arg1)
         }
         possible.append(pass);
         if (pass)
+        {
             num++;
+        }
     }
 
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));

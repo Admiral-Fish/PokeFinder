@@ -41,6 +41,10 @@ class PIDtoIVs : public QMainWindow
 signals:
     void moveResultsToStationary(QString, QString, u32, u32, u32, u32, u32, u32);
 
+public:
+    explicit PIDtoIVs(QWidget *parent = nullptr);
+    ~PIDtoIVs() override;
+
 private:
     Ui::PIDtoIVs *ui;
     QStandardItemModel *model = new QStandardItemModel(this);
@@ -64,10 +68,6 @@ private slots:
     void on_pushButtonGenerate_clicked();
     void on_tabePIDToIV_customContextMenuRequested(const QPoint &pos);
     void copySeed();
-
-public:
-    explicit PIDtoIVs(QWidget *parent = nullptr);
-    ~PIDtoIVs() override;
 
 };
 

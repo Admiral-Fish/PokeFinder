@@ -39,6 +39,10 @@ class IDs4 : public QMainWindow
 signals:
     void updateProgress();
 
+public:
+    explicit IDs4(QWidget *parent = nullptr);
+    ~IDs4() override;
+
 private:
     Ui::IDs4 *ui;
     QStandardItemModel *model = new QStandardItemModel(this);
@@ -52,18 +56,14 @@ private:
     void updateSearch();
 
 private slots:
+    void on_pushButtonSearchShinyPID_clicked();
+    void on_pushButtonSearchTIDSID_clicked();
+    void on_pushButtonSearchSeedFinder_clicked();
     void on_checkBoxSearchTIDShinyPID_toggled(bool checked);
     void on_checkBoxInfiniteSearchShinyPID_toggled(bool checked);
     void on_checkBoxSearchSID_toggled(bool checked);
     void on_checkBoxInfiniteSearchTIDSID_toggled(bool checked);
-    void on_pushButtonSearchShinyPID_clicked();
-    void on_pushButtonSearchTIDSID_clicked();
-    void on_pushButtonSearchSeedFinder_clicked();
     void updateProgressBar();
-
-public:
-    explicit IDs4(QWidget *parent = nullptr);
-    ~IDs4() override;
 
 };
 

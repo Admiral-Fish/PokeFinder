@@ -27,7 +27,10 @@ Egg3Model::Egg3Model(QObject *parent, Method method) : QAbstractTableModel(paren
 void Egg3Model::setModel(const QVector<Frame3> &frames)
 {
     if (frames.isEmpty())
+    {
         return;
+    }
+
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
     model.append(frames);
@@ -37,7 +40,10 @@ void Egg3Model::setModel(const QVector<Frame3> &frames)
 void Egg3Model::clear()
 {
     if (model.isEmpty())
+    {
         return;
+    }
+
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
     model.squeeze();

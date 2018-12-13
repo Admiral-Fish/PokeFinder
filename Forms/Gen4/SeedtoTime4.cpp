@@ -41,9 +41,7 @@ SeedtoTime4::SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *
 
     setupModels();
 
-    Game version = profile.getVersion();
-
-    if (version == Game::HeartGold || version == Game::SoulSilver)
+    if (profile.getVersion() & Game::HGSS)
     {
         ui->tabWidget->setCurrentIndex(1);
         ui->textBoxSeedHGSS->setText(seed);
@@ -58,31 +56,6 @@ SeedtoTime4::SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *
 
 SeedtoTime4::~SeedtoTime4()
 {
-    saveSettings();
-
-    delete ui;
-    delete dppt;
-    delete dpptCalibrate;
-    delete hgss;
-    delete hgssCalibrate;
-}
-
-void SeedtoTime4::setupModels()
-{
-    loadSettings();
-
-    ui->textBoxSeedDPPt->setValues(InputType::Seed32Bit);
-    ui->textBoxSeedHGSS->setValues(InputType::Seed32Bit);
-
-    ui->tableViewDPPt->setModel(dppt);
-    ui->tableViewDPPtCalibrate->setModel(dpptCalibrate);
-
-    ui->tableViewHGSS->setModel(hgss);
-    ui->tableViewHGSSCalibrate->setModel(hgssCalibrate);
-}
-
-void SeedtoTime4::saveSettings()
-{
     QSettings settings;
     settings.setValue("dpptYear", ui->lineEditYearDPPt->text());
     settings.setValue("minusDelayDPPt", ui->lineEditMinusDelayDPPt->text());
@@ -94,10 +67,25 @@ void SeedtoTime4::saveSettings()
     settings.setValue("plusDelayHGSS", ui->lineEditPlusDelayHGSS->text());
     settings.setValue("minusSecondsHGSS", ui->lineEditMinusSecondsHGSS->text());
     settings.setValue("plusSecondsHGSS", ui->lineEditPlusSecondsHGSS->text());
+
+    delete ui;
+    delete dppt;
+    delete dpptCalibrate;
+    delete hgss;
+    delete hgssCalibrate;
 }
 
-void SeedtoTime4::loadSettings()
+void SeedtoTime4::setupModels()
 {
+    ui->textBoxSeedDPPt->setValues(InputType::Seed32Bit);
+    ui->textBoxSeedHGSS->setValues(InputType::Seed32Bit);
+
+    ui->tableViewDPPt->setModel(dppt);
+    ui->tableViewDPPtCalibrate->setModel(dpptCalibrate);
+
+    ui->tableViewHGSS->setModel(hgss);
+    ui->tableViewHGSSCalibrate->setModel(hgssCalibrate);
+
     QSettings setting;
     if (setting.contains("dpptYear")) ui->lineEditYearDPPt->setText(setting.value("dpptYear").toString());
     if (setting.contains("minusDelayDPPt")) ui->lineEditMinusDelayDPPt->setText(setting.value("minusDelayDPPt").toString());
@@ -150,7 +138,9 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
                 for (int second = 0; second < 60; second++)
                 {
                     if (ab != ((month * day + minute + second) & 0xFF))
+                    {
                         continue;
+                    }
 
                     if (!forceSecond || second == forcedSecond)
                     {
@@ -228,7 +218,7 @@ void SeedtoTime4::on_pushButtonGenerateHGSS_clicked()
     QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HeartGold);
     ui->labelElmCalls->setText(tr("Elm Calls: ") + Utilities::getCalls(seed, 15, info));
     QString str = info.getRoutes();
-    str = str == "" ? tr("No roamers") : str;
+    str = str.isEmpty() ? tr("No roamers") : str;
     ui->labelRoamers->setText(tr("Roamers: ") + str);
 
     hgss->setModel(results);
@@ -301,7 +291,9 @@ void SeedtoTime4::on_pushButtonCalibrateHGSS_clicked()
 void SeedtoTime4::on_pushButtonSearchFlips_clicked()
 {
     if (dpptCalibrate->rowCount() == 0)
+    {
         return;
+    }
 
     auto *search = new SearchCoinFlips(dpptCalibrate->getData());
     if (search->exec() == QDialog::Rejected)
@@ -318,7 +310,9 @@ void SeedtoTime4::on_pushButtonSearchFlips_clicked()
     for (int i = 0; i < results.size(); i++)
     {
         if (results[i])
+        {
             ui->tableViewDPPtCalibrate->selectRow(i);
+        }
     }
 
     ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -330,7 +324,9 @@ void SeedtoTime4::on_pushButtonSearchFlips_clicked()
 void SeedtoTime4::on_pushButtonSearchCalls_clicked()
 {
     if (hgssCalibrate->rowCount() == 0)
+    {
         return;
+    }
 
     QVector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
     QVector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
@@ -350,7 +346,9 @@ void SeedtoTime4::on_pushButtonSearchCalls_clicked()
     for (int i = 0; i < results.size(); i++)
     {
         if (results[i])
+        {
             ui->tableViewHGSSCalibrate->selectRow(i);
+        }
     }
 
     ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -359,14 +357,14 @@ void SeedtoTime4::on_pushButtonSearchCalls_clicked()
     delete search;
 }
 
-void SeedtoTime4::on_checkBoxSecondsDPPt_clicked(bool checked)
-{
-    ui->lineEditSecondsDPPt->setEnabled(checked);
-}
-
 void SeedtoTime4::on_checkBoxSecondsHGSS_clicked(bool checked)
 {
     ui->lineEditSecondsHGSS->setEnabled(checked);
+}
+
+void SeedtoTime4::on_checkBoxSecondsDPPt_clicked(bool checked)
+{
+    ui->lineEditSecondsDPPt->setEnabled(checked);
 }
 
 void SeedtoTime4::on_pushButtonMap_clicked()

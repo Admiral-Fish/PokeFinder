@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef QTEXTBOX_HPP
-#define QTEXTBOX_HPP
+#ifndef TEXTBOX_HPP
+#define TEXTBOX_HPP
 
 #include <QLineEdit>
 
@@ -33,11 +33,17 @@ enum InputType
     TIDSID
 };
 
-class QTextBox : public QLineEdit
+class TextBox : public QLineEdit
 {
     Q_OBJECT
 
+public:
+    explicit TextBox(QWidget *parent = nullptr);
+    void setValues(InputType type);
+    void setValues(quint64 minValue, quint64 maxValue, int base = 10);
+
 private:
+    bool setup;
     quint64 maxValue = 0;
     quint64 minValue;
     int base;
@@ -46,14 +52,6 @@ private:
 private slots:
     void onTextChanged(QString string);
 
-public:
-    explicit QTextBox(QWidget *parent = nullptr);
-    void setValues(InputType type);
-    void setValues(quint64 minValue, quint64 maxValue, int base = 10);
-    void setFilter(const QString &string);
-    void setValue(quint64 value);
-    void setBase(int base);
-
 };
 
-#endif // QTEXTBOX_HPP
+#endif // TEXTBOX_HPP

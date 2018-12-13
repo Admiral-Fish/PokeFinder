@@ -35,20 +35,20 @@ class IVtoPID : public QMainWindow
 {
     Q_OBJECT
 
+public:
+    explicit IVtoPID(QWidget *parent = nullptr);
+    ~IVtoPID() override;
+
 private:
     Ui::IVtoPID *ui;
     QStandardItemModel *model = new QStandardItemModel(this);
 
     void setupModels();
-    void getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid);
-    void getSeedsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe, u32 nature);
+    void getSeeds(u32 ivs1, u32 ivs2, u16 nature, u16 tid);
+    void getSeedsChannel(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 spe, u16 nature);
 
 private slots:
     void on_pushButtonFind_clicked();
-
-public:
-    explicit IVtoPID(QWidget *parent = nullptr);
-    ~IVtoPID() override;
 
 };
 

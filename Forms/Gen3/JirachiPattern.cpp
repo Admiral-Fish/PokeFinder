@@ -46,13 +46,6 @@ void JirachiPattern::setupModels()
     ui->tableViewGenerator->setModel(model);
 }
 
-void JirachiPattern::on_pushButtonGenerate_clicked()
-{
-    model->removeRows(0, model->rowCount());
-    data.clear();
-    generate(ui->jirachiPatternSeed->text().toUInt(nullptr, 16));
-}
-
 void JirachiPattern::generate(u32 seed)
 {
     QStringList result = getPatterns(seed).toSet().toList();
@@ -64,7 +57,9 @@ void JirachiPattern::generate(u32 seed)
     else
     {
         for (const auto &str : result)
+        {
             model->appendRow(new QStandardItem(str));
+        }
     }
 }
 
@@ -91,14 +86,18 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         // Modify pattern with target, skip if invalid
         QString copy = getTarget(QString(pattern), i);
         if (copy.isEmpty())
+        {
             continue;
+        }
 
         int index = copy.indexOf(QChar(':')) + 1;
 
         // Menu advances can't stop on 0 so skip
         u32 target = QString(copy.at(index)).toUInt();
         if (target == 0)
+        {
             continue;
+        }
 
         // From start, game advances frames until (prng >> 30) gives a 1, 2, and 3
         // (prng >> 30) being 0 just acts as a filler
@@ -106,7 +105,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         QVector<u32> remain = { 1, 2, 3 };
         remain.removeAll(target);
 
-        bool obtain[] = { false, false, false, false };
+        bool obtain[4] = { false, false, false, false };
         obtain[target] = true;
 
         // Determine if spread is possible
@@ -130,12 +129,16 @@ QStringList JirachiPattern::getPatterns(u32 seed)
 
             // Check to see if pattern passes
             if (obtain[1] && obtain[2] && obtain[3])
+            {
                 break;
+            }
         }
 
         // This part actually skips when a pattern is impossible
         if (valid)
+        {
             results.append(copy.replace("|", " | "));
+        }
     }
 
     return results;
@@ -152,29 +155,51 @@ QString JirachiPattern::getTarget(QString in, int index)
     {
         case 0:
             if ((data[1] >> 30) == 0) // 6 advances total
+            {
                 in = in.mid(0, in.length() - 13) + "T:" + in.mid(in.length() - 13);
+            }
             else
+            {
                 return QString();
+            }
             break;
         case 1:
             if ((data[3] >> 30) == 1 || (data[3] >> 30) == 3) // 8 advances total
+            {
                 in = in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
+            }
             else
+            {
                 return QString();
+            }
             break;
         case 2:
             if ((data[3] >> 30) == 2 && (data[1] >> 25) <= 41) // 7 advances total
+            {
                 in = in.mid(0, in.length() - 15) + "T:" + in.mid(in.length() - 15);
+            }
             else
+            {
                 return QString();
+            }
             break;
         case 3:
-        default:
             if ((data[3] >> 30) == 2 && (data[1] >> 25) > 41) // 8 advances total
+            {
                 in = in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
+            }
             else
+            {
                 return QString();
+            }
             break;
     }
     return in;
+}
+
+void JirachiPattern::on_pushButtonGenerate_clicked()
+{
+    model->removeRows(0, model->rowCount());
+    data.clear();
+    generate(ui->jirachiPatternSeed->text().toUInt(nullptr, 16));
 }

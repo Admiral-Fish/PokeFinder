@@ -45,6 +45,7 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(const Profile3 &profile, QWidget 
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->checkBoxDeadBattery->setChecked(profile.getDeadBattery());
+
     isEditing = true;
     original = profile;
 }
@@ -81,7 +82,7 @@ void ProfileManager3NewEdit::setupModels()
 void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
 {
     QString input = ui->lineEditProfile->text().trimmed();
-    if (input == "")
+    if (input.isEmpty())
     {
         QMessageBox error;
         error.setText(tr("Enter a Profile Name."));
@@ -103,13 +104,14 @@ void ProfileManager3NewEdit::on_pushButtonCancel_clicked()
 
 void ProfileManager3NewEdit::on_comboBoxVersion_currentIndexChanged(int index)
 {
-    if (index > 1)
+    (void) index;
+
+    bool flag = ui->comboBoxVersion->currentData().toInt() & Game::RS;
+    ui->labelDeadBattery->setVisible(true);
+    ui->checkBoxDeadBattery->setVisible(true);
+    if (!flag)
     {
-        ui->checkBoxDeadBattery->setEnabled(false);
         ui->checkBoxDeadBattery->setChecked(false);
     }
-    else
-    {
-        ui->checkBoxDeadBattery->setEnabled(true);
-    }
+
 }

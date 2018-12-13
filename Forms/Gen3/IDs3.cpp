@@ -97,7 +97,9 @@ void IDs3::on_pushButtonFindFRLGE_clicked()
         sid = rng.nextUShort();
 
         if ((!usePID || Utilities::shiny(pid, tid, sid)) && (!useSID || searchSID == sid))
+        {
             frlge->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+        }
     }
 }
 
@@ -116,9 +118,13 @@ void IDs3::on_pushButtonFindRS_clicked()
     u32 maxResults = ui->textBoxMaxFrameRS->text().toUInt();
 
     if (ui->radioButtonInitSeedRS->isChecked())
+    {
         seed = ui->textBoxInitSeedRS->text().toUInt(nullptr, 16);
+    }
     else
+    {
         seed = Utilities::calcGen3Seed(ui->dateTimeEdit->date(), static_cast<u32>(ui->dateTimeEdit->time().hour()), static_cast<u32>(ui->dateTimeEdit->time().minute()));
+    }
 
     PokeRNG rng(seed, minFrame);
 
@@ -131,7 +137,9 @@ void IDs3::on_pushButtonFindRS_clicked()
         tid = rng.nextUShort();
 
         if ((!usePID || Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid) && (!useSID || searchSID == sid))
+        {
             rs->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+        }
     }
 }
 
@@ -159,104 +167,67 @@ void IDs3::on_pushButtonFindXD_clicked()
         sid = rng.nextUShort();
 
         if ((!usePID || Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid) && (!useSID || searchSID == sid))
+        {
             xdcolo->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+        }
     }
 }
 
-void IDs3::on_checkBoxBattery_stateChanged(int arg1)
+void IDs3::on_checkBoxPIDXD_stateChanged(int val)
 {
-    if (arg1 == Qt::Unchecked)
-    {
-        ui->radioButtonDateRS->setEnabled(true);
-        ui->radioButtonInitSeedRS->setEnabled(true);
-        on_radioButtonDateRS_toggled(ui->radioButtonDateRS->isChecked());
-        on_radioButtonInitSeedRS_toggled(ui->radioButtonInitSeedRS->isChecked());
-    }
-    else
-    {
-        ui->radioButtonDateRS->setEnabled(false);
-        ui->radioButtonInitSeedRS->setEnabled(false);
-        on_radioButtonDateRS_toggled(false);
-        on_radioButtonInitSeedRS_toggled(false);
-    }
+    ui->textBoxPIDXD->setEnabled(val == Qt::Checked);
 }
 
-void IDs3::on_checkBoxPIDRS_stateChanged(int arg1)
+void IDs3::on_checkBoxTIDXD_stateChanged(int val)
 {
-    if (arg1 == Qt::Checked)
-        ui->textBoxPIDRS->setEnabled(true);
-    else
-        ui->textBoxPIDRS->setEnabled(false);
+    ui->textBoxTIDXD->setEnabled(val == Qt::Checked);
 }
 
-void IDs3::on_checkBoxTIDRS_stateChanged(int arg1)
+void IDs3::on_checkBoxSIDXD_stateChanged(int val)
 {
-    if (arg1 == Qt::Checked)
-        ui->textBoxTIDRS->setEnabled(true);
-    else
-        ui->textBoxTIDRS->setEnabled(false);
+    ui->textBoxSIDXD->setEnabled(val == Qt::Checked);
 }
 
-void IDs3::on_checkBoxSIDRS_stateChanged(int arg1)
+void IDs3::on_checkBoxPIDFRLGE_stateChanged(int val)
 {
-    if (arg1 == Qt::Checked)
-        ui->textBoxSIDRS->setEnabled(true);
-    else
-        ui->textBoxSIDRS->setEnabled(false);
+    ui->textBoxPIDFRLGE->setEnabled(val == Qt::Checked);
 }
 
-void IDs3::on_checkBoxPIDXD_stateChanged(int arg1)
+void IDs3::on_checkBoxSIDFRLGE_stateChanged(int val)
 {
-    if (arg1 == Qt::Checked)
-        ui->textBoxPIDXD->setEnabled(true);
-    else
-        ui->textBoxPIDXD->setEnabled(false);
+    ui->checkBoxSIDFRLGE->setEnabled(val == Qt::Checked);
 }
 
-void IDs3::on_checkBoxTIDXD_stateChanged(int arg1)
+void IDs3::on_checkBoxBattery_stateChanged(int val)
 {
-    if (arg1 == Qt::Checked)
-        ui->textBoxTIDXD->setEnabled(true);
-    else
-        ui->textBoxTIDXD->setEnabled(false);
+    bool flag = val == Qt::Unchecked;
+    ui->radioButtonDateRS->setEnabled(flag);
+    ui->radioButtonInitSeedRS->setEnabled(flag);
+    ui->dateTimeEdit->setEnabled(flag ? ui->radioButtonDateRS->isChecked() : false);
+    ui->textBoxInitSeedRS->setEnabled(flag ? ui->radioButtonInitSeedRS->isChecked() : false);
 }
 
-void IDs3::on_checkBoxSIDXD_stateChanged(int arg1)
+void IDs3::on_checkBoxPIDRS_stateChanged(int val)
 {
-    if (arg1 == Qt::Checked)
-        ui->textBoxSIDXD->setEnabled(true);
-    else
-        ui->textBoxSIDXD->setEnabled(false);
+    ui->textBoxPIDRS->setEnabled(val == Qt::Checked);
 }
 
-void IDs3::on_checkBoxPIDFRLGE_stateChanged(int arg1)
+void IDs3::on_checkBoxTIDRS_stateChanged(int val)
 {
-    if (arg1 == Qt::Checked)
-        ui->textBoxPIDFRLGE->setEnabled(true);
-    else
-        ui->textBoxPIDFRLGE->setEnabled(false);
+    ui->textBoxTIDRS->setEnabled(val == Qt::Checked);
 }
 
-void IDs3::on_checkBoxSIDFRLGE_stateChanged(int arg1)
+void IDs3::on_checkBoxSIDRS_stateChanged(int val)
 {
-    if (arg1 == Qt::Checked)
-        ui->textBoxSIDFRLGE->setEnabled(true);
-    else
-        ui->textBoxSIDFRLGE->setEnabled(false);
+    ui->textBoxSIDRS->setEnabled(val == Qt::Checked);
 }
 
 void IDs3::on_radioButtonDateRS_toggled(bool checked)
 {
-    if (checked)
-        ui->dateTimeEdit->setEnabled(true);
-    else
-        ui->dateTimeEdit->setEnabled(false);
+    ui->dateTimeEdit->setEnabled(checked);
 }
 
 void IDs3::on_radioButtonInitSeedRS_toggled(bool checked)
 {
-    if (checked)
-        ui->textBoxInitSeedRS->setEnabled(true);
-    else
-        ui->textBoxInitSeedRS->setEnabled(false);
+    ui->textBoxInitSeedRS->setEnabled(checked);
 }

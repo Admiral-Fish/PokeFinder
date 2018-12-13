@@ -49,6 +49,11 @@ signals:
     void alertProfiles(int);
     void updateProgress();
 
+public:
+    explicit Wild3(QWidget *parent = nullptr);
+    ~Wild3() override;
+    void updateProfiles();
+
 private:
     Ui::Wild3 *ui;
     QVector<Profile3> profiles;
@@ -67,47 +72,41 @@ private:
     void setupModels();
     void search();
     void updateSearch();
-    void updateLocationsSearcher();
-    void updatePokemonSearcher();
     void updateLocationsGenerator();
+    void updateLocationsSearcher();
     void updatePokemonGenerator();
+    void updatePokemonSearcher();
 
 private slots:
-    void on_generate_clicked();
     void refreshProfiles();
+    void on_comboBoxProfiles_currentIndexChanged(int index);
+    void on_generate_clicked();
+    void on_search_clicked();
     void on_anyNatureGenerator_clicked();
     void on_anyHiddenPowerGenerator_clicked();
-    void on_search_clicked();
+    void on_anySlotGenerator_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
+    void on_anySlotSearcher_clicked();
     void updateViewSearcher(const QVector<Frame3> &frames);
-    void on_checkBoxDelayGenerator_clicked();
-    void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
-    void copySeedToClipboard();
     void setTargetFrameGenerator();
     void jumpToTargetGenerator();
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void seedToTime();
     void outputToTxt();
     void outputToCSV();
+    void copySeedToClipboard();
     void updateProgressBar();
     void on_pushButtonLeadGenerator_clicked();
-    void on_pushButtonProfileManager_clicked();
     void on_comboBoxEncounterGenerator_currentIndexChanged(int index);
-    void on_anySlotGenerator_clicked();
     void on_comboBoxEncounterSearcher_currentIndexChanged(int index);
-    void on_pushButton_clicked();
-    void on_comboBoxLocationSearcher_currentIndexChanged(int index);
-    void on_comboBoxPokemonSearcher_currentIndexChanged(int index);
     void on_comboBoxLocationGenerator_currentIndexChanged(int index);
+    void on_comboBoxLocationSearcher_currentIndexChanged(int index);
     void on_comboBoxPokemonGenerator_currentIndexChanged(int index);
-
-public:
-    explicit Wild3(QWidget *parent = nullptr);
-    ~Wild3() override;
-    void updateProfiles();
+    void on_comboBoxPokemonSearcher_currentIndexChanged(int index);
+    void on_pushButtonProfileManager_clicked();
 
 };
 

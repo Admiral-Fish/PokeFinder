@@ -65,34 +65,14 @@ void MainWindow::setupLanguage()
         action->setData(lang);
 
         if (currLang == lang)
+        {
             action->setChecked(true);
+        }
 
         langGroup->addAction(action);
     }
     switchTranslator(translator, QString(":/translations/PokeFinder_%1.qm").arg(currLang));
     ui->retranslateUi(this);
-}
-
-void MainWindow::slotLanguageChanged(QAction *action)
-{
-    if (action != nullptr)
-        loadLanguage(action->data().toString());
-}
-
-void MainWindow::updateProfiles(int num)
-{
-    if (num == 3)
-    {
-        if (stationary3) stationary3->updateProfiles();
-        if (wild3) wild3->updateProfiles();
-        if (egg3) egg3->updateProfiles();
-    }
-    else if (num == 4)
-    {
-        if (stationary4) stationary4->updateProfiles();
-        if (wild4) wild4->updateProfiles();
-        if (egg4) egg4->updateProfiles();
-    }
 }
 
 void MainWindow::loadLanguage(const QString &lang)
@@ -112,7 +92,9 @@ void MainWindow::switchTranslator(QTranslator &translator, const QString &filena
 {
     QApplication::removeTranslator(&translator);
     if (translator.load(filename))
+    {
         QApplication::installTranslator(&translator);
+    }
 }
 
 void MainWindow::checkProfileJson()
@@ -156,7 +138,9 @@ void MainWindow::checkUpdates()
             info.setDefaultButton(QMessageBox::No);
             // If user wants the latest version open the page in browser
             if (info.exec() == QMessageBox::Yes)
+            {
                 QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/tag/v" + webVersion));
+            }
         }
         delete reply;
     }
@@ -164,11 +148,26 @@ void MainWindow::checkUpdates()
     setting.setValue("lastOpened", today);
 }
 
-void MainWindow::on_actionResearcher_triggered()
+void MainWindow::slotLanguageChanged(QAction *action)
 {
-    auto *r = new Researcher();
-    r->show();
-    r->raise();
+    if (action != nullptr)
+        loadLanguage(action->data().toString());
+}
+
+void MainWindow::updateProfiles(int num)
+{
+    if (num == 3)
+    {
+        if (stationary3) stationary3->updateProfiles();
+        if (wild3) wild3->updateProfiles();
+        if (egg3) egg3->updateProfiles();
+    }
+    else if (num == 4)
+    {
+        if (stationary4) stationary4->updateProfiles();
+        if (wild4) wild4->updateProfiles();
+        if (egg4) egg4->updateProfiles();
+    }
 }
 
 void MainWindow::on_pushButtonStationary3_clicked()
@@ -315,4 +314,11 @@ void MainWindow::on_actionIV_to_PID_triggered()
     auto *ivToPID = new IVtoPID();
     ivToPID->show();
     ivToPID->raise();
+}
+
+void MainWindow::on_actionResearcher_triggered()
+{
+    auto *r = new Researcher();
+    r->show();
+    r->raise();
 }

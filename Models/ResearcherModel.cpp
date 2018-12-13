@@ -29,7 +29,10 @@ ResearcherModel::ResearcherModel(QObject *parent, bool is64Bit) : QAbstractTable
 void ResearcherModel::setModel(const QVector<ResearcherFrame> &frames)
 {
     if (frames.isEmpty())
+    {
         return;
+    }
+
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
     model.append(frames);
@@ -39,7 +42,10 @@ void ResearcherModel::setModel(const QVector<ResearcherFrame> &frames)
 void ResearcherModel::clear()
 {
     if (model.isEmpty())
+    {
         return;
+    }
+
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
     model.squeeze();
@@ -270,7 +276,9 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
     {
         u64 value = getResult(model[row]);
         if (value == result)
+        {
             return index(row, column, QModelIndex());
+        }
     }
 
     return QModelIndex();

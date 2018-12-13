@@ -270,7 +270,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QTextBox" name="textBoxMult32Bit">
+         <widget class="TextBox" name="textBoxMult32Bit">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -301,7 +301,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QTextBox" name="textBoxAdd32Bit">
+         <widget class="TextBox" name="textBoxAdd32Bit">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -404,7 +404,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QTextBox" name="textBoxMult64Bit">
+         <widget class="TextBox" name="textBoxMult64Bit">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -435,7 +435,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="2" column="2">
-         <widget class="QTextBox" name="textBoxAdd64Bit">
+         <widget class="TextBox" name="textBoxAdd64Bit">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -474,7 +474,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QTextBox" name="textBoxStatus3">
+         <widget class="TextBox" name="textBoxStatus3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -499,7 +499,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="1" column="3">
-         <widget class="QTextBox" name="textBoxStatus2">
+         <widget class="TextBox" name="textBoxStatus2">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -524,7 +524,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QTextBox" name="textBoxStatus1">
+         <widget class="TextBox" name="textBoxStatus1">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -549,7 +549,7 @@ QCheckBox::indicator:checked {
          </widget>
         </item>
         <item row="2" column="3">
-         <widget class="QTextBox" name="textBoxStatus0">
+         <widget class="TextBox" name="textBoxStatus0">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -693,7 +693,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="0" column="3">
-        <widget class="QTextBox" name="lineEditRValue1">
+        <widget class="TextBox" name="lineEditRValue1">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -836,7 +836,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="1" column="3">
-        <widget class="QTextBox" name="lineEditRValue2">
+        <widget class="TextBox" name="lineEditRValue2">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -1038,7 +1038,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="2" column="3">
-        <widget class="QTextBox" name="lineEditRValue3">
+        <widget class="TextBox" name="lineEditRValue3">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -1260,7 +1260,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="3" column="3">
-        <widget class="QTextBox" name="lineEditRValue4">
+        <widget class="TextBox" name="lineEditRValue4">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -1502,7 +1502,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="4" column="3">
-        <widget class="QTextBox" name="lineEditRValue5">
+        <widget class="TextBox" name="lineEditRValue5">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -1764,7 +1764,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="5" column="3">
-        <widget class="QTextBox" name="lineEditRValue6">
+        <widget class="TextBox" name="lineEditRValue6">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -2046,7 +2046,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="6" column="3">
-        <widget class="QTextBox" name="lineEditRValue7">
+        <widget class="TextBox" name="lineEditRValue7">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -2348,7 +2348,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="7" column="3">
-        <widget class="QTextBox" name="lineEditRValue8">
+        <widget class="TextBox" name="lineEditRValue8">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -2670,7 +2670,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="8" column="3">
-        <widget class="QTextBox" name="lineEditRValue9">
+        <widget class="TextBox" name="lineEditRValue9">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -3012,7 +3012,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="9" column="3">
-        <widget class="QTextBox" name="lineEditRValue10">
+        <widget class="TextBox" name="lineEditRValue10">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -3198,7 +3198,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QTextBox" name="textBoxStartingFrame">
+        <widget class="TextBox" name="textBoxStartingFrame">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -3221,7 +3221,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QTextBox" name="textBoxMaxFrames">
+        <widget class="TextBox" name="textBoxMaxFrames">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -3244,7 +3244,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QTextBox" name="textBoxSeed">
+        <widget class="TextBox" name="textBoxSeed">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -3312,7 +3312,7 @@ QCheckBox::indicator:checked {
         </widget>
        </item>
        <item row="0" column="1" colspan="2">
-        <widget class="QTextBox" name="textBoxSearch">
+        <widget class="TextBox" name="textBoxSearch">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -3439,9 +3439,9 @@ QHeaderView::section {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

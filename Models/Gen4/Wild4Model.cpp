@@ -27,7 +27,10 @@ Wild4Model::Wild4Model(QObject *parent, Method method) : QAbstractTableModel(par
 void Wild4Model::setModel(const QVector<Frame4> &frames)
 {
     if (frames.isEmpty())
+    {
         return;
+    }
+
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
     model.append(frames);
@@ -37,7 +40,10 @@ void Wild4Model::setModel(const QVector<Frame4> &frames)
 void Wild4Model::clear()
 {
     if (model.isEmpty())
+    {
         return;
+    }
+
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
     model.squeeze();

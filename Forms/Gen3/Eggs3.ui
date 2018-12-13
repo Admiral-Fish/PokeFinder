@@ -199,7 +199,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QTextBox" name="textBoxMinFrameEmeraldPID">
+            <widget class="TextBox" name="textBoxMinFrameEmeraldPID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -221,7 +221,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QTextBox" name="textBoxMaxFrameEmeraldPID">
+            <widget class="TextBox" name="textBoxMaxFrameEmeraldPID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -276,7 +276,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxMinRedraws">
+            <widget class="TextBox" name="textBoxMinRedraws">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -292,7 +292,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QTextBox" name="textBoxMaxRedraws">
+            <widget class="TextBox" name="textBoxMaxRedraws">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -360,7 +360,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="2" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxCalibration">
+            <widget class="TextBox" name="textBoxCalibration">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -383,7 +383,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="2" column="4">
-            <widget class="QCheckList" name="comboBoxNatureEmerald">
+            <widget class="CheckList" name="comboBoxNatureEmerald">
              <item>
               <property name="text">
                <string>Adamant</string>
@@ -679,7 +679,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="4" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxTIDEmerald">
+            <widget class="TextBox" name="textBoxTIDEmerald">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -728,7 +728,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="5" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxSIDEmerald">
+            <widget class="TextBox" name="textBoxSIDEmerald">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -928,7 +928,7 @@ QRadioButton {
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QTextBox" name="textBoxMinFrameEmeraldIVs">
+              <widget class="TextBox" name="textBoxMinFrameEmeraldIVs">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -941,7 +941,7 @@ QRadioButton {
               </widget>
              </item>
              <item row="0" column="2">
-              <widget class="QTextBox" name="textBoxMaxFrameEmeraldIVs">
+              <widget class="TextBox" name="textBoxMaxFrameEmeraldIVs">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1036,7 +1036,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QCheckList" name="comboBoxHiddenPowerEmerald">
+            <widget class="CheckList" name="comboBoxHiddenPowerEmerald">
              <item>
               <property name="text">
                <string>Fighting</string>
@@ -1449,7 +1449,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxSeedRS">
+            <widget class="TextBox" name="textBoxSeedRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1478,7 +1478,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxMinHeldRS">
+            <widget class="TextBox" name="textBoxMinHeldRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1500,7 +1500,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QTextBox" name="textBoxMaxHeldRS">
+            <widget class="TextBox" name="textBoxMaxHeldRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1529,7 +1529,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QTextBox" name="textBoxMinPickupRS">
+            <widget class="TextBox" name="textBoxMinPickupRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1551,7 +1551,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QTextBox" name="textBoxMaxPickupRS">
+            <widget class="TextBox" name="textBoxMaxPickupRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1580,7 +1580,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxTIDRS">
+            <widget class="TextBox" name="textBoxTIDRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1609,7 +1609,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="4" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxSIDRS">
+            <widget class="TextBox" name="textBoxSIDRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1782,7 +1782,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="8">
-            <widget class="QCheckList" name="comboBoxNatureRS">
+            <widget class="CheckList" name="comboBoxNatureRS">
              <item>
               <property name="text">
                <string>Adamant</string>
@@ -1949,7 +1949,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="8">
-            <widget class="QCheckList" name="comboBoxHiddenPowerRS">
+            <widget class="CheckList" name="comboBoxHiddenPowerRS">
              <item>
               <property name="text">
                <string>Fighting</string>
@@ -2421,7 +2421,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxSeedFRLG">
+            <widget class="TextBox" name="textBoxSeedFRLG">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2434,7 +2434,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QTextBox" name="textBoxMaxHeldFRLG">
+            <widget class="TextBox" name="textBoxMaxHeldFRLG">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2450,7 +2450,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxMinHeldFRLG">
+            <widget class="TextBox" name="textBoxMinHeldFRLG">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2485,7 +2485,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QTextBox" name="textBoxMaxPickupFRLG">
+            <widget class="TextBox" name="textBoxMaxPickupFRLG">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2501,7 +2501,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QTextBox" name="textBoxMinPickupFRLG">
+            <widget class="TextBox" name="textBoxMinPickupFRLG">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2549,7 +2549,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="4" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxSIDFRLG">
+            <widget class="TextBox" name="textBoxSIDFRLG">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2565,7 +2565,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxTIDFRLG">
+            <widget class="TextBox" name="textBoxTIDFRLG">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2751,7 +2751,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="8">
-            <widget class="QCheckList" name="comboBoxNatureFRLG">
+            <widget class="CheckList" name="comboBoxNatureFRLG">
              <item>
               <property name="text">
                <string>Adamant</string>
@@ -2918,7 +2918,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="8">
-            <widget class="QCheckList" name="comboBoxHiddenPowerFRLG">
+            <widget class="CheckList" name="comboBoxHiddenPowerFRLG">
              <item>
               <property name="text">
                <string>Fighting</string>
@@ -3456,9 +3456,9 @@ QRadioButton {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>TableView</class>
@@ -3472,9 +3472,9 @@ QRadioButton {
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>QCheckList</class>
+   <class>CheckList</class>
    <extends>QComboBox</extends>
-   <header>Forms/Controls/QCheckList.hpp</header>
+   <header>Forms/Controls/CheckList.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

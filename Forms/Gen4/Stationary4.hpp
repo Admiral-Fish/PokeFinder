@@ -47,6 +47,11 @@ signals:
     void updateView(QVector<Frame4>);
     void updateProgress();
 
+public:
+    explicit Stationary4(QWidget *parent = nullptr);
+    ~Stationary4() override;
+    void updateProfiles();
+
 private:
     Ui::Stationary4 *ui;
     Searcher4Model *s = new Searcher4Model(this, Method::Method1);
@@ -57,32 +62,26 @@ private:
     QVector<Profile4> profiles;
     QMenu *searcherMenu = new QMenu(this);
 
-    void loadSettings();
-    void saveSettings();
-    void search();
     void setupModels();
+    void search();
     void updateSearch();
 
 private slots:
-    void on_generate_clicked();
     void refreshProfiles();
+    void on_generate_clicked();
+    void on_search_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
+    void on_pushButtonLeadGenerator_clicked();
     void on_anyNatureGenerator_clicked();
     void on_anyHiddenPowerGenerator_clicked();
-    void on_search_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void on_pushButtonProfileManager_clicked();
     void updateProgressBar();
     void updateViewSearcher(const QVector<Frame4> &frames);
-    void on_pushButtonLeadGenerator_clicked();
     void seedToTime();
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
+    void on_pushButtonProfileManager_clicked();
 
-public:
-    explicit Stationary4(QWidget *parent = nullptr);
-    ~Stationary4() override;
-    void updateProfiles();
 };
 
 #endif // STATIONARY4_HPP

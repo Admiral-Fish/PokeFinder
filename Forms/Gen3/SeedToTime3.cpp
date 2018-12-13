@@ -49,7 +49,8 @@ SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
 
 SeedToTime3::~SeedToTime3()
 {
-    saveSettings();
+    QSettings setting;
+    setting.setValue("seed3Year", ui->seedToTimeYear->text());
 
     delete ui;
     delete model;
@@ -65,33 +66,19 @@ void SeedToTime3::setupModels()
     ui->tableViewGenerator->setModel(model);
     ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    loadSettings();
-}
-
-void SeedToTime3::saveSettings()
-{
-    QSettings setting;
-    setting.setValue("seed3Year", ui->seedToTimeYear->text());
-}
-
-void SeedToTime3::loadSettings()
-{
     QSettings setting;
     if (setting.contains("seed3Year")) ui->seedToTimeYear->setText(setting.value("seed3Year").toString());
 }
 
-void SeedToTime3::on_pushButtonFind_clicked()
+u16 SeedToTime3::originSeed(u32 seed)
 {
-    u32 seed = ui->seedToTimeSeed->text().toUInt(nullptr, 16);
-    u32 year = ui->seedToTimeYear->text().toUInt();
-    frame = 1;
-    if (seed > 0xFFFF)
+    PokeRNGR rng(seed);
+    while (rng.getSeed() > 0xFFFF)
     {
-        seed = originSeed(seed);
-        ui->seedToTimeSeed->setText(QString::number(seed, 16));
+        rng.nextUInt();
+        frame++;
     }
-
-    seedToTime(seed, year);
+    return rng.getSeed();
 }
 
 void SeedToTime3::seedToTime(u32 seed, u32 year)
@@ -114,12 +101,10 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
         return;
     }
 
-    QDate temp = QDate(2000, 1, 1);
-
     // Game decides to ignore a year of counting days
     for (u32 x = 2001; x < year; x++)
     {
-        temp.setDate(static_cast<int>(x), 1, 1);
+        QDate temp(x, 1, 1);
         minDay += static_cast<u32>(temp.daysInYear());
         maxDay += static_cast<u32>(temp.daysInYear());
     }
@@ -127,7 +112,7 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
     // Loop through the year generating seeds to check against user input
     for (u32 month = 1; month < 13; month++)
     {
-        temp.setDate(2000, static_cast<int>(month), 1);
+        QDate temp(2000, month, 1);
         maxDay += static_cast<u32>(temp.daysInMonth());
         for (u32 day = minDay; day < maxDay; day++)
         {
@@ -144,9 +129,7 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
                         QDateTime finalTime = start.addDays(day).addSecs((hour * 60 * 60) + (minute * 60));
                         QString result = finalTime.toString(Qt::SystemLocaleShortDate);
                         u32 seconds = day * 86400 + hour * 3600 + minute * 60;
-                        QList<QStandardItem *> list;
-                        list << new QStandardItem(result) << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(seconds));
-                        model->appendRow(list);
+                        model->appendRow(QList<QStandardItem *>() << new QStandardItem(result) << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(seconds)));
                     }
                 }
             }
@@ -155,13 +138,16 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
     }
 }
 
-u32 SeedToTime3::originSeed(u32 seed)
+void SeedToTime3::on_pushButtonFind_clicked()
 {
-    PokeRNGR rng(seed);
-    while (rng.getSeed() > 0xFFFF)
+    u32 seed = ui->seedToTimeSeed->text().toUInt(nullptr, 16);
+    u32 year = ui->seedToTimeYear->text().toUInt();
+    frame = 1;
+    if (seed > 0xFFFF)
     {
-        rng.nextUInt();
-        frame++;
+        seed = originSeed(seed);
+        ui->seedToTimeSeed->setText(QString::number(seed, 16));
     }
-    return rng.getSeed();
+
+    seedToTime(seed, year);
 }

@@ -37,6 +37,13 @@ signals:
     void newProfile(Profile3);
     void editProfile(Profile3, Profile3);
 
+public:
+    explicit ProfileManager3NewEdit(QWidget *parent = nullptr);
+    explicit ProfileManager3NewEdit(const Profile3 &profile, QWidget *parent = nullptr);
+    ~ProfileManager3NewEdit() override;
+    Profile3 getNewProfile();
+    Profile3 getOriginal();
+
 private:
     Ui::ProfileManager3NewEdit *ui;
     bool isEditing = false;
@@ -49,13 +56,6 @@ private slots:
     void on_pushButtonAccept_clicked();
     void on_pushButtonCancel_clicked();
     void on_comboBoxVersion_currentIndexChanged(int index);
-
-public:
-    explicit ProfileManager3NewEdit(QWidget *parent = nullptr);
-    explicit ProfileManager3NewEdit(const Profile3 &profile, QWidget *parent = nullptr);
-    ~ProfileManager3NewEdit() override;
-    Profile3 getNewProfile();
-    Profile3 getOriginal();
 
 };
 

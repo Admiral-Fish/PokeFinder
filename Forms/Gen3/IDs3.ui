@@ -184,7 +184,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QTextBox" name="textBoxPIDXD">
+            <widget class="TextBox" name="textBoxPIDXD">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -213,7 +213,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxTIDXD">
+            <widget class="TextBox" name="textBoxTIDXD">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -242,7 +242,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QTextBox" name="textBoxSIDXD">
+            <widget class="TextBox" name="textBoxSIDXD">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -298,7 +298,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QTextBox" name="textBoxSeedXD">
+            <widget class="TextBox" name="textBoxSeedXD">
              <property name="maxLength">
               <number>8</number>
              </property>
@@ -312,7 +312,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxMinFrameXD">
+            <widget class="TextBox" name="textBoxMinFrameXD">
              <property name="text">
               <string notr="true">5000</string>
              </property>
@@ -329,7 +329,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QTextBox" name="textBoxMaxFrameXD">
+            <widget class="TextBox" name="textBoxMaxFrameXD">
              <property name="text">
               <string notr="true">10000</string>
              </property>
@@ -393,7 +393,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QTextBox" name="textBoxPIDFRLGE">
+            <widget class="TextBox" name="textBoxPIDFRLGE">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -422,7 +422,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxSIDFRLGE">
+            <widget class="TextBox" name="textBoxSIDFRLGE">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -484,7 +484,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QTextBox" name="textBoxTIDFRLGE">
+            <widget class="TextBox" name="textBoxTIDFRLGE">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -504,7 +504,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxMinFrameFRLGE">
+            <widget class="TextBox" name="textBoxMinFrameFRLGE">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -527,7 +527,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QTextBox" name="textBoxMaxFrameFRLGE">
+            <widget class="TextBox" name="textBoxMaxFrameFRLGE">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -597,7 +597,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QTextBox" name="textBoxPIDRS">
+            <widget class="TextBox" name="textBoxPIDRS">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -626,7 +626,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxTIDRS">
+            <widget class="TextBox" name="textBoxTIDRS">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -655,7 +655,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QTextBox" name="textBoxSIDRS">
+            <widget class="TextBox" name="textBoxSIDRS">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -808,7 +808,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="4">
-            <widget class="QTextBox" name="textBoxInitSeedRS">
+            <widget class="TextBox" name="textBoxInitSeedRS">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -827,7 +827,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QTextBox" name="textBoxMinFrameRS">
+            <widget class="TextBox" name="textBoxMinFrameRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -843,7 +843,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QTextBox" name="textBoxMaxFrameRS">
+            <widget class="TextBox" name="textBoxMaxFrameRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -907,9 +907,9 @@ QRadioButton {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>TableView</class>

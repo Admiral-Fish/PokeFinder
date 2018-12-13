@@ -40,6 +40,11 @@ class Eggs3 : public QMainWindow
 signals:
     void alertProfiles(int);
 
+public:
+    explicit Eggs3(QWidget *parent = nullptr);
+    ~Eggs3() override;
+    void updateProfiles();
+
 private:
     Ui::Eggs3 *ui;
     QVector<Profile3> profiles;
@@ -55,8 +60,8 @@ private slots:
     void on_pushButtonGenerateEmeraldPID_clicked();
     void on_pushButtonGenerateEmeraldIVs_clicked();
     void on_pushButtonGenerateRS_clicked();
-    void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonGenerateFRLG_clicked();
+    void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonAnyAbilityEmerald_clicked();
     void on_pushButtonAnyNatureEmerald_clicked();
     void on_pushButtonAnyAbilityRS_clicked();
@@ -64,11 +69,6 @@ private slots:
     void on_pushButtonAnyAbilityFRLG_clicked();
     void on_pushButtonAnyNatureFRLG_clicked();
     void on_pushButtonProfileManager_clicked();
-
-public:
-    explicit Eggs3(QWidget *parent = nullptr);
-    ~Eggs3() override;
-    void updateProfiles();
 
 };
 

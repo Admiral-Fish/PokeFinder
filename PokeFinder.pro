@@ -68,11 +68,11 @@ FORMS += \
     Forms/MainWindow.ui
 
 HEADERS += \
+    Forms/Controls/CheckList.hpp \
     Forms/Controls/IVFilter.hpp \
     Forms/Controls/Label.hpp \
-    Forms/Controls/QCheckList.hpp \
-    Forms/Controls/QTextBox.hpp \
     Forms/Controls/TableView.hpp \
+    Forms/Controls/TextBox.hpp \
     Forms/Gen3/Eggs3.hpp \
     Forms/Gen3/GameCubeRTC.hpp \
     Forms/Gen3/IDs3.hpp \
@@ -155,11 +155,11 @@ HEADERS += \
     Util/ResearcherFrame.hpp
 
 SOURCES += \
+    Forms/Controls/CheckList.cpp \
     Forms/Controls/IVFilter.cpp \
     Forms/Controls/Label.cpp \
-    Forms/Controls/QCheckList.cpp \
-    Forms/Controls/QTextBox.cpp \
     Forms/Controls/TableView.cpp \
+    Forms/Controls/TextBox.cpp \
     Forms/Gen3/Eggs3.cpp \
     Forms/Gen3/GameCubeRTC.cpp \
     Forms/Gen3/IDs3.cpp \

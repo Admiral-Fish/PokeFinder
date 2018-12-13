@@ -34,6 +34,11 @@ class SearchCalls : public QDialog
 {
     Q_OBJECT
 
+public:
+    explicit SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u32> &routes, QWidget *parent = nullptr);
+    ~SearchCalls() override;
+    QVector<bool> possibleResults();
+
 private:
     Ui::SearchCalls *ui;
     QVector<DateTime> data;
@@ -45,16 +50,11 @@ private slots:
     void on_pushButtonK_clicked();
     void on_pushButtonE_clicked();
     void on_pushButtonP_clicked();
-    void on_lineEditCalls_textChanged(const QString &arg1);
-    void on_radioButtonElm_clicked();
-    void on_radioButtonIrwin_clicked();
+    void on_lineEditCalls_textChanged(const QString &val);
     void on_pushButtonOkay_clicked();
     void on_pushButtonCancel_clicked();
-
-public:
-    explicit SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u32> &routes, QWidget *parent = nullptr);
-    ~SearchCalls() override;
-    QVector<bool> possibleResults();
+    void on_radioButtonElm_clicked();
+    void on_radioButtonIrwin_clicked();
 
 };
 

@@ -76,7 +76,7 @@ QPushButton {
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QTextBox" name="textBoxStartSeed">
+     <widget class="TextBox" name="textBoxStartSeed">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -86,7 +86,7 @@ QPushButton {
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QTextBox" name="textBoxTargetSeed">
+     <widget class="TextBox" name="textBoxTargetSeed">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -110,7 +110,7 @@ QPushButton {
      </widget>
     </item>
     <item row="2" column="0">
-     <widget class="QTextBox" name="textBoxMinFrame">
+     <widget class="TextBox" name="textBoxMinFrame">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -126,7 +126,7 @@ QPushButton {
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QTextBox" name="textBoxMaxFrame">
+     <widget class="TextBox" name="textBoxMaxFrame">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -239,9 +239,9 @@ QPushButton {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>TableView</class>

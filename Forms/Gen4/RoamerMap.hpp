@@ -31,12 +31,12 @@ class RoamerMap : public QDialog
 {
     Q_OBJECT
 
-private:
-    Ui::RoamerMap *ui;
-
 public:
     explicit RoamerMap(QWidget *parent = nullptr);
     ~RoamerMap() override;
+
+private:
+    Ui::RoamerMap *ui;
 
 };
 

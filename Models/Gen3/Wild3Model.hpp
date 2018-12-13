@@ -27,9 +27,6 @@ class Wild3Model : public QAbstractTableModel
 {
     Q_OBJECT
 
-private:
-    QVector<Frame3> model;
-
 public:
     Wild3Model(QObject *parent);
     void setModel(const QVector<Frame3> &frames);
@@ -38,6 +35,9 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+private:
+    QVector<Frame3> model;
 
 };
 

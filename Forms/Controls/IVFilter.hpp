@@ -31,8 +31,25 @@ class IVFilter : public QWidget
 {
     Q_OBJECT
 
+public:
+    explicit IVFilter(QWidget *parent = nullptr);
+    ~IVFilter() override;
+    QVector<quint32> getEvals() const;
+    QVector<quint32> getValues() const;
+    QVector<quint32> getLower() const;
+    QVector<quint32> getUpper() const;
+    void clearValues();
+    void setValues(quint32 hp, quint32 atk, quint32 def, quint32 spa, quint32 spd, quint32 spe);
+
 private:
     Ui::IVFilter *ui;
+
+    void changeHP(int val, int index);
+    void changeAtk(int val, int index);
+    void changeDef(int val, int index);
+    void changeSpA(int val, int index);
+    void changeSpD(int val, int index);
+    void changeSpe(int val, int index);
 
 private slots:
     void on_pushButton31HP_clicked();
@@ -65,16 +82,6 @@ private slots:
     void changeCompareSpA(int type);
     void changeCompareSpD(int type);
     void changeCompareSpe(int type);
-
-public:
-    explicit IVFilter(QWidget *parent = nullptr);
-    ~IVFilter() override;
-    QVector<quint32> getEvals();
-    QVector<quint32> getValues();
-    QVector<quint32> getLower();
-    QVector<quint32> getUpper();
-    void clearValues();
-    void setValues(quint32 hp, quint32 atk, quint32 def, quint32 spa, quint32 spd, quint32 spe);
 
 };
 

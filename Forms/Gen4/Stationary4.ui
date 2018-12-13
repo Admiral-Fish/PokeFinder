@@ -368,7 +368,7 @@ QPushButton {
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QTextBox" name="sidGenerator">
+            <widget class="TextBox" name="sidGenerator">
              <property name="inputMask">
               <string/>
              </property>
@@ -408,7 +408,7 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QTextBox" name="startingFrameGenerator">
+            <widget class="TextBox" name="startingFrameGenerator">
              <property name="styleSheet">
               <string notr="true"/>
              </property>
@@ -437,7 +437,7 @@ QPushButton {
             </widget>
            </item>
            <item row="6" column="1">
-            <widget class="QTextBox" name="initialSeedGenerator">
+            <widget class="TextBox" name="initialSeedGenerator">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -471,7 +471,7 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QTextBox" name="maxResultsGenerator">
+            <widget class="TextBox" name="maxResultsGenerator">
              <property name="inputMask">
               <string/>
              </property>
@@ -497,7 +497,7 @@ QPushButton {
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QTextBox" name="idGenerator">
+            <widget class="TextBox" name="idGenerator">
              <property name="inputMask">
               <string/>
              </property>
@@ -649,7 +649,7 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QCheckList" name="comboBoxNatureGenerator">
+            <widget class="CheckList" name="comboBoxNatureGenerator">
              <item>
               <property name="text">
                <string>Adamant</string>
@@ -822,7 +822,7 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QCheckList" name="comboBoxHiddenPowerGenerator">
+            <widget class="CheckList" name="comboBoxHiddenPowerGenerator">
              <item>
               <property name="text">
                <string>Fighting</string>
@@ -1055,7 +1055,7 @@ QPushButton {
             </widget>
            </item>
            <item row="6" column="3">
-            <widget class="QTextBox" name="delayGenerator">
+            <widget class="TextBox" name="delayGenerator">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -1260,7 +1260,7 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QCheckList" name="comboBoxNatureSearcher">
+            <widget class="CheckList" name="comboBoxNatureSearcher">
              <item>
               <property name="text">
                <string>Adamant</string>
@@ -1427,7 +1427,7 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QCheckList" name="comboBoxHiddenPowerSearcher">
+            <widget class="CheckList" name="comboBoxHiddenPowerSearcher">
              <item>
               <property name="text">
                <string>Fighting</string>
@@ -1623,7 +1623,7 @@ QPushButton {
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QTextBox" name="minDelay">
+              <widget class="TextBox" name="minDelay">
                <property name="inputMask">
                 <string/>
                </property>
@@ -1643,7 +1643,7 @@ QPushButton {
               </widget>
              </item>
              <item row="0" column="3">
-              <widget class="QTextBox" name="maxDelay">
+              <widget class="TextBox" name="maxDelay">
                <property name="inputMask">
                 <string/>
                </property>
@@ -1663,7 +1663,7 @@ QPushButton {
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QTextBox" name="minFrame">
+              <widget class="TextBox" name="minFrame">
                <property name="inputMask">
                 <string/>
                </property>
@@ -1683,7 +1683,7 @@ QPushButton {
               </widget>
              </item>
              <item row="1" column="3">
-              <widget class="QTextBox" name="maxFrame">
+              <widget class="TextBox" name="maxFrame">
                <property name="inputMask">
                 <string/>
                </property>
@@ -1794,7 +1794,7 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QTextBox" name="idSearcher">
+            <widget class="TextBox" name="idSearcher">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1839,7 +1839,7 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QTextBox" name="sidSearcher">
+            <widget class="TextBox" name="sidSearcher">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1956,9 +1956,9 @@ QPushButton {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>TableView</class>
@@ -1972,9 +1972,9 @@ QPushButton {
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>QCheckList</class>
+   <class>CheckList</class>
    <extends>QComboBox</extends>
-   <header>Forms/Controls/QCheckList.hpp</header>
+   <header>Forms/Controls/CheckList.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -129,7 +129,7 @@ QPushButton {
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QTextBox" name="pidInput">
+     <widget class="TextBox" name="pidInput">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -182,9 +182,9 @@ QPushButton {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>TableView</class>

@@ -26,7 +26,10 @@ Profile3Model::Profile3Model(QObject *parent) : QAbstractTableModel(parent)
 void Profile3Model::setModel(const QVector<Profile3> &profiles)
 {
     if (profiles.isEmpty())
+    {
         return;
+    }
+
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + profiles.size() - 1);
     model.append(profiles);

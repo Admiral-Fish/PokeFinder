@@ -39,6 +39,10 @@ class GameCubeRTC : public QMainWindow
 {
     Q_OBJECT
 
+public:
+    explicit GameCubeRTC(QWidget *parent = nullptr);
+    ~GameCubeRTC() override;
+
 private:
     Ui::GameCubeRTC *ui;
     bool isSearching = false;
@@ -49,18 +53,12 @@ private:
     QModelIndex targetFrame;
 
     void setupModels();
-    void saveSettings();
-    void loadSettings();
 
 private slots:
     void on_pushButtonSearch_clicked();
     void updateTableView(const QList<QStandardItem *> &row);
     void copySeed();
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
-
-public:
-    explicit GameCubeRTC(QWidget *parent = nullptr);
-    ~GameCubeRTC() override;
 
 };
 
@@ -71,18 +69,18 @@ class Search : public QThread
 signals:
     void result(QList<QStandardItem *>);
 
-private:
-    const QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
-    u32 initialSeed, targetSeed;
-    u32 minFrame, maxFrame;
-    bool cancel;
-
 public:
     Search(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame);
     void run() override;
 
 public slots:
     void cancelSearch();
+
+private:
+    const QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
+    u32 initialSeed, targetSeed;
+    u32 minFrame, maxFrame;
+    bool cancel;
 
 };
 

@@ -44,6 +44,11 @@ signals:
     void alertProfiles(int);
     void updateProgress();
 
+public:
+    explicit Eggs4(QWidget *parent = nullptr);
+    ~Eggs4() override;
+    void updateProfiles();
+
 private:
     Ui::Eggs4 *ui;
     QVector<Profile4> profiles;
@@ -61,19 +66,16 @@ private:
     void searchPID();
     void searchIVs();
     void updateSearch(int i);
-    void loadSettings();
-    void saveSettings();
 
 private slots:
     void refreshProfiles();
+    void on_pushButtonGenerate_clicked();
+    void on_pushButtonGeneratePID_clicked();
+    void on_pushButtonGenerateIVs_clicked();
     void on_pushButtonAnyNatureGenerator_clicked();
     void on_pushButtonAnyHiddenPowerGenerator_clicked();
     void on_pushButtonAnyNatureSearcher_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
-    void on_pushButtonProfileManager_clicked();
-    void on_pushButtonGenerate_clicked();
-    void on_pushButtonGeneratePID_clicked();
-    void on_pushButtonGenerateIVs_clicked();
     void updateViewPID(const QVector<Frame4> &frames);
     void updateViewIVs(const QVector<Frame4> &frames);
     void updateProgressPID();
@@ -81,11 +83,7 @@ private slots:
     void on_tableViewPID_customContextMenuRequested(const QPoint &pos);
     void on_tableViewIVs_customContextMenuRequested(const QPoint &pos);
     void seedToTime();
-
-public:
-    explicit Eggs4(QWidget *parent = nullptr);
-    ~Eggs4() override;
-    void updateProfiles();
+    void on_pushButtonProfileManager_clicked();
 
 };
 

@@ -46,34 +46,12 @@ void IVtoPID::setupModels()
     ui->tableView->setModel(model);
 }
 
-void IVtoPID::on_pushButtonFind_clicked()
-{
-    u32 hp = static_cast<u32>(ui->spinBoxHP->value());
-    u32 atk = static_cast<u32>(ui->spinBoxAtk->value());
-    u32 def = static_cast<u32>(ui->spinBoxDef->value());
-    u32 spa = static_cast<u32>(ui->spinBoxSpA->value());
-    u32 spd = static_cast<u32>(ui->spinBoxSpD->value());
-    u32 spe = static_cast<u32>(ui->spinBoxSpe->value());
-
-    model->removeRows(0, model->rowCount());
-
-    u32 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNatureGenerator->currentIndex()));
-
-    u32 tid = ui->textBoxID->text().toUInt();
-
-    u32 ivs2 = spe | (spa << 5) | (spd << 10);
-    u32 ivs1 = hp | (atk << 5) | (def << 10);
-
-    getSeeds(ivs1, ivs2, nature, tid);
-    getSeeds(ivs1 ^ 0x8000, ivs2 ^ 0x8000, nature, tid);
-    getSeedsChannel(hp, atk, def, spa, spd, spe, nature);
-}
-
-void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid)
+void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u16 nature, u16 tid)
 {
     u32 x_test = ivs2 << 16;
     u32 x_testXD = ivs1 << 16;
-    u32 pid = 0, sid = 0;
+    u32 pid = 0;
+    u16 sid = 0;
     bool pass = false;
 
     for (u32 cnt = 0; cnt <= 0xFFFF; cnt++)
@@ -293,17 +271,15 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u32 nature, u32 tid)
     }
 }
 
-void IVtoPID::getSeedsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe, u32 nature)
+void IVtoPID::getSeedsChannel(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 spe, u16 nature)
 {
     RNGEuclidean euclidean(Channel);
-    XDRNGR rng(0);
 
     QVector<u32> seeds = euclidean.recoverLower27BitsChannel(hp, atk, def, spa, spd, spe);
-    int size = seeds.size();
 
-    for (int i = 0; i < size; i++)
+    for (const auto &seed : seeds)
     {
-        rng.setSeed(seeds[i], 3);
+        XDRNGR rng(seed, 3);
 
         u32 pid2 = rng.nextUShort();
         u32 pid1 = rng.nextUShort();
@@ -324,4 +300,27 @@ void IVtoPID::getSeedsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 sp
             model->appendRow(newSeed);
         }
     }
+}
+
+void IVtoPID::on_pushButtonFind_clicked()
+{
+    u16 hp = static_cast<u16>(ui->spinBoxHP->value());
+    u16 atk = static_cast<u16>(ui->spinBoxAtk->value());
+    u16 def = static_cast<u16>(ui->spinBoxDef->value());
+    u16 spa = static_cast<u16>(ui->spinBoxSpA->value());
+    u16 spd = static_cast<u16>(ui->spinBoxSpD->value());
+    u16 spe = static_cast<u16>(ui->spinBoxSpe->value());
+
+    model->removeRows(0, model->rowCount());
+
+    u16 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNatureGenerator->currentIndex()));
+
+    u16 tid = ui->textBoxID->text().toUShort();
+
+    u32 ivs2 = spe | (spa << 5) | (spd << 10);
+    u32 ivs1 = hp | (atk << 5) | (def << 10);
+
+    getSeeds(ivs1, ivs2, nature, tid);
+    getSeeds(ivs1 ^ 0x8000, ivs2 ^ 0x8000, nature, tid);
+    getSeedsChannel(hp, atk, def, spa, spd, spe, nature);
 }

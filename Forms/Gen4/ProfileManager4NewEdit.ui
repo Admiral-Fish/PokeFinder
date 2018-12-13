@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>490</width>
+    <width>560</width>
     <height>130</height>
    </rect>
   </property>
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>490</width>
+    <width>560</width>
     <height>130</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>490</width>
+    <width>560</width>
     <height>130</height>
    </size>
   </property>
@@ -135,14 +135,55 @@ QCheckBox::indicator:checked {
     </widget>
    </item>
    <item row="0" column="2">
+    <widget class="QLabel" name="labelDualSlot">
+     <property name="text">
+      <string>Dual Slot</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QComboBox" name="comboBoxDualSlot">
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ruby</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Sapphire</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Fire Red</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Leaf Green</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Emerald</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="4">
     <widget class="QLabel" name="labelTID">
      <property name="text">
       <string>TID</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="3">
-    <widget class="QTextBox" name="textBoxTID">
+   <item row="0" column="5">
+    <widget class="TextBox" name="textBoxTID">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -151,7 +192,7 @@ QCheckBox::indicator:checked {
      </property>
     </widget>
    </item>
-   <item row="0" column="4">
+   <item row="0" column="6">
     <widget class="QPushButton" name="pushButtonAccept">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -207,14 +248,28 @@ QCheckBox::indicator:checked {
     </widget>
    </item>
    <item row="1" column="2">
+    <widget class="QLabel" name="labelRadar">
+     <property name="text">
+      <string>PokeRadar</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QCheckBox" name="checkBoxRadar">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
     <widget class="QLabel" name="labelSID">
      <property name="text">
       <string>SID</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="3">
-    <widget class="QTextBox" name="textBoxSID">
+   <item row="1" column="5">
+    <widget class="TextBox" name="textBoxSID">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -223,7 +278,7 @@ QCheckBox::indicator:checked {
      </property>
     </widget>
    </item>
-   <item row="1" column="4">
+   <item row="1" column="6">
     <widget class="QPushButton" name="pushButtonCancel">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -289,54 +344,13 @@ QCheckBox::indicator:checked {
     </widget>
    </item>
    <item row="2" column="2">
-    <widget class="QLabel" name="labelDualSlot">
-     <property name="text">
-      <string>Dual Slot</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="3">
-    <widget class="QComboBox" name="comboBoxDualSlot">
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Ruby</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Sapphire</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Fire Red</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Leaf Green</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Emerald</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="3" column="2">
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="labelRadio">
      <property name="text">
       <string>Radio</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="3">
+   <item row="2" column="3">
     <widget class="QComboBox" name="comboBoxRadio">
      <property name="enabled">
       <bool>false</bool>
@@ -358,13 +372,27 @@ QCheckBox::indicator:checked {
      </item>
     </widget>
    </item>
+   <item row="3" column="2">
+    <widget class="QLabel" name="labelSwarm">
+     <property name="text">
+      <string>Swarm</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QCheckBox" name="checkBoxSwarm">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

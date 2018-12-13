@@ -37,23 +37,21 @@ class PokeSpot : public QMainWindow
 {
     Q_OBJECT
 
+public:
+    explicit PokeSpot(QWidget *parent = nullptr);
+    ~PokeSpot() override;
+
 private:
     Ui::PokeSpot *ui;
     PokeSpotModel *model = new PokeSpotModel(this);
 
     void setupModels();
-    void saveSettings();
-    void loadSettings();
 
 private slots:
+    void on_pushButtonGenerate_clicked();
     void on_pushButtonAnyAbility_clicked();
     void on_pushButtonAnyNature_clicked();
     void on_pushButtonAnySpotType_clicked();
-    void on_pushButtonGenerate_clicked();
-
-public:
-    explicit PokeSpot(QWidget *parent = nullptr);
-    ~PokeSpot() override;
 
 };
 

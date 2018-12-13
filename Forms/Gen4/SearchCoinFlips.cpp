@@ -45,31 +45,20 @@ QVector<bool> SearchCoinFlips::possibleResults()
 void SearchCoinFlips::on_pushButtonHeads_clicked()
 {
     QString string = ui->lineEditFlips->text();
-
-    if (string.isEmpty())
-        string = "H";
-    else
-        string += ", H";
-
+    string += string.isEmpty() ? "H" : ", H";
     ui->lineEditFlips->setText(string);
 }
 
 void SearchCoinFlips::on_pushButtonTails_clicked()
 {
     QString string = ui->lineEditFlips->text();
-
-    if (string.isEmpty())
-        string = "T";
-    else
-        string += ", T";
-
+    string += string.isEmpty() ? "T" : ", T";
     ui->lineEditFlips->setText(string);
 }
 
-void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &arg1)
+void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &val)
 {
-    QStringList results = arg1.split(",", QString::SkipEmptyParts);
-
+    QStringList results = val.split(",", QString::SkipEmptyParts);
     int num = 0;
 
     possible.clear();
@@ -88,7 +77,9 @@ void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &arg1)
         }
         possible.append(pass);
         if (pass)
+        {
             num++;
+        }
     }
 
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));

@@ -40,7 +40,10 @@ void Searcher3Model::addItems(const QVector<Frame3> &frames)
 void Searcher3Model::clear()
 {
     if (model.isEmpty())
+    {
         return;
+    }
+
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
     model.squeeze();
@@ -56,7 +59,9 @@ void Searcher3Model::setMethod(Method method)
 void Searcher3Model::sort(int column, Qt::SortOrder order)
 {
     if (model.empty())
+    {
         return;
+    }
 
     emit layoutAboutToBeChanged();
     bool flag = order == Qt::AscendingOrder;

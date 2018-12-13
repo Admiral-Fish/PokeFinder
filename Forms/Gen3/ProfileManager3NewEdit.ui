@@ -148,7 +148,7 @@ QCheckBox::indicator:checked {
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QTextBox" name="textBoxTID">
+    <widget class="TextBox" name="textBoxTID">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -224,7 +224,7 @@ QCheckBox::indicator:checked {
     </widget>
    </item>
    <item row="1" column="3">
-    <widget class="QTextBox" name="textBoxSID">
+    <widget class="TextBox" name="textBoxSID">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -316,9 +316,9 @@ QCheckBox::indicator:checked {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

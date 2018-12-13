@@ -37,6 +37,10 @@ class ProfileManager3 : public QMainWindow
 signals:
     void updateProfiles();
 
+public:
+    explicit ProfileManager3(QWidget *parent = nullptr);
+    ~ProfileManager3() override;
+
 private:
     Ui::ProfileManager3 *ui;
     Profile3Model *model = new Profile3Model(this);
@@ -48,10 +52,6 @@ private slots:
     void on_pushButtonOk_clicked();
     void on_pushButtonEdit_clicked();
     void on_pushButtonDelete_clicked();
-
-public:
-    explicit ProfileManager3(QWidget *parent = nullptr);
-    ~ProfileManager3() override;
 
 };
 

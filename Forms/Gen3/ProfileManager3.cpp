@@ -65,9 +65,9 @@ void ProfileManager3::on_pushButtonOk_clicked()
 
 void ProfileManager3::on_pushButtonEdit_clicked()
 {
-    int r = ui->tableView->currentIndex().row();
+    int row = ui->tableView->currentIndex().row();
 
-    if (r < 0)
+    if (row < 0)
     {
         QMessageBox error;
         error.setText(tr("Please select a profile."));
@@ -75,13 +75,12 @@ void ProfileManager3::on_pushButtonEdit_clicked()
         return;
     }
 
-    auto *dialog = new ProfileManager3NewEdit(model->getProfile(r));
+    auto *dialog = new ProfileManager3NewEdit(model->getProfile(row));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile3 profile = dialog->getNewProfile();
         profile.updateProfile(dialog->getOriginal());
-        int r = ui->tableView->currentIndex().row();
-        model->updateProfile(profile, r);
+        model->updateProfile(profile, row);
         emit updateProfiles();
     }
     delete dialog;
@@ -89,9 +88,9 @@ void ProfileManager3::on_pushButtonEdit_clicked()
 
 void ProfileManager3::on_pushButtonDelete_clicked()
 {
-    int r = ui->tableView->currentIndex().row();
+    int row = ui->tableView->currentIndex().row();
 
-    if (r < 0)
+    if (row < 0)
     {
         QMessageBox error;
         error.setText(tr("Please select a profile."));
@@ -99,10 +98,9 @@ void ProfileManager3::on_pushButtonDelete_clicked()
         return;
     }
 
-    Profile3 profile = model->getProfile(r);
+    Profile3 profile = model->getProfile(row);
     profile.deleteProfile();
-
-    model->removeProfile(r);
+    model->removeProfile(row);
 
     emit updateProfiles();
 }

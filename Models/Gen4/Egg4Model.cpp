@@ -28,7 +28,10 @@ Egg4GeneratorModel::Egg4GeneratorModel(QObject *parent, Method method)
 void Egg4GeneratorModel::setModel(const QVector<Frame4> &frames)
 {
     if (frames.isEmpty())
+    {
         return;
+    }
+
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
     model.append(frames);
@@ -38,7 +41,10 @@ void Egg4GeneratorModel::setModel(const QVector<Frame4> &frames)
 void Egg4GeneratorModel::clear()
 {
     if (model.isEmpty())
+    {
         return;
+    }
+
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
     model.squeeze();
@@ -245,7 +251,10 @@ Egg4SearcherModel::Egg4SearcherModel(QObject *parent, Method method)
 void Egg4SearcherModel::setModel(const QVector<Frame4> &frames)
 {
     if (frames.isEmpty())
+    {
         return;
+    }
+
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
     model.append(frames);

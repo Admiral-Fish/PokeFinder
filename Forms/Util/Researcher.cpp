@@ -37,6 +37,151 @@ Researcher::~Researcher()
     delete model;
 }
 
+void Researcher::setupModels()
+{
+    ui->tableView->setModel(model);
+    resizeHeader();
+
+    ui->textBoxStartingFrame->setValues(InputType::Frame64Bit);
+    ui->textBoxMaxFrames->setValues(InputType::Frame64Bit);
+    ui->textBoxSeed->setValues(InputType::Seed64Bit);
+    ui->textBoxSearch->setValues(InputType::Seed64Bit);
+
+    ui->textBoxMult32Bit->setValues(InputType::Seed32Bit);
+    ui->textBoxAdd32Bit->setValues(InputType::Seed32Bit);
+
+    ui->textBoxMult64Bit->setValues(InputType::Seed64Bit);
+    ui->textBoxAdd64Bit->setValues(InputType::Seed64Bit);
+
+    ui->textBoxStatus3->setValues(InputType::Seed32Bit);
+    ui->textBoxStatus2->setValues(InputType::Seed32Bit);
+    ui->textBoxStatus1->setValues(InputType::Seed32Bit);
+    ui->textBoxStatus0->setValues(InputType::Seed32Bit);
+
+    ui->lineEditRValue1->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue2->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue3->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue4->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue5->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue6->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue7->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue8->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue9->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue10->setValues(1, 0xffffffff, 16);
+
+    keys[tr("64Bit")] = 0;
+    keys[tr("32Bit")] = 1;
+    keys[tr("32Bit High")] = 2;
+    keys[tr("32Bit Low")] = 3;
+    keys[tr("16Bit High")] = 4;
+    keys[tr("16Bit Low")] = 5;
+    keys[tr("Custom 1")] = 6;
+    keys[tr("Custom 2")] = 7;
+    keys[tr("Custom 3")] = 8;
+    keys[tr("Custom 4")] = 9;
+    keys[tr("Custom 5")] = 10;
+    keys[tr("Custom 6")] = 11;
+    keys[tr("Custom 7")] = 12;
+    keys[tr("Custom 8")] = 13;
+    keys[tr("Custom 9")] = 14;
+    keys[tr("Previous 1")] = 15;
+    keys[tr("Previous 2")] = 16;
+    keys[tr("Previous 3")] = 17;
+    keys[tr("Previous 4")] = 18;
+    keys[tr("Previous 5")] = 19;
+    keys[tr("Previous 6")] = 20;
+    keys[tr("Previous 7")] = 21;
+    keys[tr("Previous 8")] = 22;
+    keys[tr("Previous 9")] = 23;
+}
+
+u64 Researcher::getCustom(const QString &text, ResearcherFrame frame, QVector<ResearcherFrame> frames)
+{
+    switch (keys[text])
+    {
+        case 0:
+            return frame.getFull64();
+        case 1:
+            return frame.getFull32();
+        case 2:
+            return frame.getHigh32();
+        case 3:
+            return frame.getLow32();
+        case 4:
+            return frame.getHigh16();
+        case 5:
+            return frame.getLow16();
+        case 6:
+            return frame.getCustom(0);
+        case 7:
+            return frame.getCustom(1);
+        case 8:
+            return frame.getCustom(2);
+        case 9:
+            return frame.getCustom(3);
+        case 10:
+            return frame.getCustom(4);
+        case 11:
+            return frame.getCustom(5);
+        case 12:
+            return frame.getCustom(6);
+        case 13:
+            return frame.getCustom(7);
+        case 14:
+            return frame.getCustom(8);
+        case 15:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(0);
+        case 16:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(1);
+        case 17:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(2);
+        case 18:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(3);
+        case 19:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(4);
+        case 20:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(5);
+        case 21:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(6);
+        case 22:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(7);
+        case 23:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(8);
+        default:
+            return 0;
+    }
+}
+
+void Researcher::resizeHeader()
+{
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    for (int column = 0; column < model->columnCount(); column++)
+    {
+        int width = ui->tableView->horizontalHeader()->sectionSize(column);
+        ui->tableView->horizontalHeader()->setSectionResizeMode(column, QHeaderView::Interactive);
+        ui->tableView->horizontalHeader()->resizeSection(column, width);
+    }
+}
+
+QVector<bool> Researcher::getHexCheck()
+{
+    QVector<bool> hex;
+
+    hex.append(ui->checkBoxHex1->isChecked());
+    hex.append(ui->checkBoxHex2->isChecked());
+    hex.append(ui->checkBoxHex3->isChecked());
+    hex.append(ui->checkBoxHex4->isChecked());
+    hex.append(ui->checkBoxHex5->isChecked());
+    hex.append(ui->checkBoxHex6->isChecked());
+    hex.append(ui->checkBoxHex7->isChecked());
+    hex.append(ui->checkBoxHex8->isChecked());
+    hex.append(ui->checkBoxHex9->isChecked());
+    hex.append(ui->checkBoxHex10->isChecked());
+
+    return hex;
+}
+
 void Researcher::on_pushButtonGenerate32Bit_clicked()
 {
     bool rng64Bit = ui->rngSelection->currentIndex() == 1;
@@ -52,7 +197,9 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     IRNG64 *rng64 = nullptr;
 
     if (ui->rngSelection->currentIndex() != 1 && (seed > 0xffffffff))
+    {
         seed >>= 32;
+    }
 
     if (ui->rngSelection->currentIndex() == 0)
     {
@@ -131,9 +278,11 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     }
     else
     {
-        u32 status[4] = { ui->textBoxStatus0->text().toUInt(nullptr, 16), ui->textBoxStatus1->text().toUInt(nullptr, 16),
-                          ui->textBoxStatus2->text().toUInt(nullptr, 16), ui->textBoxStatus3->text().toUInt(nullptr, 16)
-                        };
+        u32 status[4] =
+        {
+            ui->textBoxStatus0->text().toUInt(nullptr, 16), ui->textBoxStatus1->text().toUInt(nullptr, 16),
+            ui->textBoxStatus2->text().toUInt(nullptr, 16), ui->textBoxStatus3->text().toUInt(nullptr, 16)
+        };
         rng = new TinyMT(status, startingFrame - 1);
     }
 
@@ -218,28 +367,36 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     Calculators[8] = calc[ui->comboBoxOperator9->currentText()];
     Calculators[9] = calc[ui->comboBoxOperator10->currentText()];
 
-    QString textL[10] = { ui->comboBoxLValue1->currentText(), ui->comboBoxLValue2->currentText(),
-                          ui->comboBoxLValue3->currentText(), ui->comboBoxLValue4->currentText(),
-                          ui->comboBoxLValue5->currentText(), ui->comboBoxLValue6->currentText(),
-                          ui->comboBoxLValue7->currentText(), ui->comboBoxLValue8->currentText(),
-                          ui->comboBoxLValue9->currentText(), ui->comboBoxLValue10->currentText()
-                        };
+    QString textL[10] =
+    {
+        ui->comboBoxLValue1->currentText(), ui->comboBoxLValue2->currentText(),
+        ui->comboBoxLValue3->currentText(), ui->comboBoxLValue4->currentText(),
+        ui->comboBoxLValue5->currentText(), ui->comboBoxLValue6->currentText(),
+        ui->comboBoxLValue7->currentText(), ui->comboBoxLValue8->currentText(),
+        ui->comboBoxLValue9->currentText(), ui->comboBoxLValue10->currentText()
+    };
 
-    QString textR[10] = { tr("None"), ui->comboBoxRValue2->currentText(),
-                          ui->comboBoxRValue3->currentText(), ui->comboBoxRValue4->currentText(),
-                          ui->comboBoxRValue5->currentText(), ui->comboBoxRValue6->currentText(),
-                          ui->comboBoxRValue7->currentText(), ui->comboBoxRValue8->currentText(),
-                          ui->comboBoxRValue9->currentText(), ui->comboBoxRValue10->currentText()
-                        };
+    QString textR[10] =
+    {
+        tr("None"), ui->comboBoxRValue2->currentText(),
+        ui->comboBoxRValue3->currentText(), ui->comboBoxRValue4->currentText(),
+        ui->comboBoxRValue5->currentText(), ui->comboBoxRValue6->currentText(),
+        ui->comboBoxRValue7->currentText(), ui->comboBoxRValue8->currentText(),
+        ui->comboBoxRValue9->currentText(), ui->comboBoxRValue10->currentText()
+    };
 
     QVector<ResearcherFrame> frames;
     for (u32 i = startingFrame; i < maxFrames + startingFrame; i++)
     {
         ResearcherFrame frame(rng64Bit, i);
         if (rng64Bit)
+        {
             frame.setFull64(rng64->nextULong());
+        }
         else
+        {
             frame.setFull32(rng->nextUInt());
+        }
 
         for (int j = 0; j < 10; j++)
         {
@@ -248,7 +405,9 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                 u64 temp = getCustom(textL[j], frame, frames);
 
                 if (textR[j] != tr("None"))
+                {
                     customRValue[j] = getCustom(textR[j], frame, frames);
+                }
 
                 frame.setCustom(j, Calculators[j](temp, customRValue[j]));
             }
@@ -271,10 +430,22 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     delete rng64;
 }
 
+void Researcher::on_rngSelection_currentChanged(int index)
+{
+    ui->textBoxSeed->setVisible(index != 2);
+    ui->label_14->setVisible(index != 2);
+    ui->comboBoxSearch->clear();
+    QStringList items = index != 1 ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low") :
+                        QStringList() << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low") ;
+    ui->comboBoxSearch->addItems(items);
+}
+
 void Researcher::on_pushButtonSearch_clicked()
 {
     if (model->rowCount() == 0)
+    {
         return;
+    }
 
     QString string = ui->comboBoxSearch->currentText();
     u64 result = ui->textBoxSearch->text().toULongLong(nullptr, 16);
@@ -298,14 +469,18 @@ void Researcher::on_pushButtonSearch_clicked()
 void Researcher::on_pushButtonNext_clicked()
 {
     if (model->rowCount() == 0)
+    {
         return;
+    }
 
     QString string = ui->comboBoxSearch->currentText();
     QModelIndex start = ui->tableView->currentIndex();
     u64 result = ui->textBoxSearch->text().toULongLong(nullptr, 16);
 
     if (!start.isValid())
+    {
         return;
+    }
 
     QModelIndex end = model->search(string, result, start.row() + 1);
     if (end.isValid())
@@ -321,165 +496,4 @@ void Researcher::on_pushButtonNext_clicked()
         error.exec();
         return;
     }
-}
-
-u64 Researcher::getCustom(const QString &text, ResearcherFrame frame, QVector<ResearcherFrame> frames)
-{
-    switch (keys[text])
-    {
-        case 0:
-            return frame.getFull64();
-        case 1:
-            return frame.getFull32();
-        case 2:
-            return frame.getHigh32();
-        case 3:
-            return frame.getLow32();
-        case 4:
-            return frame.getHigh16();
-        case 5:
-            return frame.getLow16();
-        case 6:
-            return frame.getCustom(0);
-        case 7:
-            return frame.getCustom(1);
-        case 8:
-            return frame.getCustom(2);
-        case 9:
-            return frame.getCustom(3);
-        case 10:
-            return frame.getCustom(4);
-        case 11:
-            return frame.getCustom(5);
-        case 12:
-            return frame.getCustom(6);
-        case 13:
-            return frame.getCustom(7);
-        case 14:
-            return frame.getCustom(8);
-        case 15:
-            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(0);
-        case 16:
-            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(1);
-        case 17:
-            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(2);
-        case 18:
-            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(3);
-        case 19:
-            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(4);
-        case 20:
-            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(5);
-        case 21:
-            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(6);
-        case 22:
-            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(7);
-        case 23:
-            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(8);
-        default:
-            return 0;
-    }
-}
-
-void Researcher::setupModels()
-{
-    ui->tableView->setModel(model);
-    resizeHeader();
-
-    ui->textBoxStartingFrame->setValues(InputType::Frame64Bit);
-    ui->textBoxMaxFrames->setValues(InputType::Frame64Bit);
-    ui->textBoxSeed->setValues(InputType::Seed64Bit);
-    ui->textBoxSearch->setValues(InputType::Seed64Bit);
-
-    ui->textBoxMult32Bit->setValues(InputType::Seed32Bit);
-    ui->textBoxAdd32Bit->setValues(InputType::Seed32Bit);
-
-    ui->textBoxMult64Bit->setValues(InputType::Seed64Bit);
-    ui->textBoxAdd64Bit->setValues(InputType::Seed64Bit);
-
-    ui->textBoxStatus3->setValues(InputType::Seed32Bit);
-    ui->textBoxStatus2->setValues(InputType::Seed32Bit);
-    ui->textBoxStatus1->setValues(InputType::Seed32Bit);
-    ui->textBoxStatus0->setValues(InputType::Seed32Bit);
-
-    ui->lineEditRValue1->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue2->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue3->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue4->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue5->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue6->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue7->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue8->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue9->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue10->setValues(1, 0xffffffff, 16);
-
-    translate();
-}
-
-void Researcher::translate()
-{
-    keys.clear();
-    keys[tr("64Bit")] = 0;
-    keys[tr("32Bit")] = 1;
-    keys[tr("32Bit High")] = 2;
-    keys[tr("32Bit Low")] = 3;
-    keys[tr("16Bit High")] = 4;
-    keys[tr("16Bit Low")] = 5;
-    keys[tr("Custom 1")] = 6;
-    keys[tr("Custom 2")] = 7;
-    keys[tr("Custom 3")] = 8;
-    keys[tr("Custom 4")] = 9;
-    keys[tr("Custom 5")] = 10;
-    keys[tr("Custom 6")] = 11;
-    keys[tr("Custom 7")] = 12;
-    keys[tr("Custom 8")] = 13;
-    keys[tr("Custom 9")] = 14;
-    keys[tr("Previous 1")] = 15;
-    keys[tr("Previous 2")] = 16;
-    keys[tr("Previous 3")] = 17;
-    keys[tr("Previous 4")] = 18;
-    keys[tr("Previous 5")] = 19;
-    keys[tr("Previous 6")] = 20;
-    keys[tr("Previous 7")] = 21;
-    keys[tr("Previous 8")] = 22;
-    keys[tr("Previous 9")] = 23;
-}
-
-void Researcher::resizeHeader()
-{
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-
-    for (int column = 0; column < model->columnCount(); column++)
-    {
-        int width = ui->tableView->horizontalHeader()->sectionSize(column);
-        ui->tableView->horizontalHeader()->setSectionResizeMode(column, QHeaderView::Interactive);
-        ui->tableView->horizontalHeader()->resizeSection(column, width);
-    }
-}
-
-QVector<bool> Researcher::getHexCheck()
-{
-    QVector<bool> hex;
-
-    hex.append(ui->checkBoxHex1->isChecked());
-    hex.append(ui->checkBoxHex2->isChecked());
-    hex.append(ui->checkBoxHex3->isChecked());
-    hex.append(ui->checkBoxHex4->isChecked());
-    hex.append(ui->checkBoxHex5->isChecked());
-    hex.append(ui->checkBoxHex6->isChecked());
-    hex.append(ui->checkBoxHex7->isChecked());
-    hex.append(ui->checkBoxHex8->isChecked());
-    hex.append(ui->checkBoxHex9->isChecked());
-    hex.append(ui->checkBoxHex10->isChecked());
-
-    return hex;
-}
-
-void Researcher::on_rngSelection_currentChanged(int index)
-{
-    ui->textBoxSeed->setVisible(index != 2);
-    ui->label_14->setVisible(index != 2);
-    ui->comboBoxSearch->clear();
-    QStringList items = index != 1 ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low") :
-                        QStringList() << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low") ;
-    ui->comboBoxSearch->addItems(items);
 }

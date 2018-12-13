@@ -27,10 +27,6 @@ class Stationary4Model : public QAbstractTableModel
 {
     Q_OBJECT
 
-private:
-    QVector<Frame4> model;
-    Method method;
-
 public:
     Stationary4Model(QObject *parent, Method method);
     void setModel(const QVector<Frame4> &frames);
@@ -40,6 +36,10 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+private:
+    QVector<Frame4> model;
+    Method method;
 
 };
 

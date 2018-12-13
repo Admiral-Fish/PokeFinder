@@ -303,7 +303,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QTextBox" name="textBoxStartingFrame">
+            <widget class="TextBox" name="textBoxStartingFrame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -325,7 +325,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QTextBox" name="textBoxTIDGenerator">
+            <widget class="TextBox" name="textBoxTIDGenerator">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -341,7 +341,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxSeedGenerator">
+            <widget class="TextBox" name="textBoxSeedGenerator">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -396,7 +396,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QTextBox" name="textBoxSIDGenerator">
+            <widget class="TextBox" name="textBoxSIDGenerator">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -443,7 +443,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QTextBox" name="textBoxMaxResults">
+            <widget class="TextBox" name="textBoxMaxResults">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -600,7 +600,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="2" column="8">
-            <widget class="QCheckList" name="comboBoxNatureGenerator">
+            <widget class="CheckList" name="comboBoxNatureGenerator">
              <item>
               <property name="text">
                <string>Adamant</string>
@@ -773,7 +773,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="3" column="8">
-            <widget class="QCheckList" name="comboBoxHiddenPowerGenerator">
+            <widget class="CheckList" name="comboBoxHiddenPowerGenerator">
              <item>
               <property name="text">
                <string>Fighting</string>
@@ -1230,7 +1230,7 @@ QRadioButton {
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QTextBox" name="textBoxMinFrameIVs">
+              <widget class="TextBox" name="textBoxMinFrameIVs">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1243,7 +1243,7 @@ QRadioButton {
               </widget>
              </item>
              <item row="0" column="2">
-              <widget class="QTextBox" name="textBoxMaxFrameIVs">
+              <widget class="TextBox" name="textBoxMaxFrameIVs">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1269,7 +1269,7 @@ QRadioButton {
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QTextBox" name="textBoxMinDelayIVs">
+              <widget class="TextBox" name="textBoxMinDelayIVs">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1285,7 +1285,7 @@ QRadioButton {
               </widget>
              </item>
              <item row="1" column="2">
-              <widget class="QTextBox" name="textBoxMaxDelayIVs">
+              <widget class="TextBox" name="textBoxMaxDelayIVs">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1332,7 +1332,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="2" colspan="2">
-            <widget class="QCheckList" name="comboBoxHiddenPowerSearcher">
+            <widget class="CheckList" name="comboBoxHiddenPowerSearcher">
              <item>
               <property name="text">
                <string>Fighting</string>
@@ -1662,7 +1662,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QTextBox" name="textBoxMinFramePID">
+            <widget class="TextBox" name="textBoxMinFramePID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1684,7 +1684,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QTextBox" name="textBoxMaxFramePID">
+            <widget class="TextBox" name="textBoxMaxFramePID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1751,7 +1751,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QTextBox" name="textBoxMinDelayPID">
+            <widget class="TextBox" name="textBoxMinDelayPID">
              <property name="text">
               <string notr="true">600</string>
              </property>
@@ -1761,7 +1761,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QTextBox" name="textBoxMaxDelayPID">
+            <widget class="TextBox" name="textBoxMaxDelayPID">
              <property name="text">
               <string notr="true">2000</string>
              </property>
@@ -1836,7 +1836,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="4">
-            <widget class="QCheckList" name="comboBoxNatureSearcher">
+            <widget class="CheckList" name="comboBoxNatureSearcher">
              <item>
               <property name="text">
                <string>Adamant</string>
@@ -2003,7 +2003,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxTIDSearcher">
+            <widget class="TextBox" name="textBoxTIDSearcher">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2084,7 +2084,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="4" column="1" colspan="2">
-            <widget class="QTextBox" name="textBoxSIDSearcher">
+            <widget class="TextBox" name="textBoxSIDSearcher">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2201,9 +2201,9 @@ QRadioButton {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>TableView</class>
@@ -2217,9 +2217,9 @@ QRadioButton {
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>QCheckList</class>
+   <class>CheckList</class>
    <extends>QComboBox</extends>
-   <header>Forms/Controls/QCheckList.hpp</header>
+   <header>Forms/Controls/CheckList.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -48,6 +48,11 @@ signals:
     void alertProfiles(int);
     void updateProgress();
 
+public:
+    explicit Stationary3(QWidget *parent = nullptr);
+    ~Stationary3() override;
+    void updateProfiles();
+
 private:
     Ui::Stationary3 *ui;
     Searcher3Model *s = new Searcher3Model(this, Method::Method1);
@@ -69,33 +74,27 @@ public slots:
     void moveResults(const QString &seed, const QString &method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
 
 private slots:
-    void on_generate_clicked();
     void refreshProfiles();
     void on_comboBoxProfiles_currentIndexChanged(int index);
+    void on_generate_clicked();
+    void on_search_clicked();
     void on_anyNatureGenerator_clicked();
     void on_anyHiddenPowerGenerator_clicked();
-    void on_checkBoxDelayGenerator_clicked();
-    void on_search_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
     void updateViewSearcher(const QVector<Frame3> &frames);
     void on_comboBoxMethodSearcher_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
+    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void setTargetFrameGenerator();
     void jumpToTargetGenerator();
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void seedToTime();
     void outputToTxt();
     void outputToCSV();
-    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void copySeedToClipboard();
     void updateProgressBar();
     void on_pushButtonProfileManager_clicked();
-
-public:
-    explicit Stationary3(QWidget *parent = nullptr);
-    ~Stationary3() override;
-    void updateProfiles();
 
 };
 

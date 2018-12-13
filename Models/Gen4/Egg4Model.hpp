@@ -27,10 +27,6 @@ class Egg4GeneratorModel : public QAbstractTableModel
 {
     Q_OBJECT
 
-private:
-    QVector<Frame4> model;
-    Method method;
-
 public:
     Egg4GeneratorModel(QObject *parent, Method method);
     void setModel(const QVector<Frame4> &frames);
@@ -41,15 +37,15 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+private:
+    QVector<Frame4> model;
+    Method method;
+
 };
 
 class Egg4SearcherModel : public QAbstractTableModel
 {
     Q_OBJECT
-
-private:
-    QVector<Frame4> model;
-    Method method;
 
 public:
     Egg4SearcherModel(QObject *parent, Method method);
@@ -61,6 +57,10 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+private:
+    QVector<Frame4> model;
+    Method method;
 
 };
 

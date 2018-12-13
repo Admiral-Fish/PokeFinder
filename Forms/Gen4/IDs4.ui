@@ -129,7 +129,7 @@ QPushButton {
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QTextBox" name="textBoxPID">
+        <widget class="TextBox" name="textBoxPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -165,7 +165,7 @@ QPushButton {
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QTextBox" name="textBoxTIDShinyPID">
+        <widget class="TextBox" name="textBoxTIDShinyPID">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -194,7 +194,7 @@ QPushButton {
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QTextBox" name="textBoxYearShinyPID">
+        <widget class="TextBox" name="textBoxYearShinyPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -223,7 +223,7 @@ QPushButton {
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QTextBox" name="textBoxMinDelayShinyPID">
+        <widget class="TextBox" name="textBoxMinDelayShinyPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -252,7 +252,7 @@ QPushButton {
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QTextBox" name="textBoxMaxDelayShinyPID">
+        <widget class="TextBox" name="textBoxMaxDelayShinyPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -319,7 +319,7 @@ QPushButton {
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QTextBox" name="textBoxTIDTIDSID">
+        <widget class="TextBox" name="textBoxTIDTIDSID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -355,7 +355,7 @@ QPushButton {
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QTextBox" name="textBoxSIDTIDSID">
+        <widget class="TextBox" name="textBoxSIDTIDSID">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -384,7 +384,7 @@ QPushButton {
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QTextBox" name="textBoxYearTIDSID">
+        <widget class="TextBox" name="textBoxYearTIDSID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -413,7 +413,7 @@ QPushButton {
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QTextBox" name="textBoxMinDelayTIDSID">
+        <widget class="TextBox" name="textBoxMinDelayTIDSID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -442,7 +442,7 @@ QPushButton {
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QTextBox" name="textBoxMaxDelayTIDSID">
+        <widget class="TextBox" name="textBoxMaxDelayTIDSID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -775,9 +775,9 @@ QPushButton {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
-   <header>Forms/Controls/QTextBox.hpp</header>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>TableView</class>

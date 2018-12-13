@@ -28,10 +28,13 @@ ProfileManager4NewEdit::ProfileManager4NewEdit(QWidget *parent) :
     setAttribute(Qt::WA_QuitOnClose, false);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
+    ui->labelRadio->setVisible(false);
+    ui->comboBoxRadio->setVisible(false);
+
     setupModels();
 }
 
-ProfileManager4NewEdit::ProfileManager4NewEdit(Profile4 profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManager4NewEdit)
+ProfileManager4NewEdit::ProfileManager4NewEdit(const Profile4 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManager4NewEdit)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -46,6 +49,9 @@ ProfileManager4NewEdit::ProfileManager4NewEdit(Profile4 profile, QWidget *parent
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->comboBoxDualSlot->setCurrentIndex(ui->comboBoxDualSlot->findData(profile.getDualSlot()));
     ui->comboBoxRadio->setCurrentIndex(profile.getRadio());
+    ui->checkBoxRadar->setChecked(profile.getRadar());
+    ui->checkBoxSwarm->setChecked(profile.getSwarm());
+
     isEditing = true;
     original = profile;
 }
@@ -87,17 +93,17 @@ void ProfileManager4NewEdit::setupModels()
 void ProfileManager4NewEdit::on_pushButtonAccept_clicked()
 {
     QString input = ui->lineEditProfile->text().trimmed();
-    if (input == "")
+    if (input.isEmpty())
     {
         QMessageBox error;
-        error.setText(tr("Enter a Profile Name."));
+        error.setText(tr("Enter a profile name"));
         error.exec();
         return;
     }
 
     fresh = Profile4(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->text().toUShort(),
                      ui->textBoxSID->text().toUShort(), static_cast<Game>(ui->comboBoxDualSlot->currentData().toInt()), ui->comboBoxRadio->currentIndex(),
-                     ui->comboBoxLanguage->currentIndex());
+                     ui->comboBoxLanguage->currentIndex(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 
     done(QDialog::Accepted);
 }
@@ -113,13 +119,24 @@ void ProfileManager4NewEdit::on_comboBoxVersion_currentIndexChanged(int index)
     (void)index;
 
     Game game = static_cast<Game>(ui->comboBoxVersion->currentData().toInt());
-    if (game == Game::HeartGold || game == Game::SoulSilver)
+    bool flag = game & Game::HGSS;
+
+    ui->labelRadio->setVisible(flag);
+    ui->comboBoxRadio->setVisible(flag);
+
+    ui->labelRadar->setVisible(!flag);
+    ui->checkBoxRadar->setVisible(!flag);
+
+    ui->labelDualSlot->setVisible(!flag);
+    ui->comboBoxDualSlot->setVisible(!flag);
+
+    if (flag)
     {
-        ui->comboBoxRadio->setEnabled(true);
+        ui->comboBoxDualSlot->setCurrentIndex(0);
+        ui->checkBoxRadar->setChecked(false);
     }
     else
     {
-        ui->comboBoxRadio->setEnabled(false);
         ui->comboBoxRadio->setCurrentIndex(0);
     }
 }

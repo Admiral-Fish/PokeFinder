@@ -28,7 +28,10 @@ SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, Game version) : Q
 void SeedtoTime4Model::setModel(const QVector<DateTime> &times)
 {
     if (times.isEmpty())
+    {
         return;
+    }
+
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + times.size() - 1);
     model.append(times);
@@ -38,7 +41,10 @@ void SeedtoTime4Model::setModel(const QVector<DateTime> &times)
 void SeedtoTime4Model::clear()
 {
     if (model.isEmpty())
+    {
         return;
+    }
+
     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
     model.squeeze();
@@ -72,7 +78,7 @@ int SeedtoTime4Model::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
     if (calibrate)
-        return (version == Game::HeartGold || version == Game::SoulSilver) ? 6 : 5;
+        return version & Game::HGSS ? 6 : 5;
     else
         return 3;
 }
@@ -95,11 +101,11 @@ QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
                 case 3:
                     return frame.getDelay();
                 case 4:
-                    return (version == Game::HeartGold || version == Game::SoulSilver) ? Utilities::getCalls(frame.getSeed(), 15, frame.getInfo()) : Utilities::coinFlips(frame.getSeed(), 15);
+                    return version & Game::HGSS ? Utilities::getCalls(frame.getSeed(), 15, frame.getInfo()) : Utilities::coinFlips(frame.getSeed(), 15);
                 case 5:
                     {
                         QString str = frame.getInfo().getRoutes();
-                        return str == "" ? tr("No roamers") : str;
+                        return str.isEmpty() ? tr("No roamers") : str;
                     }
             }
         }
@@ -136,7 +142,7 @@ QVariant SeedtoTime4Model::headerData(int section, Qt::Orientation orientation, 
                 case 3:
                     return tr("Delay");
                 case 4:
-                    return (version == Game::HeartGold || version == Game::SoulSilver) ? tr("Calls") : tr("Coin flips");
+                    return version & Game::HGSS ? tr("Calls") : tr("Coin flips");
                 case 5 :
                     return tr("Roamer locations");
             }

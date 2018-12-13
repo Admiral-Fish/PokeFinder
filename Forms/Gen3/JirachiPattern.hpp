@@ -33,6 +33,10 @@ class JirachiPattern : public QMainWindow
 {
     Q_OBJECT
 
+public:
+    explicit JirachiPattern(QWidget *parent = nullptr);
+    ~JirachiPattern() override;
+
 private:
     Ui::JirachiPattern *ui;
     QStandardItemModel *model = new QStandardItemModel(this);
@@ -45,10 +49,6 @@ private:
 
 private slots:
     void on_pushButtonGenerate_clicked();
-
-public:
-    explicit JirachiPattern(QWidget *parent = nullptr);
-    ~JirachiPattern() override;
 
 };
 

@@ -42,14 +42,17 @@ class Researcher : public QMainWindow
 {
     Q_OBJECT
 
+public:
+    explicit Researcher(QWidget *parent = nullptr);
+    ~Researcher() override;;
+
 private:
     Ui::Researcher *ui;
     ResearcherModel *model = new ResearcherModel(this, false);
     QHash<QString, int> keys;
 
-    u64 getCustom(const QString &text, ResearcherFrame frame, QVector<ResearcherFrame> frames);
     void setupModels();
-    void translate();
+    u64 getCustom(const QString &text, ResearcherFrame frame, QVector<ResearcherFrame> frames);
     void resizeHeader();
     QVector<bool> getHexCheck();
     static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
@@ -68,10 +71,6 @@ private slots:
     void on_rngSelection_currentChanged(int index);
     void on_pushButtonSearch_clicked();
     void on_pushButtonNext_clicked();
-
-public:
-    explicit Researcher(QWidget *parent = nullptr);
-    ~Researcher() override;;
 
 };
 

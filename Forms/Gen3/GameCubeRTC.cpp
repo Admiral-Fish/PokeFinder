@@ -36,7 +36,8 @@ GameCubeRTC::GameCubeRTC(QWidget *parent) :
 
 GameCubeRTC::~GameCubeRTC()
 {
-    saveSettings();
+    QSettings setting;
+    setting.setValue("startSeed", ui->textBoxStartSeed->text());
 
     delete ui;
     delete model;
@@ -57,24 +58,8 @@ void GameCubeRTC::setupModels()
     connect(copySeed, &QAction::triggered, this, &GameCubeRTC::copySeed);
     contextMenu->addAction(copySeed);
 
-    loadSettings();
-}
-
-void GameCubeRTC::saveSettings()
-{
-    QSettings setting;
-    setting.setValue("startSeed", ui->textBoxStartSeed->text());
-}
-
-void GameCubeRTC::loadSettings()
-{
     QSettings setting;
     if (setting.contains("startSeed")) ui->textBoxStartSeed->setText(setting.value("startSeed").toString());
-}
-
-void GameCubeRTC::updateTableView(const QList<QStandardItem *> &row)
-{
-    model->appendRow(row);
 }
 
 void GameCubeRTC::on_pushButtonSearch_clicked()
@@ -96,6 +81,11 @@ void GameCubeRTC::on_pushButtonSearch_clicked()
     search->start();
 }
 
+void GameCubeRTC::updateTableView(const QList<QStandardItem *> &row)
+{
+    model->appendRow(row);
+}
+
 void GameCubeRTC::copySeed()
 {
     QApplication::clipboard()->setText(ui->tableViewGenerator->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 2)).toString());
@@ -104,7 +94,9 @@ void GameCubeRTC::copySeed()
 void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
 {
     if (model->rowCount() == 0)
+    {
         return;
+    }
 
     lastIndex = ui->tableViewGenerator->indexAt(pos);
 
