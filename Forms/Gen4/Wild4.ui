@@ -192,31 +192,66 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="0" column="4">
+       <item row="0" column="4" rowspan="2">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
         <widget class="QLabel" name="label_8">
          <property name="text">
           <string>Game</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="5">
+       <item row="0" column="6">
         <widget class="QLabel" name="profileGame">
          <property name="text">
           <string>Diamond</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="6">
+       <item row="0" column="7" rowspan="2">
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="8">
         <widget class="QLabel" name="label_17">
          <property name="text">
           <string>Radio</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="7">
+       <item row="0" column="9">
         <widget class="QLabel" name="profileRadio">
          <property name="text">
           <string>None</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="10" rowspan="2">
+        <widget class="Line" name="line_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="11">
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>Swarm</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="12">
+        <widget class="QLabel" name="profileSwarm">
+         <property name="text">
+          <string>False</string>
          </property>
         </widget>
        </item>
@@ -246,17 +281,31 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="1" column="4">
+       <item row="1" column="5">
         <widget class="QLabel" name="label_15">
          <property name="text">
           <string>Dual Slot</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="5">
+       <item row="1" column="6">
         <widget class="QLabel" name="profileDualSlot">
          <property name="text">
           <string>None</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="8">
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>Poke Radar</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="9">
+        <widget class="QLabel" name="profileRadar">
+         <property name="text">
+          <string>False</string>
          </property>
         </widget>
        </item>
@@ -2199,6 +2248,11 @@ QPushButton {
  </widget>
  <customwidgets>
   <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
@@ -2208,11 +2262,6 @@ QPushButton {
    <extends>QWidget</extends>
    <header>Forms/Controls/IVFilter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TextBox</class>
-   <extends>QLineEdit</extends>
-   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>CheckList</class>

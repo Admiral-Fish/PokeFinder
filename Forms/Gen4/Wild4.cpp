@@ -361,6 +361,8 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->profileGame->setText(profile.getVersionString());
     ui->profileDualSlot->setText(profile.getDualSlotString());
     ui->profileRadio->setText(profile.getRadioString());
+    ui->profileRadar->setText(profile.getRadar() ? tr("True") : tr("False"));
+    ui->profileSwarm->setText(profile.getSwarm() ? tr("True") : tr("False"));
 
     bool flag = profile.getVersion() & Game::HGSS;
 

@@ -2137,7 +2137,7 @@ QHeaderView::section {
       <property name="title">
        <string>Profile</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_10">
+      <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <widget class="QLabel" name="labelProfiles">
          <property name="maximumSize">
@@ -2175,14 +2175,21 @@ QHeaderView::section {
          </property>
         </widget>
        </item>
-       <item row="0" column="4">
+       <item row="0" column="4" rowspan="2">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
         <widget class="QLabel" name="label_8">
          <property name="text">
           <string>Game</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="5">
+       <item row="0" column="6">
         <widget class="QLabel" name="profileGame">
          <property name="text">
           <string>Emerald</string>
@@ -2233,6 +2240,11 @@ QHeaderView::section {
  </widget>
  <customwidgets>
   <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
@@ -2242,11 +2254,6 @@ QHeaderView::section {
    <extends>QWidget</extends>
    <header>Forms/Controls/IVFilter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TextBox</class>
-   <extends>QLineEdit</extends>
-   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>CheckList</class>

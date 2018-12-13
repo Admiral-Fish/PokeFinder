@@ -20,7 +20,7 @@
    <string notr="true">Gen 3 Stationary</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../resources.qrc">
+   <iconset>
     <normaloff>:/pokefinder.ico</normaloff>:/pokefinder.ico</iconset>
   </property>
   <property name="styleSheet">
@@ -1074,7 +1074,7 @@ QPushButton {
            <bool>false</bool>
           </attribute>
           <attribute name="verticalHeaderDefaultSectionSize">
-           <number>20</number>
+           <number>21</number>
           </attribute>
           <attribute name="verticalHeaderMinimumSectionSize">
            <number>20</number>
@@ -1604,7 +1604,7 @@ QPushButton {
            <bool>false</bool>
           </attribute>
           <attribute name="verticalHeaderDefaultSectionSize">
-           <number>20</number>
+           <number>21</number>
           </attribute>
           <attribute name="verticalHeaderMinimumSectionSize">
            <number>20</number>
@@ -1808,7 +1808,7 @@ QPushButton {
       <property name="title">
        <string>Profile</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_10">
+      <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
         <widget class="QLabel" name="labelProfiles">
          <property name="maximumSize">
@@ -1846,14 +1846,21 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="0" column="4">
+       <item row="0" column="4" rowspan="2">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
         <widget class="QLabel" name="label_4">
          <property name="text">
           <string>Game</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="5">
+       <item row="0" column="6">
         <widget class="QLabel" name="profileGame">
          <property name="text">
           <string>Emerald</string>
@@ -1970,8 +1977,6 @@ QPushButton {
   <tabstop>search</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
- <resources>
-  <include location="../../resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

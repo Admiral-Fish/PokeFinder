@@ -353,7 +353,7 @@ QCheckBox::indicator:checked {
    <item row="2" column="3">
     <widget class="QComboBox" name="comboBoxRadio">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <item>
       <property name="text">

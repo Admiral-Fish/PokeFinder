@@ -3360,7 +3360,7 @@ QRadioButton {
       <property name="title">
        <string>Profile</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_17">
+      <layout class="QGridLayout" name="gridLayout_13">
        <item row="0" column="0">
         <widget class="QLabel" name="label">
          <property name="maximumSize">
@@ -3398,14 +3398,21 @@ QRadioButton {
          </property>
         </widget>
        </item>
-       <item row="0" column="4">
+       <item row="0" column="4" rowspan="2">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
         <widget class="QLabel" name="label_50">
          <property name="text">
           <string>Game</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="5">
+       <item row="0" column="6">
         <widget class="QLabel" name="profileGame">
          <property name="text">
           <string>Emerald</string>
