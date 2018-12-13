@@ -123,7 +123,7 @@ void IDs3::on_pushButtonFindRS_clicked()
     }
     else
     {
-        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->date(), static_cast<u32>(ui->dateTimeEdit->time().hour()), static_cast<u32>(ui->dateTimeEdit->time().minute()));
+        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->date(), ui->dateTimeEdit->time().hour(), ui->dateTimeEdit->time().minute());
     }
 
     PokeRNG rng(seed, minFrame);

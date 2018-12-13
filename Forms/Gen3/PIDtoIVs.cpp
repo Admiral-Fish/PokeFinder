@@ -56,12 +56,13 @@ void PIDtoIVs::setupModels()
     connect(moveResults, &QAction::triggered, this, [ = ]
     {
         QStringList ivs = ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 2)).toString().split(".");
-        emit moveResultsToStationary(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString(), ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 1)).toString(), ivs.at(0).toUInt(), ivs.at(1).toUInt(), ivs.at(2).toUInt(), ivs.at(3).toUInt(), ivs.at(4).toUInt(), ivs.at(5).toUInt());
+        emit moveResultsToStationary(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString(), ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 1)).toString(),
+                                     ivs.at(0).toUShort(), ivs.at(1).toUShort(), ivs.at(2).toUShort(), ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
     });
     connect(moveIVs, &QAction::triggered, this, [ = ]
     {
         QStringList ivs = ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 2)).toString().split(".");
-        emit moveResultsToStationary("", "", ivs.at(0).toUInt(), ivs.at(1).toUInt(), ivs.at(2).toUInt(), ivs.at(3).toUInt(), ivs.at(4).toUInt(), ivs.at(5).toUInt());
+        emit moveResultsToStationary("", "", ivs.at(0).toUShort(), ivs.at(1).toUShort(), ivs.at(2).toUShort(), ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
     });
 
     contextMenu->addAction(copySeed);
@@ -100,8 +101,8 @@ void PIDtoIVs::calcMethodXD(u32 pid)
     for (const auto &pair : seeds)
     {
         XDRNGR backward(pair.first, 1);
-        u32 iv2 = backward.nextUShort();
-        u32 iv1 = backward.nextUShort();
+        u16 iv2 = backward.nextUShort();
+        u16 iv1 = backward.nextUShort();
         addSeedGC(backward.nextUInt(), iv1, iv2);
     }
 }
@@ -120,12 +121,12 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
     for (const auto &pair : seeds)
     {
         XDRNGR backward(pair.first);
-        u32 sid = backward.nextUShort();
+        u16 sid = backward.nextUShort();
         u32 seed = backward.nextUInt();
 
         XDRNG forward(seed, 1);
-        u32 high = forward.nextUShort();
-        u32 low = forward.nextUShort();
+        u16 high = forward.nextUShort();
+        u16 low = forward.nextUShort();
 
         if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
         {
@@ -144,12 +145,12 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
     for (const auto &pair : seedsXOR)
     {
         XDRNGR backward(pair.first);
-        u32 sid = backward.nextUShort();
+        u16 sid = backward.nextUShort();
         u32 seed = backward.nextUInt();
 
         XDRNG forward(seed, 1);
-        u32 high = forward.nextUShort();
-        u32 low = forward.nextUShort();
+        u16 high = forward.nextUShort();
+        u16 low = forward.nextUShort();
 
         if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
         {
@@ -169,7 +170,7 @@ QString PIDtoIVs::calcIVs(u32 iv1, int num)
 {
     QString ivs = "";
     PokeRNG rng(iv1);
-    u32 iv2;
+    u16 iv2;
 
     if (num == 1)
     {
@@ -206,7 +207,7 @@ QString PIDtoIVs::calcIVs(u32 iv1, int num)
     return ivs;
 }
 
-QString PIDtoIVs::calcIVsXD(u32 iv1, u32 iv2)
+QString PIDtoIVs::calcIVsXD(u16 iv1, u16 iv2)
 {
     QString ivs = "";
 
@@ -259,7 +260,7 @@ void PIDtoIVs::addSeed(u32 seed, u32 iv1)
     model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 4")) << new QStandardItem(calcIVs(iv1, 4)));
 }
 
-void PIDtoIVs::addSeedGC(u32 seed, u32 iv1, u32 iv2)
+void PIDtoIVs::addSeedGC(u32 seed, u16 iv1, u16 iv2)
 {
     model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
 }

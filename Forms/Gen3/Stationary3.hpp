@@ -71,7 +71,7 @@ private:
     void updateSearch();
 
 public slots:
-    void moveResults(const QString &seed, const QString &method, u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe);
+    void moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
 private slots:
     void refreshProfiles();

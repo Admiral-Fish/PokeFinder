@@ -21,6 +21,7 @@
 #define TEXTBOX_HPP
 
 #include <QLineEdit>
+#include <Objects/Global.hpp>
 
 enum InputType
 {
@@ -40,12 +41,12 @@ class TextBox : public QLineEdit
 public:
     explicit TextBox(QWidget *parent = nullptr);
     void setValues(InputType type);
-    void setValues(quint64 minValue, quint64 maxValue, int base = 10);
+    void setValues(u64 minValue, u64 maxValue, int base = 10);
 
 private:
     bool setup;
-    quint64 maxValue = 0;
-    quint64 minValue;
+    u64 maxValue = 0;
+    u64 minValue;
     int base;
     QRegExp filter;
 

@@ -39,36 +39,36 @@ IVFilter::~IVFilter()
     delete ui;
 }
 
-QVector<quint32> IVFilter::getEvals() const
+QVector<u8> IVFilter::getEvals() const
 {
-    QVector<quint32> evals =
+    QVector<u8> evals =
     {
-        static_cast<quint32>(ui->comboBoxHP->currentIndex()), static_cast<quint32>(ui->comboBoxAtk->currentIndex()),
-        static_cast<quint32>(ui->comboBoxDef->currentIndex()), static_cast<quint32>(ui->comboBoxSpA->currentIndex()),
-        static_cast<quint32>(ui->comboBoxSpD->currentIndex()), static_cast<quint32>(ui->comboBoxSpe->currentIndex())
+        static_cast<u8>(ui->comboBoxHP->currentIndex()), static_cast<u8>(ui->comboBoxAtk->currentIndex()),
+        static_cast<u8>(ui->comboBoxDef->currentIndex()), static_cast<u8>(ui->comboBoxSpA->currentIndex()),
+        static_cast<u8>(ui->comboBoxSpD->currentIndex()), static_cast<u8>(ui->comboBoxSpe->currentIndex())
     };
 
     return evals;
 }
 
-QVector<quint32> IVFilter::getValues() const
+QVector<u8> IVFilter::getValues() const
 {
-    QVector<quint32> values =
+    QVector<u8> values =
     {
-        static_cast<quint32>(ui->spinBoxHP->value()), static_cast<quint32>(ui->spinBoxAtk->value()),
-        static_cast<quint32>(ui->spinBoxDef->value()), static_cast<quint32>(ui->spinBoxSpA->value()),
-        static_cast<quint32>(ui->spinBoxSpD->value()), static_cast<quint32>(ui->spinBoxSpe->value())
+        static_cast<u8>(ui->spinBoxHP->value()), static_cast<u8>(ui->spinBoxAtk->value()),
+        static_cast<u8>(ui->spinBoxDef->value()), static_cast<u8>(ui->spinBoxSpA->value()),
+        static_cast<u8>(ui->spinBoxSpD->value()), static_cast<u8>(ui->spinBoxSpe->value())
     };
 
     return values;
 }
 
-QVector<quint32> IVFilter::getLower() const
+QVector<u8> IVFilter::getLower() const
 {
-    QVector<quint32> eval = getEvals();
-    QVector<quint32> ivs = getValues();
+    QVector<u8> eval = getEvals();
+    QVector<u8> ivs = getValues();
 
-    QVector<quint32> low;
+    QVector<u8> low;
 
     for (int i = 0; i < 6; i++)
     {
@@ -88,12 +88,12 @@ QVector<quint32> IVFilter::getLower() const
     return low;
 }
 
-QVector<quint32> IVFilter::getUpper() const
+QVector<u8> IVFilter::getUpper() const
 {
-    QVector<quint32> eval = getEvals();
-    QVector<quint32> ivs = getValues();
+    QVector<u8> eval = getEvals();
+    QVector<u8> ivs = getValues();
 
-    QVector<quint32> high;
+    QVector<u8> high;
 
     for (int i = 0; i < 6; i++)
     {
@@ -123,7 +123,7 @@ void IVFilter::clearValues()
     changeSpe(0, 0);
 }
 
-void IVFilter::setValues(quint32 hp, quint32 atk, quint32 def, quint32 spa, quint32 spd, quint32 spe)
+void IVFilter::setValues(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
     changeHP(hp, 1);
     changeAtk(atk, 1);

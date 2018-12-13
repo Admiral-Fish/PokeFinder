@@ -129,22 +129,22 @@ void Stationary4::search()
     Searcher4 searcher = Searcher4(tid, sid, static_cast<u32>(genderRatioIndex), ui->minDelay->text().toUInt(), ui->maxDelay->text().toUInt(), ui->minFrame->text().toUInt(), ui->maxFrame->text().toUInt(), compare, static_cast<Method>(ui->comboBoxMethodSearcher->currentData().toInt()));
     searcher.setLeadType(static_cast<Lead>(ui->comboBoxLeadSearcher->currentData().toInt()));
 
-    QVector<u32> min = ui->ivFilterSearcher->getLower();
-    QVector<u32> max = ui->ivFilterSearcher->getUpper();
+    QVector<u8> min = ui->ivFilterSearcher->getLower();
+    QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
     ui->progressBar->setMaximum(static_cast<int>((max[0] - min[0] + 1) * (max[1] - min[1] + 1) * (max[2] - min[2] + 1) * (max[3] - min[3] + 1) * (max[4] - min[4] + 1) * (max[5] - min[5] + 1)));
 
-    for (u32 a = min[0]; a <= max[0]; a++)
+    for (u8 a = min[0]; a <= max[0]; a++)
     {
-        for (u32 b = min[1]; b <= max[1]; b++)
+        for (u8 b = min[1]; b <= max[1]; b++)
         {
-            for (u32 c = min[2]; c <= max[2]; c++)
+            for (u8 c = min[2]; c <= max[2]; c++)
             {
-                for (u32 d = min[3]; d <= max[3]; d++)
+                for (u8 d = min[3]; d <= max[3]; d++)
                 {
-                    for (u32 e = min[4]; e <= max[4]; e++)
+                    for (u8 e = min[4]; e <= max[4]; e++)
                     {
-                        for (u32 f = min[5]; f <= max[5]; f++)
+                        for (u8 f = min[5]; f <= max[5]; f++)
                         {
                             QVector<Frame4> frames = searcher.search(a, b, c, d, e, f);
 

@@ -109,8 +109,8 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
         return QVector<DateTime>();
     }
 
-    u32 ab = seed >> 24;
-    u32 cd = (seed >> 16) & 0xFF;
+    u8 ab = seed >> 24;
+    u8 cd = (seed >> 16) & 0xFF;
     u32 efgh = seed & 0xFFFF;
 
     u32 delay = efgh + (2000 - year);
@@ -125,7 +125,7 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
     }
 
     QVector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
-    QVector<u16> routes = { ui->lineEditR->text().toUShort(), ui->lineEditE->text().toUShort(), ui->lineEditL->text().toUShort() };
+    QVector<u8> routes = { static_cast<u8>(ui->lineEditR->text().toUShort()), static_cast<u8>(ui->lineEditE->text().toUShort()), static_cast<u8>(ui->lineEditL->text().toUShort()) };
 
     QVector<DateTime> results;
     for (int month = 0; month < 13; month++)
@@ -211,7 +211,7 @@ void SeedtoTime4::on_pushButtonGenerateHGSS_clicked()
     int forcedSecond = ui->lineEditSecondsHGSS->text().toInt();
 
     QVector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
-    QVector<u16> routes = { ui->lineEditR->text().toUShort(), ui->lineEditE->text().toUShort(), ui->lineEditL->text().toUShort() };
+    QVector<u8> routes = { static_cast<u8>(ui->lineEditR->text().toUShort()), static_cast<u8>(ui->lineEditE->text().toUShort()), static_cast<u8>(ui->lineEditL->text().toUShort()) };
 
     HGSSRoamer info(seed, roamer, routes);
 
@@ -329,7 +329,7 @@ void SeedtoTime4::on_pushButtonSearchCalls_clicked()
     }
 
     QVector<bool> roamer = { ui->checkBoxR->isChecked(), ui->checkBoxE->isChecked(), ui->checkBoxL->isChecked() };
-    QVector<u32> routes = { ui->lineEditR->text().toUInt(), ui->lineEditE->text().toUInt(), ui->lineEditL->text().toUInt() };
+    QVector<u8> routes = { static_cast<u8>(ui->lineEditR->text().toUInt()), static_cast<u8>(ui->lineEditE->text().toUInt()), static_cast<u8>(ui->lineEditL->text().toUInt()) };
 
     auto *search = new SearchCalls(hgssCalibrate->getData(), roamer, routes);
     if (search->exec() == QDialog::Rejected)

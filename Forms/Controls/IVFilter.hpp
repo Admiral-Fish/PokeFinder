@@ -21,6 +21,7 @@
 #define IVFILTER_HPP
 
 #include <QWidget>
+#include <Objects/Global.hpp>
 
 namespace Ui
 {
@@ -34,12 +35,12 @@ class IVFilter : public QWidget
 public:
     explicit IVFilter(QWidget *parent = nullptr);
     ~IVFilter() override;
-    QVector<quint32> getEvals() const;
-    QVector<quint32> getValues() const;
-    QVector<quint32> getLower() const;
-    QVector<quint32> getUpper() const;
+    QVector<u8> getEvals() const;
+    QVector<u8> getValues() const;
+    QVector<u8> getLower() const;
+    QVector<u8> getUpper() const;
     void clearValues();
-    void setValues(quint32 hp, quint32 atk, quint32 def, quint32 spa, quint32 spd, quint32 spe);
+    void setValues(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
 private:
     Ui::IVFilter *ui;

@@ -39,7 +39,7 @@ class PIDtoIVs : public QMainWindow
     Q_OBJECT
 
 signals:
-    void moveResultsToStationary(QString, QString, u32, u32, u32, u32, u32, u32);
+    void moveResultsToStationary(QString, QString, u8, u8, u8, u8, u8, u8);
 
 public:
     explicit PIDtoIVs(QWidget *parent = nullptr);
@@ -58,10 +58,10 @@ private:
     void calcMethodXD(u32 pid);
     void calcMethodChannel(u32 pid);
     QString calcIVs(u32 iv1, int num);
-    QString calcIVsXD(u32 iv1, u32 iv2);
+    QString calcIVsXD(u16 iv1, u16 iv2);
     QString calcIVsChannel(u32 iv1);
     void addSeed(u32 seed, u32 iv1);
-    void addSeedGC(u32 seed, u32 iv1, u32 iv2);
+    void addSeedGC(u32 seed, u16 iv1, u16 iv2);
     void addSeedChannel(u32 seed, u32 iv1);
 
 private slots:

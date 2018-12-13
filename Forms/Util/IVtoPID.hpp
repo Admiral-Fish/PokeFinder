@@ -44,8 +44,8 @@ private:
     QStandardItemModel *model = new QStandardItemModel(this);
 
     void setupModels();
-    void getSeeds(u32 ivs1, u32 ivs2, u16 nature, u16 tid);
-    void getSeedsChannel(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 spe, u16 nature);
+    void getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid);
+    void getSeedsChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature);
 
 private slots:
     void on_pushButtonFind_clicked();

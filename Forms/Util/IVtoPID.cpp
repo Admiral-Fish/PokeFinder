@@ -46,7 +46,7 @@ void IVtoPID::setupModels()
     ui->tableView->setModel(model);
 }
 
-void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u16 nature, u16 tid)
+void IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid)
 {
     u32 x_test = ivs2 << 16;
     u32 x_testXD = ivs1 << 16;
@@ -59,14 +59,14 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u16 nature, u16 tid)
         u32 seedXD = x_testXD | cnt;
         XDRNG rngXD(seedXD);
         XDRNGR rngXDR(seedXD);
-        u32 rng1XD = rngXD.nextUShort();
+        u16 rng1XD = rngXD.nextUShort();
 
         // Gales/Colo
         if ((rng1XD & 0x7FFF) == (ivs2 & 0x7FFF))
         {
             rngXD.nextUShort();
-            u32 rng3XD = rngXD.nextUShort();
-            u32 rng4XD = rngXD.nextUShort();
+            u16 rng3XD = rngXD.nextUShort();
+            u16 rng4XD = rngXD.nextUShort();
             u32 XDColoSeed = rngXDR.nextUInt();
             sid = (rng4XD ^ rng3XD ^ tid) & 0xFFF8;
 
@@ -83,11 +83,11 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u16 nature, u16 tid)
 
         u32 seed = x_test | cnt;
         PokeRNGR rng(seed);
-        u32 rng1 = rng.nextUShort();
+        u16 rng1 = rng.nextUShort();
 
-        u32 rng2 = rng.nextUShort();
-        u32 rng3 = rng.nextUShort();
-        u32 rng4 = rng.nextUShort();
+        u16 rng2 = rng.nextUShort();
+        u16 rng3 = rng.nextUShort();
+        u16 rng4 = rng.nextUShort();
 
         u32 method1Seed = rng.getSeed();
         sid = (rng2 ^ rng3 ^ tid) & 0xFFF8;
@@ -96,8 +96,6 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u16 nature, u16 tid)
 
         if ((rng1 & 0x7FFF) == (ivs1 & 0x7FFF))
         {
-            u32 choppedPID;
-
             // Method 1
             pid = (rng2 << 16) | rng3;
             if (pid % 25 == nature)
@@ -135,7 +133,7 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u16 nature, u16 tid)
             // Cute Charm DPPt
             if (rng3 / 0x5556 != 0)
             {
-                choppedPID = rng2 / 0xA3E;
+                u8 choppedPID = rng2 / 0xA3E;
                 sid = (choppedPID ^ tid) & 0xFFF8;
                 pass = choppedPID % 25 == nature;
                 if (pass)
@@ -196,7 +194,7 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u16 nature, u16 tid)
             // Cute Charm HGSS
             if (rng3 % 3 != 0)
             {
-                choppedPID = rng2 % 25;
+                u8 choppedPID = rng2 % 25;
                 sid = (choppedPID ^ tid) & 0xFFF8;
                 pass = choppedPID == nature;
                 if (pass)
@@ -271,7 +269,7 @@ void IVtoPID::getSeeds(u32 ivs1, u32 ivs2, u16 nature, u16 tid)
     }
 }
 
-void IVtoPID::getSeedsChannel(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 spe, u16 nature)
+void IVtoPID::getSeedsChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature)
 {
     RNGEuclidean euclidean(Channel);
 
@@ -281,13 +279,15 @@ void IVtoPID::getSeedsChannel(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 sp
     {
         XDRNGR rng(seed, 3);
 
-        u32 pid2 = rng.nextUShort();
-        u32 pid1 = rng.nextUShort();
-        u32 sid = rng.nextUShort();
+        u16 pid2 = rng.nextUShort();
+        u16 pid1 = rng.nextUShort();
+        u16 sid = rng.nextUShort();
 
         // Determine if PID needs to be XORed
         if ((pid2 > 7 ? 0 : 1) != (pid1 ^ sid ^ 40122))
+        {
             pid1 ^= 0x8000;
+        }
 
         u32 pid = (pid1 << 16) | pid2;
 
@@ -304,16 +304,16 @@ void IVtoPID::getSeedsChannel(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 sp
 
 void IVtoPID::on_pushButtonFind_clicked()
 {
-    u16 hp = static_cast<u16>(ui->spinBoxHP->value());
-    u16 atk = static_cast<u16>(ui->spinBoxAtk->value());
-    u16 def = static_cast<u16>(ui->spinBoxDef->value());
-    u16 spa = static_cast<u16>(ui->spinBoxSpA->value());
-    u16 spd = static_cast<u16>(ui->spinBoxSpD->value());
-    u16 spe = static_cast<u16>(ui->spinBoxSpe->value());
+    u8 hp = ui->spinBoxHP->value();
+    u8 atk = ui->spinBoxAtk->value();
+    u8 def = ui->spinBoxDef->value();
+    u8 spa = ui->spinBoxSpA->value();
+    u8 spd = ui->spinBoxSpD->value();
+    u8 spe = ui->spinBoxSpe->value();
 
     model->removeRows(0, model->rowCount());
 
-    u16 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNatureGenerator->currentIndex()));
+    u8 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNatureGenerator->currentIndex()));
 
     u16 tid = ui->textBoxID->text().toUShort();
 

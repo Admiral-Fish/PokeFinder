@@ -61,9 +61,9 @@ void IDs4::searchPID()
 
     for (u32 efgh = minDelay; efgh <= (infinite ? 0xE8FFFF : maxDelay); efgh++)
     {
-        for (u32 ab = 0; ab < 256; ab++)
+        for (u16 ab = 0; ab < 256; ab++)
         {
-            for (u32 cd = 0; cd < 24; cd++)
+            for (u8 cd = 0; cd < 24; cd++)
             {
                 u32 seed = ((ab << 24) | (cd << 16)) + efgh;
                 MersenneTwister mt(seed, 1);
@@ -115,9 +115,9 @@ void IDs4::searchTIDSID()
 
     for (u32 efgh = minDelay; efgh <= (infinite ? 0xE8FFFF : maxDelay); efgh++)
     {
-        for (u32 ab = 0; ab < 256; ab++)
+        for (u16 ab = 0; ab < 256; ab++)
         {
-            for (u32 cd = 0; cd < 24; cd++)
+            for (u8 cd = 0; cd < 24; cd++)
             {
                 u32 seed = ((ab << 24) | (cd << 16)) + efgh;
                 MersenneTwister mt(seed, 1);
@@ -250,7 +250,7 @@ void IDs4::on_pushButtonSearchSeedFinder_clicked()
     minDelay += (year - 2000);
     maxDelay += (year - 2000);
 
-    for (u32 second = 0; second < 60; second++)
+    for (u8 second = 0; second < 60; second++)
     {
         for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
         {

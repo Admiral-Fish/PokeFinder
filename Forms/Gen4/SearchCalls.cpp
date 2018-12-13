@@ -20,7 +20,7 @@
 #include "SearchCalls.hpp"
 #include "ui_SearchCalls.h"
 
-SearchCalls::SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u32> &routes, QWidget *parent) :
+SearchCalls::SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchCalls)
 {

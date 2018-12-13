@@ -19,11 +19,11 @@
 
 #include "DateTime.hpp"
 
-DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u16> &routes)
+DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes)
 {
     this->dateTime = dateTime;
     this->delay = delay;
-    seed = Utilities::calcGen4Seed(dateTime, delay - (2000 - static_cast<u32>(dateTime.date().year())));
+    seed = Utilities::calcGen4Seed(dateTime, delay - (2000 - dateTime.date().year()));
     this->version = version;
     info = HGSSRoamer(seed, roamers, routes);
 }
@@ -32,17 +32,21 @@ DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGS
 {
     this->dateTime = dateTime;
     this->delay = delay;
-    seed = Utilities::calcGen4Seed(dateTime, delay - (2000 - static_cast<u32>(dateTime.date().year())));
+    seed = Utilities::calcGen4Seed(dateTime, delay - (2000 - dateTime.date().year()));
     this->version = version;
     this->info = info;
 }
 
 QString DateTime::sequence()
 {
-    if (version == Game::HeartGold || version == Game::SoulSilver)
+    if (version & Game::HGSS)
+    {
         return Utilities::getCalls(seed, 15, info);
-    else // DPPt
+    }
+    else
+    {
         return Utilities::coinFlips(seed, 15);
+    }
 }
 
 QString DateTime::getDate()

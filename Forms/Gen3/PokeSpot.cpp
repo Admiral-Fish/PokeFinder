@@ -102,7 +102,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         }
 
         // Check what type the pokespot is
-        u16 call = rngArray[2 + cnt] % 100;
+        u8 call = rngArray[2 + cnt] % 100;
         if (call < 50)
         {
             if (!spots[0])

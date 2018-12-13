@@ -73,7 +73,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     XDRNGR rng(seed);
 
     // Populate backwards data
-    for (u32 m = 0; m < 25; m++)
+    for (int m = 0; m < 25; m++)
     {
         seed = rng.nextUInt();
         data.append(seed);

@@ -71,7 +71,7 @@ void TextBox::setValues(InputType type)
     setup = true;
 }
 
-void TextBox::setValues(quint64 minValue, quint64 maxValue, int base)
+void TextBox::setValues(u64 minValue, u64 maxValue, int base)
 {
     this->minValue = minValue;
     this->maxValue = maxValue;
@@ -86,7 +86,7 @@ void TextBox::onTextChanged(QString string)
     {
         string = string.toUpper();
         string.remove(filter);
-        quint64 temp = string.toULongLong(nullptr, base);
+        u64 temp = string.toULongLong(nullptr, base);
 
         if (temp > maxValue)
             string = QString::number(maxValue, base);

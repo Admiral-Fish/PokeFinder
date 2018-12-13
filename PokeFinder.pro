@@ -152,7 +152,8 @@ HEADERS += \
     PokeFinderCore/RNG/TinyMT.hpp \
     PokeFinderCore/Translator.hpp \
     Util/DateTime.hpp \
-    Util/ResearcherFrame.hpp
+    Util/ResearcherFrame.hpp \
+    PokeFinderCore/Objects/Global.hpp
 
 SOURCES += \
     Forms/Controls/CheckList.cpp \

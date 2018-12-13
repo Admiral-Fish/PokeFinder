@@ -20,10 +20,7 @@
 #ifndef RESEARCHERFRAME_HPP
 #define RESEARCHERFRAME_HPP
 
-#include <cstdint>
-
-using u64 = uint64_t;
-using u32 = uint32_t;
+#include <Objects/Global.hpp>
 
 class ResearcherFrame
 {
@@ -46,8 +43,8 @@ public:
     void setFrame(u32 val) { frame = val; }
     u64 getCustom(int x) { return custom[x]; }
     void setCustom(int x, u64 val) { custom[x] = val; }
-    inline u32 getHigh32() { return static_cast<u32>((full64 >> 32)); }
-    inline u32 getLow32() { return static_cast<u32>((full64 & 0xFFFFFFFF)); }
+    inline u32 getHigh32() { return full64 >> 32; }
+    inline u32 getLow32() { return full64 & 0xFFFFFFFF; }
     inline u32 getHigh16() { return rng64Bit ? getHigh32() >> 16 : full32 >> 16; }
     inline u32 getLow16() { return rng64Bit ? getHigh32() & 0xFFFF : full32 & 0xFFFF; }
     inline u32 getMod25() { return rng64Bit ? getHigh32() % 25 : getHigh16() % 25; }

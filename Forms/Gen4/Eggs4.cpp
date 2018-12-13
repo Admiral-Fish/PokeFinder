@@ -83,9 +83,7 @@ void Eggs4::updateProfiles()
 void Eggs4::setupModels()
 {
     ui->tableViewGenerator->setModel(generatorModel);
-
     ui->tableViewIVs->setModel(searcherIVs);
-
     ui->tableViewPID->setModel(searcherPID);
 
     ui->textBoxStartingFrame->setValues(InputType::Frame32Bit);
@@ -147,9 +145,9 @@ void Eggs4::searchPID()
 
     ui->progressBarPID->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
-    for (u32 ab = 0; ab < 256; ab++)
+    for (u16 ab = 0; ab < 256; ab++)
     {
-        for (u32 cd = 0; cd < 24; cd++)
+        for (u8 cd = 0; cd < 24; cd++)
         {
             for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
             {
@@ -188,15 +186,15 @@ void Eggs4::searchPID()
 
 void Eggs4::searchIVs()
 {
-    QVector<u32> parent1 =
+    QVector<u8> parent1 =
     {
-        static_cast<u32>(ui->parent1HPSearcher->value()), static_cast<u32>(ui->parent1AtkSearcher->value()), static_cast<u32>(ui->parent1DefSearcher->value()),
-        static_cast<u32>(ui->parent1SpASearcher->value()), static_cast<u32>(ui->parent1SpDSearcher->value()), static_cast<u32>(ui->parent1SpeSearcher->value())
+        static_cast<u8>(ui->parent1HPSearcher->value()), static_cast<u8>(ui->parent1AtkSearcher->value()), static_cast<u8>(ui->parent1DefSearcher->value()),
+        static_cast<u8>(ui->parent1SpASearcher->value()), static_cast<u8>(ui->parent1SpDSearcher->value()), static_cast<u8>(ui->parent1SpeSearcher->value())
     };
-    QVector<u32> parent2 =
+    QVector<u8> parent2 =
     {
-        static_cast<u32>(ui->parent2HPSearcher->value()), static_cast<u32>(ui->parent2AtkSearcher->value()), static_cast<u32>(ui->parent2DefSearcher->value()),
-        static_cast<u32>(ui->parent2SpASearcher->value()), static_cast<u32>(ui->parent2SpDSearcher->value()), static_cast<u32>(ui->parent2SpeSearcher->value())
+        static_cast<u8>(ui->parent2HPSearcher->value()), static_cast<u8>(ui->parent2AtkSearcher->value()), static_cast<u8>(ui->parent2DefSearcher->value()),
+        static_cast<u8>(ui->parent2SpASearcher->value()), static_cast<u8>(ui->parent2SpDSearcher->value()), static_cast<u8>(ui->parent2SpeSearcher->value())
     };
 
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxHiddenPowerSearcher->getChecked());
@@ -213,9 +211,9 @@ void Eggs4::searchIVs()
 
     ui->progressBarIVs->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
-    for (u32 ab = 0; ab < 256; ab++)
+    for (u16 ab = 0; ab < 256; ab++)
     {
-        for (u32 cd = 0; cd < 24; cd++)
+        for (u8 cd = 0; cd < 24; cd++)
         {
             for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
             {
@@ -293,15 +291,15 @@ void Eggs4::on_pushButtonGenerate_clicked()
 
     generatorModel->setMethod(method);
 
-    QVector<u32> parent1 =
+    QVector<u8> parent1 =
     {
-        static_cast<u32>(ui->parent1HPGenerator->value()), static_cast<u32>(ui->parent1AtkGenerator->value()), static_cast<u32>(ui->parent1DefGenerator->value()),
-        static_cast<u32>(ui->parent1SpAGenerator->value()), static_cast<u32>(ui->parent1SpDGenerator->value()), static_cast<u32>(ui->parent1SpeGenerator->value())
+        static_cast<u8>(ui->parent1HPGenerator->value()), static_cast<u8>(ui->parent1AtkGenerator->value()), static_cast<u8>(ui->parent1DefGenerator->value()),
+        static_cast<u8>(ui->parent1SpAGenerator->value()), static_cast<u8>(ui->parent1SpDGenerator->value()), static_cast<u8>(ui->parent1SpeGenerator->value())
     };
-    QVector<u32> parent2 =
+    QVector<u8> parent2 =
     {
-        static_cast<u32>(ui->parent2HPGenerator->value()), static_cast<u32>(ui->parent2AtkGenerator->value()), static_cast<u32>(ui->parent2DefGenerator->value()),
-        static_cast<u32>(ui->parent2SpAGenerator->value()), static_cast<u32>(ui->parent2SpDGenerator->value()), static_cast<u32>(ui->parent2SpeGenerator->value())
+        static_cast<u8>(ui->parent2HPGenerator->value()), static_cast<u8>(ui->parent2AtkGenerator->value()), static_cast<u8>(ui->parent2DefGenerator->value()),
+        static_cast<u8>(ui->parent2SpAGenerator->value()), static_cast<u8>(ui->parent2SpDGenerator->value()), static_cast<u8>(ui->parent2SpeGenerator->value())
     };
 
     Egg4 generator = Egg4(maxResults, startingFrame, tid, sid, method, seed);

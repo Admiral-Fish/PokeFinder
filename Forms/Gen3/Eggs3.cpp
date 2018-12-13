@@ -59,7 +59,7 @@ void Eggs3::updateProfiles()
     int val = setting.value("egg3Profile").toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val);
+        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
     }
 }
 
@@ -141,7 +141,7 @@ void Eggs3::on_pushButtonGenerateEmeraldPID_clicked()
     generator.setEverstone(ui->comboBoxEverstone->currentIndex() != 0);
     if (ui->comboBoxEverstone->currentIndex() != 0)
     {
-        generator.setEverstoneNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxEverstone->currentIndex() - 1)));
+        generator.setEverstoneNature(Nature::getAdjustedNature(ui->comboBoxEverstone->currentIndex() - 1));
     }
 
     FrameCompare compare = FrameCompare(ui->comboBoxGenderEmerald->currentIndex(), genderRatioIndex, ui->comboBoxAbilityEmerald->currentIndex(),
@@ -170,15 +170,15 @@ void Eggs3::on_pushButtonGenerateEmeraldIVs_clicked()
         method = Method::EBredSplit;
     }
 
-    QVector<u32> parent1 =
+    QVector<u8> parent1 =
     {
-        static_cast<u32>(ui->parent1HPEmerald->value()), static_cast<u32>(ui->parent1AtkEmerald->value()), static_cast<u32>(ui->parent1DefEmerald->value()),
-        static_cast<u32>(ui->parent1SpAEmerald->value()), static_cast<u32>(ui->parent1SpDEmerald->value()), static_cast<u32>(ui->parent1SpeEmerald->value())
+        static_cast<u8>(ui->parent1HPEmerald->value()), static_cast<u8>(ui->parent1AtkEmerald->value()), static_cast<u8>(ui->parent1DefEmerald->value()),
+        static_cast<u8>(ui->parent1SpAEmerald->value()), static_cast<u8>(ui->parent1SpDEmerald->value()), static_cast<u8>(ui->parent1SpeEmerald->value())
     };
-    QVector<u32> parent2 =
+    QVector<u8> parent2 =
     {
-        static_cast<u32>(ui->parent2HPEmerald->value()), static_cast<u32>(ui->parent2AtkEmerald->value()), static_cast<u32>(ui->parent2DefEmerald->value()),
-        static_cast<u32>(ui->parent2SpAEmerald->value()), static_cast<u32>(ui->parent2SpDEmerald->value()), static_cast<u32>(ui->parent2SpeEmerald->value())
+        static_cast<u8>(ui->parent2HPEmerald->value()), static_cast<u8>(ui->parent2AtkEmerald->value()), static_cast<u8>(ui->parent2DefEmerald->value()),
+        static_cast<u8>(ui->parent2SpAEmerald->value()), static_cast<u8>(ui->parent2SpDEmerald->value()), static_cast<u8>(ui->parent2SpeEmerald->value())
     };
 
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, method);
@@ -199,15 +199,15 @@ void Eggs3::on_pushButtonGenerateRS_clicked()
     u16 tid = ui->textBoxTIDRS->text().toUShort();
     u16 sid = ui->textBoxSIDRS->text().toUShort();
 
-    QVector<u32> parent1 =
+    QVector<u8> parent1 =
     {
-        static_cast<u32>(ui->parent1HPRS->value()), static_cast<u32>(ui->parent1AtkRS->value()), static_cast<u32>(ui->parent1DefRS->value()),
-        static_cast<u32>(ui->parent1SpARS->value()), static_cast<u32>(ui->parent1SpDRS->value()), static_cast<u32>(ui->parent1SpeRS->value())
+        static_cast<u8>(ui->parent1HPRS->value()), static_cast<u8>(ui->parent1AtkRS->value()), static_cast<u8>(ui->parent1DefRS->value()),
+        static_cast<u8>(ui->parent1SpARS->value()), static_cast<u8>(ui->parent1SpDRS->value()), static_cast<u8>(ui->parent1SpeRS->value())
     };
-    QVector<u32> parent2 =
+    QVector<u8> parent2 =
     {
-        static_cast<u32>(ui->parent2HPRS->value()), static_cast<u32>(ui->parent2AtkRS->value()), static_cast<u32>(ui->parent2DefRS->value()),
-        static_cast<u32>(ui->parent2SpARS->value()), static_cast<u32>(ui->parent2SpDRS->value()), static_cast<u32>(ui->parent2SpeRS->value())
+        static_cast<u8>(ui->parent2HPRS->value()), static_cast<u8>(ui->parent2AtkRS->value()), static_cast<u8>(ui->parent2DefRS->value()),
+        static_cast<u8>(ui->parent2SpARS->value()), static_cast<u8>(ui->parent2SpDRS->value()), static_cast<u8>(ui->parent2SpeRS->value())
     };
 
     Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, RSBred, ui->textBoxSeedRS->text().toUInt(nullptr, 16));
@@ -234,15 +234,15 @@ void Eggs3::on_pushButtonGenerateFRLG_clicked()
     u16 tid = ui->textBoxTIDFRLG->text().toUShort();
     u16 sid = ui->textBoxSIDFRLG->text().toUShort();
 
-    QVector<u32> parent1 =
+    QVector<u8> parent1 =
     {
-        static_cast<u32>(ui->parent1HPFRLG->value()), static_cast<u32>(ui->parent1AtkFRLG->value()), static_cast<u32>(ui->parent1DefFRLG->value()),
-        static_cast<u32>(ui->parent1SpAFRLG->value()), static_cast<u32>(ui->parent1SpDFRLG->value()), static_cast<u32>(ui->parent1SpeFRLG->value())
+        static_cast<u8>(ui->parent1HPFRLG->value()), static_cast<u8>(ui->parent1AtkFRLG->value()), static_cast<u8>(ui->parent1DefFRLG->value()),
+        static_cast<u8>(ui->parent1SpAFRLG->value()), static_cast<u8>(ui->parent1SpDFRLG->value()), static_cast<u8>(ui->parent1SpeFRLG->value())
     };
-    QVector<u32> parent2 =
+    QVector<u8> parent2 =
     {
-        static_cast<u32>(ui->parent2HPFRLG->value()), static_cast<u32>(ui->parent2AtkFRLG->value()), static_cast<u32>(ui->parent2DefFRLG->value()),
-        static_cast<u32>(ui->parent2SpAFRLG->value()), static_cast<u32>(ui->parent2SpDFRLG->value()), static_cast<u32>(ui->parent2SpeFRLG->value())
+        static_cast<u8>(ui->parent2HPFRLG->value()), static_cast<u8>(ui->parent2AtkFRLG->value()), static_cast<u8>(ui->parent2DefFRLG->value()),
+        static_cast<u8>(ui->parent2SpAFRLG->value()), static_cast<u8>(ui->parent2SpDFRLG->value()), static_cast<u8>(ui->parent2SpeFRLG->value())
     };
 
     Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, FRLGBred, ui->textBoxSeedFRLG->text().toUInt(nullptr, 16));

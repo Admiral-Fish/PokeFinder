@@ -35,7 +35,7 @@ class SearchCalls : public QDialog
     Q_OBJECT
 
 public:
-    explicit SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u32> &routes, QWidget *parent = nullptr);
+    explicit SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent = nullptr);
     ~SearchCalls() override;
     QVector<bool> possibleResults();
 
@@ -44,7 +44,7 @@ private:
     QVector<DateTime> data;
     QVector<bool> possible;
     QVector<bool> roamers;
-    QVector<u32> routes;
+    QVector<u8> routes;
 
 private slots:
     void on_pushButtonK_clicked();

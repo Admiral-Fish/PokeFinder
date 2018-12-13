@@ -99,7 +99,6 @@ void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint 
     }
 
     lastIndex = ui->tableViewGenerator->indexAt(pos);
-
     contextMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
 }
 
@@ -120,8 +119,8 @@ void Search::run()
     targetSeed = back.getSeed();
 
     u32 seconds = 0;
-    int secoundCount = 0;
-    int minutes = 0;
+    u32 minutes = 0;
+    u8 secoundCount = 0;
 
     while (!cancel)
     {

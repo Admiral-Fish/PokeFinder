@@ -36,7 +36,7 @@ private:
 
 public:
     DateTime() = default;
-    DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u16> &routes);
+    DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes);
     DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info);
     QString sequence();
     QString getDate();
