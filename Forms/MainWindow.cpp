@@ -90,6 +90,7 @@ void MainWindow::loadLanguage(const QString &lang)
         QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
         if (message.exec() == QMessageBox::Yes)
         {
+            QProcess::startDetached(QApplication::applicationFilePath());
             QApplication::quit();
         }
     }
