@@ -110,7 +110,7 @@ void MainWindow::checkUpdates()
     QDate today = QDate::currentDate();
     QDate lastOpened = setting.value("lastOpened", today).toDate();
 
-    if (lastOpened.daysTo(today) > -1)
+    if (lastOpened.daysTo(today) > 0)
     {
         QNetworkAccessManager manager;
         QNetworkRequest request(QUrl("https://api.github.com/repos/Admiral-Fish/PokeFinder/releases/latest"));
