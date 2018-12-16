@@ -22,8 +22,8 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
-#include <Objects/Utilities.hpp>
-#include <RNG/LCRNG.hpp>
+#include <Core/Objects/Utilities.hpp>
+#include <Core/RNG/LCRNG.hpp>
 
 namespace Ui
 {

@@ -26,14 +26,14 @@
 #include <QMenu>
 #include <QSettings>
 #include <thread>
+#include <Core/Gen3/Encounters3.hpp>
+#include <Core/Gen3/Generator3.hpp>
+#include <Core/Gen3/Searcher3.hpp>
+#include <Core/Translator.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Wild3Model.hpp>
-#include <Gen3/Encounters3.hpp>
-#include <Gen3/Generator3.hpp>
-#include <Gen3/Searcher3.hpp>
-#include <Translator.hpp>
 
 namespace Ui
 {

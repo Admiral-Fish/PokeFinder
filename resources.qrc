@@ -1,0 +1,68 @@
+<RCC>
+    <qresource prefix="/encounters">
+        <file alias="ruby.bin">Core/Encounters/Gen3/ruby.bin</file>
+        <file alias="sapphire.bin">Core/Encounters/Gen3/sapphire.bin</file>
+        <file alias="firered.bin">Core/Encounters/Gen3/firered.bin</file>
+        <file alias="leafgreen.bin">Core/Encounters/Gen3/leafgreen.bin</file>
+        <file alias="emerald.bin">Core/Encounters/Gen3/emerald.bin</file>
+        <file alias="diamond.bin">Core/Encounters/Gen4/diamond.bin</file>
+        <file alias="pearl.bin">Core/Encounters/Gen4/pearl.bin</file>
+        <file alias="platinum.bin">Core/Encounters/Gen4/platinum.bin</file>
+        <file alias="heartgold.bin">Core/Encounters/Gen4/heartgold.bin</file>
+        <file alias="soulsilver.bin">Core/Encounters/Gen4/soulsilver.bin</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="pokefinder.ico">Images/pokefinder.ico</file>
+        <file alias="heads.png">Images/heads.png</file>
+        <file alias="tails.png">Images/tails.png</file>
+        <file alias="roamers.png">Images/roamers.png</file>
+        <file alias="raikou.png">Images/raikou.png</file>
+        <file alias="entei.png">Images/raikou.png</file>
+        <file alias="latias.png">Images/latias.png</file>
+        <file alias="latios.png">Images/latios.png</file>
+    </qresource>
+    <qresource prefix="/text">
+        <file alias="species_de.txt">Core/Text/species_de.txt</file>
+        <file alias="species_en.txt">Core/Text/species_en.txt</file>
+        <file alias="species_es.txt">Core/Text/species_es.txt</file>
+        <file alias="species_fr.txt">Core/Text/species_fr.txt</file>
+        <file alias="species_it.txt">Core/Text/species_it.txt</file>
+        <file alias="species_ja.txt">Core/Text/species_ja.txt</file>
+        <file alias="species_ko.txt">Core/Text/species_ko.txt</file>
+        <file alias="species_zh.txt">Core/Text/species_zh.txt</file>
+        <file alias="rsefrlg_de.txt">Core/Text/Gen3/rsefrlg_en.txt</file>
+        <file alias="rsefrlg_en.txt">Core/Text/Gen3/rsefrlg_en.txt</file>
+        <file alias="rsefrlg_es.txt">Core/Text/Gen3/rsefrlg_en.txt</file>
+        <file alias="rsefrlg_fr.txt">Core/Text/Gen3/rsefrlg_en.txt</file>
+        <file alias="rsefrlg_it.txt">Core/Text/Gen3/rsefrlg_en.txt</file>
+        <file alias="rsefrlg_ja.txt">Core/Text/Gen3/rsefrlg_en.txt</file>
+        <file alias="rsefrlg_ko.txt">Core/Text/Gen3/rsefrlg_en.txt</file>
+        <file alias="rsefrlg_zh.txt">Core/Text/Gen3/rsefrlg_en.txt</file>
+        <file alias="dppt_de.txt">Core/Text/Gen4/dppt_de.txt</file>
+        <file alias="dppt_en.txt">Core/Text/Gen4/dppt_en.txt</file>
+        <file alias="dppt_es.txt">Core/Text/Gen4/dppt_es.txt</file>
+        <file alias="dppt_fr.txt">Core/Text/Gen4/dppt_fr.txt</file>
+        <file alias="dppt_it.txt">Core/Text/Gen4/dppt_it.txt</file>
+        <file alias="dppt_ja.txt">Core/Text/Gen4/dppt_ja.txt</file>
+        <file alias="dppt_ko.txt">Core/Text/Gen4/dppt_ko.txt</file>
+        <file alias="dppt_zh.txt">Core/Text/Gen4/dppt_zh.txt</file>
+        <file alias="hgss_de.txt">Core/Text/Gen4/hgss_de.txt</file>
+        <file alias="hgss_en.txt">Core/Text/Gen4/hgss_en.txt</file>
+        <file alias="hgss_es.txt">Core/Text/Gen4/hgss_es.txt</file>
+        <file alias="hgss_fr.txt">Core/Text/Gen4/hgss_fr.txt</file>
+        <file alias="hgss_it.txt">Core/Text/Gen4/hgss_it.txt</file>
+        <file alias="hgss_ja.txt">Core/Text/Gen4/hgss_ja.txt</file>
+        <file alias="hgss_ko.txt">Core/Text/Gen4/hgss_ko.txt</file>
+        <file alias="hgss_zh.txt">Core/Text/Gen4/hgss_zh.txt</file>
+    </qresource>
+    <qresource prefix="/translations">
+        <file alias="PokeFinder_de.qm">Translations/PokeFinder_de.qm</file>
+        <file alias="PokeFinder_en.qm">Translations/PokeFinder_en.qm</file>
+        <file alias="PokeFinder_es.qm">Translations/PokeFinder_es.qm</file>
+        <file alias="PokeFinder_fr.qm">Translations/PokeFinder_fr.qm</file>
+        <file alias="PokeFinder_it.qm">Translations/PokeFinder_it.qm</file>
+        <file alias="PokeFinder_ja.qm">Translations/PokeFinder_ja.qm</file>
+        <file alias="PokeFinder_ko.qm">Translations/PokeFinder_ko.qm</file>
+        <file alias="PokeFinder_zh_Hans_CN.qm">Translations/PokeFinder_zh_Hans_CN.qm</file>
+    </qresource>
+</RCC>

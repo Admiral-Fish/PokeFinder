@@ -24,10 +24,10 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QStandardItemModel>
-#include <Objects/Method.hpp>
-#include <RNG/LCRNG.hpp>
-#include <RNG/RNGCache.hpp>
-#include <RNG/RNGEuclidean.hpp>
+#include <Core/Objects/Method.hpp>
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/RNGCache.hpp>
+#include <Core/RNG/RNGEuclidean.hpp>
 
 namespace Ui
 {

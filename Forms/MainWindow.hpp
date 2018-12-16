@@ -22,6 +22,7 @@
 
 #include <QDate>
 #include <QDesktopServices>
+#include <QJsonDocument>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QtNetwork>
@@ -59,7 +60,7 @@ private:
     Ui::MainWindow *ui;
     QTranslator translator;
     QActionGroup *langGroup;
-    const QString VERSION = "2.2.0";
+    const QString VERSION = "v2.1.0";
 
     Stationary3 *stationary3 = nullptr;
     Wild3 *wild3 = nullptr;
@@ -72,7 +73,6 @@ private:
 
     void setupLanguage();
     void loadLanguage(const QString &lang);
-    void switchTranslator(QTranslator &translator, const QString &filename);
     void checkProfileJson();
     void checkUpdates();
 

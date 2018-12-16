@@ -23,12 +23,12 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QSettings>
+#include <Core/Gen4/Profile4.hpp>
+#include <Core/Objects/Utilities.hpp>
 #include <Forms/Gen4/RoamerMap.hpp>
 #include <Forms/Gen4/SearchCalls.hpp>
 #include <Forms/Gen4/SearchCoinFlips.hpp>
 #include <Models/Gen4/SeedtoTime4Model.hpp>
-#include <Gen4/Profile4.hpp>
-#include <Objects/Utilities.hpp>
 
 namespace Ui
 {

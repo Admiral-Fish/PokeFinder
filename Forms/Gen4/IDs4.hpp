@@ -24,8 +24,8 @@
 #include <QMessageBox>
 #include <QStandardItemModel>
 #include <thread>
-#include <Objects/Utilities.hpp>
-#include <RNG/LCRNG.hpp>
+#include <Core/Objects/Utilities.hpp>
+#include <Core/RNG/LCRNG.hpp>
 
 namespace Ui
 {

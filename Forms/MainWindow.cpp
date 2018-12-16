@@ -71,7 +71,12 @@ void MainWindow::setupLanguage()
 
         langGroup->addAction(action);
     }
-    switchTranslator(translator, QString(":/translations/PokeFinder_%1.qm").arg(currLang));
+
+    QApplication::removeTranslator(&translator);
+    if (translator.load(QString(":/translations/PokeFinder_%1.qm").arg(currLang)))
+    {
+        QApplication::installTranslator(&translator);
+    }
     ui->retranslateUi(this);
 }
 
@@ -82,18 +87,11 @@ void MainWindow::loadLanguage(const QString &lang)
     {
         setting.setValue("locale", lang);
 
-        QMessageBox message;
-        message.setText(tr("Language updated. Please restart for changes to take effect."));
-        message.exec();
-    }
-}
-
-void MainWindow::switchTranslator(QTranslator &translator, const QString &filename)
-{
-    QApplication::removeTranslator(&translator);
-    if (translator.load(filename))
-    {
-        QApplication::installTranslator(&translator);
+        QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
+        if (message.exec() == QMessageBox::Yes)
+        {
+            QApplication::quit();
+        }
     }
 }
 
@@ -108,41 +106,31 @@ void MainWindow::checkProfileJson()
 
 void MainWindow::checkUpdates()
 {
-    // Setup date program was last opened and today's date
     QSettings setting;
     QDate today = QDate::currentDate();
     QDate lastOpened = setting.value("lastOpened", today).toDate();
 
-    // Only check for update once a day
-    if (lastOpened.daysTo(today) > 0)
+    if (lastOpened.daysTo(today) > -1)
     {
-        // Access current version number from github
         QNetworkAccessManager manager;
-        QNetworkRequest request(QUrl("https://raw.githubusercontent.com/Admiral-Fish/PokeFinder/master/version.txt"));
-        QNetworkReply *reply = manager.get(request);
+        QNetworkRequest request(QUrl("https://api.github.com/repos/Admiral-Fish/PokeFinder/releases/latest"));
+        QScopedPointer<QNetworkReply> reply(manager.get(request));
 
         QEventLoop loop;
-        connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-        connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+        connect(reply.data(), SIGNAL(finished()), &loop, SLOT(quit()));
+        connect(reply.data(), SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
         loop.exec();
 
-        // Check if online version does not match current version
-        QString webVersion(reply->readAll());
-        if (webVersion != VERSION && !webVersion.isEmpty())
+        auto response = QJsonDocument::fromJson(reply->readAll());
+        QString webVersion = response.object()["name"].toString();
+        if (!webVersion.isEmpty() && VERSION != webVersion)
         {
-            QMessageBox info;
-            info.setWindowTitle(tr("Update Check"));
-            info.setText(tr("An update is available. Would you like to download the newest version?"));
-            info.setStandardButtons(QMessageBox::Yes);
-            info.addButton(QMessageBox::No);
-            info.setDefaultButton(QMessageBox::No);
-            // If user wants the latest version open the page in browser
+            QMessageBox info(QMessageBox::Question, tr("Update Check"), tr("An update is available. Would you like to download the newest version?"), QMessageBox::Yes | QMessageBox::No);
             if (info.exec() == QMessageBox::Yes)
             {
-                QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/tag/v" + webVersion));
+                QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/tag/" + webVersion));
             }
         }
-        delete reply;
     }
 
     setting.setValue("lastOpened", today);
@@ -151,7 +139,9 @@ void MainWindow::checkUpdates()
 void MainWindow::slotLanguageChanged(QAction *action)
 {
     if (action != nullptr)
+    {
         loadLanguage(action->data().toString());
+    }
 }
 
 void MainWindow::updateProfiles(int num)

@@ -21,7 +21,7 @@
 #define PROFILE4MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <Gen4/Profile4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 
 class Profile4Model : public QAbstractTableModel
 {

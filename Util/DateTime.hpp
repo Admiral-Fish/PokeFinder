@@ -20,9 +20,9 @@
 #ifndef DATETIME_HPP
 #define DATETIME_HPP
 
-#include <Gen4/HGSSRoamer.hpp>
-#include <Objects/Game.hpp>
-#include <Objects/Utilities.hpp>
+#include <Core/Gen4/HGSSRoamer.hpp>
+#include <Core/Objects/Game.hpp>
+#include <Core/Objects/Utilities.hpp>
 
 class DateTime
 {

@@ -23,11 +23,11 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <Models/ResearcherModel.hpp>
-#include <RNG/LCRNG.hpp>
-#include <RNG/LCRNG64.hpp>
-#include <RNG/MTRNG.hpp>
-#include <RNG/SFMT.hpp>
-#include <RNG/TinyMT.hpp>
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/LCRNG64.hpp>
+#include <Core/RNG/MTRNG.hpp>
+#include <Core/RNG/SFMT.hpp>
+#include <Core/RNG/TinyMT.hpp>
 #include <Util/ResearcherFrame.hpp>
 
 using func = u64 (*)(u64, u64);

@@ -4,9 +4,8 @@
 #
 #-------------------------------------------------
 
-lessThan(QT_MAJOR_VERSION, 5): error("You need at least Qt 5.11 to build PokeFinder")
-equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11): error("You need at least Qt 5.11 to build PokeFinder")
-!exists("PokeFinderCore/encounter.qrc"): error("You are missing the submodule required to build PokeFinder")
+lessThan(QT_MAJOR_VERSION, 5):error("You need at least Qt 5.11 to build PokeFinder")
+equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11):error("You need at least Qt 5.11 to build PokeFinder")
 
 QT += network widgets
 CONFIG += c++14
@@ -22,8 +21,6 @@ ICON += Images/pokefinder.icns
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-INCLUDEPATH += PokeFinderCore
-
 TRANSLATIONS += \
     Translations/PokeFinder_en.ts \
     Translations/PokeFinder_fr.ts \
@@ -35,10 +32,7 @@ TRANSLATIONS += \
     Translations/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
-    PokeFinderCore/encounter.qrc \
-    PokeFinderCore/text.qrc \
-    images.qrc \
-    translations.qrc
+    resources.qrc
 
 FORMS += \
     Forms/Controls/IVFilter.ui \
@@ -68,6 +62,48 @@ FORMS += \
     Forms/MainWindow.ui
 
 HEADERS += \
+    Core/Gen3/Egg3.hpp \
+    Core/Gen3/EncounterArea3.hpp \
+    Core/Gen3/Encounters3.hpp \
+    Core/Gen3/Frame3.hpp \
+    Core/Gen3/Generator3.hpp \
+    Core/Gen3/NatureLock.hpp \
+    Core/Gen3/Profile3.hpp \
+    Core/Gen3/Searcher3.hpp \
+    Core/Gen4/Egg4.hpp \
+    Core/Gen4/EncounterArea4.hpp \
+    Core/Gen4/Encounters4.hpp \
+    Core/Gen4/Frame4.hpp \
+    Core/Gen4/Generator4.hpp \
+    Core/Gen4/HGSSRoamer.hpp \
+    Core/Gen4/Profile4.hpp \
+    Core/Gen4/Searcher4.hpp \
+    Core/Objects/Egg.hpp \
+    Core/Objects/Encounter.hpp \
+    Core/Objects/EncounterArea.hpp \
+    Core/Objects/EncounterSlot.hpp \
+    Core/Objects/Frame.hpp \
+    Core/Objects/FrameCompare.hpp \
+    Core/Objects/Game.hpp \
+    Core/Objects/Generator.hpp \
+    Core/Objects/Global.hpp \
+    Core/Objects/Lead.hpp \
+    Core/Objects/Method.hpp \
+    Core/Objects/Nature.hpp \
+    Core/Objects/Power.hpp \
+    Core/Objects/Profile.hpp \
+    Core/Objects/Searcher.hpp \
+    Core/Objects/Utilities.hpp \
+    Core/RNG/IRNG.hpp \
+    Core/RNG/IRNG64.hpp \
+    Core/RNG/LCRNG.hpp \
+    Core/RNG/LCRNG64.hpp \
+    Core/RNG/MTRNG.hpp \
+    Core/RNG/RNGCache.hpp \
+    Core/RNG/RNGEuclidean.hpp \
+    Core/RNG/SFMT.hpp \
+    Core/RNG/TinyMT.hpp \
+    Core/Translator.hpp \
     Forms/Controls/CheckList.hpp \
     Forms/Controls/IVFilter.hpp \
     Forms/Controls/Label.hpp \
@@ -110,52 +146,45 @@ HEADERS += \
     Models/Gen4/Stationary4Model.hpp \
     Models/Gen4/Wild4Model.hpp \
     Models/ResearcherModel.hpp \
-    PokeFinderCore/Gen3/Egg3.hpp \
-    PokeFinderCore/Gen3/EncounterArea3.hpp \
-    PokeFinderCore/Gen3/Encounters3.hpp \
-    PokeFinderCore/Gen3/Frame3.hpp \
-    PokeFinderCore/Gen3/Generator3.hpp \
-    PokeFinderCore/Gen3/NatureLock.hpp \
-    PokeFinderCore/Gen3/Profile3.hpp \
-    PokeFinderCore/Gen3/Searcher3.hpp \
-    PokeFinderCore/Gen4/Egg4.hpp \
-    PokeFinderCore/Gen4/EncounterArea4.hpp \
-    PokeFinderCore/Gen4/Encounters4.hpp \
-    PokeFinderCore/Gen4/Frame4.hpp \
-    PokeFinderCore/Gen4/Generator4.hpp \
-    PokeFinderCore/Gen4/HGSSRoamer.hpp \
-    PokeFinderCore/Gen4/Profile4.hpp \
-    PokeFinderCore/Gen4/Searcher4.hpp \
-    PokeFinderCore/Objects/Egg.hpp \
-    PokeFinderCore/Objects/Encounter.hpp \
-    PokeFinderCore/Objects/EncounterArea.hpp \
-    PokeFinderCore/Objects/EncounterSlot.hpp \
-    PokeFinderCore/Objects/Frame.hpp \
-    PokeFinderCore/Objects/FrameCompare.hpp \
-    PokeFinderCore/Objects/Game.hpp \
-    PokeFinderCore/Objects/Generator.hpp \
-    PokeFinderCore/Objects/Lead.hpp \
-    PokeFinderCore/Objects/Method.hpp \
-    PokeFinderCore/Objects/Nature.hpp \
-    PokeFinderCore/Objects/Power.hpp \
-    PokeFinderCore/Objects/Profile.hpp \
-    PokeFinderCore/Objects/Searcher.hpp \
-    PokeFinderCore/Objects/Utilities.hpp \
-    PokeFinderCore/RNG/IRNG.hpp \
-    PokeFinderCore/RNG/IRNG64.hpp \
-    PokeFinderCore/RNG/LCRNG.hpp \
-    PokeFinderCore/RNG/LCRNG64.hpp \
-    PokeFinderCore/RNG/MTRNG.hpp \
-    PokeFinderCore/RNG/RNGCache.hpp \
-    PokeFinderCore/RNG/RNGEuclidean.hpp \
-    PokeFinderCore/RNG/SFMT.hpp \
-    PokeFinderCore/RNG/TinyMT.hpp \
-    PokeFinderCore/Translator.hpp \
     Util/DateTime.hpp \
-    Util/ResearcherFrame.hpp \
-    PokeFinderCore/Objects/Global.hpp
+    Util/ResearcherFrame.hpp
 
 SOURCES += \
+    Core/Gen3/Egg3.cpp \
+    Core/Gen3/EncounterArea3.cpp \
+    Core/Gen3/Encounters3.cpp \
+    Core/Gen3/Frame3.cpp \
+    Core/Gen3/Generator3.cpp \
+    Core/Gen3/NatureLock.cpp \
+    Core/Gen3/Profile3.cpp \
+    Core/Gen3/Searcher3.cpp \
+    Core/Gen4/Egg4.cpp \
+    Core/Gen4/EncounterArea4.cpp \
+    Core/Gen4/Encounters4.cpp \
+    Core/Gen4/Frame4.cpp \
+    Core/Gen4/Generator4.cpp \
+    Core/Gen4/HGSSRoamer.cpp \
+    Core/Gen4/Profile4.cpp \
+    Core/Gen4/Searcher4.cpp \
+    Core/Objects/Egg.cpp \
+    Core/Objects/EncounterArea.cpp \
+    Core/Objects/EncounterSlot.cpp \
+    Core/Objects/Frame.cpp \
+    Core/Objects/FrameCompare.cpp \
+    Core/Objects/Generator.cpp \
+    Core/Objects/Nature.cpp \
+    Core/Objects/Power.cpp \
+    Core/Objects/Profile.cpp \
+    Core/Objects/Searcher.cpp \
+    Core/Objects/Utilities.cpp \
+    Core/RNG/LCRNG.cpp \
+    Core/RNG/LCRNG64.cpp \
+    Core/RNG/MTRNG.cpp \
+    Core/RNG/RNGCache.cpp \
+    Core/RNG/RNGEuclidean.cpp \
+    Core/RNG/SFMT.cpp \
+    Core/RNG/TinyMT.cpp \
+    Core/Translator.cpp \
     Forms/Controls/CheckList.cpp \
     Forms/Controls/IVFilter.cpp \
     Forms/Controls/Label.cpp \
@@ -198,41 +227,6 @@ SOURCES += \
     Models/Gen4/Stationary4Model.cpp \
     Models/Gen4/Wild4Model.cpp \
     Models/ResearcherModel.cpp \
-    PokeFinderCore/Gen3/Egg3.cpp \
-    PokeFinderCore/Gen3/EncounterArea3.cpp \
-    PokeFinderCore/Gen3/Encounters3.cpp \
-    PokeFinderCore/Gen3/Frame3.cpp \
-    PokeFinderCore/Gen3/Generator3.cpp \
-    PokeFinderCore/Gen3/NatureLock.cpp \
-    PokeFinderCore/Gen3/Profile3.cpp \
-    PokeFinderCore/Gen3/Searcher3.cpp \
-    PokeFinderCore/Gen4/Egg4.cpp \
-    PokeFinderCore/Gen4/EncounterArea4.cpp \
-    PokeFinderCore/Gen4/Encounters4.cpp \
-    PokeFinderCore/Gen4/Frame4.cpp \
-    PokeFinderCore/Gen4/Generator4.cpp \
-    PokeFinderCore/Gen4/HGSSRoamer.cpp \
-    PokeFinderCore/Gen4/Profile4.cpp \
-    PokeFinderCore/Gen4/Searcher4.cpp \
-    PokeFinderCore/Objects/Egg.cpp \
-    PokeFinderCore/Objects/EncounterArea.cpp \
-    PokeFinderCore/Objects/EncounterSlot.cpp \
-    PokeFinderCore/Objects/Frame.cpp \
-    PokeFinderCore/Objects/FrameCompare.cpp \
-    PokeFinderCore/Objects/Generator.cpp \
-    PokeFinderCore/Objects/Nature.cpp \
-    PokeFinderCore/Objects/Power.cpp \
-    PokeFinderCore/Objects/Profile.cpp \
-    PokeFinderCore/Objects/Searcher.cpp \
-    PokeFinderCore/Objects/Utilities.cpp \
-    PokeFinderCore/RNG/LCRNG.cpp \
-    PokeFinderCore/RNG/LCRNG64.cpp \
-    PokeFinderCore/RNG/MTRNG.cpp \
-    PokeFinderCore/RNG/RNGCache.cpp \
-    PokeFinderCore/RNG/RNGEuclidean.cpp \
-    PokeFinderCore/RNG/SFMT.cpp \
-    PokeFinderCore/RNG/TinyMT.cpp \
-    PokeFinderCore/Translator.cpp \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
     main.cpp

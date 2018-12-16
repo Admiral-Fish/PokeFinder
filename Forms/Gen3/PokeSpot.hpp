@@ -22,11 +22,11 @@
 
 #include <QMainWindow>
 #include <QSettings>
+#include <Core/Gen3/Frame3.hpp>
+#include <Core/Objects/FrameCompare.hpp>
+#include <Core/Objects/Nature.hpp>
+#include <Core/RNG/LCRNG.hpp>
 #include <Models/Gen3/PokeSpotModel.hpp>
-#include <Gen3/Frame3.hpp>
-#include <Objects/FrameCompare.hpp>
-#include <Objects/Nature.hpp>
-#include <RNG/LCRNG.hpp>
 
 namespace Ui
 {

@@ -21,7 +21,7 @@
 #define EGG4MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <Gen4/Frame4.hpp>
+#include <Core/Gen4/Frame4.hpp>
 
 class Egg4GeneratorModel : public QAbstractTableModel
 {

@@ -21,17 +21,17 @@
 #define TEXTBOX_HPP
 
 #include <QLineEdit>
-#include <Objects/Global.hpp>
+#include <Core/Objects/Global.hpp>
 
 enum InputType
 {
-    Seed64Bit,
-    Frame64Bit,
-    Seed32Bit,
-    Frame32Bit,
-    Seed16Bit,
-    Delay,
-    TIDSID
+    Seed64Bit   = 1 << 0,
+    Frame64Bit  = 1 << 1,
+    Seed32Bit   = 1 << 2,
+    Frame32Bit  = 1 << 3,
+    Seed16Bit   = 1 << 4,
+    Delay       = 1 << 5,
+    TIDSID      = 1 << 6
 };
 
 class TextBox : public QLineEdit

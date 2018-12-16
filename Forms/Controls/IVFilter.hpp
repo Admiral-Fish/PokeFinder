@@ -21,7 +21,7 @@
 #define IVFILTER_HPP
 
 #include <QWidget>
-#include <Objects/Global.hpp>
+#include <Core/Objects/Global.hpp>
 
 namespace Ui
 {

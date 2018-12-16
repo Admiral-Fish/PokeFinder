@@ -21,7 +21,7 @@
 #define SEARCHCOINFLIPS_HPP
 
 #include <QDialog>
-#include <Objects/Utilities.hpp>
+#include <Core/Objects/Utilities.hpp>
 #include <Util/DateTime.hpp>
 
 

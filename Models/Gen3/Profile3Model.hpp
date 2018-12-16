@@ -21,7 +21,7 @@
 #define PROFILE3MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <Gen3/Profile3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 
 class Profile3Model : public QAbstractTableModel
 {

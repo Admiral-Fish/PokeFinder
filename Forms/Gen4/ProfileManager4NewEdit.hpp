@@ -22,7 +22,7 @@
 
 #include <QDialog>
 #include <QMessageBox>
-#include <Gen4/Profile4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 
 namespace Ui
 {

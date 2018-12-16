@@ -21,7 +21,7 @@
 #define STATIONARY4MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <Gen4/Frame4.hpp>
+#include <Core/Gen4/Frame4.hpp>
 
 class Stationary4Model : public QAbstractTableModel
 {

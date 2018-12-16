@@ -21,7 +21,7 @@
 #define SEARCHER3MODEL_HPP
 
 #include <QAbstractTableModel>
-#include <Gen3/Frame3.hpp>
+#include <Core/Gen3/Frame3.hpp>
 
 class Searcher3Model : public QAbstractTableModel
 {

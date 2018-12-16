@@ -20,7 +20,7 @@
 #ifndef RESEARCHERFRAME_HPP
 #define RESEARCHERFRAME_HPP
 
-#include <Objects/Global.hpp>
+#include <Core/Objects/Global.hpp>
 
 class ResearcherFrame
 {

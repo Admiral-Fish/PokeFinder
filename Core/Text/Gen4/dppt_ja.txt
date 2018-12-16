@@ -1,0 +1,113 @@
+Canalave City
+Eterna City
+Pastoria City
+Sunyshore City
+Pokémon League
+Oreburgh Mine 1F
+Oreburgh Mine B1F
+Valley Windworks
+Eterna Forest
+Fuego Ironworks
+Mt. Coronet (Route 207/208 Entrance)
+Mt. Coronet 2F
+Mt. Coronet 3F
+Mt. Coronet Snow
+Mt. Coronet 4F
+Mt. Coronet 5F
+Mt. Coronet 6F
+Mt. Coronet 7F
+Mt. Coronet Top Cave
+Mt. Coronet (Route 216 Entrance)
+Mt. Coronet (Route 211 Entrance)
+Mt. Coronet B1F
+Great Marsh Area 1
+Great Marsh Area 2
+Great Marsh Area 3
+Great Marsh Area 4
+Great Marsh Area 5
+Great Marsh Area 6
+Solaceon Ruins
+Victory Road 1F
+Victory Road 2F
+Victory Road B1F
+Victory Road Back Room 1
+Victory Road Back Room 2
+Victory Road Back Room 3
+Ravaged Path
+Oreburgh Gate 1F
+Oreburgh Gate B1F
+Stark Mountain
+Stark Mountain Entrance
+Stark Mountain Interior
+Sendoff Spring
+Turnback Cave Entrance
+Turnback Cave 1st Pillar
+Turnback Cave 2nd Pillar
+Snowpoint Temple 1F
+Snowpoint Temple B1F
+Snowpoint Temple B2F
+Snowpoint Temple B3F
+Snowpoint Temple B4F
+Snowpoint Temple B5F
+Wayward Cave
+Wayward Cave (Secret)
+Ruin Maniac Cave (< 10 Unown)
+Ruin Maniac Cave (> 10 Unown)
+Maniac Tunnel
+Trophy Garden
+Iron Island
+Iron Island 1F
+Iron Island B1F
+Iron Island B2F (Left)
+Iron Island B2F (Right)
+Iron Island B3F
+Old Chateau
+Old Chateau Room 5
+Lake Verity
+Lake Valor
+Lake Acuity
+Valor Lakefront
+Acuity Lakefront
+Route 201
+Route 202
+Route 203
+Route 204 (South)
+Route 204 (North)
+Route 205 (South)
+Route 205 (North)
+Route 206
+Route 207
+Route 208
+Route 209
+Lost Tower 1F
+Lost Tower 2F
+Lost Tower 3F
+Lost Tower 4F
+Lost Tower 5F
+Route 210 (South)
+Route 210 (North)
+Route 211 (West)
+Route 211 (East)
+Route 212 (North)
+Route 212 (South)
+Route 213
+Route 214
+Route 215
+Route 216
+Route 217
+Route 218
+Route 219
+Route 221
+Route 222
+Route 224
+Route 225
+Route 227
+Route 228
+Route 229
+Twinleaf Town
+Celestic Town
+Resort Area
+Route 220
+Route 223
+Route 226
+Route 230
