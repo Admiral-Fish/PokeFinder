@@ -271,8 +271,12 @@ void Egg4SearcherModel::addItems(const QVector<Frame4> &frames)
 
 void Egg4SearcherModel::clear()
 {
-    int i = rowCount();
-    emit beginRemoveRows(QModelIndex(), 0, i == 0 ? 0 : i - 1);
+    if (model.isEmpty())
+    {
+        return;
+    }
+
+    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
     model.clear();
     model.squeeze();
     emit endRemoveRows();
