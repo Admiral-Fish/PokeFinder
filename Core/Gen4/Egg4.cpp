@@ -147,8 +147,8 @@ QVector<Frame4> Egg4::generateIVsDPPt(FrameCompare compare)
         par2 = rngArray[6 + cnt];
         par3 = rngArray[7 + cnt];
 
-        frame.setInheritanceDPPt(rngArray[cnt], rngArray[1 + cnt], par1 & 1, par2 & 1, par3 & 1, HABCDS[inh1 % 6],
-                                 ABCDS[inh2 % 5], ACDS[inh3 & 3], parent1, parent2);
+        frame.setInheritance(rngArray[cnt], rngArray[1 + cnt], par1, par2, par3, inh1,
+                             inh2, inh3, parent1, parent2, true);
 
         if (compare.compareIVs(frame))
         {
@@ -186,8 +186,8 @@ QVector<Frame4> Egg4::generateIVsHGSS(FrameCompare compare)
         par2 = rngArray[6 + cnt];
         par3 = rngArray[7 + cnt];
 
-        frame.setInheritanceHGSS(rngArray[cnt], rngArray[1 + cnt], par1, par2, par3, inh1,
-                                 inh2, inh3, parent1, parent2);
+        frame.setInheritance(rngArray[cnt], rngArray[1 + cnt], par1, par2, par3, inh1,
+                             inh2, inh3, parent1, parent2);
 
         if (compare.compareIVs(frame))
         {

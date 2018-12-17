@@ -30,10 +30,8 @@ public:
     Frame3(u16 tid, u16 sid, u16 psv);
     QString getTime();
     QString getTimeEgg();
-    void setInheritanceEmerald(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1,
-                               u16 inh2, u16 inh3, QVector<u8> parent1, QVector<u8> parent2);
-    void setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1,
-                        u16 inh2, u16 inh3, QVector<u8> parent1, QVector<u8> parent2);
+    void setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2,
+                        u16 inh3, QVector<u8> parent1, QVector<u8> parent2, bool broken = false);
     QString getLockReason() const;
     void setLockReason(const QString &value);
     u32 getOccidentary() const;

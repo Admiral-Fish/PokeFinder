@@ -38,9 +38,6 @@ public:
 private:
     QVector<u8> parent1;
     QVector<u8> parent2;
-    const u8 HABCDS[6] = { 0, 1, 2, 5, 3, 4 };
-    const u8 ABCDS[5] = { 1, 2, 5, 3, 4 };
-    const u8 ACDS[4] = { 1, 5, 3, 4 };
 
     QVector<Frame4> generatePID(FrameCompare compare);
     QVector<Frame4> generatePIDMasuada(FrameCompare compare);

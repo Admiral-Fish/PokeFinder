@@ -238,8 +238,8 @@ QVector<Frame3> Egg3::generateEmerald(FrameCompare compare)
         par1 = rngArray[10 + cnt];
         par2 = rngArray[11 + cnt];
         par3 = rngArray[12 + cnt];
-        frame.setInheritanceEmerald(rngArray[4 + cnt], rngArray[5 + cnt], par1 & 1, par2 & 1, par3 & 1, HABCDS[inh1 % 6],
-                                    ABCDS[inh2 % 5], ACDS[inh3 & 3], parent1, parent2);
+        frame.setInheritance(rngArray[4 + cnt], rngArray[5 + cnt], par1, par2, par3, inh1,
+                             inh2, inh3, parent1, parent2, true);
 
         if (compare.compareIVs(frame))
         {
@@ -275,8 +275,8 @@ QVector<Frame3> Egg3::generateEmeraldSplit(FrameCompare compare)
         par1 = rngArray[11 + cnt];
         par2 = rngArray[12 + cnt];
         par3 = rngArray[13 + cnt];
-        frame.setInheritanceEmerald(rngArray[4 + cnt], rngArray[6 + cnt], par1 & 1, par2 & 1, par3 & 1, HABCDS[inh1 % 6],
-                                    ABCDS[inh2 % 5], ACDS[inh3 & 3], parent1, parent2);
+        frame.setInheritance(rngArray[4 + cnt], rngArray[6 + cnt], par1, par2, par3, inh1,
+                             inh2, inh3, parent1, parent2, true);
 
         if (compare.compareIVs(frame))
         {
@@ -312,8 +312,8 @@ QVector<Frame3> Egg3::generateEmeraldAlternate(FrameCompare compare)
         par1 = rngArray[11 + cnt];
         par2 = rngArray[12 + cnt];
         par3 = rngArray[13 + cnt];
-        frame.setInheritanceEmerald(rngArray[4 + cnt], rngArray[5 + cnt], par1 & 1, par2 & 1, par3 & 1, HABCDS[inh1 % 6],
-                                    ABCDS[inh2 % 5], ACDS[inh3 & 3], parent1, parent2);
+        frame.setInheritance(rngArray[4 + cnt], rngArray[5 + cnt], par1, par2, par3, inh1,
+                             inh2, inh3, parent1, parent2, true);
 
         if (compare.compareIVs(frame))
         {
