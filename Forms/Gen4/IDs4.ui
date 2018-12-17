@@ -93,6 +93,10 @@ QPushButton {
 	border-radius: 6px;
 	color: white;
 	background-color: DodgerBlue;
+}
+
+QPushButton:disabled {
+	background-color: #51c3ff;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">

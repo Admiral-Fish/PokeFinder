@@ -1433,6 +1433,10 @@ QRadioButton {
              <property name="styleSheet">
               <string notr="true">QPushButton {
 	background-color: DodgerBlue;
+}
+
+QPushButton:disabled {
+	background-color: #51c3ff;
 }</string>
              </property>
              <property name="text">
@@ -1454,6 +1458,10 @@ QRadioButton {
              <property name="styleSheet">
               <string notr="true">QPushButton {
 	background-color: DodgerBlue;
+}
+
+QPushButton:disabled {
+	background-color: #51c3ff;
 }</string>
              </property>
              <property name="text">
@@ -1671,6 +1679,15 @@ QRadioButton {
             <width>0</width>
             <height>0</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}
+
+QPushButton:disabled {
+	background-color: #51c3ff;
+}</string>
           </property>
           <property name="title">
            <string>Egg PID</string>
@@ -2167,11 +2184,6 @@ QRadioButton {
                <height>23</height>
               </size>
              </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: DodgerBlue;
-}</string>
-             </property>
              <property name="text">
               <string>Search</string>
              </property>
@@ -2187,11 +2199,6 @@ QRadioButton {
                <width>0</width>
                <height>23</height>
               </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: DodgerBlue;
-}</string>
              </property>
              <property name="text">
               <string>Cancel</string>

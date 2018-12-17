@@ -1632,7 +1632,13 @@ QPushButton {
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}
+
+QPushButton:disabled {
+	background-color: #51c3ff;
+}</string>
           </property>
           <property name="title">
            <string>RNG Info</string>
@@ -1761,11 +1767,6 @@ QPushButton {
                <height>23</height>
               </size>
              </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: DodgerBlue;
-}</string>
-             </property>
              <property name="text">
               <string>Search</string>
              </property>
@@ -1793,11 +1794,6 @@ QPushButton {
                <width>180</width>
                <height>23</height>
               </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: DodgerBlue;
-}</string>
              </property>
              <property name="text">
               <string>Cancel</string>
