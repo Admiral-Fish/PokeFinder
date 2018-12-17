@@ -2,113 +2,123 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
+    <name>CheckList</name>
+    <message>
+        <location filename="../Forms/Controls/CheckList.cpp" line="106"/>
+        <location filename="../Forms/Controls/CheckList.cpp" line="109"/>
+        <location filename="../Forms/Controls/CheckList.cpp" line="126"/>
+        <source>Any</source>
+        <translation type="unfinished">Alle</translation>
+    </message>
+</context>
+<context>
     <name>Egg3Model</name>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="189"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="213"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="195"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="219"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="191"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="215"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="197"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="221"/>
         <source>Time</source>
         <translation>Zeit</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="193"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="250"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="199"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="256"/>
         <source>HP</source>
         <translation>KP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="195"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="252"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="201"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="258"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="197"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="254"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="203"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="260"/>
         <source>Def</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="199"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="256"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="205"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="262"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="201"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="258"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="207"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="264"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="203"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="260"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="209"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="266"/>
         <source>Spe</source>
         <translation>Init</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="205"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="262"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="211"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="268"/>
         <source>Hidden</source>
         <translation>Versteckter Typ</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="207"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="264"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="213"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="270"/>
         <source>Power</source>
         <translation>Kraft</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="217"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="223"/>
         <source>Redraws</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="219"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="242"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="225"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="248"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="223"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="246"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="229"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="252"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="225"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="248"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="231"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="254"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="227"/>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="266"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="233"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="272"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="234"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="240"/>
         <source>Held Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="236"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="242"/>
         <source>Held Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="238"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="244"/>
         <source>Pickup Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Egg3Model.cpp" line="240"/>
+        <location filename="../Models/Gen3/Egg3Model.cpp" line="246"/>
         <source>Pickup Time</source>
         <translation type="unfinished"></translation>
     </message>
@@ -116,88 +126,88 @@
 <context>
     <name>Egg4GeneratorModel</name>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="169"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="185"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="209"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="175"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="191"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="215"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="171"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="177"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="175"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="181"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="177"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="183"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="179"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="185"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="187"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="213"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="193"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="219"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="189"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="215"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="195"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="221"/>
         <source>HP</source>
         <translation>KP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="191"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="217"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="197"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="223"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="193"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="219"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="199"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="225"/>
         <source>Def</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="195"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="221"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="201"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="227"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="197"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="223"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="203"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="229"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="199"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="225"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="205"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="231"/>
         <source>Spe</source>
         <translation>Init</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="201"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="227"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="207"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="233"/>
         <source>Hidden</source>
         <translation>Versteckter Typ</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="203"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="229"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="209"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="235"/>
         <source>Power</source>
         <translation>Kraft</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="211"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="217"/>
         <source>Call</source>
         <translation type="unfinished"></translation>
     </message>
@@ -205,74 +215,74 @@
 <context>
     <name>Egg4SearcherModel</name>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="369"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="388"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="387"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="406"/>
         <source>Seed</source>
         <translation>Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="371"/>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="390"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="389"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="408"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="373"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="391"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="377"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="395"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="379"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="397"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="381"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="399"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="392"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="410"/>
         <source>HP</source>
         <translation>KP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="394"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="412"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="396"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="414"/>
         <source>Def</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="398"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="416"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="400"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="418"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="402"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="420"/>
         <source>Spe</source>
         <translation>Init</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="404"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="422"/>
         <source>Hidden</source>
         <translation>Versteckter Typ</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Egg4Model.cpp" line="406"/>
+        <location filename="../Models/Gen4/Egg4Model.cpp" line="424"/>
         <source>Power</source>
         <translation>Kraft</translation>
     </message>
@@ -1119,10 +1129,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="352"/>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="360"/>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="412"/>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="420"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
@@ -1132,13 +1138,12 @@
         <translation>Ei PID</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="87"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="105"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="271"/>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="298"/>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -1181,17 +1186,17 @@
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="53"/>
+        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="54"/>
         <source>Time</source>
         <translation>Zeit</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="53"/>
+        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="54"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="53"/>
+        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="54"/>
         <source>Seed</source>
         <translation>Zufallswert</translation>
     </message>
@@ -1317,7 +1322,7 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/IDs4.ui"/>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="44"/>
+        <location filename="../Forms/Gen4/IDs4.cpp" line="42"/>
         <source>TID</source>
         <translation></translation>
     </message>
@@ -1343,10 +1348,6 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/IDs4.ui"/>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="237"/>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="245"/>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="291"/>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="299"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
@@ -1362,7 +1363,7 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/IDs4.ui"/>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="44"/>
+        <location filename="../Forms/Gen4/IDs4.cpp" line="42"/>
         <source>SID</source>
         <translation></translation>
     </message>
@@ -1397,35 +1398,32 @@ Zufallswert</translation>
         <translation>Minute</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="44"/>
+        <location filename="../Forms/Gen4/IDs4.cpp" line="42"/>
         <source>Seed</source>
         <translation>Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="44"/>
+        <location filename="../Forms/Gen4/IDs4.cpp" line="42"/>
         <source>Delay</source>
         <translation>Verzögerung</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="44"/>
+        <location filename="../Forms/Gen4/IDs4.cpp" line="42"/>
         <source>Seconds</source>
         <translation>Sekunden</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="87"/>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="100"/>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="112"/>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="125"/>
+        <location filename="../Forms/Gen4/IDs4.ui"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="155"/>
+        <location filename="../Forms/Gen4/IDs4.cpp" line="154"/>
         <source>Invalid date</source>
         <translation>Ungültiges Datum</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/IDs4.cpp" line="164"/>
+        <location filename="../Forms/Gen4/IDs4.cpp" line="163"/>
         <source>Invalid hour/minute</source>
         <translation>Ungültige Uhrzeit</translation>
     </message>
@@ -1676,50 +1674,50 @@ Zufallswert</translation>
         <translation>SID</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="99"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="77"/>
         <source>XD/Colo</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="128"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="104"/>
         <source>Method 1</source>
         <translation>Methode 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="139"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="115"/>
         <source>Reverse Method 1</source>
         <translation>Umgekehrte Methode 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="151"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="127"/>
         <source>Method 2</source>
         <translation>Methode 2</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="166"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="177"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="188"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="199"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="210"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="142"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="153"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="164"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="175"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="186"/>
         <source>Cute Charm (DPPt)</source>
         <translation>Charmebolzen (DPPt)</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="227"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="238"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="249"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="260"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="271"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="203"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="214"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="225"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="236"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="247"/>
         <source>Cute Charm (HGSS)</source>
         <translation>Charmebolzen (HGSS)</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="287"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="263"/>
         <source>Method 4</source>
         <translation>Methode 4</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="321"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="297"/>
         <source>Channel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1747,7 +1745,7 @@ Zufallswert</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/JirachiPattern.cpp" line="62"/>
+        <location filename="../Forms/Gen3/JirachiPattern.cpp" line="55"/>
         <source>Spread Impossible</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1885,17 +1883,22 @@ Zufallswert</translation>
         <translation>Chinesisch</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="106"/>
-        <source>Language updated. Please restart for changes to take effect.</source>
+        <location filename="../Forms/MainWindow.cpp" line="90"/>
+        <source>Language update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="153"/>
+        <location filename="../Forms/MainWindow.cpp" line="90"/>
+        <source>Restart for changes to take effect. Restart now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.cpp" line="129"/>
         <source>Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="154"/>
+        <location filename="../Forms/MainWindow.cpp" line="129"/>
         <source>An update is available. Would you like to download the newest version?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1933,27 +1936,27 @@ Zufallswert</translation>
         <translation>IVs</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="164"/>
+        <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="258"/>
         <source>Method 1</source>
         <translation>Methode 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="165"/>
+        <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="259"/>
         <source>Method 2</source>
         <translation>Methode 2</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="166"/>
+        <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="260"/>
         <source>Method 4</source>
         <translation>Methode 4</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="171"/>
+        <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="265"/>
         <source>XD/Colo</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="176"/>
+        <location filename="../Forms/Gen3/PIDtoIVs.cpp" line="270"/>
         <source>Channel</source>
         <translation></translation>
     </message>
@@ -2202,19 +2205,19 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <location filename="../Forms/Gen3/PokeSpot.cpp" line="134"/>
+        <location filename="../Forms/Gen3/PokeSpot.cpp" line="112"/>
         <source>Common</source>
         <translation>Gewöhnlich</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <location filename="../Forms/Gen3/PokeSpot.cpp" line="140"/>
+        <location filename="../Forms/Gen3/PokeSpot.cpp" line="120"/>
         <source>Uncommon</source>
         <translation>Ungewöhnlich</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <location filename="../Forms/Gen3/PokeSpot.cpp" line="146"/>
+        <location filename="../Forms/Gen3/PokeSpot.cpp" line="128"/>
         <source>Rare</source>
         <translation>Selten</translation>
     </message>
@@ -2222,32 +2225,32 @@ Zufallswert</translation>
 <context>
     <name>PokeSpotModel</name>
     <message>
-        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="91"/>
+        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="97"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="93"/>
+        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="99"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="97"/>
+        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="103"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="99"/>
+        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="105"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="101"/>
+        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="107"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="103"/>
+        <location filename="../Models/Gen3/PokeSpotModel.cpp" line="109"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
@@ -2255,42 +2258,42 @@ Zufallswert</translation>
 <context>
     <name>Profile3Model</name>
     <message>
-        <location filename="../Models/Gen3/Profile3Model.cpp" line="81"/>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="84"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Profile3Model.cpp" line="81"/>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="84"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Profile3Model.cpp" line="96"/>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="99"/>
         <source>Profile Name</source>
         <translation>Profilname</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Profile3Model.cpp" line="98"/>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="101"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Profile3Model.cpp" line="100"/>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="103"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Profile3Model.cpp" line="102"/>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="105"/>
         <source>TID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Profile3Model.cpp" line="104"/>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="107"/>
         <source>SID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Profile3Model.cpp" line="106"/>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="109"/>
         <source>Dead Battery</source>
         <translation>Tote Batterie</translation>
     </message>
@@ -2298,38 +2301,60 @@ Zufallswert</translation>
 <context>
     <name>Profile4Model</name>
     <message>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="95"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="87"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="89"/>
+        <source>True</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="87"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="89"/>
+        <source>False</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="102"/>
         <source>Profile Name</source>
         <translation>Profilname</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="97"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="104"/>
         <source>Version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="99"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="106"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="101"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="108"/>
         <source>TID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="103"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="110"/>
         <source>SID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="105"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="112"/>
         <source>Dual Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="107"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="114"/>
         <source>Radio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="116"/>
+        <source>Pokeradar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="118"/>
+        <source>Swarm</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2362,7 +2387,7 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/ProfileManager3.cpp" line="73"/>
-        <location filename="../Forms/Gen3/ProfileManager3.cpp" line="97"/>
+        <location filename="../Forms/Gen3/ProfileManager3.cpp" line="96"/>
         <source>Please select a profile.</source>
         <translation>Bitte wähle ein Profil aus.</translation>
     </message>
@@ -2480,7 +2505,7 @@ Zufallswert</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/ProfileManager3NewEdit.cpp" line="87"/>
+        <location filename="../Forms/Gen3/ProfileManager3NewEdit.cpp" line="88"/>
         <source>Enter a Profile Name.</source>
         <translation>Gebe einen Profilname ein.</translation>
     </message>
@@ -2514,7 +2539,7 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ProfileManager4.cpp" line="72"/>
-        <location filename="../Forms/Gen4/ProfileManager4.cpp" line="96"/>
+        <location filename="../Forms/Gen4/ProfileManager4.cpp" line="95"/>
         <source>Please select a profile.</source>
         <translation>Bitte wähle ein Profil aus.</translation>
     </message>
@@ -2617,11 +2642,6 @@ Zufallswert</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/ProfileManager4NewEdit.cpp" line="93"/>
-        <source>Enter a Profile Name.</source>
-        <translation>Gebe einen Profilname ein.</translation>
-    </message>
-    <message>
         <location filename="../Forms/Gen4/ProfileManager4NewEdit.ui"/>
         <source>Dual Slot</source>
         <translation type="unfinished"></translation>
@@ -2671,381 +2691,386 @@ Zufallswert</translation>
         <source>Sinnoh Sound</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>QCheckList</name>
     <message>
-        <location filename="../Forms/Controls/QCheckList.cpp" line="123"/>
-        <location filename="../Forms/Controls/QCheckList.cpp" line="127"/>
-        <location filename="../Forms/Controls/QCheckList.cpp" line="144"/>
-        <source>Any</source>
-        <translation>Alle</translation>
+        <location filename="../Forms/Gen4/ProfileManager4NewEdit.ui"/>
+        <source>PokeRadar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ProfileManager4NewEdit.ui"/>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ProfileManager4NewEdit.cpp" line="99"/>
+        <source>Enter a profile name</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="29"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="42"/>
+        <location filename="../Core/Objects/Nature.cpp" line="31"/>
+        <location filename="../Core/Objects/Nature.cpp" line="46"/>
         <source>Hardy</source>
         <translation>Robust</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="26"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="42"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="46"/>
         <source>Lonely</source>
         <translation>Solo</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="24"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="42"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="46"/>
         <source>Brave</source>
         <translation>Mutig</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="24"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="42"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="46"/>
         <source>Adamant</source>
         <translation>Hart</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="27"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="43"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="47"/>
         <source>Naughty</source>
         <translation>Frech</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="24"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="43"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="47"/>
         <source>Bold</source>
         <translation>Kühn</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="29"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="43"/>
+        <location filename="../Core/Objects/Nature.cpp" line="31"/>
+        <location filename="../Core/Objects/Nature.cpp" line="47"/>
         <source>Docile</source>
         <translation>Sanft</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="27"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="43"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="47"/>
         <source>Relaxed</source>
         <translation>Locker</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="25"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="44"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="48"/>
         <source>Impish</source>
         <translation>Pfiffig</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="28"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="44"/>
+        <location filename="../Core/Objects/Nature.cpp" line="30"/>
+        <location filename="../Core/Objects/Nature.cpp" line="48"/>
         <source>Lax</source>
         <translation>Lasch</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="28"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="44"/>
+        <location filename="../Core/Objects/Nature.cpp" line="30"/>
+        <location filename="../Core/Objects/Nature.cpp" line="48"/>
         <source>Timid</source>
         <translation>Scheu</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="25"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="44"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="48"/>
         <source>Hasty</source>
         <translation>Hastig</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="30"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="45"/>
+        <location filename="../Core/Objects/Nature.cpp" line="32"/>
+        <location filename="../Core/Objects/Nature.cpp" line="49"/>
         <source>Serious</source>
         <translation>Ernst</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="25"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="45"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="49"/>
         <source>Jolly</source>
         <translation>Froh</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="26"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="45"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="49"/>
         <source>Naive</source>
         <translation>Naiv</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="26"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="45"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="49"/>
         <source>Modest</source>
         <translation>Mäßig</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="26"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="46"/>
+        <location filename="../Core/Objects/Nature.cpp" line="28"/>
+        <location filename="../Core/Objects/Nature.cpp" line="50"/>
         <source>Mild</source>
         <translation>Mild</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="27"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="46"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="50"/>
         <source>Quiet</source>
         <translation>Ruhig</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="29"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="46"/>
+        <location filename="../Core/Objects/Nature.cpp" line="31"/>
+        <location filename="../Core/Objects/Nature.cpp" line="50"/>
         <source>Bashful</source>
         <translation>Zaghaft</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="27"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="46"/>
+        <location filename="../Core/Objects/Nature.cpp" line="29"/>
+        <location filename="../Core/Objects/Nature.cpp" line="50"/>
         <source>Rash</source>
         <translation>Hitzig</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="24"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="47"/>
+        <location filename="../Core/Objects/Nature.cpp" line="26"/>
+        <location filename="../Core/Objects/Nature.cpp" line="51"/>
         <source>Calm</source>
         <translation>Still</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="28"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="47"/>
+        <location filename="../Core/Objects/Nature.cpp" line="30"/>
+        <location filename="../Core/Objects/Nature.cpp" line="51"/>
         <source>Gentle</source>
         <translation>Zart</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="28"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="47"/>
+        <location filename="../Core/Objects/Nature.cpp" line="30"/>
+        <location filename="../Core/Objects/Nature.cpp" line="51"/>
         <source>Sassy</source>
         <translation>Forsch</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="25"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="47"/>
+        <location filename="../Core/Objects/Nature.cpp" line="27"/>
+        <location filename="../Core/Objects/Nature.cpp" line="51"/>
         <source>Careful</source>
         <translation>Sacht</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="29"/>
-        <location filename="../PokeFinderCore/Objects/Nature.cpp" line="48"/>
+        <location filename="../Core/Objects/Nature.cpp" line="31"/>
+        <location filename="../Core/Objects/Nature.cpp" line="52"/>
         <source>Quirky</source>
         <translation>Kauzig</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="24"/>
+        <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Fighting</source>
         <translation>Kampf</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="24"/>
+        <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Flying</source>
         <translation>Flug</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="24"/>
+        <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Poison</source>
         <translation>Gift</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="24"/>
+        <location filename="../Core/Objects/Power.cpp" line="26"/>
         <source>Ground</source>
         <translation>Boden</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="25"/>
+        <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Rock</source>
         <translation>Gestein</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="25"/>
+        <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Bug</source>
         <translation>Käfer</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="25"/>
+        <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Ghost</source>
         <translation>Geist</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="25"/>
+        <location filename="../Core/Objects/Power.cpp" line="27"/>
         <source>Steel</source>
         <translation>Stahl</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="26"/>
+        <location filename="../Core/Objects/Power.cpp" line="28"/>
         <source>Fire</source>
         <translation>Feuer</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="26"/>
+        <location filename="../Core/Objects/Power.cpp" line="28"/>
         <source>Water</source>
         <translation>Wasser</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="26"/>
+        <location filename="../Core/Objects/Power.cpp" line="28"/>
         <source>Grass</source>
         <translation>Pflanze</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="26"/>
+        <location filename="../Core/Objects/Power.cpp" line="28"/>
         <source>Electric</source>
         <translation>Elektro</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="27"/>
+        <location filename="../Core/Objects/Power.cpp" line="29"/>
         <source>Psychic</source>
         <translation>Psycho</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="27"/>
+        <location filename="../Core/Objects/Power.cpp" line="29"/>
         <source>Ice</source>
         <translation>Eis</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="27"/>
+        <location filename="../Core/Objects/Power.cpp" line="29"/>
         <source>Dragon</source>
         <translation>Drachen</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Power.cpp" line="27"/>
+        <location filename="../Core/Objects/Power.cpp" line="29"/>
         <source>Dark</source>
         <translation>Unlicht</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Profile4.cpp" line="58"/>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="44"/>
+        <location filename="../Core/Gen4/Profile4.cpp" line="54"/>
+        <location filename="../Core/Objects/Profile.cpp" line="44"/>
         <source>Ruby</source>
         <translation>Rubin</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Profile4.cpp" line="60"/>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="46"/>
+        <location filename="../Core/Gen4/Profile4.cpp" line="56"/>
+        <location filename="../Core/Objects/Profile.cpp" line="46"/>
         <source>Sapphire</source>
         <translation>Saphir</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Profile4.cpp" line="62"/>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="48"/>
+        <location filename="../Core/Gen4/Profile4.cpp" line="58"/>
+        <location filename="../Core/Objects/Profile.cpp" line="48"/>
         <source>Fire Red</source>
         <translation>Feuerrot</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Profile4.cpp" line="64"/>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="50"/>
+        <location filename="../Core/Gen4/Profile4.cpp" line="60"/>
+        <location filename="../Core/Objects/Profile.cpp" line="50"/>
         <source>Leaf Green</source>
         <translation>Blattgrün</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Profile4.cpp" line="66"/>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="52"/>
+        <location filename="../Core/Gen4/Profile4.cpp" line="62"/>
+        <location filename="../Core/Objects/Profile.cpp" line="52"/>
         <source>Emerald</source>
         <translation>Smaragd</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Profile4.cpp" line="68"/>
-        <location filename="../PokeFinderCore/Gen4/Profile4.cpp" line="81"/>
+        <location filename="../Core/Gen4/Profile4.cpp" line="64"/>
+        <location filename="../Core/Gen4/Profile4.cpp" line="82"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Profile4.cpp" line="77"/>
+        <location filename="../Core/Gen4/Profile4.cpp" line="78"/>
         <source>Hoenn Sound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Profile4.cpp" line="79"/>
+        <location filename="../Core/Gen4/Profile4.cpp" line="80"/>
         <source>Sinnoh Sound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="54"/>
+        <location filename="../Core/Objects/Profile.cpp" line="54"/>
         <source>Gales</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="56"/>
+        <location filename="../Core/Objects/Profile.cpp" line="56"/>
         <source>Colosseum</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="58"/>
+        <location filename="../Core/Objects/Profile.cpp" line="58"/>
         <source>Diamond</source>
         <translation>Diamant</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="60"/>
+        <location filename="../Core/Objects/Profile.cpp" line="60"/>
         <source>Pearl</source>
         <translation>Perl</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="62"/>
+        <location filename="../Core/Objects/Profile.cpp" line="62"/>
         <source>Platinum</source>
         <translation>Platin</translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="64"/>
+        <location filename="../Core/Objects/Profile.cpp" line="64"/>
         <source>Heart Gold</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Objects/Profile.cpp" line="66"/>
+        <location filename="../Core/Objects/Profile.cpp" line="66"/>
         <source>Soul Silver</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="375"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="395"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="438"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="455"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="457"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="477"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="520"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="537"/>
         <source>First shadow unset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="381"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="401"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="443"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="460"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="463"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="483"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="525"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="542"/>
         <source>First shadow set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="387"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="407"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="448"/>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="465"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="469"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="489"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="530"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="547"/>
         <source>Shiny Skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen3/Searcher3.cpp" line="651"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="110"/>
         <source>Pass NL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Frame4.cpp" line="212"/>
+        <location filename="../Core/Gen4/Frame4.cpp" line="103"/>
         <source>Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Frame4.cpp" line="214"/>
+        <location filename="../Core/Gen4/Frame4.cpp" line="107"/>
         <source>Mid-Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Frame4.cpp" line="216"/>
+        <location filename="../Core/Gen4/Frame4.cpp" line="111"/>
         <source>Mid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Frame4.cpp" line="218"/>
+        <location filename="../Core/Gen4/Frame4.cpp" line="115"/>
         <source>Mid-High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PokeFinderCore/Gen4/Frame4.cpp" line="220"/>
+        <location filename="../Core/Gen4/Frame4.cpp" line="119"/>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3129,15 +3154,15 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="421"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="483"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="72"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="439"/>
         <source>64Bit</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="422"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="482"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="73"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="438"/>
         <source>32Bit</source>
         <translation></translation>
     </message>
@@ -3148,38 +3173,38 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="423"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="483"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="74"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="439"/>
         <source>32Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="424"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="483"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="75"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="439"/>
         <source>32Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="425"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="482"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="483"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="76"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="438"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="439"/>
         <source>16Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="426"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="482"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="483"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="77"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="438"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="439"/>
         <source>16Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="228"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="250"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="381"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="407"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3215,19 +3240,19 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="442"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
         <source>Previous 7</source>
         <translation>Vorherige 7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
         <source>Previous 8</source>
         <translation>Vorherige 8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="444"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
         <source>Previous 9</source>
         <translation>Vorherige 9</translation>
     </message>
@@ -3248,91 +3273,91 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="427"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="78"/>
         <source>Custom 1</source>
         <translation>Nummer 1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="428"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="79"/>
         <source>Custom 2</source>
         <translation>Nummer 2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="429"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="80"/>
         <source>Custom 3</source>
         <translation>Nummer 3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="436"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
         <source>Previous 1</source>
         <translation>Vorherige 1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="437"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
         <source>Previous 2</source>
         <translation>Vorherige 2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="430"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
         <source>Custom 4</source>
         <translation>Nummer 4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="438"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
         <source>Previous 3</source>
         <translation>Vorherige 3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="431"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
         <source>Custom 5</source>
         <translation>Nummer 5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="432"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
         <source>Custom 6</source>
         <translation>Nummer 6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="439"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
         <source>Previous 4</source>
         <translation>Vorherige 4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="440"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
         <source>Previous 5</source>
         <translation>Vorherige 5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
         <source>Previous 6</source>
         <translation>Vorherige 6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="433"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
         <source>Custom 7</source>
         <translation>Nummer 7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="434"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
         <source>Custom 8</source>
         <translation>Nummer 8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="435"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
         <source>Custom 9</source>
         <translation>Nummer 9</translation>
     </message>
@@ -3347,20 +3372,20 @@ Zufallswert</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="238"/>
         <source>Please enter a search range lower then 228</source>
         <translatorcomment>Bitte einen Suchbereich unter 228 angeben.</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="204"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="353"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translatorcomment>Du musst die Hex-Checkbox aktivieren, um Hex-Werte nutzen zu können.</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="292"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="320"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="463"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="495"/>
         <source>No result found</source>
         <translation>Keine Ergebnisse gefunden</translation>
     </message>
@@ -3368,117 +3393,117 @@ Zufallswert</translation>
 <context>
     <name>ResearcherModel</name>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="184"/>
+        <location filename="../Models/ResearcherModel.cpp" line="188"/>
         <source>Frame</source>
         <translation type="unfinished">Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="186"/>
-        <location filename="../Models/ResearcherModel.cpp" line="236"/>
+        <location filename="../Models/ResearcherModel.cpp" line="190"/>
+        <location filename="../Models/ResearcherModel.cpp" line="240"/>
         <source>64Bit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="188"/>
-        <location filename="../Models/ResearcherModel.cpp" line="241"/>
+        <location filename="../Models/ResearcherModel.cpp" line="192"/>
+        <location filename="../Models/ResearcherModel.cpp" line="245"/>
         <source>32Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="190"/>
-        <location filename="../Models/ResearcherModel.cpp" line="246"/>
+        <location filename="../Models/ResearcherModel.cpp" line="194"/>
+        <location filename="../Models/ResearcherModel.cpp" line="250"/>
         <source>32Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="188"/>
         <location filename="../Models/ResearcherModel.cpp" line="192"/>
-        <location filename="../Models/ResearcherModel.cpp" line="256"/>
+        <location filename="../Models/ResearcherModel.cpp" line="196"/>
+        <location filename="../Models/ResearcherModel.cpp" line="260"/>
         <source>16Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="190"/>
         <location filename="../Models/ResearcherModel.cpp" line="194"/>
-        <location filename="../Models/ResearcherModel.cpp" line="261"/>
+        <location filename="../Models/ResearcherModel.cpp" line="198"/>
+        <location filename="../Models/ResearcherModel.cpp" line="265"/>
         <source>16Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="192"/>
         <location filename="../Models/ResearcherModel.cpp" line="196"/>
+        <location filename="../Models/ResearcherModel.cpp" line="200"/>
         <source>Custom 1</source>
         <translation>Nummer 1</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="194"/>
         <location filename="../Models/ResearcherModel.cpp" line="198"/>
+        <location filename="../Models/ResearcherModel.cpp" line="202"/>
         <source>Custom 2</source>
         <translation>Nummer 2</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="196"/>
         <location filename="../Models/ResearcherModel.cpp" line="200"/>
+        <location filename="../Models/ResearcherModel.cpp" line="204"/>
         <source>Custom 3</source>
         <translation>Nummer 3</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="198"/>
         <location filename="../Models/ResearcherModel.cpp" line="202"/>
+        <location filename="../Models/ResearcherModel.cpp" line="206"/>
         <source>Custom 4</source>
         <translation>Nummer 4</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="200"/>
         <location filename="../Models/ResearcherModel.cpp" line="204"/>
+        <location filename="../Models/ResearcherModel.cpp" line="208"/>
         <source>Custom 5</source>
         <translation>Nummer 5</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="202"/>
         <location filename="../Models/ResearcherModel.cpp" line="206"/>
+        <location filename="../Models/ResearcherModel.cpp" line="210"/>
         <source>Custom 6</source>
         <translation>Nummer 6</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="204"/>
         <location filename="../Models/ResearcherModel.cpp" line="208"/>
+        <location filename="../Models/ResearcherModel.cpp" line="212"/>
         <source>Custom 7</source>
         <translation>Nummer 7</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="206"/>
         <location filename="../Models/ResearcherModel.cpp" line="210"/>
+        <location filename="../Models/ResearcherModel.cpp" line="214"/>
         <source>Custom 8</source>
         <translation>Nummer 8</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="208"/>
         <location filename="../Models/ResearcherModel.cpp" line="212"/>
+        <location filename="../Models/ResearcherModel.cpp" line="216"/>
         <source>Custom 9</source>
         <translation>Nummer 9</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="210"/>
         <location filename="../Models/ResearcherModel.cpp" line="214"/>
+        <location filename="../Models/ResearcherModel.cpp" line="218"/>
         <source>Custom 10</source>
         <translation>Nummer 10</translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="222"/>
         <location filename="../Models/ResearcherModel.cpp" line="226"/>
+        <location filename="../Models/ResearcherModel.cpp" line="230"/>
         <source>LBit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="220"/>
         <location filename="../Models/ResearcherModel.cpp" line="224"/>
+        <location filename="../Models/ResearcherModel.cpp" line="228"/>
         <source>HBit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/ResearcherModel.cpp" line="186"/>
-        <location filename="../Models/ResearcherModel.cpp" line="251"/>
+        <location filename="../Models/ResearcherModel.cpp" line="190"/>
+        <location filename="../Models/ResearcherModel.cpp" line="255"/>
         <source>32Bit</source>
         <translation></translation>
     </message>
@@ -3540,40 +3565,40 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/SearchCalls.ui"/>
-        <location filename="../Forms/Gen4/SearchCalls.cpp" line="134"/>
+        <location filename="../Forms/Gen4/SearchCalls.cpp" line="120"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/SearchCalls.ui"/>
-        <location filename="../Forms/Gen4/SearchCalls.cpp" line="133"/>
+        <location filename="../Forms/Gen4/SearchCalls.cpp" line="119"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/SearchCalls.ui"/>
-        <location filename="../Forms/Gen4/SearchCalls.cpp" line="132"/>
+        <location filename="../Forms/Gen4/SearchCalls.cpp" line="118"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/SearchCalls.cpp" line="35"/>
-        <location filename="../Forms/Gen4/SearchCalls.cpp" line="117"/>
+        <location filename="../Forms/Gen4/SearchCalls.cpp" line="103"/>
         <source>Possible Results: </source>
         <translation>Mögliche Ergebnisse: </translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SearchCalls.cpp" line="139"/>
+        <location filename="../Forms/Gen4/SearchCalls.cpp" line="125"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SearchCalls.cpp" line="140"/>
+        <location filename="../Forms/Gen4/SearchCalls.cpp" line="126"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SearchCalls.cpp" line="141"/>
+        <location filename="../Forms/Gen4/SearchCalls.cpp" line="127"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3602,7 +3627,7 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/SearchCoinFlips.cpp" line="32"/>
-        <location filename="../Forms/Gen4/SearchCoinFlips.cpp" line="94"/>
+        <location filename="../Forms/Gen4/SearchCoinFlips.cpp" line="85"/>
         <source>Possible Results: </source>
         <translation>Mögliche Ergebnisse: </translation>
     </message>
@@ -3610,128 +3635,128 @@ Zufallswert</translation>
 <context>
     <name>Searcher3Model</name>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="419"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="424"/>
         <source>None</source>
         <translation>Keine</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="419"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="424"/>
         <source>Synch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="419"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="424"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="543"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="586"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="619"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="548"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="591"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="624"/>
         <source>Seed</source>
         <translation>Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="545"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="550"/>
         <source>Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="547"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="552"/>
         <source>Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="549"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="554"/>
         <source>Level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="551"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="588"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="621"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="556"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="593"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="626"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="555"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="592"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="625"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="560"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="597"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="630"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="557"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="594"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="627"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="562"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="599"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="632"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="559"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="596"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="629"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="564"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="601"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="634"/>
         <source>HP</source>
         <translation>KP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="561"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="598"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="631"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="566"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="603"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="636"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="563"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="600"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="633"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="568"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="605"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="638"/>
         <source>Def</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="565"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="602"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="635"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="570"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="607"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="640"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="567"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="604"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="637"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="572"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="609"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="642"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="569"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="606"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="639"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="574"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="611"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="644"/>
         <source>Spe</source>
         <translation>Init</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="571"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="608"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="641"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="576"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="613"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="646"/>
         <source>Hidden</source>
         <translation>Versteckter Typ</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="573"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="610"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="643"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="578"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="615"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="648"/>
         <source>Power</source>
         <translation>Kraft</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="575"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="612"/>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="645"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="580"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="617"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="650"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="647"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="652"/>
         <source>Reason</source>
         <translation>Grund</translation>
     </message>
@@ -3739,147 +3764,152 @@ Zufallswert</translation>
 <context>
     <name>Searcher4Model</name>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="447"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="457"/>
         <source>None</source>
         <translation>Keine</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="449"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="459"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="451"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="461"/>
         <source>Suction Cups</source>
         <translation>Saugnapf</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="453"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="463"/>
         <source>Cute Charm (♀)</source>
         <translation>Charmebolzen (♀)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="455"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="465"/>
         <source>Cute Charm (25% ♂)</source>
         <translation>Charmebolzen (25% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="457"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="467"/>
         <source>Cute Charm (50% ♂)</source>
         <translation>Charmebolzen (50% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="459"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="469"/>
         <source>Cute Charm (75% ♂)</source>
         <translation>Charmebolzen (75% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="462"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="472"/>
         <source>Cute Charm (87.5% ♂)</source>
         <translation>Charmebolzen (87,5% ♂)</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="512"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="547"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="573"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="524"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="559"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="585"/>
         <source>Seed</source>
         <translation>Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="514"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="549"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="575"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="526"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="561"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="587"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="516"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="579"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="528"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="591"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="520"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="585"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="532"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="599"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="522"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="587"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="534"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="601"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="524"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="551"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="589"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="536"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="563"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="603"/>
         <source>HP</source>
         <translation>KP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="526"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="553"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="591"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="538"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="565"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="605"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="528"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="555"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="593"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="540"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="567"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="607"/>
         <source>Def</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="530"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="557"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="595"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="542"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="569"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="609"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="532"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="559"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="597"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="544"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="571"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="611"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="534"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="561"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="599"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="546"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="573"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="613"/>
         <source>Spe</source>
         <translation>Init</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="536"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="563"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="601"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="548"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="575"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="615"/>
         <source>Hidden</source>
         <translation>Versteckter Typ</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="538"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="565"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="603"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="550"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="577"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="617"/>
         <source>Power</source>
         <translation>Kraft</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="540"/>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="605"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="552"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="619"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="577"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="589"/>
         <source>Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="581"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="593"/>
         <source>Slot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="595"/>
+        <source>Level</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3906,22 +3936,22 @@ Zufallswert</translation>
         <translation>Finden</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="64"/>
+        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="65"/>
         <source>Time</source>
         <translation>Zeit</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="64"/>
+        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="65"/>
         <source>Seconds</source>
         <translation>Sekunden</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="64"/>
+        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="65"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="112"/>
+        <location filename="../Forms/Gen3/SeedToTime3.cpp" line="99"/>
         <source>Please enter a year between 2000 and 2037</source>
         <translation>Bitte gebe ein Jahr zwischen 2000 und 2037 ein</translation>
     </message>
@@ -4024,32 +4054,32 @@ Zufallswert</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="119"/>
+        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="107"/>
         <source>Please enter a year between 2000 and 2099</source>
         <translation>Bitte gebe ein Jahr zwischen 2000 und 2099 ein</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="134"/>
+        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="122"/>
         <source>Seed is invalid. Please enter a valid seed.</source>
         <translation>Zufallswert ist ungültig. Bitte gebe einen gültigen Zufallswert ein.</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="213"/>
+        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="198"/>
         <source>Coin Flips: </source>
         <translation>Münzwürfe: </translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="234"/>
+        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="219"/>
         <source>Elm Calls: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="236"/>
+        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="221"/>
         <source>No roamers</source>
         <translation>Keine Wanderer-Pokémon</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="237"/>
+        <location filename="../Forms/Gen4/SeedtoTime4.cpp" line="222"/>
         <source>Roamers: </source>
         <translation>Wanderer-Pokémon: </translation>
     </message>
@@ -4057,45 +4087,45 @@ Zufallswert</translation>
 <context>
     <name>SeedtoTime4Model</name>
     <message>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="102"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="108"/>
         <source>No roamers</source>
         <translation>Keine Wanderer-Pokémon</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="131"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="137"/>
         <source>Seed</source>
         <translation>Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="133"/>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="149"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="139"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="155"/>
         <source>Date</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="135"/>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="151"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="141"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="157"/>
         <source>Time</source>
         <translation>Zeit</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="137"/>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="153"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="143"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="159"/>
         <source>Delay</source>
         <translation>Verzögerung</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="139"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="145"/>
         <source>Calls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="139"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="145"/>
         <source>Coin flips</source>
         <translation>Münzwürfe</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="141"/>
+        <location filename="../Models/Gen4/SeedtoTime4Model.cpp" line="147"/>
         <source>Roamer locations</source>
         <translation>Karte der Wanderpokémon</translation>
     </message>
@@ -4168,8 +4198,8 @@ Zufallswert</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="191"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="195"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="219"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="223"/>
         <source>Method 1 Reverse</source>
         <translation>Umgekehrte Methode 1</translation>
     </message>
@@ -4465,8 +4495,6 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="307"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="318"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
@@ -4486,155 +4514,155 @@ Zufallswert</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="190"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="194"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="218"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="222"/>
         <source>Method 1</source>
         <translation>Methode 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="192"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="196"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="220"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="224"/>
         <source>Method 2</source>
         <translation>Methode 2</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="193"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="197"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="221"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="225"/>
         <source>Method 4</source>
         <translation>Methode 4</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="181"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="183"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="209"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="211"/>
         <source>XD/Colo</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="182"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="186"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="210"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="214"/>
         <source>Channel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="184"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="212"/>
         <source>Gales</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="185"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="213"/>
         <source>Colo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="77"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="92"/>
         <source>Set Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="78"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="93"/>
         <source>Jump to Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="79"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="94"/>
         <source>Center to +/- 1 Second and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="80"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="95"/>
         <source>Center to +/- 2 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="81"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="96"/>
         <source>Center to +/- 3 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="82"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="97"/>
         <source>Center to +/- 5 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="83"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="98"/>
         <source>Center to +/- 10 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="84"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="99"/>
         <source>Center to +/- 1 Minute and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="85"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="100"/>
         <source>Output Results to TXT</source>
         <translation>Ergebnisse als TXT ausgeben</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="86"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="101"/>
         <source>Output Results to CSV</source>
         <translation>Ergebnisse als CSV ausgeben</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="130"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="145"/>
         <source>Copy Seed to Clipboard</source>
         <translation>Zufallswert in die Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="131"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="146"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="347"/>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="389"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="392"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="395"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="344"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="347"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="350"/>
         <source> (Citadark)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="390"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="393"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="396"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="345"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="348"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="351"/>
         <source> (Initial)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="391"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="394"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="397"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="346"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="349"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="352"/>
         <source> (Phenac)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="406"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="407"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="408"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="361"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="362"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="363"/>
         <source> (E-Reader)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="461"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="438"/>
         <source>Save Output to TXT</source>
         <translation>Ergebnisse als TXT speichern</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="461"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="438"/>
         <source>Text File (*.txt);;All Files (*)</source>
         <translation>Textdatei (*.txt);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="504"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="481"/>
         <source>Save Output to CSV</source>
         <translation>Ergebnisse als CSV speichern</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="504"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="481"/>
         <source>CSV File (*.csv);;All Files (*)</source>
         <translation>CSV-Datei (*.csv);;Alle Dateien (*)</translation>
     </message>
@@ -4642,72 +4670,72 @@ Zufallswert</translation>
 <context>
     <name>Stationary3Model</name>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="107"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="113"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="109"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="115"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="113"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="119"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="115"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="121"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="117"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="123"/>
         <source>HP</source>
         <translation>KP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="119"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="125"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="121"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="127"/>
         <source>Def</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="123"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="129"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="125"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="131"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="127"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="133"/>
         <source>Spe</source>
         <translation>Init</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="129"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="135"/>
         <source>Hidden</source>
         <translation>Versteckter Typ</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="131"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="137"/>
         <source>Power</source>
         <translation>Kraft</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="133"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="139"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Stationary3Model.cpp" line="135"/>
+        <location filename="../Models/Gen3/Stationary3Model.cpp" line="141"/>
         <source>Time</source>
         <translation>Zeit</translation>
     </message>
@@ -4775,26 +4803,26 @@ Zufallswert</translation>
         <translation>Max. Ergebnisse</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="150"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="155"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="239"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="244"/>
         <source>Method 1</source>
         <translation>Methode 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="151"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="156"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="240"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="245"/>
         <source>Method J</source>
         <translation>Methode J</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="151"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="156"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="240"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="245"/>
         <source>Method K</source>
         <translation>Methode K</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="152"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="157"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="241"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="246"/>
         <source>Wondercard IVs</source>
         <translation>Wunderkarte IVs</translation>
     </message>
@@ -4810,8 +4838,8 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="332"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="345"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="253"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="266"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
@@ -5137,21 +5165,19 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="261"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="272"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="202"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="334"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="151"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="255"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="93"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="95"/>
         <source>None</source>
         <translation>Keine</translation>
     </message>
@@ -5161,171 +5187,161 @@ Zufallswert</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="102"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="104"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="301"/>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="337"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="258"/>
         <source>♂ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="338"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="259"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="339"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="260"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="340"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="261"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="341"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="262"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Radio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Dual Slot</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Stationary4Model</name>
     <message>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="236"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="272"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="308"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="346"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="242"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="278"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="314"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="352"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="238"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="312"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="348"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="244"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="318"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="354"/>
         <source>Call</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="240"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="276"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="314"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="350"/>
-        <source>Chatot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="242"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="278"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="316"/>
-        <source>PID</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="246"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="282"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="320"/>
-        <source>Nature</source>
-        <translation>Wesen</translation>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="356"/>
+        <source>Chatot</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="248"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="284"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="322"/>
-        <source>Ability</source>
-        <translation>Fähigkeit</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="250"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="286"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="324"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="352"/>
-        <source>HP</source>
-        <translation>KP</translation>
+        <source>PID</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="252"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="288"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="326"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="354"/>
-        <source>Atk</source>
-        <translation>Angr</translation>
+        <source>Nature</source>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="254"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="290"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="328"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="356"/>
-        <source>Def</source>
-        <translation>Vert</translation>
+        <source>Ability</source>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="256"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="292"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="330"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="358"/>
-        <source>SpA</source>
-        <translation>SpAng</translation>
+        <source>HP</source>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="258"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="294"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="332"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="360"/>
-        <source>SpD</source>
-        <translation>SpVer</translation>
+        <source>Atk</source>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="260"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="296"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="334"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="362"/>
-        <source>Spe</source>
-        <translation>Init</translation>
+        <source>Def</source>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="262"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="298"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="336"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="364"/>
-        <source>Hidden</source>
-        <translation>Versteckter Typ</translation>
+        <source>SpA</source>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="264"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="300"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="338"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="366"/>
-        <source>Power</source>
-        <translation>Kraft</translation>
+        <source>SpD</source>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="266"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="302"/>
         <location filename="../Models/Gen4/Stationary4Model.cpp" line="340"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="368"/>
+        <source>Spe</source>
+        <translation>Init</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="268"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="304"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="342"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="370"/>
+        <source>Hidden</source>
+        <translation>Versteckter Typ</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="270"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="306"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="344"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="372"/>
+        <source>Power</source>
+        <translation>Kraft</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="272"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="308"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="346"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="274"/>
-        <location filename="../Models/Gen4/Stationary4Model.cpp" line="310"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="280"/>
+        <location filename="../Models/Gen4/Stationary4Model.cpp" line="316"/>
         <source>Occidentary</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5369,132 +5385,132 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="134"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="119"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="151"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="136"/>
         <source>Set Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="152"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="137"/>
         <source>Jump to Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="153"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="138"/>
         <source>Center to +/- 1 Second and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="154"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="139"/>
         <source>Center to +/- 2 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="155"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="140"/>
         <source>Center to +/- 3 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="156"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="141"/>
         <source>Center to +/- 5 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="157"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="142"/>
         <source>Center to +/- 10 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="158"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="143"/>
         <source>Center to +/- 1 Minute and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="159"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="144"/>
         <source>Output Results to TXT</source>
         <translation>Ergebnisse als TXT ausgeben</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="160"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="145"/>
         <source>Output Results to CSV</source>
         <translation>Ergebnisse als CSV ausgeben</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="204"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="189"/>
         <source>Copy Seed to Clipboard</source>
         <translation>Zufallswert in die Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="205"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="190"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="326"/>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="520"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="497"/>
         <source>Save Output to TXT</source>
         <translation>Ergebnisse als TXT speichern</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="520"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="497"/>
         <source>Text File (*.txt);;All Files (*)</source>
         <translation>Textdatei (*.txt);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="563"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="540"/>
         <source>Save Output to CSV</source>
         <translation>Ergebnisse als CSV speichern</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="563"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="540"/>
         <source>CSV File (*.csv);;All Files (*)</source>
         <translation>CSV-Datei (*.csv);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="633"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="597"/>
         <source>♂ Lead (50% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="634"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="598"/>
         <source>♂ Lead (75% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="635"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="599"/>
         <source>♂ Lead (25% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="636"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="600"/>
         <source>♂ Lead (12.5% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="637"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="601"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="638"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="602"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="639"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="603"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="640"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="604"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5585,8 +5601,8 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="629"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="644"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="593"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="608"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
@@ -5892,15 +5908,13 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="289"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="631"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="333"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="595"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="380"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="391"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
@@ -5928,87 +5942,87 @@ Zufallswert</translation>
 <context>
     <name>Wild3Model</name>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="113"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="119"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="115"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="121"/>
         <source>Occidentary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="117"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="123"/>
         <source>Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="119"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="125"/>
         <source>Level</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="121"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="127"/>
         <source>PID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="125"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="131"/>
         <source>Nature</source>
         <translation>Wesen</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="127"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="133"/>
         <source>Ability</source>
         <translation>Fähigkeit</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="129"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="135"/>
         <source>HP</source>
         <translation>KP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="131"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="137"/>
         <source>Atk</source>
         <translation>Angr</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="133"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="139"/>
         <source>Def</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="135"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="141"/>
         <source>SpA</source>
         <translation>SpAng</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="137"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="143"/>
         <source>SpD</source>
         <translation>SpVer</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="139"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="145"/>
         <source>Spe</source>
         <translation>Init</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="141"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="147"/>
         <source>Hidden</source>
         <translation>Versteckter Typ</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="143"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="149"/>
         <source>Power</source>
         <translation>Kraft</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="145"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="151"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.cpp" line="147"/>
+        <location filename="../Models/Gen3/Wild3Model.cpp" line="153"/>
         <source>Time</source>
         <translation>Zeit</translation>
     </message>
@@ -6072,6 +6086,7 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="361"/>
         <source>Any</source>
         <translation>Alle</translation>
     </message>
@@ -6267,8 +6282,8 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="137"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="146"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="339"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="350"/>
         <source>Grass</source>
         <translation>Pflanze</translation>
     </message>
@@ -6368,20 +6383,20 @@ Zufallswert</translation>
         <translation>Methode</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="127"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="132"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="325"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="332"/>
         <source>Method J</source>
         <translation>Methode J</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="127"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="132"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="325"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="332"/>
         <source>Method K</source>
         <translation>Methode K</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="129"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="134"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="328"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="335"/>
         <source>Chained Shiny</source>
         <translation>Shiny-Kette</translation>
     </message>
@@ -6421,33 +6436,35 @@ Zufallswert</translation>
         <translation>Begegnung</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="140"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="149"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="344"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="355"/>
         <source>Surfing</source>
         <translation>Surfen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="141"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="150"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="345"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="356"/>
         <source>Old Rod</source>
         <translation>Angel</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="142"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="151"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="346"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="357"/>
         <source>Good Rod</source>
         <translation>Profiangel</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="143"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="152"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="347"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="358"/>
         <source>Super Rod</source>
         <translation>Superangel</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="195"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="213"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="362"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="370"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="382"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="416"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
@@ -6483,29 +6500,29 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="202"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="359"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="224"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="363"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="393"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="405"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="197"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="200"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="361"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="228"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="388"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="403"/>
         <source>Suction Cups</source>
         <translation>Saugnapf</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="66"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="87"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="425"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="436"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
@@ -6530,43 +6547,54 @@ Zufallswert</translation>
         <translation>Höchstwert</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="84"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="99"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="139"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="148"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="319"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="320"/>
+        <source>True</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="342"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="353"/>
         <source>Rock Smash</source>
         <translation type="unfinished">Zertrümmerer</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="205"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="396"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="408"/>
         <source>♂ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="206"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="397"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="409"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="207"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="398"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="410"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="208"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="399"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="411"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="209"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="400"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="412"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="456"/>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -6580,127 +6608,144 @@ Zufallswert</translation>
         <source>Dual Slot</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>Swarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="319"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="320"/>
+        <source>False</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>Poke Radar</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Wild4Model</name>
     <message>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="215"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="255"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="297"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="221"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="261"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="303"/>
         <source>Frame</source>
         <translation>Wertebereich</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="217"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="257"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="223"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="263"/>
         <source>Occidentary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="219"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="261"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="299"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="225"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="267"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="305"/>
         <source>Chatot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="221"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="263"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="227"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="269"/>
         <source>Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="223"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="265"/>
-        <source>Level</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="225"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="267"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="301"/>
-        <source>PID</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="229"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="271"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="305"/>
-        <source>Nature</source>
-        <translation>Wesen</translation>
+        <source>Level</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="231"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="273"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="307"/>
-        <source>Ability</source>
-        <translation>Fähigkeit</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="233"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="275"/>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="309"/>
-        <source>HP</source>
-        <translation>KP</translation>
+        <source>PID</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="235"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="277"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="311"/>
-        <source>Atk</source>
-        <translation>Angr</translation>
+        <source>Nature</source>
+        <translation>Wesen</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="237"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="279"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="313"/>
-        <source>Def</source>
-        <translation>Vert</translation>
+        <source>Ability</source>
+        <translation>Fähigkeit</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="239"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="281"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="315"/>
-        <source>SpA</source>
-        <translation>SpAng</translation>
+        <source>HP</source>
+        <translation>KP</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="241"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="283"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="317"/>
-        <source>SpD</source>
-        <translation>SpVer</translation>
+        <source>Atk</source>
+        <translation>Angr</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="243"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="285"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="319"/>
-        <source>Spe</source>
-        <translation>Init</translation>
+        <source>Def</source>
+        <translation>Vert</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="245"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="287"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="321"/>
-        <source>Hidden</source>
-        <translation>Versteckter Typ</translation>
+        <source>SpA</source>
+        <translation>SpAng</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="247"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="289"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="323"/>
-        <source>Power</source>
-        <translation>Kraft</translation>
+        <source>SpD</source>
+        <translation>SpVer</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="249"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="291"/>
         <location filename="../Models/Gen4/Wild4Model.cpp" line="325"/>
+        <source>Spe</source>
+        <translation>Init</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="251"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="293"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="327"/>
+        <source>Hidden</source>
+        <translation>Versteckter Typ</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="253"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="295"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="329"/>
+        <source>Power</source>
+        <translation>Kraft</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="255"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="297"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="331"/>
         <source>Gender</source>
         <translation>Geschlecht</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Wild4Model.cpp" line="259"/>
+        <location filename="../Models/Gen4/Wild4Model.cpp" line="265"/>
         <source>Call</source>
         <translation type="unfinished"></translation>
     </message>
