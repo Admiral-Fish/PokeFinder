@@ -63,6 +63,10 @@ QLineEdit {
 	color: white;
 }
 
+QLineEdit:disabled {
+	background-color: #50636F;
+}
+
 QGroupBox {
 	background-color: #274050;
 	border-radius: 10px;

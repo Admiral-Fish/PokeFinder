@@ -682,7 +682,6 @@ void Wild3::on_comboBoxLocationGenerator_currentIndexChanged(int index)
 {
     if (index >= 0)
     {
-        ui->checkBoxDelayGenerator->setChecked(true);
         ui->delayGenerator->setText(QString::number(encounterGenerator[index].getDelay()));
     }
     updatePokemonGenerator();

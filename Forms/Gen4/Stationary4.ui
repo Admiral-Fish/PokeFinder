@@ -1036,7 +1036,7 @@ QPushButton {
            <item row="6" column="3">
             <widget class="TextBox" name="delayGenerator">
              <property name="enabled">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
