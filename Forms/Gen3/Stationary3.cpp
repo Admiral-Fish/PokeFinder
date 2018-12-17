@@ -1,5 +1,3 @@
-#include <utility>
-
 /*
  * This file is part of PokéFinder
  * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
