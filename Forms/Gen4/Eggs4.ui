@@ -1221,7 +1221,7 @@ QRadioButton {
            <string>Egg IVs</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="0" colspan="4">
+           <item row="0" column="0" colspan="3">
             <layout class="QGridLayout" name="gridLayout">
              <item row="0" column="0">
               <widget class="QLabel" name="label_20">
@@ -1309,7 +1309,7 @@ QRadioButton {
              </item>
             </layout>
            </item>
-           <item row="0" column="4" rowspan="3" colspan="4">
+           <item row="0" column="3" rowspan="3" colspan="4">
             <widget class="IVFilter" name="ivFilterSearcher" native="true">
              <property name="minimumSize">
               <size>
@@ -1338,7 +1338,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="1" column="2" colspan="2">
+           <item row="1" column="2">
             <widget class="CheckList" name="comboBoxHiddenPowerSearcher">
              <item>
               <property name="text">
@@ -1422,6 +1422,45 @@ QRadioButton {
              </item>
             </widget>
            </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QPushButton" name="pushButtonGenerateIVs">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+             </property>
+             <property name="text">
+              <string>Search</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QPushButton" name="pushButtonCancelIVs">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+             </property>
+             <property name="text">
+              <string>Cancel</string>
+             </property>
+            </widget>
+           </item>
            <item row="3" column="0">
             <widget class="QLabel" name="label_21">
              <property name="sizePolicy">
@@ -1435,7 +1474,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="1" colspan="2">
+           <item row="3" column="1">
             <widget class="QSpinBox" name="parent1HPSearcher">
              <property name="minimumSize">
               <size>
@@ -1451,7 +1490,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="3">
+           <item row="3" column="2">
             <widget class="QSpinBox" name="parent1AtkSearcher">
              <property name="minimumSize">
               <size>
@@ -1467,7 +1506,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="4">
+           <item row="3" column="3">
             <widget class="QSpinBox" name="parent1DefSearcher">
              <property name="minimumSize">
               <size>
@@ -1483,7 +1522,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="5">
+           <item row="3" column="4">
             <widget class="QSpinBox" name="parent1SpASearcher">
              <property name="minimumSize">
               <size>
@@ -1499,7 +1538,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="6">
+           <item row="3" column="5">
             <widget class="QSpinBox" name="parent1SpDSearcher">
              <property name="minimumSize">
               <size>
@@ -1515,7 +1554,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="7">
+           <item row="3" column="6">
             <widget class="QSpinBox" name="parent1SpeSearcher">
              <property name="minimumSize">
               <size>
@@ -1544,7 +1583,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="1" colspan="2">
+           <item row="4" column="1">
             <widget class="QSpinBox" name="parent2HPSearcher">
              <property name="minimumSize">
               <size>
@@ -1560,7 +1599,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="3">
+           <item row="4" column="2">
             <widget class="QSpinBox" name="parent2AtkSearcher">
              <property name="minimumSize">
               <size>
@@ -1576,7 +1615,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="4">
+           <item row="4" column="3">
             <widget class="QSpinBox" name="parent2DefSearcher">
              <property name="maximum">
               <number>31</number>
@@ -1586,7 +1625,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="5">
+           <item row="4" column="4">
             <widget class="QSpinBox" name="parent2SpASearcher">
              <property name="maximum">
               <number>31</number>
@@ -1596,7 +1635,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="6">
+           <item row="4" column="5">
             <widget class="QSpinBox" name="parent2SpDSearcher">
              <property name="maximum">
               <number>31</number>
@@ -1606,31 +1645,13 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="7">
+           <item row="4" column="6">
             <widget class="QSpinBox" name="parent2SpeSearcher">
              <property name="maximum">
               <number>31</number>
              </property>
              <property name="value">
               <number>31</number>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0" colspan="4">
-            <widget class="QPushButton" name="pushButtonGenerateIVs">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>23</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: DodgerBlue;
-}</string>
-             </property>
-             <property name="text">
-              <string>Search</string>
              </property>
             </widget>
            </item>
@@ -1725,7 +1746,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="0" column="4">
+           <item row="0" column="5">
             <widget class="QComboBox" name="comboBoxGenderSearcher">
              <item>
               <property name="text">
@@ -1790,7 +1811,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="1" column="4">
+           <item row="1" column="5">
             <widget class="QComboBox" name="comboBoxAbilitySearcher">
              <item>
               <property name="text">
@@ -1842,7 +1863,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="2" column="4">
+           <item row="2" column="5">
             <widget class="CheckList" name="comboBoxNatureSearcher">
              <item>
               <property name="text">
@@ -1971,7 +1992,7 @@ QRadioButton {
              </item>
             </widget>
            </item>
-           <item row="2" column="5">
+           <item row="2" column="6">
             <widget class="QPushButton" name="pushButtonAnyNatureSearcher">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -2025,7 +2046,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="3">
+           <item row="3" column="3" colspan="2">
             <widget class="QLabel" name="label_29">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -2038,7 +2059,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="4">
+           <item row="3" column="5">
             <widget class="QComboBox" name="comboBoxGenderRatioSearcher">
              <item>
               <property name="text">
@@ -2106,7 +2127,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="3">
+           <item row="4" column="3" colspan="2">
             <widget class="QLabel" name="label_30">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -2119,7 +2140,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="4">
+           <item row="4" column="5">
             <widget class="QCheckBox" name="checkBoxShinySearcher">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2153,6 +2174,27 @@ QRadioButton {
              </property>
              <property name="text">
               <string>Search</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="4" colspan="3">
+            <widget class="QPushButton" name="pushButtonCancelPID">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+             </property>
+             <property name="text">
+              <string>Cancel</string>
              </property>
             </widget>
            </item>
