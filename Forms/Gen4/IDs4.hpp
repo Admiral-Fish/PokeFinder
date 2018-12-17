@@ -22,8 +22,10 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QMutex>
 #include <QStandardItemModel>
-#include <thread>
+#include <QThread>
+#include <QTimer>
 #include <Core/Objects/Utilities.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
@@ -46,14 +48,9 @@ public:
 private:
     Ui::IDs4 *ui;
     QStandardItemModel *model = new QStandardItemModel(this);
-    bool isSearching = false;
-    bool cancel = false;
-    int progress;
 
     void setupModels();
-    void searchPID();
-    void searchTIDSID();
-    void updateSearch();
+    void updateModel(QVector<QList<QStandardItem *>> frames, int progress);
 
 private slots:
     void on_pushButtonSearchShinyPID_clicked();
@@ -63,7 +60,70 @@ private slots:
     void on_checkBoxInfiniteSearchShinyPID_toggled(bool checked);
     void on_checkBoxSearchSID_toggled(bool checked);
     void on_checkBoxInfiniteSearchTIDSID_toggled(bool checked);
-    void updateProgressBar();
+
+};
+
+class ShinyPIDSearcher : public QThread
+{
+    Q_OBJECT
+
+signals:
+    void resultReady(QVector <QList<QStandardItem *>> frames);
+
+public:
+    ShinyPIDSearcher(u32 pid, bool useTID, u16 tid, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
+    void run() override;
+    int currentProgress();
+    QVector<QList<QStandardItem *>> getResults();
+
+public slots:
+    void cancelSearch();
+
+private:
+    u32 pid;
+    bool useTID;
+    u16 tid;
+    u32 year;
+    u32 minDelay;
+    u32 maxDelay;
+    bool infinite;
+
+    QMutex mutex;
+    QVector<QList<QStandardItem *>> results;
+    bool cancel;
+    int progress;
+
+};
+
+class TIDSIDSearcher : public QThread
+{
+    Q_OBJECT
+
+signals:
+    void resultReady(QVector<QList<QStandardItem *>> frames);
+
+public:
+    TIDSIDSearcher(u16 tid, bool useSID, u16 searchSID, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
+    void run() override;
+    int currentProgress();
+    QVector<QList<QStandardItem *>> getResults();
+
+public slots:
+    void cancelSearch();
+
+private:
+    u16 tid;
+    bool useSID;
+    u16 searchSID;
+    u32 year;
+    u32 minDelay;
+    u32 maxDelay;
+    bool infinite;
+
+    QMutex mutex;
+    QVector<QList<QStandardItem *>> results;
+    bool cancel;
+    int progress;
 
 };
 

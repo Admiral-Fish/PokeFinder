@@ -128,7 +128,7 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="0" column="1" colspan="2">
         <widget class="TextBox" name="textBoxPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -164,7 +164,7 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="2" column="1" colspan="2">
         <widget class="TextBox" name="textBoxTIDShinyPID">
          <property name="enabled">
           <bool>false</bool>
@@ -193,7 +193,7 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="3" column="1" colspan="2">
         <widget class="TextBox" name="textBoxYearShinyPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -222,7 +222,7 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="4" column="1" colspan="2">
         <widget class="TextBox" name="textBoxMinDelayShinyPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -251,7 +251,7 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
+       <item row="5" column="1" colspan="2">
         <widget class="TextBox" name="textBoxMaxDelayShinyPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -290,6 +290,22 @@ QPushButton {
          </property>
         </widget>
        </item>
+       <item row="7" column="2">
+        <widget class="QPushButton" name="pushButtonCancelShinyPID">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>116</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
@@ -318,7 +334,7 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="0" column="1" colspan="2">
         <widget class="TextBox" name="textBoxTIDTIDSID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -354,7 +370,7 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="2" column="1" colspan="2">
         <widget class="TextBox" name="textBoxSIDTIDSID">
          <property name="enabled">
           <bool>false</bool>
@@ -383,7 +399,7 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="3" column="1" colspan="2">
         <widget class="TextBox" name="textBoxYearTIDSID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -412,7 +428,7 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="4" column="1" colspan="2">
         <widget class="TextBox" name="textBoxMinDelayTIDSID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -441,7 +457,7 @@ QPushButton {
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
+       <item row="5" column="1" colspan="2">
         <widget class="TextBox" name="textBoxMaxDelayTIDSID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -477,6 +493,22 @@ QPushButton {
          </property>
          <property name="text">
           <string>Search</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="2">
+        <widget class="QPushButton" name="pushButtonCancelTIDSID">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>116</width>
+           <height>23</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Cancel</string>
          </property>
         </widget>
        </item>
