@@ -22,10 +22,10 @@
 // See https://crypto.stackexchange.com/a/10609 for how the following math works
 // Uses a brute force meet in the middle attack using precomputated data
 
-RNGCache::RNGCache(Method MethodType)
+RNGCache::RNGCache(Method method)
 {
     keys.reserve(512);
-    setupCache(MethodType);
+    setupCache(method);
 }
 
 // Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap based on the cache
@@ -95,6 +95,7 @@ void RNGCache::switchCache(Method MethodType)
 
 void RNGCache::populateMap()
 {
+    keys.clear();
     for (u16 i = 0; i < 256; i++)
     {
         u32 right = mult * i + add;
@@ -105,9 +106,9 @@ void RNGCache::populateMap()
     }
 }
 
-void RNGCache::setupCache(Method MethodType)
+void RNGCache::setupCache(Method method)
 {
-    if (MethodType == Method4)
+    if (method == Method4)
     {
         k = 0xa29a6900; // Mult * Mult << 8
         mult = 0xc2a29a69; // Mult * Mult

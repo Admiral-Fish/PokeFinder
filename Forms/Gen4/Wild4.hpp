@@ -22,9 +22,11 @@
 
 #include <QMainWindow>
 #include <QMenu>
+#include <QMutex>
 #include <QFileDialog>
 #include <QSettings>
-#include <thread>
+#include <QThread>
+#include <QTimer>
 #include <Core/Gen4/Encounters4.hpp>
 #include <Core/Gen4/Generator4.hpp>
 #include <Core/Gen4/Searcher4.hpp>
@@ -44,9 +46,7 @@ class Wild4 : public QMainWindow
     Q_OBJECT
 
 signals:
-    void updateView(QVector<Frame4>);
     void alertProfiles(int);
-    void updateProgress();
 
 public:
     explicit Wild4(QWidget *parent = nullptr);
@@ -56,9 +56,6 @@ public:
 private:
     Ui::Wild4 *ui;
     QVector<Profile4> profiles;
-    bool isSearching = false;
-    bool cancel = false;
-    int progress;
     Searcher4Model *s = new Searcher4Model(this, Method::Method1);
     Wild4Model *g = new Wild4Model(this, Method::MethodJ);
     QMenu *searcherMenu = new QMenu(this);
@@ -66,8 +63,7 @@ private:
     QVector<EncounterArea4> encounterSearcher;
 
     void setupModels();
-    void search();
-    void updateSearch();
+    void updateView(const QVector<Frame4> &frames, int progress);
     void updateLocationsGenerator();
     void updateLocationsSearcher();
     void updatePokemonGenerator();
@@ -93,11 +89,34 @@ private slots:
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
     void on_anySlotSearcher_clicked();
-    void updateProgressBar();
-    void updateViewSearcher(const QVector<Frame4> &frames);
     void seedToTime();
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void on_pushButtonProfileManager_clicked();
+
+};
+
+class WildSearcher4 : public QThread
+{
+    Q_OBJECT
+
+public:
+    WildSearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max);
+    void run() override;
+    int currentProgress();
+    QVector<Frame4> getResults();
+
+public slots:
+    void cancelSearch();
+
+private:
+    Searcher4 searcher;
+    QVector<u8> min;
+    QVector<u8> max;
+
+    QMutex mutex;
+    QVector<Frame4> results;
+    bool cancel;
+    int progress;
 
 };
 

@@ -24,8 +24,10 @@
 #include <QFileDialog>
 #include <QMainWindow>
 #include <QMenu>
+#include <QMutex>
 #include <QSettings>
-#include <thread>
+#include <QThread>
+#include <QTimer>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generator3.hpp>
 #include <Core/Gen3/Searcher3.hpp>
@@ -45,9 +47,7 @@ class Wild3 : public QMainWindow
     Q_OBJECT
 
 signals:
-    void updateView(QVector<Frame3>);
     void alertProfiles(int);
-    void updateProgress();
 
 public:
     explicit Wild3(QWidget *parent = nullptr);
@@ -57,9 +57,6 @@ public:
 private:
     Ui::Wild3 *ui;
     QVector<Profile3> profiles;
-    bool isSearching = false;
-    bool cancel = false;
-    int progress;
     Searcher3Model *s = new Searcher3Model(this, Method::Method1);
     Wild3Model *g = new Wild3Model(this);
     QMenu *generatorMenu = new QMenu(this);
@@ -70,8 +67,7 @@ private:
     QVector<EncounterArea3> encounterSearcher;
 
     void setupModels();
-    void search();
-    void updateSearch();
+    void updateView(const QVector<Frame3> &frames, int progress);
     void updateLocationsGenerator();
     void updateLocationsSearcher();
     void updatePokemonGenerator();
@@ -88,7 +84,6 @@ private slots:
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
     void on_anySlotSearcher_clicked();
-    void updateViewSearcher(const QVector<Frame3> &frames);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void setTargetFrameGenerator();
@@ -98,7 +93,6 @@ private slots:
     void outputToTxt();
     void outputToCSV();
     void copySeedToClipboard();
-    void updateProgressBar();
     void on_pushButtonLeadGenerator_clicked();
     void on_comboBoxEncounterGenerator_currentIndexChanged(int index);
     void on_comboBoxEncounterSearcher_currentIndexChanged(int index);
@@ -107,6 +101,31 @@ private slots:
     void on_comboBoxPokemonGenerator_currentIndexChanged(int index);
     void on_comboBoxPokemonSearcher_currentIndexChanged(int index);
     void on_pushButtonProfileManager_clicked();
+
+};
+
+class WildSearcher3 : public QThread
+{
+    Q_OBJECT
+
+public:
+    WildSearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max);
+    void run() override;
+    int currentProgress();
+    QVector<Frame3> getResults();
+
+public slots:
+    void cancelSearch();
+
+private:
+    Searcher3 searcher;
+    QVector<u8> min;
+    QVector<u8> max;
+
+    QMutex mutex;
+    QVector<Frame3> results;
+    bool cancel;
+    int progress;
 
 };
 

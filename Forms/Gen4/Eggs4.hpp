@@ -81,9 +81,6 @@ class PIDSearcher : public QThread
 {
     Q_OBJECT
 
-signals:
-    void resultReady(QVector<Frame4> frames);
-
 public:
     PIDSearcher(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay);
     void run() override;
@@ -109,9 +106,6 @@ private:
 class IVSearcher : public QThread
 {
     Q_OBJECT
-
-signals:
-    void resultReady(QVector<Frame4> frames);
 
 public:
     IVSearcher(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay);

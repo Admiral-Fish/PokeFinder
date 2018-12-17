@@ -294,7 +294,7 @@ void Eggs4::on_comboBoxProfiles_currentIndexChanged(int index)
         return;
     }
 
-    auto profile = profiles[index];
+    auto profile = profiles.at(index);
     QString tid = QString::number(profile.getTID());
     QString sid = QString::number(profile.getSID());
 

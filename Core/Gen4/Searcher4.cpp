@@ -27,6 +27,8 @@ Searcher4::Searcher4()
     frame.setIDs(tid, sid, psv);
 }
 
+#include <QDebug>
+
 Searcher4::Searcher4(u16 tid, u16 sid, u8 genderRatio, u32 minDelay, u32 maxDelay, u32 minFrame, u32 maxFrame, const FrameCompare &compare, Method method)
 {
     this->tid = tid;
@@ -40,14 +42,7 @@ Searcher4::Searcher4(u16 tid, u16 sid, u8 genderRatio, u32 minDelay, u32 maxDela
     this->maxDelay = maxDelay;
     this->minFrame = minFrame;
     this->maxFrame = maxFrame;
-    cache = new RNGCache(method);
-    backward = new PokeRNGR(0);
-}
-
-Searcher4::~Searcher4()
-{
-    delete cache;
-    delete backward;
+    cache.switchCache(method);
 }
 
 void Searcher4::setEncounter(const EncounterArea4 &value)
@@ -133,13 +128,13 @@ QVector<Frame4> Searcher4::searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     for (const auto &seed : seeds)
     {
         // Setup normal frame
-        backward->setSeed(seed);
-        frame.setPID(backward->nextUShort(), backward->nextUShort());
-        frame.setSeed(backward->nextUInt());
+        PokeRNGR rng(seed);
+        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setSeed(rng.nextUInt());
         if (compare.comparePID(frame))
         {
             frames.append(frame);
@@ -170,15 +165,15 @@ QVector<Frame4> Searcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
 
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        backward->setSeed(val);
-        frame.setPID(backward->nextUShort(), backward->nextUShort());
-        u32 seed = backward->nextUInt();
+        PokeRNGR rng(val);
+        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        u32 seed = rng.nextUInt();
 
         for (int i = 0; i < 2; i++)
         {
@@ -270,15 +265,15 @@ QVector<Frame4> Searcher4::searchMethodJSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
 
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        backward->setSeed(val);
-        frame.setPID(backward->nextUShort(), backward->nextUShort());
-        u32 seed = backward->nextUInt();
+        PokeRNGR rng(val);
+        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        u32 seed = rng.nextUInt();
 
         for (int i = 0; i < 2; i++)
         {
@@ -410,16 +405,16 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
 
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        backward->setSeed(val);
-        u16 pid2 = backward->nextUShort();
-        u16 pid1 = backward->nextUShort();
-        u32 seed = backward->nextUInt();
+        PokeRNGR rng(val);
+        u16 pid2 = rng.nextUShort();
+        u16 pid1 = rng.nextUShort();
+        u32 seed = rng.nextUInt();
         u32 nibble, slot;
 
         for (int i = 0; i < 2; i++)
@@ -525,17 +520,17 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
     u8 adjustedThresh = encounterType == Encounter::OldRod ? 90 : encounterType == Encounter::GoodRod ? 100 : encounterType == Encounter::SuperRod ? 100 : 0;
 
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        backward->setSeed(val);
-        u16 pid2 = backward->nextUShort();
-        u16 pid1 = backward->nextUShort();
-        u32 seed = backward->nextUInt();
+        PokeRNGR rng(val);
+        u16 pid2 = rng.nextUShort();
+        u16 pid1 = rng.nextUShort();
+        u32 seed = rng.nextUInt();
 
         for (int i = 0; i < 2; i++)
         {
@@ -807,16 +802,16 @@ QVector<Frame4> Searcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
     u8 rock = encounter.getEncounterRate();
 
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        backward->setSeed(val);
-        frame.setPID(backward->nextUShort(), backward->nextUShort());
-        u32 seed = backward->nextUInt();
+        PokeRNGR rng(val);
+        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        u32 seed = rng.nextUInt();
 
         for (int i = 0; i < 2; i++)
         {
@@ -923,16 +918,16 @@ QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
     u8 rock = encounter.getEncounterRate();
 
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        backward->setSeed(val);
-        frame.setPID(backward->nextUShort(), backward->nextUShort());
-        u32 seed = backward->nextUInt();
+        PokeRNGR rng(val);
+        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        u32 seed = rng.nextUInt();
 
         for (int i = 0; i < 2; i++)
         {
@@ -1099,17 +1094,17 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
     u8 rock = encounter.getEncounterRate();
 
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        backward->setSeed(val);
-        u16 pid2 = backward->nextUShort();
-        u16 pid1 = backward->nextUShort();
-        u32 seed = backward->nextUInt();
+        PokeRNGR rng(val);
+        u16 pid2 = rng.nextUShort();
+        u16 pid1 = rng.nextUShort();
+        u32 seed = rng.nextUInt();
         u32 nibble, slot;
 
         for (int i = 0; i < 2; i++)
@@ -1230,7 +1225,7 @@ QVector<Frame4> Searcher4::searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 sp
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
     u8 adjustedThresh = encounterType == Encounter::OldRod ? 90 : encounterType == Encounter::GoodRod ? 100 : encounterType == Encounter::SuperRod ? 100 : 0;
     u8 rock = encounter.getEncounterRate();
@@ -1238,9 +1233,9 @@ QVector<Frame4> Searcher4::searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 sp
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        backward->setSeed(val);
-        frame.setPID(backward->nextUShort(), backward->nextUShort());
-        u32 seed = backward->nextUInt();
+        PokeRNG rng(val);
+        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        u32 seed = rng.nextUInt();
 
         for (int i = 0; i < 2; i++)
         {
@@ -1352,7 +1347,7 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
     u8 adjustedThresh = encounterType == Encounter::OldRod ? 90 : encounterType == Encounter::GoodRod ? 100 : encounterType == Encounter::SuperRod ? 100 : 0;
     u8 rock = encounter.getEncounterRate();
@@ -1360,10 +1355,10 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        backward->setSeed(val);
-        u16 pid2 = backward->nextUShort();
-        u16 pid1 = backward->nextUShort();
-        u32 seed = backward->nextUInt();
+        PokeRNGR rng(val);
+        u16 pid2 = rng.nextUShort();
+        u16 pid1 = rng.nextUShort();
+        u32 seed = rng.nextUInt();
 
         for (int i = 0; i < 2; i++)
         {
@@ -1697,18 +1692,18 @@ QVector<Frame4> Searcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
 
     u16 calls[15];
     u16 low, high;
 
     for (const auto &seed : seeds)
     {
-        backward->setSeed(seed);
+        PokeRNGR rng(seed);
 
         for (auto &call : calls)
         {
-            call = backward->nextUShort();
+            call = rng.nextUShort();
         }
 
         low = chainedPIDLow(calls);
@@ -1717,8 +1712,8 @@ QVector<Frame4> Searcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 
 
         if (compare.comparePID(frame))
         {
-            backward->nextUInt();
-            frame.setSeed(backward->nextUInt());
+            rng.nextUInt();
+            frame.setSeed(rng.nextUInt());
             frames.append(frame);
 
             // Sister spread shares PID
@@ -1743,12 +1738,12 @@ QVector<Frame4> Searcher4::searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8
     u32 first = (hp | (atk << 5) | (def << 10)) << 16;
     u32 second = (spe | (spa << 5) | (spd << 10)) << 16;
 
-    QVector<u32> seeds = cache->recoverLower16BitsIV(first, second);
+    QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
     for (const auto &seed : seeds)
     {
         // Setup normal frame
-        backward->setSeed(seed);
-        frame.setSeed(backward->nextUInt());
+        PokeRNGR rng(seed);
+        frame.setSeed(rng.nextUInt());
         frames.append(frame);
 
         // Setup XORed frame
@@ -1765,9 +1760,8 @@ QVector<Frame4> Searcher4::searchInitialSeeds(QVector<Frame4> results)
 
     for (Frame4 result : results)
     {
-        backward->setSeed(result.getSeed());
-        backward->advanceFrames(minFrame - 1);
-        u32 test = backward->getSeed();
+        PokeRNGR rng(result.getSeed(), minFrame - 1);
+        u32 test = rng.getSeed();
 
         for (u32 cnt = minFrame; cnt <= maxFrame; cnt++)
         {
@@ -1782,7 +1776,7 @@ QVector<Frame4> Searcher4::searchInitialSeeds(QVector<Frame4> results)
                 frames.append(result);
             }
 
-            test = backward->nextUInt();
+            test = rng.nextUInt();
         }
     }
 

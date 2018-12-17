@@ -24,8 +24,10 @@
 #include <QFileDialog>
 #include <QMainWindow>
 #include <QMenu>
+#include <QMutex>
 #include <QSettings>
-#include <thread>
+#include <QThread>
+#include <QTimer>
 #include <Core/Gen3/Generator3.hpp>
 #include <Core/Gen3/Searcher3.hpp>
 #include <Core/Translator.hpp>
@@ -44,9 +46,7 @@ class Stationary3 : public QMainWindow
     Q_OBJECT
 
 signals:
-    void updateView(QVector<Frame3>);
     void alertProfiles(int);
-    void updateProgress();
 
 public:
     explicit Stationary3(QWidget *parent = nullptr);
@@ -57,9 +57,6 @@ private:
     Ui::Stationary3 *ui;
     Searcher3Model *s = new Searcher3Model(this, Method::Method1);
     Stationary3Model *g = new Stationary3Model(this);
-    bool isSearching = false;
-    bool cancel = false;
-    int progress;
     QVector<Profile3> profiles;
     QMenu *generatorMenu = new QMenu();
     QMenu *searcherMenu = new QMenu();
@@ -67,8 +64,7 @@ private:
     QModelIndex targetFrame;
 
     void setupModels();
-    void search();
-    void updateSearch();
+    void updateView(const QVector<Frame3> &frames, int progress);
 
 public slots:
     void moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
@@ -82,7 +78,6 @@ private slots:
     void on_anyHiddenPowerGenerator_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void updateViewSearcher(const QVector<Frame3> &frames);
     void on_comboBoxMethodSearcher_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
@@ -93,8 +88,32 @@ private slots:
     void outputToTxt();
     void outputToCSV();
     void copySeedToClipboard();
-    void updateProgressBar();
     void on_pushButtonProfileManager_clicked();
+
+};
+
+class StationarySearcher3 : public QThread
+{
+    Q_OBJECT
+
+public:
+    StationarySearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max);
+    void run() override;
+    int currentProgress();
+    QVector<Frame3> getResults();
+
+public slots:
+    void cancelSearch();
+
+private:
+    Searcher3 searcher;
+    QVector<u8> min;
+    QVector<u8> max;
+
+    QMutex mutex;
+    QVector<Frame3> results;
+    bool cancel;
+    int progress;
 
 };
 

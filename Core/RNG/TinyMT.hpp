@@ -28,7 +28,6 @@ class TinyMT : public IRNG
 public:
     TinyMT(u32 seed, u32 frames = 0);
     TinyMT(const u32 st[], u32 frames = 0);
-    ~TinyMT() override;
     void advanceFrames(u32 frames) override;
     void nextState();
     u32 nextUInt() override;
@@ -47,7 +46,7 @@ private:
     static const int TINYMT32SH0 = 1;
     static const int TINYMT32SH1 = 10;
     static const int TINYMT32SH8 = 8;
-    u32 *state = nullptr;
+    u32 state[4];
     u32 seed;
 
     void initialize(u32 seed);

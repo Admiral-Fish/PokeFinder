@@ -31,8 +31,6 @@ Wild3::Wild3(QWidget *parent) :
     setupModels();
 
     qRegisterMetaType<QVector<Frame3>>("QVector<Frame3>");
-    connect(this, &Wild3::updateView, this, &Wild3::updateViewSearcher);
-    connect(this, &Wild3::updateProgress, this, &Wild3::updateProgressBar);
 }
 
 Wild3::~Wild3()
@@ -198,74 +196,10 @@ void Wild3::setupModels()
     searcherMenu->addAction(seedToTime);
 }
 
-void Wild3::search()
+void Wild3::updateView(const QVector<Frame3> &frames, int progress)
 {
-    u16 tid = ui->idSearcher->text().toUShort();
-    u16 sid = ui->sidSearcher->text().toUShort();
-
-    int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
-    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
-                                        genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
-                                        ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false,
-                                        ui->comboBoxSlotSearcher->getChecked());
-    Searcher3 searcher = Searcher3(tid, sid, static_cast<u32>(genderRatioIndex), compare);
-
-    searcher.setup(static_cast<Method>(ui->comboBoxMethodSearcher->currentData().toInt()));
-    searcher.setEncounterType(static_cast<Encounter>(ui->comboBoxEncounterSearcher->currentData().toInt()));
-    searcher.setLeadType(static_cast<Lead>(ui->comboBoxLeadSearcher->currentData().toInt()));
-    searcher.setEncounter(encounterSearcher[ui->comboBoxLocationSearcher->currentIndex()]);
-
-    QVector<u8> min = ui->ivFilterSearcher->getLower();
-    QVector<u8> max = ui->ivFilterSearcher->getUpper();
-
-    ui->progressBar->setMaximum(static_cast<int>((max[0] - min[0] + 1) * (max[1] - min[1] + 1) * (max[2] - min[2] + 1) * (max[3] - min[3] + 1) * (max[4] - min[4] + 1) * (max[5] - min[5] + 1)));
-
-    for (u8 a = min[0]; a <= max[0]; a++)
-    {
-        for (u8 b = min[1]; b <= max[1]; b++)
-        {
-            for (u8 c = min[2]; c <= max[2]; c++)
-            {
-                for (u8 d = min[3]; d <= max[3]; d++)
-                {
-                    for (u8 e = min[4]; e <= max[4]; e++)
-                    {
-                        for (u8 f = min[5]; f <= max[5]; f++)
-                        {
-                            QVector<Frame3> frames = searcher.search(a, b, c, d, e, f);
-
-                            if (!frames.empty())
-                            {
-                                emit updateView(frames);
-                            }
-
-                            progress++;
-
-                            if (cancel)
-                            {
-                                isSearching = false;
-                                ui->search->setText(tr("Search"));
-                                emit updateProgress();
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    isSearching = false;
-    ui->search->setText(tr("Search"));
-    emit updateProgress();
-}
-
-void Wild3::updateSearch()
-{
-    while (isSearching && !cancel)
-    {
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        emit updateProgress();
-    }
+    s->addItems(frames);
+    ui->progressBar->setValue(progress);
 }
 
 void Wild3::updateLocationsGenerator()
@@ -420,28 +354,51 @@ void Wild3::on_generate_clicked()
 
 void Wild3::on_search_clicked()
 {
-    if (isSearching)
+    s->clear();
+    s->setMethod(static_cast<Method>(ui->comboBoxMethodGenerator->currentData().toInt()));
+
+    ui->search->setEnabled(false);
+    ui->cancel->setEnabled(true);
+
+    u16 tid = ui->idSearcher->text().toUShort();
+    u16 sid = ui->sidSearcher->text().toUShort();
+
+    int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
+    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
+                                        genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
+                                        ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false,
+                                        ui->comboBoxSlotSearcher->getChecked());
+    Searcher3 searcher = Searcher3(tid, sid, static_cast<u32>(genderRatioIndex), compare);
+
+    searcher.setup(static_cast<Method>(ui->comboBoxMethodSearcher->currentData().toInt()));
+    searcher.setEncounterType(static_cast<Encounter>(ui->comboBoxEncounterSearcher->currentData().toInt()));
+    searcher.setLeadType(static_cast<Lead>(ui->comboBoxLeadSearcher->currentData().toInt()));
+    searcher.setEncounter(encounterSearcher[ui->comboBoxLocationSearcher->currentIndex()]);
+
+    QVector<u8> min = ui->ivFilterSearcher->getLower();
+    QVector<u8> max = ui->ivFilterSearcher->getUpper();
+
+    int maxProgress = 1;
+    for (int i = 0; i < 6; i++)
     {
-        cancel = true;
+        maxProgress *= max[i] - min[i] + 1;
     }
-    else
-    {
-        s->clear();
-        s->setMethod(static_cast<Method>(ui->comboBoxMethodGenerator->currentData().toInt()));
 
-        ui->progressBar->setValue(0);
-        progress = 0;
+    ui->progressBar->setValue(0);
+    ui->progressBar->setMaximum(maxProgress);
 
-        isSearching = true;
-        cancel = false;
-        ui->search->setText(tr("Cancel"));
+    auto *search = new WildSearcher3(searcher, min, max);
+    auto *timer = new QTimer();
 
-        std::thread job(&Wild3::search, this);
-        job.detach();
+    connect(search, &WildSearcher3::finished, timer, &QTimer::deleteLater);
+    connect(search, &WildSearcher3::finished, timer, &QTimer::stop);
+    connect(search, &WildSearcher3::finished, this, [ = ] { ui->search->setEnabled(true); ui->cancel->setEnabled(false); });
+    connect(search, &WildSearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(ui->cancel, &QPushButton::clicked, search, &WildSearcher3::cancelSearch);
 
-        std::thread update(&Wild3::updateSearch, this);
-        update.detach();
-    }
+    search->start();
+    timer->start(1000);
 }
 
 void Wild3::on_anyNatureGenerator_clicked()
@@ -472,11 +429,6 @@ void Wild3::on_anyHiddenPowerSearcher_clicked()
 void Wild3::on_anySlotSearcher_clicked()
 {
     ui->comboBoxSlotSearcher->uncheckAll();
-}
-
-void Wild3::updateViewSearcher(const QVector<Frame3> &frames)
-{
-    s->addItems(frames);
 }
 
 void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
@@ -634,11 +586,6 @@ void Wild3::copySeedToClipboard()
     QApplication::clipboard()->setText(s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
 }
 
-void Wild3::updateProgressBar()
-{
-    ui->progressBar->setValue(progress);
-}
-
 void Wild3::on_pushButtonLeadGenerator_clicked()
 {
     ui->comboBoxLeadGenerator->clear();
@@ -780,4 +727,65 @@ void Wild3::on_pushButtonProfileManager_clicked()
     auto *manager = new ProfileManager3();
     connect(manager, &ProfileManager3::updateProfiles, this, &Wild3::refreshProfiles);
     manager->show();
+}
+
+
+WildSearcher3::WildSearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max)
+{
+    this->searcher = searcher;
+    this->min = min;
+    this->max = max;
+    cancel = false;
+    progress = 0;
+
+    connect(this, &WildSearcher3::finished, this, &WildSearcher3::deleteLater);
+}
+
+void WildSearcher3::run()
+{
+    for (u8 a = min[0]; a <= max[0]; a++)
+    {
+        for (u8 b = min[1]; b <= max[1]; b++)
+        {
+            for (u8 c = min[2]; c <= max[2]; c++)
+            {
+                for (u8 d = min[3]; d <= max[3]; d++)
+                {
+                    for (u8 e = min[4]; e <= max[4]; e++)
+                    {
+                        for (u8 f = min[5]; f <= max[5]; f++)
+                        {
+                            if (cancel)
+                            {
+                                return;
+                            }
+
+                            progress++;
+
+                            QMutexLocker locker(&mutex);
+                            results.append(searcher.search(a, b, c, d, e, f));
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+int WildSearcher3::currentProgress()
+{
+    return progress;
+}
+
+QVector<Frame3> WildSearcher3::getResults()
+{
+    QMutexLocker locker(&mutex);
+    auto data(results);
+    results.clear();
+    return data;
+}
+
+void WildSearcher3::cancelSearch()
+{
+    cancel = true;
 }

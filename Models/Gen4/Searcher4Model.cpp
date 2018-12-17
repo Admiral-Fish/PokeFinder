@@ -31,6 +31,11 @@ void Searcher4Model::setModel(const QVector<Frame4> &frames)
 
 void Searcher4Model::addItems(const QVector<Frame4> &frames)
 {
+    if (frames.isEmpty())
+    {
+        return;
+    }
+
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
     model.append(frames);

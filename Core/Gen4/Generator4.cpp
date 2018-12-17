@@ -41,11 +41,6 @@ Generator4::Generator4(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 ti
     frameType = type;
 }
 
-Generator4::~Generator4()
-{
-    delete rng;
-}
-
 void Generator4::setEncounter(const EncounterArea4 &value)
 {
     encounter = value;
@@ -53,7 +48,6 @@ void Generator4::setEncounter(const EncounterArea4 &value)
 
 QVector<Frame4> Generator4::generate(const FrameCompare &compare)
 {
-    rng = new PokeRNG(initialSeed, initialFrame - 1 + offset);
     switch (frameType)
     {
         case Method::Method1:
@@ -96,10 +90,11 @@ QVector<Frame4> Generator4::generateMethod1(FrameCompare compare)
     Frame4 frame = Frame4(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     auto *rngArray = new u16[maxResults + 4];
     for (u32 i = 0; i < maxResults + 4; i++)
     {
-        rngArray[i] = rng->nextUShort();
+        rngArray[i] = rng.nextUShort();
     }
 
     // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
@@ -127,15 +122,16 @@ QVector<Frame4> Generator4::generateMethodJ(FrameCompare compare)
     Frame4 frame = Frame4(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
     u16 pid1, pid2;
 
-    u8 thresh = encounterType == Encounter::OldRod ? 24 : encounterType == Encounter::GoodRod ? 49 : encounterType == Encounter::SuperRod ? 74 : 0;
+    u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
-        PokeRNG go(rng->nextUInt());
+        PokeRNG go(rng.nextUInt());
         frame.setSeed(go.getSeed());
 
         switch (encounterType)
@@ -163,7 +159,7 @@ QVector<Frame4> Generator4::generateMethodJ(FrameCompare compare)
             case Encounter::OldRod:
             case Encounter::GoodRod:
             case Encounter::SuperRod:
-                if (((go.getSeed() >> 16) / 656) > thresh)
+                if (((go.getSeed() >> 16) / 656) >= thresh)
                 {
                     continue;
                 }
@@ -223,15 +219,16 @@ QVector<Frame4> Generator4::generateMethodJSynch(FrameCompare compare)
     Frame4 frame = Frame4(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
     u16 pid1, pid2;
 
-    u8 thresh = encounterType == Encounter::OldRod ? 24 : encounterType == Encounter::GoodRod ? 49 : encounterType == Encounter::SuperRod ? 74 : 0;
+    u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
-        PokeRNG go(rng->nextUInt());
+        PokeRNG go(rng.nextUInt());
         frame.setSeed(go.getSeed());
 
         switch (encounterType)
@@ -259,7 +256,7 @@ QVector<Frame4> Generator4::generateMethodJSynch(FrameCompare compare)
             case Encounter::OldRod:
             case Encounter::GoodRod:
             case Encounter::SuperRod:
-                if (((go.getSeed() >> 16) / 656) > thresh)
+                if (((go.getSeed() >> 16) / 656) >= thresh)
                 {
                     continue;
                 }
@@ -326,12 +323,13 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(FrameCompare compare)
     Frame4 frame = Frame4(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
     u16 pid1, pid2;
 
     u8 buffer = 0;
-    u8 thresh = encounterType == Encounter::OldRod ? 24 : encounterType == Encounter::GoodRod ? 49 : encounterType == Encounter::SuperRod ? 74 : 0;
+    u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
 
     switch (leadType)
     {
@@ -356,7 +354,7 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(FrameCompare compare)
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
-        PokeRNG go(rng->nextUInt());
+        PokeRNG go(rng.nextUInt());
         frame.setSeed(go.getSeed());
 
         switch (encounterType)
@@ -384,7 +382,7 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(FrameCompare compare)
             case Encounter::OldRod:
             case Encounter::GoodRod:
             case Encounter::SuperRod:
-                if (((go.getSeed() >> 16) / 656) > thresh)
+                if (((go.getSeed() >> 16) / 656) >= thresh)
                 {
                     continue;
                 }
@@ -462,6 +460,7 @@ QVector<Frame4> Generator4::generateMethodK(FrameCompare compare)
     Frame4 frame = Frame4(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
     u16 pid1, pid2;
@@ -484,7 +483,7 @@ QVector<Frame4> Generator4::generateMethodK(FrameCompare compare)
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
-        PokeRNG go(rng->nextUInt());
+        PokeRNG go(rng.nextUInt());
         frame.setSeed(go.getSeed());
 
         switch (encounterType)
@@ -591,6 +590,7 @@ QVector<Frame4> Generator4::generateMethodKSynch(FrameCompare compare)
     Frame4 frame = Frame4(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
     u16 pid1, pid2;
@@ -600,7 +600,7 @@ QVector<Frame4> Generator4::generateMethodKSynch(FrameCompare compare)
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
-        PokeRNG go(rng->nextUInt());
+        PokeRNG go(rng.nextUInt());
         frame.setSeed(go.getSeed());
 
         switch (encounterType)
@@ -713,6 +713,7 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(FrameCompare compare)
     Frame4 frame = Frame4(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
     u16 pid1, pid2;
@@ -744,7 +745,7 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(FrameCompare compare)
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
-        PokeRNG go(rng->nextUInt());
+        PokeRNG go(rng.nextUInt());
         frame.setSeed(go.getSeed());
 
         switch (encounterType)
@@ -866,10 +867,11 @@ QVector<Frame4> Generator4::generateChainedShiny(FrameCompare compare)
     Frame4 frame = Frame4(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     auto *rngArray = new u16[maxResults + 18];
     for (u32 i = 0; i < maxResults + 18; i++)
     {
-        rngArray[i] = rng->nextUShort();
+        rngArray[i] = rng.nextUShort();
     }
 
     u16 low, high;
@@ -900,10 +902,11 @@ QVector<Frame4> Generator4::generateWondercardIVs(FrameCompare compare)
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     auto *rngArray = new u16[maxResults + 2];
     for (u32 i = 0; i < maxResults + 2; i++)
     {
-        rngArray[i] = rng->nextUShort();
+        rngArray[i] = rng.nextUShort();
     }
 
     // Wondercard IVs [SEED] [IVS] [IVS]

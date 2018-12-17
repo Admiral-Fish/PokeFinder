@@ -42,7 +42,7 @@ void IDs4::setupModels()
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
 }
 
-void IDs4::updateModel(QVector<QList<QStandardItem *>> frames, int progress)
+void IDs4::updateView(QVector<QList<QStandardItem *>> frames, int progress)
 {
     for (const auto &item : frames)
     {
@@ -82,8 +82,8 @@ void IDs4::on_pushButtonSearchShinyPID_clicked()
     connect(search, &ShinyPIDSearcher::finished, timer, &QTimer::deleteLater);
     connect(search, &ShinyPIDSearcher::finished, timer, &QTimer::stop);
     connect(search, &ShinyPIDSearcher::finished, this, [ = ] { ui->pushButtonSearchShinyPID->setEnabled(true); ui->pushButtonCancelShinyPID->setEnabled(false); });
-    connect(search, &ShinyPIDSearcher::finished, this, [ = ] { updateModel(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateModel(search->getResults(), search->currentProgress()); });
+    connect(search, &ShinyPIDSearcher::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
     connect(ui->pushButtonCancelShinyPID, &QPushButton::clicked, search, &ShinyPIDSearcher::cancelSearch);
 
     search->start();
@@ -121,8 +121,8 @@ void IDs4::on_pushButtonSearchTIDSID_clicked()
     connect(search, &TIDSIDSearcher::finished, timer, &QTimer::deleteLater);
     connect(search, &TIDSIDSearcher::finished, timer, &QTimer::stop);
     connect(search, &TIDSIDSearcher::finished, this, [ = ] { ui->pushButtonSearchTIDSID->setEnabled(true); ui->pushButtonCancelTIDSID->setEnabled(false); });
-    connect(search, &TIDSIDSearcher::finished, this, [ = ] { updateModel(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateModel(search->getResults(), search->currentProgress()); });
+    connect(search, &TIDSIDSearcher::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
     connect(ui->pushButtonCancelTIDSID, &QPushButton::clicked, search, &TIDSIDSearcher::cancelSearch);
 
     search->start();

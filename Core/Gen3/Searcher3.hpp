@@ -33,19 +33,16 @@ class Searcher3: public Searcher
 public:
     Searcher3();
     Searcher3(u16 tid, u16 sid, u32 ratio, const FrameCompare &compare);
-    ~Searcher3();
     QVector<Frame3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
     void setup(Method method);
     void setupNatureLock(int num);
     void setEncounter(const EncounterArea3 &value);
 
 private:
-    RNGCache *cache = nullptr;
-    RNGEuclidean *euclidean = nullptr;
+    RNGCache cache;
+    RNGEuclidean euclidean;
     Frame3 frame = Frame3(0, 0, 0);
-    LCRNG *forward = nullptr;
-    LCRNG *backward = nullptr;
-    NatureLock *natureLock = nullptr;
+    NatureLock natureLock;
     ShadowType type;
     FrameCompare compare;
     EncounterArea3 encounter;

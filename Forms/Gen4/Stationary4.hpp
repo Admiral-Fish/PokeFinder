@@ -22,9 +22,11 @@
 
 #include <QMainWindow>
 #include <QMenu>
+#include <QMutex>
 #include <QFileDialog>
 #include <QSettings>
-#include <thread>
+#include <QThread>
+#include <QTimer>
 #include <Core/Gen4/Generator4.hpp>
 #include <Core/Gen4/Searcher4.hpp>
 #include <Core/Translator.hpp>
@@ -44,8 +46,6 @@ class Stationary4 : public QMainWindow
 
 signals:
     void alertProfiles(int);
-    void updateView(QVector<Frame4>);
-    void updateProgress();
 
 public:
     explicit Stationary4(QWidget *parent = nullptr);
@@ -56,15 +56,11 @@ private:
     Ui::Stationary4 *ui;
     Searcher4Model *s = new Searcher4Model(this, Method::Method1);
     Stationary4Model *g = new Stationary4Model(this, Method::Method1);
-    bool isSearching = false;
-    bool cancel = false;
-    int progress;
     QVector<Profile4> profiles;
     QMenu *searcherMenu = new QMenu(this);
 
     void setupModels();
-    void search();
-    void updateSearch();
+    void updateView(const QVector<Frame4> &frames, int progress);
 
 private slots:
     void refreshProfiles();
@@ -76,11 +72,34 @@ private slots:
     void on_anyHiddenPowerGenerator_clicked();
     void on_anyNatureSearcher_clicked();
     void on_anyHiddenPowerSearcher_clicked();
-    void updateProgressBar();
-    void updateViewSearcher(const QVector<Frame4> &frames);
     void seedToTime();
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void on_pushButtonProfileManager_clicked();
+
+};
+
+class StationarySearcher4 : public QThread
+{
+    Q_OBJECT
+
+public:
+    StationarySearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max);
+    void run() override;
+    int currentProgress();
+    QVector<Frame4> getResults();
+
+public slots:
+    void cancelSearch();
+
+private:
+    Searcher4 searcher;
+    QVector<u8> min;
+    QVector<u8> max;
+
+    QMutex mutex;
+    QVector<Frame4> results;
+    bool cancel;
+    int progress;
 
 };
 

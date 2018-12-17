@@ -1393,7 +1393,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
+           <item row="0" column="1" colspan="2">
             <widget class="QComboBox" name="comboBoxMethodSearcher">
              <property name="layoutDirection">
               <enum>Qt::LeftToRight</enum>
@@ -1419,7 +1419,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
+           <item row="1" column="1" colspan="2">
             <widget class="QComboBox" name="comboBoxLocationSearcher">
              <property name="maxVisibleItems">
               <number>10</number>
@@ -1439,7 +1439,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
+           <item row="2" column="1" colspan="2">
             <widget class="QComboBox" name="comboBoxTimeSearcher">
              <item>
               <property name="text">
@@ -1471,7 +1471,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
+           <item row="3" column="1" colspan="2">
             <widget class="QComboBox" name="comboBoxPokemonSearcher"/>
            </item>
            <item row="4" column="0">
@@ -1487,7 +1487,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
+           <item row="4" column="1" colspan="2">
             <widget class="QComboBox" name="comboBoxEncounterSearcher"/>
            </item>
            <item row="5" column="0">
@@ -1503,7 +1503,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
+           <item row="5" column="1" colspan="2">
             <widget class="QComboBox" name="comboBoxLeadSearcher">
              <item>
               <property name="text">
@@ -1545,7 +1545,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="6" column="1">
+           <item row="6" column="1" colspan="2">
             <widget class="TextBox" name="idSearcher">
              <property name="inputMask">
               <string/>
@@ -1571,7 +1571,7 @@ QPushButton {
              </property>
             </widget>
            </item>
-           <item row="7" column="1">
+           <item row="7" column="1" colspan="2">
             <widget class="TextBox" name="sidSearcher">
              <property name="inputMask">
               <string/>
@@ -1589,9 +1589,15 @@ QPushButton {
              <property name="enabled">
               <bool>true</bool>
              </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
-               <width>231</width>
+               <width>0</width>
                <height>23</height>
               </size>
              </property>
@@ -1608,6 +1614,33 @@ QPushButton {
              </property>
              <property name="autoDefault">
               <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="2">
+            <widget class="QPushButton" name="pushButtonCancel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>180</width>
+               <height>23</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: DodgerBlue;
+}</string>
+             </property>
+             <property name="text">
+              <string>Cancel</string>
              </property>
             </widget>
            </item>

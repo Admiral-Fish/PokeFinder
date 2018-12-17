@@ -29,7 +29,8 @@ class RNGCache
 {
 
 public:
-    RNGCache(Method MethodType);
+    RNGCache() = default;
+    RNGCache(Method method);
     QVector<u32> recoverLower16BitsIV(u32 first, u32 second);
     QVector<u32> recoverLower16BitsPID(u32 first, u32 second);
     void switchCache(Method MethodType);
@@ -41,7 +42,7 @@ private:
     QHash<u16, u16> keys;
 
     void populateMap();
-    void setupCache(Method MethodType);
+    void setupCache(Method method);
 
 };
 

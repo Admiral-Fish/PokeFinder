@@ -31,17 +31,15 @@ class Searcher4 : public Searcher
 public:
     Searcher4();
     Searcher4(u16 tid, u16 sid, u8 genderRatio, u32 minDelay, u32 maxDelay, u32 minFrame, u32 maxFrame, const FrameCompare &compare, Method method);
-    ~Searcher4();
     void setEncounter(const EncounterArea4 &value);
     QVector<Frame4> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
 private:
-    RNGCache *cache = nullptr;
+    RNGCache cache;
     Frame4 frame = Frame4(0, 0, 0);
-    PokeRNGR *backward = nullptr;
     EncounterArea4 encounter;
     FrameCompare compare;
-    const u8 unbiasedBuffer[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };
+    u8 unbiasedBuffer[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };
     u32 minDelay;
     u32 maxDelay;
     u32 minFrame;

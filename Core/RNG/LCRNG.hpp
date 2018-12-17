@@ -26,6 +26,7 @@ class LCRNG : public IRNG
 {
 
 public:
+    LCRNG() = default;
     LCRNG(u32 add, u32 mult, u32 seed, u32 frames = 0);
     void advanceFrames(u32 frames) override;
     u16 nextUShort() override;
@@ -45,6 +46,7 @@ class ARNG : public LCRNG
 {
 
 public:
+    ARNG() = default;
     ARNG(u32 seed, u32 frames = 0) : LCRNG(0x01, 0x6c078965, seed, frames)
     {
     }
@@ -55,6 +57,7 @@ class ARNGR : public LCRNG
 {
 
 public:
+    ARNGR() = default;
     ARNGR(u32 seed, u32 frames = 0) : LCRNG(0x69c77f93, 0x9638806d, seed, frames)
     {
     }
@@ -65,6 +68,7 @@ class PokeRNG : public LCRNG
 {
 
 public:
+    PokeRNG() = default;
     PokeRNG(u32 seed, u32 frames = 0) : LCRNG(0x6073, 0x41c64e6d, seed, frames)
     {
     }
@@ -75,6 +79,7 @@ class PokeRNGR : public LCRNG
 {
 
 public:
+    PokeRNGR() = default;
     PokeRNGR(u32 seed, u32 frames = 0) : LCRNG(0xa3561a1, 0xeeb9eb65, seed, frames)
     {
     }
@@ -85,6 +90,7 @@ class XDRNG : public LCRNG
 {
 
 public:
+    XDRNG() = default;
     XDRNG(u32 seed, u32 frames = 0) : LCRNG(0x269EC3, 0x343FD, seed, frames)
     {
     }
@@ -95,6 +101,7 @@ class XDRNGR: public LCRNG
 {
 
 public:
+    XDRNGR() = default;
     XDRNGR(u32 seed, u32 frames = 0) : LCRNG(0xA170F641, 0xB9B33155, seed, frames)
     {
     }

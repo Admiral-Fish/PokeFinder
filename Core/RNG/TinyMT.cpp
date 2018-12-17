@@ -21,25 +21,18 @@
 
 TinyMT::TinyMT(u32 seed, u32 frames)
 {
-    state = new u32[4];
     initialize(seed);
     advanceFrames(frames);
 }
 
 TinyMT::TinyMT(const u32 st[], u32 frames)
 {
-    state = new u32[4];
     for (int i = 0; i < 4; i++)
     {
         state[i] = st[i];
     }
     periodCertification();
     advanceFrames(frames);
-}
-
-TinyMT::~TinyMT()
-{
-    delete state;
 }
 
 void TinyMT::advanceFrames(u32 frames)

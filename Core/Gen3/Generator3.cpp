@@ -40,11 +40,6 @@ Generator3::Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 ti
     psv = tid ^ sid;
 }
 
-Generator3::~Generator3()
-{
-    delete rng;
-}
-
 QVector<Frame3> Generator3::generate(const FrameCompare &compare)
 {
     switch (frameType)
@@ -81,15 +76,6 @@ QVector<Frame3> Generator3::generate(const FrameCompare &compare)
 void Generator3::setup(Method method)
 {
     frameType = method;
-    if (frameType == Method::XDColo || frameType == Method::Channel)
-    {
-        rng = new XDRNG(initialSeed, initialFrame - 1 + offset);
-    }
-    else
-    {
-        rng = new PokeRNG(initialSeed, initialFrame - 1 + offset);
-    }
-
     if (frameType == Method::Method1 || frameType == Method::MethodH1)
     {
         iv1 = frameType == Method::MethodH1 ? 1 : 2;
@@ -118,10 +104,11 @@ QVector<Frame3> Generator3::generateMethodChannel(FrameCompare compare)
     Frame3 frame(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    XDRNG rng(initialSeed, initialFrame - 1 + offset);
     u16 *rngArray = new u16[maxResults + 12];
     for (u32 i = 0; i < maxResults + 12; i++)
     {
-        rngArray[i] = rng->nextUShort();
+        rngArray[i] = rng.nextUShort();
     }
 
     // Method Channel [SEED] [SID] [PID] [PID] [BERRY] [GAME ORIGIN] [OT GENDER] [IV] [IV] [IV] [IV] [IV] [IV]
@@ -158,6 +145,7 @@ QVector<Frame3> Generator3::generateMethodH124(FrameCompare compare)
     Frame3 frame(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
     u16 pid1, pid2, val1, val2;
@@ -167,7 +155,7 @@ QVector<Frame3> Generator3::generateMethodH124(FrameCompare compare)
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
-        PokeRNG go(rng->nextUInt());
+        PokeRNG go(rng.nextUInt());
         hunt = 2;
 
         switch (encounterType)
@@ -283,6 +271,7 @@ QVector<Frame3> Generator3::generateMethodH124Synch(FrameCompare compare)
     Frame3 frame(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
     u16 pid1, pid2, val1, val2;
@@ -292,7 +281,7 @@ QVector<Frame3> Generator3::generateMethodH124Synch(FrameCompare compare)
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
-        PokeRNG go(rng->nextUInt());
+        PokeRNG go(rng.nextUInt());
         hunt = 2;
 
         switch (encounterType)
@@ -417,6 +406,7 @@ QVector<Frame3> Generator3::generateMethodH124CuteCharm(FrameCompare compare)
     Frame3 frame(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
     u16 pid1, pid2, val1, val2;
@@ -456,7 +446,7 @@ QVector<Frame3> Generator3::generateMethodH124CuteCharm(FrameCompare compare)
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
-        PokeRNG go(rng->nextUInt());
+        PokeRNG go(rng.nextUInt());
         hunt = 3;
 
         switch (encounterType)
@@ -595,10 +585,11 @@ QVector<Frame3> Generator3::generateMethodXDColo(FrameCompare compare)
     Frame3 frame(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    XDRNG rng(initialSeed, initialFrame - 1 + offset);
     auto *rngArray = new u16[maxResults + 5];
     for (u32 i = 0; i < maxResults + 5; i++)
     {
-        rngArray[i] = rng->nextUShort();
+        rngArray[i] = rng.nextUShort();
     }
 
     // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
@@ -625,10 +616,11 @@ QVector<Frame3> Generator3::generateMethod124(FrameCompare compare)
     Frame3 frame(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     auto *rngArray = new u16[maxResults + 5];
     for (u32 i = 0; i < maxResults + 5; i++)
     {
-        rngArray[i] = rng->nextUShort();
+        rngArray[i] = rng.nextUShort();
     }
 
     // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
@@ -657,10 +649,11 @@ QVector<Frame3> Generator3::generateMethod1Reverse(FrameCompare compare)
     Frame3 frame(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
 
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     auto *rngArray = new u16[maxResults + 4];
     for (u32 i = 0; i < maxResults + 4; i++)
     {
-        rngArray[i] = rng->nextUShort();
+        rngArray[i] = rng.nextUShort();
     }
 
     // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]

@@ -29,15 +29,9 @@ void MT::advanceFrames(u32 frames)
     }
 }
 
-MT::~MT()
-{
-    delete mt;
-}
-
 
 MersenneTwister::MersenneTwister(u32 seed, u32 frames)
 {
-    mt = new u32[624];
     initialize(seed);
     advanceFrames(frames);
 }
@@ -117,7 +111,6 @@ void MersenneTwister::shuffle()
 
 MersenneTwisterUntempered::MersenneTwisterUntempered(u32 seed, u32 frames)
 {
-    mt = new u32[624];
     initialize(seed);
     advanceFrames(frames);
 }
@@ -197,7 +190,6 @@ MersenneTwisterFast::MersenneTwisterFast(u32 seed, u32 calls, u32 frames)
         return;
     }
     max = M + maxCalls;
-    mt = new u32[max];
     initialize(seed);
     advanceFrames(frames);
 }

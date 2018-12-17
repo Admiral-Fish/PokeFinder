@@ -54,8 +54,8 @@ class NatureLock
 {
 
 public:
+    NatureLock() = default;
     NatureLock(int num, Method version);
-    ~NatureLock();
     ShadowType getType();
     bool firstShadowNormal(u32 seed);
     bool firstShadowSet(u32 seed);
@@ -76,8 +76,8 @@ private:
     LockInfo currLock;
     u32 pid;
     u32 pidOriginal;
-    XDRNG *forward = nullptr;
-    XDRNGR *backward = nullptr;
+    XDRNG forward;
+    XDRNGR backward;
     ShadowType type;
     int x;
 

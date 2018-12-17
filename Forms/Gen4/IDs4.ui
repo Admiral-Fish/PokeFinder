@@ -276,6 +276,12 @@ QPushButton {
        </item>
        <item row="7" column="0" colspan="2">
         <widget class="QPushButton" name="pushButtonSearchShinyPID">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -294,6 +300,12 @@ QPushButton {
         <widget class="QPushButton" name="pushButtonCancelShinyPID">
          <property name="enabled">
           <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
          <property name="minimumSize">
           <size>
@@ -482,6 +494,12 @@ QPushButton {
        </item>
        <item row="7" column="0" colspan="2">
         <widget class="QPushButton" name="pushButtonSearchTIDSID">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -500,6 +518,12 @@ QPushButton {
         <widget class="QPushButton" name="pushButtonCancelTIDSID">
          <property name="enabled">
           <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
          <property name="minimumSize">
           <size>
@@ -755,6 +779,12 @@ QPushButton {
        </item>
        <item row="8" column="0" colspan="2">
         <widget class="QPushButton" name="pushButtonSearchSeedFinder">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>0</width>

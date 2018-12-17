@@ -21,14 +21,8 @@
 
 SFMT::SFMT(u32 seed, u32 frames)
 {
-    sfmt = new u32[624];
     initialize(seed);
     advanceFrames(frames);
-}
-
-SFMT::~SFMT()
-{
-    delete sfmt;
 }
 
 void SFMT::advanceFrames(u32 frames)

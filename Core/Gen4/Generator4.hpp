@@ -32,12 +32,10 @@ class Generator4 : public Generator
 public:
     Generator4();
     Generator4(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, Method type);
-    ~Generator4();
     void setEncounter(const EncounterArea4 &value);
     QVector<Frame4> generate(const FrameCompare &compare);
 
 private:
-    PokeRNG *rng = nullptr;
     EncounterArea4 encounter;
 
     QVector<Frame4> generateMethod1(FrameCompare compare);

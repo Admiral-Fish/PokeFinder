@@ -32,7 +32,6 @@ class Generator3: public Generator
 public:
     Generator3();
     Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset);
-    ~Generator3();
     QVector<Frame3> generate(const FrameCompare &compare);
     void setup(Method method);
     void setEncounter(const EncounterArea3 &value);
@@ -40,7 +39,6 @@ public:
 private:
     u8 iv1;
     u8 iv2;
-    LCRNG *rng = nullptr;
     EncounterArea3 encounter;
 
     QVector<Frame3> generateMethodChannel(FrameCompare compare);

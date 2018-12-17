@@ -26,7 +26,6 @@ class MT : public IRNG
 {
 
 public:
-    ~MT() override;
     void advanceFrames(u32 frames) override;
 
 protected:
@@ -37,7 +36,7 @@ protected:
     static const u32 TEMPERINGMASKB = 0x9D2C5680;
     static const u32 TEMPERINGMASKC = 0xEFC60000;
     const u32 mag01[2] = { 0x0, 0x9908B0DF };
-    u32 *mt = nullptr;
+    u32 mt[624];
     u32 seed;
     u32 index;
 

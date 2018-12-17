@@ -50,7 +50,7 @@ private:
     QStandardItemModel *model = new QStandardItemModel(this);
 
     void setupModels();
-    void updateModel(QVector<QList<QStandardItem *>> frames, int progress);
+    void updateView(QVector<QList<QStandardItem *>> frames, int progress);
 
 private slots:
     void on_pushButtonSearchShinyPID_clicked();
@@ -66,9 +66,6 @@ private slots:
 class ShinyPIDSearcher : public QThread
 {
     Q_OBJECT
-
-signals:
-    void resultReady(QVector <QList<QStandardItem *>> frames);
 
 public:
     ShinyPIDSearcher(u32 pid, bool useTID, u16 tid, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
@@ -98,9 +95,6 @@ private:
 class TIDSIDSearcher : public QThread
 {
     Q_OBJECT
-
-signals:
-    void resultReady(QVector<QList<QStandardItem *>> frames);
 
 public:
     TIDSIDSearcher(u16 tid, bool useSID, u16 searchSID, u32 year, u32 minDelay, u32 maxDelay, bool infinite);

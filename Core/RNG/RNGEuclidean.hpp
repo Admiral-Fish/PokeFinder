@@ -28,6 +28,7 @@ class RNGEuclidean
 {
 
 public:
+    RNGEuclidean() = default;
     RNGEuclidean(Method FrameType);
     QVector<QPair<u32, u32>> recoverLower16BitsIV(u32 first, u32 second);
     QVector<QPair<u32, u32>> recoverLower16BitsPID(u32 first, u32 second);
