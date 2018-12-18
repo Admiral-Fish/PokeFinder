@@ -759,10 +759,11 @@ void WildSearcher3::run()
                                 return;
                             }
 
+                            auto frames = searcher.search(a, b, c, d, e, f);
                             progress++;
 
                             QMutexLocker locker(&mutex);
-                            results.append(searcher.search(a, b, c, d, e, f));
+                            results.append(frames);
                         }
                     }
                 }
