@@ -2,7 +2,7 @@ environment:
   matrix:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     QTDIR: C:\Qt\5.11\msvc2017_64
-    BUILDER: NMAKE
+    BUILDER: JOM
     ARCH: x64
     OS: windows
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
@@ -21,9 +21,9 @@ services:
 
 install:
     # Windows
-    - cmd: set PATH=%QTDIR%\bin;%PATH%
+    - cmd: set PATH=%QTDIR%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
     - cmd: if "%BUILDER%"=="MINGW" set PATH=C:\Qt\Tools\mingw530_32\bin;%PATH%
-    - cmd: if "%BUILDER%"=="NMAKE" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+    - cmd: if "%BUILDER%"=="JOM" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
     # Linux
     - sh: sudo service docker start
     
@@ -31,7 +31,7 @@ build_script:
     # Windows
     - cmd: qmake PokeFinder.pro
     - cmd: if "%BUILDER%"=="MINGW" mingw32-make
-    - cmd: if "%BUILDER%"=="NMAKE" nmake
+    - cmd: if "%BUILDER%"=="JOM" jom -j %NUMBER_OF_PROCESSORS%
     # Linux
     - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.12-desktop sudo /opt/Qt/5.12.0/gcc_64/bin/qmake
     - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.12-desktop sudo make
