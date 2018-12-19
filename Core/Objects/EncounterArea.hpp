@@ -35,14 +35,15 @@ public:
     EncounterArea() = default;
     EncounterArea(int location, Encounter type, const QVector<Slot> &pokemon);
     Encounter getType() const;
-    int getLocation() const;
-    QVector<int> getUniqueSpecies() const;
-    QVector<bool> getSlots(u32 num) const;
+    u8 getLocation() const;
+    QVector<u16> getUniqueSpecies() const;
+    QVector<bool> getSlots(u16 num) const;
     QStringList getSpecieNames() const;
+    void setSlot(u8 index, u8 specie);
 
 protected:
     QVector<Slot> pokemon;
-    int location;
+    u8 location;
     Encounter type;
 
 };
@@ -52,18 +53,18 @@ class Slot
 
 public:
     Slot() = default;
-    Slot(int specie, u16 minLevel, u16 maxLevel);
-    Slot(int specie, u16 level);
+    Slot(u16 specie, u8 minLevel, u8 maxLevel);
+    Slot(u16 specie, u8 level);
 
-    u16 getMinLevel() const { return minLevel; }
-    u16 getMaxLevel() const { return maxLevel; }
-    int getSpecie() const { return specie; }
+    u8 getMinLevel() const { return minLevel; }
+    u8 getMaxLevel() const { return maxLevel; }
+    u16 getSpecie() const { return specie; }
     void setSpecie(int specie) { this->specie = specie; }
 
 private:
-    u16 minLevel;
-    u16 maxLevel;
-    int specie;
+    u8 minLevel;
+    u8 maxLevel;
+    u16 specie;
 
 };
 

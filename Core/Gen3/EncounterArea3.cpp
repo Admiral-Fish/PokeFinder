@@ -19,7 +19,7 @@
 
 #include "EncounterArea3.hpp"
 
-EncounterArea3::EncounterArea3(int location, u32 delay, Encounter type, const QVector<Slot> &pokemon)
+EncounterArea3::EncounterArea3(u8 location, u32 delay, Encounter type, const QVector<Slot> &pokemon)
     : EncounterArea(location, type, pokemon)
 {
     this->delay = delay;
@@ -108,9 +108,9 @@ QDataStream &operator>>(QDataStream &in, EncounterArea3 &encounter)
     {
         QVariant specie, min, max;
         in >> specie >> min >> max;
-        pokemon.append(Slot(specie.toInt(), min.toUInt(), max.toUInt()));
+        pokemon.append(Slot(specie.toUInt(), min.toUInt(), max.toUInt()));
     }
 
-    encounter = EncounterArea3(location.toInt(), delay.toUInt(), static_cast<Encounter>(type.toInt()), pokemon);
+    encounter = EncounterArea3(location.toUInt(), delay.toUInt(), static_cast<Encounter>(type.toInt()), pokemon);
     return in;
 }

@@ -3,6 +3,7 @@ equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11):error("You need at le
 
 QT += network widgets
 CONFIG += c++17
+win32:QMAKE_CXXFLAGS += /std:c++17
 
 TARGET = PokeFinder
 TEMPLATE = app

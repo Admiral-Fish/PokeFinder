@@ -19,14 +19,14 @@
 
 #include "Translator.hpp"
 
-QStringList Translator::getSpecies(const QVector<int> &nums)
+QStringList Translator::getSpecies(const QVector<u16> &nums)
 {
     QStringList species;
 
     QSettings setting;
-    QString path = QString(":/text/species_%1.txt").arg(setting.value("locale", "en").toString());
+    QFile file(QString(":/text/species_%1.txt").arg(setting.value("locale", "en").toString()));
 
-    if (QFile file(path); file.open(QIODevice::ReadOnly))
+    if (file.open(QIODevice::ReadOnly))
     {
         QTextStream ts(&file);
         ts.setCodec("UTF-8");
@@ -37,7 +37,7 @@ QStringList Translator::getSpecies(const QVector<int> &nums)
             input << ts.readLine();
         }
 
-        for (const int &x : nums)
+        for (const u16 &x : nums)
         {
             species.append(input.at(x - 1));
         }
@@ -48,14 +48,14 @@ QStringList Translator::getSpecies(const QVector<int> &nums)
     return species;
 }
 
-QStringList Translator::getLocationsGen3(const QVector<int> &nums)
+QStringList Translator::getLocationsGen3(const QVector<u8> &nums)
 {
     QStringList locations;
 
     QSettings setting;
-    QString path = QString(":/text/rsefrlg_%1.txt").arg(setting.value("locale", "en").toString());
+    QFile file(QString(":/text/rsefrlg_%1.txt").arg(setting.value("locale", "en").toString()));
 
-    if (QFile file(path); file.open(QIODevice::ReadOnly))
+    if (file.open(QIODevice::ReadOnly))
     {
         QTextStream ts(&file);
         ts.setCodec("UTF-8");
@@ -66,7 +66,7 @@ QStringList Translator::getLocationsGen3(const QVector<int> &nums)
             input << ts.readLine();
         }
 
-        for (const int &x : nums)
+        for (const u8 &x : nums)
         {
             locations.append(input.at(x));
         }
@@ -77,7 +77,7 @@ QStringList Translator::getLocationsGen3(const QVector<int> &nums)
     return locations;
 }
 
-QStringList Translator::getLocationsGen4(const QVector<int> &nums, Game game)
+QStringList Translator::getLocationsGen4(const QVector<u8> &nums, Game game)
 {
     QStringList locations;
 
@@ -97,9 +97,9 @@ QStringList Translator::getLocationsGen4(const QVector<int> &nums, Game game)
     }
 
     QSettings setting;
-    QString path = QString(":/text/%1_%2.txt").arg(version, setting.value("locale", "en").toString());
+    QFile file(QString(":/text/%1_%2.txt").arg(version, setting.value("locale", "en").toString()));
 
-    if (QFile file(path); file.open(QIODevice::ReadOnly))
+    if (file.open(QIODevice::ReadOnly))
     {
         QTextStream ts(&file);
         ts.setCodec("UTF-8");
@@ -110,7 +110,7 @@ QStringList Translator::getLocationsGen4(const QVector<int> &nums, Game game)
             input << ts.readLine();
         }
 
-        for (const int &x : nums)
+        for (const u8 &x : nums)
         {
             locations.append(input.at(x));
         }

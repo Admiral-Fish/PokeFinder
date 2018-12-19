@@ -25,12 +25,13 @@
 #include <QTextStream>
 #include <QVector>
 #include <Core/Objects/Game.hpp>
+#include <Core/Objects/Global.hpp>
 
 namespace Translator
 {
-    QStringList getSpecies(const QVector<int> &nums);
-    QStringList getLocationsGen3(const QVector<int> &nums);
-    QStringList getLocationsGen4(const QVector<int> &nums, Game game);
+    QStringList getSpecies(const QVector<u16> &nums);
+    QStringList getLocationsGen3(const QVector<u8> &nums);
+    QStringList getLocationsGen4(const QVector<u8> &nums, Game game);
 };
 
 #endif // TRANSLATOR_HPP

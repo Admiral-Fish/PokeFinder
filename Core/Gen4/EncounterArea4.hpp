@@ -28,10 +28,9 @@ class EncounterArea4 : public EncounterArea
 
 public:
     EncounterArea4() = default;
-    EncounterArea4(int location, Encounter type, const QVector<Slot> &pokemon);
+    EncounterArea4(u8 location, Encounter type, const QVector<Slot> &pokemon);
     u8 calcLevel(u8 index, u16 prng) const;
     u8 calcLevel(u8 index) const;
-    void setSlot(int index, int specie);
     u16 getEncounterRate() const;
 
 };

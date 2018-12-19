@@ -19,7 +19,7 @@
 
 #include "EncounterArea4.hpp"
 
-EncounterArea4::EncounterArea4(int location, Encounter type, const QVector<Slot> &pokemon)
+EncounterArea4::EncounterArea4(u8 location, Encounter type, const QVector<Slot> &pokemon)
     : EncounterArea(location, type, pokemon)
 {
 }
@@ -32,11 +32,6 @@ u8 EncounterArea4::calcLevel(u8 index, u16 prng) const
 u8 EncounterArea4::calcLevel(u8 index) const
 {
     return pokemon.at(index).getMinLevel();
-}
-
-void EncounterArea4::setSlot(int index, int specie)
-{
-    pokemon[index].setSpecie(specie);
 }
 
 u16 EncounterArea4::getEncounterRate() const

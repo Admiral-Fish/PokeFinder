@@ -121,7 +121,7 @@ void Wild4::updateLocationsGenerator()
     auto profile = profiles[ui->comboBoxProfiles->currentIndex()];
 
     encounterGenerator = Encounters4(encounter, time, profile).getEncounters();
-    QVector<int> locs;
+    QVector<u8> locs;
     for (const auto &area : encounterGenerator)
     {
         locs.append(area.getLocation());
@@ -140,7 +140,7 @@ void Wild4::updateLocationsSearcher()
     auto profile = profiles[ui->comboBoxProfiles->currentIndex()];
 
     encounterSearcher = Encounters4(encounter, time, profile).getEncounters();
-    QVector<int> locs;
+    QVector<u8> locs;
     for (const auto &area : encounterSearcher)
     {
         locs.push_back(area.getLocation());
@@ -160,7 +160,7 @@ void Wild4::updatePokemonGenerator()
     }
 
     auto area = encounterGenerator[ui->comboBoxLocationGenerator->currentIndex()];
-    QVector<int> species = area.getUniqueSpecies();
+    QVector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
 
@@ -180,7 +180,7 @@ void Wild4::updatePokemonSearcher()
     }
 
     auto area = encounterSearcher[ui->comboBoxLocationSearcher->currentIndex()];
-    QVector<int> species = area.getUniqueSpecies();
+    QVector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
 
@@ -500,7 +500,7 @@ void Wild4::on_comboBoxPokemonGenerator_currentIndexChanged(int index)
         return;
     }
 
-    u32 num = ui->comboBoxPokemonGenerator->currentData().toUInt();
+    u16 num = ui->comboBoxPokemonGenerator->currentData().toUInt();
     QVector<bool> flags = encounterGenerator[ui->comboBoxLocationGenerator->currentIndex()].getSlots(num);
 
     ui->comboBoxSlotGenerator->setChecks(flags);
@@ -514,7 +514,7 @@ void Wild4::on_comboBoxPokemonSearcher_currentIndexChanged(int index)
         return;
     }
 
-    u32 num = ui->comboBoxPokemonSearcher->currentData().toUInt();
+    u16 num = ui->comboBoxPokemonSearcher->currentData().toUInt();
     QVector<bool> flags = encounterSearcher[ui->comboBoxLocationSearcher->currentIndex()].getSlots(num);
 
     ui->comboBoxSlotSearcher->setChecks(flags);

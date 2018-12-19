@@ -119,8 +119,8 @@ QVector<EncounterArea4> Encounters4::getHGSS(const QByteArray &data, int i) cons
         QVector<Slot> pokemon;
         for (int i = 0; i < 12; i++)
         {
-            int level = getValue(data, 3 + i * 7, 1);
-            int specie = getValue(data, 3 + t + i * 7, 2);
+            u8 level = getValue(data, 3 + i * 7, 1);
+            u16 specie = getValue(data, 3 + t + i * 7, 2);
             pokemon.append(Slot(specie, level));
         }
 
@@ -134,9 +134,9 @@ QVector<EncounterArea4> Encounters4::getHGSS(const QByteArray &data, int i) cons
         QVector<Slot> pokemon;
         for (int i = 0; i < 2; i++)
         {
-            int min = getValue(data, 95 + i * 4, 1);
-            int max = getValue(data, 96 + i * 4, 1);
-            int specie = getValue(data, 97 + i * 4, 2);
+            u8 min = getValue(data, 95 + i * 4, 1);
+            u8 max = getValue(data, 96 + i * 4, 1);
+            u16 specie = getValue(data, 97 + i * 4, 2);
             pokemon.append(Slot(specie, min, max));
         }
         encounters.append(EncounterArea4(i, Encounter::RockSmash, pokemon));
@@ -146,9 +146,9 @@ QVector<EncounterArea4> Encounters4::getHGSS(const QByteArray &data, int i) cons
         QVector<Slot> surf;
         for (int i = 0; i < 5; i++)
         {
-            int min = getValue(data, 103 + i * 4, 1);
-            int max = getValue(data, 103 + 1 + i * 4, 1);
-            int specie = getValue(data, 103 + 2 + i * 4, 2);
+            u8 min = getValue(data, 103 + i * 4, 1);
+            u8 max = getValue(data, 103 + 1 + i * 4, 1);
+            u16 specie = getValue(data, 103 + 2 + i * 4, 2);
             surf.append(Slot(specie, min, max));
         }
         modifySwarmHGSS(surf, data);
@@ -157,9 +157,9 @@ QVector<EncounterArea4> Encounters4::getHGSS(const QByteArray &data, int i) cons
         QVector<Slot> old;
         for (int i = 0; i < 5; i++)
         {
-            int min = getValue(data, 123 + i * 4, 1);
-            int max = getValue(data, 123 + 1 + i * 4, 1);
-            int specie = getValue(data, 123 + 2 + i * 4, 2);
+            u8 min = getValue(data, 123 + i * 4, 1);
+            u8 max = getValue(data, 123 + 1 + i * 4, 1);
+            u16 specie = getValue(data, 123 + 2 + i * 4, 2);
             old.append(Slot(specie, min, max));
         }
         encounters.append(EncounterArea4(i, Encounter::OldRod, old));
@@ -167,9 +167,9 @@ QVector<EncounterArea4> Encounters4::getHGSS(const QByteArray &data, int i) cons
         QVector<Slot> good;
         for (int i = 0; i < 5; i++)
         {
-            int min = getValue(data, 143 + i * 4, 1);
-            int max = getValue(data, 143 + 1 + i * 4, 1);
-            int specie = getValue(data, 143 + 2 + i * 4, 2);
+            u8 min = getValue(data, 143 + i * 4, 1);
+            u8 max = getValue(data, 143 + 1 + i * 4, 1);
+            u16 specie = getValue(data, 143 + 2 + i * 4, 2);
             good.append(Slot(specie, min, max));
         }
         modifySwarmHGSS(good, data);
@@ -178,9 +178,9 @@ QVector<EncounterArea4> Encounters4::getHGSS(const QByteArray &data, int i) cons
         QVector<Slot> super;
         for (int i = 0; i < 5; i++)
         {
-            int min = getValue(data, 163 + i * 4, 1);
-            int max = getValue(data, 163 + 1 + i * 4, 1);
-            int specie = getValue(data, 163 + 2 + i * 4, 2);
+            u8 min = getValue(data, 163 + i * 4, 1);
+            u8 max = getValue(data, 163 + 1 + i * 4, 1);
+            u16 specie = getValue(data, 163 + 2 + i * 4, 2);
             super.append(Slot(specie, min, max));
         }
         modifySwarmHGSS(super, data);
@@ -197,8 +197,8 @@ QVector<EncounterArea4> Encounters4::getDPPt(const QByteArray &data, int i) cons
         QVector<Slot> pokemon;
         for (int i = 0; i < 12; i++)
         {
-            int level = getValue(data, 2 + i * 3, 1);
-            int specie = getValue(data, 3 + i * 3, 2);
+            u8 level = getValue(data, 2 + i * 3, 1);
+            u16 specie = getValue(data, 3 + i * 3, 2);
             pokemon.append(Slot(specie, level));
         }
 
@@ -214,9 +214,9 @@ QVector<EncounterArea4> Encounters4::getDPPt(const QByteArray &data, int i) cons
         QVector<Slot> surf;
         for (int i = 0; i < 5; i++)
         {
-            int min = getValue(data, 78 + i * 4, 1);
-            int max = getValue(data, 78 + 1 + i * 4, 1);
-            int specie = getValue(data, 78 + 2 + i * 4, 2);
+            u8 min = getValue(data, 78 + i * 4, 1);
+            u8 max = getValue(data, 78 + 1 + i * 4, 1);
+            u16 specie = getValue(data, 78 + 2 + i * 4, 2);
             surf.append(Slot(specie, min, max));
         }
         encounters.append(EncounterArea4(i, Encounter::Surfing, surf));
@@ -224,9 +224,9 @@ QVector<EncounterArea4> Encounters4::getDPPt(const QByteArray &data, int i) cons
         QVector<Slot> old;
         for (int i = 0; i < 5; i++)
         {
-            int min = getValue(data, 98 + i * 4, 1);
-            int max = getValue(data, 98 + 1 + i * 4, 1);
-            int specie = getValue(data, 98 + 2 + i * 4, 2);
+            u8 min = getValue(data, 98 + i * 4, 1);
+            u8 max = getValue(data, 98 + 1 + i * 4, 1);
+            u16 specie = getValue(data, 98 + 2 + i * 4, 2);
             old.append(Slot(specie, min, max));
         }
         encounters.append(EncounterArea4(i, Encounter::OldRod, old));
@@ -234,9 +234,9 @@ QVector<EncounterArea4> Encounters4::getDPPt(const QByteArray &data, int i) cons
         QVector<Slot> good;
         for (int i = 0; i < 5; i++)
         {
-            int min = getValue(data, 118 + i * 4, 1);
-            int max = getValue(data, 118 + 1 + i * 4, 1);
-            int specie = getValue(data, 118 + 2 + i * 4, 2);
+            u8 min = getValue(data, 118 + i * 4, 1);
+            u8 max = getValue(data, 118 + 1 + i * 4, 1);
+            u16 specie = getValue(data, 118 + 2 + i * 4, 2);
             good.append(Slot(specie, min, max));
         }
         encounters.append(EncounterArea4(i, Encounter::GoodRod, good));
@@ -244,9 +244,9 @@ QVector<EncounterArea4> Encounters4::getDPPt(const QByteArray &data, int i) cons
         QVector<Slot> super;
         for (int i = 0; i < 5; i++)
         {
-            int min = getValue(data, 138 + i * 4, 1);
-            int max = getValue(data, 138 + 1 + i * 4, 1);
-            int specie = getValue(data, 138 + 2 + i * 4, 2);
+            u8 min = getValue(data, 138 + i * 4, 1);
+            u8 max = getValue(data, 138 + 1 + i * 4, 1);
+            u16 specie = getValue(data, 138 + 2 + i * 4, 2);
             super.append(Slot(specie, min, max));
         }
         encounters.append(EncounterArea4(i, Encounter::SuperRod, super));
