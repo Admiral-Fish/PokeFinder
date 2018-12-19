@@ -29,12 +29,6 @@ public:
     void advanceFrames(u32 frames) override;
 
 protected:
-    static const u32 LOWERMASK = 0x7FFFFFFF;
-    static const int M = 397;
-    static const int N = 624;
-    static const u32 UPPERMASK = 0x80000000;
-    static const u32 TEMPERINGMASKB = 0x9D2C5680;
-    static const u32 TEMPERINGMASKC = 0xEFC60000;
     const u32 mag01[2] = { 0x0, 0x9908B0DF };
     u32 mt[624];
     u32 seed;
@@ -95,7 +89,6 @@ public:
     u32 getSeed() override;
 
 private:
-    static const u32 TEMPERINGMASKC2 = 0xEF000000;
     u32 max;
     u32 maxCalls;
 

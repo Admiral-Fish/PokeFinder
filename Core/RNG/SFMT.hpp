@@ -35,13 +35,6 @@ public:
     u64 getSeed() override;
 
 private:
-    static const u32 CMSK1 = 0xdfffffef;
-    static const u32 CMSK2 = 0xddfecb7f;
-    static const u32 CMSK3 = 0xbffaffff;
-    static const u32  CMSK4 = 0xbffffff6;
-    static const int CSL1 = 18;
-    static const int CSR1 = 11;
-    static const int N32 = 624;
     const u32 parity[4] = { 0x1, 0x0, 0x0, 0x13c9e684 };
     u32 sfmt[624];
     u32 seed;

@@ -37,7 +37,7 @@ class SearchCoinFlips : public QDialog
 public:
     explicit SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent = nullptr);
     ~SearchCoinFlips() override;
-    QVector<bool> possibleResults();
+    QVector<bool> possibleResults() const;
 
 private:
     Ui::SearchCoinFlips *ui;

@@ -39,15 +39,15 @@ private:
     // Radio 0: None, 1: Hoenn, 2: Sinnoh, For HGSS
 
     QByteArrayList getData() const;
-    QVector<EncounterArea4> getHGSS(const QByteArray &data, int i);
-    QVector<EncounterArea4> getDPPt(const QByteArray &data, int i);
-    void modifyRadio(QVector<Slot> &pokemon, const QByteArray &data);
-    void modifyTime(QVector<Slot> &pokemon, const QByteArray &data);
-    void modifyDual(QVector<Slot> &pokemon, const QByteArray &data);
-    void modifyRadar(QVector<Slot> &pokemon, const QByteArray &data);
-    void modifySwarmHGSS(QVector<Slot> &pokemon, const QByteArray &data);
-    void modifySwarmDPPt(QVector<Slot> &pokemon, const QByteArray &data);
-    inline u16 getValue(const QByteArray &data, int offset, int length);
+    QVector<EncounterArea4> getHGSS(const QByteArray &data, int i) const;
+    QVector<EncounterArea4> getDPPt(const QByteArray &data, int i) const;
+    void modifyRadio(QVector<Slot> &pokemon, const QByteArray &data) const;
+    void modifyTime(QVector<Slot> &pokemon, const QByteArray &data) const;
+    void modifyDual(QVector<Slot> &pokemon, const QByteArray &data) const;
+    void modifyRadar(QVector<Slot> &pokemon, const QByteArray &data) const;
+    void modifySwarmHGSS(QVector<Slot> &pokemon, const QByteArray &data) const;
+    void modifySwarmDPPt(QVector<Slot> &pokemon, const QByteArray &data) const;
+    inline u16 getValue(const QByteArray &data, int offset, int length) const;
 
 };
 

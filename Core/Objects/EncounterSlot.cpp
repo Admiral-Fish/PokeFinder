@@ -31,23 +31,23 @@ Range::Range(u8 min, u8 max)
     this->max = max;
 }
 
-u8 Range::getMax()
+u8 Range::getMax() const
 {
     return max;
 }
 
-u8 Range::getMin()
+u8 Range::getMin() const
 {
     return min;
 }
 
 
-u8 EncounterSlot::calcSlot(u8 compare, QVector<Range> ranges)
+u8 EncounterSlot::calcSlot(u8 compare, const QVector<Range> &ranges)
 {
     u16 size = ranges.size();
     for (u16 i = 0; i < size; i++)
     {
-        if (compare >= ranges[i].getMin() && compare <= ranges[i].getMax())
+        if (compare >= ranges.at(i).getMin() && compare <= ranges.at(i).getMax())
         {
             return i;
         }
@@ -56,9 +56,9 @@ u8 EncounterSlot::calcSlot(u8 compare, QVector<Range> ranges)
 }
 
 // Calcs the encounter slot for Method H 1/2/4 (Emerald, FRLG, RS)
-u8 EncounterSlot::hSlot(u32 result, Encounter encounterType)
+u8 EncounterSlot::hSlot(u16 result, Encounter encounterType)
 {
-    u32 compare = result % 100;
+    u8 compare = result % 100;
     QVector<Range> ranges;
     switch (encounterType)
     {
@@ -85,9 +85,9 @@ u8 EncounterSlot::hSlot(u32 result, Encounter encounterType)
 }
 
 // Calcs the encounter slot for Method J (DPPt)
-u8 EncounterSlot::jSlot(u32 result, Encounter encounterType)
+u8 EncounterSlot::jSlot(u16 result, Encounter encounterType)
 {
-    u32 compare = result / 656;
+    u8 compare = result / 656;
     QVector<Range> ranges;
     switch (encounterType)
     {
@@ -109,9 +109,9 @@ u8 EncounterSlot::jSlot(u32 result, Encounter encounterType)
 }
 
 // Calcs the encounter slot for Method K (HGSS)
-u8 EncounterSlot::kSlot(u32 result, Encounter encounterType)
+u8 EncounterSlot::kSlot(u16 result, Encounter encounterType)
 {
-    u32 compare = result % 100;
+    u8 compare = result % 100;
     QVector<Range> ranges;
     switch (encounterType)
     {

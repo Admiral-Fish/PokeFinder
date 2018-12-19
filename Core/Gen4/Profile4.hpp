@@ -35,11 +35,11 @@ public:
     int getRadio() const;
     bool getRadar() const;
     bool getSwarm() const;
-    QJsonObject getJson();
+    QJsonObject getJson() const;
     static QVector<Profile4> loadProfileList();
-    void saveProfile();
-    void deleteProfile();
-    void updateProfile(Profile4 original);
+    void saveProfile() const;
+    void deleteProfile() const;
+    void updateProfile(const Profile4 &original) const;
 
 private:
     Game dual;

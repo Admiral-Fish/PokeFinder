@@ -24,7 +24,6 @@ Searcher4::Searcher4()
     tid = 12345;
     sid = 54321;
     psv = tid ^ sid;
-    frame.setIDs(tid, sid, psv);
 }
 
 #include <QDebug>
@@ -34,14 +33,13 @@ Searcher4::Searcher4(u16 tid, u16 sid, u8 genderRatio, u32 minDelay, u32 maxDela
     this->tid = tid;
     this->sid = sid;
     psv = tid ^ sid;
-    this->compare = compare;
-    frame.setIDs(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
-    frameType = method;
+    this->genderRatio = genderRatio;
     this->minDelay = minDelay;
     this->maxDelay = maxDelay;
     this->minFrame = minFrame;
     this->maxFrame = maxFrame;
+    this->compare = compare;
+    frameType = method;
     cache.switchCache(method);
 }
 
@@ -50,7 +48,7 @@ void Searcher4::setEncounter(const EncounterArea4 &value)
     encounter = value;
 }
 
-QVector<Frame4> Searcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
     switch (frameType)
@@ -62,11 +60,9 @@ QVector<Frame4> Searcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
             switch (leadType)
             {
                 case Lead::None:
-                    frame.setLeadType(Lead::None);
                     frames = searchMethodJ(hp, atk, def, spa, spd, spe);
                     break;
                 case Lead::Synchronize:
-                    frame.setLeadType(Lead::Synchronize);
                     frames = searchMethodJSynch(hp, atk, def, spa, spd, spe);
                     break;
                 case Lead::CuteCharm:
@@ -83,11 +79,9 @@ QVector<Frame4> Searcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
             switch (leadType)
             {
                 case Lead::None:
-                    frame.setLeadType(Lead::None);
                     frames = searchMethodK(hp, atk, def, spa, spd, spe);
                     break;
                 case Lead::Synchronize:
-                    frame.setLeadType(Lead::Synchronize);
                     frames = searchMethodKSynch(hp, atk, def, spa, spd, spe);
                     break;
                 case Lead::CuteCharm:
@@ -115,11 +109,14 @@ QVector<Frame4> Searcher4::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
     return searchInitialSeeds(frames);
 }
 
-QVector<Frame4> Searcher4::searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -152,11 +149,14 @@ QVector<Frame4> Searcher4::searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -252,11 +252,15 @@ QVector<Frame4> Searcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchMethodJSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchMethodJSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
+    frame.setLeadType(Lead::Synchronize);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -392,11 +396,14 @@ QVector<Frame4> Searcher4::searchMethodJSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -507,11 +514,14 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -789,11 +799,14 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -905,11 +918,14 @@ QVector<Frame4> Searcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -1081,11 +1097,14 @@ QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -1212,11 +1231,14 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -1334,11 +1356,14 @@ QVector<Frame4> Searcher4::searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 sp
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -1679,11 +1704,14 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -1725,11 +1753,14 @@ QVector<Frame4> Searcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<Frame4> Searcher4::searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<Frame4> frames;
 
+    Frame4 frame(tid, sid, psv);
+    frame.setGenderRatio(genderRatio);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
+
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -1754,7 +1785,7 @@ QVector<Frame4> Searcher4::searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8
     return frames;
 }
 
-QVector<Frame4> Searcher4::searchInitialSeeds(QVector<Frame4> results)
+QVector<Frame4> Searcher4::searchInitialSeeds(const QVector<Frame4> &results) const
 {
     QVector<Frame4> frames;
 
@@ -1784,14 +1815,14 @@ QVector<Frame4> Searcher4::searchInitialSeeds(QVector<Frame4> results)
 }
 
 
-u16 Searcher4::chainedPIDLow(const u16 *calls)
+u16 Searcher4::chainedPIDLow(const u16 *calls) const
 {
     return (calls[14] & 7) | ((calls[12] & 1) << 3) | ((calls[11] & 1) << 4) | ((calls[10] & 1) << 5) | ((calls[9] & 1) << 6) |
            ((calls[8] & 1) << 7) | ((calls[7] & 1) << 8) | ((calls[6] & 1) << 9) | ((calls[5] & 1) << 10) | ((calls[4] & 1) << 11) |
            ((calls[3] & 1) << 12) | ((calls[2] & 1) << 13) | ((calls[1] & 1) << 14) | ((calls[0] & 1) << 15);
 }
 
-u16 Searcher4::chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid)
+u16 Searcher4::chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid) const
 {
     return (((low ^ tid ^ sid) & 0xFFF8) | (high & 7));
 }

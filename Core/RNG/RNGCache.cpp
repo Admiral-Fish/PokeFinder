@@ -29,7 +29,7 @@ RNGCache::RNGCache(Method method)
 }
 
 // Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap based on the cache
-QVector<u32> RNGCache::recoverLower16BitsIV(u32 first, u32 second)
+QVector<u32> RNGCache::recoverLower16BitsIV(u32 first, u32 second) const
 {
     QVector<u32> origin;
 
@@ -38,10 +38,9 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u32 first, u32 second)
     u32 search1 = second - first * mult;
     u32 search2 = second - (first ^ 0x80000000) * mult;
 
-    for (u32 i = 0; i < 256; i++, search1 -= k, search2 -= k)
+    for (u16 i = 0; i < 256; i++, search1 -= k, search2 -= k)
     {
-        auto locate = keys.find(search1 >> 16);
-        if (locate != keys.end())
+        if (auto locate = keys.find(search1 >> 16); locate != keys.end())
         {
             u32 test = first | (i << 8) | locate.value();
             // Verify IV calls line up
@@ -51,8 +50,7 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u32 first, u32 second)
             }
         }
 
-        locate = keys.find(search2 >> 16);
-        if (locate != keys.end())
+        if (auto locate = keys.find(search2 >> 16); locate != keys.end())
         {
             u32 test = first | (i << 8) | locate.value();
             // Verify IV calls line up
@@ -67,15 +65,14 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u32 first, u32 second)
 }
 
 // Recovers origin seeds for two 16 bit calls based on the cache
-QVector<u32> RNGCache::recoverLower16BitsPID(u32 first, u32 second)
+QVector<u32> RNGCache::recoverLower16BitsPID(u32 first, u32 second) const
 {
     QVector<u32> origin;
     u32 search = second - first * mult;
 
-    for (u32 i = 0; i < 256; i++, search -= k)
+    for (u16 i = 0; i < 256; i++, search -= k)
     {
-        auto locate = keys.find(search >> 16);
-        if (locate != keys.end())
+        if (auto locate = keys.find(search >> 16); locate != keys.end())
         {
             u32 test = first | (i << 8) | locate.value();
             // Verify PID calls line up
@@ -108,7 +105,7 @@ void RNGCache::populateMap()
 
 void RNGCache::setupCache(Method method)
 {
-    if (method == Method4)
+    if (method == Method::Method4)
     {
         k = 0xa29a6900; // Mult * Mult << 8
         mult = 0xc2a29a69; // Mult * Mult

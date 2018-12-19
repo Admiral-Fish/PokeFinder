@@ -46,7 +46,7 @@ void Generator4::setEncounter(const EncounterArea4 &value)
     encounter = value;
 }
 
-QVector<Frame4> Generator4::generate(const FrameCompare &compare)
+QVector<Frame4> Generator4::generate(const FrameCompare &compare) const
 {
     switch (frameType)
     {
@@ -84,7 +84,7 @@ QVector<Frame4> Generator4::generate(const FrameCompare &compare)
     }
 }
 
-QVector<Frame4> Generator4::generateMethod1(FrameCompare compare)
+QVector<Frame4> Generator4::generateMethod1(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -116,7 +116,7 @@ QVector<Frame4> Generator4::generateMethod1(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Generator4::generateMethodJ(FrameCompare compare)
+QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -213,7 +213,7 @@ QVector<Frame4> Generator4::generateMethodJ(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Generator4::generateMethodJSynch(FrameCompare compare)
+QVector<Frame4> Generator4::generateMethodJSynch(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -317,7 +317,7 @@ QVector<Frame4> Generator4::generateMethodJSynch(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Generator4::generateMethodJCuteCharm(FrameCompare compare)
+QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -454,7 +454,7 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Generator4::generateMethodK(FrameCompare compare)
+QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -584,7 +584,7 @@ QVector<Frame4> Generator4::generateMethodK(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Generator4::generateMethodKSynch(FrameCompare compare)
+QVector<Frame4> Generator4::generateMethodKSynch(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -707,7 +707,7 @@ QVector<Frame4> Generator4::generateMethodKSynch(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Generator4::generateMethodKCuteCharm(FrameCompare compare)
+QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -861,7 +861,7 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Generator4::generateChainedShiny(FrameCompare compare)
+QVector<Frame4> Generator4::generateChainedShiny(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -897,7 +897,7 @@ QVector<Frame4> Generator4::generateChainedShiny(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Generator4::generateWondercardIVs(FrameCompare compare)
+QVector<Frame4> Generator4::generateWondercardIVs(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -927,14 +927,14 @@ QVector<Frame4> Generator4::generateWondercardIVs(FrameCompare compare)
     return frames;
 }
 
-u16 Generator4::chainedPIDLow(u16 low, u16 call1, u16 call2, u16 call3, u16 call4, u16 call5, u16 call6, u16 call7, u16 call8, u16 call9, u16 call10, u16 call11, u16 call12, u16 call13)
+u16 Generator4::chainedPIDLow(u16 low, u16 call1, u16 call2, u16 call3, u16 call4, u16 call5, u16 call6, u16 call7, u16 call8, u16 call9, u16 call10, u16 call11, u16 call12, u16 call13) const
 {
     return (low & 7) | (call13 & 1) << 3 | (call12 & 1) << 4 | (call11 & 1) << 5 | (call10 & 1) << 6 |
            (call9 & 1) << 7 | (call8 & 1) << 8 | (call7 & 1) << 9 | (call6 & 1) << 10 | (call5 & 1) << 11 |
            (call4 & 1) << 12 | (call3 & 1) << 13 | (call2 & 1) << 14 | (call1 & 1) << 15;
 }
 
-u16 Generator4::chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid)
+u16 Generator4::chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid) const
 {
     return (((low ^ tid ^ sid) & 0xFFF8) | (high & 7));
 }

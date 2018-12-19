@@ -19,6 +19,14 @@
 
 #include "TinyMT.hpp"
 
+#define MAT1            0x8f7011ee
+#define MAT2            0xfc78ff1f
+#define TMAT            0x3793fdff
+#define TINYMT32MASK    0x7FFFFFFF
+#define TINYMT32SH0     1
+#define TINYMT32SH1     10
+#define TINYMT32SH8     8
+
 TinyMT::TinyMT(u32 seed, u32 frames)
 {
     initialize(seed);
@@ -27,7 +35,7 @@ TinyMT::TinyMT(u32 seed, u32 frames)
 
 TinyMT::TinyMT(const u32 st[], u32 frames)
 {
-    for (int i = 0; i < 4; i++)
+    for (u8 i = 0; i < 4; i++)
     {
         state[i] = st[i];
     }
@@ -38,7 +46,9 @@ TinyMT::TinyMT(const u32 st[], u32 frames)
 void TinyMT::advanceFrames(u32 frames)
 {
     for (u32 i = 0; i < frames; i++)
+    {
         nextState();
+    }
 }
 
 void TinyMT::nextState()
@@ -67,7 +77,7 @@ u32 TinyMT::nextUInt()
 
 u16 TinyMT::nextUShort()
 {
-    return static_cast<u16>(nextUInt() >> 16);
+    return nextUInt() >> 16;
 }
 
 u32 TinyMT::temper()
@@ -77,7 +87,9 @@ u32 TinyMT::temper()
 
     t0 ^= t1;
     if (t1 & 1)
+    {
         t0 ^= TMAT;
+    }
     return t0;
 }
 
@@ -110,7 +122,7 @@ void TinyMT::initialize(u32 seed)
     state[2] = MAT2;
     state[3] = TMAT;
 
-    for (u32 i = 1; i < 8; i++)
+    for (u8 i = 1; i < 8; i++)
     {
         state[i & 3] ^= i + 0x6c078965 * (state[(i - 1) & 3] ^ (state[(i - 1) & 3] >> 30));
     }
@@ -123,7 +135,6 @@ void TinyMT::initialize(u32 seed)
     }
 }
 
-// Verifies not all 4 Tiny states are 0
 void TinyMT::periodCertification()
 {
     if (state[0] == 0 && state[1] == 0 && state[2] == 0 && state[3] == 0)

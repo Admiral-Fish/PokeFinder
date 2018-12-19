@@ -33,16 +33,16 @@ public:
     Egg4();
     Egg4(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed);
     void setParents(const QVector<u8> &parent1, const QVector<u8> &parent2);
-    QVector<Frame4> generate(const FrameCompare &compare);
+    QVector<Frame4> generate(const FrameCompare &compare) const;
 
 private:
     QVector<u8> parent1;
     QVector<u8> parent2;
 
-    QVector<Frame4> generatePID(FrameCompare compare);
-    QVector<Frame4> generatePIDMasuada(FrameCompare compare);
-    QVector<Frame4> generateIVsDPPt(FrameCompare compare);
-    QVector<Frame4> generateIVsHGSS(FrameCompare compare);
+    QVector<Frame4> generatePID(const FrameCompare &compare) const;
+    QVector<Frame4> generatePIDMasuada(const FrameCompare &compare) const;
+    QVector<Frame4> generateIVsDPPt(const FrameCompare &compare) const;
+    QVector<Frame4> generateIVsHGSS(const FrameCompare &compare) const;
 
 };
 

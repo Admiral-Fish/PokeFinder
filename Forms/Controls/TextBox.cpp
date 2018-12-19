@@ -89,9 +89,13 @@ void TextBox::onTextChanged(QString string)
         u64 temp = string.toULongLong(nullptr, base);
 
         if (temp > maxValue)
+        {
             string = QString::number(maxValue, base);
+        }
         if (temp < minValue)
+        {
             string = QString::number(minValue, base);
+        }
 
         int position = cursorPosition();
         setText(string);

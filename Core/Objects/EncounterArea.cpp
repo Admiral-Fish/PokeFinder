@@ -57,7 +57,7 @@ QVector<bool> EncounterArea::getSlots(u32 num) const
 
     for (const auto &mon : pokemon)
     {
-        flags.append(mon.getSpecie() == static_cast<int>(num));
+        flags.append(mon.getSpecie() == num);
     }
 
     return flags;

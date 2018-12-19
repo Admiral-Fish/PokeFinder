@@ -38,14 +38,14 @@ public:
     DateTime() = default;
     DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes);
     DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info);
-    QString sequence();
-    QString getDate();
-    QString getTime();
-    u32 getSeed();
-    u32 getDelay();
-    Game getVersion();
-    QDateTime getDateTime();
-    HGSSRoamer getInfo();
+    QString sequence() const;
+    QString getDate() const;
+    QString getTime() const;
+    u32 getSeed() const;
+    u32 getDelay() const;
+    Game getVersion() const;
+    QDateTime getDateTime() const;
+    HGSSRoamer getInfo() const;
 
 };
 

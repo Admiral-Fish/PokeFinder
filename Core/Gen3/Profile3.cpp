@@ -42,7 +42,7 @@ bool Profile3::getDeadBattery() const
     return deadBattery;
 }
 
-QJsonObject Profile3::getJson()
+QJsonObject Profile3::getJson() const
 {
     QJsonObject data;
     data["name"] = profileName;
@@ -74,7 +74,7 @@ QVector<Profile3> Profile3::loadProfileList()
     return profileList;
 }
 
-void Profile3::saveProfile()
+void Profile3::saveProfile() const
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
     if (file.open(QIODevice::ReadWrite | QIODevice::Text))
@@ -91,7 +91,7 @@ void Profile3::saveProfile()
     }
 }
 
-void Profile3::deleteProfile()
+void Profile3::deleteProfile() const
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
     if (file.open(QIODevice::ReadWrite | QFile::Text))
@@ -119,7 +119,7 @@ void Profile3::deleteProfile()
     }
 }
 
-void Profile3::updateProfile(Profile3 original)
+void Profile3::updateProfile(const Profile3 &original) const
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
     if (file.open(QIODevice::ReadWrite | QFile::Text))

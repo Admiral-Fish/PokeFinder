@@ -32,34 +32,34 @@ public:
     Searcher4();
     Searcher4(u16 tid, u16 sid, u8 genderRatio, u32 minDelay, u32 maxDelay, u32 minFrame, u32 maxFrame, const FrameCompare &compare, Method method);
     void setEncounter(const EncounterArea4 &value);
-    QVector<Frame4> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+    QVector<Frame4> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
 
 private:
     RNGCache cache;
-    Frame4 frame = Frame4(0, 0, 0);
     EncounterArea4 encounter;
     FrameCompare compare;
     u8 unbiasedBuffer[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };
+    u8 genderRatio;
     u32 minDelay;
     u32 maxDelay;
     u32 minFrame;
     u32 maxFrame;
 
-    QVector<Frame4> searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchMethodJSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame4> searchInitialSeeds(QVector<Frame4> results);
-    u16 chainedPIDLow(const u16 *calls);
-    u16 chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid);
+    QVector<Frame4> searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchMethodJSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<Frame4> searchInitialSeeds(const QVector<Frame4> &results) const;
+    u16 chainedPIDLow(const u16 *calls) const;
+    u16 chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid) const;
 
 };
 

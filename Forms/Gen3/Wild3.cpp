@@ -772,7 +772,7 @@ void WildSearcher3::run()
     }
 }
 
-int WildSearcher3::currentProgress()
+int WildSearcher3::currentProgress() const
 {
     return progress;
 }

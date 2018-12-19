@@ -98,7 +98,7 @@ bool Profile4::getSwarm() const
     return swarm;
 }
 
-QJsonObject Profile4::getJson()
+QJsonObject Profile4::getJson() const
 {
     QJsonObject profile;
     profile["name"] = profileName;
@@ -133,7 +133,7 @@ QVector<Profile4> Profile4::loadProfileList()
     return profileList;
 }
 
-void Profile4::saveProfile()
+void Profile4::saveProfile() const
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
     if (file.open(QIODevice::ReadWrite | QIODevice::Text))
@@ -150,7 +150,7 @@ void Profile4::saveProfile()
     }
 }
 
-void Profile4::deleteProfile()
+void Profile4::deleteProfile() const
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
     if (file.open(QIODevice::ReadWrite | QFile::Text))
@@ -179,7 +179,7 @@ void Profile4::deleteProfile()
     }
 }
 
-void Profile4::updateProfile(Profile4 original)
+void Profile4::updateProfile(const Profile4 &original) const
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
     if (file.open(QIODevice::ReadWrite | QFile::Text))

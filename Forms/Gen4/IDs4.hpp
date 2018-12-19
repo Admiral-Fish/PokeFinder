@@ -70,7 +70,7 @@ class ShinyPIDSearcher : public QThread
 public:
     ShinyPIDSearcher(u32 pid, bool useTID, u16 tid, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
     void run() override;
-    int currentProgress();
+    int currentProgress() const;
     QVector<QList<QStandardItem *>> getResults();
 
 public slots:
@@ -99,7 +99,7 @@ class TIDSIDSearcher : public QThread
 public:
     TIDSIDSearcher(u16 tid, bool useSID, u16 searchSID, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
     void run() override;
-    int currentProgress();
+    int currentProgress() const;
     QVector<QList<QStandardItem *>> getResults();
 
 public slots:

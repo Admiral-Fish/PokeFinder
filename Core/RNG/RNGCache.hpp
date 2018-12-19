@@ -31,8 +31,8 @@ class RNGCache
 public:
     RNGCache() = default;
     RNGCache(Method method);
-    QVector<u32> recoverLower16BitsIV(u32 first, u32 second);
-    QVector<u32> recoverLower16BitsPID(u32 first, u32 second);
+    QVector<u32> recoverLower16BitsIV(u32 first, u32 second) const;
+    QVector<u32> recoverLower16BitsPID(u32 first, u32 second) const;
     void switchCache(Method MethodType);
 
 private:

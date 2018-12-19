@@ -268,7 +268,7 @@ void ShinyPIDSearcher::run()
     }
 }
 
-int ShinyPIDSearcher::currentProgress()
+int ShinyPIDSearcher::currentProgress() const
 {
     return progress;
 }
@@ -339,7 +339,7 @@ void TIDSIDSearcher::run()
     }
 }
 
-int TIDSIDSearcher::currentProgress()
+int TIDSIDSearcher::currentProgress() const
 {
     return progress;
 }

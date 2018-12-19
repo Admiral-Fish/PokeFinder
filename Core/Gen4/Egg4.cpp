@@ -46,7 +46,7 @@ void Egg4::setParents(const QVector<u8> &parent1, const QVector<u8> &parent2)
     this->parent2 = parent2;
 }
 
-QVector<Frame4> Egg4::generate(const FrameCompare &compare)
+QVector<Frame4> Egg4::generate(const FrameCompare &compare) const
 {
     switch (frameType)
     {
@@ -63,7 +63,7 @@ QVector<Frame4> Egg4::generate(const FrameCompare &compare)
     }
 }
 
-QVector<Frame4> Egg4::generatePID(FrameCompare compare)
+QVector<Frame4> Egg4::generatePID(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -86,7 +86,7 @@ QVector<Frame4> Egg4::generatePID(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Egg4::generatePIDMasuada(FrameCompare compare)
+QVector<Frame4> Egg4::generatePIDMasuada(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -123,7 +123,7 @@ QVector<Frame4> Egg4::generatePIDMasuada(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Egg4::generateIVsDPPt(FrameCompare compare)
+QVector<Frame4> Egg4::generateIVsDPPt(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);
@@ -162,7 +162,7 @@ QVector<Frame4> Egg4::generateIVsDPPt(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame4> Egg4::generateIVsHGSS(FrameCompare compare)
+QVector<Frame4> Egg4::generateIVsHGSS(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame = Frame4(tid, sid, psv);

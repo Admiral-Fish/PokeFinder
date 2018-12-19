@@ -404,7 +404,7 @@ void PIDSearcher::run()
     }
 }
 
-int PIDSearcher::currentProgress()
+int PIDSearcher::currentProgress() const
 {
     return progress;
 }
@@ -470,7 +470,7 @@ void IVSearcher::run()
     }
 }
 
-int IVSearcher::currentProgress()
+int IVSearcher::currentProgress() const
 {
     return progress;
 }

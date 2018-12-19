@@ -28,7 +28,7 @@ class Encounters3
 
 public:
     Encounters3(Encounter type, Game game);
-    QVector<EncounterArea3> getEncounters();
+    QVector<EncounterArea3> getEncounters() const;
 
 private:
     Encounter type;

@@ -37,49 +37,42 @@ DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGS
     this->info = info;
 }
 
-QString DateTime::sequence()
+QString DateTime::sequence() const
 {
-    if (version & Game::HGSS)
-    {
-        return Utilities::getCalls(seed, 15, info);
-    }
-    else
-    {
-        return Utilities::coinFlips(seed, 15);
-    }
+    return version & Game::HGSS ? Utilities::getCalls(seed, 15, info) : Utilities::coinFlips(seed, 15);
 }
 
-QString DateTime::getDate()
+QString DateTime::getDate() const
 {
     return dateTime.date().toString(Qt::SystemLocaleShortDate);
 }
 
-QString DateTime::getTime()
+QString DateTime::getTime() const
 {
     return dateTime.time().toString();
 }
 
-u32 DateTime::getSeed()
+u32 DateTime::getSeed() const
 {
     return seed;
 }
 
-u32 DateTime::getDelay()
+u32 DateTime::getDelay() const
 {
     return delay;
 }
 
-Game DateTime::getVersion()
+Game DateTime::getVersion() const
 {
     return version;
 }
 
-QDateTime DateTime::getDateTime()
+QDateTime DateTime::getDateTime() const
 {
     return dateTime;
 }
 
-HGSSRoamer DateTime::getInfo()
+HGSSRoamer DateTime::getInfo() const
 {
     return info;
 }

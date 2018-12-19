@@ -30,11 +30,11 @@ public:
     Profile3(QJsonObject data);
     Profile3();
     bool getDeadBattery() const;
-    QJsonObject getJson();
+    QJsonObject getJson() const;
     static QVector<Profile3> loadProfileList();
-    void saveProfile();
-    void deleteProfile();
-    void updateProfile(Profile3 original);
+    void saveProfile() const;
+    void deleteProfile() const;
+    void updateProfile(const Profile3 &original) const;
 
 private:
     bool deadBattery;

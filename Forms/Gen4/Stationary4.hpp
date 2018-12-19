@@ -85,7 +85,7 @@ class StationarySearcher4 : public QThread
 public:
     StationarySearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max);
     void run() override;
-    int currentProgress();
+    int currentProgress() const;
     QVector<Frame4> getResults();
 
 public slots:

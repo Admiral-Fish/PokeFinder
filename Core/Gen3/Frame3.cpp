@@ -33,7 +33,7 @@ Frame3::Frame3(u16 tid, u16 sid, u16 psv)
     this->psv = psv;
 }
 
-QString Frame3::getTime()
+QString Frame3::getTime() const
 {
     int seconds = frame / 60;
     int milliseconds = ((frame % 60) * 100) / 60;
@@ -55,7 +55,7 @@ QString Frame3::getTime()
     return QString("%1 h %2 m %3.%4 s").arg(hours).arg(minutes).arg(seconds).arg(milliseconds, 2, 10, QChar('0'));
 }
 
-QString Frame3::getTimeEgg()
+QString Frame3::getTimeEgg() const
 {
     int seconds = occidentary / 60;
     int milliseconds = ((occidentary % 60) * 100) / 60;
@@ -77,7 +77,7 @@ QString Frame3::getTimeEgg()
     return QString("%1 h %2 m %3.%4 s").arg(hours).arg(minutes).arg(seconds).arg(milliseconds, 2, 10, QChar('0'));
 }
 
-void Frame3::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2, u16 inh3, QVector<u8> parent1, QVector<u8> parent2, bool broken)
+void Frame3::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2, u16 inh3, const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken)
 {
     ivs[0] = iv1 & 0x1f;
     ivs[1] = (iv1 >> 5) & 0x1f;
@@ -100,22 +100,22 @@ void Frame3::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 
         switch (ivslot)
         {
             case 0:
-                ivs[0] = par == 0 ? parent1[0] : parent2[0];
+                ivs[0] = par == 0 ? parent1.at(0) : parent2.at(0);
                 break;
             case 1:
-                ivs[1] = par == 0 ? parent1[1] : parent2[1];
+                ivs[1] = par == 0 ? parent1.at(1) : parent2.at(1);
                 break;
             case 2:
-                ivs[2] = par == 0 ? parent1[2] : parent2[2];
+                ivs[2] = par == 0 ? parent1.at(2) : parent2.at(2);
                 break;
             case 3:
-                ivs[5] = par == 0 ? parent1[5] : parent2[5];
+                ivs[5] = par == 0 ? parent1.at(5) : parent2.at(5);
                 break;
             case 4:
-                ivs[3] = par == 0 ? parent1[3] : parent2[3];
+                ivs[3] = par == 0 ? parent1.at(3) : parent2.at(3);
                 break;
             case 5:
-                ivs[4] = par == 0 ? parent1[4] : parent2[4];
+                ivs[4] = par == 0 ? parent1.at(4) : parent2.at(4);
                 break;
         }
 

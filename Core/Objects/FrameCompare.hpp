@@ -35,14 +35,14 @@ public:
                  const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare, const QVector<bool> &encounter);
     FrameCompare(int genderIndex, int genderRatioIndex, int abilityIndex, QVector<bool> nature, bool onlyShiny);
     FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, const QVector<bool> &power);
-    bool comparePID(const Frame &frame);
-    bool compareIVs(const Frame &frame);
-    bool compareNature(const Frame &frame);
-    bool compareHiddenPower(const Frame &frame);
-    bool compareSlot(const Frame &frame);
-    bool compareGender(const Frame &frame);
-    bool compareFrame(const Frame &frame);
-    u8 getGenderRatio();
+    bool comparePID(const Frame &frame) const;
+    bool compareIVs(const Frame &frame) const;
+    bool compareNature(const Frame &frame) const;
+    bool compareHiddenPower(const Frame &frame) const;
+    bool compareSlot(const Frame &frame) const;
+    bool compareGender(const Frame &frame) const;
+    bool compareFrame(const Frame &frame) const;
+    u8 getGenderRatio() const;
 
 private:
     QVector<u8> eval;

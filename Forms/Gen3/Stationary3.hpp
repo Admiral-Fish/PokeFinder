@@ -99,7 +99,7 @@ class StationarySearcher3 : public QThread
 public:
     StationarySearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max);
     void run() override;
-    int currentProgress();
+    int currentProgress() const;
     QVector<Frame3> getResults();
 
 public slots:

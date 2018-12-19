@@ -40,7 +40,7 @@ Generator3::Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 ti
     psv = tid ^ sid;
 }
 
-QVector<Frame3> Generator3::generate(const FrameCompare &compare)
+QVector<Frame3> Generator3::generate(const FrameCompare &compare) const
 {
     switch (frameType)
     {
@@ -98,7 +98,7 @@ void Generator3::setEncounter(const EncounterArea3 &value)
     encounter = value;
 }
 
-QVector<Frame3> Generator3::generateMethodChannel(FrameCompare compare)
+QVector<Frame3> Generator3::generateMethodChannel(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
@@ -139,7 +139,7 @@ QVector<Frame3> Generator3::generateMethodChannel(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Generator3::generateMethodH124(FrameCompare compare)
+QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
@@ -265,7 +265,7 @@ QVector<Frame3> Generator3::generateMethodH124(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Generator3::generateMethodH124Synch(FrameCompare compare)
+QVector<Frame3> Generator3::generateMethodH124Synch(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
@@ -400,7 +400,7 @@ QVector<Frame3> Generator3::generateMethodH124Synch(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Generator3::generateMethodH124CuteCharm(FrameCompare compare)
+QVector<Frame3> Generator3::generateMethodH124CuteCharm(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
@@ -579,7 +579,7 @@ QVector<Frame3> Generator3::generateMethodH124CuteCharm(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Generator3::generateMethodXDColo(FrameCompare compare)
+QVector<Frame3> Generator3::generateMethodXDColo(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
@@ -610,7 +610,7 @@ QVector<Frame3> Generator3::generateMethodXDColo(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Generator3::generateMethod124(FrameCompare compare)
+QVector<Frame3> Generator3::generateMethod124(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
@@ -643,7 +643,7 @@ QVector<Frame3> Generator3::generateMethod124(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Generator3::generateMethod1Reverse(FrameCompare compare)
+QVector<Frame3> Generator3::generateMethod1Reverse(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);

@@ -32,7 +32,7 @@ QVector<EncounterArea4> Encounters4::getEncounters()
     QByteArrayList entries = getData();
     for (int i = 0; i < entries.size(); i++)
     {
-        QByteArray data = entries[i];
+        const QByteArray &data = entries.at(i);
         if (profile.getVersion() & Game::HGSS)
         {
             for (const auto &encounter : getHGSS(data, i))
@@ -45,12 +45,6 @@ QVector<EncounterArea4> Encounters4::getEncounters()
         }
         else
         {
-            if (i == 65)
-            {
-                int x = 5;
-                x++;
-            }
-
             for (const auto &encounter : getDPPt(data, i))
             {
                 if (encounter.getType() == type)
@@ -94,8 +88,7 @@ QByteArrayList Encounters4::getData() const
     }
 
     QByteArray data;
-    QFile file(path);
-    if (file.open(QIODevice::ReadOnly))
+    if (QFile file(path); file.open(QIODevice::ReadOnly))
     {
         data = file.readAll();
         file.close();
@@ -110,7 +103,7 @@ QByteArrayList Encounters4::getData() const
     return encounters;
 }
 
-QVector<EncounterArea4> Encounters4::getHGSS(const QByteArray &data, int i)
+QVector<EncounterArea4> Encounters4::getHGSS(const QByteArray &data, int i) const
 {
     QVector<EncounterArea4> encounters;
     if (getValue(data, 0, 1) == 1)
@@ -196,7 +189,7 @@ QVector<EncounterArea4> Encounters4::getHGSS(const QByteArray &data, int i)
     return encounters;
 }
 
-QVector<EncounterArea4> Encounters4::getDPPt(const QByteArray &data, int i)
+QVector<EncounterArea4> Encounters4::getDPPt(const QByteArray &data, int i) const
 {
     QVector<EncounterArea4> encounters;
     if (getValue(data, 0, 1) == 1)
@@ -261,7 +254,7 @@ QVector<EncounterArea4> Encounters4::getDPPt(const QByteArray &data, int i)
     return encounters;
 }
 
-void Encounters4::modifyRadio(QVector<Slot> &pokemon, const QByteArray &data)
+void Encounters4::modifyRadio(QVector<Slot> &pokemon, const QByteArray &data) const
 {
     if (profile.getRadio() == 1)
     {
@@ -279,7 +272,7 @@ void Encounters4::modifyRadio(QVector<Slot> &pokemon, const QByteArray &data)
     }
 }
 
-void Encounters4::modifyTime(QVector<Slot> &pokemon, const QByteArray &data)
+void Encounters4::modifyTime(QVector<Slot> &pokemon, const QByteArray &data) const
 {
     if (time == 1)
     {
@@ -293,7 +286,7 @@ void Encounters4::modifyTime(QVector<Slot> &pokemon, const QByteArray &data)
     }
 }
 
-void Encounters4::modifyDual(QVector<Slot> &pokemon, const QByteArray &data)
+void Encounters4::modifyDual(QVector<Slot> &pokemon, const QByteArray &data) const
 {
     Game dual = profile.getDualSlot();
     if (dual == Game::Ruby)
@@ -323,7 +316,7 @@ void Encounters4::modifyDual(QVector<Slot> &pokemon, const QByteArray &data)
     }
 }
 
-void Encounters4::modifyRadar(QVector<Slot> &pokemon, const QByteArray &data)
+void Encounters4::modifyRadar(QVector<Slot> &pokemon, const QByteArray &data) const
 {
     if (profile.getRadar())
     {
@@ -334,7 +327,7 @@ void Encounters4::modifyRadar(QVector<Slot> &pokemon, const QByteArray &data)
     }
 }
 
-void Encounters4::modifySwarmHGSS(QVector<Slot> &pokemon, const QByteArray &data)
+void Encounters4::modifySwarmHGSS(QVector<Slot> &pokemon, const QByteArray &data) const
 {
     if (profile.getSwarm())
     {
@@ -361,7 +354,7 @@ void Encounters4::modifySwarmHGSS(QVector<Slot> &pokemon, const QByteArray &data
     }
 }
 
-void Encounters4::modifySwarmDPPt(QVector<Slot> &pokemon, const QByteArray &data)
+void Encounters4::modifySwarmDPPt(QVector<Slot> &pokemon, const QByteArray &data) const
 {
     if (profile.getSwarm())
     {
@@ -370,7 +363,7 @@ void Encounters4::modifySwarmDPPt(QVector<Slot> &pokemon, const QByteArray &data
     }
 }
 
-u16 Encounters4::getValue(const QByteArray &data, int offset, int length)
+u16 Encounters4::getValue(const QByteArray &data, int offset, int length) const
 {
     return data.mid(offset, length).toHex().toUShort(nullptr, 16);
 }

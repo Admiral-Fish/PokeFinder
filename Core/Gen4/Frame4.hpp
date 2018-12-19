@@ -29,9 +29,9 @@ public:
     Frame4();
     Frame4(u16 tid, u16 sid, u16 psv);
     void setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2,
-                        u16 inh3, QVector<u8> parent1, QVector<u8> parent2, bool broken = false);
-    QString getCall();
-    QString chatotPitch();
+                        u16 inh3, const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken = false);
+    QString getCall() const;
+    QString chatotPitch() const;
     u32 getInitialSeed() const;
     void setInitialSeed(const u32 &value);
     u32 getSeed() const;

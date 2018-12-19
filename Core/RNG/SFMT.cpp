@@ -19,6 +19,14 @@
 
 #include "SFMT.hpp"
 
+#define CMSK1   0xdfffffef
+#define CMSK2   0xddfecb7f
+#define CMSK3   0xbffaffff
+#define CMSK4   0xbffffff6
+#define CSL1    18
+#define CSR1    11
+#define N32     624
+
 SFMT::SFMT(u32 seed, u32 frames)
 {
     initialize(seed);
@@ -28,9 +36,9 @@ SFMT::SFMT(u32 seed, u32 frames)
 void SFMT::advanceFrames(u32 frames)
 {
     u32 temp = index + (frames * 2);
-    while (temp >= 624)
+    while (temp >= N32)
     {
-        temp -= 624;
+        temp -= N32;
         shuffle();
     }
     index = temp;
@@ -38,23 +46,23 @@ void SFMT::advanceFrames(u32 frames)
 
 u32 SFMT::nextUInt()
 {
-    // Array reshuffle check
     if (index >= N32)
     {
         shuffle();
         index = 0;
     }
+
     return sfmt[index++];
 }
 
 u64 SFMT::nextULong()
 {
-    // Array reshuffle check
     if (index >= N32)
     {
         shuffle();
         index = 0;
     }
+
     u32 high = sfmt[index++];
     u32 low = sfmt[index++];
     return high | (static_cast<u64>(low) << 32);
@@ -96,11 +104,11 @@ void SFMT::periodCertificaion()
     u32 inner = 0;
     u32 work;
 
-    for (int i = 0; i < 4; i++)
+    for (u8 i = 0; i < 4; i++)
     {
         inner ^= sfmt[i] & parity[i];
     }
-    for (int i = 16; i > 0; i >>= 1)
+    for (u8 i = 16; i > 0; i >>= 1)
     {
         inner ^= inner >> i;
     }
@@ -109,10 +117,10 @@ void SFMT::periodCertificaion()
         return;
     }
 
-    for (int i = 0; i < 4; i++)
+    for (u8 i = 0; i < 4; i++)
     {
         work = 1;
-        for (int j = 0; j < 32; j++)
+        for (u8 j = 0; j < 32; j++)
         {
             if ((work & parity[i]) != 0)
             {
@@ -124,13 +132,12 @@ void SFMT::periodCertificaion()
     }
 }
 
-// Shuffles the array once all 624 states have been used
 void SFMT::shuffle()
 {
-    int a = 0;
-    int b = 488;
-    int c = 616;
-    int d = 620;
+    u16 a = 0;
+    u16 b = 488;
+    u16 c = 616;
+    u16 d = 620;
 
     do
     {

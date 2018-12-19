@@ -40,7 +40,7 @@ SearchCalls::~SearchCalls()
     delete ui;
 }
 
-QVector<bool> SearchCalls::possibleResults()
+QVector<bool> SearchCalls::possibleResults() const
 {
     return possible;
 }

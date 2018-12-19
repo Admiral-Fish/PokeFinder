@@ -72,7 +72,7 @@ QVector<u8> IVFilter::getLower() const
 
     for (int i = 0; i < 6; i++)
     {
-        switch (eval[i])
+        switch (eval.at(i))
         {
             case 0:
             case 3:
@@ -80,7 +80,7 @@ QVector<u8> IVFilter::getLower() const
                 break;
             case 1:
             case 2:
-                low.append(ivs[i]);
+                low.append(ivs.at(i));
                 break;
         }
     }
@@ -97,7 +97,7 @@ QVector<u8> IVFilter::getUpper() const
 
     for (int i = 0; i < 6; i++)
     {
-        switch (eval[i])
+        switch (eval.at(i))
         {
             case 0:
             case 2:
@@ -105,7 +105,7 @@ QVector<u8> IVFilter::getUpper() const
                 break;
             case 1:
             case 3:
-                high.append(ivs[i]);
+                high.append(ivs.at(i));
                 break;
         }
     }

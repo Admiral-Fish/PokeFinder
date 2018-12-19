@@ -95,7 +95,7 @@ void Researcher::setupModels()
     keys[tr("Previous 9")] = 23;
 }
 
-u64 Researcher::getCustom(const QString &text, ResearcherFrame frame, QVector<ResearcherFrame> frames)
+u64 Researcher::getCustom(const QString &text, const ResearcherFrame &frame, const QVector<ResearcherFrame> &frames)
 {
     switch (keys[text])
     {

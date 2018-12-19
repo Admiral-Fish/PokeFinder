@@ -105,7 +105,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         u8 call = rngArray[2 + cnt] % 100;
         if (call < 50)
         {
-            if (!spots[0])
+            if (!spots.at(0))
             {
                 continue;
             }
@@ -113,7 +113,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         }
         else if (call > 49 && call < 85)
         {
-            if (!spots[1])
+            if (!spots.at(1))
             {
                 continue;
             }
@@ -121,7 +121,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         }
         else
         {
-            if (!spots[2])
+            if (!spots.at(2))
             {
                 continue;
             }

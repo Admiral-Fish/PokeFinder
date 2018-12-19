@@ -33,24 +33,24 @@ public:
     Generator4();
     Generator4(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, Method type);
     void setEncounter(const EncounterArea4 &value);
-    QVector<Frame4> generate(const FrameCompare &compare);
+    QVector<Frame4> generate(const FrameCompare &compare) const;
 
 private:
     EncounterArea4 encounter;
 
-    QVector<Frame4> generateMethod1(FrameCompare compare);
-    QVector<Frame4> generateMethodJ(FrameCompare compare);
-    QVector<Frame4> generateMethodJSynch(FrameCompare compare);
-    QVector<Frame4> generateMethodJCuteCharm(FrameCompare compare);
-    QVector<Frame4> generateMethodK(FrameCompare compare);
-    QVector<Frame4> generateMethodKSynch(FrameCompare compare);
-    QVector<Frame4> generateMethodKCuteCharm(FrameCompare compare);
-    QVector<Frame4> generateChainedShiny(FrameCompare compare);
-    QVector<Frame4> generateWondercardIVs(FrameCompare compare);
+    QVector<Frame4> generateMethod1(const FrameCompare &compare) const;
+    QVector<Frame4> generateMethodJ(const FrameCompare &compare) const;
+    QVector<Frame4> generateMethodJSynch(const FrameCompare &compare) const;
+    QVector<Frame4> generateMethodJCuteCharm(const FrameCompare &compare) const;
+    QVector<Frame4> generateMethodK(const FrameCompare &compare) const;
+    QVector<Frame4> generateMethodKSynch(const FrameCompare &compare) const;
+    QVector<Frame4> generateMethodKCuteCharm(const FrameCompare &compare) const;
+    QVector<Frame4> generateChainedShiny(const FrameCompare &compare) const;
+    QVector<Frame4> generateWondercardIVs(const FrameCompare &compare) const;
     u16 chainedPIDLow(u16 low, u16 call1, u16 call2, u16 call3, u16 call4, u16 call5,
                       u16 call6, u16 call7, u16 call8, u16 call9, u16 call10, u16 call11,
-                      u16 call12, u16 call13);
-    u16 chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid);
+                      u16 call12, u16 call13) const;
+    u16 chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid) const;
 
 };
 

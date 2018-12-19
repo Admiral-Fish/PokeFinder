@@ -33,5 +33,5 @@ QStringList Power::getPowers()
 
 QString Power::getPower(u8 power)
 {
-    return getPowers()[power];
+    return getPowers().at(power);
 }

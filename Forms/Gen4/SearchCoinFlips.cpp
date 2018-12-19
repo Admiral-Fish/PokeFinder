@@ -37,7 +37,7 @@ SearchCoinFlips::~SearchCoinFlips()
     delete ui;
 }
 
-QVector<bool> SearchCoinFlips::possibleResults()
+QVector<bool> SearchCoinFlips::possibleResults() const
 {
     return possible;
 }

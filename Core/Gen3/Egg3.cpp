@@ -40,7 +40,7 @@ Egg3::Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 
     frameType = method;
 }
 
-QVector<Frame3> Egg3::generate(const FrameCompare &compare)
+QVector<Frame3> Egg3::generate(const FrameCompare &compare) const
 {
     switch (frameType)
     {
@@ -56,14 +56,7 @@ QVector<Frame3> Egg3::generate(const FrameCompare &compare)
         case Method::FRLGBred:
             {
                 QVector<Frame3> lower = generateLower(compare);
-                if (lower.isEmpty())
-                {
-                    return lower;
-                }
-                else
-                {
-                    return generateUpper(lower, compare);
-                }
+                return lower.isEmpty() ? lower : generateUpper(lower, compare);
             }
         default:
             return QVector<Frame3>();
@@ -121,7 +114,7 @@ void Egg3::setSeed(const u32 &value)
     seed = value;
 }
 
-QVector<Frame3> Egg3::generateEmeraldPID(FrameCompare compare)
+QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame = Frame3(tid, sid, psv);
@@ -215,7 +208,7 @@ QVector<Frame3> Egg3::generateEmeraldPID(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Egg3::generateEmerald(FrameCompare compare)
+QVector<Frame3> Egg3::generateEmerald(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame = Frame3(tid, sid, psv);
@@ -252,7 +245,7 @@ QVector<Frame3> Egg3::generateEmerald(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Egg3::generateEmeraldSplit(FrameCompare compare)
+QVector<Frame3> Egg3::generateEmeraldSplit(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame = Frame3(tid, sid, psv);
@@ -289,7 +282,7 @@ QVector<Frame3> Egg3::generateEmeraldSplit(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Egg3::generateEmeraldAlternate(FrameCompare compare)
+QVector<Frame3> Egg3::generateEmeraldAlternate(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame = Frame3(tid, sid, psv);
@@ -326,7 +319,7 @@ QVector<Frame3> Egg3::generateEmeraldAlternate(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Egg3::generateLower(FrameCompare compare)
+QVector<Frame3> Egg3::generateLower(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame = Frame3(tid, sid, psv);
@@ -359,7 +352,7 @@ QVector<Frame3> Egg3::generateLower(FrameCompare compare)
     return frames;
 }
 
-QVector<Frame3> Egg3::generateUpper(QVector<Frame3> lower, FrameCompare compare)
+QVector<Frame3> Egg3::generateUpper(const QVector<Frame3> &lower, const FrameCompare &compare) const
 {
     QVector<Frame3> upper;
     Frame3 frame = Frame3(tid, sid, psv);
@@ -395,8 +388,9 @@ QVector<Frame3> Egg3::generateUpper(QVector<Frame3> lower, FrameCompare compare)
         }
     }
 
-    QVector<Frame3> frames;
+    delete[] rngArray;
 
+    QVector<Frame3> frames;
     for (const auto &low : lower)
     {
         for (auto up : upper)
@@ -409,7 +403,5 @@ QVector<Frame3> Egg3::generateUpper(QVector<Frame3> lower, FrameCompare compare)
             }
         }
     }
-
-    delete[] rngArray;
     return frames;
 }

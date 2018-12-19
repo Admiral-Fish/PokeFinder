@@ -37,7 +37,7 @@ void LCRNG::advanceFrames(u32 frames)
 
 u16 LCRNG::nextUShort()
 {
-    return static_cast<u16>(nextUInt() >> 16);
+    return nextUInt() >> 16;
 }
 
 u32 LCRNG::nextUInt()

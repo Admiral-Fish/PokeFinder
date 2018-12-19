@@ -31,7 +31,7 @@ LockInfo::LockInfo(u8 nature, u16 genderLower, u16 genderUpper, bool free)
     this->free = free;
 }
 
-bool LockInfo::compare(u32 pid)
+bool LockInfo::compare(u32 pid) const
 {
     if (free)
     {

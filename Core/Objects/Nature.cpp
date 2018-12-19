@@ -36,7 +36,7 @@ QStringList Nature::getNatures()
 
 QString Nature::getNature(u8 nature)
 {
-    return getFrameNatures()[nature];
+    return getFrameNatures().at(nature);
 }
 
 QStringList Nature::getFrameNatures()

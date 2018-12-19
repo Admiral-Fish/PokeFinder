@@ -31,7 +31,7 @@ class Egg3 : public Egg
 public:
     Egg3();
     Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed = 0);
-    QVector<Frame3> generate(const FrameCompare &compare);
+    QVector<Frame3> generate(const FrameCompare &compare) const;
     void setParents(const QVector<u8> &parent1, const QVector<u8> &parent2);
     void setMinRedraw(const u8 &value);
     void setMaxRedraw(const u8 &value);
@@ -54,12 +54,12 @@ private:
     u32 maxPickup;
     bool everstone;
 
-    QVector<Frame3> generateEmeraldPID(FrameCompare compare);
-    QVector<Frame3> generateEmerald(FrameCompare compare);
-    QVector<Frame3> generateEmeraldSplit(FrameCompare compare);
-    QVector<Frame3> generateEmeraldAlternate(FrameCompare compare);
-    QVector<Frame3> generateLower(FrameCompare compare);
-    QVector<Frame3> generateUpper(QVector<Frame3> lower, FrameCompare compare);
+    QVector<Frame3> generateEmeraldPID(const FrameCompare &compare) const;
+    QVector<Frame3> generateEmerald(const FrameCompare &compare) const;
+    QVector<Frame3> generateEmeraldSplit(const FrameCompare &compare) const;
+    QVector<Frame3> generateEmeraldAlternate(const FrameCompare &compare) const;
+    QVector<Frame3> generateLower(const FrameCompare &compare) const;
+    QVector<Frame3> generateUpper(const QVector<Frame3> &lower, const FrameCompare &compare) const;
 
 };
 

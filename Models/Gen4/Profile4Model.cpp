@@ -123,7 +123,7 @@ QVariant Profile4Model::headerData(int section, Qt::Orientation orientation, int
 
 Profile4 Profile4Model::getProfile(int index)
 {
-    return model[index];
+    return model.at(index);
 }
 
 void Profile4Model::removeProfile(int index)

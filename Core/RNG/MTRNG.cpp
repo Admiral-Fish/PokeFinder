@@ -19,12 +19,20 @@
 
 #include "MTRNG.hpp"
 
+#define LOWERMASK           0x7FFFFFFF
+#define M                   397
+#define N                   624
+#define UPPERMASK           0x80000000
+#define TEMPERINGMASKB      0x9D2C5680
+#define TEMPERINGMASKC      0xEFC60000
+#define TEMPERINGMASKC2     0xEF000000
+
 void MT::advanceFrames(u32 frames)
 {
     index += frames;
-    while (index >= 624)
+    while (index >= N)
     {
-        index -= 624;
+        index -= N;
         shuffle();
     }
 }
@@ -36,10 +44,8 @@ MersenneTwister::MersenneTwister(u32 seed, u32 frames)
     advanceFrames(frames);
 }
 
-// Gets next 32bit number
 u32 MersenneTwister::nextUInt()
 {
-    // Array reshuffle check
     if (index >= N)
     {
         shuffle();
@@ -57,7 +63,7 @@ u32 MersenneTwister::nextUInt()
 
 u16 MersenneTwister::nextUShort()
 {
-    return static_cast<u16>(nextUInt() >> 16);
+    return nextUInt() >> 16;
 }
 
 void MersenneTwister::setSeed(u32 seed)
@@ -90,7 +96,7 @@ void MersenneTwister::initialize(u32 seed)
 void MersenneTwister::shuffle()
 {
     u32 y;
-    int kk = 0;
+    u16 kk = 0;
 
     for (; kk < 227; ++kk)
     {
@@ -117,7 +123,6 @@ MersenneTwisterUntempered::MersenneTwisterUntempered(u32 seed, u32 frames)
 
 u32 MersenneTwisterUntempered::nextUInt()
 {
-    // Array reshuffle check
     if (index >= N)
     {
         shuffle();
@@ -129,7 +134,7 @@ u32 MersenneTwisterUntempered::nextUInt()
 
 u16 MersenneTwisterUntempered::nextUShort()
 {
-    return static_cast<u16>(nextUInt() >> 16);
+    return nextUInt() >> 16;
 }
 
 void MersenneTwisterUntempered::setSeed(u32 seed)
@@ -161,7 +166,7 @@ void MersenneTwisterUntempered::initialize(u32 seed)
 
 void MersenneTwisterUntempered::shuffle()
 {
-    int kk = 0;
+    u16 kk = 0;
     u32 y;
 
     for (; kk < 227; ++kk)
@@ -196,7 +201,6 @@ MersenneTwisterFast::MersenneTwisterFast(u32 seed, u32 calls, u32 frames)
 
 u32 MersenneTwisterFast::nextUInt()
 {
-    // Array reshuffle check
     if (index >= max)
     {
         shuffle();
@@ -213,7 +217,7 @@ u32 MersenneTwisterFast::nextUInt()
 
 u16 MersenneTwisterFast::nextUShort()
 {
-    return static_cast<u16>(nextUInt() >> 16);
+    return nextUInt() >> 16;
 }
 
 void MersenneTwisterFast::setSeed(u32 seed)
@@ -247,7 +251,7 @@ void MersenneTwisterFast::shuffle()
 {
     u32 y;
 
-    for (u32 kk = 0; kk < maxCalls; ++kk)
+    for (u16 kk = 0; kk < maxCalls; ++kk)
     {
         y = (mt[kk] & UPPERMASK) | (mt[kk + 1] & LOWERMASK);
         mt[kk] = mt[kk + M] ^ (y >> 1) ^ mag01[y & 0x1];

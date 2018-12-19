@@ -359,7 +359,7 @@ void StationarySearcher4::run()
     }
 }
 
-int StationarySearcher4::currentProgress()
+int StationarySearcher4::currentProgress() const
 {
     return progress;
 }

@@ -52,7 +52,7 @@ private:
     QHash<QString, int> keys;
 
     void setupModels();
-    u64 getCustom(const QString &text, ResearcherFrame frame, QVector<ResearcherFrame> frames);
+    u64 getCustom(const QString &text, const ResearcherFrame &frame, const QVector<ResearcherFrame> &frames);
     void resizeHeader();
     QVector<bool> getHexCheck();
     static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }

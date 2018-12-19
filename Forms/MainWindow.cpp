@@ -129,7 +129,7 @@ void MainWindow::checkUpdates()
             QMessageBox info(QMessageBox::Question, tr("Update Check"), tr("An update is available. Would you like to download the newest version?"), QMessageBox::Yes | QMessageBox::No);
             if (info.exec() == QMessageBox::Yes)
             {
-                QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/tag/" + webVersion));
+                QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/latest"));
             }
         }
     }
@@ -139,7 +139,7 @@ void MainWindow::checkUpdates()
 
 void MainWindow::slotLanguageChanged(QAction *action)
 {
-    if (action != nullptr)
+    if (action)
     {
         loadLanguage(action->data().toString());
     }

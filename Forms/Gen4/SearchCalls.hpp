@@ -37,7 +37,7 @@ class SearchCalls : public QDialog
 public:
     explicit SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent = nullptr);
     ~SearchCalls() override;
-    QVector<bool> possibleResults();
+    QVector<bool> possibleResults() const;
 
 private:
     Ui::SearchCalls *ui;

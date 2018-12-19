@@ -32,7 +32,7 @@ FrameCompare::FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, i
     natures.resize(25);
     for (u8 i = 0; i < 25; i++)
     {
-        natures[Nature::getAdjustedNature(i)] = nature[i];
+        natures[Nature::getAdjustedNature(i)] = nature.at(i);
     }
 
     powers = power;
@@ -54,7 +54,7 @@ FrameCompare::FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, i
     natures.resize(25);
     for (u32 i = 0; i < 25; i++)
     {
-        natures[Nature::getAdjustedNature(i)] = nature[i];
+        natures[Nature::getAdjustedNature(i)] = nature.at(i);
     }
 
     powers = power;
@@ -73,7 +73,7 @@ FrameCompare::FrameCompare(int genderIndex, int genderRatioIndex, int abilityInd
     natures.resize(25);
     for (u32 i = 0; i < 25; i++)
     {
-        natures[static_cast<int>(Nature::getAdjustedNature(i))] = nature[static_cast<int>(i)];
+        natures[Nature::getAdjustedNature(i)] = nature[i];
     }
 
     shiny = onlyShiny;
@@ -87,7 +87,7 @@ FrameCompare::FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, c
     powers = power;
 }
 
-bool FrameCompare::comparePID(const Frame &frame)
+bool FrameCompare::comparePID(const Frame &frame) const
 {
     if (skip)
     {
@@ -99,7 +99,7 @@ bool FrameCompare::comparePID(const Frame &frame)
         return false;
     }
 
-    if (!natures[frame.getNature()])
+    if (!natures.at(frame.getNature()))
     {
         return false;
     }
@@ -117,14 +117,14 @@ bool FrameCompare::comparePID(const Frame &frame)
     return true;
 }
 
-bool FrameCompare::compareIVs(const Frame &frame)
+bool FrameCompare::compareIVs(const Frame &frame) const
 {
     if (skip)
     {
         return true;
     }
 
-    if (!powers[frame.getHidden()])
+    if (!powers.at(frame.getHidden()))
     {
         return false;
     }
@@ -165,22 +165,22 @@ bool FrameCompare::compareIVs(const Frame &frame)
     return true;
 }
 
-bool FrameCompare::compareNature(const Frame &frame)
+bool FrameCompare::compareNature(const Frame &frame) const
 {
-    return natures[frame.getNature()];
+    return natures.at(frame.getNature());
 }
 
-bool FrameCompare::compareHiddenPower(const Frame &frame)
+bool FrameCompare::compareHiddenPower(const Frame &frame) const
 {
-    return powers[frame.getHidden()];
+    return powers.at(frame.getHidden());
 }
 
-bool FrameCompare::compareSlot(const Frame &frame)
+bool FrameCompare::compareSlot(const Frame &frame) const
 {
-    return encounterSlots[frame.getEncounterSlot()];
+    return encounterSlots.at(frame.getEncounterSlot());
 }
 
-bool FrameCompare::compareGender(const Frame &frame)
+bool FrameCompare::compareGender(const Frame &frame) const
 {
     switch (genderRatio)
     {
@@ -284,7 +284,7 @@ bool FrameCompare::compareGender(const Frame &frame)
     return true;
 }
 
-bool FrameCompare::compareFrame(const Frame &frame)
+bool FrameCompare::compareFrame(const Frame &frame) const
 {
     if (skip)
     {
@@ -304,7 +304,7 @@ bool FrameCompare::compareFrame(const Frame &frame)
     return true;
 }
 
-u8 FrameCompare::getGenderRatio()
+u8 FrameCompare::getGenderRatio() const
 {
     return genderRatio;
 }

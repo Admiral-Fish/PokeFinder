@@ -25,7 +25,7 @@ Encounters3::Encounters3(Encounter type, Game game)
     this->game = game;
 }
 
-QVector<EncounterArea3> Encounters3::getEncounters()
+QVector<EncounterArea3> Encounters3::getEncounters() const
 {
     QVector<EncounterArea3> areas;
 
@@ -50,15 +50,14 @@ QVector<EncounterArea3> Encounters3::getEncounters()
             break;
     }
 
-    QFile file(path);
-    if (file.open(QIODevice::ReadOnly))
+    if (QFile file(path); file.open(QIODevice::ReadOnly))
     {
         QDataStream stream(&file);
         stream >> areas;
 
         for (int i = 0; i < areas.count();)
         {
-            if (areas[i].getType() != type)
+            if (areas.at(i).getType() != type)
             {
                 areas.removeAt(i);
             }

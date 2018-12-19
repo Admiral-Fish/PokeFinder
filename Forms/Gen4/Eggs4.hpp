@@ -84,7 +84,7 @@ class PIDSearcher : public QThread
 public:
     PIDSearcher(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay);
     void run() override;
-    int currentProgress();
+    int currentProgress() const;
     QVector<Frame4> getResults();
 
 public slots:
@@ -110,7 +110,7 @@ class IVSearcher : public QThread
 public:
     IVSearcher(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay);
     void run() override;
-    int currentProgress();
+    int currentProgress() const;
     QVector<Frame4> getResults();
 
 public slots:

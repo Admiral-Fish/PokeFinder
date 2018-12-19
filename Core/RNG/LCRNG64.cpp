@@ -37,7 +37,7 @@ void LCRNG64::advanceFrames(u32 frames)
 
 u32 LCRNG64::nextUInt(u32 max)
 {
-    return static_cast<u32>(((nextULong() >> 32) * max) >> 32);
+    return ((nextULong() >> 32) * max) >> 32;
 }
 
 u64 LCRNG64::nextULong()
@@ -48,7 +48,7 @@ u64 LCRNG64::nextULong()
 
 u32 LCRNG64::nextUInt()
 {
-    return static_cast<u32>(nextULong() >> 32);
+    return nextULong() >> 32;
 }
 
 void LCRNG64::setSeed(u64 seed)

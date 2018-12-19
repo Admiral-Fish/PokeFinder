@@ -35,24 +35,24 @@ private:
 public:
     ResearcherFrame();
     ResearcherFrame(bool rng64Bit, u32 frame);
-    u32 getFull32() { return full32; }
+    u32 getFull32() const { return full32; }
     void setFull32(u32 seed) { full32 = seed; }
-    u64 getFull64() { return full64; }
+    u64 getFull64() const { return full64; }
     void setFull64(u64 seed) { full64 = seed; }
-    u32 getFrame() { return frame; }
+    u32 getFrame() const { return frame; }
     void setFrame(u32 val) { frame = val; }
-    u64 getCustom(int x) { return custom[x]; }
+    u64 getCustom(int x) const { return custom[x]; }
     void setCustom(int x, u64 val) { custom[x] = val; }
-    inline u32 getHigh32() { return full64 >> 32; }
-    inline u32 getLow32() { return full64 & 0xFFFFFFFF; }
-    inline u32 getHigh16() { return rng64Bit ? getHigh32() >> 16 : full32 >> 16; }
-    inline u32 getLow16() { return rng64Bit ? getHigh32() & 0xFFFF : full32 & 0xFFFF; }
-    inline u32 getMod25() { return rng64Bit ? getHigh32() % 25 : getHigh16() % 25; }
-    inline u32 getMod100() { return rng64Bit ? getHigh32() % 100 : getHigh16() % 100; }
-    inline u32 getMod3() { return rng64Bit ? getHigh32() % 3 : getHigh16() % 3; }
-    inline u32 getDiv656() { return getHigh16() / 656; }
-    inline u32 getHighBit() { return rng64Bit ? getHigh32() >> 31 : getHigh16() >> 15; }
-    inline u32 getLowBit() { return rng64Bit ? getHigh32() & 1 : getHigh16() & 1; }
+    inline u32 getHigh32() const { return full64 >> 32; }
+    inline u32 getLow32() const { return full64 & 0xFFFFFFFF; }
+    inline u32 getHigh16() const { return rng64Bit ? getHigh32() >> 16 : full32 >> 16; }
+    inline u32 getLow16() const { return rng64Bit ? getHigh32() & 0xFFFF : full32 & 0xFFFF; }
+    inline u32 getMod25() const { return rng64Bit ? getHigh32() % 25 : getHigh16() % 25; }
+    inline u32 getMod100() const { return rng64Bit ? getHigh32() % 100 : getHigh16() % 100; }
+    inline u32 getMod3() const { return rng64Bit ? getHigh32() % 3 : getHigh16() % 3; }
+    inline u32 getDiv656() const { return getHigh16() / 656; }
+    inline u32 getHighBit() const { return rng64Bit ? getHigh32() >> 31 : getHigh16() >> 15; }
+    inline u32 getLowBit() const { return rng64Bit ? getHigh32() & 1 : getHigh16() & 1; }
 
 };
 

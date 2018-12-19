@@ -30,8 +30,8 @@ class Range
 public:
     Range();
     Range(u8 min, u8 max);
-    u8 getMax();
-    u8 getMin();
+    u8 getMax() const;
+    u8 getMin() const;
 
 private:
     u8 max;
@@ -41,10 +41,10 @@ private:
 
 namespace EncounterSlot
 {
-    u8 calcSlot(u8 compare, QVector<Range> ranges);
-    u8 hSlot(u32 result, Encounter encounterType);
-    u8 jSlot(u32 result, Encounter encounterType);
-    u8 kSlot(u32 result, Encounter encounterType);
+    u8 calcSlot(u8 compare, const QVector<Range> &ranges);
+    u8 hSlot(u16 result, Encounter encounterType);
+    u8 jSlot(u16 result, Encounter encounterType);
+    u8 kSlot(u16 result, Encounter encounterType);
 };
 
 #endif // ENCOUNTERSLOT_HPP
