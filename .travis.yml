@@ -11,7 +11,7 @@ install:
 
 script:
   - qmake PokeFinder.pro
-  - make
+  - make -j 4
 
 before_deploy:
   - /usr/local/Cellar/qt/5.12.0/bin/macdeployqt PokeFinder.app -dmg -verbose=2
