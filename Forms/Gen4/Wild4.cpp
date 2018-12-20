@@ -38,10 +38,10 @@ Wild4::~Wild4()
 {
     QSettings setting;
     setting.setValue("wild4Profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("wild4MinDelay", ui->minDelay->text());
-    setting.setValue("wild4MaxDelay", ui->maxDelay->text());
-    setting.setValue("wild4MinFrame", ui->minFrame->text());
-    setting.setValue("wild4MaxFrame", ui->maxFrame->text());
+    setting.setValue("wild4MinDelay", ui->textBoxSearcherMinDelay->text());
+    setting.setValue("wild4MaxDelay", ui->textBoxSearcherMaxDelay->text());
+    setting.setValue("wild4MinFrame", ui->textBoxSearcherMinFrame->text());
+    setting.setValue("wild4MaxFrame", ui->textBoxSearcherMaxFrame->text());
 
     delete ui;
     delete g;
@@ -74,27 +74,27 @@ void Wild4::setupModels()
     ui->tableViewGenerator->setModel(g);
     ui->tableViewSearcher->setModel(s);
 
-    ui->initialSeedGenerator->setValues(InputType::Seed32Bit);
-    ui->idGenerator->setValues(InputType::TIDSID);
-    ui->sidGenerator->setValues(InputType::TIDSID);
-    ui->startingFrameGenerator->setValues(InputType::Frame32Bit);
-    ui->maxResultsGenerator->setValues(InputType::Frame32Bit);
-    ui->delayGenerator->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxGeneratorTID->setValues(InputType::TIDSID);
+    ui->textBoxGeneratorSID->setValues(InputType::TIDSID);
+    ui->textBoxGeneratorStartingFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorDelay->setValues(InputType::Frame32Bit);
 
-    ui->idSearcher->setValues(InputType::TIDSID);
-    ui->sidSearcher->setValues(InputType::TIDSID);
+    ui->textBoxSearcherTID->setValues(InputType::TIDSID);
+    ui->textBoxSearcherSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxLeadGenerator->addItem(tr("None"));
-    ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
+    ui->comboBoxGeneratorLead->addItem(tr("None"));
+    ui->comboBoxGeneratorLead->addItems(Nature::getNatures());
 
-    ui->comboBoxNatureGenerator->setup();
-    ui->comboBoxNatureSearcher->setup();
+    ui->comboBoxGeneratorNature->setup();
+    ui->comboBoxSearcherNature->setup();
 
-    ui->comboBoxHiddenPowerGenerator->setup();
-    ui->comboBoxHiddenPowerSearcher->setup();
+    ui->comboBoxGeneratorHiddenPower->setup();
+    ui->comboBoxSearcherHiddenPower->setup();
 
-    on_comboBoxEncounterGenerator_currentIndexChanged(0);
-    on_comboBoxEncounterSearcher_currentIndexChanged(0);
+    on_comboBoxGeneratorEncounter_currentIndexChanged(0);
+    on_comboBoxSearcherEncounter_currentIndexChanged(0);
 
     QAction *seedToTime = new QAction(tr("Generate times for seed"), this);
     connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
@@ -102,10 +102,10 @@ void Wild4::setupModels()
     searcherMenu->addAction(seedToTime);
 
     QSettings setting;
-    if (setting.contains("wild4MinDelay")) ui->minDelay->setText(setting.value("wild4MinDelay").toString());
-    if (setting.contains("wild4MaxDelay")) ui->maxDelay->setText(setting.value("wild4MaxDelay").toString());
-    if (setting.contains("wild4MinFrame")) ui->minFrame->setText(setting.value("wild4MinFrame").toString());
-    if (setting.contains("wild4MaxFrame")) ui->maxFrame->setText(setting.value("wild4MaxFrame").toString());
+    if (setting.contains("wild4MinDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("wild4MinDelay").toString());
+    if (setting.contains("wild4MaxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("wild4MaxDelay").toString());
+    if (setting.contains("wild4MinFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("wild4MinFrame").toString());
+    if (setting.contains("wild4MaxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("wild4MaxFrame").toString());
 }
 
 void Wild4::updateView(const QVector<Frame4> &frames, int progress)
@@ -116,8 +116,8 @@ void Wild4::updateView(const QVector<Frame4> &frames, int progress)
 
 void Wild4::updateLocationsGenerator()
 {
-    Encounter encounter = static_cast<Encounter>(ui->comboBoxEncounterGenerator->currentData().toInt());
-    int time = ui->comboBoxTimeGenerator->currentIndex();
+    Encounter encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
+    int time = ui->comboBoxGeneratorTime->currentIndex();
     auto profile = profiles[ui->comboBoxProfiles->currentIndex()];
 
     encounterGenerator = Encounters4(encounter, time, profile).getEncounters();
@@ -129,14 +129,14 @@ void Wild4::updateLocationsGenerator()
 
     QStringList locations = Translator::getLocationsGen4(locs, profile.getVersion());
 
-    ui->comboBoxLocationGenerator->clear();
-    ui->comboBoxLocationGenerator->addItems(locations);
+    ui->comboBoxGeneratorLocation->clear();
+    ui->comboBoxGeneratorLocation->addItems(locations);
 }
 
 void Wild4::updateLocationsSearcher()
 {
-    Encounter encounter = static_cast<Encounter>(ui->comboBoxEncounterSearcher->currentData().toInt());
-    int time = ui->comboBoxTimeSearcher->currentIndex();
+    Encounter encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
+    int time = ui->comboBoxSearcherTime->currentIndex();
     auto profile = profiles[ui->comboBoxProfiles->currentIndex()];
 
     encounterSearcher = Encounters4(encounter, time, profile).getEncounters();
@@ -148,47 +148,47 @@ void Wild4::updateLocationsSearcher()
 
     QStringList locations = Translator::getLocationsGen4(locs, profile.getVersion());
 
-    ui->comboBoxLocationSearcher->clear();
-    ui->comboBoxLocationSearcher->addItems(locations);
+    ui->comboBoxSearcherLocation->clear();
+    ui->comboBoxSearcherLocation->addItems(locations);
 }
 
 void Wild4::updatePokemonGenerator()
 {
-    if (ui->comboBoxLocationGenerator->currentIndex() < 0)
+    if (ui->comboBoxGeneratorLocation->currentIndex() < 0)
     {
         return;
     }
 
-    auto area = encounterGenerator[ui->comboBoxLocationGenerator->currentIndex()];
+    auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()];
     QVector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
 
-    ui->comboBoxPokemonGenerator->clear();
-    ui->comboBoxPokemonGenerator->addItem("-");
+    ui->comboBoxGeneratorPokemon->clear();
+    ui->comboBoxGeneratorPokemon->addItem("-");
     for (int i = 0; i < species.size(); i++)
     {
-        ui->comboBoxPokemonGenerator->addItem(names[i], species[i]);
+        ui->comboBoxGeneratorPokemon->addItem(names[i], species[i]);
     }
 }
 
 void Wild4::updatePokemonSearcher()
 {
-    if (ui->comboBoxLocationSearcher->currentIndex() < 0)
+    if (ui->comboBoxSearcherLocation->currentIndex() < 0)
     {
         return;
     }
 
-    auto area = encounterSearcher[ui->comboBoxLocationSearcher->currentIndex()];
+    auto area = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()];
     QVector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
 
-    ui->comboBoxPokemonSearcher->clear();
-    ui->comboBoxPokemonSearcher->addItem("-");
+    ui->comboBoxSearcherPokemon->clear();
+    ui->comboBoxSearcherPokemon->addItem("-");
     for (int i = 0; i < species.size(); i++)
     {
-        ui->comboBoxPokemonSearcher->addItem(names[i], species[i]);
+        ui->comboBoxSearcherPokemon->addItem(names[i], species[i]);
     }
 }
 
@@ -200,38 +200,38 @@ void Wild4::refreshProfiles()
 void Wild4::on_pushButtonGenerate_clicked()
 {
     g->clear();
-    g->setMethod(static_cast<Method>(ui->comboBoxMethodGenerator->currentData().toInt()));
+    g->setMethod(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
-    u32 seed = ui->initialSeedGenerator->text().toUInt(nullptr, 16);
-    u32 startingFrame = ui->startingFrameGenerator->text().toUInt();
-    u32 maxResults = ui->maxResultsGenerator->text().toUInt();
-    u16 tid = ui->idGenerator->text().toUShort();
-    u16 sid = ui->sidGenerator->text().toUShort();
+    u32 seed = ui->textBoxGeneratorSeed->text().toUInt(nullptr, 16);
+    u32 startingFrame = ui->textBoxGeneratorStartingFrame->text().toUInt();
+    u32 maxResults = ui->textBoxGeneratorMaxResults->text().toUInt();
+    u16 tid = ui->textBoxGeneratorTID->text().toUShort();
+    u16 sid = ui->textBoxGeneratorSID->text().toUShort();
     u32 offset = 0;
-    if (ui->checkBoxDelayGenerator->isChecked())
+    if (ui->checkBoxGeneratorDelay->isChecked())
     {
-        offset = ui->delayGenerator->text().toUInt();
+        offset = ui->textBoxGeneratorDelay->text().toUInt();
     }
 
-    int genderRatioIndex = ui->comboBoxGenderRatioGenerator->currentIndex();
-    Generator4 generator = Generator4(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxMethodGenerator->currentData().toInt()));
+    int genderRatioIndex = ui->comboBoxGeneratorGenderRatio->currentIndex();
+    Generator4 generator = Generator4(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
     FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getEvals(), ui->ivFilterGenerator->getValues(),
-                                        ui->comboBoxGenderGenerator->currentIndex(), genderRatioIndex, ui->comboBoxAbilityGenerator->currentIndex(),
-                                        ui->comboBoxNatureGenerator->getChecked(), ui->comboBoxHiddenPowerGenerator->getChecked(),
-                                        ui->checkBoxShinyGenerator->isChecked(), ui->checkBoxDisableGenerator->isChecked(), ui->comboBoxSlotGenerator->getChecked());
+                                        ui->comboBoxGeneratorGender->currentIndex(), genderRatioIndex, ui->comboBoxGeneratorAbility->currentIndex(),
+                                        ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
+                                        ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
 
-    generator.setEncounterType(static_cast<Encounter>(ui->comboBoxEncounterGenerator->currentData().toInt()));
-    if (ui->pushButtonLeadGenerator->text() == tr("Cute Charm"))
+    generator.setEncounterType(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
+    if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
     {
-        generator.setLeadType((static_cast<Lead>(ui->comboBoxLeadGenerator->currentData().toInt())));
+        generator.setLeadType((static_cast<Lead>(ui->comboBoxGeneratorLead->currentData().toInt())));
     }
-    else if (ui->pushButtonLeadGenerator->text() == tr("Suction Cups"))
+    else if (ui->pushButtonGeneratorLead->text() == tr("Suction Cups"))
     {
         generator.setLeadType(Lead::SuctionCups);
     }
     else
     {
-        int num = ui->comboBoxLeadGenerator->currentIndex();
+        int num = ui->comboBoxGeneratorLead->currentIndex();
         if (num == 0)
         {
             generator.setLeadType(Lead::None);
@@ -239,10 +239,10 @@ void Wild4::on_pushButtonGenerate_clicked()
         else
         {
             generator.setLeadType(Lead::Synchronize);
-            generator.setSynchNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxLeadGenerator->currentIndex() - 1)));
+            generator.setSynchNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
         }
     }
-    generator.setEncounter(encounterGenerator[ui->comboBoxLocationGenerator->currentIndex()]);
+    generator.setEncounter(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()]);
 
     QVector<Frame4> frames = generator.generate(compare);
     g->setModel(frames);
@@ -251,24 +251,25 @@ void Wild4::on_pushButtonGenerate_clicked()
 void Wild4::on_pushButtonSearch_clicked()
 {
     s->clear();
-    s->setMethod(static_cast<Method>(ui->comboBoxMethodSearcher->currentData().toInt()));
+    s->setMethod(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    u16 tid = ui->idSearcher->text().toUShort();
-    u16 sid = ui->sidSearcher->text().toUShort();
+    u16 tid = ui->textBoxSearcherTID->text().toUShort();
+    u16 sid = ui->textBoxSearcherSID->text().toUShort();
 
-    int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
-    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxGenderSearcher->currentIndex(),
-                                        genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(), ui->comboBoxNatureSearcher->getChecked(),
-                                        ui->comboBoxHiddenPowerSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked(), false,
-                                        ui->comboBoxSlotSearcher->getChecked());
-    Searcher4 searcher = Searcher4(tid, sid, static_cast<u32>(genderRatioIndex), ui->minDelay->text().toUInt(), ui->maxDelay->text().toUInt(), ui->minFrame->text().toUInt(), ui->maxFrame->text().toUInt(), compare, static_cast<Method>(ui->comboBoxMethodSearcher->currentData().toInt()));
+    int genderRatioIndex = ui->comboBoxSearcherGenderRatio->currentIndex();
+    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxSearcherGender->currentIndex(),
+                                        genderRatioIndex, ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
+                                        ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false,
+                                        ui->comboBoxSearcherEncounterSlot->getChecked());
+    Searcher4 searcher = Searcher4(tid, sid, static_cast<u32>(genderRatioIndex), ui->textBoxSearcherMinDelay->text().toUInt(), ui->textBoxSearcherMaxDelay->text().toUInt(),
+                                   ui->textBoxSearcherMinFrame->text().toUInt(), ui->textBoxSearcherMaxFrame->text().toUInt(), compare, static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
-    searcher.setEncounterType(static_cast<Encounter>(ui->comboBoxEncounterSearcher->currentData().toInt()));
-    searcher.setLeadType(static_cast<Lead>(ui->comboBoxLeadSearcher->currentData().toInt()));
-    searcher.setEncounter(encounterSearcher[ui->comboBoxLocationSearcher->currentIndex()]);
+    searcher.setEncounterType(static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()));
+    searcher.setLeadType(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
+    searcher.setEncounter(encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()]);
 
     QVector<u8> min = ui->ivFilterSearcher->getLower();
     QVector<u8> max = ui->ivFilterSearcher->getUpper();
@@ -307,124 +308,124 @@ void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)
     QString tid = QString::number(profile.getTID());
     QString sid = QString::number(profile.getSID());
 
-    ui->idGenerator->setText(tid);
-    ui->sidGenerator->setText(sid);
-    ui->idSearcher->setText(tid);
-    ui->sidSearcher->setText(sid);
-    ui->profileTID->setText(tid);
-    ui->profileSID->setText(sid);
-    ui->profileGame->setText(profile.getVersionString());
-    ui->profileDualSlot->setText(profile.getDualSlotString());
-    ui->profileRadio->setText(profile.getRadioString());
-    ui->profileRadar->setText(profile.getRadar() ? tr("True") : tr("False"));
-    ui->profileSwarm->setText(profile.getSwarm() ? tr("True") : tr("False"));
+    ui->textBoxGeneratorTID->setText(tid);
+    ui->textBoxGeneratorSID->setText(sid);
+    ui->textBoxSearcherTID->setText(tid);
+    ui->textBoxSearcherSID->setText(sid);
+    ui->labelProfileTIDValue->setText(tid);
+    ui->labelProfileSIDValue->setText(sid);
+    ui->labelProfileGameValue->setText(profile.getVersionString());
+    ui->labelProfileDualSlotValue->setText(profile.getDualSlotString());
+    ui->labelProfileRadioValue->setText(profile.getRadioString());
+    ui->labelProfilePokeRadarValue->setText(profile.getRadar() ? tr("True") : tr("False"));
+    ui->labelProfileSwarmValue->setText(profile.getSwarm() ? tr("True") : tr("False"));
 
     bool flag = profile.getVersion() & Game::HGSS;
 
-    ui->comboBoxMethodGenerator->clear();
-    ui->comboBoxMethodGenerator->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
+    ui->comboBoxGeneratorMethod->clear();
+    ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
     if (!flag)
     {
-        ui->comboBoxMethodGenerator->addItem(tr("Chained Shiny"), ChainedShiny);
+        ui->comboBoxGeneratorMethod->addItem(tr("Chained Shiny"), ChainedShiny);
     }
 
-    ui->comboBoxMethodSearcher->clear();
-    ui->comboBoxMethodSearcher->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
+    ui->comboBoxSearcherMethod->clear();
+    ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
     if (!flag)
     {
-        ui->comboBoxMethodSearcher->addItem(tr("Chained Shiny"), Method::ChainedShiny);
+        ui->comboBoxSearcherMethod->addItem(tr("Chained Shiny"), Method::ChainedShiny);
     }
 
-    ui->comboBoxEncounterGenerator->clear();
-    ui->comboBoxEncounterGenerator->addItem(tr("Grass"), Encounter::Grass);
+    ui->comboBoxGeneratorEncounter->clear();
+    ui->comboBoxGeneratorEncounter->addItem(tr("Grass"), Encounter::Grass);
     if (flag)
     {
-        ui->comboBoxEncounterGenerator->addItem(tr("Rock Smash"), Encounter::RockSmash);
+        ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
     }
-    ui->comboBoxEncounterGenerator->addItem(tr("Surfing"), Encounter::Surfing);
-    ui->comboBoxEncounterGenerator->addItem(tr("Old Rod"), Encounter::OldRod);
-    ui->comboBoxEncounterGenerator->addItem(tr("Good Rod"), Encounter::GoodRod);
-    ui->comboBoxEncounterGenerator->addItem(tr("Super Rod"), Encounter::SuperRod);
+    ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), Encounter::Surfing);
+    ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
+    ui->comboBoxGeneratorEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
+    ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
 
-    ui->comboBoxEncounterSearcher->clear();
-    ui->comboBoxEncounterSearcher->addItem(tr("Grass"), Encounter::Grass);
+    ui->comboBoxSearcherEncounter->clear();
+    ui->comboBoxSearcherEncounter->addItem(tr("Grass"), Encounter::Grass);
     if (flag)
     {
-        ui->comboBoxEncounterSearcher->addItem(tr("Rock Smash"), Encounter::RockSmash);
+        ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
     }
-    ui->comboBoxEncounterSearcher->addItem(tr("Surfing"), Encounter::Surfing);
-    ui->comboBoxEncounterSearcher->addItem(tr("Old Rod"), Encounter::OldRod);
-    ui->comboBoxEncounterSearcher->addItem(tr("Good Rod"), Encounter::GoodRod);
-    ui->comboBoxEncounterSearcher->addItem(tr("Super Rod"), Encounter::SuperRod);
+    ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), Encounter::Surfing);
+    ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
+    ui->comboBoxSearcherEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
+    ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
 
-    ui->comboBoxLeadSearcher->clear();
-    ui->comboBoxLeadSearcher->addItem(tr("Any"), Lead::Search);
-    ui->comboBoxLeadSearcher->addItem(tr("Synchronize"), Lead::Synchronize);
-    ui->comboBoxLeadSearcher->addItem(tr("Cute Charm"), Lead::CuteCharm);
+    ui->comboBoxSearcherLead->clear();
+    ui->comboBoxSearcherLead->addItem(tr("Any"), Lead::Search);
+    ui->comboBoxSearcherLead->addItem(tr("Synchronize"), Lead::Synchronize);
+    ui->comboBoxSearcherLead->addItem(tr("Cute Charm"), Lead::CuteCharm);
     if (flag)
     {
-        ui->comboBoxLeadSearcher->addItem("Suction Cups", Lead::SuctionCups);
+        ui->comboBoxSearcherLead->addItem("Suction Cups", Lead::SuctionCups);
     }
-    ui->comboBoxLeadSearcher->addItem("None", Lead::None);
+    ui->comboBoxSearcherLead->addItem("None", Lead::None);
 
-    ui->pushButtonLeadGenerator->setText(tr("Synchronize"));
-    ui->comboBoxLeadGenerator->addItem("None");
-    ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
+    ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
+    ui->comboBoxGeneratorLead->addItem("None");
+    ui->comboBoxGeneratorLead->addItems(Nature::getNatures());
 
     updateLocationsSearcher();
     updateLocationsGenerator();
 }
 
-void Wild4::on_pushButtonLeadGenerator_clicked()
+void Wild4::on_pushButtonGeneratorLead_clicked()
 {
-    ui->comboBoxLeadGenerator->clear();
-    QString text = ui->pushButtonLeadGenerator->text();
+    ui->comboBoxGeneratorLead->clear();
+    QString text = ui->pushButtonGeneratorLead->text();
     if (text == tr("Synchronize"))
     {
         auto profile = profiles[ui->comboBoxProfiles->currentIndex()];
         bool flag = profile.getVersion() & Game::HGSS;
         if (flag)
         {
-            ui->pushButtonLeadGenerator->setText(tr("Suction Cups"));
-            ui->comboBoxLeadGenerator->setEnabled(false);
+            ui->pushButtonGeneratorLead->setText(tr("Suction Cups"));
+            ui->comboBoxGeneratorLead->setEnabled(false);
         }
         else
         {
-            ui->pushButtonLeadGenerator->setText(tr("Cute Charm"));
-            ui->comboBoxLeadGenerator->setEnabled(true);
+            ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
+            ui->comboBoxGeneratorLead->setEnabled(true);
 
-            ui->comboBoxLeadGenerator->addItem(tr("♂ Lead"), Lead::CuteCharmFemale);
-            ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
-            ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
-            ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
-            ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
+            ui->comboBoxGeneratorLead->addItem(tr("♂ Lead"), Lead::CuteCharmFemale);
+            ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
+            ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
+            ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
+            ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
         }
     }
     else if (text == tr("Suction Cups"))
     {
-        ui->pushButtonLeadGenerator->setText(tr("Cute Charm"));
-        ui->comboBoxLeadGenerator->setEnabled(true);
+        ui->pushButtonGeneratorLead->setText(tr("Cute Charm"));
+        ui->comboBoxGeneratorLead->setEnabled(true);
 
-        ui->comboBoxLeadGenerator->addItem(tr("♂ Lead"), Lead::CuteCharmFemale);
-        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
-        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
-        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
-        ui->comboBoxLeadGenerator->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
+        ui->comboBoxGeneratorLead->addItem(tr("♂ Lead"), Lead::CuteCharmFemale);
+        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (50% ♂ Target)"), Lead::CuteCharm50M);
+        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (75% ♂ Target)"), Lead::CuteCharm75M);
+        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (25% ♂ Target)"), Lead::CuteCharm25M);
+        ui->comboBoxGeneratorLead->addItem(tr("♀ Lead (87.5% ♂ Target)"), Lead::CuteCharm875M);
     }
     else
     {
-        ui->pushButtonLeadGenerator->setText(tr("Synchronize"));
+        ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
 
-        ui->comboBoxLeadGenerator->addItem("None");
-        ui->comboBoxLeadGenerator->addItems(Nature::getNatures());
+        ui->comboBoxGeneratorLead->addItem("None");
+        ui->comboBoxGeneratorLead->addItems(Nature::getNatures());
     }
 }
 
-void Wild4::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
+void Wild4::on_comboBoxGeneratorEncounter_currentIndexChanged(int index)
 {
     (void) index;
     QStringList t;
-    Encounter encounter = static_cast<Encounter>(ui->comboBoxEncounterGenerator->currentData().toInt());
+    Encounter encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
 
     switch (encounter)
     {
@@ -443,18 +444,18 @@ void Wild4::on_comboBoxEncounterGenerator_currentIndexChanged(int index)
         default:
             break;
     }
-    ui->comboBoxSlotGenerator->clear();
-    ui->comboBoxSlotGenerator->addItems(t);
-    ui->comboBoxSlotGenerator->setup();
+    ui->comboBoxGeneratorEncounterSlot->clear();
+    ui->comboBoxGeneratorEncounterSlot->addItems(t);
+    ui->comboBoxGeneratorEncounterSlot->setup();
 
     updateLocationsGenerator();
 }
 
-void Wild4::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
+void Wild4::on_comboBoxSearcherEncounter_currentIndexChanged(int index)
 {
     (void) index;
     QStringList t;
-    Encounter encounter = static_cast<Encounter>(ui->comboBoxEncounterSearcher->currentData().toInt());
+    Encounter encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
 
     switch (encounter)
     {
@@ -473,95 +474,65 @@ void Wild4::on_comboBoxEncounterSearcher_currentIndexChanged(int index)
         default:
             break;
     }
-    ui->comboBoxSlotSearcher->clear();
-    ui->comboBoxSlotSearcher->addItems(t);
-    ui->comboBoxSlotSearcher->setup();
+    ui->comboBoxSearcherEncounterSlot->clear();
+    ui->comboBoxSearcherEncounterSlot->addItems(t);
+    ui->comboBoxSearcherEncounterSlot->setup();
 
     updateLocationsSearcher();
 }
 
-void Wild4::on_comboBoxLocationGenerator_currentIndexChanged(int index)
+void Wild4::on_comboBoxGeneratorLocation_currentIndexChanged(int index)
 {
     (void) index;
     updatePokemonGenerator();
 }
 
-void Wild4::on_comboBoxLocationSearcher_currentIndexChanged(int index)
+void Wild4::on_comboBoxSearcherLocation_currentIndexChanged(int index)
 {
     (void) index;
     updatePokemonSearcher();
 }
 
-void Wild4::on_comboBoxPokemonGenerator_currentIndexChanged(int index)
+void Wild4::on_comboBoxGeneratorPokemon_currentIndexChanged(int index)
 {
     if (index <= 0)
     {
-        ui->comboBoxSlotGenerator->uncheckAll();
+        ui->comboBoxGeneratorEncounterSlot->uncheckAll();
         return;
     }
 
-    u16 num = ui->comboBoxPokemonGenerator->currentData().toUInt();
-    QVector<bool> flags = encounterGenerator[ui->comboBoxLocationGenerator->currentIndex()].getSlots(num);
+    u16 num = ui->comboBoxGeneratorPokemon->currentData().toUInt();
+    QVector<bool> flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getSlots(num);
 
-    ui->comboBoxSlotGenerator->setChecks(flags);
+    ui->comboBoxGeneratorEncounterSlot->setChecks(flags);
 }
 
-void Wild4::on_comboBoxPokemonSearcher_currentIndexChanged(int index)
+void Wild4::on_comboBoxSearcherPokemon_currentIndexChanged(int index)
 {
     if (index <= 0)
     {
-        ui->comboBoxSlotSearcher->uncheckAll();
+        ui->comboBoxSearcherEncounterSlot->uncheckAll();
         return;
     }
 
-    u16 num = ui->comboBoxPokemonSearcher->currentData().toUInt();
-    QVector<bool> flags = encounterSearcher[ui->comboBoxLocationSearcher->currentIndex()].getSlots(num);
+    u16 num = ui->comboBoxSearcherPokemon->currentData().toUInt();
+    QVector<bool> flags = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getSlots(num);
 
-    ui->comboBoxSlotSearcher->setChecks(flags);
+    ui->comboBoxSearcherEncounterSlot->setChecks(flags);
 }
 
-void Wild4::on_comboBoxTimeGenerator_currentIndexChanged(int index)
+void Wild4::on_comboBoxGeneratorTime_currentIndexChanged(int index)
 {
-    index = ui->comboBoxLocationGenerator->currentIndex();
+    index = ui->comboBoxGeneratorLocation->currentIndex();
     updateLocationsGenerator();
-    ui->comboBoxLocationGenerator->setCurrentIndex(index);
+    ui->comboBoxGeneratorLocation->setCurrentIndex(index);
 }
 
-void Wild4::on_comboBoxTimeSearcher_currentIndexChanged(int index)
+void Wild4::on_comboBoxSearcherTime_currentIndexChanged(int index)
 {
-    index = ui->comboBoxLocationSearcher->currentIndex();
+    index = ui->comboBoxSearcherLocation->currentIndex();
     updateLocationsSearcher();
-    ui->comboBoxLocationSearcher->setCurrentIndex(index);
-}
-
-void Wild4::on_anyNatureGenerator_clicked()
-{
-    ui->comboBoxNatureGenerator->uncheckAll();
-}
-
-void Wild4::on_anyHiddenPowerGenerator_clicked()
-{
-    ui->comboBoxHiddenPowerGenerator->uncheckAll();
-}
-
-void Wild4::on_anySlotGenerator_clicked()
-{
-    ui->comboBoxSlotGenerator->uncheckAll();
-}
-
-void Wild4::on_anyNatureSearcher_clicked()
-{
-    ui->comboBoxNatureSearcher->uncheckAll();
-}
-
-void Wild4::on_anyHiddenPowerSearcher_clicked()
-{
-    ui->comboBoxHiddenPowerSearcher->uncheckAll();
-}
-
-void Wild4::on_anySlotSearcher_clicked()
-{
-    ui->comboBoxSlotSearcher->uncheckAll();
+    ui->comboBoxSearcherLocation->setCurrentIndex(index);
 }
 
 void Wild4::seedToTime()

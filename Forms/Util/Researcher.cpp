@@ -433,7 +433,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 void Researcher::on_rngSelection_currentChanged(int index)
 {
     ui->textBoxSeed->setVisible(index != 2);
-    ui->label_14->setVisible(index != 2);
+    ui->labelSeed->setVisible(index != 2);
     ui->comboBoxSearch->clear();
     QStringList items = index != 1 ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low") :
                         QStringList() << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low") ;

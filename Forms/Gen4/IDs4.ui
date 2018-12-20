@@ -110,7 +110,7 @@ QPushButton:disabled {
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
-        <verstretch>1</verstretch>
+        <verstretch>2</verstretch>
        </sizepolicy>
       </property>
       <property name="minimumSize">
@@ -124,7 +124,7 @@ QPushButton:disabled {
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="labelShinyPIDPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -137,7 +137,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="0" column="1" colspan="2">
-        <widget class="TextBox" name="textBoxPID">
+        <widget class="TextBox" name="textBoxShinyPIDPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -150,14 +150,14 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="1" column="0" colspan="2">
-        <widget class="QCheckBox" name="checkBoxSearchTIDShinyPID">
+        <widget class="QCheckBox" name="checkBoxShinyPIDSearchTID">
          <property name="text">
           <string>Search for TID</string>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="labelShinyPIDTID">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -173,7 +173,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="2" column="1" colspan="2">
-        <widget class="TextBox" name="textBoxTIDShinyPID">
+        <widget class="TextBox" name="textBoxShinyPIDTID">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -189,7 +189,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="labelShinyPIDYear">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -202,7 +202,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="3" column="1" colspan="2">
-        <widget class="TextBox" name="textBoxYearShinyPID">
+        <widget class="TextBox" name="textBoxShinyPIDYear">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -218,7 +218,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="labelShinyPIDMinDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -231,7 +231,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="4" column="1" colspan="2">
-        <widget class="TextBox" name="textBoxMinDelayShinyPID">
+        <widget class="TextBox" name="textBoxShinyPIDMinDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -247,7 +247,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="5" column="0">
-        <widget class="QLabel" name="label_5">
+        <widget class="QLabel" name="labelShinyPIDMaxDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -260,7 +260,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="5" column="1" colspan="2">
-        <widget class="TextBox" name="textBoxMaxDelayShinyPID">
+        <widget class="TextBox" name="textBoxShinyPIDMaxDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -276,14 +276,14 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="6" column="0" colspan="2">
-        <widget class="QCheckBox" name="checkBoxInfiniteSearchShinyPID">
+        <widget class="QCheckBox" name="checkBoxShinyPIDInfiniteSearch">
          <property name="text">
           <string>Infinite Search</string>
          </property>
         </widget>
        </item>
        <item row="7" column="0" colspan="2">
-        <widget class="QPushButton" name="pushButtonSearchShinyPID">
+        <widget class="QPushButton" name="pushButtonShinyPIDSearch">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -305,7 +305,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="7" column="2">
-        <widget class="QPushButton" name="pushButtonCancelShinyPID">
+        <widget class="QPushButton" name="pushButtonShinyPIDCancel">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -334,7 +334,7 @@ QPushButton:disabled {
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
-        <verstretch>1</verstretch>
+        <verstretch>2</verstretch>
        </sizepolicy>
       </property>
       <property name="title">
@@ -342,7 +342,7 @@ QPushButton:disabled {
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <widget class="QLabel" name="label_9">
+        <widget class="QLabel" name="labelTIDSIDTID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -355,7 +355,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="0" column="1" colspan="2">
-        <widget class="TextBox" name="textBoxTIDTIDSID">
+        <widget class="TextBox" name="textBoxTIDSIDTID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -368,14 +368,14 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="1" column="0" colspan="2">
-        <widget class="QCheckBox" name="checkBoxSearchSID">
+        <widget class="QCheckBox" name="checkBoxTIDSIDSearchSID">
          <property name="text">
           <string>Search for SID</string>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="labelTIDSIDSID">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -391,7 +391,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="2" column="1" colspan="2">
-        <widget class="TextBox" name="textBoxSIDTIDSID">
+        <widget class="TextBox" name="textBoxTIDSIDSID">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -407,7 +407,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="labelTIDSIDYear">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -420,7 +420,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="3" column="1" colspan="2">
-        <widget class="TextBox" name="textBoxYearTIDSID">
+        <widget class="TextBox" name="textBoxTIDSIDYear">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -436,7 +436,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_10">
+        <widget class="QLabel" name="labelTIDSIDMinDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -449,7 +449,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="4" column="1" colspan="2">
-        <widget class="TextBox" name="textBoxMinDelayTIDSID">
+        <widget class="TextBox" name="textBoxTIDSIDMinDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -465,7 +465,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="5" column="0">
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="labelTIDSIDMaxDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -478,7 +478,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="5" column="1" colspan="2">
-        <widget class="TextBox" name="textBoxMaxDelayTIDSID">
+        <widget class="TextBox" name="textBoxTIDSIDMaxDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -494,14 +494,14 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="6" column="0" colspan="2">
-        <widget class="QCheckBox" name="checkBoxInfiniteSearchTIDSID">
+        <widget class="QCheckBox" name="checkBoxTIDSIDInfiniteSearch">
          <property name="text">
           <string>Infinite Search</string>
          </property>
         </widget>
        </item>
        <item row="7" column="0" colspan="2">
-        <widget class="QPushButton" name="pushButtonSearchTIDSID">
+        <widget class="QPushButton" name="pushButtonTIDSIDSearch">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -523,7 +523,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="7" column="2">
-        <widget class="QPushButton" name="pushButtonCancelTIDSID">
+        <widget class="QPushButton" name="pushButtonTIDSIDCancel">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -552,7 +552,7 @@ QPushButton:disabled {
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
-        <verstretch>1</verstretch>
+        <verstretch>2</verstretch>
        </sizepolicy>
       </property>
       <property name="title">
@@ -560,7 +560,7 @@ QPushButton:disabled {
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
-        <widget class="QLabel" name="label_11">
+        <widget class="QLabel" name="labelSeedFinderTID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -573,7 +573,7 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="textBoxTIDSeedFinder">
+        <widget class="QLineEdit" name="textBoxSeedFinderTID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -583,152 +583,32 @@ QPushButton:disabled {
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_12">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
+        <widget class="QLabel" name="labelSeedFinderDateTime">
          <property name="text">
-          <string>Month</string>
+          <string>Date/Time</string>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="textBoxMonthSeedFinder">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+        <widget class="QDateTimeEdit" name="dateTimeEdit">
+         <property name="maximumDate">
+          <date>
+           <year>2099</year>
+           <month>12</month>
+           <day>31</day>
+          </date>
          </property>
-         <property name="text">
-          <string notr="true">1</string>
-         </property>
-         <property name="maxLength">
-          <number>2</number>
+         <property name="minimumDate">
+          <date>
+           <year>2000</year>
+           <month>1</month>
+           <day>1</day>
+          </date>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_13">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Day</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="textBoxDaySeedFinder">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string notr="true">1</string>
-         </property>
-         <property name="maxLength">
-          <number>2</number>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_14">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Year</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="textBoxYearSeedFinder">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string notr="true">2000</string>
-         </property>
-         <property name="maxLength">
-          <number>4</number>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_15">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Hour</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QLineEdit" name="textBoxHourSeedFinder">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string notr="true">0</string>
-         </property>
-         <property name="maxLength">
-          <number>2</number>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_16">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Minute</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLineEdit" name="textBoxMinuteSeedFinder">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string notr="true">0</string>
-         </property>
-         <property name="maxLength">
-          <number>2</number>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_17">
+        <widget class="QLabel" name="labelSeedFinderMinDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -740,8 +620,8 @@ QPushButton:disabled {
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
-        <widget class="QLineEdit" name="textBoxMinDelaySeedFinder">
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="textBoxSeedFinderMinDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -756,8 +636,8 @@ QPushButton:disabled {
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="label_18">
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelSeedFinderMaxDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -769,8 +649,8 @@ QPushButton:disabled {
          </property>
         </widget>
        </item>
-       <item row="7" column="1">
-        <widget class="QLineEdit" name="textBoxMaxDelaySeedFinder">
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="textBoxSeedFinderMaxDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -785,8 +665,8 @@ QPushButton:disabled {
          </property>
         </widget>
        </item>
-       <item row="8" column="0" colspan="2">
-        <widget class="QPushButton" name="pushButtonSearchSeedFinder">
+       <item row="4" column="0" colspan="2">
+        <widget class="QPushButton" name="pushButtonSeedFinderSearch">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -832,16 +712,6 @@ QPushButton:disabled {
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -856,33 +726,96 @@ QPushButton:disabled {
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>textBoxPID</tabstop>
-  <tabstop>checkBoxSearchTIDShinyPID</tabstop>
-  <tabstop>textBoxTIDShinyPID</tabstop>
-  <tabstop>textBoxYearShinyPID</tabstop>
-  <tabstop>textBoxMinDelayShinyPID</tabstop>
-  <tabstop>textBoxMaxDelayShinyPID</tabstop>
-  <tabstop>checkBoxInfiniteSearchShinyPID</tabstop>
-  <tabstop>pushButtonSearchShinyPID</tabstop>
-  <tabstop>textBoxTIDTIDSID</tabstop>
-  <tabstop>checkBoxSearchSID</tabstop>
-  <tabstop>textBoxSIDTIDSID</tabstop>
-  <tabstop>textBoxYearTIDSID</tabstop>
-  <tabstop>textBoxMinDelayTIDSID</tabstop>
-  <tabstop>textBoxMaxDelayTIDSID</tabstop>
-  <tabstop>checkBoxInfiniteSearchTIDSID</tabstop>
-  <tabstop>pushButtonSearchTIDSID</tabstop>
-  <tabstop>textBoxTIDSeedFinder</tabstop>
-  <tabstop>textBoxMonthSeedFinder</tabstop>
-  <tabstop>textBoxDaySeedFinder</tabstop>
-  <tabstop>textBoxYearSeedFinder</tabstop>
-  <tabstop>textBoxHourSeedFinder</tabstop>
-  <tabstop>textBoxMinuteSeedFinder</tabstop>
-  <tabstop>textBoxMinDelaySeedFinder</tabstop>
-  <tabstop>textBoxMaxDelaySeedFinder</tabstop>
-  <tabstop>pushButtonSearchSeedFinder</tabstop>
+  <tabstop>textBoxShinyPIDPID</tabstop>
+  <tabstop>checkBoxShinyPIDSearchTID</tabstop>
+  <tabstop>textBoxShinyPIDTID</tabstop>
+  <tabstop>textBoxShinyPIDYear</tabstop>
+  <tabstop>textBoxShinyPIDMinDelay</tabstop>
+  <tabstop>textBoxShinyPIDMaxDelay</tabstop>
+  <tabstop>checkBoxShinyPIDInfiniteSearch</tabstop>
+  <tabstop>pushButtonShinyPIDSearch</tabstop>
+  <tabstop>pushButtonShinyPIDCancel</tabstop>
+  <tabstop>textBoxTIDSIDTID</tabstop>
+  <tabstop>checkBoxTIDSIDSearchSID</tabstop>
+  <tabstop>textBoxTIDSIDSID</tabstop>
+  <tabstop>textBoxTIDSIDYear</tabstop>
+  <tabstop>textBoxTIDSIDMinDelay</tabstop>
+  <tabstop>textBoxTIDSIDMaxDelay</tabstop>
+  <tabstop>checkBoxTIDSIDInfiniteSearch</tabstop>
+  <tabstop>pushButtonTIDSIDSearch</tabstop>
+  <tabstop>pushButtonTIDSIDCancel</tabstop>
+  <tabstop>textBoxSeedFinderTID</tabstop>
+  <tabstop>dateTimeEdit</tabstop>
+  <tabstop>textBoxSeedFinderMinDelay</tabstop>
+  <tabstop>textBoxSeedFinderMaxDelay</tabstop>
+  <tabstop>pushButtonSeedFinderSearch</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>checkBoxShinyPIDSearchTID</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxShinyPIDTID</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>62</x>
+     <y>51</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>139</x>
+     <y>78</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxShinyPIDInfiniteSearch</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxShinyPIDMaxDelay</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>45</x>
+     <y>157</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>203</x>
+     <y>144</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxTIDSIDSearchSID</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxTIDSIDSID</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>362</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>388</x>
+     <y>72</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxTIDSIDInfiniteSearch</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxTIDSIDMaxDelay</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>336</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>470</x>
+     <y>146</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

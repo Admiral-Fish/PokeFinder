@@ -64,11 +64,8 @@ private:
 private slots:
     void refreshProfiles();
     void on_pushButtonGenerate_clicked();
-    void on_pushButtonGeneratePID_clicked();
-    void on_pushButtonGenerateIVs_clicked();
-    void on_pushButtonAnyNatureGenerator_clicked();
-    void on_pushButtonAnyHiddenPowerGenerator_clicked();
-    void on_pushButtonAnyNatureSearcher_clicked();
+    void on_pushButtonSearchPID_clicked();
+    void on_pushButtonSearchIVs_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_tableViewPID_customContextMenuRequested(const QPoint &pos);
     void on_tableViewIVs_customContextMenuRequested(const QPoint &pos);

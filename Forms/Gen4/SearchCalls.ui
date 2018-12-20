@@ -261,8 +261,51 @@ QRadioButton {
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pushButtonK</tabstop>
+  <tabstop>pushButtonE</tabstop>
+  <tabstop>pushButtonP</tabstop>
+  <tabstop>lineEditCalls</tabstop>
+  <tabstop>radioButtonElm</tabstop>
+  <tabstop>radioButtonIrwin</tabstop>
+  <tabstop>pushButtonOkay</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonOkay</sender>
+   <signal>clicked()</signal>
+   <receiver>SearchCalls</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>358</x>
+     <y>479</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>170</x>
+     <y>469</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>SearchCalls</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>527</x>
+     <y>479</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>105</x>
+     <y>472</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <buttongroups>
   <buttongroup name="buttonGroup"/>
  </buttongroups>

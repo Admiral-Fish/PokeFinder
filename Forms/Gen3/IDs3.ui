@@ -157,7 +157,7 @@ QRadioButton {
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBoxSearchBy_3">
+         <widget class="QGroupBox" name="groupBoxXDColoSearchBy">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>1</horstretch>
@@ -175,7 +175,7 @@ QRadioButton {
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
-            <widget class="QCheckBox" name="checkBoxPIDXD">
+            <widget class="QCheckBox" name="checkBoxXDColoPID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -188,7 +188,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="TextBox" name="textBoxPIDXD">
+            <widget class="TextBox" name="textBoxXDColoPID">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -204,7 +204,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QCheckBox" name="checkBoxTIDXD">
+            <widget class="QCheckBox" name="checkBoxXDColoTID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -217,7 +217,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="TextBox" name="textBoxTIDXD">
+            <widget class="TextBox" name="textBoxXDColoTID">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -233,7 +233,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QCheckBox" name="checkBoxSIDXD">
+            <widget class="QCheckBox" name="checkBoxXDColoSID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -246,7 +246,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="TextBox" name="textBoxSIDXD">
+            <widget class="TextBox" name="textBoxXDColoSID">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -262,7 +262,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="0" colspan="2">
-            <widget class="QPushButton" name="pushButtonFindXD">
+            <widget class="QPushButton" name="pushButtonXDColoSearch">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -283,7 +283,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QGroupBox" name="groupBoxParameters_3">
+         <widget class="QGroupBox" name="groupBoxXDColoParameters">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>1</horstretch>
@@ -295,28 +295,28 @@ QRadioButton {
           </property>
           <layout class="QGridLayout" name="gridLayout">
            <item row="0" column="0">
-            <widget class="QLabel" name="labelPRNG">
+            <widget class="QLabel" name="labelXDColoSeed">
              <property name="text">
               <string>Seed</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="TextBox" name="textBoxSeedXD">
+            <widget class="TextBox" name="textBoxXDColoSeed">
              <property name="maxLength">
               <number>8</number>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="labelMinFrame_3">
+            <widget class="QLabel" name="labelXDColoStartingFrame">
              <property name="text">
               <string>Starting Frame</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="TextBox" name="textBoxMinFrameXD">
+            <widget class="TextBox" name="textBoxXDColoStartingFrame">
              <property name="text">
               <string notr="true">5000</string>
              </property>
@@ -326,14 +326,14 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="labelMaxFrame_3">
+            <widget class="QLabel" name="labelXDColoMaxResults">
              <property name="text">
               <string>Max Results</string>
              </property>
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="TextBox" name="textBoxMaxFrameXD">
+            <widget class="TextBox" name="textBoxXDColoMaxResults">
              <property name="text">
               <string notr="true">10000</string>
              </property>
@@ -366,7 +366,7 @@ QRadioButton {
        </attribute>
        <layout class="QGridLayout" name="gridLayout_7">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBoxSearchBy">
+         <widget class="QGroupBox" name="groupBoxFRLGESearchBy">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>1</horstretch>
@@ -384,7 +384,7 @@ QRadioButton {
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
-            <widget class="QCheckBox" name="checkBoxPIDFRLGE">
+            <widget class="QCheckBox" name="checkBoxFRLGEPID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -397,7 +397,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="TextBox" name="textBoxPIDFRLGE">
+            <widget class="TextBox" name="textBoxFRLGEPID">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -413,7 +413,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QCheckBox" name="checkBoxSIDFRLGE">
+            <widget class="QCheckBox" name="checkBoxFRLGESID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -426,7 +426,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="TextBox" name="textBoxSIDFRLGE">
+            <widget class="TextBox" name="textBoxFRLGESID">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -442,7 +442,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="0" colspan="2">
-            <widget class="QPushButton" name="pushButtonFindFRLGE">
+            <widget class="QPushButton" name="pushButtonFRLGESearch">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -469,7 +469,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QGroupBox" name="groupBoxParameters">
+         <widget class="QGroupBox" name="groupBoxFRGLESearchParameters">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>1</horstretch>
@@ -481,14 +481,14 @@ QRadioButton {
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
-            <widget class="QLabel" name="labelTID">
+            <widget class="QLabel" name="labelFRLGETID">
              <property name="text">
               <string>TID</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="TextBox" name="textBoxTIDFRLGE">
+            <widget class="TextBox" name="textBoxFRLGETID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -501,14 +501,14 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="labelMinFrame">
+            <widget class="QLabel" name="labelFRLGEStartingFrame">
              <property name="text">
               <string>Starting Frame</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="TextBox" name="textBoxMinFrameFRLGE">
+            <widget class="TextBox" name="textBoxFRLGEStartingFrame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -524,14 +524,14 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="labelMaxFrame">
+            <widget class="QLabel" name="labelFRLGEMaxResults">
              <property name="text">
               <string>Max Results</string>
              </property>
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="TextBox" name="textBoxMaxFrameFRLGE">
+            <widget class="TextBox" name="textBoxFRLGEMaxResults">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -570,7 +570,7 @@ QRadioButton {
        </attribute>
        <layout class="QGridLayout" name="gridLayout_10">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBoxSearchBy_2">
+         <widget class="QGroupBox" name="groupBoxRSSearchBy">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -588,7 +588,7 @@ QRadioButton {
           </property>
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="0" column="0">
-            <widget class="QCheckBox" name="checkBoxPIDRS">
+            <widget class="QCheckBox" name="checkBoxRSPID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -601,7 +601,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="TextBox" name="textBoxPIDRS">
+            <widget class="TextBox" name="textBoxRSPID">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -617,7 +617,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QCheckBox" name="checkBoxTIDRS">
+            <widget class="QCheckBox" name="checkBoxRSTID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -630,7 +630,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="TextBox" name="textBoxTIDRS">
+            <widget class="TextBox" name="textBoxRSTID">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -646,7 +646,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QCheckBox" name="checkBoxSIDRS">
+            <widget class="QCheckBox" name="checkBoxRSSID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -659,7 +659,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="TextBox" name="textBoxSIDRS">
+            <widget class="TextBox" name="textBoxRSSID">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -675,7 +675,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="0" colspan="2">
-            <widget class="QPushButton" name="pushButtonFindRS">
+            <widget class="QPushButton" name="pushButtonRSSearch">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -685,7 +685,7 @@ QRadioButton {
              <property name="minimumSize">
               <size>
                <width>0</width>
-               <height>0</height>
+               <height>23</height>
               </size>
              </property>
              <property name="styleSheet">
@@ -702,7 +702,7 @@ QRadioButton {
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QGroupBox" name="groupBoxParameters_2">
+         <widget class="QGroupBox" name="groupBoxRSSearchParameters">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -714,7 +714,7 @@ QRadioButton {
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
            <item row="1" column="3">
-            <widget class="QRadioButton" name="radioButtonInitSeedRS">
+            <widget class="QRadioButton" name="radioButtonRSInitialSeed">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -724,7 +724,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="0" colspan="2">
-            <widget class="QCheckBox" name="checkBoxBattery">
+            <widget class="QCheckBox" name="checkBoxRSDeadBattery">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -743,7 +743,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QRadioButton" name="radioButtonDateRS">
+            <widget class="QRadioButton" name="radioButtonRSDate">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -812,7 +812,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="4">
-            <widget class="TextBox" name="textBoxInitSeedRS">
+            <widget class="TextBox" name="textBoxRSInitialSeed">
              <property name="enabled">
               <bool>false</bool>
              </property>
@@ -831,7 +831,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="TextBox" name="textBoxMinFrameRS">
+            <widget class="TextBox" name="textBoxRSStartingFrame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -847,7 +847,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="TextBox" name="textBoxMaxFrameRS">
+            <widget class="TextBox" name="textBoxRSMaxResults">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -863,7 +863,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="0" colspan="2">
-            <widget class="QLabel" name="labelMinFrame_2">
+            <widget class="QLabel" name="labelRSStartingFrame">
              <property name="text">
               <string>Starting Frame</string>
              </property>
@@ -898,16 +898,6 @@ QRadioButton {
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>711</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -923,42 +913,171 @@ QRadioButton {
  </customwidgets>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>checkBoxPIDXD</tabstop>
-  <tabstop>textBoxPIDXD</tabstop>
-  <tabstop>checkBoxTIDXD</tabstop>
-  <tabstop>textBoxTIDXD</tabstop>
-  <tabstop>checkBoxSIDXD</tabstop>
-  <tabstop>textBoxSIDXD</tabstop>
-  <tabstop>pushButtonFindXD</tabstop>
-  <tabstop>textBoxSeedXD</tabstop>
-  <tabstop>textBoxMinFrameXD</tabstop>
-  <tabstop>textBoxMaxFrameXD</tabstop>
+  <tabstop>checkBoxXDColoPID</tabstop>
+  <tabstop>textBoxXDColoPID</tabstop>
+  <tabstop>checkBoxXDColoTID</tabstop>
+  <tabstop>textBoxXDColoTID</tabstop>
+  <tabstop>checkBoxXDColoSID</tabstop>
+  <tabstop>textBoxXDColoSID</tabstop>
+  <tabstop>pushButtonXDColoSearch</tabstop>
+  <tabstop>textBoxXDColoSeed</tabstop>
+  <tabstop>textBoxXDColoStartingFrame</tabstop>
+  <tabstop>textBoxXDColoMaxResults</tabstop>
   <tabstop>tableViewXDColo</tabstop>
-  <tabstop>checkBoxPIDFRLGE</tabstop>
-  <tabstop>textBoxPIDFRLGE</tabstop>
-  <tabstop>checkBoxSIDFRLGE</tabstop>
-  <tabstop>textBoxSIDFRLGE</tabstop>
-  <tabstop>pushButtonFindFRLGE</tabstop>
-  <tabstop>textBoxTIDFRLGE</tabstop>
-  <tabstop>textBoxMinFrameFRLGE</tabstop>
-  <tabstop>textBoxMaxFrameFRLGE</tabstop>
+  <tabstop>checkBoxFRLGEPID</tabstop>
+  <tabstop>textBoxFRLGEPID</tabstop>
+  <tabstop>checkBoxFRLGESID</tabstop>
+  <tabstop>textBoxFRLGESID</tabstop>
+  <tabstop>pushButtonFRLGESearch</tabstop>
+  <tabstop>textBoxFRLGETID</tabstop>
+  <tabstop>textBoxFRLGEStartingFrame</tabstop>
+  <tabstop>textBoxFRLGEMaxResults</tabstop>
   <tabstop>tableViewFRLGE</tabstop>
-  <tabstop>checkBoxPIDRS</tabstop>
-  <tabstop>textBoxPIDRS</tabstop>
-  <tabstop>checkBoxTIDRS</tabstop>
-  <tabstop>textBoxTIDRS</tabstop>
-  <tabstop>checkBoxSIDRS</tabstop>
-  <tabstop>textBoxSIDRS</tabstop>
-  <tabstop>pushButtonFindRS</tabstop>
-  <tabstop>checkBoxBattery</tabstop>
-  <tabstop>radioButtonDateRS</tabstop>
+  <tabstop>checkBoxRSPID</tabstop>
+  <tabstop>textBoxRSPID</tabstop>
+  <tabstop>checkBoxRSTID</tabstop>
+  <tabstop>textBoxRSTID</tabstop>
+  <tabstop>checkBoxRSSID</tabstop>
+  <tabstop>textBoxRSSID</tabstop>
+  <tabstop>pushButtonRSSearch</tabstop>
+  <tabstop>checkBoxRSDeadBattery</tabstop>
+  <tabstop>radioButtonRSDate</tabstop>
   <tabstop>dateTimeEdit</tabstop>
-  <tabstop>radioButtonInitSeedRS</tabstop>
-  <tabstop>textBoxInitSeedRS</tabstop>
-  <tabstop>textBoxMinFrameRS</tabstop>
-  <tabstop>textBoxMaxFrameRS</tabstop>
+  <tabstop>radioButtonRSInitialSeed</tabstop>
+  <tabstop>textBoxRSInitialSeed</tabstop>
+  <tabstop>textBoxRSStartingFrame</tabstop>
+  <tabstop>textBoxRSMaxResults</tabstop>
   <tabstop>tableViewRS</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>checkBoxXDColoPID</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxXDColoPID</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>37</x>
+     <y>76</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>225</x>
+     <y>72</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxXDColoTID</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxXDColoTID</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>48</x>
+     <y>103</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>108</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxXDColoSID</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxXDColoSID</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>73</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>222</x>
+     <y>137</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFRLGEPID</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxFRLGEPID</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>44</x>
+     <y>79</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>242</x>
+     <y>81</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxFRLGESID</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxFRLGESID</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>60</x>
+     <y>119</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>241</x>
+     <y>121</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRSPID</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxRSPID</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>54</x>
+     <y>79</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>125</x>
+     <y>79</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRSTID</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxRSTID</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>73</x>
+     <y>120</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>127</x>
+     <y>117</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRSSID</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxRSSID</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>54</x>
+     <y>159</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>150</x>
+     <y>162</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

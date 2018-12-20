@@ -55,7 +55,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="labelEntei">
+    <widget class="QLabel" name="labelEnteiImage">
      <property name="minimumSize">
       <size>
        <width>18</width>
@@ -77,14 +77,14 @@
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="labelEntei">
      <property name="text">
       <string>Entei</string>
      </property>
     </widget>
    </item>
    <item row="1" column="2">
-    <widget class="QLabel" name="labelRaikou">
+    <widget class="QLabel" name="labelRaikouImage">
      <property name="minimumSize">
       <size>
        <width>18</width>
@@ -106,14 +106,14 @@
     </widget>
    </item>
    <item row="1" column="3">
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="labelRaikou">
      <property name="text">
       <string>Raikou</string>
      </property>
     </widget>
    </item>
    <item row="1" column="4">
-    <widget class="QLabel" name="labelLatias">
+    <widget class="QLabel" name="labelLatiasImage">
      <property name="minimumSize">
       <size>
        <width>16</width>
@@ -135,7 +135,7 @@
     </widget>
    </item>
    <item row="1" column="5">
-    <widget class="QLabel" name="labelLatios">
+    <widget class="QLabel" name="labelLatiosImage">
      <property name="minimumSize">
       <size>
        <width>16</width>
@@ -157,7 +157,7 @@
     </widget>
    </item>
    <item row="1" column="6">
-    <widget class="QLabel" name="label_7">
+    <widget class="QLabel" name="labelLatiasLatios">
      <property name="text">
       <string>Latias / Latios</string>
      </property>

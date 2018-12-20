@@ -165,8 +165,48 @@ QLabel {
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pushButtonHeads</tabstop>
+  <tabstop>pushButtonTails</tabstop>
+  <tabstop>lineEditFlips</tabstop>
+  <tabstop>pushButtonOkay</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources>
   <include location="../../resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonOkay</sender>
+   <signal>clicked()</signal>
+   <receiver>SearchCoinFlips</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>196</x>
+     <y>134</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>123</x>
+     <y>130</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>SearchCoinFlips</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>330</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>48</x>
+     <y>125</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

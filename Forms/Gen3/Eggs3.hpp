@@ -63,11 +63,8 @@ private slots:
     void on_pushButtonGenerateFRLG_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonAnyAbilityEmerald_clicked();
-    void on_pushButtonAnyNatureEmerald_clicked();
     void on_pushButtonAnyAbilityRS_clicked();
-    void on_pushButtonAnyNatureRS_clicked();
     void on_pushButtonAnyAbilityFRLG_clicked();
-    void on_pushButtonAnyNatureFRLG_clicked();
     void on_pushButtonProfileManager_clicked();
 
 };

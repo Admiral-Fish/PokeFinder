@@ -172,13 +172,13 @@ void Eggs3::on_pushButtonGenerateEmeraldIVs_clicked()
 
     QVector<u8> parent1 =
     {
-        static_cast<u8>(ui->parent1HPEmerald->value()), static_cast<u8>(ui->parent1AtkEmerald->value()), static_cast<u8>(ui->parent1DefEmerald->value()),
-        static_cast<u8>(ui->parent1SpAEmerald->value()), static_cast<u8>(ui->parent1SpDEmerald->value()), static_cast<u8>(ui->parent1SpeEmerald->value())
+        static_cast<u8>(ui->spinBoxEmeraldParent1HP->value()), static_cast<u8>(ui->spinBoxEmeraldParent1Atk->value()), static_cast<u8>(ui->spinBoxEmeraldParent1Def->value()),
+        static_cast<u8>(ui->spinBoxEmeraldParent1SpA->value()), static_cast<u8>(ui->spinBoxEmeraldParent1SpD->value()), static_cast<u8>(ui->spinBoxEmeraldParent1Spe->value())
     };
     QVector<u8> parent2 =
     {
-        static_cast<u8>(ui->parent2HPEmerald->value()), static_cast<u8>(ui->parent2AtkEmerald->value()), static_cast<u8>(ui->parent2DefEmerald->value()),
-        static_cast<u8>(ui->parent2SpAEmerald->value()), static_cast<u8>(ui->parent2SpDEmerald->value()), static_cast<u8>(ui->parent2SpeEmerald->value())
+        static_cast<u8>(ui->spinBoxEmeraldParent2HP->value()), static_cast<u8>(ui->spinBoxEmeraldParent2Atk->value()), static_cast<u8>(ui->spinBoxEmeraldParent2Def->value()),
+        static_cast<u8>(ui->spinBoxEmeraldParent2SpA->value()), static_cast<u8>(ui->spinBoxEmeraldParent2SpD->value()), static_cast<u8>(ui->spinBoxEmeraldParent2Spe->value())
     };
 
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, method);
@@ -201,13 +201,13 @@ void Eggs3::on_pushButtonGenerateRS_clicked()
 
     QVector<u8> parent1 =
     {
-        static_cast<u8>(ui->parent1HPRS->value()), static_cast<u8>(ui->parent1AtkRS->value()), static_cast<u8>(ui->parent1DefRS->value()),
-        static_cast<u8>(ui->parent1SpARS->value()), static_cast<u8>(ui->parent1SpDRS->value()), static_cast<u8>(ui->parent1SpeRS->value())
+        static_cast<u8>(ui->spinBoxRSParent1HP->value()), static_cast<u8>(ui->spinBoxRSParent1Atk->value()), static_cast<u8>(ui->spinBoxRSParent1Def->value()),
+        static_cast<u8>(ui->spinBoxRSParent1SpA->value()), static_cast<u8>(ui->spinBoxRSParent1SpD->value()), static_cast<u8>(ui->spinBoxRSParent1Spe->value())
     };
     QVector<u8> parent2 =
     {
-        static_cast<u8>(ui->parent2HPRS->value()), static_cast<u8>(ui->parent2AtkRS->value()), static_cast<u8>(ui->parent2DefRS->value()),
-        static_cast<u8>(ui->parent2SpARS->value()), static_cast<u8>(ui->parent2SpDRS->value()), static_cast<u8>(ui->parent2SpeRS->value())
+        static_cast<u8>(ui->spinBoxRSParent2HP->value()), static_cast<u8>(ui->spinBoxRSParent2Atk->value()), static_cast<u8>(ui->spinBoxRSParent2Def->value()),
+        static_cast<u8>(ui->spinBoxRSParent2SpA->value()), static_cast<u8>(ui->spinBoxRSParent2SpD->value()), static_cast<u8>(ui->spinBoxRSParent2Spe->value())
     };
 
     Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, RSBred, ui->textBoxSeedRS->text().toUInt(nullptr, 16));
@@ -236,13 +236,13 @@ void Eggs3::on_pushButtonGenerateFRLG_clicked()
 
     QVector<u8> parent1 =
     {
-        static_cast<u8>(ui->parent1HPFRLG->value()), static_cast<u8>(ui->parent1AtkFRLG->value()), static_cast<u8>(ui->parent1DefFRLG->value()),
-        static_cast<u8>(ui->parent1SpAFRLG->value()), static_cast<u8>(ui->parent1SpDFRLG->value()), static_cast<u8>(ui->parent1SpeFRLG->value())
+        static_cast<u8>(ui->spinBoxFRLGParent1HP->value()), static_cast<u8>(ui->spinBoxFRLGParent1Atk->value()), static_cast<u8>(ui->spinBoxFRLGParent1Def->value()),
+        static_cast<u8>(ui->spinBoxFRLGParent1SpA->value()), static_cast<u8>(ui->spinBoxFRLGParent1SpD->value()), static_cast<u8>(ui->spinBoxFRLGParent1Spe->value())
     };
     QVector<u8> parent2 =
     {
-        static_cast<u8>(ui->parent2HPFRLG->value()), static_cast<u8>(ui->parent2AtkFRLG->value()), static_cast<u8>(ui->parent2DefFRLG->value()),
-        static_cast<u8>(ui->parent2SpAFRLG->value()), static_cast<u8>(ui->parent2SpDFRLG->value()), static_cast<u8>(ui->parent2SpeFRLG->value())
+        static_cast<u8>(ui->spinBoxFRLGParent2HP->value()), static_cast<u8>(ui->spinBoxFRLGParent2Atk->value()), static_cast<u8>(ui->spinBoxFRLGParent2Def->value()),
+        static_cast<u8>(ui->spinBoxFRLGParent2SpA->value()), static_cast<u8>(ui->spinBoxFRLGParent2SpD->value()), static_cast<u8>(ui->spinBoxFRLGParent2Spe->value())
     };
 
     Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, FRLGBred, ui->textBoxSeedFRLG->text().toUInt(nullptr, 16));
@@ -277,9 +277,9 @@ void Eggs3::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->textBoxSIDRS->setText(sid);
     ui->textBoxTIDFRLG->setText(tid);
     ui->textBoxSIDFRLG->setText(sid);
-    ui->profileTID->setText(tid);
-    ui->profileSID->setText(sid);
-    ui->profileGame->setText(profile.getVersionString());
+    ui->labelProfileTIDValue->setText(tid);
+    ui->labelProfileSIDValue->setText(sid);
+    ui->labelProfileGameValue->setText(profile.getVersionString());
 }
 
 void Eggs3::on_pushButtonAnyAbilityEmerald_clicked()
@@ -287,29 +287,14 @@ void Eggs3::on_pushButtonAnyAbilityEmerald_clicked()
     ui->comboBoxAbilityEmerald->setCurrentIndex(0);
 }
 
-void Eggs3::on_pushButtonAnyNatureEmerald_clicked()
-{
-    ui->comboBoxNatureEmerald->uncheckAll();
-}
-
 void Eggs3::on_pushButtonAnyAbilityRS_clicked()
 {
     ui->comboBoxAbilityRS->setCurrentIndex(0);
 }
 
-void Eggs3::on_pushButtonAnyNatureRS_clicked()
-{
-    ui->comboBoxNatureRS->uncheckAll();
-}
-
 void Eggs3::on_pushButtonAnyAbilityFRLG_clicked()
 {
     ui->comboBoxAbilityFRLG->setCurrentIndex(0);
-}
-
-void Eggs3::on_pushButtonAnyNatureFRLG_clicked()
-{
-    ui->comboBoxNatureFRLG->uncheckAll();
 }
 
 void Eggs3::on_pushButtonProfileManager_clicked()

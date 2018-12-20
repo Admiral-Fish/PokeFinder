@@ -36,14 +36,14 @@ Eggs4::Eggs4(QWidget *parent) :
 Eggs4::~Eggs4()
 {
     QSettings setting;
-    if (setting.contains("egg4MinDelayIVs")) ui->textBoxMinDelayPID->setText(setting.value("egg4MinDelayPID").toString());
-    if (setting.contains("egg4MaxDelayIVs")) ui->textBoxMaxDelayPID->setText(setting.value("egg4MaxDelayPID").toString());
-    if (setting.contains("egg4MinFrameIVs")) ui->textBoxMinFramePID->setText(setting.value("egg4MinFramePID").toString());
-    if (setting.contains("egg4MaxFrameIVs")) ui->textBoxMaxFramePID->setText(setting.value("egg4MaxFramePID").toString());
-    if (setting.contains("egg4MinDelayPID")) ui->textBoxMinDelayPID->setText(setting.value("egg4MinDelayPID").toString());
-    if (setting.contains("egg4MaxDelayPID")) ui->textBoxMaxDelayPID->setText(setting.value("egg4MaxDelayPID").toString());
-    if (setting.contains("egg4MinFramePID")) ui->textBoxMinFramePID->setText(setting.value("egg4MinFramePID").toString());
-    if (setting.contains("egg4MaxFramePID")) ui->textBoxMaxFramePID->setText(setting.value("egg4MaxFramePID").toString());
+    if (setting.contains("egg4MinDelayIVs")) ui->textBoxSearcherIVsMinDelay->setText(setting.value("egg4MinDelayPID").toString());
+    if (setting.contains("egg4MaxDelayIVs")) ui->textBoxSearcherIVsMaxDelay->setText(setting.value("egg4MaxDelayPID").toString());
+    if (setting.contains("egg4MinFrameIVs")) ui->textBoxSearcherIVsMinFrame->setText(setting.value("egg4MinFramePID").toString());
+    if (setting.contains("egg4MaxFrameIVs")) ui->textBoxSearcherIVsMaxFrame->setText(setting.value("egg4MaxFramePID").toString());
+    if (setting.contains("egg4MinDelayPID")) ui->textBoxSearcherPIDMinDelay->setText(setting.value("egg4MinDelayPID").toString());
+    if (setting.contains("egg4MaxDelayPID")) ui->textBoxSearcherPIDMaxDelay->setText(setting.value("egg4MaxDelayPID").toString());
+    if (setting.contains("egg4MinFramePID")) ui->textBoxSearcherPIDMinFrame->setText(setting.value("egg4MinFramePID").toString());
+    if (setting.contains("egg4MaxFramePID")) ui->textBoxSearcherPIDMaxFrame->setText(setting.value("egg4MaxFramePID").toString());
 
     delete ui;
     delete generatorModel;
@@ -78,29 +78,29 @@ void Eggs4::setupModels()
     ui->tableViewIVs->setModel(searcherIVs);
     ui->tableViewPID->setModel(searcherPID);
 
-    ui->textBoxStartingFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxMaxResults->setValues(InputType::Frame32Bit);
-    ui->textBoxTIDGenerator->setValues(InputType::TIDSID);
-    ui->textBoxSIDGenerator->setValues(InputType::TIDSID);
-    ui->textBoxSeedGenerator->setValues(InputType::Seed32Bit);
+    ui->textBoxGeneratorStartingFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorTID->setValues(InputType::TIDSID);
+    ui->textBoxGeneratorSID->setValues(InputType::TIDSID);
+    ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
 
-    ui->textBoxMinFrameIVs->setValues(InputType::Frame32Bit);
-    ui->textBoxMaxFrameIVs->setValues(InputType::Frame32Bit);
-    ui->textBoxMinFramePID->setValues(InputType::Frame32Bit);
-    ui->textBoxMaxFramePID->setValues(InputType::Frame32Bit);
-    ui->textBoxMinDelayIVs->setValues(InputType::Frame32Bit);
-    ui->textBoxMaxDelayIVs->setValues(InputType::Frame32Bit);
-    ui->textBoxMinDelayPID->setValues(InputType::Frame32Bit);
-    ui->textBoxMaxDelayPID->setValues(InputType::Frame32Bit);
-    ui->textBoxTIDSearcher->setValues(InputType::TIDSID);
-    ui->textBoxSIDSearcher->setValues(InputType::TIDSID);
+    ui->textBoxSearcherIVsMinFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherIVsMaxFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherPIDMinFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherPIDMaxFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherIVsMinDelay->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherIVsMaxDelay->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherPIDMinDelay->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherPIDMaxDelay->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherTID->setValues(InputType::TIDSID);
+    ui->textBoxSearcherSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxMethod->setItemData(0, DPPtIVs);
-    ui->comboBoxMethod->setItemData(1, Gen4Normal);
+    ui->comboBoxGeneratorMethod->setItemData(0, DPPtIVs);
+    ui->comboBoxGeneratorMethod->setItemData(1, Gen4Normal);
 
-    ui->comboBoxNatureGenerator->setup();
-    ui->comboBoxHiddenPowerGenerator->setup();
-    ui->comboBoxNatureSearcher->setup();
+    ui->comboBoxGeneratorNature->setup();
+    ui->comboBoxGeneratorHiddenPower->setup();
+    ui->comboBoxSearcherNature->setup();
 
     QAction *seedToTime = new QAction(tr("Generate times for seed"), this);
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
@@ -108,14 +108,14 @@ void Eggs4::setupModels()
     searcherMenu->addAction(seedToTime);
 
     QSettings setting;
-    if (setting.contains("egg4MinDelayIVs")) ui->textBoxMinDelayPID->setText(setting.value("egg4MinDelayPID").toString());
-    if (setting.contains("egg4MaxDelayIVs")) ui->textBoxMaxDelayPID->setText(setting.value("egg4MaxDelayPID").toString());
-    if (setting.contains("egg4MinFrameIVs")) ui->textBoxMinFramePID->setText(setting.value("egg4MinFramePID").toString());
-    if (setting.contains("egg4MaxFrameIVs")) ui->textBoxMaxFramePID->setText(setting.value("egg4MaxFramePID").toString());
-    if (setting.contains("egg4MinDelayPID")) ui->textBoxMinDelayPID->setText(setting.value("egg4MinDelayPID").toString());
-    if (setting.contains("egg4MaxDelayPID")) ui->textBoxMaxDelayPID->setText(setting.value("egg4MaxDelayPID").toString());
-    if (setting.contains("egg4MinFramePID")) ui->textBoxMinFramePID->setText(setting.value("egg4MinFramePID").toString());
-    if (setting.contains("egg4MaxFramePID")) ui->textBoxMaxFramePID->setText(setting.value("egg4MaxFramePID").toString());
+    if (setting.contains("egg4MinDelayIVs")) ui->textBoxSearcherIVsMinDelay->setText(setting.value("egg4MinDelayPID").toString());
+    if (setting.contains("egg4MaxDelayIVs")) ui->textBoxSearcherIVsMaxDelay->setText(setting.value("egg4MaxDelayPID").toString());
+    if (setting.contains("egg4MinFrameIVs")) ui->textBoxSearcherIVsMinFrame->setText(setting.value("egg4MinFramePID").toString());
+    if (setting.contains("egg4MaxFrameIVs")) ui->textBoxSearcherIVsMaxFrame->setText(setting.value("egg4MaxFramePID").toString());
+    if (setting.contains("egg4MinDelayPID")) ui->textBoxSearcherPIDMinDelay->setText(setting.value("egg4MinDelayPID").toString());
+    if (setting.contains("egg4MaxDelayPID")) ui->textBoxSearcherPIDMaxDelay->setText(setting.value("egg4MaxDelayPID").toString());
+    if (setting.contains("egg4MinFramePID")) ui->textBoxSearcherPIDMinFrame->setText(setting.value("egg4MinFramePID").toString());
+    if (setting.contains("egg4MaxFramePID")) ui->textBoxSearcherPIDMaxFrame->setText(setting.value("egg4MaxFramePID").toString());
 }
 
 void Eggs4::updatePID(const QVector<Frame4> &frames, int progress)
@@ -139,17 +139,17 @@ void Eggs4::on_pushButtonGenerate_clicked()
 {
     generatorModel->clear();
 
-    u32 startingFrame = ui->textBoxStartingFrame->text().toUInt();
-    u32 maxResults = ui->textBoxMaxResults->text().toUInt();
-    u32 seed = ui->textBoxSeedGenerator->text().toUInt(nullptr, 16);
-    u16 tid = ui->textBoxTIDGenerator->text().toUShort();
-    u16 sid = ui->textBoxSIDGenerator->text().toUShort();
+    u32 startingFrame = ui->textBoxGeneratorStartingFrame->text().toUInt();
+    u32 maxResults = ui->textBoxGeneratorMaxResults->text().toUInt();
+    u32 seed = ui->textBoxGeneratorSeed->text().toUInt(nullptr, 16);
+    u16 tid = ui->textBoxGeneratorTID->text().toUShort();
+    u16 sid = ui->textBoxGeneratorSID->text().toUShort();
 
-    Method method = static_cast<Method>(ui->comboBoxMethod->currentData().toInt());
+    Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
 
     if (method == Method::Gen4Normal)
     {
-        if (ui->checkBoxMasuadaGenerator->isChecked())
+        if (ui->checkBoxGeneratorMasuada->isChecked())
         {
             method = Method::Gen4Masuada;
         }
@@ -164,47 +164,47 @@ void Eggs4::on_pushButtonGenerate_clicked()
 
     QVector<u8> parent1 =
     {
-        static_cast<u8>(ui->parent1HPGenerator->value()), static_cast<u8>(ui->parent1AtkGenerator->value()), static_cast<u8>(ui->parent1DefGenerator->value()),
-        static_cast<u8>(ui->parent1SpAGenerator->value()), static_cast<u8>(ui->parent1SpDGenerator->value()), static_cast<u8>(ui->parent1SpeGenerator->value())
+        static_cast<u8>(ui->spinBoxGeneratorParent1HP->value()), static_cast<u8>(ui->spinBoxGeneratorParent1Atk->value()), static_cast<u8>(ui->spinBoxGeneratorParent1Def->value()),
+        static_cast<u8>(ui->spinBoxGeneratorParent1SpA->value()), static_cast<u8>(ui->spinBoxGeneratorParent1SpD->value()), static_cast<u8>(ui->spinBoxGeneratorParent1Spe->value())
     };
     QVector<u8> parent2 =
     {
-        static_cast<u8>(ui->parent2HPGenerator->value()), static_cast<u8>(ui->parent2AtkGenerator->value()), static_cast<u8>(ui->parent2DefGenerator->value()),
-        static_cast<u8>(ui->parent2SpAGenerator->value()), static_cast<u8>(ui->parent2SpDGenerator->value()), static_cast<u8>(ui->parent2SpeGenerator->value())
+        static_cast<u8>(ui->spinBoxGeneratorParent2HP->value()), static_cast<u8>(ui->spinBoxGeneratorParent2Atk->value()), static_cast<u8>(ui->spinBoxGeneratorParent2Def->value()),
+        static_cast<u8>(ui->spinBoxGeneratorParent2SpA->value()), static_cast<u8>(ui->spinBoxGeneratorParent2SpD->value()), static_cast<u8>(ui->spinBoxGeneratorParent2Spe->value())
     };
 
     Egg4 generator = Egg4(maxResults, startingFrame, tid, sid, method, seed);
     generator.setParents(parent1, parent2);
 
-    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getEvals(), ui->ivFilterGenerator->getValues(), ui->comboBoxGenderGenerator->currentIndex(),
-                                        ui->comboBoxGenderRatioGenerator->currentIndex(), ui->comboBoxAbilityGenerator->currentIndex(), ui->comboBoxNatureGenerator->getChecked(),
-                                        ui->comboBoxHiddenPowerGenerator->getChecked(), ui->checkBoxShinyGenerator->isChecked(), false);
+    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getEvals(), ui->ivFilterGenerator->getValues(), ui->comboBoxGeneratorGender->currentIndex(),
+                                        ui->comboBoxGeneratorGenderRatio->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorNature->getChecked(),
+                                        ui->comboBoxGeneratorHiddenPower->getChecked(), ui->checkBoxGeneratorShinyOnly->isChecked(), false);
 
     QVector<Frame4> frames = generator.generate(compare);
     generatorModel->setModel(frames);
 }
 
-void Eggs4::on_pushButtonGeneratePID_clicked()
+void Eggs4::on_pushButtonSearchPID_clicked()
 {
     searcherPID->clear();
-    searcherPID->setMethod(ui->checkBoxMasuadaSearcher->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal);
+    searcherPID->setMethod(ui->checkBoxSearcherMasuada->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal);
 
-    ui->pushButtonGeneratePID->setEnabled(false);
+    ui->pushButtonSearchPID->setEnabled(false);
     ui->pushButtonCancelPID->setEnabled(true);
 
-    u16 tid = ui->textBoxTIDSearcher->text().toUShort();
-    u16 sid = ui->textBoxSIDSearcher->text().toUShort();
+    u16 tid = ui->textBoxSearcherTID->text().toUShort();
+    u16 sid = ui->textBoxSearcherSID->text().toUShort();
 
-    int genderRatioIndex = ui->comboBoxGenderRatioSearcher->currentIndex();
-    FrameCompare compare = FrameCompare(ui->comboBoxGenderSearcher->currentIndex(), genderRatioIndex, ui->comboBoxAbilitySearcher->currentIndex(),
-                                        ui->comboBoxNatureSearcher->getChecked(), ui->checkBoxShinySearcher->isChecked());
+    int genderRatioIndex = ui->comboBoxSearcherGenderRatio->currentIndex();
+    FrameCompare compare = FrameCompare(ui->comboBoxSearcherGender->currentIndex(), genderRatioIndex, ui->comboBoxSearcherAbility->currentIndex(),
+                                        ui->comboBoxSearcherNature->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked());
 
-    u32 minDelay = ui->textBoxMinDelayPID->text().toUInt();
-    u32 maxDelay = ui->textBoxMaxDelayPID->text().toUInt();
-    u32 minFrame = ui->textBoxMinFramePID->text().toUInt();
-    u32 maxFrame = ui->textBoxMaxFramePID->text().toUInt();
+    u32 minDelay = ui->textBoxSearcherPIDMinDelay->text().toUInt();
+    u32 maxDelay = ui->textBoxSearcherPIDMaxDelay->text().toUInt();
+    u32 minFrame = ui->textBoxSearcherPIDMinFrame->text().toUInt();
+    u32 maxFrame = ui->textBoxSearcherPIDMaxFrame->text().toUInt();
 
-    Method type = ui->checkBoxMasuadaSearcher->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal;
+    Method type = ui->checkBoxSearcherMasuada->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal;
     Egg4 generator = Egg4(maxFrame - minFrame + 1, minFrame, tid, sid, type, 0);
 
     ui->progressBarPID->setValue(0);
@@ -215,7 +215,7 @@ void Eggs4::on_pushButtonGeneratePID_clicked()
 
     connect(search, &PIDSearcher::finished, timer, &QTimer::deleteLater);
     connect(search, &PIDSearcher::finished, timer, &QTimer::stop);
-    connect(search, &PIDSearcher::finished, this, [ = ] { ui->pushButtonGeneratePID->setEnabled(true); ui->pushButtonCancelPID->setEnabled(false); });
+    connect(search, &PIDSearcher::finished, this, [ = ] { ui->pushButtonSearchPID->setEnabled(true); ui->pushButtonCancelPID->setEnabled(false); });
     connect(search, &PIDSearcher::finished, this, [ = ] { updatePID(search->getResults(), search->currentProgress()); });
     connect(timer, &QTimer::timeout, this, [ = ] { updatePID(search->getResults(), search->currentProgress()); });
     connect(ui->pushButtonCancelPID, &QPushButton::clicked, search, &PIDSearcher::cancelSearch);
@@ -224,32 +224,32 @@ void Eggs4::on_pushButtonGeneratePID_clicked()
     timer->start(1000);
 }
 
-void Eggs4::on_pushButtonGenerateIVs_clicked()
+void Eggs4::on_pushButtonSearchIVs_clicked()
 {
     searcherIVs->clear();
     Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
     searcherIVs->setMethod(version & Game::HGSS ? Method::HGSSIVs : Method::DPPtIVs);
 
-    ui->pushButtonGenerateIVs->setEnabled(false);
+    ui->pushButtonSearchIVs->setEnabled(false);
     ui->pushButtonCancelIVs->setEnabled(true);
 
     QVector<u8> parent1 =
     {
-        static_cast<u8>(ui->parent1HPSearcher->value()), static_cast<u8>(ui->parent1AtkSearcher->value()), static_cast<u8>(ui->parent1DefSearcher->value()),
-        static_cast<u8>(ui->parent1SpASearcher->value()), static_cast<u8>(ui->parent1SpDSearcher->value()), static_cast<u8>(ui->parent1SpeSearcher->value())
+        static_cast<u8>(ui->spinBoxSearcherParent1HP->value()), static_cast<u8>(ui->spinBoxSearcherParent1Atk->value()), static_cast<u8>(ui->spinBoxSearcherParent1Def->value()),
+        static_cast<u8>(ui->spinBoxSearcherParent1SpA->value()), static_cast<u8>(ui->spinBoxSearcherParent1SpD->value()), static_cast<u8>(ui->spinBoxSearcherParent1Spe->value())
     };
     QVector<u8> parent2 =
     {
-        static_cast<u8>(ui->parent2HPSearcher->value()), static_cast<u8>(ui->parent2AtkSearcher->value()), static_cast<u8>(ui->parent2DefSearcher->value()),
-        static_cast<u8>(ui->parent2SpASearcher->value()), static_cast<u8>(ui->parent2SpDSearcher->value()), static_cast<u8>(ui->parent2SpeSearcher->value())
+        static_cast<u8>(ui->spinBoxSearcherParent2HP->value()), static_cast<u8>(ui->spinBoxSearcherParent2Atk->value()), static_cast<u8>(ui->spinBoxSearcherParent2Def->value()),
+        static_cast<u8>(ui->spinBoxSearcherParent2SpA->value()), static_cast<u8>(ui->spinBoxSearcherParent2SpD->value()), static_cast<u8>(ui->spinBoxSearcherParent2Spe->value())
     };
 
-    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxHiddenPowerSearcher->getChecked());
+    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxSearcherHiddenPower->getChecked());
 
-    u32 minDelay = ui->textBoxMinDelayIVs->text().toUInt();
-    u32 maxDelay = ui->textBoxMaxDelayIVs->text().toUInt();
-    u32 minFrame = ui->textBoxMinFrameIVs->text().toUInt();
-    u32 maxFrame = ui->textBoxMaxFrameIVs->text().toUInt();
+    u32 minDelay = ui->textBoxSearcherIVsMinDelay->text().toUInt();
+    u32 maxDelay = ui->textBoxSearcherIVsMaxDelay->text().toUInt();
+    u32 minFrame = ui->textBoxSearcherIVsMinFrame->text().toUInt();
+    u32 maxFrame = ui->textBoxSearcherIVsMaxFrame->text().toUInt();
 
     Method type = version & Game::HGSS ? Method::HGSSIVs : Method::DPPtIVs;
     Egg4 generator = Egg4(maxFrame - minFrame + 1, minFrame, 0, 0, type, 0);
@@ -263,28 +263,13 @@ void Eggs4::on_pushButtonGenerateIVs_clicked()
 
     connect(search, &IVSearcher::finished, timer, &QTimer::deleteLater);
     connect(search, &IVSearcher::finished, timer, &QTimer::stop);
-    connect(search, &IVSearcher::finished, this, [ = ] { ui->pushButtonGenerateIVs->setEnabled(true); ui->pushButtonCancelIVs->setEnabled(false); });
+    connect(search, &IVSearcher::finished, this, [ = ] { ui->pushButtonSearchIVs->setEnabled(true); ui->pushButtonCancelIVs->setEnabled(false); });
     connect(search, &IVSearcher::finished, this, [ = ] { updateIVs(search->getResults(), search->currentProgress()); });
     connect(timer, &QTimer::timeout, this, [ = ] { updateIVs(search->getResults(), search->currentProgress()); });
     connect(ui->pushButtonCancelIVs, &QPushButton::clicked, search, &IVSearcher::cancelSearch);
 
     search->start();
     timer->start(1000);
-}
-
-void Eggs4::on_pushButtonAnyNatureGenerator_clicked()
-{
-    ui->comboBoxNatureGenerator->uncheckAll();
-}
-
-void Eggs4::on_pushButtonAnyHiddenPowerGenerator_clicked()
-{
-    ui->comboBoxHiddenPowerGenerator->uncheckAll();
-}
-
-void Eggs4::on_pushButtonAnyNatureSearcher_clicked()
-{
-    ui->comboBoxNatureSearcher->uncheckAll();
 }
 
 void Eggs4::on_comboBoxProfiles_currentIndexChanged(int index)
@@ -298,13 +283,13 @@ void Eggs4::on_comboBoxProfiles_currentIndexChanged(int index)
     QString tid = QString::number(profile.getTID());
     QString sid = QString::number(profile.getSID());
 
-    ui->textBoxTIDGenerator->setText(tid);
-    ui->textBoxSIDGenerator->setText(sid);
-    ui->textBoxTIDSearcher->setText(tid);
-    ui->textBoxSIDSearcher->setText(sid);
-    ui->profileTID->setText(tid);
-    ui->profileSID->setText(sid);
-    ui->profileGame->setText(profile.getVersionString());
+    ui->textBoxGeneratorTID->setText(tid);
+    ui->textBoxGeneratorSID->setText(sid);
+    ui->textBoxSearcherTID->setText(tid);
+    ui->textBoxSearcherSID->setText(sid);
+    ui->labelProfileTIDValue->setText(tid);
+    ui->labelProfileSIDValue->setText(sid);
+    ui->labelProfileGameValue->setText(profile.getVersionString());
 }
 
 void Eggs4::on_tableViewPID_customContextMenuRequested(const QPoint &pos)

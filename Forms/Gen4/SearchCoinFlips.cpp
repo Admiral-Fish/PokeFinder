@@ -84,13 +84,3 @@ void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &val)
 
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
 }
-
-void SearchCoinFlips::on_pushButtonOkay_clicked()
-{
-    done(QDialog::Accepted);
-}
-
-void SearchCoinFlips::on_pushButtonCancel_clicked()
-{
-    done(QDialog::Rejected);
-}

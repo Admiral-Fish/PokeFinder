@@ -282,23 +282,23 @@ QMenu::item::selected {
     <property name="title">
      <string>Gen 3 Tools</string>
     </property>
-    <addaction name="action16BitSeedtoTime"/>
+    <addaction name="actionSeedtoTime3"/>
     <addaction name="actionJirachiPattern"/>
     <addaction name="actionPokeSpot"/>
-    <addaction name="actionIVtoPID"/>
+    <addaction name="actionIVtoPID3"/>
     <addaction name="actionGameCubeRTC"/>
     <addaction name="actionPIDtoIV"/>
    </widget>
-   <widget class="QMenu" name="menuGen_4_Tools">
+   <widget class="QMenu" name="menuGen4Tools">
     <property name="title">
      <string>Gen 4 Tools</string>
     </property>
-    <addaction name="actionSeed_to_Time"/>
-    <addaction name="actionIV_to_PID"/>
+    <addaction name="actionSeedtoTime4"/>
+    <addaction name="actionIVtoPID4"/>
    </widget>
    <addaction name="menuLanguage"/>
    <addaction name="menuGen3Tools"/>
-   <addaction name="menuGen_4_Tools"/>
+   <addaction name="menuGen4Tools"/>
    <addaction name="menuTools"/>
   </widget>
   <action name="actionResearcher">
@@ -306,9 +306,9 @@ QMenu::item::selected {
     <string>Researcher</string>
    </property>
   </action>
-  <action name="action16BitSeedtoTime">
+  <action name="actionSeedtoTime3">
    <property name="text">
-    <string>16-Bit Seed to Time</string>
+    <string>Seed to Time</string>
    </property>
   </action>
   <action name="actionJirachiPattern">
@@ -321,7 +321,7 @@ QMenu::item::selected {
     <string>PokeSpot</string>
    </property>
   </action>
-  <action name="actionIVtoPID">
+  <action name="actionIVtoPID3">
    <property name="text">
     <string>IV to PID</string>
    </property>
@@ -336,12 +336,12 @@ QMenu::item::selected {
     <string>PID to IV</string>
    </property>
   </action>
-  <action name="actionSeed_to_Time">
+  <action name="actionSeedtoTime4">
    <property name="text">
     <string>Seed to Time</string>
    </property>
   </action>
-  <action name="actionIV_to_PID">
+  <action name="actionIVtoPID4">
    <property name="text">
     <string>IV to PID</string>
    </property>

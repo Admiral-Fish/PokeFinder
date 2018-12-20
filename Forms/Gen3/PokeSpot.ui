@@ -127,7 +127,7 @@ QPushButton {
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupBoxRNGInfo">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -145,7 +145,7 @@ QPushButton {
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="labelSeed">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -171,7 +171,7 @@ QPushButton {
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="labelStartingFrame">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -200,7 +200,7 @@ QPushButton {
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="labelMaxResults">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -229,7 +229,7 @@ QPushButton {
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="labelTID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -258,7 +258,7 @@ QPushButton {
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_9">
+        <widget class="QLabel" name="labelSID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -308,7 +308,7 @@ QPushButton {
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QGroupBox" name="groupBox_2">
+     <widget class="QGroupBox" name="groupBoxFilters">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -326,7 +326,7 @@ QPushButton {
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <widget class="QLabel" name="label_5">
+        <widget class="QLabel" name="labelGender">
          <property name="text">
           <string>Gender</string>
          </property>
@@ -352,7 +352,7 @@ QPushButton {
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="labelAbility">
          <property name="text">
           <string>Ability</string>
          </property>
@@ -397,7 +397,7 @@ QPushButton {
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="labelNature">
          <property name="text">
           <string>Nature</string>
          </property>
@@ -552,7 +552,7 @@ QPushButton {
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_11">
+        <widget class="QLabel" name="labelGenderRatio">
          <property name="text">
           <string>Gender Ratio</string>
          </property>
@@ -598,7 +598,7 @@ QPushButton {
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_10">
+        <widget class="QLabel" name="labelShinyOnly">
          <property name="text">
           <string>Shiny Only?</string>
          </property>
@@ -612,7 +612,7 @@ QPushButton {
         </widget>
        </item>
        <item row="5" column="0">
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="labelSpotType">
          <property name="text">
           <string>Spot Type</string>
          </property>
@@ -674,16 +674,6 @@ QPushButton {
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>700</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -700,6 +690,9 @@ QPushButton {
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
+   <slots>
+    <slot>uncheckAll()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -721,5 +714,38 @@ QPushButton {
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonAnySpotType</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxSpotType</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>669</x>
+     <y>179</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>588</x>
+     <y>176</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonAnyNature</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxNature</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>660</x>
+     <y>96</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>620</x>
+     <y>95</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

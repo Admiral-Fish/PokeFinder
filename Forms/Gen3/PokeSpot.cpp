@@ -142,13 +142,3 @@ void PokeSpot::on_pushButtonAnyAbility_clicked()
 {
     ui->comboBoxAbility->setCurrentIndex(0);
 }
-
-void PokeSpot::on_pushButtonAnyNature_clicked()
-{
-    ui->comboBoxNature->uncheckAll();
-}
-
-void PokeSpot::on_pushButtonAnySpotType_clicked()
-{
-    ui->comboBoxSpotType->uncheckAll();
-}

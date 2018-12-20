@@ -69,19 +69,19 @@ QVector<bool> CheckList::getChecked()
     return result;
 }
 
-void CheckList::uncheckAll()
-{
-    for (auto i = 0; i < model->rowCount(); i++)
-    {
-        model->item(i)->setCheckState(Qt::Unchecked);
-    }
-}
-
 void CheckList::setChecks(QVector<bool> flags)
 {
     for (auto i = 0; i < model->rowCount(); i++)
     {
         model->item(i)->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
+    }
+}
+
+void CheckList::uncheckAll()
+{
+    for (auto i = 0; i < model->rowCount(); i++)
+    {
+        model->item(i)->setCheckState(Qt::Unchecked);
     }
 }
 

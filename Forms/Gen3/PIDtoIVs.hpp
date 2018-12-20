@@ -66,7 +66,7 @@ private:
 
 private slots:
     void on_pushButtonGenerate_clicked();
-    void on_tabePIDToIV_customContextMenuRequested(const QPoint &pos);
+    void on_tableView_customContextMenuRequested(const QPoint &pos);
     void copySeed();
 
 };

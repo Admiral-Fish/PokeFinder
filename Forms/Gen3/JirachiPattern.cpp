@@ -40,10 +40,10 @@ JirachiPattern::~JirachiPattern()
 
 void JirachiPattern::setupModels()
 {
-    ui->jirachiPatternSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxSeed->setValues(InputType::Seed32Bit);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Pattern"));
-    ui->tableViewGenerator->setModel(model);
+    ui->tableView->setModel(model);
 }
 
 void JirachiPattern::generate(u32 seed)
@@ -201,5 +201,5 @@ void JirachiPattern::on_pushButtonGenerate_clicked()
 {
     model->removeRows(0, model->rowCount());
     data.clear();
-    generate(ui->jirachiPatternSeed->text().toUInt(nullptr, 16));
+    generate(ui->textBoxSeed->text().toUInt(nullptr, 16));
 }

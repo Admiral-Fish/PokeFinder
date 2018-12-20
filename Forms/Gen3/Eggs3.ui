@@ -192,7 +192,7 @@ QSpinBox::down-button {
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="labelEmeraldPIDFrame">
              <property name="text">
               <string>Frame</string>
              </property>
@@ -243,7 +243,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="0" column="3">
-            <widget class="QLabel" name="label_5">
+            <widget class="QLabel" name="labelEmeraldGender">
              <property name="text">
               <string>Gender</string>
              </property>
@@ -269,7 +269,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="labelEmeraldRedraws">
              <property name="text">
               <string>Redraws</string>
              </property>
@@ -308,7 +308,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="1" column="3">
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="labelEmeraldAbility">
              <property name="text">
               <string>Ability</string>
              </property>
@@ -353,7 +353,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="label_4">
+            <widget class="QLabel" name="labelEmeraldCalibration">
              <property name="text">
               <string>Calibration</string>
              </property>
@@ -376,7 +376,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QLabel" name="label_7">
+            <widget class="QLabel" name="labelEmeraldNature">
              <property name="text">
               <string>Nature</string>
              </property>
@@ -531,7 +531,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="3" column="3">
-            <widget class="QLabel" name="label_8">
+            <widget class="QLabel" name="labelEmeraldEverstone">
              <property name="text">
               <string>Everstone</string>
              </property>
@@ -672,7 +672,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="label_10">
+            <widget class="QLabel" name="labelEmeraldTID">
              <property name="text">
               <string>TID</string>
              </property>
@@ -695,7 +695,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="4" column="3">
-            <widget class="QLabel" name="label_9">
+            <widget class="QLabel" name="labelEmeraldCompatibility">
              <property name="text">
               <string>Compatibility</string>
              </property>
@@ -721,7 +721,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="5" column="0">
-            <widget class="QLabel" name="label_11">
+            <widget class="QLabel" name="labelEmeraldSID">
              <property name="text">
               <string>SID</string>
              </property>
@@ -744,7 +744,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="5" column="3">
-            <widget class="QLabel" name="label_13">
+            <widget class="QLabel" name="labelEmeraldGenderRatio">
              <property name="text">
               <string>Gender Ratio</string>
              </property>
@@ -790,7 +790,7 @@ QSpinBox::down-button {
             </widget>
            </item>
            <item row="6" column="3">
-            <widget class="QLabel" name="label_12">
+            <widget class="QLabel" name="labelEmeraldShinyOnly">
              <property name="text">
               <string>Shiny Only?</string>
              </property>
@@ -905,17 +905,11 @@ QRadioButton {
           <property name="title">
            <string>Egg IVs</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_11">
+          <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0" colspan="2">
-            <layout class="QGridLayout" name="gridLayout_4">
-             <property name="sizeConstraint">
-              <enum>QLayout::SetDefaultConstraint</enum>
-             </property>
-             <property name="spacing">
-              <number>6</number>
-             </property>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_16">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QLabel" name="labelEmeraldIVsFrame">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -927,7 +921,7 @@ QRadioButton {
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
+             <item>
               <widget class="TextBox" name="textBoxMinFrameEmeraldIVs">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -940,7 +934,7 @@ QRadioButton {
                </property>
               </widget>
              </item>
-             <item row="0" column="2">
+             <item>
               <widget class="TextBox" name="textBoxMaxFrameEmeraldIVs">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1023,7 +1017,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="label_45">
+            <widget class="QLabel" name="labelEmeraldHiddenPower">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1119,265 +1113,7 @@ QRadioButton {
              </item>
             </widget>
            </item>
-           <item row="6" column="0" colspan="3">
-            <layout class="QGridLayout" name="gridLayout_3">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_14">
-               <property name="text">
-                <string>Parent 1</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QSpinBox" name="parent1HPEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <widget class="QSpinBox" name="parent1AtkEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="3">
-              <widget class="QSpinBox" name="parent1DefEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="4">
-              <widget class="QSpinBox" name="parent1SpAEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="5">
-              <widget class="QSpinBox" name="parent1SpDEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="6">
-              <widget class="QSpinBox" name="parent1SpeEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_15">
-               <property name="text">
-                <string>Parent 2</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="parent2HPEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QSpinBox" name="parent2AtkEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="3">
-              <widget class="QSpinBox" name="parent2DefEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="4">
-              <widget class="QSpinBox" name="parent2SpAEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="5">
-              <widget class="QSpinBox" name="parent2SpDEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="6">
-              <widget class="QSpinBox" name="parent2SpeEmerald">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximum">
-                <number>31</number>
-               </property>
-               <property name="value">
-                <number>31</number>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="5" column="0" colspan="2">
+           <item row="5" column="0">
             <widget class="QPushButton" name="pushButtonGenerateEmeraldIVs">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1400,6 +1136,264 @@ QRadioButton {
               <string>Generate</string>
              </property>
             </widget>
+           </item>
+           <item row="6" column="0" colspan="3">
+            <layout class="QGridLayout" name="gridLayoutEmeraldParents">
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelEmeraldParent1">
+               <property name="text">
+                <string>Parent 1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent1HP">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent1Atk">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent1Def">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent1SpA">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="5">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent1SpD">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="6">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent1Spe">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelEmeraldParent2">
+               <property name="text">
+                <string>Parent 2</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent2HP">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent2Atk">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent2Def">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent2SpA">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="5">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent2SpD">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QSpinBox" name="spinBoxEmeraldParent2Spe">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximum">
+                <number>31</number>
+               </property>
+               <property name="value">
+                <number>31</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -1436,7 +1430,7 @@ QRadioButton {
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_21">
+            <widget class="QLabel" name="labelRSSeed">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1465,7 +1459,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_17">
+            <widget class="QLabel" name="labelRSFrameHeld">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1516,7 +1510,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="label_18">
+            <widget class="QLabel" name="labelRSPickupFrame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1567,7 +1561,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="0">
-            <widget class="QLabel" name="label_19">
+            <widget class="QLabel" name="labelRSTID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1596,7 +1590,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="label_20">
+            <widget class="QLabel" name="labelRSSID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1656,7 +1650,7 @@ QRadioButton {
           <property name="title">
            <string>Filters</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_10">
+          <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0" rowspan="6" colspan="7">
             <widget class="IVFilter" name="ivFilterRS" native="true">
              <property name="minimumSize">
@@ -1674,7 +1668,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="7">
-            <widget class="QLabel" name="label_29">
+            <widget class="QLabel" name="labelRSGender">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1706,7 +1700,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="7">
-            <widget class="QLabel" name="label_30">
+            <widget class="QLabel" name="labelRSAbility">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1769,7 +1763,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="7">
-            <widget class="QLabel" name="label_31">
+            <widget class="QLabel" name="labelRSNature">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1936,7 +1930,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="7">
-            <widget class="QLabel" name="label_32">
+            <widget class="QLabel" name="labelRSHiddenPower">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2033,7 +2027,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="4" column="7">
-            <widget class="QLabel" name="label_33">
+            <widget class="QLabel" name="labelRSCompatibility">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2065,7 +2059,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="5" column="7">
-            <widget class="QLabel" name="label_34">
+            <widget class="QLabel" name="labelRSGenderRatio">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2117,7 +2111,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="0">
-            <widget class="QLabel" name="label_27">
+            <widget class="QLabel" name="labelRSParent1">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2130,7 +2124,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="1">
-            <widget class="QSpinBox" name="parent1HPRS">
+            <widget class="QSpinBox" name="spinBoxRSParent1HP">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2146,7 +2140,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="2">
-            <widget class="QSpinBox" name="parent1AtkRS">
+            <widget class="QSpinBox" name="spinBoxRSParent1Atk">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2162,7 +2156,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="3">
-            <widget class="QSpinBox" name="parent1DefRS">
+            <widget class="QSpinBox" name="spinBoxRSParent1Def">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2178,7 +2172,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="4">
-            <widget class="QSpinBox" name="parent1SpARS">
+            <widget class="QSpinBox" name="spinBoxRSParent1SpA">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2194,7 +2188,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="5">
-            <widget class="QSpinBox" name="parent1SpDRS">
+            <widget class="QSpinBox" name="spinBoxRSParent1SpD">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2210,7 +2204,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="6">
-            <widget class="QSpinBox" name="parent1SpeRS">
+            <widget class="QSpinBox" name="spinBoxRSParent1Spe">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2226,7 +2220,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="7">
-            <widget class="QLabel" name="label_35">
+            <widget class="QLabel" name="labelRSShinyOnly">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2238,7 +2232,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="6" column="8" rowspan="2">
+           <item row="6" column="8">
             <widget class="QCheckBox" name="checkBoxShinyRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2252,7 +2246,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="0">
-            <widget class="QLabel" name="label_28">
+            <widget class="QLabel" name="labelRSParent2">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2265,7 +2259,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="1">
-            <widget class="QSpinBox" name="parent2HPRS">
+            <widget class="QSpinBox" name="spinBoxRSParent2HP">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2281,7 +2275,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="2">
-            <widget class="QSpinBox" name="parent2AtkRS">
+            <widget class="QSpinBox" name="spinBoxRSParent2Atk">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2297,7 +2291,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="3">
-            <widget class="QSpinBox" name="parent2DefRS">
+            <widget class="QSpinBox" name="spinBoxRSParent2Def">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2313,7 +2307,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="4">
-            <widget class="QSpinBox" name="parent2SpARS">
+            <widget class="QSpinBox" name="spinBoxRSParent2SpA">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2329,7 +2323,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="5">
-            <widget class="QSpinBox" name="parent2SpDRS">
+            <widget class="QSpinBox" name="spinBoxRSParent2SpD">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2345,7 +2339,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="6">
-            <widget class="QSpinBox" name="parent2SpeRS">
+            <widget class="QSpinBox" name="spinBoxRSParent2Spe">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2408,7 +2402,7 @@ QRadioButton {
           </property>
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_23">
+            <widget class="QLabel" name="labelFRLGSeed">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2472,7 +2466,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_22">
+            <widget class="QLabel" name="labelFRLGFrameHeld">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2523,7 +2517,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="label_24">
+            <widget class="QLabel" name="labelFRLGPickupFrame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2536,7 +2530,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="0">
-            <widget class="QLabel" name="label_26">
+            <widget class="QLabel" name="labelFRLGTID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2581,7 +2575,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="label_25">
+            <widget class="QLabel" name="labelFRLGSID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2625,7 +2619,7 @@ QRadioButton {
           <property name="title">
            <string>Filters</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_12">
+          <layout class="QGridLayout" name="gridLayout_10">
            <item row="0" column="0" rowspan="6" colspan="7">
             <widget class="IVFilter" name="ivFilterFRLG" native="true">
              <property name="minimumSize">
@@ -2643,7 +2637,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="0" column="7">
-            <widget class="QLabel" name="label_38">
+            <widget class="QLabel" name="labelFRLGGender">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2675,7 +2669,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="1" column="7">
-            <widget class="QLabel" name="label_39">
+            <widget class="QLabel" name="labelFRLGAbility">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2738,7 +2732,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="7">
-            <widget class="QLabel" name="label_40">
+            <widget class="QLabel" name="labelFRLGNature">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2905,7 +2899,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="3" column="7">
-            <widget class="QLabel" name="label_41">
+            <widget class="QLabel" name="labelFRLGHiddenPower">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -3002,7 +2996,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="4" column="7">
-            <widget class="QLabel" name="label_43">
+            <widget class="QLabel" name="labelFRLGCompatibility">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -3034,7 +3028,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="5" column="7">
-            <widget class="QLabel" name="label_42">
+            <widget class="QLabel" name="labelFRLGGenderRatio">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -3086,7 +3080,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="0">
-            <widget class="QLabel" name="label_36">
+            <widget class="QLabel" name="labelFRLGParent1">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3099,7 +3093,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="1">
-            <widget class="QSpinBox" name="parent1HPFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent1HP">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3115,7 +3109,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="2">
-            <widget class="QSpinBox" name="parent1AtkFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent1Atk">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3131,7 +3125,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="3">
-            <widget class="QSpinBox" name="parent1DefFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent1Def">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3147,7 +3141,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="4">
-            <widget class="QSpinBox" name="parent1SpAFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent1SpA">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3163,7 +3157,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="5">
-            <widget class="QSpinBox" name="parent1SpDFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent1SpD">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3179,7 +3173,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="6">
-            <widget class="QSpinBox" name="parent1SpeFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent1Spe">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3195,7 +3189,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="6" column="7">
-            <widget class="QLabel" name="label_44">
+            <widget class="QLabel" name="labelFRLGShinyOnly">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -3207,7 +3201,7 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="6" column="8" rowspan="2">
+           <item row="6" column="8">
             <widget class="QCheckBox" name="checkBoxShinyFRLG">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -3221,7 +3215,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="0">
-            <widget class="QLabel" name="label_37">
+            <widget class="QLabel" name="labelFRLGParent2">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3234,7 +3228,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="1">
-            <widget class="QSpinBox" name="parent2HPFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent2HP">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3250,7 +3244,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="2">
-            <widget class="QSpinBox" name="parent2AtkFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent2Atk">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3266,7 +3260,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="3">
-            <widget class="QSpinBox" name="parent2DefFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent2Def">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3282,7 +3276,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="4">
-            <widget class="QSpinBox" name="parent2SpAFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent2SpA">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3298,7 +3292,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="5">
-            <widget class="QSpinBox" name="parent2SpDFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent2SpD">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3314,7 +3308,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="7" column="6">
-            <widget class="QSpinBox" name="parent2SpeFRLG">
+            <widget class="QSpinBox" name="spinBoxFRLGParent2Spe">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -3362,7 +3356,7 @@ QRadioButton {
       </property>
       <layout class="QGridLayout" name="gridLayout_13">
        <item row="0" column="0">
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="labelProfile">
          <property name="maximumSize">
           <size>
            <width>100</width>
@@ -3385,14 +3379,14 @@ QRadioButton {
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QLabel" name="label_46">
+        <widget class="QLabel" name="labelProfileTID">
          <property name="text">
           <string>TID</string>
          </property>
         </widget>
        </item>
        <item row="0" column="3">
-        <widget class="QLabel" name="profileTID">
+        <widget class="QLabel" name="labelProfileTIDValue">
          <property name="text">
           <string notr="true">12345</string>
          </property>
@@ -3406,14 +3400,14 @@ QRadioButton {
         </widget>
        </item>
        <item row="0" column="5">
-        <widget class="QLabel" name="label_50">
+        <widget class="QLabel" name="labelProfileGame">
          <property name="text">
           <string>Game</string>
          </property>
         </widget>
        </item>
        <item row="0" column="6">
-        <widget class="QLabel" name="profileGame">
+        <widget class="QLabel" name="labelProfileGameValue">
          <property name="text">
           <string>Emerald</string>
          </property>
@@ -3432,14 +3426,14 @@ QRadioButton {
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="QLabel" name="label_47">
+        <widget class="QLabel" name="labelProfileSID">
          <property name="text">
           <string>SID</string>
          </property>
         </widget>
        </item>
        <item row="1" column="3">
-        <widget class="QLabel" name="profileSID">
+        <widget class="QLabel" name="labelProfileSIDValue">
          <property name="text">
           <string notr="true">54321</string>
          </property>
@@ -3449,16 +3443,6 @@ QRadioButton {
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1200</width>
-     <height>21</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <customwidgets>
@@ -3482,6 +3466,9 @@ QRadioButton {
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
+   <slots>
+    <slot>uncheckAll()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -3513,18 +3500,18 @@ QRadioButton {
   <tabstop>radioButtonAlternate</tabstop>
   <tabstop>comboBoxHiddenPowerEmerald</tabstop>
   <tabstop>pushButtonGenerateEmeraldIVs</tabstop>
-  <tabstop>parent1HPEmerald</tabstop>
-  <tabstop>parent1AtkEmerald</tabstop>
-  <tabstop>parent1DefEmerald</tabstop>
-  <tabstop>parent1SpAEmerald</tabstop>
-  <tabstop>parent1SpDEmerald</tabstop>
-  <tabstop>parent1SpeEmerald</tabstop>
-  <tabstop>parent2HPEmerald</tabstop>
-  <tabstop>parent2AtkEmerald</tabstop>
-  <tabstop>parent2DefEmerald</tabstop>
-  <tabstop>parent2SpAEmerald</tabstop>
-  <tabstop>parent2SpDEmerald</tabstop>
-  <tabstop>parent2SpeEmerald</tabstop>
+  <tabstop>spinBoxEmeraldParent1HP</tabstop>
+  <tabstop>spinBoxEmeraldParent1Atk</tabstop>
+  <tabstop>spinBoxEmeraldParent1Def</tabstop>
+  <tabstop>spinBoxEmeraldParent1SpA</tabstop>
+  <tabstop>spinBoxEmeraldParent1SpD</tabstop>
+  <tabstop>spinBoxEmeraldParent1Spe</tabstop>
+  <tabstop>spinBoxEmeraldParent2HP</tabstop>
+  <tabstop>spinBoxEmeraldParent2Atk</tabstop>
+  <tabstop>spinBoxEmeraldParent2Def</tabstop>
+  <tabstop>spinBoxEmeraldParent2SpA</tabstop>
+  <tabstop>spinBoxEmeraldParent2SpD</tabstop>
+  <tabstop>spinBoxEmeraldParent2Spe</tabstop>
   <tabstop>tableViewEmeraldIVs</tabstop>
   <tabstop>textBoxSeedRS</tabstop>
   <tabstop>textBoxMinHeldRS</tabstop>
@@ -3534,18 +3521,18 @@ QRadioButton {
   <tabstop>textBoxTIDRS</tabstop>
   <tabstop>textBoxSIDRS</tabstop>
   <tabstop>pushButtonGenerateRS</tabstop>
-  <tabstop>parent1HPRS</tabstop>
-  <tabstop>parent1AtkRS</tabstop>
-  <tabstop>parent1DefRS</tabstop>
-  <tabstop>parent1SpARS</tabstop>
-  <tabstop>parent1SpDRS</tabstop>
-  <tabstop>parent1SpeRS</tabstop>
-  <tabstop>parent2HPRS</tabstop>
-  <tabstop>parent2AtkRS</tabstop>
-  <tabstop>parent2DefRS</tabstop>
-  <tabstop>parent2SpARS</tabstop>
-  <tabstop>parent2SpDRS</tabstop>
-  <tabstop>parent2SpeRS</tabstop>
+  <tabstop>spinBoxRSParent1HP</tabstop>
+  <tabstop>spinBoxRSParent1Atk</tabstop>
+  <tabstop>spinBoxRSParent1Def</tabstop>
+  <tabstop>spinBoxRSParent1SpA</tabstop>
+  <tabstop>spinBoxRSParent1SpD</tabstop>
+  <tabstop>spinBoxRSParent1Spe</tabstop>
+  <tabstop>spinBoxRSParent2HP</tabstop>
+  <tabstop>spinBoxRSParent2Atk</tabstop>
+  <tabstop>spinBoxRSParent2Def</tabstop>
+  <tabstop>spinBoxRSParent2SpA</tabstop>
+  <tabstop>spinBoxRSParent2SpD</tabstop>
+  <tabstop>spinBoxRSParent2Spe</tabstop>
   <tabstop>comboBoxGenderRS</tabstop>
   <tabstop>comboBoxAbilityRS</tabstop>
   <tabstop>pushButtonAnyAbilityRS</tabstop>
@@ -3564,18 +3551,18 @@ QRadioButton {
   <tabstop>textBoxTIDFRLG</tabstop>
   <tabstop>textBoxSIDFRLG</tabstop>
   <tabstop>pushButtonGenerateFRLG</tabstop>
-  <tabstop>parent1HPFRLG</tabstop>
-  <tabstop>parent1AtkFRLG</tabstop>
-  <tabstop>parent1DefFRLG</tabstop>
-  <tabstop>parent1SpAFRLG</tabstop>
-  <tabstop>parent1SpDFRLG</tabstop>
-  <tabstop>parent1SpeFRLG</tabstop>
-  <tabstop>parent2HPFRLG</tabstop>
-  <tabstop>parent2AtkFRLG</tabstop>
-  <tabstop>parent2DefFRLG</tabstop>
-  <tabstop>parent2SpAFRLG</tabstop>
-  <tabstop>parent2SpDFRLG</tabstop>
-  <tabstop>parent2SpeFRLG</tabstop>
+  <tabstop>spinBoxFRLGParent1HP</tabstop>
+  <tabstop>spinBoxFRLGParent1Atk</tabstop>
+  <tabstop>spinBoxFRLGParent1Def</tabstop>
+  <tabstop>spinBoxFRLGParent1SpA</tabstop>
+  <tabstop>spinBoxFRLGParent1SpD</tabstop>
+  <tabstop>spinBoxFRLGParent1Spe</tabstop>
+  <tabstop>spinBoxFRLGParent2HP</tabstop>
+  <tabstop>spinBoxFRLGParent2Atk</tabstop>
+  <tabstop>spinBoxFRLGParent2Def</tabstop>
+  <tabstop>spinBoxFRLGParent2SpA</tabstop>
+  <tabstop>spinBoxFRLGParent2SpD</tabstop>
+  <tabstop>spinBoxFRLGParent2Spe</tabstop>
   <tabstop>comboBoxGenderFRLG</tabstop>
   <tabstop>comboBoxAbilityFRLG</tabstop>
   <tabstop>pushButtonAnyAbilityFRLG</tabstop>
@@ -3588,7 +3575,56 @@ QRadioButton {
   <tabstop>tableViewFRLG</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonAnyNatureEmerald</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxNatureEmerald</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>617</x>
+     <y>207</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>529</x>
+     <y>212</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonAnyNatureRS</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxNatureRS</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1142</x>
+     <y>209</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1069</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonAnyNatureFRLG</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxNatureFRLG</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1131</x>
+     <y>207</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1082</x>
+     <y>215</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <buttongroups>
   <buttongroup name="buttonGroup"/>
  </buttongroups>

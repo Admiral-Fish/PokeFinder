@@ -48,8 +48,6 @@ private slots:
     void on_pushButtonHeads_clicked();
     void on_pushButtonTails_clicked();
     void on_lineEditFlips_textChanged(const QString &val);
-    void on_pushButtonOkay_clicked();
-    void on_pushButtonCancel_clicked();
 
 };
 

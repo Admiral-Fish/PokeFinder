@@ -53,13 +53,9 @@ private:
     void updateView(QVector<QList<QStandardItem *>> frames, int progress);
 
 private slots:
-    void on_pushButtonSearchShinyPID_clicked();
-    void on_pushButtonSearchTIDSID_clicked();
-    void on_pushButtonSearchSeedFinder_clicked();
-    void on_checkBoxSearchTIDShinyPID_toggled(bool checked);
-    void on_checkBoxInfiniteSearchShinyPID_toggled(bool checked);
-    void on_checkBoxSearchSID_toggled(bool checked);
-    void on_checkBoxInfiniteSearchTIDSID_toggled(bool checked);
+    void on_pushButtonShinyPIDSearch_clicked();
+    void on_pushButtonTIDSIDSearch_clicked();
+    void on_pushButtonSeedFinderSearch_clicked();
 
 };
 

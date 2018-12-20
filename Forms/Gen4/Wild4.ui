@@ -156,7 +156,7 @@ QPushButton {
       </property>
       <layout class="QGridLayout" name="gridLayout_7">
        <item row="0" column="0">
-        <widget class="QLabel" name="labelProfiles">
+        <widget class="QLabel" name="labelProfile">
          <property name="maximumSize">
           <size>
            <width>100</width>
@@ -179,14 +179,14 @@ QPushButton {
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="labelProfileTID">
          <property name="text">
           <string>TID</string>
          </property>
         </widget>
        </item>
        <item row="0" column="3">
-        <widget class="QLabel" name="profileTID">
+        <widget class="QLabel" name="labelProfileTIDValue">
          <property name="text">
           <string notr="true">12345</string>
          </property>
@@ -200,14 +200,14 @@ QPushButton {
         </widget>
        </item>
        <item row="0" column="5">
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="labelProfileGame">
          <property name="text">
           <string>Game</string>
          </property>
         </widget>
        </item>
        <item row="0" column="6">
-        <widget class="QLabel" name="profileGame">
+        <widget class="QLabel" name="labelProfileGameValue">
          <property name="text">
           <string>Diamond</string>
          </property>
@@ -221,14 +221,14 @@ QPushButton {
         </widget>
        </item>
        <item row="0" column="8">
-        <widget class="QLabel" name="label_17">
+        <widget class="QLabel" name="labelProfileRadio">
          <property name="text">
           <string>Radio</string>
          </property>
         </widget>
        </item>
        <item row="0" column="9">
-        <widget class="QLabel" name="profileRadio">
+        <widget class="QLabel" name="labelProfileRadioValue">
          <property name="text">
           <string>None</string>
          </property>
@@ -242,14 +242,14 @@ QPushButton {
         </widget>
        </item>
        <item row="0" column="11">
-        <widget class="QLabel" name="label_19">
+        <widget class="QLabel" name="labelProfileSwarm">
          <property name="text">
           <string>Swarm</string>
          </property>
         </widget>
        </item>
        <item row="0" column="12">
-        <widget class="QLabel" name="profileSwarm">
+        <widget class="QLabel" name="labelProfileSwarmValue">
          <property name="text">
           <string>False</string>
          </property>
@@ -268,42 +268,42 @@ QPushButton {
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="QLabel" name="label_5">
+        <widget class="QLabel" name="labelProfileSID">
          <property name="text">
           <string>SID</string>
          </property>
         </widget>
        </item>
        <item row="1" column="3">
-        <widget class="QLabel" name="profileSID">
+        <widget class="QLabel" name="labelProfileSIDValue">
          <property name="text">
           <string notr="true">54321</string>
          </property>
         </widget>
        </item>
        <item row="1" column="5">
-        <widget class="QLabel" name="label_15">
+        <widget class="QLabel" name="labelProfileDualSlot">
          <property name="text">
           <string>Dual Slot</string>
          </property>
         </widget>
        </item>
        <item row="1" column="6">
-        <widget class="QLabel" name="profileDualSlot">
+        <widget class="QLabel" name="labelProfileDualSlotValue">
          <property name="text">
           <string>None</string>
          </property>
         </widget>
        </item>
        <item row="1" column="8">
-        <widget class="QLabel" name="label_16">
+        <widget class="QLabel" name="labelProfilePokeRadar">
          <property name="text">
           <string>Poke Radar</string>
          </property>
         </widget>
        </item>
        <item row="1" column="9">
-        <widget class="QLabel" name="profileRadar">
+        <widget class="QLabel" name="labelProfilePokeRadarValue">
          <property name="text">
           <string>False</string>
          </property>
@@ -360,7 +360,7 @@ QPushButton {
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QGroupBox" name="groupBoxFiltersStationary3">
+         <widget class="QGroupBox" name="groupBoxGeneratorFilters">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>2</horstretch>
@@ -397,7 +397,7 @@ QPushButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLabel" name="genderLabel">
+            <widget class="QLabel" name="labelGeneratorGender">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -410,7 +410,7 @@ QPushButton {
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QComboBox" name="comboBoxGenderGenerator">
+            <widget class="QComboBox" name="comboBoxGeneratorGender">
              <item>
               <property name="text">
                <string notr="true">-</string>
@@ -429,7 +429,7 @@ QPushButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLabel" name="abilityLabel">
+            <widget class="QLabel" name="labelGeneratorAbility">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -442,7 +442,7 @@ QPushButton {
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QComboBox" name="comboBoxAbilityGenerator">
+            <widget class="QComboBox" name="comboBoxGeneratorAbility">
              <item>
               <property name="text">
                <string>Any</string>
@@ -461,7 +461,7 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QLabel" name="natureLabel">
+            <widget class="QLabel" name="labelGeneratorNature">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -474,7 +474,7 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="CheckList" name="comboBoxNatureGenerator">
+            <widget class="CheckList" name="comboBoxGeneratorNature">
              <item>
               <property name="text">
                <string>Adamant</string>
@@ -603,7 +603,7 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QPushButton" name="anyNatureGenerator">
+            <widget class="QPushButton" name="pushButtonGeneratorAnyNature">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -634,7 +634,7 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="labelGeneratorEncounterSlot">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -647,10 +647,10 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="CheckList" name="comboBoxSlotGenerator"/>
+            <widget class="CheckList" name="comboBoxGeneratorEncounterSlot"/>
            </item>
            <item row="3" column="3">
-            <widget class="QPushButton" name="anySlotGenerator">
+            <widget class="QPushButton" name="pushButtonGeneratorAnyEncounterSlot">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -681,7 +681,7 @@ QPushButton {
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QLabel" name="hiddenPLabel">
+            <widget class="QLabel" name="labelGeneratorHiddenPower">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -694,7 +694,7 @@ QPushButton {
             </widget>
            </item>
            <item row="4" column="2">
-            <widget class="CheckList" name="comboBoxHiddenPowerGenerator">
+            <widget class="CheckList" name="comboBoxGeneratorHiddenPower">
              <item>
               <property name="text">
                <string>Fighting</string>
@@ -778,7 +778,7 @@ QPushButton {
             </widget>
            </item>
            <item row="4" column="3">
-            <widget class="QPushButton" name="anyHiddenPowerGenerator">
+            <widget class="QPushButton" name="pushButtonGeneratorAnyHiddenPower">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -809,7 +809,7 @@ QPushButton {
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QLabel" name="genderRLabel">
+            <widget class="QLabel" name="labelGeneratorGenderRatio">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -822,7 +822,7 @@ QPushButton {
             </widget>
            </item>
            <item row="5" column="2">
-            <widget class="QComboBox" name="comboBoxGenderRatioGenerator">
+            <widget class="QComboBox" name="comboBoxGeneratorGenderRatio">
              <item>
               <property name="text">
                <string>Genderless</string>
@@ -861,7 +861,7 @@ QPushButton {
             </widget>
            </item>
            <item row="6" column="1">
-            <widget class="QLabel" name="shinyLabel">
+            <widget class="QLabel" name="labelGeneratorShinyOnly">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -874,14 +874,14 @@ QPushButton {
             </widget>
            </item>
            <item row="6" column="2">
-            <widget class="QCheckBox" name="checkBoxShinyGenerator">
+            <widget class="QCheckBox" name="checkBoxGeneratorShinyOnly">
              <property name="text">
               <string/>
              </property>
             </widget>
            </item>
            <item row="6" column="3">
-            <widget class="QLabel" name="labelDelay">
+            <widget class="QLabel" name="labelGeneratorDelay">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -894,7 +894,7 @@ QPushButton {
             </widget>
            </item>
            <item row="6" column="4">
-            <widget class="QCheckBox" name="checkBoxDelayGenerator">
+            <widget class="QCheckBox" name="checkBoxGeneratorDelay">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -907,7 +907,7 @@ QPushButton {
             </widget>
            </item>
            <item row="7" column="1">
-            <widget class="QLabel" name="disableLabel">
+            <widget class="QLabel" name="labelGeneratorDisableFilters">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -920,14 +920,14 @@ QPushButton {
             </widget>
            </item>
            <item row="7" column="2">
-            <widget class="QCheckBox" name="checkBoxDisableGenerator">
+            <widget class="QCheckBox" name="checkBoxGeneratorDisableFilters">
              <property name="text">
               <string/>
              </property>
             </widget>
            </item>
            <item row="7" column="3">
-            <widget class="TextBox" name="delayGenerator">
+            <widget class="TextBox" name="textBoxGeneratorDelay">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -958,7 +958,7 @@ QPushButton {
             </widget>
            </item>
            <item row="7" column="4">
-            <widget class="QLabel" name="labelF">
+            <widget class="QLabel" name="labelGeneratorFrame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -974,7 +974,7 @@ QPushButton {
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBoxRNGInfoStationary3">
+         <widget class="QGroupBox" name="groupBoxGeneratorRNGInfo">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>1</horstretch>
@@ -1001,7 +1001,7 @@ QPushButton {
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
-            <widget class="QLabel" name="methodLabel">
+            <widget class="QLabel" name="labelGeneratorMethod">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1014,7 +1014,7 @@ QPushButton {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QComboBox" name="comboBoxMethodGenerator">
+            <widget class="QComboBox" name="comboBoxGeneratorMethod">
              <property name="layoutDirection">
               <enum>Qt::LeftToRight</enum>
              </property>
@@ -1027,7 +1027,7 @@ QPushButton {
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_11">
+            <widget class="QLabel" name="labelGeneratorLocation">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1040,10 +1040,10 @@ QPushButton {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="comboBoxLocationGenerator"/>
+            <widget class="QComboBox" name="comboBoxGeneratorLocation"/>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="label_13">
+            <widget class="QLabel" name="labelGeneratorTime">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1056,7 +1056,7 @@ QPushButton {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QComboBox" name="comboBoxTimeGenerator">
+            <widget class="QComboBox" name="comboBoxGeneratorTime">
              <item>
               <property name="text">
                <string>Morning</string>
@@ -1075,7 +1075,7 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="0">
-            <widget class="QLabel" name="label_12">
+            <widget class="QLabel" name="labelGeneratorPokemon">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1088,10 +1088,10 @@ QPushButton {
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QComboBox" name="comboBoxPokemonGenerator"/>
+            <widget class="QComboBox" name="comboBoxGeneratorPokemon"/>
            </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="labelGeneratorEncounter">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1104,10 +1104,10 @@ QPushButton {
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QComboBox" name="comboBoxEncounterGenerator"/>
+            <widget class="QComboBox" name="comboBoxGeneratorEncounter"/>
            </item>
            <item row="5" column="0">
-            <widget class="QPushButton" name="pushButtonLeadGenerator">
+            <widget class="QPushButton" name="pushButtonGeneratorLead">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1126,10 +1126,10 @@ QPushButton {
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QComboBox" name="comboBoxLeadGenerator"/>
+            <widget class="QComboBox" name="comboBoxGeneratorLead"/>
            </item>
            <item row="6" column="0">
-            <widget class="QLabel" name="startingFrameLabel">
+            <widget class="QLabel" name="labelGeneratorStartingFrame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1142,7 +1142,7 @@ QPushButton {
             </widget>
            </item>
            <item row="6" column="1">
-            <widget class="TextBox" name="startingFrameGenerator">
+            <widget class="TextBox" name="textBoxGeneratorStartingFrame">
              <property name="styleSheet">
               <string notr="true"/>
              </property>
@@ -1158,7 +1158,7 @@ QPushButton {
             </widget>
            </item>
            <item row="7" column="0">
-            <widget class="QLabel" name="maxResultsLabel">
+            <widget class="QLabel" name="labelGeneratorMaxResults">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1171,7 +1171,7 @@ QPushButton {
             </widget>
            </item>
            <item row="7" column="1">
-            <widget class="TextBox" name="maxResultsGenerator">
+            <widget class="TextBox" name="textBoxGeneratorMaxResults">
              <property name="inputMask">
               <string/>
              </property>
@@ -1184,7 +1184,7 @@ QPushButton {
             </widget>
            </item>
            <item row="8" column="0">
-            <widget class="QLabel" name="idLabel">
+            <widget class="QLabel" name="labelGeneratorTID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1197,7 +1197,7 @@ QPushButton {
             </widget>
            </item>
            <item row="8" column="1">
-            <widget class="TextBox" name="idGenerator">
+            <widget class="TextBox" name="textBoxGeneratorTID">
              <property name="inputMask">
               <string/>
              </property>
@@ -1210,7 +1210,7 @@ QPushButton {
             </widget>
            </item>
            <item row="9" column="0">
-            <widget class="QLabel" name="sidLabel">
+            <widget class="QLabel" name="labelGeneratorSID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1223,7 +1223,7 @@ QPushButton {
             </widget>
            </item>
            <item row="9" column="1">
-            <widget class="TextBox" name="sidGenerator">
+            <widget class="TextBox" name="textBoxGeneratorSID">
              <property name="inputMask">
               <string/>
              </property>
@@ -1236,7 +1236,7 @@ QPushButton {
             </widget>
            </item>
            <item row="10" column="0">
-            <widget class="QLabel" name="seedLabel">
+            <widget class="QLabel" name="labelGeneratorSeed">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1249,7 +1249,7 @@ QPushButton {
             </widget>
            </item>
            <item row="10" column="1">
-            <widget class="TextBox" name="initialSeedGenerator">
+            <widget class="TextBox" name="textBoxGeneratorSeed">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1354,7 +1354,7 @@ QPushButton {
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBoxRNGInfoSearcher3">
+         <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>1</horstretch>
@@ -1387,7 +1387,7 @@ QPushButton:disabled {
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
-            <widget class="QLabel" name="methodLabel_3">
+            <widget class="QLabel" name="labelSearcherMethod">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1400,7 +1400,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="0" column="1" colspan="2">
-            <widget class="QComboBox" name="comboBoxMethodSearcher">
+            <widget class="QComboBox" name="comboBoxSearcherMethod">
              <property name="layoutDirection">
               <enum>Qt::LeftToRight</enum>
              </property>
@@ -1413,7 +1413,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_9">
+            <widget class="QLabel" name="labelSearcherLocation">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1426,14 +1426,14 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="1" column="1" colspan="2">
-            <widget class="QComboBox" name="comboBoxLocationSearcher">
+            <widget class="QComboBox" name="comboBoxSearcherLocation">
              <property name="maxVisibleItems">
               <number>10</number>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="label_14">
+            <widget class="QLabel" name="labelSearcherTime">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1446,7 +1446,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="2" column="1" colspan="2">
-            <widget class="QComboBox" name="comboBoxTimeSearcher">
+            <widget class="QComboBox" name="comboBoxSearcherTime">
              <item>
               <property name="text">
                <string>Morning</string>
@@ -1465,7 +1465,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="3" column="0">
-            <widget class="QLabel" name="label_10">
+            <widget class="QLabel" name="labelSearcherPokemon">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1478,10 +1478,10 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="3" column="1" colspan="2">
-            <widget class="QComboBox" name="comboBoxPokemonSearcher"/>
+            <widget class="QComboBox" name="comboBoxSearcherPokemon"/>
            </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="labelSearcherEncounter">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1494,10 +1494,10 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="4" column="1" colspan="2">
-            <widget class="QComboBox" name="comboBoxEncounterSearcher"/>
+            <widget class="QComboBox" name="comboBoxSearcherEncounter"/>
            </item>
            <item row="5" column="0">
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="labelSearcherLead">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1510,7 +1510,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="5" column="1" colspan="2">
-            <widget class="QComboBox" name="comboBoxLeadSearcher">
+            <widget class="QComboBox" name="comboBoxSearcherLead">
              <item>
               <property name="text">
                <string>Any</string>
@@ -1539,7 +1539,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="6" column="0">
-            <widget class="QLabel" name="idLabel_3">
+            <widget class="QLabel" name="labelSearcherTID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1552,7 +1552,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="6" column="1" colspan="2">
-            <widget class="TextBox" name="idSearcher">
+            <widget class="TextBox" name="textBoxSearcherTID">
              <property name="inputMask">
               <string/>
              </property>
@@ -1565,7 +1565,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="7" column="0">
-            <widget class="QLabel" name="sidLabel_3">
+            <widget class="QLabel" name="labelSearcherSID">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1578,7 +1578,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="7" column="1" colspan="2">
-            <widget class="TextBox" name="sidSearcher">
+            <widget class="TextBox" name="textBoxSearcherSID">
              <property name="inputMask">
               <string/>
              </property>
@@ -1651,7 +1651,7 @@ QPushButton:disabled {
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QGroupBox" name="groupBoxFiltersSearcher3">
+         <widget class="QGroupBox" name="groupBoxSearcherFilters">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>2</horstretch>
@@ -1688,7 +1688,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLabel" name="genderLabel_3">
+            <widget class="QLabel" name="labelSearcherGender">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1701,7 +1701,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QComboBox" name="comboBoxGenderSearcher">
+            <widget class="QComboBox" name="comboBoxSearcherGender">
              <item>
               <property name="text">
                <string notr="true">-</string>
@@ -1720,7 +1720,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLabel" name="abilityLabel_3">
+            <widget class="QLabel" name="labelSearcherAbility">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1733,7 +1733,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QComboBox" name="comboBoxAbilitySearcher">
+            <widget class="QComboBox" name="comboBoxSearcherAbility">
              <item>
               <property name="text">
                <string>Any</string>
@@ -1752,7 +1752,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QLabel" name="natureLabel_3">
+            <widget class="QLabel" name="labelSearcherNature">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1765,7 +1765,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="CheckList" name="comboBoxNatureSearcher">
+            <widget class="CheckList" name="comboBoxSearcherNature">
              <item>
               <property name="text">
                <string>Adamant</string>
@@ -1894,7 +1894,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QPushButton" name="anyNatureSearcher">
+            <widget class="QPushButton" name="pushButtonSearcherAnyNature">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1925,7 +1925,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QLabel" name="label_7">
+            <widget class="QLabel" name="labelSearcherEncounterSlot">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1938,10 +1938,10 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="CheckList" name="comboBoxSlotSearcher"/>
+            <widget class="CheckList" name="comboBoxSearcherEncounterSlot"/>
            </item>
            <item row="3" column="3">
-            <widget class="QPushButton" name="anySlotSearcher">
+            <widget class="QPushButton" name="pushButtonSearcherAnyEncounterSlot">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1972,7 +1972,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QLabel" name="hiddenPLabel_3">
+            <widget class="QLabel" name="labelSearcherHiddenPower">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1985,7 +1985,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="4" column="2">
-            <widget class="CheckList" name="comboBoxHiddenPowerSearcher">
+            <widget class="CheckList" name="comboBoxSearcherHiddenPower">
              <item>
               <property name="text">
                <string>Fighting</string>
@@ -2069,7 +2069,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="4" column="3">
-            <widget class="QPushButton" name="anyHiddenPowerSearcher">
+            <widget class="QPushButton" name="pushButtonSearcherAnyHiddenPower">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2100,7 +2100,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QLabel" name="genderRLabel_3">
+            <widget class="QLabel" name="labelSearcherGenderRatio">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2113,7 +2113,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="5" column="2">
-            <widget class="QComboBox" name="comboBoxGenderRatioSearcher">
+            <widget class="QComboBox" name="comboBoxSearcherGenderRatio">
              <item>
               <property name="text">
                <string>Genderless</string>
@@ -2152,7 +2152,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="6" column="1">
-            <widget class="QLabel" name="shinyLabel_3">
+            <widget class="QLabel" name="labelSearcherShinyOnly">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -2165,7 +2165,7 @@ QPushButton:disabled {
             </widget>
            </item>
            <item row="6" column="2">
-            <widget class="QCheckBox" name="checkBoxShinySearcher">
+            <widget class="QCheckBox" name="checkBoxSearcherShinyOnly">
              <property name="text">
               <string/>
              </property>
@@ -2174,14 +2174,14 @@ QPushButton:disabled {
            <item row="7" column="1" colspan="3">
             <layout class="QGridLayout" name="gridLayout_2">
              <item row="0" column="0">
-              <widget class="QLabel" name="minDelayLabel">
+              <widget class="QLabel" name="labelSearcherMinDelay">
                <property name="text">
                 <string>Min Delay</string>
                </property>
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="TextBox" name="minDelay">
+              <widget class="TextBox" name="textBoxSearcherMinDelay">
                <property name="inputMask">
                 <string/>
                </property>
@@ -2194,14 +2194,14 @@ QPushButton:disabled {
               </widget>
              </item>
              <item row="0" column="2">
-              <widget class="QLabel" name="maxDelayLabel">
+              <widget class="QLabel" name="labelSearcherMaxDelay">
                <property name="text">
                 <string>Max Delay</string>
                </property>
               </widget>
              </item>
              <item row="0" column="3">
-              <widget class="TextBox" name="maxDelay">
+              <widget class="TextBox" name="textBoxSearcherMaxDelay">
                <property name="inputMask">
                 <string/>
                </property>
@@ -2214,14 +2214,14 @@ QPushButton:disabled {
               </widget>
              </item>
              <item row="1" column="0">
-              <widget class="QLabel" name="minFrameLabel">
+              <widget class="QLabel" name="labelSearcherMinFrame">
                <property name="text">
                 <string>Min Frame</string>
                </property>
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="TextBox" name="minFrame">
+              <widget class="TextBox" name="textBoxSearcherMinFrame">
                <property name="inputMask">
                 <string/>
                </property>
@@ -2234,14 +2234,14 @@ QPushButton:disabled {
               </widget>
              </item>
              <item row="1" column="2">
-              <widget class="QLabel" name="maxFrameLabel">
+              <widget class="QLabel" name="labelSearcherMaxFrame">
                <property name="text">
                 <string>Max Frame</string>
                </property>
               </widget>
              </item>
              <item row="1" column="3">
-              <widget class="TextBox" name="maxFrame">
+              <widget class="TextBox" name="textBoxSearcherMaxFrame">
                <property name="inputMask">
                 <string/>
                </property>
@@ -2263,16 +2263,6 @@ QPushButton:disabled {
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1200</width>
-     <height>21</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <customwidgets>
@@ -2296,8 +2286,165 @@ QPushButton:disabled {
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
+   <slots>
+    <slot>uncheckAll()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>comboBoxProfiles</tabstop>
+  <tabstop>pushButtonProfileManager</tabstop>
+  <tabstop>tabRNGSelector</tabstop>
+  <tabstop>comboBoxGeneratorMethod</tabstop>
+  <tabstop>comboBoxGeneratorLocation</tabstop>
+  <tabstop>comboBoxGeneratorTime</tabstop>
+  <tabstop>comboBoxGeneratorPokemon</tabstop>
+  <tabstop>comboBoxGeneratorEncounter</tabstop>
+  <tabstop>pushButtonGeneratorLead</tabstop>
+  <tabstop>comboBoxGeneratorLead</tabstop>
+  <tabstop>textBoxGeneratorStartingFrame</tabstop>
+  <tabstop>textBoxGeneratorMaxResults</tabstop>
+  <tabstop>textBoxGeneratorTID</tabstop>
+  <tabstop>textBoxGeneratorSID</tabstop>
+  <tabstop>textBoxGeneratorSeed</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>comboBoxGeneratorGender</tabstop>
+  <tabstop>comboBoxGeneratorAbility</tabstop>
+  <tabstop>comboBoxGeneratorNature</tabstop>
+  <tabstop>pushButtonGeneratorAnyNature</tabstop>
+  <tabstop>comboBoxGeneratorEncounterSlot</tabstop>
+  <tabstop>pushButtonGeneratorAnyEncounterSlot</tabstop>
+  <tabstop>comboBoxGeneratorHiddenPower</tabstop>
+  <tabstop>pushButtonGeneratorAnyHiddenPower</tabstop>
+  <tabstop>comboBoxGeneratorGenderRatio</tabstop>
+  <tabstop>checkBoxGeneratorShinyOnly</tabstop>
+  <tabstop>checkBoxGeneratorDisableFilters</tabstop>
+  <tabstop>checkBoxGeneratorDelay</tabstop>
+  <tabstop>textBoxGeneratorDelay</tabstop>
+  <tabstop>tableViewGenerator</tabstop>
+  <tabstop>comboBoxSearcherMethod</tabstop>
+  <tabstop>comboBoxSearcherLocation</tabstop>
+  <tabstop>comboBoxSearcherTime</tabstop>
+  <tabstop>comboBoxSearcherPokemon</tabstop>
+  <tabstop>comboBoxSearcherEncounter</tabstop>
+  <tabstop>comboBoxSearcherLead</tabstop>
+  <tabstop>textBoxSearcherTID</tabstop>
+  <tabstop>textBoxSearcherSID</tabstop>
+  <tabstop>pushButtonSearch</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>comboBoxSearcherGender</tabstop>
+  <tabstop>comboBoxSearcherAbility</tabstop>
+  <tabstop>comboBoxSearcherNature</tabstop>
+  <tabstop>pushButtonSearcherAnyNature</tabstop>
+  <tabstop>comboBoxSearcherEncounterSlot</tabstop>
+  <tabstop>pushButtonSearcherAnyEncounterSlot</tabstop>
+  <tabstop>comboBoxSearcherHiddenPower</tabstop>
+  <tabstop>pushButtonSearcherAnyHiddenPower</tabstop>
+  <tabstop>comboBoxSearcherGenderRatio</tabstop>
+  <tabstop>checkBoxSearcherShinyOnly</tabstop>
+  <tabstop>textBoxSearcherMinDelay</tabstop>
+  <tabstop>textBoxSearcherMaxDelay</tabstop>
+  <tabstop>textBoxSearcherMinFrame</tabstop>
+  <tabstop>textBoxSearcherMaxFrame</tabstop>
+  <tabstop>tableViewSearcher</tabstop>
+ </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonGeneratorAnyNature</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxGeneratorNature</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1095</x>
+     <y>215</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1066</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonGeneratorAnyEncounterSlot</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxGeneratorEncounterSlot</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1107</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1032</x>
+     <y>245</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonGeneratorAnyHiddenPower</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxGeneratorHiddenPower</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1098</x>
+     <y>279</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1028</x>
+     <y>279</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonSearcherAnyNature</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxSearcherNature</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1128</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1095</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonSearcherAnyEncounterSlot</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxSearcherEncounterSlot</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1148</x>
+     <y>208</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1104</x>
+     <y>208</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonSearcherAnyHiddenPower</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxSearcherHiddenPower</receiver>
+   <slot>uncheckAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1150</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1080</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

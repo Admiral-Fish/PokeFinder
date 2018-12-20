@@ -58,11 +58,6 @@ void ProfileManager3::on_pushButtonNew_clicked()
     delete dialog;
 }
 
-void ProfileManager3::on_pushButtonOk_clicked()
-{
-    this->close();
-}
-
 void ProfileManager3::on_pushButtonEdit_clicked()
 {
     int row = ui->tableView->currentIndex().row();

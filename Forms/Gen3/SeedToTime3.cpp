@@ -43,14 +43,14 @@ SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
 
     setupModels();
 
-    ui->seedToTimeSeed->setText(QString::number(seed, 16));
+    ui->textBoxSeed->setText(QString::number(seed, 16));
     on_pushButtonFind_clicked();
 }
 
 SeedToTime3::~SeedToTime3()
 {
     QSettings setting;
-    setting.setValue("seed3Year", ui->seedToTimeYear->text());
+    setting.setValue("seed3Year", ui->textBoxYear->text());
 
     delete ui;
     delete model;
@@ -58,16 +58,16 @@ SeedToTime3::~SeedToTime3()
 
 void SeedToTime3::setupModels()
 {
-    ui->seedToTimeSeed->setValues(InputType::Seed32Bit);
-    ui->seedToTimeYear->setValues(2000, 2037);
+    ui->textBoxSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxYear->setValues(2000, 2037);
 
     model->setColumnCount(2);
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seconds"));
-    ui->tableViewGenerator->setModel(model);
-    ui->tableViewGenerator->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setModel(model);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     QSettings setting;
-    if (setting.contains("seed3Year")) ui->seedToTimeYear->setText(setting.value("seed3Year").toString());
+    if (setting.contains("seed3Year")) ui->textBoxYear->setText(setting.value("seed3Year").toString());
 }
 
 u16 SeedToTime3::originSeed(u32 seed)
@@ -140,13 +140,13 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
 
 void SeedToTime3::on_pushButtonFind_clicked()
 {
-    u32 seed = ui->seedToTimeSeed->text().toUInt(nullptr, 16);
-    u32 year = ui->seedToTimeYear->text().toUInt();
+    u32 seed = ui->textBoxSeed->text().toUInt(nullptr, 16);
+    u32 year = ui->textBoxYear->text().toUInt();
     frame = 1;
     if (seed > 0xFFFF)
     {
         seed = originSeed(seed);
-        ui->seedToTimeSeed->setText(QString::number(seed, 16));
+        ui->textBoxSeed->setText(QString::number(seed, 16));
     }
 
     seedToTime(seed, year);

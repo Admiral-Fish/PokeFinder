@@ -42,11 +42,11 @@ PIDtoIVs::~PIDtoIVs()
 
 void PIDtoIVs::setupModels()
 {
-    ui->pidInput->setValues(InputType::Seed32Bit);
+    ui->textBoxPID->setValues(InputType::Seed32Bit);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("Method") << tr("IVs"));
-    ui->tabePIDToIV->setModel(model);
-    ui->tabePIDToIV->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setModel(model);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     QAction *copySeed = new QAction("Copy Seed to Clipboard", this);
     QAction *moveResults = new QAction("Move Result to Stationary Generator", this);
@@ -55,13 +55,13 @@ void PIDtoIVs::setupModels()
     connect(copySeed, &QAction::triggered, this, &PIDtoIVs::copySeed);
     connect(moveResults, &QAction::triggered, this, [ = ]
     {
-        QStringList ivs = ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 2)).toString().split(".");
-        emit moveResultsToStationary(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString(), ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 1)).toString(),
+        QStringList ivs = ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 2)).toString().split(".");
+        emit moveResultsToStationary(ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 0)).toString(), ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 1)).toString(),
                                      ivs.at(0).toUShort(), ivs.at(1).toUShort(), ivs.at(2).toUShort(), ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
     });
     connect(moveIVs, &QAction::triggered, this, [ = ]
     {
-        QStringList ivs = ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 2)).toString().split(".");
+        QStringList ivs = ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 2)).toString().split(".");
         emit moveResultsToStationary("", "", ivs.at(0).toUShort(), ivs.at(1).toUShort(), ivs.at(2).toUShort(), ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
     });
 
@@ -273,22 +273,22 @@ void PIDtoIVs::addSeedChannel(u32 seed, u32 iv1)
 void PIDtoIVs::on_pushButtonGenerate_clicked()
 {
     model->removeRows(0, model->rowCount());
-    u32 pid = ui->pidInput->text().toUInt(nullptr, 16);
+    u32 pid = ui->textBoxPID->text().toUInt(nullptr, 16);
     calcFromPID(pid);
 }
 
-void PIDtoIVs::on_tabePIDToIV_customContextMenuRequested(const QPoint &pos)
+void PIDtoIVs::on_tableView_customContextMenuRequested(const QPoint &pos)
 {
     if (model->rowCount() == 0)
     {
         return;
     }
 
-    lastIndex = ui->tabePIDToIV->indexAt(pos);
-    contextMenu->popup(ui->tabePIDToIV->viewport()->mapToGlobal(pos));
+    lastIndex = ui->tableView->indexAt(pos);
+    contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
 }
 
 void PIDtoIVs::copySeed()
 {
-    QApplication::clipboard()->setText(ui->tabePIDToIV->model()->data(ui->tabePIDToIV->model()->index(lastIndex.row(), 0)).toString());
+    QApplication::clipboard()->setText(ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 0)).toString());
 }

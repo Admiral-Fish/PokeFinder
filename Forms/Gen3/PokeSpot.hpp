@@ -50,8 +50,6 @@ private:
 private slots:
     void on_pushButtonGenerate_clicked();
     void on_pushButtonAnyAbility_clicked();
-    void on_pushButtonAnyNature_clicked();
-    void on_pushButtonAnySpotType_clicked();
 
 };
 

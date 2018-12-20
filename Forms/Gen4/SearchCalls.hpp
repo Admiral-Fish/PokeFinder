@@ -51,8 +51,6 @@ private slots:
     void on_pushButtonE_clicked();
     void on_pushButtonP_clicked();
     void on_lineEditCalls_textChanged(const QString &val);
-    void on_pushButtonOkay_clicked();
-    void on_pushButtonCancel_clicked();
     void on_radioButtonElm_clicked();
     void on_radioButtonIrwin_clicked();
 

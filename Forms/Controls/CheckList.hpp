@@ -35,8 +35,10 @@ public:
     ~CheckList() override;
     void setup();
     QVector<bool> getChecked();
-    void uncheckAll();
     void setChecks(QVector<bool> flags);
+
+public slots:
+    void uncheckAll();
 
 protected:
     bool eventFilter(QObject *object, QEvent *event) override;

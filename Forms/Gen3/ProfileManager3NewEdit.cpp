@@ -96,12 +96,6 @@ void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
     done(QDialog::Accepted);
 }
 
-
-void ProfileManager3NewEdit::on_pushButtonCancel_clicked()
-{
-    done(QDialog::Rejected);
-}
-
 void ProfileManager3NewEdit::on_comboBoxVersion_currentIndexChanged(int index)
 {
     (void) index;

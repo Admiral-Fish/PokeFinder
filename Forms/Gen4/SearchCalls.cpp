@@ -103,16 +103,6 @@ void SearchCalls::on_lineEditCalls_textChanged(const QString &val)
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
 }
 
-void SearchCalls::on_pushButtonOkay_clicked()
-{
-    done(QDialog::Accepted);
-}
-
-void SearchCalls::on_pushButtonCancel_clicked()
-{
-    done(QDialog::Rejected);
-}
-
 void SearchCalls::on_radioButtonElm_clicked()
 {
     ui->labelKResponse->setText(tr("K - I expect there are some Pokémon in the Kanto region that I don't know. There are probably methods of evolution that I'm not familiar with yet. I should use that perspective and discover what I can!"));

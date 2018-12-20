@@ -47,20 +47,12 @@ private:
     void setupModels();
 
 private slots:
-    void on_pushButtonFindXD_clicked();
-    void on_pushButtonFindFRLGE_clicked();
-    void on_pushButtonFindRS_clicked();
-    void on_checkBoxPIDXD_stateChanged(int val);
-    void on_checkBoxTIDXD_stateChanged(int val);
-    void on_checkBoxSIDXD_stateChanged(int val);
-    void on_checkBoxPIDFRLGE_stateChanged(int val);
-    void on_checkBoxSIDFRLGE_stateChanged(int val);
-    void on_checkBoxBattery_stateChanged(int val);
-    void on_checkBoxPIDRS_stateChanged(int val);
-    void on_checkBoxTIDRS_stateChanged(int val);
-    void on_checkBoxSIDRS_stateChanged(int val);
-    void on_radioButtonDateRS_toggled(bool checked);
-    void on_radioButtonInitSeedRS_toggled(bool checked);
+    void on_pushButtonXDColoSearch_clicked();
+    void on_pushButtonFRLGESearch_clicked();
+    void on_pushButtonRSSearch_clicked();
+    void on_checkBoxRSDeadBattery_clicked(bool checked);
+    void on_radioButtonRSDate_toggled(bool checked);
+    void on_radioButtonRSInitialSeed_toggled(bool checked);
 
 };
 

@@ -41,25 +41,25 @@ IDs3::~IDs3()
 
 void IDs3::setupModels()
 {
-    ui->textBoxPIDFRLGE->setValues(InputType::Seed32Bit);
-    ui->textBoxTIDFRLGE->setValues(InputType::TIDSID);
-    ui->textBoxSIDFRLGE->setValues(InputType::TIDSID);
-    ui->textBoxMinFrameFRLGE->setValues(InputType::Frame32Bit);
-    ui->textBoxMaxFrameFRLGE->setValues(InputType::Frame32Bit);
+    ui->textBoxFRLGEPID->setValues(InputType::Seed32Bit);
+    ui->textBoxFRLGETID->setValues(InputType::TIDSID);
+    ui->textBoxFRLGESID->setValues(InputType::TIDSID);
+    ui->textBoxFRLGEStartingFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxFRLGEMaxResults->setValues(InputType::Frame32Bit);
 
-    ui->textBoxPIDRS->setValues(InputType::Seed32Bit);
-    ui->textBoxTIDRS->setValues(InputType::TIDSID);
-    ui->textBoxSIDRS->setValues(InputType::TIDSID);
-    ui->textBoxInitSeedRS->setValues(InputType::Seed16Bit);
-    ui->textBoxMinFrameRS->setValues(InputType::Frame32Bit);
-    ui->textBoxMaxFrameRS->setValues(InputType::Frame32Bit);
+    ui->textBoxRSPID->setValues(InputType::Seed32Bit);
+    ui->textBoxRSTID->setValues(InputType::TIDSID);
+    ui->textBoxRSSID->setValues(InputType::TIDSID);
+    ui->textBoxRSInitialSeed->setValues(InputType::Seed16Bit);
+    ui->textBoxRSStartingFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxRSMaxResults->setValues(InputType::Frame32Bit);
 
-    ui->textBoxPIDXD->setValues(InputType::Seed32Bit);
-    ui->textBoxTIDXD->setValues(InputType::TIDSID);
-    ui->textBoxSIDXD->setValues(InputType::TIDSID);
-    ui->textBoxSeedXD->setValues(InputType::Seed32Bit);
-    ui->textBoxMinFrameXD->setValues(InputType::Frame32Bit);
-    ui->textBoxMaxFrameXD->setValues(InputType::Frame32Bit);
+    ui->textBoxXDColoPID->setValues(InputType::Seed32Bit);
+    ui->textBoxXDColoTID->setValues(InputType::TIDSID);
+    ui->textBoxXDColoSID->setValues(InputType::TIDSID);
+    ui->textBoxXDColoSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxXDColoStartingFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxXDColoMaxResults->setValues(InputType::Frame32Bit);
 
     ui->dateTimeEdit->setDisplayFormat(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
 
@@ -76,17 +76,17 @@ void IDs3::setupModels()
     ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void IDs3::on_pushButtonFindFRLGE_clicked()
+void IDs3::on_pushButtonFRLGESearch_clicked()
 {
     frlge->removeRows(0, frlge->rowCount());
 
-    u16 tid = ui->textBoxTIDFRLGE->text().toUShort();
-    bool usePID = ui->checkBoxPIDFRLGE->isChecked();
-    bool useSID = ui->checkBoxSIDFRLGE->isChecked();
-    u32 pid = ui->textBoxPIDFRLGE->text().toUInt(nullptr, 16);
-    u16 searchSID = ui->textBoxSIDFRLGE->text().toUShort();
-    u32 minFrame = ui->textBoxMinFrameFRLGE->text().toUInt();
-    u32 maxResults = ui->textBoxMaxFrameFRLGE->text().toUInt();
+    u16 tid = ui->textBoxFRLGETID->text().toUShort();
+    bool usePID = ui->checkBoxFRLGEPID->isChecked();
+    bool useSID = ui->checkBoxFRLGESID->isChecked();
+    u32 pid = ui->textBoxFRLGEPID->text().toUInt(nullptr, 16);
+    u16 searchSID = ui->textBoxFRLGESID->text().toUShort();
+    u32 minFrame = ui->textBoxFRLGEStartingFrame->text().toUInt();
+    u32 maxResults = ui->textBoxFRLGEMaxResults->text().toUInt();
 
     PokeRNG rng(tid, minFrame - 1);
     u16 sid = rng.nextUShort();
@@ -103,23 +103,23 @@ void IDs3::on_pushButtonFindFRLGE_clicked()
     }
 }
 
-void IDs3::on_pushButtonFindRS_clicked()
+void IDs3::on_pushButtonRSSearch_clicked()
 {
     rs->removeRows(0, rs->rowCount());
 
     u32 seed;
-    bool usePID = ui->checkBoxPIDRS->isChecked();
-    bool useSID = ui->checkBoxSIDRS->isChecked();
-    bool useTID = ui->checkBoxTIDRS->isChecked();
-    u32 pid = ui->textBoxPIDRS->text().toUInt(nullptr, 16);
-    u16 searchSID = ui->textBoxSIDRS->text().toUShort();
-    u16 searchTID = ui->textBoxTIDRS->text().toUShort();
-    u32 minFrame = ui->textBoxMinFrameRS->text().toUInt();
-    u32 maxResults = ui->textBoxMaxFrameRS->text().toUInt();
+    bool usePID = ui->checkBoxRSPID->isChecked();
+    bool useSID = ui->checkBoxRSSID->isChecked();
+    bool useTID = ui->checkBoxRSTID->isChecked();
+    u32 pid = ui->textBoxRSPID->text().toUInt(nullptr, 16);
+    u16 searchSID = ui->textBoxRSSID->text().toUShort();
+    u16 searchTID = ui->textBoxRSTID->text().toUShort();
+    u32 minFrame = ui->textBoxRSStartingFrame->text().toUInt();
+    u32 maxResults = ui->textBoxRSMaxResults->text().toUInt();
 
-    if (ui->radioButtonInitSeedRS->isChecked())
+    if (ui->radioButtonRSInitialSeed->isChecked())
     {
-        seed = ui->textBoxInitSeedRS->text().toUInt(nullptr, 16);
+        seed = ui->textBoxRSInitialSeed->text().toUInt(nullptr, 16);
     }
     else
     {
@@ -143,19 +143,19 @@ void IDs3::on_pushButtonFindRS_clicked()
     }
 }
 
-void IDs3::on_pushButtonFindXD_clicked()
+void IDs3::on_pushButtonXDColoSearch_clicked()
 {
     xdcolo->removeRows(0, xdcolo->rowCount());
 
-    u32 seed = ui->textBoxSeedXD->text().toUInt(nullptr, 16);
-    bool usePID = ui->checkBoxPIDXD->isChecked();
-    bool useSID = ui->checkBoxSIDXD->isChecked();
-    bool useTID = ui->checkBoxTIDXD->isChecked();
-    u32 pid = ui->textBoxPIDXD->text().toUInt(nullptr, 16);
-    u16 searchSID = ui->textBoxSIDXD->text().toUShort();
-    u16 searchTID = ui->textBoxTIDXD->text().toUShort();
-    u32 minFrame = ui->textBoxMinFrameXD->text().toUInt();
-    u32 maxResults = ui->textBoxMaxFrameXD->text().toUInt();
+    u32 seed = ui->textBoxXDColoSeed->text().toUInt(nullptr, 16);
+    bool usePID = ui->checkBoxXDColoPID->isChecked();
+    bool useSID = ui->checkBoxXDColoSID->isChecked();
+    bool useTID = ui->checkBoxXDColoTID->isChecked();
+    u32 pid = ui->checkBoxXDColoPID->text().toUInt(nullptr, 16);
+    u16 searchSID = ui->textBoxXDColoSID->text().toUShort();
+    u16 searchTID = ui->textBoxXDColoTID->text().toUShort();
+    u32 minFrame = ui->textBoxXDColoStartingFrame->text().toUInt();
+    u32 maxResults = ui->textBoxXDColoMaxResults->text().toUInt();
 
     XDRNG rng(seed, minFrame + 1);
     u16 sid = rng.nextUShort(), tid;
@@ -173,61 +173,20 @@ void IDs3::on_pushButtonFindXD_clicked()
     }
 }
 
-void IDs3::on_checkBoxPIDXD_stateChanged(int val)
+void IDs3::on_checkBoxRSDeadBattery_clicked(bool checked)
 {
-    ui->textBoxPIDXD->setEnabled(val == Qt::Checked);
+    ui->radioButtonRSDate->setEnabled(!checked);
+    ui->radioButtonRSInitialSeed->setEnabled(!checked);
+    ui->dateTimeEdit->setEnabled(!checked ? ui->radioButtonRSDate->isChecked() : false);
+    ui->textBoxRSInitialSeed->setEnabled(!checked ? ui->radioButtonRSInitialSeed->isChecked() : false);
 }
 
-void IDs3::on_checkBoxTIDXD_stateChanged(int val)
-{
-    ui->textBoxTIDXD->setEnabled(val == Qt::Checked);
-}
-
-void IDs3::on_checkBoxSIDXD_stateChanged(int val)
-{
-    ui->textBoxSIDXD->setEnabled(val == Qt::Checked);
-}
-
-void IDs3::on_checkBoxPIDFRLGE_stateChanged(int val)
-{
-    ui->textBoxPIDFRLGE->setEnabled(val == Qt::Checked);
-}
-
-void IDs3::on_checkBoxSIDFRLGE_stateChanged(int val)
-{
-    ui->checkBoxSIDFRLGE->setEnabled(val == Qt::Checked);
-}
-
-void IDs3::on_checkBoxBattery_stateChanged(int val)
-{
-    bool flag = val == Qt::Unchecked;
-    ui->radioButtonDateRS->setEnabled(flag);
-    ui->radioButtonInitSeedRS->setEnabled(flag);
-    ui->dateTimeEdit->setEnabled(flag ? ui->radioButtonDateRS->isChecked() : false);
-    ui->textBoxInitSeedRS->setEnabled(flag ? ui->radioButtonInitSeedRS->isChecked() : false);
-}
-
-void IDs3::on_checkBoxPIDRS_stateChanged(int val)
-{
-    ui->textBoxPIDRS->setEnabled(val == Qt::Checked);
-}
-
-void IDs3::on_checkBoxTIDRS_stateChanged(int val)
-{
-    ui->textBoxTIDRS->setEnabled(val == Qt::Checked);
-}
-
-void IDs3::on_checkBoxSIDRS_stateChanged(int val)
-{
-    ui->textBoxSIDRS->setEnabled(val == Qt::Checked);
-}
-
-void IDs3::on_radioButtonDateRS_toggled(bool checked)
+void IDs3::on_radioButtonRSDate_toggled(bool checked)
 {
     ui->dateTimeEdit->setEnabled(checked);
 }
 
-void IDs3::on_radioButtonInitSeedRS_toggled(bool checked)
+void IDs3::on_radioButtonRSInitialSeed_toggled(bool checked)
 {
-    ui->textBoxInitSeedRS->setEnabled(checked);
+    ui->textBoxRSInitialSeed->setEnabled(checked);
 }

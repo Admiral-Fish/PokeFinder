@@ -204,7 +204,7 @@ void MainWindow::on_pushButtonIDs3_clicked()
     ids3->raise();
 }
 
-void MainWindow::on_action16BitSeedtoTime_triggered()
+void MainWindow::on_actionSeedtoTime3_triggered()
 {
     auto *seedToTime = new SeedToTime3();
     seedToTime->show();
@@ -225,7 +225,7 @@ void MainWindow::on_actionPokeSpot_triggered()
     pokeSpot->raise();
 }
 
-void MainWindow::on_actionIVtoPID_triggered()
+void MainWindow::on_actionIVtoPID3_triggered()
 {
     auto *ivToPID = new IVtoPID();
     ivToPID->show();
@@ -293,14 +293,14 @@ void MainWindow::on_pushButtonIDs4_clicked()
     ids4->raise();
 }
 
-void MainWindow::on_actionSeed_to_Time_triggered()
+void MainWindow::on_actionSeedtoTime4_triggered()
 {
     auto *seedToTime = new SeedtoTime4();
     seedToTime->show();
     seedToTime->raise();
 }
 
-void MainWindow::on_actionIV_to_PID_triggered()
+void MainWindow::on_actionIVtoPID4_triggered()
 {
     auto *ivToPID = new IVtoPID();
     ivToPID->show();

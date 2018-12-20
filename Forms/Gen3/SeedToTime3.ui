@@ -84,21 +84,21 @@ QHeaderView::section {
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="TextBox" name="seedToTimeSeed">
+     <widget class="TextBox" name="textBoxSeed">
       <property name="maxLength">
        <number>8</number>
       </property>
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QLabel" name="yearLabel">
+     <widget class="QLabel" name="labelYear">
       <property name="text">
        <string>Year</string>
       </property>
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="TextBox" name="seedToTimeYear">
+     <widget class="TextBox" name="textBoxYear">
       <property name="text">
        <string notr="true">2000</string>
       </property>
@@ -124,7 +124,7 @@ QHeaderView::section {
      </widget>
     </item>
     <item row="3" column="0" colspan="3">
-     <widget class="TableView" name="tableViewGenerator">
+     <widget class="TableView" name="tableView">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -147,7 +147,7 @@ QHeaderView::section {
        <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderDefaultSectionSize">
-       <number>20</number>
+       <number>21</number>
       </attribute>
       <attribute name="verticalHeaderMinimumSectionSize">
        <number>20</number>
@@ -169,16 +169,6 @@ QHeaderView::section {
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>540</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -193,9 +183,9 @@ QHeaderView::section {
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>seedToTimeYear</tabstop>
+  <tabstop>textBoxYear</tabstop>
   <tabstop>pushButtonFind</tabstop>
-  <tabstop>tableViewGenerator</tabstop>
+  <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>
  <connections/>

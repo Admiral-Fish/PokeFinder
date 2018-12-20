@@ -53,18 +53,16 @@ private:
 
     void setupModels();
     QVector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);
-    QVector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, DateTime target);
+    QVector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const DateTime &target);
 
 private slots:
-    void on_pushButtonGenerateDPPt_clicked();
-    void on_pushButtonGenerateHGSS_clicked();
-    void on_pushButtonCalibrateDPPt_clicked();
-    void on_pushButtonCalibrateHGSS_clicked();
-    void on_pushButtonSearchFlips_clicked();
-    void on_pushButtonSearchCalls_clicked();
-    void on_checkBoxSecondsHGSS_clicked(bool checked);
-    void on_checkBoxSecondsDPPt_clicked(bool checked);
-    void on_pushButtonMap_clicked();
+    void on_pushButtonDPPtGenerate_clicked();
+    void on_pushButtonHGSSGenerate_clicked();
+    void on_pushButtonHGSSCalibrate_clicked();
+    void on_pushButtonDPPtCalibrate_clicked();
+    void on_pushButtonDPPtSearchFlips_clicked();
+    void on_pushButtonHGSSSearchCalls_clicked();
+    void on_pushButtonHGSSMap_clicked();
 
 };
 
