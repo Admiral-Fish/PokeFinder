@@ -28,14 +28,15 @@ class EncounterArea3 : public EncounterArea
 
 public:
     EncounterArea3() = default;
-    EncounterArea3(u8 location, u32 delay, Encounter type, const QVector<Slot> &pokemon);
+    EncounterArea3(u8 location, u16 delay, Encounter type, const QVector<Slot> &pokemon);
     u8 calcLevel(u8 index, u16 prng) const;
     u8 calcLevel(u8 index) const;
     u8 getEncounterRate() const;
-    u32 getDelay() const;
+    u16 getDelay() const;
+    QVector<Slot> getPokemon() const { return pokemon; }
 
 private:
-    u32 delay;
+    u16 delay;
 
 };
 

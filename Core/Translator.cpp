@@ -48,12 +48,22 @@ QStringList Translator::getSpecies(const QVector<u16> &nums)
     return species;
 }
 
-QStringList Translator::getLocationsGen3(const QVector<u8> &nums)
+QStringList Translator::getLocationsGen3(const QVector<u8> &nums, Game game)
 {
     QStringList locations;
 
+    QString version;
+    if (game & Game::FRLG)
+    {
+        version = "frlg";
+    }
+    else
+    {
+        version = "rse";
+    }
+
     QSettings setting;
-    QFile file(QString(":/text/rsefrlg_%1.txt").arg(setting.value("locale", "en").toString()));
+    QFile file(QString(":/text/%1_%2.txt").arg(version, setting.value("locale", "en").toString()));
 
     if (file.open(QIODevice::ReadOnly))
     {
@@ -82,18 +92,13 @@ QStringList Translator::getLocationsGen4(const QVector<u8> &nums, Game game)
     QStringList locations;
 
     QString version;
-    switch (game)
+    if (game & Game::DPPt)
     {
-        case Game::Diamond:
-        case Game::Pearl:
-        case Game::Platinum:
-            version = "dppt";
-            break;
-        case Game::HeartGold:
-        case Game::SoulSilver:
-        default:
-            version = "hgss";
-            break;
+        version = "dppt";
+    }
+    else
+    {
+        version = "hgss";
     }
 
     QSettings setting;

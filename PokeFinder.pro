@@ -2,8 +2,7 @@ lessThan(QT_MAJOR_VERSION, 5):error("You need at least Qt 5.11 to build PokeFind
 equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11):error("You need at least Qt 5.11 to build PokeFinder")
 
 QT += network widgets
-linux|macx:CONFIG += c++17
-win32:QMAKE_CXXFLAGS += /std:c++17
+CONFIG += c++1z
 
 TARGET = PokeFinder
 TEMPLATE = app

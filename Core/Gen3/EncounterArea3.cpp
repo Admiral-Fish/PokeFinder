@@ -19,7 +19,7 @@
 
 #include "EncounterArea3.hpp"
 
-EncounterArea3::EncounterArea3(u8 location, u32 delay, Encounter type, const QVector<Slot> &pokemon)
+EncounterArea3::EncounterArea3(u8 location, u16 delay, Encounter type, const QVector<Slot> &pokemon)
     : EncounterArea(location, type, pokemon)
 {
     this->delay = delay;
@@ -70,7 +70,7 @@ u8 EncounterArea3::getEncounterRate() const
     }
 }
 
-u32 EncounterArea3::getDelay() const
+u16 EncounterArea3::getDelay() const
 {
     return delay;
 }

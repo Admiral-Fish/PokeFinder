@@ -27,6 +27,7 @@ enum Game
     Sapphire    = 1 << 1,
     RS          = Ruby | Sapphire,
     Emerald     = 1 << 2,
+    RSE         = RS | Emerald,
     FireRed     = 1 << 3,
     LeafGreen   = 1 << 4,
     FRLG        = FireRed | LeafGreen,

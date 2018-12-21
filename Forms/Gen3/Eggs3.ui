@@ -3599,12 +3599,12 @@ QRadioButton {
    <slot>uncheckAll()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1142</x>
-     <y>209</y>
+     <x>163</x>
+     <y>145</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1069</x>
-     <y>209</y>
+     <x>163</x>
+     <y>145</y>
     </hint>
    </hints>
   </connection>
@@ -3615,12 +3615,12 @@ QRadioButton {
    <slot>uncheckAll()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1131</x>
-     <y>207</y>
+     <x>163</x>
+     <y>145</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1082</x>
-     <y>215</y>
+     <x>163</x>
+     <y>145</y>
     </hint>
    </hints>
   </connection>

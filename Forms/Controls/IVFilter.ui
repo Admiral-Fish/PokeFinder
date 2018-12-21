@@ -89,7 +89,7 @@ QPushButton {
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="Label" name="hpLabel">
+    <widget class="Label" name="labelHP">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -272,7 +272,7 @@ QPushButton {
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="Label" name="atkLabel">
+    <widget class="Label" name="labelAtk">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -449,7 +449,7 @@ QPushButton {
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="Label" name="defLabel">
+    <widget class="Label" name="labelDef">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -626,7 +626,7 @@ QPushButton {
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="Label" name="spaLabel">
+    <widget class="Label" name="labelSpA">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -803,7 +803,7 @@ QPushButton {
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="Label" name="spdLabel">
+    <widget class="Label" name="labelSpD">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -980,7 +980,7 @@ QPushButton {
     </widget>
    </item>
    <item row="5" column="0">
-    <widget class="Label" name="speLabel">
+    <widget class="Label" name="labelSpe">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>

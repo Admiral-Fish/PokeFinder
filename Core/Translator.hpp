@@ -30,7 +30,7 @@
 namespace Translator
 {
     QStringList getSpecies(const QVector<u16> &nums);
-    QStringList getLocationsGen3(const QVector<u8> &nums);
+    QStringList getLocationsGen3(const QVector<u8> &nums, Game game);
     QStringList getLocationsGen4(const QVector<u8> &nums, Game game);
 };
 
