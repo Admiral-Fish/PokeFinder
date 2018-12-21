@@ -2,18 +2,9 @@ environment:
   matrix:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     QTDIR: C:\Qt\5.11\msvc2017_64
-    BUILDER: JOM
-    ARCH: x64
     OS: windows
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
-    BUILDER: MAKE
-    ARCH: x64
     OS: linux
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-    QTDIR: C:\Qt\5.11\mingw53_32
-    BUILDER: MINGW
-    ARCH: x86
-    OS: windows
 
 services:
     - Docker
@@ -21,16 +12,14 @@ services:
 install:
     # Windows
     - cmd: set PATH=%QTDIR%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
-    - cmd: if "%BUILDER%"=="MINGW" set PATH=C:\Qt\Tools\mingw530_32\bin;%PATH%
-    - cmd: if "%BUILDER%"=="JOM" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+    - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
     # Linux
     - sh: sudo service docker start
     
 build_script:
     # Windows
     - cmd: qmake PokeFinder.pro
-    - cmd: if "%BUILDER%"=="MINGW" mingw32-make -j %NUMBER_OF_PROCESSORS%
-    - cmd: if "%BUILDER%"=="JOM" jom -j %NUMBER_OF_PROCESSORS%
+    - cmd: jom -j %NUMBER_OF_PROCESSORS%
     # Linux
     - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.12-desktop sudo /opt/Qt/5.12.0/gcc_64/bin/qmake
     - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.12-desktop sudo make -j 4
@@ -44,20 +33,17 @@ after_build:
     - cmd: del PokeFinder-windows\vc_redist*.exe
     - cmd: xcopy /I %QTDIR%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
     - cmd: xcopy /I %QTDIR%\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
-    - cmd: 7z a PokeFinder-windows-%ARCH%.zip PokeFinder-windows\
+    - cmd: 7z a PokeFinder-windows.zip PokeFinder-windows\
     # Linux
-    - sh: zip -r PokeFinder-linux-x64.zip PokeFinder
+    - sh: zip -r PokeFinder-linux.zip PokeFinder
     
 artifacts:
-- path: PokeFinder-%OS%-%ARCH%.zip
+- path: PokeFinder-%OS%.zip
 
 deploy:
     provider: GitHub
-    description: ''
     auth_token:
         secure: u3c5wUq11csZ77TpgKMImu9U+ibNiviMcEpTuQXmqp1YGSHA/+u5FhqZ3KRZBAQX
     artifact: PokeFinder-%OS%-%ARCH%.zip
-    draft: false
-    prerelease: true
     on:
         APPVEYOR_REPO_TAG: true
