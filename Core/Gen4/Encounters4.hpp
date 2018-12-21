@@ -39,8 +39,8 @@ private:
     // Radio 0: None, 1: Hoenn, 2: Sinnoh, For HGSS
 
     QByteArrayList getData() const;
-    QVector<EncounterArea4> getHGSS(const QByteArray &data, int i) const;
-    QVector<EncounterArea4> getDPPt(const QByteArray &data, int i) const;
+    QVector<EncounterArea4> getHGSS(const QByteArray &data) const;
+    QVector<EncounterArea4> getDPPt(const QByteArray &data) const;
     void modifyRadio(QVector<Slot> &pokemon, const QByteArray &data) const;
     void modifyTime(QVector<Slot> &pokemon, const QByteArray &data) const;
     void modifyDual(QVector<Slot> &pokemon, const QByteArray &data) const;
