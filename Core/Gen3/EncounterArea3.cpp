@@ -49,21 +49,22 @@ u8 EncounterArea3::getEncounterRate() const
         case 53: // Safari Zone 6
             return 25;
         // FRLG doesn't force encounter
-        // Uses a different RNG to proc the encounter
-        case 134: // Rock Tunnel B1F (50)
-        case 145: // Cerulean Cave 1F  (50)
-        case 146: // Cerulean Cave 2F (50)
-        case 147: // Cerulean Cave B1F (50)
-        case 152: // Kindle Road (25)
-        case 167: // Sevault Canyon (25)
-        case 169: // Mt. Ember (50)
-        case 171: // Mt. Ember Room 2 (50)
-        case 173: // Mt. Ember 1F (50)
-        case 174: // Mt. Ember B1F (50)
-        case 175: // Mt. Ember B2F (50)
-        case 176: // Mt. Ember B3F (50)
-        case 177: // Mt. Ember B4F (50)
-        case 178: // Mt. Ember B5F (50)
+        // No location collisions after encounter structure change
+        // Might want to add game version as a parameter in the future, but for now this is fine
+        case 48: // Rock Tunnel B1F (50)
+        case 59: // Cerulean Cave 1F  (50)
+        case 60: // Cerulean Cave 2F (50)
+        case 61: // Cerulean Cave B1F (50)
+        case 66: // Kindle Road (25)
+        case 81: // Sevault Canyon (25)
+        case 83: // Mt. Ember (50)
+        case 85: // Mt. Ember Room 2 (50)
+        case 87: // Mt. Ember 1F (50)
+        case 88: // Mt. Ember B1F (50)
+        case 89: // Mt. Ember B2F (50)
+        case 90: // Mt. Ember B3F (50)
+        case 91: // Mt. Ember B4F (50)
+        case 92: // Mt. Ember B5F (50)
             return 180;
         default:
             return 0;
