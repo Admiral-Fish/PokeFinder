@@ -40,7 +40,4 @@ private:
 
 };
 
-QDataStream &operator>>(QDataStream &in, EncounterArea3 &encounter);
-
-
 #endif // ENCOUNTERAREA3_HPP
