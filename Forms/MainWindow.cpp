@@ -80,22 +80,6 @@ void MainWindow::setupLanguage()
     ui->retranslateUi(this);
 }
 
-void MainWindow::loadLanguage(const QString &lang)
-{
-    QSettings setting;
-    if (setting.value("locale", "en") != lang)
-    {
-        setting.setValue("locale", lang);
-
-        QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
-        if (message.exec() == QMessageBox::Yes)
-        {
-            QProcess::startDetached(QApplication::applicationFilePath());
-            QApplication::quit();
-        }
-    }
-}
-
 void MainWindow::checkProfileJson()
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
@@ -141,7 +125,20 @@ void MainWindow::slotLanguageChanged(QAction *action)
 {
     if (action)
     {
-        loadLanguage(action->data().toString());
+        QString lang = action->data().toString();
+
+        QSettings setting;
+        if (setting.value("locale", "en") != lang)
+        {
+            setting.setValue("locale", lang);
+
+            QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
+            if (message.exec() == QMessageBox::Yes)
+            {
+                QProcess::startDetached(QApplication::applicationFilePath());
+                QApplication::quit();
+            }
+        }
     }
 }
 

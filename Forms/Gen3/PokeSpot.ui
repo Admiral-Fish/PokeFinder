@@ -691,7 +691,7 @@ QPushButton {
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
    <slots>
-    <slot>uncheckAll()</slot>
+    <slot>resetChecks()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -719,7 +719,7 @@ QPushButton {
    <sender>pushButtonAnySpotType</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxSpotType</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>669</x>
@@ -735,7 +735,7 @@ QPushButton {
    <sender>pushButtonAnyNature</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxNature</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>660</x>

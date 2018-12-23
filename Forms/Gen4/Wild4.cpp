@@ -497,7 +497,7 @@ void Wild4::on_comboBoxGeneratorPokemon_currentIndexChanged(int index)
 {
     if (index <= 0)
     {
-        ui->comboBoxGeneratorEncounterSlot->uncheckAll();
+        ui->comboBoxGeneratorEncounterSlot->resetChecks();
         return;
     }
 
@@ -511,7 +511,7 @@ void Wild4::on_comboBoxSearcherPokemon_currentIndexChanged(int index)
 {
     if (index <= 0)
     {
-        ui->comboBoxSearcherEncounterSlot->uncheckAll();
+        ui->comboBoxSearcherEncounterSlot->resetChecks();
         return;
     }
 

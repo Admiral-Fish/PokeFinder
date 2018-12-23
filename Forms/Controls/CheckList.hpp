@@ -38,7 +38,7 @@ public:
     void setChecks(QVector<bool> flags);
 
 public slots:
-    void uncheckAll();
+    void resetChecks();
 
 protected:
     bool eventFilter(QObject *object, QEvent *event) override;
@@ -47,7 +47,7 @@ private:
     QStandardItemModel *model;
 
     void updateText();
-    int globalCheckState();
+    int checkState();
 
 private slots:
     void modelDataChanged();

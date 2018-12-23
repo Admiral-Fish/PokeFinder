@@ -50,20 +50,20 @@ void CheckList::setup()
 
 QVector<bool> CheckList::getChecked()
 {
-    QVector<bool> result;
+    QVector<bool> result(model->rowCount());
 
-    if (globalCheckState() == Qt::Unchecked || globalCheckState() == Qt::Checked)
+    if (checkState() == Qt::PartiallyChecked)
     {
         for (auto i = 0; i < model->rowCount(); i++)
         {
-            result.append(true);
+            result[i] = model->item(i)->checkState() == Qt::Checked;
         }
     }
     else
     {
         for (auto i = 0; i < model->rowCount(); i++)
         {
-            result.append(model->item(i)->checkState() == Qt::Checked);
+            result[i] = true;
         }
     }
     return result;
@@ -77,7 +77,7 @@ void CheckList::setChecks(QVector<bool> flags)
     }
 }
 
-void CheckList::uncheckAll()
+void CheckList::resetChecks()
 {
     for (auto i = 0; i < model->rowCount(); i++)
     {
@@ -100,7 +100,7 @@ void CheckList::updateText()
 {
     QString text;
 
-    switch (globalCheckState())
+    switch (checkState())
     {
         case Qt::Checked:
             text = tr("Any");
@@ -129,7 +129,7 @@ void CheckList::updateText()
     lineEdit()->setText(text);
 }
 
-int CheckList::globalCheckState()
+int CheckList::checkState()
 {
     int total = model->rowCount(), checked = 0, unchecked = 0;
 

@@ -1169,6 +1169,9 @@ QPushButton {
    <class>Label</class>
    <extends>QLabel</extends>
    <header>Forms/Controls/Label.hpp</header>
+   <slots>
+    <signal>pressed(int)</signal>
+   </slots>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -1210,5 +1213,110 @@ QPushButton {
   <tabstop>pushButtonClearSpe</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>labelSpe</sender>
+   <signal>pressed(int)</signal>
+   <receiver>IVFilter</receiver>
+   <slot>changeCompareSpe(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>27</x>
+     <y>155</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>24</x>
+     <y>170</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>labelSpD</sender>
+   <signal>pressed(int)</signal>
+   <receiver>IVFilter</receiver>
+   <slot>changeCompareSpD(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>10</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>93</x>
+     <y>171</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>labelSpA</sender>
+   <signal>pressed(int)</signal>
+   <receiver>IVFilter</receiver>
+   <slot>changeCompareSpA(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>14</x>
+     <y>101</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>100</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>labelDef</sender>
+   <signal>pressed(int)</signal>
+   <receiver>IVFilter</receiver>
+   <slot>changeCompareDef(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>22</x>
+     <y>75</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>153</x>
+     <y>65</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>labelAtk</sender>
+   <signal>pressed(int)</signal>
+   <receiver>IVFilter</receiver>
+   <slot>changeCompareAtk(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>23</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>367</x>
+     <y>54</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>labelHP</sender>
+   <signal>pressed(int)</signal>
+   <receiver>IVFilter</receiver>
+   <slot>changeCompareHP(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>15</x>
+     <y>18</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>316</x>
+     <y>34</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>changeCompareHP(int)</slot>
+  <slot>changeCompareAtk(int)</slot>
+  <slot>changeCompareDef(int)</slot>
+  <slot>changeCompareSpA(int)</slot>
+  <slot>changeCompareSpD(int)</slot>
+  <slot>changeCompareSpe(int)</slot>
+ </slots>
 </ui>

@@ -72,7 +72,6 @@ private:
     IDs4 *ids4 = nullptr;
 
     void setupLanguage();
-    void loadLanguage(const QString &lang);
     void checkProfileJson();
     void checkUpdates();
 

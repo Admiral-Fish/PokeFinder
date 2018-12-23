@@ -2279,7 +2279,7 @@ QPushButton:disabled {
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
    <slots>
-    <slot>uncheckAll()</slot>
+    <slot>resetChecks()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -2340,7 +2340,7 @@ QPushButton:disabled {
    <sender>pushButtonGeneratorAnyNature</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxGeneratorNature</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1096</x>
@@ -2356,7 +2356,7 @@ QPushButton:disabled {
    <sender>pushButtonGeneratorAnyEncounterSlot</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxGeneratorEncounterSlot</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1092</x>
@@ -2372,7 +2372,7 @@ QPushButton:disabled {
    <sender>pushButtonGeneratorAnyHiddenPower</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxGeneratorHiddenPower</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1092</x>
@@ -2388,7 +2388,7 @@ QPushButton:disabled {
    <sender>pushButtonSearcherAnyNature</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxSearcherNature</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1131</x>
@@ -2404,7 +2404,7 @@ QPushButton:disabled {
    <sender>pushButtonSearcherAnyEncounterSlot</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxSearcherEncounterSlot</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1141</x>
@@ -2420,7 +2420,7 @@ QPushButton:disabled {
    <sender>pushButtonSearcherAnyHiddenPower</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxSearcherHiddenPower</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1148</x>

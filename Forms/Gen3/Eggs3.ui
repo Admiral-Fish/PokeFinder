@@ -3467,7 +3467,7 @@ QRadioButton {
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
    <slots>
-    <slot>uncheckAll()</slot>
+    <slot>resetChecks()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -3580,7 +3580,7 @@ QRadioButton {
    <sender>pushButtonAnyNatureEmerald</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxNatureEmerald</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>617</x>
@@ -3596,7 +3596,7 @@ QRadioButton {
    <sender>pushButtonAnyNatureRS</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxNatureRS</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>163</x>
@@ -3612,7 +3612,7 @@ QRadioButton {
    <sender>pushButtonAnyNatureFRLG</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxNatureFRLG</receiver>
-   <slot>uncheckAll()</slot>
+   <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>163</x>

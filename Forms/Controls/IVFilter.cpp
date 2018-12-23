@@ -25,13 +25,6 @@ IVFilter::IVFilter(QWidget *parent) :
     ui(new Ui::IVFilter)
 {
     ui->setupUi(this);
-
-    connect(ui->labelHP, &Label::pressed, this, &IVFilter::changeCompareHP);
-    connect(ui->labelAtk, &Label::pressed, this, &IVFilter::changeCompareAtk);
-    connect(ui->labelDef, &Label::pressed, this, &IVFilter::changeCompareDef);
-    connect(ui->labelSpA, &Label::pressed, this, &IVFilter::changeCompareSpA);
-    connect(ui->labelSpD, &Label::pressed, this, &IVFilter::changeCompareSpD);
-    connect(ui->labelSpe, &Label::pressed, this, &IVFilter::changeCompareSpe);
 }
 
 IVFilter::~IVFilter()
