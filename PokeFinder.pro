@@ -141,7 +141,8 @@ HEADERS += \
     Models/Gen4/Wild4Model.hpp \
     Models/ResearcherModel.hpp \
     Util/DateTime.hpp \
-    Util/ResearcherFrame.hpp
+    Util/ResearcherFrame.hpp \
+    Util/TableUtility.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -223,4 +224,5 @@ SOURCES += \
     Models/ResearcherModel.cpp \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
-    main.cpp
+    main.cpp \
+    Util/TableUtility.cpp

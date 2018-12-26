@@ -22,6 +22,7 @@
 
 #include <QAbstractTableModel>
 #include <Core/Gen4/Frame4.hpp>
+#include <Util/TableUtility.hpp>
 
 class Egg4GeneratorModel : public QAbstractTableModel
 {

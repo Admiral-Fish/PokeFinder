@@ -530,6 +530,57 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                 break;
         }
     }
+    else if (role == Qt::FontRole)
+    {
+        auto frame = model.at(index.row());
+        switch (method)
+        {
+            case Method::MethodH1:
+            case Method::MethodH2:
+            case Method::MethodH4:
+                switch (index.column())
+                {
+                    case 8:
+                        return TableUtility::getBold(frame.getIV(0));
+                    case 9:
+                        return TableUtility::getBold(frame.getIV(1));
+                    case 10:
+                        return TableUtility::getBold(frame.getIV(2));
+                    case 11:
+                        return TableUtility::getBold(frame.getIV(3));
+                    case 12:
+                        return TableUtility::getBold(frame.getIV(4));
+                    case 13:
+                        return TableUtility::getBold(frame.getIV(5));
+                }
+                break;
+            case Method::Method1:
+            case Method::Method1Reverse:
+            case Method::Method2:
+            case Method::Method4:
+            case Method::XDColo:
+            case Method::Channel:
+            case Method::XD:
+            case Method::Colo:
+                switch (index.column())
+                {
+                    case 5:
+                        return TableUtility::getBold(frame.getIV(0));
+                    case 6:
+                        return TableUtility::getBold(frame.getIV(1));
+                    case 7:
+                        return TableUtility::getBold(frame.getIV(2));
+                    case 8:
+                        return TableUtility::getBold(frame.getIV(3));
+                    case 9:
+                        return TableUtility::getBold(frame.getIV(4));
+                    case 10:
+                        return TableUtility::getBold(frame.getIV(5));
+                }
+            default:
+                break;
+        }
+    }
     return QVariant();
 }
 

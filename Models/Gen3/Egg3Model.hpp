@@ -22,6 +22,7 @@
 
 #include <QAbstractTableModel>
 #include <Core/Gen3/Frame3.hpp>
+#include <Util/TableUtility.hpp>
 
 class Egg3Model : public QAbstractTableModel
 {

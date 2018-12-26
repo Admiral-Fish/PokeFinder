@@ -100,6 +100,25 @@ QVariant Stationary3Model::data(const QModelIndex &index, int role) const
                 return frame.getTime();
         }
     }
+    else if (role == Qt::FontRole)
+    {
+        auto frame = model.at(index.row());
+        switch (index.column())
+        {
+            case 5:
+                return TableUtility::getBold(frame.getIV(0));
+            case 6:
+                return TableUtility::getBold(frame.getIV(1));
+            case 7:
+                return TableUtility::getBold(frame.getIV(2));
+            case 8:
+                return TableUtility::getBold(frame.getIV(3));
+            case 9:
+                return TableUtility::getBold(frame.getIV(4));
+            case 10:
+                return TableUtility::getBold(frame.getIV(5));
+        }
+    }
     return QVariant();
 }
 

@@ -106,6 +106,25 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
                 return frame.getTime();
         }
     }
+    else if (role == Qt::FontRole)
+    {
+        auto frame = model.at(index.row());
+        switch (index.column())
+        {
+            case 8:
+                return TableUtility::getBold(frame.getIV(0));
+            case 9:
+                return TableUtility::getBold(frame.getIV(1));
+            case 10:
+                return TableUtility::getBold(frame.getIV(2));
+            case 11:
+                return TableUtility::getBold(frame.getIV(3));
+            case 12:
+                return TableUtility::getBold(frame.getIV(4));
+            case 13:
+                return TableUtility::getBold(frame.getIV(5));
+        }
+    }
     return QVariant();
 }
 

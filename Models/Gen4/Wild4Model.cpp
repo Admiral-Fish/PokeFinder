@@ -205,6 +205,65 @@ QVariant Wild4Model::data(const QModelIndex &index, int role) const
                 break;
         }
     }
+    else if (role == Qt::FontRole)
+    {
+        auto frame = model.at(index.row());
+        switch (method)
+        {
+            case Method::MethodJ:
+                switch (index.column())
+                {
+                    case 9:
+                        return TableUtility::getBold(frame.getIV(0));
+                    case 10:
+                        return TableUtility::getBold(frame.getIV(1));
+                    case 11:
+                        return TableUtility::getBold(frame.getIV(2));
+                    case 12:
+                        return TableUtility::getBold(frame.getIV(3));
+                    case 13:
+                        return TableUtility::getBold(frame.getIV(4));
+                    case 14:
+                        return TableUtility::getBold(frame.getIV(5));
+                }
+                break;
+                break;
+            case Method::MethodK:
+                switch (index.column())
+                {
+                    case 10:
+                        return TableUtility::getBold(frame.getIV(0));
+                    case 11:
+                        return TableUtility::getBold(frame.getIV(1));
+                    case 12:
+                        return TableUtility::getBold(frame.getIV(2));
+                    case 13:
+                        return TableUtility::getBold(frame.getIV(3));
+                    case 14:
+                        return TableUtility::getBold(frame.getIV(4));
+                    case 15:
+                        return TableUtility::getBold(frame.getIV(5));
+                }
+            case Method::ChainedShiny:
+                switch (index.column())
+                {
+                    case 6:
+                        return TableUtility::getBold(frame.getIV(0));
+                    case 7:
+                        return TableUtility::getBold(frame.getIV(1));
+                    case 8:
+                        return TableUtility::getBold(frame.getIV(2));
+                    case 9:
+                        return TableUtility::getBold(frame.getIV(3));
+                    case 10:
+                        return TableUtility::getBold(frame.getIV(4));
+                    case 11:
+                        return TableUtility::getBold(frame.getIV(5));
+                }
+            default:
+                break;
+        }
+    }
     return QVariant();
 }
 

@@ -158,6 +158,49 @@ QVariant Egg4GeneratorModel::data(const QModelIndex &index, int role) const
                 break;
         }
     }
+    else if (role == Qt::FontRole)
+    {
+        auto frame = model.at(index.row());
+
+        switch (method)
+        {
+            case Method::DPPtIVs:
+                switch (index.column())
+                {
+                    case 2:
+                        return TableUtility::getBold(frame.getIV(0));
+                    case 3:
+                        return TableUtility::getBold(frame.getIV(1));
+                    case 4:
+                        return TableUtility::getBold(frame.getIV(2));
+                    case 5:
+                        return TableUtility::getBold(frame.getIV(3));
+                    case 6:
+                        return TableUtility::getBold(frame.getIV(4));
+                    case 7:
+                        return TableUtility::getBold(frame.getIV(5));
+                }
+                break;
+            case Method::HGSSIVs:
+                switch (index.column())
+                {
+                    case 3:
+                        return TableUtility::getBold(frame.getIV(0));
+                    case 4:
+                        return TableUtility::getBold(frame.getIV(1));
+                    case 5:
+                        return TableUtility::getBold(frame.getIV(2));
+                    case 6:
+                        return TableUtility::getBold(frame.getIV(3));
+                    case 7:
+                        return TableUtility::getBold(frame.getIV(4));
+                    case 8:
+                        return TableUtility::getBold(frame.getIV(5));
+                }
+            default:
+                break;
+        }
+    }
     return QVariant();
 }
 
@@ -365,6 +408,32 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
                         return frame.getPowerString();
                     case 9:
                         return frame.getPower();
+                }
+            default:
+                break;
+        }
+    }
+    else if (role == Qt::FontRole)
+    {
+        auto frame = model.at(index.row());
+        switch (method)
+        {
+            case Method::DPPtIVs:
+            case Method::HGSSIVs:
+                switch (index.column())
+                {
+                    case 2:
+                        return TableUtility::getBold(frame.getIV(0));
+                    case 3:
+                        return TableUtility::getBold(frame.getIV(1));
+                    case 4:
+                        return TableUtility::getBold(frame.getIV(2));
+                    case 5:
+                        return TableUtility::getBold(frame.getIV(3));
+                    case 6:
+                        return TableUtility::getBold(frame.getIV(4));
+                    case 7:
+                        return TableUtility::getBold(frame.getIV(5));
                 }
             default:
                 break;

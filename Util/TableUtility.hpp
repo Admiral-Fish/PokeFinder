@@ -17,29 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIONARY3MODEL_HPP
-#define STATIONARY3MODEL_HPP
+#ifndef TABLEUTILITY_HPP
+#define TABLEUTILITY_HPP
 
-#include <QAbstractTableModel>
-#include <Core/Gen3/Frame3.hpp>
-#include <Util/TableUtility.hpp>
+#include <QFont>
+#include <Core/Objects/Global.hpp>
 
-class Stationary3Model : public QAbstractTableModel
+namespace TableUtility
 {
-    Q_OBJECT
+    QFont getBold(u8 iv);
+}
 
-public:
-    Stationary3Model(QObject *parent);
-    void setModel(const QVector<Frame3> &frames);
-    void clear();
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role) const override;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-
-private:
-    QVector<Frame3> model;
-
-};
-
-#endif // STATIONARY3MODEL_HPP
+#endif // TABLEUTILITY_HPP

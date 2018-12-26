@@ -22,6 +22,7 @@
 
 #include <QAbstractTableModel>
 #include <Core/Gen4/Frame4.hpp>
+#include <Util/TableUtility.hpp>
 
 class Stationary4Model : public QAbstractTableModel
 {
