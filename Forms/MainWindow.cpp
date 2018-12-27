@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     checkProfileJson();
     setupLanguage();
-    checkUpdates();
+    QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
 }
 
 MainWindow::~MainWindow()
@@ -107,7 +107,7 @@ void MainWindow::checkUpdates()
         loop.exec();
 
         auto response = QJsonDocument::fromJson(reply->readAll());
-        QString webVersion = response.object()["name"].toString();
+        QString webVersion = response.object()["tag_name"].toString();
         if (!webVersion.isEmpty() && VERSION != webVersion)
         {
             QMessageBox info(QMessageBox::Question, tr("Update Check"), tr("An update is available. Would you like to download the newest version?"), QMessageBox::Yes | QMessageBox::No);
