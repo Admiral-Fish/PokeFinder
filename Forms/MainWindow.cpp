@@ -304,6 +304,13 @@ void MainWindow::on_actionIVtoPID4_triggered()
     ivToPID->raise();
 }
 
+void MainWindow::on_actionIV_Calculator_triggered()
+{
+    auto *iv = new IVCalculator();
+    iv->show();
+    iv->raise();
+}
+
 void MainWindow::on_actionResearcher_triggered()
 {
     auto *r = new Researcher();
