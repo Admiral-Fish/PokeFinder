@@ -81,7 +81,8 @@ void Eggs3::setupModels()
     ui->textBoxMinFrameEmeraldIVs->setValues(InputType::Frame32Bit);
     ui->textBoxMaxFrameEmeraldIVs->setValues(InputType::Frame32Bit);
 
-    ui->textBoxSeedRS->setValues(InputType::Seed16Bit);
+    ui->textBoxSeedHeldRS->setValues(InputType::Seed16Bit);
+    ui->textBoxSeedPickupRS->setValues(InputType::Seed16Bit);
     ui->textBoxMinHeldRS->setValues(InputType::Frame32Bit);
     ui->textBoxMaxHeldRS->setValues(InputType::Frame32Bit);
     ui->textBoxMinPickupRS->setValues(InputType::Frame32Bit);
@@ -89,7 +90,8 @@ void Eggs3::setupModels()
     ui->textBoxTIDRS->setValues(InputType::TIDSID);
     ui->textBoxSIDRS->setValues(InputType::TIDSID);
 
-    ui->textBoxSeedFRLG->setValues(InputType::Seed16Bit);
+    ui->textBoxSeedHeldFRLG->setValues(InputType::Seed16Bit);
+    ui->textBoxSeedPickupFRLG->setValues(InputType::Seed16Bit);
     ui->textBoxMinHeldFRLG->setValues(InputType::Frame32Bit);
     ui->textBoxMaxHeldFRLG->setValues(InputType::Frame32Bit);
     ui->textBoxMinPickupFRLG->setValues(InputType::Frame32Bit);
@@ -210,7 +212,8 @@ void Eggs3::on_pushButtonGenerateRS_clicked()
         static_cast<u8>(ui->spinBoxRSParent2SpA->value()), static_cast<u8>(ui->spinBoxRSParent2SpD->value()), static_cast<u8>(ui->spinBoxRSParent2Spe->value())
     };
 
-    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, RSBred, ui->textBoxSeedRS->text().toUInt(nullptr, 16));
+    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, RSBred, ui->textBoxSeedHeldRS->text().toUInt(nullptr, 16));
+    generator.setPickupSeed(ui->textBoxSeedPickupRS->text().toUInt(nullptr, 16));
     generator.setParents(parent1, parent2);
 
     generator.setMinPickup(ui->textBoxMinPickupRS->text().toUInt());
@@ -245,7 +248,8 @@ void Eggs3::on_pushButtonGenerateFRLG_clicked()
         static_cast<u8>(ui->spinBoxFRLGParent2SpA->value()), static_cast<u8>(ui->spinBoxFRLGParent2SpD->value()), static_cast<u8>(ui->spinBoxFRLGParent2Spe->value())
     };
 
-    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, FRLGBred, ui->textBoxSeedFRLG->text().toUInt(nullptr, 16));
+    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, FRLGBred, ui->textBoxSeedHeldFRLG->text().toUInt(nullptr, 16));
+    generator.setPickupSeed(ui->textBoxSeedPickupFRLG->text().toUInt(nullptr, 16));
     generator.setParents(parent1, parent2);
 
     generator.setMinPickup(ui->textBoxMinPickupFRLG->text().toUInt());

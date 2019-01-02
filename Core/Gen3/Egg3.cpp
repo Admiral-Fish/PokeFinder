@@ -114,6 +114,11 @@ void Egg3::setSeed(const u32 &value)
     seed = value;
 }
 
+void Egg3::setPickupSeed(const u16 &value)
+{
+    pickupSeed = value;
+}
+
 QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
@@ -357,7 +362,7 @@ QVector<Frame3> Egg3::generateUpper(const QVector<Frame3> &lower, const FrameCom
     QVector<Frame3> upper;
     Frame3 frame = Frame3(tid, sid, psv);
 
-    PokeRNG rng(seed, minPickup - 1);
+    PokeRNG rng(pickupSeed, minPickup - 1);
     auto *rngArray = new u16[maxResults + 14];
     for (u32 x = 0; x < maxResults + 14; x++)
     {

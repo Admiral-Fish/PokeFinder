@@ -42,6 +42,7 @@ public:
     void setMaxPickup(const u32 &value);
     u32 getSeed() const;
     void setSeed(const u32 &value);
+    void setPickupSeed(const u16 &value);
 
 private:
     QVector<u8> parent1;
@@ -53,6 +54,7 @@ private:
     u32 minPickup;
     u32 maxPickup;
     bool everstone;
+    u16 pickupSeed;
 
     QVector<Frame3> generateEmeraldPID(const FrameCompare &compare) const;
     QVector<Frame3> generateEmerald(const FrameCompare &compare) const;

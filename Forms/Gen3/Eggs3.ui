@@ -1438,18 +1438,28 @@ QRadioButton {
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Seed</string>
+              <string>Seed (Held / Pickup)</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="1" colspan="2">
-            <widget class="TextBox" name="textBoxSeedRS">
+           <item row="0" column="1">
+            <widget class="TextBox" name="textBoxSeedHeldRS">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="text">
+              <string notr="true">5A0</string>
+             </property>
+             <property name="maxLength">
+              <number>4</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="TextBox" name="textBoxSeedPickupRS">
              <property name="text">
               <string notr="true">5A0</string>
              </property>
@@ -1573,6 +1583,19 @@ QRadioButton {
              </property>
             </widget>
            </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="labelRSSID">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>SID</string>
+             </property>
+            </widget>
+           </item>
            <item row="3" column="1" colspan="2">
             <widget class="TextBox" name="textBoxTIDRS">
              <property name="sizePolicy">
@@ -1586,19 +1609,6 @@ QRadioButton {
              </property>
              <property name="maxLength">
               <number>5</number>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="labelRSSID">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>SID</string>
              </property>
             </widget>
            </item>
@@ -2410,12 +2420,12 @@ QRadioButton {
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Seed</string>
+              <string>Seed (Held / Pickup)</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="1" colspan="2">
-            <widget class="TextBox" name="textBoxSeedFRLG">
+           <item row="0" column="1">
+            <widget class="TextBox" name="textBoxSeedHeldFRLG">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2427,19 +2437,23 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="1" column="2">
-            <widget class="TextBox" name="textBoxMaxHeldFRLG">
+           <item row="0" column="2">
+            <widget class="TextBox" name="textBoxSeedPickupFRLG">
+             <property name="maxLength">
+              <number>4</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelFRLGFrameHeld">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
              <property name="text">
-              <string notr="true">5000</string>
-             </property>
-             <property name="maxLength">
-              <number>10</number>
+              <string>Frame Held</string>
              </property>
             </widget>
            </item>
@@ -2465,21 +2479,8 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="labelFRLGFrameHeld">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Frame Held</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="TextBox" name="textBoxMaxPickupFRLG">
+           <item row="1" column="2">
+            <widget class="TextBox" name="textBoxMaxHeldFRLG">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2491,6 +2492,19 @@ QRadioButton {
              </property>
              <property name="maxLength">
               <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="labelFRLGPickupFrame">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Pickup Frame</string>
              </property>
             </widget>
            </item>
@@ -2516,16 +2530,19 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="labelFRLGPickupFrame">
+           <item row="2" column="2">
+            <widget class="TextBox" name="textBoxMaxPickupFRLG">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Pickup Frame</string>
+              <string notr="true">5000</string>
+             </property>
+             <property name="maxLength">
+              <number>10</number>
              </property>
             </widget>
            </item>
@@ -2542,19 +2559,16 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="1" colspan="2">
-            <widget class="TextBox" name="textBoxSIDFRLG">
+           <item row="4" column="0">
+            <widget class="QLabel" name="labelFRLGSID">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
              <property name="text">
-              <string notr="true">54321</string>
-             </property>
-             <property name="maxLength">
-              <number>5</number>
+              <string>SID</string>
              </property>
             </widget>
            </item>
@@ -2574,16 +2588,19 @@ QRadioButton {
              </property>
             </widget>
            </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="labelFRLGSID">
+           <item row="4" column="1" colspan="2">
+            <widget class="TextBox" name="textBoxSIDFRLG">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
              <property name="text">
-              <string>SID</string>
+              <string notr="true">54321</string>
+             </property>
+             <property name="maxLength">
+              <number>5</number>
              </property>
             </widget>
            </item>
@@ -3513,7 +3530,7 @@ QRadioButton {
   <tabstop>spinBoxEmeraldParent2SpD</tabstop>
   <tabstop>spinBoxEmeraldParent2Spe</tabstop>
   <tabstop>tableViewEmeraldIVs</tabstop>
-  <tabstop>textBoxSeedRS</tabstop>
+  <tabstop>textBoxSeedHeldRS</tabstop>
   <tabstop>textBoxMinHeldRS</tabstop>
   <tabstop>textBoxMaxHeldRS</tabstop>
   <tabstop>textBoxMinPickupRS</tabstop>
@@ -3543,7 +3560,7 @@ QRadioButton {
   <tabstop>comboBoxGenderRatioRS</tabstop>
   <tabstop>checkBoxShinyRS</tabstop>
   <tabstop>tableViewRS</tabstop>
-  <tabstop>textBoxSeedFRLG</tabstop>
+  <tabstop>textBoxSeedHeldFRLG</tabstop>
   <tabstop>textBoxMinHeldFRLG</tabstop>
   <tabstop>textBoxMaxHeldFRLG</tabstop>
   <tabstop>textBoxMinPickupFRLG</tabstop>
