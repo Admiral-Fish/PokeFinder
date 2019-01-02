@@ -55,7 +55,7 @@ void SearchCalls::on_pushButtonK_clicked()
 void SearchCalls::on_pushButtonE_clicked()
 {
     QString string = ui->lineEditCalls->text();
-    string += string.isEmpty() ? "E" : "< E";
+    string += string.isEmpty() ? "E" : ", E";
     ui->lineEditCalls->setText(string);
 }
 
