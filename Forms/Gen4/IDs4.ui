@@ -605,6 +605,9 @@ QPushButton:disabled {
            <day>1</day>
           </date>
          </property>
+         <property name="calendarPopup">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item row="2" column="0">
