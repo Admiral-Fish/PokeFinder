@@ -40,7 +40,7 @@ IVtoPID::~IVtoPID()
 
 void IVtoPID::setupModels()
 {
-    ui->textBoxID->setValues(InputType::TIDSID);
+    ui->textBoxTID->setValues(InputType::TIDSID);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("PID") << tr("Method") << tr("Ability") << "50%" << "12.5%" << "25%" << "75%" << tr("SID"));
     ui->tableView->setModel(model);
@@ -322,7 +322,7 @@ void IVtoPID::on_pushButtonFind_clicked()
 
     u8 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNatureGenerator->currentIndex()));
 
-    u16 tid = ui->textBoxID->text().toUShort();
+    u16 tid = ui->textBoxTID->text().toUShort();
 
     u32 ivs2 = spe | (spa << 5) | (spd << 10);
     u32 ivs1 = hp | (atk << 5) | (def << 10);

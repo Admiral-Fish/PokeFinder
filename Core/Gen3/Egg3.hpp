@@ -55,11 +55,10 @@ private:
     u32 maxPickup;
     bool everstone;
     u16 pickupSeed;
+    u8 iv1, iv2, inh1, inh2, inh3, par1, par2, par3;
 
     QVector<Frame3> generateEmeraldPID(const FrameCompare &compare) const;
-    QVector<Frame3> generateEmerald(const FrameCompare &compare) const;
-    QVector<Frame3> generateEmeraldSplit(const FrameCompare &compare) const;
-    QVector<Frame3> generateEmeraldAlternate(const FrameCompare &compare) const;
+    QVector<Frame3> generateEmeraldIVs(const FrameCompare &compare) const;
     QVector<Frame3> generateLower(const FrameCompare &compare) const;
     QVector<Frame3> generateUpper(const QVector<Frame3> &lower, const FrameCompare &compare) const;
 

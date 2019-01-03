@@ -39,15 +39,17 @@ enum Method
     EBredAlternate      = 1 << 13,
     EBredPID            = 1 << 14,
     RSBred              = 1 << 15,
-    FRLGBred            = 1 << 16,
-    MethodJ             = 1 << 17,
-    MethodK             = 1 << 18,
-    ChainedShiny        = 1 << 19,
-    WondercardIVs       = 1 << 20,
-    Gen4Normal          = 1 << 21,
-    Gen4Masuada         = 1 << 22,
-    DPPtIVs             = 1 << 23,
-    HGSSIVs             = 1 << 24
+    RSBredAlternate     = 1 << 16,
+    FRLGBred            = 1 << 17,
+    FRLGBredAlternate   = 1 << 18,
+    MethodJ             = 1 << 19,
+    MethodK             = 1 << 20,
+    ChainedShiny        = 1 << 21,
+    WondercardIVs       = 1 << 22,
+    Gen4Normal          = 1 << 23,
+    Gen4Masuada         = 1 << 24,
+    DPPtIVs             = 1 << 25,
+    HGSSIVs             = 1 << 26
 };
 
 #endif // METHOD_HPP
