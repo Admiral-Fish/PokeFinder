@@ -82,8 +82,8 @@ Egg3::Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 
             par2 = 9;
             par3 = 10;
             break;
-        case Method::RSBredAlternate:
-        case Method::FRLGBredAlternate:
+        case Method::RSBredSplit:
+        case Method::FRLGBredSplit:
             iv1 = 1;
             iv2 = 3;
             inh1 = 5;
@@ -92,6 +92,17 @@ Egg3::Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 
             par1 = 8;
             par2 = 9;
             par3 = 10;
+            break;
+        case Method::RSBredAlternate:
+        case Method::FRLGBredAlternate:
+            iv1 = 2;
+            iv2 = 3;
+            inh1 = 6;
+            inh2 = 7;
+            inh3 = 8;
+            par1 = 9;
+            par2 = 10;
+            par3 = 11;
             break;
         default:
             break;
@@ -339,8 +350,8 @@ QVector<Frame3> Egg3::generateUpper(const QVector<Frame3> &lower, const FrameCom
     Frame3 frame = Frame3(tid, sid, psv);
 
     PokeRNG rng(pickupSeed, minPickup - 1);
-    auto *rngArray = new u16[maxResults + 11];
-    for (u32 x = 0; x < maxResults + 11; x++)
+    auto *rngArray = new u16[maxResults + 12];
+    for (u32 x = 0; x < maxResults + 12; x++)
     {
         rngArray[x] = rng.nextUShort();
     }
@@ -348,7 +359,7 @@ QVector<Frame3> Egg3::generateUpper(const QVector<Frame3> &lower, const FrameCom
     u32 max = maxPickup - minPickup + 1;
     for (u32 cnt = 0; cnt < max; cnt++)
     {
-        frame.setPID(rngArray[0 + cnt]);
+        frame.setPID(rngArray[cnt]);
 
         frame.setInheritance(rngArray[iv1 + cnt], rngArray[iv2 + cnt], rngArray[par1 + cnt], rngArray[par2 + cnt], rngArray[par3 + cnt],
                              rngArray[inh1 + cnt], rngArray[inh2 + cnt], rngArray[inh3 + cnt], parent1, parent2);

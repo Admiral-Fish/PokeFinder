@@ -1561,6 +1561,11 @@ QRadioButton {
              </item>
              <item>
               <property name="text">
+               <string>Split</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string>Alternate</string>
               </property>
              </item>
@@ -2554,6 +2559,11 @@ QRadioButton {
              <item>
               <property name="text">
                <string>Normal</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Split</string>
               </property>
              </item>
              <item>
@@ -3656,7 +3666,4 @@ QRadioButton {
    </hints>
   </connection>
  </connections>
- <buttongroups>
-  <buttongroup name="buttonGroup"/>
- </buttongroups>
 </ui>

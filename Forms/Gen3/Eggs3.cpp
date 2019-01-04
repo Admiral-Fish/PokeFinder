@@ -124,10 +124,12 @@ void Eggs3::setupModels()
     ui->comboBoxEmeraldMethod->setItemData(2, Method::EBredAlternate);
 
     ui->comboBoxRSMethod->setItemData(0, Method::RSBred);
-    ui->comboBoxRSMethod->setItemData(1, Method::RSBredAlternate);
+    ui->comboBoxRSMethod->setItemData(1, Method::RSBredSplit);
+    ui->comboBoxRSMethod->setItemData(2, Method::RSBredAlternate);
 
     ui->comboBoxFRLGMethod->setItemData(0, Method::FRLGBred);
-    ui->comboBoxFRLGMethod->setItemData(1, Method::FRLGBredAlternate);
+    ui->comboBoxFRLGMethod->setItemData(1, Method::FRLGBredSplit);
+    ui->comboBoxFRLGMethod->setItemData(2, Method::FRLGBredAlternate);
 }
 
 void Eggs3::refreshProfiles()
