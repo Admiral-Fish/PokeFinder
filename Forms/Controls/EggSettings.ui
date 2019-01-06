@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EggSettings</class>
+ <widget class="QWidget" name="EggSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>490</width>
+    <height>57</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">EggSettings</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+	background-color: #274050;
+	font-family: &quot;Myriad Pro&quot;, Montserrat;
+	font-weight: 500;
+}
+
+QLabel {
+	color: white;
+}
+
+QSpinBox {
+	qproperty-alignment: AlignCenter;
+	background-color: #1D303C;
+	border: none;
+	border-radius: 6px;
+	color: white;
+}
+
+QSpinBox::up-button {
+	subcontrol-origin: border;
+    subcontrol-position: top right;
+}
+
+QSpinBox::down-button {
+	subcontrol-origin: border;
+    subcontrol-position: bottom right;
+}
+
+QPushButton {
+	background-color: Yellow;
+	color: black;
+	border: none;
+	border-radius: 6px;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="pushButtonSwapParents">
+     <property name="text">
+      <string>Swap Parents</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="labelParent1">
+     <property name="text">
+      <string>Parent 1</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QSpinBox" name="spinBoxParent1HP">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QSpinBox" name="spinBoxParent1Atk">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QSpinBox" name="spinBoxParent1Def">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QSpinBox" name="spinBoxParent1SpA">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="6">
+    <widget class="QSpinBox" name="spinBoxParent1SpD">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="7">
+    <widget class="QSpinBox" name="spinBoxParent1Spe">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="labelParent2">
+     <property name="text">
+      <string>Parent 2</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QSpinBox" name="spinBoxParent2HP">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QSpinBox" name="spinBoxParent2Atk">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QSpinBox" name="spinBoxParent2Def">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="QSpinBox" name="spinBoxParent2SpA">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="6">
+    <widget class="QSpinBox" name="spinBoxParent2SpD">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="7">
+    <widget class="QSpinBox" name="spinBoxParent2Spe">
+     <property name="maximum">
+      <number>31</number>
+     </property>
+     <property name="value">
+      <number>31</number>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

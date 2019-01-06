@@ -162,19 +162,8 @@ void Eggs4::on_pushButtonGenerate_clicked()
 
     generatorModel->setMethod(method);
 
-    QVector<u8> parent1 =
-    {
-        static_cast<u8>(ui->spinBoxGeneratorParent1HP->value()), static_cast<u8>(ui->spinBoxGeneratorParent1Atk->value()), static_cast<u8>(ui->spinBoxGeneratorParent1Def->value()),
-        static_cast<u8>(ui->spinBoxGeneratorParent1SpA->value()), static_cast<u8>(ui->spinBoxGeneratorParent1SpD->value()), static_cast<u8>(ui->spinBoxGeneratorParent1Spe->value())
-    };
-    QVector<u8> parent2 =
-    {
-        static_cast<u8>(ui->spinBoxGeneratorParent2HP->value()), static_cast<u8>(ui->spinBoxGeneratorParent2Atk->value()), static_cast<u8>(ui->spinBoxGeneratorParent2Def->value()),
-        static_cast<u8>(ui->spinBoxGeneratorParent2SpA->value()), static_cast<u8>(ui->spinBoxGeneratorParent2SpD->value()), static_cast<u8>(ui->spinBoxGeneratorParent2Spe->value())
-    };
-
     Egg4 generator = Egg4(maxResults, startingFrame, tid, sid, method, seed);
-    generator.setParents(parent1, parent2);
+    generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
 
     FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getEvals(), ui->ivFilterGenerator->getValues(), ui->comboBoxGeneratorGender->currentIndex(),
                                         ui->comboBoxGeneratorGenderRatio->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorNature->getChecked(),
@@ -233,17 +222,6 @@ void Eggs4::on_pushButtonSearchIVs_clicked()
     ui->pushButtonSearchIVs->setEnabled(false);
     ui->pushButtonCancelIVs->setEnabled(true);
 
-    QVector<u8> parent1 =
-    {
-        static_cast<u8>(ui->spinBoxSearcherParent1HP->value()), static_cast<u8>(ui->spinBoxSearcherParent1Atk->value()), static_cast<u8>(ui->spinBoxSearcherParent1Def->value()),
-        static_cast<u8>(ui->spinBoxSearcherParent1SpA->value()), static_cast<u8>(ui->spinBoxSearcherParent1SpD->value()), static_cast<u8>(ui->spinBoxSearcherParent1Spe->value())
-    };
-    QVector<u8> parent2 =
-    {
-        static_cast<u8>(ui->spinBoxSearcherParent2HP->value()), static_cast<u8>(ui->spinBoxSearcherParent2Atk->value()), static_cast<u8>(ui->spinBoxSearcherParent2Def->value()),
-        static_cast<u8>(ui->spinBoxSearcherParent2SpA->value()), static_cast<u8>(ui->spinBoxSearcherParent2SpD->value()), static_cast<u8>(ui->spinBoxSearcherParent2Spe->value())
-    };
-
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxSearcherHiddenPower->getChecked());
 
     u32 minDelay = ui->textBoxSearcherIVsMinDelay->text().toUInt();
@@ -253,7 +231,7 @@ void Eggs4::on_pushButtonSearchIVs_clicked()
 
     Method type = version & Game::HGSS ? Method::HGSSIVs : Method::DPPtIVs;
     Egg4 generator = Egg4(maxFrame - minFrame + 1, minFrame, 0, 0, type, 0);
-    generator.setParents(parent1, parent2);
+    generator.setParents(ui->eggSettingsSearcher->getParent1(), ui->eggSettingsSearcher->getParent2());
 
     ui->progressBarIVs->setValue(0);
     ui->progressBarIVs->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));

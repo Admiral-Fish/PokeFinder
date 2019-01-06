@@ -53,7 +53,8 @@ FORMS += \
     Forms/Gen4/Wild4.ui \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
-    Forms/MainWindow.ui
+    Forms/MainWindow.ui \
+    Forms/Controls/EggSettings.ui
 
 HEADERS += \
     Core/Gen3/Egg3.hpp \
@@ -142,7 +143,8 @@ HEADERS += \
     Models/ResearcherModel.hpp \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
-    Util/TableUtility.hpp
+    Util/TableUtility.hpp \
+    Forms/Controls/EggSettings.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -225,4 +227,5 @@ SOURCES += \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
     main.cpp \
-    Util/TableUtility.cpp
+    Util/TableUtility.cpp \
+    Forms/Controls/EggSettings.cpp

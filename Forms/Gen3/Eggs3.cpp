@@ -175,19 +175,8 @@ void Eggs3::on_pushButtonEmeraldIVsGenerate_clicked()
     u16 sid = ui->textBoxEmeraldSID->text().toUShort();
     Method method = static_cast<Method>(ui->comboBoxEmeraldMethod->currentData().toUInt());
 
-    QVector<u8> parent1 =
-    {
-        static_cast<u8>(ui->spinBoxEmeraldParent1HP->value()), static_cast<u8>(ui->spinBoxEmeraldParent1Atk->value()), static_cast<u8>(ui->spinBoxEmeraldParent1Def->value()),
-        static_cast<u8>(ui->spinBoxEmeraldParent1SpA->value()), static_cast<u8>(ui->spinBoxEmeraldParent1SpD->value()), static_cast<u8>(ui->spinBoxEmeraldParent1Spe->value())
-    };
-    QVector<u8> parent2 =
-    {
-        static_cast<u8>(ui->spinBoxEmeraldParent2HP->value()), static_cast<u8>(ui->spinBoxEmeraldParent2Atk->value()), static_cast<u8>(ui->spinBoxEmeraldParent2Def->value()),
-        static_cast<u8>(ui->spinBoxEmeraldParent2SpA->value()), static_cast<u8>(ui->spinBoxEmeraldParent2SpD->value()), static_cast<u8>(ui->spinBoxEmeraldParent2Spe->value())
-    };
-
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, method);
-    generator.setParents(parent1, parent2);
+    generator.setParents(ui->eggSettingsEmerald->getParent1(), ui->eggSettingsEmerald->getParent2());
 
     FrameCompare compare = FrameCompare(ui->ivFilterEmerald->getEvals(), ui->ivFilterEmerald->getValues(), ui->comboBoxEmeraldHiddenPower->getChecked());
 
@@ -205,20 +194,9 @@ void Eggs3::on_pushButtonRSGenerate_clicked()
     u16 sid = ui->textBoxRSSID->text().toUShort();
     Method method = static_cast<Method>(ui->comboBoxRSMethod->currentData().toUInt());
 
-    QVector<u8> parent1 =
-    {
-        static_cast<u8>(ui->spinBoxRSParent1HP->value()), static_cast<u8>(ui->spinBoxRSParent1Atk->value()), static_cast<u8>(ui->spinBoxRSParent1Def->value()),
-        static_cast<u8>(ui->spinBoxRSParent1SpA->value()), static_cast<u8>(ui->spinBoxRSParent1SpD->value()), static_cast<u8>(ui->spinBoxRSParent1Spe->value())
-    };
-    QVector<u8> parent2 =
-    {
-        static_cast<u8>(ui->spinBoxRSParent2HP->value()), static_cast<u8>(ui->spinBoxRSParent2Atk->value()), static_cast<u8>(ui->spinBoxRSParent2Def->value()),
-        static_cast<u8>(ui->spinBoxRSParent2SpA->value()), static_cast<u8>(ui->spinBoxRSParent2SpD->value()), static_cast<u8>(ui->spinBoxRSParent2Spe->value())
-    };
-
     Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, method, ui->textBoxRSSeedHeld->text().toUInt(nullptr, 16));
     generator.setPickupSeed(ui->textBoxRSSeedPickup->text().toUInt(nullptr, 16));
-    generator.setParents(parent1, parent2);
+    generator.setParents(ui->eggSettingsRS->getParent1(), ui->eggSettingsRS->getParent2());
 
     generator.setMinPickup(ui->textBoxRSMinPickup->text().toUInt());
     generator.setMaxPickup(ui->textBoxRSMaxPickup->text().toUInt());
@@ -242,20 +220,9 @@ void Eggs3::on_pushButtonFRLGGenerate_clicked()
     u16 sid = ui->textBoxFRLGSID->text().toUShort();
     Method method = static_cast<Method>(ui->comboBoxFRLGMethod->currentData().toUInt());
 
-    QVector<u8> parent1 =
-    {
-        static_cast<u8>(ui->spinBoxFRLGParent1HP->value()), static_cast<u8>(ui->spinBoxFRLGParent1Atk->value()), static_cast<u8>(ui->spinBoxFRLGParent1Def->value()),
-        static_cast<u8>(ui->spinBoxFRLGParent1SpA->value()), static_cast<u8>(ui->spinBoxFRLGParent1SpD->value()), static_cast<u8>(ui->spinBoxFRLGParent1Spe->value())
-    };
-    QVector<u8> parent2 =
-    {
-        static_cast<u8>(ui->spinBoxFRLGParent2HP->value()), static_cast<u8>(ui->spinBoxFRLGParent2Atk->value()), static_cast<u8>(ui->spinBoxFRLGParent2Def->value()),
-        static_cast<u8>(ui->spinBoxFRLGParent2SpA->value()), static_cast<u8>(ui->spinBoxFRLGParent2SpD->value()), static_cast<u8>(ui->spinBoxFRLGParent2Spe->value())
-    };
-
     Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, method, ui->textBoxFRLGSeedHeld->text().toUInt(nullptr, 16));
     generator.setPickupSeed(ui->textBoxFRLGSeedPickup->text().toUInt(nullptr, 16));
-    generator.setParents(parent1, parent2);
+    generator.setParents(ui->eggSettingsFRLG->getParent1(), ui->eggSettingsFRLG->getParent2());
 
     generator.setMinPickup(ui->textBoxFRLGMinPickup->text().toUInt());
     generator.setMaxPickup(ui->textBoxFRLGMaxPickup->text().toUInt());
