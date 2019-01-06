@@ -130,6 +130,10 @@ void Eggs3::setupModels()
     ui->comboBoxFRLGMethod->setItemData(0, Method::FRLGBred);
     ui->comboBoxFRLGMethod->setItemData(1, Method::FRLGBredSplit);
     ui->comboBoxFRLGMethod->setItemData(2, Method::FRLGBredAlternate);
+
+    connect(ui->eggSettingsEmerald, &EggSettings::toggleInheritance, emeraldIVs, &Egg3Model::toggleInheritance);
+    connect(ui->eggSettingsRS, &EggSettings::toggleInheritance, rs, &Egg3Model::toggleInheritance);
+    connect(ui->eggSettingsFRLG, &EggSettings::toggleInheritance, frlg, &Egg3Model::toggleInheritance);
 }
 
 void Eggs3::refreshProfiles()

@@ -32,6 +32,9 @@ class EggSettings : public QWidget
 {
     Q_OBJECT
 
+signals:
+    void toggleInheritance(bool);
+
 public:
     explicit EggSettings(QWidget *parent = nullptr);
     ~EggSettings() override;
@@ -43,6 +46,7 @@ private:
 
 private slots:
     void on_pushButtonSwapParents_clicked();
+    void on_checkBoxShowInteritance_clicked(bool checked);
 
 };
 

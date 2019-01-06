@@ -107,6 +107,9 @@ void Eggs4::setupModels()
 
     searcherMenu->addAction(seedToTime);
 
+    connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel, &Egg4GeneratorModel::toggleInheritance);
+    connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherIVs, &Egg4SearcherModel::toggleInheritance);
+
     QSettings setting;
     if (setting.contains("egg4MinDelayIVs")) ui->textBoxSearcherIVsMinDelay->setText(setting.value("egg4MinDelayPID").toString());
     if (setting.contains("egg4MaxDelayIVs")) ui->textBoxSearcherIVsMaxDelay->setText(setting.value("egg4MaxDelayPID").toString());

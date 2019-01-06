@@ -38,9 +38,13 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+public slots:
+    void toggleInheritance(bool flag);
+
 private:
     QVector<Frame4> model;
     Method method;
+    bool showInheritance;
 
 };
 
@@ -59,9 +63,13 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+public slots:
+    void toggleInheritance(bool flag);
+
 private:
     QVector<Frame4> model;
     Method method;
+    bool showInheritance;
 
 };
 

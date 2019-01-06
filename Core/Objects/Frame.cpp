@@ -123,6 +123,11 @@ u8 Frame::getIV(int index) const
     return ivs[index];
 }
 
+QChar Frame::getInheritance(int index) const
+{
+    return inheritance[index];
+}
+
 u8 Frame::getPower() const
 {
     return power;

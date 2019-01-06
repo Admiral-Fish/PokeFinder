@@ -22,6 +22,7 @@
 Egg3Model::Egg3Model(QObject *parent, Method method) : QAbstractTableModel(parent)
 {
     this->method = method;
+    showInheritance = false;
 }
 
 void Egg3Model::setModel(const QVector<Frame3> &frames)
@@ -98,16 +99,64 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.getTime();
                     case 2:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(0);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(0);
                     case 3:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(1);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(1);
                     case 4:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(2);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(2);
                     case 5:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(3);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(3);
                     case 6:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(4);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(4);
                     case 7:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(5);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(5);
                     case 8:
                         return frame.getPowerString();
@@ -155,16 +204,64 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 7:
                         return frame.getAbility();
                     case 8:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(0);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(0);
                     case 9:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(1);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(1);
                     case 10:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(2);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(2);
                     case 11:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(3);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(3);
                     case 12:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(4);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(4);
                     case 13:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(5);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
                         return frame.getIV(5);
                     case 14:
                         return frame.getPowerString();
@@ -188,17 +285,41 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                 switch (index.column())
                 {
                     case 2:
-                        return TableUtility::getBold(frame.getIV(0));
+                        if (!showInheritance || frame.getInheritance(0).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(0));
+                        }
+                        break;
                     case 3:
-                        return TableUtility::getBold(frame.getIV(1));
+                        if (!showInheritance || frame.getInheritance(1).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(1));
+                        }
+                        break;
                     case 4:
-                        return TableUtility::getBold(frame.getIV(2));
+                        if (!showInheritance || frame.getInheritance(2).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(2));
+                        }
+                        break;
                     case 5:
-                        return TableUtility::getBold(frame.getIV(3));
+                        if (!showInheritance || frame.getInheritance(3).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(3));
+                        }
+                        break;
                     case 6:
-                        return TableUtility::getBold(frame.getIV(4));
+                        if (!showInheritance || frame.getInheritance(4).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(4));
+                        }
+                        break;
                     case 7:
-                        return TableUtility::getBold(frame.getIV(5));
+                        if (!showInheritance || frame.getInheritance(5).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(5));
+                        }
+                        break;
                 }
                 break;
             case Method::RSBred:
@@ -206,17 +327,41 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                 switch (index.column())
                 {
                     case 8:
-                        return TableUtility::getBold(frame.getIV(0));
+                        if (!showInheritance || frame.getInheritance(0).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(0));
+                        }
+                        break;
                     case 9:
-                        return TableUtility::getBold(frame.getIV(1));
+                        if (!showInheritance || frame.getInheritance(1).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(1));
+                        }
+                        break;
                     case 10:
-                        return TableUtility::getBold(frame.getIV(2));
+                        if (!showInheritance || frame.getInheritance(2).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(2));
+                        }
+                        break;
                     case 11:
-                        return TableUtility::getBold(frame.getIV(3));
+                        if (!showInheritance || frame.getInheritance(3).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(3));
+                        }
+                        break;
                     case 12:
-                        return TableUtility::getBold(frame.getIV(4));
+                        if (!showInheritance || frame.getInheritance(4).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(4));
+                        }
+                        break;
                     case 13:
-                        return TableUtility::getBold(frame.getIV(5));
+                        if (!showInheritance || frame.getInheritance(5).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(5));
+                        }
+                        break;
                 }
             default:
                 break;
@@ -321,4 +466,11 @@ QVariant Egg3Model::headerData(int section, Qt::Orientation orientation, int rol
         }
     }
     return QVariant();
+}
+
+void Egg3Model::toggleInheritance(bool flag)
+{
+    beginResetModel();
+    showInheritance = flag;
+    endResetModel();
 }

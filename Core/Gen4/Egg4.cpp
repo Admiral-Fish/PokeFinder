@@ -66,7 +66,7 @@ QVector<Frame4> Egg4::generate(const FrameCompare &compare) const
 QVector<Frame4> Egg4::generatePID(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
     frame.setInitialSeed(seed);
 
@@ -89,7 +89,7 @@ QVector<Frame4> Egg4::generatePID(const FrameCompare &compare) const
 QVector<Frame4> Egg4::generatePIDMasuada(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(compare.getGenderRatio());
     frame.setInitialSeed(seed);
 
@@ -126,8 +126,6 @@ QVector<Frame4> Egg4::generatePIDMasuada(const FrameCompare &compare) const
 QVector<Frame4> Egg4::generateIVsDPPt(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
-    frame.setInitialSeed(seed);
 
     PokeRNG rng(seed, initialFrame - 1);
     auto *rngArray = new u16[maxResults + 8];
@@ -136,19 +134,12 @@ QVector<Frame4> Egg4::generateIVsDPPt(const FrameCompare &compare) const
         rngArray[x] = rng.nextUShort();
     }
 
-    u16 inh1, inh2, inh3, par1, par2, par3;
-
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        inh1 = rngArray[2 + cnt];
-        inh2 = rngArray[3 + cnt];
-        inh3 = rngArray[4 + cnt];
-        par1 = rngArray[5 + cnt];
-        par2 = rngArray[6 + cnt];
-        par3 = rngArray[7 + cnt];
-
-        frame.setInheritance(rngArray[cnt], rngArray[1 + cnt], par1, par2, par3, inh1,
-                             inh2, inh3, parent1, parent2, true);
+        Frame4 frame(tid, sid, psv);
+        frame.setInitialSeed(seed);
+        frame.setInheritance(rngArray[cnt], rngArray[1 + cnt], rngArray[5 + cnt], rngArray[6 + cnt], rngArray[7 + cnt],
+                             rngArray[2 + cnt], rngArray[3 + cnt], rngArray[4 + cnt], parent1, parent2, true);
 
         if (compare.compareIVs(frame))
         {
@@ -165,8 +156,6 @@ QVector<Frame4> Egg4::generateIVsDPPt(const FrameCompare &compare) const
 QVector<Frame4> Egg4::generateIVsHGSS(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
-    frame.setInitialSeed(seed);
 
     PokeRNG rng(seed, initialFrame - 1);
     auto *rngArray = new u16[maxResults + 8];
@@ -179,15 +168,10 @@ QVector<Frame4> Egg4::generateIVsHGSS(const FrameCompare &compare) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        inh1 = rngArray[2 + cnt];
-        inh2 = rngArray[3 + cnt];
-        inh3 = rngArray[4 + cnt];
-        par1 = rngArray[5 + cnt];
-        par2 = rngArray[6 + cnt];
-        par3 = rngArray[7 + cnt];
-
-        frame.setInheritance(rngArray[cnt], rngArray[1 + cnt], par1, par2, par3, inh1,
-                             inh2, inh3, parent1, parent2);
+        Frame4 frame(tid, sid, psv);
+        frame.setInitialSeed(seed);
+        frame.setInheritance(rngArray[cnt], rngArray[1 + cnt], rngArray[5 + cnt], rngArray[6 + cnt], rngArray[7 + cnt],
+                             rngArray[2 + cnt], rngArray[3 + cnt], rngArray[4 + cnt], parent1, parent2);
 
         if (compare.compareIVs(frame))
         {

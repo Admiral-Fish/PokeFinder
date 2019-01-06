@@ -45,6 +45,7 @@ public:
     void setPID(u32 pid);
     u32 getFrame() const;
     u8 getIV(int index) const;
+    QChar getInheritance(int index) const;
     u8 getPower() const;
     u32 getPID() const;
     u8 getAbility() const;
@@ -65,6 +66,7 @@ public:
 
 protected:
     u8 ivs[6];
+    QChar inheritance[6];
     u8 ability;
     u8 encounterSlot;
     Encounter encounterType;

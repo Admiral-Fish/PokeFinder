@@ -21,11 +21,12 @@
 
 QFont TableUtility::getBold(u8 iv)
 {
+    QFont font;
+
     if (iv == 30 || iv == 31)
     {
-        QFont font;
         font.setBold(true);
-        return font;
     }
-    return QFont();
+
+    return font;
 }

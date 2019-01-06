@@ -47,6 +47,21 @@ QPushButton {
 	color: black;
 	border: none;
 	border-radius: 6px;
+}
+
+QCheckBox::indicator {
+	border: 2px solid white;
+	border-radius: 3px;
+	height: 10px;
+	width: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: #274050;
+}
+
+QCheckBox::indicator:checked {
+	background-color: white;
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -60,7 +75,7 @@ QPushButton {
    <item row="0" column="1">
     <widget class="QLabel" name="labelParent1">
      <property name="text">
-      <string>Parent 1</string>
+      <string>Parent A</string>
      </property>
     </widget>
    </item>
@@ -127,7 +142,7 @@ QPushButton {
    <item row="1" column="1">
     <widget class="QLabel" name="labelParent2">
      <property name="text">
-      <string>Parent 2</string>
+      <string>Parent B</string>
      </property>
     </widget>
    </item>
@@ -188,6 +203,13 @@ QPushButton {
      </property>
      <property name="value">
       <number>31</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QCheckBox" name="checkBoxShowInteritance">
+     <property name="text">
+      <string>Show Inheritance</string>
      </property>
     </widget>
    </item>

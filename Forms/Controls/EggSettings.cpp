@@ -73,3 +73,8 @@ void EggSettings::on_pushButtonSwapParents_clicked()
     ui->spinBoxParent2SpD->setValue(parent1[4]);
     ui->spinBoxParent2Spe->setValue(parent1[5]);
 }
+
+void EggSettings::on_checkBoxShowInteritance_clicked(bool checked)
+{
+    emit toggleInheritance(checked);
+}
