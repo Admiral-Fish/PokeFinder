@@ -182,7 +182,7 @@ void Eggs3::on_pushButtonEmeraldIVsGenerate_clicked()
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, method);
     generator.setParents(ui->eggSettingsEmerald->getParent1(), ui->eggSettingsEmerald->getParent2());
 
-    FrameCompare compare = FrameCompare(ui->ivFilterEmerald->getEvals(), ui->ivFilterEmerald->getValues(), ui->comboBoxEmeraldHiddenPower->getChecked());
+    FrameCompare compare = FrameCompare(ui->ivFilterEmerald->getLower(), ui->ivFilterEmerald->getUpper(), ui->comboBoxEmeraldHiddenPower->getChecked());
 
     QVector<Frame3> frames = generator.generate(compare);
     emeraldIVs->setModel(frames);
@@ -206,7 +206,7 @@ void Eggs3::on_pushButtonRSGenerate_clicked()
     generator.setMaxPickup(ui->textBoxRSMaxPickup->text().toUInt());
     generator.setCompatability(ui->comboBoxRSCompatibility->currentData().toUInt());
 
-    FrameCompare compare = FrameCompare(ui->ivFilterRS->getEvals(), ui->ivFilterRS->getValues(), ui->comboBoxRSGender->currentIndex(),
+    FrameCompare compare = FrameCompare(ui->ivFilterRS->getLower(), ui->ivFilterRS->getUpper(), ui->comboBoxRSGender->currentIndex(),
                                         ui->comboBoxRSGenderRatio->currentIndex(), ui->comboBoxRSAbility->currentIndex(), ui->comboBoxRSNature->getChecked(),
                                         ui->comboBoxRSHiddenPower->getChecked(), ui->checkBoxRSShiny->isChecked(), false);
 
@@ -232,7 +232,7 @@ void Eggs3::on_pushButtonFRLGGenerate_clicked()
     generator.setMaxPickup(ui->textBoxFRLGMaxPickup->text().toUInt());
     generator.setCompatability(ui->comboBoxFRLGCompatibility->currentData().toUInt());
 
-    FrameCompare compare = FrameCompare(ui->ivFilterFRLG->getEvals(), ui->ivFilterFRLG->getValues(), ui->comboBoxFRLGGender->currentIndex(),
+    FrameCompare compare = FrameCompare(ui->ivFilterFRLG->getLower(), ui->ivFilterFRLG->getUpper(), ui->comboBoxFRLGGender->currentIndex(),
                                         ui->comboBoxFRLGGenderRatio->currentIndex(), ui->comboBoxFRLGAbility->currentIndex(), ui->comboBoxFRLGNature->getChecked(),
                                         ui->comboBoxFRLGHiddenPower->getChecked(), ui->checkBoxFRLGShiny->isChecked(), false);
 

@@ -953,7 +953,7 @@ QRadioButton {
             <widget class="IVFilter" name="ivFilterEmerald" native="true">
              <property name="minimumSize">
               <size>
-               <width>335</width>
+               <width>160</width>
                <height>180</height>
               </size>
              </property>
@@ -1089,7 +1089,14 @@ QRadioButton {
             </widget>
            </item>
            <item row="4" column="0" colspan="3">
-            <widget class="EggSettings" name="eggSettingsEmerald" native="true"/>
+            <widget class="EggSettings" name="eggSettingsEmerald" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>490</width>
+               <height>60</height>
+              </size>
+             </property>
+            </widget>
            </item>
            <item row="3" column="0" colspan="2">
             <widget class="QPushButton" name="pushButtonEmeraldIVsGenerate">
@@ -1420,11 +1427,11 @@ QRadioButton {
            <string>Filters</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="0" column="0" rowspan="6">
+           <item row="0" column="0" rowspan="7">
             <widget class="IVFilter" name="ivFilterRS" native="true">
              <property name="minimumSize">
               <size>
-               <width>335</width>
+               <width>160</width>
                <height>180</height>
               </size>
              </property>
@@ -1498,37 +1505,6 @@ QRadioButton {
                <string notr="true">1</string>
               </property>
              </item>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QPushButton" name="pushButtonRSAnyAbility">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>50</width>
-               <height>13</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>60</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-             </property>
-             <property name="text">
-              <string>Any</string>
-             </property>
             </widget>
            </item>
            <item row="2" column="1">
@@ -1674,7 +1650,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QPushButton" name="pushButtonRSAnyNature">
+            <widget class="QPushButton" name="pushButtonRSAnyAbility">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1685,6 +1661,12 @@ QRadioButton {
               <size>
                <width>50</width>
                <height>13</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>60</width>
+               <height>16777215</height>
               </size>
              </property>
              <property name="styleSheet">
@@ -1795,6 +1777,31 @@ QRadioButton {
              </item>
             </widget>
            </item>
+           <item row="3" column="3">
+            <widget class="QPushButton" name="pushButtonRSAnyNature">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>13</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+             </property>
+             <property name="text">
+              <string>Any</string>
+             </property>
+            </widget>
+           </item>
            <item row="4" column="1">
             <widget class="QLabel" name="labelRSCompatibility">
              <property name="sizePolicy">
@@ -1879,9 +1886,6 @@ QRadioButton {
              </item>
             </widget>
            </item>
-           <item row="6" column="0">
-            <widget class="EggSettings" name="eggSettingsRS" native="true"/>
-           </item>
            <item row="6" column="1">
             <widget class="QLabel" name="labelRSShinyOnly">
              <property name="sizePolicy">
@@ -1905,6 +1909,16 @@ QRadioButton {
              </property>
              <property name="text">
               <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0" colspan="4">
+            <widget class="EggSettings" name="eggSettingsRS" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>490</width>
+               <height>60</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -2194,11 +2208,11 @@ QRadioButton {
            <string>Filters</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_10">
-           <item row="0" column="0" rowspan="6">
+           <item row="0" column="0" rowspan="7">
             <widget class="IVFilter" name="ivFilterFRLG" native="true">
              <property name="minimumSize">
               <size>
-               <width>335</width>
+               <width>160</width>
                <height>180</height>
               </size>
              </property>
@@ -2272,37 +2286,6 @@ QRadioButton {
                <string notr="true">1</string>
               </property>
              </item>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QPushButton" name="pushButtonFRLGAnyAbility">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>50</width>
-               <height>13</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>60</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-             </property>
-             <property name="text">
-              <string>Any</string>
-             </property>
             </widget>
            </item>
            <item row="2" column="1">
@@ -2448,7 +2431,7 @@ QRadioButton {
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QPushButton" name="pushButtonFRLGAnyNature">
+            <widget class="QPushButton" name="pushButtonFRLGAnyAbility">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -2459,6 +2442,12 @@ QRadioButton {
               <size>
                <width>50</width>
                <height>13</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>60</width>
+               <height>16777215</height>
               </size>
              </property>
              <property name="styleSheet">
@@ -2569,6 +2558,31 @@ QRadioButton {
              </item>
             </widget>
            </item>
+           <item row="3" column="3">
+            <widget class="QPushButton" name="pushButtonFRLGAnyNature">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>13</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+	background-color: yellow;
+	color: black;
+}</string>
+             </property>
+             <property name="text">
+              <string>Any</string>
+             </property>
+            </widget>
+           </item>
            <item row="4" column="1">
             <widget class="QLabel" name="labelFRLGCompatibility">
              <property name="sizePolicy">
@@ -2653,9 +2667,6 @@ QRadioButton {
              </item>
             </widget>
            </item>
-           <item row="6" column="0">
-            <widget class="EggSettings" name="eggSettingsFRLG" native="true"/>
-           </item>
            <item row="6" column="1">
             <widget class="QLabel" name="labelFRLGShinyOnly">
              <property name="sizePolicy">
@@ -2679,6 +2690,16 @@ QRadioButton {
              </property>
              <property name="text">
               <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0" colspan="4">
+            <widget class="EggSettings" name="eggSettingsFRLG" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>490</width>
+               <height>60</height>
+              </size>
              </property>
             </widget>
            </item>

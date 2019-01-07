@@ -27,17 +27,6 @@ void Label::mousePressEvent(QMouseEvent *event)
 {
     if (event->type() == QMouseEvent::MouseButtonPress)
     {
-        if (event->modifiers() == Qt::NoModifier)
-        {
-            emit pressed(Qt::NoModifier);
-        }
-        else if (event->modifiers() == Qt::ControlModifier)
-        {
-            emit pressed(Qt::ControlModifier);
-        }
-        else if (event->modifiers() == Qt::AltModifier)
-        {
-            emit pressed(Qt::AltModifier);
-        }
+        emit pressed(event->modifiers());
     }
 }

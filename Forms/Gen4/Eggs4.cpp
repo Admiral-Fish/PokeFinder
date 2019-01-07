@@ -168,7 +168,7 @@ void Eggs4::on_pushButtonGenerate_clicked()
     Egg4 generator = Egg4(maxResults, startingFrame, tid, sid, method, seed);
     generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
 
-    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getEvals(), ui->ivFilterGenerator->getValues(), ui->comboBoxGeneratorGender->currentIndex(),
+    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorGender->currentIndex(),
                                         ui->comboBoxGeneratorGenderRatio->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorNature->getChecked(),
                                         ui->comboBoxGeneratorHiddenPower->getChecked(), ui->checkBoxGeneratorShinyOnly->isChecked(), false);
 
@@ -225,7 +225,7 @@ void Eggs4::on_pushButtonSearchIVs_clicked()
     ui->pushButtonSearchIVs->setEnabled(false);
     ui->pushButtonCancelIVs->setEnabled(true);
 
-    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getEvals(), ui->ivFilterSearcher->getValues(), ui->comboBoxSearcherHiddenPower->getChecked());
+    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherHiddenPower->getChecked());
 
     u32 minDelay = ui->textBoxSearcherIVsMinDelay->text().toUInt();
     u32 maxDelay = ui->textBoxSearcherIVsMaxDelay->text().toUInt();

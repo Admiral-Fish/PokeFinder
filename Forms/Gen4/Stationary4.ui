@@ -538,7 +538,7 @@ QPushButton {
             <widget class="IVFilter" name="ivFilterGenerator" native="true">
              <property name="minimumSize">
               <size>
-               <width>335</width>
+               <width>160</width>
                <height>180</height>
               </size>
              </property>
@@ -1149,7 +1149,7 @@ QPushButton {
             <widget class="IVFilter" name="ivFilterSearcher" native="true">
              <property name="minimumSize">
               <size>
-               <width>335</width>
+               <width>160</width>
                <height>180</height>
               </size>
              </property>

@@ -35,8 +35,6 @@ class IVFilter : public QWidget
 public:
     explicit IVFilter(QWidget *parent = nullptr);
     ~IVFilter() override;
-    QVector<u8> getEvals() const;
-    QVector<u8> getValues() const;
     QVector<u8> getLower() const;
     QVector<u8> getUpper() const;
     void clearValues();
@@ -45,38 +43,14 @@ public:
 private:
     Ui::IVFilter *ui;
 
-    void changeHP(int val, int index);
-    void changeAtk(int val, int index);
-    void changeDef(int val, int index);
-    void changeSpA(int val, int index);
-    void changeSpD(int val, int index);
-    void changeSpe(int val, int index);
+    void changeHP(int min, int max);
+    void changeAtk(int min, int max);
+    void changeDef(int min, int max);
+    void changeSpA(int min, int max);
+    void changeSpD(int min, int max);
+    void changeSpe(int min, int max);
 
 private slots:
-    void on_pushButton31HP_clicked();
-    void on_pushButton30HP_clicked();
-    void on_pushButtonG30HP_clicked();
-    void on_pushButtonClearHP_clicked();
-    void on_pushButton31Atk_clicked();
-    void on_pushButton30Atk_clicked();
-    void on_pushButtonG30Atk_clicked();
-    void on_pushButtonClearAtk_clicked();
-    void on_pushButton31Def_clicked();
-    void on_pushButton30Def_clicked();
-    void on_pushButtonG30Def_clicked();
-    void on_pushButtonClearDef_clicked();
-    void on_pushButton31SpA_clicked();
-    void on_pushButton30SpA_clicked();
-    void on_pushButtonG30SpA_clicked();
-    void on_pushButtonClearSpA_clicked();
-    void on_pushButton31SpD_clicked();
-    void on_pushButton30SpD_clicked();
-    void on_pushButtonG30SpD_clicked();
-    void on_pushButtonClearSpD_clicked();
-    void on_pushButton31Spe_clicked();
-    void on_pushButton30Spe_clicked();
-    void on_pushButtonG30Spe_clicked();
-    void on_pushButtonClearSpe_clicked();
     void changeCompareHP(int type);
     void changeCompareAtk(int type);
     void changeCompareDef(int type);
