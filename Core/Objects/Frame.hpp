@@ -74,8 +74,7 @@ protected:
     u16 gender;
     u8 genderRatio;
     u8 hidden;
-    Lead leadType;
-    Method methodType;
+    Lead leadType = Lead::None;
     u8 nature;
     u32 pid;
     u8 power;

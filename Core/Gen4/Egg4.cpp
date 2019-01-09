@@ -164,8 +164,6 @@ QVector<Frame4> Egg4::generateIVsHGSS(const FrameCompare &compare) const
         rngArray[x] = rng.nextUShort();
     }
 
-    u16 inh1, inh2, inh3, par1, par2, par3;
-
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
         Frame4 frame(tid, sid, psv);
