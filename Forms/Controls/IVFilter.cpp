@@ -25,6 +25,22 @@ IVFilter::IVFilter(QWidget *parent) :
     ui(new Ui::IVFilter)
 {
     ui->setupUi(this);
+
+    QStringList tips =
+    {
+        tr("Click to clear"),
+        tr("Click holding ctrl to set 31"),
+        tr("Click holding alt to set 30-31"),
+        tr("Click holding ctrl+alt to set 0")
+    };
+
+    QString tip = tips.join('\n');
+    ui->labelHP->setToolTip(tip);
+    ui->labelAtk->setToolTip(tip);
+    ui->labelDef->setToolTip(tip);
+    ui->labelSpA->setToolTip(tip);
+    ui->labelSpD->setToolTip(tip);
+    ui->labelSpe->setToolTip(tip);
 }
 
 IVFilter::~IVFilter()
