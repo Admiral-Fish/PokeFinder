@@ -924,6 +924,7 @@ QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
+    frame.setLeadType(Lead::Synchronize);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
