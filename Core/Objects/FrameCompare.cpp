@@ -133,7 +133,7 @@ bool FrameCompare::compareIVs(const Frame &frame) const
     {
         u8 iv = frame.getIV(i);
 
-        if (iv < min[i] || iv < max[i])
+        if (iv < min[i] || iv > max[i])
         {
             return false;
         }
