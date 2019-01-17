@@ -26,128 +26,6 @@
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
-  <property name="styleSheet">
-   <string notr="true">.QTabWidget &gt;  QWidget &gt; QWidget {
-	background-color: #E6E6E6;
-}
-
-QTabBar::tab {
-	color: black;
-	background-color: #A1ABB3;
-	font-family: &quot;Myriad Pro&quot;;
-	width: 150px;
-}
-
-QTabBar::tab:selected {
-	color: white;
-	background-color: #1D303C;
-}
-
-QCheckBox::indicator {
-	border: 2px solid white;
-	border-radius: 3px;
-	height: 10px;
-	width: 10px;
-}
-
-QCheckBox::indicator:unchecked {
-	background-color: #274050;
-}
-
-QCheckBox::indicator:checked {
-	background-color: white;
-}
-
-QTableView {
-	border: 4px solid DodgerBlue;
-}
-
-QHeaderView::section {
-	border: none;
-	background-color: #274050;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	color: white;
-}
-
-QLineEdit {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border:none;
-	border-radius: 6px;
-	color: white;
-}
-
-QGroupBox {
-	background-color: #274050;
-	border-radius: 10px;
-	margin-top: 7px;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-.QGroupBox * {
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QComboBox {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-	padding-left: 13px;
-}
-
-QComboBox QListView{
-	color: white;
-	background-color: #1D303C;
-	border:1px solid black;
-	padding-left: 3px;
-}
-
-QComboBox::item:alternate {
-	background: #1D303C;
-}
-
-QComboBox::item:selected {
-	border: 1px solid transparent;
-	background: #003941;
-}
-
-QComboBox::indicator{
-	background-color:transparent;
-	selection-background-color:transparent;
-	color:transparent;
-	selection-color:transparent;
-}
-
-QComboBox::editable {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-
-QLabel {
-	color: white;
-}
-
-QGroupBox::title {
-	subcontrol-origin: margin;
-	left: 20px;
-	padding: 3px 5px 3px 5px;
-	background-color: #969F91;
-	border-radius: 5px;
-}
-
-QPushButton {
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-</string>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_9">
     <item row="1" column="0" colspan="2">
@@ -326,12 +204,6 @@ QPushButton {
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	color: black;
-	background-color: yellow;
-}</string>
              </property>
              <property name="text">
               <string>Synchronize</string>
@@ -535,11 +407,6 @@ QPushButton {
                <width>231</width>
                <height>23</height>
               </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: DodgerBlue;
-}</string>
              </property>
              <property name="text">
               <string>Generate</string>
@@ -812,18 +679,6 @@ QPushButton {
                <height>13</height>
               </size>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>50</width>
-               <height>13</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-             </property>
              <property name="text">
               <string>Any</string>
              </property>
@@ -858,18 +713,6 @@ QPushButton {
                <width>50</width>
                <height>13</height>
               </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>50</width>
-               <height>13</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
              </property>
              <property name="text">
               <string>Any</string>
@@ -986,18 +829,6 @@ QPushButton {
                <width>50</width>
                <height>13</height>
               </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>50</width>
-               <height>13</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
              </property>
              <property name="text">
               <string>Any</string>
@@ -1151,12 +982,6 @@ QPushButton {
                <height>13</height>
               </size>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>63</width>
-               <height>13</height>
-              </size>
-             </property>
              <property name="text">
               <string/>
              </property>
@@ -1233,20 +1058,6 @@ QPushButton {
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
-          <property name="styleSheet">
-           <string notr="true">QTableView {
-	border: 4px solid DodgerBlue;
-}
-
-QHeaderView::section {
-	border: none;
-	background-color: #274050;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	color: white;
-}
-</string>
-          </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
           </property>
@@ -1286,15 +1097,6 @@ QHeaderView::section {
             <width>16777215</width>
             <height>16777215</height>
            </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton {
-	background-color: DodgerBlue;
-}
-
-QPushButton:disabled {
-	background-color: #51c3ff;
-}</string>
           </property>
           <property name="title">
            <string>RNG Info</string>
@@ -1865,18 +1667,6 @@ QPushButton:disabled {
                <height>13</height>
               </size>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>50</width>
-               <height>13</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
-             </property>
              <property name="text">
               <string>Any</string>
              </property>
@@ -1911,18 +1701,6 @@ QPushButton:disabled {
                <width>50</width>
                <height>13</height>
               </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>50</width>
-               <height>13</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
              </property>
              <property name="text">
               <string>Any</string>
@@ -2039,18 +1817,6 @@ QPushButton:disabled {
                <width>50</width>
                <height>13</height>
               </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>50</width>
-               <height>13</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton {
-	background-color: yellow;
-	color: black;
-}</string>
              </property>
              <property name="text">
               <string>Any</string>
@@ -2227,11 +1993,6 @@ QPushButton:disabled {
        </item>
        <item row="1" column="1">
         <widget class="QPushButton" name="pushButtonProfileManager">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	background-color: orange;
-}</string>
-         </property>
          <property name="text">
           <string>Manager</string>
          </property>

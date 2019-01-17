@@ -26,7 +26,8 @@ TRANSLATIONS += \
     Translations/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
-    resources.qrc
+    resources.qrc \
+    qdarkstyle/style.qrc
 
 FORMS += \
     Forms/Controls/IVFilter.ui \

@@ -19,80 +19,6 @@
   <property name="windowTitle">
    <string notr="true">IVFilter</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QWidget {
-	background-color: #274050;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QLabel {
-	color: white;
-}
-
-QComboBox {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-	padding-left: 13px;
-}
-
-QComboBox QListView{
-	color: white;
-	background-color: #1D303C;
-	border:1px solid black;
-	padding-left: 3px;
-}
-
-QComboBox::item:alternate {
-	background: #1D303C;
-}
-
-QComboBox::item:selected {
-	border: 1px solid transparent;
-	background: #003941;
-}
-
-QComboBox::indicator{
-	background-color:transparent;
-	selection-background-color:transparent;
-	color:transparent;
-	selection-color:transparent;
-}
-
-QComboBox::editable {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-
-QSpinBox {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-
-QSpinBox::up-button {
-	subcontrol-origin: border;
-    subcontrol-position: top right;
-}
-
-QSpinBox::down-button {
-	subcontrol-origin: border;
-    subcontrol-position: bottom right;
-}
-
-QPushButton {
-	background-color: Yellow;
-	color: black;
-	border: none;
-	border-radius: 6px;
-}</string>
-  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="Label" name="labelHP">
@@ -108,13 +34,6 @@ QPushButton {
        <height>0</height>
       </size>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>HP</string>
      </property>
@@ -127,13 +46,6 @@ QPushButton {
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
@@ -171,13 +83,6 @@ QPushButton {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>Atk</string>
      </property>
@@ -190,13 +95,6 @@ QPushButton {
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
@@ -234,13 +132,6 @@ QPushButton {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>Def</string>
      </property>
@@ -253,13 +144,6 @@ QPushButton {
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
@@ -297,13 +181,6 @@ QPushButton {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>SpA</string>
      </property>
@@ -316,13 +193,6 @@ QPushButton {
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
@@ -360,13 +230,6 @@ QPushButton {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>SpD</string>
      </property>
@@ -379,13 +242,6 @@ QPushButton {
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
@@ -423,13 +279,6 @@ QPushButton {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>Spe</string>
      </property>
@@ -442,13 +291,6 @@ QPushButton {
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>

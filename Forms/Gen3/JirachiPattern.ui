@@ -31,50 +31,6 @@
   <property name="windowTitle">
    <string>Channel Jirachi Pattern</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QMainWindow {
-	background-color: #274050;
-}
-
-QTableView {
-	border: 4px solid DodgerBlue;
-}
-
-QHeaderView::section {
-	border: none;
-	background-color: #274050;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	color: white;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QLineEdit {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border:none;
-	border-radius: 6px;
-	color: white;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QLabel {
-	color: white;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QPushButton {
-	border: none;
-	border-radius: 6px;
-	color: white;
-	background-color: DodgerBlue;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}</string>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">

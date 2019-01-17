@@ -18,6 +18,7 @@
  */
 
 #include <QApplication>
+#include <QFile>
 #include <Forms/MainWindow.hpp>
 
 int main(int argc, char *argv[])
@@ -25,6 +26,14 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setApplicationName("PokeFinder");
     a.setOrganizationName("PokeFinder Team");
+
+    QFile style(":/qdarkstyle/style.qss");
+    if (style.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream ts(&style);
+        a.setStyleSheet(ts.readAll());
+        style.close();
+    }
 
     MainWindow w;
     w.show();

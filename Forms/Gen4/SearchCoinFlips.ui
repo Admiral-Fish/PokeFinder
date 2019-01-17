@@ -31,35 +31,6 @@
   <property name="windowTitle">
    <string>Search Coin Flips</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QDialog {
-	background-color: #274050;
-}
-
-QLineEdit {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border:none;
-	border-radius: 6px;
-	color: white;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QPushButton {
-	border: none;
-	border-radius: 6px;
-	color: black;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QLabel {
-	color: white;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}</string>
-  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QPushButton" name="pushButtonHeads">
@@ -75,16 +46,11 @@ QLabel {
        <height>60</height>
       </size>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-	background-color: white;
-}</string>
-     </property>
      <property name="text">
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="../../resources.qrc">
+      <iconset>
        <normaloff>:/images/heads.png</normaloff>:/images/heads.png</iconset>
      </property>
      <property name="iconSize">
@@ -109,16 +75,11 @@ QLabel {
        <height>60</height>
       </size>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-	background-color: white;
-}</string>
-     </property>
      <property name="text">
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="../../resources.qrc">
+      <iconset>
        <normaloff>:/images/tails.png</normaloff>:/images/tails.png</iconset>
      </property>
      <property name="iconSize">
@@ -138,11 +99,6 @@ QLabel {
    </item>
    <item row="3" column="2">
     <widget class="QPushButton" name="pushButtonOkay">
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-	background-color: yellow;
-}</string>
-     </property>
      <property name="text">
       <string>Ok</string>
      </property>
@@ -150,11 +106,6 @@ QLabel {
    </item>
    <item row="3" column="3">
     <widget class="QPushButton" name="pushButtonCancel">
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-	background-color: yellow;
-}</string>
-     </property>
      <property name="text">
       <string>Cancel</string>
      </property>
@@ -172,9 +123,7 @@ QLabel {
   <tabstop>pushButtonOkay</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
- <resources>
-  <include location="../../resources.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>pushButtonOkay</sender>

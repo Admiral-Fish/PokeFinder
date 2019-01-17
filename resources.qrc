@@ -17,7 +17,7 @@
         <file alias="tails.png">Images/tails.png</file>
         <file alias="roamers.png">Images/roamers.png</file>
         <file alias="raikou.png">Images/raikou.png</file>
-        <file alias="entei.png">Images/raikou.png</file>
+        <file alias="entei.png">Images/entei.png</file>
         <file alias="latias.png">Images/latias.png</file>
         <file alias="latios.png">Images/latios.png</file>
     </qresource>
