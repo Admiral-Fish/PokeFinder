@@ -35,10 +35,13 @@ public:
     void saveProfile() const;
     void deleteProfile() const;
     void updateProfile(const Profile3 &original) const;
+    friend bool operator==(const Profile3 &left, const Profile3 &right);
 
 private:
     bool deadBattery;
 
 };
+
+bool operator==(const Profile3 &left, const Profile3 &right);
 
 #endif // PROFILE3_HPP

@@ -29,7 +29,7 @@ Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, G
 }
 
 Profile4::Profile4(QJsonObject data)
-    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), data["version"].toInt())
+    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), data["language"].toInt())
 {
     dual = static_cast<Game>(data["dual"].toInt());
     radio = data["radio"].toInt();
@@ -162,9 +162,7 @@ void Profile4::deleteProfile() const
         {
             Profile4 profile(gen4[i].toObject());
 
-            if (profile.profileName == profileName && profile.version == version && profile.language == language &&
-                    profile.tid == tid && profile.sid == sid && profile.dual == dual && profile.radio == radio &&
-                    profile.radar == radar && profile.swarm == swarm)
+            if (profile == *this)
             {
                 gen4.removeAt(i);
                 profiles["gen4"] = gen4;
@@ -191,9 +189,7 @@ void Profile4::updateProfile(const Profile4 &original) const
         {
             Profile4 profile(i.toObject());
 
-            if (original.profileName == profile.profileName && original.version == profile.version && original.language == profile.language &&
-                    original.tid == profile.tid && original.sid == profile.sid && original.dual == profile.dual && original.radio == profile.radio &&
-                    original.radar == profile.radar && original.swarm == profile.swarm)
+            if (original == profile)
             {
                 i = getJson();
                 profiles["gen4"] = gen4;
@@ -205,4 +201,11 @@ void Profile4::updateProfile(const Profile4 &original) const
         }
         file.close();
     }
+}
+
+bool operator==(const Profile4 &left, const Profile4 &right)
+{
+    return left.profileName == right.profileName && left.version == right.version && left.language == right.language &&
+           left.tid == right.tid && left.sid == right.sid && left.dual == right.dual && left.radio == right.radio &&
+           left.radar == right.radar && left.swarm == right.swarm;
 }

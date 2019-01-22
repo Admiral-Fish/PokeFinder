@@ -40,6 +40,7 @@ public:
     void saveProfile() const;
     void deleteProfile() const;
     void updateProfile(const Profile4 &original) const;
+    friend bool operator==(const Profile4 &left, const Profile4 &right);
 
 private:
     Game dual;
@@ -48,5 +49,7 @@ private:
     bool swarm;
 
 };
+
+bool operator==(const Profile4 &left, const Profile4 &right);
 
 #endif // PROFILE4_HPP
