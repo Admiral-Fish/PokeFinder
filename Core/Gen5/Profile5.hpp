@@ -28,7 +28,7 @@ class Profile5 : public Profile
 
 public:
     Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u32 mac, const QVector<bool> &keypresses, u8 vcount,
-             u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType, int language = 0);
+             u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType, Language language = Language::Nil);
     Profile5(QJsonObject data);
     Profile5();
     u32 getMac() const;

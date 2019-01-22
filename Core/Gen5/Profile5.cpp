@@ -20,7 +20,7 @@
 #include "Profile5.hpp"
 
 Profile5::Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u32 mac, const QVector<bool> &keypresses, u8 vcount,
-                   u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType, int language)
+                   u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType, Language language)
     : Profile(profileName, version, tid, sid, language)
 {
     this->mac = mac;
@@ -36,7 +36,7 @@ Profile5::Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u
 }
 
 Profile5::Profile5(QJsonObject data)
-    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), data["language"].toInt())
+    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
 {
     mac = data["mac"].toString().toUInt(nullptr, 16);
     for (int i = 0; i < 4; i++)

@@ -98,7 +98,7 @@ QString Profile::getLanguageString() const
         case Language::Korean:
             return "KOR";
         case Language::Spanish:
-            "SPA";
+            return "SPA";
     }
 }
 
@@ -107,7 +107,7 @@ Game Profile::getVersion() const
     return version;
 }
 
-int Profile::getLanguage() const
+Language Profile::getLanguage() const
 {
     return language;
 }
