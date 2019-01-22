@@ -39,7 +39,7 @@ public:
     QString getVersionString() const;
     QString getLanguageString() const;
     Game getVersion() const;
-    int getLanguage() const;
+    Language getLanguage() const;
     QString getProfileName() const;
     u16 getTID() const;
     u16 getSID() const;
