@@ -90,7 +90,7 @@ QString Profile::getLanguageString() const
         case Language::Korean:
             return "KOR";
         case Language::Spanish:
-            "SPA";
+            return "SPA";
     }
 }
 
