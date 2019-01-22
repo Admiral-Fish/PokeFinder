@@ -99,7 +99,7 @@ Game Profile::getVersion() const
     return version;
 }
 
-int Profile::getLanguage() const
+Language Profile::getLanguage() const
 {
     return language;
 }
