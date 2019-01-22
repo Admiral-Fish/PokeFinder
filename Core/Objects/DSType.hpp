@@ -17,36 +17,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GAME_HPP
-#define GAME_HPP
+#ifndef DSTYPE_HPP
+#define DSTYPE_HPP
 
-enum Game
+enum DSType
 {
-    Blank       = 0, // Placeholder
-    Ruby        = 1 << 0,
-    Sapphire    = 1 << 1,
-    RS          = Ruby | Sapphire,
-    Emerald     = 1 << 2,
-    RSE         = RS | Emerald,
-    FireRed     = 1 << 3,
-    LeafGreen   = 1 << 4,
-    FRLG        = FireRed | LeafGreen,
-    Gales       = 1 << 5,
-    Colosseum   = 1 << 6,
-    GC          = Gales | Colosseum,
-    Diamond     = 1 << 7,
-    Pearl       = 1 << 8,
-    Platinum    = 1 << 9,
-    DPPt        = Diamond | Pearl | Platinum,
-    HeartGold   = 1 << 10,
-    SoulSilver  = 1 << 11,
-    HGSS        = HeartGold | SoulSilver,
-    Black       = 1 << 12,
-    White       = 1 << 13,
-    BW          = Black | White,
-    Black2      = 1 << 14,
-    White2      = 1 << 15,
-    BW2         = Black2 | White2
+    DSOriginal  = 1 << 0,
+    DSi         = 1 << 1,
+    DS3         = 1 << 2
 };
 
-#endif // GAME_HPP
+#endif // DSTYPE_HPP

@@ -145,7 +145,9 @@ HEADERS += \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
     Util/TableUtility.hpp \
-    Forms/Controls/EggSettings.hpp
+    Forms/Controls/EggSettings.hpp \
+    Core/Gen5/Profile5.hpp \
+    Core/Objects/DSType.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -229,4 +231,5 @@ SOURCES += \
     Util/ResearcherFrame.cpp \
     main.cpp \
     Util/TableUtility.cpp \
-    Forms/Controls/EggSettings.cpp
+    Forms/Controls/EggSettings.cpp \
+    Core/Gen5/Profile5.cpp

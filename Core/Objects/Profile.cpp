@@ -64,6 +64,14 @@ QString Profile::getVersionString() const
             return QObject::tr("Heart Gold");
         case Game::SoulSilver:
             return QObject::tr("Soul Silver");
+        case Game::Black:
+            return QObject::tr("Black");
+        case Game::White:
+            return QObject::tr("White");
+        case Game::Black2:
+            return QObject::tr("Black 2");
+        case Game::White2:
+            return QObject::tr("White 2");
         default:
             return "-";
     }
