@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,12 +28,13 @@
 #include <QVector>
 #include <Core/Objects/Game.hpp>
 #include <Core/Objects/Global.hpp>
+#include <Core/Objects/Language.hpp>
 
 class Profile
 {
 
 public:
-    Profile(const QString &profileName, Game version, u16 tid, u16 sid, int language = 0);
+    Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::Nil);
     Profile();
     QString getVersionString() const;
     QString getLanguageString() const;
@@ -46,7 +47,7 @@ public:
 protected:
     QString profileName;
     Game version;
-    int language;
+    Language language;
     u16 tid;
     u16 sid;
 

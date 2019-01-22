@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,7 @@
 #ifndef PROFILE5_HPP
 #define PROFILE5_HPP
 
-#include <Core/Objects/DSType.hpp>
+#include <Core/Gen5/DSType.hpp>
 #include <Core/Objects/Profile.hpp>
 
 class Profile5 : public Profile

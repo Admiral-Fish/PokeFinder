@@ -146,6 +146,7 @@ HEADERS += \
     Util/ResearcherFrame.hpp \
     Util/TableUtility.hpp \
     Forms/Controls/EggSettings.hpp \
+    Core/Objects/Language.hpp
     Core/Gen5/Profile5.hpp \
     Core/Objects/DSType.hpp
 

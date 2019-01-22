@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,14 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef DSTYPE_HPP
-#define DSTYPE_HPP
+#ifndef LANGUAGE_HPP
+#define LANGUAGE_HPP
 
-enum DSType
+enum Language
 {
-    DSOriginal  = 1 << 0,
-    DSi         = 1 << 1,
-    DS3         = 1 << 2
+    Nil         = 1 << 0,
+    Chinese     = 1 << 1,
+    English     = 1 << 2,
+    French      = 1 << 3,
+    German      = 1 << 4,
+    Italian     = 1 << 5,
+    Japanese    = 1 << 6,
+    Korean      = 1 << 7,
+    Spanish     = 1 << 8
 };
 
-#endif // DSTYPE_HPP
+#endif // LANGUAGE_HPP

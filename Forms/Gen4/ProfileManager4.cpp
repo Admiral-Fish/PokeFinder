@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -92,9 +92,13 @@ void ProfileManager4::on_pushButtonDelete_clicked()
         return;
     }
 
-    Profile4 profile = model->getProfile(row);
-    profile.deleteProfile();
-    model->removeProfile(row);
+    QMessageBox message(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"), QMessageBox::Yes | QMessageBox::No);
+    if (message.exec() == QMessageBox::Yes)
+    {
+        Profile4 profile = model->getProfile(row);
+        profile.deleteProfile();
+        model->removeProfile(row);
 
-    emit updateProfiles();
+        emit updateProfiles();
+    }
 }

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,22 +19,22 @@
 
 #include "Profile3.hpp"
 
-Profile3::Profile3(const QString &profileName, Game version, u16 tid, u16 sid, int language, bool deadBattery)
+Profile3::Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language, bool deadBattery)
     : Profile(profileName, version, tid, sid, language)
 {
     this->deadBattery = deadBattery;
 }
 
 Profile3::Profile3(QJsonObject data)
-    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), data["language"].toInt())
+    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
 {
     deadBattery = data["battery"].toBool();
 }
 
 Profile3::Profile3()
 {
-    deadBattery = false;
     version = Game::Emerald;
+    deadBattery = false;
 }
 
 bool Profile3::getDeadBattery() const
@@ -103,8 +103,7 @@ void Profile3::deleteProfile() const
         {
             Profile3 profile(gen3[i].toObject());
 
-            if (profile.profileName == profileName && profile.version == version && profile.language == language &&
-                    profile.tid == tid && profile.sid == sid && profile.deadBattery == deadBattery)
+            if (profile == *this)
             {
                 gen3.removeAt(i);
                 profiles["gen3"] = gen3;
@@ -131,8 +130,7 @@ void Profile3::updateProfile(const Profile3 &original) const
         {
             Profile3 profile(i.toObject());
 
-            if (original.profileName == profile.profileName && original.version == profile.version && original.language == profile.language &&
-                    original.tid == profile.tid && original.sid == profile.sid && original.deadBattery == profile.deadBattery)
+            if (original == profile)
             {
                 i = getJson();
                 profiles["gen3"] = gen3;
@@ -144,4 +142,10 @@ void Profile3::updateProfile(const Profile3 &original) const
         }
         file.close();
     }
+}
+
+bool operator==(const Profile3 &left, const Profile3 &right)
+{
+    return left.profileName == right.profileName && left.version == right.version && left.language == right.language &&
+           left.tid == right.tid && left.sid == right.sid && left.deadBattery == right.deadBattery;
 }
