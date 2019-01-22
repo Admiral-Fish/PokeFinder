@@ -92,9 +92,13 @@ void ProfileManager4::on_pushButtonDelete_clicked()
         return;
     }
 
-    Profile4 profile = model->getProfile(row);
-    profile.deleteProfile();
-    model->removeProfile(row);
+    QMessageBox message(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"), QMessageBox::Yes | QMessageBox::No);
+    if (message.exec() == QMessageBox::Yes)
+    {
+        Profile4 profile = model->getProfile(row);
+        profile.deleteProfile();
+        model->removeProfile(row);
 
-    emit updateProfiles();
+        emit updateProfiles();
+    }
 }
