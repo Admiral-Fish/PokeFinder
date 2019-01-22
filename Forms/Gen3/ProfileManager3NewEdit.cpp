@@ -41,7 +41,7 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(const Profile3 &profile, QWidget 
 
     ui->lineEditProfile->setText(profile.getProfileName());
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
-    ui->comboBoxLanguage->setCurrentIndex(profile.getLanguage());
+    ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(profile.getLanguage()));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->checkBoxDeadBattery->setChecked(profile.getDeadBattery());
@@ -77,6 +77,14 @@ void ProfileManager3NewEdit::setupModels()
     ui->comboBoxVersion->setItemData(4, Game::Emerald);
     ui->comboBoxVersion->setItemData(5, Game::Gales);
     ui->comboBoxVersion->setItemData(6, Game::Colosseum);
+
+    ui->comboBoxLanguage->setItemData(0, Language::Nil);
+    ui->comboBoxLanguage->setItemData(1, Language::English);
+    ui->comboBoxLanguage->setItemData(2, Language::Spanish);
+    ui->comboBoxLanguage->setItemData(3, Language::French);
+    ui->comboBoxLanguage->setItemData(4, Language::Italian);
+    ui->comboBoxLanguage->setItemData(5, Language::German);
+    ui->comboBoxLanguage->setItemData(6, Language::Japanese);
 }
 
 void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
@@ -91,7 +99,7 @@ void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
     }
 
     fresh = Profile3(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->text().toUShort(),
-                     ui->textBoxSID->text().toUShort(), ui->comboBoxLanguage->currentIndex(), ui->checkBoxDeadBattery->isChecked());
+                     ui->textBoxSID->text().toUShort(), static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()), ui->checkBoxDeadBattery->isChecked());
 
     done(QDialog::Accepted);
 }

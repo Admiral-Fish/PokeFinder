@@ -19,7 +19,7 @@
 
 #include "Profile4.hpp"
 
-Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, int language, bool radar, bool swarm)
+Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, Language language, bool radar, bool swarm)
     : Profile(profileName, version, tid, sid, language)
 {
     this->dual = dual;
@@ -29,7 +29,7 @@ Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, G
 }
 
 Profile4::Profile4(QJsonObject data)
-    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), data["language"].toInt())
+    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
 {
     dual = static_cast<Game>(data["dual"].toInt());
     radio = data["radio"].toInt();

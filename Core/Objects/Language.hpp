@@ -17,40 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILE_HPP
-#define PROFILE_HPP
+#ifndef LANGUAGE_HPP
+#define LANGUAGE_HPP
 
-#include <QApplication>
-#include <QFile>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QVector>
-#include <Core/Objects/Game.hpp>
-#include <Core/Objects/Global.hpp>
-#include <Core/Objects/Language.hpp>
-
-class Profile
+enum Language
 {
-
-public:
-    Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::Nil);
-    Profile();
-    QString getVersionString() const;
-    QString getLanguageString() const;
-    Game getVersion() const;
-    int getLanguage() const;
-    QString getProfileName() const;
-    u16 getTID() const;
-    u16 getSID() const;
-
-protected:
-    QString profileName;
-    Game version;
-    Language language;
-    u16 tid;
-    u16 sid;
-
+    Nil         = 1 << 0,
+    Chinese     = 1 << 1,
+    English     = 1 << 2,
+    French      = 1 << 3,
+    German      = 1 << 4,
+    Italian     = 1 << 5,
+    Japanese    = 1 << 6,
+    Korean      = 1 << 7,
+    Spanish     = 1 << 8
 };
 
-#endif // PROFILE_HPP
+#endif // LANGUAGE_HPP

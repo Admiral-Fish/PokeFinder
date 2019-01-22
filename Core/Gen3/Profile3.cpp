@@ -19,22 +19,22 @@
 
 #include "Profile3.hpp"
 
-Profile3::Profile3(const QString &profileName, Game version, u16 tid, u16 sid, int language, bool deadBattery)
+Profile3::Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language, bool deadBattery)
     : Profile(profileName, version, tid, sid, language)
 {
     this->deadBattery = deadBattery;
 }
 
 Profile3::Profile3(QJsonObject data)
-    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), data["language"].toInt())
+    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
 {
     deadBattery = data["battery"].toBool();
 }
 
 Profile3::Profile3()
 {
-    deadBattery = false;
     version = Game::Emerald;
+    deadBattery = false;
 }
 
 bool Profile3::getDeadBattery() const

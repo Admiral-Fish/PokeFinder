@@ -26,7 +26,8 @@ class Profile4 : public Profile
 {
 
 public:
-    Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual = Game::Blank, int radio = 0, int language = 0, bool radar = false, bool swarm = false);
+    Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual = Game::Blank,
+             int radio = 0, Language language = Language::Nil, bool radar = false, bool swarm = false);
     Profile4(QJsonObject data);
     Profile4();
     QString getDualSlotString() const;

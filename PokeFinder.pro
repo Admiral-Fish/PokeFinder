@@ -145,7 +145,8 @@ HEADERS += \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
     Util/TableUtility.hpp \
-    Forms/Controls/EggSettings.hpp
+    Forms/Controls/EggSettings.hpp \
+    Core/Objects/Language.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
