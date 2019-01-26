@@ -51,10 +51,10 @@ public:
 private:
     Ui::Eggs4 *ui;
     QVector<Profile4> profiles;
-    Egg4GeneratorModel *generatorModel = new Egg4GeneratorModel(this, Method::DPPtIVs);
-    Egg4SearcherModel *searcherIVs = new Egg4SearcherModel(this, Method::DPPtIVs);
-    Egg4SearcherModel *searcherPID = new Egg4SearcherModel(this, Method::Gen4Normal);
-    QMenu *searcherMenu = new QMenu(this);
+    Egg4GeneratorModel *generatorModel;
+    Egg4SearcherModel *searcherIVs;
+    Egg4SearcherModel *searcherPID;
+    QMenu *searcherMenu;
     bool flag;
 
     void setupModels();

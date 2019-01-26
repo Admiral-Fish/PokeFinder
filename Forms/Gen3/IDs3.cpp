@@ -34,13 +34,14 @@ IDs3::IDs3(QWidget *parent) :
 IDs3::~IDs3()
 {
     delete ui;
-    delete xdcolo;
-    delete frlge;
-    delete rs;
 }
 
 void IDs3::setupModels()
 {
+    xdcolo = new QStandardItemModel(this);
+    frlge = new QStandardItemModel(this);
+    rs = new QStandardItemModel(this);
+
     ui->textBoxFRLGEPID->setValues(InputType::Seed32Bit);
     ui->textBoxFRLGETID->setValues(InputType::TIDSID);
     ui->textBoxFRLGESID->setValues(InputType::TIDSID);
@@ -80,13 +81,13 @@ void IDs3::on_pushButtonFRLGESearch_clicked()
 {
     frlge->removeRows(0, frlge->rowCount());
 
-    u16 tid = ui->textBoxFRLGETID->text().toUShort();
+    u16 tid = ui->textBoxFRLGETID->getUShort();
     bool usePID = ui->checkBoxFRLGEPID->isChecked();
     bool useSID = ui->checkBoxFRLGESID->isChecked();
-    u32 pid = ui->textBoxFRLGEPID->text().toUInt(nullptr, 16);
-    u16 searchSID = ui->textBoxFRLGESID->text().toUShort();
-    u32 minFrame = ui->textBoxFRLGEStartingFrame->text().toUInt();
-    u32 maxResults = ui->textBoxFRLGEMaxResults->text().toUInt();
+    u32 pid = ui->textBoxFRLGEPID->getUInt();
+    u16 searchSID = ui->textBoxFRLGESID->getUShort();
+    u32 minFrame = ui->textBoxFRLGEStartingFrame->getUInt();
+    u32 maxResults = ui->textBoxFRLGEMaxResults->getUInt();
 
     PokeRNG rng(tid, minFrame - 1);
     u16 sid = rng.nextUShort();
@@ -111,15 +112,15 @@ void IDs3::on_pushButtonRSSearch_clicked()
     bool usePID = ui->checkBoxRSPID->isChecked();
     bool useSID = ui->checkBoxRSSID->isChecked();
     bool useTID = ui->checkBoxRSTID->isChecked();
-    u32 pid = ui->textBoxRSPID->text().toUInt(nullptr, 16);
-    u16 searchSID = ui->textBoxRSSID->text().toUShort();
-    u16 searchTID = ui->textBoxRSTID->text().toUShort();
-    u32 minFrame = ui->textBoxRSStartingFrame->text().toUInt();
-    u32 maxResults = ui->textBoxRSMaxResults->text().toUInt();
+    u32 pid = ui->textBoxRSPID->getUInt();
+    u16 searchSID = ui->textBoxRSSID->getUShort();
+    u16 searchTID = ui->textBoxRSTID->getUShort();
+    u32 minFrame = ui->textBoxRSStartingFrame->getUInt();
+    u32 maxResults = ui->textBoxRSMaxResults->getUInt();
 
     if (ui->radioButtonRSInitialSeed->isChecked())
     {
-        seed = ui->textBoxRSInitialSeed->text().toUInt(nullptr, 16);
+        seed = ui->textBoxRSInitialSeed->getUInt();
     }
     else
     {
@@ -147,15 +148,15 @@ void IDs3::on_pushButtonXDColoSearch_clicked()
 {
     xdcolo->removeRows(0, xdcolo->rowCount());
 
-    u32 seed = ui->textBoxXDColoSeed->text().toUInt(nullptr, 16);
+    u32 seed = ui->textBoxXDColoSeed->getUInt();
     bool usePID = ui->checkBoxXDColoPID->isChecked();
     bool useSID = ui->checkBoxXDColoSID->isChecked();
     bool useTID = ui->checkBoxXDColoTID->isChecked();
-    u32 pid = ui->checkBoxXDColoPID->text().toUInt(nullptr, 16);
-    u16 searchSID = ui->textBoxXDColoSID->text().toUShort();
-    u16 searchTID = ui->textBoxXDColoTID->text().toUShort();
-    u32 minFrame = ui->textBoxXDColoStartingFrame->text().toUInt();
-    u32 maxResults = ui->textBoxXDColoMaxResults->text().toUInt();
+    u32 pid = ui->textBoxXDColoPID->getUInt();
+    u16 searchSID = ui->textBoxXDColoSID->getUShort();
+    u16 searchTID = ui->textBoxXDColoTID->getUShort();
+    u32 minFrame = ui->textBoxXDColoStartingFrame->getUInt();
+    u32 maxResults = ui->textBoxXDColoMaxResults->getUInt();
 
     XDRNG rng(seed, minFrame + 1);
     u16 sid = rng.nextUShort(), tid;

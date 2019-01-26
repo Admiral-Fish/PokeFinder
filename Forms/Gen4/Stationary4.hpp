@@ -54,10 +54,10 @@ public:
 
 private:
     Ui::Stationary4 *ui;
-    Searcher4Model *s = new Searcher4Model(this, Method::Method1);
-    Stationary4Model *g = new Stationary4Model(this, Method::Method1);
+    Searcher4Model *searcherModel;
+    Stationary4Model *generatorModel;
     QVector<Profile4> profiles;
-    QMenu *searcherMenu = new QMenu(this);
+    QMenu *searcherMenu;
 
     void setupModels();
     void updateView(const QVector<Frame4> &frames, int progress);

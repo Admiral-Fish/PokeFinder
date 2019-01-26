@@ -53,11 +53,12 @@ SeedToTime3::~SeedToTime3()
     setting.setValue("seed3Year", ui->textBoxYear->text());
 
     delete ui;
-    delete model;
 }
 
 void SeedToTime3::setupModels()
 {
+    model = new QStandardItemModel(this);
+
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
     ui->textBoxYear->setValues(2000, 2037);
 
@@ -140,8 +141,8 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
 
 void SeedToTime3::on_pushButtonFind_clicked()
 {
-    u32 seed = ui->textBoxSeed->text().toUInt(nullptr, 16);
-    u32 year = ui->textBoxYear->text().toUInt();
+    u32 seed = ui->textBoxSeed->getUInt();
+    u32 year = ui->textBoxYear->getUInt();
     frame = 1;
     if (seed > 0xFFFF)
     {

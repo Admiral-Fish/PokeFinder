@@ -48,7 +48,7 @@ public:
 
 private:
     Ui::Researcher *ui;
-    ResearcherModel *model = new ResearcherModel(this, false);
+    ResearcherModel *model;
     QHash<QString, int> keys;
 
     void setupModels();

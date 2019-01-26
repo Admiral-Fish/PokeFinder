@@ -36,7 +36,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete langGroup;
     delete stationary3;
     delete wild3;
     delete egg3;

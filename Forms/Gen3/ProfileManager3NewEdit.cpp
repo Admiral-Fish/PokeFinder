@@ -98,8 +98,8 @@ void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
         return;
     }
 
-    fresh = Profile3(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->text().toUShort(),
-                     ui->textBoxSID->text().toUShort(), static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()), ui->checkBoxDeadBattery->isChecked());
+    fresh = Profile3(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
+                     ui->textBoxSID->getUShort(), static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()), ui->checkBoxDeadBattery->isChecked());
 
     done(QDialog::Accepted);
 }

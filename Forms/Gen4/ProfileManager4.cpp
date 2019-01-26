@@ -35,11 +35,11 @@ ProfileManager4::ProfileManager4(QWidget *parent) :
 ProfileManager4::~ProfileManager4()
 {
     delete ui;
-    delete model;
 }
 
 void ProfileManager4::setupModels()
 {
+    model = new Profile4Model(this);
     model->setModel(Profile4::loadProfileList());
     ui->tableView->setModel(model);
 }

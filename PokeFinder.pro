@@ -55,7 +55,8 @@ FORMS += \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
     Forms/MainWindow.ui \
-    Forms/Controls/EggSettings.ui
+    Forms/Controls/EggSettings.ui \
+    Forms/Gen4/ChainedSID.ui
 
 HEADERS += \
     Core/Gen3/Egg3.hpp \
@@ -146,7 +147,8 @@ HEADERS += \
     Util/ResearcherFrame.hpp \
     Util/TableUtility.hpp \
     Forms/Controls/EggSettings.hpp \
-    Core/Objects/Language.hpp
+    Core/Objects/Language.hpp \
+    Forms/Gen4/ChainedSID.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -230,4 +232,5 @@ SOURCES += \
     Util/ResearcherFrame.cpp \
     main.cpp \
     Util/TableUtility.cpp \
-    Forms/Controls/EggSettings.cpp
+    Forms/Controls/EggSettings.cpp \
+    Forms/Gen4/ChainedSID.cpp

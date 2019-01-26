@@ -38,11 +38,12 @@ PokeSpot::~PokeSpot()
     setting.setValue("pokespotSID", ui->textBoxSID->text());
 
     delete ui;
-    delete model;
 }
 
 void PokeSpot::setupModels()
 {
+    model = new PokeSpotModel(this);
+
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
     ui->textBoxStartingFrame->setValues(InputType::Frame32Bit);
     ui->textBoxMaxResults->setValues(InputType::Frame32Bit);
@@ -66,11 +67,11 @@ void PokeSpot::on_pushButtonGenerate_clicked()
 
     QVector<Frame3> frames;
 
-    u32 seed = ui->textBoxSeed->text().toUInt(nullptr, 16);
-    u32 initialFrame = ui->textBoxStartingFrame->text().toUInt();
-    u32 maxResults = ui->textBoxMaxResults->text().toUInt();
-    u16 tid = ui->textBoxTID->text().toUShort();
-    u16 sid = ui->textBoxSID->text().toUShort();
+    u32 seed = ui->textBoxSeed->getUInt();
+    u32 initialFrame = ui->textBoxStartingFrame->getUInt();
+    u32 maxResults = ui->textBoxMaxResults->getUInt();
+    u16 tid = ui->textBoxTID->getUShort();
+    u16 sid = ui->textBoxSID->getUShort();
     int genderRatio = ui->comboBoxGenderRatio->currentIndex();
 
     XDRNG rng(seed, initialFrame - 1);

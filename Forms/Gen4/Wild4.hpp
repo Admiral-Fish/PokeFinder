@@ -56,9 +56,9 @@ public:
 private:
     Ui::Wild4 *ui;
     QVector<Profile4> profiles;
-    Searcher4Model *s = new Searcher4Model(this, Method::Method1);
-    Wild4Model *g = new Wild4Model(this, Method::MethodJ);
-    QMenu *searcherMenu = new QMenu(this);
+    Searcher4Model *searcherModel;
+    Wild4Model *generatorModel;
+    QMenu *searcherMenu;
     QVector<EncounterArea4> encounterGenerator;
     QVector<EncounterArea4> encounterSearcher;
 

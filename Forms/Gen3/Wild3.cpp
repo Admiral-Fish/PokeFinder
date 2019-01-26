@@ -39,10 +39,6 @@ Wild3::~Wild3()
     setting.setValue("wild3Profile", ui->comboBoxProfiles->currentIndex());
 
     delete ui;
-    delete s;
-    delete g;
-    delete generatorMenu;
-    delete searcherMenu;
 }
 
 void Wild3::updateProfiles()
@@ -79,8 +75,13 @@ void Wild3::updateProfiles()
 
 void Wild3::setupModels()
 {
-    ui->tableViewGenerator->setModel(g);
-    ui->tableViewSearcher->setModel(s);
+    generatorModel = new Wild3Model(this);
+    searcherModel = new Searcher3Model(this, Method::Method1);
+    generatorMenu = new QMenu(this);
+    searcherMenu = new QMenu(this);
+
+    ui->tableViewGenerator->setModel(generatorModel);
+    ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorTID->setValues(InputType::TIDSID);
@@ -133,72 +134,38 @@ void Wild3::setupModels()
     on_comboBoxGeneratorEncounter_currentIndexChanged(0);
     on_comboBoxSearcherEncounter_currentIndexChanged(0);
 
-    QAction *setTargetFrame = new QAction(tr("Set Target Frame"), this);
-    QAction *jumpToTarget = new QAction(tr("Jump to Target Frame"), this);
-    QAction *centerTo1Second = new QAction(tr("Center to +/- 1 Second and Set as Target Frame"), this);
-    QAction *centerTo2Seconds = new QAction(tr("Center to +/- 2 Seconds and Set as Target Frame"), this);
-    QAction *centerTo3Seconds = new QAction(tr("Center to +/- 3 Seconds and Set as Target Frame"), this);
-    QAction *centerTo5Seconds = new QAction(tr("Center to +/- 5 Seconds and Set as Target Frame"), this);
-    QAction *centerTo10Seconds = new QAction(tr("Center to +/- 10 Seconds and Set as Target Frame"), this);
-    QAction *centerTo1Minute = new QAction(tr("Center to +/- 1 Minute and Set as Target Frame"), this);
-    QAction *outputToTxt = new QAction(tr("Output Results to TXT"), this);
-    QAction *outputToCSV = new QAction(tr("Output Results to CSV"), this);
+    QAction *setTargetFrame = generatorMenu->addAction(tr("Set Target Frame"));
+    QAction *jumpToTarget = generatorMenu->addAction(tr("Jump to Target Frame"));
+    QAction *centerTo1Second = generatorMenu->addAction(tr("Center to +/- 1 Second and Set as Target Frame"));
+    QAction *centerTo2Seconds = generatorMenu->addAction(tr("Center to +/- 2 Seconds and Set as Target Frame"));
+    QAction *centerTo3Seconds = generatorMenu->addAction(tr("Center to +/- 3 Seconds and Set as Target Frame"));
+    QAction *centerTo5Seconds = generatorMenu->addAction(tr("Center to +/- 5 Seconds and Set as Target Frame"));
+    QAction *centerTo10Seconds = generatorMenu->addAction(tr("Center to +/- 10 Seconds and Set as Target Frame"));
+    QAction *centerTo1Minute = generatorMenu->addAction(tr("Center to +/- 1 Minute and Set as Target Frame"));
+    QAction *outputToTxt = generatorMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputToCSV = generatorMenu->addAction(tr("Output Results to CSV"));
 
     connect(setTargetFrame, &QAction::triggered, this, &Wild3::setTargetFrameGenerator);
     connect(jumpToTarget, &QAction::triggered, this, &Wild3::jumpToTargetGenerator);
-    connect(centerTo1Second, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(60);
-    });
-    connect(centerTo2Seconds, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(120);
-    });
-    connect(centerTo3Seconds, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(180);
-    });
-    connect(centerTo5Seconds, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(300);
-    });
-    connect(centerTo10Seconds, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(600);
-    });
-    connect(centerTo1Minute, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(3600);
-    });
+    connect(centerTo1Second, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(60);  });
+    connect(centerTo2Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(120); });
+    connect(centerTo3Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(180); });
+    connect(centerTo5Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(300); });
+    connect(centerTo10Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(600); });
+    connect(centerTo1Minute, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(3600); });
     connect(outputToTxt, &QAction::triggered, this, &Wild3::outputToTxt);
     connect(outputToCSV, &QAction::triggered, this, &Wild3::outputToCSV);
 
-    generatorMenu->addAction(setTargetFrame);
-    generatorMenu->addAction(jumpToTarget);
-    generatorMenu->addSeparator();
-    generatorMenu->addAction(centerTo1Second);
-    generatorMenu->addAction(centerTo2Seconds);
-    generatorMenu->addAction(centerTo3Seconds);
-    generatorMenu->addAction(centerTo5Seconds);
-    generatorMenu->addAction(centerTo10Seconds);
-    generatorMenu->addAction(centerTo1Minute);
-    generatorMenu->addSeparator();
-    generatorMenu->addAction(outputToTxt);
-    generatorMenu->addAction(outputToCSV);
-
-    QAction *copySeedToClipboard = new QAction(tr("Copy Seed to Clipboard"), this);
-    QAction *seedToTime = new QAction(tr("Generate times for seed"), this);
+    QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
+    QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
 
     connect(copySeedToClipboard, &QAction::triggered, this, &Wild3::copySeedToClipboard);
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
-
-    searcherMenu->addAction(copySeedToClipboard);
-    searcherMenu->addAction(seedToTime);
 }
 
 void Wild3::updateView(const QVector<Frame3> &frames, int progress)
 {
-    s->addItems(frames);
+    searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
 }
 
@@ -308,17 +275,17 @@ void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
 
 void Wild3::on_pushButtonGenerate_clicked()
 {
-    g->clear();
+    generatorModel->clear();
 
-    u32 seed = ui->textBoxGeneratorSeed->text().toUInt(nullptr, 16);
-    u32 startingFrame = ui->textBoxGeneratorStartingFrame->text().toUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->text().toUInt();
-    u16 tid = ui->textBoxGeneratorTID->text().toUShort();
-    u16 sid = ui->textBoxGeneratorSID->text().toUShort();
+    u32 seed = ui->textBoxGeneratorSeed->getUInt();
+    u32 startingFrame = ui->textBoxGeneratorStartingFrame->getUInt();
+    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u16 tid = ui->textBoxGeneratorTID->getUShort();
+    u16 sid = ui->textBoxGeneratorSID->getUShort();
     u32 offset = 0;
     if (ui->checkBoxGeneratorDelay->isChecked())
     {
-        offset = ui->textBoxGeneratorDelay->text().toUInt();
+        offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
     int genderRatioIndex = ui->comboBoxGeneratorGenderRatio->currentIndex();
@@ -349,19 +316,19 @@ void Wild3::on_pushButtonGenerate_clicked()
     generator.setEncounter(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()]);
 
     QVector<Frame3> frames = generator.generate(compare);
-    g->setModel(frames);
+    generatorModel->setModel(frames);
 }
 
 void Wild3::on_pushButtonSearch_clicked()
 {
-    s->clear();
-    s->setMethod(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+    searcherModel->clear();
+    searcherModel->setMethod(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    u16 tid = ui->textBoxSearcherTID->text().toUShort();
-    u16 sid = ui->textBoxSearcherSID->text().toUShort();
+    u16 tid = ui->textBoxSearcherTID->getUShort();
+    u16 sid = ui->textBoxSearcherSID->getUShort();
 
     int genderRatioIndex = ui->comboBoxSearcherGenderRatio->currentIndex();
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
@@ -403,7 +370,7 @@ void Wild3::on_pushButtonSearch_clicked()
 
 void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
 {
-    if (g->rowCount() == 0)
+    if (generatorModel->rowCount() == 0)
     {
         return;
     }
@@ -414,7 +381,7 @@ void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
 
 void Wild3::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
 {
-    if (s->rowCount() == 0)
+    if (searcherModel->rowCount() == 0)
     {
         return;
     }
@@ -456,7 +423,7 @@ void Wild3::centerFramesAndSetTargetGenerator(u32 centerFrames)
 
 void Wild3::seedToTime()
 {
-    u32 seed = s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
+    u32 seed = searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
     auto *seedToTime = new SeedToTime3(seed);
     seedToTime->show();
     seedToTime->raise();
@@ -475,12 +442,12 @@ void Wild3::outputToTxt()
     if (file.open(QIODevice::WriteOnly))
     {
         QString textData = "";
-        int rows = g->rowCount();
-        int columns = g->columnCount();
+        int rows = generatorModel->rowCount();
+        int columns = generatorModel->columnCount();
 
         for (int i = 0; i < columns; i++)
         {
-            textData += g->headerData(i, Qt::Horizontal, 0).toString();
+            textData += generatorModel->headerData(i, Qt::Horizontal, 0).toString();
             textData += i == 3 || i == 13 ? "\t\t" : "\t";
         }
 
@@ -490,8 +457,8 @@ void Wild3::outputToTxt()
         {
             for (int j = 0; j < columns; j++)
             {
-                textData += (g->data(g->index(i, j), 0).toString() != "" ? g->data(g->index(i, j), 0).toString() + "\t" : "-\t");
-                if (j == 1 || (j == 13 && g->data(g->index(i, j), 0).toString().length() < 8))
+                textData += (generatorModel->data(generatorModel->index(i, j), 0).toString() != "" ? generatorModel->data(generatorModel->index(i, j), 0).toString() + "\t" : "-\t");
+                if (j == 1 || (j == 13 && generatorModel->data(generatorModel->index(i, j), 0).toString().length() < 8))
                 {
                     textData += "\t";
                 }
@@ -518,12 +485,12 @@ void Wild3::outputToCSV()
     if (file.open(QIODevice::WriteOnly))
     {
         QString textData = "";
-        int rows = g->rowCount();
-        int columns = g->columnCount();
+        int rows = generatorModel->rowCount();
+        int columns = generatorModel->columnCount();
 
         for (int i = 0; i < columns; i++)
         {
-            textData += g->headerData(i, Qt::Horizontal, 0).toString();
+            textData += generatorModel->headerData(i, Qt::Horizontal, 0).toString();
             if (i != columns - 1)
             {
                 textData += ", ";
@@ -536,7 +503,7 @@ void Wild3::outputToCSV()
         {
             for (int j = 0; j < columns; j++)
             {
-                textData += g->data(g->index(i, j), 0).toString();
+                textData += generatorModel->data(generatorModel->index(i, j), 0).toString();
                 if (j != columns - 1)
                 {
                     textData += ", ";
@@ -553,7 +520,7 @@ void Wild3::outputToCSV()
 
 void Wild3::copySeedToClipboard()
 {
-    QApplication::clipboard()->setText(s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
+    QApplication::clipboard()->setText(searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
 }
 
 void Wild3::on_pushButtonGeneratorLead_clicked()

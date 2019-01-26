@@ -28,7 +28,7 @@ class SeedtoTime4Model : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    SeedtoTime4Model(QObject *parent, bool flag = false, Game version = Diamond);
+    SeedtoTime4Model(QObject *parent, bool flag = false, Game version = DPPt);
     void setModel(const QVector<DateTime> &times);
     void clear();
     DateTime getData(int row);

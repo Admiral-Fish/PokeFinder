@@ -40,12 +40,13 @@ GameCubeRTC::~GameCubeRTC()
     setting.setValue("startSeed", ui->textBoxStartSeed->text());
 
     delete ui;
-    delete model;
-    delete contextMenu;
 }
 
 void GameCubeRTC::setupModels()
 {
+    model = new QStandardItemModel(this);
+    contextMenu = new QMenu(this);
+
     ui->textBoxStartSeed->setValues(InputType::Seed32Bit);
     ui->textBoxTargetSeed->setValues(InputType::Seed32Bit);
     ui->textBoxMinFrame->setValues(InputType::Frame32Bit);
@@ -54,9 +55,8 @@ void GameCubeRTC::setupModels()
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seed"));
     ui->tableViewGenerator->setModel(model);
 
-    QAction *copySeed = new QAction("Copy Seed to Clipboard", this);
+    QAction *copySeed = contextMenu->addAction(tr("Copy Seed to Clipboard"));
     connect(copySeed, &QAction::triggered, this, &GameCubeRTC::copySeed);
-    contextMenu->addAction(copySeed);
 
     QSettings setting;
     if (setting.contains("startSeed")) ui->textBoxStartSeed->setText(setting.value("startSeed").toString());
@@ -67,10 +67,10 @@ void GameCubeRTC::on_pushButtonSearch_clicked()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    u32 initial = ui->textBoxStartSeed->text().toUInt(nullptr, 16);
-    u32 target = ui->textBoxTargetSeed->text().toUInt(nullptr, 16);
-    u32 start = ui->textBoxMinFrame->text().toUInt();
-    u32 end = ui->textBoxMaxFrame->text().toUInt();
+    u32 initial = ui->textBoxStartSeed->getUInt();
+    u32 target = ui->textBoxTargetSeed->getUInt();
+    u32 start = ui->textBoxMinFrame->getUInt();
+    u32 end = ui->textBoxMaxFrame->getUInt();
 
     auto *search = new Search(initial, target, start, end);
 

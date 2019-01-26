@@ -69,14 +69,15 @@ SeedtoTime4::~SeedtoTime4()
     settings.setValue("plusSecondsHGSS", ui->lineEditHGSSSecondPlus->text());
 
     delete ui;
-    delete dppt;
-    delete dpptCalibrate;
-    delete hgss;
-    delete hgssCalibrate;
 }
 
 void SeedtoTime4::setupModels()
 {
+    dppt = new SeedtoTime4Model(this, false);
+    dpptCalibrate = new SeedtoTime4Model(this, true);
+    hgss = new SeedtoTime4Model(this, false, Game::HeartGold);
+    hgssCalibrate = new SeedtoTime4Model(this, true, Game::HeartGold);
+
     ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
     ui->textBoxHGSSSeed->setValues(InputType::Seed32Bit);
 
@@ -125,7 +126,7 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
     }
 
     QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUShort()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUShort()), static_cast<u8>(ui->lineEditHGSSLati->text().toUShort()) };
+    QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
     QVector<DateTime> results;
     for (int month = 0; month < 13; month++)
@@ -186,7 +187,7 @@ QVector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minu
 
 void SeedtoTime4::on_pushButtonDPPtGenerate_clicked()
 {
-    u32 seed = ui->textBoxDPPtSeed->text().toUInt(nullptr, 16);
+    u32 seed = ui->textBoxDPPtSeed->getUInt();
     u32 year = ui->lineEditDPPtYear->text().toUInt();
 
     bool forceSecond = ui->checkBoxDPPtSecond->isChecked();
@@ -204,14 +205,14 @@ void SeedtoTime4::on_pushButtonHGSSGenerate_clicked()
 {
     hgss->clear();
 
-    u32 seed = ui->textBoxHGSSSeed->text().toUInt(nullptr, 16);
+    u32 seed = ui->textBoxHGSSSeed->getUInt();
     u32 year = ui->lineEditHGSSYear->text().toUInt();
 
     bool forceSecond = ui->checkBoxHGSSSecond->isChecked();
     int forcedSecond = ui->lineEditHGSSSecond->text().toInt();
 
     QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUShort()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUShort()), static_cast<u8>(ui->lineEditHGSSLati->text().toUShort()) };
+    QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
     HGSSRoamer info(seed, roamer, routes);
 

@@ -45,10 +45,8 @@ public:
 
 private:
     Ui::GameCubeRTC *ui;
-    bool isSearching = false;
-    bool cancel = false;
-    QStandardItemModel *model = new QStandardItemModel(this);
-    QMenu *contextMenu = new QMenu();
+    QStandardItemModel *model;
+    QMenu *contextMenu;
     QModelIndex lastIndex;
     QModelIndex targetFrame;
 

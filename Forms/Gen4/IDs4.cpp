@@ -33,13 +33,29 @@ IDs4::IDs4(QWidget *parent) :
 IDs4::~IDs4()
 {
     delete ui;
-    delete model;
 }
 
 void IDs4::setupModels()
 {
+    model = new QStandardItemModel(this);
     ui->tableView->setModel(model);
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
+
+    ui->textBoxTIDSIDTID->setValues(InputType::TIDSID);
+    ui->textBoxTIDSIDSID->setValues(InputType::TIDSID);
+    ui->textBoxTIDSIDYear->setValues(2000, 2099);
+    ui->textBoxTIDSIDMinDelay->setValues(InputType::Delay);
+    ui->textBoxTIDSIDMaxDelay->setValues(InputType::Delay);
+
+    ui->textBoxShinyPIDPID->setValues(InputType::Seed32Bit);
+    ui->textBoxShinyPIDTID->setValues(InputType::TIDSID);
+    ui->textBoxShinyPIDYear->setValues(2000, 2099);
+    ui->textBoxShinyPIDMinDelay->setValues(InputType::Delay);
+    ui->textBoxShinyPIDMaxDelay->setValues(InputType::Delay);
+
+    ui->textBoxSeedFinderTID->setValues(InputType::TIDSID);
+    ui->textBoxSeedFinderMinDelay->setValues(InputType::Delay);
+    ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
 }
 
 void IDs4::updateView(QVector<QList<QStandardItem *>> frames, int progress)
@@ -63,12 +79,12 @@ void IDs4::on_pushButtonShinyPIDSearch_clicked()
     ui->pushButtonShinyPIDSearch->setEnabled(false);
     ui->pushButtonShinyPIDCancel->setEnabled(true);
 
-    u32 pid = ui->textBoxShinyPIDPID->text().toUInt(nullptr, 16);
+    u32 pid = ui->textBoxShinyPIDPID->getUInt();
     bool useTID = ui->checkBoxShinyPIDSearchTID->isChecked();
-    u16 tid = ui->textBoxShinyPIDTID->text().toUShort();
-    u32 year = ui->textBoxShinyPIDYear->text().toUInt();
-    u32 minDelay = ui->textBoxShinyPIDMinDelay->text().toUInt();
-    u32 maxDelay = ui->textBoxShinyPIDMaxDelay->text().toUInt();
+    u16 tid = ui->textBoxShinyPIDTID->getUShort();
+    u32 year = ui->textBoxShinyPIDYear->getUInt();
+    u32 minDelay = ui->textBoxShinyPIDMinDelay->getUInt();
+    u32 maxDelay = ui->textBoxShinyPIDMaxDelay->getUInt();
     bool infinite = ui->checkBoxShinyPIDInfiniteSearch->isChecked();
     minDelay += (year - 2000);
     maxDelay += (year - 2000);
@@ -102,12 +118,12 @@ void IDs4::on_pushButtonTIDSIDSearch_clicked()
     ui->pushButtonTIDSIDSearch->setEnabled(false);
     ui->pushButtonTIDSIDCancel->setEnabled(true);
 
-    u16 tid = ui->textBoxTIDSIDTID->text().toUShort();
+    u16 tid = ui->textBoxTIDSIDTID->getUShort();
     bool useSID = ui->checkBoxTIDSIDSearchSID->isChecked();
-    u16 searchSID = ui->textBoxTIDSIDSID->text().toUShort();
-    u32 year = ui->textBoxTIDSIDYear->text().toUInt();
-    u32 minDelay = ui->textBoxTIDSIDMinDelay->text().toUInt();
-    u32 maxDelay = ui->textBoxTIDSIDMaxDelay->text().toUInt();
+    u16 searchSID = ui->textBoxTIDSIDSID->getUShort();
+    u32 year = ui->textBoxTIDSIDYear->getUInt();
+    u32 minDelay = ui->textBoxTIDSIDMinDelay->getUInt();
+    u32 maxDelay = ui->textBoxTIDSIDMaxDelay->getUInt();
     bool infinite = ui->checkBoxTIDSIDInfiniteSearch->isChecked();
     minDelay += (year - 2000);
     maxDelay += (year - 2000);
@@ -138,15 +154,15 @@ void IDs4::on_pushButtonSeedFinderSearch_clicked()
 
     model->removeRows(0, model->rowCount());
 
-    u16 tid = ui->textBoxSeedFinderTID->text().toUShort();
+    u16 tid = ui->textBoxSeedFinderTID->getUShort();
     QDateTime dateTime = ui->dateTimeEdit->dateTime();
     u32 month = dateTime.date().month();
     u32 day = dateTime.date().day();
     u32 year = dateTime.date().year();
     u32 hour = dateTime.time().hour();
     u32 minute = dateTime.time().minute();
-    u32 minDelay = ui->textBoxSeedFinderMinDelay->text().toUInt();
-    u32 maxDelay = ui->textBoxSeedFinderMaxDelay->text().toUInt();
+    u32 minDelay = ui->textBoxSeedFinderMinDelay->getUInt();
+    u32 maxDelay = ui->textBoxSeedFinderMaxDelay->getUInt();
 
     minDelay += (year - 2000);
     maxDelay += (year - 2000);

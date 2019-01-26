@@ -43,7 +43,7 @@ public:
 
 private:
     Ui::PokeSpot *ui;
-    PokeSpotModel *model = new PokeSpotModel(this);
+    PokeSpotModel *model;
 
     void setupModels();
 

@@ -35,11 +35,11 @@ ProfileManager3::ProfileManager3(QWidget *parent) :
 ProfileManager3::~ProfileManager3()
 {
     delete ui;
-    delete model;
 }
 
 void ProfileManager3::setupModels()
 {
+    model = new Profile3Model(this);
     model->setModel(Profile3::loadProfileList());
     ui->tableView->setModel(model);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);

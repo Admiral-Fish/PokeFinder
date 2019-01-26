@@ -35,13 +35,13 @@ IVtoPID::IVtoPID(QWidget *parent) :
 IVtoPID::~IVtoPID()
 {
     delete ui;
-    delete model;
 }
 
 void IVtoPID::setupModels()
 {
     ui->textBoxTID->setValues(InputType::TIDSID);
 
+    model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("PID") << tr("Method") << tr("Ability") << "50%" << "12.5%" << "25%" << "75%" << tr("SID"));
     ui->tableView->setModel(model);
 }

@@ -483,7 +483,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="textBoxSeedFinderTID">
+        <widget class="TextBox" name="textBoxSeedFinderTID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -534,7 +534,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="textBoxSeedFinderMinDelay">
+        <widget class="TextBox" name="textBoxSeedFinderMinDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -563,7 +563,7 @@
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="textBoxSeedFinderMaxDelay">
+        <widget class="TextBox" name="textBoxSeedFinderMaxDelay">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>

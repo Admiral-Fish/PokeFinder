@@ -47,8 +47,8 @@ public:
 
 private:
     Ui::PIDtoIVs *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
-    QMenu *contextMenu = new QMenu();
+    QStandardItemModel *model;
+    QMenu *contextMenu;
     QModelIndex lastIndex;
     QModelIndex targetFrame;
 

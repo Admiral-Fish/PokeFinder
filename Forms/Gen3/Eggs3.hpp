@@ -48,10 +48,10 @@ public:
 private:
     Ui::Eggs3 *ui;
     QVector<Profile3> profiles;
-    Egg3Model *emeraldIVs = new Egg3Model(this, Method::EBred);
-    Egg3Model *emeraldPID = new Egg3Model(this, Method::EBredPID);
-    Egg3Model *rs = new Egg3Model(this, Method::RSBred);
-    Egg3Model *frlg = new Egg3Model(this, Method::FRLGBred);
+    Egg3Model *emeraldIVs;
+    Egg3Model *emeraldPID;
+    Egg3Model *rs;
+    Egg3Model *frlg;
 
     void setupModels();
 

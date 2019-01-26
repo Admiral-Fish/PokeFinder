@@ -34,11 +34,11 @@ Researcher::Researcher(QWidget *parent) :
 Researcher::~Researcher()
 {
     delete ui;
-    delete model;
 }
 
 void Researcher::setupModels()
 {
+    model = new ResearcherModel(this, false);
     ui->tableView->setModel(model);
     resizeHeader();
 
@@ -190,8 +190,8 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     model->setFlag(rng64Bit);
 
     u64 seed = ui->textBoxSeed->text().toULongLong(nullptr, 16);
-    u32 maxFrames = ui->textBoxMaxFrames->text().toUInt();
-    u32 startingFrame = ui->textBoxStartingFrame->text().toUInt();
+    u32 maxFrames = ui->textBoxMaxFrames->getUInt();
+    u32 startingFrame = ui->textBoxStartingFrame->getUInt();
 
     IRNG *rng = nullptr;
     IRNG64 *rng64 = nullptr;
@@ -245,8 +245,8 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         }
         else
         {
-            u32 add = ui->textBoxAdd32Bit->text().toUInt(nullptr, 16);
-            u32 mult = ui->textBoxMult32Bit->text().toUInt(nullptr, 16);
+            u32 add = ui->textBoxAdd32Bit->getUInt();
+            u32 mult = ui->textBoxMult32Bit->getUInt();
             rng = new LCRNG(add, mult, static_cast<u32>(seed), startingFrame - 1);
         }
     }
@@ -271,8 +271,8 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         }
         else
         {
-            u64 add = ui->textBoxAdd64Bit->text().toUInt(nullptr, 16);
-            u64 mult = ui->textBoxMult64Bit->text().toUInt(nullptr, 16);
+            u64 add = ui->textBoxAdd64Bit->getUInt();
+            u64 mult = ui->textBoxMult64Bit->getUInt();
             rng64 = new LCRNG64(add, mult, seed, startingFrame - 1);
         }
     }
@@ -280,8 +280,8 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     {
         u32 status[4] =
         {
-            ui->textBoxStatus0->text().toUInt(nullptr, 16), ui->textBoxStatus1->text().toUInt(nullptr, 16),
-            ui->textBoxStatus2->text().toUInt(nullptr, 16), ui->textBoxStatus3->text().toUInt(nullptr, 16)
+            ui->textBoxStatus0->getUInt(), ui->textBoxStatus1->getUInt(),
+            ui->textBoxStatus2->getUInt(), ui->textBoxStatus3->getUInt()
         };
         rng = new TinyMT(status, startingFrame - 1);
     }

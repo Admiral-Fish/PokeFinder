@@ -47,7 +47,7 @@ public:
 
 private:
     Ui::IDs4 *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
+    QStandardItemModel *model;
 
     void setupModels();
     void updateView(QVector<QList<QStandardItem *>> frames, int progress);

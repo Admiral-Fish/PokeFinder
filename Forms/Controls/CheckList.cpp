@@ -21,7 +21,7 @@
 
 CheckList::CheckList(QWidget *parent) : QComboBox(parent)
 {
-    model = new QStandardItemModel();
+    model = new QStandardItemModel(this);
     setModel(model);
 
     setEditable(true);
@@ -31,11 +31,6 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent)
     connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
     connect(dynamic_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &CheckList::itemPressed);
     connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
-}
-
-CheckList::~CheckList()
-{
-    delete model;
 }
 
 void CheckList::setup()

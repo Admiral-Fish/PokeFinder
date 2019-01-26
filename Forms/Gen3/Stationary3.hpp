@@ -55,11 +55,11 @@ public:
 
 private:
     Ui::Stationary3 *ui;
-    Searcher3Model *s = new Searcher3Model(this, Method::Method1);
-    Stationary3Model *g = new Stationary3Model(this);
+    Searcher3Model *searcherModel;
+    Stationary3Model *generatorModel;
     QVector<Profile3> profiles;
-    QMenu *generatorMenu = new QMenu();
-    QMenu *searcherMenu = new QMenu();
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
     QModelIndex lastIndex;
     QModelIndex targetFrame;
 
