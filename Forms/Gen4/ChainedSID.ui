@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChainedSID</class>
+ <widget class="QMainWindow" name="ChainedSID">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>410</width>
+    <height>470</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>410</width>
+    <height>470</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>410</width>
+    <height>470</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="1" column="0">
+     <widget class="QComboBox" name="comboBoxNature"/>
+    </item>
+    <item row="0" column="1" rowspan="7" colspan="2">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelHP">
+        <property name="text">
+         <string>HP</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="spinBoxHP"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelAtk">
+        <property name="text">
+         <string>Atk</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxAtk"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelDef">
+        <property name="text">
+         <string>Def</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="spinBoxDef"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelSpA">
+        <property name="text">
+         <string>SpA</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSpinBox" name="spinBoxSpA"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelSpD">
+        <property name="text">
+         <string>SpD</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QSpinBox" name="spinBoxSpD"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelSpe">
+        <property name="text">
+         <string>Spe</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QSpinBox" name="spinBoxSpe"/>
+      </item>
+     </layout>
+    </item>
+    <item row="8" column="2">
+     <widget class="QPushButton" name="pushButtonClear">
+      <property name="text">
+       <string>Clear</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="labelGender">
+      <property name="text">
+       <string>Gender</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="labelPossibleResults">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Possible Results: 8192</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="labelAbility">
+      <property name="text">
+       <string>Ability</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="labelTID">
+      <property name="text">
+       <string>TID</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="TextBox" name="textBoxTID"/>
+    </item>
+    <item row="5" column="0">
+     <widget class="QComboBox" name="comboBoxGender"/>
+    </item>
+    <item row="8" column="1">
+     <widget class="QPushButton" name="pushButtonCalculate">
+      <property name="text">
+       <string>Calculate</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0" colspan="3">
+     <widget class="QTableView" name="tableView"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="labelNature">
+      <property name="text">
+       <string>Nature</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QComboBox" name="comboBoxAbility"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/TextBox.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
