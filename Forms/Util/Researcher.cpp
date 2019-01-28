@@ -38,7 +38,7 @@ Researcher::~Researcher()
 
 void Researcher::setupModels()
 {
-    model = new ResearcherModel(this, false);
+    model = new ResearcherModel(ui->tableView, false);
     ui->tableView->setModel(model);
     resizeHeader();
 

@@ -38,9 +38,9 @@ IDs3::~IDs3()
 
 void IDs3::setupModels()
 {
-    xdcolo = new QStandardItemModel(this);
-    frlge = new QStandardItemModel(this);
-    rs = new QStandardItemModel(this);
+    xdcolo = new QStandardItemModel(ui->tableViewXDColo);
+    frlge = new QStandardItemModel(ui->tableViewFRLGE);
+    rs = new QStandardItemModel(ui->tableViewFRLGE);
 
     ui->textBoxFRLGEPID->setValues(InputType::Seed32Bit);
     ui->textBoxFRLGETID->setValues(InputType::TIDSID);
@@ -66,15 +66,12 @@ void IDs3::setupModels()
 
     xdcolo->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
     ui->tableViewXDColo->setModel(xdcolo);
-    ui->tableViewXDColo->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     frlge->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
     ui->tableViewFRLGE->setModel(frlge);
-    ui->tableViewFRLGE->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     rs->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
     ui->tableViewRS->setModel(rs);
-    ui->tableViewRS->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void IDs3::on_pushButtonFRLGESearch_clicked()

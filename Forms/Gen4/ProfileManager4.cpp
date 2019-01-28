@@ -39,7 +39,7 @@ ProfileManager4::~ProfileManager4()
 
 void ProfileManager4::setupModels()
 {
-    model = new Profile4Model(this);
+    model = new Profile4Model(ui->tableView);
     model->setModel(Profile4::loadProfileList());
     ui->tableView->setModel(model);
 }

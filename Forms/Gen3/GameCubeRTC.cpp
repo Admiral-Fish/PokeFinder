@@ -44,8 +44,8 @@ GameCubeRTC::~GameCubeRTC()
 
 void GameCubeRTC::setupModels()
 {
-    model = new QStandardItemModel(this);
-    contextMenu = new QMenu(this);
+    model = new QStandardItemModel(ui->tableView);
+    contextMenu = new QMenu(ui->tableView);
 
     ui->textBoxStartSeed->setValues(InputType::Seed32Bit);
     ui->textBoxTargetSeed->setValues(InputType::Seed32Bit);
@@ -53,7 +53,7 @@ void GameCubeRTC::setupModels()
     ui->textBoxMaxFrame->setValues(InputType::Frame32Bit);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seed"));
-    ui->tableViewGenerator->setModel(model);
+    ui->tableView->setModel(model);
 
     QAction *copySeed = contextMenu->addAction(tr("Copy Seed to Clipboard"));
     connect(copySeed, &QAction::triggered, this, &GameCubeRTC::copySeed);
@@ -88,7 +88,7 @@ void GameCubeRTC::updateTableView(const QList<QStandardItem *> &row)
 
 void GameCubeRTC::copySeed()
 {
-    QApplication::clipboard()->setText(ui->tableViewGenerator->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 2)).toString());
+    QApplication::clipboard()->setText(ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 2)).toString());
 }
 
 void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
@@ -98,8 +98,8 @@ void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint 
         return;
     }
 
-    lastIndex = ui->tableViewGenerator->indexAt(pos);
-    contextMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+    lastIndex = ui->tableView->indexAt(pos);
+    contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
 }
 
 Search::Search(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame)

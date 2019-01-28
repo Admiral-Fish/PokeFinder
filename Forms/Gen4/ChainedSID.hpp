@@ -36,16 +36,15 @@ public:
     explicit ChainedSID(QWidget *parent = nullptr);
     ~ChainedSID() override;
 
-private slots:
-    void on_pushButtonCalculate_clicked();
-
-    void on_pushButtonClear_clicked();
-
 private:
     Ui::ChainedSID *ui;
     QStandardItemModel *model;
 
     void setupModels();
+
+private slots:
+    void on_pushButtonCalculate_clicked();
+    void on_pushButtonClear_clicked();
 
 };
 

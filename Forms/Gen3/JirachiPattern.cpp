@@ -39,7 +39,7 @@ JirachiPattern::~JirachiPattern()
 
 void JirachiPattern::setupModels()
 {
-    model = new QStandardItemModel(this);
+    model = new QStandardItemModel(ui->tableView);
 
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
 

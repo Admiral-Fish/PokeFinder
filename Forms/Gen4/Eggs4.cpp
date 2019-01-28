@@ -70,9 +70,9 @@ void Eggs4::updateProfiles()
 
 void Eggs4::setupModels()
 {
-    generatorModel = new Egg4GeneratorModel(this, Method::DPPtIVs);
-    searcherIVs = new Egg4SearcherModel(this, Method::DPPtIVs);
-    searcherPID = new Egg4SearcherModel(this, Method::Gen4Normal);
+    generatorModel = new Egg4GeneratorModel(ui->tableViewGenerator, Method::DPPtIVs);
+    searcherIVs = new Egg4SearcherModel(ui->tableViewIVs, Method::DPPtIVs);
+    searcherPID = new Egg4SearcherModel(ui->tableViewPID, Method::Gen4Normal);
     searcherMenu = new QMenu(this);
 
     ui->tableViewGenerator->setModel(generatorModel);

@@ -61,14 +61,13 @@ void Eggs3::updateProfiles()
 
 void Eggs3::setupModels()
 {
-    emeraldIVs = new Egg3Model(this, Method::EBred);
-    emeraldPID = new Egg3Model(this, Method::EBredPID);
-    rs = new Egg3Model(this, Method::RSBred);
-    frlg = new Egg3Model(this, Method::FRLGBred);
+    emeraldIVs = new Egg3Model(ui->tableViewEmeraldIVs, Method::EBred);
+    emeraldPID = new Egg3Model(ui->tableViewEmeraldPID, Method::EBredPID);
+    rs = new Egg3Model(ui->tableViewRS, Method::RSBred);
+    frlg = new Egg3Model(ui->tableViewFRLG, Method::FRLGBred);
 
     ui->tableViewEmeraldIVs->setModel(emeraldIVs);
     ui->tableViewEmeraldPID->setModel(emeraldPID);
-
     ui->tableViewRS->setModel(rs);
     ui->tableViewFRLG->setModel(frlg);
 

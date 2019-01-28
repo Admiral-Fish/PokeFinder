@@ -39,11 +39,11 @@ IVtoPID::~IVtoPID()
 
 void IVtoPID::setupModels()
 {
-    ui->textBoxTID->setValues(InputType::TIDSID);
-
-    model = new QStandardItemModel(this);
+    model = new QStandardItemModel(ui->tableView);
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("PID") << tr("Method") << tr("Ability") << "50%" << "12.5%" << "25%" << "75%" << tr("SID"));
     ui->tableView->setModel(model);
+
+    ui->textBoxTID->setValues(InputType::TIDSID);
 }
 
 QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid)

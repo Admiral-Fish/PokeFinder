@@ -57,15 +57,13 @@ SeedToTime3::~SeedToTime3()
 
 void SeedToTime3::setupModels()
 {
-    model = new QStandardItemModel(this);
+    model = new QStandardItemModel(ui->tableView);
 
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
     ui->textBoxYear->setValues(2000, 2037);
 
-    model->setColumnCount(2);
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seconds"));
     ui->tableView->setModel(model);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     QSettings setting;
     if (setting.contains("seed3Year")) ui->textBoxYear->setText(setting.value("seed3Year").toString());

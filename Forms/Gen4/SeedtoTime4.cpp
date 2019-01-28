@@ -73,17 +73,16 @@ SeedtoTime4::~SeedtoTime4()
 
 void SeedtoTime4::setupModels()
 {
-    dppt = new SeedtoTime4Model(this, false);
-    dpptCalibrate = new SeedtoTime4Model(this, true);
-    hgss = new SeedtoTime4Model(this, false, Game::HeartGold);
-    hgssCalibrate = new SeedtoTime4Model(this, true, Game::HeartGold);
+    dppt = new SeedtoTime4Model(ui->tableViewDPPtSearch, false);
+    dpptCalibrate = new SeedtoTime4Model(ui->tableViewDPPtCalibrate, true);
+    hgss = new SeedtoTime4Model(ui->tableViewHGSSSearch, false, Game::HeartGold);
+    hgssCalibrate = new SeedtoTime4Model(ui->tableViewHGSSCalibrate, true, Game::HeartGold);
 
     ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
     ui->textBoxHGSSSeed->setValues(InputType::Seed32Bit);
 
     ui->tableViewDPPtSearch->setModel(dppt);
     ui->tableViewDPPtCalibrate->setModel(dpptCalibrate);
-
     ui->tableViewHGSSSearch->setModel(hgss);
     ui->tableViewHGSSCalibrate->setModel(hgssCalibrate);
 

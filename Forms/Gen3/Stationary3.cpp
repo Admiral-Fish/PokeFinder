@@ -66,8 +66,10 @@ void Stationary3::updateProfiles()
 
 void Stationary3::setupModels()
 {
-    generatorModel = new Stationary3Model(this);
-    searcherModel = new Searcher3Model(this, Method::Method1);
+    generatorModel = new Stationary3Model(ui->tableViewGenerator);
+    searcherModel = new Searcher3Model(ui->tableViewSearcher, Method::Method1);
+    generatorMenu = new QMenu(ui->tableViewGenerator);
+    searcherMenu = new QMenu(ui->tableViewSearcher);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(searcherModel);
@@ -87,9 +89,6 @@ void Stationary3::setupModels()
 
     ui->comboBoxGeneratorHiddenPower->setup();
     ui->comboBoxSearcherHiddenPower->setup();
-
-    generatorMenu = new QMenu(this);
-    searcherMenu = new QMenu(this);
 
     QAction *setTargetFrame = generatorMenu->addAction(tr("Set Target Frame"));
     QAction *jumpToTarget = generatorMenu->addAction(tr("Jump to Target Frame"));

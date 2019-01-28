@@ -75,10 +75,10 @@ void Wild3::updateProfiles()
 
 void Wild3::setupModels()
 {
-    generatorModel = new Wild3Model(this);
-    searcherModel = new Searcher3Model(this, Method::Method1);
-    generatorMenu = new QMenu(this);
-    searcherMenu = new QMenu(this);
+    generatorModel = new Wild3Model(ui->tableViewGenerator);
+    searcherModel = new Searcher3Model(ui->tableViewSearcher, Method::Method1);
+    generatorMenu = new QMenu(ui->tableViewGenerator);
+    searcherMenu = new QMenu(ui->tableViewSearcher);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(searcherModel);

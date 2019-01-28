@@ -39,10 +39,9 @@ ProfileManager3::~ProfileManager3()
 
 void ProfileManager3::setupModels()
 {
-    model = new Profile3Model(this);
+    model = new Profile3Model(ui->tableView);
     model->setModel(Profile3::loadProfileList());
     ui->tableView->setModel(model);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void ProfileManager3::on_pushButtonNew_clicked()

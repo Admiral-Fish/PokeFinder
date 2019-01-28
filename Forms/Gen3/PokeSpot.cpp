@@ -42,7 +42,7 @@ PokeSpot::~PokeSpot()
 
 void PokeSpot::setupModels()
 {
-    model = new PokeSpotModel(this);
+    model = new PokeSpotModel(ui->tableView);
 
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
     ui->textBoxStartingFrame->setValues(InputType::Frame32Bit);
@@ -50,7 +50,6 @@ void PokeSpot::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->setModel(model);
 
     ui->comboBoxNature->setup();

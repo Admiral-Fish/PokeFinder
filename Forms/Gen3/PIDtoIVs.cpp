@@ -40,14 +40,13 @@ PIDtoIVs::~PIDtoIVs()
 
 void PIDtoIVs::setupModels()
 {
-    model = new QStandardItemModel(this);
-    contextMenu = new QMenu(this);
+    model = new QStandardItemModel(ui->tableView);
+    contextMenu = new QMenu(ui->tableView);
 
     ui->textBoxPID->setValues(InputType::Seed32Bit);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("Method") << tr("IVs"));
     ui->tableView->setModel(model);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     QAction *copySeed = contextMenu->addAction(tr("Copy Seed to Clipboard"));
     QAction *moveResults = contextMenu->addAction(tr("Move Result to Stationary Generator"));

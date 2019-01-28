@@ -37,7 +37,7 @@ IDs4::~IDs4()
 
 void IDs4::setupModels()
 {
-    model = new QStandardItemModel(this);
+    model = new QStandardItemModel(ui->tableView);
     ui->tableView->setModel(model);
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
 
