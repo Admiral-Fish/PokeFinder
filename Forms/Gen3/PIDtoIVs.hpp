@@ -49,8 +49,6 @@ private:
     Ui::PIDtoIVs *ui;
     QStandardItemModel *model;
     QMenu *contextMenu;
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
 
     void setupModels();
     void calcFromPID(u32 pid);

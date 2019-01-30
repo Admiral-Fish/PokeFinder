@@ -52,17 +52,19 @@ void PIDtoIVs::setupModels()
     QAction *moveResults = contextMenu->addAction(tr("Move Result to Stationary Generator"));
     QAction *moveIVs = contextMenu->addAction(tr("Move IVs to Stationary Generator"));
 
+    auto data = [ = ](int column) { return ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(), column)); };
     connect(copySeed, &QAction::triggered, this, &PIDtoIVs::copySeed);
     connect(moveResults, &QAction::triggered, this, [ = ]
     {
-        QStringList ivs = ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 2)).toString().split(".");
-        emit moveResultsToStationary(ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 0)).toString(), ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 1)).toString(),
-                                     ivs.at(0).toUShort(), ivs.at(1).toUShort(), ivs.at(2).toUShort(), ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
+        QStringList ivs = data(2).toString().split(".");
+        emit moveResultsToStationary(data(0).toString(), data(1).toString(), ivs.at(0).toUShort(), ivs.at(1).toUShort(),
+                                     ivs.at(2).toUShort(), ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
     });
     connect(moveIVs, &QAction::triggered, this, [ = ]
     {
-        QStringList ivs = ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 2)).toString().split(".");
-        emit moveResultsToStationary("", "", ivs.at(0).toUShort(), ivs.at(1).toUShort(), ivs.at(2).toUShort(), ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
+        QStringList ivs = data(2).toString().split(".");
+        emit moveResultsToStationary("", "", ivs.at(0).toUShort(), ivs.at(1).toUShort(), ivs.at(2).toUShort(),
+                                     ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
     });
 }
 
@@ -280,11 +282,11 @@ void PIDtoIVs::on_tableView_customContextMenuRequested(const QPoint &pos)
         return;
     }
 
-    lastIndex = ui->tableView->indexAt(pos);
     contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
 }
 
 void PIDtoIVs::copySeed()
 {
-    QApplication::clipboard()->setText(ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 0)).toString());
+    QVariant data = ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(), 0));
+    QApplication::clipboard()->setText(data.toString());
 }

@@ -47,8 +47,6 @@ private:
     Ui::GameCubeRTC *ui;
     QStandardItemModel *model;
     QMenu *contextMenu;
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
 
     void setupModels();
 

@@ -88,7 +88,8 @@ void GameCubeRTC::updateTableView(const QList<QStandardItem *> &row)
 
 void GameCubeRTC::copySeed()
 {
-    QApplication::clipboard()->setText(ui->tableView->model()->data(ui->tableView->model()->index(lastIndex.row(), 2)).toString());
+    QVariant data = ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(), 2));
+    QApplication::clipboard()->setText(data.toString());
 }
 
 void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
@@ -98,7 +99,6 @@ void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint 
         return;
     }
 
-    lastIndex = ui->tableView->indexAt(pos);
     contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
 }
 
