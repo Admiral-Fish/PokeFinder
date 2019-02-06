@@ -27,11 +27,16 @@ int main(int argc, char *argv[])
     a.setApplicationName("PokeFinder");
     a.setOrganizationName("PokeFinder Team");
 
+    QString option = argc > 1 ? QString(argv[1]) : QString();
+
     QFile style(":/qdarkstyle/style.qss");
     if (style.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         QTextStream ts(&style);
-        a.setStyleSheet(ts.readAll());
+        if (option != "default")
+        {
+            a.setStyleSheet(ts.readAll());
+        }
         style.close();
     }
 
