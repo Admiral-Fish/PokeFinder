@@ -53,7 +53,7 @@ Profile5::Profile5(QJsonObject data)
     dsType = static_cast<DSType>(data["dsType"].toInt());
 }
 
-Profile5::Profile5() : Profile ()
+Profile5::Profile5() : Profile()
 {
     // Default parameters for White on desmume
     version = Game::White;

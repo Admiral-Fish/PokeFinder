@@ -149,7 +149,8 @@ HEADERS += \
     Core/Objects/Language.hpp \
     Core/Gen5/Nazos.hpp \
     Core/Gen5/Profile5.hpp \
-    Core/Objects/DSType.hpp
+    Core/Objects/DSType.hpp \
+    Core/RNG/SHA1.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -235,4 +236,5 @@ SOURCES += \
     Util/TableUtility.cpp \
     Forms/Controls/EggSettings.cpp \
     Core/Gen5/Profile5.cpp \
-    Core/Gen5/Nazos.cpp
+    Core/Gen5/Nazos.cpp \
+    Core/RNG/SHA1.cpp

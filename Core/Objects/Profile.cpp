@@ -31,7 +31,7 @@ Profile::Profile(const QString &profileName, Game version, u16 tid, u16 sid, Lan
 Profile::Profile()
 {
     profileName = "None";
-    language = Language::Nil;
+    language = Language::English;
     tid = 12345;
     sid = 54321;
 }
