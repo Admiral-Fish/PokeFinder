@@ -305,10 +305,9 @@ void SeedtoTime4::on_pushButtonDPPtSearchFlips_clicked()
         return;
     }
 
-    auto *search = new SearchCoinFlips(dpptCalibrate->getData());
+    QScopedPointer<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrate->getData()));
     if (search->exec() == QDialog::Rejected)
     {
-        delete search;
         return;
     }
 
@@ -327,8 +326,6 @@ void SeedtoTime4::on_pushButtonDPPtSearchFlips_clicked()
 
     ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableViewDPPtCalibrate->setFocus();
-
-    delete search;
 }
 
 void SeedtoTime4::on_pushButtonHGSSSearchCalls_clicked()
@@ -341,10 +338,9 @@ void SeedtoTime4::on_pushButtonHGSSSearchCalls_clicked()
     QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
     QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
-    auto *search = new SearchCalls(hgssCalibrate->getData(), roamer, routes);
+    QScopedPointer<SearchCalls> search(new SearchCalls(hgssCalibrate->getData(), roamer, routes));
     if (search->exec() == QDialog::Rejected)
     {
-        delete search;
         return;
     }
 
@@ -363,8 +359,6 @@ void SeedtoTime4::on_pushButtonHGSSSearchCalls_clicked()
 
     ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableViewHGSSCalibrate->setFocus();
-
-    delete search;
 }
 
 void SeedtoTime4::on_pushButtonHGSSMap_clicked()

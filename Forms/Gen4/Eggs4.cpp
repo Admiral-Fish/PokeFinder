@@ -202,9 +202,8 @@ void Eggs4::on_pushButtonSearchPID_clicked()
     ui->progressBarPID->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
     auto *search = new PIDSearcher(generator, compare, minDelay, maxDelay);
-    auto *timer = new QTimer();
+    auto *timer = new QTimer(search);
 
-    connect(search, &PIDSearcher::finished, timer, &QTimer::deleteLater);
     connect(search, &PIDSearcher::finished, timer, &QTimer::stop);
     connect(search, &PIDSearcher::finished, this, [ = ] { ui->pushButtonSearchPID->setEnabled(true); ui->pushButtonCancelPID->setEnabled(false); });
     connect(search, &PIDSearcher::finished, this, [ = ] { updatePID(search->getResults(), search->currentProgress()); });
@@ -239,9 +238,8 @@ void Eggs4::on_pushButtonSearchIVs_clicked()
     ui->progressBarIVs->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
     auto *search = new IVSearcher(generator, compare, minDelay, maxDelay);
-    auto *timer = new QTimer();
+    auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher::finished, timer, &QTimer::deleteLater);
     connect(search, &IVSearcher::finished, timer, &QTimer::stop);
     connect(search, &IVSearcher::finished, this, [ = ] { ui->pushButtonSearchIVs->setEnabled(true); ui->pushButtonCancelIVs->setEnabled(false); });
     connect(search, &IVSearcher::finished, this, [ = ] { updateIVs(search->getResults(), search->currentProgress()); });

@@ -84,6 +84,10 @@ void Wild4::setupModels()
 
     ui->textBoxSearcherTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherSID->setValues(InputType::TIDSID);
+    ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
+    ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
+    ui->textBoxSearcherMinFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherMaxFrame->setValues(InputType::Frame32Bit);
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
     ui->comboBoxGeneratorLead->addItems(Nature::getNatures());
@@ -283,9 +287,8 @@ void Wild4::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new WildSearcher4(searcher, min, max);
-    auto *timer = new QTimer();
+    auto *timer = new QTimer(search);
 
-    connect(search, &WildSearcher4::finished, timer, &QTimer::deleteLater);
     connect(search, &WildSearcher4::finished, timer, &QTimer::stop);
     connect(search, &WildSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
     connect(search, &WildSearcher4::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });

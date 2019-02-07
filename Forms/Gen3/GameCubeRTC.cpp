@@ -110,7 +110,7 @@ Search::Search(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame)
     this->maxFrame = maxFrame;
     cancel = false;
 
-    connect(this, &QThread::finished, this, &QThread::deleteLater);
+    connect(this, &Search::finished, this, &Search::deleteLater);
 }
 
 void Search::run()

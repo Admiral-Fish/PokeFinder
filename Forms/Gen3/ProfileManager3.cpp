@@ -46,7 +46,7 @@ void ProfileManager3::setupModels()
 
 void ProfileManager3::on_pushButtonNew_clicked()
 {
-    auto *dialog = new ProfileManager3NewEdit();
+    QScopedPointer<ProfileManager3NewEdit> dialog(new ProfileManager3NewEdit);
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile3 profile = dialog->getNewProfile();
@@ -54,7 +54,6 @@ void ProfileManager3::on_pushButtonNew_clicked()
         model->addItem(profile);
         emit updateProfiles();
     }
-    delete dialog;
 }
 
 void ProfileManager3::on_pushButtonEdit_clicked()
@@ -69,7 +68,7 @@ void ProfileManager3::on_pushButtonEdit_clicked()
         return;
     }
 
-    auto *dialog = new ProfileManager3NewEdit(model->getProfile(row));
+    QScopedPointer<ProfileManager3NewEdit> dialog(new ProfileManager3NewEdit(model->getProfile(row)));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile3 profile = dialog->getNewProfile();
@@ -77,7 +76,6 @@ void ProfileManager3::on_pushButtonEdit_clicked()
         model->updateProfile(profile, row);
         emit updateProfiles();
     }
-    delete dialog;
 }
 
 void ProfileManager3::on_pushButtonDelete_clicked()

@@ -201,9 +201,8 @@ void Stationary4::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new StationarySearcher4(searcher, min, max);
-    auto *timer = new QTimer();
+    auto *timer = new QTimer(search);
 
-    connect(search, &StationarySearcher4::finished, timer, &QTimer::deleteLater);
     connect(search, &StationarySearcher4::finished, timer, &QTimer::stop);
     connect(search, &StationarySearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
     connect(search, &StationarySearcher4::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });

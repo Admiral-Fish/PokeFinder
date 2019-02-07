@@ -355,9 +355,8 @@ void Wild3::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new WildSearcher3(searcher, min, max);
-    auto *timer = new QTimer();
+    auto *timer = new QTimer(search);
 
-    connect(search, &WildSearcher3::finished, timer, &QTimer::deleteLater);
     connect(search, &WildSearcher3::finished, timer, &QTimer::stop);
     connect(search, &WildSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
     connect(search, &WildSearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });

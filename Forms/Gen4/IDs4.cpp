@@ -93,9 +93,8 @@ void IDs4::on_pushButtonShinyPIDSearch_clicked()
     ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
     auto *search = new ShinyPIDSearcher(pid, useTID, tid, year, minDelay, maxDelay, infinite);
-    auto *timer = new QTimer();
+    auto *timer = new QTimer(search);
 
-    connect(search, &ShinyPIDSearcher::finished, timer, &QTimer::deleteLater);
     connect(search, &ShinyPIDSearcher::finished, timer, &QTimer::stop);
     connect(search, &ShinyPIDSearcher::finished, this, [ = ] { ui->pushButtonShinyPIDSearch->setEnabled(true); ui->pushButtonShinyPIDCancel->setEnabled(false); });
     connect(search, &ShinyPIDSearcher::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
@@ -132,9 +131,8 @@ void IDs4::on_pushButtonTIDSIDSearch_clicked()
     ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
     auto *search = new TIDSIDSearcher(tid, useSID, searchSID, year, minDelay, maxDelay, infinite);
-    auto *timer = new QTimer();
+    auto *timer = new QTimer(search);
 
-    connect(search, &TIDSIDSearcher::finished, timer, &QTimer::deleteLater);
     connect(search, &TIDSIDSearcher::finished, timer, &QTimer::stop);
     connect(search, &TIDSIDSearcher::finished, this, [ = ] { ui->pushButtonTIDSIDSearch->setEnabled(true); ui->pushButtonTIDSIDCancel->setEnabled(false); });
     connect(search, &TIDSIDSearcher::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
