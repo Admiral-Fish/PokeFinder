@@ -159,28 +159,38 @@ QVector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minu
     QDateTime time = target.getDateTime();
     u32 delay = target.getDelay();
 
-    QVector<DateTime> results;
-    for (int i = minusSecond; i >= 0; i--)
+    QVector<int> secondRange;
+    QVector<int> delayRange;
+
+    for (int i = minusDelay; i > 0; i--)
     {
-        for (int j = minusDelay; j > 0; j--)
-        {
-            QDateTime offset = time.addSecs(-1 * i);
-            DateTime result = DateTime(offset, delay - static_cast<u32>(j), target.getVersion(), target.getInfo());
-            results.push_back(result);
-        }
+        delayRange.append(-i);
+    }
+    for (int i = 0; i <= plusDelay; i++)
+    {
+        delayRange.append(i);
     }
 
-    results.push_back(target);
-
+    for (int i = minusSecond; i > 0; i--)
+    {
+        secondRange.append(-i);
+    }
     for (int i = 0; i <= plusSecond; i++)
     {
-        for (int j = 1; j <= plusDelay; j++)
+        secondRange.append(i);
+    }
+
+    QVector<DateTime> results;
+    for (int i : secondRange)
+    {
+        for (int j : delayRange)
         {
             QDateTime offset = time.addSecs(i);
-            DateTime result = DateTime(offset, delay + static_cast<u32>(j), target.getVersion(), target.getInfo());
-            results.push_back(result);
+            DateTime result = DateTime(offset, delay + j, target.getVersion(), target.getInfo());
+            results.append(result);
         }
     }
+
     return results;
 }
 
