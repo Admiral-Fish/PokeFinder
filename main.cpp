@@ -28,16 +28,15 @@ int main(int argc, char *argv[])
     a.setOrganizationName("PokeFinder Team");
 
     QString option = argc > 1 ? QString(argv[1]) : QString();
-
-    QFile style(":/qdarkstyle/style.qss");
-    if (style.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (option != "default")
     {
-        QTextStream ts(&style);
-        if (option != "default")
+        QFile style(":/qdarkstyle/style.qss");
+        if (style.open(QIODevice::ReadOnly | QIODevice::Text))
         {
+            QTextStream ts(&style);
             a.setStyleSheet(ts.readAll());
+            style.close();
         }
-        style.close();
     }
 
     MainWindow w;
