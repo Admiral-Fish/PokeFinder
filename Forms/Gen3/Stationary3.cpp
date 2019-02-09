@@ -230,7 +230,7 @@ void Stationary3::on_pushButtonSearch_clicked()
     ui->pushButtonCancel->setEnabled(true);
 
     u16 tid = ui->textBoxSearcherTID->getUShort();
-    u16 sid = ui->textBoxSearcherTID->getUShort();
+    u16 sid = ui->textBoxSearcherSID->getUShort();
 
     int genderRatioIndex = ui->comboBoxSearcherGenderRatio->currentIndex();
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
