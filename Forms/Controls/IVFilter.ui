@@ -334,11 +334,17 @@
  </customwidgets>
  <tabstops>
   <tabstop>spinBoxHPMin</tabstop>
+  <tabstop>spinBoxHPMax</tabstop>
   <tabstop>spinBoxAtkMin</tabstop>
+  <tabstop>spinBoxAtkMax</tabstop>
   <tabstop>spinBoxDefMin</tabstop>
+  <tabstop>spinBoxDefMax</tabstop>
   <tabstop>spinBoxSpAMin</tabstop>
+  <tabstop>spinBoxSpAMax</tabstop>
   <tabstop>spinBoxSpDMin</tabstop>
+  <tabstop>spinBoxSpDMax</tabstop>
   <tabstop>spinBoxSpeMin</tabstop>
+  <tabstop>spinBoxSpeMax</tabstop>
  </tabstops>
  <resources/>
  <connections>
