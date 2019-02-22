@@ -310,7 +310,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
                         }
                         break;
                     case Lead::CuteCharm:
-                        if ((nextRNG2 % 3) > 0)
+                        if ((nextRNG % 25) == frame.getNature() && (nextRNG2 % 3) > 0)
                         {
                             frame.setLeadType(Lead::CuteCharm);
                             slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
