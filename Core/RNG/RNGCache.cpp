@@ -40,7 +40,8 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u32 first, u32 second) const
 
     for (u16 i = 0; i < 256; i++, search1 -= k, search2 -= k)
     {
-        if (auto locate = keys.find(search1 >> 16); locate != keys.end())
+        auto locate = keys.find(search1 >> 16);
+        if (locate != keys.end())
         {
             u32 test = first | (i << 8) | locate.value();
             // Verify IV calls line up
@@ -50,7 +51,8 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u32 first, u32 second) const
             }
         }
 
-        if (auto locate = keys.find(search2 >> 16); locate != keys.end())
+        locate = keys.find(search2 >> 16);
+        if (locate != keys.end())
         {
             u32 test = first | (i << 8) | locate.value();
             // Verify IV calls line up
@@ -72,7 +74,8 @@ QVector<u32> RNGCache::recoverLower16BitsPID(u32 first, u32 second) const
 
     for (u16 i = 0; i < 256; i++, search -= k)
     {
-        if (auto locate = keys.find(search >> 16); locate != keys.end())
+        auto locate = keys.find(search >> 16);
+        if (locate != keys.end())
         {
             u32 test = first | (i << 8) | locate.value();
             // Verify PID calls line up
