@@ -67,7 +67,8 @@ QByteArrayList Encounters3::getData() const
     }
 
     QByteArray data;
-    if (QFile file(path); file.open(QIODevice::ReadOnly))
+    QFile file(path);
+    if (file.open(QIODevice::ReadOnly))
     {
         data = file.readAll();
         file.close();
