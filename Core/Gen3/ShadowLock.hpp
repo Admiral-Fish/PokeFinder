@@ -40,7 +40,7 @@ class LockInfo
 
 public:
     LockInfo() = default;
-    LockInfo(u8 nature, u8 genderLower, u8 genderUpper, bool free = false);
+    LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
     bool compare(u32 pid) const;
 
 private:

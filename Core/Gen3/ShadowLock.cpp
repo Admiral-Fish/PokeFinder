@@ -23,12 +23,12 @@
  * a specific gender/nature and these preset
  * values directly impact what spreads are available */
 
-LockInfo::LockInfo(u8 nature, u8 genderLower, u8 genderUpper, bool free)
+LockInfo::LockInfo(u8 nature, u8 genderLower, u8 genderUpper)
 {
     this->nature = nature;
     this->genderLower = genderLower;
     this->genderUpper = genderUpper;
-    this->free = free;
+    free = nature == 255 && genderLower == 255 && genderUpper == 255;
 }
 
 bool LockInfo::compare(u32 pid) const
@@ -422,7 +422,7 @@ void ShadowLock::natureLockSetup(u8 lockNum, Method version)
     {
         if (count != lockNum)
         {
-            offset += data[offset] * 4 + 2;
+            offset += data[offset] * 3 + 2;
             count++;
         }
         else
@@ -431,11 +431,10 @@ void ShadowLock::natureLockSetup(u8 lockNum, Method version)
             u8 size = data.at(offset);
             for (u8 i = 0; i < size; i++)
             {
-                u8 nature = data.at(offset + 2 + i * 4);
-                u8 genderLower = data.at(offset + 3 + i * 4);
-                u8 genderUpper = data.at(offset + 4 + i * 4);
-                bool free = data.at(offset + 5 + i * 4);
-                lockInfo.append(LockInfo(nature, genderLower, genderUpper, free));
+                u8 nature = data.at(offset + 2 + i * 3);
+                u8 genderLower = data.at(offset + 3 + i * 3);
+                u8 genderUpper = data.at(offset + 4 + i * 3);
+                lockInfo.append(LockInfo(nature, genderLower, genderUpper));
             }
             break;
         }
