@@ -415,7 +415,7 @@ void ShadowLock::natureLockSetup(u8 lockNum, Method version)
         file.close();
     }
 
-    QVector<LockInfo> locks;
+    lockInfo.clear();
     u16 offset = 0;
     u8 count = 0;
     while (offset < data.size())
@@ -435,10 +435,9 @@ void ShadowLock::natureLockSetup(u8 lockNum, Method version)
                 u8 genderLower = data.at(offset + 3 + i * 4);
                 u8 genderUpper = data.at(offset + 4 + i * 4);
                 bool free = data.at(offset + 5 + i * 4);
-                locks.append(LockInfo(nature, genderLower, genderUpper, free));
+                lockInfo.append(LockInfo(nature, genderLower, genderUpper, free));
             }
             break;
         }
     }
-    lockInfo = locks;
 }
