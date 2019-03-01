@@ -22,7 +22,7 @@
 
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Frame3.hpp>
-#include <Core/Gen3/NatureLock.hpp>
+#include <Core/Gen3/ShadowLock.hpp>
 #include <Core/Objects/Searcher.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
@@ -42,7 +42,7 @@ private:
     RNGCache cache;
     RNGEuclidean euclidean;
     Frame3 frame = Frame3(0, 0, 0);
-    NatureLock natureLock;
+    ShadowLock shadowLock;
     ShadowType type;
     FrameCompare compare;
     EncounterArea3 encounter;

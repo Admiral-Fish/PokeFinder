@@ -64,7 +64,6 @@ HEADERS += \
     Core/Gen3/Encounters3.hpp \
     Core/Gen3/Frame3.hpp \
     Core/Gen3/Generator3.hpp \
-    Core/Gen3/NatureLock.hpp \
     Core/Gen3/Profile3.hpp \
     Core/Gen3/Searcher3.hpp \
     Core/Gen4/Egg4.hpp \
@@ -148,7 +147,8 @@ HEADERS += \
     Util/TableUtility.hpp \
     Forms/Controls/EggSettings.hpp \
     Core/Objects/Language.hpp \
-    Forms/Gen4/ChainedSID.hpp
+    Forms/Gen4/ChainedSID.hpp \
+    Core/Gen3/ShadowLock.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -156,7 +156,6 @@ SOURCES += \
     Core/Gen3/Encounters3.cpp \
     Core/Gen3/Frame3.cpp \
     Core/Gen3/Generator3.cpp \
-    Core/Gen3/NatureLock.cpp \
     Core/Gen3/Profile3.cpp \
     Core/Gen3/Searcher3.cpp \
     Core/Gen4/Egg4.cpp \
@@ -233,4 +232,5 @@ SOURCES += \
     main.cpp \
     Util/TableUtility.cpp \
     Forms/Controls/EggSettings.cpp \
-    Forms/Gen4/ChainedSID.cpp
+    Forms/Gen4/ChainedSID.cpp \
+    Core/Gen3/ShadowLock.cpp
