@@ -17,11 +17,10 @@ install:
     - sh: source /opt/qt5*/bin/qt5*-env.sh
     
 build_script:
+    - qmake PokeFinder.pro
     # Windows
-    - cmd: qmake PokeFinder.pro
     - cmd: jom -j %NUMBER_OF_PROCESSORS%
     # Linux
-    - sh: qmake
     - sh: make -j $(nproc)
     
 after_build:
