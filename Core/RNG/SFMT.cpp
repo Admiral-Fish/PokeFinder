@@ -95,8 +95,6 @@ void SFMT::initialize(u32 seed)
     }
 
     periodCertificaion();
-    shuffle();
-    index = 0;
 }
 
 void SFMT::periodCertificaion()
