@@ -380,91 +380,12 @@ void Stationary3::seedToTime()
 
 void Stationary3::outputToTxt()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to TXT"), "", tr("Text File (*.txt);;All Files (*)"));
-
-    if (fileName.isEmpty())
-    {
-        return;
-    }
-
-    QFile file(fileName);
-    if (file.open(QIODevice::WriteOnly))
-    {
-        QString textData = "";
-        int rows = generatorModel->rowCount();
-        int columns = generatorModel->columnCount();
-
-        for (int i = 0; i < columns; i++)
-        {
-            textData += generatorModel->headerData(i, Qt::Horizontal, 0).toString();
-            textData += i == 1 || i == 11 ? "\t\t" : "\t";
-        }
-
-        textData += "\r\n";
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                textData += (generatorModel->data(generatorModel->index(i, j), 0).toString() != "" ? generatorModel->data(generatorModel->index(i, j), 0).toString() + "\t" : "-\t");
-                if (j == 11 && generatorModel->data(generatorModel->index(i, j), 0).toString().length() < 8)
-                {
-                    textData += "\t";
-                }
-            }
-            textData += "\r\n";             // (optional: for new line segmentation)
-        }
-
-        QTextStream out(&file);
-        out << textData;
-        file.close();
-    }
+    Utilities::outputModelTXT(generatorModel);
 }
 
 void Stationary3::outputToCSV()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to CSV"), "", tr("CSV File (*.csv);;All Files (*)"));
-
-    if (fileName.isEmpty())
-    {
-        return;
-    }
-
-    QFile file(fileName);
-    if (file.open(QIODevice::WriteOnly))
-    {
-        QString textData = "";
-        int rows = generatorModel->rowCount();
-        int columns = generatorModel->columnCount();
-
-        for (int i = 0; i < columns; i++)
-        {
-            textData += generatorModel->headerData(i, Qt::Horizontal, 0).toString();
-            if (i != columns - 1)
-            {
-                textData += ", ";
-            }
-        }
-
-        textData += "\n";
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                textData += (generatorModel->data(generatorModel->index(i, j), 0).toString() != "" ? generatorModel->data(generatorModel->index(i, j), 0).toString() + "\t" : "-\t");
-                if (j != columns - 1)
-                {
-                    textData += ", ";
-                }
-            }
-            textData += "\n";             // (optional: for new line segmentation)
-        }
-
-        QTextStream out(&file);
-        out << textData;
-        file.close();
-    }
+    Utilities::outputModelCSV(generatorModel);
 }
 
 void Stationary3::copySeedToClipboard()
