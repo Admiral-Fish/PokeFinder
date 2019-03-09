@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     checkProfileJson();
     setupLanguage();
+    setupStyle();
     QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
 }
 
@@ -77,6 +78,32 @@ void MainWindow::setupLanguage()
         QApplication::installTranslator(&translator);
     }
     ui->retranslateUi(this);
+}
+
+void MainWindow::setupStyle()
+{
+    styleGroup = new QActionGroup(ui->menuStyle);
+    styleGroup->setExclusive(true);
+    connect(styleGroup, &QActionGroup::triggered, this, &MainWindow::slotStyleChanged);
+
+    QSettings setting;
+    QString currStyle = setting.value("style", "light").toString();
+
+    QStringList styles = { "light", "dark" };
+    for (int i = 0; i < styles.size(); i++)
+    {
+        QString style = styles[i];
+
+        auto *action = ui->menuStyle->actions()[i];
+        action->setData(style);
+
+        if (currStyle == style)
+        {
+            action->setChecked(true);
+        }
+
+        styleGroup->addAction(action);
+    }
 }
 
 void MainWindow::checkProfileJson()
@@ -132,6 +159,27 @@ void MainWindow::slotLanguageChanged(QAction *action)
             setting.setValue("locale", lang);
 
             QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
+            if (message.exec() == QMessageBox::Yes)
+            {
+                QProcess::startDetached(QApplication::applicationFilePath());
+                QApplication::quit();
+            }
+        }
+    }
+}
+
+void MainWindow::slotStyleChanged(QAction *action)
+{
+    if (action)
+    {
+        QString style = action->data().toString();
+
+        QSettings setting;
+        if (setting.value("style", "light") != style)
+        {
+            setting.setValue("style", style);
+
+            QMessageBox message(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
             if (message.exec() == QMessageBox::Yes)
             {
                 QProcess::startDetached(QApplication::applicationFilePath());

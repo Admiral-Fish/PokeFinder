@@ -60,6 +60,7 @@ private:
     Ui::MainWindow *ui;
     QTranslator translator;
     QActionGroup *langGroup;
+    QActionGroup *styleGroup;
     const QString VERSION = "v2.2.2";
 
     Stationary3 *stationary3 = nullptr;
@@ -72,11 +73,13 @@ private:
     IDs4 *ids4 = nullptr;
 
     void setupLanguage();
+    void setupStyle();
     void checkProfileJson();
     void checkUpdates();
 
 private slots:
     void slotLanguageChanged(QAction *action);
+    void slotStyleChanged(QAction *action);
     void updateProfiles(int num);
     void on_pushButtonStationary3_clicked();
     void on_pushButtonWild3_clicked();

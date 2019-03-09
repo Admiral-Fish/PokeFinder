@@ -27,15 +27,17 @@ int main(int argc, char *argv[])
     a.setApplicationName("PokeFinder");
     a.setOrganizationName("PokeFinder Team");
 
-    QString option = argc > 1 ? QString(argv[1]) : QString();
-    if (option != "default")
+    QSettings setting;
+    QString style = setting.value("style", "light").toString();
+
+    if (style == "dark")
     {
-        QFile style(":/qdarkstyle/style.qss");
-        if (style.open(QIODevice::ReadOnly | QIODevice::Text))
+        QFile file(":/qdarkstyle/style.qss");
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            QTextStream ts(&style);
+            QTextStream ts(&file);
             a.setStyleSheet(ts.readAll());
-            style.close();
+            file.close();
         }
     }
 
