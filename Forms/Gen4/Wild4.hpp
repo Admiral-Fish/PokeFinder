@@ -58,6 +58,7 @@ private:
     QVector<Profile4> profiles;
     Searcher4Model *searcherModel;
     Wild4Model *generatorModel;
+    QMenu *generatorMenu;
     QMenu *searcherMenu;
     QVector<EncounterArea4> encounterGenerator;
     QVector<EncounterArea4> encounterSearcher;
@@ -84,6 +85,7 @@ private slots:
     void on_comboBoxGeneratorTime_currentIndexChanged(int index);
     void on_comboBoxSearcherTime_currentIndexChanged(int index);
     void seedToTime();
+    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void on_pushButtonProfileManager_clicked();
 

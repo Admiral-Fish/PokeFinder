@@ -69,6 +69,7 @@ void Stationary4::setupModels()
 {
     generatorModel = new Stationary4Model(ui->tableViewGenerator, Method::Method1);
     searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1);
+    generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 
     ui->tableViewGenerator->setModel(generatorModel);
@@ -102,8 +103,19 @@ void Stationary4::setupModels()
     ui->comboBoxGeneratorHiddenPower->setup();
     ui->comboBoxSearcherHiddenPower->setup();
 
+    QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
+
+    connect(outputTXTGenerator, &QAction::triggered, [ = ]() { Utilities::outputModelTXT(generatorModel); });
+    connect(outputCSVGenerator, &QAction::triggered, [ = ]() { Utilities::outputModelCSV(generatorModel); });
+
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
+    QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
+
     connect(seedToTime, &QAction::triggered, this, &Stationary4::seedToTime);
+    connect(outputTXTSearcher, &QAction::triggered, [ = ]() { Utilities::outputModelTXT(searcherModel); });
+    connect(outputCSVSearcher, &QAction::triggered, [ = ]() { Utilities::outputModelCSV(searcherModel); });
 
     QSettings setting;
     if (setting.contains("stationary4MinDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("stationary4MinDelay").toString());
@@ -275,6 +287,16 @@ void Stationary4::seedToTime()
     auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(), profiles[ui->comboBoxProfiles->currentIndex()]);
     time->show();
     time->raise();
+}
+
+void Stationary4::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+{
+    if (generatorModel->rowCount() == 0)
+    {
+        return;
+    }
+
+    generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
 }
 
 void Stationary4::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
