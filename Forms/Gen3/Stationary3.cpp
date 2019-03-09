@@ -109,8 +109,8 @@ void Stationary3::setupModels()
     connect(centerTo5Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(300); });
     connect(centerTo10Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(600); });
     connect(centerTo1Minute, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(3600); });
-    connect(outputToTxt, &QAction::triggered, this, &Stationary3::outputToTxt);
-    connect(outputToCSV, &QAction::triggered, this, &Stationary3::outputToCSV);
+    connect(outputToTxt, &QAction::triggered, this, [ = ]() { Utilities::outputModelTXT(generatorModel); });
+    connect(outputToCSV, &QAction::triggered, this, [ = ]() { Utilities::outputModelCSV(generatorModel); });
 
     QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
@@ -376,16 +376,6 @@ void Stationary3::seedToTime()
     auto *seedToTime = new SeedToTime3(seed);
     seedToTime->show();
     seedToTime->raise();
-}
-
-void Stationary3::outputToTxt()
-{
-    Utilities::outputModelTXT(generatorModel);
-}
-
-void Stationary3::outputToCSV()
-{
-    Utilities::outputModelCSV(generatorModel);
 }
 
 void Stationary3::copySeedToClipboard()

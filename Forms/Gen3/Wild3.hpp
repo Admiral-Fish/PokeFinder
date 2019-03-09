@@ -84,8 +84,6 @@ private slots:
     void jumpToTargetGenerator();
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void seedToTime();
-    void outputToTxt();
-    void outputToCSV();
     void copySeedToClipboard();
     void on_pushButtonGeneratorLead_clicked();
     void on_comboBoxGeneratorEncounter_currentIndexChanged(int index);

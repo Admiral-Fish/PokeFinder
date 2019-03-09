@@ -153,8 +153,8 @@ void Wild3::setupModels()
     connect(centerTo5Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(300); });
     connect(centerTo10Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(600); });
     connect(centerTo1Minute, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(3600); });
-    connect(outputToTxt, &QAction::triggered, this, &Wild3::outputToTxt);
-    connect(outputToCSV, &QAction::triggered, this, &Wild3::outputToCSV);
+    connect(outputToTxt, &QAction::triggered, this, [ = ]() { Utilities::outputModelTXT(generatorModel); });
+    connect(outputToCSV, &QAction::triggered, this, [ = ]() { Utilities::outputModelCSV(generatorModel); });
 
     QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
@@ -426,16 +426,6 @@ void Wild3::seedToTime()
     auto *seedToTime = new SeedToTime3(seed);
     seedToTime->show();
     seedToTime->raise();
-}
-
-void Wild3::outputToTxt()
-{
-    Utilities::outputModelTXT(generatorModel);
-}
-
-void Wild3::outputToCSV()
-{
-    Utilities::outputModelCSV(generatorModel);
 }
 
 void Wild3::copySeedToClipboard()

@@ -81,8 +81,6 @@ private slots:
     void jumpToTargetGenerator();
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void seedToTime();
-    void outputToTxt();
-    void outputToCSV();
     void copySeedToClipboard();
     void on_pushButtonProfileManager_clicked();
 
