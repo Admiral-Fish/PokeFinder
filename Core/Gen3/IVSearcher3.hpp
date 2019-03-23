@@ -17,40 +17,36 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGER3_HPP
-#define PROFILEMANAGER3_HPP
+#ifndef IVSEARCHER3_HPP
+#define IVSEARCHER3_HPP
 
-#include <QWidget>
-#include <Forms/Gen3/ProfileManager3NewEdit.hpp>
-#include <Models/Gen3/Profile3Model.hpp>
+#include <QMutex>
+#include <QThread>
+#include <Core/Gen3/Searcher3.hpp>
 
-namespace Ui
-{
-    class ProfileManager3;
-}
-
-class ProfileManager3 : public QWidget
+class IVSearcher3 : public QThread
 {
     Q_OBJECT
 
-signals:
-    void updateProfiles();
-
 public:
-    explicit ProfileManager3(QWidget *parent = nullptr);
-    ~ProfileManager3() override;
+    IVSearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max);
+    void run() override;
+    int currentProgress() const;
+    QVector<Frame3> getResults();
+
+public slots:
+    void cancelSearch();
 
 private:
-    Ui::ProfileManager3 *ui;
-    Profile3Model *model;
+    Searcher3 searcher;
+    QVector<u8> min;
+    QVector<u8> max;
 
-    void setupModels();
-
-private slots:
-    void on_pushButtonNew_clicked();
-    void on_pushButtonEdit_clicked();
-    void on_pushButtonDelete_clicked();
+    QMutex mutex;
+    QVector<Frame3> results;
+    bool cancel;
+    int progress;
 
 };
 
-#endif // PROFILEMANAGER3_HPP
+#endif // IVSEARCHER3_HPP

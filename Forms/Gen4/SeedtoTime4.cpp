@@ -21,7 +21,7 @@
 #include "ui_SeedtoTime4.h"
 
 SeedtoTime4::SeedtoTime4(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::SeedtoTime4)
 {
     ui->setupUi(this);
@@ -32,7 +32,7 @@ SeedtoTime4::SeedtoTime4(QWidget *parent) :
 }
 
 SeedtoTime4::SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::SeedtoTime4)
 {
     ui->setupUi(this);

@@ -20,8 +20,8 @@
 #ifndef IVTOPIDHPP
 #define IVTOPIDHPP
 
-#include <QMainWindow>
 #include <QStandardItemModel>
+#include <QWidget>
 #include <Core/Objects/Nature.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
@@ -31,7 +31,7 @@ namespace Ui
     class IVtoPID;
 }
 
-class IVtoPID : public QMainWindow
+class IVtoPID : public QWidget
 {
     Q_OBJECT
 

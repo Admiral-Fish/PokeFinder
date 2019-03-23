@@ -21,7 +21,7 @@
 #include "ui_Wild4.h"
 
 Wild4::Wild4(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::Wild4)
 {
     ui->setupUi(this);
@@ -298,14 +298,14 @@ void Wild4::on_pushButtonSearch_clicked()
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(maxProgress);
 
-    auto *search = new WildSearcher4(searcher, min, max);
+    auto *search = new IVSearcher4(searcher, min, max);
     auto *timer = new QTimer(search);
 
-    connect(search, &WildSearcher4::finished, timer, &QTimer::stop);
-    connect(search, &WildSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &WildSearcher4::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher4::finished, timer, &QTimer::stop);
+    connect(search, &IVSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+    connect(search, &IVSearcher4::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
     connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &WildSearcher4::cancelSearch);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher4::cancelSearch);
 
     search->start();
     timer->start(1000);
@@ -582,66 +582,4 @@ void Wild4::on_pushButtonProfileManager_clicked()
     auto *manager = new ProfileManager4();
     connect(manager, &ProfileManager4::updateProfiles, this, &Wild4::refreshProfiles);
     manager->show();
-}
-
-
-WildSearcher4::WildSearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max)
-{
-    this->searcher = searcher;
-    this->min = min;
-    this->max = max;
-    cancel = false;
-    progress = 0;
-
-    connect(this, &WildSearcher4::finished, this, &WildSearcher4::deleteLater);
-}
-
-void WildSearcher4::run()
-{
-    for (u8 a = min[0]; a <= max[0]; a++)
-    {
-        for (u8 b = min[1]; b <= max[1]; b++)
-        {
-            for (u8 c = min[2]; c <= max[2]; c++)
-            {
-                for (u8 d = min[3]; d <= max[3]; d++)
-                {
-                    for (u8 e = min[4]; e <= max[4]; e++)
-                    {
-                        for (u8 f = min[5]; f <= max[5]; f++)
-                        {
-                            if (cancel)
-                            {
-                                return;
-                            }
-
-                            auto frames = searcher.search(a, b, c, d, e, f);
-                            progress++;
-
-                            QMutexLocker locker(&mutex);
-                            results.append(frames);
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-int WildSearcher4::currentProgress() const
-{
-    return progress;
-}
-
-QVector<Frame4> WildSearcher4::getResults()
-{
-    QMutexLocker locker(&mutex);
-    auto data(results);
-    results.clear();
-    return data;
-}
-
-void WildSearcher4::cancelSearch()
-{
-    cancel = true;
 }

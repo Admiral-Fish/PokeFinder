@@ -22,14 +22,12 @@
 
 #include <QClipboard>
 #include <QFileDialog>
-#include <QMainWindow>
 #include <QMenu>
-#include <QMutex>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 #include <Core/Gen3/Generator3.hpp>
-#include <Core/Gen3/Searcher3.hpp>
+#include <Core/Gen3/IVSearcher3.hpp>
 #include <Core/Translator.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
@@ -41,7 +39,7 @@ namespace Ui
     class Stationary3;
 }
 
-class Stationary3 : public QMainWindow
+class Stationary3 : public QWidget
 {
     Q_OBJECT
 
@@ -83,31 +81,6 @@ private slots:
     void seedToTime();
     void copySeedToClipboard();
     void on_pushButtonProfileManager_clicked();
-
-};
-
-class StationarySearcher3 : public QThread
-{
-    Q_OBJECT
-
-public:
-    StationarySearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max);
-    void run() override;
-    int currentProgress() const;
-    QVector<Frame3> getResults();
-
-public slots:
-    void cancelSearch();
-
-private:
-    Searcher3 searcher;
-    QVector<u8> min;
-    QVector<u8> max;
-
-    QMutex mutex;
-    QVector<Frame3> results;
-    bool cancel;
-    int progress;
 
 };
 

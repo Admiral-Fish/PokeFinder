@@ -21,7 +21,7 @@
 #include "ui_PokeSpot.h"
 
 PokeSpot::PokeSpot(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::PokeSpot)
 {
     ui->setupUi(this);

@@ -20,15 +20,15 @@
 #ifndef CHAINEDSID_HPP
 #define CHAINEDSID_HPP
 
-#include <QMainWindow>
 #include <QStandardItemModel>
+#include <QWidget>
 
 namespace Ui
 {
     class ChainedSID;
 }
 
-class ChainedSID : public QMainWindow
+class ChainedSID : public QWidget
 {
     Q_OBJECT
 

@@ -20,7 +20,6 @@
 #ifndef SEEDTOTIME4_HPP
 #define SEEDTOTIME4_HPP
 
-#include <QMainWindow>
 #include <QMessageBox>
 #include <QSettings>
 #include <Core/Gen4/Profile4.hpp>
@@ -35,7 +34,7 @@ namespace Ui
     class SeedtoTime4;
 }
 
-class SeedtoTime4 : public QMainWindow
+class SeedtoTime4 : public QWidget
 {
     Q_OBJECT
 

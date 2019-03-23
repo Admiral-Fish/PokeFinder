@@ -21,7 +21,7 @@
 #include "ui_Eggs3.h"
 
 Eggs3::Eggs3(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::Eggs3)
 {
     ui->setupUi(this);

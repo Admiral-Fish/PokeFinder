@@ -21,7 +21,7 @@
 #include "ui_ChainedSID.h"
 
 ChainedSID::ChainedSID(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::ChainedSID)
 {
     ui->setupUi(this);

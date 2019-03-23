@@ -20,7 +20,6 @@
 #ifndef WILD4_HPP
 #define WILD4_HPP
 
-#include <QMainWindow>
 #include <QMenu>
 #include <QMutex>
 #include <QFileDialog>
@@ -29,7 +28,7 @@
 #include <QTimer>
 #include <Core/Gen4/Encounters4.hpp>
 #include <Core/Gen4/Generator4.hpp>
-#include <Core/Gen4/Searcher4.hpp>
+#include <Core/Gen4/IVSearcher4.hpp>
 #include <Core/Translator.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
@@ -41,7 +40,7 @@ namespace Ui
     class Wild4;
 }
 
-class Wild4 : public QMainWindow
+class Wild4 : public QWidget
 {
     Q_OBJECT
 
@@ -88,31 +87,6 @@ private slots:
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void on_pushButtonProfileManager_clicked();
-
-};
-
-class WildSearcher4 : public QThread
-{
-    Q_OBJECT
-
-public:
-    WildSearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max);
-    void run() override;
-    int currentProgress() const;
-    QVector<Frame4> getResults();
-
-public slots:
-    void cancelSearch();
-
-private:
-    Searcher4 searcher;
-    QVector<u8> min;
-    QVector<u8> max;
-
-    QMutex mutex;
-    QVector<Frame4> results;
-    bool cancel;
-    int progress;
 
 };
 

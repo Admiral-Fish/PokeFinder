@@ -233,7 +233,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        PokeRNGR rng(val, frameType == Method::Method2 ? 1 : 0);
+        PokeRNGR rng(val, frameType == Method::MethodH2 ? 1 : 0);
         frame.setPID(rng.nextUShort(), rng.nextUShort());
         u32 seed = rng.nextUInt();
 

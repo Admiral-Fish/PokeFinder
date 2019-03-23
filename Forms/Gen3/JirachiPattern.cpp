@@ -21,7 +21,7 @@
 #include "ui_JirachiPattern.h"
 
 JirachiPattern::JirachiPattern(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::JirachiPattern)
 {
     ui->setupUi(this);

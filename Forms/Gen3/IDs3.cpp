@@ -21,7 +21,7 @@
 #include "ui_IDs3.h"
 
 IDs3::IDs3(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::IDs3)
 {
     ui->setupUi(this);

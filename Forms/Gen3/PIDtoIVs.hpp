@@ -21,7 +21,6 @@
 #define PIDTOIVS_HPP
 
 #include <QClipboard>
-#include <QMainWindow>
 #include <QMenu>
 #include <QStandardItemModel>
 #include <Core/Objects/Method.hpp>
@@ -34,7 +33,7 @@ namespace Ui
     class PIDtoIVs;
 }
 
-class PIDtoIVs : public QMainWindow
+class PIDtoIVs : public QWidget
 {
     Q_OBJECT
 

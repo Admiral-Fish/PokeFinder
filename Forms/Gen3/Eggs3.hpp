@@ -20,7 +20,6 @@
 #ifndef EGGS3_HPP
 #define EGGS3_HPP
 
-#include <QMainWindow>
 #include <QSettings>
 #include <Core/Gen3/Egg3.hpp>
 #include <Core/Gen3/Frame3.hpp>
@@ -33,7 +32,7 @@ namespace Ui
     class Eggs3;
 }
 
-class Eggs3 : public QMainWindow
+class Eggs3 : public QWidget
 {
     Q_OBJECT
 

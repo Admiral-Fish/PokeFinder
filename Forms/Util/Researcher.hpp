@@ -20,7 +20,6 @@
 #ifndef RESEARCHER_HPP
 #define RESEARCHER_HPP
 
-#include <QMainWindow>
 #include <QMessageBox>
 #include <Models/ResearcherModel.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -38,7 +37,7 @@ namespace Ui
     class Researcher;
 }
 
-class Researcher : public QMainWindow
+class Researcher : public QWidget
 {
     Q_OBJECT
 

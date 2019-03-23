@@ -21,7 +21,7 @@
 #include "ui_IDs4.h"
 
 IDs4::IDs4(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::IDs4)
 {
     ui->setupUi(this);

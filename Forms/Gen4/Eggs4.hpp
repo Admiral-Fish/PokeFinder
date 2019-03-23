@@ -20,7 +20,6 @@
 #ifndef EGGS4_HPP
 #define EGGS4_HPP
 
-#include <QMainWindow>
 #include <QMenu>
 #include <QMutex>
 #include <QSettings>
@@ -36,7 +35,7 @@ namespace Ui
     class Eggs4;
 }
 
-class Eggs4 : public QMainWindow
+class Eggs4 : public QWidget
 {
     Q_OBJECT
 

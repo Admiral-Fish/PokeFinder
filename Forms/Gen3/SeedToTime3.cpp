@@ -21,7 +21,7 @@
 #include "ui_SeedToTime3.h"
 
 SeedToTime3::SeedToTime3(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::SeedToTime3)
 {
     ui->setupUi(this);
@@ -33,7 +33,7 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
 }
 
 SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::SeedToTime3)
 {
     ui->setupUi(this);

@@ -21,7 +21,7 @@
 #include "ui_ProfileManager4.h"
 
 ProfileManager4::ProfileManager4(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::ProfileManager4)
 {
     ui->setupUi(this);

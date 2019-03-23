@@ -21,7 +21,7 @@
 #include "ui_IVtoPID.h"
 
 IVtoPID::IVtoPID(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::IVtoPID)
 {
     ui->setupUi(this);

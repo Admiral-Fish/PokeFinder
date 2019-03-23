@@ -21,7 +21,7 @@
 #include "ui_PIDtoIVs.h"
 
 PIDtoIVs::PIDtoIVs(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::PIDtoIVs)
 {
     ui->setupUi(this);

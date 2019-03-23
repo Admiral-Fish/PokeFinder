@@ -20,7 +20,6 @@
 #ifndef IDS3_HPP
 #define IDS3_HPP
 
-#include <QMainWindow>
 #include <QStandardItemModel>
 #include <Core/Objects/Utilities.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -30,7 +29,7 @@ namespace Ui
     class IDs3;
 }
 
-class IDs3 : public QMainWindow
+class IDs3 : public QWidget
 {
     Q_OBJECT
 

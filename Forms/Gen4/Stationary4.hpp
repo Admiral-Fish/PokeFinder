@@ -20,7 +20,6 @@
 #ifndef STATIONARY4_HPP
 #define STATIONARY4_HPP
 
-#include <QMainWindow>
 #include <QMenu>
 #include <QMutex>
 #include <QFileDialog>
@@ -28,7 +27,7 @@
 #include <QThread>
 #include <QTimer>
 #include <Core/Gen4/Generator4.hpp>
-#include <Core/Gen4/Searcher4.hpp>
+#include <Core/Gen4/IVSearcher4.hpp>
 #include <Core/Translator.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
@@ -40,7 +39,7 @@ namespace Ui
     class Stationary4;
 }
 
-class Stationary4 : public QMainWindow
+class Stationary4 : public QWidget
 {
     Q_OBJECT
 

@@ -21,7 +21,7 @@
 #include "ui_GameCubeRTC.h"
 
 GameCubeRTC::GameCubeRTC(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::GameCubeRTC)
 {
     ui->setupUi(this);

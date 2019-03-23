@@ -20,7 +20,6 @@
 #ifndef IDS4_HPP
 #define IDS4_HPP
 
-#include <QMainWindow>
 #include <QMessageBox>
 #include <QMutex>
 #include <QStandardItemModel>
@@ -34,7 +33,7 @@ namespace Ui
     class IDs4;
 }
 
-class IDs4 : public QMainWindow
+class IDs4 : public QWidget
 {
     Q_OBJECT
 

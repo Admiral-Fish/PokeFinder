@@ -21,7 +21,7 @@
 #include "ui_Wild3.h"
 
 Wild3::Wild3(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::Wild3)
 {
     ui->setupUi(this);
@@ -358,14 +358,14 @@ void Wild3::on_pushButtonSearch_clicked()
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(maxProgress);
 
-    auto *search = new WildSearcher3(searcher, min, max);
+    auto *search = new IVSearcher3(searcher, min, max);
     auto *timer = new QTimer(search);
 
-    connect(search, &WildSearcher3::finished, timer, &QTimer::stop);
-    connect(search, &WildSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &WildSearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher3::finished, timer, &QTimer::stop);
+    connect(search, &IVSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+    connect(search, &IVSearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
     connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &WildSearcher3::cancelSearch);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher3::cancelSearch);
 
     search->start();
     timer->start(1000);
@@ -577,66 +577,4 @@ void Wild3::on_pushButtonProfileManager_clicked()
     auto *manager = new ProfileManager3();
     connect(manager, &ProfileManager3::updateProfiles, this, &Wild3::refreshProfiles);
     manager->show();
-}
-
-
-WildSearcher3::WildSearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max)
-{
-    this->searcher = searcher;
-    this->min = min;
-    this->max = max;
-    cancel = false;
-    progress = 0;
-
-    connect(this, &WildSearcher3::finished, this, &WildSearcher3::deleteLater);
-}
-
-void WildSearcher3::run()
-{
-    for (u8 a = min[0]; a <= max[0]; a++)
-    {
-        for (u8 b = min[1]; b <= max[1]; b++)
-        {
-            for (u8 c = min[2]; c <= max[2]; c++)
-            {
-                for (u8 d = min[3]; d <= max[3]; d++)
-                {
-                    for (u8 e = min[4]; e <= max[4]; e++)
-                    {
-                        for (u8 f = min[5]; f <= max[5]; f++)
-                        {
-                            if (cancel)
-                            {
-                                return;
-                            }
-
-                            auto frames = searcher.search(a, b, c, d, e, f);
-                            progress++;
-
-                            QMutexLocker locker(&mutex);
-                            results.append(frames);
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-int WildSearcher3::currentProgress() const
-{
-    return progress;
-}
-
-QVector<Frame3> WildSearcher3::getResults()
-{
-    QMutexLocker locker(&mutex);
-    auto data(results);
-    results.clear();
-    return data;
-}
-
-void WildSearcher3::cancelSearch()
-{
-    cancel = true;
 }

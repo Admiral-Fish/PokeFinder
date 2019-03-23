@@ -21,7 +21,7 @@
 #include "ui_Researcher.h"
 
 Researcher::Researcher(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::Researcher)
 {
     ui->setupUi(this);

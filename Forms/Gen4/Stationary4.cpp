@@ -21,7 +21,7 @@
 #include "ui_Stationary4.h"
 
 Stationary4::Stationary4(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::Stationary4)
 {
     ui->setupUi(this);
@@ -212,14 +212,14 @@ void Stationary4::on_pushButtonSearch_clicked()
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(maxProgress);
 
-    auto *search = new StationarySearcher4(searcher, min, max);
+    auto *search = new IVSearcher4(searcher, min, max);
     auto *timer = new QTimer(search);
 
-    connect(search, &StationarySearcher4::finished, timer, &QTimer::stop);
-    connect(search, &StationarySearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &StationarySearcher4::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher4::finished, timer, &QTimer::stop);
+    connect(search, &IVSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+    connect(search, &IVSearcher4::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
     connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &StationarySearcher4::cancelSearch);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher4::cancelSearch);
 
     search->start();
     timer->start(1000);
