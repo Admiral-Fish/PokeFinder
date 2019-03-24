@@ -138,6 +138,7 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>textBoxSeed</tabstop>
   <tabstop>textBoxYear</tabstop>
   <tabstop>pushButtonFind</tabstop>
   <tabstop>tableView</tabstop>

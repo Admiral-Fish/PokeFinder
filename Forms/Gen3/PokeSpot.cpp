@@ -52,7 +52,7 @@ void PokeSpot::setupModels()
 
     ui->tableView->setModel(model);
 
-    ui->comboBoxNature->setup();
+    ui->comboBoxNature->setup(Nature::getNatures());
     ui->comboBoxSpotType->setup();
 
     QSettings setting;

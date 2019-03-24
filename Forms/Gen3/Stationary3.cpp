@@ -84,11 +84,11 @@ void Stationary3::setupModels()
     ui->textBoxSearcherTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxGeneratorNature->setup();
-    ui->comboBoxSearcherNature->setup();
+    ui->comboBoxGeneratorNature->setup(Nature::getNatures());
+    ui->comboBoxSearcherNature->setup(Nature::getNatures());
 
-    ui->comboBoxGeneratorHiddenPower->setup();
-    ui->comboBoxSearcherHiddenPower->setup();
+    ui->comboBoxGeneratorHiddenPower->setup(Power::getPowers());
+    ui->comboBoxSearcherHiddenPower->setup(Power::getPowers());
 
     QAction *setTargetFrame = generatorMenu->addAction(tr("Set Target Frame"));
     QAction *jumpToTarget = generatorMenu->addAction(tr("Jump to Target Frame"));

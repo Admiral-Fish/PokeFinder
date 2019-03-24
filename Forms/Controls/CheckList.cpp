@@ -33,8 +33,14 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent)
     connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
 }
 
-void CheckList::setup()
+void CheckList::setup(const QStringList &items)
 {
+    if (!items.isEmpty())
+    {
+        clear();
+        addItems(items);
+    }
+
     for (int i = 0; i < model->rowCount(); i++)
     {
         QStandardItem *item = model->item(i);

@@ -331,133 +331,7 @@
            </widget>
           </item>
           <item row="2" column="4">
-           <widget class="CheckList" name="comboBoxEmeraldNature">
-            <item>
-             <property name="text">
-              <string>Adamant</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bold</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Brave</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Calm</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Careful</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Hasty</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Impish</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Jolly</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Lonely</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Mild</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Modest</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Naive</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Naughty</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Quiet</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Rash</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Relaxed</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Sassy</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Timid</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Gentle</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Lax</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bashful</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Docile</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Hardy</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Quirky</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Serious</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="CheckList" name="comboBoxEmeraldNature"/>
           </item>
           <item row="2" column="5">
            <widget class="QPushButton" name="pushButtonEmeraldAnyNature">
@@ -701,32 +575,32 @@
             </item>
             <item>
              <property name="text">
-              <string>50% Male / 50% Female</string>
+              <string>50% ♂ / 50% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>25% Male / 75% Female</string>
+              <string>25% ♂ / 75% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>75% Male / 25% Female</string>
+              <string>75% ♂ / 25% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>87.5% Male / 12.5% Female</string>
+              <string>87.5% ♂ / 12.5% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>100% Male</string>
+              <string>100% ♂</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>100% Female</string>
+              <string>100% ♀</string>
              </property>
             </item>
            </widget>
@@ -842,8 +716,8 @@ QRadioButton {
          <property name="title">
           <string>Egg IVs</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0" colspan="2">
+         <layout class="QGridLayout" name="gridLayout_11">
+          <item row="0" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="labelEmeraldIVsFrame">
@@ -886,7 +760,7 @@ QRadioButton {
             </item>
            </layout>
           </item>
-          <item row="0" column="2" rowspan="4">
+          <item row="0" column="1" rowspan="3">
            <widget class="IVFilter" name="ivFilterEmerald" native="true">
             <property name="minimumSize">
              <size>
@@ -903,139 +777,59 @@ QRadioButton {
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="labelEmeraldMethod">
-            <property name="text">
-             <string>Method</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxEmeraldMethod">
-            <item>
-             <property name="text">
-              <string>Normal</string>
-             </property>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelEmeraldMethod">
+              <property name="text">
+               <string>Method</string>
+              </property>
+             </widget>
             </item>
-            <item>
-             <property name="text">
-              <string>Split</string>
-             </property>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="comboBoxEmeraldMethod">
+              <item>
+               <property name="text">
+                <string>Normal</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Split</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Alternate</string>
+               </property>
+              </item>
+             </widget>
             </item>
-            <item>
-             <property name="text">
-              <string>Alternate</string>
-             </property>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelEmeraldHiddenPower">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Hidden Power:</string>
+              </property>
+             </widget>
             </item>
-           </widget>
+            <item row="1" column="1">
+             <widget class="CheckList" name="comboBoxEmeraldHiddenPower"/>
+            </item>
+            <item row="1" column="2">
+             <widget class="QPushButton" name="pushButtonEmeraldAnyHiddenPower">
+              <property name="text">
+               <string>Any</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="labelEmeraldHiddenPower">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Hidden Power:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="CheckList" name="comboBoxEmeraldHiddenPower">
-            <item>
-             <property name="text">
-              <string>Fighting</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Flying</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Poison</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ground</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Rock</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bug</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ghost</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Steel</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Fire</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Water</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Grass</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Electric</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Psychic</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ice</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dragon</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="4" column="0" colspan="3">
-           <widget class="EggSettings" name="eggSettingsEmerald" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>490</width>
-              <height>60</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonEmeraldIVsGenerate">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1051,6 +845,16 @@ QRadioButton {
             </property>
             <property name="text">
              <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="EggSettings" name="eggSettingsEmerald" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>490</width>
+              <height>60</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -1448,133 +1252,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="CheckList" name="comboBoxRSNature">
-            <item>
-             <property name="text">
-              <string>Adamant</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bold</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Brave</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Calm</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Careful</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Hasty</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Impish</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Jolly</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Lonely</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Mild</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Modest</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Naive</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Naughty</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Quiet</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Rash</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Relaxed</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Sassy</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Timid</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Gentle</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Lax</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bashful</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Docile</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Hardy</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Quirky</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Serious</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="CheckList" name="comboBoxRSNature"/>
           </item>
           <item row="2" column="3">
            <widget class="QPushButton" name="pushButtonRSAnyAbility">
@@ -1609,88 +1287,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="3" column="2">
-           <widget class="CheckList" name="comboBoxRSHiddenPower">
-            <item>
-             <property name="text">
-              <string>Fighting</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Flying</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Poison</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ground</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Rock</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bug</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ghost</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Steel</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Fire</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Water</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Grass</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Electric</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Psychic</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ice</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dragon</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="CheckList" name="comboBoxRSHiddenPower"/>
           </item>
           <item row="3" column="3">
            <widget class="QPushButton" name="pushButtonRSAnyNature">
@@ -1765,32 +1362,32 @@ QRadioButton {
             </item>
             <item>
              <property name="text">
-              <string>50% Male / 50% Female</string>
+              <string>50% ♂ / 50% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>25% Male / 75% Female</string>
+              <string>25% ♂ / 75% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>75% Male / 25% Female</string>
+              <string>75% ♂ / 25% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>87.5% Male / 12.5% Female</string>
+              <string>87.5% ♂ / 12.5% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>100% Male</string>
+              <string>100% ♂</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>100% Female</string>
+              <string>100% ♀</string>
              </property>
             </item>
            </widget>
@@ -2206,133 +1803,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="CheckList" name="comboBoxFRLGNature">
-            <item>
-             <property name="text">
-              <string>Adamant</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bold</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Brave</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Calm</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Careful</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Hasty</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Impish</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Jolly</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Lonely</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Mild</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Modest</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Naive</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Naughty</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Quiet</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Rash</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Relaxed</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Sassy</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Timid</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Gentle</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Lax</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bashful</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Docile</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Hardy</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Quirky</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Serious</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="CheckList" name="comboBoxFRLGNature"/>
           </item>
           <item row="2" column="3">
            <widget class="QPushButton" name="pushButtonFRLGAnyAbility">
@@ -2367,88 +1838,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="3" column="2">
-           <widget class="CheckList" name="comboBoxFRLGHiddenPower">
-            <item>
-             <property name="text">
-              <string>Fighting</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Flying</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Poison</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ground</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Rock</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bug</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ghost</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Steel</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Fire</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Water</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Grass</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Electric</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Psychic</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ice</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dragon</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dark</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="CheckList" name="comboBoxFRLGHiddenPower"/>
           </item>
           <item row="3" column="3">
            <widget class="QPushButton" name="pushButtonFRLGAnyNature">
@@ -2523,32 +1913,32 @@ QRadioButton {
             </item>
             <item>
              <property name="text">
-              <string>50% Male / 50% Female</string>
+              <string>50% ♂ / 50% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>25% Male / 75% Female</string>
+              <string>25% ♂ / 75% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>75% Male / 25% Female</string>
+              <string>75% ♂ / 25% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>87.5% Male / 12.5% Female</string>
+              <string>87.5% ♂ / 12.5% ♀</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>100% Male</string>
+              <string>100% ♂</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>100% Female</string>
+              <string>100% ♀</string>
              </property>
             </item>
            </widget>
@@ -2664,44 +2054,50 @@ QRadioButton {
   <tabstop>comboBoxEmeraldCompatibility</tabstop>
   <tabstop>comboBoxEmeraldGenderRatio</tabstop>
   <tabstop>checkBoxEmeraldShiny</tabstop>
-  <tabstop>tableViewEmeraldPID</tabstop>
   <tabstop>textBoxEmeraldIVsMinFrame</tabstop>
   <tabstop>textBoxEmeraldIVsMaxFrame</tabstop>
+  <tabstop>comboBoxEmeraldMethod</tabstop>
   <tabstop>comboBoxEmeraldHiddenPower</tabstop>
+  <tabstop>pushButtonEmeraldAnyHiddenPower</tabstop>
   <tabstop>pushButtonEmeraldIVsGenerate</tabstop>
+  <tabstop>tableViewEmeraldPID</tabstop>
   <tabstop>tableViewEmeraldIVs</tabstop>
   <tabstop>textBoxRSSeedHeld</tabstop>
+  <tabstop>textBoxRSSeedPickup</tabstop>
   <tabstop>textBoxRSMinHeld</tabstop>
   <tabstop>textBoxRSMaxHeld</tabstop>
   <tabstop>textBoxRSMinPickup</tabstop>
   <tabstop>textBoxRSMaxPickup</tabstop>
+  <tabstop>comboBoxRSMethod</tabstop>
   <tabstop>textBoxRSTID</tabstop>
   <tabstop>textBoxRSSID</tabstop>
   <tabstop>pushButtonRSGenerate</tabstop>
   <tabstop>comboBoxRSGender</tabstop>
   <tabstop>comboBoxRSAbility</tabstop>
-  <tabstop>pushButtonRSAnyAbility</tabstop>
   <tabstop>comboBoxRSNature</tabstop>
-  <tabstop>pushButtonRSAnyNature</tabstop>
+  <tabstop>pushButtonRSAnyAbility</tabstop>
   <tabstop>comboBoxRSHiddenPower</tabstop>
+  <tabstop>pushButtonRSAnyNature</tabstop>
   <tabstop>comboBoxRSCompatibility</tabstop>
   <tabstop>comboBoxRSGenderRatio</tabstop>
   <tabstop>checkBoxRSShiny</tabstop>
   <tabstop>tableViewRS</tabstop>
   <tabstop>textBoxFRLGSeedHeld</tabstop>
+  <tabstop>textBoxFRLGSeedPickup</tabstop>
   <tabstop>textBoxFRLGMinHeld</tabstop>
   <tabstop>textBoxFRLGMaxHeld</tabstop>
   <tabstop>textBoxFRLGMinPickup</tabstop>
   <tabstop>textBoxFRLGMaxPickup</tabstop>
+  <tabstop>comboBoxFRLGMethod</tabstop>
   <tabstop>textBoxFRLGTID</tabstop>
   <tabstop>textBoxFRLGSID</tabstop>
   <tabstop>pushButtonFRLGGenerate</tabstop>
   <tabstop>comboBoxFRLGGender</tabstop>
   <tabstop>comboBoxFRLGAbility</tabstop>
-  <tabstop>pushButtonFRLGAnyAbility</tabstop>
   <tabstop>comboBoxFRLGNature</tabstop>
-  <tabstop>pushButtonFRLGAnyNature</tabstop>
+  <tabstop>pushButtonFRLGAnyAbility</tabstop>
   <tabstop>comboBoxFRLGHiddenPower</tabstop>
+  <tabstop>pushButtonFRLGAnyNature</tabstop>
   <tabstop>comboBoxFRLGCompatibility</tabstop>
   <tabstop>comboBoxFRLGGenderRatio</tabstop>
   <tabstop>checkBoxFRLGShiny</tabstop>
@@ -2716,12 +2112,12 @@ QRadioButton {
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>617</x>
-     <y>207</y>
+     <x>585</x>
+     <y>249</y>
     </hint>
     <hint type="destinationlabel">
      <x>529</x>
-     <y>212</y>
+     <y>247</y>
     </hint>
    </hints>
   </connection>
@@ -2732,12 +2128,12 @@ QRadioButton {
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>163</x>
-     <y>145</y>
+     <x>1167</x>
+     <y>254</y>
     </hint>
     <hint type="destinationlabel">
-     <x>163</x>
-     <y>145</y>
+     <x>903</x>
+     <y>223</y>
     </hint>
    </hints>
   </connection>
@@ -2748,12 +2144,28 @@ QRadioButton {
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>163</x>
-     <y>145</y>
+     <x>1167</x>
+     <y>254</y>
     </hint>
     <hint type="destinationlabel">
-     <x>163</x>
-     <y>145</y>
+     <x>903</x>
+     <y>223</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonEmeraldAnyHiddenPower</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxEmeraldHiddenPower</receiver>
+   <slot>resetChecks()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>840</x>
+     <y>280</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>766</x>
+     <y>279</y>
     </hint>
    </hints>
   </connection>

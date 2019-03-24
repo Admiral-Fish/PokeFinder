@@ -111,13 +111,13 @@ void Eggs3::setupModels()
     ui->comboBoxFRLGCompatibility->setItemData(1, 50);
     ui->comboBoxFRLGCompatibility->setItemData(2, 70);
 
-    ui->comboBoxEmeraldNature->setup();
-    ui->comboBoxFRLGNature->setup();
-    ui->comboBoxRSNature->setup();
+    ui->comboBoxEmeraldNature->setup(Nature::getNatures());
+    ui->comboBoxFRLGNature->setup(Nature::getNatures());
+    ui->comboBoxRSNature->setup(Nature::getNatures());
 
-    ui->comboBoxEmeraldHiddenPower->setup();
-    ui->comboBoxFRLGHiddenPower->setup();
-    ui->comboBoxRSHiddenPower->setup();
+    ui->comboBoxEmeraldHiddenPower->setup(Power::getPowers());
+    ui->comboBoxFRLGHiddenPower->setup(Power::getPowers());
+    ui->comboBoxRSHiddenPower->setup(Power::getPowers());
 
     ui->comboBoxEmeraldMethod->setItemData(0, Method::EBred);
     ui->comboBoxEmeraldMethod->setItemData(1, Method::EBredSplit);

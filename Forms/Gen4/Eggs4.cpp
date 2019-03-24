@@ -99,9 +99,11 @@ void Eggs4::setupModels()
     ui->comboBoxGeneratorMethod->setItemData(0, DPPtIVs);
     ui->comboBoxGeneratorMethod->setItemData(1, Gen4Normal);
 
-    ui->comboBoxGeneratorNature->setup();
-    ui->comboBoxGeneratorHiddenPower->setup();
-    ui->comboBoxSearcherNature->setup();
+    ui->comboBoxGeneratorNature->setup(Nature::getNatures());
+    ui->comboBoxGeneratorHiddenPower->setup(Power::getPowers());
+
+    ui->comboBoxSearcherNature->setup(Nature::getNatures());
+    ui->comboBoxSearcherHiddenPower->setup(Power::getPowers());
 
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);

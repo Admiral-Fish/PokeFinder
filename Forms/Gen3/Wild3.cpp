@@ -125,11 +125,11 @@ void Wild3::setupModels()
     ui->comboBoxSearcherLead->setItemData(2, Lead::CuteCharm);
     ui->comboBoxSearcherLead->setItemData(3, Lead::None);
 
-    ui->comboBoxGeneratorNature->setup();
-    ui->comboBoxSearcherNature->setup();
+    ui->comboBoxGeneratorNature->setup(Nature::getNatures());
+    ui->comboBoxSearcherNature->setup(Nature::getNatures());
 
-    ui->comboBoxGeneratorHiddenPower->setup();
-    ui->comboBoxSearcherHiddenPower->setup();
+    ui->comboBoxGeneratorHiddenPower->setup(Power::getPowers());
+    ui->comboBoxSearcherHiddenPower->setup(Power::getPowers());
 
     on_comboBoxGeneratorEncounter_currentIndexChanged(0);
     on_comboBoxSearcherEncounter_currentIndexChanged(0);
@@ -489,10 +489,8 @@ void Wild3::on_comboBoxGeneratorEncounter_currentIndexChanged(int index)
         default:
             break;
     }
-    ui->comboBoxGeneratorEncounterSlot->clear();
-    ui->comboBoxGeneratorEncounterSlot->addItems(t);
-    ui->comboBoxGeneratorEncounterSlot->setup();
 
+    ui->comboBoxGeneratorEncounterSlot->setup(t);
     updateLocationsGenerator();
 }
 
@@ -522,10 +520,7 @@ void Wild3::on_comboBoxSearcherEncounter_currentIndexChanged(int index)
         default:
             break;
     }
-    ui->comboBoxSearcherEncounterSlot->clear();
-    ui->comboBoxSearcherEncounterSlot->addItems(t);
-    ui->comboBoxSearcherEncounterSlot->setup();
-
+    ui->comboBoxSearcherEncounterSlot->setup(t);
     updateLocationsSearcher();
 }
 

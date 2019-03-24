@@ -44,6 +44,7 @@ void IVtoPID::setupModels()
     ui->tableView->setModel(model);
 
     ui->textBoxTID->setValues(InputType::TIDSID);
+    ui->comboBoxNature->addItems(Nature::getNatures());
 }
 
 QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid)
@@ -320,7 +321,7 @@ void IVtoPID::on_pushButtonFind_clicked()
     u8 spd = ui->spinBoxSpD->value();
     u8 spe = ui->spinBoxSpe->value();
 
-    u8 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNatureGenerator->currentIndex()));
+    u8 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNature->currentIndex()));
 
     u16 tid = ui->textBoxTID->text().toUShort();
 
