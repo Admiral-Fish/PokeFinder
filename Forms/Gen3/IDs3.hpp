@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,6 @@
 #ifndef IDS3_HPP
 #define IDS3_HPP
 
-#include <QMainWindow>
 #include <QStandardItemModel>
 #include <Core/Objects/Utilities.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -30,7 +29,7 @@ namespace Ui
     class IDs3;
 }
 
-class IDs3 : public QMainWindow
+class IDs3 : public QWidget
 {
     Q_OBJECT
 
@@ -40,9 +39,9 @@ public:
 
 private:
     Ui::IDs3 *ui;
-    QStandardItemModel *xdcolo = new QStandardItemModel(this);
-    QStandardItemModel *frlge = new QStandardItemModel(this);
-    QStandardItemModel *rs = new QStandardItemModel(this);
+    QStandardItemModel *xdcolo;
+    QStandardItemModel *frlge;
+    QStandardItemModel *rs;
 
     void setupModels();
 

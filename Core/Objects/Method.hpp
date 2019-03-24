@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -39,15 +39,19 @@ enum Method
     EBredAlternate      = 1 << 13,
     EBredPID            = 1 << 14,
     RSBred              = 1 << 15,
-    FRLGBred            = 1 << 16,
-    MethodJ             = 1 << 17,
-    MethodK             = 1 << 18,
-    ChainedShiny        = 1 << 19,
-    WondercardIVs       = 1 << 20,
-    Gen4Normal          = 1 << 21,
-    Gen4Masuada         = 1 << 22,
-    DPPtIVs             = 1 << 23,
-    HGSSIVs             = 1 << 24
+    RSBredSplit         = 1 << 16,
+    RSBredAlternate     = 1 << 17,
+    FRLGBred            = 1 << 18,
+    FRLGBredSplit       = 1 << 19,
+    FRLGBredAlternate   = 1 << 20,
+    MethodJ             = 1 << 21,
+    MethodK             = 1 << 22,
+    ChainedShiny        = 1 << 23,
+    WondercardIVs       = 1 << 24,
+    Gen4Normal          = 1 << 25,
+    Gen4Masuada         = 1 << 26,
+    DPPtIVs             = 1 << 27,
+    HGSSIVs             = 1 << 28
 };
 
 #endif // METHOD_HPP

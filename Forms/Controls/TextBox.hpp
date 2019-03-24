@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -42,6 +42,8 @@ public:
     explicit TextBox(QWidget *parent = nullptr);
     void setValues(InputType type);
     void setValues(u64 minValue, u64 maxValue, int base = 10);
+    u16 getUShort();
+    u32 getUInt();
 
 private:
     bool setup;

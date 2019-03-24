@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,11 +19,11 @@
 
 #include "FrameCompare.hpp"
 
-FrameCompare::FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, int genderIndex, int genderRatioIndex, int abilityIndex,
+FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int genderRatioIndex, int abilityIndex,
                            const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare)
 {
-    this->eval = eval;
-    val = values;
+    this->min = min;
+    this->max = max;
 
     gender = genderIndex;
     genderRatio = genderRatioIndex;
@@ -41,11 +41,11 @@ FrameCompare::FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, i
     skip = skipCompare;
 }
 
-FrameCompare::FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, int genderIndex, int genderRatioIndex, int abilityIndex,
+FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int genderRatioIndex, int abilityIndex,
                            const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare, const QVector<bool> &encounter)
 {
-    this->eval = eval;
-    val = values;
+    this->min = min;
+    this->max = max;
 
     gender = genderIndex;
     genderRatio = genderRatioIndex;
@@ -80,11 +80,12 @@ FrameCompare::FrameCompare(int genderIndex, int genderRatioIndex, int abilityInd
     skip = false;
 }
 
-FrameCompare::FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, const QVector<bool> &power)
+FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, const QVector<bool> &power)
 {
-    this->eval = eval;
-    val = values;
+    this->min = min;
+    this->max = max;
     powers = power;
+    skip = false;
 }
 
 bool FrameCompare::comparePID(const Frame &frame) const
@@ -131,34 +132,11 @@ bool FrameCompare::compareIVs(const Frame &frame) const
 
     for (int i = 0; i < 6; i++)
     {
-        switch (eval[i])
+        u8 iv = frame.getIV(i);
+
+        if (iv < min[i] || iv > max[i])
         {
-            case 1:
-                if (frame.getIV(i) != val[i])
-                {
-                    return false;
-                }
-                break;
-            case 2:
-                if (frame.getIV(i) < val[i])
-                {
-                    return false;
-                }
-                break;
-            case 3:
-                if (frame.getIV(i) > val[i])
-                {
-                    return false;
-                }
-                break;
-            case 4:
-                if (frame.getIV(i) == val[i])
-                {
-                    return false;
-                }
-                break;
-            default:
-                break;
+            return false;
         }
     }
 

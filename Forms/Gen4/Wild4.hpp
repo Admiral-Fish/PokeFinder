@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,6 @@
 #ifndef WILD4_HPP
 #define WILD4_HPP
 
-#include <QMainWindow>
 #include <QMenu>
 #include <QMutex>
 #include <QFileDialog>
@@ -29,7 +28,7 @@
 #include <QTimer>
 #include <Core/Gen4/Encounters4.hpp>
 #include <Core/Gen4/Generator4.hpp>
-#include <Core/Gen4/Searcher4.hpp>
+#include <Core/Gen4/IVSearcher4.hpp>
 #include <Core/Translator.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
@@ -41,7 +40,7 @@ namespace Ui
     class Wild4;
 }
 
-class Wild4 : public QMainWindow
+class Wild4 : public QWidget
 {
     Q_OBJECT
 
@@ -56,9 +55,10 @@ public:
 private:
     Ui::Wild4 *ui;
     QVector<Profile4> profiles;
-    Searcher4Model *s = new Searcher4Model(this, Method::Method1);
-    Wild4Model *g = new Wild4Model(this, Method::MethodJ);
-    QMenu *searcherMenu = new QMenu(this);
+    Searcher4Model *searcherModel;
+    Wild4Model *generatorModel;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
     QVector<EncounterArea4> encounterGenerator;
     QVector<EncounterArea4> encounterSearcher;
 
@@ -84,33 +84,9 @@ private slots:
     void on_comboBoxGeneratorTime_currentIndexChanged(int index);
     void on_comboBoxSearcherTime_currentIndexChanged(int index);
     void seedToTime();
+    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void on_pushButtonProfileManager_clicked();
-
-};
-
-class WildSearcher4 : public QThread
-{
-    Q_OBJECT
-
-public:
-    WildSearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max);
-    void run() override;
-    int currentProgress() const;
-    QVector<Frame4> getResults();
-
-public slots:
-    void cancelSearch();
-
-private:
-    Searcher4 searcher;
-    QVector<u8> min;
-    QVector<u8> max;
-
-    QMutex mutex;
-    QVector<Frame4> results;
-    bool cancel;
-    int progress;
 
 };
 

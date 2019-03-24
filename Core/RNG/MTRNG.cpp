@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -53,10 +53,10 @@ u32 MersenneTwister::nextUInt()
     }
 
     u32 y = mt[index++];
-    y ^= temperingShiftU(y);
-    y ^= temperingShiftS(y) & TEMPERINGMASKB;
-    y ^= temperingShiftT(y) & TEMPERINGMASKC;
-    y ^= temperingShiftL(y);
+    y ^= (y >> 11);
+    y ^= (y << 7) & TEMPERINGMASKB;
+    y ^= (y << 15) & TEMPERINGMASKC;
+    y ^= (y >> 18);
 
     return y;
 }
@@ -208,9 +208,9 @@ u32 MersenneTwisterFast::nextUInt()
     }
 
     u32 y = mt[index++];
-    y ^= temperingShiftU(y);
-    y ^= temperingShiftS(y) & TEMPERINGMASKB;
-    y ^= temperingShiftT(y) & TEMPERINGMASKC2;
+    y ^= (y >> 11);
+    y ^= (y << 7) & TEMPERINGMASKB;
+    y ^= (y << 15) & TEMPERINGMASKC2;
 
     return y;
 }

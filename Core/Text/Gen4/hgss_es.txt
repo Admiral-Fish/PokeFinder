@@ -1,120 +1,120 @@
-New Bark Town
-Route 29
-Cherrygrove City
-Route 30
-Route 31
-Violet City
-Sprout Tower
-Route 32
-Ruins of Alph (Outside)
-Ruins of Alph (Inside)
-Union Cave 1F
-Union Cave B1F
-Union Cave B2F
-Route 33
-SLOWPOKE Well 1F
-SLOWPOKE Well B1F
-Ilex Forest
-Route 34
-Route 35
-National Park
-Route 36
-Route 37
-Ecruteak City
-Burned Tower 1F
-Burned Tower B1F
-Bell Tower
-Route 38
-Route 39
-Olivine City
-Route 40
-Route 41
-Whirl Islands 1F
-Whirl Islands B1F
-Whirl Islands B2F
-Whirl Islands B3F
-Cianwood City
-Route 42
-Mt. Mortar 1F
-Mt. Mortar 1F (Back)
-Mt. Mortar 2F
-Mt. Mortar B1F
-Route 43
-Lake of Rage
-Route 44
-Ice Path 1F
-Ice Path B1F
-Ice Path B2F
-Ice Path B3F
-Blackthorn City
-Dragon’s Den
-Route 45
-Route 46
-Dark Cave (Route 31)
-Dark Cave (Route 45)
-Route 47
-Mt. Moon
-Mt. Moon (Clefairy)
-Seafoam Islands 1F
-Seafoam Islands B1F
-Seafoam Islands B2F
-Seafoam Islands B3F
-Seafoam Islands B4F
-Mt. Silver 1F
-Mt. Silver Cave 1F Top
-Mt. Silver 4F
-Cliff Edge Gate
-Cliff Cave
-Mt. Silver
-Mt. Silver 2F
-Mt. Silver Cave Mountainside
-Mt. Silver Cave 3F
-Mt. Silver Top
-Route 12
-Route 19
-Route 20
-Pallet Town
-Viridian City
-Cerulean City
-Vermilion City
-Celadon City
-Fuchsia City
-Cinnabar Island
-Route 48
-Route 26
-Route 27
-Route 28
-Mt. Moon
-Rock Tunnel 1F
-Rock Tunnel 2F
-Victory Road 1F
-Route 1
-Route 2 (South)
-Route 3
-Route 4
-Route 5
-Route 6
-Route 7
-Route 8
-Route 9
-Route 10
-Route 11
-Route 13
-Route 14
-Route 15
-Route 16
-Route 17
-Route 18
-Route 21
-Route 22
-Route 24
-Route 25
-Tohjo Falls
-DIGLETT’s Cave
-Victory Road 2F
-Victory Road 3F
-Route 2 (North)
-Viridian Forest
-Cerulean Cave 1F
-Cerulean Cave 2F
-Cerulean Cave B1F
+0,New Bark Town
+1,Route 29
+2,Cherrygrove City
+3,Route 30
+4,Route 31
+5,Violet City
+6,Sprout Tower
+7,Route 32
+8,Ruins of Alph (Outside)
+9,Ruins of Alph (Inside)
+10,Union Cave 1F
+11,Union Cave B1F
+12,Union Cave B2F
+13,Route 33
+14,SLOWPOKE Well 1F
+15,SLOWPOKE Well B1F
+16,Ilex Forest
+17,Route 34
+18,Route 35
+19,National Park
+20,Route 36
+21,Route 37
+22,Ecruteak City
+23,Burned Tower 1F
+24,Burned Tower B1F
+25,Bell Tower
+26,Route 38
+27,Route 39
+28,Olivine City
+29,Route 40
+30,Route 41
+31,Whirl Islands 1F
+32,Whirl Islands B1F
+33,Whirl Islands B2F
+34,Whirl Islands B3F
+35,Cianwood City
+36,Route 42
+37,Mt. Mortar 1F
+38,Mt. Mortar 1F (Back)
+39,Mt. Mortar 2F
+40,Mt. Mortar B1F
+41,Route 43
+42,Lake of Rage
+43,Route 44
+44,Ice Path 1F
+45,Ice Path B1F
+46,Ice Path B2F
+47,Ice Path B3F
+48,Blackthorn City
+49,Dragon’s Den
+50,Route 45
+51,Route 46
+52,Dark Cave (Route 31)
+53,Dark Cave (Route 45)
+54,Route 47
+55,Mt. Moon
+56,Mt. Moon (Clefairy)
+57,Seafoam Islands 1F
+58,Seafoam Islands B1F
+59,Seafoam Islands B2F
+60,Seafoam Islands B3F
+61,Seafoam Islands B4F
+62,Mt. Silver 1F
+63,Mt. Silver Cave 1F Top
+64,Mt. Silver 4F
+65,Cliff Edge Gate
+66,Cliff Cave
+67,Mt. Silver
+68,Mt. Silver 2F
+69,Mt. Silver Cave Mountainside
+70,Mt. Silver Cave 3F
+71,Mt. Silver Top
+72,Route 12
+73,Route 19
+74,Route 20
+75,Pallet Town
+76,Viridian City
+77,Cerulean City
+78,Vermilion City
+79,Celadon City
+80,Fuchsia City
+81,Cinnabar Island
+82,Route 48
+83,Route 26
+84,Route 27
+85,Route 28
+86,Mt. Moon
+87,Rock Tunnel 1F
+88,Rock Tunnel 2F
+89,Victory Road 1F
+90,Route 1
+91,Route 2 (South)
+92,Route 3
+93,Route 4
+94,Route 5
+95,Route 6
+96,Route 7
+97,Route 8
+98,Route 9
+99,Route 10
+100,Route 11
+101,Route 13
+102,Route 14
+103,Route 15
+104,Route 16
+105,Route 17
+106,Route 18
+107,Route 21
+108,Route 22
+109,Route 24
+110,Route 25
+111,Tohjo Falls
+112,DIGLETT’s Cave
+113,Victory Road 2F
+114,Victory Road 3F
+115,Route 2 (North)
+116,Viridian Forest
+117,Cerulean Cave 1F
+118,Cerulean Cave 2F
+119,Cerulean Cave B1F

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,7 @@
 #ifndef PROFILEMANAGER3_HPP
 #define PROFILEMANAGER3_HPP
 
-#include <QMainWindow>
+#include <QWidget>
 #include <Forms/Gen3/ProfileManager3NewEdit.hpp>
 #include <Models/Gen3/Profile3Model.hpp>
 
@@ -29,7 +29,7 @@ namespace Ui
     class ProfileManager3;
 }
 
-class ProfileManager3 : public QMainWindow
+class ProfileManager3 : public QWidget
 {
     Q_OBJECT
 
@@ -42,7 +42,7 @@ public:
 
 private:
     Ui::ProfileManager3 *ui;
-    Profile3Model *model = new Profile3Model(this);
+    Profile3Model *model;
 
     void setupModels();
 

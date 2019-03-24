@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -55,7 +55,7 @@ void SearchCalls::on_pushButtonK_clicked()
 void SearchCalls::on_pushButtonE_clicked()
 {
     QString string = ui->lineEditCalls->text();
-    string += string.isEmpty() ? "E" : "< E";
+    string += string.isEmpty() ? "E" : ", E";
     ui->lineEditCalls->setText(string);
 }
 

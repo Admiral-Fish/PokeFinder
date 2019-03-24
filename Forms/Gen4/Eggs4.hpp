@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,6 @@
 #ifndef EGGS4_HPP
 #define EGGS4_HPP
 
-#include <QMainWindow>
 #include <QMenu>
 #include <QMutex>
 #include <QSettings>
@@ -36,7 +35,7 @@ namespace Ui
     class Eggs4;
 }
 
-class Eggs4 : public QMainWindow
+class Eggs4 : public QWidget
 {
     Q_OBJECT
 
@@ -51,10 +50,10 @@ public:
 private:
     Ui::Eggs4 *ui;
     QVector<Profile4> profiles;
-    Egg4GeneratorModel *generatorModel = new Egg4GeneratorModel(this, Method::DPPtIVs);
-    Egg4SearcherModel *searcherIVs = new Egg4SearcherModel(this, Method::DPPtIVs);
-    Egg4SearcherModel *searcherPID = new Egg4SearcherModel(this, Method::Gen4Normal);
-    QMenu *searcherMenu = new QMenu(this);
+    Egg4GeneratorModel *generatorModel;
+    Egg4SearcherModel *searcherIVs;
+    Egg4SearcherModel *searcherPID;
+    QMenu *searcherMenu;
     bool flag;
 
     void setupModels();

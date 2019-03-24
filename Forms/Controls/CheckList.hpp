@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,8 +32,7 @@ class CheckList : public QComboBox
 
 public:
     explicit CheckList(QWidget *parent = nullptr);
-    ~CheckList() override;
-    void setup();
+    void setup(const QStringList &items = QStringList());
     QVector<bool> getChecked();
     void setChecks(QVector<bool> flags);
 

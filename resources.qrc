@@ -5,6 +5,8 @@
         <file alias="firered.bin">Core/Encounters/Gen3/firered.bin</file>
         <file alias="leafgreen.bin">Core/Encounters/Gen3/leafgreen.bin</file>
         <file alias="emerald.bin">Core/Encounters/Gen3/emerald.bin</file>
+        <file alias="gales.bin">Core/Encounters/Gen3/gales.bin</file>
+        <file alias="colo.bin">Core/Encounters/Gen3/colo.bin</file>
         <file alias="diamond.bin">Core/Encounters/Gen4/diamond.bin</file>
         <file alias="pearl.bin">Core/Encounters/Gen4/pearl.bin</file>
         <file alias="platinum.bin">Core/Encounters/Gen4/platinum.bin</file>
@@ -17,7 +19,7 @@
         <file alias="tails.png">Images/tails.png</file>
         <file alias="roamers.png">Images/roamers.png</file>
         <file alias="raikou.png">Images/raikou.png</file>
-        <file alias="entei.png">Images/raikou.png</file>
+        <file alias="entei.png">Images/entei.png</file>
         <file alias="latias.png">Images/latias.png</file>
         <file alias="latios.png">Images/latios.png</file>
     </qresource>

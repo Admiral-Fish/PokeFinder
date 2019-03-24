@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -78,6 +78,18 @@ void TextBox::setValues(u64 minValue, u64 maxValue, int base)
     this->base = base;
     filter = QRegExp(base == 10 ? "[^0-9]" : "[^0-9A-F]");
     setup = true;
+}
+
+u16 TextBox::getUShort()
+{
+    Q_ASSERT(setup == true);
+    return this->text().toUShort(nullptr, base);
+}
+
+u32 TextBox::getUInt()
+{
+    Q_ASSERT(setup == true);
+    return this->text().toUInt(nullptr, base);
 }
 
 void TextBox::onTextChanged(QString string)

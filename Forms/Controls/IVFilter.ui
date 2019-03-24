@@ -6,86 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>372</width>
+    <width>160</width>
     <height>180</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string notr="true">Form</string>
+  <property name="minimumSize">
+   <size>
+    <width>160</width>
+    <height>180</height>
+   </size>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QWidget {
-	background-color: #274050;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QLabel {
-	color: white;
-}
-
-QComboBox {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-	padding-left: 13px;
-}
-
-QComboBox QListView{
-	color: white;
-	background-color: #1D303C;
-	border:1px solid black;
-	padding-left: 3px;
-}
-
-QComboBox::item:alternate {
-	background: #1D303C;
-}
-
-QComboBox::item:selected {
-	border: 1px solid transparent;
-	background: #003941;
-}
-
-QComboBox::indicator{
-	background-color:transparent;
-	selection-background-color:transparent;
-	color:transparent;
-	selection-color:transparent;
-}
-
-QComboBox::editable {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-
-QSpinBox {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-
-QSpinBox::up-button {
-	subcontrol-origin: border;
-    subcontrol-position: top right;
-}
-
-QSpinBox::down-button {
-	subcontrol-origin: border;
-    subcontrol-position: bottom right;
-}
-
-QPushButton {
-	background-color: Yellow;
-	color: black;
-	border: none;
-	border-radius: 6px;
-}</string>
+  <property name="windowTitle">
+   <string notr="true">IVFilter</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -102,172 +34,44 @@ QPushButton {
        <height>0</height>
       </size>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>HP</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QComboBox" name="comboBoxHP">
+    <widget class="QSpinBox" name="spinBoxHPMin">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-     </property>
-     <property name="duplicatesEnabled">
-      <bool>false</bool>
-     </property>
-     <property name="frame">
-      <bool>true</bool>
-     </property>
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">==</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&gt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&lt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">!=</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QSpinBox" name="spinBoxHP">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
      </property>
     </widget>
    </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelHPSeperator">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string notr="true">~</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="3">
-    <widget class="QPushButton" name="pushButton31HP">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QSpinBox" name="spinBoxHPMax">
+     <property name="maximum">
+      <number>31</number>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==31</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="4">
-    <widget class="QPushButton" name="pushButton30HP">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="5">
-    <widget class="QPushButton" name="pushButtonG30HP">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">&gt;=30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="6">
-    <widget class="QPushButton" name="pushButtonClearHP">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Clear</string>
+     <property name="value">
+      <number>31</number>
      </property>
     </widget>
    </item>
@@ -279,172 +83,44 @@ QPushButton {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>Atk</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QComboBox" name="comboBoxAtk">
+    <widget class="QSpinBox" name="spinBoxAtkMin">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-     </property>
-     <property name="duplicatesEnabled">
-      <bool>false</bool>
-     </property>
-     <property name="frame">
-      <bool>true</bool>
-     </property>
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">==</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&gt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&lt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">!=</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QSpinBox" name="spinBoxAtk">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
      </property>
     </widget>
    </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelAtkSeperator">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string notr="true">~</string>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="3">
-    <widget class="QPushButton" name="pushButton31Atk">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QSpinBox" name="spinBoxAtkMax">
+     <property name="maximum">
+      <number>31</number>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==31</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="4">
-    <widget class="QPushButton" name="pushButton30Atk">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="5">
-    <widget class="QPushButton" name="pushButtonG30Atk">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">&gt;=30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="6">
-    <widget class="QPushButton" name="pushButtonClearAtk">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Clear</string>
+     <property name="value">
+      <number>31</number>
      </property>
     </widget>
    </item>
@@ -456,172 +132,44 @@ QPushButton {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>Def</string>
      </property>
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QComboBox" name="comboBoxDef">
+    <widget class="QSpinBox" name="spinBoxDefMin">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-     </property>
-     <property name="duplicatesEnabled">
-      <bool>false</bool>
-     </property>
-     <property name="frame">
-      <bool>true</bool>
-     </property>
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">==</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&gt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&lt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">!=</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QSpinBox" name="spinBoxDef">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
      </property>
     </widget>
    </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="labelDefSeperator">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string notr="true">~</string>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="3">
-    <widget class="QPushButton" name="pushButton31Def">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QSpinBox" name="spinBoxDefMax">
+     <property name="maximum">
+      <number>31</number>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==31</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="4">
-    <widget class="QPushButton" name="pushButton30Def">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="5">
-    <widget class="QPushButton" name="pushButtonG30Def">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">&gt;=30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="6">
-    <widget class="QPushButton" name="pushButtonClearDef">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Clear</string>
+     <property name="value">
+      <number>31</number>
      </property>
     </widget>
    </item>
@@ -633,172 +181,44 @@ QPushButton {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>SpA</string>
      </property>
     </widget>
    </item>
    <item row="3" column="1">
-    <widget class="QComboBox" name="comboBoxSpA">
+    <widget class="QSpinBox" name="spinBoxSpAMin">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-     </property>
-     <property name="duplicatesEnabled">
-      <bool>false</bool>
-     </property>
-     <property name="frame">
-      <bool>true</bool>
-     </property>
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">==</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&gt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&lt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">!=</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="3" column="2">
-    <widget class="QSpinBox" name="spinBoxSpA">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
      </property>
     </widget>
    </item>
+   <item row="3" column="2">
+    <widget class="QLabel" name="labelSpASeperator">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string notr="true">~</string>
+     </property>
+    </widget>
+   </item>
    <item row="3" column="3">
-    <widget class="QPushButton" name="pushButton31SpA">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QSpinBox" name="spinBoxSpAMax">
+     <property name="maximum">
+      <number>31</number>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==31</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="4">
-    <widget class="QPushButton" name="pushButton30SpA">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="5">
-    <widget class="QPushButton" name="pushButtonG30SpA">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">&gt;=30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="6">
-    <widget class="QPushButton" name="pushButtonClearSpA">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Clear</string>
+     <property name="value">
+      <number>31</number>
      </property>
     </widget>
    </item>
@@ -810,172 +230,44 @@ QPushButton {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>SpD</string>
      </property>
     </widget>
    </item>
    <item row="4" column="1">
-    <widget class="QComboBox" name="comboBoxSpD">
+    <widget class="QSpinBox" name="spinBoxSpDMin">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-     </property>
-     <property name="duplicatesEnabled">
-      <bool>false</bool>
-     </property>
-     <property name="frame">
-      <bool>true</bool>
-     </property>
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">==</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&gt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&lt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">!=</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="4" column="2">
-    <widget class="QSpinBox" name="spinBoxSpD">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
      </property>
     </widget>
    </item>
+   <item row="4" column="2">
+    <widget class="QLabel" name="labelSpDSeperator">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string notr="true">~</string>
+     </property>
+    </widget>
+   </item>
    <item row="4" column="3">
-    <widget class="QPushButton" name="pushButton31SpD">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QSpinBox" name="spinBoxSpDMax">
+     <property name="maximum">
+      <number>31</number>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==31</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="4">
-    <widget class="QPushButton" name="pushButton30SpD">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="5">
-    <widget class="QPushButton" name="pushButtonG30SpD">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">&gt;=30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="6">
-    <widget class="QPushButton" name="pushButtonClearSpD">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Clear</string>
+     <property name="value">
+      <number>31</number>
      </property>
     </widget>
    </item>
@@ -987,178 +279,44 @@ QPushButton {
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="text">
       <string>Spe</string>
      </property>
     </widget>
    </item>
    <item row="5" column="1">
-    <widget class="QComboBox" name="comboBoxSpe">
+    <widget class="QSpinBox" name="spinBoxSpeMin">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-     </property>
-     <property name="duplicatesEnabled">
-      <bool>false</bool>
-     </property>
-     <property name="frame">
-      <bool>true</bool>
-     </property>
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">==</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&gt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">&lt;=</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string notr="true">!=</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="5" column="2">
-    <widget class="QSpinBox" name="spinBoxSpe">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
      </property>
      <property name="maximum">
       <number>31</number>
      </property>
     </widget>
    </item>
+   <item row="5" column="2">
+    <widget class="QLabel" name="labelSpeSeperator">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string notr="true">~</string>
+     </property>
+    </widget>
+   </item>
    <item row="5" column="3">
-    <widget class="QPushButton" name="pushButton31Spe">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QSpinBox" name="spinBoxSpeMax">
+     <property name="maximum">
+      <number>31</number>
      </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==31</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="4">
-    <widget class="QPushButton" name="pushButton30Spe">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">==30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="5">
-    <widget class="QPushButton" name="pushButtonG30Spe">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string notr="true">&gt;=30</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="6">
-    <widget class="QPushButton" name="pushButtonClearSpe">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <family>Myriad Pro,Montserrat</family>
-       <weight>62</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Clear</string>
+     <property name="value">
+      <number>31</number>
      </property>
     </widget>
    </item>
@@ -1175,42 +333,18 @@ QPushButton {
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>comboBoxHP</tabstop>
-  <tabstop>comboBoxAtk</tabstop>
-  <tabstop>comboBoxDef</tabstop>
-  <tabstop>comboBoxSpA</tabstop>
-  <tabstop>comboBoxSpD</tabstop>
-  <tabstop>comboBoxSpe</tabstop>
-  <tabstop>spinBoxHP</tabstop>
-  <tabstop>spinBoxAtk</tabstop>
-  <tabstop>spinBoxDef</tabstop>
-  <tabstop>spinBoxSpA</tabstop>
-  <tabstop>spinBoxSpD</tabstop>
-  <tabstop>spinBoxSpe</tabstop>
-  <tabstop>pushButton31HP</tabstop>
-  <tabstop>pushButton30HP</tabstop>
-  <tabstop>pushButtonG30HP</tabstop>
-  <tabstop>pushButtonClearHP</tabstop>
-  <tabstop>pushButton31Atk</tabstop>
-  <tabstop>pushButton30Atk</tabstop>
-  <tabstop>pushButtonG30Atk</tabstop>
-  <tabstop>pushButtonClearAtk</tabstop>
-  <tabstop>pushButton31Def</tabstop>
-  <tabstop>pushButton30Def</tabstop>
-  <tabstop>pushButtonG30Def</tabstop>
-  <tabstop>pushButtonClearDef</tabstop>
-  <tabstop>pushButton31SpA</tabstop>
-  <tabstop>pushButton30SpA</tabstop>
-  <tabstop>pushButtonG30SpA</tabstop>
-  <tabstop>pushButtonClearSpA</tabstop>
-  <tabstop>pushButton31SpD</tabstop>
-  <tabstop>pushButton30SpD</tabstop>
-  <tabstop>pushButtonG30SpD</tabstop>
-  <tabstop>pushButtonClearSpD</tabstop>
-  <tabstop>pushButton31Spe</tabstop>
-  <tabstop>pushButton30Spe</tabstop>
-  <tabstop>pushButtonG30Spe</tabstop>
-  <tabstop>pushButtonClearSpe</tabstop>
+  <tabstop>spinBoxHPMin</tabstop>
+  <tabstop>spinBoxHPMax</tabstop>
+  <tabstop>spinBoxAtkMin</tabstop>
+  <tabstop>spinBoxAtkMax</tabstop>
+  <tabstop>spinBoxDefMin</tabstop>
+  <tabstop>spinBoxDefMax</tabstop>
+  <tabstop>spinBoxSpAMin</tabstop>
+  <tabstop>spinBoxSpAMax</tabstop>
+  <tabstop>spinBoxSpDMin</tabstop>
+  <tabstop>spinBoxSpDMax</tabstop>
+  <tabstop>spinBoxSpeMin</tabstop>
+  <tabstop>spinBoxSpeMax</tabstop>
  </tabstops>
  <resources/>
  <connections>

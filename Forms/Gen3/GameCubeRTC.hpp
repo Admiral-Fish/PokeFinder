@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,6 @@
 #define GAMECUBERTC_HPP
 
 #include <QDateTime>
-#include <QMainWindow>
 #include <QMenu>
 #include <QSettings>
 #include <QStandardItemModel>
@@ -35,7 +34,7 @@ namespace Ui
 
 class Search;
 
-class GameCubeRTC : public QMainWindow
+class GameCubeRTC : public QWidget
 {
     Q_OBJECT
 
@@ -45,12 +44,8 @@ public:
 
 private:
     Ui::GameCubeRTC *ui;
-    bool isSearching = false;
-    bool cancel = false;
-    QStandardItemModel *model = new QStandardItemModel(this);
-    QMenu *contextMenu = new QMenu();
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
+    QStandardItemModel *model;
+    QMenu *contextMenu;
 
     void setupModels();
 

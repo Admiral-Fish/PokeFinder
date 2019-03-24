@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -98,15 +98,8 @@ void Searcher3::setup(Method method)
 
 void Searcher3::setupNatureLock(int num)
 {
-    if (frameType == Method::XD)
-    {
-        natureLock.switchLockGales(num);
-    }
-    else if (frameType == Method::Colo)
-    {
-        natureLock.switchLockColo(num);
-    }
-    type = natureLock.getType();
+    shadowLock = ShadowLock(num, frameType);
+    type = shadowLock.getType();
     frame.setLockReason(QObject::tr("Pass NL"));
 }
 
@@ -179,14 +172,14 @@ QVector<Frame3> Searcher3::searchMethodColo(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
             switch (type)
             {
                 case ShadowType::FirstShadow:
-                    if (natureLock.firstShadowNormal(frame.getSeed()))
+                    if (shadowLock.firstShadowNormal(frame.getSeed()))
                     {
                         frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                         continue;
                     }
                     break;
                 case ShadowType::EReader:
-                    if (natureLock.eReader(frame.getSeed(), frame.getPID()))
+                    if (shadowLock.eReader(frame.getSeed(), frame.getPID()))
                     {
                         frames.push_back(frame); // If this seed passes it is impossible for the sister spread to generate
                         continue;
@@ -204,13 +197,13 @@ QVector<Frame3> Searcher3::searchMethodColo(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
             switch (type)
             {
                 case ShadowType::FirstShadow:
-                    if (natureLock.firstShadowNormal(frame.getSeed()))
+                    if (shadowLock.firstShadowNormal(frame.getSeed()))
                     {
                         frames.append(frame);
                     }
                     break;
                 case ShadowType::EReader:
-                    if (natureLock.eReader(frame.getSeed(), frame.getPID()))
+                    if (shadowLock.eReader(frame.getSeed(), frame.getPID()))
                     {
                         frames.append(frame);
                     }
@@ -240,7 +233,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        PokeRNGR rng(val, frameType == Method::Method2 ? 1 : 0);
+        PokeRNGR rng(val, frameType == Method::MethodH2 ? 1 : 0);
         frame.setPID(rng.nextUShort(), rng.nextUShort());
         u32 seed = rng.nextUInt();
 
@@ -310,7 +303,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
                         }
                         break;
                     case Lead::CuteCharm:
-                        if ((nextRNG2 % 3) > 0)
+                        if ((nextRNG % 25) == frame.getNature() && (nextRNG2 % 3) > 0)
                         {
                             frame.setLeadType(Lead::CuteCharm);
                             slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
@@ -438,33 +431,33 @@ QVector<Frame3> Searcher3::searchMethodXD(u8 hp, u8 atk, u8 def, u8 spa, u8 spd,
             switch (type)
             {
                 case ShadowType::SingleLock:
-                    if (natureLock.singleNL(frame.getSeed()))
+                    if (shadowLock.singleNL(frame.getSeed()))
                     {
                         frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                         continue;
                     }
                     break;
                 case ShadowType::FirstShadow:
-                    if (natureLock.firstShadowNormal(frame.getSeed()))
+                    if (shadowLock.firstShadowNormal(frame.getSeed()))
                     {
                         frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                         continue;
                     }
                     break;
                 case ShadowType::SecondShadow:
-                    if (natureLock.firstShadowUnset(frame.getSeed()))
+                    if (shadowLock.firstShadowUnset(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("First shadow unset")); // Also unlikely for the other methods of encounter to pass
                         frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                         continue;
                     }
-                    if (natureLock.firstShadowSet(frame.getSeed()))
+                    if (shadowLock.firstShadowSet(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("First shadow set")); // Also unlikely for the other methods of encounter to pass
                         frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                         continue;
                     }
-                    if (natureLock.firstShadowShinySkip(frame.getSeed()))
+                    if (shadowLock.firstShadowShinySkip(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("Shiny Skip")); // Also unlikely for the other methods of encounter to pass
                         frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
@@ -472,19 +465,19 @@ QVector<Frame3> Searcher3::searchMethodXD(u8 hp, u8 atk, u8 def, u8 spa, u8 spd,
                     }
                     break;
                 case ShadowType::Salamence:
-                    if (natureLock.salamenceUnset(frame.getSeed()))
+                    if (shadowLock.salamenceUnset(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("First shadow unset")); // Also unlikely for the other methods of encounter to pass
                         frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                         continue;
                     }
-                    if (natureLock.salamenceSet(frame.getSeed()))
+                    if (shadowLock.salamenceSet(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("First shadow set")); // Also unlikely for the other methods of encounter to pass
                         frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                         continue;
                     }
-                    if (natureLock.salamenceShinySkip(frame.getSeed()))
+                    if (shadowLock.salamenceShinySkip(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("Shiny Skip")); // Also unlikely for the other methods of encounter to pass
                         frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
@@ -503,46 +496,46 @@ QVector<Frame3> Searcher3::searchMethodXD(u8 hp, u8 atk, u8 def, u8 spa, u8 spd,
             switch (type)
             {
                 case ShadowType::SingleLock:
-                    if (natureLock.singleNL(frame.getSeed()))
+                    if (shadowLock.singleNL(frame.getSeed()))
                     {
                         frames.append(frame);
                     }
                     break;
                 case ShadowType::FirstShadow:
-                    if (natureLock.firstShadowNormal(frame.getSeed()))
+                    if (shadowLock.firstShadowNormal(frame.getSeed()))
                     {
                         frames.append(frame);
                     }
                     break;
                 case ShadowType::SecondShadow:
-                    if (natureLock.firstShadowUnset(frame.getSeed()))
+                    if (shadowLock.firstShadowUnset(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("First shadow unset"));
                         frames.append(frame);
                     }
-                    else if (natureLock.firstShadowSet(frame.getSeed()))
+                    else if (shadowLock.firstShadowSet(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("First shadow set"));
                         frames.append(frame);
                     }
-                    else if (natureLock.firstShadowShinySkip(frame.getSeed()))
+                    else if (shadowLock.firstShadowShinySkip(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("Shiny Skip"));
                         frames.append(frame);
                     }
                     break;
                 case ShadowType::Salamence:
-                    if (natureLock.salamenceUnset(frame.getSeed()))
+                    if (shadowLock.salamenceUnset(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("First shadow unset"));
                         frames.append(frame);
                     }
-                    else if (natureLock.salamenceSet(frame.getSeed()))
+                    else if (shadowLock.salamenceSet(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("First shadow set"));
                         frames.append(frame);
                     }
-                    else if (natureLock.salamenceShinySkip(frame.getSeed()))
+                    else if (shadowLock.salamenceShinySkip(frame.getSeed()))
                     {
                         frame.setLockReason(QObject::tr("Shiny Skip"));
                         frames.append(frame);

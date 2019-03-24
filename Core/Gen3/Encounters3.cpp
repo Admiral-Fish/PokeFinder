@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -67,7 +67,8 @@ QByteArrayList Encounters3::getData() const
     }
 
     QByteArray data;
-    if (QFile file(path); file.open(QIODevice::ReadOnly))
+    QFile file(path);
+    if (file.open(QIODevice::ReadOnly))
     {
         data = file.readAll();
         file.close();

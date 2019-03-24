@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@
 #include "ui_IVtoPID.h"
 
 IVtoPID::IVtoPID(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::IVtoPID)
 {
     ui->setupUi(this);
@@ -35,15 +35,16 @@ IVtoPID::IVtoPID(QWidget *parent) :
 IVtoPID::~IVtoPID()
 {
     delete ui;
-    delete model;
 }
 
 void IVtoPID::setupModels()
 {
-    ui->textBoxID->setValues(InputType::TIDSID);
-
+    model = new QStandardItemModel(ui->tableView);
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("PID") << tr("Method") << tr("Ability") << "50%" << "12.5%" << "25%" << "75%" << tr("SID"));
     ui->tableView->setModel(model);
+
+    ui->textBoxTID->setValues(InputType::TIDSID);
+    ui->comboBoxNature->addItems(Nature::getNatures());
 }
 
 QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid)
@@ -320,9 +321,9 @@ void IVtoPID::on_pushButtonFind_clicked()
     u8 spd = ui->spinBoxSpD->value();
     u8 spe = ui->spinBoxSpe->value();
 
-    u8 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNatureGenerator->currentIndex()));
+    u8 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNature->currentIndex()));
 
-    u16 tid = ui->textBoxID->text().toUShort();
+    u16 tid = ui->textBoxTID->text().toUShort();
 
     u32 ivs2 = spe | (spa << 5) | (spd << 10);
     u32 ivs1 = hp | (atk << 5) | (def << 10);

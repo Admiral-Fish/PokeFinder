@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@
 #include "ui_GameCubeRTC.h"
 
 GameCubeRTC::GameCubeRTC(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::GameCubeRTC)
 {
     ui->setupUi(this);
@@ -40,23 +40,23 @@ GameCubeRTC::~GameCubeRTC()
     setting.setValue("startSeed", ui->textBoxStartSeed->text());
 
     delete ui;
-    delete model;
-    delete contextMenu;
 }
 
 void GameCubeRTC::setupModels()
 {
+    model = new QStandardItemModel(ui->tableView);
+    contextMenu = new QMenu(ui->tableView);
+
     ui->textBoxStartSeed->setValues(InputType::Seed32Bit);
     ui->textBoxTargetSeed->setValues(InputType::Seed32Bit);
     ui->textBoxMinFrame->setValues(InputType::Frame32Bit);
     ui->textBoxMaxFrame->setValues(InputType::Frame32Bit);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seed"));
-    ui->tableViewGenerator->setModel(model);
+    ui->tableView->setModel(model);
 
-    QAction *copySeed = new QAction("Copy Seed to Clipboard", this);
+    QAction *copySeed = contextMenu->addAction(tr("Copy Seed to Clipboard"));
     connect(copySeed, &QAction::triggered, this, &GameCubeRTC::copySeed);
-    contextMenu->addAction(copySeed);
 
     QSettings setting;
     if (setting.contains("startSeed")) ui->textBoxStartSeed->setText(setting.value("startSeed").toString());
@@ -67,10 +67,10 @@ void GameCubeRTC::on_pushButtonSearch_clicked()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    u32 initial = ui->textBoxStartSeed->text().toUInt(nullptr, 16);
-    u32 target = ui->textBoxTargetSeed->text().toUInt(nullptr, 16);
-    u32 start = ui->textBoxMinFrame->text().toUInt();
-    u32 end = ui->textBoxMaxFrame->text().toUInt();
+    u32 initial = ui->textBoxStartSeed->getUInt();
+    u32 target = ui->textBoxTargetSeed->getUInt();
+    u32 start = ui->textBoxMinFrame->getUInt();
+    u32 end = ui->textBoxMaxFrame->getUInt();
 
     auto *search = new Search(initial, target, start, end);
 
@@ -88,7 +88,8 @@ void GameCubeRTC::updateTableView(const QList<QStandardItem *> &row)
 
 void GameCubeRTC::copySeed()
 {
-    QApplication::clipboard()->setText(ui->tableViewGenerator->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 2)).toString());
+    QVariant data = ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(), 2));
+    QApplication::clipboard()->setText(data.toString());
 }
 
 void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
@@ -98,8 +99,7 @@ void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint 
         return;
     }
 
-    lastIndex = ui->tableViewGenerator->indexAt(pos);
-    contextMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+    contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
 }
 
 Search::Search(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame)
@@ -110,7 +110,7 @@ Search::Search(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame)
     this->maxFrame = maxFrame;
     cancel = false;
 
-    connect(this, &QThread::finished, this, &QThread::deleteLater);
+    connect(this, &Search::finished, this, &Search::deleteLater);
 }
 
 void Search::run()

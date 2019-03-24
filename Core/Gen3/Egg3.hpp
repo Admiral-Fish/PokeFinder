@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -42,6 +42,7 @@ public:
     void setMaxPickup(const u32 &value);
     u32 getSeed() const;
     void setSeed(const u32 &value);
+    void setPickupSeed(const u16 &value);
 
 private:
     QVector<u8> parent1;
@@ -53,11 +54,11 @@ private:
     u32 minPickup;
     u32 maxPickup;
     bool everstone;
+    u16 pickupSeed;
+    u8 iv1, iv2, inh1, inh2, inh3, par1, par2, par3;
 
     QVector<Frame3> generateEmeraldPID(const FrameCompare &compare) const;
-    QVector<Frame3> generateEmerald(const FrameCompare &compare) const;
-    QVector<Frame3> generateEmeraldSplit(const FrameCompare &compare) const;
-    QVector<Frame3> generateEmeraldAlternate(const FrameCompare &compare) const;
+    QVector<Frame3> generateEmeraldIVs(const FrameCompare &compare) const;
     QVector<Frame3> generateLower(const FrameCompare &compare) const;
     QVector<Frame3> generateUpper(const QVector<Frame3> &lower, const FrameCompare &compare) const;
 

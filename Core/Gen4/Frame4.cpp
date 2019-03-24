@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -57,21 +57,27 @@ void Frame4::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 
         {
             case 0:
                 ivs[0] = par == 0 ? parent1.at(0) : parent2.at(0);
+                inheritance[0] = par == 0 ? 'A' : 'B';
                 break;
             case 1:
                 ivs[1] = par == 0 ? parent1.at(1) : parent2.at(1);
+                inheritance[1] = par == 0 ? 'A' : 'B';
                 break;
             case 2:
                 ivs[2] = par == 0 ? parent1.at(2) : parent2.at(2);
+                inheritance[2] = par == 0 ? 'A' : 'B';
                 break;
             case 3:
                 ivs[5] = par == 0 ? parent1.at(5) : parent2.at(5);
+                inheritance[5] = par == 0 ? 'A' : 'B';
                 break;
             case 4:
                 ivs[3] = par == 0 ? parent1.at(3) : parent2.at(3);
+                inheritance[3] = par == 0 ? 'A' : 'B';
                 break;
             case 5:
                 ivs[4] = par == 0 ? parent1.at(4) : parent2.at(4);
+                inheritance[4] = par == 0 ? 'A' : 'B';
                 break;
         }
 

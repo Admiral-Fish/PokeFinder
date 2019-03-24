@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,11 +21,12 @@
 
 QFont TableUtility::getBold(u8 iv)
 {
+    QFont font;
+
     if (iv == 30 || iv == 31)
     {
-        QFont font;
         font.setBold(true);
-        return font;
     }
-    return QFont();
+
+    return font;
 }

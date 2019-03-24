@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -924,6 +924,7 @@ QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
+    frame.setLeadType(Lead::Synchronize);
     frame.setIVsManual(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))

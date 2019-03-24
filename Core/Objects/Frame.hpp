@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -45,6 +45,7 @@ public:
     void setPID(u32 pid);
     u32 getFrame() const;
     u8 getIV(int index) const;
+    QChar getInheritance(int index) const;
     u8 getPower() const;
     u32 getPID() const;
     u8 getAbility() const;
@@ -65,6 +66,7 @@ public:
 
 protected:
     u8 ivs[6];
+    QChar inheritance[6];
     u8 ability;
     u8 encounterSlot;
     Encounter encounterType;
@@ -72,8 +74,7 @@ protected:
     u16 gender;
     u8 genderRatio;
     u8 hidden;
-    Lead leadType;
-    Method methodType;
+    Lead leadType = Lead::None;
     u8 nature;
     u32 pid;
     u8 power;

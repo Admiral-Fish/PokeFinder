@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,12 +29,12 @@ class FrameCompare
 
 public:
     FrameCompare() = default;
-    FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, int genderIndex, int genderRatioIndex, int abilityIndex,
+    FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int genderRatioIndex, int abilityIndex,
                  const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare);
-    FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, int genderIndex, int genderRatioIndex, int abilityIndex,
+    FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int genderRatioIndex, int abilityIndex,
                  const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare, const QVector<bool> &encounter);
     FrameCompare(int genderIndex, int genderRatioIndex, int abilityIndex, QVector<bool> nature, bool onlyShiny);
-    FrameCompare(const QVector<u8> &eval, const QVector<u8> &values, const QVector<bool> &power);
+    FrameCompare(const QVector<u8> &min, const QVector<u8> &max, const QVector<bool> &power);
     bool comparePID(const Frame &frame) const;
     bool compareIVs(const Frame &frame) const;
     bool compareNature(const Frame &frame) const;
@@ -45,8 +45,8 @@ public:
     u8 getGenderRatio() const;
 
 private:
-    QVector<u8> eval;
-    QVector<u8> val;
+    QVector<u8> min;
+    QVector<u8> max;
     u16 gender;
     u8 genderRatio;
     u8 ability;

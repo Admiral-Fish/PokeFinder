@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@
 #include "ui_ProfileManager4.h"
 
 ProfileManager4::ProfileManager4(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::ProfileManager4)
 {
     ui->setupUi(this);
@@ -35,18 +35,18 @@ ProfileManager4::ProfileManager4(QWidget *parent) :
 ProfileManager4::~ProfileManager4()
 {
     delete ui;
-    delete model;
 }
 
 void ProfileManager4::setupModels()
 {
+    model = new Profile4Model(ui->tableView);
     model->setModel(Profile4::loadProfileList());
     ui->tableView->setModel(model);
 }
 
 void ProfileManager4::on_pushButtonNew_clicked()
 {
-    auto *dialog = new ProfileManager4NewEdit();
+    QScopedPointer<ProfileManager4NewEdit> dialog(new ProfileManager4NewEdit);
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile4 profile = dialog->getNewProfile();
@@ -54,7 +54,6 @@ void ProfileManager4::on_pushButtonNew_clicked()
         model->addItem(profile);
         emit updateProfiles();
     }
-    delete dialog;
 }
 
 void ProfileManager4::on_pushButtonEdit_clicked()
@@ -69,7 +68,7 @@ void ProfileManager4::on_pushButtonEdit_clicked()
         return;
     }
 
-    auto *dialog = new ProfileManager4NewEdit(model->getProfile(row));
+    QScopedPointer<ProfileManager4NewEdit> dialog(new ProfileManager4NewEdit(model->getProfile(row)));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile4 profile = dialog->getNewProfile();
@@ -77,7 +76,6 @@ void ProfileManager4::on_pushButtonEdit_clicked()
         model->updateProfile(profile, row);
         emit updateProfiles();
     }
-    delete dialog;
 }
 
 void ProfileManager4::on_pushButtonDelete_clicked()
@@ -92,9 +90,13 @@ void ProfileManager4::on_pushButtonDelete_clicked()
         return;
     }
 
-    Profile4 profile = model->getProfile(row);
-    profile.deleteProfile();
-    model->removeProfile(row);
+    QMessageBox message(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"), QMessageBox::Yes | QMessageBox::No);
+    if (message.exec() == QMessageBox::Yes)
+    {
+        Profile4 profile = model->getProfile(row);
+        profile.deleteProfile();
+        model->removeProfile(row);
 
-    emit updateProfiles();
+        emit updateProfiles();
+    }
 }

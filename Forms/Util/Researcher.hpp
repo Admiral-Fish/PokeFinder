@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,6 @@
 #ifndef RESEARCHER_HPP
 #define RESEARCHER_HPP
 
-#include <QMainWindow>
 #include <QMessageBox>
 #include <Models/ResearcherModel.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -38,7 +37,7 @@ namespace Ui
     class Researcher;
 }
 
-class Researcher : public QMainWindow
+class Researcher : public QWidget
 {
     Q_OBJECT
 
@@ -48,7 +47,7 @@ public:
 
 private:
     Ui::Researcher *ui;
-    ResearcherModel *model = new ResearcherModel(this, false);
+    ResearcherModel *model;
     QHash<QString, int> keys;
 
     void setupModels();

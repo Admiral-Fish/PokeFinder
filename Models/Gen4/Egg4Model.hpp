@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -38,9 +38,13 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+public slots:
+    void toggleInheritance(bool flag);
+
 private:
     QVector<Frame4> model;
     Method method;
+    bool showInheritance;
 
 };
 
@@ -59,9 +63,13 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+public slots:
+    void toggleInheritance(bool flag);
+
 private:
     QVector<Frame4> model;
     Method method;
+    bool showInheritance;
 
 };
 

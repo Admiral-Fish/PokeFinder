@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -89,4 +89,97 @@ QString Utilities::getCalls(u32 seed, int num, const HGSSRoamer &info)
         }
     }
     return calls;
+}
+
+void Utilities::outputModelTXT(QAbstractTableModel *model)
+{
+    QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to TXT"), QDir::currentPath(), QObject::tr("Text File (*.txt);;All Files (*)"));
+
+    if (fileName.isEmpty())
+    {
+        return;
+    }
+
+    QFile file(fileName);
+    if (file.open(QIODevice::WriteOnly))
+    {
+        QString textData = "";
+        int rows = model->rowCount();
+        int columns = model->columnCount();
+
+        for (int i = 0; i < columns; i++)
+        {
+            textData += model->headerData(i, Qt::Horizontal, 0).toString();
+            if (i != columns - 1)
+            {
+                textData += "\t";
+            }
+        }
+        textData += "\n";
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                QString entry = model->data(model->index(i, j)).toString();
+                textData += (entry.isEmpty() ? "-" : entry);
+                if (i != columns - 1)
+                {
+                    textData += "\t";
+                }
+            }
+            textData += "\n";
+        }
+
+        QTextStream out(&file);
+        out << textData;
+        file.close();
+    }
+}
+
+void Utilities::outputModelCSV(QAbstractTableModel *model)
+{
+    QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to CSV"), QDir::currentPath(), QObject::tr("CSV File (*.csv);;All Files (*)"));
+
+    if (fileName.isEmpty())
+    {
+        return;
+    }
+
+    QFile file(fileName);
+    if (file.open(QIODevice::WriteOnly))
+    {
+        QString textData = "";
+        int rows = model->rowCount();
+        int columns = model->columnCount();
+
+        for (int i = 0; i < columns; i++)
+        {
+            textData += model->headerData(i, Qt::Horizontal, 0).toString();
+            if (i != columns - 1)
+            {
+                textData += ",";
+            }
+        }
+
+        textData += "\n";
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                QString entry = model->data(model->index(i, j)).toString();
+                textData += (entry.isEmpty() ? "-" : entry);
+                if (j != columns - 1)
+                {
+                    textData += ",";
+                }
+            }
+            textData += "\n";
+        }
+
+        QTextStream out(&file);
+        out << textData;
+        file.close();
+    }
 }

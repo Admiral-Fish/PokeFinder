@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@
 #include "ui_SeedToTime3.h"
 
 SeedToTime3::SeedToTime3(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::SeedToTime3)
 {
     ui->setupUi(this);
@@ -33,7 +33,7 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
 }
 
 SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::SeedToTime3)
 {
     ui->setupUi(this);
@@ -53,18 +53,17 @@ SeedToTime3::~SeedToTime3()
     setting.setValue("seed3Year", ui->textBoxYear->text());
 
     delete ui;
-    delete model;
 }
 
 void SeedToTime3::setupModels()
 {
+    model = new QStandardItemModel(ui->tableView);
+
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
     ui->textBoxYear->setValues(2000, 2037);
 
-    model->setColumnCount(2);
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seconds"));
     ui->tableView->setModel(model);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     QSettings setting;
     if (setting.contains("seed3Year")) ui->textBoxYear->setText(setting.value("seed3Year").toString());
@@ -140,8 +139,8 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
 
 void SeedToTime3::on_pushButtonFind_clicked()
 {
-    u32 seed = ui->textBoxSeed->text().toUInt(nullptr, 16);
-    u32 year = ui->textBoxYear->text().toUInt();
+    u32 seed = ui->textBoxSeed->getUInt();
+    u32 year = ui->textBoxYear->getUInt();
     frame = 1;
     if (seed > 0xFFFF)
     {

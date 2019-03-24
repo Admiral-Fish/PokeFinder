@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -70,15 +70,16 @@ QStringList Translator::getLocationsGen3(const QVector<u8> &nums, Game game)
         QTextStream ts(&file);
         ts.setCodec("UTF-8");
 
-        QStringList input;
+        QMap<int, QString> input;
         while (!ts.atEnd())
         {
-            input << ts.readLine();
+            QStringList entry = ts.readLine().split(',');
+            input[entry.at(0).toInt()] = entry.at(1);
         }
 
         for (const u8 &x : nums)
         {
-            locations.append(input.at(x));
+            locations.append(input[x]);
         }
 
         file.close();
@@ -109,15 +110,16 @@ QStringList Translator::getLocationsGen4(const QVector<u8> &nums, Game game)
         QTextStream ts(&file);
         ts.setCodec("UTF-8");
 
-        QStringList input;
+        QMap<int, QString> input;
         while (!ts.atEnd())
         {
-            input << ts.readLine();
+            QStringList entry = ts.readLine().split(',');
+            input[entry.at(0).toInt()] = entry.at(1);
         }
 
         for (const u8 &x : nums)
         {
-            locations.append(input.at(x));
+            locations.append(input[x]);
         }
 
         file.close();

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,6 @@
 #define SEEDTOTIME3_HPP
 
 #include <QDateTime>
-#include <QMainWindow>
 #include <QMessageBox>
 #include <QSettings>
 #include <QStandardItemModel>
@@ -32,7 +31,7 @@ namespace Ui
     class SeedToTime3;
 }
 
-class SeedToTime3 : public QMainWindow
+class SeedToTime3 : public QWidget
 {
     Q_OBJECT
 
@@ -43,7 +42,7 @@ public:
 
 private:
     Ui::SeedToTime3 *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
+    QStandardItemModel *model;
     u32 frame = 1;
 
     void setupModels();

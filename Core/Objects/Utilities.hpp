@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,11 @@
 #ifndef UTILITIES_HPP
 #define UTILITIES_HPP
 
+#include <QAbstractTableModel>
 #include <QDateTime>
+#include <QFileDialog>
 #include <QString>
+#include <QTextStream>
 #include <QVector>
 #include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/RNG/LCRNG.hpp>
@@ -34,6 +37,8 @@ namespace Utilities
     bool shiny(u32 pid, u16 tid, u16  sid);
     QString coinFlips(u32 seed, int flips);
     QString getCalls(u32 seed, int num, const HGSSRoamer &info);
+    void outputModelTXT(QAbstractTableModel *model);
+    void outputModelCSV(QAbstractTableModel *model);
 };
 
 #endif // UTILITIES_HPP

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,6 @@
 #ifndef IDS4_HPP
 #define IDS4_HPP
 
-#include <QMainWindow>
 #include <QMessageBox>
 #include <QMutex>
 #include <QStandardItemModel>
@@ -34,7 +33,7 @@ namespace Ui
     class IDs4;
 }
 
-class IDs4 : public QMainWindow
+class IDs4 : public QWidget
 {
     Q_OBJECT
 
@@ -47,7 +46,7 @@ public:
 
 private:
     Ui::IDs4 *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
+    QStandardItemModel *model;
 
     void setupModels();
     void updateView(QVector<QList<QStandardItem *>> frames, int progress);

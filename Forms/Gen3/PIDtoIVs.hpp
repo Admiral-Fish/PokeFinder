@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,6 @@
 #define PIDTOIVS_HPP
 
 #include <QClipboard>
-#include <QMainWindow>
 #include <QMenu>
 #include <QStandardItemModel>
 #include <Core/Objects/Method.hpp>
@@ -34,7 +33,7 @@ namespace Ui
     class PIDtoIVs;
 }
 
-class PIDtoIVs : public QMainWindow
+class PIDtoIVs : public QWidget
 {
     Q_OBJECT
 
@@ -47,10 +46,8 @@ public:
 
 private:
     Ui::PIDtoIVs *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
-    QMenu *contextMenu = new QMenu();
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
+    QStandardItemModel *model;
+    QMenu *contextMenu;
 
     void setupModels();
     void calcFromPID(u32 pid);

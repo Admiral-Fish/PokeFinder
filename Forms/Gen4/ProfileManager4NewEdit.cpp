@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -44,7 +44,7 @@ ProfileManager4NewEdit::ProfileManager4NewEdit(const Profile4 &profile, QWidget 
 
     ui->lineEditProfile->setText(profile.getProfileName());
     ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
-    ui->comboBoxLanguage->setCurrentIndex(profile.getLanguage());
+    ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(profile.getLanguage()));
     ui->textBoxTID->setText(QString::number(profile.getTID()));
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->comboBoxDualSlot->setCurrentIndex(ui->comboBoxDualSlot->findData(profile.getDualSlot()));
@@ -88,6 +88,15 @@ void ProfileManager4NewEdit::setupModels()
     ui->comboBoxDualSlot->setItemData(3, Game::FireRed);
     ui->comboBoxDualSlot->setItemData(4, Game::LeafGreen);
     ui->comboBoxDualSlot->setItemData(5, Game::Emerald);
+
+    ui->comboBoxLanguage->setItemData(0, Language::Nil);
+    ui->comboBoxLanguage->setItemData(1, Language::English);
+    ui->comboBoxLanguage->setItemData(2, Language::Spanish);
+    ui->comboBoxLanguage->setItemData(3, Language::French);
+    ui->comboBoxLanguage->setItemData(4, Language::Italian);
+    ui->comboBoxLanguage->setItemData(5, Language::German);
+    ui->comboBoxLanguage->setItemData(6, Language::Japanese);
+    ui->comboBoxLanguage->setItemData(7, Language::Korean);
 }
 
 void ProfileManager4NewEdit::on_pushButtonAccept_clicked()
@@ -101,9 +110,9 @@ void ProfileManager4NewEdit::on_pushButtonAccept_clicked()
         return;
     }
 
-    fresh = Profile4(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->text().toUShort(),
-                     ui->textBoxSID->text().toUShort(), static_cast<Game>(ui->comboBoxDualSlot->currentData().toInt()), ui->comboBoxRadio->currentIndex(),
-                     ui->comboBoxLanguage->currentIndex(), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
+    fresh = Profile4(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
+                     ui->textBoxSID->getUShort(), static_cast<Game>(ui->comboBoxDualSlot->currentData().toInt()), ui->comboBoxRadio->currentIndex(),
+                     static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 
     done(QDialog::Accepted);
 }

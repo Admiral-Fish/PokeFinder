@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,10 +34,6 @@ protected:
     u32 seed;
     u32 index;
 
-    inline u32 temperingShiftL(u32 y) { return (y >> 18); }
-    inline u32 temperingShiftS(u32 y) { return (y << 7); }
-    inline u32 temperingShiftT(u32 y) { return (y << 15); }
-    inline u32 temperingShiftU(u32 y) { return (y >> 11); }
     virtual void shuffle() = 0;
     virtual void initialize(u32 seed) = 0;
 

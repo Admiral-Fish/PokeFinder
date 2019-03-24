@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,6 +31,11 @@ void Searcher3Model::setModel(const QVector<Frame3> &frames)
 
 void Searcher3Model::addItems(const QVector<Frame3> &frames)
 {
+    if (frames.isEmpty())
+    {
+        return;
+    }
+
     int i = rowCount();
     emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
     model.append(frames);

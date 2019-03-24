@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,17 +27,6 @@ void Label::mousePressEvent(QMouseEvent *event)
 {
     if (event->type() == QMouseEvent::MouseButtonPress)
     {
-        if (event->modifiers() == Qt::NoModifier)
-        {
-            emit pressed(Qt::NoModifier);
-        }
-        else if (event->modifiers() == Qt::ControlModifier)
-        {
-            emit pressed(Qt::ControlModifier);
-        }
-        else if (event->modifiers() == Qt::AltModifier)
-        {
-            emit pressed(Qt::AltModifier);
-        }
+        emit pressed(event->modifiers());
     }
 }

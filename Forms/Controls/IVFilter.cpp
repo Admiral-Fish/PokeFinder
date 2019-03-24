@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,6 +25,22 @@ IVFilter::IVFilter(QWidget *parent) :
     ui(new Ui::IVFilter)
 {
     ui->setupUi(this);
+
+    QStringList tips =
+    {
+        tr("Click to clear"),
+        tr("Click holding ctrl to set 31"),
+        tr("Click holding alt to set 30-31"),
+        tr("Click holding ctrl+alt to set 0")
+    };
+
+    QString tip = tips.join('\n');
+    ui->labelHP->setToolTip(tip);
+    ui->labelAtk->setToolTip(tip);
+    ui->labelDef->setToolTip(tip);
+    ui->labelSpA->setToolTip(tip);
+    ui->labelSpD->setToolTip(tip);
+    ui->labelSpe->setToolTip(tip);
 }
 
 IVFilter::~IVFilter()
@@ -32,269 +48,101 @@ IVFilter::~IVFilter()
     delete ui;
 }
 
-QVector<u8> IVFilter::getEvals() const
-{
-    QVector<u8> evals =
-    {
-        static_cast<u8>(ui->comboBoxHP->currentIndex()), static_cast<u8>(ui->comboBoxAtk->currentIndex()),
-        static_cast<u8>(ui->comboBoxDef->currentIndex()), static_cast<u8>(ui->comboBoxSpA->currentIndex()),
-        static_cast<u8>(ui->comboBoxSpD->currentIndex()), static_cast<u8>(ui->comboBoxSpe->currentIndex())
-    };
-
-    return evals;
-}
-
-QVector<u8> IVFilter::getValues() const
-{
-    QVector<u8> values =
-    {
-        static_cast<u8>(ui->spinBoxHP->value()), static_cast<u8>(ui->spinBoxAtk->value()),
-        static_cast<u8>(ui->spinBoxDef->value()), static_cast<u8>(ui->spinBoxSpA->value()),
-        static_cast<u8>(ui->spinBoxSpD->value()), static_cast<u8>(ui->spinBoxSpe->value())
-    };
-
-    return values;
-}
-
 QVector<u8> IVFilter::getLower() const
 {
-    QVector<u8> eval = getEvals();
-    QVector<u8> ivs = getValues();
-
-    QVector<u8> low;
-
-    for (int i = 0; i < 6; i++)
+    QVector<u8> low =
     {
-        switch (eval.at(i))
-        {
-            case 0:
-            case 3:
-                low.append(0);
-                break;
-            case 1:
-            case 2:
-                low.append(ivs.at(i));
-                break;
-        }
-    }
+        static_cast<u8>(ui->spinBoxHPMin->value()), static_cast<u8>(ui->spinBoxAtkMin->value()), static_cast<u8>(ui->spinBoxDefMin->value()),
+        static_cast<u8>(ui->spinBoxSpAMin->value()), static_cast<u8>(ui->spinBoxSpDMin->value()), static_cast<u8>(ui->spinBoxSpeMin->value())
+    };
 
     return low;
 }
 
 QVector<u8> IVFilter::getUpper() const
 {
-    QVector<u8> eval = getEvals();
-    QVector<u8> ivs = getValues();
-
-    QVector<u8> high;
-
-    for (int i = 0; i < 6; i++)
+    QVector<u8> high =
     {
-        switch (eval.at(i))
-        {
-            case 0:
-            case 2:
-                high.append(31);
-                break;
-            case 1:
-            case 3:
-                high.append(ivs.at(i));
-                break;
-        }
-    }
+        static_cast<u8>(ui->spinBoxHPMax->value()), static_cast<u8>(ui->spinBoxAtkMax->value()), static_cast<u8>(ui->spinBoxDefMax->value()),
+        static_cast<u8>(ui->spinBoxSpAMax->value()), static_cast<u8>(ui->spinBoxSpDMax->value()), static_cast<u8>(ui->spinBoxSpeMax->value())
+    };
 
     return high;
 }
 
 void IVFilter::clearValues()
 {
-    changeHP(0, 0);
-    changeAtk(0, 0);
-    changeDef(0, 0);
-    changeSpA(0, 0);
-    changeSpD(0, 0);
-    changeSpe(0, 0);
+    changeHP(0, 31);
+    changeAtk(0, 31);
+    changeDef(0, 31);
+    changeSpA(0, 31);
+    changeSpD(0, 31);
+    changeSpe(0, 31);
 }
 
 void IVFilter::setValues(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
-    changeHP(hp, 1);
-    changeAtk(atk, 1);
-    changeDef(def, 1);
-    changeSpA(spa, 1);
-    changeSpD(spd, 1);
-    changeSpe(spe, 1);
+    changeHP(hp, hp);
+    changeAtk(atk, atk);
+    changeDef(def, def);
+    changeSpA(spa, spa);
+    changeSpD(spd, spd);
+    changeSpe(spe, spe);
 }
 
-void IVFilter::changeHP(int val, int index)
+void IVFilter::changeHP(int min, int max)
 {
-    ui->spinBoxHP->setValue(val);
-    ui->comboBoxHP->setCurrentIndex(index);
+    ui->spinBoxHPMin->setValue(min);
+    ui->spinBoxHPMax->setValue(max);
 }
 
-void IVFilter::changeAtk(int val, int index)
+void IVFilter::changeAtk(int min, int max)
 {
-    ui->spinBoxAtk->setValue(val);
-    ui->comboBoxAtk->setCurrentIndex(index);
+    ui->spinBoxAtkMin->setValue(min);
+    ui->spinBoxAtkMax->setValue(max);
 }
 
-void IVFilter::changeDef(int val, int index)
+void IVFilter::changeDef(int min, int max)
 {
-    ui->spinBoxDef->setValue(val);
-    ui->comboBoxDef->setCurrentIndex(index);
+    ui->spinBoxDefMin->setValue(min);
+    ui->spinBoxDefMax->setValue(max);
 }
 
-void IVFilter::changeSpA(int val, int index)
+void IVFilter::changeSpA(int min, int max)
 {
-    ui->spinBoxSpA->setValue(val);
-    ui->comboBoxSpA->setCurrentIndex(index);
+    ui->spinBoxSpAMin->setValue(min);
+    ui->spinBoxSpAMax->setValue(max);
 }
 
-void IVFilter::changeSpD(int val, int index)
+void IVFilter::changeSpD(int min, int max)
 {
-    ui->spinBoxSpD->setValue(val);
-    ui->comboBoxSpD->setCurrentIndex(index);
+    ui->spinBoxSpDMin->setValue(min);
+    ui->spinBoxSpDMax->setValue(max);
 }
 
-void IVFilter::changeSpe(int val, int index)
+void IVFilter::changeSpe(int min, int max)
 {
-    ui->spinBoxSpe->setValue(val);
-    ui->comboBoxSpe->setCurrentIndex(index);
-}
-
-void IVFilter::on_pushButton31HP_clicked()
-{
-    changeHP(31, 1);
-}
-
-void IVFilter::on_pushButton30HP_clicked()
-{
-    changeHP(30, 1);
-}
-
-void IVFilter::on_pushButtonG30HP_clicked()
-{
-    changeHP(30, 2);
-}
-
-void IVFilter::on_pushButtonClearHP_clicked()
-{
-    changeHP(0, 0);
-}
-
-void IVFilter::on_pushButton31Atk_clicked()
-{
-    changeAtk(31, 1);
-}
-
-void IVFilter::on_pushButton30Atk_clicked()
-{
-    changeAtk(30, 1);
-}
-
-void IVFilter::on_pushButtonG30Atk_clicked()
-{
-    changeAtk(30, 2);
-}
-
-void IVFilter::on_pushButtonClearAtk_clicked()
-{
-    changeAtk(0, 0);
-}
-
-void IVFilter::on_pushButton31Def_clicked()
-{
-    changeDef(31, 1);
-}
-
-void IVFilter::on_pushButton30Def_clicked()
-{
-    changeDef(30, 1);
-}
-
-void IVFilter::on_pushButtonG30Def_clicked()
-{
-    changeDef(30, 2);
-}
-
-void IVFilter::on_pushButtonClearDef_clicked()
-{
-    changeDef(0, 0);
-}
-
-void IVFilter::on_pushButton31SpA_clicked()
-{
-    changeSpA(31, 1);
-}
-
-void IVFilter::on_pushButton30SpA_clicked()
-{
-    changeSpA(30, 1);
-}
-
-void IVFilter::on_pushButtonG30SpA_clicked()
-{
-    changeSpA(30, 2);
-}
-
-void IVFilter::on_pushButtonClearSpA_clicked()
-{
-    changeSpA(0, 0);
-}
-
-void IVFilter::on_pushButton31SpD_clicked()
-{
-    changeSpD(31, 1);
-}
-
-void IVFilter::on_pushButton30SpD_clicked()
-{
-    changeSpD(30, 1);
-}
-
-void IVFilter::on_pushButtonG30SpD_clicked()
-{
-    changeSpD(30, 2);
-}
-
-void IVFilter::on_pushButtonClearSpD_clicked()
-{
-    changeSpD(0, 0);
-}
-
-void IVFilter::on_pushButton31Spe_clicked()
-{
-    changeSpe(31, 1);
-}
-
-void IVFilter::on_pushButton30Spe_clicked()
-{
-    changeSpe(30, 1);
-}
-
-void IVFilter::on_pushButtonG30Spe_clicked()
-{
-    changeSpe(30, 2);
-}
-
-void IVFilter::on_pushButtonClearSpe_clicked()
-{
-    changeSpe(0, 0);
+    ui->spinBoxSpeMin->setValue(min);
+    ui->spinBoxSpeMax->setValue(max);
 }
 
 void IVFilter::changeCompareHP(int type)
 {
     if (type == Qt::NoModifier)
     {
-        ui->comboBoxHP->setCurrentIndex(0);
+        changeHP(0, 31);
     }
     else if (type == Qt::ControlModifier)
     {
-        ui->comboBoxHP->setCurrentIndex(1);
+        changeHP(31, 31);
     }
     else if (type == Qt::AltModifier)
     {
-        ui->comboBoxHP->setCurrentIndex(2);
+        changeHP(30, 31);
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        changeHP(0, 0);
     }
 }
 
@@ -302,15 +150,19 @@ void IVFilter::changeCompareAtk(int type)
 {
     if (type == Qt::NoModifier)
     {
-        ui->comboBoxAtk->setCurrentIndex(0);
+        changeAtk(0, 31);
     }
     else if (type == Qt::ControlModifier)
     {
-        ui->comboBoxAtk->setCurrentIndex(1);
+        changeAtk(31, 31);
     }
     else if (type == Qt::AltModifier)
     {
-        ui->comboBoxAtk->setCurrentIndex(2);
+        changeAtk(30, 31);
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        changeAtk(0, 0);
     }
 }
 
@@ -318,15 +170,19 @@ void IVFilter::changeCompareDef(int type)
 {
     if (type == Qt::NoModifier)
     {
-        ui->comboBoxDef->setCurrentIndex(0);
+        changeDef(0, 31);
     }
     else if (type == Qt::ControlModifier)
     {
-        ui->comboBoxDef->setCurrentIndex(1);
+        changeDef(31, 31);
     }
     else if (type == Qt::AltModifier)
     {
-        ui->comboBoxDef->setCurrentIndex(2);
+        changeDef(30, 31);
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        changeDef(0, 0);
     }
 }
 
@@ -334,15 +190,19 @@ void IVFilter::changeCompareSpA(int type)
 {
     if (type == Qt::NoModifier)
     {
-        ui->comboBoxSpA->setCurrentIndex(0);
+        changeSpA(0, 31);
     }
     else if (type == Qt::ControlModifier)
     {
-        ui->comboBoxSpA->setCurrentIndex(1);
+        changeSpA(31, 31);
     }
     else if (type == Qt::AltModifier)
     {
-        ui->comboBoxSpA->setCurrentIndex(2);
+        changeSpA(30, 31);
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        changeSpA(0, 0);
     }
 }
 
@@ -350,15 +210,19 @@ void IVFilter::changeCompareSpD(int type)
 {
     if (type == Qt::NoModifier)
     {
-        ui->comboBoxSpD->setCurrentIndex(0);
+        changeSpD(0, 31);
     }
     else if (type == Qt::ControlModifier)
     {
-        ui->comboBoxSpD->setCurrentIndex(1);
+        changeSpD(31, 31);
     }
     else if (type == Qt::AltModifier)
     {
-        ui->comboBoxSpD->setCurrentIndex(2);
+        changeSpD(30, 31);
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        changeSpD(0, 0);
     }
 }
 
@@ -366,14 +230,18 @@ void IVFilter::changeCompareSpe(int type)
 {
     if (type == Qt::NoModifier)
     {
-        ui->comboBoxSpe->setCurrentIndex(0);
+        changeSpe(0, 31);
     }
     else if (type == Qt::ControlModifier)
     {
-        ui->comboBoxSpe->setCurrentIndex(1);
+        changeSpe(31, 31);
     }
     else if (type == Qt::AltModifier)
     {
-        ui->comboBoxSpe->setCurrentIndex(2);
+        changeSpe(30, 31);
+    }
+    else if (type & Qt::ControlModifier && type & Qt::AltModifier)
+    {
+        changeSpe(0, 0);
     }
 }

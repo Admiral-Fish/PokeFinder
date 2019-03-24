@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,7 +28,7 @@ class SeedtoTime4Model : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    SeedtoTime4Model(QObject *parent, bool flag = false, Game version = Diamond);
+    SeedtoTime4Model(QObject *parent, bool flag = false, Game version = DPPt);
     void setModel(const QVector<DateTime> &times);
     void clear();
     DateTime getData(int row);

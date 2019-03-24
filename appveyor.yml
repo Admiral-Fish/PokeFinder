@@ -1,35 +1,33 @@
 environment:
   matrix:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    QTDIR: C:\Qt\5.11\msvc2017_64
+    QTDIR: C:\Qt\5.12\msvc2017_64
     OS: windows
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
     OS: linux
-
-services:
-    - Docker
 
 install:
     # Windows
     - cmd: set PATH=%QTDIR%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
     - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
     # Linux
-    - sh: sudo service docker start
+    - sh: sudo add-apt-repository ppa:beineri/opt-qt-5.12.1-xenial -y
+    - sh: sudo apt-get update -qq
+    - sh: sudo apt-get -y install qt512base qt512svg libgl1-mesa-dev
+    - sh: source /opt/qt5*/bin/qt5*-env.sh
     
 build_script:
+    - qmake PokeFinder.pro
     # Windows
-    - cmd: qmake PokeFinder.pro
     - cmd: jom -j %NUMBER_OF_PROCESSORS%
     # Linux
-    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.12-desktop sudo /opt/Qt/5.12.0/gcc_64/bin/qmake
-    - sh: docker run -w="/app" -v "$(pwd)":/app rabits/qt:5.12-desktop sudo make -j 4
+    - sh: make -j $(nproc)
     
 after_build:
     # Windows
     - cmd: md PokeFinder-windows
     - cmd: move release\PokeFinder.exe PokeFinder-windows\PokeFinder.exe 
     - cmd: windeployqt --release --no-translations --no-angle --no-plugins --no-opengl-sw PokeFinder-windows\PokeFinder.exe
-    - cmd: del PokeFinder-windows\vcredist*.exe
     - cmd: del PokeFinder-windows\vc_redist*.exe
     - cmd: xcopy /I %QTDIR%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
     - cmd: xcopy /I %QTDIR%\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
@@ -42,8 +40,9 @@ artifacts:
 
 deploy:
     provider: GitHub
+    description: ''
     auth_token:
         secure: u3c5wUq11csZ77TpgKMImu9U+ibNiviMcEpTuQXmqp1YGSHA/+u5FhqZ3KRZBAQX
-    artifact: PokeFinder-%OS%-%ARCH%.zip
+    artifact: PokeFinder-%OS%.zip
     on:
         APPVEYOR_REPO_TAG: true

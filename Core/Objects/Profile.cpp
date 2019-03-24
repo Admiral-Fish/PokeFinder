@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,7 +19,7 @@
 
 #include "Profile.hpp"
 
-Profile::Profile(const QString &profileName, Game version, u16 tid, u16 sid, int language)
+Profile::Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language)
 {
     this->profileName = profileName;
     this->version = version;
@@ -31,7 +31,7 @@ Profile::Profile(const QString &profileName, Game version, u16 tid, u16 sid, int
 Profile::Profile()
 {
     profileName = "None";
-    language = 0;
+    language = Language::Nil;
     tid = 12345;
     sid = 54321;
 }
@@ -73,20 +73,24 @@ QString Profile::getLanguageString() const
 {
     switch (language)
     {
-        case 1:
-            return "ENG";
-        case 2:
-            return "SPA";
-        case 3:
-            return "FRE";
-        case 4:
-            return "ITA";
-        case 5:
-            return "DEU";
-        case 6:
-            return "JPN";
-        default:
+        case Language::Nil:
             return "-";
+        case Language::Chinese:
+            return "CHI";
+        case Language::English:
+            return "ENG";
+        case Language::French:
+            return "FRE";
+        case Language::German:
+            return "DEU";
+        case Language::Italian:
+            return "ITA";
+        case Language::Japanese:
+            return "JPN";
+        case Language::Korean:
+            return "KOR";
+        case Language::Spanish:
+            return "SPA";
     }
 }
 
@@ -95,7 +99,7 @@ Game Profile::getVersion() const
     return version;
 }
 
-int Profile::getLanguage() const
+Language Profile::getLanguage() const
 {
     return language;
 }
