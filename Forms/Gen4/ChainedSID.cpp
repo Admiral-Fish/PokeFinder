@@ -35,22 +35,76 @@ ChainedSID::ChainedSID(QWidget *parent) :
 ChainedSID::~ChainedSID()
 {
     delete ui;
+    delete chainedCalc;
 }
 
 void ChainedSID::setupModels()
 {
     model = new QStandardItemModel(ui->tableView);
+    model->setHorizontalHeaderLabels(QStringList() << tr("IVs") << tr("Nature") << tr("Ability") << tr("Gender"));
     ui->tableView->setModel(model);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->textBoxTID->setValues(InputType::TIDSID);
+    ui->comboBoxNature->addItems(Nature::getFrameNatures());
 }
 
 void ChainedSID::on_pushButtonCalculate_clicked()
 {
+    if (!chainedCalc)
+    {
+        chainedCalc = new ChainedSIDCalc(ui->textBoxTID->getUShort());
+        ui->textBoxTID->setEnabled(false);
+    }
 
+    u8 hp = ui->spinBoxHP->value();
+    u8 atk = ui->spinBoxAtk->value();
+    u8 def = ui->spinBoxDef->value();
+    u8 spa = ui->spinBoxSpA->value();
+    u8 spd = ui->spinBoxSpD->value();
+    u8 spe = ui->spinBoxSpe->value();
+    u8 nature = ui->comboBoxNature->currentIndex();
+    u8 ability = ui->comboBoxAbility->currentIndex();
+    u8 gender = ui->comboBoxGender->currentIndex();
+
+    QList<QStandardItem *> row;
+    row << new QStandardItem(QString::number(hp) + "." + QString::number(atk) + "." + QString::number(def) + "." + QString::number(spa) + "." + QString::number(spd) + "." + QString::number(spe));
+    row << new QStandardItem(Nature::getNature(nature));
+    row << new QStandardItem(ui->comboBoxAbility->currentText());
+    row << new QStandardItem(ui->comboBoxGender->currentText());
+    model->appendRow(row);
+
+    chainedCalc->addEntry({hp, atk, def, spa, spd, spe}, nature, ability, gender);
+    QVector<u16> sids = chainedCalc->getSIDs();
+    if (sids.size() == 1)
+    {
+        ui->labelPossibleResults->setText("SID Found: " + QString::number(sids[0]));
+    }
+    else
+    {
+        ui->labelPossibleResults->setText("Possible Results: " + QString::number(sids.size()));
+    }
+
+    ui->spinBoxHP->setValue(0);
+    ui->spinBoxAtk->setValue(0);
+    ui->spinBoxDef->setValue(0);
+    ui->spinBoxSpA->setValue(0);
+    ui->spinBoxSpD->setValue(0);
+    ui->spinBoxSpe->setValue(0);
+    ui->comboBoxNature->setCurrentIndex(0);
+    ui->comboBoxAbility->setCurrentIndex(0);
+    ui->comboBoxGender->setCurrentIndex(0);
 }
 
 void ChainedSID::on_pushButtonClear_clicked()
 {
+    if (chainedCalc)
+    {
+        delete chainedCalc;
+        chainedCalc = nullptr;
+        ui->textBoxTID->setEnabled(true);
+    }
 
+    model->removeRows(0, model->rowCount());
+    ui->labelPossibleResults->setText("Possible Results: 8192");
 }

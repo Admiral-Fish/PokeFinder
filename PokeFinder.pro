@@ -68,6 +68,7 @@ HEADERS += \
     Core/Gen3/Profile3.hpp \
     Core/Gen3/Searcher3.hpp \
     Core/Gen3/ShadowLock.hpp \
+    Core/Gen4/ChainedSIDCalc.hpp \
     Core/Gen4/Egg4.hpp \
     Core/Gen4/EncounterArea4.hpp \
     Core/Gen4/Encounters4.hpp \
@@ -162,6 +163,7 @@ SOURCES += \
     Core/Gen3/Profile3.cpp \
     Core/Gen3/Searcher3.cpp \
     Core/Gen3/ShadowLock.cpp \
+    Core/Gen4/ChainedSIDCalc.cpp \
     Core/Gen4/Egg4.cpp \
     Core/Gen4/EncounterArea4.cpp \
     Core/Gen4/Encounters4.cpp \

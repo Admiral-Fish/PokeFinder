@@ -218,19 +218,20 @@
     <property name="title">
      <string>Gen 3 Tools</string>
     </property>
-    <addaction name="actionSeedtoTime3"/>
-    <addaction name="actionJirachiPattern"/>
-    <addaction name="actionPokeSpot"/>
-    <addaction name="actionIVtoPID3"/>
     <addaction name="actionGameCubeRTC"/>
+    <addaction name="actionIVtoPID3"/>
+    <addaction name="actionJirachiPattern"/>
     <addaction name="actionPIDtoIV"/>
+    <addaction name="actionPokeSpot"/>
+    <addaction name="actionSeedtoTime3"/>
    </widget>
    <widget class="QMenu" name="menuGen4Tools">
     <property name="title">
      <string>Gen 4 Tools</string>
     </property>
-    <addaction name="actionSeedtoTime4"/>
     <addaction name="actionIVtoPID4"/>
+    <addaction name="actionSeedtoTime4"/>
+    <addaction name="actionSID_from_Chained_Shiny"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
@@ -387,6 +388,11 @@
    </property>
    <property name="text">
     <string>Chinese</string>
+   </property>
+  </action>
+  <action name="actionSID_from_Chained_Shiny">
+   <property name="text">
+    <string>SID from Chained Shiny</string>
    </property>
   </action>
  </widget>

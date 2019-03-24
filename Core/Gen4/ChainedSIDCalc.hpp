@@ -17,38 +17,29 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef CHAINEDSID_HPP
-#define CHAINEDSID_HPP
+#ifndef CHAINEDSIDCALC_HPP
+#define CHAINEDSIDCALC_HPP
 
-#include <QStandardItemModel>
-#include <QWidget>
-#include <Core/Gen4/ChainedSIDCalc.hpp>
-#include <Core/Objects/Nature.hpp>
+#include <QPair>
+#include <QVector>
+#include <Core/Objects/Global.hpp>
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/RNGCache.hpp>
 
-namespace Ui
+class ChainedSIDCalc
 {
-    class ChainedSID;
-}
-
-class ChainedSID : public QWidget
-{
-    Q_OBJECT
 
 public:
-    explicit ChainedSID(QWidget *parent = nullptr);
-    ~ChainedSID() override;
+    ChainedSIDCalc(u16 tid);
+    void addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 gender);
+    QVector<u16> getSIDs() const;
 
 private:
-    Ui::ChainedSID *ui;
-    QStandardItemModel *model;
-    ChainedSIDCalc *chainedCalc = nullptr;
+    QVector<u16> sids;
+    u16 tid;
 
-    void setupModels();
-
-private slots:
-    void on_pushButtonCalculate_clicked();
-    void on_pushButtonClear_clicked();
+    bool matchGender(u8 gender, u8 val) const;
 
 };
 
-#endif // CHAINEDSID_HPP
+#endif // CHAINEDSIDCALC_HPP

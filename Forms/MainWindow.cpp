@@ -248,25 +248,11 @@ void MainWindow::on_pushButtonIDs3_clicked()
     ids3->raise();
 }
 
-void MainWindow::on_actionSeedtoTime3_triggered()
+void MainWindow::on_actionGameCubeRTC_triggered()
 {
-    auto *seedToTime = new SeedToTime3();
-    seedToTime->show();
-    seedToTime->raise();
-}
-
-void MainWindow::on_actionJirachiPattern_triggered()
-{
-    auto *jirachi = new JirachiPattern();
-    jirachi->show();
-    jirachi->raise();
-}
-
-void MainWindow::on_actionPokeSpot_triggered()
-{
-    auto *pokeSpot = new PokeSpot();
-    pokeSpot->show();
-    pokeSpot->raise();
+    auto *rtc = new GameCubeRTC();
+    rtc->show();
+    rtc->raise();
 }
 
 void MainWindow::on_actionIVtoPID3_triggered()
@@ -276,11 +262,11 @@ void MainWindow::on_actionIVtoPID3_triggered()
     ivToPID->raise();
 }
 
-void MainWindow::on_actionGameCubeRTC_triggered()
+void MainWindow::on_actionJirachiPattern_triggered()
 {
-    auto *rtc = new GameCubeRTC();
-    rtc->show();
-    rtc->raise();
+    auto *jirachi = new JirachiPattern();
+    jirachi->show();
+    jirachi->raise();
 }
 
 void MainWindow::on_actionPIDtoIV_triggered()
@@ -292,6 +278,20 @@ void MainWindow::on_actionPIDtoIV_triggered()
     }
     pidToIV->show();
     pidToIV->raise();
+}
+
+void MainWindow::on_actionPokeSpot_triggered()
+{
+    auto *pokeSpot = new PokeSpot();
+    pokeSpot->show();
+    pokeSpot->raise();
+}
+
+void MainWindow::on_actionSeedtoTime3_triggered()
+{
+    auto *seedToTime = new SeedToTime3();
+    seedToTime->show();
+    seedToTime->raise();
 }
 
 void MainWindow::on_pushButtonStationary4_clicked()
@@ -337,6 +337,13 @@ void MainWindow::on_pushButtonIDs4_clicked()
     ids4->raise();
 }
 
+void MainWindow::on_actionIVtoPID4_triggered()
+{
+    auto *ivToPID = new IVtoPID();
+    ivToPID->show();
+    ivToPID->raise();
+}
+
 void MainWindow::on_actionSeedtoTime4_triggered()
 {
     auto *seedToTime = new SeedtoTime4();
@@ -344,11 +351,11 @@ void MainWindow::on_actionSeedtoTime4_triggered()
     seedToTime->raise();
 }
 
-void MainWindow::on_actionIVtoPID4_triggered()
+void MainWindow::on_actionSID_from_Chained_Shiny_triggered()
 {
-    auto *ivToPID = new IVtoPID();
-    ivToPID->show();
-    ivToPID->raise();
+    auto *chainedSID = new ChainedSID();
+    chainedSID->show();
+    chainedSID->raise();
 }
 
 void MainWindow::on_actionResearcher_triggered()
