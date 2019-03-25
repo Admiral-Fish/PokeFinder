@@ -71,7 +71,6 @@ void TableView::keyPressEvent(QKeyEvent *event)
 
 void TableView::outputModelTXT()
 {
-    QAbstractItemModel *model = this->model();
     QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to TXT"), QDir::currentPath(), QObject::tr("Text File (*.txt);;All Files (*)"));
 
     if (fileName.isEmpty())
@@ -80,45 +79,49 @@ void TableView::outputModelTXT()
     }
 
     QFile file(fileName);
+    QAbstractItemModel *model = this->model();
     if (file.open(QIODevice::WriteOnly))
     {
-        QString textData = "";
+        QTextStream ts(&file);
         int rows = model->rowCount();
         int columns = model->columnCount();
 
+        QString header = "";
         for (int i = 0; i < columns; i++)
         {
-            textData += model->headerData(i, Qt::Horizontal, 0).toString();
+            header += model->headerData(i, Qt::Horizontal, 0).toString();
             if (i != columns - 1)
             {
-                textData += "\t";
+                header += "\t";
             }
         }
-        textData += "\n";
+        header += "\n";
 
         for (int i = 0; i < rows; i++)
         {
+            QString body = "";
             for (int j = 0; j < columns; j++)
             {
                 QString entry = model->data(model->index(i, j)).toString();
-                textData += (entry.isEmpty() ? "-" : entry);
+                body += (entry.isEmpty() ? "-" : entry);
                 if (i != columns - 1)
                 {
-                    textData += "\t";
+                    body += "\t";
                 }
             }
-            textData += "\n";
+            if (i != rows - 1)
+            {
+                body += "\n";
+            }
+            ts << body;
         }
 
-        QTextStream out(&file);
-        out << textData;
         file.close();
     }
 }
 
 void TableView::outputModelCSV()
 {
-    QAbstractItemModel *model = this->model();
     QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to CSV"), QDir::currentPath(), QObject::tr("CSV File (*.csv);;All Files (*)"));
 
     if (fileName.isEmpty())
@@ -127,39 +130,44 @@ void TableView::outputModelCSV()
     }
 
     QFile file(fileName);
+    QAbstractItemModel *model = this->model();
     if (file.open(QIODevice::WriteOnly))
     {
-        QString textData = "";
+        QTextStream ts(&file);
         int rows = model->rowCount();
         int columns = model->columnCount();
 
+        QString header = "";
         for (int i = 0; i < columns; i++)
         {
-            textData += model->headerData(i, Qt::Horizontal, 0).toString();
+            header += model->headerData(i, Qt::Horizontal, 0).toString();
             if (i != columns - 1)
             {
-                textData += ",";
+                header += ",";
             }
         }
-
-        textData += "\n";
+        header += "\n";
+        ts << header;
 
         for (int i = 0; i < rows; i++)
         {
+            QString body = "";
             for (int j = 0; j < columns; j++)
             {
                 QString entry = model->data(model->index(i, j)).toString();
-                textData += (entry.isEmpty() ? "-" : entry);
+                body += (entry.isEmpty() ? "-" : entry);
                 if (j != columns - 1)
                 {
-                    textData += ",";
+                    body += ",";
                 }
             }
-            textData += "\n";
+            if (i != rows - 1)
+            {
+                body += "\n";
+            }
+            ts << body;
         }
 
-        QTextStream out(&file);
-        out << textData;
         file.close();
     }
 }
