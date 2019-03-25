@@ -41,6 +41,7 @@ FORMS += \
     Forms/Gen3/ProfileManager3.ui \
     Forms/Gen3/ProfileManager3NewEdit.ui \
     Forms/Gen3/SeedToTime3.ui \
+    Forms/Gen3/SpindaPainter.ui \
     Forms/Gen3/Stationary3.ui \
     Forms/Gen3/Wild3.ui \
     Forms/Gen4/ChainedSID.ui \
@@ -57,8 +58,7 @@ FORMS += \
     Forms/Util/IVCalculator.ui \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
-    Forms/MainWindow.ui \
-    Forms/Gen3/SpindaPainter.ui
+    Forms/MainWindow.ui
 
 HEADERS += \
     Core/Gen3/Egg3.hpp \
@@ -113,6 +113,7 @@ HEADERS += \
     Core/Util/Utilities.hpp \
     Forms/Controls/CheckList.hpp \
     Forms/Controls/EggSettings.hpp \
+    Forms/Controls/GraphicsPixmapItem.hpp \
     Forms/Controls/IVFilter.hpp \
     Forms/Controls/Label.hpp \
     Forms/Controls/TableView.hpp \
@@ -126,6 +127,7 @@ HEADERS += \
     Forms/Gen3/ProfileManager3.hpp \
     Forms/Gen3/ProfileManager3NewEdit.hpp \
     Forms/Gen3/SeedToTime3.hpp \
+    Forms/Gen3/SpindaPainter.hpp \
     Forms/Gen3/Stationary3.hpp \
     Forms/Gen3/Wild3.hpp \
     Forms/Gen4/ChainedSID.hpp \
@@ -158,8 +160,7 @@ HEADERS += \
     Models/ResearcherModel.hpp \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
-    Util/TableUtility.hpp \
-    Forms/Gen3/SpindaPainter.hpp
+    Util/TableUtility.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -206,6 +207,7 @@ SOURCES += \
     Core/Util/Utilities.cpp \
     Forms/Controls/CheckList.cpp \
     Forms/Controls/EggSettings.cpp \
+    Forms/Controls/GraphicsPixmapItem.cpp \
     Forms/Controls/IVFilter.cpp \
     Forms/Controls/Label.cpp \
     Forms/Controls/TableView.cpp \
@@ -219,6 +221,7 @@ SOURCES += \
     Forms/Gen3/ProfileManager3.cpp \
     Forms/Gen3/ProfileManager3NewEdit.cpp \
     Forms/Gen3/SeedToTime3.cpp \
+    Forms/Gen3/SpindaPainter.cpp \
     Forms/Gen3/Stationary3.cpp \
     Forms/Gen3/Wild3.cpp \
     Forms/Gen4/ChainedSID.cpp \
@@ -252,5 +255,4 @@ SOURCES += \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
     Util/TableUtility.cpp \
-    main.cpp \
-    Forms/Gen3/SpindaPainter.cpp
+    main.cpp

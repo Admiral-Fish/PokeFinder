@@ -50,15 +50,26 @@ void SpindaPainter::setupModels()
     ui->graphicsView->setScene(scene);
 
     spinda = new QGraphicsPixmapItem(QPixmap(":/images/spinda.png"));
-    spot1 = new QGraphicsPixmapItem(QPixmap(":/images/spinda_spot1"));
-    spot2 = new QGraphicsPixmapItem(QPixmap(":/images/spinda_spot2"));
-    spot3 = new QGraphicsPixmapItem(QPixmap(":/images/spinda_spot3"));
-    spot4 = new QGraphicsPixmapItem(QPixmap(":/images/spinda_spot4"));
+    spot1 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot1"));
+    spot2 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot2"));
+    spot3 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot3"));
+    spot4 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot4"));
 
     spot1->setFlag(QGraphicsItem::ItemIsMovable);
+    spot1->setMin(64, 48);
+    spot1->setMax(184, 168);
+
     spot2->setFlag(QGraphicsItem::ItemIsMovable);
+    spot2->setMin(256, 56);
+    spot2->setMax(376, 176);
+
     spot3->setFlag(QGraphicsItem::ItemIsMovable);
+    spot3->setMin(112, 192);
+    spot3->setMax(232, 312);
+
     spot4->setFlag(QGraphicsItem::ItemIsMovable);
+    spot4->setMin(208, 200);
+    spot4->setMax(328, 320);
 
     scene->addItem(spinda);
     scene->addItem(spot1);
@@ -69,15 +80,15 @@ void SpindaPainter::setupModels()
     ui->textBoxPID->setText("0");
 }
 
-void SpindaPainter::moveSpot(QGraphicsPixmapItem *item, int index)
+void SpindaPainter::moveSpot(GraphicsPixmapItem *item, int index)
 {
-    int left = (pid >> (index * 8)) & 0xf;
-    int top = (pid >> (index * 8 + 4)) & 0xf;
+    int x = (pid >> (index * 8)) & 0xf;
+    int y = (pid >> (index * 8 + 4)) & 0xf;
 
-    left += coords[2 * index] + origin[0];
-    top += coords[2 * index + 1] + origin[1];
+    x += coords[2 * index] + origin[0];
+    y += coords[2 * index + 1] + origin[1];
 
-    item->setPos(left * 8, top * 8);
+    item->setPos(x * 8, y * 8);
 }
 
 void SpindaPainter::on_textBoxPID_textChanged(const QString &arg1)

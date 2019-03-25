@@ -21,10 +21,10 @@
 #define SPINDAPAINTER_HPP
 
 #include <QGraphicsScene>
-#include <QGraphicsPixmapItem>
 #include <QVector>
 #include <QWidget>
 #include <Core/Util/Global.hpp>
+#include <Forms/Controls/GraphicsPixmapItem.hpp>
 
 namespace Ui
 {
@@ -43,16 +43,16 @@ private:
     Ui::SpindaPainter *ui;
     QGraphicsScene *scene;
     QGraphicsPixmapItem *spinda;
-    QGraphicsPixmapItem *spot1;
-    QGraphicsPixmapItem *spot2;
-    QGraphicsPixmapItem *spot3;
-    QGraphicsPixmapItem *spot4;
+    GraphicsPixmapItem *spot1;
+    GraphicsPixmapItem *spot2;
+    GraphicsPixmapItem *spot3;
+    GraphicsPixmapItem *spot4;
     u32 pid;
     const int coords[8] = { 0, 0, 24, 1, 6, 18, 18, 19 };
     const int origin[2] = { 8, 6 };
 
     void setupModels();
-    void moveSpot(QGraphicsPixmapItem *item, int index);
+    void moveSpot(GraphicsPixmapItem *item, int index);
 
 private slots:
     void on_textBoxPID_textChanged(const QString &arg1);
