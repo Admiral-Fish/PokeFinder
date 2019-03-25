@@ -19,6 +19,26 @@
 
 #include "Translator.hpp"
 
+QStringList Translator::getCharacteristic()
+{
+    QStringList names;
+    QSettings setting;
+    QFile file(QString(":/text/characteristic_%1.txt").arg(setting.value("locale", "en").toString()));
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QTextStream ts(&file);
+        ts.setCodec("UTF-8");
+
+        while (!ts.atEnd())
+        {
+            names.append(ts.readLine());
+        }
+
+        file.close();
+    }
+    return names;
+}
+
 QStringList Translator::getSpecies(const QVector<u16> &nums)
 {
     QStringList species;

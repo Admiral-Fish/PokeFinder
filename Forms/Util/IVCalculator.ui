@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>IVCalculator</class>
- <widget class="QMainWindow" name="IVCalculator">
+ <widget class="QWidget" name="IVCalculator">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,647 +13,431 @@
   <property name="windowTitle">
    <string>IV Calculator</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QLineEdit {
-	qproperty-alignment: AlignCenter;
-	background-color: #1D303C;
-	border:none;
-	border-radius: 6px;
-	color: white;
-}
-
-QGroupBox {
-	background-color: #274050;
-	border-radius: 10px;
-	margin-top: 7px;
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-.QGroupBox * {
-	font-family: &quot;Myriad Pro&quot;, Montserrat;
-	font-weight: 500;
-}
-
-QComboBox {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-	padding-left: 13px;
-}
-
-QComboBox QListView{
-	color: white;
-	background-color: #1D303C;
-	border:1px solid black;
-	padding-left: 3px;
-}
-
-QComboBox::item:alternate {
-	background: #1D303C;
-}
-
-QComboBox::item:selected {
-	border: 1px solid transparent;
-	background: #003941;
-}
-
-QComboBox::indicator{
-	background-color:transparent;
-	selection-background-color:transparent;
-	color:transparent;
-	selection-color:transparent;
-}
-
-QComboBox::editable {
-	background-color: #1D303C;
-	border: none;
-	border-radius: 6px;
-	color: white;
-}
-
-QLabel {
-	color: white;
-}
-
-QGroupBox::title {
-	subcontrol-origin: margin;
-	left: 20px;
-	padding: 3px 5px 3px 5px;
-	background-color: #969F91;
-	border-radius: 5px;
-}
-
-QPushButton {
-	border: none;
-	border-radius: 6px;
-	color: white;
-	background-color: DodgerBlue;
-}</string>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="0">
-     <widget class="QGroupBox" name="groupBoxSettings">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>1</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string>Settings</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelSpecies">
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBoxSettings">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Settings</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelSpecies">
+        <property name="text">
+         <string>Pokémon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelNature">
+        <property name="text">
+         <string>Nature</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelGeneraiton">
+        <property name="text">
+         <string>Generation</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QComboBox" name="comboBoxPokemon"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="comboBoxNature"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QComboBox" name="comboBoxGeneration">
+        <item>
          <property name="text">
-          <string>Pokémon</string>
+          <string>Gen 3</string>
          </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="labelNature">
+        </item>
+        <item>
          <property name="text">
-          <string>Nature</string>
+          <string>Gen 4</string>
          </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QComboBox" name="comboBoxPokemon"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="labelCharacteristic">
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelCharacteristic">
+        <property name="text">
+         <string>Characteristic</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelHiddenPower">
+        <property name="text">
+         <string>Hidden Power</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QComboBox" name="comboBoxCharacteristic"/>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="comboBoxHiddenPower">
+        <item>
          <property name="text">
-          <string>Characteristic</string>
+          <string>None</string>
          </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QComboBox" name="comboBoxCharacteristic">
-         <item>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>219</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="4" column="2">
+       <widget class="QPushButton" name="pushButtonFindIVs">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>23</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Find IVs</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="3">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelLevel">
           <property name="text">
-           <string>None</string>
+           <string>Level</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="labelHP">
           <property name="text">
-           <string>Loves to eat</string>
+           <string>HP</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="labelAtk">
           <property name="text">
-           <string>Often dozes off</string>
+           <string>Atk</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLabel" name="labelDef">
           <property name="text">
-           <string>Often scatters things</string>
+           <string>Def</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QLabel" name="labelSpA">
           <property name="text">
-           <string>Scatters things often</string>
+           <string>SpA</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QLabel" name="labelSpD">
           <property name="text">
-           <string>Likes to relax</string>
+           <string>SpD</string>
           </property>
-         </item>
-         <item>
+         </widget>
+        </item>
+        <item row="0" column="6">
+         <widget class="QLabel" name="labelSpe">
           <property name="text">
-           <string>Proud of its power</string>
+           <string>Spe</string>
           </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Likes to thrash about</string>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="TextBox" name="textBoxLevel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>A little quick tempered</string>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="TextBox" name="textBoxHP">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Likes to fight</string>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="TextBox" name="textBoxAtk">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Quick tempered</string>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="TextBox" name="textBoxDef">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Sturdy body</string>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="TextBox" name="textBoxSpA">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Capable of taking hits</string>
+         </widget>
+        </item>
+        <item row="1" column="5">
+         <widget class="TextBox" name="textBoxSpD">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Highly persistent</string>
+         </widget>
+        </item>
+        <item row="1" column="6">
+         <widget class="TextBox" name="textBoxSpe">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Good endurance</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Good perserverence</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Likes to run</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Alert to sounds</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Impetuous and silly</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Somewhat of a clown</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Quick to flee</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Highly curious</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Mischievous</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Thoroughly cunning</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Often lost in thought</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Very finicky</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Strong willed</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Somewhat vain</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Strongly defiant</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Hates to lose</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Somewhat stubborn</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="4" column="0" colspan="2">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>219</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="4" column="2">
-        <widget class="QPushButton" name="pushButtonFindIVs">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>23</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Find IVs</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0" colspan="3">
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelLevel">
-           <property name="text">
-            <string>Level</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="labelHP">
-           <property name="text">
-            <string>HP</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="labelAtk">
-           <property name="text">
-            <string>Atk</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="labelDef">
-           <property name="text">
-            <string>Def</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="QLabel" name="labelSpA">
-           <property name="text">
-            <string>SpA</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="5">
-          <widget class="QLabel" name="labelSpD">
-           <property name="text">
-            <string>SpD</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="6">
-          <widget class="QLabel" name="labelSpe">
-           <property name="text">
-            <string>Spe</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="TextBox" name="textBoxLevel">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="TextBox" name="textBoxHP">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="TextBox" name="textBoxAtk">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="TextBox" name="textBoxDef">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="4">
-          <widget class="TextBox" name="textBoxSpA">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="5">
-          <widget class="TextBox" name="textBoxSpD">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="6">
-          <widget class="TextBox" name="textBoxSpe">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="1" colspan="2">
-        <widget class="QComboBox" name="comboBoxNature"/>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="labelHiddenPower">
-         <property name="text">
-          <string>Hidden Power</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1" colspan="2">
-        <widget class="QComboBox" name="comboBoxHiddenPower">
-         <item>
-          <property name="text">
-           <string>None</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="0" column="1" rowspan="2">
-     <widget class="QGroupBox" name="groupBoxInformation">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>1</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string>Information</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelBaseHP">
-         <property name="text">
-          <string>Base HP</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="labelBaseHPValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelBaseAtk">
-         <property name="text">
-          <string>Base Atk</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="labelBaseAtkValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="labelBaseDef">
-         <property name="text">
-          <string>Base Def</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="labelBaseDefValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="labelBaseSpA">
-         <property name="text">
-          <string>Base SpA</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLabel" name="labelBaseSpAValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="labelBaseSpD">
-         <property name="text">
-          <string>Base SpD</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QLabel" name="labelBaseSpDValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="labelBaseSpe">
-         <property name="text">
-          <string>Base Spe</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLabel" name="labelBaseSpeValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QGroupBox" name="groupBoxResults">
-      <property name="title">
-       <string>Results</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_5">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelHPIV">
-         <property name="text">
-          <string>HP</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="labelHPIVValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelAtkIV">
-         <property name="text">
-          <string>Atk</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="labelAtkIVValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="labelDefIV">
-         <property name="text">
-          <string>Def</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="labelDefIVValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="labelSpAIV">
-         <property name="text">
-          <string>SpA</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLabel" name="labelSpAIVValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="labelSpDIV">
-         <property name="text">
-          <string>SpD</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QLabel" name="labelSpDIVValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="labelSpeIV">
-         <property name="text">
-          <string>Spe</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLabel" name="labelSpeIVValue">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="groupBoxResults">
+     <property name="title">
+      <string>Results</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelHPIV">
+        <property name="text">
+         <string>HP</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelHPIVValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelAtkIV">
+        <property name="text">
+         <string>Atk</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="labelAtkIVValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelDefIV">
+        <property name="text">
+         <string>Def</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelDefIVValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelSpAIV">
+        <property name="text">
+         <string>SpA</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="labelSpAIVValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelSpDIV">
+        <property name="text">
+         <string>SpD</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="labelSpDIVValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelSpeIV">
+        <property name="text">
+         <string>Spe</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="labelSpeIVValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="2">
+    <widget class="QGroupBox" name="groupBoxInformation">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Information</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelBaseHP">
+        <property name="text">
+         <string>Base HP</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelBaseHPValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelBaseAtk">
+        <property name="text">
+         <string>Base Atk</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="labelBaseAtkValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelBaseDef">
+        <property name="text">
+         <string>Base Def</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelBaseDefValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="labelBaseSpA">
+        <property name="text">
+         <string>Base SpA</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="labelBaseSpAValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelBaseSpD">
+        <property name="text">
+         <string>Base SpD</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="labelBaseSpDValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="labelBaseSpe">
+        <property name="text">
+         <string>Base Spe</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="labelBaseSpeValue">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <customwidgets>
   <customwidget>

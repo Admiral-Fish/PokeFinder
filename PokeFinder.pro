@@ -153,7 +153,10 @@ HEADERS += \
     Models/ResearcherModel.hpp \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
-    Util/TableUtility.hpp
+    Util/TableUtility.hpp \
+    Core/Util/IVChecker.hpp \
+    Core/Objects/Pokemon.hpp \
+    Core/Util/Characteristic.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -242,4 +245,7 @@ SOURCES += \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
     Util/TableUtility.cpp \
-    main.cpp
+    main.cpp \
+    Core/Util/IVChecker.cpp \
+    Core/Objects/Pokemon.cpp \
+    Core/Util/Characteristic.cpp

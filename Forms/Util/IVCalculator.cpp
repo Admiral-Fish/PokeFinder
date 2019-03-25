@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@
 #include "ui_IVCalculator.h"
 
 IVCalculator::IVCalculator(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::IVCalculator)
 {
     ui->setupUi(this);
@@ -39,15 +39,12 @@ IVCalculator::~IVCalculator()
 
 void IVCalculator::setupModels()
 {
-    QVector<u16> species;
-    for (u16 i = 1; i <= 493; i++)
-    {
-        species.append(i);
-    }
+    characteristics = Characteristic::getCharacteristics();
 
-    ui->comboBoxPokemon->addItems(Translator::getSpecies(species));
+    on_comboBoxGeneration_currentIndexChanged(0);
     ui->comboBoxNature->addItems(Nature::getFrameNatures());
     ui->comboBoxHiddenPower->addItems(Power::getPowers());
+    ui->comboBoxCharacteristic->addItems(Translator::getCharacteristic());
 
     ui->textBoxLevel->setValues(1, 100, 10);
     ui->textBoxHP->setValues(1, 800, 10);
@@ -109,75 +106,19 @@ void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)
 
 void IVCalculator::on_pushButtonFindIVs_clicked()
 {
-    u8 level = ui->textBoxLevel->text().toUShort();
-    u8 nature = ui->comboBoxNature->currentIndex();
-    int hiddenPower = ui->comboBoxHiddenPower->currentIndex() - 1;
-    int characteristic = ui->comboBoxCharacteristic->currentIndex() - 1;
-
     QVector<u16> stats =
     {
         ui->textBoxHP->text().toUShort(), ui->textBoxAtk->text().toUShort(), ui->textBoxDef->text().toUShort(),
         ui->textBoxSpA->text().toUShort(), ui->textBoxSpD->text().toUShort(), ui->textBoxSpe->text().toUShort()
     };
 
-    bool valid[6] = { false, false, false, false, false, false };
-    u8 minIVs[6] = { 31, 31, 31, 31, 31, 31 };
-    u8 maxIVs[6] = { 0, 0, 0, 0, 0, 0 };
-    QVector<u16> baseStats = { 45, 49, 49, 65, 65, 45 };
+    u8 level = ui->textBoxLevel->text().toUShort();
+    u8 nature = ui->comboBoxNature->currentIndex();
+    int hiddenPower = ui->comboBoxHiddenPower->currentIndex() - 1;
+    Characteristic characteristic = characteristics.at(ui->comboBoxCharacteristic->currentIndex());
 
-    for (u8 iv = 0; iv < 32; iv++)
-    {
-        double hp = (((2 * baseStats[0] + iv) * level) / 100.0) + level + 10;
-
-        if (static_cast<u16>(hp) == stats[0])
-        {
-            valid[0] = true;
-
-            if (iv >= maxIVs[0])
-            {
-                maxIVs[0] = iv;
-            }
-            if (iv <= minIVs[0])
-            {
-                minIVs[0] = iv;
-            }
-        }
-    }
-
-    for (int i = 1; i < 6; i++)
-    {
-        for (u8 iv = 0; iv < 32; iv++)
-        {
-            double stat = qFloor((((2 * baseStats[i] + iv) * level) / 100.0) + 5) * natureModifier[nature][i];
-
-            if (static_cast<u16>(stat) == stats[i])
-            {
-                valid[i] = true;
-
-                if (iv >= maxIVs[i])
-                {
-                    maxIVs[i] = iv;
-                }
-                if (iv <= minIVs[i])
-                {
-                    minIVs[i] = iv;
-                }
-            }
-        }
-    }
-
-    u8 characteristicHigh = 31;
-    QVector<QVector<u8>> possible(6);
-    for (int i = 0; i < 6; i++)
-    {
-        for (u8 iv = minIVs[i]; iv <= maxIVs[i]; iv++)
-        {
-            if (iv <= characteristicHigh)
-            {
-                possible[i].append(iv);
-            }
-        }
-    }
+    IVChecker ivCheck(pokemon[ui->comboBoxPokemon->currentIndex() + 1]);
+    auto possible = ivCheck.calculateIVs(stats, level, nature, characteristic, hiddenPower);
 
     displayIVs(ui->labelHPIVValue, possible[0]);
     displayIVs(ui->labelAtkIVValue, possible[1]);
@@ -185,4 +126,46 @@ void IVCalculator::on_pushButtonFindIVs_clicked()
     displayIVs(ui->labelSpAIVValue, possible[3]);
     displayIVs(ui->labelSpDIVValue, possible[4]);
     displayIVs(ui->labelSpeIVValue, possible[5]);
+}
+
+void IVCalculator::on_comboBoxPokemon_currentIndexChanged(int index)
+{
+    if (index >= 0 && !pokemon.isEmpty())
+    {
+        Pokemon poke = pokemon.at(index + 1);
+
+        ui->labelBaseHPValue->setText(QString::number(poke.getBaseHP()));
+        ui->labelBaseAtkValue->setText(QString::number(poke.getBaseAtk()));
+        ui->labelBaseDefValue->setText(QString::number(poke.getBaseDef()));
+        ui->labelBaseSpAValue->setText(QString::number(poke.getBaseSpA()));
+        ui->labelBaseSpDValue->setText(QString::number(poke.getBaseSpD()));
+        ui->labelBaseSpeValue->setText(QString::number(poke.getBaseSpe()));
+    }
+}
+
+void IVCalculator::on_comboBoxGeneration_currentIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        u16 max;
+        if (index == 0)
+        {
+            pokemon = Pokemon::loadPersonal(3);
+            max = 386;
+        }
+        else if (index == 1)
+        {
+            pokemon = Pokemon::loadPersonal(4);
+            max = 493;
+        }
+
+        QVector<u16> species;
+        for (u16 i = 1; i <= max; i++)
+        {
+            species.append(i);
+        }
+
+        ui->comboBoxPokemon->clear();
+        ui->comboBoxPokemon->addItems(Translator::getSpecies(species));
+    }
 }

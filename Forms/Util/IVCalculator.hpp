@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,19 +20,19 @@
 #ifndef IVCALCULATOR_HPP
 #define IVCALCULATOR_HPP
 
-#include <QMainWindow>
 #include <QLabel>
-#include <QtMath>
 #include <Core/Objects/Nature.hpp>
 #include <Core/Objects/Power.hpp>
 #include <Core/Translator.hpp>
+#include <Core/Util/Characteristic.hpp>
+#include <Core/Util/IVChecker.hpp>
 
 namespace Ui
 {
     class IVCalculator;
 }
 
-class IVCalculator : public QMainWindow
+class IVCalculator : public QWidget
 {
     Q_OBJECT
 
@@ -42,41 +42,16 @@ public:
 
 private:
     Ui::IVCalculator *ui;
-    const QVector<QVector<double>> natureModifier =
-    {
-        { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Hardy
-        { 1.0, 1.1, 0.9, 1.0, 1.0, 1.0 }, // Lonely
-        { 1.0, 1.1, 1.0, 1.0, 1.0, 0.9 }, // Brave
-        { 1.0, 1.1, 1.0, 0.9, 1.0, 1.0 }, // Adamant
-        { 1.0, 1.1, 1.0, 1.0, 0.9, 1.0 }, // Naughty
-        { 1.0, 0.9, 1.1, 1.0, 1.0, 1.0 }, // Bold
-        { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Docile
-        { 1.0, 1.0, 1.1, 1.0, 1.0, 0.9 }, // Relaxed
-        { 1.0, 1.0, 1.1, 0.9, 1.0, 1.0 }, // Impish
-        { 1.0, 1.0, 1.1, 1.0, 0.9, 1.0 }, // Lax
-        { 1.0, 0.9, 1.0, 1.0, 1.0, 1.1 }, // Timid
-        { 1.0, 1.0, 0.9, 1.0, 1.0, 1.1 }, // Hasty
-        { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Serious
-        { 1.0, 1.0, 1.0, 0.9, 1.0, 1.1 }, // Jolly
-        { 1.0, 1.0, 1.0, 1.0, 0.9, 1.1 }, // Naive
-        { 1.0, 0.9, 1.0, 1.1, 1.0, 1.0 }, // Modest
-        { 1.0, 1.0, 0.9, 1.1, 1.0, 1.0 }, // Mild
-        { 1.0, 1.0, 1.0, 1.1, 1.0, 0.9 }, // Quiet
-        { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Bashful
-        { 1.0, 1.0, 1.0, 1.1, 0.9, 1.0 }, // Rash
-        { 1.0, 0.9, 1.0, 1.0, 1.1, 1.0 }, // Calm
-        { 1.0, 1.0, 0.9, 1.0, 1.1, 1.0 }, // Gentle
-        { 1.0, 1.0, 1.0, 1.0, 1.1, 0.9 }, // Sassy
-        { 1.0, 1.0, 1.0, 0.9, 1.1, 1.0 }, // Careful
-        { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }  // Quirky
-    };
-
+    QVector<Characteristic> characteristics;
+    QVector<Pokemon> pokemon;
     void setupModels();
     void displayIVs(QLabel *label, QVector<u8> ivs);
 
 private slots:
     void on_pushButtonFindIVs_clicked();
+    void on_comboBoxPokemon_currentIndexChanged(int index);
 
+    void on_comboBoxGeneration_currentIndexChanged(int index);
 };
 
 #endif // IVCALCULATOR_HPP
