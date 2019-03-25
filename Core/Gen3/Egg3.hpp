@@ -21,8 +21,8 @@
 #define EGG3_HPP
 
 #include <Core/Gen3/Frame3.hpp>
-#include <Core/Objects/Egg.hpp>
-#include <Core/Objects/FrameCompare.hpp>
+#include <Core/Parents/Egg.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 class Egg3 : public Egg

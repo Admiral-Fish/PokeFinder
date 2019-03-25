@@ -20,7 +20,7 @@
 #ifndef FRAME3_HPP
 #define FRAME3_HPP
 
-#include <Core/Objects/Frame.hpp>
+#include <Core/Parents/Frame.hpp>
 
 class Frame3: public Frame
 {

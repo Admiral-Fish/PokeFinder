@@ -23,10 +23,10 @@
 #include <QClipboard>
 #include <QMenu>
 #include <QStandardItemModel>
-#include <Core/Objects/Method.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
+#include <Core/Util/Method.hpp>
 
 namespace Ui
 {

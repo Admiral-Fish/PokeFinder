@@ -17,28 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#ifndef POWER_HPP
+#define POWER_HPP
 
-#include <QAbstractTableModel>
-#include <QDateTime>
-#include <QFileDialog>
-#include <QString>
-#include <QTextStream>
-#include <QVector>
-#include <Core/Gen4/HGSSRoamer.hpp>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/MTRNG.hpp>
+#include <QStringList>
+#include <QTranslator>
+#include <Core/Util/Global.hpp>
 
-namespace Utilities
+namespace Power
 {
-    u16 calcGen3Seed(const QDate &time, u32 h, u32 m);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    bool shiny(u32 pid, u16 tid, u16  sid);
-    QString coinFlips(u32 seed, int flips);
-    QString getCalls(u32 seed, int num, const HGSSRoamer &info);
-    void outputModelTXT(QAbstractTableModel *model);
-    void outputModelCSV(QAbstractTableModel *model);
+    QStringList getPowers();
+    QString getPower(u8 power);
 };
 
-#endif // UTILITIES_HPP
+#endif // POWER_HPP

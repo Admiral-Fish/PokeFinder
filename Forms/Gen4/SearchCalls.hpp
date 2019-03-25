@@ -22,7 +22,7 @@
 
 #include <QDialog>
 #include <Core/Gen4/HGSSRoamer.hpp>
-#include <Core/Objects/Utilities.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <Util/DateTime.hpp>
 
 namespace Ui

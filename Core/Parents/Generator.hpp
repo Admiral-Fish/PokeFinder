@@ -17,32 +17,42 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGG_HPP
-#define EGG_HPP
+#ifndef GENERATOR_HPP
+#define GENERATOR_HPP
 
 #include <QVector>
-#include <Core/Objects/Method.hpp>
-#include <Core/Objects/FrameCompare.hpp>
+#include <Core/Util/Encounter.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Core/RNG/IRNG.hpp>
+#include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Lead.hpp>
+#include <Core/Util/Method.hpp>
 
-class Egg
+class Generator
 {
 
 public:
-    void setEverstoneNature(const u32 &value);
-    u32 getSeed() const;
-    void setSeed(const u32 &value);
+    Encounter getEncounterType() const;
+    void setEncounterType(const Encounter &value);
+    Lead getLeadType() const;
+    void setLeadType(const Lead &value);
+    u8 getSynchNature() const;
+    void setSynchNature(const u8 &value);
 
 protected:
     u16 psv;
     u16 sid;
     u16 tid;
-    Method frameType = Method::EBred;
-    u32 seed;
+    u32 offset;
+    Method frameType = Method::Method1;
+    Encounter encounterType = Encounter::Stationary;
+    Lead leadType = Lead::None;
+    u32 initialSeed;
     u32 initialFrame;
     u32 maxResults;
-    u32 everstoneNature;
+    u8 synchNature;
+    u8 cuteCharm;
 
 };
 
-#endif // EGG_HPP
+#endif // GENERATOR_HPP

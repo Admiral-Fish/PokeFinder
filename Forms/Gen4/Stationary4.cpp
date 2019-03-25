@@ -106,16 +106,16 @@ void Stationary4::setupModels()
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
 
-    connect(outputTXTGenerator, &QAction::triggered, [ = ]() { Utilities::outputModelTXT(generatorModel); });
-    connect(outputCSVGenerator, &QAction::triggered, [ = ]() { Utilities::outputModelCSV(generatorModel); });
+    connect(outputTXTGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModelTXT(); });
+    connect(outputCSVGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModelCSV(); });
 
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
 
     connect(seedToTime, &QAction::triggered, this, &Stationary4::seedToTime);
-    connect(outputTXTSearcher, &QAction::triggered, [ = ]() { Utilities::outputModelTXT(searcherModel); });
-    connect(outputCSVSearcher, &QAction::triggered, [ = ]() { Utilities::outputModelCSV(searcherModel); });
+    connect(outputTXTSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
+    connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
 
     QSettings setting;
     if (setting.contains("stationary4MinDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("stationary4MinDelay").toString());

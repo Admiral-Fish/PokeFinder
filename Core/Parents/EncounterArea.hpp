@@ -22,9 +22,9 @@
 
 #include <QFile>
 #include <QVector>
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/Global.hpp>
-#include <Core/Translator.hpp>
+#include <Core/Util/Encounter.hpp>
+#include <Core/Util/Global.hpp>
+#include <Core/Util/Translator.hpp>
 
 class Slot;
 

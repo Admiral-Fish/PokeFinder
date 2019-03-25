@@ -21,7 +21,7 @@
 #define TEXTBOX_HPP
 
 #include <QLineEdit>
-#include <Core/Objects/Global.hpp>
+#include <Core/Util/Global.hpp>
 
 enum InputType
 {

@@ -28,7 +28,7 @@
 #include <QTimer>
 #include <Core/Gen4/Generator4.hpp>
 #include <Core/Gen4/IVSearcher4.hpp>
-#include <Core/Translator.hpp>
+#include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Models/Gen4/Searcher4Model.hpp>

@@ -23,9 +23,9 @@
 #include <QSet>
 #include <QtMath>
 #include <QVector>
-#include <Core/Objects/Global.hpp>
-#include <Core/Objects/Pokemon.hpp>
+#include <Core/Parents/Pokemon.hpp>
 #include <Core/Util/Characteristic.hpp>
+#include <Core/Util/Global.hpp>
 
 class IVChecker
 {

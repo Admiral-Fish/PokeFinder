@@ -79,23 +79,14 @@ HEADERS += \
     Core/Gen4/IVSearcher4.hpp \
     Core/Gen4/Profile4.hpp \
     Core/Gen4/Searcher4.hpp \
-    Core/Objects/Egg.hpp \
-    Core/Objects/Encounter.hpp \
-    Core/Objects/EncounterArea.hpp \
-    Core/Objects/EncounterSlot.hpp \
-    Core/Objects/Frame.hpp \
-    Core/Objects/FrameCompare.hpp \
-    Core/Objects/Game.hpp \
-    Core/Objects/Generator.hpp \
-    Core/Objects/Global.hpp \
-    Core/Objects/Language.hpp \
-    Core/Objects/Lead.hpp \
-    Core/Objects/Method.hpp \
-    Core/Objects/Nature.hpp \
-    Core/Objects/Power.hpp \
-    Core/Objects/Profile.hpp \
-    Core/Objects/Searcher.hpp \
-    Core/Objects/Utilities.hpp \
+    Core/Parents/Egg.hpp \
+    Core/Parents/EncounterArea.hpp \
+    Core/Parents/Frame.hpp \
+    Core/Parents/FrameCompare.hpp \
+    Core/Parents/Generator.hpp \
+    Core/Parents/Pokemon.hpp \
+    Core/Parents/Profile.hpp \
+    Core/Parents/Searcher.hpp \
     Core/RNG/IRNG.hpp \
     Core/RNG/IRNG64.hpp \
     Core/RNG/LCRNG.hpp \
@@ -105,7 +96,19 @@ HEADERS += \
     Core/RNG/RNGEuclidean.hpp \
     Core/RNG/SFMT.hpp \
     Core/RNG/TinyMT.hpp \
-    Core/Translator.hpp \
+    Core/Util/Characteristic.hpp \
+    Core/Util/Encounter.hpp \
+    Core/Util/EncounterSlot.hpp \
+    Core/Util/Game.hpp \
+    Core/Util/Global.hpp \
+    Core/Util/IVChecker.hpp \
+    Core/Util/Language.hpp \
+    Core/Util/Lead.hpp \
+    Core/Util/Method.hpp \
+    Core/Util/Nature.hpp \
+    Core/Util/Power.hpp \
+    Core/Util/Translator.hpp \
+    Core/Util/Utilities.hpp \
     Forms/Controls/CheckList.hpp \
     Forms/Controls/EggSettings.hpp \
     Forms/Controls/IVFilter.hpp \
@@ -153,10 +156,7 @@ HEADERS += \
     Models/ResearcherModel.hpp \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
-    Util/TableUtility.hpp \
-    Core/Util/IVChecker.hpp \
-    Core/Objects/Pokemon.hpp \
-    Core/Util/Characteristic.hpp
+    Util/TableUtility.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -178,17 +178,14 @@ SOURCES += \
     Core/Gen4/IVSearcher4.cpp \
     Core/Gen4/Profile4.cpp \
     Core/Gen4/Searcher4.cpp \
-    Core/Objects/Egg.cpp \
-    Core/Objects/EncounterArea.cpp \
-    Core/Objects/EncounterSlot.cpp \
-    Core/Objects/Frame.cpp \
-    Core/Objects/FrameCompare.cpp \
-    Core/Objects/Generator.cpp \
-    Core/Objects/Nature.cpp \
-    Core/Objects/Power.cpp \
-    Core/Objects/Profile.cpp \
-    Core/Objects/Searcher.cpp \
-    Core/Objects/Utilities.cpp \
+    Core/Parents/Egg.cpp \
+    Core/Parents/EncounterArea.cpp \
+    Core/Parents/Frame.cpp \
+    Core/Parents/FrameCompare.cpp \
+    Core/Parents/Generator.cpp \
+    Core/Parents/Pokemon.cpp \
+    Core/Parents/Profile.cpp \
+    Core/Parents/Searcher.cpp \
     Core/RNG/LCRNG.cpp \
     Core/RNG/LCRNG64.cpp \
     Core/RNG/MTRNG.cpp \
@@ -196,7 +193,13 @@ SOURCES += \
     Core/RNG/RNGEuclidean.cpp \
     Core/RNG/SFMT.cpp \
     Core/RNG/TinyMT.cpp \
-    Core/Translator.cpp \
+    Core/Util/Characteristic.cpp \
+    Core/Util/EncounterSlot.cpp \
+    Core/Util/IVChecker.cpp \
+    Core/Util/Nature.cpp \
+    Core/Util/Power.cpp \
+    Core/Util/Translator.cpp \
+    Core/Util/Utilities.cpp \
     Forms/Controls/CheckList.cpp \
     Forms/Controls/EggSettings.cpp \
     Forms/Controls/IVFilter.cpp \
@@ -245,7 +248,4 @@ SOURCES += \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
     Util/TableUtility.cpp \
-    main.cpp \
-    Core/Util/IVChecker.cpp \
-    Core/Objects/Pokemon.cpp \
-    Core/Util/Characteristic.cpp
+    main.cpp

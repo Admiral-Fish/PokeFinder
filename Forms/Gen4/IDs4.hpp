@@ -25,8 +25,8 @@
 #include <QStandardItemModel>
 #include <QThread>
 #include <QTimer>
-#include <Core/Objects/Utilities.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 
 namespace Ui
 {

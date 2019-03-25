@@ -22,7 +22,6 @@
 
 #include <QPair>
 #include <QVector>
-#include <Core/Objects/Global.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/RNGCache.hpp>
 

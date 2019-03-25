@@ -29,7 +29,7 @@
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generator3.hpp>
 #include <Core/Gen3/IVSearcher3.hpp>
-#include <Core/Translator.hpp>
+#include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>

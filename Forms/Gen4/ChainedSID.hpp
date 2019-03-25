@@ -23,7 +23,7 @@
 #include <QStandardItemModel>
 #include <QWidget>
 #include <Core/Gen4/ChainedSIDCalc.hpp>
-#include <Core/Objects/Nature.hpp>
+#include <Core/Util/Nature.hpp>
 
 namespace Ui
 {

@@ -22,8 +22,8 @@
 
 #include <QHash>
 #include <QVector>
-#include <Core/Objects/Global.hpp>
-#include <Core/Objects/Method.hpp>
+#include <Core/Util/Global.hpp>
+#include <Core/Util/Method.hpp>
 
 class RNGCache
 {

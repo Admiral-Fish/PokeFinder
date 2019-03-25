@@ -17,17 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef POWER_HPP
-#define POWER_HPP
+#ifndef NATURE_HPP
+#define NATURE_HPP
 
 #include <QStringList>
 #include <QTranslator>
-#include <Core/Objects/Global.hpp>
+#include <Core/Util/Global.hpp>
 
-namespace Power
+namespace Nature
 {
-    QStringList getPowers();
-    QString getPower(u8 power);
+    QStringList getNatures();
+    QString getNature(u8 nature);
+    QStringList getFrameNatures();
+    u8 getAdjustedNature(u8 nature);
+    u8 getReversedNature(u8 nature);
 };
 
-#endif // POWER_HPP
+#endif // NATURE_HPP

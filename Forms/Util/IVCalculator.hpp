@@ -21,11 +21,11 @@
 #define IVCALCULATOR_HPP
 
 #include <QLabel>
-#include <Core/Objects/Nature.hpp>
-#include <Core/Objects/Power.hpp>
-#include <Core/Translator.hpp>
 #include <Core/Util/Characteristic.hpp>
 #include <Core/Util/IVChecker.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
 
 namespace Ui
 {

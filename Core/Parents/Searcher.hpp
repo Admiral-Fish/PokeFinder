@@ -17,22 +17,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TRANSLATOR_HPP
-#define TRANSLATOR_HPP
+#ifndef SEARCHER_HPP
+#define SEARCHER_HPP
 
-#include <QFile>
-#include <QSettings>
-#include <QTextStream>
 #include <QVector>
-#include <Core/Objects/Game.hpp>
-#include <Core/Objects/Global.hpp>
+#include <Core/Parents/FrameCompare.hpp>
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Encounter.hpp>
+#include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Lead.hpp>
+#include <Core/Util/Method.hpp>
+#include <Core/Util/Utilities.hpp>
 
-namespace Translator
+class Searcher
 {
-    QStringList getCharacteristic();
-    QStringList getSpecies(const QVector<u16> &nums);
-    QStringList getLocationsGen3(const QVector<u8> &nums, Game game);
-    QStringList getLocationsGen4(const QVector<u8> &nums, Game game);
+
+public:
+    Encounter getEncounterType() const;
+    void setEncounterType(const Encounter &value);
+    Method getFrameType() const;
+    void setFrameType(const Method &value);
+    Lead getLeadType() const;
+    void setLeadType(const Lead &value);
+
+protected:
+    u16 psv;
+    u16 sid;
+    u16 tid;
+    Encounter encounterType = Encounter::Stationary;
+    Method frameType = Method::Method1;
+    Lead leadType = Lead::None;
+    u8 synchNature;
+    u8 cuteCharm;
+
 };
 
-#endif // TRANSLATOR_HPP
+#endif // SEARCHER_HPP

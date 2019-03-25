@@ -109,8 +109,8 @@ void Stationary3::setupModels()
     connect(center5Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(300); });
     connect(center10Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(600); });
     connect(center1Minute, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(3600); });
-    connect(outputTXTGenerator, &QAction::triggered, this, [ = ]() { Utilities::outputModelTXT(generatorModel); });
-    connect(outputCSVGenerator, &QAction::triggered, this, [ = ]() { Utilities::outputModelCSV(generatorModel); });
+    connect(outputTXTGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModelTXT(); });
+    connect(outputCSVGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModelCSV(); });
 
     QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
@@ -119,8 +119,8 @@ void Stationary3::setupModels()
 
     connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
     connect(seedToTime, &QAction::triggered, this, &Stationary3::seedToTime);
-    connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { Utilities::outputModelTXT(searcherModel); });
-    connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { Utilities::outputModelCSV(searcherModel); });
+    connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
+    connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
 }
 
 void Stationary3::updateView(const QVector<Frame3> &frames, int progress)

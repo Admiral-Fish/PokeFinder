@@ -17,34 +17,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTERSLOT_HPP
-#define ENCOUNTERSLOT_HPP
+#ifndef TRANSLATOR_HPP
+#define TRANSLATOR_HPP
 
+#include <QFile>
+#include <QSettings>
+#include <QTextStream>
 #include <QVector>
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/Global.hpp>
+#include <Core/Util/Game.hpp>
+#include <Core/Util/Global.hpp>
 
-class Range
+namespace Translator
 {
-
-public:
-    Range();
-    Range(u8 min, u8 max);
-    u8 getMax() const;
-    u8 getMin() const;
-
-private:
-    u8 max;
-    u8 min;
-
+    QStringList getCharacteristic();
+    QStringList getSpecies(const QVector<u16> &nums);
+    QStringList getLocationsGen3(const QVector<u8> &nums, Game game);
+    QStringList getLocationsGen4(const QVector<u8> &nums, Game game);
 };
 
-namespace EncounterSlot
-{
-    u8 calcSlot(u8 compare, const QVector<Range> &ranges);
-    u8 hSlot(u16 result, Encounter encounterType);
-    u8 jSlot(u16 result, Encounter encounterType);
-    u8 kSlot(u16 result, Encounter encounterType);
-};
-
-#endif // ENCOUNTERSLOT_HPP
+#endif // TRANSLATOR_HPP

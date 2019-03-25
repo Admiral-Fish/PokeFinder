@@ -17,40 +17,34 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILE_HPP
-#define PROFILE_HPP
+#ifndef ENCOUNTERSLOT_HPP
+#define ENCOUNTERSLOT_HPP
 
-#include <QApplication>
-#include <QFile>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
 #include <QVector>
-#include <Core/Objects/Game.hpp>
-#include <Core/Objects/Global.hpp>
-#include <Core/Objects/Language.hpp>
+#include <Core/Util/Encounter.hpp>
+#include <Core/Util/Global.hpp>
 
-class Profile
+class Range
 {
 
 public:
-    Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::Nil);
-    Profile();
-    QString getVersionString() const;
-    QString getLanguageString() const;
-    Game getVersion() const;
-    Language getLanguage() const;
-    QString getProfileName() const;
-    u16 getTID() const;
-    u16 getSID() const;
+    Range();
+    Range(u8 min, u8 max);
+    u8 getMax() const;
+    u8 getMin() const;
 
-protected:
-    QString profileName;
-    Game version;
-    Language language;
-    u16 tid;
-    u16 sid;
+private:
+    u8 max;
+    u8 min;
 
 };
 
-#endif // PROFILE_HPP
+namespace EncounterSlot
+{
+    u8 calcSlot(u8 compare, const QVector<Range> &ranges);
+    u8 hSlot(u16 result, Encounter encounterType);
+    u8 jSlot(u16 result, Encounter encounterType);
+    u8 kSlot(u16 result, Encounter encounterType);
+};
+
+#endif // ENCOUNTERSLOT_HPP

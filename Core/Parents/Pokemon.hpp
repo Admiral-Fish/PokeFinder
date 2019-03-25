@@ -22,7 +22,7 @@
 
 #include <QFile>
 #include <QVector>
-#include <Core/Objects/Global.hpp>
+#include <Core/Util/Global.hpp>
 
 class Pokemon
 {

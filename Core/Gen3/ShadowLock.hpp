@@ -23,7 +23,7 @@
 #include <QFile>
 #include <QVector>
 #include <Core/RNG/LCRNG.hpp>
-#include <Core/Objects/Method.hpp>
+#include <Core/Util/Method.hpp>
 
 // Defines the different types of shadows
 enum ShadowType

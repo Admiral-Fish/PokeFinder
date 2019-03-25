@@ -20,8 +20,8 @@
 #ifndef ENCOUNTERAREA3_HPP
 #define ENCOUNTERAREA3_HPP
 
-#include <Core/Objects/EncounterArea.hpp>
-#include <Core/Objects/Game.hpp>
+#include <Core/Parents/EncounterArea.hpp>
+#include <Core/Util/Game.hpp>
 
 class EncounterArea3 : public EncounterArea
 {

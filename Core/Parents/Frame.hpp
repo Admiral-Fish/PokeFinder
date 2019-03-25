@@ -22,12 +22,12 @@
 
 #include <QString>
 #include <QVector>
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/Global.hpp>
-#include <Core/Objects/Lead.hpp>
-#include <Core/Objects/Method.hpp>
-#include <Core/Objects/Nature.hpp>
-#include <Core/Objects/Power.hpp>
+#include <Core/Util/Encounter.hpp>
+#include <Core/Util/Global.hpp>
+#include <Core/Util/Lead.hpp>
+#include <Core/Util/Method.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
 
 class Frame
 {

@@ -21,7 +21,7 @@
 #define CHARACTERISTIC_HPP
 
 #include <QVector>
-#include <Core/Objects/Global.hpp>
+#include <Core/Util/Global.hpp>
 
 class Characteristic
 {

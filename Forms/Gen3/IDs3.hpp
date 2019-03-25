@@ -21,8 +21,9 @@
 #define IDS3_HPP
 
 #include <QStandardItemModel>
-#include <Core/Objects/Utilities.hpp>
+#include <QWidget>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 
 namespace Ui
 {

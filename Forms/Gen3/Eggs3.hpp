@@ -23,7 +23,7 @@
 #include <QSettings>
 #include <Core/Gen3/Egg3.hpp>
 #include <Core/Gen3/Frame3.hpp>
-#include <Core/Objects/FrameCompare.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
 

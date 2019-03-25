@@ -20,9 +20,9 @@
 #ifndef EGG4_HPP
 #define EGG4_HPP
 
-#include <Core/Objects/Egg.hpp>
-#include <Core/Objects/FrameCompare.hpp>
 #include <Core/Gen4/Frame4.hpp>
+#include <Core/Parents/Egg.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MTRNG.hpp>
 

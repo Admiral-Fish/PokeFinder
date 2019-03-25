@@ -17,39 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SEARCHER_HPP
-#define SEARCHER_HPP
+#ifndef UTILITIES_HPP
+#define UTILITIES_HPP
 
+#include <QDateTime>
+#include <QString>
+#include <QTextStream>
 #include <QVector>
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/EncounterSlot.hpp>
-#include <Core/Objects/FrameCompare.hpp>
-#include <Core/Objects/Lead.hpp>
-#include <Core/Objects/Method.hpp>
-#include <Core/Objects/Utilities.hpp>
+#include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/MTRNG.hpp>
 
-class Searcher
+namespace Utilities
 {
-
-public:
-    Encounter getEncounterType() const;
-    void setEncounterType(const Encounter &value);
-    Method getFrameType() const;
-    void setFrameType(const Method &value);
-    Lead getLeadType() const;
-    void setLeadType(const Lead &value);
-
-protected:
-    u16 psv;
-    u16 sid;
-    u16 tid;
-    Encounter encounterType = Encounter::Stationary;
-    Method frameType = Method::Method1;
-    Lead leadType = Lead::None;
-    u8 synchNature;
-    u8 cuteCharm;
-
+    u16 calcGen3Seed(const QDate &time, u32 h, u32 m);
+    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
+    bool shiny(u32 pid, u16 tid, u16  sid);
+    QString coinFlips(u32 seed, int flips);
+    QString getCalls(u32 seed, int num, const HGSSRoamer &info);
 };
 
-#endif // SEARCHER_HPP
+#endif // UTILITIES_HPP

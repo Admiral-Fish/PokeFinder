@@ -21,7 +21,7 @@
 #define TABLEUTILITY_HPP
 
 #include <QFont>
-#include <Core/Objects/Global.hpp>
+#include <Core/Util/Global.hpp>
 
 namespace TableUtility
 {
