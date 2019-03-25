@@ -17,21 +17,42 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TRANSLATOR_HPP
-#define TRANSLATOR_HPP
+#ifndef GENERATOR_HPP
+#define GENERATOR_HPP
 
-#include <QFile>
-#include <QSettings>
-#include <QTextStream>
 #include <QVector>
-#include <Core/Objects/Game.hpp>
-#include <Core/Objects/Global.hpp>
+#include <Core/Util/Encounter.hpp>
+#include <Core/Parents/FrameCompare.hpp>
+#include <Core/RNG/IRNG.hpp>
+#include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Lead.hpp>
+#include <Core/Util/Method.hpp>
 
-namespace Translator
+class Generator
 {
-    QStringList getSpecies(const QVector<u16> &nums);
-    QStringList getLocationsGen3(const QVector<u8> &nums, Game game);
-    QStringList getLocationsGen4(const QVector<u8> &nums, Game game);
+
+public:
+    Encounter getEncounterType() const;
+    void setEncounterType(const Encounter &value);
+    Lead getLeadType() const;
+    void setLeadType(const Lead &value);
+    u8 getSynchNature() const;
+    void setSynchNature(const u8 &value);
+
+protected:
+    u16 psv;
+    u16 sid;
+    u16 tid;
+    u32 offset;
+    Method frameType = Method::Method1;
+    Encounter encounterType = Encounter::Stationary;
+    Lead leadType = Lead::None;
+    u32 initialSeed;
+    u32 initialFrame;
+    u32 maxResults;
+    u8 synchNature;
+    u8 cuteCharm;
+
 };
 
-#endif // TRANSLATOR_HPP
+#endif // GENERATOR_HPP

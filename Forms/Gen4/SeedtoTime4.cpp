@@ -21,7 +21,7 @@
 #include "ui_SeedtoTime4.h"
 
 SeedtoTime4::SeedtoTime4(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::SeedtoTime4)
 {
     ui->setupUi(this);
@@ -32,7 +32,7 @@ SeedtoTime4::SeedtoTime4(QWidget *parent) :
 }
 
 SeedtoTime4::SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::SeedtoTime4)
 {
     ui->setupUi(this);
@@ -69,20 +69,20 @@ SeedtoTime4::~SeedtoTime4()
     settings.setValue("plusSecondsHGSS", ui->lineEditHGSSSecondPlus->text());
 
     delete ui;
-    delete dppt;
-    delete dpptCalibrate;
-    delete hgss;
-    delete hgssCalibrate;
 }
 
 void SeedtoTime4::setupModels()
 {
+    dppt = new SeedtoTime4Model(ui->tableViewDPPtSearch, false);
+    dpptCalibrate = new SeedtoTime4Model(ui->tableViewDPPtCalibrate, true);
+    hgss = new SeedtoTime4Model(ui->tableViewHGSSSearch, false, Game::HeartGold);
+    hgssCalibrate = new SeedtoTime4Model(ui->tableViewHGSSCalibrate, true, Game::HeartGold);
+
     ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
     ui->textBoxHGSSSeed->setValues(InputType::Seed32Bit);
 
     ui->tableViewDPPtSearch->setModel(dppt);
     ui->tableViewDPPtCalibrate->setModel(dpptCalibrate);
-
     ui->tableViewHGSSSearch->setModel(hgss);
     ui->tableViewHGSSCalibrate->setModel(hgssCalibrate);
 
@@ -125,7 +125,7 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
     }
 
     QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUShort()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUShort()), static_cast<u8>(ui->lineEditHGSSLati->text().toUShort()) };
+    QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
     QVector<DateTime> results;
     for (int month = 0; month < 13; month++)
@@ -159,34 +159,44 @@ QVector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minu
     QDateTime time = target.getDateTime();
     u32 delay = target.getDelay();
 
-    QVector<DateTime> results;
-    for (int i = minusSecond; i >= 0; i--)
+    QVector<int> secondRange;
+    QVector<int> delayRange;
+
+    for (int i = minusDelay; i > 0; i--)
     {
-        for (int j = minusDelay; j > 0; j--)
-        {
-            QDateTime offset = time.addSecs(-1 * i);
-            DateTime result = DateTime(offset, delay - static_cast<u32>(j), target.getVersion(), target.getInfo());
-            results.push_back(result);
-        }
+        delayRange.append(-i);
+    }
+    for (int i = 0; i <= plusDelay; i++)
+    {
+        delayRange.append(i);
     }
 
-    results.push_back(target);
-
+    for (int i = minusSecond; i > 0; i--)
+    {
+        secondRange.append(-i);
+    }
     for (int i = 0; i <= plusSecond; i++)
     {
-        for (int j = 1; j <= plusDelay; j++)
+        secondRange.append(i);
+    }
+
+    QVector<DateTime> results;
+    for (int i : secondRange)
+    {
+        for (int j : delayRange)
         {
             QDateTime offset = time.addSecs(i);
-            DateTime result = DateTime(offset, delay + static_cast<u32>(j), target.getVersion(), target.getInfo());
-            results.push_back(result);
+            DateTime result = DateTime(offset, delay + j, target.getVersion(), target.getInfo());
+            results.append(result);
         }
     }
+
     return results;
 }
 
 void SeedtoTime4::on_pushButtonDPPtGenerate_clicked()
 {
-    u32 seed = ui->textBoxDPPtSeed->text().toUInt(nullptr, 16);
+    u32 seed = ui->textBoxDPPtSeed->getUInt();
     u32 year = ui->lineEditDPPtYear->text().toUInt();
 
     bool forceSecond = ui->checkBoxDPPtSecond->isChecked();
@@ -204,14 +214,14 @@ void SeedtoTime4::on_pushButtonHGSSGenerate_clicked()
 {
     hgss->clear();
 
-    u32 seed = ui->textBoxHGSSSeed->text().toUInt(nullptr, 16);
+    u32 seed = ui->textBoxHGSSSeed->getUInt();
     u32 year = ui->lineEditHGSSYear->text().toUInt();
 
     bool forceSecond = ui->checkBoxHGSSSecond->isChecked();
     int forcedSecond = ui->lineEditHGSSSecond->text().toInt();
 
     QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-    QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUShort()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUShort()), static_cast<u8>(ui->lineEditHGSSLati->text().toUShort()) };
+    QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
     HGSSRoamer info(seed, roamer, routes);
 
@@ -295,10 +305,9 @@ void SeedtoTime4::on_pushButtonDPPtSearchFlips_clicked()
         return;
     }
 
-    auto *search = new SearchCoinFlips(dpptCalibrate->getData());
+    QScopedPointer<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrate->getData()));
     if (search->exec() == QDialog::Rejected)
     {
-        delete search;
         return;
     }
 
@@ -317,8 +326,6 @@ void SeedtoTime4::on_pushButtonDPPtSearchFlips_clicked()
 
     ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableViewDPPtCalibrate->setFocus();
-
-    delete search;
 }
 
 void SeedtoTime4::on_pushButtonHGSSSearchCalls_clicked()
@@ -331,10 +338,9 @@ void SeedtoTime4::on_pushButtonHGSSSearchCalls_clicked()
     QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
     QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
-    auto *search = new SearchCalls(hgssCalibrate->getData(), roamer, routes);
+    QScopedPointer<SearchCalls> search(new SearchCalls(hgssCalibrate->getData(), roamer, routes));
     if (search->exec() == QDialog::Rejected)
     {
-        delete search;
         return;
     }
 
@@ -353,8 +359,6 @@ void SeedtoTime4::on_pushButtonHGSSSearchCalls_clicked()
 
     ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableViewHGSSCalibrate->setFocus();
-
-    delete search;
 }
 
 void SeedtoTime4::on_pushButtonHGSSMap_clicked()

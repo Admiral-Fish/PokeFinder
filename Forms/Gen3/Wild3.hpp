@@ -22,16 +22,14 @@
 
 #include <QClipboard>
 #include <QFileDialog>
-#include <QMainWindow>
 #include <QMenu>
-#include <QMutex>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 #include <Core/Gen3/Encounters3.hpp>
 #include <Core/Gen3/Generator3.hpp>
-#include <Core/Gen3/Searcher3.hpp>
-#include <Core/Translator.hpp>
+#include <Core/Gen3/IVSearcher3.hpp>
+#include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
@@ -42,7 +40,7 @@ namespace Ui
     class Wild3;
 }
 
-class Wild3 : public QMainWindow
+class Wild3 : public QWidget
 {
     Q_OBJECT
 
@@ -57,10 +55,10 @@ public:
 private:
     Ui::Wild3 *ui;
     QVector<Profile3> profiles;
-    Searcher3Model *s = new Searcher3Model(this, Method::Method1);
-    Wild3Model *g = new Wild3Model(this);
-    QMenu *generatorMenu = new QMenu(this);
-    QMenu *searcherMenu = new QMenu(this);
+    Searcher3Model *searcherModel;
+    Wild3Model *generatorModel;
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
     QModelIndex lastIndex;
     QModelIndex targetFrame;
     QVector<EncounterArea3> encounterGenerator;
@@ -84,8 +82,6 @@ private slots:
     void jumpToTargetGenerator();
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void seedToTime();
-    void outputToTxt();
-    void outputToCSV();
     void copySeedToClipboard();
     void on_pushButtonGeneratorLead_clicked();
     void on_comboBoxGeneratorEncounter_currentIndexChanged(int index);
@@ -95,31 +91,6 @@ private slots:
     void on_comboBoxGeneratorPokemon_currentIndexChanged(int index);
     void on_comboBoxSearcherPokemon_currentIndexChanged(int index);
     void on_pushButtonProfileManager_clicked();
-
-};
-
-class WildSearcher3 : public QThread
-{
-    Q_OBJECT
-
-public:
-    WildSearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max);
-    void run() override;
-    int currentProgress() const;
-    QVector<Frame3> getResults();
-
-public slots:
-    void cancelSearch();
-
-private:
-    Searcher3 searcher;
-    QVector<u8> min;
-    QVector<u8> max;
-
-    QMutex mutex;
-    QVector<Frame3> results;
-    bool cancel;
-    int progress;
 
 };
 

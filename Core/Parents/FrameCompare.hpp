@@ -21,8 +21,8 @@
 #define FRAMECOMPARE_HPP
 
 #include <QVector>
-#include <Core/Objects/Frame.hpp>
-#include <Core/Objects/Nature.hpp>
+#include <Core/Parents/Frame.hpp>
+#include <Core/Util/Nature.hpp>
 
 class FrameCompare
 {

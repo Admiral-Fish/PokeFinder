@@ -21,7 +21,6 @@
 #define SEEDTOTIME3_HPP
 
 #include <QDateTime>
-#include <QMainWindow>
 #include <QMessageBox>
 #include <QSettings>
 #include <QStandardItemModel>
@@ -32,7 +31,7 @@ namespace Ui
     class SeedToTime3;
 }
 
-class SeedToTime3 : public QMainWindow
+class SeedToTime3 : public QWidget
 {
     Q_OBJECT
 
@@ -43,7 +42,7 @@ public:
 
 private:
     Ui::SeedToTime3 *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
+    QStandardItemModel *model;
     u32 frame = 1;
 
     void setupModels();

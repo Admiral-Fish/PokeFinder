@@ -38,6 +38,11 @@ void MT::advanceFrames(u32 frames)
 }
 
 
+MersenneTwister::MersenneTwister()
+{
+    initialize(0);
+}
+
 MersenneTwister::MersenneTwister(u32 seed, u32 frames)
 {
     initialize(seed);
@@ -53,10 +58,10 @@ u32 MersenneTwister::nextUInt()
     }
 
     u32 y = mt[index++];
-    y ^= temperingShiftU(y);
-    y ^= temperingShiftS(y) & TEMPERINGMASKB;
-    y ^= temperingShiftT(y) & TEMPERINGMASKC;
-    y ^= temperingShiftL(y);
+    y ^= (y >> 11);
+    y ^= (y << 7) & TEMPERINGMASKB;
+    y ^= (y << 15) & TEMPERINGMASKC;
+    y ^= (y >> 18);
 
     return y;
 }
@@ -114,6 +119,11 @@ void MersenneTwister::shuffle()
     mt[623] = mt[396] ^ (y >> 1) ^ mag01[y & 0x1];
 }
 
+
+MersenneTwisterUntempered::MersenneTwisterUntempered()
+{
+    initialize(0);
+}
 
 MersenneTwisterUntempered::MersenneTwisterUntempered(u32 seed, u32 frames)
 {
@@ -186,6 +196,13 @@ void MersenneTwisterUntempered::shuffle()
 }
 
 
+MersenneTwisterFast::MersenneTwisterFast()
+{
+    maxCalls = 227;
+    max = M + 227;
+    initialize(0);
+}
+
 MersenneTwisterFast::MersenneTwisterFast(u32 seed, u32 calls, u32 frames)
 {
     maxCalls = calls;
@@ -208,9 +225,9 @@ u32 MersenneTwisterFast::nextUInt()
     }
 
     u32 y = mt[index++];
-    y ^= temperingShiftU(y);
-    y ^= temperingShiftS(y) & TEMPERINGMASKB;
-    y ^= temperingShiftT(y) & TEMPERINGMASKC2;
+    y ^= (y >> 11);
+    y ^= (y << 7) & TEMPERINGMASKB;
+    y ^= (y << 15) & TEMPERINGMASKC2;
 
     return y;
 }

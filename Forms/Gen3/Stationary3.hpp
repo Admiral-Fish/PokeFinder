@@ -22,15 +22,13 @@
 
 #include <QClipboard>
 #include <QFileDialog>
-#include <QMainWindow>
 #include <QMenu>
-#include <QMutex>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
 #include <Core/Gen3/Generator3.hpp>
-#include <Core/Gen3/Searcher3.hpp>
-#include <Core/Translator.hpp>
+#include <Core/Gen3/IVSearcher3.hpp>
+#include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
@@ -41,7 +39,7 @@ namespace Ui
     class Stationary3;
 }
 
-class Stationary3 : public QMainWindow
+class Stationary3 : public QWidget
 {
     Q_OBJECT
 
@@ -55,11 +53,11 @@ public:
 
 private:
     Ui::Stationary3 *ui;
-    Searcher3Model *s = new Searcher3Model(this, Method::Method1);
-    Stationary3Model *g = new Stationary3Model(this);
+    Searcher3Model *searcherModel;
+    Stationary3Model *generatorModel;
     QVector<Profile3> profiles;
-    QMenu *generatorMenu = new QMenu();
-    QMenu *searcherMenu = new QMenu();
+    QMenu *generatorMenu;
+    QMenu *searcherMenu;
     QModelIndex lastIndex;
     QModelIndex targetFrame;
 
@@ -81,35 +79,8 @@ private slots:
     void jumpToTargetGenerator();
     void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void seedToTime();
-    void outputToTxt();
-    void outputToCSV();
     void copySeedToClipboard();
     void on_pushButtonProfileManager_clicked();
-
-};
-
-class StationarySearcher3 : public QThread
-{
-    Q_OBJECT
-
-public:
-    StationarySearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max);
-    void run() override;
-    int currentProgress() const;
-    QVector<Frame3> getResults();
-
-public slots:
-    void cancelSearch();
-
-private:
-    Searcher3 searcher;
-    QVector<u8> min;
-    QVector<u8> max;
-
-    QMutex mutex;
-    QVector<Frame3> results;
-    bool cancel;
-    int progress;
 
 };
 

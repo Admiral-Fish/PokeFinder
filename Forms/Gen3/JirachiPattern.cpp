@@ -21,7 +21,7 @@
 #include "ui_JirachiPattern.h"
 
 JirachiPattern::JirachiPattern(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::JirachiPattern)
 {
     ui->setupUi(this);
@@ -35,11 +35,12 @@ JirachiPattern::JirachiPattern(QWidget *parent) :
 JirachiPattern::~JirachiPattern()
 {
     delete ui;
-    delete model;
 }
 
 void JirachiPattern::setupModels()
 {
+    model = new QStandardItemModel(ui->tableView);
+
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Pattern"));
@@ -201,5 +202,5 @@ void JirachiPattern::on_pushButtonGenerate_clicked()
 {
     model->removeRows(0, model->rowCount());
     data.clear();
-    generate(ui->textBoxSeed->text().toUInt(nullptr, 16));
+    generate(ui->textBoxSeed->getUInt());
 }

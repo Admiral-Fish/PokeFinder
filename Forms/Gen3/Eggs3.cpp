@@ -21,7 +21,7 @@
 #include "ui_Eggs3.h"
 
 Eggs3::Eggs3(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::Eggs3)
 {
     ui->setupUi(this);
@@ -37,10 +37,6 @@ Eggs3::~Eggs3()
     setting.setValue("egg3Profile", ui->comboBoxProfiles->currentIndex());
 
     delete ui;
-    delete emeraldIVs;
-    delete emeraldPID;
-    delete rs;
-    delete frlg;
 }
 
 void Eggs3::updateProfiles()
@@ -65,9 +61,13 @@ void Eggs3::updateProfiles()
 
 void Eggs3::setupModels()
 {
+    emeraldIVs = new Egg3Model(ui->tableViewEmeraldIVs, Method::EBred);
+    emeraldPID = new Egg3Model(ui->tableViewEmeraldPID, Method::EBredPID);
+    rs = new Egg3Model(ui->tableViewRS, Method::RSBred);
+    frlg = new Egg3Model(ui->tableViewFRLG, Method::FRLGBred);
+
     ui->tableViewEmeraldIVs->setModel(emeraldIVs);
     ui->tableViewEmeraldPID->setModel(emeraldPID);
-
     ui->tableViewRS->setModel(rs);
     ui->tableViewFRLG->setModel(frlg);
 
@@ -111,13 +111,13 @@ void Eggs3::setupModels()
     ui->comboBoxFRLGCompatibility->setItemData(1, 50);
     ui->comboBoxFRLGCompatibility->setItemData(2, 70);
 
-    ui->comboBoxEmeraldNature->setup();
-    ui->comboBoxFRLGNature->setup();
-    ui->comboBoxRSNature->setup();
+    ui->comboBoxEmeraldNature->setup(Nature::getNatures());
+    ui->comboBoxFRLGNature->setup(Nature::getNatures());
+    ui->comboBoxRSNature->setup(Nature::getNatures());
 
-    ui->comboBoxEmeraldHiddenPower->setup();
-    ui->comboBoxFRLGHiddenPower->setup();
-    ui->comboBoxRSHiddenPower->setup();
+    ui->comboBoxEmeraldHiddenPower->setup(Power::getPowers());
+    ui->comboBoxFRLGHiddenPower->setup(Power::getPowers());
+    ui->comboBoxRSHiddenPower->setup(Power::getPowers());
 
     ui->comboBoxEmeraldMethod->setItemData(0, Method::EBred);
     ui->comboBoxEmeraldMethod->setItemData(1, Method::EBredSplit);
@@ -145,16 +145,16 @@ void Eggs3::on_pushButtonEmeraldPIDGenerate_clicked()
 {
     emeraldPID->clear();
 
-    u32 startingFrame = ui->textBoxEmeraldPIDMinFrame->text().toUInt();
-    u32 maxResults = ui->textBoxEmeraldPIDMaxFrame->text().toUInt();
-    u16 tid = ui->textBoxEmeraldTID->text().toUShort();
-    u16 sid = ui->textBoxEmeraldSID->text().toUShort();
+    u32 startingFrame = ui->textBoxEmeraldPIDMinFrame->getUInt();
+    u32 maxResults = ui->textBoxEmeraldPIDMaxFrame->getUInt();
+    u16 tid = ui->textBoxEmeraldTID->getUShort();
+    u16 sid = ui->textBoxEmeraldSID->getUShort();
     int genderRatioIndex = ui->comboBoxEmeraldGenderRatio->currentIndex();
 
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, EBredPID);
-    generator.setMinRedraw(ui->textBoxMinRedraws->text().toUInt());
-    generator.setMaxRedraw(ui->textBoxMaxRedraws->text().toUInt());
-    generator.setCalibration(ui->textBoxCalibration->text().toUInt());
+    generator.setMinRedraw(ui->textBoxMinRedraws->getUInt());
+    generator.setMaxRedraw(ui->textBoxMaxRedraws->getUInt());
+    generator.setCalibration(ui->textBoxCalibration->getUInt());
     generator.setCompatability(ui->comboBoxEmeraldCompatibility->currentData().toUInt());
     generator.setEverstone(ui->comboBoxEverstone->currentIndex() != 0);
     if (ui->comboBoxEverstone->currentIndex() != 0)
@@ -173,10 +173,10 @@ void Eggs3::on_pushButtonEmeraldIVsGenerate_clicked()
 {
     emeraldIVs->clear();
 
-    u32 startingFrame = ui->textBoxEmeraldIVsMinFrame->text().toUInt();
-    u32 maxResults = ui->textBoxEmeraldIVsMaxFrame->text().toUInt();
-    u16 tid = ui->textBoxEmeraldTID->text().toUShort();
-    u16 sid = ui->textBoxEmeraldSID->text().toUShort();
+    u32 startingFrame = ui->textBoxEmeraldIVsMinFrame->getUInt();
+    u32 maxResults = ui->textBoxEmeraldIVsMaxFrame->getUInt();
+    u16 tid = ui->textBoxEmeraldTID->getUShort();
+    u16 sid = ui->textBoxEmeraldSID->getUShort();
     Method method = static_cast<Method>(ui->comboBoxEmeraldMethod->currentData().toUInt());
 
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, method);
@@ -192,18 +192,18 @@ void Eggs3::on_pushButtonRSGenerate_clicked()
 {
     rs->clear();
 
-    u32 minHeld = ui->textBoxRSMinHeld->text().toUInt();
-    u32 maxHeld = ui->textBoxRSMaxHeld->text().toUInt();
-    u16 tid = ui->textBoxRSTID->text().toUShort();
-    u16 sid = ui->textBoxRSSID->text().toUShort();
+    u32 minHeld = ui->textBoxRSMinHeld->getUInt();
+    u32 maxHeld = ui->textBoxRSMaxHeld->getUInt();
+    u16 tid = ui->textBoxRSTID->getUShort();
+    u16 sid = ui->textBoxRSSID->getUShort();
     Method method = static_cast<Method>(ui->comboBoxRSMethod->currentData().toUInt());
 
-    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, method, ui->textBoxRSSeedHeld->text().toUInt(nullptr, 16));
-    generator.setPickupSeed(ui->textBoxRSSeedPickup->text().toUInt(nullptr, 16));
+    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, method, ui->textBoxRSSeedHeld->getUInt());
+    generator.setPickupSeed(ui->textBoxRSSeedPickup->getUInt());
     generator.setParents(ui->eggSettingsRS->getParent1(), ui->eggSettingsRS->getParent2());
 
-    generator.setMinPickup(ui->textBoxRSMinPickup->text().toUInt());
-    generator.setMaxPickup(ui->textBoxRSMaxPickup->text().toUInt());
+    generator.setMinPickup(ui->textBoxRSMinPickup->getUInt());
+    generator.setMaxPickup(ui->textBoxRSMaxPickup->getUInt());
     generator.setCompatability(ui->comboBoxRSCompatibility->currentData().toUInt());
 
     FrameCompare compare = FrameCompare(ui->ivFilterRS->getLower(), ui->ivFilterRS->getUpper(), ui->comboBoxRSGender->currentIndex(),
@@ -218,18 +218,18 @@ void Eggs3::on_pushButtonFRLGGenerate_clicked()
 {
     frlg->clear();
 
-    u32 minHeld = ui->textBoxFRLGMinHeld->text().toUInt();
-    u32 maxHeld = ui->textBoxFRLGMaxHeld->text().toUInt();
-    u16 tid = ui->textBoxFRLGTID->text().toUShort();
-    u16 sid = ui->textBoxFRLGSID->text().toUShort();
+    u32 minHeld = ui->textBoxFRLGMinHeld->getUInt();
+    u32 maxHeld = ui->textBoxFRLGMaxHeld->getUInt();
+    u16 tid = ui->textBoxFRLGTID->getUShort();
+    u16 sid = ui->textBoxFRLGSID->getUShort();
     Method method = static_cast<Method>(ui->comboBoxFRLGMethod->currentData().toUInt());
 
-    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, method, ui->textBoxFRLGSeedHeld->text().toUInt(nullptr, 16));
-    generator.setPickupSeed(ui->textBoxFRLGSeedPickup->text().toUInt(nullptr, 16));
+    Egg3 generator = Egg3(maxHeld, minHeld, tid, sid, method, ui->textBoxFRLGSeedHeld->getUInt());
+    generator.setPickupSeed(ui->textBoxFRLGSeedPickup->getUInt());
     generator.setParents(ui->eggSettingsFRLG->getParent1(), ui->eggSettingsFRLG->getParent2());
 
-    generator.setMinPickup(ui->textBoxFRLGMinPickup->text().toUInt());
-    generator.setMaxPickup(ui->textBoxFRLGMaxPickup->text().toUInt());
+    generator.setMinPickup(ui->textBoxFRLGMinPickup->getUInt());
+    generator.setMaxPickup(ui->textBoxFRLGMaxPickup->getUInt());
     generator.setCompatability(ui->comboBoxFRLGCompatibility->currentData().toUInt());
 
     FrameCompare compare = FrameCompare(ui->ivFilterFRLG->getLower(), ui->ivFilterFRLG->getUpper(), ui->comboBoxFRLGGender->currentIndex(),

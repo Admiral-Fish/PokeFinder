@@ -85,6 +85,7 @@ FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, const
     this->min = min;
     this->max = max;
     powers = power;
+    skip = false;
 }
 
 bool FrameCompare::comparePID(const Frame &frame) const

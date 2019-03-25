@@ -20,7 +20,7 @@
 #ifndef IRNG_HPP
 #define IRNG_HPP
 
-#include <Core/Objects/Global.hpp>
+#include <Core/Util/Global.hpp>
 
 class IRNG
 {

@@ -17,40 +17,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILE_HPP
-#define PROFILE_HPP
+#ifndef SEARCHER_HPP
+#define SEARCHER_HPP
 
-#include <QApplication>
-#include <QFile>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
 #include <QVector>
-#include <Core/Objects/Game.hpp>
-#include <Core/Objects/Global.hpp>
-#include <Core/Objects/Language.hpp>
+#include <Core/Parents/FrameCompare.hpp>
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Encounter.hpp>
+#include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Lead.hpp>
+#include <Core/Util/Method.hpp>
+#include <Core/Util/Utilities.hpp>
 
-class Profile
+class Searcher
 {
 
 public:
-    Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::Nil);
-    Profile();
-    QString getVersionString() const;
-    QString getLanguageString() const;
-    Game getVersion() const;
-    Language getLanguage() const;
-    QString getProfileName() const;
-    u16 getTID() const;
-    u16 getSID() const;
+    Encounter getEncounterType() const;
+    void setEncounterType(const Encounter &value);
+    Method getFrameType() const;
+    void setFrameType(const Method &value);
+    Lead getLeadType() const;
+    void setLeadType(const Lead &value);
 
 protected:
-    QString profileName;
-    Game version;
-    Language language;
-    u16 tid;
+    u16 psv;
     u16 sid;
+    u16 tid;
+    Encounter encounterType = Encounter::Stationary;
+    Method frameType = Method::Method1;
+    Lead leadType = Lead::None;
+    u8 synchNature;
+    u8 cuteCharm;
 
 };
 
-#endif // PROFILE_HPP
+#endif // SEARCHER_HPP

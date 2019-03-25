@@ -21,20 +21,19 @@
 #define PIDTOIVS_HPP
 
 #include <QClipboard>
-#include <QMainWindow>
 #include <QMenu>
 #include <QStandardItemModel>
-#include <Core/Objects/Method.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
+#include <Core/Util/Method.hpp>
 
 namespace Ui
 {
     class PIDtoIVs;
 }
 
-class PIDtoIVs : public QMainWindow
+class PIDtoIVs : public QWidget
 {
     Q_OBJECT
 
@@ -47,10 +46,8 @@ public:
 
 private:
     Ui::PIDtoIVs *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
-    QMenu *contextMenu = new QMenu();
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
+    QStandardItemModel *model;
+    QMenu *contextMenu;
 
     void setupModels();
     void calcFromPID(u32 pid);

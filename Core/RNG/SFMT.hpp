@@ -26,6 +26,7 @@ class SFMT : public IRNG64
 {
 
 public:
+    SFMT();
     SFMT(u32 seed, u32 frames = 0);
     void advanceFrames(u32 frames) override;
     u32 nextUInt() override;

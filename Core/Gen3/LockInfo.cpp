@@ -17,23 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#include "LockInfo.hpp"
 
-#include <QDateTime>
-#include <QString>
-#include <QVector>
-#include <Core/Gen4/HGSSRoamer.hpp>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/MTRNG.hpp>
-
-namespace Utilities
+LockInfo::LockInfo(u8 nature, u8 genderLower, u8 genderUpper)
 {
-    u16 calcGen3Seed(const QDate &time, u32 h, u32 m);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    bool shiny(u32 pid, u16 tid, u16  sid);
-    QString coinFlips(u32 seed, int flips);
-    QString getCalls(u32 seed, int num, const HGSSRoamer &info);
-};
+    this->nature = nature;
+    this->genderLower = genderLower;
+    this->genderUpper = genderUpper;
+    free = nature == 255 && genderLower == 255 && genderUpper == 255;
+}
 
-#endif // UTILITIES_HPP
+bool LockInfo::compare(u32 pid) const
+{
+    if (free)
+    {
+        return true;
+    }
+
+    u8 gender = pid & 255;
+    return gender >= genderLower && gender <= genderUpper && nature == (pid % 25);
+}

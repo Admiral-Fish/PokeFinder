@@ -22,8 +22,8 @@
 
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Frame3.hpp>
-#include <Core/Objects/FrameCompare.hpp>
-#include <Core/Objects/Generator.hpp>
+#include <Core/Parents/FrameCompare.hpp>
+#include <Core/Parents/Generator.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 class Generator3: public Generator

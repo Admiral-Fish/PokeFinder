@@ -20,11 +20,10 @@
 #ifndef EGGS3_HPP
 #define EGGS3_HPP
 
-#include <QMainWindow>
 #include <QSettings>
 #include <Core/Gen3/Egg3.hpp>
 #include <Core/Gen3/Frame3.hpp>
-#include <Core/Objects/FrameCompare.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
 
@@ -33,7 +32,7 @@ namespace Ui
     class Eggs3;
 }
 
-class Eggs3 : public QMainWindow
+class Eggs3 : public QWidget
 {
     Q_OBJECT
 
@@ -48,10 +47,10 @@ public:
 private:
     Ui::Eggs3 *ui;
     QVector<Profile3> profiles;
-    Egg3Model *emeraldIVs = new Egg3Model(this, Method::EBred);
-    Egg3Model *emeraldPID = new Egg3Model(this, Method::EBredPID);
-    Egg3Model *rs = new Egg3Model(this, Method::RSBred);
-    Egg3Model *frlg = new Egg3Model(this, Method::FRLGBred);
+    Egg3Model *emeraldIVs;
+    Egg3Model *emeraldPID;
+    Egg3Model *rs;
+    Egg3Model *frlg;
 
     void setupModels();
 

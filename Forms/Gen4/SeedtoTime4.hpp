@@ -20,11 +20,10 @@
 #ifndef SEEDTOTIME4_HPP
 #define SEEDTOTIME4_HPP
 
-#include <QMainWindow>
 #include <QMessageBox>
 #include <QSettings>
 #include <Core/Gen4/Profile4.hpp>
-#include <Core/Objects/Utilities.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <Forms/Gen4/RoamerMap.hpp>
 #include <Forms/Gen4/SearchCalls.hpp>
 #include <Forms/Gen4/SearchCoinFlips.hpp>
@@ -35,7 +34,7 @@ namespace Ui
     class SeedtoTime4;
 }
 
-class SeedtoTime4 : public QMainWindow
+class SeedtoTime4 : public QWidget
 {
     Q_OBJECT
 
@@ -46,10 +45,10 @@ public:
 
 private:
     Ui::SeedtoTime4 *ui;
-    SeedtoTime4Model *dppt = new SeedtoTime4Model(this, false);
-    SeedtoTime4Model *dpptCalibrate = new SeedtoTime4Model(this, true);
-    SeedtoTime4Model *hgss = new SeedtoTime4Model(this, false, Game::HeartGold);
-    SeedtoTime4Model *hgssCalibrate = new SeedtoTime4Model(this, true, Game::HeartGold);
+    SeedtoTime4Model *dppt;
+    SeedtoTime4Model *dpptCalibrate;
+    SeedtoTime4Model *hgss;
+    SeedtoTime4Model *hgssCalibrate;
 
     void setupModels();
     QVector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);

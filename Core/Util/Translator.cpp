@@ -19,6 +19,26 @@
 
 #include "Translator.hpp"
 
+QStringList Translator::getCharacteristic()
+{
+    QStringList names;
+    QSettings setting;
+    QFile file(QString(":/text/characteristic_%1.txt").arg(setting.value("locale", "en").toString()));
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QTextStream ts(&file);
+        ts.setCodec("UTF-8");
+
+        while (!ts.atEnd())
+        {
+            names.append(ts.readLine());
+        }
+
+        file.close();
+    }
+    return names;
+}
+
 QStringList Translator::getSpecies(const QVector<u16> &nums)
 {
     QStringList species;
@@ -70,15 +90,16 @@ QStringList Translator::getLocationsGen3(const QVector<u8> &nums, Game game)
         QTextStream ts(&file);
         ts.setCodec("UTF-8");
 
-        QStringList input;
+        QMap<int, QString> input;
         while (!ts.atEnd())
         {
-            input << ts.readLine();
+            QStringList entry = ts.readLine().split(',');
+            input[entry.at(0).toInt()] = entry.at(1);
         }
 
         for (const u8 &x : nums)
         {
-            locations.append(input.at(x));
+            locations.append(input[x]);
         }
 
         file.close();
@@ -109,15 +130,16 @@ QStringList Translator::getLocationsGen4(const QVector<u8> &nums, Game game)
         QTextStream ts(&file);
         ts.setCodec("UTF-8");
 
-        QStringList input;
+        QMap<int, QString> input;
         while (!ts.atEnd())
         {
-            input << ts.readLine();
+            QStringList entry = ts.readLine().split(',');
+            input[entry.at(0).toInt()] = entry.at(1);
         }
 
         for (const u8 &x : nums)
         {
-            locations.append(input.at(x));
+            locations.append(input[x]);
         }
 
         file.close();

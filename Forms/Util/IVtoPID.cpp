@@ -21,7 +21,7 @@
 #include "ui_IVtoPID.h"
 
 IVtoPID::IVtoPID(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::IVtoPID)
 {
     ui->setupUi(this);
@@ -35,15 +35,16 @@ IVtoPID::IVtoPID(QWidget *parent) :
 IVtoPID::~IVtoPID()
 {
     delete ui;
-    delete model;
 }
 
 void IVtoPID::setupModels()
 {
-    ui->textBoxTID->setValues(InputType::TIDSID);
-
+    model = new QStandardItemModel(ui->tableView);
     model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("PID") << tr("Method") << tr("Ability") << "50%" << "12.5%" << "25%" << "75%" << tr("SID"));
     ui->tableView->setModel(model);
+
+    ui->textBoxTID->setValues(InputType::TIDSID);
+    ui->comboBoxNature->addItems(Nature::getNatures());
 }
 
 QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid)
@@ -320,7 +321,7 @@ void IVtoPID::on_pushButtonFind_clicked()
     u8 spd = ui->spinBoxSpD->value();
     u8 spe = ui->spinBoxSpe->value();
 
-    u8 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNatureGenerator->currentIndex()));
+    u8 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNature->currentIndex()));
 
     u16 tid = ui->textBoxTID->text().toUShort();
 

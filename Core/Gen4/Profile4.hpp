@@ -20,7 +20,7 @@
 #ifndef PROFILE4_HPP
 #define PROFILE4_HPP
 
-#include <Core/Objects/Profile.hpp>
+#include <Core/Parents/Profile.hpp>
 
 class Profile4 : public Profile
 {

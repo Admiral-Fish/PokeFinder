@@ -20,18 +20,18 @@
 #ifndef IVTOPIDHPP
 #define IVTOPIDHPP
 
-#include <QMainWindow>
 #include <QStandardItemModel>
-#include <Core/Objects/Nature.hpp>
+#include <QWidget>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
+#include <Core/Util/Nature.hpp>
 
 namespace Ui
 {
     class IVtoPID;
 }
 
-class IVtoPID : public QMainWindow
+class IVtoPID : public QWidget
 {
     Q_OBJECT
 
@@ -41,7 +41,7 @@ public:
 
 private:
     Ui::IVtoPID *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
+    QStandardItemModel *model;
 
     void setupModels();
     QVector<QList<QStandardItem *>> getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid);

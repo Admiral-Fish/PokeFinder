@@ -17,42 +17,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GENERATOR_HPP
-#define GENERATOR_HPP
+#ifndef LOCKINFO_HPP
+#define LOCKINFO_HPP
 
-#include <QVector>
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/EncounterSlot.hpp>
-#include <Core/Objects/FrameCompare.hpp>
-#include <Core/Objects/Lead.hpp>
-#include <Core/Objects/Method.hpp>
-#include <Core/RNG/IRNG.hpp>
+#include <Core/Util/Global.hpp>
 
-class Generator
+class LockInfo
 {
 
 public:
-    Encounter getEncounterType() const;
-    void setEncounterType(const Encounter &value);
-    Lead getLeadType() const;
-    void setLeadType(const Lead &value);
-    u8 getSynchNature() const;
-    void setSynchNature(const u8 &value);
+    LockInfo() = default;
+    LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
+    bool compare(u32 pid) const;
 
-protected:
-    u16 psv;
-    u16 sid;
-    u16 tid;
-    u32 offset;
-    Method frameType = Method::Method1;
-    Encounter encounterType = Encounter::Stationary;
-    Lead leadType = Lead::None;
-    u32 initialSeed;
-    u32 initialFrame;
-    u32 maxResults;
-    u8 synchNature;
-    u8 cuteCharm;
+private:
+    u8 genderUpper;
+    u8 genderLower;
+    u8 nature;
+    bool free;
 
 };
 
-#endif // GENERATOR_HPP
+#endif // LOCKINFO_HPP

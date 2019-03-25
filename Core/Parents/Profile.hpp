@@ -17,20 +17,40 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef NATURE_HPP
-#define NATURE_HPP
+#ifndef PROFILE_HPP
+#define PROFILE_HPP
 
-#include <QStringList>
-#include <QTranslator>
-#include <Core/Objects/Global.hpp>
+#include <QApplication>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QVector>
+#include <Core/Util/Game.hpp>
+#include <Core/Util/Global.hpp>
+#include <Core/Util/Language.hpp>
 
-namespace Nature
+class Profile
 {
-    QStringList getNatures();
-    QString getNature(u8 nature);
-    QStringList getFrameNatures();
-    u8 getAdjustedNature(u8 nature);
-    u8 getReversedNature(u8 nature);
+
+public:
+    Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::Nil);
+    Profile();
+    QString getVersionString() const;
+    QString getLanguageString() const;
+    Game getVersion() const;
+    Language getLanguage() const;
+    QString getProfileName() const;
+    u16 getTID() const;
+    u16 getSID() const;
+
+protected:
+    QString profileName;
+    Game version;
+    Language language;
+    u16 tid;
+    u16 sid;
+
 };
 
-#endif // NATURE_HPP
+#endif // PROFILE_HPP

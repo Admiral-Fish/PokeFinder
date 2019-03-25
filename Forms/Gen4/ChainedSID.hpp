@@ -17,39 +17,38 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SEARCHER_HPP
-#define SEARCHER_HPP
+#ifndef CHAINEDSID_HPP
+#define CHAINEDSID_HPP
 
-#include <QVector>
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/EncounterSlot.hpp>
-#include <Core/Objects/FrameCompare.hpp>
-#include <Core/Objects/Lead.hpp>
-#include <Core/Objects/Method.hpp>
-#include <Core/Objects/Utilities.hpp>
-#include <Core/RNG/LCRNG.hpp>
+#include <QStandardItemModel>
+#include <QWidget>
+#include <Core/Gen4/ChainedSIDCalc.hpp>
+#include <Core/Util/Nature.hpp>
 
-class Searcher
+namespace Ui
 {
+    class ChainedSID;
+}
+
+class ChainedSID : public QWidget
+{
+    Q_OBJECT
 
 public:
-    Encounter getEncounterType() const;
-    void setEncounterType(const Encounter &value);
-    Method getFrameType() const;
-    void setFrameType(const Method &value);
-    Lead getLeadType() const;
-    void setLeadType(const Lead &value);
+    explicit ChainedSID(QWidget *parent = nullptr);
+    ~ChainedSID() override;
 
-protected:
-    u16 psv;
-    u16 sid;
-    u16 tid;
-    Encounter encounterType = Encounter::Stationary;
-    Method frameType = Method::Method1;
-    Lead leadType = Lead::None;
-    u8 synchNature;
-    u8 cuteCharm;
+private:
+    Ui::ChainedSID *ui;
+    QStandardItemModel *model;
+    ChainedSIDCalc *chainedCalc = nullptr;
+
+    void setupModels();
+
+private slots:
+    void on_pushButtonCalculate_clicked();
+    void on_pushButtonClear_clicked();
 
 };
 
-#endif // SEARCHER_HPP
+#endif // CHAINEDSID_HPP

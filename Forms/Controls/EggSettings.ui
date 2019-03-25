@@ -170,6 +170,22 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pushButtonSwapParents</tabstop>
+  <tabstop>checkBoxShowInteritance</tabstop>
+  <tabstop>spinBoxParent1HP</tabstop>
+  <tabstop>spinBoxParent1Atk</tabstop>
+  <tabstop>spinBoxParent1Def</tabstop>
+  <tabstop>spinBoxParent1SpA</tabstop>
+  <tabstop>spinBoxParent1SpD</tabstop>
+  <tabstop>spinBoxParent1Spe</tabstop>
+  <tabstop>spinBoxParent2HP</tabstop>
+  <tabstop>spinBoxParent2Atk</tabstop>
+  <tabstop>spinBoxParent2Def</tabstop>
+  <tabstop>spinBoxParent2SpA</tabstop>
+  <tabstop>spinBoxParent2SpD</tabstop>
+  <tabstop>spinBoxParent2Spe</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

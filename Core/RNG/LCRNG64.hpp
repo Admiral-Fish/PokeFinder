@@ -46,6 +46,10 @@ class BWRNG : public LCRNG64
 {
 
 public:
+    BWRNG() : LCRNG64(0x269ec3, 0x5d588b656c078965, 0, 0)
+    {
+    }
+
     BWRNG(u64 seed, u32 frames = 0) : LCRNG64(0x269ec3, 0x5d588b656c078965, seed, frames)
     {
     }
@@ -56,6 +60,10 @@ class BWRNGR : public LCRNG64
 {
 
 public:
+    BWRNGR() : LCRNG64(0x9b1ae6e9a384e6f9, 0xdedcedae9638806d, 0, 0)
+    {
+    }
+
     BWRNGR(u64 seed, u32 frames = 0) : LCRNG64(0x9b1ae6e9a384e6f9, 0xdedcedae9638806d, seed, frames)
     {
     }

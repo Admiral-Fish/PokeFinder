@@ -21,7 +21,6 @@
 #define GAMECUBERTC_HPP
 
 #include <QDateTime>
-#include <QMainWindow>
 #include <QMenu>
 #include <QSettings>
 #include <QStandardItemModel>
@@ -35,7 +34,7 @@ namespace Ui
 
 class Search;
 
-class GameCubeRTC : public QMainWindow
+class GameCubeRTC : public QWidget
 {
     Q_OBJECT
 
@@ -45,12 +44,8 @@ public:
 
 private:
     Ui::GameCubeRTC *ui;
-    bool isSearching = false;
-    bool cancel = false;
-    QStandardItemModel *model = new QStandardItemModel(this);
-    QMenu *contextMenu = new QMenu();
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
+    QStandardItemModel *model;
+    QMenu *contextMenu;
 
     void setupModels();
 

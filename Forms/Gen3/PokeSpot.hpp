@@ -20,12 +20,12 @@
 #ifndef POKESPOT_HPP
 #define POKESPOT_HPP
 
-#include <QMainWindow>
 #include <QSettings>
+#include <QWidget>
 #include <Core/Gen3/Frame3.hpp>
-#include <Core/Objects/FrameCompare.hpp>
-#include <Core/Objects/Nature.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Nature.hpp>
 #include <Models/Gen3/PokeSpotModel.hpp>
 
 namespace Ui
@@ -33,7 +33,7 @@ namespace Ui
     class PokeSpot;
 }
 
-class PokeSpot : public QMainWindow
+class PokeSpot : public QWidget
 {
     Q_OBJECT
 
@@ -43,7 +43,7 @@ public:
 
 private:
     Ui::PokeSpot *ui;
-    PokeSpotModel *model = new PokeSpotModel(this);
+    PokeSpotModel *model;
 
     void setupModels();
 

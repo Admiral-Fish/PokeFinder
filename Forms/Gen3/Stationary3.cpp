@@ -21,7 +21,7 @@
 #include "ui_Stationary3.h"
 
 Stationary3::Stationary3(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::Stationary3)
 {
     ui->setupUi(this);
@@ -42,10 +42,6 @@ Stationary3::~Stationary3()
     setting.setValue("stationary3Profile", ui->comboBoxProfiles->currentIndex());
 
     delete ui;
-    delete s;
-    delete g;
-    delete generatorMenu;
-    delete searcherMenu;
 }
 
 void Stationary3::updateProfiles()
@@ -70,8 +66,13 @@ void Stationary3::updateProfiles()
 
 void Stationary3::setupModels()
 {
-    ui->tableViewGenerator->setModel(g);
-    ui->tableViewSearcher->setModel(s);
+    generatorModel = new Stationary3Model(ui->tableViewGenerator);
+    searcherModel = new Searcher3Model(ui->tableViewSearcher, Method::Method1);
+    generatorMenu = new QMenu(ui->tableViewGenerator);
+    searcherMenu = new QMenu(ui->tableViewSearcher);
+
+    ui->tableViewGenerator->setModel(generatorModel);
+    ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorTID->setValues(InputType::TIDSID);
@@ -83,78 +84,48 @@ void Stationary3::setupModels()
     ui->textBoxSearcherTID->setValues(InputType::TIDSID);
     ui->textBoxSearcherSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxGeneratorNature->setup();
-    ui->comboBoxSearcherNature->setup();
+    ui->comboBoxGeneratorNature->setup(Nature::getNatures());
+    ui->comboBoxSearcherNature->setup(Nature::getNatures());
 
-    ui->comboBoxGeneratorHiddenPower->setup();
-    ui->comboBoxSearcherHiddenPower->setup();
+    ui->comboBoxGeneratorHiddenPower->setup(Power::getPowers());
+    ui->comboBoxSearcherHiddenPower->setup(Power::getPowers());
 
-    QAction *setTargetFrame = new QAction(tr("Set Target Frame"), this);
-    QAction *jumpToTarget = new QAction(tr("Jump to Target Frame"), this);
-    QAction *centerTo1Second = new QAction(tr("Center to +/- 1 Second and Set as Target Frame"), this);
-    QAction *centerTo2Seconds = new QAction(tr("Center to +/- 2 Seconds and Set as Target Frame"), this);
-    QAction *centerTo3Seconds = new QAction(tr("Center to +/- 3 Seconds and Set as Target Frame"), this);
-    QAction *centerTo5Seconds = new QAction(tr("Center to +/- 5 Seconds and Set as Target Frame"), this);
-    QAction *centerTo10Seconds = new QAction(tr("Center to +/- 10 Seconds and Set as Target Frame"), this);
-    QAction *centerTo1Minute = new QAction(tr("Center to +/- 1 Minute and Set as Target Frame"), this);
-    QAction *outputToTxt = new QAction(tr("Output Results to TXT"), this);
-    QAction *outputToCSV = new QAction(tr("Output Results to CSV"), this);
+    QAction *setTargetFrame = generatorMenu->addAction(tr("Set Target Frame"));
+    QAction *jumpToTarget = generatorMenu->addAction(tr("Jump to Target Frame"));
+    QAction *center1Second = generatorMenu->addAction(tr("Center to +/- 1 Second and Set as Target Frame"));
+    QAction *center2Seconds = generatorMenu->addAction(tr("Center to +/- 2 Seconds and Set as Target Frame"));
+    QAction *center3Seconds = generatorMenu->addAction(tr("Center to +/- 3 Seconds and Set as Target Frame"));
+    QAction *center5Seconds = generatorMenu->addAction(tr("Center to +/- 5 Seconds and Set as Target Frame"));
+    QAction *center10Seconds = generatorMenu->addAction(tr("Center to +/- 10 Seconds and Set as Target Frame"));
+    QAction *center1Minute = generatorMenu->addAction(tr("Center to +/- 1 Minute and Set as Target Frame"));
+    QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
 
     connect(setTargetFrame, &QAction::triggered, this, &Stationary3::setTargetFrameGenerator);
     connect(jumpToTarget, &QAction::triggered, this, &Stationary3::jumpToTargetGenerator);
-    connect(centerTo1Second, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(60);
-    });
-    connect(centerTo2Seconds, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(120);
-    });
-    connect(centerTo3Seconds, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(180);
-    });
-    connect(centerTo5Seconds, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(300);
-    });
-    connect(centerTo10Seconds, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(600);
-    });
-    connect(centerTo1Minute, &QAction::triggered, this, [ = ]()
-    {
-        centerFramesAndSetTargetGenerator(3600);
-    });
-    connect(outputToTxt, &QAction::triggered, this, &Stationary3::outputToTxt);
-    connect(outputToCSV, &QAction::triggered, this, &Stationary3::outputToCSV);
+    connect(center1Second, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(60); });
+    connect(center2Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(120); });
+    connect(center3Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(180); });
+    connect(center5Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(300); });
+    connect(center10Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(600); });
+    connect(center1Minute, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(3600); });
+    connect(outputTXTGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModelTXT(); });
+    connect(outputCSVGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModelCSV(); });
 
-    generatorMenu->addAction(setTargetFrame);
-    generatorMenu->addAction(jumpToTarget);
-    generatorMenu->addSeparator();
-    generatorMenu->addAction(centerTo1Second);
-    generatorMenu->addAction(centerTo2Seconds);
-    generatorMenu->addAction(centerTo3Seconds);
-    generatorMenu->addAction(centerTo5Seconds);
-    generatorMenu->addAction(centerTo10Seconds);
-    generatorMenu->addAction(centerTo1Minute);
-    generatorMenu->addSeparator();
-    generatorMenu->addAction(outputToTxt);
-    generatorMenu->addAction(outputToCSV);
-
-    QAction *copySeedToClipboard = new QAction(tr("Copy Seed to Clipboard"), this);
-    QAction *seedToTime = new QAction(tr("Generate times for seed"), this);
+    QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
+    QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
+    QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
 
     connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
     connect(seedToTime, &QAction::triggered, this, &Stationary3::seedToTime);
-
-    searcherMenu->addAction(copySeedToClipboard);
-    searcherMenu->addAction(seedToTime);
+    connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
+    connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
 }
 
 void Stationary3::updateView(const QVector<Frame3> &frames, int progress)
 {
-    s->addItems(frames);
+    searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
 }
 
@@ -228,17 +199,17 @@ void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
 
 void Stationary3::on_pushButtonGenerate_clicked()
 {
-    g->clear();
+    generatorModel->clear();
 
-    u32 seed = ui->textBoxGeneratorSeed->text().toUInt(nullptr, 16);
-    u32 startingFrame = ui->textBoxGeneratorStartingFrame->text().toUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->text().toUInt();
-    u16 tid = ui->textBoxGeneratorTID->text().toUShort();
-    u16 sid = ui->textBoxGeneratorSID->text().toUShort();
+    u32 seed = ui->textBoxGeneratorSeed->getUInt();
+    u32 startingFrame = ui->textBoxGeneratorStartingFrame->getUInt();
+    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u16 tid = ui->textBoxGeneratorTID->getUShort();
+    u16 sid = ui->textBoxGeneratorSID->getUShort();
     u32 offset = 0;
     if (ui->checkBoxGeneratorDelay->isChecked())
     {
-        offset = ui->textBoxGeneratorDelay->text().toUInt();
+        offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
     int genderRatioIndex = ui->comboBoxGeneratorGenderRatio->currentIndex();
@@ -251,20 +222,19 @@ void Stationary3::on_pushButtonGenerate_clicked()
     generator.setup(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
     QVector<Frame3> frames = generator.generate(compare);
-    g->setModel(frames);
+    generatorModel->setModel(frames);
 }
 
 void Stationary3::on_pushButtonSearch_clicked()
 {
-    s->clear();
-    s->setMethod(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+    searcherModel->clear();
+    searcherModel->setMethod(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-
-    u16 tid = ui->textBoxSearcherTID->text().toUShort();
-    u16 sid = ui->textBoxSearcherTID->text().toUShort();
+    u16 tid = ui->textBoxSearcherTID->getUShort();
+    u16 sid = ui->textBoxSearcherSID->getUShort();
 
     int genderRatioIndex = ui->comboBoxSearcherGenderRatio->currentIndex();
     FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
@@ -290,15 +260,14 @@ void Stationary3::on_pushButtonSearch_clicked()
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(maxProgress);
 
-    auto *search = new StationarySearcher3(searcher, min, max);
-    auto *timer = new QTimer();
+    auto *search = new IVSearcher3(searcher, min, max);
+    auto *timer = new QTimer(search);
 
-    connect(search, &StationarySearcher3::finished, timer, &QTimer::deleteLater);
-    connect(search, &StationarySearcher3::finished, timer, &QTimer::stop);
-    connect(search, &StationarySearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &StationarySearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher3::finished, timer, &QTimer::stop);
+    connect(search, &IVSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+    connect(search, &IVSearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
     connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &StationarySearcher3::cancelSearch);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher3::cancelSearch);
 
     search->start();
     timer->start(1000);
@@ -354,7 +323,7 @@ void Stationary3::on_comboBoxSearcherMethod_currentIndexChanged(int index)
 
 void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
 {
-    if (g->rowCount() == 0)
+    if (generatorModel->rowCount() == 0)
     {
         return;
     }
@@ -365,7 +334,7 @@ void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint 
 
 void Stationary3::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
 {
-    if (s->rowCount() == 0)
+    if (searcherModel->rowCount() == 0)
     {
         return;
     }
@@ -407,104 +376,15 @@ void Stationary3::centerFramesAndSetTargetGenerator(u32 centerFrames)
 
 void Stationary3::seedToTime()
 {
-    u32 seed = s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
+    u32 seed = searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
     auto *seedToTime = new SeedToTime3(seed);
     seedToTime->show();
     seedToTime->raise();
 }
 
-void Stationary3::outputToTxt()
-{
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to TXT"), "", tr("Text File (*.txt);;All Files (*)"));
-
-    if (fileName.isEmpty())
-    {
-        return;
-    }
-
-    QFile file(fileName);
-    if (file.open(QIODevice::WriteOnly))
-    {
-        QString textData = "";
-        int rows = g->rowCount();
-        int columns = g->columnCount();
-
-        for (int i = 0; i < columns; i++)
-        {
-            textData += g->headerData(i, Qt::Horizontal, 0).toString();
-            textData += i == 1 || i == 11 ? "\t\t" : "\t";
-        }
-
-        textData += "\r\n";
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                textData += (g->data(g->index(i, j), 0).toString() != "" ? g->data(g->index(i, j), 0).toString() + "\t" : "-\t");
-                if (j == 11 && g->data(g->index(i, j), 0).toString().length() < 8)
-                {
-                    textData += "\t";
-                }
-            }
-            textData += "\r\n";             // (optional: for new line segmentation)
-        }
-
-        QTextStream out(&file);
-        out << textData;
-        file.close();
-    }
-}
-
-void Stationary3::outputToCSV()
-{
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Output to CSV"), "", tr("CSV File (*.csv);;All Files (*)"));
-
-    if (fileName.isEmpty())
-    {
-        return;
-    }
-
-    QFile file(fileName);
-    if (file.open(QIODevice::WriteOnly))
-    {
-        QString textData = "";
-        int rows = g->rowCount();
-        int columns = g->columnCount();
-
-        for (int i = 0; i < columns; i++)
-        {
-            textData += g->headerData(i, Qt::Horizontal, 0).toString();
-            if (i != columns - 1)
-            {
-                textData += ", ";
-            }
-        }
-
-        textData += "\n";
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                textData += (g->data(g->index(i, j), 0).toString() != "" ? g->data(g->index(i, j), 0).toString() + "\t" : "-\t");
-                if (j != columns - 1)
-                {
-                    textData += ", ";
-                }
-            }
-            textData += "\n";             // (optional: for new line segmentation)
-        }
-
-        QTextStream out(&file);
-        out << textData;
-        file.close();
-    }
-}
-
 void Stationary3::copySeedToClipboard()
 {
-    QApplication::clipboard()->setText(s->data(s->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
+    QApplication::clipboard()->setText(searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
 }
 
 void Stationary3::on_pushButtonProfileManager_clicked()
@@ -512,65 +392,4 @@ void Stationary3::on_pushButtonProfileManager_clicked()
     auto *manager = new ProfileManager3();
     connect(manager, &ProfileManager3::updateProfiles, this, &Stationary3::refreshProfiles);
     manager->show();
-}
-
-StationarySearcher3::StationarySearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max)
-{
-    this->searcher = searcher;
-    this->min = min;
-    this->max = max;
-    cancel = false;
-    progress = 0;
-
-    connect(this, &StationarySearcher3::finished, this, &StationarySearcher3::deleteLater);
-}
-
-void StationarySearcher3::run()
-{
-    for (u8 a = min[0]; a <= max[0]; a++)
-    {
-        for (u8 b = min[1]; b <= max[1]; b++)
-        {
-            for (u8 c = min[2]; c <= max[2]; c++)
-            {
-                for (u8 d = min[3]; d <= max[3]; d++)
-                {
-                    for (u8 e = min[4]; e <= max[4]; e++)
-                    {
-                        for (u8 f = min[5]; f <= max[5]; f++)
-                        {
-                            if (cancel)
-                            {
-                                return;
-                            }
-
-                            auto frames = searcher.search(a, b, c, d, e, f);
-                            progress++;
-
-                            QMutexLocker locker(&mutex);
-                            results.append(frames);
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-int StationarySearcher3::currentProgress() const
-{
-    return progress;
-}
-
-QVector<Frame3> StationarySearcher3::getResults()
-{
-    QMutexLocker locker(&mutex);
-    auto data(results);
-    results.clear();
-    return data;
-}
-
-void StationarySearcher3::cancelSearch()
-{
-    cancel = true;
 }

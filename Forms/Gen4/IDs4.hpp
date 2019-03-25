@@ -20,21 +20,20 @@
 #ifndef IDS4_HPP
 #define IDS4_HPP
 
-#include <QMainWindow>
 #include <QMessageBox>
 #include <QMutex>
 #include <QStandardItemModel>
 #include <QThread>
 #include <QTimer>
-#include <Core/Objects/Utilities.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 
 namespace Ui
 {
     class IDs4;
 }
 
-class IDs4 : public QMainWindow
+class IDs4 : public QWidget
 {
     Q_OBJECT
 
@@ -47,7 +46,7 @@ public:
 
 private:
     Ui::IDs4 *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
+    QStandardItemModel *model;
 
     void setupModels();
     void updateView(QVector<QList<QStandardItem *>> frames, int progress);

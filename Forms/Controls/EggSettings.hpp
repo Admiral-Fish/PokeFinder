@@ -21,7 +21,7 @@
 #define EGGSETTINGS_HPP
 
 #include <QWidget>
-#include <Core/Objects/Global.hpp>
+#include <Core/Util/Global.hpp>
 
 namespace Ui
 {

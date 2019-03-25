@@ -22,7 +22,7 @@
 
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Frame4.hpp>
-#include <Core/Objects/Searcher.hpp>
+#include <Core/Parents/Searcher.hpp>
 #include <Core/RNG/RNGCache.hpp>
 
 class Searcher4 : public Searcher

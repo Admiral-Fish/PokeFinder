@@ -20,8 +20,8 @@
 #ifndef JIRACHIPATTERN_HPP
 #define JIRACHIPATTERN_HPP
 
-#include <QMainWindow>
 #include <QStandardItemModel>
+#include <QWidget>
 #include <Core/RNG/LCRNG.hpp>
 
 namespace Ui
@@ -29,7 +29,7 @@ namespace Ui
     class JirachiPattern;
 }
 
-class JirachiPattern : public QMainWindow
+class JirachiPattern : public QWidget
 {
     Q_OBJECT
 
@@ -39,7 +39,7 @@ public:
 
 private:
     Ui::JirachiPattern *ui;
-    QStandardItemModel *model = new QStandardItemModel(this);
+    QStandardItemModel *model;
     QVector<u32> data;
 
     void setupModels();

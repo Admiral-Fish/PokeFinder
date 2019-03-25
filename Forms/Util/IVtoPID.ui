@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>IVtoPID</class>
- <widget class="QMainWindow" name="IVtoPID">
+ <widget class="QWidget" name="IVtoPID">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -31,299 +31,172 @@
   <property name="windowTitle">
    <string>IVs to PID</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="2" column="0" colspan="4">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelHP">
-        <property name="text">
-         <string>HP</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="labelAtk">
-        <property name="text">
-         <string>Atk</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelDef">
-        <property name="text">
-         <string>Def</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="labelSpA">
-        <property name="text">
-         <string>SpA</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QLabel" name="labelSpD">
-        <property name="text">
-         <string>SpD</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="labelSpe">
-        <property name="text">
-         <string>Spe</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QSpinBox" name="spinBoxHP"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="spinBoxAtk"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QSpinBox" name="spinBoxDef"/>
-      </item>
-      <item row="1" column="3">
-       <widget class="QSpinBox" name="spinBoxSpA"/>
-      </item>
-      <item row="1" column="4">
-       <widget class="QSpinBox" name="spinBoxSpD"/>
-      </item>
-      <item row="1" column="5">
-       <widget class="QSpinBox" name="spinBoxSpe"/>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="labelNature">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>Nature</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QLabel" name="labelTID">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>TID</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QComboBox" name="comboBoxNatureGenerator">
-      <property name="minimumSize">
-       <size>
-        <width>100</width>
-        <height>0</height>
-       </size>
-      </property>
-      <item>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelNature">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Nature</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QComboBox" name="comboBoxNature">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>469</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="3">
+    <widget class="QPushButton" name="pushButtonFind">
+     <property name="minimumSize">
+      <size>
+       <width>50</width>
+       <height>23</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Find</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="4">
+    <widget class="TableView" name="tableView">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="sortingEnabled">
+      <bool>false</bool>
+     </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>100</number>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>21</number>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>20</number>
+     </attribute>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="4">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelHP">
        <property name="text">
-        <string>Adamant</string>
+        <string>HP</string>
        </property>
-      </item>
-      <item>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="labelAtk">
        <property name="text">
-        <string>Bold</string>
+        <string>Atk</string>
        </property>
-      </item>
-      <item>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="labelDef">
        <property name="text">
-        <string>Brave</string>
+        <string>Def</string>
        </property>
-      </item>
-      <item>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="labelSpA">
        <property name="text">
-        <string>Calm</string>
+        <string>SpA</string>
        </property>
-      </item>
-      <item>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLabel" name="labelSpD">
        <property name="text">
-        <string>Careful</string>
+        <string>SpD</string>
        </property>
-      </item>
-      <item>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QLabel" name="labelSpe">
        <property name="text">
-        <string>Hasty</string>
+        <string>Spe</string>
        </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Impish</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Jolly</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Lonely</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Mild</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Modest</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Naive</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Naughty</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Quiet</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Rash</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Relaxed</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Sassy</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Timid</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Gentle</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Lax</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Bashful</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Docile</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Hardy</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Quirky</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Serious</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="3" column="3">
-     <widget class="QPushButton" name="pushButtonFind">
-      <property name="minimumSize">
-       <size>
-        <width>50</width>
-        <height>23</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>Find</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0" colspan="4">
-     <widget class="TableView" name="tableView">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="editTriggers">
-       <set>QAbstractItemView::NoEditTriggers</set>
-      </property>
-      <property name="sortingEnabled">
-       <bool>false</bool>
-      </property>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>100</number>
-      </attribute>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
-       <number>21</number>
-      </attribute>
-      <attribute name="verticalHeaderMinimumSectionSize">
-       <number>20</number>
-      </attribute>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="TextBox" name="textBoxTID">
-      <property name="maximumSize">
-       <size>
-        <width>100</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-   </layout>
-  </widget>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QSpinBox" name="spinBoxHP"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="spinBoxAtk"/>
+     </item>
+     <item row="1" column="2">
+      <widget class="QSpinBox" name="spinBoxDef"/>
+     </item>
+     <item row="1" column="3">
+      <widget class="QSpinBox" name="spinBoxSpA"/>
+     </item>
+     <item row="1" column="4">
+      <widget class="QSpinBox" name="spinBoxSpD"/>
+     </item>
+     <item row="1" column="5">
+      <widget class="QSpinBox" name="spinBoxSpe"/>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="3">
+    <widget class="TextBox" name="textBoxTID">
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="labelTID">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>TID</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <customwidgets>
   <customwidget>
@@ -338,7 +211,7 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>comboBoxNatureGenerator</tabstop>
+  <tabstop>comboBoxNature</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>spinBoxHP</tabstop>
   <tabstop>spinBoxAtk</tabstop>

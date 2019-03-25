@@ -20,7 +20,7 @@
 #ifndef FRAME4_HPP
 #define FRAME4_HPP
 
-#include <Core/Objects/Frame.hpp>
+#include <Core/Parents/Frame.hpp>
 
 class Frame4 : public Frame
 {

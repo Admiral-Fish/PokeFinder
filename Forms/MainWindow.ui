@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string notr="true">PokéFinder 2.2.1</string>
+   <string notr="true">PokéFinder 2.2.2</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -208,46 +208,62 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuLanguage">
-    <property name="title">
-     <string>Language</string>
-    </property>
-    <addaction name="actionGerman"/>
-    <addaction name="actionEnglish"/>
-    <addaction name="actionSpanish"/>
-    <addaction name="actionFrench"/>
-    <addaction name="actionItalian"/>
-    <addaction name="actionJapanese"/>
-    <addaction name="actionKorean"/>
-    <addaction name="actionChinese"/>
-   </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
      <string>Tools</string>
     </property>
+    <addaction name="actionIV_Calculator"/>
     <addaction name="actionResearcher"/>
    </widget>
    <widget class="QMenu" name="menuGen3Tools">
     <property name="title">
      <string>Gen 3 Tools</string>
     </property>
-    <addaction name="actionSeedtoTime3"/>
-    <addaction name="actionJirachiPattern"/>
-    <addaction name="actionPokeSpot"/>
-    <addaction name="actionIVtoPID3"/>
     <addaction name="actionGameCubeRTC"/>
+    <addaction name="actionIVtoPID3"/>
+    <addaction name="actionJirachiPattern"/>
     <addaction name="actionPIDtoIV"/>
+    <addaction name="actionPokeSpot"/>
+    <addaction name="actionSeedtoTime3"/>
    </widget>
    <widget class="QMenu" name="menuGen4Tools">
     <property name="title">
      <string>Gen 4 Tools</string>
     </property>
-    <addaction name="actionSeedtoTime4"/>
     <addaction name="actionIVtoPID4"/>
+    <addaction name="actionSeedtoTime4"/>
+    <addaction name="actionSID_from_Chained_Shiny"/>
    </widget>
-   <addaction name="menuLanguage"/>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <widget class="QMenu" name="menuLanguage">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="actionGerman"/>
+     <addaction name="actionEnglish"/>
+     <addaction name="actionSpanish"/>
+     <addaction name="actionFrench"/>
+     <addaction name="actionItalian"/>
+     <addaction name="actionJapanese"/>
+     <addaction name="actionKorean"/>
+     <addaction name="actionChinese"/>
+    </widget>
+    <widget class="QMenu" name="menuStyle">
+     <property name="title">
+      <string>Style</string>
+     </property>
+     <addaction name="actionLight"/>
+     <addaction name="actionDark"/>
+    </widget>
+    <addaction name="menuLanguage"/>
+    <addaction name="menuStyle"/>
+   </widget>
    <addaction name="menuGen3Tools"/>
    <addaction name="menuGen4Tools"/>
+   <addaction name="menuSettings"/>
    <addaction name="menuTools"/>
   </widget>
   <action name="actionResearcher">
@@ -293,6 +309,22 @@
   <action name="actionIVtoPID4">
    <property name="text">
     <string>IV to PID</string>
+   </property>
+  </action>
+  <action name="actionLight">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Light</string>
+   </property>
+  </action>
+  <action name="actionDark">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Dark</string>
    </property>
   </action>
   <action name="actionGerman">
@@ -357,6 +389,16 @@
    </property>
    <property name="text">
     <string>Chinese</string>
+   </property>
+  </action>
+  <action name="actionSID_from_Chained_Shiny">
+   <property name="text">
+    <string>SID from Chained Shiny</string>
+   </property>
+  </action>
+  <action name="actionIV_Calculator">
+   <property name="text">
+    <string>IV Calculator</string>
    </property>
   </action>
  </widget>

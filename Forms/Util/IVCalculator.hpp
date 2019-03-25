@@ -17,32 +17,41 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EGG_HPP
-#define EGG_HPP
+#ifndef IVCALCULATOR_HPP
+#define IVCALCULATOR_HPP
 
-#include <QVector>
-#include <Core/Objects/Method.hpp>
-#include <Core/Objects/FrameCompare.hpp>
-#include <Core/RNG/IRNG.hpp>
+#include <QLabel>
+#include <Core/Util/Characteristic.hpp>
+#include <Core/Util/IVChecker.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
 
-class Egg
+namespace Ui
 {
+    class IVCalculator;
+}
+
+class IVCalculator : public QWidget
+{
+    Q_OBJECT
 
 public:
-    void setEverstoneNature(const u32 &value);
-    u32 getSeed() const;
-    void setSeed(const u32 &value);
+    explicit IVCalculator(QWidget *parent = nullptr);
+    ~IVCalculator() override;
 
-protected:
-    u16 psv;
-    u16 sid;
-    u16 tid;
-    Method frameType = Method::EBred;
-    u32 seed;
-    u32 initialFrame;
-    u32 maxResults;
-    u32 everstoneNature;
+private:
+    Ui::IVCalculator *ui;
+    QVector<Characteristic> characteristics;
+    QVector<Pokemon> pokemon;
+    void setupModels();
+    void displayIVs(QLabel *label, QVector<u8> ivs);
 
+private slots:
+    void on_pushButtonFindIVs_clicked();
+    void on_comboBoxPokemon_currentIndexChanged(int index);
+
+    void on_comboBoxGeneration_currentIndexChanged(int index);
 };
 
-#endif // EGG_HPP
+#endif // IVCALCULATOR_HPP

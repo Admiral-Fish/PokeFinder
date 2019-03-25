@@ -21,7 +21,7 @@
 
 CheckList::CheckList(QWidget *parent) : QComboBox(parent)
 {
-    model = new QStandardItemModel();
+    model = new QStandardItemModel(this);
     setModel(model);
 
     setEditable(true);
@@ -33,13 +33,14 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent)
     connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
 }
 
-CheckList::~CheckList()
+void CheckList::setup(const QStringList &items)
 {
-    delete model;
-}
+    if (!items.isEmpty())
+    {
+        clear();
+        addItems(items);
+    }
 
-void CheckList::setup()
-{
     for (int i = 0; i < model->rowCount(); i++)
     {
         QStandardItem *item = model->item(i);

@@ -34,10 +34,6 @@ protected:
     u32 seed;
     u32 index;
 
-    inline u32 temperingShiftL(u32 y) { return (y >> 18); }
-    inline u32 temperingShiftS(u32 y) { return (y << 7); }
-    inline u32 temperingShiftT(u32 y) { return (y << 15); }
-    inline u32 temperingShiftU(u32 y) { return (y >> 11); }
     virtual void shuffle() = 0;
     virtual void initialize(u32 seed) = 0;
 
@@ -47,6 +43,7 @@ class MersenneTwister : public MT
 {
 
 public:
+    MersenneTwister();
     MersenneTwister(u32 seed, u32 frames = 0);
     u32 nextUInt() override;
     u16 nextUShort() override;
@@ -64,6 +61,7 @@ class MersenneTwisterUntempered : public MT
 {
 
 public:
+    MersenneTwisterUntempered();
     MersenneTwisterUntempered(u32 seed, u32 frames = 0);
     u32 nextUInt() override;
     u16 nextUShort() override;
@@ -81,6 +79,7 @@ class MersenneTwisterFast : public MT
 {
 
 public:
+    MersenneTwisterFast();
     MersenneTwisterFast(u32 seed, u32 calls, u32 frames = 0);
     u32 nextUInt() override;
     u16 nextUShort() override;

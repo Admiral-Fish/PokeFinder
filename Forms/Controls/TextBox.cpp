@@ -80,6 +80,18 @@ void TextBox::setValues(u64 minValue, u64 maxValue, int base)
     setup = true;
 }
 
+u16 TextBox::getUShort()
+{
+    Q_ASSERT(setup == true);
+    return this->text().toUShort(nullptr, base);
+}
+
+u32 TextBox::getUInt()
+{
+    Q_ASSERT(setup == true);
+    return this->text().toUInt(nullptr, base);
+}
+
 void TextBox::onTextChanged(QString string)
 {
     if (setup)

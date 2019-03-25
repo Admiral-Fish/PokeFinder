@@ -21,7 +21,7 @@
 #include "ui_ProfileManager3.h"
 
 ProfileManager3::ProfileManager3(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::ProfileManager3)
 {
     ui->setupUi(this);
@@ -35,19 +35,18 @@ ProfileManager3::ProfileManager3(QWidget *parent) :
 ProfileManager3::~ProfileManager3()
 {
     delete ui;
-    delete model;
 }
 
 void ProfileManager3::setupModels()
 {
+    model = new Profile3Model(ui->tableView);
     model->setModel(Profile3::loadProfileList());
     ui->tableView->setModel(model);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void ProfileManager3::on_pushButtonNew_clicked()
 {
-    auto *dialog = new ProfileManager3NewEdit();
+    QScopedPointer<ProfileManager3NewEdit> dialog(new ProfileManager3NewEdit);
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile3 profile = dialog->getNewProfile();
@@ -55,7 +54,6 @@ void ProfileManager3::on_pushButtonNew_clicked()
         model->addItem(profile);
         emit updateProfiles();
     }
-    delete dialog;
 }
 
 void ProfileManager3::on_pushButtonEdit_clicked()
@@ -70,7 +68,7 @@ void ProfileManager3::on_pushButtonEdit_clicked()
         return;
     }
 
-    auto *dialog = new ProfileManager3NewEdit(model->getProfile(row));
+    QScopedPointer<ProfileManager3NewEdit> dialog(new ProfileManager3NewEdit(model->getProfile(row)));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile3 profile = dialog->getNewProfile();
@@ -78,7 +76,6 @@ void ProfileManager3::on_pushButtonEdit_clicked()
         model->updateProfile(profile, row);
         emit updateProfiles();
     }
-    delete dialog;
 }
 
 void ProfileManager3::on_pushButtonDelete_clicked()

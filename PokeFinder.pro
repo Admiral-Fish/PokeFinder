@@ -6,7 +6,7 @@ CONFIG += c++1z
 
 TARGET = PokeFinder
 TEMPLATE = app
-VERSION = 2.2.0
+VERSION = 2.2.2
 QMAKE_TARGET_DESCRIPTION = PokeFinder
 QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
@@ -26,10 +26,11 @@ TRANSLATIONS += \
     Translations/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
-    resources.qrc \
-    qdarkstyle/style.qrc
+    qdarkstyle/style.qrc \
+    resources.qrc
 
 FORMS += \
+    Forms/Controls/EggSettings.ui \
     Forms/Controls/IVFilter.ui \
     Forms/Gen3/Eggs3.ui \
     Forms/Gen3/GameCubeRTC.ui \
@@ -42,6 +43,7 @@ FORMS += \
     Forms/Gen3/SeedToTime3.ui \
     Forms/Gen3/Stationary3.ui \
     Forms/Gen3/Wild3.ui \
+    Forms/Gen4/ChainedSID.ui \
     Forms/Gen4/Eggs4.ui \
     Forms/Gen4/IDs4.ui \
     Forms/Gen4/ProfileManager4.ui \
@@ -52,10 +54,10 @@ FORMS += \
     Forms/Gen4/SeedtoTime4.ui \
     Forms/Gen4/Stationary4.ui \
     Forms/Gen4/Wild4.ui \
+    Forms/Util/IVCalculator.ui \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
-    Forms/MainWindow.ui \
-    Forms/Controls/EggSettings.ui
+    Forms/MainWindow.ui
 
 HEADERS += \
     Core/Gen3/Egg3.hpp \
@@ -63,33 +65,32 @@ HEADERS += \
     Core/Gen3/Encounters3.hpp \
     Core/Gen3/Frame3.hpp \
     Core/Gen3/Generator3.hpp \
-    Core/Gen3/NatureLock.hpp \
+    Core/Gen3/IVSearcher3.hpp \
+    Core/Gen3/LockInfo.hpp \
     Core/Gen3/Profile3.hpp \
     Core/Gen3/Searcher3.hpp \
+    Core/Gen3/ShadowLock.hpp \
+    Core/Gen4/ChainedSIDCalc.hpp \
     Core/Gen4/Egg4.hpp \
     Core/Gen4/EncounterArea4.hpp \
     Core/Gen4/Encounters4.hpp \
     Core/Gen4/Frame4.hpp \
     Core/Gen4/Generator4.hpp \
     Core/Gen4/HGSSRoamer.hpp \
+    Core/Gen4/IVSearcher4.hpp \
     Core/Gen4/Profile4.hpp \
     Core/Gen4/Searcher4.hpp \
-    Core/Objects/Egg.hpp \
-    Core/Objects/Encounter.hpp \
-    Core/Objects/EncounterArea.hpp \
-    Core/Objects/EncounterSlot.hpp \
-    Core/Objects/Frame.hpp \
-    Core/Objects/FrameCompare.hpp \
-    Core/Objects/Game.hpp \
-    Core/Objects/Generator.hpp \
-    Core/Objects/Global.hpp \
-    Core/Objects/Lead.hpp \
-    Core/Objects/Method.hpp \
-    Core/Objects/Nature.hpp \
-    Core/Objects/Power.hpp \
-    Core/Objects/Profile.hpp \
-    Core/Objects/Searcher.hpp \
-    Core/Objects/Utilities.hpp \
+    Core/Gen5/DSType.hpp \
+    Core/Gen5/Nazos.hpp \
+    Core/Gen5/Profile5.hpp \
+    Core/Parents/Egg.hpp \
+    Core/Parents/EncounterArea.hpp \
+    Core/Parents/Frame.hpp \
+    Core/Parents/FrameCompare.hpp \
+    Core/Parents/Generator.hpp \
+    Core/Parents/Pokemon.hpp \
+    Core/Parents/Profile.hpp \
+    Core/Parents/Searcher.hpp \
     Core/RNG/IRNG.hpp \
     Core/RNG/IRNG64.hpp \
     Core/RNG/LCRNG.hpp \
@@ -98,9 +99,23 @@ HEADERS += \
     Core/RNG/RNGCache.hpp \
     Core/RNG/RNGEuclidean.hpp \
     Core/RNG/SFMT.hpp \
+    Core/RNG/SHA1.hpp \
     Core/RNG/TinyMT.hpp \
-    Core/Translator.hpp \
+    Core/Util/Characteristic.hpp \
+    Core/Util/Encounter.hpp \
+    Core/Util/EncounterSlot.hpp \
+    Core/Util/Game.hpp \
+    Core/Util/Global.hpp \
+    Core/Util/IVChecker.hpp \
+    Core/Util/Language.hpp \
+    Core/Util/Lead.hpp \
+    Core/Util/Method.hpp \
+    Core/Util/Nature.hpp \
+    Core/Util/Power.hpp \
+    Core/Util/Translator.hpp \
+    Core/Util/Utilities.hpp \
     Forms/Controls/CheckList.hpp \
+    Forms/Controls/EggSettings.hpp \
     Forms/Controls/IVFilter.hpp \
     Forms/Controls/Label.hpp \
     Forms/Controls/TableView.hpp \
@@ -116,6 +131,7 @@ HEADERS += \
     Forms/Gen3/SeedToTime3.hpp \
     Forms/Gen3/Stationary3.hpp \
     Forms/Gen3/Wild3.hpp \
+    Forms/Gen4/ChainedSID.hpp \
     Forms/Gen4/Eggs4.hpp \
     Forms/Gen4/IDs4.hpp \
     Forms/Gen4/ProfileManager4.hpp \
@@ -126,6 +142,7 @@ HEADERS += \
     Forms/Gen4/SeedtoTime4.hpp \
     Forms/Gen4/Stationary4.hpp \
     Forms/Gen4/Wild4.hpp \
+    Forms/Util/IVCalculator.hpp \
     Forms/Util/IVtoPID.hpp \
     Forms/Util/Researcher.hpp \
     Forms/MainWindow.hpp \
@@ -144,13 +161,7 @@ HEADERS += \
     Models/ResearcherModel.hpp \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
-    Util/TableUtility.hpp \
-    Forms/Controls/EggSettings.hpp \
-    Core/Objects/Language.hpp \
-    Core/Gen5/Nazos.hpp \
-    Core/Gen5/Profile5.hpp \
-    Core/Objects/DSType.hpp \
-    Core/RNG/SHA1.hpp
+    Util/TableUtility.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -158,37 +169,48 @@ SOURCES += \
     Core/Gen3/Encounters3.cpp \
     Core/Gen3/Frame3.cpp \
     Core/Gen3/Generator3.cpp \
-    Core/Gen3/NatureLock.cpp \
+    Core/Gen3/IVSearcher3.cpp \
+    Core/Gen3/LockInfo.cpp \
     Core/Gen3/Profile3.cpp \
     Core/Gen3/Searcher3.cpp \
+    Core/Gen3/ShadowLock.cpp \
+    Core/Gen4/ChainedSIDCalc.cpp \
     Core/Gen4/Egg4.cpp \
     Core/Gen4/EncounterArea4.cpp \
     Core/Gen4/Encounters4.cpp \
     Core/Gen4/Frame4.cpp \
     Core/Gen4/Generator4.cpp \
     Core/Gen4/HGSSRoamer.cpp \
+    Core/Gen4/IVSearcher4.cpp \
     Core/Gen4/Profile4.cpp \
     Core/Gen4/Searcher4.cpp \
-    Core/Objects/Egg.cpp \
-    Core/Objects/EncounterArea.cpp \
-    Core/Objects/EncounterSlot.cpp \
-    Core/Objects/Frame.cpp \
-    Core/Objects/FrameCompare.cpp \
-    Core/Objects/Generator.cpp \
-    Core/Objects/Nature.cpp \
-    Core/Objects/Power.cpp \
-    Core/Objects/Profile.cpp \
-    Core/Objects/Searcher.cpp \
-    Core/Objects/Utilities.cpp \
+    Core/Gen5/Nazos.cpp \
+    Core/Gen5/Profile5.cpp \
+    Core/Parents/Egg.cpp \
+    Core/Parents/EncounterArea.cpp \
+    Core/Parents/Frame.cpp \
+    Core/Parents/FrameCompare.cpp \
+    Core/Parents/Generator.cpp \
+    Core/Parents/Pokemon.cpp \
+    Core/Parents/Profile.cpp \
+    Core/Parents/Searcher.cpp \
     Core/RNG/LCRNG.cpp \
     Core/RNG/LCRNG64.cpp \
     Core/RNG/MTRNG.cpp \
     Core/RNG/RNGCache.cpp \
     Core/RNG/RNGEuclidean.cpp \
     Core/RNG/SFMT.cpp \
+    Core/RNG/SHA1.cpp \
     Core/RNG/TinyMT.cpp \
-    Core/Translator.cpp \
+    Core/Util/Characteristic.cpp \
+    Core/Util/EncounterSlot.cpp \
+    Core/Util/IVChecker.cpp \
+    Core/Util/Nature.cpp \
+    Core/Util/Power.cpp \
+    Core/Util/Translator.cpp \
+    Core/Util/Utilities.cpp \
     Forms/Controls/CheckList.cpp \
+    Forms/Controls/EggSettings.cpp \
     Forms/Controls/IVFilter.cpp \
     Forms/Controls/Label.cpp \
     Forms/Controls/TableView.cpp \
@@ -204,6 +226,7 @@ SOURCES += \
     Forms/Gen3/SeedToTime3.cpp \
     Forms/Gen3/Stationary3.cpp \
     Forms/Gen3/Wild3.cpp \
+    Forms/Gen4/ChainedSID.cpp \
     Forms/Gen4/Eggs4.cpp \
     Forms/Gen4/IDs4.cpp \
     Forms/Gen4/ProfileManager4.cpp \
@@ -214,6 +237,7 @@ SOURCES += \
     Forms/Gen4/SeedtoTime4.cpp \
     Forms/Gen4/Stationary4.cpp \
     Forms/Gen4/Wild4.cpp \
+    Forms/Util/IVCalculator.cpp \
     Forms/Util/IVtoPID.cpp \
     Forms/Util/Researcher.cpp \
     Forms/MainWindow.cpp \
@@ -232,9 +256,5 @@ SOURCES += \
     Models/ResearcherModel.cpp \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
-    main.cpp \
     Util/TableUtility.cpp \
-    Forms/Controls/EggSettings.cpp \
-    Core/Gen5/Profile5.cpp \
-    Core/Gen5/Nazos.cpp \
-    Core/RNG/SHA1.cpp
+    main.cpp

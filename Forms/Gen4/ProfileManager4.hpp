@@ -20,7 +20,7 @@
 #ifndef PROFILEMANAGER4_HPP
 #define PROFILEMANAGER4_HPP
 
-#include <QMainWindow>
+#include <QWidget>
 #include <Forms/Gen4/ProfileManager4NewEdit.hpp>
 #include <Models/Gen4/Profile4Model.hpp>
 
@@ -29,7 +29,7 @@ namespace Ui
     class ProfileManager4;
 }
 
-class ProfileManager4 : public QMainWindow
+class ProfileManager4 : public QWidget
 {
     Q_OBJECT
 
@@ -42,7 +42,7 @@ public:
 
 private:
     Ui::ProfileManager4 *ui;
-    Profile4Model *model = new Profile4Model(this);
+    Profile4Model *model;
 
     void setupModels();
 

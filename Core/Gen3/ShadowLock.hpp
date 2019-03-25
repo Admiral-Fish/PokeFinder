@@ -17,12 +17,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef NATURELOCK_HPP
-#define NATURELOCK_HPP
+#ifndef SHADOWLOCK_HPP
+#define SHADOWLOCK_HPP
 
+#include <QFile>
 #include <QVector>
+#include <Core/Gen3/LockInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <Core/Objects/Method.hpp>
+#include <Core/Util/Method.hpp>
 
 // Defines the different types of shadows
 enum ShadowType
@@ -34,28 +36,12 @@ enum ShadowType
     EReader
 };
 
-class LockInfo
+class ShadowLock
 {
 
 public:
-    LockInfo() = default;
-    LockInfo(u8 nature, u16 genderLower, u16 genderUpper, bool free = false);
-    bool compare(u32 pid) const;
-
-private:
-    u16 genderUpper;
-    u16 genderLower;
-    u8 nature;
-    bool free;
-
-};
-
-class NatureLock
-{
-
-public:
-    NatureLock() = default;
-    NatureLock(int num, Method version);
+    ShadowLock() = default;
+    ShadowLock(u8 num, Method version);
     ShadowType getType();
     bool firstShadowNormal(u32 seed);
     bool firstShadowSet(u32 seed);
@@ -66,16 +52,13 @@ public:
     bool salamenceUnset(u32 seed);
     bool singleNL(u32 seed);
     bool eReader(u32 seed, u32 readerPID);
-    void switchLockColo(int lockNum);
-    void switchLockGales(int lockNum);
+    void switchLock(u8 lockNum, Method version);
 
 private:
-    int backCount;
-    int frontCount;
+    int backCount, frontCount;
     QVector<LockInfo> lockInfo;
     LockInfo currLock;
-    u32 pid;
-    u32 pidOriginal;
+    u32 pid, pidOriginal;
     XDRNG forward;
     XDRNGR backward;
     ShadowType type;
@@ -87,9 +70,8 @@ private:
     u32 getPIDForward();
     u32 getPIDReverse();
     u16 getPSVReverse();
-    void natureLockSetupColo(int lockNum);
-    void natureLockSetupGales(int lockNum);
+    void natureLockSetup(u8 lockNum, Method version);
 
 };
 
-#endif // NATURELOCK_HPP
+#endif // SHADOWLOCK_HPP

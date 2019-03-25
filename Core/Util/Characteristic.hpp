@@ -17,34 +17,30 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTERSLOT_HPP
-#define ENCOUNTERSLOT_HPP
+#ifndef CHARACTERISTIC_HPP
+#define CHARACTERISTIC_HPP
 
 #include <QVector>
-#include <Core/Objects/Encounter.hpp>
-#include <Core/Objects/Global.hpp>
+#include <Core/Util/Global.hpp>
 
-class Range
+class Characteristic
 {
 
 public:
-    Range();
-    Range(u8 min, u8 max);
-    u8 getMax() const;
-    u8 getMin() const;
+    Characteristic() = default;
+    Characteristic(u8 index, u8 stat, u8 result);
+    static QVector<Characteristic> getCharacteristics();
+    u8 getIndex() const;
+    u8 getStat() const;
+    u8 getResult() const;
+    bool getActive() const;
 
 private:
-    u8 max;
-    u8 min;
+    u8 index;
+    u8 stat;
+    u8 result;
+    bool active = false;
 
 };
 
-namespace EncounterSlot
-{
-    u8 calcSlot(u8 compare, const QVector<Range> &ranges);
-    u8 hSlot(u16 result, Encounter encounterType);
-    u8 jSlot(u16 result, Encounter encounterType);
-    u8 kSlot(u16 result, Encounter encounterType);
-};
-
-#endif // ENCOUNTERSLOT_HPP
+#endif // CHARACTERISTIC_HPP
