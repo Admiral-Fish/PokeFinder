@@ -23,31 +23,9 @@
  * a specific gender/nature and these preset
  * values directly impact what spreads are available */
 
-LockInfo::LockInfo(u8 nature, u8 genderLower, u8 genderUpper)
-{
-    this->nature = nature;
-    this->genderLower = genderLower;
-    this->genderUpper = genderUpper;
-    free = nature == 255 && genderLower == 255 && genderUpper == 255;
-}
-
-bool LockInfo::compare(u32 pid) const
-{
-    if (free)
-    {
-        return true;
-    }
-
-    u8 gender = pid & 255;
-    return gender >= genderLower && gender <= genderUpper && nature == (pid % 25);
-}
-
-
 ShadowLock::ShadowLock(u8 num, Method version)
 {
     switchLock(num, version);
-    backward = XDRNGR(0);
-    forward = XDRNG(0);
 }
 
 ShadowType ShadowLock::getType()

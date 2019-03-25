@@ -38,6 +38,11 @@ void MT::advanceFrames(u32 frames)
 }
 
 
+MersenneTwister::MersenneTwister()
+{
+    initialize(0);
+}
+
 MersenneTwister::MersenneTwister(u32 seed, u32 frames)
 {
     initialize(seed);
@@ -115,6 +120,11 @@ void MersenneTwister::shuffle()
 }
 
 
+MersenneTwisterUntempered::MersenneTwisterUntempered()
+{
+    initialize(0);
+}
+
 MersenneTwisterUntempered::MersenneTwisterUntempered(u32 seed, u32 frames)
 {
     initialize(seed);
@@ -185,6 +195,13 @@ void MersenneTwisterUntempered::shuffle()
     mt[623] = mt[396] ^ (y >> 1) ^ mag01[y & 0x1];
 }
 
+
+MersenneTwisterFast::MersenneTwisterFast()
+{
+    maxCalls = 227;
+    max = M + 227;
+    initialize(0);
+}
 
 MersenneTwisterFast::MersenneTwisterFast(u32 seed, u32 calls, u32 frames)
 {

@@ -26,6 +26,7 @@ class TinyMT : public IRNG
 {
 
 public:
+    TinyMT();
     TinyMT(u32 seed, u32 frames = 0);
     TinyMT(const u32 st[], u32 frames = 0);
     void advanceFrames(u32 frames) override;

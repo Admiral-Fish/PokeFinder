@@ -22,6 +22,7 @@
 
 #include <QFile>
 #include <QVector>
+#include <Core/Gen3/LockInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Method.hpp>
 
@@ -33,22 +34,6 @@ enum ShadowType
     Salamence,
     SecondShadow,
     EReader
-};
-
-class LockInfo
-{
-
-public:
-    LockInfo() = default;
-    LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
-    bool compare(u32 pid) const;
-
-private:
-    u8 genderUpper;
-    u8 genderLower;
-    u8 nature;
-    bool free;
-
 };
 
 class ShadowLock

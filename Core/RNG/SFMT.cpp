@@ -27,6 +27,11 @@
 #define CSR1    11
 #define N32     624
 
+SFMT::SFMT()
+{
+    initialize(0);
+}
+
 SFMT::SFMT(u32 seed, u32 frames)
 {
     initialize(seed);

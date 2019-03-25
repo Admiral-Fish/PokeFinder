@@ -17,34 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SFMT_HPP
-#define SFMT_HPP
+#include "LockInfo.hpp"
 
-#include <Core/RNG/IRNG64.hpp>
-
-class SFMT : public IRNG64
+LockInfo::LockInfo(u8 nature, u8 genderLower, u8 genderUpper)
 {
+    this->nature = nature;
+    this->genderLower = genderLower;
+    this->genderUpper = genderUpper;
+    free = nature == 255 && genderLower == 255 && genderUpper == 255;
+}
 
-public:
-    SFMT();
-    SFMT(u32 seed, u32 frames = 0);
-    void advanceFrames(u32 frames) override;
-    u32 nextUInt() override;
-    u64 nextULong() override;
-    void setSeed(u64 seed) override;
-    void setSeed(u64 seed, u32 frames) override;
-    u64 getSeed() override;
+bool LockInfo::compare(u32 pid) const
+{
+    if (free)
+    {
+        return true;
+    }
 
-private:
-    const u32 parity[4] = { 0x1, 0x0, 0x0, 0x13c9e684 };
-    u32 sfmt[624];
-    u32 seed;
-    u32 index;
-
-    void initialize(u32 seed);
-    void periodCertificaion();
-    void shuffle();
-
-};
-
-#endif // SFMT_HPP
+    u8 gender = pid & 255;
+    return gender >= genderLower && gender <= genderUpper && nature == (pid % 25);
+}

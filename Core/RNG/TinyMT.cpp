@@ -27,6 +27,11 @@
 #define TINYMT32SH1     10
 #define TINYMT32SH8     8
 
+TinyMT::TinyMT()
+{
+    initialize(0);
+}
+
 TinyMT::TinyMT(u32 seed, u32 frames)
 {
     initialize(seed);

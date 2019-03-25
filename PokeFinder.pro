@@ -66,6 +66,7 @@ HEADERS += \
     Core/Gen3/Frame3.hpp \
     Core/Gen3/Generator3.hpp \
     Core/Gen3/IVSearcher3.hpp \
+    Core/Gen3/LockInfo.hpp \
     Core/Gen3/Profile3.hpp \
     Core/Gen3/Searcher3.hpp \
     Core/Gen3/ShadowLock.hpp \
@@ -165,6 +166,7 @@ SOURCES += \
     Core/Gen3/Frame3.cpp \
     Core/Gen3/Generator3.cpp \
     Core/Gen3/IVSearcher3.cpp \
+    Core/Gen3/LockInfo.cpp \
     Core/Gen3/Profile3.cpp \
     Core/Gen3/Searcher3.cpp \
     Core/Gen3/ShadowLock.cpp \

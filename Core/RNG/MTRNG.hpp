@@ -43,6 +43,7 @@ class MersenneTwister : public MT
 {
 
 public:
+    MersenneTwister();
     MersenneTwister(u32 seed, u32 frames = 0);
     u32 nextUInt() override;
     u16 nextUShort() override;
@@ -60,6 +61,7 @@ class MersenneTwisterUntempered : public MT
 {
 
 public:
+    MersenneTwisterUntempered();
     MersenneTwisterUntempered(u32 seed, u32 frames = 0);
     u32 nextUInt() override;
     u16 nextUShort() override;
@@ -77,6 +79,7 @@ class MersenneTwisterFast : public MT
 {
 
 public:
+    MersenneTwisterFast();
     MersenneTwisterFast(u32 seed, u32 calls, u32 frames = 0);
     u32 nextUInt() override;
     u16 nextUShort() override;

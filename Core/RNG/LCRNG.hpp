@@ -46,7 +46,10 @@ class ARNG : public LCRNG
 {
 
 public:
-    ARNG() = default;
+    ARNG() : LCRNG(0x01, 0x6c078965, 0, 0)
+    {
+    }
+
     ARNG(u32 seed, u32 frames = 0) : LCRNG(0x01, 0x6c078965, seed, frames)
     {
     }
@@ -57,7 +60,10 @@ class ARNGR : public LCRNG
 {
 
 public:
-    ARNGR() = default;
+    ARNGR() : LCRNG(0x69c77f93, 0x9638806d, 0, 0)
+    {
+    }
+
     ARNGR(u32 seed, u32 frames = 0) : LCRNG(0x69c77f93, 0x9638806d, seed, frames)
     {
     }
@@ -68,7 +74,10 @@ class PokeRNG : public LCRNG
 {
 
 public:
-    PokeRNG() = default;
+    PokeRNG() : LCRNG(0x6073, 0x41c64e6d, 0, 0)
+    {
+    }
+
     PokeRNG(u32 seed, u32 frames = 0) : LCRNG(0x6073, 0x41c64e6d, seed, frames)
     {
     }
@@ -79,7 +88,10 @@ class PokeRNGR : public LCRNG
 {
 
 public:
-    PokeRNGR() = default;
+    PokeRNGR() : LCRNG(0xa3561a1, 0xeeb9eb65, 0, 0)
+    {
+    }
+
     PokeRNGR(u32 seed, u32 frames = 0) : LCRNG(0xa3561a1, 0xeeb9eb65, seed, frames)
     {
     }
@@ -90,7 +102,10 @@ class XDRNG : public LCRNG
 {
 
 public:
-    XDRNG() = default;
+    XDRNG() : LCRNG(0x269EC3, 0x343FD, 0, 0)
+    {
+    }
+
     XDRNG(u32 seed, u32 frames = 0) : LCRNG(0x269EC3, 0x343FD, seed, frames)
     {
     }
@@ -101,7 +116,10 @@ class XDRNGR: public LCRNG
 {
 
 public:
-    XDRNGR() = default;
+    XDRNGR() : LCRNG(0xA170F641, 0xB9B33155, 0, 0)
+    {
+    }
+
     XDRNGR(u32 seed, u32 frames = 0) : LCRNG(0xA170F641, 0xB9B33155, seed, frames)
     {
     }

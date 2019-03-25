@@ -17,34 +17,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef SFMT_HPP
-#define SFMT_HPP
+#ifndef LOCKINFO_HPP
+#define LOCKINFO_HPP
 
-#include <Core/RNG/IRNG64.hpp>
+#include <Core/Util/Global.hpp>
 
-class SFMT : public IRNG64
+class LockInfo
 {
 
 public:
-    SFMT();
-    SFMT(u32 seed, u32 frames = 0);
-    void advanceFrames(u32 frames) override;
-    u32 nextUInt() override;
-    u64 nextULong() override;
-    void setSeed(u64 seed) override;
-    void setSeed(u64 seed, u32 frames) override;
-    u64 getSeed() override;
+    LockInfo() = default;
+    LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
+    bool compare(u32 pid) const;
 
 private:
-    const u32 parity[4] = { 0x1, 0x0, 0x0, 0x13c9e684 };
-    u32 sfmt[624];
-    u32 seed;
-    u32 index;
-
-    void initialize(u32 seed);
-    void periodCertificaion();
-    void shuffle();
+    u8 genderUpper;
+    u8 genderLower;
+    u8 nature;
+    bool free;
 
 };
 
-#endif // SFMT_HPP
+#endif // LOCKINFO_HPP
