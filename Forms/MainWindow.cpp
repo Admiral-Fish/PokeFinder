@@ -358,6 +358,13 @@ void MainWindow::on_actionSID_from_Chained_Shiny_triggered()
     chainedSID->raise();
 }
 
+void MainWindow::on_actionIV_Calculator_triggered()
+{
+    auto *iv = new IVCalculator();
+    iv->show();
+    iv->raise();
+}
+
 void MainWindow::on_actionResearcher_triggered()
 {
     auto *r = new Researcher();

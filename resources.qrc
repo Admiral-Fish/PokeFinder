@@ -23,15 +23,20 @@
         <file alias="latias.png">Images/latias.png</file>
         <file alias="latios.png">Images/latios.png</file>
     </qresource>
+    <qresource prefix="/personal">
+        <file alias="personal3.bin">Core/Personal/Gen3/personal3.bin</file>
+        <file alias="personal4.bin">Core/Personal/Gen4/personal4.bin</file>
+        <file alias="personal5.bin">Core/Personal/Gen5/personal5.bin</file>
+    </qresource>
     <qresource prefix="/text">
-        <file alias="species_de.txt">Core/Text/species_de.txt</file>
-        <file alias="species_en.txt">Core/Text/species_en.txt</file>
-        <file alias="species_es.txt">Core/Text/species_es.txt</file>
-        <file alias="species_fr.txt">Core/Text/species_fr.txt</file>
-        <file alias="species_it.txt">Core/Text/species_it.txt</file>
-        <file alias="species_ja.txt">Core/Text/species_ja.txt</file>
-        <file alias="species_ko.txt">Core/Text/species_ko.txt</file>
-        <file alias="species_zh.txt">Core/Text/species_zh.txt</file>
+        <file alias="characteristic_de.txt">Core/Text/Characteristic/characteristic_de.txt</file>
+        <file alias="characteristic_en.txt">Core/Text/Characteristic/characteristic_en.txt</file>
+        <file alias="characteristic_es.txt">Core/Text/Characteristic/characteristic_es.txt</file>
+        <file alias="characteristic_fr.txt">Core/Text/Characteristic/characteristic_fr.txt</file>
+        <file alias="characteristic_it.txt">Core/Text/Characteristic/characteristic_it.txt</file>
+        <file alias="characteristic_ja.txt">Core/Text/Characteristic/characteristic_ja.txt</file>
+        <file alias="characteristic_ko.txt">Core/Text/Characteristic/characteristic_ko.txt</file>
+        <file alias="characteristic_zh.txt">Core/Text/Characteristic/characteristic_zh.txt</file>
         <file alias="frlg_de.txt">Core/Text/Gen3/frlg_de.txt</file>
         <file alias="frlg_en.txt">Core/Text/Gen3/frlg_en.txt</file>
         <file alias="frlg_es.txt">Core/Text/Gen3/frlg_es.txt</file>
@@ -64,6 +69,14 @@
         <file alias="hgss_ja.txt">Core/Text/Gen4/hgss_ja.txt</file>
         <file alias="hgss_ko.txt">Core/Text/Gen4/hgss_ko.txt</file>
         <file alias="hgss_zh.txt">Core/Text/Gen4/hgss_zh.txt</file>
+        <file alias="species_de.txt">Core/Text/species_de.txt</file>
+        <file alias="species_en.txt">Core/Text/species_en.txt</file>
+        <file alias="species_es.txt">Core/Text/species_es.txt</file>
+        <file alias="species_fr.txt">Core/Text/species_fr.txt</file>
+        <file alias="species_it.txt">Core/Text/species_it.txt</file>
+        <file alias="species_ja.txt">Core/Text/species_ja.txt</file>
+        <file alias="species_ko.txt">Core/Text/species_ko.txt</file>
+        <file alias="species_zh.txt">Core/Text/species_zh.txt</file>
     </qresource>
     <qresource prefix="/translations">
         <file alias="PokeFinder_de.qm">Translations/PokeFinder_de.qm</file>

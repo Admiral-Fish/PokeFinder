@@ -41,6 +41,7 @@
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Forms/Gen4/Stationary4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
+#include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Util/Researcher.hpp>
 
@@ -99,7 +100,9 @@ private slots:
     void on_actionIVtoPID4_triggered();
     void on_actionSeedtoTime4_triggered();
     void on_actionSID_from_Chained_Shiny_triggered();
+    void on_actionIV_Calculator_triggered();
     void on_actionResearcher_triggered();
+
 };
 
 #endif // MAINWINDOW_HPP

@@ -212,6 +212,7 @@
     <property name="title">
      <string>Tools</string>
     </property>
+    <addaction name="actionIV_Calculator"/>
     <addaction name="actionResearcher"/>
    </widget>
    <widget class="QMenu" name="menuGen3Tools">
@@ -393,6 +394,11 @@
   <action name="actionSID_from_Chained_Shiny">
    <property name="text">
     <string>SID from Chained Shiny</string>
+   </property>
+  </action>
+  <action name="actionIV_Calculator">
+   <property name="text">
+    <string>IV Calculator</string>
    </property>
   </action>
  </widget>

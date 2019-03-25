@@ -54,6 +54,7 @@ FORMS += \
     Forms/Gen4/SeedtoTime4.ui \
     Forms/Gen4/Stationary4.ui \
     Forms/Gen4/Wild4.ui \
+    Forms/Util/IVCalculator.ui \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
     Forms/MainWindow.ui
@@ -133,6 +134,7 @@ HEADERS += \
     Forms/Gen4/SeedtoTime4.hpp \
     Forms/Gen4/Stationary4.hpp \
     Forms/Gen4/Wild4.hpp \
+    Forms/Util/IVCalculator.hpp \
     Forms/Util/IVtoPID.hpp \
     Forms/Util/Researcher.hpp \
     Forms/MainWindow.hpp \
@@ -151,7 +153,10 @@ HEADERS += \
     Models/ResearcherModel.hpp \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
-    Util/TableUtility.hpp
+    Util/TableUtility.hpp \
+    Core/Util/IVChecker.hpp \
+    Core/Objects/Pokemon.hpp \
+    Core/Util/Characteristic.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -220,6 +225,7 @@ SOURCES += \
     Forms/Gen4/SeedtoTime4.cpp \
     Forms/Gen4/Stationary4.cpp \
     Forms/Gen4/Wild4.cpp \
+    Forms/Util/IVCalculator.cpp \
     Forms/Util/IVtoPID.cpp \
     Forms/Util/Researcher.cpp \
     Forms/MainWindow.cpp \
@@ -239,4 +245,7 @@ SOURCES += \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
     Util/TableUtility.cpp \
-    main.cpp
+    main.cpp \
+    Core/Util/IVChecker.cpp \
+    Core/Objects/Pokemon.cpp \
+    Core/Util/Characteristic.cpp

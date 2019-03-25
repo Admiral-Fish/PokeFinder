@@ -17,22 +17,41 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TRANSLATOR_HPP
-#define TRANSLATOR_HPP
+#ifndef IVCALCULATOR_HPP
+#define IVCALCULATOR_HPP
 
-#include <QFile>
-#include <QSettings>
-#include <QTextStream>
-#include <QVector>
-#include <Core/Objects/Game.hpp>
-#include <Core/Objects/Global.hpp>
+#include <QLabel>
+#include <Core/Objects/Nature.hpp>
+#include <Core/Objects/Power.hpp>
+#include <Core/Translator.hpp>
+#include <Core/Util/Characteristic.hpp>
+#include <Core/Util/IVChecker.hpp>
 
-namespace Translator
+namespace Ui
 {
-    QStringList getCharacteristic();
-    QStringList getSpecies(const QVector<u16> &nums);
-    QStringList getLocationsGen3(const QVector<u8> &nums, Game game);
-    QStringList getLocationsGen4(const QVector<u8> &nums, Game game);
+    class IVCalculator;
+}
+
+class IVCalculator : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit IVCalculator(QWidget *parent = nullptr);
+    ~IVCalculator() override;
+
+private:
+    Ui::IVCalculator *ui;
+    QVector<Characteristic> characteristics;
+    QVector<Pokemon> pokemon;
+    void setupModels();
+    void displayIVs(QLabel *label, QVector<u8> ivs);
+
+private slots:
+    void on_pushButtonFindIVs_clicked();
+    void on_comboBoxPokemon_currentIndexChanged(int index);
+
+    void on_comboBoxGeneration_currentIndexChanged(int index);
 };
 
-#endif // TRANSLATOR_HPP
+#endif // IVCALCULATOR_HPP

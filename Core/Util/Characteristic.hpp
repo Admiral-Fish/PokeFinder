@@ -17,22 +17,30 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TRANSLATOR_HPP
-#define TRANSLATOR_HPP
+#ifndef CHARACTERISTIC_HPP
+#define CHARACTERISTIC_HPP
 
-#include <QFile>
-#include <QSettings>
-#include <QTextStream>
 #include <QVector>
-#include <Core/Objects/Game.hpp>
 #include <Core/Objects/Global.hpp>
 
-namespace Translator
+class Characteristic
 {
-    QStringList getCharacteristic();
-    QStringList getSpecies(const QVector<u16> &nums);
-    QStringList getLocationsGen3(const QVector<u8> &nums, Game game);
-    QStringList getLocationsGen4(const QVector<u8> &nums, Game game);
+
+public:
+    Characteristic() = default;
+    Characteristic(u8 index, u8 stat, u8 result);
+    static QVector<Characteristic> getCharacteristics();
+    u8 getIndex() const;
+    u8 getStat() const;
+    u8 getResult() const;
+    bool getActive() const;
+
+private:
+    u8 index;
+    u8 stat;
+    u8 result;
+    bool active = false;
+
 };
 
-#endif // TRANSLATOR_HPP
+#endif // CHARACTERISTIC_HPP
