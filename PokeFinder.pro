@@ -57,7 +57,8 @@ FORMS += \
     Forms/Util/IVCalculator.ui \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
-    Forms/MainWindow.ui
+    Forms/MainWindow.ui \
+    Forms/Gen3/SpindaPainter.ui
 
 HEADERS += \
     Core/Gen3/Egg3.hpp \
@@ -157,7 +158,8 @@ HEADERS += \
     Models/ResearcherModel.hpp \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
-    Util/TableUtility.hpp
+    Util/TableUtility.hpp \
+    Forms/Gen3/SpindaPainter.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -250,4 +252,5 @@ SOURCES += \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
     Util/TableUtility.cpp \
-    main.cpp
+    main.cpp \
+    Forms/Gen3/SpindaPainter.cpp

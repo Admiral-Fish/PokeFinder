@@ -22,6 +22,11 @@
         <file alias="entei.png">Images/entei.png</file>
         <file alias="latias.png">Images/latias.png</file>
         <file alias="latios.png">Images/latios.png</file>
+        <file alias="spinda.png">Images/spinda.png</file>
+        <file alias="spinda_spot1.png">Images/spinda_spot1.png</file>
+        <file alias="spinda_spot2.png">Images/spinda_spot2.png</file>
+        <file alias="spinda_spot3.png">Images/spinda_spot3.png</file>
+        <file alias="spinda_spot4.png">Images/spinda_spot4.png</file>
     </qresource>
     <qresource prefix="/personal">
         <file alias="personal3.bin">Core/Personal/Gen3/personal3.bin</file>
