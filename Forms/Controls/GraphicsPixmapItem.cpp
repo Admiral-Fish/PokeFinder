@@ -19,9 +19,9 @@
 
 #include "GraphicsPixmapItem.hpp"
 
-GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap, QGraphicsItem *parent)
-    : QGraphicsPixmapItem(pixmap, parent)
+GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap)
 {
+    setPixmap(pixmap);
 }
 
 void GraphicsPixmapItem::setMin(u16 x, u16 y)

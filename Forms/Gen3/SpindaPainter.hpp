@@ -24,6 +24,7 @@
 #include <QVector>
 #include <QWidget>
 #include <Core/Util/Global.hpp>
+#include <Core/Util/Nature.hpp>
 #include <Forms/Controls/GraphicsPixmapItem.hpp>
 
 namespace Ui
@@ -53,9 +54,11 @@ private:
 
     void setupModels();
     void moveSpot(GraphicsPixmapItem *item, int index);
+    void updateInfo();
 
 private slots:
-    void on_textBoxPID_textChanged(const QString &arg1);
+    void on_textBoxPID_textEdited(const QString &arg1);
+    void updatePID(const QList<QRectF> &region);
 
 };
 
