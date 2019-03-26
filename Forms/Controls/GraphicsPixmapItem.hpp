@@ -17,34 +17,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QApplication>
-#include <QFile>
-#include <Forms/MainWindow.hpp>
+#ifndef GRAPHICSPIXMAPITEM_HPP
+#define GRAPHICSPIXMAPITEM_HPP
 
+#include <QGraphicsPixmapItem>
+#include <Core/Util/Global.hpp>
 
-int main(int argc, char *argv[])
+class GraphicsPixmapItem : public QGraphicsPixmapItem
 {
-    QApplication a(argc, argv);
-    a.setApplicationName("PokeFinder");
-    a.setOrganizationName("PokeFinder Team");
 
-    QSettings setting;
-    QString style = setting.value("style", "light").toString();
+public:
+    GraphicsPixmapItem(const QPixmap &pixmap);
+    void setMin(u16 x, u16 y);
+    void setMax(u16 x, u16 y);
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 
-    if (style == "dark")
-    {
-        QFile file(":/qdarkstyle/style.qss");
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            QTextStream ts(&file);
-            a.setStyleSheet(ts.readAll());
-            file.close();
-        }
-    }
+private:
+    u16 minX, maxX;
+    u16 minY, maxY;
 
-    MainWindow w;
-    w.show();
-    w.raise();
+};
 
-    return a.exec();
-}
+#endif // GRAPHICSPIXMAPITEM_HPP

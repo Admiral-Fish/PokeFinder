@@ -225,6 +225,7 @@
     <addaction name="actionPIDtoIV"/>
     <addaction name="actionPokeSpot"/>
     <addaction name="actionSeedtoTime3"/>
+    <addaction name="actionSpinda_Painter"/>
    </widget>
    <widget class="QMenu" name="menuGen4Tools">
     <property name="title">
@@ -399,6 +400,11 @@
   <action name="actionIV_Calculator">
    <property name="text">
     <string>IV Calculator</string>
+   </property>
+  </action>
+  <action name="actionSpinda_Painter">
+   <property name="text">
+    <string>Spinda Painter</string>
    </property>
   </action>
  </widget>

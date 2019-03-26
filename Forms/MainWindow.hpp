@@ -32,6 +32,7 @@
 #include <Forms/Gen3/JirachiPattern.hpp>
 #include <Forms/Gen3/PIDtoIVs.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
+#include <Forms/Gen3/SpindaPainter.hpp>
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen3/PokeSpot.hpp>
@@ -93,6 +94,7 @@ private slots:
     void on_actionPIDtoIV_triggered();
     void on_actionPokeSpot_triggered();
     void on_actionSeedtoTime3_triggered();
+    void on_actionSpinda_Painter_triggered();
     void on_pushButtonStationary4_clicked();
     void on_pushButtonWild4_clicked();
     void on_pushButtonEgg4_clicked();

@@ -294,6 +294,13 @@ void MainWindow::on_actionSeedtoTime3_triggered()
     seedToTime->raise();
 }
 
+void MainWindow::on_actionSpinda_Painter_triggered()
+{
+    auto *spinda = new SpindaPainter();
+    spinda->show();
+    spinda->raise();
+}
+
 void MainWindow::on_pushButtonStationary4_clicked()
 {
     if (!stationary4)

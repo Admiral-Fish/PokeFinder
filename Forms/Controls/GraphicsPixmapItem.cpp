@@ -17,34 +17,46 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QApplication>
-#include <QFile>
-#include <Forms/MainWindow.hpp>
+#include "GraphicsPixmapItem.hpp"
 
-
-int main(int argc, char *argv[])
+GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap)
 {
-    QApplication a(argc, argv);
-    a.setApplicationName("PokeFinder");
-    a.setOrganizationName("PokeFinder Team");
+    setPixmap(pixmap);
+}
 
-    QSettings setting;
-    QString style = setting.value("style", "light").toString();
+void GraphicsPixmapItem::setMin(u16 x, u16 y)
+{
+    minX = x;
+    minY = y;
+    setX(x);
+    setY(y);
+}
 
-    if (style == "dark")
+void GraphicsPixmapItem::setMax(u16 x, u16 y)
+{
+    maxX = x;
+    maxY = y;
+}
+
+void GraphicsPixmapItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsPixmapItem::mouseMoveEvent(event);
+
+    if (x() < minX)
     {
-        QFile file(":/qdarkstyle/style.qss");
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            QTextStream ts(&file);
-            a.setStyleSheet(ts.readAll());
-            file.close();
-        }
+        setPos(minX, y());
+    }
+    else if (x() > maxX)
+    {
+        setPos(maxX, y());
     }
 
-    MainWindow w;
-    w.show();
-    w.raise();
-
-    return a.exec();
+    if (y() < minY)
+    {
+        setPos(x(), minY);
+    }
+    else if (y() > maxY)
+    {
+        setPos(x(), maxY);
+    }
 }
