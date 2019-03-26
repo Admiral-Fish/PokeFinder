@@ -64,27 +64,27 @@ QVector<Pokemon> Pokemon::loadPersonal(u8 gen)
 
         while (data.size() > 0)
         {
-            u16 hp = data.at(0);
-            u16 atk = data.at(1);
-            u16 def = data.at(2);
-            u16 spe = data.at(3);
-            u16 spa = data.at(4);
-            u16 spd = data.at(5);
-            u16 gender = data.at(6);
-            u16 ability1 = data.at(7);
-            u16 ability2 = data.at(8);
+            u16 hp = data.mid(0, 1).toHex().toUShort(nullptr, 16);
+            u16 atk = data.mid(1, 1).toHex().toUShort(nullptr, 16);
+            u16 def = data.mid(2, 1).toHex().toUShort(nullptr, 16);
+            u16 spe = data.mid(3, 1).toHex().toUShort(nullptr, 16);
+            u16 spa = data.mid(4, 1).toHex().toUShort(nullptr, 16);
+            u16 spd = data.mid(5, 1).toHex().toUShort(nullptr, 16);
+            u16 gender = data.mid(6, 1).toHex().toUShort(nullptr, 16);
+            u16 ability1 = data.mid(7, 1).toHex().toUShort(nullptr, 16);
+            u16 ability2 = data.mid(8, 1).toHex().toUShort(nullptr, 16);
             u16 abilityH = 0, formCount = 0, formStatIndex = 0;
 
             if (gen == 4)
             {
-                formCount = data.at(9);
-                formStatIndex = (static_cast<u16>(data.at(10)) << 8) | data.at(11);
+                formCount = data.mid(9, 1).toHex().toUShort(nullptr, 16);
+                formStatIndex = data.mid(10, 2).toHex().toUShort(nullptr, 16);
             }
             else if (gen == 5)
             {
-                abilityH = data.at(9);
-                formCount = data.at(10);
-                formStatIndex = (static_cast<u16>(data.at(11)) << 8) | data.at(12);
+                abilityH = data.mid(9, 1).toHex().toUShort(nullptr, 16);
+                formCount = data.mid(10, 1).toHex().toUShort(nullptr, 16);
+                formStatIndex = data.mid(11, 2).toHex().toUShort(nullptr, 16);
             }
 
             pokemon.append(Pokemon(hp, atk, def, spa, spd, spe, gender, ability1, ability2, abilityH, formCount, formStatIndex));
