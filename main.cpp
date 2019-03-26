@@ -21,7 +21,6 @@
 #include <QFile>
 #include <Forms/MainWindow.hpp>
 
-#include <Forms/Gen3/SpindaPainter.hpp>
 
 int main(int argc, char *argv[])
 {
@@ -43,7 +42,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    SpindaPainter w;
+    MainWindow w;
     w.show();
     w.raise();
 
