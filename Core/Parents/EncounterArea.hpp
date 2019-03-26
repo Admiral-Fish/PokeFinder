@@ -36,6 +36,7 @@ public:
     EncounterArea(int location, Encounter type, const QVector<Slot> &pokemon);
     Encounter getType() const;
     u8 getLocation() const;
+    QVector<Slot> getPokemon() const;
     QVector<u16> getUniqueSpecies() const;
     QVector<bool> getSlots(u16 num) const;
     QStringList getSpecieNames() const;

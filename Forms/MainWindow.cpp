@@ -365,6 +365,13 @@ void MainWindow::on_actionSID_from_Chained_Shiny_triggered()
     chainedSID->raise();
 }
 
+void MainWindow::on_actionEncounter_Lookup_triggered()
+{
+    auto *lookup = new EncounterLookup();
+    lookup->show();
+    lookup->raise();
+}
+
 void MainWindow::on_actionIV_Calculator_triggered()
 {
     auto *iv = new IVCalculator();

@@ -36,6 +36,11 @@ u8 EncounterArea::getLocation() const
     return location;
 }
 
+QVector<Slot> EncounterArea::getPokemon() const
+{
+    return pokemon;
+}
+
 QVector<u16> EncounterArea::getUniqueSpecies() const
 {
     QVector<u16> nums;
