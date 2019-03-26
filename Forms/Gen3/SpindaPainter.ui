@@ -55,7 +55,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string/>
+      <string notr="true">0</string>
      </property>
      <property name="maxLength">
       <number>8</number>

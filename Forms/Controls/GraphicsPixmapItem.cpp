@@ -28,6 +28,8 @@ void GraphicsPixmapItem::setMin(u16 x, u16 y)
 {
     minX = x;
     minY = y;
+    setX(x);
+    setY(y);
 }
 
 void GraphicsPixmapItem::setMax(u16 x, u16 y)

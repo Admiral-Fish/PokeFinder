@@ -48,9 +48,10 @@ private:
     GraphicsPixmapItem *spot2;
     GraphicsPixmapItem *spot3;
     GraphicsPixmapItem *spot4;
-    u32 pid;
+    u32 pid = 0;
     const int coords[8] = { 0, 0, 24, 1, 6, 18, 18, 19 };
     const int origin[2] = { 8, 6 };
+    bool text = false;
 
     void setupModels();
     void moveSpot(GraphicsPixmapItem *item, int index);
@@ -58,7 +59,7 @@ private:
 
 private slots:
     void on_textBoxPID_textEdited(const QString &arg1);
-    void updatePID(const QList<QRectF> &region);
+    void updatePID(const QList<QRectF> &);
 
 };
 

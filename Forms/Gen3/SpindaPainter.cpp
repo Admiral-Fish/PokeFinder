@@ -72,12 +72,6 @@ void SpindaPainter::setupModels()
     scene->addItem(spot2);
     scene->addItem(spot3);
     scene->addItem(spot4);
-
-    moveSpot(spot1, 0);
-    moveSpot(spot2, 0);
-    moveSpot(spot3, 0);
-    moveSpot(spot4, 0);
-    updateInfo();
 }
 
 void SpindaPainter::moveSpot(GraphicsPixmapItem *item, int index)
@@ -108,6 +102,7 @@ void SpindaPainter::on_textBoxPID_textEdited(const QString &arg1)
         pid = newPID;
         updateInfo();
 
+        text = true;
         moveSpot(spot1, 0);
         moveSpot(spot2, 1);
         moveSpot(spot3, 2);
@@ -115,30 +110,35 @@ void SpindaPainter::on_textBoxPID_textEdited(const QString &arg1)
     }
 }
 
-void SpindaPainter::updatePID(const QList<QRectF> &region)
+void SpindaPainter::updatePID(const QList<QRectF> & /*region*/)
 {
-    (void)region;
-
-    QVector<qreal> pos;
-    pos.append(spot1->x());
-    pos.append(spot1->y());
-    pos.append(spot2->x());
-    pos.append(spot2->y());
-    pos.append(spot3->x());
-    pos.append(spot3->y());
-    pos.append(spot4->x());
-    pos.append(spot4->y());
-
-    pid = 0;
-    for (u8 i = 0; i < 4; i++)
+    if (!text)
     {
-        u32 left = static_cast<u32>(pos[i * 2] / 8) - coords[2 * i] - origin[0];
-        u32 right = static_cast<u32>(pos[i * 2 + 1] / 8) - coords[2 * i + 1] - origin[1];
+        QVector<qreal> pos;
+        pos.append(spot1->x());
+        pos.append(spot1->y());
+        pos.append(spot2->x());
+        pos.append(spot2->y());
+        pos.append(spot3->x());
+        pos.append(spot3->y());
+        pos.append(spot4->x());
+        pos.append(spot4->y());
 
-        pid |= (left << (28 - i * 8));
-        pid |= (right << (24 - i * 8));
+        pid = 0;
+        for (u8 i = 0; i < 4; i++)
+        {
+            u32 left = static_cast<u32>(pos[i * 2] / 8) - coords[2 * i] - origin[0];
+            u32 right = static_cast<u32>(pos[i * 2 + 1] / 8) - coords[2 * i + 1] - origin[1];
+
+            pid |= (left << (28 - i * 8));
+            pid |= (right << (24 - i * 8));
+        }
+
+        ui->textBoxPID->setText(QString::number(pid, 16));
+        updateInfo();
     }
-
-    ui->textBoxPID->setText(QString::number(pid, 16));
-    updateInfo();
+    else
+    {
+        text = false;
+    }
 }
