@@ -94,24 +94,25 @@ bool ChainedSIDCalc::matchGender(u8 gender, u8 val) const
         case 0: // Genderless
             return true;
         case 1: // Male (50 M / 50 F)
-            return val >= 127 && val <= 255;
+            return val >= 127;
         case 2: // Female (50 M / 50 F)
-            return val >= 0 && val <= 126;
+            return val <= 126;
         case 3: // Male (25 M / 75 F)
-            return val >= 191 && val <= 255;
+            return val >= 191;
         case 4: // Female (25 M / 75 F)
-            return val >= 0 && val <= 190;
+            return val <= 190;
         case 5: // Male (75 M / 25 F)
-            return val >= 64 && val <= 255;
+            return val >= 64;
         case 6: // Female (75 M / 25 F)
-            return val >= 0 && val <= 63;
+            return val <= 63;
         case 7: // Male (87.5 M / 12.5 F)
-            return val >= 31 && val <= 255;
+            return val >= 31;
         case 8: // Female (87.5 < / 12.5 F)
-            return val >= 0 && val <= 30;
+            return val <= 30;
         case 9: // Male only
             return true;
         case 10: // Female only
             return true;
     }
+    return false;
 }
