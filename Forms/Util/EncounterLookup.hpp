@@ -43,8 +43,8 @@ private:
     QStandardItemModel *model;
 
     void setupModels();
-    QVector<QPair<u8, QString>> getEncounters3(Game game, u16 specie);
-    QVector<QPair<u8, QString>> getEncounters4(Game game, u16 specie);
+    QSet<QPair<u8, QString>> getEncounters3(Game game, u16 specie);
+    QSet<QPair<u8, QString>> getEncounters4(Game game, u16 specie);
     QString getEncounterString(Encounter type);
 
 private slots:

@@ -68,12 +68,26 @@ QVector<bool> EncounterArea::getSlots(u16 num) const
     return flags;
 }
 
+QPair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
+{
+    QPair<u8, u8> range = qMakePair(100, 0);
+    for (auto slot : pokemon)
+    {
+        if (slot.getSpecie() == specie)
+        {
+            range.first = qMin(range.first, slot.getMinLevel());
+            range.second = qMax(range.second, slot.getMaxLevel());
+        }
+    }
+    return range;
+}
+
 QStringList EncounterArea::getSpecieNames() const
 {
     return Translator::getSpecies(getUniqueSpecies());
 }
 
-void EncounterArea::setSlot(u8 index, u8 specie)
+void EncounterArea::setSlot(u8 index, u16 specie)
 {
     pokemon[index].setSpecie(specie);
 }

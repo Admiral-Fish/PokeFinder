@@ -56,11 +56,13 @@ void EncounterLookup::setupModels()
     ui->comboBoxGame->addItem(tr("Soul Silver"), Game::SoulSilver);
 }
 
-QVector<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
+QSet<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
 {
-    QVector<QPair<u8, QString>> encounters;
-    QVector<Encounter> types = { Encounter::Grass, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
+    QSet<QPair<u8, QString>> encounters;
     Profile3 profile("", game, 0, 0);
+
+    // Encounter variables to iterate through
+    QVector<Encounter> types = { Encounter::Grass, Encounter::SafariZone, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
 
     for (auto type : types)
     {
@@ -73,8 +75,9 @@ QVector<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 speci
                 if (entry.getSpecie() == specie)
                 {
                     QString info = getEncounterString(type);
-                    info += "/" + QString::number(entry.getMinLevel()) + "-" + QString::number(entry.getMaxLevel());
-                    encounters.append(qMakePair(area.getLocation(), info));
+                    QPair<u8, u8> range = area.getLevelRange(specie);
+                    info += "/" + QString::number(range.first) + "-" + QString::number(range.second);
+                    encounters.insert(qMakePair(area.getLocation(), info));
                     break;
                 }
             }
@@ -84,27 +87,61 @@ QVector<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 speci
     return encounters;
 }
 
-QVector<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
+QSet<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
 {
-    QVector<QPair<u8, QString>> encounters;
-    QVector<Encounter> types = { Encounter::Grass, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
-    Profile4 profile("", game, 0, 0);
+    QSet<QPair<u8, QString>> encounters;
+    QVector<Profile4> profiles;
 
-    // TODO: dual slot / radio / swarm / etc
-    for (auto type : types)
+    // Encounter variables to iterate through
+    QVector<Encounter> types = { Encounter::Grass, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
+    QVector<Game> duals = { Game::Emerald, Game::Ruby, Game::Sapphire, Game::FireRed, Game::LeafGreen };
+
+    // Setup profiles to iterate through of the different combinations of possibilities depending on HGSS vs DPPt
+    if (game & Game::HGSS)
     {
-        QVector<EncounterArea4> areas = Encounters4(type, 0, profile).getEncounters();
-        for (const auto &area : areas)
+        for (auto radio : { 0, 1, 2 })
         {
-            QVector<Slot> pokemon = area.getPokemon();
-            for (auto entry : pokemon)
+            for (auto swarm : { true, false })
             {
-                if (entry.getSpecie() == specie)
+                profiles.append(Profile4("", game, 0, 0, Game::Blank, radio, Language::Nil, false, true));
+            }
+        }
+    }
+    else
+    {
+        for (auto dual : duals)
+        {
+            for (auto swarm : { true, false })
+            {
+                for (auto radar : { true, false })
                 {
-                    QString info = getEncounterString(type);
-                    info += "/" + QString::number(entry.getMinLevel()) + "-" + QString::number(entry.getMaxLevel());
-                    encounters.append(qMakePair(area.getLocation(), info));
-                    break;
+                    profiles.append(Profile4("", game, 0, 0, dual, 0, Language::Nil, radar, swarm));
+                }
+            }
+        }
+    }
+
+    for (const auto &profile : profiles)
+    {
+        for (auto type : types)
+        {
+            for (auto time : { 0, 1, 2 })
+            {
+                QVector<EncounterArea4> areas = Encounters4(type, time, profile).getEncounters();
+                for (const auto &area : areas)
+                {
+                    QVector<Slot> pokemon = area.getPokemon();
+                    for (auto entry : pokemon)
+                    {
+                        if (entry.getSpecie() == specie)
+                        {
+                            QString info = getEncounterString(type);
+                            QPair<u8, u8> range = area.getLevelRange(specie);
+                            info += "/" + QString::number(range.first) + "-" + QString::number(range.second);
+                            encounters.insert(qMakePair(area.getLocation(), info));
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -119,6 +156,8 @@ QString EncounterLookup::getEncounterString(Encounter type)
     {
         case Encounter::Grass:
             return tr("Grass");
+        case Encounter::SafariZone:
+            return tr("Safari Zone");
         case Encounter::Surfing:
             return tr("Surfing");
         case Encounter::OldRod:
@@ -127,6 +166,8 @@ QString EncounterLookup::getEncounterString(Encounter type)
             return tr("Good Rod");
         case Encounter::SuperRod:
             return tr("Super Rod");
+        case Encounter::RockSmash:
+            return tr("Rock Smash");
         default:
             return "-";
     }
@@ -138,7 +179,7 @@ void EncounterLookup::on_pushButtonFind_clicked()
 
     Game game = static_cast<Game>(ui->comboBoxGame->currentData().toInt());
     u16 specie = ui->comboBoxPokemon->currentIndex() + 1;
-    QVector<QPair<u8, QString>> encounters;
+    QSet<QPair<u8, QString>> encounters;
     QVector<u8> locations;
     QStringList locationNames;
 
@@ -161,11 +202,12 @@ void EncounterLookup::on_pushButtonFind_clicked()
         locationNames = Translator::getLocationsGen4(locations, game);
     }
 
-    for (u16 i = 0; i < encounters.size(); i++)
+    u16 i = 0;
+    for (const auto &encounter : encounters)
     {
         QList<QStandardItem *> row;
-        QStringList split = encounters[i].second.split('/');
-        row << new QStandardItem(locationNames[i]) << new QStandardItem(split[0]) << new QStandardItem(split[1]);
+        QStringList split = encounter.second.split('/');
+        row << new QStandardItem(locationNames[i++]) << new QStandardItem(split[0]) << new QStandardItem(split[1]);
         model->appendRow(row);
     }
 }
