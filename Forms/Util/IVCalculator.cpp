@@ -45,14 +45,6 @@ void IVCalculator::setupModels()
     ui->comboBoxNature->addItems(Nature::getFrameNatures());
     ui->comboBoxHiddenPower->addItems(Power::getPowers());
     ui->comboBoxCharacteristic->addItems(Translator::getCharacteristic());
-
-    ui->textBoxLevel->setValues(1, 100, 10);
-    ui->textBoxHP->setValues(1, 800, 10);
-    ui->textBoxAtk->setValues(1, 800, 10);
-    ui->textBoxDef->setValues(1, 800, 10);
-    ui->textBoxSpA->setValues(1, 800, 10);
-    ui->textBoxSpD->setValues(1, 800, 10);
-    ui->textBoxSpe->setValues(1, 800, 10);
 }
 
 void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)
@@ -108,11 +100,11 @@ void IVCalculator::on_pushButtonFindIVs_clicked()
 {
     QVector<u16> stats =
     {
-        ui->textBoxHP->text().toUShort(), ui->textBoxAtk->text().toUShort(), ui->textBoxDef->text().toUShort(),
-        ui->textBoxSpA->text().toUShort(), ui->textBoxSpD->text().toUShort(), ui->textBoxSpe->text().toUShort()
+        static_cast<u16>(ui->spinBoxHP->value()), static_cast<u16>(ui->spinBoxAtk->value()), static_cast<u16>( ui->spinBoxDef->value()),
+        static_cast<u16>(ui->spinBoxSpA->value()), static_cast<u16>(ui->spinBoxSpD->value()), static_cast<u16>(ui->spinBoxSpe->value())
     };
 
-    u8 level = ui->textBoxLevel->text().toUShort();
+    u8 level = ui->spinBoxLevel->value();
     u8 nature = ui->comboBoxNature->currentIndex();
     int hiddenPower = ui->comboBoxHiddenPower->currentIndex() - 1;
     Characteristic characteristic = characteristics.at(ui->comboBoxCharacteristic->currentIndex());

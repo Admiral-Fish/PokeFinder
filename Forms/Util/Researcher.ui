@@ -22,12 +22,6 @@
   <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
     <widget class="QTabWidget" name="rngSelection">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>1</verstretch>
-      </sizepolicy>
-     </property>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
@@ -382,12 +376,6 @@
    </item>
    <item row="0" column="1" rowspan="3">
     <widget class="QGroupBox" name="groupBoxCustoms">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>1</verstretch>
-      </sizepolicy>
-     </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
@@ -397,12 +385,6 @@
      <layout class="QGridLayout" name="gridLayout_5">
       <item row="0" column="0">
        <widget class="QLabel" name="labelCustom1">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Custom 1</string>
         </property>
@@ -444,12 +426,6 @@
       </item>
       <item row="0" column="2">
        <widget class="QComboBox" name="comboBoxOperator1">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <item>
          <property name="text">
           <string notr="true">/</string>
@@ -504,12 +480,6 @@
       </item>
       <item row="0" column="3">
        <widget class="TextBox" name="lineEditRValue1">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>10</number>
         </property>
@@ -517,12 +487,6 @@
       </item>
       <item row="0" column="4">
        <widget class="QCheckBox" name="checkBoxHex1">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Hex</string>
         </property>
@@ -530,12 +494,6 @@
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="labelCustom2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Custom 2</string>
         </property>
@@ -587,12 +545,6 @@
       </item>
       <item row="1" column="2">
        <widget class="QComboBox" name="comboBoxOperator2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <item>
          <property name="text">
           <string notr="true">/</string>
@@ -647,12 +599,6 @@
       </item>
       <item row="1" column="3">
        <widget class="TextBox" name="lineEditRValue2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>10</number>
         </property>
@@ -660,12 +606,6 @@
       </item>
       <item row="1" column="4">
        <widget class="QCheckBox" name="checkBoxHex2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Hex</string>
         </property>
@@ -722,12 +662,6 @@
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelCustom3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Custom 3</string>
         </property>
@@ -789,12 +723,6 @@
       </item>
       <item row="2" column="2">
        <widget class="QComboBox" name="comboBoxOperator3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <item>
          <property name="text">
           <string notr="true">/</string>
@@ -849,12 +777,6 @@
       </item>
       <item row="2" column="3">
        <widget class="TextBox" name="lineEditRValue3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>10</number>
         </property>
@@ -862,12 +784,6 @@
       </item>
       <item row="2" column="4">
        <widget class="QCheckBox" name="checkBoxHex3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Hex</string>
         </property>
@@ -934,12 +850,6 @@
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="labelCustom4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Custom 4</string>
         </property>
@@ -1011,12 +921,6 @@
       </item>
       <item row="3" column="2">
        <widget class="QComboBox" name="comboBoxOperator4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <item>
          <property name="text">
           <string notr="true">/</string>
@@ -1071,12 +975,6 @@
       </item>
       <item row="3" column="3">
        <widget class="TextBox" name="lineEditRValue4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>10</number>
         </property>
@@ -1084,12 +982,6 @@
       </item>
       <item row="3" column="4">
        <widget class="QCheckBox" name="checkBoxHex4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Hex</string>
         </property>
@@ -1166,12 +1058,6 @@
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="labelCustom5">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Custom 5</string>
         </property>
@@ -1253,12 +1139,6 @@
       </item>
       <item row="4" column="2">
        <widget class="QComboBox" name="comboBoxOperator5">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <item>
          <property name="text">
           <string notr="true">/</string>
@@ -1313,12 +1193,6 @@
       </item>
       <item row="4" column="3">
        <widget class="TextBox" name="lineEditRValue5">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>10</number>
         </property>
@@ -1326,12 +1200,6 @@
       </item>
       <item row="4" column="4">
        <widget class="QCheckBox" name="checkBoxHex5">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Hex</string>
         </property>
@@ -1418,12 +1286,6 @@
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="labelCustom6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Custom 6</string>
         </property>
@@ -1515,12 +1377,6 @@
       </item>
       <item row="5" column="2">
        <widget class="QComboBox" name="comboBoxOperator6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <item>
          <property name="text">
           <string notr="true">/</string>
@@ -1575,12 +1431,6 @@
       </item>
       <item row="5" column="3">
        <widget class="TextBox" name="lineEditRValue6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>10</number>
         </property>
@@ -1588,12 +1438,6 @@
       </item>
       <item row="5" column="4">
        <widget class="QCheckBox" name="checkBoxHex6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Hex</string>
         </property>
@@ -1690,12 +1534,6 @@
       </item>
       <item row="6" column="0">
        <widget class="QLabel" name="labelCustom7">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Custom 7</string>
         </property>
@@ -1797,12 +1635,6 @@
       </item>
       <item row="6" column="2">
        <widget class="QComboBox" name="comboBoxOperator7">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <item>
          <property name="text">
           <string notr="true">/</string>
@@ -1857,12 +1689,6 @@
       </item>
       <item row="6" column="3">
        <widget class="TextBox" name="lineEditRValue7">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>10</number>
         </property>
@@ -1870,12 +1696,6 @@
       </item>
       <item row="6" column="4">
        <widget class="QCheckBox" name="checkBoxHex7">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Hex</string>
         </property>
@@ -1982,12 +1802,6 @@
       </item>
       <item row="7" column="0">
        <widget class="QLabel" name="labelCustom8">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Custom 8</string>
         </property>
@@ -2099,12 +1913,6 @@
       </item>
       <item row="7" column="2">
        <widget class="QComboBox" name="comboBoxOperator8">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <item>
          <property name="text">
           <string notr="true">/</string>
@@ -2159,12 +1967,6 @@
       </item>
       <item row="7" column="3">
        <widget class="TextBox" name="lineEditRValue8">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>10</number>
         </property>
@@ -2172,12 +1974,6 @@
       </item>
       <item row="7" column="4">
        <widget class="QCheckBox" name="checkBoxHex8">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Hex</string>
         </property>
@@ -2294,12 +2090,6 @@
       </item>
       <item row="8" column="0">
        <widget class="QLabel" name="labelCustom9">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Custom 9</string>
         </property>
@@ -2421,12 +2211,6 @@
       </item>
       <item row="8" column="2">
        <widget class="QComboBox" name="comboBoxOperator9">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <item>
          <property name="text">
           <string notr="true">/</string>
@@ -2481,12 +2265,6 @@
       </item>
       <item row="8" column="3">
        <widget class="TextBox" name="lineEditRValue9">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>10</number>
         </property>
@@ -2494,12 +2272,6 @@
       </item>
       <item row="8" column="4">
        <widget class="QCheckBox" name="checkBoxHex9">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Hex</string>
         </property>
@@ -2626,12 +2398,6 @@
       </item>
       <item row="9" column="0">
        <widget class="QLabel" name="labelCustom10">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Custom 10</string>
         </property>
@@ -2763,12 +2529,6 @@
       </item>
       <item row="9" column="2">
        <widget class="QComboBox" name="comboBoxOperator10">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <item>
          <property name="text">
           <string notr="true">/</string>
@@ -2823,12 +2583,6 @@
       </item>
       <item row="9" column="3">
        <widget class="TextBox" name="lineEditRValue10">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>10</number>
         </property>
@@ -2836,12 +2590,6 @@
       </item>
       <item row="9" column="4">
        <widget class="QCheckBox" name="checkBoxHex10">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Hex</string>
         </property>
@@ -2981,12 +2729,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBoxParameters">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>1</verstretch>
-      </sizepolicy>
-     </property>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
@@ -3009,12 +2751,6 @@
       </item>
       <item row="0" column="1">
        <widget class="TextBox" name="textBoxStartingFrame">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string notr="true">1</string>
         </property>
@@ -3032,12 +2768,6 @@
       </item>
       <item row="1" column="1">
        <widget class="TextBox" name="textBoxMaxFrames">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string notr="true">1000</string>
         </property>
@@ -3055,12 +2785,6 @@
       </item>
       <item row="2" column="1">
        <widget class="TextBox" name="textBoxSeed">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>16</number>
         </property>
@@ -3068,12 +2792,6 @@
       </item>
       <item row="2" column="2">
        <widget class="QPushButton" name="pushButtonGenerate32Bit">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -3090,12 +2808,6 @@
    </item>
    <item row="2" column="0">
     <widget class="QGroupBox" name="groupBoxSearch">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>1</verstretch>
-      </sizepolicy>
-     </property>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
@@ -3118,12 +2830,6 @@
       </item>
       <item row="0" column="1" colspan="2">
        <widget class="TextBox" name="textBoxSearch">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>16</number>
         </property>
@@ -3150,12 +2856,6 @@
       </item>
       <item row="1" column="0" colspan="2">
        <widget class="QPushButton" name="pushButtonSearch">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -3169,12 +2869,6 @@
       </item>
       <item row="1" column="2" colspan="2">
        <widget class="QPushButton" name="pushButtonNext">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -3194,7 +2888,7 @@
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
-       <verstretch>3</verstretch>
+       <verstretch>2</verstretch>
       </sizepolicy>
      </property>
      <property name="editTriggers">
