@@ -40,6 +40,7 @@ class GameCubeRTC : public QWidget
 
 public:
     explicit GameCubeRTC(QWidget *parent = nullptr);
+    explicit GameCubeRTC(u32 seed, QWidget *parent = nullptr);
     ~GameCubeRTC() override;
 
 private:
@@ -53,7 +54,7 @@ private slots:
     void on_pushButtonSearch_clicked();
     void updateTableView(const QList<QStandardItem *> &row);
     void copySeed();
-    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
+    void on_tableView_customContextMenuRequested(const QPoint &pos);
 
 };
 

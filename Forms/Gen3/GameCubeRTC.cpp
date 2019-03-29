@@ -34,6 +34,21 @@ GameCubeRTC::GameCubeRTC(QWidget *parent) :
     qRegisterMetaType<QList<QStandardItem *>>("QList<QStandardItem *>");
 }
 
+GameCubeRTC::GameCubeRTC(u32 seed, QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::GameCubeRTC)
+{
+    ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
+
+    setupModels();
+    ui->textBoxTargetSeed->setText(QString::number(seed, 16));
+
+    qRegisterMetaType<QList<QStandardItem *>>("QList<QStandardItem *>");
+}
+
 GameCubeRTC::~GameCubeRTC()
 {
     QSettings setting;
@@ -92,7 +107,7 @@ void GameCubeRTC::copySeed()
     QApplication::clipboard()->setText(data.toString());
 }
 
-void GameCubeRTC::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+void GameCubeRTC::on_tableView_customContextMenuRequested(const QPoint &pos)
 {
     if (model->rowCount() == 0)
     {

@@ -84,7 +84,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>90</y>
+         <y>120</y>
          <width>191</width>
          <height>23</height>
         </rect>
@@ -103,7 +103,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>120</y>
+         <y>150</y>
          <width>191</width>
          <height>23</height>
         </rect>
@@ -116,6 +116,19 @@
        </property>
        <property name="text">
         <string>IDs</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonGameCube">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>GameCube</string>
        </property>
       </widget>
      </widget>

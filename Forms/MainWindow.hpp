@@ -27,6 +27,7 @@
 #include <QMessageBox>
 #include <QtNetwork>
 #include <Forms/Gen3/Eggs3.hpp>
+#include <Forms/Gen3/GameCube.hpp>
 #include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Forms/Gen3/IDs3.hpp>
 #include <Forms/Gen3/JirachiPattern.hpp>
@@ -69,6 +70,7 @@ private:
 
     Stationary3 *stationary3 = nullptr;
     Wild3 *wild3 = nullptr;
+    GameCube *gamecube = nullptr;
     Eggs3 *egg3 = nullptr;
     IDs3 *ids3 = nullptr;
     Stationary4 *stationary4 = nullptr;
@@ -87,6 +89,7 @@ private slots:
     void updateProfiles(int num);
     void on_pushButtonStationary3_clicked();
     void on_pushButtonWild3_clicked();
+    void on_pushButtonGameCube_clicked();
     void on_pushButtonEgg3_clicked();
     void on_pushButtonIDs3_clicked();
     void on_actionGameCubeRTC_triggered();

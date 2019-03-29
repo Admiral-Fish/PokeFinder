@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIONARY3_H
-#define STATIONARY3_H
+#ifndef GAMECUBE_HPP
+#define GAMECUBE_HPP
 
 #include <QClipboard>
 #include <QFileDialog>
@@ -30,16 +30,16 @@
 #include <Core/Gen3/IVSearcher3.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
+#include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
 
 namespace Ui
 {
-    class Stationary3;
+    class GameCube;
 }
 
-class Stationary3 : public QWidget
+class GameCube : public QWidget
 {
     Q_OBJECT
 
@@ -47,40 +47,33 @@ signals:
     void alertProfiles(int);
 
 public:
-    explicit Stationary3(QWidget *parent = nullptr);
-    ~Stationary3() override;
+    explicit GameCube(QWidget *parent = nullptr);
+    ~GameCube() override;
     void updateProfiles();
 
 private:
-    Ui::Stationary3 *ui;
+    Ui::GameCube *ui;
     Searcher3Model *searcherModel;
     Stationary3Model *generatorModel;
     QVector<Profile3> profiles;
     QMenu *generatorMenu;
     QMenu *searcherMenu;
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
 
     void setupModels();
     void updateView(const QVector<Frame3> &frames, int progress);
-
-public slots:
-    void moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
 private slots:
     void refreshProfiles();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonGenerate_clicked();
     void on_pushButtonSearch_clicked();
+    void on_comboBoxSearcherMethod_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
-    void setTargetFrameGenerator();
-    void jumpToTargetGenerator();
-    void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void seedToTime();
     void copySeedToClipboard();
     void on_pushButtonProfileManager_clicked();
 
 };
 
-#endif // STATIONARY3_H
+#endif // GAMECUBE_HPP

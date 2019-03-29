@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Stationary3</class>
- <widget class="QWidget" name="Stationary3">
+ <class>GameCube</class>
+ <widget class="QWidget" name="GameCube">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,18 +10,8 @@
     <height>700</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>1200</width>
-    <height>700</height>
-   </size>
-  </property>
   <property name="windowTitle">
-   <string notr="true">Gen 3 Stationary</string>
-  </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>:/pokefinder.ico</normaloff>:/pokefinder.ico</iconset>
+   <string>GameCube RNG</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
@@ -90,7 +80,7 @@
       <item row="0" column="6">
        <widget class="QLabel" name="labelProfileGameValue">
         <property name="text">
-         <string>Emerald</string>
+         <string>Gales</string>
         </property>
        </widget>
       </item>
@@ -1149,6 +1139,64 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxSearcherMethod">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="editable">
+             <bool>false</bool>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherTID">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>TID</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxSearcherTID">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="text">
+             <string notr="true">12345</string>
+            </property>
+            <property name="maxLength">
+             <number>5</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelSearcherSID">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>SID</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="1" colspan="2">
            <widget class="TextBox" name="textBoxSearcherSID">
             <property name="sizePolicy">
@@ -1168,7 +1216,23 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="2">
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelSearcherShadow">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Shadow</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxSearcherShadow"/>
+          </item>
+          <item row="4" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonSearch">
             <property name="enabled">
              <bool>true</bool>
@@ -1196,52 +1260,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherTID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>TID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherSID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>SID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxSearcherTID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string notr="true">12345</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2">
+          <item row="4" column="2">
            <widget class="QPushButton" name="pushButtonCancel">
             <property name="enabled">
              <bool>false</bool>
@@ -1260,19 +1279,6 @@
             </property>
             <property name="text">
              <string>Cancel</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxSearcherMethod">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1298,7 +1304,6 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>TextBox</class>
@@ -1351,6 +1356,7 @@
   <tabstop>comboBoxSearcherMethod</tabstop>
   <tabstop>textBoxSearcherTID</tabstop>
   <tabstop>textBoxSearcherSID</tabstop>
+  <tabstop>comboBoxSearcherShadow</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
   <tabstop>comboBoxSearcherGender</tabstop>
@@ -1366,50 +1372,18 @@
  <resources/>
  <connections>
   <connection>
-   <sender>pushButtonGeneratorAnyNature</sender>
-   <signal>clicked()</signal>
-   <receiver>comboBoxGeneratorNature</receiver>
-   <slot>resetChecks()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1107</x>
-     <y>194</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1015</x>
-     <y>196</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButtonGeneratorAnyHiddenPower</sender>
-   <signal>clicked()</signal>
-   <receiver>comboBoxGeneratorHiddenPower</receiver>
-   <slot>resetChecks()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1092</x>
-     <y>219</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1045</x>
-     <y>224</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pushButtonSearcherAnyNature</sender>
    <signal>clicked()</signal>
    <receiver>comboBoxSearcherNature</receiver>
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1142</x>
-     <y>207</y>
+     <x>1140</x>
+     <y>223</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1078</x>
-     <y>213</y>
+     <x>1052</x>
+     <y>223</y>
     </hint>
    </hints>
   </connection>
@@ -1420,12 +1394,44 @@
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1148</x>
-     <y>244</y>
+     <x>1137</x>
+     <y>264</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1092</x>
+     <x>1058</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonGeneratorAnyNature</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxGeneratorNature</receiver>
+   <slot>resetChecks()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1044</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>965</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonGeneratorAnyHiddenPower</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxGeneratorHiddenPower</receiver>
+   <slot>resetChecks()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1040</x>
      <y>243</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>992</x>
+     <y>247</y>
     </hint>
    </hints>
   </connection>

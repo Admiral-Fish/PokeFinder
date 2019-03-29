@@ -33,6 +33,7 @@ FORMS += \
     Forms/Controls/EggSettings.ui \
     Forms/Controls/IVFilter.ui \
     Forms/Gen3/Eggs3.ui \
+    Forms/Gen3/GameCube.ui \
     Forms/Gen3/GameCubeRTC.ui \
     Forms/Gen3/IDs3.ui \
     Forms/Gen3/JirachiPattern.ui \
@@ -120,6 +121,7 @@ HEADERS += \
     Forms/Controls/TableView.hpp \
     Forms/Controls/TextBox.hpp \
     Forms/Gen3/Eggs3.hpp \
+    Forms/Gen3/GameCube.hpp \
     Forms/Gen3/GameCubeRTC.hpp \
     Forms/Gen3/IDs3.hpp \
     Forms/Gen3/JirachiPattern.hpp \
@@ -215,6 +217,7 @@ SOURCES += \
     Forms/Controls/TableView.cpp \
     Forms/Controls/TextBox.cpp \
     Forms/Gen3/Eggs3.cpp \
+    Forms/Gen3/GameCube.cpp \
     Forms/Gen3/GameCubeRTC.cpp \
     Forms/Gen3/IDs3.cpp \
     Forms/Gen3/JirachiPattern.cpp \

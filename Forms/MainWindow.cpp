@@ -195,6 +195,7 @@ void MainWindow::updateProfiles(int num)
     {
         if (stationary3) stationary3->updateProfiles();
         if (wild3) wild3->updateProfiles();
+        if (gamecube) gamecube->updateProfiles();
         if (egg3) egg3->updateProfiles();
     }
     else if (num == 4)
@@ -225,6 +226,17 @@ void MainWindow::on_pushButtonWild3_clicked()
     }
     wild3->show();
     wild3->raise();
+}
+
+void MainWindow::on_pushButtonGameCube_clicked()
+{
+    if (!gamecube)
+    {
+        gamecube = new GameCube();
+        connect(gamecube, &GameCube::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    gamecube->show();
+    gamecube->raise();
 }
 
 void MainWindow::on_pushButtonEgg3_clicked()

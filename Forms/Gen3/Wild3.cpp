@@ -43,23 +43,16 @@ Wild3::~Wild3()
 
 void Wild3::updateProfiles()
 {
-    profiles = Profile3::loadProfileList();
-
-    QVector<Profile3> temp;
-
-    for (const auto &profile : profiles)
+    profiles = { Profile3() };
+    for (const auto &profile : Profile3::loadProfileList())
     {
         if (!(profile.getVersion() & Game::GC))
         {
-            temp.append(profile);
+            profiles.append(profile);
         }
     }
 
-    profiles = temp;
-    profiles.insert(profiles.begin(), Profile3());
-
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(profile.getProfileName());
