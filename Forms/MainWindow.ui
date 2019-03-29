@@ -212,6 +212,7 @@
     <property name="title">
      <string>Tools</string>
     </property>
+    <addaction name="actionEncounter_Lookup"/>
     <addaction name="actionIV_Calculator"/>
     <addaction name="actionResearcher"/>
    </widget>
@@ -405,6 +406,11 @@
   <action name="actionSpinda_Painter">
    <property name="text">
     <string>Spinda Painter</string>
+   </property>
+  </action>
+  <action name="actionEncounter_Lookup">
+   <property name="text">
+    <string>Encounter Lookup</string>
    </property>
   </action>
  </widget>

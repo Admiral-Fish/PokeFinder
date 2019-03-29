@@ -33,7 +33,6 @@ QStringList Translator::getCharacteristic()
         {
             names.append(ts.readLine());
         }
-
         file.close();
     }
     return names;
@@ -56,13 +55,12 @@ QStringList Translator::getSpecies(const QVector<u16> &nums)
         {
             input << ts.readLine();
         }
+        file.close();
 
         for (const u16 &x : nums)
         {
             species.append(input.at(x - 1));
         }
-
-        file.close();
     }
 
     return species;
@@ -96,13 +94,12 @@ QStringList Translator::getLocationsGen3(const QVector<u8> &nums, Game game)
             QStringList entry = ts.readLine().split(',');
             input[entry.at(0).toInt()] = entry.at(1);
         }
+        file.close();
 
         for (const u8 &x : nums)
         {
             locations.append(input[x]);
         }
-
-        file.close();
     }
 
     return locations;
@@ -136,13 +133,12 @@ QStringList Translator::getLocationsGen4(const QVector<u8> &nums, Game game)
             QStringList entry = ts.readLine().split(',');
             input[entry.at(0).toInt()] = entry.at(1);
         }
+        file.close();
 
         for (const u8 &x : nums)
         {
             locations.append(input[x]);
         }
-
-        file.close();
     }
 
     return locations;

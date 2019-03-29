@@ -50,8 +50,8 @@ private:
 private slots:
     void on_pushButtonFindIVs_clicked();
     void on_comboBoxPokemon_currentIndexChanged(int index);
-
     void on_comboBoxGeneration_currentIndexChanged(int index);
+
 };
 
 #endif // IVCALCULATOR_HPP

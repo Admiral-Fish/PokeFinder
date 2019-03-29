@@ -55,6 +55,7 @@ FORMS += \
     Forms/Gen4/SeedtoTime4.ui \
     Forms/Gen4/Stationary4.ui \
     Forms/Gen4/Wild4.ui \
+    Forms/Util/EncounterLookup.ui \
     Forms/Util/IVCalculator.ui \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
@@ -141,6 +142,7 @@ HEADERS += \
     Forms/Gen4/SeedtoTime4.hpp \
     Forms/Gen4/Stationary4.hpp \
     Forms/Gen4/Wild4.hpp \
+    Forms/Util/EncounterLookup.hpp \
     Forms/Util/IVCalculator.hpp \
     Forms/Util/IVtoPID.hpp \
     Forms/Util/Researcher.hpp \
@@ -235,6 +237,7 @@ SOURCES += \
     Forms/Gen4/SeedtoTime4.cpp \
     Forms/Gen4/Stationary4.cpp \
     Forms/Gen4/Wild4.cpp \
+    Forms/Util/EncounterLookup.cpp \
     Forms/Util/IVCalculator.cpp \
     Forms/Util/IVtoPID.cpp \
     Forms/Util/Researcher.cpp \

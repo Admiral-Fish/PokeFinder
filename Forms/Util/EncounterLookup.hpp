@@ -17,26 +17,40 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTERAREA3_HPP
-#define ENCOUNTERAREA3_HPP
+#ifndef ENCOUNTERLOOKUP_HPP
+#define ENCOUNTERLOOKUP_HPP
 
-#include <Core/Parents/EncounterArea.hpp>
-#include <Core/Util/Game.hpp>
+#include <QStandardItemModel>
+#include <QWidget>
+#include <Core/Gen3/Encounters3.hpp>
+#include <Core/Gen4/Encounters4.hpp>
 
-class EncounterArea3 : public EncounterArea
+namespace Ui
 {
+    class EncounterLookup;
+}
+
+class EncounterLookup : public QWidget
+{
+    Q_OBJECT
 
 public:
-    EncounterArea3() = default;
-    EncounterArea3(u8 location, u16 delay, Encounter type, const QVector<Slot> &pokemon);
-    u8 calcLevel(u8 index, u16 prng) const;
-    u8 calcLevel(u8 index) const;
-    u8 getEncounterRate() const;
-    u16 getDelay() const;
+    explicit EncounterLookup(QWidget *parent = nullptr);
+    ~EncounterLookup() override;
 
 private:
-    u16 delay;
+    Ui::EncounterLookup *ui;
+    QStandardItemModel *model;
+
+    void setupModels();
+    QSet<QPair<u8, QString>> getEncounters3(Game game, u16 specie);
+    QSet<QPair<u8, QString>> getEncounters4(Game game, u16 specie);
+    QString getEncounterString(Encounter type);
+
+private slots:
+    void on_pushButtonFind_clicked();
+    void on_comboBoxGame_currentIndexChanged(int index);
 
 };
 
-#endif // ENCOUNTERAREA3_HPP
+#endif // ENCOUNTERLOOKUP_HPP
