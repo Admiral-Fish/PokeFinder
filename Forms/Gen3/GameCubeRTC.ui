@@ -10,12 +10,6 @@
     <height>430</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="minimumSize">
    <size>
     <width>360</width>
@@ -33,24 +27,10 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="TextBox" name="textBoxStartSeed">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxStartSeed"/>
    </item>
    <item row="0" column="1">
-    <widget class="TextBox" name="textBoxTargetSeed">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxTargetSeed"/>
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="labelStartSeed">
@@ -68,12 +48,6 @@
    </item>
    <item row="2" column="0">
     <widget class="TextBox" name="textBoxMinFrame">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="text">
       <string notr="true">500000</string>
      </property>
@@ -84,12 +58,6 @@
    </item>
    <item row="2" column="1">
     <widget class="TextBox" name="textBoxMaxFrame">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="text">
       <string notr="true">1000000</string>
      </property>
@@ -114,18 +82,6 @@
    </item>
    <item row="4" column="0">
     <widget class="QPushButton" name="pushButtonSearch">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>23</height>
-      </size>
-     </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
@@ -139,12 +95,6 @@
      <property name="enabled">
       <bool>false</bool>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>23</height>
-      </size>
-     </property>
      <property name="text">
       <string>Cancel</string>
      </property>
@@ -152,12 +102,6 @@
    </item>
    <item row="5" column="0" colspan="2">
     <widget class="TableView" name="tableView">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
      </property>

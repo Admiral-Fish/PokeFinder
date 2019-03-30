@@ -34,14 +34,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QComboBox" name="comboBoxNature">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
+    <widget class="QComboBox" name="comboBoxNature"/>
    </item>
    <item row="2" column="0">
     <widget class="QLabel" name="labelAbility">
@@ -52,12 +45,6 @@
    </item>
    <item row="3" column="0">
     <widget class="QComboBox" name="comboBoxAbility">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <item>
       <property name="text">
        <string>Single Ability</string>
@@ -84,12 +71,6 @@
    </item>
    <item row="5" column="0">
     <widget class="QComboBox" name="comboBoxGender">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <item>
       <property name="text">
        <string>Genderless</string>
@@ -168,12 +149,6 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="labelPossibleResults">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string>Possible Results: 8192</string>
        </property>
@@ -208,14 +183,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QSpinBox" name="spinBoxHP">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
+      <widget class="QSpinBox" name="spinBoxHP"/>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="labelAtk">
@@ -225,14 +193,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QSpinBox" name="spinBoxAtk">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
+      <widget class="QSpinBox" name="spinBoxAtk"/>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="labelDef">
@@ -242,14 +203,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QSpinBox" name="spinBoxDef">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
+      <widget class="QSpinBox" name="spinBoxDef"/>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="labelSpA">
@@ -259,14 +213,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QSpinBox" name="spinBoxSpA">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
+      <widget class="QSpinBox" name="spinBoxSpA"/>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="labelSpD">
@@ -276,14 +223,7 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QSpinBox" name="spinBoxSpD">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
+      <widget class="QSpinBox" name="spinBoxSpD"/>
      </item>
      <item row="5" column="0">
       <widget class="QLabel" name="labelSpe">
@@ -293,14 +233,7 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QSpinBox" name="spinBoxSpe">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
+      <widget class="QSpinBox" name="spinBoxSpe"/>
      </item>
     </layout>
    </item>
