@@ -103,7 +103,7 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
         {
             for (auto swarm : { true, false })
             {
-                profiles.append(Profile4("", game, 0, 0, Game::Blank, radio, Language::Nil, false, true));
+                profiles.append(Profile4("", game, 0, 0, Game::Blank, radio, Language::Nil, false, swarm));
             }
         }
     }
