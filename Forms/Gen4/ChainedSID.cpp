@@ -78,11 +78,11 @@ void ChainedSID::on_pushButtonCalculate_clicked()
     QVector<u16> sids = chainedCalc->getSIDs();
     if (sids.size() == 1)
     {
-        ui->labelPossibleResults->setText("SID Found: " + QString::number(sids[0]));
+        ui->labelPossibleResults->setText(tr("SID Found: ") + QString::number(sids[0]));
     }
     else
     {
-        ui->labelPossibleResults->setText("Possible Results: " + QString::number(sids.size()));
+        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(sids.size()));
     }
 
     ui->spinBoxHP->setValue(0);

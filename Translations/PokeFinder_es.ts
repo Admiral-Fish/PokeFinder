@@ -6,32 +6,32 @@
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
         <source>HP</source>
-        <translation type="unfinished">Puntos de Golpe</translation>
+        <translation>Puntos de Golpe</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
         <source>Atk</source>
-        <translation type="unfinished">Ataque</translation>
+        <translation>Ataque</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
         <source>Def</source>
-        <translation type="unfinished">Defensa</translation>
+        <translation>Defensa</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
         <source>SpA</source>
-        <translation type="unfinished">Ataque Especial</translation>
+        <translation>Ataque Especial</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
         <source>SpD</source>
-        <translation type="unfinished">Defensa Especial</translation>
+        <translation>Defensa Especial</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
         <source>Spe</source>
-        <translation type="unfinished">Especial</translation>
+        <translation>Especial</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
@@ -40,8 +40,9 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <location filename="../Forms/Gen4/ChainedSID.cpp" line="44"/>
         <source>Gender</source>
-        <translation type="unfinished">Género</translation>
+        <translation>Género</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
@@ -50,13 +51,14 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <location filename="../Forms/Gen4/ChainedSID.cpp" line="44"/>
         <source>Ability</source>
-        <translation type="unfinished">Habilidad</translation>
+        <translation>Habilidad</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
         <source>TID</source>
-        <translation type="unfinished">TID</translation>
+        <translation>TID</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
@@ -65,23 +67,109 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <location filename="../Forms/Gen4/ChainedSID.cpp" line="44"/>
         <source>Nature</source>
-        <translation type="unfinished">Naturaleza</translation>
+        <translation>Naturaleza</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ChainedSID.ui"/>
         <source>Chained Shiny to SID</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>Single Ability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>Ability 0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>Ability 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>Genderless</source>
+        <translation>Sin género</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>♂ (50% ♂ / 50% ♀)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>♀ (50% ♂ / 50% ♀)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>♂ (25% ♂ / 75% ♀)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>♀ (25% ♂ / 75% ♀)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>♂ (75% ♂ / 25% ♀)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>♀ (75% ♂ / 25% ♀)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>♂ (87.5% ♂ / 12.5% ♀)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>♀ (87.5% ♂ / 12.5% ♀)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>100% ♂</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.ui"/>
+        <source>100% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.cpp" line="44"/>
+        <source>IVs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.cpp" line="81"/>
+        <source>SID Found: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/ChainedSID.cpp" line="85"/>
+        <source>Possible Results: </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CheckList</name>
     <message>
-        <location filename="../Forms/Controls/CheckList.cpp" line="101"/>
-        <location filename="../Forms/Controls/CheckList.cpp" line="104"/>
-        <location filename="../Forms/Controls/CheckList.cpp" line="121"/>
+        <location filename="../Forms/Controls/CheckList.cpp" line="107"/>
+        <location filename="../Forms/Controls/CheckList.cpp" line="110"/>
+        <location filename="../Forms/Controls/CheckList.cpp" line="127"/>
         <source>Any</source>
-        <translation type="unfinished">Cualquiera</translation>
+        <translation>Cualquiera</translation>
     </message>
 </context>
 <context>
@@ -437,131 +525,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Adamant</source>
-        <translation>Firme</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Brave</source>
-        <translation>Audaz</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Bold</source>
-        <translation>Osada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Calm</source>
-        <translation>Serena</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Careful</source>
-        <translation>Cauta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Hasty</source>
-        <translation>Activa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Impish</source>
-        <translation>Agitada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Jolly</source>
-        <translation>Alegre</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Lonely</source>
-        <translation>Huraña</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Mild</source>
-        <translation>Afable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Modest</source>
-        <translation>Modesta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Naive</source>
-        <translation>Ingenua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Naughty</source>
-        <translation>Pícara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Quiet</source>
-        <translation>Mansa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Rash</source>
-        <translation>Alocada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Relaxed</source>
-        <translation>Plácida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Sassy</source>
-        <translation>Grosera</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Timid</source>
-        <translation>Miedosa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Gentle</source>
-        <translation>Amable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Lax</source>
-        <translation>Floja</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Bashful</source>
-        <translation>Tímida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Docile</source>
-        <translation>Dócil</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Hardy</source>
-        <translation>Fuerte</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Quirky</source>
-        <translation>Rara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Serious</source>
-        <translation>Seria</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Compatibility</source>
         <translation type="unfinished"></translation>
     </message>
@@ -622,36 +585,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>50% Male / 50% Female</source>
-        <translation>50% Masculino / 50% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>25% Male / 75% Female</source>
-        <translation>25% Masculino / 75% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>75% Male / 25% Female</source>
-        <translation>75% Masculino / 25% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% Masculino / 12.5% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>100% Male</source>
-        <translation>100% Masculino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>100% Female</source>
-        <translation>100% femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Shiny Only?</source>
         <translation>¿Brilla Solo?</translation>
     </message>
@@ -669,86 +602,6 @@
         <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Hidden Power:</source>
         <translation>Poder Oculto:</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Fighting</source>
-        <translation>Lucha</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Flying</source>
-        <translation>Volador</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Poison</source>
-        <translation>Veneno</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Ground</source>
-        <translation>Tierra</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Rock</source>
-        <translation>Roca</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Bug</source>
-        <translation>Bicho</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Ghost</source>
-        <translation>Fantasma</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Steel</source>
-        <translation>Acero</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Fire</source>
-        <translation>Fuego</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Water</source>
-        <translation>Agua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Grass</source>
-        <translation>Planta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Electric</source>
-        <translation>Eléctrico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Psychic</source>
-        <translation>Psíquico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Ice</source>
-        <translation>Hielo</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Dragon</source>
-        <translation>Dragón</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Dark</source>
-        <translation>Siniestro</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
@@ -793,7 +646,7 @@
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Method</source>
-        <translation type="unfinished">Método</translation>
+        <translation>Método</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
@@ -813,6 +666,36 @@
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Seed (Held / Pickup)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>50% ♂ / 50% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>25% ♂ / 75% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>75% ♂ / 25% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>87.5% ♂ / 12.5% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>100% ♂</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>100% ♀</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -915,131 +798,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Adamant</source>
-        <translation>Firme</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Bold</source>
-        <translation>Osada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Brave</source>
-        <translation>Audaz</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Calm</source>
-        <translation>Serena</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Careful</source>
-        <translation>Cauta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Hasty</source>
-        <translation>Activa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Impish</source>
-        <translation>Agitada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Jolly</source>
-        <translation>Alegre</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Lonely</source>
-        <translation>Huraña</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Mild</source>
-        <translation>Afable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Modest</source>
-        <translation>Modesta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Naive</source>
-        <translation>Ingenua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Naughty</source>
-        <translation>Pícara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Quiet</source>
-        <translation>Mansa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Rash</source>
-        <translation>Alocada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Relaxed</source>
-        <translation>Plácida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Sassy</source>
-        <translation>Grosera</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Timid</source>
-        <translation>Miedosa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Gentle</source>
-        <translation>Amable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Lax</source>
-        <translation>Floja</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Bashful</source>
-        <translation>Tímida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Docile</source>
-        <translation>Dócil</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Hardy</source>
-        <translation>Fuerte</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Quirky</source>
-        <translation>Rara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Serious</source>
-        <translation>Seria</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>Nature</source>
         <translation>Naturaleza</translation>
     </message>
@@ -1052,116 +810,6 @@
         <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>Genderless</source>
         <translation>Sin género</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>50% Male / 50% Female</source>
-        <translation>50% Masculino / 50% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>25% Male / 75% Female</source>
-        <translation>25% Masculino / 75% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>75% Male / 25% Female</source>
-        <translation>75% Masculino / 25% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% Masculino / 12.5% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>100% Male</source>
-        <translation>100% Masculino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>100% Female</source>
-        <translation>100% femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Fighting</source>
-        <translation>Lucha</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Flying</source>
-        <translation>Volador</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Poison</source>
-        <translation>Veneno</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Ground</source>
-        <translation>Tierra</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Rock</source>
-        <translation>Roca</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Bug</source>
-        <translation>Bicho</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Ghost</source>
-        <translation>Fantasma</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Steel</source>
-        <translation>Acero</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Fire</source>
-        <translation>Fuego</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Water</source>
-        <translation>Agua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Grass</source>
-        <translation>Planta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Electric</source>
-        <translation>Eléctrico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Psychic</source>
-        <translation>Psíquico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Ice</source>
-        <translation>Hielo</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Dragon</source>
-        <translation>Dragón</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Dark</source>
-        <translation>Siniestro</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
@@ -1219,7 +867,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="106"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="108"/>
         <source>Generate times for seed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1227,6 +875,415 @@
         <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>50% ♂ / 50% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>25% ♂ / 75% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>75% ♂ / 25% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>87.5% ♂ / 12.5% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>100% ♂</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>100% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EncounterLookup</name>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.ui"/>
+        <source>Encounter Lookup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.ui"/>
+        <source>Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.ui"/>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="43"/>
+        <source>Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="43"/>
+        <source>Encounter Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="43"/>
+        <source>Level Range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="47"/>
+        <source>Ruby</source>
+        <translation>Rubí</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="48"/>
+        <source>Sapphire</source>
+        <translation>Zafiro</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="49"/>
+        <source>Fire Red</source>
+        <translation>Fuego Rojo</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="50"/>
+        <source>Leaf Green</source>
+        <translation>Hoja Verde</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="51"/>
+        <source>Emerald</source>
+        <translation>Esmeralda</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="52"/>
+        <source>Diamond</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="53"/>
+        <source>Pearl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="54"/>
+        <source>Platinum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="55"/>
+        <source>Heart Gold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="56"/>
+        <source>Soul Silver</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="158"/>
+        <source>Grass</source>
+        <translation>Planta</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="160"/>
+        <source>Safari Zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="162"/>
+        <source>Surfing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="164"/>
+        <source>Old Rod</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="166"/>
+        <source>Good Rod</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="168"/>
+        <source>Super Rod</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.cpp" line="170"/>
+        <source>Rock Smash</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/EncounterLookup.ui"/>
+        <source>Pokémon</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GameCube</name>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>GameCube RNG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Profile</source>
+        <translation>Perfil</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>TID</source>
+        <translation>TID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="101"/>
+        <source>Gales</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>SID</source>
+        <translation>SID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>RNG Info</source>
+        <translation>Informacion de RNG</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Starting Frame</source>
+        <translation>Empezando Marco</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Method</source>
+        <translation>Método</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Max Results</source>
+        <translation>Resultados Máximos</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Generate</source>
+        <translation>Generar</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Seed</source>
+        <translation>Semilla</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Filters</source>
+        <translation>Filtros</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Gender</source>
+        <translation>Género</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Ability</source>
+        <translation>Habilidad</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Any</source>
+        <translation>Cualquiera</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Nature</source>
+        <translation>Naturaleza</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Hidden Power</source>
+        <translation>Poder Oculto</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Gender Ratio</source>
+        <translation>Proporción de género</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Genderless</source>
+        <translation>Sin género</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>50% ♂ / 50% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>25% ♂ / 75% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>75% ♂ / 25% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>87.5% ♂ / 12.5% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>100% ♂</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>100% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Shiny Only?</source>
+        <translation>¿Brilla Solo?</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Use Delay?</source>
+        <translation>¿usar Retraso?</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Disable Filters</source>
+        <translation>Desabilitar Filtros</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>(F)</source>
+        <translation>(F)</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Searcher</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="49"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="98"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="100"/>
+        <source>XD/Colo</source>
+        <translation>XD/Colo</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="99"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="103"/>
+        <source>Channel</source>
+        <translation>Canal</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="102"/>
+        <source>Colo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="105"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="113"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="106"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="114"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="111"/>
+        <source>Copy Seed to Clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="112"/>
+        <source>Generate times for seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="249"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="252"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="255"/>
+        <source> (Citadark)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="250"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="253"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="256"/>
+        <source> (Initial)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="251"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="254"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="257"/>
+        <source> (Phenac)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="266"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="267"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="268"/>
+        <source> (E-Reader)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1267,22 +1324,22 @@
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="55"/>
+        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="70"/>
         <source>Time</source>
         <translation>Tiempo</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="55"/>
+        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="70"/>
         <source>Frame</source>
         <translation>Marco</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="55"/>
+        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="70"/>
         <source>Seed</source>
         <translation>Semilla</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="58"/>
+        <location filename="../Forms/Gen3/GameCubeRTC.cpp" line="73"/>
         <source>Copy Seed to Clipboard</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1489,6 +1546,144 @@
     </message>
 </context>
 <context>
+    <name>IVCalculator</name>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>IV Calculator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Pokémon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Nature</source>
+        <translation>Naturaleza</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Generation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Gen 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Gen 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Characteristic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Hidden Power</source>
+        <translation>Poder Oculto</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Find IVs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>HP</source>
+        <translation>Puntos de Golpe</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Atk</source>
+        <translation>Ataque</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Def</source>
+        <translation>Defensa</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>SpA</source>
+        <translation>Ataque Especial</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>SpD</source>
+        <translation>Defensa Especial</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Spe</source>
+        <translation>Especial</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Base HP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Base Atk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Base Def</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Base SpA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Base SpD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.ui"/>
+        <source>Base Spe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/IVCalculator.cpp" line="56"/>
+        <source>Invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>IVFilter</name>
     <message>
         <location filename="../Forms/Controls/IVFilter.ui"/>
@@ -1585,131 +1780,6 @@
     </message>
     <message>
         <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Adamant</source>
-        <translation>Firme</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Bold</source>
-        <translation>Osada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Brave</source>
-        <translation>Audaz</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Calm</source>
-        <translation>Serena</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Careful</source>
-        <translation>Cauta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Hasty</source>
-        <translation>Activa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Impish</source>
-        <translation>Agitada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Jolly</source>
-        <translation>Alegre</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Lonely</source>
-        <translation>Huraña</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Mild</source>
-        <translation>Afable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Modest</source>
-        <translation>Modesta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Naive</source>
-        <translation>Ingenua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Naughty</source>
-        <translation>Pícara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Quiet</source>
-        <translation>Mansa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Rash</source>
-        <translation>Alocada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Relaxed</source>
-        <translation>Plácida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Sassy</source>
-        <translation>Grosera</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Timid</source>
-        <translation>Miedosa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Gentle</source>
-        <translation>Amable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Lax</source>
-        <translation>Floja</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Bashful</source>
-        <translation>Tímida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Docile</source>
-        <translation>Dócil</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Hardy</source>
-        <translation>Fuerte</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Quirky</source>
-        <translation>Rara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
-        <source>Serious</source>
-        <translation>Seria</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Util/IVtoPID.ui"/>
         <source>Nature</source>
         <translation>Naturaleza</translation>
     </message>
@@ -1744,50 +1814,50 @@
         <translation>SID</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="79"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="80"/>
         <source>XD/Colo</source>
         <translation>XD/Colo</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="106"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="107"/>
         <source>Method 1</source>
         <translation>Método 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="117"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="118"/>
         <source>Reverse Method 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="129"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="130"/>
         <source>Method 2</source>
         <translation>Método 2</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="144"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="155"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="166"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="177"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="188"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="145"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="156"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="167"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="178"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="189"/>
         <source>Cute Charm (DPPt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="205"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="216"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="227"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="238"/>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="249"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="206"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="217"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="228"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="239"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="250"/>
         <source>Cute Charm (HGSS)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="265"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="266"/>
         <source>Method 4</source>
         <translation>Método 4</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/IVtoPID.cpp" line="302"/>
+        <location filename="../Forms/Util/IVtoPID.cpp" line="303"/>
         <source>Channel</source>
         <translation>Canal</translation>
     </message>
@@ -1948,23 +2018,74 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="134"/>
+        <location filename="../Forms/MainWindow.cpp" line="161"/>
         <source>Language update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="134"/>
+        <location filename="../Forms/MainWindow.cpp" line="161"/>
+        <location filename="../Forms/MainWindow.cpp" line="182"/>
         <source>Restart for changes to take effect. Restart now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="112"/>
+        <location filename="../Forms/MainWindow.cpp" line="182"/>
+        <source>Style change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.cpp" line="139"/>
         <source>Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="112"/>
+        <location filename="../Forms/MainWindow.cpp" line="139"/>
         <source>An update is available. Would you like to download the newest version?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>GameCube</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Dark</source>
+        <translation>Siniestro</translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>SID from Chained Shiny</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>IV Calculator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Spinda Painter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/MainWindow.ui"/>
+        <source>Encounter Lookup</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2110,131 +2231,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Adamant</source>
-        <translation>Firme</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Bold</source>
-        <translation>Osada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Brave</source>
-        <translation>Audaz</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Calm</source>
-        <translation>Serena</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Careful</source>
-        <translation>Cauta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Hasty</source>
-        <translation>Activa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Impish</source>
-        <translation>Agitada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Jolly</source>
-        <translation>Alegre</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Lonely</source>
-        <translation>Huraña</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Mild</source>
-        <translation>Afable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Modest</source>
-        <translation>Modesta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Naive</source>
-        <translation>Ingenua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Naughty</source>
-        <translation>Pícara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Quiet</source>
-        <translation>Mansa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Rash</source>
-        <translation>Alocada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Relaxed</source>
-        <translation>Plácida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Sassy</source>
-        <translation>Grosera</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Timid</source>
-        <translation>Miedosa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Gentle</source>
-        <translation>Amable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Lax</source>
-        <translation>Floja</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Bashful</source>
-        <translation>Tímida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Docile</source>
-        <translation>Dócil</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Hardy</source>
-        <translation>Fuerte</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Quirky</source>
-        <translation>Rara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Serious</source>
-        <translation>Seria</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
         <source>Gender Ratio</source>
         <translation>Proporción de género</translation>
     </message>
@@ -2255,36 +2251,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>50% Male / 50% Female</source>
-        <translation>50% Masculino / 50% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>25% Male / 75% Female</source>
-        <translation>25% Masculino / 75% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>75% Male / 25% Female</source>
-        <translation>75% Masculino / 25% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% Masculino / 12.5% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>100% Male</source>
-        <translation>100% Masculino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>100% Female</source>
-        <translation>100% femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
         <location filename="../Forms/Gen3/PokeSpot.cpp" line="112"/>
         <source>Common</source>
         <translation type="unfinished"></translation>
@@ -2299,6 +2265,36 @@
         <location filename="../Forms/Gen3/PokeSpot.ui"/>
         <location filename="../Forms/Gen3/PokeSpot.cpp" line="128"/>
         <source>Rare</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/PokeSpot.ui"/>
+        <source>50% ♂ / 50% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/PokeSpot.ui"/>
+        <source>25% ♂ / 75% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/PokeSpot.ui"/>
+        <source>75% ♂ / 25% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/PokeSpot.ui"/>
+        <source>87.5% ♂ / 12.5% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/PokeSpot.ui"/>
+        <source>100% ♂</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/PokeSpot.ui"/>
+        <source>100% ♀</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2754,27 +2750,27 @@
     <message>
         <location filename="../Forms/Gen4/ProfileManager4NewEdit.ui"/>
         <source>Ruby</source>
-        <translation type="unfinished">Rubí</translation>
+        <translation>Rubí</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ProfileManager4NewEdit.ui"/>
         <source>Sapphire</source>
-        <translation type="unfinished">Zafiro</translation>
+        <translation>Zafiro</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ProfileManager4NewEdit.ui"/>
         <source>Fire Red</source>
-        <translation type="unfinished">Fuego Rojo</translation>
+        <translation>Fuego Rojo</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ProfileManager4NewEdit.ui"/>
         <source>Leaf Green</source>
-        <translation type="unfinished">Hoja Verde</translation>
+        <translation>Hoja Verde</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ProfileManager4NewEdit.ui"/>
         <source>Emerald</source>
-        <translation type="unfinished">Esmeralda</translation>
+        <translation>Esmeralda</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/ProfileManager4NewEdit.ui"/>
@@ -2815,262 +2811,262 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="31"/>
-        <location filename="../Core/Objects/Nature.cpp" line="46"/>
+        <location filename="../Core/Util/Nature.cpp" line="31"/>
+        <location filename="../Core/Util/Nature.cpp" line="46"/>
         <source>Hardy</source>
         <translation>Fuerte</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <location filename="../Core/Objects/Nature.cpp" line="46"/>
+        <location filename="../Core/Util/Nature.cpp" line="28"/>
+        <location filename="../Core/Util/Nature.cpp" line="46"/>
         <source>Lonely</source>
         <translation>Huraña</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
-        <location filename="../Core/Objects/Nature.cpp" line="46"/>
+        <location filename="../Core/Util/Nature.cpp" line="26"/>
+        <location filename="../Core/Util/Nature.cpp" line="46"/>
         <source>Brave</source>
         <translation>Audaz</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
-        <location filename="../Core/Objects/Nature.cpp" line="46"/>
+        <location filename="../Core/Util/Nature.cpp" line="26"/>
+        <location filename="../Core/Util/Nature.cpp" line="46"/>
         <source>Adamant</source>
         <translation>Firme</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <location filename="../Core/Objects/Nature.cpp" line="47"/>
+        <location filename="../Core/Util/Nature.cpp" line="29"/>
+        <location filename="../Core/Util/Nature.cpp" line="47"/>
         <source>Naughty</source>
         <translation>Pícara</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
-        <location filename="../Core/Objects/Nature.cpp" line="47"/>
+        <location filename="../Core/Util/Nature.cpp" line="26"/>
+        <location filename="../Core/Util/Nature.cpp" line="47"/>
         <source>Bold</source>
         <translation>Osada</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="31"/>
-        <location filename="../Core/Objects/Nature.cpp" line="47"/>
+        <location filename="../Core/Util/Nature.cpp" line="31"/>
+        <location filename="../Core/Util/Nature.cpp" line="47"/>
         <source>Docile</source>
         <translation>Dócil</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <location filename="../Core/Objects/Nature.cpp" line="47"/>
+        <location filename="../Core/Util/Nature.cpp" line="29"/>
+        <location filename="../Core/Util/Nature.cpp" line="47"/>
         <source>Relaxed</source>
         <translation>Plácida</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <location filename="../Core/Objects/Nature.cpp" line="48"/>
+        <location filename="../Core/Util/Nature.cpp" line="27"/>
+        <location filename="../Core/Util/Nature.cpp" line="48"/>
         <source>Impish</source>
         <translation>Agitada</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="30"/>
-        <location filename="../Core/Objects/Nature.cpp" line="48"/>
+        <location filename="../Core/Util/Nature.cpp" line="30"/>
+        <location filename="../Core/Util/Nature.cpp" line="48"/>
         <source>Lax</source>
         <translation>Floja</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="30"/>
-        <location filename="../Core/Objects/Nature.cpp" line="48"/>
+        <location filename="../Core/Util/Nature.cpp" line="30"/>
+        <location filename="../Core/Util/Nature.cpp" line="48"/>
         <source>Timid</source>
         <translation>Miedosa</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <location filename="../Core/Objects/Nature.cpp" line="48"/>
+        <location filename="../Core/Util/Nature.cpp" line="27"/>
+        <location filename="../Core/Util/Nature.cpp" line="48"/>
         <source>Hasty</source>
         <translation>Activa</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="32"/>
-        <location filename="../Core/Objects/Nature.cpp" line="49"/>
+        <location filename="../Core/Util/Nature.cpp" line="32"/>
+        <location filename="../Core/Util/Nature.cpp" line="49"/>
         <source>Serious</source>
         <translation>Seria</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <location filename="../Core/Objects/Nature.cpp" line="49"/>
+        <location filename="../Core/Util/Nature.cpp" line="27"/>
+        <location filename="../Core/Util/Nature.cpp" line="49"/>
         <source>Jolly</source>
         <translation>Alegre</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <location filename="../Core/Objects/Nature.cpp" line="49"/>
+        <location filename="../Core/Util/Nature.cpp" line="28"/>
+        <location filename="../Core/Util/Nature.cpp" line="49"/>
         <source>Naive</source>
         <translation>Ingenua</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <location filename="../Core/Objects/Nature.cpp" line="49"/>
+        <location filename="../Core/Util/Nature.cpp" line="28"/>
+        <location filename="../Core/Util/Nature.cpp" line="49"/>
         <source>Modest</source>
         <translation>Modesta</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="28"/>
-        <location filename="../Core/Objects/Nature.cpp" line="50"/>
+        <location filename="../Core/Util/Nature.cpp" line="28"/>
+        <location filename="../Core/Util/Nature.cpp" line="50"/>
         <source>Mild</source>
         <translation>Afable</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <location filename="../Core/Objects/Nature.cpp" line="50"/>
+        <location filename="../Core/Util/Nature.cpp" line="29"/>
+        <location filename="../Core/Util/Nature.cpp" line="50"/>
         <source>Quiet</source>
         <translation>Mansa</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="31"/>
-        <location filename="../Core/Objects/Nature.cpp" line="50"/>
+        <location filename="../Core/Util/Nature.cpp" line="31"/>
+        <location filename="../Core/Util/Nature.cpp" line="50"/>
         <source>Bashful</source>
         <translation>Tímida</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="29"/>
-        <location filename="../Core/Objects/Nature.cpp" line="50"/>
+        <location filename="../Core/Util/Nature.cpp" line="29"/>
+        <location filename="../Core/Util/Nature.cpp" line="50"/>
         <source>Rash</source>
         <translation>Alocada</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="26"/>
-        <location filename="../Core/Objects/Nature.cpp" line="51"/>
+        <location filename="../Core/Util/Nature.cpp" line="26"/>
+        <location filename="../Core/Util/Nature.cpp" line="51"/>
         <source>Calm</source>
         <translation>Serena</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="30"/>
-        <location filename="../Core/Objects/Nature.cpp" line="51"/>
+        <location filename="../Core/Util/Nature.cpp" line="30"/>
+        <location filename="../Core/Util/Nature.cpp" line="51"/>
         <source>Gentle</source>
         <translation>Amable</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="30"/>
-        <location filename="../Core/Objects/Nature.cpp" line="51"/>
+        <location filename="../Core/Util/Nature.cpp" line="30"/>
+        <location filename="../Core/Util/Nature.cpp" line="51"/>
         <source>Sassy</source>
         <translation>Grosera</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="27"/>
-        <location filename="../Core/Objects/Nature.cpp" line="51"/>
+        <location filename="../Core/Util/Nature.cpp" line="27"/>
+        <location filename="../Core/Util/Nature.cpp" line="51"/>
         <source>Careful</source>
         <translation>Cauta</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Nature.cpp" line="31"/>
-        <location filename="../Core/Objects/Nature.cpp" line="52"/>
+        <location filename="../Core/Util/Nature.cpp" line="31"/>
+        <location filename="../Core/Util/Nature.cpp" line="52"/>
         <source>Quirky</source>
         <translation>Rara</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="26"/>
+        <location filename="../Core/Util/Power.cpp" line="26"/>
         <source>Fighting</source>
         <translation>Lucha</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="26"/>
+        <location filename="../Core/Util/Power.cpp" line="26"/>
         <source>Flying</source>
         <translation>Volador</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="26"/>
+        <location filename="../Core/Util/Power.cpp" line="26"/>
         <source>Poison</source>
         <translation>Veneno</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="26"/>
+        <location filename="../Core/Util/Power.cpp" line="26"/>
         <source>Ground</source>
         <translation>Tierra</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="27"/>
+        <location filename="../Core/Util/Power.cpp" line="27"/>
         <source>Rock</source>
         <translation>Roca</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="27"/>
+        <location filename="../Core/Util/Power.cpp" line="27"/>
         <source>Bug</source>
         <translation>Bicho</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="27"/>
+        <location filename="../Core/Util/Power.cpp" line="27"/>
         <source>Ghost</source>
         <translation>Fantasma</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="27"/>
+        <location filename="../Core/Util/Power.cpp" line="27"/>
         <source>Steel</source>
         <translation>Acero</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="28"/>
+        <location filename="../Core/Util/Power.cpp" line="28"/>
         <source>Fire</source>
         <translation>Fuego</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="28"/>
+        <location filename="../Core/Util/Power.cpp" line="28"/>
         <source>Water</source>
         <translation>Agua</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="28"/>
+        <location filename="../Core/Util/Power.cpp" line="28"/>
         <source>Grass</source>
         <translation>Planta</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="28"/>
+        <location filename="../Core/Util/Power.cpp" line="28"/>
         <source>Electric</source>
         <translation>Eléctrico</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="29"/>
+        <location filename="../Core/Util/Power.cpp" line="29"/>
         <source>Psychic</source>
         <translation>Psíquico</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="29"/>
+        <location filename="../Core/Util/Power.cpp" line="29"/>
         <source>Ice</source>
         <translation>Hielo</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="29"/>
+        <location filename="../Core/Util/Power.cpp" line="29"/>
         <source>Dragon</source>
         <translation>Dragón</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Power.cpp" line="29"/>
+        <location filename="../Core/Util/Power.cpp" line="29"/>
         <source>Dark</source>
         <translation>Siniestro</translation>
     </message>
     <message>
         <location filename="../Core/Gen4/Profile4.cpp" line="54"/>
-        <location filename="../Core/Objects/Profile.cpp" line="44"/>
+        <location filename="../Core/Parents/Profile.cpp" line="44"/>
         <source>Ruby</source>
         <translation>Rubí</translation>
     </message>
     <message>
         <location filename="../Core/Gen4/Profile4.cpp" line="56"/>
-        <location filename="../Core/Objects/Profile.cpp" line="46"/>
+        <location filename="../Core/Parents/Profile.cpp" line="46"/>
         <source>Sapphire</source>
         <translation>Zafiro</translation>
     </message>
     <message>
         <location filename="../Core/Gen4/Profile4.cpp" line="58"/>
-        <location filename="../Core/Objects/Profile.cpp" line="48"/>
+        <location filename="../Core/Parents/Profile.cpp" line="48"/>
         <source>Fire Red</source>
         <translation>Fuego Rojo</translation>
     </message>
     <message>
         <location filename="../Core/Gen4/Profile4.cpp" line="60"/>
-        <location filename="../Core/Objects/Profile.cpp" line="50"/>
+        <location filename="../Core/Parents/Profile.cpp" line="50"/>
         <source>Leaf Green</source>
         <translation>Hoja Verde</translation>
     </message>
     <message>
         <location filename="../Core/Gen4/Profile4.cpp" line="62"/>
-        <location filename="../Core/Objects/Profile.cpp" line="52"/>
+        <location filename="../Core/Parents/Profile.cpp" line="52"/>
         <source>Emerald</source>
         <translation>Esmeralda</translation>
     </message>
@@ -3091,66 +3087,66 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Profile.cpp" line="54"/>
+        <location filename="../Core/Parents/Profile.cpp" line="54"/>
         <source>Gales</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Profile.cpp" line="56"/>
+        <location filename="../Core/Parents/Profile.cpp" line="56"/>
         <source>Colosseum</source>
         <translation>Coliseo</translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Profile.cpp" line="58"/>
+        <location filename="../Core/Parents/Profile.cpp" line="58"/>
         <source>Diamond</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Profile.cpp" line="60"/>
+        <location filename="../Core/Parents/Profile.cpp" line="60"/>
         <source>Pearl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Profile.cpp" line="62"/>
+        <location filename="../Core/Parents/Profile.cpp" line="62"/>
         <source>Platinum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Profile.cpp" line="64"/>
+        <location filename="../Core/Parents/Profile.cpp" line="64"/>
         <source>Heart Gold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Objects/Profile.cpp" line="66"/>
+        <location filename="../Core/Parents/Profile.cpp" line="66"/>
         <source>Soul Silver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="457"/>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="477"/>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="520"/>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="537"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="450"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="470"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="513"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="530"/>
         <source>First shadow unset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="463"/>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="483"/>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="525"/>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="542"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="456"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="476"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="518"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="535"/>
         <source>First shadow set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="469"/>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="489"/>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="530"/>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="547"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="462"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="482"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="523"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="540"/>
         <source>Shiny Skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen3/Searcher3.cpp" line="110"/>
+        <location filename="../Core/Gen3/Searcher3.cpp" line="103"/>
         <source>Pass NL</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3177,6 +3173,26 @@
     <message>
         <location filename="../Core/Gen4/Frame4.cpp" line="125"/>
         <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/TableView.cpp" line="74"/>
+        <source>Save Output to TXT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/TableView.cpp" line="74"/>
+        <source>Text File (*.txt);;All Files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/TableView.cpp" line="125"/>
+        <source>Save Output to CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Controls/TableView.cpp" line="125"/>
+        <source>CSV File (*.csv);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4234,6 +4250,29 @@
     </message>
 </context>
 <context>
+    <name>SpindaPainter</name>
+    <message>
+        <location filename="../Forms/Gen3/SpindaPainter.ui"/>
+        <source>Spinda Painter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/SpindaPainter.ui"/>
+        <source>PID</source>
+        <translation>PID</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/SpindaPainter.cpp" line="92"/>
+        <source>Ability 0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/SpindaPainter.cpp" line="92"/>
+        <source>Ability 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Stationary3</name>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
@@ -4301,8 +4340,8 @@
         <translation>TID</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="186"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="190"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="96"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="100"/>
         <source>Method 1 Reverse</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4333,163 +4372,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Adamant</source>
-        <translation>Firme</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Bold</source>
-        <translation>Osada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Brave</source>
-        <translation>Audaz</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Calm</source>
-        <translation>Serena</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Careful</source>
-        <translation>Cauta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Hasty</source>
-        <translation>Activa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Impish</source>
-        <translation>Agitada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Jolly</source>
-        <translation>Alegre</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Lonely</source>
-        <translation>Huraña</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Mild</source>
-        <translation>Afable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Modest</source>
-        <translation>Modesta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Naive</source>
-        <translation>Ingenua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Naughty</source>
-        <translation>Pícara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Quiet</source>
-        <translation>Mansa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Rash</source>
-        <translation>Alocada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Relaxed</source>
-        <translation>Plácida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Sassy</source>
-        <translation>Grosera</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Timid</source>
-        <translation>Miedosa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Gentle</source>
-        <translation>Amable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Lax</source>
-        <translation>Floja</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Bashful</source>
-        <translation>Tímida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Docile</source>
-        <translation>Dócil</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Hardy</source>
-        <translation>Fuerte</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Quirky</source>
-        <translation>Rara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Serious</source>
-        <translation>Seria</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
         <source>Hidden Power</source>
         <translation>Poder Oculto</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>50% Male / 50% Female</source>
-        <translation>50% Masculino / 50% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>25% Male / 75% Female</source>
-        <translation>25% Masculino / 75% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>75% Male / 25% Female</source>
-        <translation>75% Masculino / 25% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% Masculino / 12.5% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>100% Male</source>
-        <translation>100% Masculino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>100% Female</source>
-        <translation>100% femenino</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
@@ -4508,92 +4392,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Fighting</source>
-        <translation>Lucha</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Flying</source>
-        <translation>Volador</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Poison</source>
-        <translation>Veneno</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Ground</source>
-        <translation>Tierra</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Rock</source>
-        <translation>Roca</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Bug</source>
-        <translation>Bicho</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Ghost</source>
-        <translation>Fantasma</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Steel</source>
-        <translation>Acero</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Fire</source>
-        <translation>Fuego</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Water</source>
-        <translation>Agua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Grass</source>
-        <translation>Planta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Electric</source>
-        <translation>Eléctrico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Psychic</source>
-        <translation>Psíquico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Ice</source>
-        <translation>Hielo</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Dragon</source>
-        <translation>Dragón</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Dark</source>
-        <translation>Siniestro</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
         <source>Searcher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Shadow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4617,102 +4416,82 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="185"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="189"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="95"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="99"/>
         <source>Method 1</source>
         <translation>Método 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="187"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="191"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="97"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="101"/>
         <source>Method 2</source>
         <translation>Método 2</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="188"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="192"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="98"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="102"/>
         <source>Method 4</source>
         <translation>Método 4</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="176"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="178"/>
-        <source>XD/Colo</source>
-        <translation>XD/Colo</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="177"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="181"/>
-        <source>Channel</source>
-        <translation>Canal</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="179"/>
-        <source>Gales</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="180"/>
-        <source>Colo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="93"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="104"/>
         <source>Set Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="94"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="105"/>
         <source>Jump to Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="95"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="106"/>
         <source>Center to +/- 1 Second and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="96"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="107"/>
         <source>Center to +/- 2 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="97"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="108"/>
         <source>Center to +/- 3 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="98"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="109"/>
         <source>Center to +/- 5 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="99"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="110"/>
         <source>Center to +/- 10 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="100"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="111"/>
         <source>Center to +/- 1 Minute and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="101"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="112"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="128"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="102"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="113"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="129"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="115"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="126"/>
         <source>Copy Seed to Clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="116"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="127"/>
         <source>Generate times for seed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4722,51 +4501,33 @@
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="289"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="292"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="295"/>
-        <source> (Citadark)</source>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>50% ♂ / 50% ♀</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="290"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="293"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="296"/>
-        <source> (Initial)</source>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>25% ♂ / 75% ♀</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="291"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="294"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="297"/>
-        <source> (Phenac)</source>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>75% ♂ / 25% ♀</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="306"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="307"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="308"/>
-        <source> (E-Reader)</source>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>87.5% ♂ / 12.5% ♀</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="383"/>
-        <source>Save Output to TXT</source>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>100% ♂</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="383"/>
-        <source>Text File (*.txt);;All Files (*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="426"/>
-        <source>Save Output to CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="426"/>
-        <source>CSV File (*.csv);;All Files (*)</source>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>100% ♀</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4906,26 +4667,26 @@
         <translation>Resultados Máximos</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="238"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="243"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="250"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="255"/>
         <source>Method 1</source>
         <translation>Método 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="239"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="244"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="251"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="256"/>
         <source>Method J</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="239"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="244"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="251"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="256"/>
         <source>Method K</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="240"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="245"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="252"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="257"/>
         <source>Wondercard IVs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4941,8 +4702,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="252"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="265"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="264"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="277"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4973,131 +4734,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Adamant</source>
-        <translation>Firme</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Bold</source>
-        <translation>Osada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Brave</source>
-        <translation>Audaz</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Calm</source>
-        <translation>Serena</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Careful</source>
-        <translation>Cauta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Hasty</source>
-        <translation>Activa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Impish</source>
-        <translation>Agitada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Jolly</source>
-        <translation>Alegre</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Lonely</source>
-        <translation>Huraña</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Mild</source>
-        <translation>Afable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Modest</source>
-        <translation>Modesta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Naive</source>
-        <translation>Ingenua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Naughty</source>
-        <translation>Pícara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Quiet</source>
-        <translation>Mansa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Rash</source>
-        <translation>Alocada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Relaxed</source>
-        <translation>Plácida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Sassy</source>
-        <translation>Grosera</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Timid</source>
-        <translation>Miedosa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Gentle</source>
-        <translation>Amable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Lax</source>
-        <translation>Floja</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Bashful</source>
-        <translation>Tímida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Docile</source>
-        <translation>Dócil</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Hardy</source>
-        <translation>Fuerte</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Quirky</source>
-        <translation>Rara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Serious</source>
-        <translation>Seria</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
         <source>Hidden Power</source>
         <translation>Poder Oculto</translation>
     </message>
@@ -5105,36 +4741,6 @@
         <location filename="../Forms/Gen4/Stationary4.ui"/>
         <source>Genderless</source>
         <translation>Sin género</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>50% Male / 50% Female</source>
-        <translation>50% Masculino / 50% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>25% Male / 75% Female</source>
-        <translation>25% Masculino / 75% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>75% Male / 25% Female</source>
-        <translation>75% Masculino / 25% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% Masculino / 12.5% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>100% Male</source>
-        <translation>100% Masculino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>100% Female</source>
-        <translation>100% femenino</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
@@ -5160,86 +4766,6 @@
         <location filename="../Forms/Gen4/Stationary4.ui"/>
         <source>(F)</source>
         <translation>(F)</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Fighting</source>
-        <translation>Lucha</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Flying</source>
-        <translation>Volador</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Poison</source>
-        <translation>Veneno</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Ground</source>
-        <translation>Tierra</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Rock</source>
-        <translation>Roca</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Bug</source>
-        <translation>Bicho</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Ghost</source>
-        <translation>Fantasma</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Steel</source>
-        <translation>Acero</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Fire</source>
-        <translation>Fuego</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Water</source>
-        <translation>Agua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Grass</source>
-        <translation>Planta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Electric</source>
-        <translation>Eléctrico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Psychic</source>
-        <translation>Psíquico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Ice</source>
-        <translation>Hielo</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Dragon</source>
-        <translation>Dragón</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Dark</source>
-        <translation>Siniestro</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
@@ -5273,14 +4799,14 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="150"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="254"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="162"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="266"/>
         <source>Cute Charm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="96"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="97"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5290,7 +4816,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="105"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="112"/>
         <source>Generate times for seed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5300,28 +4826,70 @@
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="257"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="106"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="113"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="107"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="114"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="269"/>
         <source>♂ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="258"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="270"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="259"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="271"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="260"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="272"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="261"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="273"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
+        <source>50% ♂ / 50% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
+        <source>25% ♂ / 75% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
+        <source>75% ♂ / 25% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
+        <source>87.5% ♂ / 12.5% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
+        <source>100% ♂</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
+        <source>100% ♀</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5488,67 +5056,69 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="120"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="113"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="137"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="130"/>
         <source>Set Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="138"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="131"/>
         <source>Jump to Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="139"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="132"/>
         <source>Center to +/- 1 Second and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="140"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="133"/>
         <source>Center to +/- 2 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="141"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="134"/>
         <source>Center to +/- 3 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="142"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="135"/>
         <source>Center to +/- 5 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="143"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="136"/>
         <source>Center to +/- 10 Seconds and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="144"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="137"/>
         <source>Center to +/- 1 Minute and Set as Target Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="145"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="138"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="154"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="146"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="139"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="155"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="159"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="152"/>
         <source>Copy Seed to Clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="160"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="153"/>
         <source>Generate times for seed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5558,62 +5128,42 @@
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="433"/>
-        <source>Save Output to TXT</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="433"/>
-        <source>Text File (*.txt);;All Files (*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="476"/>
-        <source>Save Output to CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="476"/>
-        <source>CSV File (*.csv);;All Files (*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="533"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="441"/>
         <source>♂ Lead (50% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="534"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="442"/>
         <source>♂ Lead (75% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="535"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="443"/>
         <source>♂ Lead (25% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="536"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="444"/>
         <source>♂ Lead (12.5% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="537"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="445"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="538"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="446"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="539"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="447"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="540"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="448"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5704,8 +5254,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="529"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="544"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="437"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="452"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5726,131 +5276,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Adamant</source>
-        <translation>Firme</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Bold</source>
-        <translation>Osada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Brave</source>
-        <translation>Audaz</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Calm</source>
-        <translation>Serena</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Careful</source>
-        <translation>Cauta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Hasty</source>
-        <translation>Activa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Impish</source>
-        <translation>Agitada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Jolly</source>
-        <translation>Alegre</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Lonely</source>
-        <translation>Huraña</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Mild</source>
-        <translation>Afable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Modest</source>
-        <translation>Modesta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Naive</source>
-        <translation>Ingenua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Naughty</source>
-        <translation>Pícara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Quiet</source>
-        <translation>Mansa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Rash</source>
-        <translation>Alocada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Relaxed</source>
-        <translation>Plácida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Sassy</source>
-        <translation>Grosera</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Timid</source>
-        <translation>Miedosa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Gentle</source>
-        <translation>Amable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Lax</source>
-        <translation>Floja</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Bashful</source>
-        <translation>Tímida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Docile</source>
-        <translation>Dócil</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Hardy</source>
-        <translation>Fuerte</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Quirky</source>
-        <translation>Rara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Serious</source>
-        <translation>Seria</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
         <source>Encounter Slot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5863,36 +5288,6 @@
         <location filename="../Forms/Gen3/Wild3.ui"/>
         <source>Gender Ratio</source>
         <translation>Proporción de género</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>50% Male / 50% Female</source>
-        <translation>50% Masculino / 50% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>25% Male / 75% Female</source>
-        <translation>25% Masculino / 75% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>75% Male / 25% Female</source>
-        <translation>75% Masculino / 25% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% Masculino / 12.5% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>100% Male</source>
-        <translation>100% Masculino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>100% Female</source>
-        <translation>100% femenino</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
@@ -5926,83 +5321,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Fighting</source>
-        <translation>Lucha</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Flying</source>
-        <translation>Volador</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Poison</source>
-        <translation>Veneno</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Ground</source>
-        <translation>Tierra</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Rock</source>
-        <translation>Roca</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Bug</source>
-        <translation>Bicho</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Ghost</source>
-        <translation>Fantasma</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Steel</source>
-        <translation>Acero</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Fire</source>
-        <translation>Fuego</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Water</source>
-        <translation>Agua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
         <source>Grass</source>
         <translation>Planta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Electric</source>
-        <translation>Eléctrico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Psychic</source>
-        <translation>Psíquico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Ice</source>
-        <translation>Hielo</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Dragon</source>
-        <translation>Dragón</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Dark</source>
-        <translation>Siniestro</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
@@ -6011,8 +5331,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="300"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="531"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="297"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="439"/>
         <source>Cute Charm</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6039,6 +5359,36 @@
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
         <source>Safari Zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
+        <source>50% ♂ / 50% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
+        <source>25% ♂ / 75% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
+        <source>75% ♂ / 25% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
+        <source>87.5% ♂ / 12.5% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
+        <source>100% ♂</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
+        <source>100% ♀</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6189,7 +5539,7 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="364"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="376"/>
         <source>Any</source>
         <translation>Cualquiera</translation>
     </message>
@@ -6197,131 +5547,6 @@
         <location filename="../Forms/Gen4/Wild4.ui"/>
         <source>Nature</source>
         <translation>Naturaleza</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Adamant</source>
-        <translation>Firme</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Bold</source>
-        <translation>Osada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Brave</source>
-        <translation>Audaz</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Calm</source>
-        <translation>Serena</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Careful</source>
-        <translation>Cauta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Hasty</source>
-        <translation>Activa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Impish</source>
-        <translation>Agitada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Jolly</source>
-        <translation>Alegre</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Lonely</source>
-        <translation>Huraña</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Mild</source>
-        <translation>Afable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Modest</source>
-        <translation>Modesta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Naive</source>
-        <translation>Ingenua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Naughty</source>
-        <translation>Pícara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Quiet</source>
-        <translation>Mansa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Rash</source>
-        <translation>Alocada</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Relaxed</source>
-        <translation>Plácida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Sassy</source>
-        <translation>Grosera</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Timid</source>
-        <translation>Miedosa</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Gentle</source>
-        <translation>Amable</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Lax</source>
-        <translation>Floja</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Bashful</source>
-        <translation>Tímida</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Docile</source>
-        <translation>Dócil</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Hardy</source>
-        <translation>Fuerte</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Quirky</source>
-        <translation>Rara</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Serious</source>
-        <translation>Seria</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
@@ -6334,86 +5559,10 @@
         <translation>Poder Oculto</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Fighting</source>
-        <translation>Lucha</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Flying</source>
-        <translation>Volador</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Poison</source>
-        <translation>Veneno</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Ground</source>
-        <translation>Tierra</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Rock</source>
-        <translation>Roca</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Bug</source>
-        <translation>Bicho</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Ghost</source>
-        <translation>Fantasma</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Steel</source>
-        <translation>Acero</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Fire</source>
-        <translation>Fuego</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Water</source>
-        <translation>Agua</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="342"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="353"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="354"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="365"/>
         <source>Grass</source>
         <translation>Planta</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Electric</source>
-        <translation>Eléctrico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Psychic</source>
-        <translation>Psíquico</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Ice</source>
-        <translation>Hielo</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Dragon</source>
-        <translation>Dragón</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Dark</source>
-        <translation>Siniestro</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
@@ -6424,36 +5573,6 @@
         <location filename="../Forms/Gen4/Wild4.ui"/>
         <source>Genderless</source>
         <translation>Sin género</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>50% Male / 50% Female</source>
-        <translation>50% Masculino / 50% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>25% Male / 75% Female</source>
-        <translation>25% Masculino / 75% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>75% Male / 25% Female</source>
-        <translation>75% Masculino / 25% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>87.5% Male / 12.5% Female</source>
-        <translation>87.5% Masculino / 12.5% Femenino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>100% Male</source>
-        <translation>100% Masculino</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>100% Female</source>
-        <translation>100% femenino</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
@@ -6486,20 +5605,20 @@
         <translation>Método</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="328"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="335"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="340"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="347"/>
         <source>Method J</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="328"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="335"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="340"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="347"/>
         <source>Method K</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="331"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="338"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="343"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="350"/>
         <source>Chained Shiny</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6539,35 +5658,35 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="347"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="358"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="359"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="370"/>
         <source>Surfing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="348"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="359"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="360"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="371"/>
         <source>Old Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="349"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="360"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="361"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="372"/>
         <source>Good Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="350"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="361"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="362"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="373"/>
         <source>Super Rod</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="365"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="373"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="377"/>
         <location filename="../Forms/Gen4/Wild4.cpp" line="385"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="419"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="397"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="431"/>
         <source>Synchronize</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6603,24 +5722,24 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="227"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="366"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="396"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="239"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="378"/>
         <location filename="../Forms/Gen4/Wild4.cpp" line="408"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="420"/>
         <source>Cute Charm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="231"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="391"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="406"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="243"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="403"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="418"/>
         <source>Suction Cups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="92"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="93"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6650,49 +5769,61 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="104"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="105"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="112"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="106"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="113"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="111"/>
         <source>Generate times for seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="322"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="323"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="334"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="335"/>
         <source>True</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="345"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="356"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="357"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="368"/>
         <source>Rock Smash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="399"/>
         <location filename="../Forms/Gen4/Wild4.cpp" line="411"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="423"/>
         <source>♂ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="400"/>
         <location filename="../Forms/Gen4/Wild4.cpp" line="412"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="424"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="401"/>
         <location filename="../Forms/Gen4/Wild4.cpp" line="413"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="425"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="402"/>
         <location filename="../Forms/Gen4/Wild4.cpp" line="414"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="426"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="403"/>
         <location filename="../Forms/Gen4/Wild4.cpp" line="415"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="427"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6718,14 +5849,44 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="322"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="323"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="334"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="335"/>
         <source>False</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
         <source>Poke Radar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>50% ♂ / 50% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>25% ♂ / 75% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>75% ♂ / 25% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>87.5% ♂ / 12.5% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>100% ♂</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>100% ♀</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

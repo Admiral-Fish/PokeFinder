@@ -112,6 +112,7 @@ void Eggs3::setupModels()
     ui->comboBoxFRLGCompatibility->setItemData(2, 70);
 
     ui->comboBoxEmeraldNature->setup(Nature::getNatures());
+    ui->comboBoxEverstone->addItems(Nature::getNatures());
     ui->comboBoxFRLGNature->setup(Nature::getNatures());
     ui->comboBoxRSNature->setup(Nature::getNatures());
 

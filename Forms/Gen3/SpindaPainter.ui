@@ -57,11 +57,7 @@
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QLabel" name="labelInfo">
-     <property name="text">
-      <string>Hardy, ♀, Ability 0</string>
-     </property>
-    </widget>
+    <widget class="QLabel" name="labelInfo"/>
    </item>
    <item row="1" column="0" colspan="4">
     <widget class="QGraphicsView" name="graphicsView"/>
