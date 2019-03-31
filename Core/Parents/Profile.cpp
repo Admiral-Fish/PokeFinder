@@ -73,8 +73,6 @@ QString Profile::getLanguageString() const
 {
     switch (language)
     {
-        case Language::Nil:
-            return "-";
         case Language::Chinese:
             return "CHI";
         case Language::English:
@@ -91,6 +89,9 @@ QString Profile::getLanguageString() const
             return "KOR";
         case Language::Spanish:
             return "SPA";
+        case Language::Nil:
+        default:
+            return "-";
     }
 }
 

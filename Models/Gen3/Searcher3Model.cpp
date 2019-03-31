@@ -458,6 +458,8 @@ QVariant Searcher3Model::data(const QModelIndex &index, int role) const
                         return frame.getPower();
                     case 16:
                         return frame.getGenderString();
+                    default:
+                        return QVariant();
                 }
             case Method::Method1:
             case Method::Method1Reverse:

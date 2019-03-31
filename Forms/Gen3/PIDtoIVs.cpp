@@ -233,13 +233,12 @@ QString PIDtoIVs::calcIVsChannel(u32 iv1)
     XDRNG rng(iv1);
 
     u32 val[6] = { iv1 >> 27, 0, 0, 0, 0, 0 };
-    for (int x = 1; x < 6; x++)
+    for (int x : { 1, 2, 4, 5, 3 })
     {
         val[x] = rng.nextUInt() >> 27;
     }
 
-    QVector<int> order = { 0, 1, 2, 4, 5, 3};
-    for (const int &x : order)
+    for (u32 x : val)
     {
         ivs += QString::number(x);
         if (x != 3)

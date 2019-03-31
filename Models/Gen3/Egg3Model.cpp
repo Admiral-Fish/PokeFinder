@@ -162,6 +162,8 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                         return frame.getPowerString();
                     case 9:
                         return frame.getPower();
+                    default:
+                        return QVariant();
                 }
             case Method::EBredPID:
                 switch (index.column())
