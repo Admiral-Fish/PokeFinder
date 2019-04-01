@@ -148,9 +148,6 @@ void GameCube::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->labelProfileTIDValue->setText(tid);
     ui->labelProfileSIDValue->setText(sid);
     ui->labelProfileGameValue->setText(profile.getVersionString());
-
-    ui->comboBoxGeneratorMethod->clear();
-    ui->comboBoxSearcherMethod->clear();
 }
 
 void GameCube::on_pushButtonGenerate_clicked()
