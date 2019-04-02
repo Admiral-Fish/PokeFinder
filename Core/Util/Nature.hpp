@@ -22,6 +22,7 @@
 
 #include <QStringList>
 #include <QTranslator>
+#include <QVector>
 #include <Core/Util/Global.hpp>
 
 namespace Nature
@@ -29,6 +30,7 @@ namespace Nature
     QStringList getNatures();
     QString getNature(u8 nature);
     QStringList getFrameNatures();
+    QVector<double> getNatureModifier(u8 nature);
     u8 getAdjustedNature(u8 nature);
     u8 getReversedNature(u8 nature);
 };

@@ -66,7 +66,7 @@ private:
     QTranslator translator;
     QActionGroup *langGroup;
     QActionGroup *styleGroup;
-    const QString VERSION = "v2.3.0";
+    const QString VERSION = "v2.3.1";
 
     Stationary3 *stationary3 = nullptr;
     Wild3 *wild3 = nullptr;

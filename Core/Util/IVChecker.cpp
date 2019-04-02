@@ -56,7 +56,7 @@ QVector<QVector<u8> > IVChecker::calculateIVs(QVector<u16> stats, u8 level, u8 n
     {
         for (u8 iv = 0; iv < 32; iv++)
         {
-            double stat = qFloor((((2 * baseStats[i] + iv) * level) / 100.0) + 5) * natureModifier[nature][i];
+            double stat = qFloor((((2 * baseStats[i] + iv) * level) / 100.0) + 5) * Nature::getNatureModifier(nature)[i];
 
             if (static_cast<u16>(stat) == stats[i])
             {

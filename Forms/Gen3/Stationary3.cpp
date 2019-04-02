@@ -181,9 +181,6 @@ void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->labelProfileTIDValue->setText(tid);
     ui->labelProfileSIDValue->setText(sid);
     ui->labelProfileGameValue->setText(profile.getVersionString());
-
-    ui->comboBoxGeneratorMethod->clear();
-    ui->comboBoxSearcherMethod->clear();
 }
 
 void Stationary3::on_pushButtonGenerate_clicked()

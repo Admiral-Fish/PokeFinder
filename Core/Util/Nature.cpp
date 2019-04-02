@@ -21,7 +21,7 @@
 
 QStringList Nature::getNatures()
 {
-    QStringList natures =
+    const QStringList natures =
     {
         QObject::tr("Adamant"), QObject::tr("Bold"), QObject::tr("Brave"), QObject::tr("Calm"),
         QObject::tr("Careful"), QObject::tr("Hasty"), QObject::tr("Impish"), QObject::tr("Jolly"),
@@ -41,7 +41,7 @@ QString Nature::getNature(u8 nature)
 
 QStringList Nature::getFrameNatures()
 {
-    QStringList natures =
+    const QStringList natures =
     {
         QObject::tr("Hardy"), QObject::tr("Lonely"), QObject::tr("Brave"), QObject::tr("Adamant"),
         QObject::tr("Naughty"), QObject::tr("Bold"), QObject::tr("Docile"), QObject::tr("Relaxed"),
@@ -64,4 +64,37 @@ u8 Nature::getReversedNature(u8 nature)
 {
     const u8 vals[25] = { 22, 8, 2, 0, 12, 1, 21, 15, 6, 19, 17, 5, 24, 7, 11, 10, 9, 13, 20, 14, 3, 18, 16, 4, 23 };
     return vals[nature];
+}
+
+QVector<double> Nature::getNatureModifier(u8 nature)
+{
+    const QVector<QVector<double>> modifiers =
+    {
+        { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Hardy
+        { 1.0, 1.1, 0.9, 1.0, 1.0, 1.0 }, // Lonely
+        { 1.0, 1.1, 1.0, 1.0, 1.0, 0.9 }, // Brave
+        { 1.0, 1.1, 1.0, 0.9, 1.0, 1.0 }, // Adamant
+        { 1.0, 1.1, 1.0, 1.0, 0.9, 1.0 }, // Naughty
+        { 1.0, 0.9, 1.1, 1.0, 1.0, 1.0 }, // Bold
+        { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Docile
+        { 1.0, 1.0, 1.1, 1.0, 1.0, 0.9 }, // Relaxed
+        { 1.0, 1.0, 1.1, 0.9, 1.0, 1.0 }, // Impish
+        { 1.0, 1.0, 1.1, 1.0, 0.9, 1.0 }, // Lax
+        { 1.0, 0.9, 1.0, 1.0, 1.0, 1.1 }, // Timid
+        { 1.0, 1.0, 0.9, 1.0, 1.0, 1.1 }, // Hasty
+        { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Serious
+        { 1.0, 1.0, 1.0, 0.9, 1.0, 1.1 }, // Jolly
+        { 1.0, 1.0, 1.0, 1.0, 0.9, 1.1 }, // Naive
+        { 1.0, 0.9, 1.0, 1.1, 1.0, 1.0 }, // Modest
+        { 1.0, 1.0, 0.9, 1.1, 1.0, 1.0 }, // Mild
+        { 1.0, 1.0, 1.0, 1.1, 1.0, 0.9 }, // Quiet
+        { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Bashful
+        { 1.0, 1.0, 1.0, 1.1, 0.9, 1.0 }, // Rash
+        { 1.0, 0.9, 1.0, 1.0, 1.1, 1.0 }, // Calm
+        { 1.0, 1.0, 0.9, 1.0, 1.1, 1.0 }, // Gentle
+        { 1.0, 1.0, 1.0, 1.0, 1.1, 0.9 }, // Sassy
+        { 1.0, 1.0, 1.0, 0.9, 1.1, 1.0 }, // Careful
+        { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }  // Quirky
+    };
+    return modifiers.at(nature);
 }
