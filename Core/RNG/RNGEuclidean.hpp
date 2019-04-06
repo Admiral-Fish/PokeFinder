@@ -37,8 +37,8 @@ public:
 
 private:
     u64 base;
-    u64 sub1;
-    u64 sub2;
+    u32 sub1;
+    u32 sub2;
 
     void setupEuclidean(Method frameType);
 

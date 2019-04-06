@@ -35,7 +35,7 @@ u8 calcSlot(u8 compare, const QVector<QPair<u8, u8>> &ranges)
 {
     for (u8 i = 0; i < ranges.size(); i++)
     {
-        if (compare >= ranges[i].first && compare <= ranges[i].second)
+        if (compare >= ranges.at(i).first && compare <= ranges.at(i).second)
         {
             return i;
         }
