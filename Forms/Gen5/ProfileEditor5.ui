@@ -324,6 +324,25 @@
    <header>Forms/Controls/CheckList.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>lineEditProfile</tabstop>
+  <tabstop>comboBoxVersion</tabstop>
+  <tabstop>comboBoxLanguage</tabstop>
+  <tabstop>comboBoxDSType</tabstop>
+  <tabstop>textBoxMAC</tabstop>
+  <tabstop>comboBoxKeypresses</tabstop>
+  <tabstop>textBoxVCount</tabstop>
+  <tabstop>textBoxGxStat</tabstop>
+  <tabstop>textBoxVFrame</tabstop>
+  <tabstop>textBoxTimer0Min</tabstop>
+  <tabstop>textBoxTimer0Max</tabstop>
+  <tabstop>checkBoxSkipLR</tabstop>
+  <tabstop>checkBoxSoftReset</tabstop>
+  <tabstop>textBoxTID</tabstop>
+  <tabstop>textBoxSID</tabstop>
+  <tabstop>pushButtonAccept</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
