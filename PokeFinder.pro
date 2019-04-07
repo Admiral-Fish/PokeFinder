@@ -56,6 +56,8 @@ FORMS += \
     Forms/Gen4/SeedtoTime4.ui \
     Forms/Gen4/Stationary4.ui \
     Forms/Gen4/Wild4.ui \
+    Forms/Gen5/ProfileEditor5.ui \
+    Forms/Gen5/ProfileManager5.ui \
     Forms/Util/EncounterLookup.ui \
     Forms/Util/IVCalculator.ui \
     Forms/Util/IVtoPID.ui \
@@ -149,6 +151,8 @@ HEADERS += \
     Forms/Gen4/SeedtoTime4.hpp \
     Forms/Gen4/Stationary4.hpp \
     Forms/Gen4/Wild4.hpp \
+    Forms/Gen5/ProfileEditor5.hpp \
+    Forms/Gen5/ProfileManager5.hpp \
     Forms/Util/EncounterLookup.hpp \
     Forms/Util/IVCalculator.hpp \
     Forms/Util/IVtoPID.hpp \
@@ -166,6 +170,7 @@ HEADERS += \
     Models/Gen4/SeedtoTime4Model.hpp \
     Models/Gen4/Stationary4Model.hpp \
     Models/Gen4/Wild4Model.hpp \
+    Models/Gen5/Profile5Model.hpp \
     Models/ResearcherModel.hpp \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
@@ -249,6 +254,8 @@ SOURCES += \
     Forms/Gen4/SeedtoTime4.cpp \
     Forms/Gen4/Stationary4.cpp \
     Forms/Gen4/Wild4.cpp \
+    Forms/Gen5/ProfileEditor5.cpp \
+    Forms/Gen5/ProfileManager5.cpp \
     Forms/Util/EncounterLookup.cpp \
     Forms/Util/IVCalculator.cpp \
     Forms/Util/IVtoPID.cpp \
@@ -266,6 +273,7 @@ SOURCES += \
     Models/Gen4/SeedtoTime4Model.cpp \
     Models/Gen4/Stationary4Model.cpp \
     Models/Gen4/Wild4Model.cpp \
+    Models/Gen5/Profile5Model.cpp \
     Models/ResearcherModel.cpp \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \

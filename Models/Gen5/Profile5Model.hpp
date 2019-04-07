@@ -17,16 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef NAZOS_HPP
-#define NAZOS_HPP
 
+#ifndef PROFILE5MODEL_HPP
+#define PROFILE5MODEL_HPP
+
+#include <QAbstractTableModel>
 #include <Core/Gen5/Profile5.hpp>
-#include <Core/Util/Global.hpp>
 
-namespace Nazos
+class Profile5Model : public QAbstractTableModel
 {
-    QVector<u32> getNazo(Game version, Language language, DSType dsType);
-    QVector<u32> getNazo(const Profile5 &profile);
-}
+    Q_OBJECT
 
-#endif // NAZOS_HPP
+public:
+    Profile5Model(QObject *parent);
+    void setModel(const QVector<Profile5> &profiles);
+    void addItem(const Profile5 &profile);
+    void updateProfile(const Profile5 &profile, int row);
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    Profile5 getProfile(int index);
+    void removeProfile(int index);
+
+private:
+    QVector<Profile5> model;
+
+};
+
+#endif // PROFILE5MODEL_HPP

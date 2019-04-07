@@ -42,8 +42,9 @@ public:
     explicit TextBox(QWidget *parent = nullptr);
     void setValues(InputType type);
     void setValues(u64 minValue, u64 maxValue, int base = 10);
-    u16 getUShort();
-    u32 getUInt();
+    u16 getUShort() const;
+    u32 getUInt() const;
+    u64 getULong() const;
 
 private:
     bool setup;

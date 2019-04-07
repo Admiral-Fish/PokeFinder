@@ -208,7 +208,7 @@ void SHA1::preCompute()
 
 void SHA1::setTime(u8 hour, u8 minute, u8 second)
 {
-    u32 h = (toBCD(hour) + (hour >= 12 && profile.getDsType() != DSType::DS3 ? 0x40 : 0)) << 24;
+    u32 h = (toBCD(hour) + (hour >= 12 && profile.getDSType() != DSType::DS3 ? 0x40 : 0)) << 24;
     u32 m = toBCD(minute) << 16;
     u32 s = toBCD(second) << 8;
     u32 val = h | m | s;

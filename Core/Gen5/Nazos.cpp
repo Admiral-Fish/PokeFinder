@@ -192,5 +192,5 @@ QVector<u32> Nazos::getNazo(Game version, Language language, DSType dsType)
 
 QVector<u32> Nazos::getNazo(const Profile5 &profile)
 {
-    return getNazo(profile.getVersion(), profile.getLanguage(), profile.getDsType());
+    return getNazo(profile.getVersion(), profile.getLanguage(), profile.getDSType());
 }

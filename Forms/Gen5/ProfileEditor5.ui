@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProfileEditor5</class>
+ <widget class="QDialog" name="ProfileEditor5">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>130</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>720</width>
+    <height>130</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>720</width>
+    <height>130</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Profile Editor Gen 5</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelProfile">
+     <property name="text">
+      <string>Profile Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEditProfile"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="labelMAC">
+     <property name="text">
+      <string>MAC</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QLabel" name="labelVFrame">
+     <property name="text">
+      <string>VFrame</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="6" colspan="2">
+    <widget class="TextBox" name="textBoxVFrame">
+     <property name="maxLength">
+      <number>1</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="8">
+    <widget class="QLabel" name="labelTID">
+     <property name="text">
+      <string>TID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="9">
+    <widget class="TextBox" name="textBoxTID">
+     <property name="maxLength">
+      <number>5</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="10">
+    <widget class="QPushButton" name="pushButtonAccept">
+     <property name="text">
+      <string>Accept</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelVersion">
+     <property name="text">
+      <string>Version</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="comboBoxVersion">
+     <item>
+      <property name="text">
+       <string>Black</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>White</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Black 2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>White 2</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="2" colspan="2">
+    <widget class="QLabel" name="labelKeypresses">
+     <property name="text">
+      <string>Keypresses</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="CheckList" name="comboBoxKeypresses">
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="QLabel" name="labelTimer0Min">
+     <property name="text">
+      <string>Timer0 Min</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="6" colspan="2">
+    <widget class="TextBox" name="textBoxTimer0Min">
+     <property name="maxLength">
+      <number>4</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="8">
+    <widget class="QLabel" name="labelSID">
+     <property name="text">
+      <string>SID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="9">
+    <widget class="TextBox" name="textBoxSID">
+     <property name="maxLength">
+      <number>5</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="10">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelLanguage">
+     <property name="text">
+      <string>Language</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QComboBox" name="comboBoxLanguage">
+     <item>
+      <property name="text">
+       <string>ENG</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>SPA</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FRE</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ITA</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>DEU</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>JPN</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>KOR</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="2" column="2" colspan="2">
+    <widget class="QLabel" name="labelVCount">
+     <property name="text">
+      <string>VCount</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="TextBox" name="textBoxVCount">
+     <property name="maxLength">
+      <number>2</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="5">
+    <widget class="QLabel" name="labelTimer0Max">
+     <property name="text">
+      <string>Timer0 Max</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="6" colspan="2">
+    <widget class="TextBox" name="textBoxTimer0Max">
+     <property name="maxLength">
+      <number>4</number>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="labelDSType">
+     <property name="text">
+      <string>DS Type</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QComboBox" name="comboBoxDSType">
+     <item>
+      <property name="text">
+       <string>DS Original/Lite</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>DSi/DSi XL</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3DS</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="3" column="2" colspan="2">
+    <widget class="QLabel" name="labelGxStat">
+     <property name="text">
+      <string>GxStat</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="4">
+    <widget class="TextBox" name="textBoxGxStat">
+     <property name="maxLength">
+      <number>1</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="TextBox" name="textBoxMAC">
+     <property name="maxLength">
+      <number>9</number>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="5">
+    <widget class="QCheckBox" name="checkBoxSkipLR">
+     <property name="text">
+      <string>Skip L/R</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="6" colspan="2">
+    <widget class="QCheckBox" name="checkBoxSoftReset">
+     <property name="text">
+      <string>Soft Reset</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>CheckList</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/CheckList.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

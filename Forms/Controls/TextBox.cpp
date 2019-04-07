@@ -80,16 +80,22 @@ void TextBox::setValues(u64 minValue, u64 maxValue, int base)
     setup = true;
 }
 
-u16 TextBox::getUShort()
+u16 TextBox::getUShort() const
 {
     Q_ASSERT(setup);
     return this->text().toUShort(nullptr, base);
 }
 
-u32 TextBox::getUInt()
+u32 TextBox::getUInt() const
 {
     Q_ASSERT(setup);
     return this->text().toUInt(nullptr, base);
+}
+
+u64 TextBox::getULong() const
+{
+    Q_ASSERT(setup);
+    return this->text().toULongLong(nullptr, base);
 }
 
 void TextBox::onTextEdited(QString string)

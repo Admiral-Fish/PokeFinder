@@ -21,17 +21,17 @@
 #define PROFILE5_HPP
 
 #include <Core/Gen5/DSType.hpp>
-#include <Core/Objects/Profile.hpp>
+#include <Core/Parents/Profile.hpp>
 
 class Profile5 : public Profile
 {
 
 public:
-    Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u32 mac, const QVector<bool> &keypresses, u8 vcount,
+    Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u64 mac, const QVector<bool> &keypresses, u8 vcount,
              u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType, Language language = Language::Nil);
     Profile5(QJsonObject data);
     Profile5();
-    u32 getMac() const;
+    u64 getMac() const;
     QVector<bool> getKeypresses() const;
     u8 getVCount() const;
     u8 getGxStat() const;
@@ -40,16 +40,18 @@ public:
     u16 getTimer0Min() const;
     u16 getTimer0Max() const;
     bool getSoftReset() const;
-    DSType getDsType() const;
+    DSType getDSType() const;
+    QString getDSTypeString() const;
     QJsonObject getJson() const;
     static QVector<Profile5> loadProfileList();
     void saveProfile() const;
     void deleteProfile() const;
     void updateProfile(const Profile5 &original) const;
     friend bool operator==(const Profile5 &left, const Profile5 &right);
+    friend bool operator!=(const Profile5 &left, const Profile5 &right);
 
 private:
-    u32 mac;
+    u64 mac;
     QVector<bool> keypresses; // 4 index; 0: None, 1: One, 2: Two, 3: Three
     u8 vcount;
     u8 gxstat;
@@ -63,5 +65,6 @@ private:
 };
 
 bool operator==(const Profile5 &left, const Profile5 &right);
+bool operator!=(const Profile5 &left, const Profile5 &right);
 
 #endif // PROFILE5_HPP

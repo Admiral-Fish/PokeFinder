@@ -17,33 +17,40 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QApplication>
-#include <QFile>
-#include <Forms/MainWindow.hpp>
+#ifndef PROFILEMANAGER5_HPP
+#define PROFILEMANAGER5_HPP
 
-int main(int argc, char *argv[])
+#include <QWidget>
+#include <Forms/Gen5/ProfileEditor5.hpp>
+#include <Models/Gen5/Profile5Model.hpp>
+
+namespace Ui
 {
-    QApplication a(argc, argv);
-    a.setApplicationName("PokeFinder");
-    a.setOrganizationName("PokeFinder Team");
-
-    QSettings setting;
-    QString style = setting.value("style", "light").toString();
-
-    if (style == "dark")
-    {
-        QFile file(":/qdarkstyle/style.qss");
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            QTextStream ts(&file);
-            a.setStyleSheet(ts.readAll());
-            file.close();
-        }
-    }
-
-    MainWindow w;
-    w.show();
-    w.raise();
-
-    return a.exec();
+    class ProfileManager5;
 }
+
+class ProfileManager5 : public QWidget
+{
+    Q_OBJECT
+
+signals:
+    void updateProfiles();
+
+public:
+    explicit ProfileManager5(QWidget *parent = nullptr);
+    ~ProfileManager5() override;
+
+private:
+    Ui::ProfileManager5 *ui;
+    Profile5Model *model{};
+
+    void setupModels();
+
+private slots:
+    void on_pushButtonNew_clicked();
+    void on_pushButtonEdit_clicked();
+    void on_pushButtonDelete_clicked();
+
+};
+
+#endif // PROFILEMANAGER5_HPP

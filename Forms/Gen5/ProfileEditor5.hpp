@@ -17,33 +17,44 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QApplication>
-#include <QFile>
-#include <Forms/MainWindow.hpp>
+#ifndef PROFILEEDITOR5_HPP
+#define PROFILEEDITOR5_HPP
 
-int main(int argc, char *argv[])
+#include <QDialog>
+#include <QMessageBox>
+#include <Core/Gen5/Profile5.hpp>
+
+namespace Ui
 {
-    QApplication a(argc, argv);
-    a.setApplicationName("PokeFinder");
-    a.setOrganizationName("PokeFinder Team");
-
-    QSettings setting;
-    QString style = setting.value("style", "light").toString();
-
-    if (style == "dark")
-    {
-        QFile file(":/qdarkstyle/style.qss");
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            QTextStream ts(&file);
-            a.setStyleSheet(ts.readAll());
-            file.close();
-        }
-    }
-
-    MainWindow w;
-    w.show();
-    w.raise();
-
-    return a.exec();
+    class ProfileEditor5;
 }
+
+class ProfileEditor5 : public QDialog
+{
+    Q_OBJECT
+
+signals:
+    void newProfile(Profile5);
+    void editProfile(Profile5, Profile5);
+
+public:
+    explicit ProfileEditor5(QWidget *parent = nullptr);
+    explicit ProfileEditor5(const Profile5 &profile, QWidget *parent = nullptr);
+    ~ProfileEditor5() override;
+    Profile5 getNewProfile();
+    Profile5 getOriginal();
+
+private:
+    Ui::ProfileEditor5 *ui;
+    bool isEditing = false;
+    Profile5 original;
+    Profile5 fresh;
+
+    void setupModels();
+
+private slots:
+    void on_pushButtonAccept_clicked();
+
+};
+
+#endif // PROFILEEDITOR5_HPP

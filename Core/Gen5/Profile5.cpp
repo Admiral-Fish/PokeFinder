@@ -19,7 +19,7 @@
 
 #include "Profile5.hpp"
 
-Profile5::Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u32 mac, const QVector<bool> &keypresses, u8 vcount,
+Profile5::Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u64 mac, const QVector<bool> &keypresses, u8 vcount,
                    u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType, Language language)
     : Profile(profileName, version, tid, sid, language)
 {
@@ -38,10 +38,11 @@ Profile5::Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u
 Profile5::Profile5(QJsonObject data)
     : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
 {
-    mac = data["mac"].toString().toUInt(nullptr, 16);
+    mac = data["mac"].toString().toULongLong(nullptr, 16);
+    QJsonArray keys = data["keys"].toArray();
     for (int i = 0; i < 4; i++)
     {
-        keypresses.append(data[QString("key%1").arg(i)].toBool());
+        keypresses.append(keys[i].toBool());
     }
     vcount = data["vcount"].toInt();
     gxstat = data["gxstat"].toInt();
@@ -53,7 +54,7 @@ Profile5::Profile5(QJsonObject data)
     dsType = static_cast<DSType>(data["dsType"].toInt());
 }
 
-Profile5::Profile5() : Profile()
+Profile5::Profile5()
 {
     // Default parameters for White on desmume
     version = Game::White;
@@ -68,7 +69,7 @@ Profile5::Profile5() : Profile()
     dsType = DSType::DSOriginal;
 }
 
-u32 Profile5::getMac() const
+u64 Profile5::getMac() const
 {
     return mac;
 }
@@ -113,9 +114,24 @@ bool Profile5::getSoftReset() const
     return softReset;
 }
 
-DSType Profile5::getDsType() const
+DSType Profile5::getDSType() const
 {
     return dsType;
+}
+
+QString Profile5::getDSTypeString() const
+{
+    switch (dsType)
+    {
+        case DSType::DSOriginal:
+            return QObject::tr("DS Lite");
+        case DSType::DSi:
+            return QObject::tr("DSi");
+        case DSType::DS3:
+            return QObject::tr("3DS");
+        default:
+            return "-";
+    }
 }
 
 QJsonObject Profile5::getJson() const
@@ -127,10 +143,12 @@ QJsonObject Profile5::getJson() const
     profile["tid"] = tid;
     profile["sid"] = sid;
     profile["mac"] = QString::number(mac, 16);
-    for (int i = 0; i < 4; i++)
+    QJsonArray keys;
+    for (u8 i = 0; i < 4; i++)
     {
-        profile[QString("key%1").arg(i)] = keypresses[i];
+        keys.append(keypresses.at(i));
     }
+    profile["keys"] = keys;
     profile["vcount"] = vcount;
     profile["gxstat"] = gxstat;
     profile["vframe"] = vframe;
@@ -218,7 +236,7 @@ void Profile5::updateProfile(const Profile5 &original) const
         {
             Profile5 profile(i.toObject());
 
-            if (original == profile)
+            if (original == profile && original != *this)
             {
                 i = getJson();
                 profiles["gen5"] = gen5;
@@ -238,4 +256,9 @@ bool operator==(const Profile5 &left, const Profile5 &right)
            left.tid == right.tid && left.sid == right.sid && left.mac == right.mac && left.keypresses == right.keypresses &&
            left.vcount == right.vcount && left.gxstat == right.gxstat && left.vframe == right.vframe && left.skipLR == right.skipLR &&
            left.timer0Min == right.timer0Min && left.softReset == right.softReset && left.dsType == right.dsType;
+}
+
+bool operator!=(const Profile5 &left, const Profile5 &right)
+{
+    return !(left == right);
 }
