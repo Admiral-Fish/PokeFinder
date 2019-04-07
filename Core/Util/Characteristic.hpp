@@ -36,9 +36,9 @@ public:
     bool getActive() const;
 
 private:
-    u8 index;
-    u8 stat;
-    u8 result;
+    u8 index{};
+    u8 stat{};
+    u8 result{};
     bool active = false;
 
 };

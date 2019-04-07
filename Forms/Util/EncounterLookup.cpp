@@ -76,7 +76,7 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
                 {
                     QString info = getEncounterString(type);
                     QPair<u8, u8> range = area.getLevelRange(specie);
-                    info += "/" + QString::number(range.first) + "-" + QString::number(range.second);
+                    info += QString("/%1-%2").arg(range.first).arg(range.second);
                     encounters.insert(qMakePair(area.getLocation(), info));
                     break;
                 }
@@ -137,7 +137,7 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
                         {
                             QString info = getEncounterString(type);
                             QPair<u8, u8> range = area.getLevelRange(specie);
-                            info += "/" + QString::number(range.first) + "-" + QString::number(range.second);
+                            info += QString("/%1-%2").arg(range.first).arg(range.second);
                             encounters.insert(qMakePair(area.getLocation(), info));
                             break;
                         }
@@ -217,7 +217,7 @@ void EncounterLookup::on_comboBoxGame_currentIndexChanged(int index)
     if (index >= 0)
     {
         Game game = static_cast<Game>(ui->comboBoxGame->currentData().toInt());
-        int max;
+        u16 max = 0;
 
         if (game & FRLG || game & RSE)
         {

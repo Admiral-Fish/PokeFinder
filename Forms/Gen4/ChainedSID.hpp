@@ -40,7 +40,7 @@ public:
 
 private:
     Ui::ChainedSID *ui;
-    QStandardItemModel *model;
+    QStandardItemModel *model{};
     ChainedSIDCalc *chainedCalc = nullptr;
 
     void setupModels();

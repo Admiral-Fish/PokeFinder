@@ -55,10 +55,10 @@ public:
 private:
     Ui::Wild3 *ui;
     QVector<Profile3> profiles;
-    Searcher3Model *searcherModel;
-    Wild3Model *generatorModel;
-    QMenu *generatorMenu;
-    QMenu *searcherMenu;
+    Searcher3Model *searcherModel{};
+    Wild3Model *generatorModel{};
+    QMenu *generatorMenu{};
+    QMenu *searcherMenu{};
     QModelIndex lastIndex;
     QModelIndex targetFrame;
     QVector<EncounterArea3> encounterGenerator;

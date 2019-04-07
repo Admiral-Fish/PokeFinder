@@ -28,28 +28,24 @@ Egg4GeneratorModel::Egg4GeneratorModel(QObject *parent, Method method)
 
 void Egg4GeneratorModel::setModel(const QVector<Frame4> &frames)
 {
-    if (frames.isEmpty())
+    if (!frames.isEmpty())
     {
-        return;
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
+        model.append(frames);
+        emit endInsertRows();
     }
-
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.append(frames);
-    emit endInsertRows();
 }
 
 void Egg4GeneratorModel::clear()
 {
-    if (model.isEmpty())
+    if (!model.isEmpty())
     {
-        return;
+        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+        model.clear();
+        model.squeeze();
+        emit endRemoveRows();
     }
-
-    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-    model.clear();
-    model.squeeze();
-    emit endRemoveRows();
 }
 
 void Egg4GeneratorModel::setMethod(Method method)
@@ -448,41 +444,35 @@ Egg4SearcherModel::Egg4SearcherModel(QObject *parent, Method method)
 
 void Egg4SearcherModel::setModel(const QVector<Frame4> &frames)
 {
-    if (frames.isEmpty())
+    if (!frames.isEmpty())
     {
-        return;
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
+        model.append(frames);
+        emit endInsertRows();
     }
-
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.append(frames);
-    emit endInsertRows();
 }
 
 void Egg4SearcherModel::addItems(const QVector<Frame4> &frames)
 {
-    if (frames.isEmpty())
+    if (!frames.isEmpty())
     {
-        return;
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
+        model.append(frames);
+        emit endInsertRows();
     }
-
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.append(frames);
-    emit endInsertRows();
 }
 
 void Egg4SearcherModel::clear()
 {
-    if (model.isEmpty())
+    if (!model.isEmpty())
     {
-        return;
+        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+        model.clear();
+        model.squeeze();
+        emit endRemoveRows();
     }
-
-    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-    model.clear();
-    model.squeeze();
-    emit endRemoveRows();
 }
 
 void Egg4SearcherModel::setMethod(Method method)

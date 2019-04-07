@@ -53,11 +53,11 @@ public:
 
 private:
     Ui::Stationary4 *ui;
-    Searcher4Model *searcherModel;
-    Stationary4Model *generatorModel;
+    Searcher4Model *searcherModel{};
+    Stationary4Model *generatorModel{};
     QVector<Profile4> profiles;
-    QMenu *generatorMenu;
-    QMenu *searcherMenu;
+    QMenu *generatorMenu{};
+    QMenu *searcherMenu{};
 
     void setupModels();
     void updateView(const QVector<Frame4> &frames, int progress);
@@ -72,31 +72,6 @@ private slots:
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void on_pushButtonProfileManager_clicked();
-
-};
-
-class StationarySearcher4 : public QThread
-{
-    Q_OBJECT
-
-public:
-    StationarySearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max);
-    void run() override;
-    int currentProgress() const;
-    QVector<Frame4> getResults();
-
-public slots:
-    void cancelSearch();
-
-private:
-    Searcher4 searcher;
-    QVector<u8> min;
-    QVector<u8> max;
-
-    QMutex mutex;
-    QVector<Frame4> results;
-    bool cancel;
-    int progress;
 
 };
 

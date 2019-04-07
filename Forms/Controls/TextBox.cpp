@@ -21,7 +21,7 @@
 
 TextBox::TextBox(QWidget *parent) : QLineEdit(parent)
 {
-    connect(this, &TextBox::textChanged, this, &TextBox::onTextChanged);
+    connect(this, &TextBox::textEdited, this, &TextBox::onTextEdited);
     setup = false;
 }
 
@@ -82,17 +82,17 @@ void TextBox::setValues(u64 minValue, u64 maxValue, int base)
 
 u16 TextBox::getUShort()
 {
-    Q_ASSERT(setup == true);
+    Q_ASSERT(setup);
     return this->text().toUShort(nullptr, base);
 }
 
 u32 TextBox::getUInt()
 {
-    Q_ASSERT(setup == true);
+    Q_ASSERT(setup);
     return this->text().toUInt(nullptr, base);
 }
 
-void TextBox::onTextChanged(QString string)
+void TextBox::onTextEdited(QString string)
 {
     if (setup)
     {

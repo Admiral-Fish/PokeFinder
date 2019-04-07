@@ -42,7 +42,7 @@ public:
 
 private:
     Ui::ProfileManager3 *ui;
-    Profile3Model *model;
+    Profile3Model *model{};
 
     void setupModels();
 

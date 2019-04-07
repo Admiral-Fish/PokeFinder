@@ -19,7 +19,8 @@
 
 #include "TableView.hpp"
 
-TableView::TableView(QWidget *parent) : QTableView(parent)
+TableView::TableView(QWidget *parent) :
+    QTableView(parent)
 {
 }
 

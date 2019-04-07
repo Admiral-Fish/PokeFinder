@@ -206,7 +206,7 @@ void Stationary4::on_pushButtonSearch_clicked()
     int maxProgress = 1;
     for (int i = 0; i < 6; i++)
     {
-        maxProgress *= max[i] - min[i] + 1;
+        maxProgress *= max.at(i) - min.at(i) + 1;
     }
 
     ui->progressBar->setValue(0);
@@ -314,66 +314,4 @@ void Stationary4::on_pushButtonProfileManager_clicked()
     auto *manager = new ProfileManager4();
     connect(manager, &ProfileManager4::updateProfiles, this, &Stationary4::refreshProfiles);
     manager->show();
-}
-
-
-StationarySearcher4::StationarySearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max)
-{
-    this->searcher = searcher;
-    this->min = min;
-    this->max = max;
-    cancel = false;
-    progress = 0;
-
-    connect(this, &StationarySearcher4::finished, this, &StationarySearcher4::deleteLater);
-}
-
-void StationarySearcher4::run()
-{
-    for (u8 a = min[0]; a <= max[0]; a++)
-    {
-        for (u8 b = min[1]; b <= max[1]; b++)
-        {
-            for (u8 c = min[2]; c <= max[2]; c++)
-            {
-                for (u8 d = min[3]; d <= max[3]; d++)
-                {
-                    for (u8 e = min[4]; e <= max[4]; e++)
-                    {
-                        for (u8 f = min[5]; f <= max[5]; f++)
-                        {
-                            if (cancel)
-                            {
-                                return;
-                            }
-
-                            auto frames = searcher.search(a, b, c, d, e, f);
-                            progress++;
-
-                            QMutexLocker locker(&mutex);
-                            results.append(frames);
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-int StationarySearcher4::currentProgress() const
-{
-    return progress;
-}
-
-QVector<Frame4> StationarySearcher4::getResults()
-{
-    QMutexLocker locker(&mutex);
-    auto data(results);
-    results.clear();
-    return data;
-}
-
-void StationarySearcher4::cancelSearch()
-{
-    cancel = true;
 }

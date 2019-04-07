@@ -74,10 +74,10 @@ void PokeSpot::on_pushButtonGenerate_clicked()
     int genderRatio = ui->comboBoxGenderRatio->currentIndex();
 
     XDRNG rng(seed, initialFrame - 1);
-    auto *rngArray = new u16[maxResults + 5];
-    for (u32 x = 0; x < maxResults + 5; x++)
+    QVector<u16> rngList(maxResults + 5);
+    for (u16 &x : rngList)
     {
-        rngArray[x] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     Frame3 frame = Frame3(tid, sid, tid ^ sid);
@@ -90,51 +90,48 @@ void PokeSpot::on_pushButtonGenerate_clicked()
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
         // Check if frame is a valid pokespot call
-        if ((rngArray[cnt] % 3) != 0)
+        if ((rngList.at(cnt) % 3) == 0)
         {
-            continue;
-        }
-
-        // Munchlax provides a frame skip
-        if ((rngArray[1 + cnt] % 100) < 10)
-        {
-            continue;
-        }
-
-        // Check what type the pokespot is
-        u8 call = rngArray[2 + cnt] % 100;
-        if (call < 50)
-        {
-            if (!spots.at(0))
+            // Munchlax provides a frame skip
+            if ((rngList.at(cnt + 1) % 100) >= 10)
             {
-                continue;
-            }
-            frame.setLockReason(tr("Common"));
-        }
-        else if (call > 49 && call < 85)
-        {
-            if (!spots.at(1))
-            {
-                continue;
-            }
-            frame.setLockReason(tr("Uncommon"));
-        }
-        else
-        {
-            if (!spots.at(2))
-            {
-                continue;
-            }
-            frame.setLockReason(tr("Rare"));
-        }
+                // Check what type the pokespot is
+                u8 call = rngList.at(cnt + 2) % 100;
+                if (call < 50)
+                {
+                    if (!spots.at(0))
+                    {
+                        continue;
+                    }
+                    frame.setLockReason(tr("Common"));
+                }
+                else if (call > 49 && call < 85)
+                {
+                    if (!spots.at(1))
+                    {
+                        continue;
+                    }
+                    frame.setLockReason(tr("Uncommon"));
+                }
+                else
+                {
+                    if (!spots.at(2))
+                    {
+                        continue;
+                    }
+                    frame.setLockReason(tr("Rare"));
+                }
 
-        frame.setPID(rngArray[4 + cnt], rngArray[3 + cnt]);
-        if (compare.comparePID(frame))
-        {
-            frame.setFrame(cnt + initialFrame);
-            frames.append(frame);
+                frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3));
+                if (compare.comparePID(frame))
+                {
+                    frame.setFrame(cnt + initialFrame);
+                    frames.append(frame);
+                }
+            }
         }
     }
+
     model->setModel(frames);
 }
 

@@ -26,6 +26,7 @@ class LCRNG64 : public IRNG64
 {
 
 public:
+    LCRNG64() = default;
     LCRNG64(u64 add, u64 mult, u64 seed, u32 frames = 0);
     void advanceFrames(u32 frames) override;
     u32 nextUInt(u32 max);
@@ -36,9 +37,9 @@ public:
     u64 getSeed() override;
 
 protected:
-    u64 add;
-    u64 mult;
-    u64 seed;
+    u64 add{};
+    u64 mult{};
+    u64 seed{};
 
 };
 

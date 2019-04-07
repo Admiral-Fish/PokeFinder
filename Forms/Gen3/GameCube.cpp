@@ -137,7 +137,7 @@ void GameCube::on_comboBoxProfiles_currentIndexChanged(int index)
         return;
     }
 
-    auto profile = profiles[index];
+    auto profile = profiles.at(index);
     QString tid = QString::number(profile.getTID());
     QString sid = QString::number(profile.getSID());
 
@@ -207,7 +207,7 @@ void GameCube::on_pushButtonSearch_clicked()
     int maxProgress = 1;
     for (int i = 0; i < 6; i++)
     {
-        maxProgress *= max[i] - min[i] + 1;
+        maxProgress *= max.at(i) - min.at(i) + 1;
     }
 
     ui->progressBar->setValue(0);

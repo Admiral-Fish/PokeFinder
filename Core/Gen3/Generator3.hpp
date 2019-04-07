@@ -37,8 +37,8 @@ public:
     void setEncounter(const EncounterArea3 &value);
 
 private:
-    u8 iv1;
-    u8 iv2;
+    u8 iv1{};
+    u8 iv2{};
     EncounterArea3 encounter;
 
     QVector<Frame3> generateMethodChannel(const FrameCompare &compare) const;

@@ -37,7 +37,7 @@ public:
     QString getNatureString();
     QString getPowerString();
     QString getShinyString();
-    void setIVsManual(u8 iv1, u8 iv2, u8 iv3, u8 iv4, u8 iv5, u8 iv6);
+    void setIVs(u8 iv1, u8 iv2, u8 iv3, u8 iv4, u8 iv5, u8 iv6);
     void setIDs(u16 tid, u16 sid, u16 psv);
     void setIVs(u16 iv1, u16 iv2);
     void setPID(u16 pid1, u16 pid2);
@@ -65,24 +65,27 @@ public:
     void setLeadType(const Lead &value);
 
 protected:
-    u8 ivs[6];
-    QChar inheritance[6];
-    u8 ability;
-    u8 encounterSlot;
+    QVector<u8> ivs = QVector<u8>(6);
+    QVector<QChar> inheritance = QVector<QChar>(6);
+    u8 ability{};
+    u8 encounterSlot{};
     Encounter encounterType;
-    u32 frame;
-    u16 gender;
-    u8 genderRatio;
-    u8 hidden;
+    u32 frame{};
+    u16 gender{};
+    u8 genderRatio{};
+    u8 hidden{};
     Lead leadType = Lead::None;
-    u8 nature;
-    u32 pid;
-    u8 power;
-    u16 psv;
-    bool shiny;
-    u16 sid;
-    u16 tid;
-    u8 level;
+    u8 nature{};
+    u32 pid{};
+    u8 power{};
+    u16 psv{};
+    bool shiny{};
+    u16 sid{};
+    u16 tid{};
+    u8 level{};
+
+    void calculateHidden();
+    void calculatePower();
 
 };
 

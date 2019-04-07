@@ -45,8 +45,8 @@ public:
 
 private:
     Ui::GameCubeRTC *ui;
-    QStandardItemModel *model;
-    QMenu *contextMenu;
+    QStandardItemModel *model{};
+    QMenu *contextMenu{};
 
     void setupModels();
 

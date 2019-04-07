@@ -278,7 +278,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     }
     else
     {
-        u32 status[4] =
+        QVector<u32> status =
         {
             ui->textBoxStatus0->getUInt(), ui->textBoxStatus1->getUInt(),
             ui->textBoxStatus2->getUInt(), ui->textBoxStatus3->getUInt()
@@ -298,10 +298,10 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     calc["-"] = &Researcher::subtract;
     calc["*"] = &Researcher::multiply;
 
-    bool calcCustom[10];
-    u64 customRValue[10];
-    bool pass[10];
-    u64(*Calculators[10])(u64, u64);
+    QVector<bool> calcCustom(10);
+    QVector<u64> customRValue(10);
+    QVector<bool> pass(10);
+    QVector<func> calculators(10);
 
     calcCustom[0] = ui->lineEditRValue1->text() != "";
     calcCustom[1] = ui->lineEditRValue2->text() != "" || ui->comboBoxRValue2->currentIndex() != 0;
@@ -347,7 +347,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 
     for (int i = 0; i < 10; i++)
     {
-        if (calcCustom[i] && !pass[i])
+        if (calcCustom.at(i) && !pass.at(i))
         {
             QMessageBox error;
             error.setText(tr("You must check the Hex box in order to use Hex values."));
@@ -356,18 +356,18 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         }
     }
 
-    Calculators[0] = calc[ui->comboBoxOperator1->currentText()];
-    Calculators[1] = calc[ui->comboBoxOperator2->currentText()];
-    Calculators[2] = calc[ui->comboBoxOperator3->currentText()];
-    Calculators[3] = calc[ui->comboBoxOperator4->currentText()];
-    Calculators[4] = calc[ui->comboBoxOperator5->currentText()];
-    Calculators[5] = calc[ui->comboBoxOperator6->currentText()];
-    Calculators[6] = calc[ui->comboBoxOperator7->currentText()];
-    Calculators[7] = calc[ui->comboBoxOperator8->currentText()];
-    Calculators[8] = calc[ui->comboBoxOperator9->currentText()];
-    Calculators[9] = calc[ui->comboBoxOperator10->currentText()];
+    calculators[0] = calc[ui->comboBoxOperator1->currentText()];
+    calculators[1] = calc[ui->comboBoxOperator2->currentText()];
+    calculators[2] = calc[ui->comboBoxOperator3->currentText()];
+    calculators[3] = calc[ui->comboBoxOperator4->currentText()];
+    calculators[4] = calc[ui->comboBoxOperator5->currentText()];
+    calculators[5] = calc[ui->comboBoxOperator6->currentText()];
+    calculators[6] = calc[ui->comboBoxOperator7->currentText()];
+    calculators[7] = calc[ui->comboBoxOperator8->currentText()];
+    calculators[8] = calc[ui->comboBoxOperator9->currentText()];
+    calculators[9] = calc[ui->comboBoxOperator10->currentText()];
 
-    QString textL[10] =
+    QStringList textL =
     {
         ui->comboBoxLValue1->currentText(), ui->comboBoxLValue2->currentText(),
         ui->comboBoxLValue3->currentText(), ui->comboBoxLValue4->currentText(),
@@ -376,7 +376,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
         ui->comboBoxLValue9->currentText(), ui->comboBoxLValue10->currentText()
     };
 
-    QString textR[10] =
+    QStringList textR =
     {
         tr("None"), ui->comboBoxRValue2->currentText(),
         ui->comboBoxRValue3->currentText(), ui->comboBoxRValue4->currentText(),
@@ -400,16 +400,16 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 
         for (int j = 0; j < 10; j++)
         {
-            if (calcCustom[j])
+            if (calcCustom.at(j))
             {
-                u64 temp = getCustom(textL[j], frame, frames);
+                u64 temp = getCustom(textL.at(j), frame, frames);
 
                 if (textR[j] != tr("None"))
                 {
-                    customRValue[j] = getCustom(textR[j], frame, frames);
+                    customRValue[j] = getCustom(textR.at(j), frame, frames);
                 }
 
-                frame.setCustom(j, Calculators[j](temp, customRValue[j]));
+                frame.setCustom(j, calculators.at(j)(temp, customRValue.at(j)));
             }
         }
         frames.append(frame);

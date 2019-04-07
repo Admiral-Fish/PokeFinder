@@ -24,7 +24,6 @@
 
 RNGCache::RNGCache(Method method)
 {
-    keys.reserve(512);
     setupCache(method);
 }
 

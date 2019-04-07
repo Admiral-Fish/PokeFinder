@@ -137,15 +137,13 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
             {
                 for (int second = 0; second < 60; second++)
                 {
-                    if (ab != ((month * day + minute + second) & 0xFF))
+                    if (ab == ((month * day + minute + second) & 0xFF))
                     {
-                        continue;
-                    }
-
-                    if (!forceSecond || second == forcedSecond)
-                    {
-                        QDateTime dateTime = QDateTime(QDate(static_cast<int>(year), month, day), QTime(static_cast<int>(hour), minute, second));
-                        results.append(DateTime(dateTime, delay, version, roamer, routes));
+                        if (!forceSecond || second == forcedSecond)
+                        {
+                            QDateTime dateTime = QDateTime(QDate(static_cast<int>(year), month, day), QTime(static_cast<int>(hour), minute, second));
+                            results.append(DateTime(dateTime, delay, version, roamer, routes));
+                        }
                     }
                 }
             }
@@ -316,9 +314,9 @@ void SeedtoTime4::on_pushButtonDPPtSearchFlips_clicked()
     ui->tableViewDPPtCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
     ui->tableViewDPPtCalibrate->clearSelection();
 
-    for (int i = 0; i < results.size(); i++)
+    for (auto i = 0; i < results.size(); i++)
     {
-        if (results[i])
+        if (results.at(i))
         {
             ui->tableViewDPPtCalibrate->selectRow(i);
         }
@@ -349,9 +347,9 @@ void SeedtoTime4::on_pushButtonHGSSSearchCalls_clicked()
     ui->tableViewHGSSCalibrate->setSelectionMode(QAbstractItemView::MultiSelection);
     ui->tableViewHGSSCalibrate->clearSelection();
 
-    for (int i = 0; i < results.size(); i++)
+    for (auto i = 0; i < results.size(); i++)
     {
-        if (results[i])
+        if (results.at(i))
         {
             ui->tableViewHGSSCalibrate->selectRow(i);
         }

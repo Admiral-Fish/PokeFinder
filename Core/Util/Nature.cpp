@@ -56,14 +56,14 @@ QStringList Nature::getFrameNatures()
 
 u8 Nature::getAdjustedNature(u8 nature)
 {
-    const u8 vals[25] = { 3, 5, 2, 20, 23, 11, 8, 13, 1, 16, 15, 14, 4, 17, 19, 7, 22, 10, 21, 9, 18, 6, 0, 24, 12 };
-    return vals[nature];
+    const QVector<u8> vals = { 3, 5, 2, 20, 23, 11, 8, 13, 1, 16, 15, 14, 4, 17, 19, 7, 22, 10, 21, 9, 18, 6, 0, 24, 12 };
+    return vals.at(nature);
 }
 
 u8 Nature::getReversedNature(u8 nature)
 {
-    const u8 vals[25] = { 22, 8, 2, 0, 12, 1, 21, 15, 6, 19, 17, 5, 24, 7, 11, 10, 9, 13, 20, 14, 3, 18, 16, 4, 23 };
-    return vals[nature];
+    const QVector<u8> vals = { 22, 8, 2, 0, 12, 1, 21, 15, 6, 19, 17, 5, 24, 7, 11, 10, 9, 13, 20, 14, 3, 18, 16, 4, 23 };
+    return vals.at(nature);
 }
 
 QVector<double> Nature::getNatureModifier(u8 nature)

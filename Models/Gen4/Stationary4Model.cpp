@@ -26,28 +26,24 @@ Stationary4Model::Stationary4Model(QObject *parent, Method method) : QAbstractTa
 
 void Stationary4Model::setModel(const QVector<Frame4> &frames)
 {
-    if (frames.isEmpty())
+    if (!frames.isEmpty())
     {
-        return;
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
+        model.append(frames);
+        emit endInsertRows();
     }
-
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.append(frames);
-    emit endInsertRows();
 }
 
 void Stationary4Model::clear()
 {
-    if (model.isEmpty())
+    if (!model.isEmpty())
     {
-        return;
+        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+        model.clear();
+        model.squeeze();
+        emit endRemoveRows();
     }
-
-    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-    model.clear();
-    model.squeeze();
-    emit endRemoveRows();
 }
 
 void Stationary4Model::setMethod(Method method)

@@ -25,7 +25,7 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-#include <Core/Gen4/Egg4.hpp>
+#include <Core/Gen4/EggSearcher4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Models/Gen4/Egg4Model.hpp>
@@ -50,11 +50,11 @@ public:
 private:
     Ui::Eggs4 *ui;
     QVector<Profile4> profiles;
-    Egg4GeneratorModel *generatorModel;
-    Egg4SearcherModel *searcherIVs;
-    Egg4SearcherModel *searcherPID;
-    QMenu *searcherMenu;
-    bool flag;
+    Egg4GeneratorModel *generatorModel{};
+    Egg4SearcherModel *searcherIVs{};
+    Egg4SearcherModel *searcherPID{};
+    QMenu *searcherMenu{};
+    bool flag{};
 
     void setupModels();
     void updatePID(const QVector<Frame4> &frames, int progress);
@@ -70,58 +70,6 @@ private slots:
     void on_tableViewIVs_customContextMenuRequested(const QPoint &pos);
     void seedToTime();
     void on_pushButtonProfileManager_clicked();
-
-};
-
-class PIDSearcher : public QThread
-{
-    Q_OBJECT
-
-public:
-    PIDSearcher(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay);
-    void run() override;
-    int currentProgress() const;
-    QVector<Frame4> getResults();
-
-public slots:
-    void cancelSearch();
-
-private:
-    Egg4 generator;
-    FrameCompare compare;
-    u32 minDelay;
-    u32 maxDelay;
-
-    QVector<Frame4> results;
-    QMutex mutex;
-    bool cancel;
-    int progress;
-
-};
-
-class IVSearcher : public QThread
-{
-    Q_OBJECT
-
-public:
-    IVSearcher(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay);
-    void run() override;
-    int currentProgress() const;
-    QVector<Frame4> getResults();
-
-public slots:
-    void cancelSearch();
-
-private:
-    Egg4 generator;
-    FrameCompare compare;
-    u32 minDelay;
-    u32 maxDelay;
-
-    QMutex mutex;
-    QVector<Frame4> results;
-    bool cancel;
-    int progress;
 
 };
 

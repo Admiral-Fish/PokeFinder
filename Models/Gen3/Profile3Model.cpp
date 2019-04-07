@@ -25,15 +25,13 @@ Profile3Model::Profile3Model(QObject *parent) : QAbstractTableModel(parent)
 
 void Profile3Model::setModel(const QVector<Profile3> &profiles)
 {
-    if (profiles.isEmpty())
+    if (!profiles.isEmpty())
     {
-        return;
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i + profiles.size() - 1);
+        model.append(profiles);
+        emit endInsertRows();
     }
-
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i + profiles.size() - 1);
-    model.append(profiles);
-    emit endInsertRows();
 }
 
 void Profile3Model::addItem(const Profile3 &profile)
@@ -81,9 +79,13 @@ QVariant Profile3Model::data(const QModelIndex &index, int role) const
                 return profile.getSID();
             case 5:
                 if (profile.getVersion() == Ruby || profile.getVersion() == Sapphire)
+                {
                     return profile.getDeadBattery() ? tr("Yes") : tr("No");
+                }
                 else
+                {
                     return "N/A";
+                }
         }
     }
     return QVariant();
@@ -114,7 +116,7 @@ QVariant Profile3Model::headerData(int section, Qt::Orientation orientation, int
 
 Profile3 Profile3Model::getProfile(int index)
 {
-    return model[index];
+    return model.at(index);
 }
 
 void Profile3Model::removeProfile(int index)

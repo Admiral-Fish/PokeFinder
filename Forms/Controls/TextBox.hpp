@@ -48,12 +48,12 @@ public:
 private:
     bool setup;
     u64 maxValue = 0;
-    u64 minValue;
-    int base;
+    u64 minValue{};
+    int base{};
     QRegExp filter;
 
 private slots:
-    void onTextChanged(QString string);
+    void onTextEdited(QString string);
 
 };
 

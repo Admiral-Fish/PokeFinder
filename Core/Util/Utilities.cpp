@@ -43,7 +43,7 @@ bool Utilities::shiny(u32 pid, u16 tid, u16 sid)
     return ((pid & 0xFFFF) ^ (pid >> 16) ^ tid ^ sid) < 8;
 }
 
-QString Utilities::coinFlips(u32 seed, int flips)
+QString Utilities::coinFlips(u32 seed, u8 flips)
 {
     QStringList coins;
 
@@ -57,11 +57,11 @@ QString Utilities::coinFlips(u32 seed, int flips)
     return coins.join(", ");
 }
 
-QString Utilities::getCalls(u32 seed, int num, const HGSSRoamer &info)
+QString Utilities::getCalls(u32 seed, u8 num, const HGSSRoamer &info)
 {
     QString calls = "";
 
-    int skips = info.getSkips();
+    u8 skips = info.getSkips();
 
     if (skips > 0)
     {

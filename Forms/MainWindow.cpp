@@ -59,7 +59,7 @@ void MainWindow::setupLanguage()
     QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh_Hans_CN" };
     for (int i = 0; i < locales.size(); i++)
     {
-        QString lang = locales[i];
+        const QString &lang = locales.at(i);
 
         auto *action = ui->menuLanguage->actions()[i];
         action->setData(lang);
@@ -92,7 +92,7 @@ void MainWindow::setupStyle()
     QStringList styles = { "light", "dark" };
     for (int i = 0; i < styles.size(); i++)
     {
-        QString style = styles[i];
+        const QString &style = styles.at(i);
 
         auto *action = ui->menuStyle->actions()[i];
         action->setData(style);

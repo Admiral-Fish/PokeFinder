@@ -20,13 +20,14 @@
 #ifndef RESEARCHERFRAME_HPP
 #define RESEARCHERFRAME_HPP
 
+#include <QVector>
 #include <Core/Util/Global.hpp>
 
 class ResearcherFrame
 {
 
 private:
-    u64 custom[10];
+    QVector<u64> custom;
     bool rng64Bit;
     u64 full64;
     u32 full32;
@@ -41,7 +42,7 @@ public:
     void setFull64(u64 seed) { full64 = seed; }
     u32 getFrame() const { return frame; }
     void setFrame(u32 val) { frame = val; }
-    u64 getCustom(int x) const { return custom[x]; }
+    u64 getCustom(int x) const { return custom.at(x); }
     void setCustom(int x, u64 val) { custom[x] = val; }
     inline u32 getHigh32() const { return full64 >> 32; }
     inline u32 getLow32() const { return full64 & 0xFFFFFFFF; }

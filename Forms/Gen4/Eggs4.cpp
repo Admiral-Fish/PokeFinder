@@ -203,14 +203,14 @@ void Eggs4::on_pushButtonSearchPID_clicked()
     ui->progressBarPID->setValue(0);
     ui->progressBarPID->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
-    auto *search = new PIDSearcher(generator, compare, minDelay, maxDelay);
+    auto *search = new EggSearcher4(generator, compare, minDelay, maxDelay);
     auto *timer = new QTimer(search);
 
-    connect(search, &PIDSearcher::finished, timer, &QTimer::stop);
-    connect(search, &PIDSearcher::finished, this, [ = ] { ui->pushButtonSearchPID->setEnabled(true); ui->pushButtonCancelPID->setEnabled(false); });
-    connect(search, &PIDSearcher::finished, this, [ = ] { updatePID(search->getResults(), search->currentProgress()); });
+    connect(search, &EggSearcher4::finished, timer, &QTimer::stop);
+    connect(search, &EggSearcher4::finished, this, [ = ] { ui->pushButtonSearchPID->setEnabled(true); ui->pushButtonCancelPID->setEnabled(false); });
+    connect(search, &EggSearcher4::finished, this, [ = ] { updatePID(search->getResults(), search->currentProgress()); });
     connect(timer, &QTimer::timeout, this, [ = ] { updatePID(search->getResults(), search->currentProgress()); });
-    connect(ui->pushButtonCancelPID, &QPushButton::clicked, search, &PIDSearcher::cancelSearch);
+    connect(ui->pushButtonCancelPID, &QPushButton::clicked, search, &EggSearcher4::cancelSearch);
 
     search->start();
     timer->start(1000);
@@ -239,14 +239,14 @@ void Eggs4::on_pushButtonSearchIVs_clicked()
     ui->progressBarIVs->setValue(0);
     ui->progressBarIVs->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
-    auto *search = new IVSearcher(generator, compare, minDelay, maxDelay);
+    auto *search = new EggSearcher4(generator, compare, minDelay, maxDelay);
     auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher::finished, timer, &QTimer::stop);
-    connect(search, &IVSearcher::finished, this, [ = ] { ui->pushButtonSearchIVs->setEnabled(true); ui->pushButtonCancelIVs->setEnabled(false); });
-    connect(search, &IVSearcher::finished, this, [ = ] { updateIVs(search->getResults(), search->currentProgress()); });
+    connect(search, &EggSearcher4::finished, timer, &QTimer::stop);
+    connect(search, &EggSearcher4::finished, this, [ = ] { ui->pushButtonSearchIVs->setEnabled(true); ui->pushButtonCancelIVs->setEnabled(false); });
+    connect(search, &EggSearcher4::finished, this, [ = ] { updateIVs(search->getResults(), search->currentProgress()); });
     connect(timer, &QTimer::timeout, this, [ = ] { updateIVs(search->getResults(), search->currentProgress()); });
-    connect(ui->pushButtonCancelIVs, &QPushButton::clicked, search, &IVSearcher::cancelSearch);
+    connect(ui->pushButtonCancelIVs, &QPushButton::clicked, search, &EggSearcher4::cancelSearch);
 
     search->start();
     timer->start(1000);
@@ -319,136 +319,4 @@ void Eggs4::on_pushButtonProfileManager_clicked()
     auto *manager = new ProfileManager4();
     connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
     manager->show();
-}
-
-
-PIDSearcher::PIDSearcher(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay)
-{
-    this->generator = generator;
-    this->compare = compare;
-    this->minDelay = minDelay;
-    this->maxDelay = maxDelay;
-    cancel = false;
-    progress = 0;
-
-    connect(this, &PIDSearcher::finished, this, &PIDSearcher::deleteLater);
-}
-
-void PIDSearcher::run()
-{
-    int total = 0;
-
-    for (u16 ab = 0; ab < 256; ab++)
-    {
-        for (u8 cd = 0; cd < 24; cd++)
-        {
-            for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
-            {
-                if (cancel)
-                {
-                    return;
-                }
-
-                if (total > 10000)
-                {
-                    progress = static_cast<int>(256 * 24 * (maxDelay - minDelay + 1));
-                    break;
-                }
-
-                u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                generator.setSeed(seed);
-
-                auto frames = generator.generate(compare);
-                progress++;
-                total += frames.size();
-
-                QMutexLocker locker(&mutex);
-                results.append(frames);
-            }
-        }
-    }
-}
-
-int PIDSearcher::currentProgress() const
-{
-    return progress;
-}
-
-QVector<Frame4> PIDSearcher::getResults()
-{
-    QMutexLocker lock(&mutex);
-    auto data(results);
-    results.clear();
-    return data;
-}
-
-void PIDSearcher::cancelSearch()
-{
-    cancel = true;
-}
-
-
-IVSearcher::IVSearcher(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay)
-{
-    this->generator = generator;
-    this->compare = compare;
-    this->minDelay = minDelay;
-    this->maxDelay = maxDelay;
-    cancel = false;
-    progress = 0;
-
-    connect(this, &IVSearcher::finished, this, &IVSearcher::deleteLater);
-}
-
-void IVSearcher::run()
-{
-    int total = 0;
-
-    for (u16 ab = 0; ab < 256; ab++)
-    {
-        for (u8 cd = 0; cd < 24; cd++)
-        {
-            for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
-            {
-                if (cancel)
-                {
-                    return;
-                }
-
-                if (total > 10000)
-                {
-                    progress = static_cast<int>(256 * 24 * (maxDelay - minDelay + 1));
-                    break;
-                }
-
-                u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                generator.setSeed(seed);
-
-                auto frames = generator.generate(compare);
-                progress++;
-                total += frames.size();
-
-                QMutexLocker locker(&mutex);
-                results.append(frames);
-            }
-        }
-    }
-}
-
-int IVSearcher::currentProgress() const
-{
-    return progress;
-}
-
-QVector<Frame4> IVSearcher::getResults()
-{
-    QMutexLocker lock(&mutex);
-    auto data(results);
-    results.clear();
-    return data;
-}
-
-void IVSearcher::cancelSearch()
-{
-    cancel = true;
 }

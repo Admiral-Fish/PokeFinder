@@ -55,10 +55,10 @@ public:
 private:
     Ui::Wild4 *ui;
     QVector<Profile4> profiles;
-    Searcher4Model *searcherModel;
-    Wild4Model *generatorModel;
-    QMenu *generatorMenu;
-    QMenu *searcherMenu;
+    Searcher4Model *searcherModel{};
+    Wild4Model *generatorModel{};
+    QMenu *generatorMenu{};
+    QMenu *searcherMenu{};
     QVector<EncounterArea4> encounterGenerator;
     QVector<EncounterArea4> encounterSearcher;
 

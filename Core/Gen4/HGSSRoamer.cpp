@@ -56,7 +56,7 @@ HGSSRoamer::HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8>
     }
 }
 
-int HGSSRoamer::getSkips() const
+u8 HGSSRoamer::getSkips() const
 {
     return skips;
 }
@@ -82,15 +82,15 @@ QString HGSSRoamer::getRoutes() const
 
     if (roamers[0])
     {
-        routes += "R: " + QString::number(raikouRoute) + " ";
+        routes += QString("R: %1 ").arg(raikouRoute);
     }
     if (roamers[1])
     {
-        routes += "E: " + QString::number(enteiRoute) + " ";
+        routes += QString("E: %1 ").arg(enteiRoute);
     }
     if (roamers[2])
     {
-        routes += "L: " + QString::number(latiRoute);
+        routes += QString("L: %1 ").arg(latiRoute);
     }
 
     return routes;
@@ -99,14 +99,12 @@ QString HGSSRoamer::getRoutes() const
 u8 HGSSRoamer::getRouteJ(u16 prng) const
 {
     u8 val = prng & 15;
-
     return val < 11 ? val + 29 : val + 31;
 }
 
 u8 HGSSRoamer::getRouteK(u16 prng) const
 {
     u8 val = prng % 25;
-
     if (val > 21)
     {
         switch (val)

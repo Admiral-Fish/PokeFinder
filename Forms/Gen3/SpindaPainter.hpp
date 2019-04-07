@@ -42,15 +42,15 @@ public:
 
 private:
     Ui::SpindaPainter *ui;
-    QGraphicsScene *scene;
-    QGraphicsPixmapItem *spinda;
-    GraphicsPixmapItem *spot1;
-    GraphicsPixmapItem *spot2;
-    GraphicsPixmapItem *spot3;
-    GraphicsPixmapItem *spot4;
+    QGraphicsScene *scene{};
+    QGraphicsPixmapItem *spinda{};
+    GraphicsPixmapItem *spot1{};
+    GraphicsPixmapItem *spot2{};
+    GraphicsPixmapItem *spot3{};
+    GraphicsPixmapItem *spot4{};
     u32 pid = 0;
-    const int coords[8] = { 0, 0, 24, 1, 6, 18, 18, 19 };
-    const int origin[2] = { 8, 6 };
+    const QVector<u8> coords = { 0, 0, 24, 1, 6, 18, 18, 19 };
+    const QVector<u8> origin = { 8, 6 };
     bool text = false;
 
     void setupModels();

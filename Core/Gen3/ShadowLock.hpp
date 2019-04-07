@@ -55,14 +55,14 @@ public:
     void switchLock(u8 lockNum, Method version);
 
 private:
-    int backCount, frontCount;
+    int backCount{}, frontCount{};
     QVector<LockInfo> lockInfo;
-    LockInfo currLock;
-    u32 pid, pidOriginal;
+    LockInfo currLock{};
+    u32 pid{}, pidOriginal{};
     XDRNG forward;
     XDRNGR backward;
-    ShadowType type;
-    int x;
+    ShadowType type{};
+    int x{};
 
     void countBackTwo();
     void countForwardTwo();

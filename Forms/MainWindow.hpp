@@ -64,19 +64,19 @@ public:
 private:
     Ui::MainWindow *ui;
     QTranslator translator;
-    QActionGroup *langGroup;
-    QActionGroup *styleGroup;
+    QActionGroup *langGroup{};
+    QActionGroup *styleGroup{};
     const QString VERSION = "v2.3.1";
 
-    Stationary3 *stationary3 = nullptr;
-    Wild3 *wild3 = nullptr;
-    GameCube *gamecube = nullptr;
-    Eggs3 *egg3 = nullptr;
-    IDs3 *ids3 = nullptr;
-    Stationary4 *stationary4 = nullptr;
-    Wild4 *wild4 = nullptr;
-    Eggs4 *egg4 = nullptr;
-    IDs4 *ids4 = nullptr;
+    Stationary3 *stationary3{};
+    Wild3 *wild3{};
+    GameCube *gamecube{};
+    Eggs3 *egg3{};
+    IDs3 *ids3{};
+    Stationary4 *stationary4{};
+    Wild4 *wild4{};
+    Eggs4 *egg4{};
+    IDs4 *ids4{};
 
     void setupLanguage();
     void setupStyle();

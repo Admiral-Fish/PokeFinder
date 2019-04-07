@@ -68,7 +68,7 @@ void ChainedSID::on_pushButtonCalculate_clicked()
     u8 gender = ui->comboBoxGender->currentIndex();
 
     QList<QStandardItem *> row;
-    row << new QStandardItem(QString::number(hp) + "." + QString::number(atk) + "." + QString::number(def) + "." + QString::number(spa) + "." + QString::number(spd) + "." + QString::number(spe));
+    row << new QStandardItem(QString("%1.%2.%3.%4.%5.%6").arg(hp).arg(atk).arg(def).arg(spa).arg(spd).arg(spe));
     row << new QStandardItem(Nature::getNature(nature));
     row << new QStandardItem(ui->comboBoxAbility->currentText());
     row << new QStandardItem(ui->comboBoxGender->currentText());
@@ -78,7 +78,7 @@ void ChainedSID::on_pushButtonCalculate_clicked()
     QVector<u16> sids = chainedCalc->getSIDs();
     if (sids.size() == 1)
     {
-        ui->labelPossibleResults->setText(tr("SID Found: ") + QString::number(sids[0]));
+        ui->labelPossibleResults->setText(tr("SID Found: ") + QString::number(sids.at(0)));
     }
     else
     {

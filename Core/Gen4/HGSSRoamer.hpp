@@ -29,7 +29,7 @@ class HGSSRoamer
 public:
     HGSSRoamer() = default;
     HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes);
-    int getSkips() const;
+    u8 getSkips() const;
     u8 getRaikouRoute() const;
     u8 getEnteiRoute() const;
     u8 getLatiRoute() const;
@@ -39,10 +39,10 @@ private:
     u8 getRouteJ(u16 prng) const;
     u8 getRouteK(u16 prng) const;
 
-    int skips;
-    u8 raikouRoute;
-    u8 enteiRoute;
-    u8 latiRoute;
+    u8 skips{};
+    u8 raikouRoute{};
+    u8 enteiRoute{};
+    u8 latiRoute{};
     QVector<bool> roamers;
 
 };

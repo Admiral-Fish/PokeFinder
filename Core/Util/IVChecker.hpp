@@ -32,12 +32,11 @@ class IVChecker
 {
 
 public:
-    IVChecker(Pokemon pokemon);
-    QVector<QVector<u8>> calculateIVs(QVector<u16> stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower);
+    IVChecker() = default;
+    QVector<QVector<u8>> calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower);
 
 private:
     QVector<QVector<u8>> ivs;
-    Pokemon pokemon;
 
 };
 

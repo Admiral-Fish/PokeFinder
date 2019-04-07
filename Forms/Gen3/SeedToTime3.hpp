@@ -42,7 +42,7 @@ public:
 
 private:
     Ui::SeedToTime3 *ui;
-    QStandardItemModel *model;
+    QStandardItemModel *model{};
     u32 frame = 1;
 
     void setupModels();

@@ -33,8 +33,8 @@ void ChainedSIDCalc::addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 
 {
     QVector<QPair<u32, u32>> pids;
 
-    u32 iv1 = ivs[0] | (ivs[1] << 5) | (ivs[2] << 10);
-    u32 iv2 = ivs[5] | (ivs[3] << 5) | (ivs[4] << 10);
+    u32 iv1 = ivs.at(0) | (ivs.at(1) << 5) | (ivs.at(2) << 10);
+    u32 iv2 = ivs.at(5) | (ivs.at(3) << 5) | (ivs.at(4) << 10);
 
     RNGCache cache(Method::Method1);
     auto seeds = cache.recoverLower16BitsIV(iv1 << 16, iv2 << 16);

@@ -40,18 +40,18 @@ public:
     void setSynchNature(const u8 &value);
 
 protected:
-    u16 psv;
-    u16 sid;
-    u16 tid;
-    u32 offset;
+    u16 psv{};
+    u16 sid{};
+    u16 tid{};
+    u32 offset{};
     Method frameType = Method::Method1;
     Encounter encounterType = Encounter::Stationary;
     Lead leadType = Lead::None;
-    u32 initialSeed;
-    u32 initialFrame;
-    u32 maxResults;
-    u8 synchNature;
-    u8 cuteCharm;
+    u32 initialSeed{};
+    u32 initialFrame{};
+    u32 maxResults{};
+    u8 synchNature{};
+    u8 cuteCharm{};
 
 };
 

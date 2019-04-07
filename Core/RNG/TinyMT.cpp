@@ -38,12 +38,9 @@ TinyMT::TinyMT(u32 seed, u32 frames)
     advanceFrames(frames);
 }
 
-TinyMT::TinyMT(const u32 st[], u32 frames)
+TinyMT::TinyMT(const QVector<u32> &state, u32 frames)
 {
-    for (u8 i = 0; i < 4; i++)
-    {
-        state[i] = st[i];
-    }
+    this->state = state;
     periodCertification();
     advanceFrames(frames);
 }
@@ -58,12 +55,12 @@ void TinyMT::advanceFrames(u32 frames)
 
 void TinyMT::nextState()
 {
-    u32 y = state[3];
-    u32 x = (state[0] & TINYMT32MASK) ^ state[1] ^ state[2];
+    u32 y = state.at(3);
+    u32 x = (state.at(0) & TINYMT32MASK) ^ state.at(1) ^ state.at(2);
     x ^= (x << TINYMT32SH0);
     y ^= (y >> TINYMT32SH0) ^ x;
-    state[0] = state[1];
-    state[1] = state[2];
+    state[0] = state.at(1);
+    state[1] = state.at(2);
     state[2] = x ^ (y << TINYMT32SH1);
     state[3] = y;
 
@@ -87,8 +84,8 @@ u16 TinyMT::nextUShort()
 
 u32 TinyMT::temper()
 {
-    u32 t0 = state[3];
-    u32 t1 = state[0] + (state[2] >> TINYMT32SH8);
+    u32 t0 = state.at(3);
+    u32 t1 = state.at(0) + (state.at(2) >> TINYMT32SH8);
 
     t0 ^= t1;
     if (t1 & 1)
@@ -109,7 +106,7 @@ void TinyMT::setSeed(u32 seed, u32 frames)
     advanceFrames(frames);
 }
 
-u32 *TinyMT::getState()
+QVector<u32> TinyMT::getState()
 {
     return state;
 }
@@ -122,19 +119,16 @@ u32 TinyMT::getSeed()
 void TinyMT::initialize(u32 seed)
 {
     this->seed = seed;
-    state[0] = seed;
-    state[1] = MAT1;
-    state[2] = MAT2;
-    state[3] = TMAT;
+    state = { seed, MAT1, MAT2, TMAT };
 
     for (u8 i = 1; i < 8; i++)
     {
-        state[i & 3] ^= i + 0x6c078965 * (state[(i - 1) & 3] ^ (state[(i - 1) & 3] >> 30));
+        state[i & 3] ^= 0x6c078965 * (state.at((i - 1) & 3) ^ (state.at((i - 1) & 3) >> 30)) + 1;
     }
 
     periodCertification();
 
-    for (int i = 0; i < 8; i++)
+    for (u8 i = 0; i < 8; i++)
     {
         nextState();
     }
@@ -144,9 +138,6 @@ void TinyMT::periodCertification()
 {
     if (state[0] == 0 && state[1] == 0 && state[2] == 0 && state[3] == 0)
     {
-        state[0] = 'T';
-        state[1] = 'I';
-        state[2] = 'N';
-        state[3] = 'Y';
+        state = { 'T', 'I', 'N', 'Y' };
     }
 }

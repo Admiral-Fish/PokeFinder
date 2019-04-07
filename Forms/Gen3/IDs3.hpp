@@ -40,9 +40,9 @@ public:
 
 private:
     Ui::IDs3 *ui;
-    QStandardItemModel *xdcolo;
-    QStandardItemModel *frlge;
-    QStandardItemModel *rs;
+    QStandardItemModel *xdcolo{};
+    QStandardItemModel *frlge{};
+    QStandardItemModel *rs{};
 
     void setupModels();
 

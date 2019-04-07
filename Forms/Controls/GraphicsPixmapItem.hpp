@@ -27,9 +27,9 @@ class GraphicsPixmapItem : public QGraphicsPixmapItem
 {
 
 public:
-    GraphicsPixmapItem(const QPixmap &pixmap);
-    void setMin(u16 x, u16 y);
-    void setMax(u16 x, u16 y);
+    GraphicsPixmapItem(const QPixmap &pixmap, u16 minX = 0, u16 minY = 0, u16 maxX = 0, u16 maxY = 0);
+    void setMin(u16 minX, u16 minY);
+    void setMax(u16 maxX, u16 maxY);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 
 private:

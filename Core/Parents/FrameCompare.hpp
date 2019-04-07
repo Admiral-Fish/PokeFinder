@@ -47,14 +47,14 @@ public:
 private:
     QVector<u8> min;
     QVector<u8> max;
-    u16 gender;
-    u8 genderRatio;
-    u8 ability;
+    u16 gender{};
+    u8 genderRatio{};
+    u8 ability{};
     QVector<bool> natures;
     QVector<bool> powers;
     QVector<bool> encounterSlots;
-    bool shiny;
-    bool skip;
+    bool shiny{};
+    bool skip{};
 
 };
 

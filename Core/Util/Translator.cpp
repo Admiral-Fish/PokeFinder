@@ -88,7 +88,7 @@ QStringList Translator::getLocationsGen3(const QVector<u8> &nums, Game game)
         QTextStream ts(&file);
         ts.setCodec("UTF-8");
 
-        QMap<int, QString> input;
+        QMap<u8, QString> input;
         while (!ts.atEnd())
         {
             QStringList entry = ts.readLine().split(',');
@@ -127,7 +127,7 @@ QStringList Translator::getLocationsGen4(const QVector<u8> &nums, Game game)
         QTextStream ts(&file);
         ts.setCodec("UTF-8");
 
-        QMap<int, QString> input;
+        QMap<u8, QString> input;
         while (!ts.atEnd())
         {
             QStringList entry = ts.readLine().split(',');

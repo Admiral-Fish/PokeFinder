@@ -23,6 +23,7 @@
 #include <QFile>
 #include <QVector>
 #include <Core/Util/Encounter.hpp>
+#include <Core/Parents/Pokemon.hpp>
 #include <Core/Util/Global.hpp>
 #include <Core/Util/Translator.hpp>
 
@@ -41,12 +42,12 @@ public:
     QVector<bool> getSlots(u16 num) const;
     QPair<u8, u8> getLevelRange(u16 specie) const;
     QStringList getSpecieNames() const;
-    void setSlot(u8 index, u16 specie);
+    void setSlot(u8 index, u16 specie, Pokemon mon);
 
 protected:
     QVector<Slot> pokemon;
-    u8 location;
-    Encounter type;
+    u8 location{};
+    Encounter type{};
 
 };
 
@@ -55,18 +56,20 @@ class Slot
 
 public:
     Slot() = default;
-    Slot(u16 specie, u8 minLevel, u8 maxLevel);
-    Slot(u16 specie, u8 level);
+    Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon);
+    Slot(u16 specie, u8 level, Pokemon pokemon);
 
-    u8 getMinLevel() const { return minLevel; }
-    u8 getMaxLevel() const { return maxLevel; }
-    u16 getSpecie() const { return specie; }
-    void setSpecie(int specie) { this->specie = specie; }
+    u8 getMinLevel() const;
+    u8 getMaxLevel() const;
+    u16 getSpecie() const;
+    Pokemon getPokemon() const;
+    void setSpecie(u16 specie, Pokemon pokemon);
 
 private:
     u8 minLevel;
     u8 maxLevel;
     u16 specie;
+    Pokemon pokemon;
 
 };
 

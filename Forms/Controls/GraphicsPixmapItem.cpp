@@ -19,23 +19,37 @@
 
 #include "GraphicsPixmapItem.hpp"
 
-GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap)
+GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap, u16 minX, u16 minY, u16 maxX, u16 maxY)
 {
     setPixmap(pixmap);
+    this->minX = minX;
+    this->minY = minY;
+    this->maxX = maxX;
+    this->maxY = maxY;
+
+    setX(minX);
+    setY(minY);
 }
 
-void GraphicsPixmapItem::setMin(u16 x, u16 y)
+void GraphicsPixmapItem::setMin(u16 minX, u16 minY)
 {
-    minX = x;
-    minY = y;
-    setX(x);
-    setY(y);
+    this->minX = minX;
+    this->minY = minY;
+
+    if (x() < minX)
+    {
+        setX(minX);
+    }
+    if (y() < minY)
+    {
+        setY(minY);
+    }
 }
 
-void GraphicsPixmapItem::setMax(u16 x, u16 y)
+void GraphicsPixmapItem::setMax(u16 maxX, u16 maxY)
 {
-    maxX = x;
-    maxY = y;
+    this->maxX = maxX;
+    this->maxY = maxY;
 }
 
 void GraphicsPixmapItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
@@ -44,19 +58,19 @@ void GraphicsPixmapItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
     if (x() < minX)
     {
-        setPos(minX, y());
+        setX(minX);
     }
     else if (x() > maxX)
     {
-        setPos(maxX, y());
+        setX(maxX);
     }
 
     if (y() < minY)
     {
-        setPos(x(), minY);
+        setY(minY);
     }
     else if (y() > maxY)
     {
-        setPos(x(), maxY);
+        setY(maxY);
     }
 }

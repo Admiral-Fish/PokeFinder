@@ -46,26 +46,15 @@ void SpindaPainter::setupModels()
     ui->graphicsView->setScene(scene);
 
     spinda = new QGraphicsPixmapItem(QPixmap(":/images/spinda.png"));
-    spot1 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot1"));
-    spot2 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot2"));
-    spot3 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot3"));
-    spot4 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot4"));
+    spot1 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot1"), 64, 48, 184, 168);
+    spot2 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot2"), 256, 56, 376, 176);
+    spot3 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot3"), 112, 192, 232, 312);
+    spot4 = new GraphicsPixmapItem(QPixmap(":/images/spinda_spot4"), 208, 200, 328, 320);
 
     spot1->setFlag(QGraphicsItem::ItemIsMovable);
-    spot1->setMin(64, 48);
-    spot1->setMax(184, 168);
-
     spot2->setFlag(QGraphicsItem::ItemIsMovable);
-    spot2->setMin(256, 56);
-    spot2->setMax(376, 176);
-
     spot3->setFlag(QGraphicsItem::ItemIsMovable);
-    spot3->setMin(112, 192);
-    spot3->setMax(232, 312);
-
     spot4->setFlag(QGraphicsItem::ItemIsMovable);
-    spot4->setMin(208, 200);
-    spot4->setMax(328, 320);
 
     scene->addItem(spinda);
     scene->addItem(spot1);
@@ -76,11 +65,11 @@ void SpindaPainter::setupModels()
 
 void SpindaPainter::moveSpot(GraphicsPixmapItem *item, int index)
 {
-    int x = (pid >> (index * 8)) & 0xf;
-    int y = (pid >> (index * 8 + 4)) & 0xf;
+    u8 x = (pid >> (index * 8)) & 0xf;
+    u8 y = (pid >> (index * 8 + 4)) & 0xf;
 
-    x += coords[2 * index] + origin[0];
-    y += coords[2 * index + 1] + origin[1];
+    x += coords.at(2 * index) + origin.at(0);
+    y += coords.at(2 * index + 1) + origin.at(1);
 
     item->setPos(x * 8, y * 8);
 }
@@ -127,8 +116,8 @@ void SpindaPainter::updatePID(const QList<QRectF> & /*region*/)
         pid = 0;
         for (u8 i = 0; i < 4; i++)
         {
-            u32 left = static_cast<u32>(pos[i * 2] / 8) - coords[2 * i] - origin[0];
-            u32 right = static_cast<u32>(pos[i * 2 + 1] / 8) - coords[2 * i + 1] - origin[1];
+            u32 left = static_cast<u32>(pos.at(i * 2) / 8) - coords.at(2 * i) - origin.at(0);
+            u32 right = static_cast<u32>(pos.at(i * 2 + 1) / 8) - coords.at(2 * i + 1) - origin.at(1);
 
             pid |= (left << (28 - i * 8));
             pid |= (right << (24 - i * 8));

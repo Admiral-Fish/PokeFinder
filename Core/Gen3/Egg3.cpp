@@ -196,10 +196,10 @@ QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
     u32 pid = 0;
 
     PokeRNG rng(seed, initialFrame - 1);
-    auto *rngArray = new u16[maxResults + 19];
-    for (u32 x = 0; x < maxResults + 19; x++)
+    QVector<u16> rngList(maxResults + 19);
+    for (u16 &x : rngList)
     {
-        rngArray[x] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     u32 val = initialFrame;
@@ -212,64 +212,52 @@ QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
             Frame3 frame(tid, sid, psv);
             frame.setGenderRatio(compare.getGenderRatio());
 
-            if (((rngArray[cnt] * 100) / 0xFFFF) >= compatability)
+            if (((rngList.at(cnt) * 100) / 0xFFFF) < compatability)
             {
-                continue;
-            }
+                u16 offset = calibration + 3 * redraw;
 
-            u16 offset = calibration + 3 * redraw;
+                i = 1;
 
-            i = 1;
+                bool flag = everstone ? (rngList.at(cnt + i++) >> 15) == 0 : false;
 
-            bool flag = everstone ? (rngArray[cnt + i++] >> 15) == 0 : false;
+                PokeRNG trng((val - offset) & 0xFFFF);
 
-            PokeRNG trng((val - offset) & 0xFFFF);
-
-            if (!flag)
-            {
-                // Lower PID
-                pid = (rngArray[i + cnt] % 0xFFFE) + 1;
-
-                // Upper PID
-                pid |= trng.nextUInt() & 0xFFFF0000;
-
-                frame.setPID(pid, pid >> 16, pid & 0xFFFF);
-                frame.setNature(pid % 25);
-            }
-            else
-            {
-                do
+                if (!flag)
                 {
-                    // VBlank at 17 from starting PID generation
-                    // Adjusted i value is 19
-                    // Skip at this point since spread is unlikely to occur
-                    if (i == 19)
+                    pid = ((rngList.at(cnt + i) % 0xFFFE) + 1) | (trng.nextUInt() & 0xFFFF0000);
+
+                    frame.setPID(pid, pid >> 16, pid & 0xFFFF);
+                    frame.setNature(pid % 25);
+                }
+                else
+                {
+                    do
                     {
-                        break;
+                        // VBlank at 17 from starting PID generation
+                        // Adjusted i value is 19
+                        // Skip at this point since spread is unlikely to occur
+                        if (i == 19)
+                        {
+                            break;
+                        }
+
+                        pid = rngList.at(cnt + i++) | (trng.nextUInt() & 0xFFFF0000);
                     }
+                    while (pid % 25 != everstoneNature);
 
-                    // generate lower
-                    pid = rngArray[cnt + i++];
-
-                    // generate upper
-                    pid |= trng.nextUInt() & 0xFFFF0000;
+                    if (i != 19)
+                    {
+                        frame.setPID(pid, pid >> 16, pid & 0xFFFF);
+                        frame.setNature(everstoneNature);
+                    }
                 }
-                while (pid % 25 != everstoneNature);
 
-                if (i == 19)
+                if (compare.comparePID(frame))
                 {
-                    continue;
+                    frame.setFrame(cnt + initialFrame - offset);
+                    frame.setOccidentary(redraw);
+                    frames.append(frame);
                 }
-
-                frame.setPID(pid, pid >> 16, pid & 0xFFFF);
-                frame.setNature(everstoneNature);
-            }
-
-            if (compare.comparePID(frame))
-            {
-                frame.setFrame(cnt + initialFrame - offset);
-                frame.setOccidentary(redraw);
-                frames.append(frame);
             }
         }
     }
@@ -279,7 +267,6 @@ QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
         return frame1.getFrame() < frame2.getFrame();
     });
 
-    delete[] rngArray;
     return frames;
 }
 
@@ -288,18 +275,18 @@ QVector<Frame3> Egg3::generateEmeraldIVs(const FrameCompare &compare) const
     QVector<Frame3> frames;
 
     PokeRNG rng(seed, initialFrame - 1);
-    auto *rngArray = new u16[maxResults + 10];
-    for (u32 x = 0; x < maxResults + 10; x++)
+    QVector<u16> rngList(maxResults + 10);
+    for (u16 &x : rngList)
     {
-        rngArray[x] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     u32 max = maxResults - initialFrame + 1;
     for (u32 cnt = 0; cnt < max; cnt++)
     {
         Frame3 frame(tid, sid, psv);
-        frame.setInheritance(rngArray[iv1 + cnt], rngArray[iv2 + cnt], rngArray[par1 + cnt], rngArray[par2 + cnt], rngArray[par3 + cnt],
-                             rngArray[inh1 + cnt], rngArray[inh2 + cnt], rngArray[inh3 + cnt], parent1, parent2, true);
+        frame.setInheritance(rngList.at(cnt + iv1), rngList.at(cnt + iv2), rngList.at(cnt + par1), rngList.at(cnt + par2), rngList.at(cnt + par3),
+                             rngList.at(cnt + inh1), rngList.at(cnt + inh2), rngList.at(cnt + inh3), parent1, parent2, true);
 
         if (compare.compareIVs(frame))
         {
@@ -308,7 +295,6 @@ QVector<Frame3> Egg3::generateEmeraldIVs(const FrameCompare &compare) const
         }
     }
 
-    delete[] rngArray;
     return frames;
 }
 
@@ -317,31 +303,28 @@ QVector<Frame3> Egg3::generateLower(const FrameCompare &compare) const
     QVector<Frame3> frames;
 
     PokeRNG rng(seed, initialFrame - 1);
-    auto *rngArray = new u16[maxResults + 2];
-    for (u32 x = 0; x < maxResults + 2; x++)
+    QVector<u16> rngList(maxResults + 2);
+    for (u16 &x : rngList)
     {
-        rngArray[x] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     u32 max = maxResults - initialFrame + 1;
     for (u32 cnt = 0; cnt < max; cnt++)
     {
-        if (((rngArray[cnt] * 100) / 0xFFFF) >= compatability)
+        if (((rngList.at(cnt) * 100) / 0xFFFF) < compatability)
         {
-            continue;
-        }
+            Frame3 frame(tid, sid, psv);
+            frame.setPID((rngList.at(cnt + 1) % 0xFFFE) + 1);
 
-        Frame3 frame(tid, sid, psv);
-        frame.setPID((rngArray[1 + cnt] % 0xFFFE) + 1);
-
-        if (compare.compareGender(frame))
-        {
-            frame.setFrame(cnt + initialFrame);
-            frames.append(frame);
+            if (compare.compareGender(frame))
+            {
+                frame.setFrame(cnt + initialFrame);
+                frames.append(frame);
+            }
         }
     }
 
-    delete[] rngArray;
     return frames;
 }
 
@@ -350,19 +333,19 @@ QVector<Frame3> Egg3::generateUpper(const QVector<Frame3> &lower, const FrameCom
     QVector<Frame3> upper;
 
     PokeRNG rng(pickupSeed, minPickup - 1);
-    auto *rngArray = new u16[maxPickup + 12];
-    for (u32 x = 0; x < maxPickup + 12; x++)
+    QVector<u16> rngList(maxPickup + 12);
+    for (u16 &x : rngList)
     {
-        rngArray[x] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     u32 max = maxPickup - minPickup + 1;
     for (u32 cnt = 0; cnt < max; cnt++)
     {
         Frame3 frame(tid, sid, psv);
-        frame.setPID(rngArray[cnt]);
-        frame.setInheritance(rngArray[iv1 + cnt], rngArray[iv2 + cnt], rngArray[par1 + cnt], rngArray[par2 + cnt], rngArray[par3 + cnt],
-                             rngArray[inh1 + cnt], rngArray[inh2 + cnt], rngArray[inh3 + cnt], parent1, parent2);
+        frame.setPID(rngList.at(cnt));
+        frame.setInheritance(rngList.at(cnt + iv1), rngList.at(cnt + iv2), rngList.at(cnt + par1), rngList.at(cnt + par2), rngList.at(cnt + par3),
+                             rngList.at(cnt + inh1), rngList.at(cnt + inh2), rngList.at(cnt + inh3), parent1, parent2);
 
         if (compare.compareIVs(frame))
         {

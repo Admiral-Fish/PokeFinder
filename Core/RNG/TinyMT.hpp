@@ -20,6 +20,7 @@
 #ifndef TINYMT_HPP
 #define TINYMT_HPP
 
+#include <QVector>
 #include <Core/RNG/IRNG.hpp>
 
 class TinyMT : public IRNG
@@ -28,7 +29,7 @@ class TinyMT : public IRNG
 public:
     TinyMT();
     TinyMT(u32 seed, u32 frames = 0);
-    TinyMT(const u32 st[], u32 frames = 0);
+    TinyMT(const QVector<u32> &state, u32 frames = 0);
     void advanceFrames(u32 frames) override;
     void nextState();
     u32 nextUInt() override;
@@ -37,11 +38,11 @@ public:
     void setSeed(u32 seed) override;
     void setSeed(u32 seed, u32 frames) override;
     u32 getSeed() override;
-    u32 *getState();
+    QVector<u32> getState();
 
 private:
-    u32 state[4];
-    u32 seed;
+    QVector<u32> state;
+    u32 seed{};
 
     void initialize(u32 seed);
     void periodCertification();

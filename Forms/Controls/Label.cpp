@@ -19,7 +19,8 @@
 
 #include "Label.hpp"
 
-Label::Label(QWidget *parent) : QLabel(parent)
+Label::Label(QWidget *parent) :
+    QLabel(parent)
 {
 }
 

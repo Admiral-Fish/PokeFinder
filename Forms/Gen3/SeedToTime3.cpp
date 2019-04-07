@@ -62,7 +62,7 @@ void SeedToTime3::setupModels()
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
     ui->textBoxYear->setValues(2000, 2037);
 
-    model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame") << tr("Seconds"));
+    model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame"));
     ui->tableView->setModel(model);
 
     QSettings setting;
@@ -127,8 +127,7 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
                     {
                         QDateTime finalTime = start.addDays(day).addSecs((hour * 60 * 60) + (minute * 60));
                         QString result = finalTime.toString(Qt::SystemLocaleShortDate);
-                        u32 seconds = day * 86400 + hour * 3600 + minute * 60;
-                        model->appendRow(QList<QStandardItem *>() << new QStandardItem(result) << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(seconds)));
+                        model->appendRow(QList<QStandardItem *>() << new QStandardItem(result) << new QStandardItem(QString::number(frame)));
                     }
                 }
             }

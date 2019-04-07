@@ -87,7 +87,7 @@ void SearchCalls::on_lineEditCalls_textChanged(const QString &val)
         bool pass = true;
         for (int j = 0; j < results.size(); j++)
         {
-            if (results[j] != compare[j])
+            if (results.at(j) != compare.at(j))
             {
                 pass = false;
                 break;

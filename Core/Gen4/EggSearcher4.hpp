@@ -17,26 +17,37 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTERAREA3_HPP
-#define ENCOUNTERAREA3_HPP
+#ifndef EGGSEARCHER4_HPP
+#define EGGSEARCHER4_HPP
 
-#include <Core/Parents/EncounterArea.hpp>
-#include <Core/Util/Game.hpp>
+#include <QMutex>
+#include <QThread>
+#include <Core/Gen4/Egg4.hpp>
 
-class EncounterArea3 : public EncounterArea
+class EggSearcher4 : public QThread
 {
+    Q_OBJECT
 
 public:
-    EncounterArea3() = default;
-    EncounterArea3(u8 location, u16 delay, Encounter type, const QVector<Slot> &pokemon);
-    u8 calcLevel(u8 index, u16 prng) const;
-    u8 calcLevel(u8 index) const;
-    u8 getEncounterRate() const;
-    u16 getDelay() const;
+    EggSearcher4(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay);
+    void run() override;
+    int currentProgress() const;
+    QVector<Frame4> getResults();
+
+public slots:
+    void cancelSearch();
 
 private:
-    u16 delay{};
+    Egg4 generator;
+    FrameCompare compare;
+    u32 minDelay;
+    u32 maxDelay;
+
+    QMutex mutex;
+    QVector<Frame4> results;
+    bool cancel;
+    int progress;
 
 };
 
-#endif // ENCOUNTERAREA3_HPP
+#endif // EGGSEARCHER4_HPP

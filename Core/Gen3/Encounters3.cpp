@@ -23,6 +23,7 @@ Encounters3::Encounters3(Encounter type, const Profile3 &profile)
 {
     this->type = type;
     this->profile = profile;
+    pokemon = Pokemon::loadPersonal(3);
 }
 
 QVector<EncounterArea3> Encounters3::getEncounters() const
@@ -91,28 +92,28 @@ QVector<EncounterArea3> Encounters3::getArea(const QByteArray &data) const
 
     if (getValue(data, 3, 1) == 1 || getValue(data, 3, 1) == 2)
     {
-        QVector<Slot> pokemon;
+        QVector<Slot> grass;
         for (int i = 0; i < 12; i++)
         {
             u8 level = getValue(data, 6 + i * 3, 1);
             u16 specie = getValue(data, 7 + i * 3, 2);
-            pokemon.append(Slot(specie, level));
+            grass.append(Slot(specie, level, pokemon.at(specie)));
         }
 
         u16 val = getValue(data, 3, 1);
-        encounters.append(EncounterArea3(location, delay, val == 1 ? Encounter::Grass : Encounter::SafariZone, pokemon));
+        encounters.append(EncounterArea3(location, delay, val == 1 ? Encounter::Grass : Encounter::SafariZone, grass));
     }
     if (getValue(data, 4, 1) == 1)
     {
-        QVector<Slot> pokemon;
+        QVector<Slot> rock;
         for (int i = 0; i < 5; i++)
         {
             u8 min = getValue(data, 42 + i * 4, 1);
             u8 max = getValue(data, 43 + i * 4, 1);
             u16 specie = getValue(data, 44 + i * 4, 2);
-            pokemon.append(Slot(specie, min, max));
+            rock.append(Slot(specie, min, max, pokemon.at(specie)));
         }
-        encounters.append(EncounterArea3(location, delay, Encounter::RockSmash, pokemon));
+        encounters.append(EncounterArea3(location, delay, Encounter::RockSmash, rock));
     }
     if (getValue(data, 5, 1) == 1)
     {
@@ -122,7 +123,7 @@ QVector<EncounterArea3> Encounters3::getArea(const QByteArray &data) const
             u8 min = getValue(data, 62 + i * 4, 1);
             u8 max = getValue(data, 63 + i * 4, 1);
             u16 specie = getValue(data, 64 + i * 4, 2);
-            surf.append(Slot(specie, min, max));
+            surf.append(Slot(specie, min, max, pokemon.at(specie)));
         }
         encounters.append(EncounterArea3(location, delay, Encounter::Surfing, surf));
 
@@ -132,7 +133,7 @@ QVector<EncounterArea3> Encounters3::getArea(const QByteArray &data) const
             u8 min = getValue(data, 82 + i * 4, 1);
             u8 max = getValue(data, 83 + i * 4, 1);
             u16 specie = getValue(data, 84 + i * 4, 2);
-            old.append(Slot(specie, min, max));
+            old.append(Slot(specie, min, max, pokemon.at(specie)));
         }
         encounters.append(EncounterArea3(location, delay, Encounter::OldRod, old));
 
@@ -142,7 +143,7 @@ QVector<EncounterArea3> Encounters3::getArea(const QByteArray &data) const
             u8 min = getValue(data, 90 + i * 4, 1);
             u8 max = getValue(data, 91 + i * 4, 1);
             u16 specie = getValue(data, 92 + i * 4, 2);
-            good.append(Slot(specie, min, max));
+            good.append(Slot(specie, min, max, pokemon.at(specie)));
         }
         encounters.append(EncounterArea3(location, delay, Encounter::GoodRod, good));
 
@@ -152,7 +153,7 @@ QVector<EncounterArea3> Encounters3::getArea(const QByteArray &data) const
             u8 min = getValue(data, 102 + i * 4, 1);
             u8 max = getValue(data, 103 + i * 4, 1);
             u16 specie = getValue(data, 104 + i * 4, 2);
-            super.append(Slot(specie, min, max));
+            super.append(Slot(specie, min, max, pokemon.at(specie)));
         }
         encounters.append(EncounterArea3(location, delay, Encounter::SuperRod, super));
     }

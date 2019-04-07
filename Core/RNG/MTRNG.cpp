@@ -37,6 +37,60 @@ void MT::advanceFrames(u32 frames)
     }
 }
 
+void MT::shuffle()
+{
+    u32 y;
+    u16 i = 0;
+
+    for (; i < 227; i++)
+    {
+        y = (mt.at(i) & UPPERMASK) | (mt.at(i + 1) & LOWERMASK);
+        mt[i] = mt.at(i + M) ^ (y >> 1) ^ mag01.at(y & 0x1);
+    }
+
+    for (; i < 623; ++i)
+    {
+        y = (mt.at(i) & UPPERMASK) | (mt.at(i + 1) & LOWERMASK);
+        mt[i] = mt.at(i - 227) ^ (y >> 1) ^ mag01.at(y & 0x1);
+    }
+
+    y = (mt.at(623) & UPPERMASK) | (mt.at(0) & LOWERMASK);
+    mt[623] = mt.at(396) ^ (y >> 1) ^ mag01.at(y & 0x1);
+}
+
+void MT::initialize(u32 seed)
+{
+    this->seed = seed;
+    mt = QVector<u32>(624);
+    mt[0] = seed;
+
+    for (index = 1; index < N; index++)
+    {
+        mt[index] = (0x6C078965 * (mt.at(index - 1) ^ (mt.at(index - 1) >> 30)) + index);
+    }
+}
+
+void MT::setSeed(u32 seed)
+{
+    initialize(seed);
+}
+
+void MT::setSeed(u32 seed, u32 frames)
+{
+    initialize(seed);
+    advanceFrames(frames);
+}
+
+u16 MT::nextUShort()
+{
+    return nextUInt() >> 16;
+}
+
+u32 MT::getSeed()
+{
+    return seed;
+}
+
 
 MersenneTwister::MersenneTwister()
 {
@@ -57,66 +111,13 @@ u32 MersenneTwister::nextUInt()
         index = 0;
     }
 
-    u32 y = mt[index++];
+    u32 y = mt.at(index++);
     y ^= (y >> 11);
     y ^= (y << 7) & TEMPERINGMASKB;
     y ^= (y << 15) & TEMPERINGMASKC;
     y ^= (y >> 18);
 
     return y;
-}
-
-u16 MersenneTwister::nextUShort()
-{
-    return nextUInt() >> 16;
-}
-
-void MersenneTwister::setSeed(u32 seed)
-{
-    initialize(seed);
-}
-
-void MersenneTwister::setSeed(u32 seed, u32 frames)
-{
-    initialize(seed);
-    advanceFrames(frames);
-}
-
-u32 MersenneTwister::getSeed()
-{
-    return seed;
-}
-
-void MersenneTwister::initialize(u32 seed)
-{
-    this->seed = seed;
-    mt[0] = seed;
-
-    for (index = 1; index < N; index++)
-    {
-        mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
-    }
-}
-
-void MersenneTwister::shuffle()
-{
-    u32 y;
-    u16 kk = 0;
-
-    for (; kk < 227; ++kk)
-    {
-        y = (mt[kk] & UPPERMASK) | (mt[kk + 1] & LOWERMASK);
-        mt[kk] = mt[kk + M] ^ (y >> 1) ^ mag01[y & 0x1];
-    }
-
-    for (; kk < 623; ++kk)
-    {
-        y = (mt[kk] & UPPERMASK) | (mt[kk + 1] & LOWERMASK);
-        mt[kk] = mt[kk - 227] ^ (y >> 1) ^ mag01[y & 0x1];
-    }
-
-    y = (mt[623] & UPPERMASK) | (mt[0] & LOWERMASK);
-    mt[623] = mt[396] ^ (y >> 1) ^ mag01[y & 0x1];
 }
 
 
@@ -139,60 +140,7 @@ u32 MersenneTwisterUntempered::nextUInt()
         index = 0;
     }
 
-    return mt[index++];
-}
-
-u16 MersenneTwisterUntempered::nextUShort()
-{
-    return nextUInt() >> 16;
-}
-
-void MersenneTwisterUntempered::setSeed(u32 seed)
-{
-    initialize(seed);
-}
-
-void MersenneTwisterUntempered::setSeed(u32 seed, u32 frames)
-{
-    initialize(seed);
-    advanceFrames(frames);
-}
-
-u32 MersenneTwisterUntempered::getSeed()
-{
-    return seed;
-}
-
-void MersenneTwisterUntempered::initialize(u32 seed)
-{
-    this->seed = seed;
-    mt[0] = seed;
-
-    for (index = 1; index < N; index++)
-    {
-        mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
-    }
-}
-
-void MersenneTwisterUntempered::shuffle()
-{
-    u16 kk = 0;
-    u32 y;
-
-    for (; kk < 227; ++kk)
-    {
-        y = (mt[kk] & UPPERMASK) | (mt[kk + 1] & LOWERMASK);
-        mt[kk] = mt[kk + M] ^ (y >> 1) ^ mag01[y & 0x1];
-    }
-
-    for (; kk < 623; ++kk)
-    {
-        y = (mt[kk] & UPPERMASK) | (mt[kk + 1] & LOWERMASK);
-        mt[kk] = mt[kk - 227] ^ (y >> 1) ^ mag01[y & 0x1];
-    }
-
-    y = (mt[623] & UPPERMASK) | (mt[0] & LOWERMASK);
-    mt[623] = mt[396] ^ (y >> 1) ^ mag01[y & 0x1];
+    return mt.at(index++);
 }
 
 
@@ -232,35 +180,15 @@ u32 MersenneTwisterFast::nextUInt()
     return y;
 }
 
-u16 MersenneTwisterFast::nextUShort()
-{
-    return nextUInt() >> 16;
-}
-
-void MersenneTwisterFast::setSeed(u32 seed)
-{
-    initialize(seed);
-}
-
-void MersenneTwisterFast::setSeed(u32 seed, u32 frames)
-{
-    initialize(seed);
-    advanceFrames(frames);
-}
-
-u32 MersenneTwisterFast::getSeed()
-{
-    return seed;
-}
-
 void MersenneTwisterFast::initialize(u32 seed)
 {
     this->seed = seed;
+    mt = QVector<u32>(max);
     mt[0] = seed;
 
     for (index = 1; index < max; ++index)
     {
-        mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
+        mt[index] = (0x6C078965 * (mt.at(index - 1) ^ (mt.at(index - 1) >> 30)) + index);
     }
 }
 
@@ -268,9 +196,9 @@ void MersenneTwisterFast::shuffle()
 {
     u32 y;
 
-    for (u16 kk = 0; kk < maxCalls; ++kk)
+    for (u16 i = 0; i < maxCalls; ++i)
     {
-        y = (mt[kk] & UPPERMASK) | (mt[kk + 1] & LOWERMASK);
-        mt[kk] = mt[kk + M] ^ (y >> 1) ^ mag01[y & 0x1];
+        y = (mt.at(i) & UPPERMASK) | (mt.at(i + 1) & LOWERMASK);
+        mt[i] = mt.at(i + M) ^ (y >> 1) ^ mag01.at(y & 0x1);
     }
 }

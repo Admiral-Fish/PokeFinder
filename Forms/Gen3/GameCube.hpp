@@ -53,11 +53,11 @@ public:
 
 private:
     Ui::GameCube *ui;
-    Searcher3Model *searcherModel;
-    Stationary3Model *generatorModel;
+    Searcher3Model *searcherModel{};
+    Stationary3Model *generatorModel{};
     QVector<Profile3> profiles;
-    QMenu *generatorMenu;
-    QMenu *searcherMenu;
+    QMenu *generatorMenu{};
+    QMenu *searcherMenu{};
 
     void setupModels();
     void updateView(const QVector<Frame3> &frames, int progress);
