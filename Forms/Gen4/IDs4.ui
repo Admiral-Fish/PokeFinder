@@ -24,15 +24,9 @@
     <widget class="QGroupBox" name="groupBoxShinyPID">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>2</verstretch>
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>0</height>
-      </size>
      </property>
      <property name="title">
       <string>Shiny PID</string>
@@ -40,12 +34,6 @@
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="labelShinyPIDPID">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>PID</string>
         </property>
@@ -53,12 +41,6 @@
       </item>
       <item row="0" column="1" colspan="2">
        <widget class="TextBox" name="textBoxShinyPIDPID">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>8</number>
         </property>
@@ -76,12 +58,6 @@
         <property name="enabled">
          <bool>false</bool>
         </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>TID</string>
         </property>
@@ -92,12 +68,6 @@
         <property name="enabled">
          <bool>false</bool>
         </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>5</number>
         </property>
@@ -105,12 +75,6 @@
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="labelShinyPIDYear">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Year</string>
         </property>
@@ -118,12 +82,6 @@
       </item>
       <item row="3" column="1" colspan="2">
        <widget class="TextBox" name="textBoxShinyPIDYear">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string notr="true">2000</string>
         </property>
@@ -134,12 +92,6 @@
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="labelShinyPIDMinDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Min Delay</string>
         </property>
@@ -147,12 +99,6 @@
       </item>
       <item row="4" column="1" colspan="2">
        <widget class="TextBox" name="textBoxShinyPIDMinDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string notr="true">5000</string>
         </property>
@@ -163,12 +109,6 @@
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="labelShinyPIDMaxDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Max Delay</string>
         </property>
@@ -176,12 +116,6 @@
       </item>
       <item row="5" column="1" colspan="2">
        <widget class="TextBox" name="textBoxShinyPIDMaxDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string notr="true">6000</string>
         </property>
@@ -199,18 +133,6 @@
       </item>
       <item row="7" column="0" colspan="2">
        <widget class="QPushButton" name="pushButtonShinyPIDSearch">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>23</height>
-         </size>
-        </property>
         <property name="text">
          <string>Search</string>
         </property>
@@ -220,18 +142,6 @@
        <widget class="QPushButton" name="pushButtonShinyPIDCancel">
         <property name="enabled">
          <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>116</width>
-          <height>23</height>
-         </size>
         </property>
         <property name="text">
          <string>Cancel</string>
@@ -245,8 +155,8 @@
     <widget class="QGroupBox" name="groupBoxTIDSID">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>2</verstretch>
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="title">
@@ -255,12 +165,6 @@
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
        <widget class="QLabel" name="labelTIDSIDTID">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>TID</string>
         </property>
@@ -268,12 +172,6 @@
       </item>
       <item row="0" column="1" colspan="2">
        <widget class="TextBox" name="textBoxTIDSIDTID">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>5</number>
         </property>
@@ -291,12 +189,6 @@
         <property name="enabled">
          <bool>false</bool>
         </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>SID</string>
         </property>
@@ -307,12 +199,6 @@
         <property name="enabled">
          <bool>false</bool>
         </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maxLength">
          <number>5</number>
         </property>
@@ -320,12 +206,6 @@
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="labelTIDSIDYear">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Year</string>
         </property>
@@ -333,12 +213,6 @@
       </item>
       <item row="3" column="1" colspan="2">
        <widget class="TextBox" name="textBoxTIDSIDYear">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string notr="true">2000</string>
         </property>
@@ -349,12 +223,6 @@
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="labelTIDSIDMinDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Min Delay</string>
         </property>
@@ -362,12 +230,6 @@
       </item>
       <item row="4" column="1" colspan="2">
        <widget class="TextBox" name="textBoxTIDSIDMinDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string notr="true">5000</string>
         </property>
@@ -378,12 +240,6 @@
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="labelTIDSIDMaxDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Max Delay</string>
         </property>
@@ -391,12 +247,6 @@
       </item>
       <item row="5" column="1" colspan="2">
        <widget class="TextBox" name="textBoxTIDSIDMaxDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string notr="true">6000</string>
         </property>
@@ -414,18 +264,6 @@
       </item>
       <item row="7" column="0" colspan="2">
        <widget class="QPushButton" name="pushButtonTIDSIDSearch">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>23</height>
-         </size>
-        </property>
         <property name="text">
          <string>Search</string>
         </property>
@@ -435,18 +273,6 @@
        <widget class="QPushButton" name="pushButtonTIDSIDCancel">
         <property name="enabled">
          <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>116</width>
-          <height>23</height>
-         </size>
         </property>
         <property name="text">
          <string>Cancel</string>
@@ -460,8 +286,8 @@
     <widget class="QGroupBox" name="groupBoxSeedFinder">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>2</verstretch>
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="title">
@@ -470,26 +296,13 @@
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0">
        <widget class="QLabel" name="labelSeedFinderTID">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>TID Obtained</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="TextBox" name="textBoxSeedFinderTID">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
+       <widget class="TextBox" name="textBoxSeedFinderTID"/>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="labelSeedFinderDateTime">
@@ -521,12 +334,6 @@
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelSeedFinderMinDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Min Delay</string>
         </property>
@@ -534,12 +341,6 @@
       </item>
       <item row="2" column="1">
        <widget class="TextBox" name="textBoxSeedFinderMinDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string notr="true">5000</string>
         </property>
@@ -550,12 +351,6 @@
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="labelSeedFinderMaxDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string>Max Delay</string>
         </property>
@@ -563,12 +358,6 @@
       </item>
       <item row="3" column="1">
        <widget class="TextBox" name="textBoxSeedFinderMaxDelay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="text">
          <string notr="true">6000</string>
         </property>
@@ -579,18 +368,6 @@
       </item>
       <item row="4" column="0" colspan="2">
        <widget class="QPushButton" name="pushButtonSeedFinderSearch">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>23</height>
-         </size>
-        </property>
         <property name="text">
          <string>Search</string>
         </property>
@@ -601,12 +378,6 @@
    </item>
    <item row="2" column="0" colspan="3">
     <widget class="TableView" name="tableView">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>2</verstretch>
-      </sizepolicy>
-     </property>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
      </attribute>

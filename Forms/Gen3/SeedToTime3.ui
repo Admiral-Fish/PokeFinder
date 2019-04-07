@@ -10,12 +10,6 @@
     <height>350</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="minimumSize">
    <size>
     <width>540</width>
@@ -78,12 +72,6 @@
    </item>
    <item row="2" column="2">
     <widget class="QPushButton" name="pushButtonFind">
-     <property name="minimumSize">
-      <size>
-       <width>50</width>
-       <height>23</height>
-      </size>
-     </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
@@ -94,12 +82,6 @@
    </item>
    <item row="3" column="0" colspan="3">
     <widget class="TableView" name="tableView">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>

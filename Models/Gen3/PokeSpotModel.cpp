@@ -25,28 +25,24 @@ PokeSpotModel::PokeSpotModel(QObject *parent) : QAbstractTableModel(parent)
 
 void PokeSpotModel::setModel(const QVector<Frame3> &frames)
 {
-    if (frames.isEmpty())
+    if (!frames.isEmpty())
     {
-        return;
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
+        model.append(frames);
+        emit endInsertRows();
     }
-
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.append(frames);
-    emit endInsertRows();
 }
 
 void PokeSpotModel::clear()
 {
-    if (model.isEmpty())
+    if (!model.isEmpty())
     {
-        return;
+        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+        model.clear();
+        model.squeeze();
+        emit endRemoveRows();
     }
-
-    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-    model.clear();
-    model.squeeze();
-    emit endRemoveRows();
 }
 
 int PokeSpotModel::rowCount(const QModelIndex &parent) const

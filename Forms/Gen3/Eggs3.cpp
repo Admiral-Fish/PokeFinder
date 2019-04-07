@@ -112,6 +112,7 @@ void Eggs3::setupModels()
     ui->comboBoxFRLGCompatibility->setItemData(2, 70);
 
     ui->comboBoxEmeraldNature->setup(Nature::getNatures());
+    ui->comboBoxEverstone->addItems(Nature::getNatures());
     ui->comboBoxFRLGNature->setup(Nature::getNatures());
     ui->comboBoxRSNature->setup(Nature::getNatures());
 
@@ -247,7 +248,7 @@ void Eggs3::on_comboBoxProfiles_currentIndexChanged(int index)
         return;
     }
 
-    auto profile = profiles[index];
+    auto profile = profiles.at(index);
     QString tid = QString::number(profile.getTID());
     QString sid = QString::number(profile.getSID());
 

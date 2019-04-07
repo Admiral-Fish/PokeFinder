@@ -25,15 +25,13 @@ Profile4Model::Profile4Model(QObject *parent) : QAbstractTableModel(parent)
 
 void Profile4Model::setModel(const QVector<Profile4> &profiles)
 {
-    if (profiles.isEmpty())
+    if (!profiles.isEmpty())
     {
-        return;
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i + profiles.size() - 1);
+        model.append(profiles);
+        emit endInsertRows();
     }
-
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i + profiles.size() - 1);
-    model.append(profiles);
-    emit endInsertRows();
 }
 
 void Profile4Model::addItem(const Profile4 &profile)

@@ -166,7 +166,7 @@ void PIDtoIVs::calcMethodChannel(u32 pid)
 
 QString PIDtoIVs::calcIVs(u32 iv1, int num)
 {
-    QString ivs = "";
+    QStringList ivs;
     PokeRNG rng(iv1);
     u16 iv2;
 
@@ -189,66 +189,51 @@ QString PIDtoIVs::calcIVs(u32 iv1, int num)
 
     for (u32 x = 0; x < 3; x++)
     {
-        ivs += QString::number((iv1 >> (x * 5)) & 31);
-        ivs += ".";
+        ivs.append(QString::number((iv1 >> (x * 5)) & 31));
     }
 
     for (u32 x : { 1u, 2u, 0u })
     {
-        ivs += QString::number((iv2 >> (x * 5)) & 31);
-        if (x != 0)
-        {
-            ivs += ".";
-        }
+        ivs.append(QString::number((iv2 >> (x * 5)) & 31));
     }
 
-    return ivs;
+    return ivs.join('.');
 }
 
 QString PIDtoIVs::calcIVsXD(u16 iv1, u16 iv2)
 {
-    QString ivs = "";
+    QStringList ivs;
 
     for (u32 x = 0; x < 3; x++)
     {
-        ivs += QString::number((iv1 >> (x * 5)) & 31);
-        ivs += ".";
+        ivs.append(QString::number((iv1 >> (x * 5)) & 31));
     }
 
     for (u32 x : { 1u, 2u, 0u })
     {
-        ivs += QString::number((iv2 >> (x * 5)) & 31);
-        if (x != 0)
-        {
-            ivs += ".";
-        }
+        ivs.append(QString::number((iv2 >> (x * 5)) & 31));
     }
 
-    return ivs;
+    return ivs.join('.');
 }
 
 QString PIDtoIVs::calcIVsChannel(u32 iv1)
 {
-    QString ivs = "";
+    QStringList ivs;
     XDRNG rng(iv1);
 
-    u32 val[6] = { iv1 >> 27, 0, 0, 0, 0, 0 };
-    for (int x = 1; x < 6; x++)
+    QVector<u32> val = { iv1 >> 27, 0, 0, 0, 0, 0 };
+    for (u8 x : { 1, 2, 4, 5, 3 })
     {
         val[x] = rng.nextUInt() >> 27;
     }
 
-    QVector<int> order = { 0, 1, 2, 4, 5, 3};
-    for (const int &x : order)
+    for (u32 x : val)
     {
-        ivs += QString::number(x);
-        if (x != 3)
-        {
-            ivs += ".";
-        }
+        ivs.append(QString::number(x));
     }
 
-    return ivs;
+    return ivs.join('.');
 }
 
 void PIDtoIVs::addSeed(u32 seed, u32 iv1)

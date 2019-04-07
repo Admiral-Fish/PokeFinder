@@ -10,12 +10,6 @@
     <height>390</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="minimumSize">
    <size>
     <width>460</width>
@@ -29,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string notr="true">PokéFinder 2.2.2</string>
+   <string notr="true">PokéFinder 2.3.1</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -51,12 +45,6 @@
          <height>23</height>
         </rect>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>23</height>
-        </size>
-       </property>
        <property name="text">
         <string>Stationary</string>
        </property>
@@ -70,12 +58,6 @@
          <height>23</height>
         </rect>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>23</height>
-        </size>
-       </property>
        <property name="text">
         <string>Wild</string>
        </property>
@@ -84,16 +66,10 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>90</y>
+         <y>120</y>
          <width>191</width>
          <height>23</height>
         </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>23</height>
-        </size>
        </property>
        <property name="text">
         <string>Egg</string>
@@ -103,19 +79,26 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>120</y>
+         <y>150</y>
          <width>191</width>
          <height>23</height>
         </rect>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>23</height>
-        </size>
-       </property>
        <property name="text">
         <string>IDs</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonGameCube">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>191</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>GameCube</string>
        </property>
       </widget>
      </widget>
@@ -147,12 +130,6 @@
          <height>23</height>
         </rect>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>23</height>
-        </size>
-       </property>
        <property name="text">
         <string>Wild</string>
        </property>
@@ -166,12 +143,6 @@
          <height>23</height>
         </rect>
        </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>23</height>
-        </size>
-       </property>
        <property name="text">
         <string>Egg</string>
        </property>
@@ -184,12 +155,6 @@
          <width>191</width>
          <height>23</height>
         </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>23</height>
-        </size>
        </property>
        <property name="text">
         <string>IDs</string>
@@ -212,6 +177,7 @@
     <property name="title">
      <string>Tools</string>
     </property>
+    <addaction name="actionEncounter_Lookup"/>
     <addaction name="actionIV_Calculator"/>
     <addaction name="actionResearcher"/>
    </widget>
@@ -225,6 +191,7 @@
     <addaction name="actionPIDtoIV"/>
     <addaction name="actionPokeSpot"/>
     <addaction name="actionSeedtoTime3"/>
+    <addaction name="actionSpinda_Painter"/>
    </widget>
    <widget class="QMenu" name="menuGen4Tools">
     <property name="title">
@@ -399,6 +366,16 @@
   <action name="actionIV_Calculator">
    <property name="text">
     <string>IV Calculator</string>
+   </property>
+  </action>
+  <action name="actionSpinda_Painter">
+   <property name="text">
+    <string>Spinda Painter</string>
+   </property>
+  </action>
+  <action name="actionEncounter_Lookup">
+   <property name="text">
+    <string>Encounter Lookup</string>
    </property>
   </action>
  </widget>

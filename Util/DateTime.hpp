@@ -27,13 +27,6 @@
 class DateTime
 {
 
-private:
-    u32 seed;
-    u32 delay;
-    QDateTime dateTime;
-    Game version;
-    HGSSRoamer info;
-
 public:
     DateTime() = default;
     DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes);
@@ -46,6 +39,13 @@ public:
     Game getVersion() const;
     QDateTime getDateTime() const;
     HGSSRoamer getInfo() const;
+
+private:
+    u32 seed{};
+    u32 delay{};
+    QDateTime dateTime;
+    Game version{};
+    HGSSRoamer info;
 
 };
 

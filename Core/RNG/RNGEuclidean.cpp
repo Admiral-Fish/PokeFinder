@@ -37,14 +37,14 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u32 first, u32 secon
     QVector<QPair<u32, u32>> origin;
     u32 fullFirst, fullSecond;
 
-    u64 t = static_cast<u32>(((second - sub1 * first) - sub2));
-    u32 kmax = static_cast<u32>((base - t) >> 31);
+    u64 t = ((second - sub1 * first) - sub2) & 0x7FFFFFFF;
+    u32 kmax = (base - t) >> 31;
 
     for (u32 k = 0; k <= kmax; k++, t += 0x80000000)
     {
         if ((t % sub1) < 0x10000)
         {
-            fullFirst = first | static_cast<u32>((t / sub1));
+            fullFirst = first | static_cast<u32>(t / sub1);
             fullSecond = fullFirst * MULT + ADD;
             origin.append(QPair<u32, u32>(fullFirst, fullSecond));
         }
@@ -58,8 +58,8 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 first, u32 seco
     QVector<QPair<u32, u32>> origin;
     u32 fullFirst, fullSecond;
 
-    u64 t = static_cast<u32>(((second - sub1 * first) - sub2));
-    u32 kmax = static_cast<u32>((base - t) >> 32);
+    u64 t = ((second - sub1 * first) - sub2) & 0xFFFFFFFF;
+    u32 kmax = (base - t) >> 32;
 
     for (u32 k = 0; k <= kmax; k++, t += 0x100000000)
     {
@@ -79,45 +79,35 @@ QVector<u32> RNGEuclidean::recoverLower27BitsChannel(u32 hp, u32 atk, u32 def, u
     QVector<u32> origin;
     u32 first = hp << 27, fullFirst;
 
-    u64 t = static_cast<u32>((((spd << 27) - sub1 * first) - sub2));
-    u32 kmax = static_cast<u32>((base - t) >> 32);
+    u64 t = (((spd << 27) - sub1 * first) - sub2) & 0xFFFFFFFF;
+    u32 kmax = (base - t) >> 32;
 
     for (u32 k = 0; k <= kmax; k++, t += 0x100000000)
     {
-        if ((t % sub1) >= 0x8000000)
+        if ((t % sub1) < 0x8000000)
         {
-            continue;
+            fullFirst = first | static_cast<u32>(t / sub1);
+            // Check if the next 4 IVs lineup
+            // The euclidean divisor assures the first and last call match up
+            // so there is no need to check if the last call lines up
+            u32 call = fullFirst * MULT + ADD;
+            if ((call >> 27) == atk)
+            {
+                call = call * MULT + ADD;
+                if ((call >> 27) == def)
+                {
+                    call = call * MULT + ADD;
+                    if ((call >> 27) == spe)
+                    {
+                        call = call * MULT + ADD;
+                        if ((call >> 27) == spa)
+                        {
+                            origin.append(fullFirst);
+                        }
+                    }
+                }
+            }
         }
-
-        fullFirst = first | static_cast<u32>((t / sub1));
-        // Check if the next 4 IVs lineup
-        // The euclidean divisor assures the first and last call match up
-        // so there is no need to check if the last call lines up
-        u32 call = fullFirst * MULT + ADD;
-        if ((call >> 27) != atk)
-        {
-            continue;
-        }
-
-        call = call * MULT + ADD;
-        if ((call >> 27) != def)
-        {
-            continue;
-        }
-
-        call = call * MULT + ADD;
-        if ((call >> 27) != spe)
-        {
-            continue;
-        }
-
-        call = call * MULT + ADD;
-        if ((call >> 27) != spa)
-        {
-            continue;
-        }
-
-        origin.append(fullFirst);
     }
     return origin;
 }

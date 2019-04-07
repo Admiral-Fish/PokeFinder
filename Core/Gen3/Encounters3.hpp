@@ -32,6 +32,7 @@ public:
     QVector<EncounterArea3> getEncounters() const;
 
 private:
+    QVector<Pokemon> pokemon;
     Encounter type;
     Profile3 profile;
 

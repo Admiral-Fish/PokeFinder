@@ -6,7 +6,7 @@ CONFIG += c++1z
 
 TARGET = PokeFinder
 TEMPLATE = app
-VERSION = 2.2.2
+VERSION = 2.3.1
 QMAKE_TARGET_DESCRIPTION = PokeFinder
 QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
@@ -33,6 +33,7 @@ FORMS += \
     Forms/Controls/EggSettings.ui \
     Forms/Controls/IVFilter.ui \
     Forms/Gen3/Eggs3.ui \
+    Forms/Gen3/GameCube.ui \
     Forms/Gen3/GameCubeRTC.ui \
     Forms/Gen3/IDs3.ui \
     Forms/Gen3/JirachiPattern.ui \
@@ -41,6 +42,7 @@ FORMS += \
     Forms/Gen3/ProfileManager3.ui \
     Forms/Gen3/ProfileManager3NewEdit.ui \
     Forms/Gen3/SeedToTime3.ui \
+    Forms/Gen3/SpindaPainter.ui \
     Forms/Gen3/Stationary3.ui \
     Forms/Gen3/Wild3.ui \
     Forms/Gen4/ChainedSID.ui \
@@ -54,6 +56,7 @@ FORMS += \
     Forms/Gen4/SeedtoTime4.ui \
     Forms/Gen4/Stationary4.ui \
     Forms/Gen4/Wild4.ui \
+    Forms/Util/EncounterLookup.ui \
     Forms/Util/IVCalculator.ui \
     Forms/Util/IVtoPID.ui \
     Forms/Util/Researcher.ui \
@@ -72,6 +75,7 @@ HEADERS += \
     Core/Gen3/ShadowLock.hpp \
     Core/Gen4/ChainedSIDCalc.hpp \
     Core/Gen4/Egg4.hpp \
+    Core/Gen4/EggSearcher4.hpp \
     Core/Gen4/EncounterArea4.hpp \
     Core/Gen4/Encounters4.hpp \
     Core/Gen4/Frame4.hpp \
@@ -116,11 +120,13 @@ HEADERS += \
     Core/Util/Utilities.hpp \
     Forms/Controls/CheckList.hpp \
     Forms/Controls/EggSettings.hpp \
+    Forms/Controls/GraphicsPixmapItem.hpp \
     Forms/Controls/IVFilter.hpp \
     Forms/Controls/Label.hpp \
     Forms/Controls/TableView.hpp \
     Forms/Controls/TextBox.hpp \
     Forms/Gen3/Eggs3.hpp \
+    Forms/Gen3/GameCube.hpp \
     Forms/Gen3/GameCubeRTC.hpp \
     Forms/Gen3/IDs3.hpp \
     Forms/Gen3/JirachiPattern.hpp \
@@ -129,6 +135,7 @@ HEADERS += \
     Forms/Gen3/ProfileManager3.hpp \
     Forms/Gen3/ProfileManager3NewEdit.hpp \
     Forms/Gen3/SeedToTime3.hpp \
+    Forms/Gen3/SpindaPainter.hpp \
     Forms/Gen3/Stationary3.hpp \
     Forms/Gen3/Wild3.hpp \
     Forms/Gen4/ChainedSID.hpp \
@@ -142,6 +149,7 @@ HEADERS += \
     Forms/Gen4/SeedtoTime4.hpp \
     Forms/Gen4/Stationary4.hpp \
     Forms/Gen4/Wild4.hpp \
+    Forms/Util/EncounterLookup.hpp \
     Forms/Util/IVCalculator.hpp \
     Forms/Util/IVtoPID.hpp \
     Forms/Util/Researcher.hpp \
@@ -176,6 +184,7 @@ SOURCES += \
     Core/Gen3/ShadowLock.cpp \
     Core/Gen4/ChainedSIDCalc.cpp \
     Core/Gen4/Egg4.cpp \
+    Core/Gen4/EggSearcher4.cpp \
     Core/Gen4/EncounterArea4.cpp \
     Core/Gen4/Encounters4.cpp \
     Core/Gen4/Frame4.cpp \
@@ -211,11 +220,13 @@ SOURCES += \
     Core/Util/Utilities.cpp \
     Forms/Controls/CheckList.cpp \
     Forms/Controls/EggSettings.cpp \
+    Forms/Controls/GraphicsPixmapItem.cpp \
     Forms/Controls/IVFilter.cpp \
     Forms/Controls/Label.cpp \
     Forms/Controls/TableView.cpp \
     Forms/Controls/TextBox.cpp \
     Forms/Gen3/Eggs3.cpp \
+    Forms/Gen3/GameCube.cpp \
     Forms/Gen3/GameCubeRTC.cpp \
     Forms/Gen3/IDs3.cpp \
     Forms/Gen3/JirachiPattern.cpp \
@@ -224,6 +235,7 @@ SOURCES += \
     Forms/Gen3/ProfileManager3.cpp \
     Forms/Gen3/ProfileManager3NewEdit.cpp \
     Forms/Gen3/SeedToTime3.cpp \
+    Forms/Gen3/SpindaPainter.cpp \
     Forms/Gen3/Stationary3.cpp \
     Forms/Gen3/Wild3.cpp \
     Forms/Gen4/ChainedSID.cpp \
@@ -237,6 +249,7 @@ SOURCES += \
     Forms/Gen4/SeedtoTime4.cpp \
     Forms/Gen4/Stationary4.cpp \
     Forms/Gen4/Wild4.cpp \
+    Forms/Util/EncounterLookup.cpp \
     Forms/Util/IVCalculator.cpp \
     Forms/Util/IVtoPID.cpp \
     Forms/Util/Researcher.cpp \

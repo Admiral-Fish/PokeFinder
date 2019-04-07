@@ -86,16 +86,16 @@ void Frame3::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 
     ivs[4] = (iv2 >> 10) & 0x1f;
     ivs[5] = iv2 & 0x1f;
 
-    u8 available[6] = { 0, 1, 2, 3, 4, 5 };
-    u16 val[6] = { inh1, inh2, inh3, par1, par2, par3 };
+    QVector<u8> available = { 0, 1, 2, 3, 4, 5 };
+    QVector<u16> val = { inh1, inh2, inh3, par1, par2, par3 };
 
     for (u8 cnt = 0; cnt < 3; cnt++)
     {
         // Decide which parent (1 or 2) from which we'll pick an IV
-        u8 par = val[3 + cnt] & 1;
+        u8 par = val.at(cnt + 3) & 1;
 
         // Decide which stat to pick for IV inheritance
-        u8 ivslot = available[val[cnt] % (6 - cnt)];
+        u8 ivslot = available.at(val.at(cnt) % (6 - cnt));
 
         switch (ivslot)
         {
@@ -129,12 +129,12 @@ void Frame3::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 
         // In Emerald this doesn't work properly
         for (u8 i = broken ? cnt : ivslot; i < 5 - cnt; i++)
         {
-            available[i] = available[i + 1];
+            available[i] = available.at(i + 1);
         }
     }
 
-    hidden = ((((ivs[0] & 1) + 2 * (ivs[1] & 1) + 4 * (ivs[2] & 1) + 8 * (ivs[5] & 1) + 16 * (ivs[3] & 1) + 32 * (ivs[4] & 1)) * 15) / 63);
-    power = (30 + ((((ivs[0] >> 1) & 1) + 2 * ((ivs[1] >> 1) & 1) + 4 * ((ivs[2] >> 1) & 1) + 8 * ((ivs[5] >> 1) & 1) + 16 * ((ivs[3] >> 1) & 1) + 32 * ((ivs[4] >> 1) & 1)) * 40 / 63));
+    calculateHidden();
+    calculatePower();
 }
 
 QString Frame3::getLockReason() const

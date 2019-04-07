@@ -112,7 +112,7 @@ QVector<Frame3> Searcher3::searchMethodChannel(u8 hp, u8 atk, u8 def, u8 spa, u8
 {
     QVector<Frame3> frames;
 
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -150,7 +150,7 @@ QVector<Frame3> Searcher3::searchMethodColo(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
 {
     QVector<Frame3> frames;
 
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -220,7 +220,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
 {
     QVector<Frame3> frames;
 
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -410,7 +410,7 @@ QVector<Frame3> Searcher3::searchMethodXD(u8 hp, u8 atk, u8 def, u8 spa, u8 spd,
 {
     QVector<Frame3> frames;
 
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -553,7 +553,7 @@ QVector<Frame3> Searcher3::searchMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 
 {
     QVector<Frame3> frames;
 
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -588,7 +588,7 @@ QVector<Frame3> Searcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd
 {
     QVector<Frame3> frames;
 
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
     if (!compare.compareHiddenPower(frame))
     {
         return frames;
@@ -624,7 +624,7 @@ QVector<Frame3> Searcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u
 {
     QVector<Frame3> frames;
 
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
     if (!compare.compareHiddenPower(frame))
     {
         return frames;

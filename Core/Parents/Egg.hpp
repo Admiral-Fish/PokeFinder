@@ -34,14 +34,14 @@ public:
     void setSeed(const u32 &value);
 
 protected:
-    u16 psv;
-    u16 sid;
-    u16 tid;
+    u16 psv{};
+    u16 sid{};
+    u16 tid{};
     Method frameType = Method::EBred;
-    u32 seed;
-    u32 initialFrame;
-    u32 maxResults;
-    u32 everstoneNature;
+    u32 seed{};
+    u32 initialFrame{};
+    u32 maxResults{};
+    u32 everstoneNature{};
 
 };
 

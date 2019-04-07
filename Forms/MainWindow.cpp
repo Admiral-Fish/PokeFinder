@@ -59,7 +59,7 @@ void MainWindow::setupLanguage()
     QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh_Hans_CN" };
     for (int i = 0; i < locales.size(); i++)
     {
-        QString lang = locales[i];
+        const QString &lang = locales.at(i);
 
         auto *action = ui->menuLanguage->actions()[i];
         action->setData(lang);
@@ -92,7 +92,7 @@ void MainWindow::setupStyle()
     QStringList styles = { "light", "dark" };
     for (int i = 0; i < styles.size(); i++)
     {
-        QString style = styles[i];
+        const QString &style = styles.at(i);
 
         auto *action = ui->menuStyle->actions()[i];
         action->setData(style);
@@ -195,6 +195,7 @@ void MainWindow::updateProfiles(int num)
     {
         if (stationary3) stationary3->updateProfiles();
         if (wild3) wild3->updateProfiles();
+        if (gamecube) gamecube->updateProfiles();
         if (egg3) egg3->updateProfiles();
     }
     else if (num == 4)
@@ -225,6 +226,17 @@ void MainWindow::on_pushButtonWild3_clicked()
     }
     wild3->show();
     wild3->raise();
+}
+
+void MainWindow::on_pushButtonGameCube_clicked()
+{
+    if (!gamecube)
+    {
+        gamecube = new GameCube();
+        connect(gamecube, &GameCube::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    gamecube->show();
+    gamecube->raise();
 }
 
 void MainWindow::on_pushButtonEgg3_clicked()
@@ -294,6 +306,13 @@ void MainWindow::on_actionSeedtoTime3_triggered()
     seedToTime->raise();
 }
 
+void MainWindow::on_actionSpinda_Painter_triggered()
+{
+    auto *spinda = new SpindaPainter();
+    spinda->show();
+    spinda->raise();
+}
+
 void MainWindow::on_pushButtonStationary4_clicked()
 {
     if (!stationary4)
@@ -356,6 +375,13 @@ void MainWindow::on_actionSID_from_Chained_Shiny_triggered()
     auto *chainedSID = new ChainedSID();
     chainedSID->show();
     chainedSID->raise();
+}
+
+void MainWindow::on_actionEncounter_Lookup_triggered()
+{
+    auto *lookup = new EncounterLookup();
+    lookup->show();
+    lookup->raise();
 }
 
 void MainWindow::on_actionIV_Calculator_triggered()

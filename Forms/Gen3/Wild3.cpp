@@ -43,23 +43,16 @@ Wild3::~Wild3()
 
 void Wild3::updateProfiles()
 {
-    profiles = Profile3::loadProfileList();
-
-    QVector<Profile3> temp;
-
-    for (const auto &profile : profiles)
+    profiles = { Profile3() };
+    for (const auto &profile : Profile3::loadProfileList())
     {
         if (!(profile.getVersion() & Game::GC))
         {
-            temp.append(profile);
+            profiles.append(profile);
         }
     }
 
-    profiles = temp;
-    profiles.insert(profiles.begin(), Profile3());
-
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(profile.getProfileName());
@@ -176,7 +169,7 @@ void Wild3::updateView(const QVector<Frame3> &frames, int progress)
 void Wild3::updateLocationsGenerator()
 {
     Encounter encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
-    auto profile = profiles[ui->comboBoxProfiles->currentIndex()];
+    auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
 
     encounterGenerator = Encounters3(encounter, profile).getEncounters();
     QVector<u8> locs;
@@ -194,7 +187,7 @@ void Wild3::updateLocationsGenerator()
 void Wild3::updateLocationsSearcher()
 {
     Encounter encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
-    auto profile = profiles[ui->comboBoxProfiles->currentIndex()];
+    auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
 
     encounterSearcher = Encounters3(encounter, profile).getEncounters();
     QVector<u8> locs;
@@ -216,7 +209,7 @@ void Wild3::updatePokemonGenerator()
         return;
     }
 
-    auto area = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()];
+    auto area = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentIndex());
     QVector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
@@ -225,7 +218,7 @@ void Wild3::updatePokemonGenerator()
     ui->comboBoxGeneratorPokemon->addItem("-");
     for (int i = 0; i < species.size(); i++)
     {
-        ui->comboBoxGeneratorPokemon->addItem(names[i], species[i]);
+        ui->comboBoxGeneratorPokemon->addItem(names.at(i), species.at(i));
     }
 }
 
@@ -236,7 +229,7 @@ void Wild3::updatePokemonSearcher()
         return;
     }
 
-    auto area = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()];
+    auto area = encounterSearcher.at(ui->comboBoxSearcherLocation->currentIndex());
     QVector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
@@ -245,7 +238,7 @@ void Wild3::updatePokemonSearcher()
     ui->comboBoxSearcherPokemon->addItem("-");
     for (int i = 0; i < species.size(); i++)
     {
-        ui->comboBoxSearcherPokemon->addItem(names[i], species[i]);
+        ui->comboBoxSearcherPokemon->addItem(names.at(i), species.at(i));
     }
 }
 
@@ -261,7 +254,7 @@ void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
         return;
     }
 
-    auto profile = profiles[index];
+    auto profile = profiles.at(index);
     QString tid = QString::number(profile.getTID());
     QString sid = QString::number(profile.getSID());
 
@@ -352,7 +345,7 @@ void Wild3::on_pushButtonSearch_clicked()
     int maxProgress = 1;
     for (int i = 0; i < 6; i++)
     {
-        maxProgress *= max[i] - min[i] + 1;
+        maxProgress *= max.at(i) - min.at(i) + 1;
     }
 
     ui->progressBar->setValue(0);
@@ -548,7 +541,7 @@ void Wild3::on_comboBoxGeneratorPokemon_currentIndexChanged(int index)
     }
 
     u16 num = ui->comboBoxGeneratorPokemon->currentData().toUInt();
-    QVector<bool> flags = encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()].getSlots(num);
+    QVector<bool> flags = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentIndex()).getSlots(num);
 
     ui->comboBoxGeneratorEncounterSlot->setChecks(flags);
 }
@@ -562,7 +555,7 @@ void Wild3::on_comboBoxSearcherPokemon_currentIndexChanged(int index)
     }
 
     u16 num = ui->comboBoxSearcherPokemon->currentData().toUInt();
-    QVector<bool> flags = encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()].getSlots(num);
+    QVector<bool> flags = encounterSearcher.at(ui->comboBoxSearcherLocation->currentIndex()).getSlots(num);
 
     ui->comboBoxSearcherEncounterSlot->setChecks(flags);
 }

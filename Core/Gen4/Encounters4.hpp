@@ -37,16 +37,17 @@ private:
     int time; // 0: Morning, 1: Day, 2: Night
     // Dual is used in DPPt
     // Radio 0: None, 1: Hoenn, 2: Sinnoh, For HGSS
+    QVector<Pokemon> pokemon;
 
     QByteArrayList getData() const;
     QVector<EncounterArea4> getHGSS(const QByteArray &data) const;
     QVector<EncounterArea4> getDPPt(const QByteArray &data) const;
-    void modifyRadio(QVector<Slot> &pokemon, const QByteArray &data) const;
-    void modifyTime(QVector<Slot> &pokemon, const QByteArray &data) const;
-    void modifyDual(QVector<Slot> &pokemon, const QByteArray &data) const;
-    void modifyRadar(QVector<Slot> &pokemon, const QByteArray &data) const;
-    void modifySwarmHGSS(QVector<Slot> &pokemon, const QByteArray &data) const;
-    void modifySwarmDPPt(QVector<Slot> &pokemon, const QByteArray &data) const;
+    void modifyRadio(QVector<Slot> &mons, const QByteArray &data) const;
+    void modifyTime(QVector<Slot> &mons, const QByteArray &data) const;
+    void modifyDual(QVector<Slot> &mons, const QByteArray &data) const;
+    void modifyRadar(QVector<Slot> &mons, const QByteArray &data) const;
+    void modifySwarmHGSS(QVector<Slot> &mons, const QByteArray &data) const;
+    void modifySwarmDPPt(QVector<Slot> &mons, const QByteArray &data) const;
     inline u16 getValue(const QByteArray &data, int offset, int length) const;
 
 };

@@ -10,12 +10,6 @@
     <height>130</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="minimumSize">
    <size>
     <width>560</width>
@@ -40,14 +34,7 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QLineEdit" name="lineEditProfile">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
+    <widget class="QLineEdit" name="lineEditProfile"/>
    </item>
    <item row="3" column="2">
     <widget class="QLabel" name="labelSwarm">
@@ -57,14 +44,7 @@
     </widget>
    </item>
    <item row="1" column="5">
-    <widget class="TextBox" name="textBoxSID">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxSID"/>
    </item>
    <item row="0" column="2">
     <widget class="QLabel" name="labelDualSlot">
@@ -125,12 +105,6 @@
    </item>
    <item row="0" column="6">
     <widget class="QPushButton" name="pushButtonAccept">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="text">
       <string>Accept</string>
      </property>
@@ -159,12 +133,6 @@
    </item>
    <item row="2" column="1">
     <widget class="QComboBox" name="comboBoxLanguage">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <item>
       <property name="text">
        <string notr="true">-</string>
@@ -209,12 +177,6 @@
    </item>
    <item row="1" column="1">
     <widget class="QComboBox" name="comboBoxVersion">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <item>
       <property name="text">
        <string>Diamond</string>
@@ -277,14 +239,7 @@
     </widget>
    </item>
    <item row="0" column="5">
-    <widget class="TextBox" name="textBoxTID">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxTID"/>
    </item>
    <item row="3" column="3">
     <widget class="QCheckBox" name="checkBoxSwarm">
@@ -295,12 +250,6 @@
    </item>
    <item row="1" column="6">
     <widget class="QPushButton" name="pushButtonCancel">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="text">
       <string>Cancel</string>
      </property>

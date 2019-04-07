@@ -71,7 +71,6 @@ QVector<Frame4> Egg4::generatePID(const FrameCompare &compare) const
     frame.setInitialSeed(seed);
 
     MersenneTwister mt(seed, initialFrame - 1);
-
     for (u32 cnt = initialFrame; cnt <= maxResults; cnt++)
     {
         frame.setPID(mt.nextUInt());
@@ -94,7 +93,6 @@ QVector<Frame4> Egg4::generatePIDMasuada(const FrameCompare &compare) const
     frame.setInitialSeed(seed);
 
     MersenneTwister mt(seed, initialFrame - 1);
-
     for (u32 cnt = initialFrame; cnt <= maxResults; cnt++)
     {
         u32 pid = mt.nextUInt();
@@ -128,28 +126,27 @@ QVector<Frame4> Egg4::generateIVsDPPt(const FrameCompare &compare) const
     QVector<Frame4> frames;
 
     PokeRNG rng(seed, initialFrame - 1);
-    auto *rngArray = new u16[maxResults + 8];
-    for (u32 x = 0; x < maxResults + 8; x++)
+    QVector<u16> rngList(maxResults + 8);
+    for (u16 &x : rngList)
     {
-        rngArray[x] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
         Frame4 frame(tid, sid, psv);
         frame.setInitialSeed(seed);
-        frame.setInheritance(rngArray[cnt], rngArray[1 + cnt], rngArray[5 + cnt], rngArray[6 + cnt], rngArray[7 + cnt],
-                             rngArray[2 + cnt], rngArray[3 + cnt], rngArray[4 + cnt], parent1, parent2, true);
+        frame.setInheritance(rngList.at(cnt), rngList.at(cnt + 1), rngList.at(cnt + 5), rngList.at(cnt + 6), rngList.at(cnt + 7),
+                             rngList.at(cnt + 2), rngList.at(cnt + 3), rngList.at(cnt + 4), parent1, parent2, true);
 
         if (compare.compareIVs(frame))
         {
-            frame.setSeed(rngArray[cnt]);
+            frame.setSeed(rngList.at(cnt));
             frame.setFrame(cnt + initialFrame);
             frames.append(frame);
         }
     }
 
-    delete[] rngArray;
     return frames;
 }
 
@@ -158,27 +155,26 @@ QVector<Frame4> Egg4::generateIVsHGSS(const FrameCompare &compare) const
     QVector<Frame4> frames;
 
     PokeRNG rng(seed, initialFrame - 1);
-    auto *rngArray = new u16[maxResults + 8];
-    for (u32 x = 0; x < maxResults + 8; x++)
+    QVector<u16> rngList(maxResults + 8);
+    for (u16 &x : rngList)
     {
-        rngArray[x] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
         Frame4 frame(tid, sid, psv);
         frame.setInitialSeed(seed);
-        frame.setInheritance(rngArray[cnt], rngArray[1 + cnt], rngArray[5 + cnt], rngArray[6 + cnt], rngArray[7 + cnt],
-                             rngArray[2 + cnt], rngArray[3 + cnt], rngArray[4 + cnt], parent1, parent2);
+        frame.setInheritance(rngList.at(cnt), rngList.at(cnt + 1), rngList.at(cnt + 5), rngList.at(cnt + 6), rngList.at(cnt + 7),
+                             rngList.at(cnt + 2), rngList.at(cnt + 3), rngList.at(cnt + 4), parent1, parent2);
 
         if (compare.compareIVs(frame))
         {
-            frame.setSeed(rngArray[cnt]);
+            frame.setSeed(rngList.at(cnt));
             frame.setFrame(cnt + initialFrame);
             frames.append(frame);
         }
     }
 
-    delete[] rngArray;
     return frames;
 }

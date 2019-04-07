@@ -19,32 +19,27 @@
 
 #include "IVChecker.hpp"
 
-IVChecker::IVChecker(Pokemon pokemon)
+QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower)
 {
-    this->pokemon = pokemon;
-}
-
-QVector<QVector<u8> > IVChecker::calculateIVs(QVector<u16> stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower)
-{
-    bool valid[6] = { false, false, false, false, false, false };
-    u8 minIVs[6] = { 31, 31, 31, 31, 31, 31 };
-    u8 maxIVs[6] = { 0, 0, 0, 0, 0, 0 };
+    QVector<bool> valid(6, false);
+    QVector<u8> minIVs(6, 31);
+    QVector<u8> maxIVs(6, 0);
     QVector<u16> baseStats = pokemon.getBaseStats();
 
     // HP
     for (u8 iv = 0; iv < 32; iv++)
     {
-        double hp = (((2 * baseStats[0] + iv) * level) / 100.0) + level + 10;
+        double hp = (((2 * baseStats.at(0) + iv) * level) / 100.0) + level + 10;
 
-        if (static_cast<u16>(hp) == stats[0])
+        if (static_cast<u16>(hp) == stats.at(0))
         {
             valid[0] = true;
 
-            if (iv >= maxIVs[0])
+            if (iv >= maxIVs.at(0))
             {
                 maxIVs[0] = iv;
             }
-            if (iv <= minIVs[0])
+            if (iv <= minIVs.at(0))
             {
                 minIVs[0] = iv;
             }
@@ -56,17 +51,17 @@ QVector<QVector<u8> > IVChecker::calculateIVs(QVector<u16> stats, u8 level, u8 n
     {
         for (u8 iv = 0; iv < 32; iv++)
         {
-            double stat = qFloor((((2 * baseStats[i] + iv) * level) / 100.0) + 5) * natureModifier[nature][i];
+            double stat = qFloor((((2 * baseStats.at(i) + iv) * level) / 100.0) + 5) * Nature::getNatureModifier(nature).at(i);
 
-            if (static_cast<u16>(stat) == stats[i])
+            if (static_cast<u16>(stat) == stats.at(i))
             {
                 valid[i] = true;
 
-                if (iv >= maxIVs[i])
+                if (iv >= maxIVs.at(i))
                 {
                     maxIVs[i] = iv;
                 }
-                if (iv <= minIVs[i])
+                if (iv <= minIVs.at(0))
                 {
                     minIVs[i] = iv;
                 }
@@ -79,7 +74,7 @@ QVector<QVector<u8> > IVChecker::calculateIVs(QVector<u16> stats, u8 level, u8 n
     u8 characteristicHigh = 31;
     if (characteristic.getActive())
     {
-        if (valid[characteristic.getStat()])
+        if (valid.at(characteristic.getStat()))
         {
             //  Set this to zero so we can begin to keep track
             characteristicHigh = 0;
@@ -87,7 +82,7 @@ QVector<QVector<u8> > IVChecker::calculateIVs(QVector<u16> stats, u8 level, u8 n
             //  If this is not null we need to iterate through the ranges
             //  of the IV that is referenced and cull out those that are
             //  not possible.
-            for (u8 i = minIVs[characteristic.getStat()]; i <= maxIVs[characteristic.getStat()]; i++)
+            for (u8 i = minIVs.at(characteristic.getStat()); i <= maxIVs.at(characteristic.getStat()); i++)
             {
                 if ((i % 5) == characteristic.getResult())
                 {
@@ -101,13 +96,13 @@ QVector<QVector<u8> > IVChecker::calculateIVs(QVector<u16> stats, u8 level, u8 n
     // Handle rest of stats
     for (u8 i = 0; i < 6; i++)
     {
-        if (valid[i])
+        if (valid.at(i))
         {
             //  Make sure we dont make any changes to the characteristic stat
             if (!characteristic.getActive() || characteristic.getStat() != i)
             {
                 //
-                for (u8 j = minIVs[i]; j <= maxIVs[i]; j++)
+                for (u8 j = minIVs.at(i); j <= maxIVs.at(i); j++)
                 {
                     if (j <= characteristicHigh)
                     {
@@ -121,17 +116,17 @@ QVector<QVector<u8> > IVChecker::calculateIVs(QVector<u16> stats, u8 level, u8 n
     if (hiddenPower != -1)
     {
         QVector<QSet<u8>> final(6);
-        for (const u8 hp : possible[0])
+        for (const u8 hp : possible.at(0))
         {
-            for (const u8 atk : possible[1])
+            for (const u8 atk : possible.at(1))
             {
-                for (const u8 def : possible[2])
+                for (const u8 def : possible.at(2))
                 {
-                    for (const u8 spa : possible[3])
+                    for (const u8 spa : possible.at(3))
                     {
-                        for (const u8 spd : possible[4])
+                        for (const u8 spd : possible.at(4))
                         {
-                            for (const u8 spe : possible[5])
+                            for (const u8 spe : possible.at(5))
                             {
                                 u8 hpType = ((((hp & 1) + 2 * (atk & 1) + 4 * (def & 1) + 8 * (spe & 1) + 16 * (spa & 1) + 32 * (spd & 1)) * 15) / 63);
                                 if (hpType == hiddenPower)
@@ -153,7 +148,7 @@ QVector<QVector<u8> > IVChecker::calculateIVs(QVector<u16> stats, u8 level, u8 n
         for (u8 i = 0; i < 6; i++)
         {
             possible[i].clear();
-            for (const u8 stat : final[i])
+            for (const u8 stat : final.at(i))
             {
                 possible[i].append(stat);
             }

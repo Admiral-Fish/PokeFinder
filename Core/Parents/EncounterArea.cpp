@@ -36,6 +36,11 @@ u8 EncounterArea::getLocation() const
     return location;
 }
 
+QVector<Slot> EncounterArea::getPokemon() const
+{
+    return pokemon;
+}
+
 QVector<u16> EncounterArea::getUniqueSpecies() const
 {
     QVector<u16> nums;
@@ -63,27 +68,69 @@ QVector<bool> EncounterArea::getSlots(u16 num) const
     return flags;
 }
 
+QPair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
+{
+    QPair<u8, u8> range = qMakePair(100, 0);
+    for (auto slot : pokemon)
+    {
+        if (slot.getSpecie() == specie)
+        {
+            range.first = qMin(range.first, slot.getMinLevel());
+            range.second = qMax(range.second, slot.getMaxLevel());
+        }
+    }
+    return range;
+}
+
 QStringList EncounterArea::getSpecieNames() const
 {
     return Translator::getSpecies(getUniqueSpecies());
 }
 
-void EncounterArea::setSlot(u8 index, u8 specie)
+void EncounterArea::setSlot(u8 index, u16 specie, Pokemon mon)
 {
-    pokemon[index].setSpecie(specie);
+    pokemon[index].setSpecie(specie, mon);
 }
 
 
-Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel)
+Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon)
 {
     this->specie = specie;
     this->minLevel = minLevel;
     this->maxLevel = maxLevel;
+    this->pokemon = pokemon;
 }
 
-Slot::Slot(u16 specie, u8 level)
+Slot::Slot(u16 specie, u8 level, Pokemon pokemon)
 {
     this->specie = specie;
     minLevel = level;
     maxLevel = level;
+    this->pokemon = pokemon;
+}
+
+u8 Slot::getMinLevel() const
+{
+    return minLevel;
+}
+
+u8 Slot::getMaxLevel() const
+{
+    return maxLevel;
+}
+
+u16 Slot::getSpecie() const
+{
+    return specie;
+}
+
+Pokemon Slot::getPokemon() const
+{
+    return pokemon;
+}
+
+void Slot::setSpecie(u16 specie, Pokemon pokemon)
+{
+    this->specie = specie;
+    this->pokemon = pokemon;
 }

@@ -27,9 +27,6 @@ Stationary3::Stationary3(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    ui->labelSearcherShadow->setVisible(false);
-    ui->comboBoxSearcherShadow->setVisible(false);
-
     updateProfiles();
     setupModels();
 
@@ -46,11 +43,16 @@ Stationary3::~Stationary3()
 
 void Stationary3::updateProfiles()
 {
-    profiles = Profile3::loadProfileList();
-    profiles.insert(profiles.begin(), Profile3());
+    profiles = { Profile3() };
+    for (const auto &profile : Profile3::loadProfileList())
+    {
+        if (!(profile.getVersion() & Game::GC))
+        {
+            profiles.append(profile);
+        }
+    }
 
     ui->comboBoxProfiles->clear();
-
     for (const auto &profile : profiles)
     {
         ui->comboBoxProfiles->addItem(profile.getProfileName());
@@ -89,6 +91,15 @@ void Stationary3::setupModels()
 
     ui->comboBoxGeneratorHiddenPower->setup(Power::getPowers());
     ui->comboBoxSearcherHiddenPower->setup(Power::getPowers());
+
+    ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), Method::Method1);
+    ui->comboBoxGeneratorMethod->addItem(tr("Method 1 Reverse"), Method::Method1Reverse);
+    ui->comboBoxGeneratorMethod->addItem(tr("Method 2"), Method::Method2);
+    ui->comboBoxGeneratorMethod->addItem(tr("Method 4"), Method::Method4);
+    ui->comboBoxSearcherMethod->addItem(tr("Method 1"), Method::Method1);
+    ui->comboBoxSearcherMethod->addItem(tr("Method 1 Reverse"), Method::Method1Reverse);
+    ui->comboBoxSearcherMethod->addItem(tr("Method 2"), Method::Method2);
+    ui->comboBoxSearcherMethod->addItem(tr("Method 4"), Method::Method4);
 
     QAction *setTargetFrame = generatorMenu->addAction(tr("Set Target Frame"));
     QAction *jumpToTarget = generatorMenu->addAction(tr("Jump to Target Frame"));
@@ -159,7 +170,7 @@ void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
         return;
     }
 
-    auto profile = profiles[index];
+    auto profile = profiles.at(index);
     QString tid = QString::number(profile.getTID());
     QString sid = QString::number(profile.getSID());
 
@@ -170,31 +181,6 @@ void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->labelProfileTIDValue->setText(tid);
     ui->labelProfileSIDValue->setText(sid);
     ui->labelProfileGameValue->setText(profile.getVersionString());
-
-    bool flag = profile.getVersion() & Game::GC;
-
-    ui->comboBoxGeneratorMethod->clear();
-    ui->comboBoxSearcherMethod->clear();
-    if (flag)
-    {
-        ui->comboBoxGeneratorMethod->addItem(tr("XD/Colo"), Method::XDColo);
-        ui->comboBoxGeneratorMethod->addItem(tr("Channel"), Method::Channel);
-        ui->comboBoxSearcherMethod->addItem(tr("XD/Colo"), Method::XDColo);
-        ui->comboBoxSearcherMethod->addItem(tr("Gales"), Method::XD);
-        ui->comboBoxSearcherMethod->addItem(tr("Colo"), Method::Colo);
-        ui->comboBoxSearcherMethod->addItem(tr("Channel"), Method::Channel);
-    }
-    else
-    {
-        ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), Method::Method1);
-        ui->comboBoxGeneratorMethod->addItem(tr("Method 1 Reverse"), Method::Method1Reverse);
-        ui->comboBoxGeneratorMethod->addItem(tr("Method 2"), Method::Method2);
-        ui->comboBoxGeneratorMethod->addItem(tr("Method 4"), Method::Method4);
-        ui->comboBoxSearcherMethod->addItem(tr("Method 1"), Method::Method1);
-        ui->comboBoxSearcherMethod->addItem(tr("Method 1 Reverse"), Method::Method1Reverse);
-        ui->comboBoxSearcherMethod->addItem(tr("Method 2"), Method::Method2);
-        ui->comboBoxSearcherMethod->addItem(tr("Method 4"), Method::Method4);
-    }
 }
 
 void Stationary3::on_pushButtonGenerate_clicked()
@@ -243,10 +229,6 @@ void Stationary3::on_pushButtonSearch_clicked()
     Searcher3 searcher = Searcher3(tid, sid, static_cast<u32>(genderRatioIndex), compare);
 
     searcher.setup(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
-    if (searcher.getFrameType() == Method::XD || searcher.getFrameType() == Method::Colo)
-    {
-        searcher.setupNatureLock(ui->comboBoxSearcherShadow->currentIndex());
-    }
 
     QVector<u8> min = ui->ivFilterSearcher->getLower();
     QVector<u8> max = ui->ivFilterSearcher->getUpper();
@@ -254,7 +236,7 @@ void Stationary3::on_pushButtonSearch_clicked()
     int maxProgress = 1;
     for (int i = 0; i < 6; i++)
     {
-        maxProgress *= max[i] - min[i] + 1;
+        maxProgress *= max.at(i) - min.at(i) + 1;
     }
 
     ui->progressBar->setValue(0);
@@ -271,54 +253,6 @@ void Stationary3::on_pushButtonSearch_clicked()
 
     search->start();
     timer->start(1000);
-}
-
-void Stationary3::on_comboBoxSearcherMethod_currentIndexChanged(int index)
-{
-    (void) index;
-    Method method = static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt());
-    ui->comboBoxSearcherShadow->clear();
-
-    if (method == Method::XD)
-    {
-        QStringList s = Translator::getSpecies(
-        {
-            334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125, 83, 55, 88, 58,
-            316, 316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82,
-            296, 310, 105, 303, 52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261,
-            57, 280, 78, 20, 315, 302, 373, 123, 273, 273, 273, 86, 285, 143, 361,
-            338, 21, 363, 363, 363, 167, 121, 220, 114, 49, 100, 37, 70
-        });
-
-        s[15] += tr(" (Citadark)");
-        s[16] += tr(" (Initial)");
-        s[17] += tr(" (Phenac)");
-        s[52] += tr(" (Citadark)");
-        s[53] += tr(" (Initial)");
-        s[54] += tr(" (Phenac)");
-        s[61] += tr(" (Citadark)");
-        s[62] += tr(" (Initial)");
-        s[63] += tr(" (Phenac)");
-
-        ui->comboBoxSearcherShadow->addItems(s);
-        ui->comboBoxSearcherShadow->setVisible(true);
-        ui->labelSearcherShadow->setVisible(true);
-    }
-    else if (method == Method::Colo)
-    {
-        QStringList s = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
-        s[3] += tr(" (E-Reader)");
-        s[5] += tr(" (E-Reader)");
-        s[6] += tr(" (E-Reader)");
-        ui->comboBoxSearcherShadow->addItems(s);
-        ui->comboBoxSearcherShadow->setVisible(true);
-        ui->labelSearcherShadow->setVisible(true);
-    }
-    else
-    {
-        ui->comboBoxSearcherShadow->setVisible(false);
-        ui->labelSearcherShadow->setVisible(false);
-    }
 }
 
 void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)

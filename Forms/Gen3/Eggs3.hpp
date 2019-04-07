@@ -47,10 +47,10 @@ public:
 private:
     Ui::Eggs3 *ui;
     QVector<Profile3> profiles;
-    Egg3Model *emeraldIVs;
-    Egg3Model *emeraldPID;
-    Egg3Model *rs;
-    Egg3Model *frlg;
+    Egg3Model *emeraldIVs{};
+    Egg3Model *emeraldPID{};
+    Egg3Model *rs{};
+    Egg3Model *frlg{};
 
     void setupModels();
 

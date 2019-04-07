@@ -44,12 +44,12 @@ private:
     bool flag;
     QVector<bool> hex;
 
-    static inline u64 get64Bit(ResearcherFrame f) { return f.getFull64(); }
-    static inline u64 get32BitHigh(ResearcherFrame f) { return f.getHigh32(); }
-    static inline u64 get32BitLow(ResearcherFrame f) { return f.getLow32(); }
-    static inline u64 get32(ResearcherFrame f) { return f.getFull32(); }
-    static inline u64 get16BitHigh(ResearcherFrame f) { return f.getHigh16(); }
-    static inline u64 get16BitLow(ResearcherFrame f) { return f.getLow16(); }
+    static inline u64 get64Bit(const ResearcherFrame &f) { return f.getFull64(); }
+    static inline u64 get32BitHigh(const ResearcherFrame &f) { return f.getHigh32(); }
+    static inline u64 get32BitLow(const ResearcherFrame &f) { return f.getLow32(); }
+    static inline u64 get32(const ResearcherFrame &f) { return f.getFull32(); }
+    static inline u64 get16BitHigh(const ResearcherFrame &f) { return f.getHigh16(); }
+    static inline u64 get16BitLow(const ResearcherFrame &f) { return f.getLow16(); }
 
 };
 

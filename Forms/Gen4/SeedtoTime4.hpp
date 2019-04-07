@@ -45,10 +45,10 @@ public:
 
 private:
     Ui::SeedtoTime4 *ui;
-    SeedtoTime4Model *dppt;
-    SeedtoTime4Model *dpptCalibrate;
-    SeedtoTime4Model *hgss;
-    SeedtoTime4Model *hgssCalibrate;
+    SeedtoTime4Model *dppt{};
+    SeedtoTime4Model *dpptCalibrate{};
+    SeedtoTime4Model *hgss{};
+    SeedtoTime4Model *hgssCalibrate{};
 
     void setupModels();
     QVector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);

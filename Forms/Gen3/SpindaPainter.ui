@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SpindaPainter</class>
+ <widget class="QWidget" name="SpindaPainter">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>700</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Spinda Painter</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="2">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelPID">
+     <property name="text">
+      <string>PID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="TextBox" name="textBoxPID">
+     <property name="text">
+      <string notr="true">0</string>
+     </property>
+     <property name="maxLength">
+      <number>8</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="labelInfo"/>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QGraphicsView" name="graphicsView"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/TextBox.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

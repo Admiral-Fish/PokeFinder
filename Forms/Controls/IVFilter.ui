@@ -23,7 +23,7 @@
    <item row="0" column="0">
     <widget class="Label" name="labelHP">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -41,12 +41,6 @@
    </item>
    <item row="0" column="1">
     <widget class="QSpinBox" name="spinBoxHPMin">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="maximum">
       <number>31</number>
      </property>
@@ -78,7 +72,7 @@
    <item row="1" column="0">
     <widget class="Label" name="labelAtk">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -90,12 +84,6 @@
    </item>
    <item row="1" column="1">
     <widget class="QSpinBox" name="spinBoxAtkMin">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="maximum">
       <number>31</number>
      </property>
@@ -127,7 +115,7 @@
    <item row="2" column="0">
     <widget class="Label" name="labelDef">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -139,12 +127,6 @@
    </item>
    <item row="2" column="1">
     <widget class="QSpinBox" name="spinBoxDefMin">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="maximum">
       <number>31</number>
      </property>
@@ -176,7 +158,7 @@
    <item row="3" column="0">
     <widget class="Label" name="labelSpA">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -188,12 +170,6 @@
    </item>
    <item row="3" column="1">
     <widget class="QSpinBox" name="spinBoxSpAMin">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="maximum">
       <number>31</number>
      </property>
@@ -225,7 +201,7 @@
    <item row="4" column="0">
     <widget class="Label" name="labelSpD">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -237,12 +213,6 @@
    </item>
    <item row="4" column="1">
     <widget class="QSpinBox" name="spinBoxSpDMin">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="maximum">
       <number>31</number>
      </property>
@@ -274,7 +244,7 @@
    <item row="5" column="0">
     <widget class="Label" name="labelSpe">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -286,12 +256,6 @@
    </item>
    <item row="5" column="1">
     <widget class="QSpinBox" name="spinBoxSpeMin">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="maximum">
       <number>31</number>
      </property>

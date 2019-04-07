@@ -41,9 +41,9 @@ public:
     void xorFrame();
 
 private:
-    u32 occidentary;
-    u32 seed;
-    u32 initialSeed;
+    u32 occidentary{};
+    u32 seed{};
+    u32 initialSeed{};
 
 };
 

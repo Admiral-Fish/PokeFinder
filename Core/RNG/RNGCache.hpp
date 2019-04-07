@@ -36,9 +36,9 @@ public:
     void switchCache(Method MethodType);
 
 private:
-    u32 add;
-    u32 k;
-    u32 mult;
+    u32 add{};
+    u32 k{};
+    u32 mult{};
     QHash<u16, u16> keys;
 
     void populateMap();

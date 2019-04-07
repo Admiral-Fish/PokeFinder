@@ -51,21 +51,18 @@ void CheckList::setup(const QStringList &items)
 
 QVector<bool> CheckList::getChecked()
 {
-    QVector<bool> result(model->rowCount());
+    QVector<bool> result;
 
     if (checkState() == Qt::PartiallyChecked)
     {
         for (auto i = 0; i < model->rowCount(); i++)
         {
-            result[i] = model->item(i)->checkState() == Qt::Checked;
+            result.append(model->item(i)->checkState() == Qt::Checked);
         }
     }
     else
     {
-        for (auto i = 0; i < model->rowCount(); i++)
-        {
-            result[i] = true;
-        }
+        result = QVector<bool>(model->rowCount(), true);
     }
     return result;
 }

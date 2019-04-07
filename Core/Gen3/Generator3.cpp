@@ -105,28 +105,29 @@ QVector<Frame3> Generator3::generateMethodChannel(const FrameCompare &compare) c
     frame.setGenderRatio(compare.getGenderRatio());
 
     XDRNG rng(initialSeed, initialFrame - 1 + offset);
-    u16 *rngArray = new u16[maxResults + 12];
-    for (u32 i = 0; i < maxResults + 12; i++)
+    QVector<u16> rngList(maxResults + 12);
+    for (u16 &x : rngList)
     {
-        rngArray[i] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     // Method Channel [SEED] [SID] [PID] [PID] [BERRY] [GAME ORIGIN] [OT GENDER] [IV] [IV] [IV] [IV] [IV] [IV]
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setIDs(40122, rngArray[cnt], 40122 ^ rngArray[cnt]);
+        frame.setIDs(40122, rngList.at(cnt), 40122 ^ rngList.at(cnt));
 
-        if ((rngArray[2 + cnt] > 7 ? 0 : 1) != (rngArray[1 + cnt] ^ 40122 ^ rngArray[cnt]))
+        if ((rngList.at(cnt + 2) > 7 ? 0 : 1) != (rngList.at(cnt + 1) ^ 40122 ^ rngList.at(cnt)))
         {
-            frame.setPID(rngArray[2 + cnt], rngArray[1 + cnt] ^ 0x8000);
+            frame.setPID(rngList.at(cnt + 2), rngList.at(cnt + 1) ^ 0x8000);
         }
         else
         {
-            frame.setPID(rngArray[2 + cnt], rngArray[1 + cnt]);
+            frame.setPID(rngList.at(cnt + 2), rngList.at(cnt + 1));
         }
 
-        frame.setIVsManual(rngArray[6 + cnt] >> 11, rngArray[7 + cnt] >> 11, rngArray[8 + cnt] >> 11, rngArray[10 + cnt] >> 11, rngArray[11 + cnt] >> 11, rngArray[9 + cnt] >> 11);
+        frame.setIVs(rngList.at(cnt + 6) >> 11, rngList.at(cnt + 7) >> 11, rngList.at(cnt + 8) >> 11,
+                     rngList.at(cnt + 10) >> 11, rngList.at(cnt + 11) >> 11, rngList.at(cnt + 9) >> 11);
 
         if (compare.compareFrame(frame))
         {
@@ -135,7 +136,6 @@ QVector<Frame3> Generator3::generateMethodChannel(const FrameCompare &compare) c
         }
     }
 
-    delete[] rngArray;
     return frames;
 }
 
@@ -586,18 +586,18 @@ QVector<Frame3> Generator3::generateMethodXDColo(const FrameCompare &compare) co
     frame.setGenderRatio(compare.getGenderRatio());
 
     XDRNG rng(initialSeed, initialFrame - 1 + offset);
-    auto *rngArray = new u16[maxResults + 5];
-    for (u32 i = 0; i < maxResults + 5; i++)
+    QVector<u16> rngList(maxResults + 5);
+    for (u16 &x : rngList)
     {
-        rngArray[i] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngArray[4 + cnt], rngArray[3 + cnt]);
-        frame.setIVs(rngArray[cnt], rngArray[1 + cnt]);
+        frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3));
+        frame.setIVs(rngList.at(cnt), rngList.at(cnt + 1));
 
         if (compare.compareFrame(frame))
         {
@@ -606,7 +606,6 @@ QVector<Frame3> Generator3::generateMethodXDColo(const FrameCompare &compare) co
         }
     }
 
-    delete[] rngArray;
     return frames;
 }
 
@@ -617,10 +616,10 @@ QVector<Frame3> Generator3::generateMethod124(const FrameCompare &compare) const
     frame.setGenderRatio(compare.getGenderRatio());
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
-    auto *rngArray = new u16[maxResults + 5];
-    for (u32 i = 0; i < maxResults + 5; i++)
+    QVector<u16> rngList(maxResults + 5);
+    for (u16 &x : rngList)
     {
-        rngArray[i] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
@@ -629,8 +628,8 @@ QVector<Frame3> Generator3::generateMethod124(const FrameCompare &compare) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngArray[cnt], rngArray[1 + cnt]);
-        frame.setIVs(rngArray[iv1 + cnt], rngArray[iv2 + cnt]);
+        frame.setPID(rngList.at(cnt), rngList.at(cnt + 1));
+        frame.setIVs(rngList.at(cnt + iv1), rngList.at(cnt + iv2));
 
         if (compare.compareFrame(frame))
         {
@@ -639,7 +638,6 @@ QVector<Frame3> Generator3::generateMethod124(const FrameCompare &compare) const
         }
     }
 
-    delete[] rngArray;
     return frames;
 }
 
@@ -650,18 +648,18 @@ QVector<Frame3> Generator3::generateMethod1Reverse(const FrameCompare &compare) 
     frame.setGenderRatio(compare.getGenderRatio());
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
-    auto *rngArray = new u16[maxResults + 4];
-    for (u32 i = 0; i < maxResults + 4; i++)
+    QVector<u16> rngList(maxResults + 4);
+    for (u16 &x : rngList)
     {
-        rngArray[i] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngArray[1 + cnt], rngArray[cnt]);
-        frame.setIVs(rngArray[2 + cnt], rngArray[3 + cnt]);
+        frame.setPID(rngList.at(cnt + 1), rngList.at(cnt));
+        frame.setIVs(rngList.at(cnt + 2), rngList.at(cnt + 3));
 
         if (compare.compareFrame(frame))
         {
@@ -670,6 +668,5 @@ QVector<Frame3> Generator3::generateMethod1Reverse(const FrameCompare &compare) 
         }
     }
 
-    delete[] rngArray;
     return frames;
 }

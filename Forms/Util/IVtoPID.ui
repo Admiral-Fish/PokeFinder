@@ -157,22 +157,46 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QSpinBox" name="spinBoxHP"/>
+      <widget class="QSpinBox" name="spinBoxHP">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QSpinBox" name="spinBoxAtk"/>
+      <widget class="QSpinBox" name="spinBoxAtk">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QSpinBox" name="spinBoxDef"/>
+      <widget class="QSpinBox" name="spinBoxDef">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QSpinBox" name="spinBoxSpA"/>
+      <widget class="QSpinBox" name="spinBoxSpA">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
      </item>
      <item row="1" column="4">
-      <widget class="QSpinBox" name="spinBoxSpD"/>
+      <widget class="QSpinBox" name="spinBoxSpD">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
      </item>
      <item row="1" column="5">
-      <widget class="QSpinBox" name="spinBoxSpe"/>
+      <widget class="QSpinBox" name="spinBoxSpe">
+       <property name="maximum">
+        <number>31</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

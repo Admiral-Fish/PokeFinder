@@ -91,28 +91,27 @@ QVector<Frame4> Generator4::generateMethod1(const FrameCompare &compare) const
     frame.setGenderRatio(compare.getGenderRatio());
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
-    auto *rngArray = new u16[maxResults + 4];
-    for (u32 i = 0; i < maxResults + 4; i++)
+    QVector<u16> rngList(maxResults + 4);
+    for (u16 &x : rngList)
     {
-        rngArray[i] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngArray[cnt], rngArray[1 + cnt]);
-        frame.setIVs(rngArray[2 + cnt], rngArray[3 + cnt]);
+        frame.setPID(rngList.at(cnt), rngList.at(cnt + 1));
+        frame.setIVs(rngList.at(cnt + 2), rngList.at(cnt + 3));
 
         if (compare.compareFrame(frame))
         {
-            frame.setSeed(rngArray[cnt]);
+            frame.setSeed(rngList.at(cnt));
             frame.setFrame(cnt + initialFrame);
             frames.append(frame);
         }
     }
 
-    delete[] rngArray;
     return frames;
 }
 
@@ -868,32 +867,30 @@ QVector<Frame4> Generator4::generateChainedShiny(const FrameCompare &compare) co
     frame.setGenderRatio(compare.getGenderRatio());
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
-    auto *rngArray = new u16[maxResults + 18];
-    for (u32 i = 0; i < maxResults + 18; i++)
+    QVector<u16> rngList(maxResults + 18);
+    for (u16 &x : rngList)
     {
-        rngArray[i] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     u16 low, high;
-
     for (u32 cnt = initialFrame; cnt < maxResults; cnt++)
     {
-        low = chainedPIDLow(rngArray[1 + cnt], rngArray[15 + cnt], rngArray[14 + cnt], rngArray[13 + cnt], rngArray[12 + cnt], rngArray[11 + cnt], rngArray[10 + cnt],
-                            rngArray[9 + cnt], rngArray[8 + cnt], rngArray[7 + cnt], rngArray[6 + cnt], rngArray[5 + cnt], rngArray[4 + cnt], rngArray[3 + cnt]);
-        high = chainedPIDHigh(rngArray[2 + cnt], low, tid, sid);
+        low = chainedPIDLow(rngList.at(cnt + 1), rngList.at(cnt + 15), rngList.at(cnt + 14), rngList.at(cnt + 13), rngList.at(cnt + 12), rngList.at(cnt + 11), rngList.at(cnt + 10),
+                            rngList.at(cnt + 9), rngList.at(cnt + 8), rngList.at(cnt + 7), rngList.at(cnt + 6), rngList.at(cnt + 5), rngList.at(cnt + 4), rngList.at(cnt + 3));
+        high = chainedPIDHigh(rngList[2 + cnt], low, tid, sid);
 
         frame.setPID(low, high);
-        frame.setIVs(rngArray[16 + cnt], rngArray[17 + cnt]);
+        frame.setIVs(rngList.at(cnt + 16), rngList.at(cnt + 17));
 
         if (compare.compareFrame(frame))
         {
-            frame.setSeed(rngArray[cnt]);
+            frame.setSeed(rngList.at(cnt));
             frame.setFrame(cnt + initialFrame);
             frames.append(frame);
         }
     }
 
-    delete[] rngArray;
     return frames;
 }
 
@@ -903,27 +900,26 @@ QVector<Frame4> Generator4::generateWondercardIVs(const FrameCompare &compare) c
     Frame4 frame = Frame4(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
-    auto *rngArray = new u16[maxResults + 2];
-    for (u32 i = 0; i < maxResults + 2; i++)
+    QVector<u16> rngList(maxResults + 2);
+    for (u16 &x : rngList)
     {
-        rngArray[i] = rng.nextUShort();
+        x = rng.nextUShort();
     }
 
     // Wondercard IVs [SEED] [IVS] [IVS]
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setIVs(rngArray[cnt], rngArray[1 + cnt]);
+        frame.setIVs(rngList.at(cnt), rngList.at(cnt + 1));
 
         if (compare.compareIVs(frame))
         {
-            frame.setSeed(rngArray[cnt]);
+            frame.setSeed(rngList.at(cnt));
             frame.setFrame(cnt + initialFrame);
             frames.append(frame);
         }
     }
 
-    delete[] rngArray;
     return frames;
 }
 

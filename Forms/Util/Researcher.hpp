@@ -47,8 +47,8 @@ public:
 
 private:
     Ui::Researcher *ui;
-    ResearcherModel *model;
-    QHash<QString, int> keys;
+    ResearcherModel *model{};
+    QHash<QString, u8> keys;
 
     void setupModels();
     u64 getCustom(const QString &text, const ResearcherFrame &frame, const QVector<ResearcherFrame> &frames);

@@ -56,7 +56,7 @@ QString Frame::getShinyString()
     return shiny ? "!!!" : "";
 }
 
-void Frame::setIVsManual(u8 iv1, u8 iv2, u8 iv3, u8 iv4, u8 iv5, u8 iv6)
+void Frame::setIVs(u8 iv1, u8 iv2, u8 iv3, u8 iv4, u8 iv5, u8 iv6)
 {
     ivs[0] = iv1;
     ivs[1] = iv2;
@@ -64,8 +64,8 @@ void Frame::setIVsManual(u8 iv1, u8 iv2, u8 iv3, u8 iv4, u8 iv5, u8 iv6)
     ivs[3] = iv4;
     ivs[4] = iv5;
     ivs[5] = iv6;
-    hidden = ((((ivs[0] & 1) + 2 * (ivs[1] & 1) + 4 * (ivs[2] & 1) + 8 * (ivs[5] & 1) + 16 * (ivs[3] & 1) + 32 * (ivs[4] & 1)) * 15) / 63);
-    power = (30 + ((((ivs[0] >> 1) & 1) + 2 * ((ivs[1] >> 1) & 1) + 4 * ((ivs[2] >> 1) & 1) + 8 * ((ivs[5] >> 1) & 1) + 16 * ((ivs[3] >> 1) & 1) + 32 * ((ivs[4] >> 1) & 1)) * 40 / 63));
+    calculateHidden();
+    calculatePower();
 }
 
 void Frame::setIDs(u16 tid, u16 sid, u16 psv)
@@ -83,8 +83,8 @@ void Frame::setIVs(u16 iv1, u16 iv2)
     ivs[3] = (iv2 >> 5) & 0x1f;
     ivs[4] = (iv2 >> 10) & 0x1f;
     ivs[5] = iv2 & 0x1f;
-    hidden = ((((ivs[0] & 1) + 2 * (ivs[1] & 1) + 4 * (ivs[2] & 1) + 8 * (ivs[5] & 1) + 16 * (ivs[3] & 1) + 32 * (ivs[4] & 1)) * 15) / 63);
-    power = (30 + ((((ivs[0] >> 1) & 1) + 2 * ((ivs[1] >> 1) & 1) + 4 * ((ivs[2] >> 1) & 1) + 8 * ((ivs[5] >> 1) & 1) + 16 * ((ivs[3] >> 1) & 1) + 32 * ((ivs[4] >> 1) & 1)) * 40 / 63));
+    calculateHidden();
+    calculatePower();
 }
 
 void Frame::setPID(u16 pid1, u16 pid2)
@@ -120,12 +120,12 @@ u32 Frame::getFrame() const
 
 u8 Frame::getIV(int index) const
 {
-    return ivs[index];
+    return ivs.at(index);
 }
 
 QChar Frame::getInheritance(int index) const
 {
-    return inheritance[index];
+    return inheritance.at(index);
 }
 
 u8 Frame::getPower() const
@@ -211,4 +211,14 @@ void Frame::setFrame(const u32 &value)
 void Frame::setLeadType(const Lead &value)
 {
     leadType = value;
+}
+
+void Frame::calculateHidden()
+{
+    hidden = ((((ivs.at(0) & 1) + 2 * (ivs.at(1) & 1) + 4 * (ivs.at(2) & 1) + 8 * (ivs.at(5) & 1) + 16 * (ivs.at(3) & 1) + 32 * (ivs.at(4) & 1)) * 15) / 63);
+}
+
+void Frame::calculatePower()
+{
+    power = 30 + ((((ivs.at(0) >> 1) & 1) + 2 * ((ivs.at(1) >> 1) & 1) + 4 * ((ivs.at(2) >> 1) & 1) + 8 * ((ivs.at(5) >> 1) & 1) + 16 * ((ivs.at(3) >> 1) & 1) + 32 * ((ivs.at(4) >> 1) & 1)) * 40 / 63);
 }

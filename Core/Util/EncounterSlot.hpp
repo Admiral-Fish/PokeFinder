@@ -24,24 +24,8 @@
 #include <Core/Util/Encounter.hpp>
 #include <Core/Util/Global.hpp>
 
-class Range
-{
-
-public:
-    Range();
-    Range(u8 min, u8 max);
-    u8 getMax() const;
-    u8 getMin() const;
-
-private:
-    u8 max;
-    u8 min;
-
-};
-
 namespace EncounterSlot
 {
-    u8 calcSlot(u8 compare, const QVector<Range> &ranges);
     u8 hSlot(u16 result, Encounter encounterType);
     u8 jSlot(u16 result, Encounter encounterType);
     u8 kSlot(u16 result, Encounter encounterType);

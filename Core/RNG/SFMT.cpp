@@ -92,11 +92,12 @@ u64 SFMT::getSeed()
 void SFMT::initialize(u32 seed)
 {
     this->seed = seed;
+    sfmt = QVector<u32>(624);
     sfmt[0] = seed;
 
     for (index = 1; index < N32; index++)
     {
-        sfmt[index] = 0x6C078965 * (sfmt[index - 1] ^ (sfmt[index - 1] >> 30)) + index;
+        sfmt[index] = 0x6C078965 * (sfmt.at(index - 1) ^ (sfmt.at(index - 1) >> 30)) + index;
     }
 
     periodCertificaion();
@@ -109,7 +110,7 @@ void SFMT::periodCertificaion()
 
     for (u8 i = 0; i < 4; i++)
     {
-        inner ^= sfmt[i] & parity[i];
+        inner ^= sfmt.at(i) & parity.at(i);
     }
     for (u8 i = 16; i > 0; i >>= 1)
     {
@@ -125,7 +126,7 @@ void SFMT::periodCertificaion()
         work = 1;
         for (u8 j = 0; j < 32; j++)
         {
-            if ((work & parity[i]) != 0)
+            if ((work & parity.at(i)) != 0)
             {
                 sfmt[i] ^= work;
                 return;
@@ -144,10 +145,10 @@ void SFMT::shuffle()
 
     do
     {
-        sfmt[a + 3] = sfmt[a + 3] ^ (sfmt[a + 3] << 8) ^ (sfmt[a + 2] >> 24) ^ (sfmt[c + 3] >> 8) ^ ((sfmt[b + 3] >> CSR1) & CMSK4) ^ (sfmt[d + 3] << CSL1);
-        sfmt[a + 2] = sfmt[a + 2] ^ (sfmt[a + 2] << 8) ^ (sfmt[a + 1] >> 24) ^ (sfmt[c + 3] << 24) ^ (sfmt[c + 2] >> 8) ^ ((sfmt[b + 2] >> CSR1) & CMSK3) ^ (sfmt[d + 2] << CSL1);
-        sfmt[a + 1] = sfmt[a + 1] ^ (sfmt[a + 1] << 8) ^ (sfmt[a] >> 24) ^ (sfmt[c + 2] << 24) ^ (sfmt[c + 1] >> 8) ^ ((sfmt[b + 1] >> CSR1) & CMSK2) ^ (sfmt[d + 1] << CSL1);
-        sfmt[a] = sfmt[a] ^ (sfmt[a] << 8) ^ (sfmt[c + 1] << 24) ^ (sfmt[c] >> 8) ^ ((sfmt[b] >> CSR1) & CMSK1) ^ (sfmt[d] << CSL1);
+        sfmt[a + 3] = sfmt.at(a + 3) ^ (sfmt.at(a + 3) << 8) ^ (sfmt.at(a + 2) >> 24) ^ (sfmt.at(c + 3) >> 8) ^ ((sfmt.at(b + 3) >> CSR1) & CMSK4) ^ (sfmt.at(d + 3) << CSL1);
+        sfmt[a + 2] = sfmt.at(a + 2) ^ (sfmt.at(a + 2) << 8) ^ (sfmt.at(a + 1) >> 24) ^ (sfmt.at(c + 3) << 24) ^ (sfmt.at(c + 2) >> 8) ^ ((sfmt.at(b + 2) >> CSR1) & CMSK3) ^ (sfmt.at(d + 2) << CSL1);
+        sfmt[a + 1] = sfmt.at(a + 1) ^ (sfmt.at(a + 1) << 8) ^ (sfmt.at(a) >> 24) ^ (sfmt.at(c + 2) << 24) ^ (sfmt.at(c + 1) >> 8) ^ ((sfmt.at(b + 1) >> CSR1) & CMSK2) ^ (sfmt.at(d + 1) << CSL1);
+        sfmt[a] = sfmt.at(a) ^ (sfmt.at(a) << 8) ^ (sfmt.at(c + 1) << 24) ^ (sfmt.at(c) >> 8) ^ ((sfmt.at(b) >> CSR1) & CMSK1) ^ (sfmt.at(d) << CSL1);
 
         c = d;
         d = a;

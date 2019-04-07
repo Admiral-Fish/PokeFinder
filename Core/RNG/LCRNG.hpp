@@ -36,9 +36,9 @@ public:
     u32 getSeed() override;
 
 protected:
-    u32 add;
-    u32 mult;
-    u32 seed;
+    u32 add{};
+    u32 mult{};
+    u32 seed{};
 
 };
 

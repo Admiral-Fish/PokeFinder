@@ -20,6 +20,7 @@
 #ifndef MTRNG_HPP
 #define MTRNG_HPP
 
+#include <QVector>
 #include <Core/RNG/IRNG.hpp>
 
 class MT : public IRNG
@@ -29,13 +30,17 @@ public:
     void advanceFrames(u32 frames) override;
 
 protected:
-    const u32 mag01[2] = { 0x0, 0x9908B0DF };
-    u32 mt[624];
+    const QVector<u32> mag01 = { 0x0, 0x9908B0DF };
+    QVector<u32> mt;
     u32 seed;
     u32 index;
 
-    virtual void shuffle() = 0;
-    virtual void initialize(u32 seed) = 0;
+    virtual void shuffle();
+    virtual void initialize(u32 seed);
+    void setSeed(u32 seed) override;
+    void setSeed(u32 seed, u32 frames) override;
+    u16 nextUShort() override;
+    u32 getSeed() override;
 
 };
 
@@ -46,14 +51,6 @@ public:
     MersenneTwister();
     MersenneTwister(u32 seed, u32 frames = 0);
     u32 nextUInt() override;
-    u16 nextUShort() override;
-    void setSeed(u32 seed) override;
-    void setSeed(u32 seed, u32 frames) override;
-    u32 getSeed() override;
-
-private:
-    void initialize(u32 seed) override;
-    void shuffle() override;
 
 };
 
@@ -64,14 +61,6 @@ public:
     MersenneTwisterUntempered();
     MersenneTwisterUntempered(u32 seed, u32 frames = 0);
     u32 nextUInt() override;
-    u16 nextUShort() override;
-    void setSeed(u32 seed) override;
-    void setSeed(u32 seed, u32 frames) override;
-    u32 getSeed() override;
-
-private:
-    void initialize(u32 seed) override;
-    void shuffle() override;
 
 };
 
@@ -82,10 +71,6 @@ public:
     MersenneTwisterFast();
     MersenneTwisterFast(u32 seed, u32 calls, u32 frames = 0);
     u32 nextUInt() override;
-    u16 nextUShort() override;
-    void setSeed(u32 seed) override;
-    void setSeed(u32 seed, u32 frames) override;
-    u32 getSeed() override;
 
 private:
     u32 max;

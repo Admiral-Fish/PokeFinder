@@ -19,68 +19,47 @@
 
 #include "EncounterSlot.hpp"
 
-Range::Range()
+u8 calcSlot(u8 compare, const QVector<u8> &ranges)
 {
-    min = 0;
-    max = 99;
-}
-
-Range::Range(u8 min, u8 max)
-{
-    this->min = min;
-    this->max = max;
-}
-
-u8 Range::getMax() const
-{
-    return max;
-}
-
-u8 Range::getMin() const
-{
-    return min;
-}
-
-
-u8 EncounterSlot::calcSlot(u8 compare, const QVector<Range> &ranges)
-{
-    u16 size = ranges.size();
-    for (u16 i = 0; i < size; i++)
+    for (u8 i = 0; i < ranges.size(); i++)
     {
-        if (compare >= ranges.at(i).getMin() && compare <= ranges.at(i).getMax())
+        if (compare < ranges.at(i))
         {
             return i;
         }
     }
-    return 0;
+    return -1;
+}
+
+u8 calcSlot(u8 compare, const QVector<QPair<u8, u8>> &ranges)
+{
+    for (u8 i = 0; i < ranges.size(); i++)
+    {
+        if (compare >= ranges.at(i).first && compare <= ranges.at(i).second)
+        {
+            return i;
+        }
+    }
+    return -1;
 }
 
 // Calcs the encounter slot for Method H 1/2/4 (Emerald, FRLG, RS)
 u8 EncounterSlot::hSlot(u16 result, Encounter encounterType)
 {
     u8 compare = result % 100;
-    QVector<Range> ranges;
     switch (encounterType)
     {
         case Encounter::OldRod:
-            ranges = { Range(0, 69), Range(70, 99) } ;
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 70, 100 });
         case Encounter::GoodRod:
-            ranges = { Range(0, 59), Range(60, 79), Range(80, 99) };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 60, 80, 100 });
         case Encounter::SuperRod:
-            ranges = { Range(0, 39), Range(40, 79), Range(80, 94), Range(95, 98), Range(99, 99) };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 40, 80, 95, 99, 100 });
         case Encounter::Surfing:
         case Encounter::RockSmash:
-            ranges = { Range(0, 59), Range(60, 89), Range(90, 94), Range(95, 98), Range(99, 99) };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 60, 90, 95, 99, 100 });
         default:
-            ranges = { Range(0, 19), Range(20, 39), Range(40, 49), Range(50, 59), Range(60, 69),
-                       Range(70, 79), Range(80, 84), Range(85, 89), Range(90, 93), Range(94, 97),
-                       Range(98, 98), Range(99, 99)
-                 };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
     }
 }
 
@@ -88,23 +67,16 @@ u8 EncounterSlot::hSlot(u16 result, Encounter encounterType)
 u8 EncounterSlot::jSlot(u16 result, Encounter encounterType)
 {
     u8 compare = result / 656;
-    QVector<Range> ranges;
     switch (encounterType)
     {
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            ranges = { Range(0, 39), Range(40, 79), Range(80, 94), Range(95, 98), Range(99, 99) };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 40, 80, 95, 99, 100 });
         case Encounter::OldRod:
         case Encounter::Surfing:
-            ranges = { Range(0, 59), Range(60, 89), Range(90, 94), Range(95, 98), Range(99, 99) };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 60, 90, 95, 99, 100 });
         default:
-            ranges = { Range(0, 19), Range(20, 39), Range(40, 49), Range(50, 59), Range(60, 69),
-                       Range(70, 79), Range(80, 84), Range(85, 89), Range(90, 93), Range(94, 97),
-                       Range(98, 98), Range(99, 99)
-                 };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
     }
 }
 
@@ -112,37 +84,23 @@ u8 EncounterSlot::jSlot(u16 result, Encounter encounterType)
 u8 EncounterSlot::kSlot(u16 result, Encounter encounterType)
 {
     u8 compare = result % 100;
-    QVector<Range> ranges;
     switch (encounterType)
     {
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            ranges = { Range(0, 39), Range(40, 69), Range(70, 84), Range(85, 94), Range(95, 99) };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 40, 70, 85, 95, 100 });
         case Encounter::Surfing:
-            ranges = { Range(0, 59), Range(60, 89), Range(90, 94), Range(95, 98), Range(99, 99) };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 60, 90, 95, 99, 100 });
         case Encounter::BugCatchingContest:
-            ranges = { Range(80, 99), Range(60, 79), Range(50, 59), Range(40, 49), Range(30, 39),
-                       Range(20, 29), Range(15, 19), Range(10, 14), Range(5, 9), Range(0, 4)
-                 };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { { 80, 99 }, { 60, 79 }, { 50, 59 }, { 40, 49 }, { 30, 39 }, { 20, 29 }, { 15, 19 }, { 10, 14 }, { 5, 9 }, { 0, 4 } });
         case Encounter::SafariZone:
             return compare % 10;
         case Encounter::HeadButt:
-            ranges = { Range(0, 49), Range(50, 64), Range(65, 79), Range(80, 89), Range(90, 94),
-                       Range(95, 99)
-                 };
-            return calcSlot(compare, ranges);
-        case Encounter::RockSmash: // Might be 80/20
-            ranges = { Range(0, 89), Range(90, 99) };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 50, 65, 80, 90, 95, 100 });
+        case Encounter::RockSmash:
+            return calcSlot(compare, { 80, 100 });
         default:
-            ranges = { Range(0, 19), Range(20, 39), Range(40, 49), Range(50, 59), Range(60, 69),
-                       Range(70, 79), Range(80, 84), Range(85, 89), Range(90, 93), Range(94, 97),
-                       Range(98, 98), Range(99, 99)
-                 };
-            return calcSlot(compare, ranges);
+            return calcSlot(compare, { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
     }
 }

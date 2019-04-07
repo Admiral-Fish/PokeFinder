@@ -37,7 +37,7 @@ Profile4::Profile4(QJsonObject data)
     swarm = data["swarm"].toBool();
 }
 
-Profile4::Profile4() : Profile()
+Profile4::Profile4()
 {
     version = Game::Diamond;
     dual = Game::Blank;

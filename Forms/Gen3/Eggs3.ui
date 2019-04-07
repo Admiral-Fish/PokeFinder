@@ -22,38 +22,19 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBoxProfile">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>70</height>
-      </size>
-     </property>
      <property name="title">
       <string>Profile</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_13">
       <item row="0" column="0">
        <widget class="QLabel" name="labelProfile">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
         <property name="text">
          <string>Profile</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="comboBoxProfiles">
-        <property name="maximumSize">
-         <size>
-          <width>150</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
+       <widget class="QComboBox" name="comboBoxProfiles"/>
       </item>
       <item row="0" column="2">
        <widget class="QLabel" name="labelProfileTID">
@@ -132,14 +113,8 @@
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>1</horstretch>
-           <verstretch>1</verstretch>
+           <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
          </property>
          <property name="title">
           <string>Egg PID</string>
@@ -154,18 +129,6 @@
           </item>
           <item row="0" column="1">
            <widget class="TextBox" name="textBoxEmeraldPIDMinFrame">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>70</width>
-              <height>0</height>
-             </size>
-            </property>
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -176,18 +139,6 @@
           </item>
           <item row="0" column="2">
            <widget class="TextBox" name="textBoxEmeraldPIDMaxFrame">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>70</width>
-              <height>0</height>
-             </size>
-            </property>
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -231,12 +182,6 @@
           </item>
           <item row="1" column="1">
            <widget class="TextBox" name="textBoxMinRedraws">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">0</string>
             </property>
@@ -247,12 +192,6 @@
           </item>
           <item row="1" column="2">
            <widget class="TextBox" name="textBoxMaxRedraws">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">5</string>
             </property>
@@ -289,11 +228,11 @@
           </item>
           <item row="1" column="5">
            <widget class="QPushButton" name="pushButtonEmeraldAnyAbility">
-            <property name="minimumSize">
-             <size>
-              <width>50</width>
-              <height>13</height>
-             </size>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="text">
              <string>Any</string>
@@ -309,12 +248,6 @@
           </item>
           <item row="2" column="1" colspan="2">
            <widget class="TextBox" name="textBoxCalibration">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">18</string>
             </property>
@@ -335,11 +268,11 @@
           </item>
           <item row="2" column="5">
            <widget class="QPushButton" name="pushButtonEmeraldAnyNature">
-            <property name="minimumSize">
-             <size>
-              <width>50</width>
-              <height>13</height>
-             </size>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
             <property name="text">
              <string>Any</string>
@@ -360,131 +293,6 @@
               <string>None</string>
              </property>
             </item>
-            <item>
-             <property name="text">
-              <string>Adamant</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Brave</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bold</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Calm</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Careful</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Hasty</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Impish</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Jolly</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Lonely</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Mild</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Modest</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Naive</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Naughty</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Quiet</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Rash</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Relaxed</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Sassy</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Timid</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Gentle</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Lax</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Bashful</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Docile</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Hardy</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Quirky</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Serious</string>
-             </property>
-            </item>
            </widget>
           </item>
           <item row="4" column="0">
@@ -496,12 +304,6 @@
           </item>
           <item row="4" column="1" colspan="2">
            <widget class="TextBox" name="textBoxEmeraldTID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">12345</string>
             </property>
@@ -545,12 +347,6 @@
           </item>
           <item row="5" column="1" colspan="2">
            <widget class="TextBox" name="textBoxEmeraldSID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">54321</string>
             </property>
@@ -621,18 +417,6 @@
           </item>
           <item row="6" column="0" colspan="3">
            <widget class="QPushButton" name="pushButtonEmeraldPIDGenerate">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>23</height>
-             </size>
-            </property>
             <property name="text">
              <string>Generate</string>
             </property>
@@ -646,14 +430,8 @@
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>1</horstretch>
-           <verstretch>2</verstretch>
+           <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
          </property>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
@@ -665,14 +443,8 @@
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>1</horstretch>
-           <verstretch>2</verstretch>
+           <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
          </property>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
@@ -684,14 +456,8 @@
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>1</horstretch>
-           <verstretch>1</verstretch>
+           <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
          </property>
          <property name="styleSheet">
           <string notr="true">QRadioButton::indicator {
@@ -721,12 +487,6 @@ QRadioButton {
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="labelEmeraldIVsFrame">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
               <property name="text">
                <string>Frame</string>
               </property>
@@ -734,12 +494,6 @@ QRadioButton {
             </item>
             <item>
              <widget class="TextBox" name="textBoxEmeraldIVsMinFrame">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
               <property name="text">
                <string notr="true">1000</string>
               </property>
@@ -747,12 +501,6 @@ QRadioButton {
             </item>
             <item>
              <widget class="TextBox" name="textBoxEmeraldIVsMaxFrame">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
               <property name="text">
                <string notr="true">5000</string>
               </property>
@@ -761,20 +509,7 @@ QRadioButton {
            </layout>
           </item>
           <item row="0" column="1" rowspan="3">
-           <widget class="IVFilter" name="ivFilterEmerald" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>160</width>
-              <height>180</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
+           <widget class="IVFilter" name="ivFilterEmerald" native="true"/>
           </item>
           <item row="1" column="0">
            <layout class="QGridLayout" name="gridLayout_4">
@@ -806,12 +541,6 @@ QRadioButton {
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="labelEmeraldHiddenPower">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
               <property name="text">
                <string>Hidden Power:</string>
               </property>
@@ -822,6 +551,12 @@ QRadioButton {
             </item>
             <item row="1" column="2">
              <widget class="QPushButton" name="pushButtonEmeraldAnyHiddenPower">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>Any</string>
               </property>
@@ -831,32 +566,13 @@ QRadioButton {
           </item>
           <item row="2" column="0">
            <widget class="QPushButton" name="pushButtonEmeraldIVsGenerate">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>23</height>
-             </size>
-            </property>
             <property name="text">
              <string>Generate</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0" colspan="2">
-           <widget class="EggSettings" name="eggSettingsEmerald" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>490</width>
-              <height>60</height>
-             </size>
-            </property>
-           </widget>
+           <widget class="EggSettings" name="eggSettingsEmerald" native="true"/>
           </item>
          </layout>
         </widget>
@@ -870,12 +586,6 @@ QRadioButton {
       <layout class="QGridLayout" name="gridLayout_7">
        <item row="1" column="0" colspan="2">
         <widget class="TableView" name="tableViewRS">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>2</verstretch>
-          </sizepolicy>
-         </property>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
          </attribute>
@@ -886,20 +596,8 @@ QRadioButton {
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>1</horstretch>
-           <verstretch>1</verstretch>
+           <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
          </property>
          <property name="title">
           <string>RNG Info</string>
@@ -907,12 +605,6 @@ QRadioButton {
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
            <widget class="QLabel" name="labelRSSeed">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Seed (Held / Pickup)</string>
             </property>
@@ -920,12 +612,6 @@ QRadioButton {
           </item>
           <item row="0" column="1">
            <widget class="TextBox" name="textBoxRSSeedHeld">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">5A0</string>
             </property>
@@ -946,12 +632,6 @@ QRadioButton {
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelRSFrameHeld">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Frame Held</string>
             </property>
@@ -959,18 +639,6 @@ QRadioButton {
           </item>
           <item row="1" column="1">
            <widget class="TextBox" name="textBoxRSMinHeld">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>80</width>
-              <height>0</height>
-             </size>
-            </property>
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -981,12 +649,6 @@ QRadioButton {
           </item>
           <item row="1" column="2">
            <widget class="TextBox" name="textBoxRSMaxHeld">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -997,12 +659,6 @@ QRadioButton {
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelRSPickupFrame">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Pickup Frame</string>
             </property>
@@ -1010,18 +666,6 @@ QRadioButton {
           </item>
           <item row="2" column="1">
            <widget class="TextBox" name="textBoxRSMinPickup">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>80</width>
-              <height>0</height>
-             </size>
-            </property>
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -1032,12 +676,6 @@ QRadioButton {
           </item>
           <item row="2" column="2">
            <widget class="TextBox" name="textBoxRSMaxPickup">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -1074,12 +712,6 @@ QRadioButton {
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="labelRSTID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>TID</string>
             </property>
@@ -1087,12 +719,6 @@ QRadioButton {
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="labelRSSID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>SID</string>
             </property>
@@ -1100,12 +726,6 @@ QRadioButton {
           </item>
           <item row="4" column="1" colspan="2">
            <widget class="TextBox" name="textBoxRSTID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">12345</string>
             </property>
@@ -1116,12 +736,6 @@ QRadioButton {
           </item>
           <item row="5" column="1" colspan="2">
            <widget class="TextBox" name="textBoxRSSID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">54321</string>
             </property>
@@ -1132,12 +746,6 @@ QRadioButton {
           </item>
           <item row="6" column="0" colspan="3">
            <widget class="QPushButton" name="pushButtonRSGenerate">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>23</height>
-             </size>
-            </property>
             <property name="text">
              <string>Generate</string>
             </property>
@@ -1151,7 +759,7 @@ QRadioButton {
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>2</horstretch>
-           <verstretch>1</verstretch>
+           <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="title">
@@ -1159,29 +767,10 @@ QRadioButton {
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0" rowspan="7">
-           <widget class="IVFilter" name="ivFilterRS" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>160</width>
-              <height>180</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
+           <widget class="IVFilter" name="ivFilterRS" native="true"/>
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelRSGender">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Gender</string>
             </property>
@@ -1208,12 +797,6 @@ QRadioButton {
           </item>
           <item row="1" column="1">
            <widget class="QLabel" name="labelRSAbility">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Ability</string>
             </property>
@@ -1240,12 +823,6 @@ QRadioButton {
           </item>
           <item row="2" column="1">
            <widget class="QLabel" name="labelRSNature">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Nature</string>
             </property>
@@ -1262,12 +839,6 @@ QRadioButton {
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="minimumSize">
-             <size>
-              <width>50</width>
-              <height>13</height>
-             </size>
-            </property>
             <property name="text">
              <string>Any</string>
             </property>
@@ -1275,12 +846,6 @@ QRadioButton {
           </item>
           <item row="3" column="1">
            <widget class="QLabel" name="labelRSHiddenPower">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Hidden Power</string>
             </property>
@@ -1297,12 +862,6 @@ QRadioButton {
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="minimumSize">
-             <size>
-              <width>50</width>
-              <height>13</height>
-             </size>
-            </property>
             <property name="text">
              <string>Any</string>
             </property>
@@ -1310,12 +869,6 @@ QRadioButton {
           </item>
           <item row="4" column="1">
            <widget class="QLabel" name="labelRSCompatibility">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Compatibility</string>
             </property>
@@ -1342,12 +895,6 @@ QRadioButton {
           </item>
           <item row="5" column="1">
            <widget class="QLabel" name="labelRSGenderRatio">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Gender Ratio</string>
             </property>
@@ -1394,12 +941,6 @@ QRadioButton {
           </item>
           <item row="6" column="1">
            <widget class="QLabel" name="labelRSShinyOnly">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Shiny Only?</string>
             </property>
@@ -1407,26 +948,13 @@ QRadioButton {
           </item>
           <item row="6" column="2">
            <widget class="QCheckBox" name="checkBoxRSShiny">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
           <item row="7" column="0" colspan="4">
-           <widget class="EggSettings" name="eggSettingsRS" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>490</width>
-              <height>60</height>
-             </size>
-            </property>
-           </widget>
+           <widget class="EggSettings" name="eggSettingsRS" native="true"/>
           </item>
          </layout>
         </widget>
@@ -1443,20 +971,8 @@ QRadioButton {
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>1</horstretch>
-           <verstretch>1</verstretch>
+           <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
          </property>
          <property name="title">
           <string>RNG Info</string>
@@ -1464,12 +980,6 @@ QRadioButton {
          <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="0">
            <widget class="QLabel" name="labelFRLGSeed">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Seed (Held / Pickup)</string>
             </property>
@@ -1477,12 +987,6 @@ QRadioButton {
           </item>
           <item row="0" column="1">
            <widget class="TextBox" name="textBoxFRLGSeedHeld">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="maxLength">
              <number>4</number>
             </property>
@@ -1497,12 +1001,6 @@ QRadioButton {
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelFRLGFrameHeld">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Frame Held</string>
             </property>
@@ -1510,18 +1008,6 @@ QRadioButton {
           </item>
           <item row="1" column="1">
            <widget class="TextBox" name="textBoxFRLGMinHeld">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>80</width>
-              <height>0</height>
-             </size>
-            </property>
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -1532,12 +1018,6 @@ QRadioButton {
           </item>
           <item row="1" column="2">
            <widget class="TextBox" name="textBoxFRLGMaxHeld">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -1548,12 +1028,6 @@ QRadioButton {
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelFRLGPickupFrame">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Pickup Frame</string>
             </property>
@@ -1561,18 +1035,6 @@ QRadioButton {
           </item>
           <item row="2" column="1">
            <widget class="TextBox" name="textBoxFRLGMinPickup">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>80</width>
-              <height>0</height>
-             </size>
-            </property>
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -1583,12 +1045,6 @@ QRadioButton {
           </item>
           <item row="2" column="2">
            <widget class="TextBox" name="textBoxFRLGMaxPickup">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -1625,12 +1081,6 @@ QRadioButton {
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="labelFRLGTID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>TID</string>
             </property>
@@ -1638,12 +1088,6 @@ QRadioButton {
           </item>
           <item row="4" column="1" colspan="2">
            <widget class="TextBox" name="textBoxFRLGTID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">12345</string>
             </property>
@@ -1654,12 +1098,6 @@ QRadioButton {
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="labelFRLGSID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>SID</string>
             </property>
@@ -1667,12 +1105,6 @@ QRadioButton {
           </item>
           <item row="5" column="1" colspan="2">
            <widget class="TextBox" name="textBoxFRLGSID">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string notr="true">54321</string>
             </property>
@@ -1683,12 +1115,6 @@ QRadioButton {
           </item>
           <item row="6" column="0" colspan="3">
            <widget class="QPushButton" name="pushButtonFRLGGenerate">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>23</height>
-             </size>
-            </property>
             <property name="text">
              <string>Generate</string>
             </property>
@@ -1702,7 +1128,7 @@ QRadioButton {
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>2</horstretch>
-           <verstretch>1</verstretch>
+           <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="title">
@@ -1710,29 +1136,10 @@ QRadioButton {
          </property>
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="0" column="0" rowspan="7">
-           <widget class="IVFilter" name="ivFilterFRLG" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>160</width>
-              <height>180</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
+           <widget class="IVFilter" name="ivFilterFRLG" native="true"/>
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelFRLGGender">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Gender</string>
             </property>
@@ -1759,12 +1166,6 @@ QRadioButton {
           </item>
           <item row="1" column="1">
            <widget class="QLabel" name="labelFRLGAbility">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Ability</string>
             </property>
@@ -1791,12 +1192,6 @@ QRadioButton {
           </item>
           <item row="2" column="1">
            <widget class="QLabel" name="labelFRLGNature">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Nature</string>
             </property>
@@ -1813,12 +1208,6 @@ QRadioButton {
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="minimumSize">
-             <size>
-              <width>50</width>
-              <height>13</height>
-             </size>
-            </property>
             <property name="text">
              <string>Any</string>
             </property>
@@ -1826,12 +1215,6 @@ QRadioButton {
           </item>
           <item row="3" column="1">
            <widget class="QLabel" name="labelFRLGHiddenPower">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Hidden Power</string>
             </property>
@@ -1848,12 +1231,6 @@ QRadioButton {
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="minimumSize">
-             <size>
-              <width>50</width>
-              <height>13</height>
-             </size>
-            </property>
             <property name="text">
              <string>Any</string>
             </property>
@@ -1861,12 +1238,6 @@ QRadioButton {
           </item>
           <item row="4" column="1">
            <widget class="QLabel" name="labelFRLGCompatibility">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Compatibility</string>
             </property>
@@ -1893,12 +1264,6 @@ QRadioButton {
           </item>
           <item row="5" column="1">
            <widget class="QLabel" name="labelFRLGGenderRatio">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Gender Ratio</string>
             </property>
@@ -1945,12 +1310,6 @@ QRadioButton {
           </item>
           <item row="6" column="1">
            <widget class="QLabel" name="labelFRLGShinyOnly">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string>Shiny Only?</string>
             </property>
@@ -1958,38 +1317,19 @@ QRadioButton {
           </item>
           <item row="6" column="2">
            <widget class="QCheckBox" name="checkBoxFRLGShiny">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
           <item row="7" column="0" colspan="4">
-           <widget class="EggSettings" name="eggSettingsFRLG" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>490</width>
-              <height>60</height>
-             </size>
-            </property>
-           </widget>
+           <widget class="EggSettings" name="eggSettingsFRLG" native="true"/>
           </item>
          </layout>
         </widget>
        </item>
        <item row="1" column="0" colspan="2">
         <widget class="TableView" name="tableViewFRLG">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>2</verstretch>
-          </sizepolicy>
-         </property>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
          </attribute>

@@ -42,8 +42,8 @@ public:
 
 private:
     QString lockReason;
-    u32 occidentary;
-    u32 seed;
+    u32 occidentary{};
+    u32 seed{};
 
 };
 

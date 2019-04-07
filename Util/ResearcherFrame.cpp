@@ -21,11 +21,7 @@
 
 ResearcherFrame::ResearcherFrame()
 {
-    for (auto &i : custom)
-    {
-        i = 0;
-    }
-
+    custom = QVector<u64>(10, 0);
     rng64Bit = false;
     full32 = 0;
     full64 = 0;
@@ -34,11 +30,7 @@ ResearcherFrame::ResearcherFrame()
 
 ResearcherFrame::ResearcherFrame(bool rng64Bit, u32 frame)
 {
-    for (auto &i : custom)
-    {
-        i = 0;
-    }
-
+    custom = QVector<u64>(10, 0);
     this->rng64Bit = rng64Bit;
     full32 = 0;
     full64 = 0;

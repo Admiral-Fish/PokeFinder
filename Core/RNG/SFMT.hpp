@@ -20,6 +20,7 @@
 #ifndef SFMT_HPP
 #define SFMT_HPP
 
+#include <QVector>
 #include <Core/RNG/IRNG64.hpp>
 
 class SFMT : public IRNG64
@@ -36,10 +37,10 @@ public:
     u64 getSeed() override;
 
 private:
-    const u32 parity[4] = { 0x1, 0x0, 0x0, 0x13c9e684 };
-    u32 sfmt[624];
-    u32 seed;
-    u32 index;
+    const QVector<u32> parity = { 0x1, 0x0, 0x0, 0x13c9e684 };
+    QVector<u32> sfmt;
+    u32 seed{};
+    u32 index{};
 
     void initialize(u32 seed);
     void periodCertificaion();

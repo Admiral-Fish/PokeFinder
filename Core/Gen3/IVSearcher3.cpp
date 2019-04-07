@@ -32,17 +32,17 @@ IVSearcher3::IVSearcher3(const Searcher3 &searcher, const QVector<u8> &min, cons
 
 void IVSearcher3::run()
 {
-    for (u8 a = min[0]; a <= max[0]; a++)
+    for (u8 a = min.at(0); a <= max.at(0); a++)
     {
-        for (u8 b = min[1]; b <= max[1]; b++)
+        for (u8 b = min.at(1); b <= max.at(1); b++)
         {
-            for (u8 c = min[2]; c <= max[2]; c++)
+            for (u8 c = min.at(2); c <= max.at(2); c++)
             {
-                for (u8 d = min[3]; d <= max[3]; d++)
+                for (u8 d = min.at(3); d <= max.at(3); d++)
                 {
-                    for (u8 e = min[4]; e <= max[4]; e++)
+                    for (u8 e = min.at(4); e <= max.at(4); e++)
                     {
-                        for (u8 f = min[5]; f <= max[5]; f++)
+                        for (u8 f = min.at(5); f <= max.at(5); f++)
                         {
                             if (cancel)
                             {

@@ -26,28 +26,24 @@ ResearcherModel::ResearcherModel(QObject *parent, bool is64Bit) : QAbstractTable
 
 void ResearcherModel::setModel(const QVector<ResearcherFrame> &frames)
 {
-    if (frames.isEmpty())
+    if (!frames.isEmpty())
     {
-        return;
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
+        model.append(frames);
+        emit endInsertRows();
     }
-
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-    model.append(frames);
-    emit endInsertRows();
 }
 
 void ResearcherModel::clear()
 {
-    if (model.isEmpty())
+    if (!model.isEmpty())
     {
-        return;
+        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+        model.clear();
+        model.squeeze();
+        emit endRemoveRows();
     }
-
-    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-    model.clear();
-    model.squeeze();
-    emit endRemoveRows();
 }
 
 void ResearcherModel::setFlag(bool is64Bit)
@@ -236,7 +232,7 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
 QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
 {
     int column = 0;
-    u64 (*getResult)(ResearcherFrame) = nullptr;
+    u64 (*getResult)(const ResearcherFrame &) = nullptr;
     if (string == tr("64Bit"))
     {
         column = 1;
@@ -269,10 +265,9 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
     }
 
     int size = rowCount();
-
     for (; row < size; row++)
     {
-        u64 value = getResult(model[row]);
+        u64 value = getResult(model.at(row));
         if (value == result)
         {
             return index(row, column, QModelIndex());

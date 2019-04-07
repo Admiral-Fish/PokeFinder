@@ -46,7 +46,7 @@ public:
 
 protected:
     QString profileName;
-    Game version;
+    Game version{};
     Language language;
     u16 tid;
     u16 sid;

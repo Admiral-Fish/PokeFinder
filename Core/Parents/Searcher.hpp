@@ -41,14 +41,14 @@ public:
     void setLeadType(const Lead &value);
 
 protected:
-    u16 psv;
-    u16 sid;
-    u16 tid;
+    u16 psv{};
+    u16 sid{};
+    u16 tid{};
     Encounter encounterType = Encounter::Stationary;
     Method frameType = Method::Method1;
     Lead leadType = Lead::None;
-    u8 synchNature;
-    u8 cuteCharm;
+    u8 synchNature{};
+    u8 cuteCharm{};
 
 };
 

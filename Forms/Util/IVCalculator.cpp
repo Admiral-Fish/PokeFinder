@@ -45,14 +45,6 @@ void IVCalculator::setupModels()
     ui->comboBoxNature->addItems(Nature::getFrameNatures());
     ui->comboBoxHiddenPower->addItems(Power::getPowers());
     ui->comboBoxCharacteristic->addItems(Translator::getCharacteristic());
-
-    ui->textBoxLevel->setValues(1, 100, 10);
-    ui->textBoxHP->setValues(1, 800, 10);
-    ui->textBoxAtk->setValues(1, 800, 10);
-    ui->textBoxDef->setValues(1, 800, 10);
-    ui->textBoxSpA->setValues(1, 800, 10);
-    ui->textBoxSpD->setValues(1, 800, 10);
-    ui->textBoxSpe->setValues(1, 800, 10);
 }
 
 void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)
@@ -81,7 +73,7 @@ void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)
                     //  Check to see if we need to cap here.
                     if (i == ivs.size() - 1)
                     {
-                        result += "-" + QString::number(ivs[i]);
+                        result += QString("-%1").arg(ivs.at(i));
                     }
                 }
                 else
@@ -89,12 +81,12 @@ void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)
                     if (flag)
                     {
                         flag = false;
-                        result += "-" + QString::number(ivs[i - 1]);
-                        result += ", " + QString::number(ivs[i]);
+                        result += QString("-%1").arg(ivs.at(i - 1));
+                        result += QString(", %1").arg(ivs.at(i));
                     }
                     else
                     {
-                        result += ", " + QString::number(ivs[i]);
+                        result += QString(", %1").arg(ivs.at(i));
                     }
                 }
             }
@@ -108,17 +100,17 @@ void IVCalculator::on_pushButtonFindIVs_clicked()
 {
     QVector<u16> stats =
     {
-        ui->textBoxHP->text().toUShort(), ui->textBoxAtk->text().toUShort(), ui->textBoxDef->text().toUShort(),
-        ui->textBoxSpA->text().toUShort(), ui->textBoxSpD->text().toUShort(), ui->textBoxSpe->text().toUShort()
+        static_cast<u16>(ui->spinBoxHP->value()), static_cast<u16>(ui->spinBoxAtk->value()), static_cast<u16>( ui->spinBoxDef->value()),
+        static_cast<u16>(ui->spinBoxSpA->value()), static_cast<u16>(ui->spinBoxSpD->value()), static_cast<u16>(ui->spinBoxSpe->value())
     };
 
-    u8 level = ui->textBoxLevel->text().toUShort();
+    u8 level = ui->spinBoxLevel->value();
     u8 nature = ui->comboBoxNature->currentIndex();
     int hiddenPower = ui->comboBoxHiddenPower->currentIndex() - 1;
     Characteristic characteristic = characteristics.at(ui->comboBoxCharacteristic->currentIndex());
 
-    IVChecker ivCheck(pokemon[ui->comboBoxPokemon->currentIndex() + 1]);
-    auto possible = ivCheck.calculateIVs(stats, level, nature, characteristic, hiddenPower);
+    IVChecker ivCheck;
+    auto possible = ivCheck.calculateIVs(pokemon[ui->comboBoxPokemon->currentIndex() + 1], stats, level, nature, characteristic, hiddenPower);
 
     displayIVs(ui->labelHPIVValue, possible[0]);
     displayIVs(ui->labelAtkIVValue, possible[1]);
@@ -147,7 +139,7 @@ void IVCalculator::on_comboBoxGeneration_currentIndexChanged(int index)
 {
     if (index >= 0)
     {
-        u16 max;
+        u16 max = 0;
         if (index == 0)
         {
             pokemon = Pokemon::loadPersonal(3);

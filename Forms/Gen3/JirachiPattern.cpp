@@ -86,59 +86,55 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     {
         // Modify pattern with target, skip if invalid
         QString copy = getTarget(QString(pattern), i);
-        if (copy.isEmpty())
+        if (!copy.isEmpty())
         {
-            continue;
-        }
+            int index = copy.indexOf(QChar(':')) + 1;
 
-        int index = copy.indexOf(QChar(':')) + 1;
-
-        // Menu advances can't stop on 0 so skip
-        u32 target = QString(copy.at(index)).toUInt();
-        if (target == 0)
-        {
-            continue;
-        }
-
-        // From start, game advances frames until (prng >> 30) gives a 1, 2, and 3
-        // (prng >> 30) being 0 just acts as a filler
-        // Map remaining numbers from 1, 2, 3 without target for later use
-        QVector<u32> remain = { 1, 2, 3 };
-        remain.removeAll(target);
-
-        bool obtain[4] = { false, false, false, false };
-        obtain[target] = true;
-
-        // Determine if spread is possible
-        // Need to work backwards to see if going forward with 1, 2, and 3 lands on our target
-        bool valid = true;
-        for (int x = ((copy.length() - index + 2) / 2); x < data.size(); x++)
-        {
-            u32 temp = data[x] >> 30;
-            if (temp == target)
+            // Menu advances can't stop on 0 so skip
+            u8 target = QString(copy.at(index)).toUInt();
+            if (target != 0)
             {
-                // Check if remaining numbers haven't occured yet
-                if (!obtain[remain[0]] || !obtain[remain[1]])
+                // From start, game advances frames until (prng >> 30) gives a 1, 2, and 3
+                // (prng >> 30) being 0 just acts as a filler
+                // Map remaining numbers from 1, 2, 3 without target for later use
+                QVector<u8> remain = { 1, 2, 3 };
+                remain.removeAll(target);
+
+                QVector<bool> obtain(4, false);
+                obtain[target] = true;
+
+                // Determine if spread is possible
+                // Need to work backwards to see if going forward with 1, 2, and 3 lands on our target
+                bool valid = true;
+                for (int x = ((copy.length() - index + 2) / 2); x < data.size(); x++)
                 {
-                    // Spread impossible
-                    valid = false;
-                    break;
+                    u8 temp = data.at(x) >> 30;
+                    if (temp == target)
+                    {
+                        // Check if remaining numbers haven't occured yet
+                        if (!obtain.at(remain.at(0)) || !obtain.at(remain.at(1)))
+                        {
+                            // Spread impossible
+                            valid = false;
+                            break;
+                        }
+                    }
+
+                    obtain[temp] = true;
+
+                    // Check to see if pattern passes
+                    if (obtain[1] && obtain[2] && obtain[3])
+                    {
+                        break;
+                    }
+                }
+
+                // This part actually skips when a pattern is impossible
+                if (valid)
+                {
+                    results.append(copy.replace("|", " | "));
                 }
             }
-
-            obtain[temp] = true;
-
-            // Check to see if pattern passes
-            if (obtain[1] && obtain[2] && obtain[3])
-            {
-                break;
-            }
-        }
-
-        // This part actually skips when a pattern is impossible
-        if (valid)
-        {
-            results.append(copy.replace("|", " | "));
         }
     }
 
@@ -155,7 +151,7 @@ QString JirachiPattern::getTarget(QString in, int index)
     switch (index)
     {
         case 0:
-            if ((data[1] >> 30) == 0) // 6 advances total
+            if ((data.at(1) >> 30) == 0) // 6 advances total
             {
                 in = in.mid(0, in.length() - 13) + "T:" + in.mid(in.length() - 13);
             }
@@ -165,7 +161,7 @@ QString JirachiPattern::getTarget(QString in, int index)
             }
             break;
         case 1:
-            if ((data[3] >> 30) == 1 || (data[3] >> 30) == 3) // 8 advances total
+            if ((data.at(3) >> 30) == 1 || (data.at(3) >> 30) == 3) // 8 advances total
             {
                 in = in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
             }
@@ -175,7 +171,7 @@ QString JirachiPattern::getTarget(QString in, int index)
             }
             break;
         case 2:
-            if ((data[3] >> 30) == 2 && (data[1] >> 25) <= 41) // 7 advances total
+            if ((data.at(3) >> 30) == 2 && (data.at(1) >> 25) <= 41) // 7 advances total
             {
                 in = in.mid(0, in.length() - 15) + "T:" + in.mid(in.length() - 15);
             }
@@ -185,7 +181,7 @@ QString JirachiPattern::getTarget(QString in, int index)
             }
             break;
         case 3:
-            if ((data[3] >> 30) == 2 && (data[1] >> 25) > 41) // 8 advances total
+            if ((data.at(3) >> 30) == 2 && (data.at(1) >> 25) > 41) // 8 advances total
             {
                 in = in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
             }

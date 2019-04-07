@@ -33,10 +33,9 @@ public:
     u8 calcLevel(u8 index) const;
     u8 getEncounterRate() const;
     u16 getDelay() const;
-    QVector<Slot> getPokemon() const { return pokemon; }
 
 private:
-    u16 delay;
+    u16 delay{};
 
 };
 

@@ -115,7 +115,7 @@ QVector<Frame4> Searcher4::searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -155,7 +155,7 @@ QVector<Frame4> Searcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -259,7 +259,7 @@ QVector<Frame4> Searcher4::searchMethodJSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
     frame.setLeadType(Lead::Synchronize);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -402,7 +402,7 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -520,7 +520,7 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -805,7 +805,7 @@ QVector<Frame4> Searcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -925,7 +925,7 @@ QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
     frame.setLeadType(Lead::Synchronize);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -1104,7 +1104,7 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -1238,7 +1238,7 @@ QVector<Frame4> Searcher4::searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 sp
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -1363,7 +1363,7 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -1711,7 +1711,7 @@ QVector<Frame4> Searcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -1723,16 +1723,16 @@ QVector<Frame4> Searcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 
 
     QVector<u32> seeds = cache.recoverLower16BitsIV(first, second);
 
-    u16 calls[15];
+    QVector<u16> calls(15);
     u16 low, high;
 
     for (const auto &seed : seeds)
     {
         PokeRNGR rng(seed);
 
-        for (auto &call : calls)
+        for (u16 &x : calls)
         {
-            call = rng.nextUShort();
+            x = rng.nextUShort();
         }
 
         low = chainedPIDLow(calls);
@@ -1760,7 +1760,7 @@ QVector<Frame4> Searcher4::searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8
 
     Frame4 frame(tid, sid, psv);
     frame.setGenderRatio(genderRatio);
-    frame.setIVsManual(hp, atk, def, spa, spd, spe);
+    frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
     {
@@ -1816,11 +1816,11 @@ QVector<Frame4> Searcher4::searchInitialSeeds(const QVector<Frame4> &results) co
 }
 
 
-u16 Searcher4::chainedPIDLow(const u16 *calls) const
+u16 Searcher4::chainedPIDLow(const QVector<u16> &calls) const
 {
-    return (calls[14] & 7) | ((calls[12] & 1) << 3) | ((calls[11] & 1) << 4) | ((calls[10] & 1) << 5) | ((calls[9] & 1) << 6) |
-           ((calls[8] & 1) << 7) | ((calls[7] & 1) << 8) | ((calls[6] & 1) << 9) | ((calls[5] & 1) << 10) | ((calls[4] & 1) << 11) |
-           ((calls[3] & 1) << 12) | ((calls[2] & 1) << 13) | ((calls[1] & 1) << 14) | ((calls[0] & 1) << 15);
+    return (calls.at(14) & 7) | ((calls.at(12) & 1) << 3) | ((calls.at(11) & 1) << 4) | ((calls.at(10) & 1) << 5) | ((calls.at(9) & 1) << 6) |
+           ((calls.at(8) & 1) << 7) | ((calls.at(7) & 1) << 8) | ((calls.at(6) & 1) << 9) | ((calls.at(5) & 1) << 10) | ((calls.at(4) & 1) << 11) |
+           ((calls.at(3) & 1) << 12) | ((calls.at(2) & 1) << 13) | ((calls.at(1) & 1) << 14) | ((calls.at(0) & 1) << 15);
 }
 
 u16 Searcher4::chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid) const

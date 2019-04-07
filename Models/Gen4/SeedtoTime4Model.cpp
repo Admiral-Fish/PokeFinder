@@ -27,33 +27,29 @@ SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, Game version) : Q
 
 void SeedtoTime4Model::setModel(const QVector<DateTime> &times)
 {
-    if (times.isEmpty())
+    if (!times.isEmpty())
     {
-        return;
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i + times.size() - 1);
+        model.append(times);
+        emit endInsertRows();
     }
-
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i + times.size() - 1);
-    model.append(times);
-    emit endInsertRows();
 }
 
 void SeedtoTime4Model::clear()
 {
-    if (model.isEmpty())
+    if (!model.isEmpty())
     {
-        return;
+        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+        model.clear();
+        model.squeeze();
+        emit endRemoveRows();
     }
-
-    emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-    model.clear();
-    model.squeeze();
-    emit endRemoveRows();
 }
 
 DateTime SeedtoTime4Model::getData(int row)
 {
-    return model[row];
+    return model.at(row);
 }
 
 QVector<DateTime> SeedtoTime4Model::getData()
@@ -78,9 +74,10 @@ int SeedtoTime4Model::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
     if (calibrate)
+    {
         return version & Game::HGSS ? 6 : 5;
-    else
-        return 3;
+    }
+    return 3;
 }
 
 QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
