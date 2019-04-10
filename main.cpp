@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     a.setOrganizationName("PokeFinder Team");
 
     QSettings setting;
-    QString style = setting.value("style", "light").toString();
+    QString style = setting.value("style", "dark").toString();
 
     if (style == "dark")
     {
