@@ -20,29 +20,36 @@
 #ifndef SEEDTOTIME4MODEL_HPP
 #define SEEDTOTIME4MODEL_HPP
 
-#include <QAbstractTableModel>
+#include <Models/TableModel.hpp>
 #include <Util/DateTime.hpp>
 
-class SeedtoTime4Model : public QAbstractTableModel
+class SeedtoTime4Model : public TableModel<DateTime>
 {
     Q_OBJECT
 
 public:
     SeedtoTime4Model(QObject *parent, bool flag = false, Game version = DPPt);
-    void setModel(const QVector<DateTime> &times);
-    void clear();
-    DateTime getData(int row);
-    QVector<DateTime> getData();
     void setFlags(bool flag = false, Game version = Diamond);
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QVector<DateTime> model;
     bool calibrate;
     Game version;
+
+    QStringList header1 =
+    {
+        tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Calls"), tr("Roamer locations")
+    };
+    QStringList header2 =
+    {
+        tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Coin flips"), tr("Roamer locations")
+    };
+    QStringList header3 =
+    {
+        tr("Date"), tr("Time"), tr("Delay")
+    };
 
 };
 

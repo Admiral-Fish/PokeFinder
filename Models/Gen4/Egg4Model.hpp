@@ -20,20 +20,17 @@
 #ifndef EGG4MODEL_HPP
 #define EGG4MODEL_HPP
 
-#include <QAbstractTableModel>
 #include <Core/Gen4/Frame4.hpp>
+#include <Models/TableModel.hpp>
 #include <Util/TableUtility.hpp>
 
-class Egg4GeneratorModel : public QAbstractTableModel
+class Egg4GeneratorModel : public TableModel<Frame4>
 {
     Q_OBJECT
 
 public:
     Egg4GeneratorModel(QObject *parent, Method method);
-    void setModel(const QVector<Frame4> &frames);
-    void clear();
     void setMethod(Method method);
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
@@ -42,23 +39,31 @@ public slots:
     void toggleInheritance(bool flag);
 
 private:
-    QVector<Frame4> model;
     Method method;
     bool showInheritance;
 
+    QStringList header1 =
+    {
+        tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender")
+    };
+    QStringList header2 =
+    {
+        tr("Frame"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
+    };
+    QStringList header3 =
+    {
+        tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
+    };
+
 };
 
-class Egg4SearcherModel : public QAbstractTableModel
+class Egg4SearcherModel : public TableModel<Frame4>
 {
     Q_OBJECT
 
 public:
     Egg4SearcherModel(QObject *parent, Method method);
-    void setModel(const QVector<Frame4> &frames);
-    void addItems(const QVector<Frame4> &frames);
-    void clear();
     void setMethod(Method method);
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
@@ -67,9 +72,17 @@ public slots:
     void toggleInheritance(bool flag);
 
 private:
-    QVector<Frame4> model;
     Method method;
     bool showInheritance;
+
+    QStringList header1 =
+    {
+        tr("Seed"), tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender")
+    };
+    QStringList header2 =
+    {
+        tr("Seed"), tr("Frame"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
+    };
 
 };
 

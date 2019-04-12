@@ -19,39 +19,9 @@
 
 #include "Profile3Model.hpp"
 
-Profile3Model::Profile3Model(QObject *parent) : QAbstractTableModel(parent)
+Profile3Model::Profile3Model(QObject *parent) :
+    TableModel<Profile3>(parent)
 {
-}
-
-void Profile3Model::setModel(const QVector<Profile3> &profiles)
-{
-    if (!profiles.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + profiles.size() - 1);
-        model.append(profiles);
-        emit endInsertRows();
-    }
-}
-
-void Profile3Model::addItem(const Profile3 &profile)
-{
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i);
-    model.push_back(profile);
-    emit endInsertRows();
-}
-
-void Profile3Model::updateProfile(const Profile3 &profile, int row)
-{
-    model[row] = profile;
-    emit dataChanged(index(row, 0), index(row, columnCount()));
-}
-
-int Profile3Model::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
 }
 
 int Profile3Model::columnCount(const QModelIndex &parent) const
@@ -78,7 +48,7 @@ QVariant Profile3Model::data(const QModelIndex &index, int role) const
             case 4:
                 return profile.getSID();
             case 5:
-                if (profile.getVersion() == Ruby || profile.getVersion() == Sapphire)
+                if (profile.getVersion() & Game::RS)
                 {
                     return profile.getDeadBattery() ? tr("Yes") : tr("No");
                 }
@@ -95,34 +65,7 @@ QVariant Profile3Model::headerData(int section, Qt::Orientation orientation, int
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        switch (section)
-        {
-            case 0:
-                return tr("Profile Name");
-            case 1:
-                return tr("Version");
-            case 2:
-                return tr("Language");
-            case 3:
-                return tr("TID");
-            case 4:
-                return tr("SID");
-            case 5:
-                return tr("Dead Battery");
-        }
+        return header.at(section);
     }
     return QVariant();
-}
-
-Profile3 Profile3Model::getProfile(int index)
-{
-    return model.at(index);
-}
-
-void Profile3Model::removeProfile(int index)
-{
-    emit beginRemoveRows(QModelIndex(), index, index);
-    model.erase(model.begin() + index);
-    model.squeeze();
-    emit endRemoveRows();
 }

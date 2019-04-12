@@ -19,39 +19,9 @@
 
 #include "Profile4Model.hpp"
 
-Profile4Model::Profile4Model(QObject *parent) : QAbstractTableModel(parent)
+Profile4Model::Profile4Model(QObject *parent) :
+    TableModel<Profile4>(parent)
 {
-}
-
-void Profile4Model::setModel(const QVector<Profile4> &profiles)
-{
-    if (!profiles.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + profiles.size() - 1);
-        model.append(profiles);
-        emit endInsertRows();
-    }
-}
-
-void Profile4Model::addItem(const Profile4 &profile)
-{
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i);
-    model.push_back(profile);
-    emit endInsertRows();
-}
-
-void Profile4Model::updateProfile(const Profile4 &profile, int row)
-{
-    model[row] = profile;
-    emit dataChanged(index(row, 0), index(row, columnCount()));
-}
-
-int Profile4Model::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
 }
 
 int Profile4Model::columnCount(const QModelIndex &parent) const
@@ -94,40 +64,7 @@ QVariant Profile4Model::headerData(int section, Qt::Orientation orientation, int
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        switch (section)
-        {
-            case 0:
-                return tr("Profile Name");
-            case 1:
-                return tr("Version");
-            case 2:
-                return tr("Language");
-            case 3:
-                return tr("TID");
-            case 4:
-                return tr("SID");
-            case 5:
-                return tr("Dual Slot");
-            case 6:
-                return tr("Radio");
-            case 7:
-                return tr("Pokeradar");
-            case 8:
-                return tr("Swarm");
-        }
+        return header.at(section);
     }
     return QVariant();
-}
-
-Profile4 Profile4Model::getProfile(int index)
-{
-    return model.at(index);
-}
-
-void Profile4Model::removeProfile(int index)
-{
-    emit beginRemoveRows(QModelIndex(), index, index);
-    model.erase(model.begin() + index);
-    model.squeeze();
-    emit endRemoveRows();
 }

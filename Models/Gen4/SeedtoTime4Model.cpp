@@ -19,42 +19,11 @@
 
 #include "SeedtoTime4Model.hpp"
 
-SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, Game version) : QAbstractTableModel(parent)
+SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, Game version) :
+    TableModel<DateTime>(parent)
 {
     calibrate = flag;
     this->version = version;
-}
-
-void SeedtoTime4Model::setModel(const QVector<DateTime> &times)
-{
-    if (!times.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + times.size() - 1);
-        model.append(times);
-        emit endInsertRows();
-    }
-}
-
-void SeedtoTime4Model::clear()
-{
-    if (!model.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        model.clear();
-        model.squeeze();
-        emit endRemoveRows();
-    }
-}
-
-DateTime SeedtoTime4Model::getData(int row)
-{
-    return model.at(row);
-}
-
-QVector<DateTime> SeedtoTime4Model::getData()
-{
-    return model;
 }
 
 void SeedtoTime4Model::setFlags(bool flag, Game version)
@@ -63,13 +32,6 @@ void SeedtoTime4Model::setFlags(bool flag, Game version)
     this->version = version;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
-
-int SeedtoTime4Model::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
-}
-
 int SeedtoTime4Model::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
@@ -128,33 +90,11 @@ QVariant SeedtoTime4Model::headerData(int section, Qt::Orientation orientation, 
     {
         if (calibrate)
         {
-            switch (section)
-            {
-                case 0:
-                    return tr("Seed");
-                case 1:
-                    return tr("Date");
-                case 2:
-                    return tr("Time");
-                case 3:
-                    return tr("Delay");
-                case 4:
-                    return version & Game::HGSS ? tr("Calls") : tr("Coin flips");
-                case 5 :
-                    return tr("Roamer locations");
-            }
+            return version & Game::HGSS ? header1.at(section) : header2.at(section);
         }
         else
         {
-            switch (section)
-            {
-                case 0:
-                    return tr("Date");
-                case 1:
-                    return tr("Time");
-                case 2:
-                    return tr("Delay");
-            }
+            return header3.at(section);
         }
     }
     return QVariant();

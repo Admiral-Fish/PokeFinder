@@ -186,7 +186,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
 {
     bool rng64Bit = ui->rngSelection->currentIndex() == 1;
 
-    model->clear();
+    model->clearModel();
     model->setFlag(rng64Bit);
 
     u64 seed = ui->textBoxSeed->text().toULongLong(nullptr, 16);
@@ -416,7 +416,7 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
     }
 
     model->setHex(getHexCheck());
-    model->setModel(frames);
+    model->addItems(frames);
 
     for (int i = 1; i < (rng64Bit ? 4 : 2); i++)
     {

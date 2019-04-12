@@ -214,7 +214,7 @@ void Wild4::refreshProfiles()
 
 void Wild4::on_pushButtonGenerate_clicked()
 {
-    generatorModel->clear();
+    generatorModel->clearModel();
     generatorModel->setMethod(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
@@ -260,12 +260,12 @@ void Wild4::on_pushButtonGenerate_clicked()
     generator.setEncounter(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()]);
 
     QVector<Frame4> frames = generator.generate(compare);
-    generatorModel->setModel(frames);
+    generatorModel->addItems(frames);
 }
 
 void Wild4::on_pushButtonSearch_clicked()
 {
-    searcherModel->clear();
+    searcherModel->clearModel();
     searcherModel->setMethod(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
     ui->pushButtonSearch->setEnabled(false);

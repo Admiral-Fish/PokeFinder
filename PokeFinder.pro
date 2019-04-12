@@ -162,7 +162,8 @@ HEADERS += \
     Models/Gen4/SeedtoTime4Model.hpp \
     Models/Gen4/Stationary4Model.hpp \
     Models/Gen4/Wild4Model.hpp \
-    Models/ResearcherModel.hpp \
+    Models/Util/ResearcherModel.hpp \
+    Models/TableModel.hpp \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
     Util/TableUtility.hpp
@@ -259,7 +260,7 @@ SOURCES += \
     Models/Gen4/SeedtoTime4Model.cpp \
     Models/Gen4/Stationary4Model.cpp \
     Models/Gen4/Wild4Model.cpp \
-    Models/ResearcherModel.cpp \
+    Models/Util/ResearcherModel.cpp \
     Util/DateTime.cpp \
     Util/ResearcherFrame.cpp \
     Util/TableUtility.cpp \

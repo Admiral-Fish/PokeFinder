@@ -19,42 +19,15 @@
 
 #include "Searcher3Model.hpp"
 
-Searcher3Model::Searcher3Model(QObject *parent, Method method) : QAbstractTableModel(parent)
+Searcher3Model::Searcher3Model(QObject *parent, Method method) :
+    TableModel<Frame3>(parent)
 {
     this->method = method;
-}
-
-void Searcher3Model::setModel(const QVector<Frame3> &frames)
-{
-    model = frames;
-}
-
-void Searcher3Model::addItems(const QVector<Frame3> &frames)
-{
-    if (!frames.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-        model.append(frames);
-        emit endInsertRows();
-    }
-}
-
-void Searcher3Model::clear()
-{
-    if (!model.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        model.clear();
-        model.squeeze();
-        emit endRemoveRows();
-    }
 }
 
 void Searcher3Model::setMethod(Method method)
 {
     this->method = method;
-    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
 void Searcher3Model::sort(int column, Qt::SortOrder order)
@@ -372,12 +345,6 @@ void Searcher3Model::sort(int column, Qt::SortOrder order)
     }
 }
 
-int Searcher3Model::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
-}
-
 int Searcher3Model::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
@@ -593,115 +560,17 @@ QVariant Searcher3Model::headerData(int section, Qt::Orientation orientation, in
             case Method::MethodH1:
             case Method::MethodH2:
             case Method::MethodH4:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Seed");
-                    case 1:
-                        return tr("Lead");
-                    case 2:
-                        return tr("Slot");
-                    case 3:
-                        return tr("Level");
-                    case 4:
-                        return tr("PID");
-                    case 5:
-                        return "!!!";
-                    case 6:
-                        return tr("Nature");
-                    case 7:
-                        return tr("Ability");
-                    case 8:
-                        return tr("HP");
-                    case 9:
-                        return tr("Atk");
-                    case 10:
-                        return tr("Def");
-                    case 11:
-                        return tr("SpA");
-                    case 12:
-                        return tr("SpD");
-                    case 13:
-                        return tr("Spe");
-                    case 14:
-                        return tr("Hidden");
-                    case 15:
-                        return tr("Power");
-                    case 16:
-                        return tr("Gender");
-                }
+                return header1.at(section);
             case Method::Method1:
             case Method::Method1Reverse:
             case Method::Method2:
             case Method::Method4:
             case Method::XDColo:
             case Method::Channel:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Seed");
-                    case 1:
-                        return tr("PID");
-                    case 2:
-                        return "!!!";
-                    case 3:
-                        return tr("Nature");
-                    case 4:
-                        return tr("Ability");
-                    case 5:
-                        return tr("HP");
-                    case 6:
-                        return tr("Atk");
-                    case 7:
-                        return tr("Def");
-                    case 8:
-                        return tr("SpA");
-                    case 9:
-                        return tr("SpD");
-                    case 10:
-                        return tr("Spe");
-                    case 11:
-                        return tr("Hidden");
-                    case 12:
-                        return tr("Power");
-                    case 13:
-                        return tr("Gender");
-                }
+                return header2.at(section);
             case Method::XD:
             case Method::Colo:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Seed");
-                    case 1:
-                        return tr("PID");
-                    case 2:
-                        return "!!!";
-                    case 3:
-                        return tr("Nature");
-                    case 4:
-                        return tr("Ability");
-                    case 5:
-                        return tr("HP");
-                    case 6:
-                        return tr("Atk");
-                    case 7:
-                        return tr("Def");
-                    case 8:
-                        return tr("SpA");
-                    case 9:
-                        return tr("SpD");
-                    case 10:
-                        return tr("Spe");
-                    case 11:
-                        return tr("Hidden");
-                    case 12:
-                        return tr("Power");
-                    case 13:
-                        return tr("Gender");
-                    case 14:
-                        return tr("Reason");
-                }
+                return header3.at(section);
             default:
                 break;
         }

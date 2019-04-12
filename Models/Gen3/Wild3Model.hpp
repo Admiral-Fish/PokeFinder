@@ -20,25 +20,26 @@
 #ifndef WILD3MODEL_HPP
 #define WILD3MODEL_HPP
 
-#include <QAbstractTableModel>
 #include <Core/Gen3/Frame3.hpp>
+#include <Models/TableModel.hpp>
 #include <Util/TableUtility.hpp>
 
-class Wild3Model : public QAbstractTableModel
+class Wild3Model : public TableModel<Frame3>
 {
     Q_OBJECT
 
 public:
     Wild3Model(QObject *parent);
-    void setModel(const QVector<Frame3> &frames);
-    void clear();
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QVector<Frame3> model;
+    QStringList header =
+    {
+        tr("Frame"), tr("Occidentary"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+        tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")
+    };
 
 };
 

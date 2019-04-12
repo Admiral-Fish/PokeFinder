@@ -144,7 +144,7 @@ void Eggs3::refreshProfiles()
 
 void Eggs3::on_pushButtonEmeraldPIDGenerate_clicked()
 {
-    emeraldPID->clear();
+    emeraldPID->clearModel();
 
     u32 startingFrame = ui->textBoxEmeraldPIDMinFrame->getUInt();
     u32 maxResults = ui->textBoxEmeraldPIDMaxFrame->getUInt();
@@ -167,12 +167,12 @@ void Eggs3::on_pushButtonEmeraldPIDGenerate_clicked()
                                         ui->comboBoxEmeraldNature->getChecked(), ui->checkBoxEmeraldShiny->isChecked());
 
     QVector<Frame3> frames = generator.generate(compare);
-    emeraldPID->setModel(frames);
+    emeraldPID->addItems(frames);
 }
 
 void Eggs3::on_pushButtonEmeraldIVsGenerate_clicked()
 {
-    emeraldIVs->clear();
+    emeraldIVs->clearModel();
 
     u32 startingFrame = ui->textBoxEmeraldIVsMinFrame->getUInt();
     u32 maxResults = ui->textBoxEmeraldIVsMaxFrame->getUInt();
@@ -186,12 +186,12 @@ void Eggs3::on_pushButtonEmeraldIVsGenerate_clicked()
     FrameCompare compare = FrameCompare(ui->ivFilterEmerald->getLower(), ui->ivFilterEmerald->getUpper(), ui->comboBoxEmeraldHiddenPower->getChecked());
 
     QVector<Frame3> frames = generator.generate(compare);
-    emeraldIVs->setModel(frames);
+    emeraldIVs->addItems(frames);
 }
 
 void Eggs3::on_pushButtonRSGenerate_clicked()
 {
-    rs->clear();
+    rs->clearModel();
 
     u32 minHeld = ui->textBoxRSMinHeld->getUInt();
     u32 maxHeld = ui->textBoxRSMaxHeld->getUInt();
@@ -212,12 +212,12 @@ void Eggs3::on_pushButtonRSGenerate_clicked()
                                         ui->comboBoxRSHiddenPower->getChecked(), ui->checkBoxRSShiny->isChecked(), false);
 
     QVector<Frame3> frames = generator.generate(compare);
-    rs->setModel(frames);
+    rs->addItems(frames);
 }
 
 void Eggs3::on_pushButtonFRLGGenerate_clicked()
 {
-    frlg->clear();
+    frlg->clearModel();
 
     u32 minHeld = ui->textBoxFRLGMinHeld->getUInt();
     u32 maxHeld = ui->textBoxFRLGMaxHeld->getUInt();
@@ -238,7 +238,7 @@ void Eggs3::on_pushButtonFRLGGenerate_clicked()
                                         ui->comboBoxFRLGHiddenPower->getChecked(), ui->checkBoxFRLGShiny->isChecked(), false);
 
     QVector<Frame3> frames = generator.generate(compare);
-    frlg->setModel(frames);
+    frlg->addItems(frames);
 }
 
 void Eggs3::on_comboBoxProfiles_currentIndexChanged(int index)

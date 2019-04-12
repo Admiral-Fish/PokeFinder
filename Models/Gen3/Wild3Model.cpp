@@ -19,36 +19,9 @@
 
 #include "Wild3Model.hpp"
 
-Wild3Model::Wild3Model(QObject *parent) : QAbstractTableModel(parent)
+Wild3Model::Wild3Model(QObject *parent) :
+    TableModel<Frame3>(parent)
 {
-}
-
-void Wild3Model::setModel(const QVector<Frame3> &frames)
-{
-    if (!frames.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-        model.append(frames);
-        emit endInsertRows();
-    }
-}
-
-void Wild3Model::clear()
-{
-    if (!model.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        model.clear();
-        model.squeeze();
-        emit endRemoveRows();
-    }
-}
-
-int Wild3Model::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
 }
 
 int Wild3Model::columnCount(const QModelIndex &parent) const
@@ -128,45 +101,7 @@ QVariant Wild3Model::headerData(int section, Qt::Orientation orientation, int ro
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        switch (section)
-        {
-            case 0:
-                return tr("Frame");
-            case 1:
-                return tr("Occidentary");
-            case 2:
-                return tr("Slot");
-            case 3:
-                return tr("Level");
-            case 4:
-                return tr("PID");
-            case 5:
-                return "!!!";
-            case 6:
-                return tr("Nature");
-            case 7:
-                return tr("Ability");
-            case 8:
-                return tr("HP");
-            case 9:
-                return tr("Atk");
-            case 10:
-                return tr("Def");
-            case 11:
-                return tr("SpA");
-            case 12:
-                return tr("SpD");
-            case 13:
-                return tr("Spe");
-            case 14:
-                return tr("Hidden");
-            case 15:
-                return tr("Power");
-            case 16:
-                return tr("Gender");
-            case 17:
-                return tr("Time");
-        }
+        return header.at(section);
     }
     return QVariant();
 }

@@ -200,17 +200,17 @@ void SeedtoTime4::on_pushButtonDPPtGenerate_clicked()
     bool forceSecond = ui->checkBoxDPPtSecond->isChecked();
     int forcedSecond = ui->lineEditDPPtSecond->text().toInt();
 
-    dppt->clear();
+    dppt->clearModel();
 
     QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::Diamond);
     ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + Utilities::coinFlips(seed, 15));
 
-    dppt->setModel(results);
+    dppt->addItems(results);
 }
 
 void SeedtoTime4::on_pushButtonHGSSGenerate_clicked()
 {
-    hgss->clear();
+    hgss->clearModel();
 
     u32 seed = ui->textBoxHGSSSeed->getUInt();
     u32 year = ui->lineEditHGSSYear->text().toUInt();
@@ -229,7 +229,7 @@ void SeedtoTime4::on_pushButtonHGSSGenerate_clicked()
     str = str.isEmpty() ? tr("No roamers") : str;
     ui->labelHGSSRoamers->setText(tr("Roamers: ") + str);
 
-    hgss->setModel(results);
+    hgss->addItems(results);
 }
 
 void SeedtoTime4::on_pushButtonDPPtCalibrate_clicked()
@@ -250,12 +250,12 @@ void SeedtoTime4::on_pushButtonDPPtCalibrate_clicked()
         return;
     }
 
-    dpptCalibrate->clear();
+    dpptCalibrate->clearModel();
 
-    DateTime target = dppt->getData(index.row());
+    DateTime target = dppt->getItem(index.row());
     QVector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
 
-    dpptCalibrate->setModel(results);
+    dpptCalibrate->addItems(results);
 
     int count = (results.size() - 1) / 2;
     QModelIndex scroll = dpptCalibrate->index(count, 0);
@@ -266,8 +266,6 @@ void SeedtoTime4::on_pushButtonDPPtCalibrate_clicked()
 
 void SeedtoTime4::on_pushButtonHGSSCalibrate_clicked()
 {
-    hgssCalibrate->clear();
-
     int minusDelay = ui->lineEditHGSSDelayMinus->text().toInt();
     int plusDelay = ui->lineEditHGSSDelayPlus->text().toInt();
 
@@ -284,10 +282,12 @@ void SeedtoTime4::on_pushButtonHGSSCalibrate_clicked()
         return;
     }
 
-    DateTime target = hgss->getData(index.row());
+    hgssCalibrate->clearModel();
+
+    DateTime target = hgss->getItem(index.row());
     QVector<DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
 
-    hgssCalibrate->setModel(results);
+    hgssCalibrate->addItems(results);
 
     int count = (results.size() - 1) / 2;
     QModelIndex scroll = hgssCalibrate->index(count, 0);
@@ -303,7 +303,7 @@ void SeedtoTime4::on_pushButtonDPPtSearchFlips_clicked()
         return;
     }
 
-    QScopedPointer<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrate->getData()));
+    QScopedPointer<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrate->getModel()));
     if (search->exec() == QDialog::Rejected)
     {
         return;
@@ -336,7 +336,7 @@ void SeedtoTime4::on_pushButtonHGSSSearchCalls_clicked()
     QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
     QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
-    QScopedPointer<SearchCalls> search(new SearchCalls(hgssCalibrate->getData(), roamer, routes));
+    QScopedPointer<SearchCalls> search(new SearchCalls(hgssCalibrate->getModel(), roamer, routes));
     if (search->exec() == QDialog::Rejected)
     {
         return;

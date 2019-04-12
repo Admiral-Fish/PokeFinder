@@ -20,24 +20,24 @@
 #ifndef POKESPOTMODEL_HPP
 #define POKESPOTMODEL_HPP
 
-#include <QAbstractTableModel>
 #include <Core/Gen3/Frame3.hpp>
+#include <Models/TableModel.hpp>
 
-class PokeSpotModel : public QAbstractTableModel
+class PokeSpotModel : public TableModel<Frame3>
 {
     Q_OBJECT
 
 public:
     PokeSpotModel(QObject *parent);
-    void setModel(const QVector<Frame3> &frames);
-    void clear();
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QVector<Frame3> model;
+    QStringList header =
+    {
+        tr("Frame"), tr("PID"), "!!!", tr("Type"), tr("Nature"), tr("Ability"), tr("Gender")
+    };
 
 };
 

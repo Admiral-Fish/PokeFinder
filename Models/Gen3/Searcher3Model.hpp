@@ -20,29 +20,40 @@
 #ifndef SEARCHER3MODEL_HPP
 #define SEARCHER3MODEL_HPP
 
-#include <QAbstractTableModel>
 #include <Core/Gen3/Frame3.hpp>
+#include <Models/TableModel.hpp>
 #include <Util/TableUtility.hpp>
 
-class Searcher3Model : public QAbstractTableModel
+class Searcher3Model : public TableModel<Frame3>
 {
     Q_OBJECT
 
 public:
     Searcher3Model(QObject *parent, Method method);
-    void setModel(const QVector<Frame3> &frames);
-    void addItems(const QVector<Frame3> &frames);
-    void clear();
     void setMethod(Method method);
     void sort(int column, Qt::SortOrder order) override;
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QVector<Frame3> model;
     Method method;
+
+    QStringList header1 =
+    {
+        tr("Seed"), tr("Lead"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+        tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+    };
+    QStringList header2 =
+    {
+        tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+        tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+    };
+    QStringList header3 =
+    {
+        tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"),
+        tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Reason")
+    };
 
 };
 

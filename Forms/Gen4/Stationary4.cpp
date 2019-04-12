@@ -137,7 +137,7 @@ void Stationary4::refreshProfiles()
 
 void Stationary4::on_pushButtonGenerate_clicked()
 {
-    generatorModel->clear();
+    generatorModel->clearModel();
     generatorModel->setMethod(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
@@ -178,12 +178,12 @@ void Stationary4::on_pushButtonGenerate_clicked()
     }
 
     QVector<Frame4> frames = generator.generate(compare);
-    generatorModel->setModel(frames);
+    generatorModel->addItems(frames);
 }
 
 void Stationary4::on_pushButtonSearch_clicked()
 {
-    searcherModel->clear();
+    searcherModel->clearModel();
     searcherModel->setMethod(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
     ui->pushButtonSearch->setEnabled(false);

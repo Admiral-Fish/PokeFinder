@@ -152,7 +152,7 @@ void GameCube::on_comboBoxProfiles_currentIndexChanged(int index)
 
 void GameCube::on_pushButtonGenerate_clicked()
 {
-    generatorModel->clear();
+    generatorModel->clearModel();
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 startingFrame = ui->textBoxGeneratorStartingFrame->getUInt();
@@ -175,12 +175,12 @@ void GameCube::on_pushButtonGenerate_clicked()
     generator.setup(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
     QVector<Frame3> frames = generator.generate(compare);
-    generatorModel->setModel(frames);
+    generatorModel->addItems(frames);
 }
 
 void GameCube::on_pushButtonSearch_clicked()
 {
-    searcherModel->clear();
+    searcherModel->clearModel();
     searcherModel->setMethod(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
     ui->pushButtonSearch->setEnabled(false);

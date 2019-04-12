@@ -141,7 +141,7 @@ void Eggs4::refreshProfiles()
 
 void Eggs4::on_pushButtonGenerate_clicked()
 {
-    generatorModel->clear();
+    generatorModel->clearModel();
 
     u32 startingFrame = ui->textBoxGeneratorStartingFrame->getUInt();
     u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
@@ -174,12 +174,12 @@ void Eggs4::on_pushButtonGenerate_clicked()
                                         ui->comboBoxGeneratorHiddenPower->getChecked(), ui->checkBoxGeneratorShinyOnly->isChecked(), false);
 
     QVector<Frame4> frames = generator.generate(compare);
-    generatorModel->setModel(frames);
+    generatorModel->addItems(frames);
 }
 
 void Eggs4::on_pushButtonSearchPID_clicked()
 {
-    searcherPID->clear();
+    searcherPID->clearModel();
     searcherPID->setMethod(ui->checkBoxSearcherMasuada->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal);
 
     ui->pushButtonSearchPID->setEnabled(false);
@@ -218,7 +218,7 @@ void Eggs4::on_pushButtonSearchPID_clicked()
 
 void Eggs4::on_pushButtonSearchIVs_clicked()
 {
-    searcherIVs->clear();
+    searcherIVs->clearModel();
     Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
     searcherIVs->setMethod(version & Game::HGSS ? Method::HGSSIVs : Method::DPPtIVs);
 
