@@ -20,39 +20,8 @@
 #include "Profile5Model.hpp"
 
 Profile5Model::Profile5Model(QObject *parent) :
-    QAbstractTableModel(parent)
+    TableModel<Profile5>(parent)
 {
-}
-
-void Profile5Model::setModel(const QVector<Profile5> &profiles)
-{
-    if (!profiles.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + profiles.size() - 1);
-        model.append(profiles);
-        emit endInsertRows();
-    }
-}
-
-void Profile5Model::addItem(const Profile5 &profile)
-{
-    int i = rowCount();
-    emit beginInsertRows(QModelIndex(), i, i);
-    model.push_back(profile);
-    emit endInsertRows();
-}
-
-void Profile5Model::updateProfile(const Profile5 &profile, int row)
-{
-    model[row] = profile;
-    emit dataChanged(index(row, 0), index(row, columnCount()));
-}
-
-int Profile5Model::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
 }
 
 int Profile5Model::columnCount(const QModelIndex &parent) const
@@ -105,51 +74,7 @@ QVariant Profile5Model::headerData(int section, Qt::Orientation orientation, int
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        switch (section)
-        {
-            case 0:
-                return tr("Profile Name");
-            case 1:
-                return tr("Version");
-            case 2:
-                return tr("Language");
-            case 3:
-                return tr("TID");
-            case 4:
-                return tr("SID");
-            case 5:
-                return tr("MAC Address");
-            case 6:
-                return tr("DS Type");
-            case 7:
-                return tr("VCount");
-            case 8:
-                return tr("Timer0");
-            case 9:
-                return tr("GxStat");
-            case 10:
-                return tr("VFrame");
-            case 11:
-                return tr("Keypresses");
-            case 12:
-                return tr("Skip L/R");
-            case 13:
-                return tr("Soft Reset");
-
-        }
+        return header.at(section);
     }
     return QVariant();
-}
-
-Profile5 Profile5Model::getProfile(int index)
-{
-    return model.at(index);
-}
-
-void Profile5Model::removeProfile(int index)
-{
-    emit beginRemoveRows(QModelIndex(), index, index);
-    model.erase(model.begin() + index);
-    model.squeeze();
-    emit endRemoveRows();
 }

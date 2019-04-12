@@ -39,7 +39,7 @@ ProfileManager5::~ProfileManager5()
 void ProfileManager5::setupModels()
 {
     model = new Profile5Model(ui->tableView);
-    model->setModel(Profile5::loadProfileList());
+    model->addItems(Profile5::loadProfileList());
     ui->tableView->setModel(model);
 }
 
@@ -67,12 +67,12 @@ void ProfileManager5::on_pushButtonEdit_clicked()
         return;
     }
 
-    QScopedPointer<ProfileEditor5> dialog(new ProfileEditor5(model->getProfile(row)));
+    QScopedPointer<ProfileEditor5> dialog(new ProfileEditor5(model->getItem(row)));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile5 profile = dialog->getNewProfile();
         profile.updateProfile(dialog->getOriginal());
-        model->updateProfile(profile, row);
+        model->updateItem(profile, row);
         emit updateProfiles();
     }
 }
@@ -92,9 +92,9 @@ void ProfileManager5::on_pushButtonDelete_clicked()
     QMessageBox message(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"), QMessageBox::Yes | QMessageBox::No);
     if (message.exec() == QMessageBox::Yes)
     {
-        Profile5 profile = model->getProfile(row);
+        Profile5 profile = model->getItem(row);
         profile.deleteProfile();
-        model->removeProfile(row);
+        model->removeItem(row);
 
         emit updateProfiles();
     }
