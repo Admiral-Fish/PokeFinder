@@ -62,7 +62,7 @@ void PokeSpot::setupModels()
 
 void PokeSpot::on_pushButtonGenerate_clicked()
 {
-    model->clear();
+    model->clearModel();
 
     QVector<Frame3> frames;
 
@@ -132,7 +132,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         }
     }
 
-    model->setModel(frames);
+    model->addItems(frames);
 }
 
 void PokeSpot::on_pushButtonAnyAbility_clicked()

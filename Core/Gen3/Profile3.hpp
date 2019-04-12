@@ -36,6 +36,7 @@ public:
     void deleteProfile() const;
     void updateProfile(const Profile3 &original) const;
     friend bool operator==(const Profile3 &left, const Profile3 &right);
+    friend bool operator!=(const Profile3 &left, const Profile3 &right);
 
 private:
     bool deadBattery;
@@ -43,5 +44,6 @@ private:
 };
 
 bool operator==(const Profile3 &left, const Profile3 &right);
+bool operator!=(const Profile3 &left, const Profile3 &right);
 
 #endif // PROFILE3_HPP

@@ -19,36 +19,10 @@
 
 #include "Searcher4Model.hpp"
 
-Searcher4Model::Searcher4Model(QObject *parent, Method method) : QAbstractTableModel(parent)
+Searcher4Model::Searcher4Model(QObject *parent, Method method) :
+    TableModel<Frame4>(parent)
 {
     this->method = method;
-}
-
-void Searcher4Model::setModel(const QVector<Frame4> &frames)
-{
-    model = frames;
-}
-
-void Searcher4Model::addItems(const QVector<Frame4> &frames)
-{
-    if (!frames.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-        model.append(frames);
-        emit endInsertRows();
-    }
-}
-
-void Searcher4Model::clear()
-{
-    if (!model.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        model.clear();
-        model.squeeze();
-        emit endRemoveRows();
-    }
 }
 
 void Searcher4Model::setMethod(Method method)
@@ -343,12 +317,6 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
     }
 }
 
-int Searcher4Model::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
-}
-
 int Searcher4Model::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
@@ -573,106 +541,14 @@ QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, in
         {
             case Method::Method1:
             case Method::ChainedShiny:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Seed");
-                    case 1:
-                        return tr("Frame");
-                    case 2:
-                        return tr("PID");
-                    case 3:
-                        return "!!!";
-                    case 4:
-                        return tr("Nature");
-                    case 5:
-                        return tr("Ability");
-                    case 6:
-                        return tr("HP");
-                    case 7:
-                        return tr("Atk");
-                    case 8:
-                        return tr("Def");
-                    case 9:
-                        return tr("SpA");
-                    case 10:
-                        return tr("SpD");
-                    case 11:
-                        return tr("Spe");
-                    case 12:
-                        return tr("Hidden");
-                    case 13:
-                        return tr("Power");
-                    case 14:
-                        return tr("Gender");
-                }
+                return header1.at(section);
                 break;
             case Method::WondercardIVs:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Seed");
-                    case 1:
-                        return tr("Frame");
-                    case 2:
-                        return tr("HP");
-                    case 3:
-                        return tr("Atk");
-                    case 4:
-                        return tr("Def");
-                    case 5:
-                        return tr("SpA");
-                    case 6:
-                        return tr("SpD");
-                    case 7:
-                        return tr("Spe");
-                    case 8:
-                        return tr("Hidden");
-                    case 9:
-                        return tr("Power");
-                }
+                return header2.at(section);
                 break;
             case Method::MethodJ:
             case Method::MethodK:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Seed");
-                    case 1:
-                        return tr("Frame");
-                    case 2:
-                        return tr("Lead");
-                    case 3:
-                        return tr("PID");
-                    case 4:
-                        return tr("Slot");
-                    case 5:
-                        return tr("Level");
-                    case 6:
-                        return "!!!";
-                    case 7:
-                        return tr("Nature");
-                    case 8:
-                        return tr("Ability");
-                    case 9:
-                        return tr("HP");
-                    case 10:
-                        return tr("Atk");
-                    case 11:
-                        return tr("Def");
-                    case 12:
-                        return tr("SpA");
-                    case 13:
-                        return tr("SpD");
-                    case 14:
-                        return tr("Spe");
-                    case 15:
-                        return tr("Hidden");
-                    case 16:
-                        return tr("Power");
-                    case 17:
-                        return tr("Gender");
-                }
+                return header3.at(section);
             default:
                 break;
         }

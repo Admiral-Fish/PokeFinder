@@ -19,36 +19,9 @@
 
 #include "Stationary3Model.hpp"
 
-Stationary3Model::Stationary3Model(QObject *parent) : QAbstractTableModel(parent)
+Stationary3Model::Stationary3Model(QObject *parent) :
+    TableModel<Frame3>(parent)
 {
-}
-
-void Stationary3Model::setModel(const QVector<Frame3> &frames)
-{
-    if (!frames.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-        model.append(frames);
-        emit endInsertRows();
-    }
-}
-
-void Stationary3Model::clear()
-{
-    if (!model.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        model.clear();
-        model.squeeze();
-        emit endRemoveRows();
-    }
-}
-
-int Stationary3Model::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
 }
 
 int Stationary3Model::columnCount(const QModelIndex &parent) const
@@ -122,39 +95,7 @@ QVariant Stationary3Model::headerData(int section, Qt::Orientation orientation, 
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        switch (section)
-        {
-            case 0:
-                return tr("Frame");
-            case 1:
-                return tr("PID");
-            case 2:
-                return "!!!";
-            case 3:
-                return tr("Nature");
-            case 4:
-                return tr("Ability");
-            case 5:
-                return tr("HP");
-            case 6:
-                return tr("Atk");
-            case 7:
-                return tr("Def");
-            case 8:
-                return tr("SpA");
-            case 9:
-                return tr("SpD");
-            case 10:
-                return tr("Spe");
-            case 11:
-                return tr("Hidden");
-            case 12:
-                return tr("Power");
-            case 13:
-                return tr("Gender");
-            case 14:
-                return tr("Time");
-        }
+        return header.at(section);
     }
     return QVariant();
 }

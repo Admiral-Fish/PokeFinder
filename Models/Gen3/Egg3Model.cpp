@@ -19,44 +19,17 @@
 
 #include "Egg3Model.hpp"
 
-Egg3Model::Egg3Model(QObject *parent, Method method) : QAbstractTableModel(parent)
+Egg3Model::Egg3Model(QObject *parent, Method method) :
+    TableModel<Frame3>(parent)
 {
     this->method = method;
     showInheritance = false;
-}
-
-void Egg3Model::setModel(const QVector<Frame3> &frames)
-{
-    if (!frames.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-        model.append(frames);
-        emit endInsertRows();
-    }
-}
-
-void Egg3Model::clear()
-{
-    if (!model.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        model.clear();
-        model.squeeze();
-        emit endRemoveRows();
-    }
 }
 
 void Egg3Model::setMethod(Method method)
 {
     this->method = method;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
-}
-
-int Egg3Model::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
 }
 
 int Egg3Model::columnCount(const QModelIndex &parent) const
@@ -377,88 +350,12 @@ QVariant Egg3Model::headerData(int section, Qt::Orientation orientation, int rol
             case Method::EBred:
             case Method::EBredSplit:
             case Method::EBredAlternate:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Frame");
-                    case 1:
-                        return tr("Time");
-                    case 2:
-                        return tr("HP");
-                    case 3:
-                        return tr("Atk");
-                    case 4:
-                        return tr("Def");
-                    case 5:
-                        return tr("SpA");
-                    case 6:
-                        return tr("SpD");
-                    case 7:
-                        return tr("Spe");
-                    case 8:
-                        return tr("Hidden");
-                    case 9:
-                        return tr("Power");
-                }
+                return header1.at(section);
             case Method::EBredPID:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Frame");
-                    case 1:
-                        return tr("Time");
-                    case 2:
-                        return tr("Redraws");
-                    case 3:
-                        return tr("PID");
-                    case 4:
-                        return "!!!";
-                    case 5:
-                        return tr("Nature");
-                    case 6:
-                        return tr("Ability");
-                    case 7:
-                        return tr("Gender");
-                }
+                return header2.at(section);
             case Method::RSBred:
             case Method::FRLGBred:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Held Frame");
-                    case 1:
-                        return tr("Held Time");
-                    case 2:
-                        return tr("Pickup Frame");
-                    case 3:
-                        return tr("Pickup Time");
-                    case 4:
-                        return tr("PID");
-                    case 5:
-                        return "!!!";
-                    case 6:
-                        return tr("Nature");
-                    case 7:
-                        return tr("Ability");
-                    case 8:
-                        return tr("HP");
-                    case 9:
-                        return tr("Atk");
-                    case 10:
-                        return tr("Def");
-                    case 11:
-                        return tr("SpA");
-                    case 12:
-                        return tr("SpD");
-                    case 13:
-                        return tr("Spe");
-                    case 14:
-                        return tr("Hidden");
-                    case 15:
-                        return tr("Power");
-                    case 16:
-                        return tr("Gender");
-                }
+                return header3.at(section);
             default:
                 break;
         }

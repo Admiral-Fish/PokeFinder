@@ -20,27 +20,24 @@
 #ifndef PROFILE3MODEL_HPP
 #define PROFILE3MODEL_HPP
 
-#include <QAbstractTableModel>
 #include <Core/Gen3/Profile3.hpp>
+#include <Models/TableModel.hpp>
 
-class Profile3Model : public QAbstractTableModel
+class Profile3Model : public TableModel<Profile3>
 {
     Q_OBJECT
 
 public:
     Profile3Model(QObject *parent);
-    void setModel(const QVector<Profile3> &profiles);
-    void addItem(const Profile3 &profile);
-    void updateProfile(const Profile3 &profile, int row);
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-    Profile3 getProfile(int index);
-    void removeProfile(int index);
 
 private:
-    QVector<Profile3> model;
+    QStringList header =
+    {
+        tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dead Battery")
+    };
 
 };
 

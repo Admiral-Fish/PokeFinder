@@ -20,27 +20,43 @@
 #ifndef STATIONARY4MODEL_HPP
 #define STATIONARY4MODEL_HPP
 
-#include <QAbstractTableModel>
 #include <Core/Gen4/Frame4.hpp>
+#include <Models/TableModel.hpp>
 #include <Util/TableUtility.hpp>
 
-class Stationary4Model : public QAbstractTableModel
+class Stationary4Model : public TableModel<Frame4>
 {
     Q_OBJECT
 
 public:
     Stationary4Model(QObject *parent, Method method);
-    void setModel(const QVector<Frame4> &frames);
-    void clear();
     void setMethod(Method method);
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QVector<Frame4> model;
     Method method;
+
+    QStringList header1 =
+    {
+        tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
+        tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+    };
+    QStringList header2 =
+    {
+        tr("Frame"), tr("Occidentary"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
+        tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+    };
+    QStringList header3 =
+    {
+        tr("Frame"), tr("Occidentary"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+        tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+    };
+    QStringList header4 =
+    {
+        tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
+    };
 
 };
 

@@ -40,7 +40,7 @@ ProfileManager4::~ProfileManager4()
 void ProfileManager4::setupModels()
 {
     model = new Profile4Model(ui->tableView);
-    model->setModel(Profile4::loadProfileList());
+    model->addItems(Profile4::loadProfileList());
     ui->tableView->setModel(model);
 }
 
@@ -68,12 +68,12 @@ void ProfileManager4::on_pushButtonEdit_clicked()
         return;
     }
 
-    QScopedPointer<ProfileManager4NewEdit> dialog(new ProfileManager4NewEdit(model->getProfile(row)));
+    QScopedPointer<ProfileManager4NewEdit> dialog(new ProfileManager4NewEdit(model->getItem(row)));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile4 profile = dialog->getNewProfile();
         profile.updateProfile(dialog->getOriginal());
-        model->updateProfile(profile, row);
+        model->updateItem(profile, row);
         emit updateProfiles();
     }
 }
@@ -93,9 +93,9 @@ void ProfileManager4::on_pushButtonDelete_clicked()
     QMessageBox message(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"), QMessageBox::Yes | QMessageBox::No);
     if (message.exec() == QMessageBox::Yes)
     {
-        Profile4 profile = model->getProfile(row);
+        Profile4 profile = model->getItem(row);
         profile.deleteProfile();
-        model->removeProfile(row);
+        model->removeItem(row);
 
         emit updateProfiles();
     }

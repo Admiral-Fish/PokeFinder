@@ -19,31 +19,10 @@
 
 #include "ResearcherModel.hpp"
 
-ResearcherModel::ResearcherModel(QObject *parent, bool is64Bit) : QAbstractTableModel(parent)
+ResearcherModel::ResearcherModel(QObject *parent, bool is64Bit) :
+    TableModel<ResearcherFrame>(parent)
 {
     flag = is64Bit;
-}
-
-void ResearcherModel::setModel(const QVector<ResearcherFrame> &frames)
-{
-    if (!frames.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-        model.append(frames);
-        emit endInsertRows();
-    }
-}
-
-void ResearcherModel::clear()
-{
-    if (!model.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        model.clear();
-        model.squeeze();
-        emit endRemoveRows();
-    }
 }
 
 void ResearcherModel::setFlag(bool is64Bit)
@@ -57,15 +36,9 @@ void ResearcherModel::setHex(const QVector<bool> &hex)
     this->hex = hex;
 }
 
-int ResearcherModel::rowCount(const QModelIndex &parent) const
+int ResearcherModel::columnCount(const QModelIndex &index) const
 {
-    (void) parent;
-    return model.size();
-}
-
-int ResearcherModel::columnCount(const QModelIndex &parent) const
-{
-    (void) parent;
+    (void)index;
     return flag ? 22 : 20;
 }
 
@@ -178,53 +151,7 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        switch (section)
-        {
-            case 0:
-                return tr("Frame");
-            case 1:
-                return flag ? tr("64Bit") : tr("32Bit");
-            case 2:
-                return flag ? tr("32Bit High") : tr("16Bit High");
-            case 3:
-                return flag ? tr("32Bit Low") : tr("16Bit Low");
-            case 4:
-                return flag ? tr("16Bit High") : tr("Custom 1");
-            case 5:
-                return flag ? tr("16Bit Low") : tr("Custom 2");
-            case 6:
-                return flag ? tr("Custom 1") : tr("Custom 3");
-            case 7:
-                return flag ? tr("Custom 2") : tr("Custom 4");
-            case 8:
-                return flag ? tr("Custom 3") : tr("Custom 5");
-            case 9:
-                return flag ? tr("Custom 4") : tr("Custom 6");
-            case 10:
-                return flag ? tr("Custom 5") : tr("Custom 7");
-            case 11:
-                return flag ? tr("Custom 6") : tr("Custom 8");
-            case 12:
-                return flag ? tr("Custom 7") : tr("Custom 9");
-            case 13:
-                return flag ? tr("Custom 8") : tr("Custom 10");
-            case 14:
-                return flag ? tr("Custom 9") : "%3";
-            case 15:
-                return flag ? tr("Custom 10") : "%25";
-            case 16:
-                return flag ? "%3" : "%100";
-            case 17:
-                return flag ? "%25" : "/656";
-            case 18:
-                return flag ? "%100" : tr("HBit");
-            case 19:
-                return flag ? "/656" : tr("LBit");
-            case 20:
-                return tr("HBit");
-            case 21:
-                return tr("LBit");
-        }
+        return flag ? header1.at(section) : header2.at(section);
     }
     return QVariant();
 }

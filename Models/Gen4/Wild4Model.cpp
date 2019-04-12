@@ -19,43 +19,16 @@
 
 #include "Wild4Model.hpp"
 
-Wild4Model::Wild4Model(QObject *parent, Method method) : QAbstractTableModel(parent)
+Wild4Model::Wild4Model(QObject *parent, Method method) :
+    TableModel<Frame4>(parent)
 {
     this->method = method;
-}
-
-void Wild4Model::setModel(const QVector<Frame4> &frames)
-{
-    if (!frames.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-        model.append(frames);
-        emit endInsertRows();
-    }
-}
-
-void Wild4Model::clear()
-{
-    if (!model.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        model.clear();
-        model.squeeze();
-        emit endRemoveRows();
-    }
 }
 
 void Wild4Model::setMethod(Method method)
 {
     this->method = method;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
-}
-
-int Wild4Model::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
 }
 
 int Wild4Model::columnCount(const QModelIndex &parent) const
@@ -270,121 +243,11 @@ QVariant Wild4Model::headerData(int section, Qt::Orientation orientation, int ro
         switch (method)
         {
             case Method::MethodJ:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Frame");
-                    case 1:
-                        return tr("Occidentary");
-                    case 2:
-                        return tr("Chatot");
-                    case 3:
-                        return tr("Slot");
-                    case 4:
-                        return tr("Level");
-                    case 5:
-                        return tr("PID");
-                    case 6:
-                        return "!!!";
-                    case 7:
-                        return tr("Nature");
-                    case 8:
-                        return tr("Ability");
-                    case 9:
-                        return tr("HP");
-                    case 10:
-                        return tr("Atk");
-                    case 11:
-                        return tr("Def");
-                    case 12:
-                        return tr("SpA");
-                    case 13:
-                        return tr("SpD");
-                    case 14:
-                        return tr("Spe");
-                    case 15:
-                        return tr("Hidden");
-                    case 16:
-                        return tr("Power");
-                    case 17:
-                        return tr("Gender");
-                }
+                return header1.at(section);
             case Method::MethodK:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Frame");
-                    case 1:
-                        return tr("Occidentary");
-                    case 2:
-                        return tr("Call");
-                    case 3:
-                        return tr("Chatot");
-                    case 4:
-                        return tr("Slot");
-                    case 5:
-                        return tr("Level");
-                    case 6:
-                        return tr("PID");
-                    case 7:
-                        return "!!!";
-                    case 8:
-                        return tr("Nature");
-                    case 9:
-                        return tr("Ability");
-                    case 10:
-                        return tr("HP");
-                    case 11:
-                        return tr("Atk");
-                    case 12:
-                        return tr("Def");
-                    case 13:
-                        return tr("SpA");
-                    case 14:
-                        return tr("SpD");
-                    case 15:
-                        return tr("Spe");
-                    case 16:
-                        return tr("Hidden");
-                    case 17:
-                        return tr("Power");
-                    case 18:
-                        return tr("Gender");
-                }
+                return header2.at(section);
             case Method::ChainedShiny:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Frame");
-                    case 1:
-                        return tr("Chatot");
-                    case 2:
-                        return tr("PID");
-                    case 3:
-                        return "!!!";
-                    case 4:
-                        return tr("Nature");
-                    case 5:
-                        return tr("Ability");
-                    case 6:
-                        return tr("HP");
-                    case 7:
-                        return tr("Atk");
-                    case 8:
-                        return tr("Def");
-                    case 9:
-                        return tr("SpA");
-                    case 10:
-                        return tr("SpD");
-                    case 11:
-                        return tr("Spe");
-                    case 12:
-                        return tr("Hidden");
-                    case 13:
-                        return tr("Power");
-                    case 14:
-                        return tr("Gender");
-                }
+                return header3.at(section);
             default:
                 break;
         }

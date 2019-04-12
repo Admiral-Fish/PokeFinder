@@ -40,7 +40,7 @@ ProfileManager3::~ProfileManager3()
 void ProfileManager3::setupModels()
 {
     model = new Profile3Model(ui->tableView);
-    model->setModel(Profile3::loadProfileList());
+    model->addItems(Profile3::loadProfileList());
     ui->tableView->setModel(model);
 }
 
@@ -68,12 +68,12 @@ void ProfileManager3::on_pushButtonEdit_clicked()
         return;
     }
 
-    QScopedPointer<ProfileManager3NewEdit> dialog(new ProfileManager3NewEdit(model->getProfile(row)));
+    QScopedPointer<ProfileManager3NewEdit> dialog(new ProfileManager3NewEdit(model->getItem(row)));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile3 profile = dialog->getNewProfile();
         profile.updateProfile(dialog->getOriginal());
-        model->updateProfile(profile, row);
+        model->updateItem(profile, row);
         emit updateProfiles();
     }
 }
@@ -94,9 +94,9 @@ void ProfileManager3::on_pushButtonDelete_clicked()
     if (message.exec() == QMessageBox::Yes)
     {
 
-        Profile3 profile = model->getProfile(row);
+        Profile3 profile = model->getItem(row);
         profile.deleteProfile();
-        model->removeProfile(row);
+        model->removeItem(row);
 
         emit updateProfiles();
     }

@@ -189,7 +189,7 @@ void Profile4::updateProfile(const Profile4 &original) const
         {
             Profile4 profile(i.toObject());
 
-            if (original == profile)
+            if (original == profile && original != *this)
             {
                 i = getJson();
                 profiles["gen4"] = gen4;
@@ -208,4 +208,9 @@ bool operator==(const Profile4 &left, const Profile4 &right)
     return left.profileName == right.profileName && left.version == right.version && left.language == right.language &&
            left.tid == right.tid && left.sid == right.sid && left.dual == right.dual && left.radio == right.radio &&
            left.radar == right.radar && left.swarm == right.swarm;
+}
+
+bool operator!=(const Profile4 &left, const Profile4 &right)
+{
+    return !(left == right);
 }

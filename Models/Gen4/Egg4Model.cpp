@@ -19,45 +19,17 @@
 
 #include "Egg4Model.hpp"
 
-Egg4GeneratorModel::Egg4GeneratorModel(QObject *parent, Method method)
-    : QAbstractTableModel(parent)
+Egg4GeneratorModel::Egg4GeneratorModel(QObject *parent, Method method) :
+    TableModel<Frame4>(parent)
 {
     this->method = method;
     showInheritance = false;
-}
-
-void Egg4GeneratorModel::setModel(const QVector<Frame4> &frames)
-{
-    if (!frames.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-        model.append(frames);
-        emit endInsertRows();
-    }
-}
-
-void Egg4GeneratorModel::clear()
-{
-    if (!model.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        model.clear();
-        model.squeeze();
-        emit endRemoveRows();
-    }
 }
 
 void Egg4GeneratorModel::setMethod(Method method)
 {
     this->method = method;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
-}
-
-int Egg4GeneratorModel::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
 }
 
 int Egg4GeneratorModel::columnCount(const QModelIndex &parent) const
@@ -355,71 +327,11 @@ QVariant Egg4GeneratorModel::headerData(int section, Qt::Orientation orientation
         {
             case Method::Gen4Normal:
             case Method::Gen4Masuada:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Frame");
-                    case 1:
-                        return tr("PID");
-                    case 2:
-                        return "!!!";
-                    case 3:
-                        return tr("Nature");
-                    case 4:
-                        return tr("Ability");
-                    case 5:
-                        return tr("Gender");
-                }
+                return header1.at(section);
             case Method::DPPtIVs:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Frame");
-                    case 1:
-                        return tr("Chatot");
-                    case 2:
-                        return tr("HP");
-                    case 3:
-                        return tr("Atk");
-                    case 4:
-                        return tr("Def");
-                    case 5:
-                        return tr("SpA");
-                    case 6:
-                        return tr("SpD");
-                    case 7:
-                        return tr("Spe");
-                    case 8:
-                        return tr("Hidden");
-                    case 9:
-                        return tr("Power");
-                }
+                return header2.at(section);
             case Method::HGSSIVs:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Frame");
-                    case 1:
-                        return tr("Call");
-                    case 2:
-                        return tr("Chatot");
-                    case 3:
-                        return tr("HP");
-                    case 4:
-                        return tr("Atk");
-                    case 5:
-                        return tr("Def");
-                    case 6:
-                        return tr("SpA");
-                    case 7:
-                        return tr("SpD");
-                    case 8:
-                        return tr("Spe");
-                    case 9:
-                        return tr("Hidden");
-                    case 10:
-                        return tr("Power");
-                }
+                return header3.at(section);
             default:
                 break;
         }
@@ -435,56 +347,17 @@ void Egg4GeneratorModel::toggleInheritance(bool flag)
 }
 
 
-Egg4SearcherModel::Egg4SearcherModel(QObject *parent, Method method)
-    : QAbstractTableModel(parent)
+Egg4SearcherModel::Egg4SearcherModel(QObject *parent, Method method) :
+    TableModel<Frame4>(parent)
 {
     this->method = method;
     showInheritance = false;
-}
-
-void Egg4SearcherModel::setModel(const QVector<Frame4> &frames)
-{
-    if (!frames.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-        model.append(frames);
-        emit endInsertRows();
-    }
-}
-
-void Egg4SearcherModel::addItems(const QVector<Frame4> &frames)
-{
-    if (!frames.isEmpty())
-    {
-        int i = rowCount();
-        emit beginInsertRows(QModelIndex(), i, i + frames.size() - 1);
-        model.append(frames);
-        emit endInsertRows();
-    }
-}
-
-void Egg4SearcherModel::clear()
-{
-    if (!model.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        model.clear();
-        model.squeeze();
-        emit endRemoveRows();
-    }
 }
 
 void Egg4SearcherModel::setMethod(Method method)
 {
     this->method = method;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
-}
-
-int Egg4SearcherModel::rowCount(const QModelIndex &parent) const
-{
-    (void) parent;
-    return model.size();
 }
 
 int Egg4SearcherModel::columnCount(const QModelIndex &parent) const
@@ -667,48 +540,10 @@ QVariant Egg4SearcherModel::headerData(int section, Qt::Orientation orientation,
         {
             case Method::Gen4Normal:
             case Method::Gen4Masuada:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Seed");
-                    case 1:
-                        return tr("Frame");
-                    case 2:
-                        return tr("PID");
-                    case 3:
-                        return "!!!";
-                    case 4:
-                        return tr("Nature");
-                    case 5:
-                        return tr("Ability");
-                    case 6:
-                        return tr("Gender");
-                }
+                return header1.at(section);
             case Method::DPPtIVs:
             case Method::HGSSIVs:
-                switch (section)
-                {
-                    case 0:
-                        return tr("Seed");
-                    case 1:
-                        return tr("Frame");
-                    case 2:
-                        return tr("HP");
-                    case 3:
-                        return tr("Atk");
-                    case 4:
-                        return tr("Def");
-                    case 5:
-                        return tr("SpA");
-                    case 6:
-                        return tr("SpD");
-                    case 7:
-                        return tr("Spe");
-                    case 8:
-                        return tr("Hidden");
-                    case 9:
-                        return tr("Power");
-                }
+                return header2.at(section);
             default:
                 break;
         }
