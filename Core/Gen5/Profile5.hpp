@@ -33,6 +33,7 @@ public:
     Profile5();
     u64 getMac() const;
     QVector<bool> getKeypresses() const;
+    QString getKeypressesString() const;
     u8 getVCount() const;
     u8 getGxStat() const;
     u8 getVFrame() const;

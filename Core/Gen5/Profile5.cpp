@@ -79,6 +79,24 @@ QVector<bool> Profile5::getKeypresses() const
     return keypresses;
 }
 
+QString Profile5::getKeypressesString() const
+{
+    QStringList strings;
+    QVector<bool> keys = getKeypresses();
+    for (u8 i = 0; i < keys.size(); i++)
+    {
+        if (i == 0 && keys.at(i))
+        {
+            strings.append(QObject::tr("None"));
+        }
+        else if (keys.at(i))
+        {
+            strings.append(QString::number(i));
+        }
+    }
+    return strings.join(", ");
+}
+
 u8 Profile5::getVCount() const
 {
     return vcount;

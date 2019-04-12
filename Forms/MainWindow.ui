@@ -144,10 +144,31 @@
        <string>Gen 5</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="2" column="0">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButtonStationary5">
+         <property name="text">
+          <string>Stationary</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QPushButton" name="pushButtonIDs5">
+         <property name="text">
+          <string>IDs</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
         <widget class="QPushButton" name="pushButtonDreamRadar">
          <property name="text">
           <string>Dream Radar</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="pushButtonEgg5">
+         <property name="text">
+          <string>Egg</string>
          </property>
         </widget>
        </item>
@@ -158,28 +179,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QPushButton" name="pushButtonIDs5">
-         <property name="text">
-          <string>IDs</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="pushButtonEgg5">
-         <property name="text">
-          <string>Egg</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="pushButtonStationary5">
-         <property name="text">
-          <string>Stationary</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <spacer name="verticalSpacerGen5">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -191,6 +191,13 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButtonEvent5">
+         <property name="text">
+          <string>Event</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

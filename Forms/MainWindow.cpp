@@ -204,6 +204,10 @@ void MainWindow::updateProfiles(int num)
         if (wild4) wild4->updateProfiles();
         if (egg4) egg4->updateProfiles();
     }
+    else if (num == 5)
+    {
+        if (stationary5) stationary5->updateProfiles();
+    }
 }
 
 void MainWindow::on_pushButtonStationary3_clicked()
@@ -375,6 +379,17 @@ void MainWindow::on_actionSID_from_Chained_Shiny_triggered()
     auto *chainedSID = new ChainedSID();
     chainedSID->show();
     chainedSID->raise();
+}
+
+void MainWindow::on_pushButtonStationary5_clicked()
+{
+    if (!stationary5)
+    {
+        stationary5 = new Stationary5();
+        connect(stationary5, &Stationary5::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    stationary5->show();
+    stationary5->raise();
 }
 
 void MainWindow::on_actionEncounter_Lookup_triggered()

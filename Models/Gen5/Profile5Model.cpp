@@ -91,22 +91,7 @@ QVariant Profile5Model::data(const QModelIndex &index, int role) const
             case 10:
                 return profile.getVFrame();
             case 11:
-                {
-                    QStringList presses;
-                    QVector<bool> keys = profile.getKeypresses();
-                    for (u8 i = 0; i < keys.size(); i++)
-                    {
-                        if (i == 0 && keys.at(0))
-                        {
-                            presses.append(tr("None"));
-                        }
-                        else if (keys.at(i))
-                        {
-                            presses.append(QString::number(i));
-                        }
-                    }
-                    return presses.join(", ");
-                }
+                return profile.getKeypressesString();
             case 12:
                 return profile.getSkipLR() ? tr("True") : tr("False");
             case 13:

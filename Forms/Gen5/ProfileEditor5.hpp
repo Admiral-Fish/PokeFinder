@@ -23,6 +23,7 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <Core/Gen5/Profile5.hpp>
+#include <Forms/Gen5/ProfileCalibrator5.hpp>
 
 namespace Ui
 {
@@ -54,6 +55,7 @@ private:
 
 private slots:
     void on_pushButtonAccept_clicked();
+    void on_pushButtonFindParameters_clicked();
 
 };
 

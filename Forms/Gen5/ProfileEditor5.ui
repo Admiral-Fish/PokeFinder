@@ -310,6 +310,13 @@
      </property>
     </widget>
    </item>
+   <item row="3" column="10">
+    <widget class="QPushButton" name="pushButtonFindParameters">
+     <property name="text">
+      <string>Find Parameters</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
