@@ -25,16 +25,7 @@
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Method.hpp>
-
-// Defines the different types of shadows
-enum ShadowType
-{
-    SingleLock,
-    FirstShadow,
-    Salamence,
-    SecondShadow,
-    EReader
-};
+#include <Core/Util/ShadowType.hpp>
 
 class ShadowLock
 {

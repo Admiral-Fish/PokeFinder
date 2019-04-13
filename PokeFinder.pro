@@ -39,8 +39,8 @@ FORMS += \
     Forms/Gen3/JirachiPattern.ui \
     Forms/Gen3/PIDtoIVs.ui \
     Forms/Gen3/PokeSpot.ui \
+    Forms/Gen3/ProfileEditor3.ui \
     Forms/Gen3/ProfileManager3.ui \
-    Forms/Gen3/ProfileManager3NewEdit.ui \
     Forms/Gen3/SeedToTime3.ui \
     Forms/Gen3/SpindaPainter.ui \
     Forms/Gen3/Stationary3.ui \
@@ -48,8 +48,8 @@ FORMS += \
     Forms/Gen4/ChainedSID.ui \
     Forms/Gen4/Eggs4.ui \
     Forms/Gen4/IDs4.ui \
+    Forms/Gen4/ProfileEditor4.ui \
     Forms/Gen4/ProfileManager4.ui \
-    Forms/Gen4/ProfileManager4NewEdit.ui \
     Forms/Gen4/RoamerMap.ui \
     Forms/Gen4/SearchCalls.ui \
     Forms/Gen4/SearchCoinFlips.ui \
@@ -112,6 +112,7 @@ HEADERS += \
     Core/Util/Method.hpp \
     Core/Util/Nature.hpp \
     Core/Util/Power.hpp \
+    Core/Util/ShadowType.hpp \
     Core/Util/Translator.hpp \
     Core/Util/Utilities.hpp \
     Forms/Controls/CheckList.hpp \
@@ -128,8 +129,8 @@ HEADERS += \
     Forms/Gen3/JirachiPattern.hpp \
     Forms/Gen3/PIDtoIVs.hpp \
     Forms/Gen3/PokeSpot.hpp \
+    Forms/Gen3/ProfileEditor3.hpp \
     Forms/Gen3/ProfileManager3.hpp \
-    Forms/Gen3/ProfileManager3NewEdit.hpp \
     Forms/Gen3/SeedToTime3.hpp \
     Forms/Gen3/SpindaPainter.hpp \
     Forms/Gen3/Stationary3.hpp \
@@ -137,8 +138,8 @@ HEADERS += \
     Forms/Gen4/ChainedSID.hpp \
     Forms/Gen4/Eggs4.hpp \
     Forms/Gen4/IDs4.hpp \
+    Forms/Gen4/ProfileEditor4.hpp \
     Forms/Gen4/ProfileManager4.hpp \
-    Forms/Gen4/ProfileManager4NewEdit.hpp \
     Forms/Gen4/RoamerMap.hpp \
     Forms/Gen4/SearchCalls.hpp \
     Forms/Gen4/SearchCoinFlips.hpp \
@@ -226,8 +227,8 @@ SOURCES += \
     Forms/Gen3/JirachiPattern.cpp \
     Forms/Gen3/PIDtoIVs.cpp \
     Forms/Gen3/PokeSpot.cpp \
+    Forms/Gen3/ProfileEditor3.cpp \
     Forms/Gen3/ProfileManager3.cpp \
-    Forms/Gen3/ProfileManager3NewEdit.cpp \
     Forms/Gen3/SeedToTime3.cpp \
     Forms/Gen3/SpindaPainter.cpp \
     Forms/Gen3/Stationary3.cpp \
@@ -235,8 +236,8 @@ SOURCES += \
     Forms/Gen4/ChainedSID.cpp \
     Forms/Gen4/Eggs4.cpp \
     Forms/Gen4/IDs4.cpp \
+    Forms/Gen4/ProfileEditor4.cpp \
     Forms/Gen4/ProfileManager4.cpp \
-    Forms/Gen4/ProfileManager4NewEdit.cpp \
     Forms/Gen4/RoamerMap.cpp \
     Forms/Gen4/SearchCalls.cpp \
     Forms/Gen4/SearchCoinFlips.cpp \

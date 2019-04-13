@@ -46,7 +46,7 @@ void ProfileManager4::setupModels()
 
 void ProfileManager4::on_pushButtonNew_clicked()
 {
-    QScopedPointer<ProfileManager4NewEdit> dialog(new ProfileManager4NewEdit);
+    QScopedPointer<ProfileEditor4> dialog(new ProfileEditor4);
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile4 profile = dialog->getNewProfile();
@@ -68,7 +68,7 @@ void ProfileManager4::on_pushButtonEdit_clicked()
         return;
     }
 
-    QScopedPointer<ProfileManager4NewEdit> dialog(new ProfileManager4NewEdit(model->getItem(row)));
+    QScopedPointer<ProfileEditor4> dialog(new ProfileEditor4(model->getItem(row)));
     if (dialog->exec() == QDialog::Accepted)
     {
         Profile4 profile = dialog->getNewProfile();

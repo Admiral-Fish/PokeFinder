@@ -17,12 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "ProfileManager4NewEdit.hpp"
-#include "ui_ProfileManager4NewEdit.h"
+#include "ProfileEditor4.hpp"
+#include "ui_ProfileEditor4.h"
 
-ProfileManager4NewEdit::ProfileManager4NewEdit(QWidget *parent) :
+ProfileEditor4::ProfileEditor4(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ProfileManager4NewEdit)
+    ui(new Ui::ProfileEditor4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -34,7 +34,9 @@ ProfileManager4NewEdit::ProfileManager4NewEdit(QWidget *parent) :
     setupModels();
 }
 
-ProfileManager4NewEdit::ProfileManager4NewEdit(const Profile4 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileManager4NewEdit)
+ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::ProfileEditor4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -56,22 +58,22 @@ ProfileManager4NewEdit::ProfileManager4NewEdit(const Profile4 &profile, QWidget 
     original = profile;
 }
 
-ProfileManager4NewEdit::~ProfileManager4NewEdit()
+ProfileEditor4::~ProfileEditor4()
 {
     delete ui;
 }
 
-Profile4 ProfileManager4NewEdit::getNewProfile()
+Profile4 ProfileEditor4::getNewProfile()
 {
     return fresh;
 }
 
-Profile4 ProfileManager4NewEdit::getOriginal()
+Profile4 ProfileEditor4::getOriginal()
 {
     return original;
 }
 
-void ProfileManager4NewEdit::setupModels()
+void ProfileEditor4::setupModels()
 {
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
@@ -89,17 +91,16 @@ void ProfileManager4NewEdit::setupModels()
     ui->comboBoxDualSlot->setItemData(4, Game::LeafGreen);
     ui->comboBoxDualSlot->setItemData(5, Game::Emerald);
 
-    ui->comboBoxLanguage->setItemData(0, Language::Nil);
-    ui->comboBoxLanguage->setItemData(1, Language::English);
-    ui->comboBoxLanguage->setItemData(2, Language::Spanish);
-    ui->comboBoxLanguage->setItemData(3, Language::French);
-    ui->comboBoxLanguage->setItemData(4, Language::Italian);
-    ui->comboBoxLanguage->setItemData(5, Language::German);
-    ui->comboBoxLanguage->setItemData(6, Language::Japanese);
-    ui->comboBoxLanguage->setItemData(7, Language::Korean);
+    ui->comboBoxLanguage->setItemData(0, Language::English);
+    ui->comboBoxLanguage->setItemData(1, Language::Spanish);
+    ui->comboBoxLanguage->setItemData(2, Language::French);
+    ui->comboBoxLanguage->setItemData(3, Language::Italian);
+    ui->comboBoxLanguage->setItemData(4, Language::German);
+    ui->comboBoxLanguage->setItemData(5, Language::Japanese);
+    ui->comboBoxLanguage->setItemData(6, Language::Korean);
 }
 
-void ProfileManager4NewEdit::on_pushButtonAccept_clicked()
+void ProfileEditor4::on_pushButtonAccept_clicked()
 {
     QString input = ui->lineEditProfile->text().trimmed();
     if (input.isEmpty())
@@ -117,7 +118,7 @@ void ProfileManager4NewEdit::on_pushButtonAccept_clicked()
     done(QDialog::Accepted);
 }
 
-void ProfileManager4NewEdit::on_comboBoxVersion_currentIndexChanged(int index)
+void ProfileEditor4::on_comboBoxVersion_currentIndexChanged(int index)
 {
     (void)index;
 

@@ -21,7 +21,7 @@
 #define PROFILEMANAGER4_HPP
 
 #include <QWidget>
-#include <Forms/Gen4/ProfileManager4NewEdit.hpp>
+#include <Forms/Gen4/ProfileEditor4.hpp>
 #include <Models/Gen4/Profile4Model.hpp>
 
 namespace Ui
