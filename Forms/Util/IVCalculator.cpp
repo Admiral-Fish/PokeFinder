@@ -47,7 +47,7 @@ void IVCalculator::setupModels()
     ui->comboBoxCharacteristic->addItems(Translator::getCharacteristic());
 }
 
-void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)
+void IVCalculator::displayIVs(QLabel *label, const QVector<u8> &ivs)
 {
     QString result;
 
@@ -62,11 +62,11 @@ void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)
         {
             if (i == 0)
             {
-                result += QString::number(ivs[i]);
+                result += QString::number(ivs.at(i));
             }
             else
             {
-                if (ivs[i] == ivs[i - 1] + 1)
+                if (ivs.at(i) == ivs.at(i - 1) + 1)
                 {
                     flag = true;
 
@@ -149,6 +149,11 @@ void IVCalculator::on_comboBoxGeneration_currentIndexChanged(int index)
         {
             pokemon = Pokemon::loadPersonal(4);
             max = 493;
+        }
+        else if (index == 2)
+        {
+            pokemon = Pokemon::loadPersonal(5);
+            max = 649;
         }
 
         QVector<u16> species;
