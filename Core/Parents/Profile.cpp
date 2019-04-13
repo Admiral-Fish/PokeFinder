@@ -97,7 +97,6 @@ QString Profile::getLanguageString() const
             return "KOR";
         case Language::Spanish:
             return "SPA";
-        case Language::Nil:
         default:
             return "-";
     }

@@ -17,40 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILE_HPP
-#define PROFILE_HPP
+#ifndef SHADOWTYPE_HPP
+#define SHADOWTYPE_HPP
 
-#include <QApplication>
-#include <QFile>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QVector>
-#include <Core/Util/Game.hpp>
-#include <Core/Util/Global.hpp>
-#include <Core/Util/Language.hpp>
-
-class Profile
+enum ShadowType
 {
-
-public:
-    Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English);
-    Profile();
-    QString getVersionString() const;
-    QString getLanguageString() const;
-    Game getVersion() const;
-    Language getLanguage() const;
-    QString getProfileName() const;
-    u16 getTID() const;
-    u16 getSID() const;
-
-protected:
-    QString profileName;
-    Game version{};
-    Language language;
-    u16 tid;
-    u16 sid;
-
+    SingleLock,
+    FirstShadow,
+    Salamence,
+    SecondShadow,
+    EReader
 };
 
-#endif // PROFILE_HPP
+#endif // SHADOWTYPE_HPP

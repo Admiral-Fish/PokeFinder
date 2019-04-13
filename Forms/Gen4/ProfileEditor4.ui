@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ProfileManager4NewEdit</class>
- <widget class="QDialog" name="ProfileManager4NewEdit">
+ <class>ProfileEditor4</class>
+ <widget class="QDialog" name="ProfileEditor4">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -133,11 +133,6 @@
    </item>
    <item row="2" column="1">
     <widget class="QComboBox" name="comboBoxLanguage">
-     <item>
-      <property name="text">
-       <string notr="true">-</string>
-      </property>
-     </item>
      <item>
       <property name="text">
        <string>ENG</string>

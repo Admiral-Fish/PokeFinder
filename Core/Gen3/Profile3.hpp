@@ -26,7 +26,7 @@ class Profile3 : public Profile
 {
 
 public:
-    Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::Nil, bool deadBattery = false);
+    Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English, bool deadBattery = false);
     Profile3(QJsonObject data);
     Profile3();
     bool getDeadBattery() const;

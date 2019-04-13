@@ -17,12 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "ProfileManager3NewEdit.hpp"
-#include "ui_ProfileManager3NewEdit.h"
+#include "ProfileEditor3.hpp"
+#include "ui_ProfileEditor3.h"
 
-ProfileManager3NewEdit::ProfileManager3NewEdit(QWidget *parent) :
+ProfileEditor3::ProfileEditor3(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ProfileManager3NewEdit)
+    ui(new Ui::ProfileEditor3)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -31,9 +31,9 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(QWidget *parent) :
     setupModels();
 }
 
-ProfileManager3NewEdit::ProfileManager3NewEdit(const Profile3 &profile, QWidget *parent) :
+ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ProfileManager3NewEdit)
+    ui(new Ui::ProfileEditor3)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -52,22 +52,22 @@ ProfileManager3NewEdit::ProfileManager3NewEdit(const Profile3 &profile, QWidget 
     original = profile;
 }
 
-ProfileManager3NewEdit::~ProfileManager3NewEdit()
+ProfileEditor3::~ProfileEditor3()
 {
     delete ui;
 }
 
-Profile3 ProfileManager3NewEdit::getNewProfile()
+Profile3 ProfileEditor3::getNewProfile()
 {
     return fresh;
 }
 
-Profile3 ProfileManager3NewEdit::getOriginal()
+Profile3 ProfileEditor3::getOriginal()
 {
     return original;
 }
 
-void ProfileManager3NewEdit::setupModels()
+void ProfileEditor3::setupModels()
 {
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
@@ -80,16 +80,15 @@ void ProfileManager3NewEdit::setupModels()
     ui->comboBoxVersion->setItemData(5, Game::Gales);
     ui->comboBoxVersion->setItemData(6, Game::Colosseum);
 
-    ui->comboBoxLanguage->setItemData(0, Language::Nil);
-    ui->comboBoxLanguage->setItemData(1, Language::English);
-    ui->comboBoxLanguage->setItemData(2, Language::Spanish);
-    ui->comboBoxLanguage->setItemData(3, Language::French);
-    ui->comboBoxLanguage->setItemData(4, Language::Italian);
-    ui->comboBoxLanguage->setItemData(5, Language::German);
-    ui->comboBoxLanguage->setItemData(6, Language::Japanese);
+    ui->comboBoxLanguage->setItemData(0, Language::English);
+    ui->comboBoxLanguage->setItemData(1, Language::Spanish);
+    ui->comboBoxLanguage->setItemData(2, Language::French);
+    ui->comboBoxLanguage->setItemData(3, Language::Italian);
+    ui->comboBoxLanguage->setItemData(4, Language::German);
+    ui->comboBoxLanguage->setItemData(5, Language::Japanese);
 }
 
-void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
+void ProfileEditor3::on_pushButtonAccept_clicked()
 {
     QString input = ui->lineEditProfile->text().trimmed();
     if (input.isEmpty())
@@ -106,7 +105,7 @@ void ProfileManager3NewEdit::on_pushButtonAccept_clicked()
     done(QDialog::Accepted);
 }
 
-void ProfileManager3NewEdit::on_comboBoxVersion_currentIndexChanged(int index)
+void ProfileEditor3::on_comboBoxVersion_currentIndexChanged(int index)
 {
     (void) index;
 

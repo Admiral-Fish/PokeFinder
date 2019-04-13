@@ -17,38 +17,38 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PROFILEMANAGER3NEWEDIT_HPP
-#define PROFILEMANAGER3NEWEDIT_HPP
+#ifndef PROFILEEDITOR4_HPP
+#define PROFILEEDITOR4_HPP
 
 #include <QDialog>
 #include <QMessageBox>
-#include <Core/Gen3/Profile3.hpp>
+#include <Core/Gen4/Profile4.hpp>
 
 namespace Ui
 {
-    class ProfileManager3NewEdit;
+    class ProfileEditor4;
 }
 
-class ProfileManager3NewEdit : public QDialog
+class ProfileEditor4 : public QDialog
 {
     Q_OBJECT
 
 signals:
-    void newProfile(Profile3);
-    void editProfile(Profile3, Profile3);
+    void newProfile(Profile4);
+    void editProfile(Profile4, Profile4);
 
 public:
-    explicit ProfileManager3NewEdit(QWidget *parent = nullptr);
-    explicit ProfileManager3NewEdit(const Profile3 &profile, QWidget *parent = nullptr);
-    ~ProfileManager3NewEdit() override;
-    Profile3 getNewProfile();
-    Profile3 getOriginal();
+    explicit ProfileEditor4(QWidget *parent = nullptr);
+    explicit ProfileEditor4(const Profile4 &profile, QWidget *parent = nullptr);
+    ~ProfileEditor4() override;
+    Profile4 getNewProfile();
+    Profile4 getOriginal();
 
 private:
-    Ui::ProfileManager3NewEdit *ui;
+    Ui::ProfileEditor4 *ui;
     bool isEditing = false;
-    Profile3 original;
-    Profile3 fresh;
+    Profile4 original;
+    Profile4 fresh;
 
     void setupModels();
 
@@ -58,4 +58,4 @@ private slots:
 
 };
 
-#endif // PROFILEMANAGER3NEWEDIT_HPP
+#endif // PROFILEEDITOR4_HPP

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ProfileManager3NewEdit</class>
- <widget class="QDialog" name="ProfileManager3NewEdit">
+ <class>ProfileEditor3</class>
+ <widget class="QDialog" name="ProfileEditor3">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -127,11 +127,6 @@
     <widget class="QComboBox" name="comboBoxLanguage">
      <item>
       <property name="text">
-       <string notr="true">-</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
        <string>ENG</string>
       </property>
      </item>
@@ -196,22 +191,5 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButtonCancel</sender>
-   <signal>clicked()</signal>
-   <receiver>ProfileManager3NewEdit</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>459</x>
-     <y>56</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>458</x>
-     <y>80</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
