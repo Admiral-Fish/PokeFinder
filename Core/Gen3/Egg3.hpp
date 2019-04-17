@@ -59,8 +59,8 @@ private:
 
     QVector<Frame3> generateEmeraldPID(const FrameCompare &compare) const;
     QVector<Frame3> generateEmeraldIVs(const FrameCompare &compare) const;
-    QVector<Frame3> generateLower(const FrameCompare &compare) const;
-    QVector<Frame3> generateUpper(const QVector<Frame3> &lower, const FrameCompare &compare) const;
+    QVector<QPair<u32, u16>> generateLower(const FrameCompare &compare) const;
+    QVector<Frame3> generateUpper(const QVector<QPair<u32, u16>> &lower, const FrameCompare &compare) const;
 
 };
 

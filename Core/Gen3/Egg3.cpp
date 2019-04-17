@@ -124,8 +124,8 @@ QVector<Frame3> Egg3::generate(const FrameCompare &compare) const
         case Method::FRLGBred:
         case Method::FRLGBredAlternate:
             {
-                QVector<Frame3> lower = generateLower(compare);
-                return lower.isEmpty() ? lower : generateUpper(lower, compare);
+                auto lower = generateLower(compare);
+                return lower.isEmpty() ? QVector<Frame3>() : generateUpper(lower, compare);
             }
         default:
             return QVector<Frame3>();
@@ -298,9 +298,9 @@ QVector<Frame3> Egg3::generateEmeraldIVs(const FrameCompare &compare) const
     return frames;
 }
 
-QVector<Frame3> Egg3::generateLower(const FrameCompare &compare) const
+QVector<QPair<u32, u16>> Egg3::generateLower(const FrameCompare &compare) const
 {
-    QVector<Frame3> frames;
+    QVector<QPair<u32, u16>> frames;
 
     PokeRNG rng(seed, initialFrame - 1);
     QVector<u16> rngList(maxResults + 2);
@@ -314,13 +314,11 @@ QVector<Frame3> Egg3::generateLower(const FrameCompare &compare) const
     {
         if (((rngList.at(cnt) * 100) / 0xFFFF) < compatability)
         {
-            Frame3 frame(tid, sid, psv);
-            frame.setPID((rngList.at(cnt + 1) % 0xFFFE) + 1);
+            u16 pid = (rngList.at(cnt + 1) % 0xFFFE) + 1;
 
-            if (compare.compareGender(frame))
+            if (compare.compareGender(pid & 255))
             {
-                frame.setFrame(cnt + initialFrame);
-                frames.append(frame);
+                frames.append(qMakePair(cnt + initialFrame, pid));
             }
         }
     }
@@ -328,7 +326,7 @@ QVector<Frame3> Egg3::generateLower(const FrameCompare &compare) const
     return frames;
 }
 
-QVector<Frame3> Egg3::generateUpper(const QVector<Frame3> &lower, const FrameCompare &compare) const
+QVector<Frame3> Egg3::generateUpper(const QVector<QPair<u32, u16>> &lower, const FrameCompare &compare) const
 {
     QVector<Frame3> upper;
 
@@ -339,10 +337,12 @@ QVector<Frame3> Egg3::generateUpper(const QVector<Frame3> &lower, const FrameCom
         x = rng.nextUShort();
     }
 
+    u8 genderRatio = compare.getGenderRatio();
     u32 max = maxPickup - minPickup + 1;
     for (u32 cnt = 0; cnt < max; cnt++)
     {
         Frame3 frame(tid, sid, psv);
+        frame.setGenderRatio(genderRatio);
         frame.setPID(rngList.at(cnt));
         frame.setInheritance(rngList.at(cnt + iv1), rngList.at(cnt + iv2), rngList.at(cnt + par1), rngList.at(cnt + par2), rngList.at(cnt + par3),
                              rngList.at(cnt + inh1), rngList.at(cnt + inh2), rngList.at(cnt + inh3), parent1, parent2);
@@ -359,10 +359,10 @@ QVector<Frame3> Egg3::generateUpper(const QVector<Frame3> &lower, const FrameCom
     {
         for (auto up : upper)
         {
-            up.setPID(low.getPID(), up.getPID());
+            up.setPID(low.second, up.getPID());
             if (compare.comparePID(up))
             {
-                up.setFrame(low.getFrame());
+                up.setFrame(low.first);
                 frames.append(up);
             }
         }

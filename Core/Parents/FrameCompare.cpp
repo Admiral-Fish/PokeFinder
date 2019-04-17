@@ -160,19 +160,24 @@ bool FrameCompare::compareSlot(const Frame &frame) const
 
 bool FrameCompare::compareGender(const Frame &frame) const
 {
+    return compareGender(frame.getGender());
+}
+
+bool FrameCompare::compareGender(u16 genderValue) const
+{
     switch (genderRatio)
     {
         case 1:
             switch (gender)
             {
                 case 1:
-                    if (frame.getGender() < 127)
+                    if (genderValue < 127)
                     {
                         return false;
                     }
                     break;
                 case 2:
-                    if (frame.getGender() >= 127)
+                    if (genderValue >= 127)
                     {
                         return false;
                     }
@@ -185,13 +190,13 @@ bool FrameCompare::compareGender(const Frame &frame) const
             switch (gender)
             {
                 case 1:
-                    if (frame.getGender() < 191)
+                    if (genderValue < 191)
                     {
                         return false;
                     }
                     break;
                 case 2:
-                    if (frame.getGender() >= 191)
+                    if (genderValue >= 191)
                     {
                         return false;
                     }
@@ -204,13 +209,13 @@ bool FrameCompare::compareGender(const Frame &frame) const
             switch (gender)
             {
                 case 1:
-                    if (frame.getGender() < 63)
+                    if (genderValue < 63)
                     {
                         return false;
                     }
                     break;
                 case 2:
-                    if (frame.getGender() >= 63)
+                    if (genderValue >= 63)
                     {
                         return false;
                     }
@@ -223,13 +228,13 @@ bool FrameCompare::compareGender(const Frame &frame) const
             switch (gender)
             {
                 case 1:
-                    if (frame.getGender() < 31)
+                    if (genderValue < 31)
                     {
                         return false;
                     }
                     break;
                 case 2:
-                    if (frame.getGender() >= 31)
+                    if (genderValue >= 31)
                     {
                         return false;
                     }

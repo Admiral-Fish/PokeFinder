@@ -41,6 +41,7 @@ public:
     bool compareHiddenPower(const Frame &frame) const;
     bool compareSlot(const Frame &frame) const;
     bool compareGender(const Frame &frame) const;
+    bool compareGender(u16 genderValue) const;
     bool compareFrame(const Frame &frame) const;
     u8 getGenderRatio() const;
 
