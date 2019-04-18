@@ -21,23 +21,15 @@
 
 QString Frame::getGenderString()
 {
-    switch (genderRatio)
+    switch (gender)
     {
-        case 0:
-            return "-";
         case 1:
-            return gender >= 127 ? "♂" : "♀";
-        case 2:
-            return gender >= 191 ? "♂" : "♀";
-        case 3:
-            return gender >= 63 ? "♂" : "♀";
-        case 4:
-            return gender >= 31 ? "♂" : "♀";
-        case 5:
             return "♂";
-        case 6:
-        default:
+        case 2:
             return "♀";
+        case 0:
+        default:
+            return "-";
     }
 }
 
@@ -85,32 +77,6 @@ void Frame::setIVs(u16 iv1, u16 iv2)
     ivs[5] = iv2 & 0x1f;
     calculateHidden();
     calculatePower();
-}
-
-void Frame::setPID(u16 pid1, u16 pid2)
-{
-    pid = (pid2 << 16) | pid1;
-    nature = pid % 25;
-    gender = pid & 255;
-    ability = pid & 1;
-    shiny = (pid1 ^ pid2 ^ psv) < 8;
-}
-
-void Frame::setPID(u32 pid, u16 pid1, u16 pid2)
-{
-    this->pid = pid;
-    gender = pid & 255;
-    ability = pid & 1;
-    shiny = (pid1 ^ pid2 ^ psv) < 8;
-}
-
-void Frame::setPID(u32 pid)
-{
-    this->pid = pid;
-    nature = pid % 25;
-    gender = pid & 255;
-    ability = pid & 1;
-    shiny = ((pid >> 16) ^ (pid & 0xFFFF) ^ psv) < 8;
 }
 
 u32 Frame::getFrame() const
@@ -188,19 +154,14 @@ u8 Frame::getHidden() const
     return hidden;
 }
 
-u16 Frame::getGender() const
+u8 Frame::getGender() const
 {
     return gender;
 }
 
-u8 Frame::getGenderRatio() const
+void Frame::setGender(const u8 &value)
 {
-    return genderRatio;
-}
-
-void Frame::setGenderRatio(const u8 &value)
-{
-    genderRatio = value;
+    gender = value;
 }
 
 void Frame::setFrame(const u32 &value)

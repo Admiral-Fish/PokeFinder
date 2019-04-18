@@ -50,6 +50,14 @@ void PokeSpot::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
+    ui->comboBoxGenderRatio->setItemData(0, 0);
+    ui->comboBoxGenderRatio->setItemData(1, 127);
+    ui->comboBoxGenderRatio->setItemData(2, 191);
+    ui->comboBoxGenderRatio->setItemData(3, 63);
+    ui->comboBoxGenderRatio->setItemData(4, 31);
+    ui->comboBoxGenderRatio->setItemData(5, 1);
+    ui->comboBoxGenderRatio->setItemData(6, 2);
+
     ui->tableView->setModel(model);
 
     ui->comboBoxNature->setup(Nature::getNatures());
@@ -71,7 +79,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
     u32 maxResults = ui->textBoxMaxResults->getUInt();
     u16 tid = ui->textBoxTID->getUShort();
     u16 sid = ui->textBoxSID->getUShort();
-    int genderRatio = ui->comboBoxGenderRatio->currentIndex();
+    u8 genderRatio = ui->comboBoxGenderRatio->currentData().toUInt();
 
     XDRNG rng(seed, initialFrame - 1);
     QVector<u16> rngList(maxResults + 5);
@@ -81,9 +89,8 @@ void PokeSpot::on_pushButtonGenerate_clicked()
     }
 
     Frame3 frame = Frame3(tid, sid, tid ^ sid);
-    FrameCompare compare = FrameCompare(ui->comboBoxGender->currentIndex(), genderRatio, ui->comboBoxAbility->currentIndex(),
+    FrameCompare compare = FrameCompare(ui->comboBoxGender->currentIndex(), ui->comboBoxAbility->currentIndex(),
                                         ui->comboBoxNature->getChecked(), ui->checkBoxShinyOnly->isChecked());
-    frame.setGenderRatio(static_cast<u32>(genderRatio));
 
     QVector<bool> spots = ui->comboBoxSpotType->getChecked();
 
@@ -122,7 +129,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
                     frame.setLockReason(tr("Rare"));
                 }
 
-                frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3));
+                frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3), genderRatio);
                 if (compare.comparePID(frame))
                 {
                     frame.setFrame(cnt + initialFrame);

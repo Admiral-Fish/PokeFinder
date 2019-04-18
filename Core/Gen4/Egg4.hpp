@@ -31,7 +31,7 @@ class Egg4 : public Egg
 
 public:
     Egg4();
-    Egg4(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed);
+    Egg4(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed, u8 genderRatio);
     void setParents(const QVector<u8> &parent1, const QVector<u8> &parent2);
     QVector<Frame4> generate(const FrameCompare &compare) const;
 

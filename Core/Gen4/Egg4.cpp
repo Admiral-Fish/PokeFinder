@@ -29,15 +29,16 @@ Egg4::Egg4()
     psv = tid ^ sid;
 }
 
-Egg4::Egg4(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed)
+Egg4::Egg4(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed, u8 genderRatio)
 {
     maxResults = maxFrame;
     this->initialFrame = initialFrame;
-    this->seed = seed;
     this->tid = tid;
     this->sid = sid;
     psv = tid ^ sid;
     frameType = method;
+    this->seed = seed;
+    this->genderRatio = genderRatio;
 }
 
 void Egg4::setParents(const QVector<u8> &parent1, const QVector<u8> &parent2)
@@ -67,14 +68,12 @@ QVector<Frame4> Egg4::generatePID(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
     frame.setInitialSeed(seed);
 
     MersenneTwister mt(seed, initialFrame - 1);
     for (u32 cnt = initialFrame; cnt <= maxResults; cnt++)
     {
-        frame.setPID(mt.nextUInt());
-
+        frame.setPID(mt.nextUInt(), genderRatio);
         if (compare.comparePID(frame))
         {
             frame.setFrame(cnt);
@@ -89,7 +88,6 @@ QVector<Frame4> Egg4::generatePIDMasuada(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
     frame.setInitialSeed(seed);
 
     MersenneTwister mt(seed, initialFrame - 1);
@@ -109,8 +107,7 @@ QVector<Frame4> Egg4::generatePIDMasuada(const FrameCompare &compare) const
             pid = pid * 0x6c078965 + 1; // Advance with ARNG
         }
 
-        frame.setPID(pid);
-
+        frame.setPID(pid, genderRatio);
         if (compare.comparePID(frame))
         {
             frame.setFrame(cnt);

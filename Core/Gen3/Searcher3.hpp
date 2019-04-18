@@ -32,7 +32,7 @@ class Searcher3: public Searcher
 
 public:
     Searcher3();
-    Searcher3(u16 tid, u16 sid, u32 ratio, const FrameCompare &compare);
+    Searcher3(u16 tid, u16 sid, u8 genderRatio, const FrameCompare &compare);
     QVector<Frame3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
     void setup(Method method);
     void setupNatureLock(int num);

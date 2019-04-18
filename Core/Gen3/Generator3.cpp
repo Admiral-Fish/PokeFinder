@@ -29,15 +29,16 @@ Generator3::Generator3()
     psv = tid ^ sid;
 }
 
-Generator3::Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset)
+Generator3::Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, u8 genderRatio)
 {
     this->maxResults = maxResults;
     this->initialFrame = initialFrame;
     this->initialSeed = initialSeed;
     this->tid = tid;
     this->sid = sid;
-    this->offset = offset;
     psv = tid ^ sid;
+    this->offset = offset;
+    this->genderRatio = genderRatio;
 }
 
 QVector<Frame3> Generator3::generate(const FrameCompare &compare) const
@@ -102,7 +103,6 @@ QVector<Frame3> Generator3::generateMethodChannel(const FrameCompare &compare) c
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
 
     XDRNG rng(initialSeed, initialFrame - 1 + offset);
     QVector<u16> rngList(maxResults + 12);
@@ -119,11 +119,11 @@ QVector<Frame3> Generator3::generateMethodChannel(const FrameCompare &compare) c
 
         if ((rngList.at(cnt + 2) > 7 ? 0 : 1) != (rngList.at(cnt + 1) ^ 40122 ^ rngList.at(cnt)))
         {
-            frame.setPID(rngList.at(cnt + 2), rngList.at(cnt + 1) ^ 0x8000);
+            frame.setPID(rngList.at(cnt + 2), rngList.at(cnt + 1) ^ 0x8000, genderRatio);
         }
         else
         {
-            frame.setPID(rngList.at(cnt + 2), rngList.at(cnt + 1));
+            frame.setPID(rngList.at(cnt + 2), rngList.at(cnt + 1), genderRatio);
         }
 
         frame.setIVs(rngList.at(cnt + 6) >> 11, rngList.at(cnt + 7) >> 11, rngList.at(cnt + 8) >> 11,
@@ -143,7 +143,6 @@ QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) cons
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -232,7 +231,7 @@ QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) cons
         }
         while (pid % 25 != frame.getNature());
 
-        frame.setPID(pid, pid1, pid2);
+        frame.setPID(pid, genderRatio);
 
         // Valid PID is found now time to generate IVs
         if (frameType == Method::MethodH1)
@@ -269,7 +268,6 @@ QVector<Frame3> Generator3::generateMethodH124Synch(const FrameCompare &compare)
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -367,7 +365,7 @@ QVector<Frame3> Generator3::generateMethodH124Synch(const FrameCompare &compare)
         }
         while (pid % 25 != frame.getNature());
 
-        frame.setPID(pid, pid1, pid2);
+        frame.setPID(pid, genderRatio);
 
         // Valid PID is found now time to generate IVs
         if (frameType == Method::MethodH1)
@@ -404,7 +402,6 @@ QVector<Frame3> Generator3::generateMethodH124CuteCharm(const FrameCompare &comp
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -546,7 +543,7 @@ QVector<Frame3> Generator3::generateMethodH124CuteCharm(const FrameCompare &comp
             while (pid % 25 != frame.getNature());
         }
 
-        frame.setPID(pid, pid1, pid2);
+        frame.setPID(pid, genderRatio);
 
         // Valid PID is found now time to generate IVs
         if (frameType == Method::MethodH1)
@@ -583,7 +580,6 @@ QVector<Frame3> Generator3::generateMethodXDColo(const FrameCompare &compare) co
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
 
     XDRNG rng(initialSeed, initialFrame - 1 + offset);
     QVector<u16> rngList(maxResults + 5);
@@ -596,7 +592,7 @@ QVector<Frame3> Generator3::generateMethodXDColo(const FrameCompare &compare) co
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3));
+        frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3), genderRatio);
         frame.setIVs(rngList.at(cnt), rngList.at(cnt + 1));
 
         if (compare.compareFrame(frame))
@@ -613,7 +609,6 @@ QVector<Frame3> Generator3::generateMethod124(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     QVector<u16> rngList(maxResults + 5);
@@ -628,7 +623,7 @@ QVector<Frame3> Generator3::generateMethod124(const FrameCompare &compare) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngList.at(cnt), rngList.at(cnt + 1));
+        frame.setPID(rngList.at(cnt), rngList.at(cnt + 1), genderRatio);
         frame.setIVs(rngList.at(cnt + iv1), rngList.at(cnt + iv2));
 
         if (compare.compareFrame(frame))
@@ -645,7 +640,6 @@ QVector<Frame3> Generator3::generateMethod1Reverse(const FrameCompare &compare) 
 {
     QVector<Frame3> frames;
     Frame3 frame(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     QVector<u16> rngList(maxResults + 4);
@@ -658,7 +652,7 @@ QVector<Frame3> Generator3::generateMethod1Reverse(const FrameCompare &compare) 
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngList.at(cnt + 1), rngList.at(cnt));
+        frame.setPID(rngList.at(cnt + 1), rngList.at(cnt), genderRatio);
         frame.setIVs(rngList.at(cnt + 2), rngList.at(cnt + 3));
 
         if (compare.compareFrame(frame))

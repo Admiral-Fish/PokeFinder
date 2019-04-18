@@ -30,7 +30,7 @@ class Egg3 : public Egg
 
 public:
     Egg3();
-    Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed = 0);
+    Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u16 genderRatio, u32 seed = 0);
     QVector<Frame3> generate(const FrameCompare &compare) const;
     void setParents(const QVector<u8> &parent1, const QVector<u8> &parent2);
     void setMinRedraw(const u8 &value);

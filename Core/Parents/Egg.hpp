@@ -37,6 +37,7 @@ protected:
     u16 psv{};
     u16 sid{};
     u16 tid{};
+    u8 genderRatio{};
     Method frameType = Method::EBred;
     u32 seed{};
     u32 initialFrame{};

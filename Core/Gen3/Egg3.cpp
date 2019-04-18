@@ -29,15 +29,16 @@ Egg3::Egg3()
     psv = tid ^ sid;
 }
 
-Egg3::Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed)
+Egg3::Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u16 genderRatio, u32 seed)
 {
     maxResults = maxFrame;
     this->initialFrame = initialFrame;
-    this->seed = seed;
     this->tid = tid;
     this->sid = sid;
     psv = tid ^ sid;
     frameType = method;
+    this->genderRatio = genderRatio;
+    this->seed = seed;
 
     switch (method)
     {
@@ -210,8 +211,6 @@ QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
         for (u8 redraw = minRedraw; redraw <= maxRedraw; redraw++)
         {
             Frame3 frame(tid, sid, psv);
-            frame.setGenderRatio(compare.getGenderRatio());
-
             if (((rngList.at(cnt) * 100) / 0xFFFF) < compatability)
             {
                 u16 offset = calibration + 3 * redraw;
@@ -226,8 +225,7 @@ QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
                 {
                     pid = ((rngList.at(cnt + i) % 0xFFFE) + 1) | (trng.nextUInt() & 0xFFFF0000);
 
-                    frame.setPID(pid, pid >> 16, pid & 0xFFFF);
-                    frame.setNature(pid % 25);
+                    frame.setPID(pid, genderRatio);
                 }
                 else
                 {
@@ -247,7 +245,7 @@ QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
 
                     if (i != 19)
                     {
-                        frame.setPID(pid, pid >> 16, pid & 0xFFFF);
+                        frame.setPID(pid, genderRatio);
                         frame.setNature(everstoneNature);
                     }
                 }
@@ -314,9 +312,11 @@ QVector<QPair<u32, u16>> Egg3::generateLower(const FrameCompare &compare) const
     {
         if (((rngList.at(cnt) * 100) / 0xFFFF) < compatability)
         {
-            u16 pid = (rngList.at(cnt + 1) % 0xFFFE) + 1;
+            Frame3 frame;
 
-            if (compare.compareGender(pid & 255))
+            u16 pid = (rngList.at(cnt + 1) % 0xFFFE) + 1;
+            frame.setPID(pid, genderRatio);
+            if (compare.compareGender(frame))
             {
                 frames.append(qMakePair(cnt + initialFrame, pid));
             }
@@ -337,13 +337,11 @@ QVector<Frame3> Egg3::generateUpper(const QVector<QPair<u32, u16>> &lower, const
         x = rng.nextUShort();
     }
 
-    u8 genderRatio = compare.getGenderRatio();
     u32 max = maxPickup - minPickup + 1;
     for (u32 cnt = 0; cnt < max; cnt++)
     {
         Frame3 frame(tid, sid, psv);
-        frame.setGenderRatio(genderRatio);
-        frame.setPID(rngList.at(cnt));
+        frame.setPID(rngList.at(cnt), genderRatio);
         frame.setInheritance(rngList.at(cnt + iv1), rngList.at(cnt + iv2), rngList.at(cnt + par1), rngList.at(cnt + par2), rngList.at(cnt + par3),
                              rngList.at(cnt + inh1), rngList.at(cnt + inh2), rngList.at(cnt + inh3), parent1, parent2);
 
@@ -359,7 +357,7 @@ QVector<Frame3> Egg3::generateUpper(const QVector<QPair<u32, u16>> &lower, const
     {
         for (auto up : upper)
         {
-            up.setPID(low.second, up.getPID());
+            up.setPID(low.second, up.getPID(), genderRatio);
             if (compare.comparePID(up))
             {
                 up.setFrame(low.first);

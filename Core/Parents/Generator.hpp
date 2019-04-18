@@ -43,6 +43,7 @@ protected:
     u16 psv{};
     u16 sid{};
     u16 tid{};
+    u8 genderRatio{};
     u32 offset{};
     Method frameType = Method::Method1;
     Encounter encounterType = Encounter::Stationary;

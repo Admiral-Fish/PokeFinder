@@ -31,7 +31,7 @@ class Generator3: public Generator
 
 public:
     Generator3();
-    Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset);
+    Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, u8 genderRatio);
     QVector<Frame3> generate(const FrameCompare &compare) const;
     void setup(Method method);
     void setEncounter(const EncounterArea3 &value);

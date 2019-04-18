@@ -19,14 +19,13 @@
 
 #include "FrameCompare.hpp"
 
-FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int genderRatioIndex, int abilityIndex,
+FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int abilityIndex,
                            const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare)
 {
     this->min = min;
     this->max = max;
 
     gender = genderIndex;
-    genderRatio = genderRatioIndex;
     ability = abilityIndex;
 
     natures.resize(25);
@@ -41,14 +40,13 @@ FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int g
     skip = skipCompare;
 }
 
-FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int genderRatioIndex, int abilityIndex,
+FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int abilityIndex,
                            const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare, const QVector<bool> &encounter)
 {
     this->min = min;
     this->max = max;
 
     gender = genderIndex;
-    genderRatio = genderRatioIndex;
     ability = abilityIndex;
 
     natures.resize(25);
@@ -64,10 +62,9 @@ FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int g
     skip = skipCompare;
 }
 
-FrameCompare::FrameCompare(int genderIndex, int genderRatioIndex, int abilityIndex, QVector<bool> nature, bool onlyShiny)
+FrameCompare::FrameCompare(int genderIndex, int abilityIndex, QVector<bool> nature, bool onlyShiny)
 {
     gender = genderIndex;
-    genderRatio = genderRatioIndex;
     ability = abilityIndex;
 
     natures.resize(25);
@@ -160,111 +157,7 @@ bool FrameCompare::compareSlot(const Frame &frame) const
 
 bool FrameCompare::compareGender(const Frame &frame) const
 {
-    return compareGender(frame.getGender());
-}
-
-bool FrameCompare::compareGender(u16 genderValue) const
-{
-    switch (genderRatio)
-    {
-        case 1:
-            switch (gender)
-            {
-                case 1:
-                    if (genderValue < 127)
-                    {
-                        return false;
-                    }
-                    break;
-                case 2:
-                    if (genderValue >= 127)
-                    {
-                        return false;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case 2:
-            switch (gender)
-            {
-                case 1:
-                    if (genderValue < 191)
-                    {
-                        return false;
-                    }
-                    break;
-                case 2:
-                    if (genderValue >= 191)
-                    {
-                        return false;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case 3:
-            switch (gender)
-            {
-                case 1:
-                    if (genderValue < 63)
-                    {
-                        return false;
-                    }
-                    break;
-                case 2:
-                    if (genderValue >= 63)
-                    {
-                        return false;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case 4:
-            switch (gender)
-            {
-                case 1:
-                    if (genderValue < 31)
-                    {
-                        return false;
-                    }
-                    break;
-                case 2:
-                    if (genderValue >= 31)
-                    {
-                        return false;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case 5:
-            switch (gender)
-            {
-                case 2:
-                    return false;
-                default:
-                    break;
-            }
-            break;
-        case 6:
-            switch (gender)
-            {
-                case 1:
-                    return false;
-                default:
-                    break;
-            }
-            break;
-        default:
-            break;
-    }
-    return true;
+    return gender == 0 || gender == frame.getGender();
 }
 
 bool FrameCompare::compareFrame(const Frame &frame) const
@@ -285,9 +178,4 @@ bool FrameCompare::compareFrame(const Frame &frame) const
     }
 
     return true;
-}
-
-u8 FrameCompare::getGenderRatio() const
-{
-    return genderRatio;
 }
