@@ -22,7 +22,6 @@
 
 #include <QVector>
 #include <Core/Parents/FrameCompare.hpp>
-#include <Core/RNG/IRNG.hpp>
 #include <Core/Util/Method.hpp>
 
 class Egg

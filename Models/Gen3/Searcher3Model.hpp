@@ -22,7 +22,6 @@
 
 #include <Core/Gen3/Frame3.hpp>
 #include <Models/TableModel.hpp>
-#include <Util/TableUtility.hpp>
 
 class Searcher3Model : public TableModel<Frame3>
 {

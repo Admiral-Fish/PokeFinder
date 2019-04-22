@@ -22,12 +22,9 @@
 
 #include <QVector>
 #include <Core/Parents/FrameCompare.hpp>
-#include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Encounter.hpp>
-#include <Core/Util/EncounterSlot.hpp>
 #include <Core/Util/Lead.hpp>
 #include <Core/Util/Method.hpp>
-#include <Core/Util/Utilities.hpp>
 
 class Searcher
 {

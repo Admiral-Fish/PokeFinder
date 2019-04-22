@@ -17,8 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QClipboard>
+#include <QSettings>
+#include <QTimer>
 #include "GameCube.hpp"
 #include "ui_GameCube.h"
+#include <Core/Gen3/Generator3.hpp>
+#include <Core/Gen3/IVSearcher3.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
+#include <Forms/Gen3/GameCubeRTC.hpp>
+#include <Forms/Gen3/ProfileManager3.hpp>
 
 GameCube::GameCube(QWidget *parent) :
     QWidget(parent),

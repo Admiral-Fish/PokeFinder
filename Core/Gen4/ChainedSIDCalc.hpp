@@ -20,10 +20,8 @@
 #ifndef CHAINEDSIDCALC_HPP
 #define CHAINEDSIDCALC_HPP
 
-#include <QPair>
 #include <QVector>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/RNGCache.hpp>
+#include <Core/Util/Global.hpp>
 
 class ChainedSIDCalc
 {

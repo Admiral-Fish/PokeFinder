@@ -18,6 +18,7 @@
  */
 
 #include "Egg3.hpp"
+#include <Core/RNG/LCRNG.hpp>
 
 Egg3::Egg3()
 {

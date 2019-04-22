@@ -17,36 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef DATETIME_HPP
-#define DATETIME_HPP
+#ifndef SLOT_HPP
+#define SLOT_HPP
 
-#include <QDateTime>
-#include <Core/Gen4/HGSSRoamer.hpp>
-#include <Core/Util/Game.hpp>
+#include <Core/Util/Global.hpp>
+#include <Core/Parents/Pokemon.hpp>
 
-class DateTime
+class Slot
 {
 
 public:
-    DateTime() = default;
-    DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes);
-    DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info);
-    QString sequence() const;
-    QString getDate() const;
-    QString getTime() const;
-    u32 getSeed() const;
-    u32 getDelay() const;
-    Game getVersion() const;
-    QDateTime getDateTime() const;
-    HGSSRoamer getInfo() const;
+    Slot() = default;
+    Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon);
+    Slot(u16 specie, u8 level, Pokemon pokemon);
+
+    u8 getMinLevel() const;
+    u8 getMaxLevel() const;
+    u16 getSpecie() const;
+    Pokemon getPokemon() const;
+    void setSpecie(u16 specie, Pokemon pokemon);
 
 private:
-    u32 seed{};
-    u32 delay{};
-    QDateTime dateTime;
-    Game version{};
-    HGSSRoamer info;
+    u8 minLevel;
+    u8 maxLevel;
+    u16 specie;
+    Pokemon pokemon;
 
 };
 
-#endif // DATETIME_HPP
+#endif // SLOT_HPP

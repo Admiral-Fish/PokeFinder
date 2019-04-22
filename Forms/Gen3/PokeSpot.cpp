@@ -17,8 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "PokeSpot.hpp"
 #include "ui_PokeSpot.h"
+#include <Core/Parents/FrameCompare.hpp>
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Nature.hpp>
 
 PokeSpot::PokeSpot(QWidget *parent) :
     QWidget(parent),

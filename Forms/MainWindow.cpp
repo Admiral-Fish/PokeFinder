@@ -17,8 +17,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QDesktopServices>
+#include <QtNetwork>
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
+#include <Forms/Gen3/GameCubeRTC.hpp>
+#include <Forms/Gen3/JirachiPattern.hpp>
+#include <Forms/Gen3/PIDtoIVs.hpp>
+#include <Forms/Gen3/SeedToTime3.hpp>
+#include <Forms/Gen3/SpindaPainter.hpp>
+#include <Forms/Gen3/PokeSpot.hpp>
+#include <Forms/Gen4/ChainedSID.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
+#include <Forms/Util/EncounterLookup.hpp>
+#include <Forms/Util/IVCalculator.hpp>
+#include <Forms/Util/IVtoPID.hpp>
+#include <Forms/Util/Researcher.hpp>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

@@ -21,7 +21,6 @@
 #define ENCOUNTERAREA4_HPP
 
 #include <Core/Parents/EncounterArea.hpp>
-#include <Core/Util/Game.hpp>
 
 class EncounterArea4 : public EncounterArea
 {

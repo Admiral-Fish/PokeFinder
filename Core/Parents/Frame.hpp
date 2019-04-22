@@ -20,14 +20,11 @@
 #ifndef FRAME_HPP
 #define FRAME_HPP
 
-#include <QString>
 #include <QVector>
 #include <Core/Util/Encounter.hpp>
 #include <Core/Util/Global.hpp>
 #include <Core/Util/Lead.hpp>
 #include <Core/Util/Method.hpp>
-#include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
 
 class Frame
 {

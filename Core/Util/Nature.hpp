@@ -21,8 +21,6 @@
 #define NATURE_HPP
 
 #include <QStringList>
-#include <QTranslator>
-#include <QVector>
 #include <Core/Util/Global.hpp>
 
 namespace Nature

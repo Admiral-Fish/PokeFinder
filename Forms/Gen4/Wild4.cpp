@@ -17,8 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
+#include <QTimer>
 #include "Wild4.hpp"
 #include "ui_Wild4.h"
+#include <Core/Gen4/Encounters4.hpp>
+#include <Core/Gen4/Generator4.hpp>
+#include <Core/Gen4/IVSearcher4.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
+#include <Forms/Gen4/ProfileManager4.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
 
 Wild4::Wild4(QWidget *parent) :
     QWidget(parent),

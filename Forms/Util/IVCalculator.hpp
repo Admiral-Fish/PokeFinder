@@ -21,11 +21,8 @@
 #define IVCALCULATOR_HPP
 
 #include <QLabel>
+#include <Core/Parents/Pokemon.hpp>
 #include <Core/Util/Characteristic.hpp>
-#include <Core/Util/IVChecker.hpp>
-#include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
-#include <Core/Util/Translator.hpp>
 
 namespace Ui
 {

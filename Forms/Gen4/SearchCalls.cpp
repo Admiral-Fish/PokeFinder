@@ -19,6 +19,7 @@
 
 #include "SearchCalls.hpp"
 #include "ui_SearchCalls.h"
+#include <Core/Util/Utilities.hpp>
 
 SearchCalls::SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent) :
     QDialog(parent),

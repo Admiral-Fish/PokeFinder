@@ -21,16 +21,7 @@
 #define STATIONARY4_HPP
 
 #include <QMenu>
-#include <QMutex>
-#include <QFileDialog>
-#include <QSettings>
-#include <QThread>
-#include <QTimer>
-#include <Core/Gen4/Generator4.hpp>
-#include <Core/Gen4/IVSearcher4.hpp>
-#include <Core/Util/Translator.hpp>
-#include <Forms/Gen4/ProfileManager4.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <Models/Gen4/Stationary4Model.hpp>
 

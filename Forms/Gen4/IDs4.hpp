@@ -20,13 +20,11 @@
 #ifndef IDS4_HPP
 #define IDS4_HPP
 
-#include <QMessageBox>
 #include <QMutex>
 #include <QStandardItemModel>
 #include <QThread>
-#include <QTimer>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/Util/Utilities.hpp>
+#include <QWidget>
+#include <Core/Util/Global.hpp>
 
 namespace Ui
 {

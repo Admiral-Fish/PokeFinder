@@ -18,6 +18,8 @@
  */
 
 #include "Generator3.hpp"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/EncounterSlot.hpp>
 
 Generator3::Generator3()
 {

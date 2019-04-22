@@ -17,8 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QClipboard>
 #include "PIDtoIVs.hpp"
 #include "ui_PIDtoIVs.h"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/RNGCache.hpp>
+#include <Core/RNG/RNGEuclidean.hpp>
 
 PIDtoIVs::PIDtoIVs(QWidget *parent) :
     QWidget(parent),

@@ -20,9 +20,6 @@
 #ifndef TRANSLATOR_HPP
 #define TRANSLATOR_HPP
 
-#include <QFile>
-#include <QSettings>
-#include <QTextStream>
 #include <QVector>
 #include <Core/Util/Game.hpp>
 #include <Core/Util/Global.hpp>

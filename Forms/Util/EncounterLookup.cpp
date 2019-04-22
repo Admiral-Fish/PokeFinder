@@ -19,6 +19,9 @@
 
 #include "EncounterLookup.hpp"
 #include "ui_EncounterLookup.h"
+#include <Core/Gen3/Encounters3.hpp>
+#include <Core/Gen4/Encounters4.hpp>
+#include <Core/Util/Translator.hpp>
 
 EncounterLookup::EncounterLookup(QWidget *parent) :
     QWidget(parent),

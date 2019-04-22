@@ -18,6 +18,8 @@
  */
 
 #include "Searcher4.hpp"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/EncounterSlot.hpp>
 
 Searcher4::Searcher4()
 {
@@ -25,8 +27,6 @@ Searcher4::Searcher4()
     sid = 54321;
     psv = tid ^ sid;
 }
-
-#include <QDebug>
 
 Searcher4::Searcher4(u16 tid, u16 sid, u8 genderRatio, u32 minDelay, u32 maxDelay, u32 minFrame, u32 maxFrame, const FrameCompare &compare, Method method)
 {
@@ -468,7 +468,7 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
                 }
 
                 u8 choppedPID = pid2 / 0xa3e;
-                for (const auto &buffer : unbiasedBuffer)
+                for (const auto &buffer : genderThreshHolds)
                 {
                     switch (buffer)
                     {
@@ -750,7 +750,7 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
                 u8 choppedPID = pid2 / 0xA3E;
                 if (!skipFrame)
                 {
-                    for (const auto &buffer : unbiasedBuffer)
+                    for (const auto &buffer : genderThreshHolds)
                     {
                         switch (buffer)
                         {
@@ -1182,7 +1182,7 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
                 }
 
                 u8 choppedPID = pid2 % 25;
-                for (const auto &buffer : unbiasedBuffer)
+                for (const auto &buffer : genderThreshHolds)
                 {
                     switch (buffer)
                     {
@@ -1651,7 +1651,7 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
                 u8 choppedPID = pid2 % 25;
                 if (!skipFrame)
                 {
-                    for (const auto &buffer : unbiasedBuffer)
+                    for (const auto &buffer : genderThreshHolds)
                     {
                         switch (buffer)
                         {

@@ -20,14 +20,7 @@
 #ifndef TABLEVIEW_HPP
 #define TABLEVIEW_HPP
 
-#include <QApplication>
-#include <QClipboard>
-#include <QFileDialog>
-#include <QHeaderView>
-#include <QKeyEvent>
-#include <QMouseEvent>
 #include <QTableView>
-#include <QTextStream>
 
 class TableView : public QTableView
 {

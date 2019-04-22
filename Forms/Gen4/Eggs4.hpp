@@ -21,13 +21,7 @@
 #define EGGS4_HPP
 
 #include <QMenu>
-#include <QMutex>
-#include <QSettings>
-#include <QThread>
-#include <QTimer>
-#include <Core/Gen4/EggSearcher4.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
-#include <Forms/Gen4/ProfileManager4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Models/Gen4/Egg4Model.hpp>
 
 namespace Ui

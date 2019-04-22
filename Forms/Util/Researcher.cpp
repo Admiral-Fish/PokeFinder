@@ -19,6 +19,11 @@
 
 #include "Researcher.hpp"
 #include "ui_Researcher.h"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/LCRNG64.hpp>
+#include <Core/RNG/MTRNG.hpp>
+#include <Core/RNG/SFMT.hpp>
+#include <Core/RNG/TinyMT.hpp>
 
 Researcher::Researcher(QWidget *parent) :
     QWidget(parent),

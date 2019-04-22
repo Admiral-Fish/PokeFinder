@@ -18,6 +18,7 @@
  */
 
 #include "Stationary3Model.hpp"
+#include <Util/TableUtility.hpp>
 
 Stationary3Model::Stationary3Model(QObject *parent) :
     TableModel<Frame3>(parent)

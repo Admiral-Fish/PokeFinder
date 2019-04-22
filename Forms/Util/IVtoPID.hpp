@@ -22,9 +22,7 @@
 
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/RNGEuclidean.hpp>
-#include <Core/Util/Nature.hpp>
+#include <Core/Util/Global.hpp>
 
 namespace Ui
 {

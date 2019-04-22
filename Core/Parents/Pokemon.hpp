@@ -20,7 +20,6 @@
 #ifndef POKEMON_HPP
 #define POKEMON_HPP
 
-#include <QFile>
 #include <QVector>
 #include <Core/Util/Global.hpp>
 

@@ -22,10 +22,9 @@
 
 #include <QDateTime>
 #include <QMenu>
-#include <QSettings>
 #include <QStandardItemModel>
 #include <QThread>
-#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Global.hpp>
 
 namespace Ui
 {

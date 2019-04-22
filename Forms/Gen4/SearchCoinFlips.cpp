@@ -19,6 +19,7 @@
 
 #include "SearchCoinFlips.hpp"
 #include "ui_SearchCoinFlips.h"
+#include <Core/Util/Utilities.hpp>
 
 SearchCoinFlips::SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent) :
     QDialog(parent),

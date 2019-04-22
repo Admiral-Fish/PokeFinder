@@ -18,6 +18,7 @@
  */
 
 #include "Wild4Model.hpp"
+#include <Util/TableUtility.hpp>
 
 Wild4Model::Wild4Model(QObject *parent, Method method) :
     TableModel<Frame4>(parent)

@@ -22,9 +22,7 @@
 
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Frame4.hpp>
-#include <Core/Parents/FrameCompare.hpp>
 #include <Core/Parents/Generator.hpp>
-#include <Core/RNG/LCRNG.hpp>
 
 class Generator4 : public Generator
 {

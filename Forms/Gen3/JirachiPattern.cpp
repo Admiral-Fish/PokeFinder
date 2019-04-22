@@ -19,6 +19,7 @@
 
 #include "JirachiPattern.hpp"
 #include "ui_JirachiPattern.h"
+#include <Core/RNG/LCRNG.hpp>
 
 JirachiPattern::JirachiPattern(QWidget *parent) :
     QWidget(parent),
@@ -74,7 +75,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     XDRNGR rng(seed);
 
     // Populate backwards data
-    for (int m = 0; m < 25; m++)
+    for (u8 m = 0; m < 25; m++)
     {
         seed = rng.nextUInt();
         data.append(seed);

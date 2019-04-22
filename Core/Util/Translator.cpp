@@ -17,6 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QFile>
+#include <QSettings>
+#include <QTextStream>
 #include "Translator.hpp"
 
 QStringList Translator::getCharacteristic()

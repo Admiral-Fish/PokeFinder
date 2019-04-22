@@ -18,6 +18,7 @@
  */
 
 #include "Wild3Model.hpp"
+#include <Util/TableUtility.hpp>
 
 Wild3Model::Wild3Model(QObject *parent) :
     TableModel<Frame3>(parent)

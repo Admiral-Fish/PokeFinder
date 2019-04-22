@@ -17,8 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QMessageBox>
 #include "ProfileManager3.hpp"
 #include "ui_ProfileManager3.h"
+#include <Forms/Gen3/ProfileEditor3.hpp>
 
 ProfileManager3::ProfileManager3(QWidget *parent) :
     QWidget(parent),

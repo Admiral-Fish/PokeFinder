@@ -21,7 +21,6 @@
 #define PROFILEMANAGER3_HPP
 
 #include <QWidget>
-#include <Forms/Gen3/ProfileEditor3.hpp>
 #include <Models/Gen3/Profile3Model.hpp>
 
 namespace Ui

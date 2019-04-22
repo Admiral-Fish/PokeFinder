@@ -17,8 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QDateTime>
+#include <QMessageBox>
+#include <QSettings>
 #include "SeedToTime3.hpp"
 #include "ui_SeedToTime3.h"
+#include <Core/RNG/LCRNG.hpp>
 
 SeedToTime3::SeedToTime3(QWidget *parent) :
     QWidget(parent),

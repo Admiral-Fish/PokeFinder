@@ -17,8 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QTimer>
 #include "IDs4.hpp"
 #include "ui_IDs4.h"
+#include <Core/RNG/MTRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 
 IDs4::IDs4(QWidget *parent) :
     QWidget(parent),

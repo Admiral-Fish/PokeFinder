@@ -17,8 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QClipboard>
+#include <QSettings>
 #include "GameCubeRTC.hpp"
 #include "ui_GameCubeRTC.h"
+#include <Core/RNG/LCRNG.hpp>
 
 GameCubeRTC::GameCubeRTC(QWidget *parent) :
     QWidget(parent),

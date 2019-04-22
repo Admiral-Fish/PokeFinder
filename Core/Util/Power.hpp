@@ -21,7 +21,6 @@
 #define POWER_HPP
 
 #include <QStringList>
-#include <QTranslator>
 #include <Core/Util/Global.hpp>
 
 namespace Power

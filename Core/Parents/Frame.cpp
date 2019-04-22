@@ -18,6 +18,8 @@
  */
 
 #include "Frame.hpp"
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
 
 QString Frame::getGenderString()
 {

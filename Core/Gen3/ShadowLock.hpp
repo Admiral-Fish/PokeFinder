@@ -20,7 +20,6 @@
 #ifndef SHADOWLOCK_HPP
 #define SHADOWLOCK_HPP
 
-#include <QFile>
 #include <QVector>
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>

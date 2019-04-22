@@ -21,12 +21,7 @@
 #define UTILITIES_HPP
 
 #include <QDateTime>
-#include <QString>
-#include <QTextStream>
-#include <QVector>
 #include <Core/Gen4/HGSSRoamer.hpp>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/MTRNG.hpp>
 
 namespace Utilities
 {

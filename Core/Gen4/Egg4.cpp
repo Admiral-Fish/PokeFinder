@@ -18,6 +18,8 @@
  */
 
 #include "Egg4.hpp"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/MTRNG.hpp>
 
 Egg4::Egg4()
 {

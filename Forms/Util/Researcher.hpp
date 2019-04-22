@@ -21,13 +21,7 @@
 #define RESEARCHER_HPP
 
 #include <QMessageBox>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MTRNG.hpp>
-#include <Core/RNG/SFMT.hpp>
-#include <Core/RNG/TinyMT.hpp>
 #include <Models/Util/ResearcherModel.hpp>
-#include <Util/ResearcherFrame.hpp>
 
 using func = u64 (*)(u64, u64);
 using Calculator = QHash<QString, func>;

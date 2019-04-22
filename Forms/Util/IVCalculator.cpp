@@ -19,6 +19,10 @@
 
 #include "IVCalculator.hpp"
 #include "ui_IVCalculator.h"
+#include <Core/Util/IVChecker.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
 
 IVCalculator::IVCalculator(QWidget *parent) :
     QWidget(parent),
@@ -62,7 +66,7 @@ void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)
         {
             if (i == 0)
             {
-                result += QString::number(ivs[i]);
+                result += QString::number(ivs.at(i));
             }
             else
             {

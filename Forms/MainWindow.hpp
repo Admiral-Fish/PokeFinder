@@ -20,33 +20,17 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include <QDate>
-#include <QDesktopServices>
-#include <QJsonDocument>
 #include <QMainWindow>
-#include <QMessageBox>
-#include <QtNetwork>
+#include <QTranslator>
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Gen3/GameCube.hpp>
-#include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Forms/Gen3/IDs3.hpp>
-#include <Forms/Gen3/JirachiPattern.hpp>
-#include <Forms/Gen3/PIDtoIVs.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
-#include <Forms/Gen3/SpindaPainter.hpp>
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Wild3.hpp>
-#include <Forms/Gen3/PokeSpot.hpp>
-#include <Forms/Gen4/ChainedSID.hpp>
 #include <Forms/Gen4/Eggs4.hpp>
 #include <Forms/Gen4/IDs4.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Forms/Gen4/Stationary4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
-#include <Forms/Util/EncounterLookup.hpp>
-#include <Forms/Util/IVCalculator.hpp>
-#include <Forms/Util/IVtoPID.hpp>
-#include <Forms/Util/Researcher.hpp>
 
 namespace Ui
 {

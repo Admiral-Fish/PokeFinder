@@ -22,8 +22,6 @@
 
 #include <Core/Gen3/Frame3.hpp>
 #include <Core/Parents/Egg.hpp>
-#include <Core/Parents/FrameCompare.hpp>
-#include <Core/RNG/LCRNG.hpp>
 
 class Egg3 : public Egg
 {

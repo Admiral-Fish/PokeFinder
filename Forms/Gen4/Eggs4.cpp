@@ -17,8 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
+#include <QTimer>
 #include "Eggs4.hpp"
 #include "ui_Eggs4.h"
+#include <Core/Gen4/EggSearcher4.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Forms/Gen4/ProfileManager4.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
 
 Eggs4::Eggs4(QWidget *parent) :
     QWidget(parent),

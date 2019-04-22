@@ -19,6 +19,8 @@
 
 #include "IDs3.hpp"
 #include "ui_IDs3.h"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 
 IDs3::IDs3(QWidget *parent) :
     QWidget(parent),

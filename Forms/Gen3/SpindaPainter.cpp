@@ -19,6 +19,7 @@
 
 #include "SpindaPainter.hpp"
 #include "ui_SpindaPainter.h"
+#include <Core/Util/Nature.hpp>
 
 SpindaPainter::SpindaPainter(QWidget *parent) :
     QWidget(parent),

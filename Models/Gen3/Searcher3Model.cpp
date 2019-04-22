@@ -18,6 +18,7 @@
  */
 
 #include "Searcher3Model.hpp"
+#include <Util/TableUtility.hpp>
 
 Searcher3Model::Searcher3Model(QObject *parent, Method method) :
     TableModel<Frame3>(parent)

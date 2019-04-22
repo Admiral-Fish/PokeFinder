@@ -18,6 +18,8 @@
  */
 
 #include "ChainedSIDCalc.hpp"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/RNGCache.hpp>
 
 ChainedSIDCalc::ChainedSIDCalc(u16 tid)
 {

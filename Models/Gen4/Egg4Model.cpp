@@ -18,6 +18,7 @@
  */
 
 #include "Egg4Model.hpp"
+#include <Util/TableUtility.hpp>
 
 Egg4GeneratorModel::Egg4GeneratorModel(QObject *parent, Method method) :
     TableModel<Frame4>(parent)

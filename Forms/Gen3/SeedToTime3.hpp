@@ -20,11 +20,9 @@
 #ifndef SEEDTOTIME3_HPP
 #define SEEDTOTIME3_HPP
 
-#include <QDateTime>
-#include <QMessageBox>
-#include <QSettings>
 #include <QStandardItemModel>
-#include <Core/RNG/LCRNG.hpp>
+#include <QWidget>
+#include <Core/Util/Global.hpp>
 
 namespace Ui
 {

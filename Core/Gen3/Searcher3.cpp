@@ -17,7 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QTranslator>
 #include "Searcher3.hpp"
+#include <Core/Util/EncounterSlot.hpp>
 
 Searcher3::Searcher3()
 {

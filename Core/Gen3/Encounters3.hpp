@@ -20,7 +20,6 @@
 #ifndef ENCOUNTERS3_HPP
 #define ENCOUNTERS3_HPP
 
-#include <QDataStream>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 
@@ -38,7 +37,7 @@ private:
 
     QByteArrayList getData() const;
     QVector<EncounterArea3> getArea(const QByteArray &data) const;
-    inline u16 getValue(const QByteArray &data, int offset, int length) const;
+    u16 getValue(const QByteArray &data, int offset, int length) const;
 
 };
 

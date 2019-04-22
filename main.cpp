@@ -19,8 +19,9 @@
 
 #include <QApplication>
 #include <QFile>
+#include <QSettings>
+#include <QTextStream>
 #include <Forms/MainWindow.hpp>
-
 
 int main(int argc, char *argv[])
 {

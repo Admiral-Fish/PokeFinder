@@ -18,6 +18,7 @@
  */
 
 #include "Stationary4Model.hpp"
+#include <Util/TableUtility.hpp>
 
 Stationary4Model::Stationary4Model(QObject *parent, Method method) :
     TableModel<Frame4>(parent)

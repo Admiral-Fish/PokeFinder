@@ -17,36 +17,46 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef DATETIME_HPP
-#define DATETIME_HPP
+#include "Slot.hpp"
 
-#include <QDateTime>
-#include <Core/Gen4/HGSSRoamer.hpp>
-#include <Core/Util/Game.hpp>
-
-class DateTime
+Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon)
 {
+    this->specie = specie;
+    this->minLevel = minLevel;
+    this->maxLevel = maxLevel;
+    this->pokemon = pokemon;
+}
 
-public:
-    DateTime() = default;
-    DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes);
-    DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info);
-    QString sequence() const;
-    QString getDate() const;
-    QString getTime() const;
-    u32 getSeed() const;
-    u32 getDelay() const;
-    Game getVersion() const;
-    QDateTime getDateTime() const;
-    HGSSRoamer getInfo() const;
+Slot::Slot(u16 specie, u8 level, Pokemon pokemon)
+{
+    this->specie = specie;
+    minLevel = level;
+    maxLevel = level;
+    this->pokemon = pokemon;
+}
 
-private:
-    u32 seed{};
-    u32 delay{};
-    QDateTime dateTime;
-    Game version{};
-    HGSSRoamer info;
+u8 Slot::getMinLevel() const
+{
+    return minLevel;
+}
 
-};
+u8 Slot::getMaxLevel() const
+{
+    return maxLevel;
+}
 
-#endif // DATETIME_HPP
+u16 Slot::getSpecie() const
+{
+    return specie;
+}
+
+Pokemon Slot::getPokemon() const
+{
+    return pokemon;
+}
+
+void Slot::setSpecie(u16 specie, Pokemon pokemon)
+{
+    this->specie = specie;
+    this->pokemon = pokemon;
+}

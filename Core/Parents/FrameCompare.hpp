@@ -22,7 +22,6 @@
 
 #include <QVector>
 #include <Core/Parents/Frame.hpp>
-#include <Core/Util/Nature.hpp>
 
 class FrameCompare
 {

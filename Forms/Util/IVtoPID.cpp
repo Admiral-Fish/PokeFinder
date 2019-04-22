@@ -19,6 +19,9 @@
 
 #include "IVtoPID.hpp"
 #include "ui_IVtoPID.h"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/RNGEuclidean.hpp>
+#include <Core/Util/Nature.hpp>
 
 IVtoPID::IVtoPID(QWidget *parent) :
     QWidget(parent),

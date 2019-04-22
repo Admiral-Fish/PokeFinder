@@ -18,6 +18,7 @@
  */
 
 #include "FrameCompare.hpp"
+#include <Core/Util/Nature.hpp>
 
 FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int abilityIndex,
                            const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare)

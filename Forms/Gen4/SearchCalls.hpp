@@ -21,8 +21,6 @@
 #define SEARCHCALLS_HPP
 
 #include <QDialog>
-#include <Core/Gen4/HGSSRoamer.hpp>
-#include <Core/Util/Utilities.hpp>
 #include <Util/DateTime.hpp>
 
 namespace Ui

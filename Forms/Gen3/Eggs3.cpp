@@ -17,8 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "Eggs3.hpp"
 #include "ui_Eggs3.h"
+#include <Core/Gen3/Egg3.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Forms/Gen3/ProfileManager3.hpp>
 
 Eggs3::Eggs3(QWidget *parent) :
     QWidget(parent),

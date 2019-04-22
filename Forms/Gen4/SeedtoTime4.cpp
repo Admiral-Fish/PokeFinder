@@ -17,8 +17,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QMessageBox>
+#include <QSettings>
 #include "SeedtoTime4.hpp"
 #include "ui_SeedtoTime4.h"
+#include <Core/Util/Utilities.hpp>
+#include <Forms/Gen4/RoamerMap.hpp>
+#include <Forms/Gen4/SearchCalls.hpp>
+#include <Forms/Gen4/SearchCoinFlips.hpp>
 
 SeedtoTime4::SeedtoTime4(QWidget *parent) :
     QWidget(parent),

@@ -18,6 +18,7 @@
  */
 
 #include "Searcher4Model.hpp"
+#include <Util/TableUtility.hpp>
 
 Searcher4Model::Searcher4Model(QObject *parent, Method method) :
     TableModel<Frame4>(parent)

@@ -22,8 +22,6 @@
 
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/Util/Utilities.hpp>
 
 namespace Ui
 {

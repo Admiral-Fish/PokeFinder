@@ -22,9 +22,6 @@
 
 #include <Core/Gen4/Frame4.hpp>
 #include <Core/Parents/Egg.hpp>
-#include <Core/Parents/FrameCompare.hpp>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/MTRNG.hpp>
 
 class Egg4 : public Egg
 {

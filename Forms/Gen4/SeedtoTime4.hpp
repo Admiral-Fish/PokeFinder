@@ -20,13 +20,8 @@
 #ifndef SEEDTOTIME4_HPP
 #define SEEDTOTIME4_HPP
 
-#include <QMessageBox>
-#include <QSettings>
+#include <QWidget>
 #include <Core/Gen4/Profile4.hpp>
-#include <Core/Util/Utilities.hpp>
-#include <Forms/Gen4/RoamerMap.hpp>
-#include <Forms/Gen4/SearchCalls.hpp>
-#include <Forms/Gen4/SearchCoinFlips.hpp>
 #include <Models/Gen4/SeedtoTime4Model.hpp>
 
 namespace Ui

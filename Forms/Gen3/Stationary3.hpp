@@ -20,17 +20,8 @@
 #ifndef STATIONARY3_H
 #define STATIONARY3_H
 
-#include <QClipboard>
-#include <QFileDialog>
 #include <QMenu>
-#include <QSettings>
-#include <QThread>
-#include <QTimer>
-#include <Core/Gen3/Generator3.hpp>
-#include <Core/Gen3/IVSearcher3.hpp>
-#include <Core/Util/Translator.hpp>
-#include <Forms/Gen3/ProfileManager3.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
 

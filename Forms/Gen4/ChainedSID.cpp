@@ -19,6 +19,7 @@
 
 #include "ChainedSID.hpp"
 #include "ui_ChainedSID.h"
+#include <Core/Util/Nature.hpp>
 
 ChainedSID::ChainedSID(QWidget *parent) :
     QWidget(parent),

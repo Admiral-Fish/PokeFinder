@@ -18,6 +18,7 @@
  */
 
 #include "Egg3Model.hpp"
+#include <Util/TableUtility.hpp>
 
 Egg3Model::Egg3Model(QObject *parent, Method method) :
     TableModel<Frame3>(parent)
