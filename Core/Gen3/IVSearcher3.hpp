@@ -20,32 +20,36 @@
 #ifndef IVSEARCHER3_HPP
 #define IVSEARCHER3_HPP
 
+#include <QObject>
 #include <QMutex>
-#include <QThread>
 #include <Core/Gen3/Searcher3.hpp>
 
-class IVSearcher3 : public QThread
+class IVSearcher3 : public QObject
 {
     Q_OBJECT
 
+signals:
+    void finished();
+    void updateProgress(const QVector<Frame3> &, int progress);
+
 public:
     IVSearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max);
-    void run() override;
-    int currentProgress() const;
-    QVector<Frame3> getResults();
+    void startSearch();
 
 public slots:
     void cancelSearch();
 
 private:
     Searcher3 searcher;
-    QVector<u8> min;
-    QVector<u8> max;
-
-    QMutex mutex;
+    QVector<u8> min, max;
     QVector<Frame3> results;
-    bool cancel;
+    bool searching, cancel;
     int progress;
+    QMutex mutex;
+
+    void search();
+    void update();
+    QVector<Frame3> getResults();
 
 };
 

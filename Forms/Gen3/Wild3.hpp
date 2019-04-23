@@ -56,13 +56,13 @@ private:
     QVector<EncounterArea3> encounterSearcher;
 
     void setupModels();
-    void updateView(const QVector<Frame3> &frames, int progress);
     void updateLocationsGenerator();
     void updateLocationsSearcher();
     void updatePokemonGenerator();
     void updatePokemonSearcher();
 
 private slots:
+    void updateProgress(const QVector<Frame3> &frames, int progress);
     void refreshProfiles();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonGenerate_clicked();

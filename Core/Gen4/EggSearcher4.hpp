@@ -21,18 +21,20 @@
 #define EGGSEARCHER4_HPP
 
 #include <QMutex>
-#include <QThread>
+#include <QObject>
 #include <Core/Gen4/Egg4.hpp>
 
-class EggSearcher4 : public QThread
+class EggSearcher4 : public QObject
 {
     Q_OBJECT
 
+signals:
+    void finished();
+    void updateProgress(const QVector<Frame4> &, int);
+
 public:
     EggSearcher4(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay);
-    void run() override;
-    int currentProgress() const;
-    QVector<Frame4> getResults();
+    void startSearch();
 
 public slots:
     void cancelSearch();
@@ -40,13 +42,15 @@ public slots:
 private:
     Egg4 generator;
     FrameCompare compare;
-    u32 minDelay;
-    u32 maxDelay;
-
+    u32 minDelay, maxDelay;
     QMutex mutex;
     QVector<Frame4> results;
-    bool cancel;
+    bool searching, cancel;
     int progress;
+
+    void search();
+    void update();
+    QVector<Frame4> getResults();
 
 };
 

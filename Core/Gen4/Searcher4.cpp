@@ -547,7 +547,7 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
             }
 
             PokeRNGR testRNG(seed);
-            u32 testPID, slot, nibble;
+            u32 testPID, slot = 0, nibble = 0;
             u16 nextRNG = seed >> 16;
             u16 nextRNG2 = testRNG.nextUShort();
 
@@ -1386,7 +1386,7 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
             }
 
             PokeRNGR testRNG(seed);
-            u32 testPID, slot, nibble;
+            u32 testPID, slot = 0, nibble = 0;
             u16 nextRNG = seed >> 16;
             u16 nextRNG2 = testRNG.nextUShort();
 

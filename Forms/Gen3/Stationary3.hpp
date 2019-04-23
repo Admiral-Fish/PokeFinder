@@ -53,12 +53,12 @@ private:
     QModelIndex targetFrame;
 
     void setupModels();
-    void updateView(const QVector<Frame3> &frames, int progress);
 
 public slots:
     void moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
 private slots:
+    void updateProgress(const QVector<Frame3> &frames, int progress);
     void refreshProfiles();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonGenerate_clicked();

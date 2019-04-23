@@ -18,7 +18,6 @@
  */
 
 #include <QSettings>
-#include <QTimer>
 #include "Wild4.hpp"
 #include "ui_Wild4.h"
 #include <Core/Gen4/Encounters4.hpp>
@@ -155,12 +154,6 @@ void Wild4::setupModels()
     setting.endGroup();
 }
 
-void Wild4::updateView(const QVector<Frame4> &frames, int progress)
-{
-    searcherModel->addItems(frames);
-    ui->progressBar->setValue(progress);
-}
-
 void Wild4::updateLocationsGenerator()
 {
     Encounter encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
@@ -237,6 +230,12 @@ void Wild4::updatePokemonSearcher()
     {
         ui->comboBoxSearcherPokemon->addItem(names.at(i), species.at(i));
     }
+}
+
+void Wild4::updateProgress(const QVector<Frame4> &frames, int progress)
+{
+    searcherModel->addItems(frames);
+    ui->progressBar->setValue(progress);
 }
 
 void Wild4::refreshProfiles()
@@ -331,16 +330,12 @@ void Wild4::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new IVSearcher4(searcher, min, max);
-    auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher4::finished, timer, &QTimer::stop);
     connect(search, &IVSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &IVSearcher4::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher4::updateProgress, this, &Wild4::updateProgress);
     connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher4::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)

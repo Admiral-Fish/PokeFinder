@@ -19,7 +19,6 @@
 
 #include <QClipboard>
 #include <QSettings>
-#include <QTimer>
 #include "Stationary3.hpp"
 #include "ui_Stationary3.h"
 #include <Core/Gen3/Generator3.hpp>
@@ -165,12 +164,6 @@ void Stationary3::setupModels()
     if (setting.contains("stationary3/size")) this->resize(setting.value("stationary3/size").toSize());
 }
 
-void Stationary3::updateView(const QVector<Frame3> &frames, int progress)
-{
-    searcherModel->addItems(frames);
-    ui->progressBar->setValue(progress);
-}
-
 void Stationary3::moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
     if (!seed.isEmpty())
@@ -187,6 +180,12 @@ void Stationary3::moveResults(const QString &seed, const QString &method, u8 hp,
         }
     }
     ui->ivFilterGenerator->setValues(hp, atk, def, spa, spd, spe);
+}
+
+void Stationary3::updateProgress(const QVector<Frame3> &frames, int progress)
+{
+    searcherModel->addItems(frames);
+    ui->progressBar->setValue(progress);
 }
 
 void Stationary3::refreshProfiles()
@@ -274,16 +273,12 @@ void Stationary3::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new IVSearcher3(searcher, min, max);
-    auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher3::finished, timer, &QTimer::stop);
     connect(search, &IVSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &IVSearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher3::updateProgress, this, &Stationary3::updateProgress);
     connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher3::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)

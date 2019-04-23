@@ -39,7 +39,7 @@ Pokemon::Pokemon(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 spe, u16 gender
 QVector<Pokemon> Pokemon::loadPersonal(u8 gen)
 {
     QString path;
-    int size;
+    int size = 0;
     if (gen == 3)
     {
         path = ":/personal/personal3.bin";

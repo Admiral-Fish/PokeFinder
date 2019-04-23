@@ -17,40 +17,37 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IVSEARCHER4_HPP
-#define IVSEARCHER4_HPP
+#ifndef GAMECUBERTCSEARCHER_HPP
+#define GAMECUBERTCSEARCHER_HPP
 
+#include <QDateTime>
 #include <QMutex>
 #include <QObject>
-#include <Core/Gen4/Searcher4.hpp>
+#include <QStandardItem>
+#include <Core/Util/Global.hpp>
 
-class IVSearcher4 : public QObject
+class GameCubeRTCSearcher : public QObject
 {
     Q_OBJECT
 
 signals:
     void finished();
-    void updateProgress(const QVector<Frame4> &, int);
+    void result(QList<QStandardItem *>);
 
 public:
-    IVSearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max);
+    GameCubeRTCSearcher(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame);
     void startSearch();
 
 public slots:
     void cancelSearch();
 
 private:
-    Searcher4 searcher;
-    QVector<u8> min, max;
-    QMutex mutex;
-    QVector<Frame4> results;
+    const QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
+    u32 initialSeed, targetSeed;
+    u32 minFrame, maxFrame;
     bool searching, cancel;
-    int progress;
 
     void search();
-    void update();
-    QVector<Frame4> getResults();
-
 };
 
-#endif // IVSEARCHER4_HPP
+#endif // GAMECUBERTCSEARCHER_HPP

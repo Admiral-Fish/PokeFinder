@@ -51,9 +51,9 @@ private:
     QMenu *searcherMenu{};
 
     void setupModels();
-    void updateView(const QVector<Frame4> &frames, int progress);
 
 private slots:
+    void updateProgress(const QVector<Frame4> &frames, int progress);
     void refreshProfiles();
     void on_pushButtonGenerate_clicked();
     void on_pushButtonSearch_clicked();

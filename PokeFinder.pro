@@ -68,6 +68,7 @@ HEADERS += \
     Core/Gen3/EncounterArea3.hpp \
     Core/Gen3/Encounters3.hpp \
     Core/Gen3/Frame3.hpp \
+    Core/Gen3/GameCubeRTCSearcher.hpp \
     Core/Gen3/GameCubeSeedSearcher.hpp \
     Core/Gen3/Generator3.hpp \
     Core/Gen3/IVSearcher3.hpp \
@@ -83,6 +84,7 @@ HEADERS += \
     Core/Gen4/Frame4.hpp \
     Core/Gen4/Generator4.hpp \
     Core/Gen4/HGSSRoamer.hpp \
+    Core/Gen4/IDSearcher4.hpp \
     Core/Gen4/IVSearcher4.hpp \
     Core/Gen4/Profile4.hpp \
     Core/Gen4/Searcher4.hpp \
@@ -178,6 +180,7 @@ SOURCES += \
     Core/Gen3/EncounterArea3.cpp \
     Core/Gen3/Encounters3.cpp \
     Core/Gen3/Frame3.cpp \
+    Core/Gen3/GameCubeRTCSearcher.cpp \
     Core/Gen3/GameCubeSeedSearcher.cpp \
     Core/Gen3/Generator3.cpp \
     Core/Gen3/IVSearcher3.cpp \
@@ -193,6 +196,7 @@ SOURCES += \
     Core/Gen4/Frame4.cpp \
     Core/Gen4/Generator4.cpp \
     Core/Gen4/HGSSRoamer.cpp \
+    Core/Gen4/IDSearcher4.cpp \
     Core/Gen4/IVSearcher4.cpp \
     Core/Gen4/Profile4.cpp \
     Core/Gen4/Searcher4.cpp \

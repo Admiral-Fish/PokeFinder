@@ -20,10 +20,8 @@
 #ifndef GAMECUBERTC_HPP
 #define GAMECUBERTC_HPP
 
-#include <QDateTime>
 #include <QMenu>
 #include <QStandardItemModel>
-#include <QThread>
 #include <Core/Util/Global.hpp>
 
 namespace Ui
@@ -54,28 +52,6 @@ private slots:
     void updateTableView(const QList<QStandardItem *> &row);
     void copySeed();
     void on_tableView_customContextMenuRequested(const QPoint &pos);
-
-};
-
-class Search : public QThread
-{
-    Q_OBJECT
-
-signals:
-    void result(QList<QStandardItem *>);
-
-public:
-    Search(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame);
-    void run() override;
-
-public slots:
-    void cancelSearch();
-
-private:
-    const QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
-    u32 initialSeed, targetSeed;
-    u32 minFrame, maxFrame;
-    bool cancel;
 
 };
 

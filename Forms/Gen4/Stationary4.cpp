@@ -18,7 +18,6 @@
  */
 
 #include <QSettings>
-#include <QTimer>
 #include "Stationary4.hpp"
 #include "ui_Stationary4.h"
 #include <Core/Gen4/Generator4.hpp>
@@ -154,7 +153,7 @@ void Stationary4::setupModels()
     setting.endGroup();
 }
 
-void Stationary4::updateView(const QVector<Frame4> &frames, int progress)
+void Stationary4::updateProgress(const QVector<Frame4> &frames, int progress)
 {
     searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
@@ -243,16 +242,12 @@ void Stationary4::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new IVSearcher4(searcher, min, max);
-    auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher4::finished, timer, &QTimer::stop);
     connect(search, &IVSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &IVSearcher4::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher4::updateProgress, this, &Stationary4::updateProgress);
     connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher4::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void Stationary4::on_comboBoxProfiles_currentIndexChanged(int index)

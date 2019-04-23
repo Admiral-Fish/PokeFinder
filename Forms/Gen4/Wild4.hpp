@@ -54,13 +54,13 @@ private:
     QVector<EncounterArea4> encounterSearcher;
 
     void setupModels();
-    void updateView(const QVector<Frame4> &frames, int progress);
     void updateLocationsGenerator();
     void updateLocationsSearcher();
     void updatePokemonGenerator();
     void updatePokemonSearcher();
 
 private slots:
+    void updateProgress(const QVector<Frame4> &frames, int progress);
     void refreshProfiles();
     void on_pushButtonGenerate_clicked();
     void on_pushButtonSearch_clicked();

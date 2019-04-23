@@ -18,11 +18,10 @@
  */
 
 #include <QSettings>
-#include <QTimer>
 #include "IDs4.hpp"
 #include "ui_IDs4.h"
+#include <Core/Gen4/IDSearcher4.hpp>
 #include <Core/RNG/MTRNG.hpp>
-#include <Core/Util/Utilities.hpp>
 
 IDs4::IDs4(QWidget *parent) :
     QWidget(parent),
@@ -44,9 +43,17 @@ IDs4::~IDs4()
 
 void IDs4::setupModels()
 {
-    model = new QStandardItemModel(ui->tableView);
-    ui->tableView->setModel(model);
-    model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
+    shinyPID = new QStandardItemModel(ui->tableViewShinyPID);
+    ui->tableViewShinyPID->setModel(shinyPID);
+    shinyPID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
+
+    tidSID = new QStandardItemModel(ui->tableViewTIDSID);
+    ui->tableViewTIDSID->setModel(tidSID);
+    tidSID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
+
+    seedFinder = new QStandardItemModel(ui->tableViewSeedFinder);
+    ui->tableViewSeedFinder->setModel(seedFinder);
+    seedFinder->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
 
     ui->textBoxTIDSIDTID->setValues(InputType::TIDSID);
     ui->textBoxTIDSIDSID->setValues(InputType::TIDSID);
@@ -68,13 +75,22 @@ void IDs4::setupModels()
     if (setting.contains("ids4/size")) this->resize(setting.value("ids4/size").toSize());
 }
 
-void IDs4::updateView(QVector<QList<QStandardItem *>> frames, int progress)
+void IDs4::updateProgressShinyPID(const QVector<QList<QStandardItem *> > &frames, int progress)
 {
     for (const auto &item : frames)
     {
-        model->appendRow(item);
+        shinyPID->appendRow(item);
     }
-    ui->progressBar->setValue(progress);
+    ui->progressBarShinyPID->setValue(progress);
+}
+
+void IDs4::updateProgressTIDSID(const QVector<QList<QStandardItem *> > &frames, int progress)
+{
+    for (const auto &item : frames)
+    {
+        tidSID->appendRow(item);
+    }
+    ui->progressBarTIDSID->setValue(progress);
 }
 
 void IDs4::on_pushButtonShinyPIDSearch_clicked()
@@ -84,7 +100,7 @@ void IDs4::on_pushButtonShinyPIDSearch_clicked()
         return;
     }
 
-    model->removeRows(0, model->rowCount());
+    shinyPID->removeRows(0, shinyPID->rowCount());
 
     ui->pushButtonShinyPIDSearch->setEnabled(false);
     ui->pushButtonShinyPIDCancel->setEnabled(true);
@@ -99,20 +115,16 @@ void IDs4::on_pushButtonShinyPIDSearch_clicked()
     minDelay += (year - 2000);
     maxDelay += (year - 2000);
 
-    ui->progressBar->setValue(0);
-    ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
+    ui->progressBarShinyPID->setValue(0);
+    ui->progressBarShinyPID->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
     auto *search = new ShinyPIDSearcher(pid, useTID, tid, year, minDelay, maxDelay, infinite);
-    auto *timer = new QTimer(search);
 
-    connect(search, &ShinyPIDSearcher::finished, timer, &QTimer::stop);
     connect(search, &ShinyPIDSearcher::finished, this, [ = ] { ui->pushButtonShinyPIDSearch->setEnabled(true); ui->pushButtonShinyPIDCancel->setEnabled(false); });
-    connect(search, &ShinyPIDSearcher::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &ShinyPIDSearcher::updateProgress, this, &IDs4::updateProgressShinyPID);
     connect(ui->pushButtonShinyPIDCancel, &QPushButton::clicked, search, &ShinyPIDSearcher::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void IDs4::on_pushButtonTIDSIDSearch_clicked()
@@ -122,7 +134,7 @@ void IDs4::on_pushButtonTIDSIDSearch_clicked()
         return;
     }
 
-    model->removeRows(0, model->rowCount());
+    tidSID->removeRows(0, tidSID->rowCount());
 
     ui->pushButtonTIDSIDSearch->setEnabled(false);
     ui->pushButtonTIDSIDCancel->setEnabled(true);
@@ -137,20 +149,16 @@ void IDs4::on_pushButtonTIDSIDSearch_clicked()
     minDelay += (year - 2000);
     maxDelay += (year - 2000);
 
-    ui->progressBar->setValue(0);
-    ui->progressBar->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
+    ui->progressBarTIDSID->setValue(0);
+    ui->progressBarTIDSID->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
     auto *search = new TIDSIDSearcher(tid, useSID, searchSID, year, minDelay, maxDelay, infinite);
-    auto *timer = new QTimer(search);
 
-    connect(search, &TIDSIDSearcher::finished, timer, &QTimer::stop);
     connect(search, &TIDSIDSearcher::finished, this, [ = ] { ui->pushButtonTIDSIDSearch->setEnabled(true); ui->pushButtonTIDSIDCancel->setEnabled(false); });
-    connect(search, &TIDSIDSearcher::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &TIDSIDSearcher::updateProgress, this, &IDs4::updateProgressTIDSID);
     connect(ui->pushButtonTIDSIDCancel, &QPushButton::clicked, search, &TIDSIDSearcher::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void IDs4::on_pushButtonSeedFinderSearch_clicked()
@@ -160,7 +168,7 @@ void IDs4::on_pushButtonSeedFinderSearch_clicked()
         return;
     }
 
-    model->removeRows(0, model->rowCount());
+    seedFinder->removeRows(0, seedFinder->rowCount());
 
     u16 tid = ui->textBoxSeedFinderTID->getUShort();
     QDateTime dateTime = ui->dateTimeEdit->dateTime();
@@ -192,150 +200,8 @@ void IDs4::on_pushButtonSeedFinderSearch_clicked()
                 u32 delay = efgh + 2000 - year;
                 auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
                              << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay)) << new QStandardItem(QString::number(second));
-                model->appendRow(frame);
+                seedFinder->appendRow(frame);
             }
         }
     }
-}
-
-
-ShinyPIDSearcher::ShinyPIDSearcher(u32 pid, bool useTID, u16 tid, u32 year, u32 minDelay, u32 maxDelay, bool infinite)
-{
-    this->pid = pid;
-    this->useTID = useTID;
-    this->tid = tid;
-    this->year = year;
-    this->minDelay = minDelay;
-    this->maxDelay = maxDelay;
-    this->infinite = infinite;
-    cancel = false;
-    progress = 0;
-
-    connect(this, &ShinyPIDSearcher::finished, this, &ShinyPIDSearcher::deleteLater);
-}
-
-void ShinyPIDSearcher::run()
-{
-    maxDelay = infinite ? 0xE8FFFF : maxDelay;
-    for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
-    {
-        for (u16 ab = 0; ab < 256; ab++)
-        {
-            for (u8 cd = 0; cd < 24; cd++)
-            {
-                if (cancel)
-                {
-                    return;
-                }
-
-                u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                MersenneTwister mt(seed, 1);
-
-                u32 y = mt.nextUInt();
-
-                u16 id = y & 0xFFFF;
-                u16 sid = y >> 16;
-
-                if (Utilities::shiny(pid, id, sid) && (!useTID || id == tid))
-                {
-                    u32 delay = efgh + 2000 - year;
-                    auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
-                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay)) << new QStandardItem("0");
-                    QMutexLocker locker(&mutex);
-                    results.append(frame);
-                }
-
-                progress++;
-            }
-        }
-    }
-}
-
-int ShinyPIDSearcher::currentProgress() const
-{
-    return progress;
-}
-
-QVector<QList<QStandardItem *>> ShinyPIDSearcher::getResults()
-{
-    QMutexLocker locker(&mutex);
-    auto data(results);
-    results.clear();
-    return data;
-}
-
-void ShinyPIDSearcher::cancelSearch()
-{
-    cancel = true;
-}
-
-
-TIDSIDSearcher::TIDSIDSearcher(u16 tid, bool useSID, u16 searchSID, u32 year, u32 minDelay, u32 maxDelay, bool infinite)
-{
-    this->tid = tid;
-    this->useSID = useSID;
-    this->searchSID = searchSID;
-    this->year = year;
-    this->minDelay = minDelay;
-    this->maxDelay = maxDelay;
-    this->infinite = infinite;
-    cancel = false;
-    progress = 0;
-
-    connect(this, &TIDSIDSearcher::finished, this, &TIDSIDSearcher::deleteLater);
-}
-
-void TIDSIDSearcher::run()
-{
-    maxDelay = infinite ? 0xE8FFFF : maxDelay;
-    for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
-    {
-        for (u16 ab = 0; ab < 256; ab++)
-        {
-            for (u8 cd = 0; cd < 24; cd++)
-            {
-                if (cancel)
-                {
-                    return;
-                }
-
-                u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                MersenneTwister mt(seed, 1);
-
-                u32 y = mt.nextUInt();
-
-                u16 id = y & 0xFFFF;
-                u16 sid = y >> 16;
-
-                if (id == tid && (!useSID || sid == searchSID))
-                {
-                    u32 delay = efgh + 2000 - year;
-                    auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
-                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay)) << new QStandardItem("0");
-                    QMutexLocker locker(&mutex);
-                    results.append(frame);
-                }
-
-                progress++;
-            }
-        }
-    }
-}
-
-int TIDSIDSearcher::currentProgress() const
-{
-    return progress;
-}
-
-QVector<QList<QStandardItem *>> TIDSIDSearcher::getResults()
-{
-    QMutexLocker locker(&mutex);
-    auto data(results);
-    results.clear();
-    return data;
-}
-
-void TIDSIDSearcher::cancelSearch()
-{
-    cancel = true;
 }

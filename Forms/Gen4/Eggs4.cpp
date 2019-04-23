@@ -18,7 +18,6 @@
  */
 
 #include <QSettings>
-#include <QTimer>
 #include "Eggs4.hpp"
 #include "ui_Eggs4.h"
 #include <Core/Gen4/EggSearcher4.hpp>
@@ -152,13 +151,13 @@ void Eggs4::setupModels()
     setting.endGroup();
 }
 
-void Eggs4::updatePID(const QVector<Frame4> &frames, int progress)
+void Eggs4::updateProgressPID(const QVector<Frame4> &frames, int progress)
 {
     searcherPID->addItems(frames);
     ui->progressBarPID->setValue(progress);
 }
 
-void Eggs4::updateIVs(const QVector<Frame4> &frames, int progress)
+void Eggs4::updateProgressIVs(const QVector<Frame4> &frames, int progress)
 {
     searcherIVs->addItems(frames);
     ui->progressBarIVs->setValue(progress);
@@ -234,16 +233,12 @@ void Eggs4::on_pushButtonSearchPID_clicked()
     ui->progressBarPID->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
     auto *search = new EggSearcher4(generator, compare, minDelay, maxDelay);
-    auto *timer = new QTimer(search);
 
-    connect(search, &EggSearcher4::finished, timer, &QTimer::stop);
     connect(search, &EggSearcher4::finished, this, [ = ] { ui->pushButtonSearchPID->setEnabled(true); ui->pushButtonCancelPID->setEnabled(false); });
-    connect(search, &EggSearcher4::finished, this, [ = ] { updatePID(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updatePID(search->getResults(), search->currentProgress()); });
+    connect(search, &EggSearcher4::updateProgress, this, &Eggs4::updateProgressPID);
     connect(ui->pushButtonCancelPID, &QPushButton::clicked, search, &EggSearcher4::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void Eggs4::on_pushButtonSearchIVs_clicked()
@@ -270,16 +265,12 @@ void Eggs4::on_pushButtonSearchIVs_clicked()
     ui->progressBarIVs->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
     auto *search = new EggSearcher4(generator, compare, minDelay, maxDelay);
-    auto *timer = new QTimer(search);
 
-    connect(search, &EggSearcher4::finished, timer, &QTimer::stop);
     connect(search, &EggSearcher4::finished, this, [ = ] { ui->pushButtonSearchIVs->setEnabled(true); ui->pushButtonCancelIVs->setEnabled(false); });
-    connect(search, &EggSearcher4::finished, this, [ = ] { updateIVs(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateIVs(search->getResults(), search->currentProgress()); });
+    connect(search, &EggSearcher4::updateProgress, this, &Eggs4::updateProgressIVs);
     connect(ui->pushButtonCancelIVs, &QPushButton::clicked, search, &EggSearcher4::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void Eggs4::on_comboBoxProfiles_currentIndexChanged(int index)

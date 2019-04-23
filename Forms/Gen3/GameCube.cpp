@@ -19,7 +19,6 @@
 
 #include <QClipboard>
 #include <QSettings>
-#include <QTimer>
 #include "GameCube.hpp"
 #include "ui_GameCube.h"
 #include <Core/Gen3/Generator3.hpp>
@@ -151,7 +150,7 @@ void GameCube::setupModels()
     if (setting.contains("gamecube/size")) this->resize(setting.value("gamecube/size").toSize());
 }
 
-void GameCube::updateView(const QVector<Frame3> &frames, int progress)
+void GameCube::updateProgress(const QVector<Frame3> &frames, int progress)
 {
     searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
@@ -246,16 +245,12 @@ void GameCube::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new IVSearcher3(searcher, min, max);
-    auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher3::finished, timer, &QTimer::stop);
     connect(search, &IVSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &IVSearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher3::updateProgress, this, &GameCube::updateProgress);
     connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher3::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void GameCube::on_comboBoxSearcherMethod_currentIndexChanged(int index)

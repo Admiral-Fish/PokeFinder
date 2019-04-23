@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QtConcurrent>
 #include "EggSearcher4.hpp"
 
 EggSearcher4::EggSearcher4(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay)
@@ -25,15 +26,35 @@ EggSearcher4::EggSearcher4(const Egg4 &generator, const FrameCompare &compare, u
     this->compare = compare;
     this->minDelay = minDelay;
     this->maxDelay = maxDelay;
+    searching = false;
     cancel = false;
     progress = 0;
 
     connect(this, &EggSearcher4::finished, this, &EggSearcher4::deleteLater);
+    connect(this, &EggSearcher4::finished, this, [ = ] { emit updateProgress(getResults(), progress); });
 }
 
-void EggSearcher4::run()
+void EggSearcher4::startSearch()
 {
-    int total = 0;
+    if (!searching)
+    {
+        progress = 0;
+        searching = true;
+        cancel = false;
+
+        QtConcurrent::run([ = ] { update(); });
+        QtConcurrent::run([ = ] { search(); });
+    }
+}
+
+void EggSearcher4::cancelSearch()
+{
+    cancel = true;
+}
+
+void EggSearcher4::search()
+{
+    u16 total = 0;
 
     for (u16 ab = 0; ab < 256; ab++)
     {
@@ -43,32 +64,43 @@ void EggSearcher4::run()
             {
                 if (cancel)
                 {
+                    searching = false;
+                    emit finished();
                     return;
                 }
 
                 if (total > 10000)
                 {
                     progress = static_cast<int>(256 * 24 * (maxDelay - minDelay + 1));
-                    break;
+                    searching = false;
+                    emit finished();
+                    return;
                 }
 
                 u32 seed = ((ab << 24) | (cd << 16)) + efgh;
                 generator.setSeed(seed);
 
                 auto frames = generator.generate(compare);
-                progress++;
                 total += frames.size();
 
                 QMutexLocker locker(&mutex);
                 results.append(frames);
+                progress++;
             }
         }
     }
+    searching = false;
+    emit finished();
 }
 
-int EggSearcher4::currentProgress() const
+void EggSearcher4::update()
 {
-    return progress;
+    do
+    {
+        emit updateProgress(getResults(), progress);
+        QThread::sleep(1);
+    }
+    while (searching);
 }
 
 QVector<Frame4> EggSearcher4::getResults()
@@ -77,9 +109,4 @@ QVector<Frame4> EggSearcher4::getResults()
     auto data(results);
     results.clear();
     return data;
-}
-
-void EggSearcher4::cancelSearch()
-{
-    cancel = true;
 }

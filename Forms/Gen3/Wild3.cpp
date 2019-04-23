@@ -19,7 +19,6 @@
 
 #include <QClipboard>
 #include <QSettings>
-#include <QTimer>
 #include "Wild3.hpp"
 #include "ui_Wild3.h"
 #include <Core/Gen3/Encounters3.hpp>
@@ -193,12 +192,6 @@ void Wild3::setupModels()
     if (setting.contains("wild3/size")) this->resize(setting.value("wild3/size").toSize());
 }
 
-void Wild3::updateView(const QVector<Frame3> &frames, int progress)
-{
-    searcherModel->addItems(frames);
-    ui->progressBar->setValue(progress);
-}
-
 void Wild3::updateLocationsGenerator()
 {
     Encounter encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
@@ -273,6 +266,12 @@ void Wild3::updatePokemonSearcher()
     {
         ui->comboBoxSearcherPokemon->addItem(names.at(i), species.at(i));
     }
+}
+
+void Wild3::updateProgress(const QVector<Frame3> &frames, int progress)
+{
+    searcherModel->addItems(frames);
+    ui->progressBar->setValue(progress);
 }
 
 void Wild3::refreshProfiles()
@@ -385,16 +384,12 @@ void Wild3::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new IVSearcher3(searcher, min, max);
-    auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher3::finished, timer, &QTimer::stop);
     connect(search, &IVSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &IVSearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher3::updateProgress, this, &Wild3::updateProgress);
     connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher3::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)

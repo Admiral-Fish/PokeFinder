@@ -51,10 +51,10 @@ private:
     bool flag{};
 
     void setupModels();
-    void updatePID(const QVector<Frame4> &frames, int progress);
-    void updateIVs(const QVector<Frame4> &frames, int progress);
 
 private slots:
+    void updateProgressPID(const QVector<Frame4> &frames, int progress);
+    void updateProgressIVs(const QVector<Frame4> &frames, int progress);
     void refreshProfiles();
     void on_pushButtonGenerate_clicked();
     void on_pushButtonSearchPID_clicked();
