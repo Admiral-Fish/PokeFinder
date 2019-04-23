@@ -31,7 +31,6 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
@@ -54,7 +53,10 @@ SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
 SeedToTime3::~SeedToTime3()
 {
     QSettings setting;
-    setting.setValue("seed3Year", ui->textBoxYear->text());
+    setting.beginGroup("seedToTime3");
+    setting.setValue("year", ui->textBoxYear->text());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -70,7 +72,10 @@ void SeedToTime3::setupModels()
     ui->tableView->setModel(model);
 
     QSettings setting;
-    if (setting.contains("seed3Year")) ui->textBoxYear->setText(setting.value("seed3Year").toString());
+    setting.beginGroup("seedToTime3");
+    if (setting.contains("year")) ui->textBoxYear->setText(setting.value("year").toString());
+    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    setting.endGroup();
 }
 
 u16 SeedToTime3::originSeed(u32 seed)

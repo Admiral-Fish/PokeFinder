@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "Researcher.hpp"
 #include "ui_Researcher.h"
 #include <Core/RNG/LCRNG.hpp>
@@ -38,6 +39,9 @@ Researcher::Researcher(QWidget *parent) :
 
 Researcher::~Researcher()
 {
+    QSettings setting;
+    setting.setValue("researcher/size", this->size());
+
     delete ui;
 }
 
@@ -98,6 +102,9 @@ void Researcher::setupModels()
     keys[tr("Previous 7")] = 21;
     keys[tr("Previous 8")] = 22;
     keys[tr("Previous 9")] = 23;
+
+    QSettings setting;
+    if (setting.contains("researcher/size")) this->resize(setting.value("researcher/size").toSize());
 }
 
 u64 Researcher::getCustom(const QString &text, const ResearcherFrame &frame, const QVector<ResearcherFrame> &frames)

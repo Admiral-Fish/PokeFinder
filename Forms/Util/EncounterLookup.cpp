@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "EncounterLookup.hpp"
 #include "ui_EncounterLookup.h"
 #include <Core/Gen3/Encounters3.hpp>
@@ -30,13 +31,15 @@ EncounterLookup::EncounterLookup(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
 
 EncounterLookup::~EncounterLookup()
 {
+    QSettings setting;
+    setting.setValue("encounterLookup/size", this->size());
+
     delete ui;
 }
 
@@ -57,6 +60,9 @@ void EncounterLookup::setupModels()
     ui->comboBoxGame->addItem(tr("Platinum"), Game::Platinum);
     ui->comboBoxGame->addItem(tr("Heart Gold"), Game::HeartGold);
     ui->comboBoxGame->addItem(tr("Soul Silver"), Game::SoulSilver);
+
+    QSettings setting;
+    if (setting.contains("encounterLookup/size")) this->resize(setting.value("encounterLookup/size").toSize());
 }
 
 QSet<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
@@ -210,7 +216,7 @@ void EncounterLookup::on_pushButtonFind_clicked()
     {
         QList<QStandardItem *> row;
         QStringList split = encounter.second.split('/');
-        row << new QStandardItem(locationNames[i++]) << new QStandardItem(split[0]) << new QStandardItem(split[1]);
+        row << new QStandardItem(locationNames[i++]) << new QStandardItem(split.at(0)) << new QStandardItem(split.at(1));
         model->appendRow(row);
     }
 }

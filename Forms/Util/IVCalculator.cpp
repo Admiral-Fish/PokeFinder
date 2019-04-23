@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "IVCalculator.hpp"
 #include "ui_IVCalculator.h"
 #include <Core/Util/IVChecker.hpp>
@@ -38,6 +39,9 @@ IVCalculator::IVCalculator(QWidget *parent) :
 
 IVCalculator::~IVCalculator()
 {
+    QSettings setting;
+    setting.setValue("ivCalculator/size", this->size());
+
     delete ui;
 }
 
@@ -49,6 +53,9 @@ void IVCalculator::setupModels()
     ui->comboBoxNature->addItems(Nature::getFrameNatures());
     ui->comboBoxHiddenPower->addItems(Power::getPowers());
     ui->comboBoxCharacteristic->addItems(Translator::getCharacteristic());
+
+    QSettings setting;
+    if (setting.contains("ivCalculator/size")) this->resize(setting.value("ivCalculator/size").toSize());
 }
 
 void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)

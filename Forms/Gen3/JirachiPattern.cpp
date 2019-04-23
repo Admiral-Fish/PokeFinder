@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "JirachiPattern.hpp"
 #include "ui_JirachiPattern.h"
 #include <Core/RNG/LCRNG.hpp>
@@ -35,6 +36,9 @@ JirachiPattern::JirachiPattern(QWidget *parent) :
 
 JirachiPattern::~JirachiPattern()
 {
+    QSettings setting;
+    setting.setValue("jirachiPattern/size", this->size());
+
     delete ui;
 }
 
@@ -46,6 +50,9 @@ void JirachiPattern::setupModels()
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Pattern"));
     ui->tableView->setModel(model);
+
+    QSettings setting;
+    if (setting.contains("jirachiPattern/size")) this->resize(setting.value("jirachiPattern/size").toSize());
 }
 
 void JirachiPattern::generate(u32 seed)

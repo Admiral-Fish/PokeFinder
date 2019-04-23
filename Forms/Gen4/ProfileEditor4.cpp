@@ -18,6 +18,7 @@
  */
 
 #include <QMessageBox>
+#include <QSettings>
 #include "ProfileEditor4.hpp"
 #include "ui_ProfileEditor4.h"
 
@@ -27,7 +28,6 @@ ProfileEditor4::ProfileEditor4(QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     ui->labelRadio->setVisible(false);
     ui->comboBoxRadio->setVisible(false);
@@ -61,6 +61,9 @@ ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) :
 
 ProfileEditor4::~ProfileEditor4()
 {
+    QSettings setting;
+    setting.setValue("profileEditor4/size", this->size());
+
     delete ui;
 }
 
@@ -99,6 +102,9 @@ void ProfileEditor4::setupModels()
     ui->comboBoxLanguage->setItemData(4, Language::German);
     ui->comboBoxLanguage->setItemData(5, Language::Japanese);
     ui->comboBoxLanguage->setItemData(6, Language::Korean);
+
+    QSettings setting;
+    if (setting.contains("profileEditor4/size")) this->resize(setting.value("profileEditor4/size").toSize());
 }
 
 void ProfileEditor4::on_pushButtonAccept_clicked()

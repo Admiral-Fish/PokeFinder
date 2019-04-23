@@ -49,7 +49,10 @@ GameCube::GameCube(QWidget *parent) :
 GameCube::~GameCube()
 {
     QSettings setting;
-    setting.setValue("gamecubeProfile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup("gamecube");
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -72,10 +75,10 @@ void GameCube::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("gamecubeProfile").toInt();
+    int val = setting.value("gamecube/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -143,6 +146,9 @@ void GameCube::setupModels()
     connect(seedToTime, &QAction::triggered, this, &GameCube::seedToTime);
     connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
     connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
+
+    QSettings setting;
+    if (setting.contains("gamecube/size")) this->resize(setting.value("gamecube/size").toSize());
 }
 
 void GameCube::updateView(const QVector<Frame3> &frames, int progress)

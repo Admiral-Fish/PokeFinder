@@ -18,6 +18,7 @@
  */
 
 #include <QMessageBox>
+#include <QSettings>
 #include "ProfileManager3.hpp"
 #include "ui_ProfileManager3.h"
 #include <Forms/Gen3/ProfileEditor3.hpp>
@@ -29,13 +30,15 @@ ProfileManager3::ProfileManager3(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
 
 ProfileManager3::~ProfileManager3()
 {
+    QSettings setting;
+    setting.setValue("profileManager3/size", this->size());
+
     delete ui;
 }
 
@@ -44,6 +47,9 @@ void ProfileManager3::setupModels()
     model = new Profile3Model(ui->tableView);
     model->addItems(Profile3::loadProfileList());
     ui->tableView->setModel(model);
+
+    QSettings setting;
+    if (setting.contains("profileManager3/size")) this->resize(setting.value("profileManager3/size").toSize());
 }
 
 void ProfileManager3::on_pushButtonNew_clicked()

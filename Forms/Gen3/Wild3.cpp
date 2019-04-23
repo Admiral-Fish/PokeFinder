@@ -47,7 +47,10 @@ Wild3::Wild3(QWidget *parent) :
 Wild3::~Wild3()
 {
     QSettings setting;
-    setting.setValue("wild3Profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup("wild3");
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -70,10 +73,10 @@ void Wild3::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("wild3Profile").toInt();
+    int val = setting.value("wild3/profile").toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -185,6 +188,9 @@ void Wild3::setupModels()
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
     connect(outputTXTSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
     connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
+
+    QSettings setting;
+    if (setting.contains("wild3/size")) this->resize(setting.value("wild3/size").toSize());
 }
 
 void Wild3::updateView(const QVector<Frame3> &frames, int progress)

@@ -16,12 +16,6 @@
     <height>700</height>
    </size>
   </property>
-  <property name="maximumSize">
-   <size>
-    <width>700</width>
-    <height>700</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Spinda Painter</string>
   </property>

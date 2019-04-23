@@ -18,6 +18,7 @@
  */
 
 #include <QClipboard>
+#include <QSettings>
 #include "PIDtoIVs.hpp"
 #include "ui_PIDtoIVs.h"
 #include <Core/RNG/LCRNG.hpp>
@@ -31,14 +32,15 @@ PIDtoIVs::PIDtoIVs(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
-
 }
 
 PIDtoIVs::~PIDtoIVs()
 {
+    QSettings setting;
+    setting.setValue("pidToIVs/size", this->size());
+
     delete ui;
 }
 
@@ -70,6 +72,9 @@ void PIDtoIVs::setupModels()
         emit moveResultsToStationary("", "", ivs.at(0).toUShort(), ivs.at(1).toUShort(), ivs.at(2).toUShort(),
                                      ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
     });
+
+    QSettings setting;
+    if (setting.contains("pidToIVs/size")) this->resize(setting.value("pidToIVs/size").toSize());
 }
 
 void PIDtoIVs::calcFromPID(u32 pid)

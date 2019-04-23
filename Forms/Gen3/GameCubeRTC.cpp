@@ -30,7 +30,6 @@ GameCubeRTC::GameCubeRTC(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 
@@ -55,7 +54,10 @@ GameCubeRTC::GameCubeRTC(u32 seed, QWidget *parent) :
 GameCubeRTC::~GameCubeRTC()
 {
     QSettings setting;
-    setting.setValue("startSeed", ui->textBoxStartSeed->text());
+    setting.beginGroup("gamecubeRTC");
+    setting.setValue("seed", ui->textBoxStartSeed->text());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -77,7 +79,10 @@ void GameCubeRTC::setupModels()
     connect(copySeed, &QAction::triggered, this, &GameCubeRTC::copySeed);
 
     QSettings setting;
-    if (setting.contains("startSeed")) ui->textBoxStartSeed->setText(setting.value("startSeed").toString());
+    setting.beginGroup("gamecubeRTC");
+    if (setting.contains("seed")) ui->textBoxStartSeed->setText(setting.value("seed").toString());
+    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    setting.endGroup();
 }
 
 void GameCubeRTC::on_pushButtonSearch_clicked()

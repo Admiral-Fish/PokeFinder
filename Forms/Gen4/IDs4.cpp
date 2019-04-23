@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include <QTimer>
 #include "IDs4.hpp"
 #include "ui_IDs4.h"
@@ -35,6 +36,9 @@ IDs4::IDs4(QWidget *parent) :
 
 IDs4::~IDs4()
 {
+    QSettings setting;
+    setting.setValue("ids4/size", this->size());
+
     delete ui;
 }
 
@@ -59,6 +63,9 @@ void IDs4::setupModels()
     ui->textBoxSeedFinderTID->setValues(InputType::TIDSID);
     ui->textBoxSeedFinderMinDelay->setValues(InputType::Delay);
     ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
+
+    QSettings setting;
+    if (setting.contains("ids4/size")) this->resize(setting.value("ids4/size").toSize());
 }
 
 void IDs4::updateView(QVector<QList<QStandardItem *>> frames, int progress)

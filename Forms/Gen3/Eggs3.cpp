@@ -39,7 +39,10 @@ Eggs3::Eggs3(QWidget *parent) :
 Eggs3::~Eggs3()
 {
     QSettings setting;
-    setting.setValue("egg3Profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup("eggs3");
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -57,10 +60,10 @@ void Eggs3::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("egg3Profile").toInt();
+    int val = setting.value("eggs3/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -164,6 +167,9 @@ void Eggs3::setupModels()
     connect(ui->eggSettingsEmerald, &EggSettings::toggleInheritance, emeraldIVs, &Egg3Model::toggleInheritance);
     connect(ui->eggSettingsRS, &EggSettings::toggleInheritance, rs, &Egg3Model::toggleInheritance);
     connect(ui->eggSettingsFRLG, &EggSettings::toggleInheritance, frlg, &Egg3Model::toggleInheritance);
+
+    QSettings setting;
+    if (setting.contains("eggs3/size")) this->resize(setting.value("eggs3/size").toSize());
 }
 
 void Eggs3::refreshProfiles()

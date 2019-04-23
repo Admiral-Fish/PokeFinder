@@ -16,12 +16,6 @@
     <height>130</height>
    </size>
   </property>
-  <property name="maximumSize">
-   <size>
-    <width>560</width>
-    <height>130</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Profile Editor Gen 4</string>
   </property>
@@ -273,22 +267,5 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButtonCancel</sender>
-   <signal>clicked()</signal>
-   <receiver>ProfileManager4NewEdit</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>529</x>
-     <y>56</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>522</x>
-     <y>82</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

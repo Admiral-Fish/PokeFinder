@@ -47,11 +47,14 @@ Wild4::Wild4(QWidget *parent) :
 Wild4::~Wild4()
 {
     QSettings setting;
-    setting.setValue("wild4Profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("wild4MinDelay", ui->textBoxSearcherMinDelay->text());
-    setting.setValue("wild4MaxDelay", ui->textBoxSearcherMaxDelay->text());
-    setting.setValue("wild4MinFrame", ui->textBoxSearcherMinFrame->text());
-    setting.setValue("wild4MaxFrame", ui->textBoxSearcherMaxFrame->text());
+    setting.beginGroup("wild4");
+    setting.setValue("minDelay", ui->textBoxSearcherMinDelay->text());
+    setting.setValue("maxDelay", ui->textBoxSearcherMaxDelay->text());
+    setting.setValue("minFrame", ui->textBoxSearcherMinFrame->text());
+    setting.setValue("maxFrame", ui->textBoxSearcherMaxFrame->text());
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -69,10 +72,10 @@ void Wild4::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("wild4Profile").toInt();
+    int val = setting.value("wild4/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -143,10 +146,13 @@ void Wild4::setupModels()
     connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
 
     QSettings setting;
-    if (setting.contains("wild4MinDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("wild4MinDelay").toString());
-    if (setting.contains("wild4MaxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("wild4MaxDelay").toString());
-    if (setting.contains("wild4MinFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("wild4MinFrame").toString());
-    if (setting.contains("wild4MaxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("wild4MaxFrame").toString());
+    setting.beginGroup("wild4");
+    if (setting.contains("minDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
+    if (setting.contains("maxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
+    if (setting.contains("minFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+    if (setting.contains("maxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    setting.endGroup();
 }
 
 void Wild4::updateView(const QVector<Frame4> &frames, int progress)

@@ -43,14 +43,18 @@ Eggs4::Eggs4(QWidget *parent) :
 Eggs4::~Eggs4()
 {
     QSettings setting;
-    if (setting.contains("egg4MinDelayIVs")) ui->textBoxSearcherIVsMinDelay->setText(setting.value("egg4MinDelayPID").toString());
-    if (setting.contains("egg4MaxDelayIVs")) ui->textBoxSearcherIVsMaxDelay->setText(setting.value("egg4MaxDelayPID").toString());
-    if (setting.contains("egg4MinFrameIVs")) ui->textBoxSearcherIVsMinFrame->setText(setting.value("egg4MinFramePID").toString());
-    if (setting.contains("egg4MaxFrameIVs")) ui->textBoxSearcherIVsMaxFrame->setText(setting.value("egg4MaxFramePID").toString());
-    if (setting.contains("egg4MinDelayPID")) ui->textBoxSearcherPIDMinDelay->setText(setting.value("egg4MinDelayPID").toString());
-    if (setting.contains("egg4MaxDelayPID")) ui->textBoxSearcherPIDMaxDelay->setText(setting.value("egg4MaxDelayPID").toString());
-    if (setting.contains("egg4MinFramePID")) ui->textBoxSearcherPIDMinFrame->setText(setting.value("egg4MinFramePID").toString());
-    if (setting.contains("egg4MaxFramePID")) ui->textBoxSearcherPIDMaxFrame->setText(setting.value("egg4MaxFramePID").toString());
+    setting.beginGroup("eggs4");
+    setting.setValue("minDelayIVs", ui->textBoxSearcherIVsMinDelay->text());
+    setting.setValue("maxDelayIVs", ui->textBoxSearcherIVsMaxDelay->text());
+    setting.setValue("minFrameIVs", ui->textBoxSearcherIVsMinFrame->text());
+    setting.setValue("maxFrameIVs", ui->textBoxSearcherIVsMaxFrame->text());
+    setting.setValue("minDelayPID", ui->textBoxSearcherPIDMinDelay->text());
+    setting.setValue("maxDelayPID", ui->textBoxSearcherPIDMaxDelay->text());
+    setting.setValue("minFramePID", ui->textBoxSearcherPIDMinFrame->text());
+    setting.setValue("maxFramePID", ui->textBoxSearcherPIDMaxFrame->text());
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -68,10 +72,10 @@ void Eggs4::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("egg4Profile").toInt();
+    int val = setting.value("eggs4/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -135,14 +139,17 @@ void Eggs4::setupModels()
     connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherIVs, &Egg4SearcherModel::toggleInheritance);
 
     QSettings setting;
-    if (setting.contains("egg4MinDelayIVs")) ui->textBoxSearcherIVsMinDelay->setText(setting.value("egg4MinDelayPID").toString());
-    if (setting.contains("egg4MaxDelayIVs")) ui->textBoxSearcherIVsMaxDelay->setText(setting.value("egg4MaxDelayPID").toString());
-    if (setting.contains("egg4MinFrameIVs")) ui->textBoxSearcherIVsMinFrame->setText(setting.value("egg4MinFramePID").toString());
-    if (setting.contains("egg4MaxFrameIVs")) ui->textBoxSearcherIVsMaxFrame->setText(setting.value("egg4MaxFramePID").toString());
-    if (setting.contains("egg4MinDelayPID")) ui->textBoxSearcherPIDMinDelay->setText(setting.value("egg4MinDelayPID").toString());
-    if (setting.contains("egg4MaxDelayPID")) ui->textBoxSearcherPIDMaxDelay->setText(setting.value("egg4MaxDelayPID").toString());
-    if (setting.contains("egg4MinFramePID")) ui->textBoxSearcherPIDMinFrame->setText(setting.value("egg4MinFramePID").toString());
-    if (setting.contains("egg4MaxFramePID")) ui->textBoxSearcherPIDMaxFrame->setText(setting.value("egg4MaxFramePID").toString());
+    setting.beginGroup("eggs4");
+    if (setting.contains("minDelayIVs")) ui->textBoxSearcherIVsMinDelay->setText(setting.value("minDelayPID").toString());
+    if (setting.contains("maxDelayIVs")) ui->textBoxSearcherIVsMaxDelay->setText(setting.value("maxDelayPID").toString());
+    if (setting.contains("minFrameIVs")) ui->textBoxSearcherIVsMinFrame->setText(setting.value("minFramePID").toString());
+    if (setting.contains("maxFrameIVs")) ui->textBoxSearcherIVsMaxFrame->setText(setting.value("maxFramePID").toString());
+    if (setting.contains("minDelayPID")) ui->textBoxSearcherPIDMinDelay->setText(setting.value("minDelayPID").toString());
+    if (setting.contains("maxDelayPID")) ui->textBoxSearcherPIDMaxDelay->setText(setting.value("maxDelayPID").toString());
+    if (setting.contains("minFramePID")) ui->textBoxSearcherPIDMinFrame->setText(setting.value("minFramePID").toString());
+    if (setting.contains("maxFramePID")) ui->textBoxSearcherPIDMaxFrame->setText(setting.value("maxFramePID").toString());
+    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    setting.endGroup();
 }
 
 void Eggs4::updatePID(const QVector<Frame4> &frames, int progress)
@@ -332,7 +339,7 @@ void Eggs4::seedToTime()
         seed = searcherPID->data(searcherPID->index(index.row(), 0), Qt::DisplayRole).toString();
     }
 
-    auto *time = new SeedtoTime4(seed, profiles[ui->comboBoxProfiles->currentIndex()]);
+    auto *time = new SeedtoTime4(seed, profiles.at(ui->comboBoxProfiles->currentIndex()));
     time->show();
     time->raise();
 }

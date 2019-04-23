@@ -16,12 +16,6 @@
     <height>350</height>
    </size>
   </property>
-  <property name="maximumSize">
-   <size>
-    <width>550</width>
-    <height>350</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Channel Jirachi Pattern</string>
   </property>

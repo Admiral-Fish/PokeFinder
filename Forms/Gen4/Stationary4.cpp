@@ -44,11 +44,14 @@ Stationary4::Stationary4(QWidget *parent) :
 Stationary4::~Stationary4()
 {
     QSettings setting;
-    setting.setValue("stationary4Profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("stationary4MinDelay", ui->textBoxSearcherMinDelay->text());
-    setting.setValue("stationary4MaxDelay", ui->textBoxSearcherMaxDelay->text());
-    setting.setValue("stationary4MinFrame", ui->textBoxSearcherMinFrame->text());
-    setting.setValue("stationary4MaxFrame", ui->textBoxSearcherMaxFrame->text());
+    setting.beginGroup("stationary4");
+    setting.setValue("minDelay", ui->textBoxSearcherMinDelay->text());
+    setting.setValue("maxDelay", ui->textBoxSearcherMaxDelay->text());
+    setting.setValue("minFrame", ui->textBoxSearcherMinFrame->text());
+    setting.setValue("maxFrame", ui->textBoxSearcherMaxFrame->text());
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -66,10 +69,10 @@ void Stationary4::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("stationary4Profile").toInt();
+    int val = setting.value("stationary4/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -142,10 +145,13 @@ void Stationary4::setupModels()
     connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
 
     QSettings setting;
-    if (setting.contains("stationary4MinDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("stationary4MinDelay").toString());
-    if (setting.contains("stationary4MaxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("stationary4MaxDelay").toString());
-    if (setting.contains("stationary4MinFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("stationary4MinFrame").toString());
-    if (setting.contains("stationary4MaxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("stationary4MaxFrame").toString());
+    setting.beginGroup("stationary4");
+    if (setting.contains("minDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
+    if (setting.contains("maxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
+    if (setting.contains("minFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+    if (setting.contains("maxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    setting.endGroup();
 }
 
 void Stationary4::updateView(const QVector<Frame4> &frames, int progress)

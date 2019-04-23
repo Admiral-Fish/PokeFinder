@@ -68,10 +68,10 @@ void MainWindow::setupLanguage()
     connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
 
     QSettings setting;
-    QString currLang = setting.value("locale", "en").toString();
+    QString currLang = setting.value("settings/locale", "en").toString();
 
     QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh_Hans_CN" };
-    for (int i = 0; i < locales.size(); i++)
+    for (u8 i = 0; i < locales.size(); i++)
     {
         const QString &lang = locales.at(i);
 
@@ -101,10 +101,10 @@ void MainWindow::setupStyle()
     connect(styleGroup, &QActionGroup::triggered, this, &MainWindow::slotStyleChanged);
 
     QSettings setting;
-    QString currStyle = setting.value("style", "light").toString();
+    QString currStyle = setting.value("settings/style", "light").toString();
 
     QStringList styles = { "light", "dark" };
-    for (int i = 0; i < styles.size(); i++)
+    for (u8 i = 0; i < styles.size(); i++)
     {
         const QString &style = styles.at(i);
 
@@ -133,7 +133,7 @@ void MainWindow::checkUpdates()
 {
     QSettings setting;
     QDate today = QDate::currentDate();
-    QDate lastOpened = setting.value("lastOpened", today).toDate();
+    QDate lastOpened = setting.value("settings/lastOpened", today).toDate();
 
     if (lastOpened.daysTo(today) > 0)
     {
@@ -158,7 +158,7 @@ void MainWindow::checkUpdates()
         }
     }
 
-    setting.setValue("lastOpened", today);
+    setting.setValue("settings/lastOpened", today);
 }
 
 void MainWindow::slotLanguageChanged(QAction *action)
@@ -168,9 +168,9 @@ void MainWindow::slotLanguageChanged(QAction *action)
         QString lang = action->data().toString();
 
         QSettings setting;
-        if (setting.value("locale", "en") != lang)
+        if (setting.value("settings/locale", "en") != lang)
         {
-            setting.setValue("locale", lang);
+            setting.setValue("settings/locale", lang);
 
             QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
             if (message.exec() == QMessageBox::Yes)
@@ -189,9 +189,9 @@ void MainWindow::slotStyleChanged(QAction *action)
         QString style = action->data().toString();
 
         QSettings setting;
-        if (setting.value("style", "light") != style)
+        if (setting.value("settings/style", "light") != style)
         {
-            setting.setValue("style", style);
+            setting.setValue("settings/style", style);
 
             QMessageBox message(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
             if (message.exec() == QMessageBox::Yes)

@@ -16,12 +16,6 @@
     <height>150</height>
    </size>
   </property>
-  <property name="maximumSize">
-   <size>
-    <width>370</width>
-    <height>150</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Search Coin Flips</string>
   </property>

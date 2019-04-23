@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "SearchCalls.hpp"
 #include "ui_SearchCalls.h"
 #include <Core/Util/Utilities.hpp>
@@ -27,17 +28,22 @@ SearchCalls::SearchCalls(const QVector<DateTime> &model, const QVector<bool> &ro
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     this->roamers = roamers;
     this->routes = routes;
 
     data = model;
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
+
+    QSettings setting;
+    if (setting.contains("searchCalls/size")) this->resize(setting.value("searchCalls/size").toSize());
 }
 
 SearchCalls::~SearchCalls()
 {
+    QSettings setting;
+    setting.setValue("searchCalls/size", this->size());
+
     delete ui;
 }
 

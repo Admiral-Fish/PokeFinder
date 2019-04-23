@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "ChainedSID.hpp"
 #include "ui_ChainedSID.h"
 #include <Core/Util/Nature.hpp>
@@ -35,6 +36,9 @@ ChainedSID::ChainedSID(QWidget *parent) :
 
 ChainedSID::~ChainedSID()
 {
+    QSettings setting;
+    setting.setValue("chainedSID/size", this->size());
+
     delete ui;
     delete chainedCalc;
 }
@@ -48,6 +52,9 @@ void ChainedSID::setupModels()
 
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->comboBoxNature->addItems(Nature::getFrameNatures());
+
+    QSettings setting;
+    if (setting.contains("chainedSID/size")) this->resize(setting.value("chainedSID/size").toSize());
 }
 
 void ChainedSID::on_pushButtonCalculate_clicked()

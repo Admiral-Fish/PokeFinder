@@ -45,7 +45,10 @@ Stationary3::Stationary3(QWidget *parent) :
 Stationary3::~Stationary3()
 {
     QSettings setting;
-    setting.setValue("stationary3Profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup("stationary3");
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -68,10 +71,10 @@ void Stationary3::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("stationary3Profile").toInt();
+    int val = setting.value("stationary3/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -157,6 +160,9 @@ void Stationary3::setupModels()
     connect(seedToTime, &QAction::triggered, this, &Stationary3::seedToTime);
     connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
     connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
+
+    QSettings setting;
+    if (setting.contains("stationary3/size")) this->resize(setting.value("stationary3/size").toSize());
 }
 
 void Stationary3::updateView(const QVector<Frame3> &frames, int progress)
