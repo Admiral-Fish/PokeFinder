@@ -73,13 +73,13 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
     // Encounter variables to iterate through
     QVector<Encounter> types = { Encounter::Grass, Encounter::SafariZone, Encounter::RockSmash, Encounter::OldRod, Encounter::GoodRod, Encounter::SuperRod };
 
-    for (auto type : types)
+    for (const auto &type : types)
     {
         QVector<EncounterArea3> areas = Encounters3(type, profile).getEncounters();
         for (const auto &area : areas)
         {
             QVector<Slot> pokemon = area.getPokemon();
-            for (auto entry : pokemon)
+            for (const auto &entry : pokemon)
             {
                 if (entry.getSpecie() == specie)
                 {
@@ -108,9 +108,9 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
     // Setup profiles to iterate through of the different combinations of possibilities depending on HGSS vs DPPt
     if (game & Game::HGSS)
     {
-        for (auto radio : { 0, 1, 2 })
+        for (const auto &radio : { 0, 1, 2 })
         {
-            for (auto swarm : { true, false })
+            for (const auto &swarm : { false, true })
             {
                 profiles.append(Profile4("", game, 0, 0, Game::Blank, radio, Language::English, false, swarm));
             }
@@ -118,11 +118,11 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
     }
     else
     {
-        for (auto dual : duals)
+        for (const auto &dual : duals)
         {
-            for (auto swarm : { true, false })
+            for (const auto &swarm : { false, true })
             {
-                for (auto radar : { true, false })
+                for (const auto &radar : { false, true })
                 {
                     profiles.append(Profile4("", game, 0, 0, dual, 0, Language::English, radar, swarm));
                 }
@@ -132,15 +132,15 @@ QSet<QPair<u8, QString>> EncounterLookup::getEncounters4(Game game, u16 specie)
 
     for (const auto &profile : profiles)
     {
-        for (auto type : types)
+        for (const auto &type : types)
         {
-            for (auto time : { 0, 1, 2 })
+            for (const auto &time : { 0, 1, 2 })
             {
                 QVector<EncounterArea4> areas = Encounters4(type, time, profile).getEncounters();
                 for (const auto &area : areas)
                 {
                     QVector<Slot> pokemon = area.getPokemon();
-                    for (auto entry : pokemon)
+                    for (const auto &entry : pokemon)
                     {
                         if (entry.getSpecie() == specie)
                         {
@@ -192,7 +192,7 @@ void EncounterLookup::on_pushButtonFind_clicked()
     QVector<u8> locations;
     QStringList locationNames;
 
-    if (game & FRLG || game & RSE)
+    if (game & Game::FRLG || game & Game::RSE)
     {
         encounters = getEncounters3(game, specie);
         for (const auto &encounter : encounters)
@@ -201,7 +201,7 @@ void EncounterLookup::on_pushButtonFind_clicked()
         }
         locationNames = Translator::getLocationsGen3(locations, game);
     }
-    else if (game & DPPt || game & HGSS)
+    else if (game & Game::DPPt || game & Game::HGSS)
     {
         encounters = getEncounters4(game, specie);
         for (const auto &encounter : encounters)
@@ -228,11 +228,11 @@ void EncounterLookup::on_comboBoxGame_currentIndexChanged(int index)
         Game game = static_cast<Game>(ui->comboBoxGame->currentData().toInt());
         u16 max = 0;
 
-        if (game & FRLG || game & RSE)
+        if (game & Game::FRLG || game & Game::RSE)
         {
             max = 386;
         }
-        else if (game & HGSS || game & DPPt)
+        else if (game & Game::HGSS || game & Game::DPPt)
         {
             max = 493;
         }

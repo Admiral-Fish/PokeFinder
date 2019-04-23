@@ -240,9 +240,9 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
         u32 seed = rng.nextUInt();
 
         // Use for loop to check both normal and sister spread
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -253,7 +253,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
                 continue;
             }
 
-            LCRNG testRNG = PokeRNGR(seed);
+            PokeRNGR testRNG(seed);
             u32 testPID, slot;
             u16 nextRNG = seed >> 16;
             u16 nextRNG2 = testRNG.nextUShort();
@@ -390,7 +390,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
         {
             for (int i = 0; i < frames.size();)
             {
-                u32 check = frames[i].getSeed() * 0x41c64e6d + 0x6073;
+                u32 check = frames.at(i).getSeed() * 0x41c64e6d + 0x6073;
 
                 if (((check >> 16) % 2880) >= rate)
                 {
@@ -398,7 +398,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
                 }
                 else
                 {
-                    frames[i].setSeed(frames[i].getSeed() * 0xeeb9eb65 + 0xa3561a1);
+                    frames[i].setSeed(frames.at(i).getSeed() * 0xeeb9eb65 + 0xa3561a1);
                     i++;
                 }
             }

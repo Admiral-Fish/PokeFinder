@@ -229,11 +229,11 @@ void Stationary3::on_pushButtonGenerate_clicked()
     }
 
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toInt();
-    Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
-    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                                        ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                                        ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                                        ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
+    Generator3 generator(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
+    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
+                         ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
 
     generator.setup(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
@@ -253,10 +253,10 @@ void Stationary3::on_pushButtonSearch_clicked()
     u16 sid = ui->textBoxSearcherSID->getUShort();
 
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
-                                        ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                                        ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false);
-    Searcher3 searcher = Searcher3(tid, sid, genderRatio, compare);
+    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
+                         ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
+                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false);
+    Searcher3 searcher(tid, sid, genderRatio, compare);
 
     searcher.setup(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
@@ -264,7 +264,7 @@ void Stationary3::on_pushButtonSearch_clicked()
     QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
     int maxProgress = 1;
-    for (int i = 0; i < 6; i++)
+    for (u8 i = 0; i < 6; i++)
     {
         maxProgress *= max.at(i) - min.at(i) + 1;
     }

@@ -32,7 +32,6 @@ IVCalculator::IVCalculator(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
@@ -121,14 +120,14 @@ void IVCalculator::on_pushButtonFindIVs_clicked()
     Characteristic characteristic = characteristics.at(ui->comboBoxCharacteristic->currentIndex());
 
     IVChecker ivCheck;
-    auto possible = ivCheck.calculateIVs(pokemon[ui->comboBoxPokemon->currentIndex() + 1], stats, level, nature, characteristic, hiddenPower);
+    auto possible = ivCheck.calculateIVs(pokemon.at(ui->comboBoxPokemon->currentIndex() + 1), stats, level, nature, characteristic, hiddenPower);
 
-    displayIVs(ui->labelHPIVValue, possible[0]);
-    displayIVs(ui->labelAtkIVValue, possible[1]);
-    displayIVs(ui->labelDefIVValue, possible[2]);
-    displayIVs(ui->labelSpAIVValue, possible[3]);
-    displayIVs(ui->labelSpDIVValue, possible[4]);
-    displayIVs(ui->labelSpeIVValue, possible[5]);
+    displayIVs(ui->labelHPIVValue, possible.at(0));
+    displayIVs(ui->labelAtkIVValue, possible.at(1));
+    displayIVs(ui->labelDefIVValue, possible.at(2));
+    displayIVs(ui->labelSpAIVValue, possible.at(3));
+    displayIVs(ui->labelSpDIVValue, possible.at(4));
+    displayIVs(ui->labelSpeIVValue, possible.at(5));
 }
 
 void IVCalculator::on_comboBoxPokemon_currentIndexChanged(int index)

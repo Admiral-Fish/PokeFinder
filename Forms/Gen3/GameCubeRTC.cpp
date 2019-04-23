@@ -43,7 +43,6 @@ GameCubeRTC::GameCubeRTC(u32 seed, QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
     ui->textBoxTargetSeed->setText(QString::number(seed, 16));

@@ -90,7 +90,7 @@ QVector<Frame4> Generator4::generate(const FrameCompare &compare) const
 QVector<Frame4> Generator4::generateMethod1(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     QVector<u16> rngList(maxResults + 4);
@@ -120,7 +120,7 @@ QVector<Frame4> Generator4::generateMethod1(const FrameCompare &compare) const
 QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -216,7 +216,7 @@ QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
 QVector<Frame4> Generator4::generateMethodJSynch(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -319,7 +319,7 @@ QVector<Frame4> Generator4::generateMethodJSynch(const FrameCompare &compare) co
 QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -455,7 +455,7 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare
 QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -584,7 +584,7 @@ QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
 QVector<Frame4> Generator4::generateMethodKSynch(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -706,7 +706,7 @@ QVector<Frame4> Generator4::generateMethodKSynch(const FrameCompare &compare) co
 QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -859,7 +859,7 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare
 QVector<Frame4> Generator4::generateChainedShiny(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     QVector<u16> rngList(maxResults + 18);
@@ -892,7 +892,7 @@ QVector<Frame4> Generator4::generateChainedShiny(const FrameCompare &compare) co
 QVector<Frame4> Generator4::generateWondercardIVs(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     QVector<u16> rngList(maxResults + 2);

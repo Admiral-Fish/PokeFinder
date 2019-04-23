@@ -93,10 +93,7 @@ QVariant SeedtoTime4Model::headerData(int section, Qt::Orientation orientation, 
         {
             return version & Game::HGSS ? header1.at(section) : header2.at(section);
         }
-        else
-        {
-            return header3.at(section);
-        }
+        return header3.at(section);
     }
     return QVariant();
 }

@@ -41,7 +41,6 @@ ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 

@@ -42,7 +42,6 @@ SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 
@@ -97,7 +96,7 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
     u32 maxDay = 0;
 
     // For whatever reason the start date is different if the year is greater then 2000
-    QDateTime start = QDateTime(QDate(year == 2000 ? 2000 : 2001, 1, 1), QTime(0, 0));
+    QDateTime start(QDate(year == 2000 ? 2000 : 2001, 1, 1), QTime(0, 0));
 
     // Hard cap upper year since game crashes above year 2037
     // Signed overflow error due to how the clock is setup

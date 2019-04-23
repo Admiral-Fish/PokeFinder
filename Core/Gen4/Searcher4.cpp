@@ -173,9 +173,9 @@ QVector<Frame4> Searcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
         frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -276,9 +276,9 @@ QVector<Frame4> Searcher4::searchMethodJSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
         frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -420,9 +420,9 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
         u32 seed = rng.nextUInt();
         u32 nibble, slot;
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 pid2 ^= 0x8000;
                 pid1 ^= 0x8000;
@@ -537,9 +537,9 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
         u16 pid1 = rng.nextUShort();
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 pid1 ^= 0x8000;
                 pid2 ^= 0x8000;
@@ -820,9 +820,9 @@ QVector<Frame4> Searcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
         frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -939,9 +939,9 @@ QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
         frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -1119,9 +1119,9 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
         u32 seed = rng.nextUInt();
         u32 nibble, slot;
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 pid2 ^= 0x8000;
                 pid1 ^= 0x8000;
@@ -1251,9 +1251,9 @@ QVector<Frame4> Searcher4::searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 sp
         frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -1376,9 +1376,9 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
         u16 pid1 = rng.nextUShort();
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 pid1 ^= 0x8000;
                 pid2 ^= 0x8000;

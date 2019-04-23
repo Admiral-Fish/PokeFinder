@@ -67,7 +67,6 @@ void ProfileManager3::on_pushButtonNew_clicked()
 void ProfileManager3::on_pushButtonEdit_clicked()
 {
     int row = ui->tableView->currentIndex().row();
-
     if (row < 0)
     {
         QMessageBox error;
@@ -89,7 +88,6 @@ void ProfileManager3::on_pushButtonEdit_clicked()
 void ProfileManager3::on_pushButtonDelete_clicked()
 {
     int row = ui->tableView->currentIndex().row();
-
     if (row < 0)
     {
         QMessageBox error;

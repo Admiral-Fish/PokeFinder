@@ -98,9 +98,9 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         x = rng.nextUShort();
     }
 
-    Frame3 frame = Frame3(tid, sid, tid ^ sid);
-    FrameCompare compare = FrameCompare(ui->comboBoxGender->currentIndex(), ui->comboBoxAbility->currentIndex(),
-                                        ui->comboBoxNature->getChecked(), ui->checkBoxShinyOnly->isChecked());
+    Frame3 frame(tid, sid, tid ^ sid);
+    FrameCompare compare(ui->comboBoxGender->currentIndex(), ui->comboBoxAbility->currentIndex(),
+                         ui->comboBoxNature->getChecked(), ui->checkBoxShinyOnly->isChecked());
 
     QVector<bool> spots = ui->comboBoxSpotType->getChecked();
 

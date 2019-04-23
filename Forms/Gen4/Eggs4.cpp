@@ -189,7 +189,7 @@ void Eggs4::on_pushButtonGenerate_clicked()
     }
     else
     {
-        Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
+        Game version = profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion();
         method = version & Game::HGSS ? Method::HGSSIVs : Method::DPPtIVs;
     }
 
@@ -244,7 +244,7 @@ void Eggs4::on_pushButtonSearchPID_clicked()
 void Eggs4::on_pushButtonSearchIVs_clicked()
 {
     searcherIVs->clearModel();
-    Game version = profiles[ui->comboBoxProfiles->currentIndex()].getVersion();
+    Game version = profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion();
     searcherIVs->setMethod(version & Game::HGSS ? Method::HGSSIVs : Method::DPPtIVs);
 
     ui->pushButtonSearchIVs->setEnabled(false);
@@ -338,6 +338,6 @@ void Eggs4::seedToTime()
 void Eggs4::on_pushButtonProfileManager_clicked()
 {
     auto *manager = new ProfileManager4();
-    connect(manager, SIGNAL(updateProfiles()), this, SLOT(refreshProfiles()));
+    connect(manager, &ProfileManager4::updateProfiles, this, &Eggs4::refreshProfiles);
     manager->show();
 }

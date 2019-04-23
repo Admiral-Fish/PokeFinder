@@ -38,7 +38,7 @@ private:
     RNGCache cache;
     EncounterArea4 encounter;
     FrameCompare compare;
-    constexpr static u8 genderThreshHolds[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };
+    u8 genderThreshHolds[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };
     u8 genderRatio{};
     u32 minDelay{};
     u32 maxDelay{};

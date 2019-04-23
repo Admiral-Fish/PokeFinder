@@ -375,7 +375,7 @@ void Wild3::on_pushButtonSearch_clicked()
     QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
     int maxProgress = 1;
-    for (int i = 0; i < 6; i++)
+    for (u8 i = 0; i < 6; i++)
     {
         maxProgress *= max.at(i) - min.at(i) + 1;
     }

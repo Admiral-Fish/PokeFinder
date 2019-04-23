@@ -29,7 +29,6 @@ ChainedSID::ChainedSID(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
@@ -82,7 +81,7 @@ void ChainedSID::on_pushButtonCalculate_clicked()
     row << new QStandardItem(ui->comboBoxGender->currentText());
     model->appendRow(row);
 
-    chainedCalc->addEntry({hp, atk, def, spa, spd, spe}, nature, ability, gender);
+    chainedCalc->addEntry({ hp, atk, def, spa, spd, spe }, nature, ability, gender);
     QVector<u16> sids = chainedCalc->getSIDs();
     if (sids.size() == 1)
     {

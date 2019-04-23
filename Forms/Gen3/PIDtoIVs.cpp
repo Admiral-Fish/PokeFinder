@@ -86,7 +86,7 @@ void PIDtoIVs::calcFromPID(u32 pid)
 
 void PIDtoIVs::calcMethod124(u32 pid)
 {
-    RNGCache cache(Method1);
+    RNGCache cache(Method::Method1);
 
     u32 pidl = (pid & 0xFFFF) << 16;
     u32 pidh = pid & 0xFFFF0000;
@@ -102,7 +102,7 @@ void PIDtoIVs::calcMethod124(u32 pid)
 
 void PIDtoIVs::calcMethodXD(u32 pid)
 {
-    RNGEuclidean euclidean(XDColo);
+    RNGEuclidean euclidean(Method::XDColo);
 
     QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
     for (const auto &pair : seeds)
@@ -116,7 +116,7 @@ void PIDtoIVs::calcMethodXD(u32 pid)
 
 void PIDtoIVs::calcMethodChannel(u32 pid)
 {
-    RNGEuclidean euclidean(XDColo);
+    RNGEuclidean euclidean(Method::XDColo);
 
     u32 pid1 = pid >> 16;
     u32 pid2 = pid & 0xFFFF;

@@ -79,9 +79,9 @@ void SearchCalls::on_lineEditCalls_textChanged(const QString &val)
     int num = 0;
 
     possible.clear();
-    for (auto &i : data)
+    for (const auto &dt : data)
     {
-        QString str = Utilities::getCalls(i.getSeed(), 15, i.getInfo());
+        QString str = Utilities::getCalls(dt.getSeed(), 15, dt.getInfo());
 
         if (str.contains("skipped"))
         {

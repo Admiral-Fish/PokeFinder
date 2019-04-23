@@ -26,7 +26,7 @@ QStringList Translator::getCharacteristic()
 {
     QStringList names;
     QSettings setting;
-    QFile file(QString(":/text/characteristic_%1.txt").arg(setting.value("locale", "en").toString()));
+    QFile file(QString(":/text/characteristic_%1.txt").arg(setting.value("settings/locale", "en").toString()));
     if (file.open(QIODevice::ReadOnly))
     {
         QTextStream ts(&file);
@@ -46,7 +46,7 @@ QStringList Translator::getSpecies(const QVector<u16> &nums)
     QStringList species;
 
     QSettings setting;
-    QFile file(QString(":/text/species_%1.txt").arg(setting.value("locale", "en").toString()));
+    QFile file(QString(":/text/species_%1.txt").arg(setting.value("settings/locale", "en").toString()));
 
     if (file.open(QIODevice::ReadOnly))
     {
@@ -84,7 +84,7 @@ QStringList Translator::getLocationsGen3(const QVector<u8> &nums, Game game)
     }
 
     QSettings setting;
-    QFile file(QString(":/text/%1_%2.txt").arg(version, setting.value("locale", "en").toString()));
+    QFile file(QString(":/text/%1_%2.txt").arg(version, setting.value("settings/locale", "en").toString()));
 
     if (file.open(QIODevice::ReadOnly))
     {
@@ -123,7 +123,7 @@ QStringList Translator::getLocationsGen4(const QVector<u8> &nums, Game game)
     }
 
     QSettings setting;
-    QFile file(QString(":/text/%1_%2.txt").arg(version, setting.value("locale", "en").toString()));
+    QFile file(QString(":/text/%1_%2.txt").arg(version, setting.value("settings/locale", "en").toString()));
 
     if (file.open(QIODevice::ReadOnly))
     {

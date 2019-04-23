@@ -29,7 +29,6 @@ JirachiPattern::JirachiPattern(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
@@ -131,7 +130,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
                     obtain[temp] = true;
 
                     // Check to see if pattern passes
-                    if (obtain[1] && obtain[2] && obtain[3])
+                    if (obtain.at(1) && obtain.at(2) && obtain.at(3))
                     {
                         break;
                     }
