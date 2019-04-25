@@ -77,6 +77,7 @@ private slots:
     void on_pushButtonEgg3_clicked();
     void on_pushButtonIDs3_clicked();
     void on_actionGameCubeRTC_triggered();
+    void on_actionGameCube_Seed_Finder_triggered();
     void on_actionIVtoPID3_triggered();
     void on_actionJirachiPattern_triggered();
     void on_actionPIDtoIV_triggered();

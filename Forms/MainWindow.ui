@@ -186,6 +186,7 @@
      <string>Gen 3 Tools</string>
     </property>
     <addaction name="actionGameCubeRTC"/>
+    <addaction name="actionGameCube_Seed_Finder"/>
     <addaction name="actionIVtoPID3"/>
     <addaction name="actionJirachiPattern"/>
     <addaction name="actionPIDtoIV"/>
@@ -376,6 +377,11 @@
   <action name="actionEncounter_Lookup">
    <property name="text">
     <string>Encounter Lookup</string>
+   </property>
+  </action>
+  <action name="actionGameCube_Seed_Finder">
+   <property name="text">
+    <string>GameCube Seed Finder</string>
    </property>
   </action>
  </widget>

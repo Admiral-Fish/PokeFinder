@@ -22,6 +22,7 @@
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
 #include <Forms/Gen3/GameCubeRTC.hpp>
+#include <Forms/Gen3/GameCubeSeedFinder.hpp>
 #include <Forms/Gen3/JirachiPattern.hpp>
 #include <Forms/Gen3/PIDtoIVs.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
@@ -279,6 +280,13 @@ void MainWindow::on_actionGameCubeRTC_triggered()
     auto *rtc = new GameCubeRTC();
     rtc->show();
     rtc->raise();
+}
+
+void MainWindow::on_actionGameCube_Seed_Finder_triggered()
+{
+    auto *finder = new GameCubeSeedFinder();
+    finder->show();
+    finder->raise();
 }
 
 void MainWindow::on_actionIVtoPID3_triggered()

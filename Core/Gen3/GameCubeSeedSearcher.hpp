@@ -30,19 +30,33 @@ class GameCubeSeedSearcher : public QObject
     Q_OBJECT
 
 signals:
+    void finished();
     void outputSeeds(QVector<u32> seeds);
+    void updateProgress(int);
 
 public:
-    GameCubeSeedSearcher(Game version);
+    GameCubeSeedSearcher(Game version, const QVector<u32> &criteria);
     QVector<u32> getInitialSeeds(u8 num1, u8 num2);
-    void searchSeeds(const QVector<u32> &seeds);
+    void startSearch(const QVector<u32> &seeds);
+    void addHPCriteria(const QVector<u32> &criteria);
+
+public slots:
+    void cancelSearch();
 
 private:
     QVector<u32> seeds;
+    QVector<u32> criteria;
     Game version;
+    bool searching, cancel;
+    int progress;
 
-    void searchGales();
-    void searchColo();
+    void search();
+    void update();
+    bool generateTeamGales(u32 &seed);
+    bool generateTeamColo(u32 &seed);
+    void generatePokemonGales(u32 &seed, u16 tsv);
+    void generatePokemonColo(u32 &seed, u16 tsv, u32 dummyPID, u8 nature, u8 gender, u8 genderRatio);
+    QVector<u8> generateEVs(u32 &seed);
 
 };
 

@@ -94,6 +94,9 @@
             <property name="text">
              <string>Moltres</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_2</string>
+            </attribute>
            </widget>
           </item>
           <item row="4" column="1">
@@ -101,6 +104,9 @@
             <property name="text">
              <string>Kangaskhan</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_2</string>
+            </attribute>
            </widget>
           </item>
           <item row="2" column="0">
@@ -108,6 +114,9 @@
             <property name="text">
              <string>Mew</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
            </widget>
           </item>
           <item row="1" column="1">
@@ -115,6 +124,9 @@
             <property name="text">
              <string>Articuno</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_2</string>
+            </attribute>
            </widget>
           </item>
           <item row="5" column="1">
@@ -122,6 +134,9 @@
             <property name="text">
              <string>Latias</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_2</string>
+            </attribute>
            </widget>
           </item>
           <item row="5" column="0">
@@ -129,6 +144,9 @@
             <property name="text">
              <string>Jirachi</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
            </widget>
           </item>
           <item row="0" column="1">
@@ -143,6 +161,9 @@
             <property name="text">
              <string>Deoxys</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
            </widget>
           </item>
           <item row="1" column="0">
@@ -150,6 +171,9 @@
             <property name="text">
              <string>Mewtwo</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
            </widget>
           </item>
           <item row="2" column="1">
@@ -157,6 +181,9 @@
             <property name="text">
              <string>Zapdos</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_2</string>
+            </attribute>
            </widget>
           </item>
           <item row="4" column="0">
@@ -164,6 +191,9 @@
             <property name="text">
              <string>Rayquaza</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
            </widget>
           </item>
           <item row="0" column="0">
@@ -189,7 +219,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_9">
           <item row="2" column="0">
-           <widget class="TextBox" name="textBoxTopLeft"/>
+           <widget class="TextBox" name="textBoxGalesTopLeft"/>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelGalesTopLeft">
@@ -241,7 +271,7 @@
        <item row="1" column="0" colspan="3">
         <widget class="QProgressBar" name="progressBarGales">
          <property name="value">
-          <number>24</number>
+          <number>0</number>
          </property>
         </widget>
        </item>
@@ -273,7 +303,7 @@
              <bool>true</bool>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
+             <string notr="true">buttonGroup_3</string>
             </attribute>
            </widget>
           </item>
@@ -283,7 +313,7 @@
              <string>Seth</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
+             <string notr="true">buttonGroup_3</string>
             </attribute>
            </widget>
           </item>
@@ -293,7 +323,7 @@
              <string>Thomas</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup</string>
+             <string notr="true">buttonGroup_3</string>
             </attribute>
            </widget>
           </item>
@@ -371,7 +401,7 @@
              <string>Suicune</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup_2</string>
+             <string notr="true">buttonGroup_4</string>
             </attribute>
            </widget>
           </item>
@@ -381,7 +411,7 @@
              <string>Heracross</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup_2</string>
+             <string notr="true">buttonGroup_4</string>
             </attribute>
            </widget>
           </item>
@@ -391,7 +421,7 @@
              <string>Raikou</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup_2</string>
+             <string notr="true">buttonGroup_4</string>
             </attribute>
            </widget>
           </item>
@@ -404,7 +434,7 @@
              <bool>true</bool>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup_2</string>
+             <string notr="true">buttonGroup_4</string>
             </attribute>
            </widget>
           </item>
@@ -414,7 +444,7 @@
              <string>Meganium</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup_2</string>
+             <string notr="true">buttonGroup_4</string>
             </attribute>
            </widget>
           </item>
@@ -424,7 +454,7 @@
              <string>Entei</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup_2</string>
+             <string notr="true">buttonGroup_4</string>
             </attribute>
            </widget>
           </item>
@@ -434,7 +464,7 @@
              <string>Metagross</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup_2</string>
+             <string notr="true">buttonGroup_4</string>
             </attribute>
            </widget>
           </item>
@@ -444,7 +474,7 @@
              <string>Swampert</string>
             </property>
             <attribute name="buttonGroup">
-             <string notr="true">buttonGroup_2</string>
+             <string notr="true">buttonGroup_4</string>
             </attribute>
            </widget>
           </item>
@@ -454,7 +484,7 @@
        <item row="1" column="0" colspan="3">
         <widget class="QProgressBar" name="progressBarColo">
          <property name="value">
-          <number>24</number>
+          <number>0</number>
          </property>
         </widget>
        </item>
@@ -486,7 +516,7 @@
   <tabstop>radioButtonGalesMoltres</tabstop>
   <tabstop>radioButtonGalesKangaskhan</tabstop>
   <tabstop>radioButtonGalesLatias</tabstop>
-  <tabstop>textBoxTopLeft</tabstop>
+  <tabstop>textBoxGalesTopLeft</tabstop>
   <tabstop>textBoxGalesTopRight</tabstop>
   <tabstop>textBoxGalesBottomLeft</tabstop>
   <tabstop>textBoxGalesBottomRight</tabstop>
@@ -508,7 +538,9 @@
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_3"/>
   <buttongroup name="buttonGroup_2"/>
  </buttongroups>
 </ui>
