@@ -21,6 +21,8 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
+static const QVector<u8> genderThreshHolds = { 0, 0x96, 0xC8, 0x4B, 0x32 };
+
 Searcher4::Searcher4()
 {
     tid = 12345;

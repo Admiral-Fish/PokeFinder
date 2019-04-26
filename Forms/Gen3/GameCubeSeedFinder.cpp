@@ -17,7 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QClipboard>
+#include <QDesktopServices>
 #include <QMessageBox>
+#include <QUrl>
 #include "GameCubeSeedFinder.hpp"
 #include "ui_GameCubeSeedFinder.h"
 #include <Core/Gen3/GameCubeSeedSearcher.hpp>
@@ -33,10 +36,10 @@ GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) :
     galesRound = 1;
     coloRound = 1;
 
-    ui->textBoxGalesTopLeft->setValues(1, 800, 10);
-    ui->textBoxGalesBottomLeft->setValues(1, 800, 10);
-    ui->textBoxGalesTopRight->setValues(1, 800, 10);
-    ui->textBoxGalesBottomRight->setValues(1, 800, 10);
+    ui->textBoxGalesTopLeft->setValues(1, 714, 10);
+    ui->textBoxGalesBottomLeft->setValues(1, 714, 10);
+    ui->textBoxGalesTopRight->setValues(1, 714, 10);
+    ui->textBoxGalesBottomRight->setValues(1, 714, 10);
 
 
     qRegisterMetaType<QVector<u32>>("QVector<u32>");
@@ -74,12 +77,13 @@ void GameCubeSeedFinder::on_pushButtonGalesSearch_clicked()
 
         if (galeSeeds.isEmpty())
         {
-            QMessageBox error;
-            error.setText("TODO. Download precalc file");
-            error.exec();
+            QMessageBox info(QMessageBox::Question, tr("Missing precalc file"), tr("Would you like to download the precalc file?"), QMessageBox::Yes | QMessageBox::No);
+            if (info.exec() == QMessageBox::Yes)
+            {
+                QDesktopServices::openUrl(QUrl("https://github.com/aldelaro5/GC-pokemon-RNG-manipulation-assistant/releases"));
+            }
             return;
         }
-
         ui->labelGalesRound->setText(tr("Round #") + QString::number(++galesRound));
         ui->labelGalesResults->setText(tr("Possible Results: ") + QString::number(galeSeeds.size()));
     }
@@ -133,12 +137,13 @@ void GameCubeSeedFinder::on_pushButtonColoSearch_clicked()
 
         if (coloSeeds.isEmpty())
         {
-            QMessageBox error;
-            error.setText("TODO. Download precalc file");
-            error.exec();
+            QMessageBox info(QMessageBox::Question, tr("Missing precalc file"), tr("Would you like to download the precalc file?"), QMessageBox::Yes | QMessageBox::No);
+            if (info.exec() == QMessageBox::Yes)
+            {
+                QDesktopServices::openUrl(QUrl("https://github.com/aldelaro5/GC-pokemon-RNG-manipulation-assistant/releases"));
+            }
             return;
         }
-
         ui->labelColoRound->setText(tr("Round #") + QString::number(++coloRound));
         ui->labelColoResults->setText(tr("Possible Results: ") + QString::number(coloSeeds.size()));
     }
@@ -175,7 +180,13 @@ void GameCubeSeedFinder::updateGales(const QVector<u32> &seeds)
     ui->labelGalesRound->setText(tr("Round #") + QString::number(++galesRound));
     if (galeSeeds.size() == 1)
     {
-        ui->labelGalesResults->setText(tr("Seed: ") + QString::number(galeSeeds.at(0), 16).toUpper());
+        QString seed = QString::number(galeSeeds.at(0), 16).toUpper();
+        ui->labelGalesResults->setText(tr("Seed: ") + seed);
+        QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is ") + seed + ".\n Copy to clipboard?", QMessageBox::Yes | QMessageBox::No);
+        if (info.exec() == QMessageBox::Yes)
+        {
+            QApplication::clipboard()->setText(seed);
+        }
     }
     else
     {
@@ -194,7 +205,13 @@ void GameCubeSeedFinder::updateColo(const QVector<u32> &seeds)
     ui->labelColoRound->setText(tr("Round #") + QString::number(++coloRound));
     if (coloSeeds.size() == 1)
     {
-        ui->labelColoResults->setText(tr("Seed: ") + QString::number(coloSeeds.at(0), 16).toUpper());
+        QString seed = QString::number(coloSeeds.at(0), 16).toUpper();
+        ui->labelGalesResults->setText(tr("Seed: ") + seed);
+        QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is ") + seed + ".\n Copy to clipboard?", QMessageBox::Yes | QMessageBox::No);
+        if (info.exec() == QMessageBox::Yes)
+        {
+            QApplication::clipboard()->setText(seed);
+        }
     }
     else
     {
