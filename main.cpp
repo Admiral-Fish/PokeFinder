@@ -21,6 +21,7 @@
 #include <QFile>
 #include <QSettings>
 #include <QTextStream>
+#include <QTranslator>
 #include <Forms/MainWindow.hpp>
 
 int main(int argc, char *argv[])
@@ -42,6 +43,12 @@ int main(int argc, char *argv[])
             a.setStyleSheet(ts.readAll());
             file.close();
         }
+    }
+
+    QTranslator translator;
+    if (translator.load(QString(":/translations/PokeFinder_%1.qm").arg(setting.value("settings/locale", "en").toString())))
+    {
+        QApplication::installTranslator(&translator);
     }
 
     MainWindow w;

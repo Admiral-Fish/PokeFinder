@@ -21,7 +21,6 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-#include <QTranslator>
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Gen3/GameCube.hpp>
 #include <Forms/Gen3/IDs3.hpp>
@@ -47,10 +46,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QTranslator translator;
     QActionGroup *langGroup{};
     QActionGroup *styleGroup{};
     const QString VERSION = "v2.3.1";
+    QString currentLanguage;
+    QString currentStyle;
 
     Stationary3 *stationary3{};
     Wild3 *wild3{};

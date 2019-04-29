@@ -40,7 +40,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     checkProfileJson();
@@ -51,6 +50,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    QSettings setting;
+    setting.beginGroup("settings");
+    setting.setValue("locale", langGroup->checkedAction()->data().toString());
+    setting.setValue("style", styleGroup->checkedAction()->data().toString());
+    setting.endGroup();
+
     delete ui;
     delete stationary3;
     delete wild3;
@@ -69,7 +74,7 @@ void MainWindow::setupLanguage()
     connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
 
     QSettings setting;
-    QString currLang = setting.value("settings/locale", "en").toString();
+    currentLanguage = setting.value("settings/locale", "en").toString();
 
     QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh_Hans_CN" };
     for (u8 i = 0; i < locales.size(); i++)
@@ -79,20 +84,13 @@ void MainWindow::setupLanguage()
         auto *action = ui->menuLanguage->actions()[i];
         action->setData(lang);
 
-        if (currLang == lang)
+        if (currentLanguage == lang)
         {
             action->setChecked(true);
         }
 
         langGroup->addAction(action);
     }
-
-    QApplication::removeTranslator(&translator);
-    if (translator.load(QString(":/translations/PokeFinder_%1.qm").arg(currLang)))
-    {
-        QApplication::installTranslator(&translator);
-    }
-    ui->retranslateUi(this);
 }
 
 void MainWindow::setupStyle()
@@ -102,7 +100,7 @@ void MainWindow::setupStyle()
     connect(styleGroup, &QActionGroup::triggered, this, &MainWindow::slotStyleChanged);
 
     QSettings setting;
-    QString currStyle = setting.value("settings/style", "light").toString();
+    currentStyle = setting.value("settings/style", "dark").toString();
 
     QStringList styles = { "light", "dark" };
     for (u8 i = 0; i < styles.size(); i++)
@@ -112,7 +110,7 @@ void MainWindow::setupStyle()
         auto *action = ui->menuStyle->actions()[i];
         action->setData(style);
 
-        if (currStyle == style)
+        if (currentStyle == style)
         {
             action->setChecked(true);
         }
@@ -167,11 +165,9 @@ void MainWindow::slotLanguageChanged(QAction *action)
     if (action)
     {
         QString lang = action->data().toString();
-
-        QSettings setting;
-        if (setting.value("settings/locale", "en") != lang)
+        if (currentLanguage != lang)
         {
-            setting.setValue("settings/locale", lang);
+            currentLanguage = lang;
 
             QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
             if (message.exec() == QMessageBox::Yes)
@@ -188,11 +184,9 @@ void MainWindow::slotStyleChanged(QAction *action)
     if (action)
     {
         QString style = action->data().toString();
-
-        QSettings setting;
-        if (setting.value("settings/style", "light") != style)
+        if (currentStyle != style)
         {
-            setting.setValue("settings/style", style);
+            currentStyle = style;
 
             QMessageBox message(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
             if (message.exec() == QMessageBox::Yes)
