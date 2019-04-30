@@ -52,8 +52,8 @@ MainWindow::~MainWindow()
 {
     QSettings setting;
     setting.beginGroup("settings");
-    setting.setValue("locale", langGroup->checkedAction()->data().toString());
-    setting.setValue("style", styleGroup->checkedAction()->data().toString());
+    setting.setValue("locale", currentLanguage);
+    setting.setValue("style", currentStyle);
     setting.endGroup();
 
     delete ui;

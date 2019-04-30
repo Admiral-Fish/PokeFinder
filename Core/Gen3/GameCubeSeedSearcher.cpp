@@ -219,7 +219,7 @@ bool GameCubeSeedSearcher::generateTeamGales(u32 &seed)
         seed = rng.getSeed();
         generatePokemonGales(seed, tsv);
         QVector<u8> evs = generateEVs(seed);
-        int hp = evs.at(0) / 4 + hpIV + galesHPStat.at(enemyIndex + 5).at(i);
+        u16 hp = evs.at(0) / 4 + hpIV + galesHPStat.at(enemyIndex + 5).at(i);
         if (hp != criteria.at(4 + i))
         {
             return false;
@@ -240,7 +240,7 @@ bool GameCubeSeedSearcher::generateTeamGales(u32 &seed)
         seed = rng.getSeed();
         generatePokemonGales(seed, tsv);
         QVector<u8> evs = generateEVs(seed);
-        int hp = evs.at(0) / 4 + hpIV + galesHPStat.at(playerIndex).at(i);
+        u16 hp = evs.at(0) / 4 + hpIV + galesHPStat.at(playerIndex).at(i);
         if (hp != criteria.at(2 + i))
         {
             return false;

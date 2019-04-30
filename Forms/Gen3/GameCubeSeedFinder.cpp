@@ -206,7 +206,7 @@ void GameCubeSeedFinder::updateColo(const QVector<u32> &seeds)
     if (coloSeeds.size() == 1)
     {
         QString seed = QString::number(coloSeeds.at(0), 16).toUpper();
-        ui->labelGalesResults->setText(tr("Seed: ") + seed);
+        ui->labelColoResults->setText(tr("Seed: ") + seed);
         QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is ") + seed + ".\n Copy to clipboard?", QMessageBox::Yes | QMessageBox::No);
         if (info.exec() == QMessageBox::Yes)
         {
