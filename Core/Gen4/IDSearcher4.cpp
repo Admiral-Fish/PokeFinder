@@ -35,8 +35,12 @@ ShinyPIDSearcher::ShinyPIDSearcher(u32 pid, bool useTID, u16 tid, u32 year, u32 
     cancel = false;
     progress = 0;
 
-    connect(this, &ShinyPIDSearcher::finished, this, &ShinyPIDSearcher::deleteLater);
-    connect(this, &ShinyPIDSearcher::finished, this, [ = ] { emit updateProgress(getResults(), progress); });
+    connect(this, &ShinyPIDSearcher::finished, this, [ = ]
+    {
+        searching = false;
+        emit updateProgress(getResults(), progress);
+        QTimer::singleShot(1000, this, &ShinyPIDSearcher::deleteLater);
+    });
 }
 
 void ShinyPIDSearcher::startSearch()
@@ -68,7 +72,6 @@ void ShinyPIDSearcher::search()
             {
                 if (cancel)
                 {
-                    searching = false;
                     emit finished();
                     return;
                 }
@@ -94,7 +97,6 @@ void ShinyPIDSearcher::search()
             }
         }
     }
-    searching = false;
     emit finished();
 }
 
@@ -130,8 +132,12 @@ TIDSIDSearcher::TIDSIDSearcher(u16 tid, bool useSID, u16 searchSID, u32 year, u3
     cancel = false;
     progress = 0;
 
-    connect(this, &TIDSIDSearcher::finished, this, &TIDSIDSearcher::deleteLater);
-    connect(this, &TIDSIDSearcher::finished, this, [ = ] { emit updateProgress(getResults(), progress); });
+    connect(this, &TIDSIDSearcher::finished, this, [ = ]
+    {
+        searching = false;
+        emit updateProgress(getResults(), progress);
+        QTimer::singleShot(1000, this, &TIDSIDSearcher::deleteLater);
+    });
 }
 
 void TIDSIDSearcher::startSearch()
@@ -163,7 +169,6 @@ void TIDSIDSearcher::search()
             {
                 if (cancel)
                 {
-                    searching = false;
                     emit finished();
                     return;
                 }
@@ -189,7 +194,6 @@ void TIDSIDSearcher::search()
             }
         }
     }
-    searching = false;
     emit finished();
 }
 

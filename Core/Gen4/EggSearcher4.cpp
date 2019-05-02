@@ -30,8 +30,12 @@ EggSearcher4::EggSearcher4(const Egg4 &generator, const FrameCompare &compare, u
     cancel = false;
     progress = 0;
 
-    connect(this, &EggSearcher4::finished, this, &EggSearcher4::deleteLater);
-    connect(this, &EggSearcher4::finished, this, [ = ] { emit updateProgress(getResults(), progress); });
+    connect(this, &EggSearcher4::finished, this, [ = ]
+    {
+        searching = false;
+        emit updateProgress(getResults(), progress);
+        QTimer::singleShot(1000, this, &EggSearcher4::deleteLater);
+    });
 }
 
 void EggSearcher4::startSearch()
@@ -64,7 +68,6 @@ void EggSearcher4::search()
             {
                 if (cancel)
                 {
-                    searching = false;
                     emit finished();
                     return;
                 }
@@ -72,7 +75,6 @@ void EggSearcher4::search()
                 if (total > 10000)
                 {
                     progress = static_cast<int>(256 * 24 * (maxDelay - minDelay + 1));
-                    searching = false;
                     emit finished();
                     return;
                 }

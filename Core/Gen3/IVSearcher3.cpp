@@ -30,7 +30,12 @@ IVSearcher3::IVSearcher3(const Searcher3 &searcher, const QVector<u8> &min, cons
     progress = 0;
 
     connect(this, &IVSearcher3::finished, this, &IVSearcher3::deleteLater);
-    connect(this, &IVSearcher3::finished, this, [ = ] { emit updateProgress(getResults(), progress); });
+    connect(this, &IVSearcher3::finished, this, [ = ]
+    {
+        searching = false;
+        emit updateProgress(getResults(), progress);
+        QTimer::singleShot(1000, this, &IVSearcher3::deleteLater);
+    });
 }
 
 void IVSearcher3::startSearch()
@@ -67,7 +72,6 @@ void IVSearcher3::search()
                         {
                             if (cancel)
                             {
-                                searching = false;
                                 emit finished();
                                 return;
                             }
@@ -83,7 +87,6 @@ void IVSearcher3::search()
             }
         }
     }
-    searching = false;
     emit finished();
 }
 
