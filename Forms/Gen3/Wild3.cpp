@@ -103,7 +103,7 @@ void Wild3::setupModels()
     ui->comboBoxGeneratorMethod->setItemData(1, Method::MethodH2);
     ui->comboBoxGeneratorMethod->setItemData(2, Method::MethodH4);
 
-    ui->comboBoxSearcherMethod->setItemData(0, Method:: MethodH1);
+    ui->comboBoxSearcherMethod->setItemData(0, Method::MethodH1);
     ui->comboBoxSearcherMethod->setItemData(1, Method::MethodH2);
     ui->comboBoxSearcherMethod->setItemData(2, Method::MethodH4);
 
@@ -297,6 +297,28 @@ void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
     ui->labelProfileTIDValue->setText(tid);
     ui->labelProfileSIDValue->setText(sid);
     ui->labelProfileGameValue->setText(profile.getVersionString());
+
+    bool flag = profile.getVersion() & Game::FRLG;
+    ui->comboBoxGeneratorEncounter->clear();
+    ui->comboBoxSearcherEncounter->clear();
+
+    ui->comboBoxGeneratorEncounter->addItem(tr("Grass"), Encounter::Grass);
+    ui->comboBoxSearcherEncounter->addItem(tr("Grass"), Encounter::Grass);
+    if (!flag)
+    {
+        ui->comboBoxGeneratorEncounter->addItem(tr("Safari Zone"), Encounter::SafariZone);
+        ui->comboBoxSearcherEncounter->addItem(tr("Safari Zone"), Encounter::Grass);
+    }
+    ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
+    ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
+    ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), Encounter::Surfing);
+    ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), Encounter::Surfing);
+    ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
+    ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), Encounter::OldRod);
+    ui->comboBoxGeneratorEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
+    ui->comboBoxSearcherEncounter->addItem(tr("Good Rod"), Encounter::GoodRod);
+    ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
+    ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), Encounter::SuperRod);
 
     updateLocationsSearcher();
     updateLocationsGenerator();
