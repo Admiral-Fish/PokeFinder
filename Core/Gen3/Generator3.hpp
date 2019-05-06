@@ -22,7 +22,9 @@
 
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Frame3.hpp>
+#include <Core/Gen3/LockInfo.hpp>
 #include <Core/Parents/Generator.hpp>
+#include <Core/RNG/LCRNG.hpp>
 
 class Generator3: public Generator
 {
@@ -33,19 +35,25 @@ public:
     QVector<Frame3> generate(const FrameCompare &compare) const;
     void setup(Method method);
     void setEncounter(const EncounterArea3 &value);
+    void setShadowTeam(u8 index, int type);
 
 private:
     u8 iv1{};
     u8 iv2{};
     EncounterArea3 encounter;
+    ShadowTeam team;
+    int type;
 
     QVector<Frame3> generateMethodChannel(const FrameCompare &compare) const;
     QVector<Frame3> generateMethodH124(const FrameCompare &compare) const;
     QVector<Frame3> generateMethodH124Synch(const FrameCompare &compare) const;
     QVector<Frame3> generateMethodH124CuteCharm(const FrameCompare &compare) const;
     QVector<Frame3> generateMethodXDColo(const FrameCompare &compare) const;
+    QVector<Frame3> generateMethodXD(const FrameCompare &compare) const;
+    QVector<Frame3> generateMethodColo(const FrameCompare &compare) const;
     QVector<Frame3> generateMethod124(const FrameCompare &compare) const;
     QVector<Frame3> generateMethod1Reverse(const FrameCompare &compare) const;
+    void generateNonShadows(XDRNG &rng) const;
     static inline bool cuteCharm125F(u32 pid) { return (pid & 0xff) < 31; }
     static inline bool cuteCharm875M(u32 pid) { return (pid & 0xff) >= 31; }
     static inline bool cuteCharm25F(u32 pid) { return (pid & 0xff) < 63; }

@@ -38,6 +38,10 @@ GameCube::GameCube(QWidget *parent) :
 
     ui->labelSearcherShadow->setVisible(false);
     ui->comboBoxSearcherShadow->setVisible(false);
+    ui->labelGeneratorShadow->setVisible(false);
+    ui->comboBoxGeneratorShadow->setVisible(false);
+    ui->labelGeneratorType->setVisible(false);
+    ui->comboBoxGeneratorType->setVisible(false);
 
     updateProfiles();
     setupModels();
@@ -108,6 +112,8 @@ void GameCube::setupModels()
     ui->comboBoxSearcherHiddenPower->setup(Power::getPowers());
 
     ui->comboBoxGeneratorMethod->addItem(tr("XD/Colo"), Method::XDColo);
+    ui->comboBoxGeneratorMethod->addItem(tr("Gales"), Method::XD);
+    ui->comboBoxGeneratorMethod->addItem(tr("Colo"), Method::Colo);
     ui->comboBoxGeneratorMethod->addItem(tr("Channel"), Method::Channel);
     ui->comboBoxSearcherMethod->addItem(tr("XD/Colo"), Method::XDColo);
     ui->comboBoxSearcherMethod->addItem(tr("Gales"), Method::XD);
@@ -203,7 +209,13 @@ void GameCube::on_pushButtonGenerate_clicked()
                          ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
                          ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
 
-    generator.setup(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+    Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+    generator.setup(method);
+
+    if (method == Method::XD || method == Method::Colo)
+    {
+        generator.setShadowTeam(ui->comboBoxGeneratorShadow->currentIndex(), ui->comboBoxGeneratorType->currentIndex());
+    }
 
     QVector<Frame3> frames = generator.generate(compare);
     generatorModel->addItems(frames);
@@ -251,6 +263,78 @@ void GameCube::on_pushButtonSearch_clicked()
     connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher3::cancelSearch);
 
     search->startSearch();
+}
+
+void GameCube::on_comboBoxGeneratorMethod_currentIndexChanged(int index)
+{
+    (void) index;
+    Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+    ui->comboBoxGeneratorShadow->clear();
+
+    if (method == Method::XD)
+    {
+        QStringList s = Translator::getSpecies(
+        {
+            334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125, 83, 55, 88, 58,
+            316, 316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82,
+            296, 310, 105, 303, 52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261,
+            57, 280, 78, 20, 315, 302, 373, 123, 273, 273, 273, 86, 285, 143, 361,
+            338, 21, 363, 363, 363, 167, 121, 220, 114, 49, 100, 37, 70
+        });
+
+        s[15] += tr(" (Citadark)");
+        s[16] += tr(" (Initial)");
+        s[17] += tr(" (Phenac)");
+        s[52] += tr(" (Citadark)");
+        s[53] += tr(" (Initial)");
+        s[54] += tr(" (Phenac)");
+        s[61] += tr(" (Citadark)");
+        s[62] += tr(" (Initial)");
+        s[63] += tr(" (Phenac)");
+
+        ui->comboBoxGeneratorShadow->addItems(s);
+        ui->comboBoxGeneratorShadow->setVisible(true);
+        ui->labelGeneratorShadow->setVisible(true);
+
+        QVector<int> secondShadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
+        ui->comboBoxGeneratorType->setVisible(secondShadows.contains(ui->comboBoxGeneratorShadow->currentIndex()));
+        ui->labelGeneratorType->setVisible(secondShadows.contains(ui->comboBoxGeneratorShadow->currentIndex()));
+    }
+    else if (method == Method::Colo)
+    {
+        QStringList s = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
+        s[3] += tr(" (E-Reader)");
+        s[5] += tr(" (E-Reader)");
+        s[6] += tr(" (E-Reader)");
+        ui->comboBoxGeneratorShadow->addItems(s);
+        ui->comboBoxGeneratorShadow->setVisible(true);
+        ui->labelGeneratorShadow->setVisible(true);
+        ui->comboBoxGeneratorType->setVisible(false);
+        ui->labelGeneratorType->setVisible(false);
+    }
+    else
+    {
+        ui->comboBoxGeneratorShadow->setVisible(false);
+        ui->labelGeneratorShadow->setVisible(false);
+        ui->comboBoxGeneratorType->setVisible(false);
+        ui->labelGeneratorType->setVisible(false);
+    }
+}
+
+void GameCube::on_comboBoxGeneratorShadow_currentIndexChanged(int index)
+{
+    Method version = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+    if (ui->comboBoxGeneratorShadow->isVisible() && version == Method::XD)
+    {
+        QVector<int> secondShadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
+        ui->comboBoxGeneratorType->setVisible(secondShadows.contains(index));
+        ui->labelGeneratorType->setVisible(secondShadows.contains(index));
+    }
+    else
+    {
+        ui->comboBoxGeneratorType->setVisible(false);
+        ui->labelGeneratorType->setVisible(false);
+    }
 }
 
 void GameCube::on_comboBoxSearcherMethod_currentIndexChanged(int index)

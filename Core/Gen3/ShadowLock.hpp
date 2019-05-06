@@ -46,20 +46,16 @@ public:
 
 private:
     int backCount{}, frontCount{};
-    QVector<LockInfo> lockInfo;
-    LockInfo currLock{};
-    u32 pid{}, pidOriginal{};
-    XDRNG forward;
-    XDRNGR backward;
-    ShadowType type{};
+    LockInfo currLock;
+    ShadowTeam team;
     int x{};
 
-    void countBackTwo();
-    void countForwardTwo();
+    void compareBackwards(u32 &pid, XDRNGR &rng);
+    void compareForwards(u32 &pid, XDRNG &rng);
     void getCurrLock();
-    u32 getPIDForward();
-    u32 getPIDReverse();
-    u16 getPSVReverse();
+    u32 getPIDForward(XDRNG &rng);
+    u32 getPIDBackward(XDRNGR &rng);
+    u16 getPSVReverse(XDRNGR &rng);
     void natureLockSetup(u8 lockNum, Method version);
 
 };

@@ -20,7 +20,10 @@
 #ifndef LOCKINFO_HPP
 #define LOCKINFO_HPP
 
+#include <QVector>
 #include <Core/Util/Global.hpp>
+#include <Core/Util/Method.hpp>
+#include <Core/Util/ShadowType.hpp>
 
 class LockInfo
 {
@@ -35,6 +38,23 @@ private:
     u8 genderLower;
     u8 nature;
     bool free;
+
+};
+
+class ShadowTeam
+{
+
+public:
+    ShadowTeam() = default;
+    ShadowTeam(const QVector<LockInfo> &locks, ShadowType type);
+    LockInfo getLock(u8 index) const;
+    ShadowType getType() const;
+    int getSize() const;
+    static QVector<ShadowTeam> loadShadowTeams(Method version);
+
+private:
+    QVector<LockInfo> locks;
+    ShadowType type;
 
 };
 

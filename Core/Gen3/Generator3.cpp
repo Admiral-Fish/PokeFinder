@@ -18,7 +18,6 @@
  */
 
 #include "Generator3.hpp"
-#include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
 Generator3::Generator3()
@@ -69,6 +68,10 @@ QVector<Frame3> Generator3::generate(const FrameCompare &compare) const
             }
         case Method::XDColo:
             return generateMethodXDColo(compare);
+        case Method::XD:
+            return generateMethodXD(compare);
+        case Method::Colo:
+            return generateMethodColo(compare);
         case Method::Channel:
             return generateMethodChannel(compare);
         default:
@@ -99,6 +102,12 @@ void Generator3::setup(Method method)
 void Generator3::setEncounter(const EncounterArea3 &value)
 {
     encounter = value;
+}
+
+void Generator3::setShadowTeam(u8 index, int type)
+{
+    team = ShadowTeam::loadShadowTeams(frameType).at(index);
+    this->type = type;
 }
 
 QVector<Frame3> Generator3::generateMethodChannel(const FrameCompare &compare) const
@@ -607,6 +616,72 @@ QVector<Frame3> Generator3::generateMethodXDColo(const FrameCompare &compare) co
     return frames;
 }
 
+QVector<Frame3> Generator3::generateMethodXD(const FrameCompare &compare) const
+{
+    QVector<Frame3> frames;
+    Frame3 frame(tid, sid, psv);
+
+    XDRNG rng(initialSeed, initialFrame - 1 + offset);
+
+    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    {
+        XDRNG go(rng.nextUInt(), 4);
+        generateNonShadows(go);
+
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
+        frame.setIVs(iv1, iv2);
+
+        go.nextUInt();
+
+        u16 pid2 = go.nextUShort();
+        u16 pid1 = go.nextUShort();
+        frame.setPID(pid1, pid2, genderRatio);
+
+        if (compare.compareFrame(frame))
+        {
+            frame.setFrame(cnt + initialFrame);
+            frames.append(frame);
+        }
+    }
+
+    return frames;
+}
+
+QVector<Frame3> Generator3::generateMethodColo(const FrameCompare &compare) const
+{
+    QVector<Frame3> frames;
+    Frame3 frame(tid, sid, psv);
+
+    XDRNG rng(initialSeed, initialFrame - 1 + offset);
+
+    // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
+
+    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    {
+        XDRNG go(rng.nextUInt(), 4);
+        generateNonShadows(go);
+
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
+        frame.setIVs(iv1, iv2);
+
+        go.nextUInt();
+
+        u16 pid2 = go.nextUShort();
+        u16 pid1 = go.nextUShort();
+        frame.setPID(pid1, pid2, genderRatio);
+
+        if (compare.compareFrame(frame))
+        {
+            frame.setFrame(cnt + initialFrame);
+            frames.append(frame);
+        }
+    }
+
+    return frames;
+}
+
 QVector<Frame3> Generator3::generateMethod124(const FrameCompare &compare) const
 {
     QVector<Frame3> frames;
@@ -665,4 +740,56 @@ QVector<Frame3> Generator3::generateMethod1Reverse(const FrameCompare &compare) 
     }
 
     return frames;
+}
+
+void Generator3::generateNonShadows(XDRNG &rng) const
+{
+    u32 pid;
+    for (int i = team.getSize() - 1; i >= 0; i--)
+    {
+        rng.advanceFrames(3);
+        do
+        {
+            u16 pid1 = rng.nextUShort();
+            u16 pid2 = rng.nextUShort();
+            pid = (pid1 << 16) | pid2;
+        }
+        while (!team.getLock(i).compare(pid));
+    }
+
+    switch (team.getType())
+    {
+        case ShadowType::SingleLock:
+        case ShadowType::FirstShadow:
+            rng.advanceFrames(2);
+            break;
+        case ShadowType::SecondShadow:
+        case ShadowType::Salamence:
+            switch (type)
+            {
+                case 0: // Set
+                    rng.advanceFrames(7);
+                    break;
+                case 1: // Unset
+                    rng.advanceFrames(9);
+                    break;
+                case 2: // Shinyskip
+                    rng.advanceFrames(5);
+                    u16 psv = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
+                    u16 psvTemp =  (rng.nextUShort() ^ rng.nextUShort()) >> 3;
+                    while (psv == psvTemp)
+                    {
+                        psvTemp = psv;
+                        psv = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
+                    }
+                    rng.advanceFrames(2);
+                    break;
+            }
+            break;
+        case ShadowType::EReader:
+            // Unconsume calls for IVs/PID for shadow
+            XDRNGR backward(rng.getSeed(), 5);
+            rng.setSeed(backward.getSeed());
+            break;
+    }
 }

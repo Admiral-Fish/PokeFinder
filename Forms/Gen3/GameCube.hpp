@@ -58,6 +58,8 @@ private slots:
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonGenerate_clicked();
     void on_pushButtonSearch_clicked();
+    void on_comboBoxGeneratorMethod_currentIndexChanged(int index);
+    void on_comboBoxGeneratorShadow_currentIndexChanged(int index);
     void on_comboBoxSearcherMethod_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
