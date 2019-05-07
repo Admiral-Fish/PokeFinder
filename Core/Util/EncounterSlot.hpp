@@ -20,7 +20,6 @@
 #ifndef ENCOUNTERSLOT_HPP
 #define ENCOUNTERSLOT_HPP
 
-#include <QVector>
 #include <Core/Util/Encounter.hpp>
 #include <Core/Util/Global.hpp>
 

@@ -17,8 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QClipboard>
+#include <QSettings>
 #include "Stationary3.hpp"
 #include "ui_Stationary3.h"
+#include <Core/Gen3/Generator3.hpp>
+#include <Core/Gen3/IVSearcher3.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Forms/Gen3/ProfileManager3.hpp>
+#include <Forms/Gen3/SeedToTime3.hpp>
 
 Stationary3::Stationary3(QWidget *parent) :
     QWidget(parent),
@@ -36,7 +44,10 @@ Stationary3::Stationary3(QWidget *parent) :
 Stationary3::~Stationary3()
 {
     QSettings setting;
-    setting.setValue("stationary3Profile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup("stationary3");
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -59,10 +70,10 @@ void Stationary3::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("stationary3Profile").toInt();
+    int val = setting.value("stationary3/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -101,6 +112,22 @@ void Stationary3::setupModels()
     ui->comboBoxSearcherMethod->addItem(tr("Method 2"), Method::Method2);
     ui->comboBoxSearcherMethod->addItem(tr("Method 4"), Method::Method4);
 
+    ui->comboBoxGeneratorGenderRatio->setItemData(0, 0);
+    ui->comboBoxGeneratorGenderRatio->setItemData(1, 127);
+    ui->comboBoxGeneratorGenderRatio->setItemData(2, 191);
+    ui->comboBoxGeneratorGenderRatio->setItemData(3, 63);
+    ui->comboBoxGeneratorGenderRatio->setItemData(4, 31);
+    ui->comboBoxGeneratorGenderRatio->setItemData(5, 1);
+    ui->comboBoxGeneratorGenderRatio->setItemData(6, 2);
+
+    ui->comboBoxSearcherGenderRatio->setItemData(0, 0);
+    ui->comboBoxSearcherGenderRatio->setItemData(1, 127);
+    ui->comboBoxSearcherGenderRatio->setItemData(2, 191);
+    ui->comboBoxSearcherGenderRatio->setItemData(3, 63);
+    ui->comboBoxSearcherGenderRatio->setItemData(4, 31);
+    ui->comboBoxSearcherGenderRatio->setItemData(5, 1);
+    ui->comboBoxSearcherGenderRatio->setItemData(6, 2);
+
     QAction *setTargetFrame = generatorMenu->addAction(tr("Set Target Frame"));
     QAction *jumpToTarget = generatorMenu->addAction(tr("Jump to Target Frame"));
     QAction *center1Second = generatorMenu->addAction(tr("Center to +/- 1 Second and Set as Target Frame"));
@@ -132,12 +159,9 @@ void Stationary3::setupModels()
     connect(seedToTime, &QAction::triggered, this, &Stationary3::seedToTime);
     connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
     connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
-}
 
-void Stationary3::updateView(const QVector<Frame3> &frames, int progress)
-{
-    searcherModel->addItems(frames);
-    ui->progressBar->setValue(progress);
+    QSettings setting;
+    if (setting.contains("stationary3/size")) this->resize(setting.value("stationary3/size").toSize());
 }
 
 void Stationary3::moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
@@ -156,6 +180,12 @@ void Stationary3::moveResults(const QString &seed, const QString &method, u8 hp,
         }
     }
     ui->ivFilterGenerator->setValues(hp, atk, def, spa, spd, spe);
+}
+
+void Stationary3::updateProgress(const QVector<Frame3> &frames, int progress)
+{
+    searcherModel->addItems(frames);
+    ui->progressBar->setValue(progress);
 }
 
 void Stationary3::refreshProfiles()
@@ -198,12 +228,12 @@ void Stationary3::on_pushButtonGenerate_clicked()
         offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
-    int genderRatioIndex = ui->comboBoxGeneratorGenderRatio->currentIndex();
-    Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
-    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                                        ui->comboBoxGeneratorGender->currentIndex(), genderRatioIndex, ui->comboBoxGeneratorAbility->currentIndex(),
-                                        ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                                        ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
+    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toInt();
+    Generator3 generator(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
+    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
+                         ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
 
     generator.setup(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
@@ -222,11 +252,11 @@ void Stationary3::on_pushButtonSearch_clicked()
     u16 tid = ui->textBoxSearcherTID->getUShort();
     u16 sid = ui->textBoxSearcherSID->getUShort();
 
-    int genderRatioIndex = ui->comboBoxSearcherGenderRatio->currentIndex();
-    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
-                                        genderRatioIndex, ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                                        ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false);
-    Searcher3 searcher = Searcher3(tid, sid, static_cast<u32>(genderRatioIndex), compare);
+    u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
+    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
+                         ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
+                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false);
+    Searcher3 searcher(tid, sid, genderRatio, compare);
 
     searcher.setup(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
@@ -234,7 +264,7 @@ void Stationary3::on_pushButtonSearch_clicked()
     QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
     int maxProgress = 1;
-    for (int i = 0; i < 6; i++)
+    for (u8 i = 0; i < 6; i++)
     {
         maxProgress *= max.at(i) - min.at(i) + 1;
     }
@@ -243,16 +273,12 @@ void Stationary3::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new IVSearcher3(searcher, min, max);
-    auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher3::finished, timer, &QTimer::stop);
     connect(search, &IVSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &IVSearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher3::updateProgress, this, &Stationary3::updateProgress);
     connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher3::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)

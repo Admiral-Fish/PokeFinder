@@ -17,25 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QApplication>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include "Profile4.hpp"
-
-Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, Language language, bool radar, bool swarm)
-    : Profile(profileName, version, tid, sid, language)
-{
-    this->dual = dual;
-    this->radio = radio;
-    this->radar = radar;
-    this->swarm = swarm;
-}
-
-Profile4::Profile4(QJsonObject data)
-    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
-{
-    dual = static_cast<Game>(data["dual"].toInt());
-    radio = data["radio"].toInt();
-    radar = data["radar"].toBool();
-    swarm = data["swarm"].toBool();
-}
 
 Profile4::Profile4()
 {
@@ -44,6 +30,24 @@ Profile4::Profile4()
     radio = 0;
     radar = false;
     swarm = false;
+}
+
+Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, Language language, bool radar, bool swarm)  :
+    Profile(profileName, version, tid, sid, language)
+{
+    this->dual = dual;
+    this->radio = radio;
+    this->radar = radar;
+    this->swarm = swarm;
+}
+
+Profile4::Profile4(QJsonObject data) :
+    Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
+{
+    dual = static_cast<Game>(data["dual"].toInt());
+    radio = data["radio"].toInt();
+    radar = data["radar"].toBool();
+    swarm = data["swarm"].toBool();
 }
 
 QString Profile4::getDualSlotString() const

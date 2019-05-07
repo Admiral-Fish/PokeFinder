@@ -17,6 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QApplication>
+#include <QClipboard>
+#include <QFileDialog>
+#include <QHeaderView>
+#include <QKeyEvent>
+#include <QTextStream>
 #include "TableView.hpp"
 
 TableView::TableView(QWidget *parent) :

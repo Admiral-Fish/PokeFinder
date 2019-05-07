@@ -197,43 +197,7 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorEncounter">
-            <item>
-             <property name="text">
-              <string>Grass</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Safari Zone</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Rock Smash</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Surfing</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Old Rod</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Good Rod</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Super Rod</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="QComboBox" name="comboBoxGeneratorEncounter"/>
           </item>
           <item row="4" column="0">
            <widget class="QPushButton" name="pushButtonGeneratorLead">
@@ -771,43 +735,7 @@
            </widget>
           </item>
           <item row="3" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxSearcherEncounter">
-            <item>
-             <property name="text">
-              <string>Grass</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Safari Zone</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Rock Smash</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Surfing</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Old Rod</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Good Rod</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Super Rod</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="QComboBox" name="comboBoxSearcherEncounter"/>
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="labelSearcherLead">

@@ -21,10 +21,8 @@
 #define GENERATOR_HPP
 
 #include <QVector>
-#include <Core/Util/Encounter.hpp>
 #include <Core/Parents/FrameCompare.hpp>
-#include <Core/RNG/IRNG.hpp>
-#include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/Encounter.hpp>
 #include <Core/Util/Lead.hpp>
 #include <Core/Util/Method.hpp>
 
@@ -43,6 +41,7 @@ protected:
     u16 psv{};
     u16 sid{};
     u16 tid{};
+    u8 genderRatio{};
     u32 offset{};
     Method frameType = Method::Method1;
     Encounter encounterType = Encounter::Stationary;

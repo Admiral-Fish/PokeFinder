@@ -17,8 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QClipboard>
+#include <QSettings>
 #include "GameCubeRTC.hpp"
 #include "ui_GameCubeRTC.h"
+#include <Core/Gen3/GameCubeRTCSearcher.hpp>
 
 GameCubeRTC::GameCubeRTC(QWidget *parent) :
     QWidget(parent),
@@ -27,7 +30,6 @@ GameCubeRTC::GameCubeRTC(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 
@@ -41,7 +43,6 @@ GameCubeRTC::GameCubeRTC(u32 seed, QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
     ui->textBoxTargetSeed->setText(QString::number(seed, 16));
@@ -52,7 +53,10 @@ GameCubeRTC::GameCubeRTC(u32 seed, QWidget *parent) :
 GameCubeRTC::~GameCubeRTC()
 {
     QSettings setting;
-    setting.setValue("startSeed", ui->textBoxStartSeed->text());
+    setting.beginGroup("gamecubeRTC");
+    setting.setValue("seed", ui->textBoxStartSeed->text());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -74,7 +78,10 @@ void GameCubeRTC::setupModels()
     connect(copySeed, &QAction::triggered, this, &GameCubeRTC::copySeed);
 
     QSettings setting;
-    if (setting.contains("startSeed")) ui->textBoxStartSeed->setText(setting.value("startSeed").toString());
+    setting.beginGroup("gamecubeRTC");
+    if (setting.contains("seed")) ui->textBoxStartSeed->setText(setting.value("seed").toString());
+    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    setting.endGroup();
 }
 
 void GameCubeRTC::on_pushButtonSearch_clicked()
@@ -87,13 +94,13 @@ void GameCubeRTC::on_pushButtonSearch_clicked()
     u32 start = ui->textBoxMinFrame->getUInt();
     u32 end = ui->textBoxMaxFrame->getUInt();
 
-    auto *search = new Search(initial, target, start, end);
+    auto *search = new GameCubeRTCSearcher(initial, target, start, end);
 
-    connect(search, &Search::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &Search::result, this, &GameCubeRTC::updateTableView);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &Search::cancelSearch);
+    connect(search, &GameCubeRTCSearcher::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+    connect(search, &GameCubeRTCSearcher::result, this, &GameCubeRTC::updateTableView);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &GameCubeRTCSearcher::cancelSearch);
 
-    search->start();
+    search->startSearch();
 }
 
 void GameCubeRTC::updateTableView(const QList<QStandardItem *> &row)
@@ -115,59 +122,4 @@ void GameCubeRTC::on_tableView_customContextMenuRequested(const QPoint &pos)
     }
 
     contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
-}
-
-Search::Search(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame)
-{
-    this->initialSeed = initialSeed;
-    this->targetSeed = targetSeed;
-    this->minFrame = minFrame;
-    this->maxFrame = maxFrame;
-    cancel = false;
-
-    connect(this, &Search::finished, this, &Search::deleteLater);
-}
-
-void Search::run()
-{
-    XDRNGR back(targetSeed, minFrame);
-    targetSeed = back.getSeed();
-
-    u32 seconds = 0;
-    u32 minutes = 0;
-    u8 secoundCount = 0;
-
-    while (!cancel)
-    {
-        XDRNG rng(initialSeed);
-
-        for (u32 x = 0; x < maxFrame; x++)
-        {
-            if (rng.nextUInt() == targetSeed)
-            {
-                QDateTime finalTime = date.addSecs(seconds);
-                QList<QStandardItem *> row;
-                QString time = finalTime.toString(Qt::SystemLocaleShortDate);
-                row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
-                    << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initialSeed, 16).toUpper());
-                emit result(row);
-                return;
-            }
-        }
-
-        initialSeed += 40500000;
-        seconds++;
-        secoundCount++;
-
-        if (secoundCount == 60)
-        {
-            minutes++;
-            secoundCount = 0;
-        }
-    }
-}
-
-void Search::cancelSearch()
-{
-    cancel = true;
 }

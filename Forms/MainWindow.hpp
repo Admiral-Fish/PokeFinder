@@ -20,34 +20,16 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include <QDate>
-#include <QDesktopServices>
-#include <QJsonDocument>
 #include <QMainWindow>
-#include <QMessageBox>
-#include <QtNetwork>
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Gen3/GameCube.hpp>
-#include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Forms/Gen3/IDs3.hpp>
-#include <Forms/Gen3/JirachiPattern.hpp>
-#include <Forms/Gen3/PIDtoIVs.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
-#include <Forms/Gen3/SpindaPainter.hpp>
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Wild3.hpp>
-#include <Forms/Gen3/PokeSpot.hpp>
-#include <Forms/Gen4/ChainedSID.hpp>
 #include <Forms/Gen4/Eggs4.hpp>
 #include <Forms/Gen4/IDs4.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Forms/Gen4/Stationary4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
-#include <Forms/Gen5/Stationary5.hpp>
-#include <Forms/Util/EncounterLookup.hpp>
-#include <Forms/Util/IVCalculator.hpp>
-#include <Forms/Util/IVtoPID.hpp>
-#include <Forms/Util/Researcher.hpp>
 
 namespace Ui
 {
@@ -64,10 +46,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QTranslator translator;
     QActionGroup *langGroup{};
     QActionGroup *styleGroup{};
-    const QString VERSION = "v2.3.1";
+    const QString VERSION = "v2.4.0";
+    QString currentLanguage;
+    QString currentStyle;
 
     Stationary3 *stationary3{};
     Wild3 *wild3{};
@@ -95,6 +78,7 @@ private slots:
     void on_pushButtonEgg3_clicked();
     void on_pushButtonIDs3_clicked();
     void on_actionGameCubeRTC_triggered();
+    void on_actionGameCube_Seed_Finder_triggered();
     void on_actionIVtoPID3_triggered();
     void on_actionJirachiPattern_triggered();
     void on_actionPIDtoIV_triggered();

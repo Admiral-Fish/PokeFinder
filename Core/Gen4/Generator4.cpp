@@ -18,6 +18,8 @@
  */
 
 #include "Generator4.hpp"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/EncounterSlot.hpp>
 
 Generator4::Generator4()
 {
@@ -29,7 +31,7 @@ Generator4::Generator4()
     psv = tid ^ sid;
 }
 
-Generator4::Generator4(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, Method type)
+Generator4::Generator4(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, Method type, u8 genderRatio)
 {
     this->maxResults = maxResults;
     this->initialFrame = initialFrame;
@@ -39,6 +41,7 @@ Generator4::Generator4(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 ti
     psv = tid ^ sid;
     this->offset = offset;
     frameType = type;
+    this->genderRatio = genderRatio;
 }
 
 void Generator4::setEncounter(const EncounterArea4 &value)
@@ -87,8 +90,7 @@ QVector<Frame4> Generator4::generate(const FrameCompare &compare) const
 QVector<Frame4> Generator4::generateMethod1(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     QVector<u16> rngList(maxResults + 4);
@@ -101,7 +103,7 @@ QVector<Frame4> Generator4::generateMethod1(const FrameCompare &compare) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngList.at(cnt), rngList.at(cnt + 1));
+        frame.setPID(rngList.at(cnt), rngList.at(cnt + 1), genderRatio);
         frame.setIVs(rngList.at(cnt + 2), rngList.at(cnt + 3));
 
         if (compare.compareFrame(frame))
@@ -118,8 +120,7 @@ QVector<Frame4> Generator4::generateMethod1(const FrameCompare &compare) const
 QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -194,7 +195,7 @@ QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
         }
         while (pid % 25 != frame.getNature());
 
-        frame.setPID(pid, pid2, pid1);
+        frame.setPID(pid, genderRatio);
 
         u16 val1 = go.nextUShort();
         u16 val2 = go.nextUShort();
@@ -215,8 +216,7 @@ QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
 QVector<Frame4> Generator4::generateMethodJSynch(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -298,7 +298,7 @@ QVector<Frame4> Generator4::generateMethodJSynch(const FrameCompare &compare) co
         }
         while (pid % 25 != frame.getNature());
 
-        frame.setPID(pid, pid2, pid1);
+        frame.setPID(pid, genderRatio);
 
         u16 val1 = go.nextUShort();
         u16 val2 = go.nextUShort();
@@ -319,8 +319,7 @@ QVector<Frame4> Generator4::generateMethodJSynch(const FrameCompare &compare) co
 QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -411,7 +410,7 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare
             }
 
             // Cute charm doesn't hunt for a valid PID, just uses buffer and target nature
-            frame.setPID(buffer + frame.getNature(), 0, buffer + frame.getNature());
+            frame.setPID(buffer + frame.getNature(), genderRatio);
             frame.setOccidentary(cnt);
         }
         else // Failed cute charm
@@ -434,7 +433,7 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare
             }
             while (pid % 25 != frame.getNature());
 
-            frame.setPID(pid, pid2, pid1);
+            frame.setPID(pid, genderRatio);
             frame.setOccidentary(hunt + cnt);
         }
 
@@ -456,8 +455,7 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare
 QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -565,7 +563,7 @@ QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
         }
         while (pid % 25 != frame.getNature());
 
-        frame.setPID(pid, pid2, pid1);
+        frame.setPID(pid, genderRatio);
 
         u16 val1 = go.nextUShort();
         u16 val2 = go.nextUShort();
@@ -586,8 +584,7 @@ QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
 QVector<Frame4> Generator4::generateMethodKSynch(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -688,7 +685,7 @@ QVector<Frame4> Generator4::generateMethodKSynch(const FrameCompare &compare) co
         }
         while (pid % 25 != frame.getNature());
 
-        frame.setPID(pid, pid2, pid1);
+        frame.setPID(pid, genderRatio);
 
         u16 val1 = go.nextUShort();
         u16 val2 = go.nextUShort();
@@ -709,8 +706,7 @@ QVector<Frame4> Generator4::generateMethodKSynch(const FrameCompare &compare) co
 QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
@@ -819,7 +815,7 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare
                 continue;
             }
 
-            frame.setPID(buffer + frame.getNature(), 0, buffer + frame.getNature());
+            frame.setPID(buffer + frame.getNature(), genderRatio);
             frame.setOccidentary(cnt);
         }
         else // Failed cutecharm
@@ -841,7 +837,7 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare
             }
             while (pid % 25 != frame.getNature());
 
-            frame.setPID(pid, pid2, pid1);
+            frame.setPID(pid, genderRatio);
             frame.setOccidentary(hunt + cnt);
         }
 
@@ -863,8 +859,7 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare
 QVector<Frame4> Generator4::generateChainedShiny(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
-    frame.setGenderRatio(compare.getGenderRatio());
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     QVector<u16> rngList(maxResults + 18);
@@ -880,7 +875,7 @@ QVector<Frame4> Generator4::generateChainedShiny(const FrameCompare &compare) co
                             rngList.at(cnt + 9), rngList.at(cnt + 8), rngList.at(cnt + 7), rngList.at(cnt + 6), rngList.at(cnt + 5), rngList.at(cnt + 4), rngList.at(cnt + 3));
         high = chainedPIDHigh(rngList[2 + cnt], low, tid, sid);
 
-        frame.setPID(low, high);
+        frame.setPID(low, high, genderRatio);
         frame.setIVs(rngList.at(cnt + 16), rngList.at(cnt + 17));
 
         if (compare.compareFrame(frame))
@@ -897,7 +892,7 @@ QVector<Frame4> Generator4::generateChainedShiny(const FrameCompare &compare) co
 QVector<Frame4> Generator4::generateWondercardIVs(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
-    Frame4 frame = Frame4(tid, sid, psv);
+    Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     QVector<u16> rngList(maxResults + 2);

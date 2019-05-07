@@ -22,7 +22,6 @@
 
 #include <Core/Gen3/Frame3.hpp>
 #include <Models/TableModel.hpp>
-#include <Util/TableUtility.hpp>
 
 class Wild3Model : public TableModel<Frame3>
 {

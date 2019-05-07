@@ -1,12 +1,13 @@
 lessThan(QT_MAJOR_VERSION, 5):error("You need at least Qt 5.11 to build PokeFinder")
 equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11):error("You need at least Qt 5.11 to build PokeFinder")
 
-QT += network widgets
+QT += concurrent network widgets
 CONFIG += c++1z
+CONFIG += lrelease embed_translations
 
 TARGET = PokeFinder
 TEMPLATE = app
-VERSION = 2.3.1
+VERSION = 2.4.0
 QMAKE_TARGET_DESCRIPTION = PokeFinder
 QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
@@ -16,14 +17,14 @@ ICON += Images/pokefinder.icns
 DEFINES += QT_DEPRECATED_WARNINGS
 
 TRANSLATIONS += \
-    Translations/PokeFinder_en.ts \
-    Translations/PokeFinder_fr.ts \
-    Translations/PokeFinder_es.ts \
-    Translations/PokeFinder_de.ts \
-    Translations/PokeFinder_it.ts \
-    Translations/PokeFinder_ja.ts \
-    Translations/PokeFinder_ko.ts \
-    Translations/PokeFinder_zh_Hans_CN.ts
+    i18n/PokeFinder_en.ts \
+    i18n/PokeFinder_fr.ts \
+    i18n/PokeFinder_es.ts \
+    i18n/PokeFinder_de.ts \
+    i18n/PokeFinder_it.ts \
+    i18n/PokeFinder_ja.ts \
+    i18n/PokeFinder_ko.ts \
+    i18n/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
     qdarkstyle/style.qrc \
@@ -35,6 +36,7 @@ FORMS += \
     Forms/Gen3/Eggs3.ui \
     Forms/Gen3/GameCube.ui \
     Forms/Gen3/GameCubeRTC.ui \
+    Forms/Gen3/GameCubeSeedFinder.ui \
     Forms/Gen3/IDs3.ui \
     Forms/Gen3/JirachiPattern.ui \
     Forms/Gen3/PIDtoIVs.ui \
@@ -60,17 +62,19 @@ FORMS += \
     Forms/Gen5/ProfileEditor5.ui \
     Forms/Gen5/ProfileManager5.ui \
     Forms/Gen5/Stationary5.ui \
+    Forms/MainWindow.ui \
     Forms/Util/EncounterLookup.ui \
     Forms/Util/IVCalculator.ui \
     Forms/Util/IVtoPID.ui \
-    Forms/Util/Researcher.ui \
-    Forms/MainWindow.ui
+    Forms/Util/Researcher.ui
 
 HEADERS += \
     Core/Gen3/Egg3.hpp \
     Core/Gen3/EncounterArea3.hpp \
     Core/Gen3/Encounters3.hpp \
     Core/Gen3/Frame3.hpp \
+    Core/Gen3/GameCubeRTCSearcher.hpp \
+    Core/Gen3/GameCubeSeedSearcher.hpp \
     Core/Gen3/Generator3.hpp \
     Core/Gen3/IVSearcher3.hpp \
     Core/Gen3/LockInfo.hpp \
@@ -85,6 +89,7 @@ HEADERS += \
     Core/Gen4/Frame4.hpp \
     Core/Gen4/Generator4.hpp \
     Core/Gen4/HGSSRoamer.hpp \
+    Core/Gen4/IDSearcher4.hpp \
     Core/Gen4/IVSearcher4.hpp \
     Core/Gen4/Profile4.hpp \
     Core/Gen4/Searcher4.hpp \
@@ -99,6 +104,7 @@ HEADERS += \
     Core/Parents/Pokemon.hpp \
     Core/Parents/Profile.hpp \
     Core/Parents/Searcher.hpp \
+    Core/Parents/Slot.hpp \
     Core/RNG/IRNG.hpp \
     Core/RNG/IRNG64.hpp \
     Core/RNG/LCRNG.hpp \
@@ -133,6 +139,7 @@ HEADERS += \
     Forms/Gen3/Eggs3.hpp \
     Forms/Gen3/GameCube.hpp \
     Forms/Gen3/GameCubeRTC.hpp \
+    Forms/Gen3/GameCubeSeedFinder.hpp \
     Forms/Gen3/IDs3.hpp \
     Forms/Gen3/JirachiPattern.hpp \
     Forms/Gen3/PIDtoIVs.hpp \
@@ -158,11 +165,11 @@ HEADERS += \
     Forms/Gen5/ProfileEditor5.hpp \
     Forms/Gen5/ProfileManager5.hpp \
     Forms/Gen5/Stationary5.hpp \
+    Forms/MainWindow.hpp \
     Forms/Util/EncounterLookup.hpp \
     Forms/Util/IVCalculator.hpp \
     Forms/Util/IVtoPID.hpp \
     Forms/Util/Researcher.hpp \
-    Forms/MainWindow.hpp \
     Models/Gen3/Egg3Model.hpp \
     Models/Gen3/PokeSpotModel.hpp \
     Models/Gen3/Profile3Model.hpp \
@@ -176,8 +183,8 @@ HEADERS += \
     Models/Gen4/Stationary4Model.hpp \
     Models/Gen4/Wild4Model.hpp \
     Models/Gen5/Profile5Model.hpp \
-    Models/Util/ResearcherModel.hpp \
     Models/TableModel.hpp \
+    Models/Util/ResearcherModel.hpp \
     Util/DateTime.hpp \
     Util/ResearcherFrame.hpp \
     Util/TableUtility.hpp
@@ -187,6 +194,8 @@ SOURCES += \
     Core/Gen3/EncounterArea3.cpp \
     Core/Gen3/Encounters3.cpp \
     Core/Gen3/Frame3.cpp \
+    Core/Gen3/GameCubeRTCSearcher.cpp \
+    Core/Gen3/GameCubeSeedSearcher.cpp \
     Core/Gen3/Generator3.cpp \
     Core/Gen3/IVSearcher3.cpp \
     Core/Gen3/LockInfo.cpp \
@@ -201,6 +210,7 @@ SOURCES += \
     Core/Gen4/Frame4.cpp \
     Core/Gen4/Generator4.cpp \
     Core/Gen4/HGSSRoamer.cpp \
+    Core/Gen4/IDSearcher4.cpp \
     Core/Gen4/IVSearcher4.cpp \
     Core/Gen4/Profile4.cpp \
     Core/Gen4/Searcher4.cpp \
@@ -214,6 +224,7 @@ SOURCES += \
     Core/Parents/Pokemon.cpp \
     Core/Parents/Profile.cpp \
     Core/Parents/Searcher.cpp \
+    Core/Parents/Slot.cpp \
     Core/RNG/LCRNG.cpp \
     Core/RNG/LCRNG64.cpp \
     Core/RNG/MTRNG.cpp \
@@ -239,6 +250,7 @@ SOURCES += \
     Forms/Gen3/Eggs3.cpp \
     Forms/Gen3/GameCube.cpp \
     Forms/Gen3/GameCubeRTC.cpp \
+    Forms/Gen3/GameCubeSeedFinder.cpp \
     Forms/Gen3/IDs3.cpp \
     Forms/Gen3/JirachiPattern.cpp \
     Forms/Gen3/PIDtoIVs.cpp \
@@ -264,11 +276,11 @@ SOURCES += \
     Forms/Gen5/ProfileEditor5.cpp \
     Forms/Gen5/ProfileManager5.cpp \
     Forms/Gen5/Stationary5.cpp \
+    Forms/MainWindow.cpp \
     Forms/Util/EncounterLookup.cpp \
     Forms/Util/IVCalculator.cpp \
     Forms/Util/IVtoPID.cpp \
     Forms/Util/Researcher.cpp \
-    Forms/MainWindow.cpp \
     Models/Gen3/Egg3Model.cpp \
     Models/Gen3/PokeSpotModel.cpp \
     Models/Gen3/Profile3Model.cpp \

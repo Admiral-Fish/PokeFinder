@@ -22,7 +22,6 @@
 
 #include <Core/Gen4/Frame4.hpp>
 #include <Models/TableModel.hpp>
-#include <Util/TableUtility.hpp>
 
 class Egg4GeneratorModel : public TableModel<Frame4>
 {

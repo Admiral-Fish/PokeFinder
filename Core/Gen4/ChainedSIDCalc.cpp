@@ -18,6 +18,8 @@
  */
 
 #include "ChainedSIDCalc.hpp"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/RNGCache.hpp>
 
 ChainedSIDCalc::ChainedSIDCalc(u16 tid)
 {
@@ -42,7 +44,7 @@ void ChainedSIDCalc::addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 
     for (const auto seed : seeds)
     {
         u32 adjust = 0;
-        PokeRNGR rng = PokeRNGR(seed);
+        PokeRNGR rng(seed);
 
         for (u8 i = 0; i < 13; i++)
         {

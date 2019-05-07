@@ -20,7 +20,6 @@
 #ifndef ENCOUNTERS4_HPP
 #define ENCOUNTERS4_HPP
 
-#include <QDataStream>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 
@@ -48,7 +47,7 @@ private:
     void modifyRadar(QVector<Slot> &mons, const QByteArray &data) const;
     void modifySwarmHGSS(QVector<Slot> &mons, const QByteArray &data) const;
     void modifySwarmDPPt(QVector<Slot> &mons, const QByteArray &data) const;
-    inline u16 getValue(const QByteArray &data, int offset, int length) const;
+    u16 getValue(const QByteArray &data, int offset, int length) const;
 
 };
 

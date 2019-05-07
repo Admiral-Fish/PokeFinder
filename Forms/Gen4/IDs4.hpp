@@ -20,13 +20,9 @@
 #ifndef IDS4_HPP
 #define IDS4_HPP
 
-#include <QMessageBox>
-#include <QMutex>
 #include <QStandardItemModel>
-#include <QThread>
-#include <QTimer>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/Util/Utilities.hpp>
+#include <QWidget>
+#include <Core/Util/Global.hpp>
 
 namespace Ui
 {
@@ -46,73 +42,18 @@ public:
 
 private:
     Ui::IDs4 *ui;
-    QStandardItemModel *model{};
+    QStandardItemModel *shinyPID{};
+    QStandardItemModel *tidSID{};
+    QStandardItemModel *seedFinder{};
 
     void setupModels();
-    void updateView(QVector<QList<QStandardItem *>> frames, int progress);
 
 private slots:
+    void updateProgressShinyPID(const QVector<QList<QStandardItem *>> &frames, int progress);
+    void updateProgressTIDSID(const QVector<QList<QStandardItem *>> &frames, int progress);
     void on_pushButtonShinyPIDSearch_clicked();
     void on_pushButtonTIDSIDSearch_clicked();
     void on_pushButtonSeedFinderSearch_clicked();
-
-};
-
-class ShinyPIDSearcher : public QThread
-{
-    Q_OBJECT
-
-public:
-    ShinyPIDSearcher(u32 pid, bool useTID, u16 tid, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
-    void run() override;
-    int currentProgress() const;
-    QVector<QList<QStandardItem *>> getResults();
-
-public slots:
-    void cancelSearch();
-
-private:
-    u32 pid;
-    bool useTID;
-    u16 tid;
-    u32 year;
-    u32 minDelay;
-    u32 maxDelay;
-    bool infinite;
-
-    QMutex mutex;
-    QVector<QList<QStandardItem *>> results;
-    bool cancel;
-    int progress;
-
-};
-
-class TIDSIDSearcher : public QThread
-{
-    Q_OBJECT
-
-public:
-    TIDSIDSearcher(u16 tid, bool useSID, u16 searchSID, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
-    void run() override;
-    int currentProgress() const;
-    QVector<QList<QStandardItem *>> getResults();
-
-public slots:
-    void cancelSearch();
-
-private:
-    u16 tid;
-    bool useSID;
-    u16 searchSID;
-    u32 year;
-    u32 minDelay;
-    u32 maxDelay;
-    bool infinite;
-
-    QMutex mutex;
-    QVector<QList<QStandardItem *>> results;
-    bool cancel;
-    int progress;
 
 };
 

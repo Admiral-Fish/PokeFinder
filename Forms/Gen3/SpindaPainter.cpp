@@ -17,8 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "SpindaPainter.hpp"
 #include "ui_SpindaPainter.h"
+#include <Core/Util/Nature.hpp>
 
 SpindaPainter::SpindaPainter(QWidget *parent) :
     QWidget(parent),
@@ -27,13 +29,15 @@ SpindaPainter::SpindaPainter(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
 
 SpindaPainter::~SpindaPainter()
 {
+    QSettings setting;
+    setting.setValue("spindaPainter/size", this->size());
+
     delete ui;
 }
 
@@ -61,6 +65,9 @@ void SpindaPainter::setupModels()
     scene->addItem(spot2);
     scene->addItem(spot3);
     scene->addItem(spot4);
+
+    QSettings setting;
+    if (setting.contains("spindaPainter/size")) this->resize(setting.value("spindaPainter/size").toSize());
 }
 
 void SpindaPainter::moveSpot(GraphicsPixmapItem *item, int index)

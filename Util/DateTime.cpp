@@ -18,6 +18,7 @@
  */
 
 #include "DateTime.hpp"
+#include <Core/Util/Utilities.hpp>
 
 DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes)
 {

@@ -17,7 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSet>
+#include <QtMath>
 #include "IVChecker.hpp"
+#include <Core/Util/Nature.hpp>
 
 QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower)
 {

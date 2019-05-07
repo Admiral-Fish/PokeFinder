@@ -21,13 +21,7 @@
 #define EGGS4_HPP
 
 #include <QMenu>
-#include <QMutex>
-#include <QSettings>
-#include <QThread>
-#include <QTimer>
-#include <Core/Gen4/EggSearcher4.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
-#include <Forms/Gen4/ProfileManager4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Models/Gen4/Egg4Model.hpp>
 
 namespace Ui
@@ -57,10 +51,10 @@ private:
     bool flag{};
 
     void setupModels();
-    void updatePID(const QVector<Frame4> &frames, int progress);
-    void updateIVs(const QVector<Frame4> &frames, int progress);
 
 private slots:
+    void updateProgressPID(const QVector<Frame4> &frames, int progress);
+    void updateProgressIVs(const QVector<Frame4> &frames, int progress);
     void refreshProfiles();
     void on_pushButtonGenerate_clicked();
     void on_pushButtonSearchPID_clicked();

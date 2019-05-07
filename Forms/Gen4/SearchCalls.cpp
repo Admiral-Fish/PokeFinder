@@ -17,8 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "SearchCalls.hpp"
 #include "ui_SearchCalls.h"
+#include <Core/Util/Utilities.hpp>
 
 SearchCalls::SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent) :
     QDialog(parent),
@@ -26,17 +28,22 @@ SearchCalls::SearchCalls(const QVector<DateTime> &model, const QVector<bool> &ro
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     this->roamers = roamers;
     this->routes = routes;
 
     data = model;
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
+
+    QSettings setting;
+    if (setting.contains("searchCalls/size")) this->resize(setting.value("searchCalls/size").toSize());
 }
 
 SearchCalls::~SearchCalls()
 {
+    QSettings setting;
+    setting.setValue("searchCalls/size", this->size());
+
     delete ui;
 }
 
@@ -72,9 +79,9 @@ void SearchCalls::on_lineEditCalls_textChanged(const QString &val)
     int num = 0;
 
     possible.clear();
-    for (auto &i : data)
+    for (const auto &dt : data)
     {
-        QString str = Utilities::getCalls(i.getSeed(), 15, i.getInfo());
+        QString str = Utilities::getCalls(dt.getSeed(), 15, dt.getInfo());
 
         if (str.contains("skipped"))
         {

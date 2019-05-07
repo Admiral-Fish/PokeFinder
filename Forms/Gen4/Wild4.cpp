@@ -17,8 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "Wild4.hpp"
 #include "ui_Wild4.h"
+#include <Core/Gen4/Encounters4.hpp>
+#include <Core/Gen4/Generator4.hpp>
+#include <Core/Gen4/IVSearcher4.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
+#include <Forms/Gen4/ProfileManager4.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
 
 Wild4::Wild4(QWidget *parent) :
     QWidget(parent),
@@ -37,11 +46,14 @@ Wild4::Wild4(QWidget *parent) :
 Wild4::~Wild4()
 {
     QSettings setting;
-    setting.setValue("wild4Profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("wild4MinDelay", ui->textBoxSearcherMinDelay->text());
-    setting.setValue("wild4MaxDelay", ui->textBoxSearcherMaxDelay->text());
-    setting.setValue("wild4MinFrame", ui->textBoxSearcherMinFrame->text());
-    setting.setValue("wild4MaxFrame", ui->textBoxSearcherMaxFrame->text());
+    setting.beginGroup("wild4");
+    setting.setValue("minDelay", ui->textBoxSearcherMinDelay->text());
+    setting.setValue("maxDelay", ui->textBoxSearcherMaxDelay->text());
+    setting.setValue("minFrame", ui->textBoxSearcherMinFrame->text());
+    setting.setValue("maxFrame", ui->textBoxSearcherMaxFrame->text());
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -59,10 +71,10 @@ void Wild4::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("wild4Profile").toInt();
+    int val = setting.value("wild4/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -89,6 +101,22 @@ void Wild4::setupModels()
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMinFrame->setValues(InputType::Frame32Bit);
     ui->textBoxSearcherMaxFrame->setValues(InputType::Frame32Bit);
+
+    ui->comboBoxGeneratorGenderRatio->setItemData(0, 0);
+    ui->comboBoxGeneratorGenderRatio->setItemData(1, 127);
+    ui->comboBoxGeneratorGenderRatio->setItemData(2, 191);
+    ui->comboBoxGeneratorGenderRatio->setItemData(3, 63);
+    ui->comboBoxGeneratorGenderRatio->setItemData(4, 31);
+    ui->comboBoxGeneratorGenderRatio->setItemData(5, 1);
+    ui->comboBoxGeneratorGenderRatio->setItemData(6, 2);
+
+    ui->comboBoxSearcherGenderRatio->setItemData(0, 0);
+    ui->comboBoxSearcherGenderRatio->setItemData(1, 127);
+    ui->comboBoxSearcherGenderRatio->setItemData(2, 191);
+    ui->comboBoxSearcherGenderRatio->setItemData(3, 63);
+    ui->comboBoxSearcherGenderRatio->setItemData(4, 31);
+    ui->comboBoxSearcherGenderRatio->setItemData(5, 1);
+    ui->comboBoxSearcherGenderRatio->setItemData(6, 2);
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
     ui->comboBoxGeneratorLead->addItems(Nature::getNatures());
@@ -117,16 +145,13 @@ void Wild4::setupModels()
     connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
 
     QSettings setting;
-    if (setting.contains("wild4MinDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("wild4MinDelay").toString());
-    if (setting.contains("wild4MaxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("wild4MaxDelay").toString());
-    if (setting.contains("wild4MinFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("wild4MinFrame").toString());
-    if (setting.contains("wild4MaxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("wild4MaxFrame").toString());
-}
-
-void Wild4::updateView(const QVector<Frame4> &frames, int progress)
-{
-    searcherModel->addItems(frames);
-    ui->progressBar->setValue(progress);
+    setting.beginGroup("wild4");
+    if (setting.contains("minDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
+    if (setting.contains("maxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
+    if (setting.contains("minFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+    if (setting.contains("maxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    setting.endGroup();
 }
 
 void Wild4::updateLocationsGenerator()
@@ -207,6 +232,12 @@ void Wild4::updatePokemonSearcher()
     }
 }
 
+void Wild4::updateProgress(const QVector<Frame4> &frames, int progress)
+{
+    searcherModel->addItems(frames);
+    ui->progressBar->setValue(progress);
+}
+
 void Wild4::refreshProfiles()
 {
     emit alertProfiles(4);
@@ -228,12 +259,12 @@ void Wild4::on_pushButtonGenerate_clicked()
         offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
-    int genderRatioIndex = ui->comboBoxGeneratorGenderRatio->currentIndex();
-    Generator4 generator = Generator4(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
-    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                                        ui->comboBoxGeneratorGender->currentIndex(), genderRatioIndex, ui->comboBoxGeneratorAbility->currentIndex(),
-                                        ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                                        ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
+    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
+    Generator4 generator(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()), genderRatio);
+    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
+                         ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
 
     generator.setEncounterType(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -274,13 +305,13 @@ void Wild4::on_pushButtonSearch_clicked()
     u16 tid = ui->textBoxSearcherTID->getUShort();
     u16 sid = ui->textBoxSearcherSID->getUShort();
 
-    int genderRatioIndex = ui->comboBoxSearcherGenderRatio->currentIndex();
-    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
-                                        genderRatioIndex, ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                                        ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false,
-                                        ui->comboBoxSearcherEncounterSlot->getChecked());
-    Searcher4 searcher = Searcher4(tid, sid, static_cast<u32>(genderRatioIndex), ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
-                                   ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(), compare, static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+    u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
+    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
+                         ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
+                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false,
+                         ui->comboBoxSearcherEncounterSlot->getChecked());
+    Searcher4 searcher(tid, sid, genderRatio, ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
+                       ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(), compare, static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
     searcher.setEncounterType(static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()));
     searcher.setLeadType(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
@@ -290,7 +321,7 @@ void Wild4::on_pushButtonSearch_clicked()
     QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
     int maxProgress = 1;
-    for (int i = 0; i < 6; i++)
+    for (u8 i = 0; i < 6; i++)
     {
         maxProgress *= max.at(i) - min.at(i) + 1;
     }
@@ -299,16 +330,12 @@ void Wild4::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new IVSearcher4(searcher, min, max);
-    auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher4::finished, timer, &QTimer::stop);
     connect(search, &IVSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &IVSearcher4::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher4::updateProgress, this, &Wild4::updateProgress);
     connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher4::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
 }
 
 void Wild4::on_comboBoxProfiles_currentIndexChanged(int index)

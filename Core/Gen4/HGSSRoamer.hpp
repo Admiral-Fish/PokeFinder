@@ -21,7 +21,7 @@
 #define HGSSROAMER_HPP
 
 #include <QVector>
-#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Global.hpp>
 
 class HGSSRoamer
 {

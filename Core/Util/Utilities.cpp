@@ -18,6 +18,8 @@
  */
 
 #include "Utilities.hpp"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/MTRNG.hpp>
 
 u16 Utilities::calcGen3Seed(const QDate &time, u32 h, u32 m)
 {

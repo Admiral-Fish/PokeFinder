@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QtConcurrent>
 #include "IVSearcher4.hpp"
 
 IVSearcher4::IVSearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max)
@@ -24,13 +25,38 @@ IVSearcher4::IVSearcher4(const Searcher4 &searcher, const QVector<u8> &min, cons
     this->searcher = searcher;
     this->min = min;
     this->max = max;
+    searching = false;
     cancel = false;
     progress = 0;
 
     connect(this, &IVSearcher4::finished, this, &IVSearcher4::deleteLater);
+    connect(this, &IVSearcher4::finished, this, [ = ]
+    {
+        searching = false;
+        emit updateProgress(getResults(), progress);
+        QTimer::singleShot(1000, this, &IVSearcher4::deleteLater);
+    });
 }
 
-void IVSearcher4::run()
+void IVSearcher4::startSearch()
+{
+    if (!searching)
+    {
+        progress = 0;
+        searching = true;
+        cancel = false;
+
+        QtConcurrent::run([ = ] { update(); });
+        QtConcurrent::run([ = ] { search(); });
+    }
+}
+
+void IVSearcher4::cancelSearch()
+{
+    cancel = true;
+}
+
+void IVSearcher4::search()
 {
     for (u8 a = min.at(0); a <= max.at(0); a++)
     {
@@ -46,25 +72,32 @@ void IVSearcher4::run()
                         {
                             if (cancel)
                             {
+                                emit finished();
                                 return;
                             }
 
                             auto frames = searcher.search(a, b, c, d, e, f);
-                            progress++;
 
                             QMutexLocker locker(&mutex);
                             results.append(frames);
+                            progress++;
                         }
                     }
                 }
             }
         }
     }
+    emit finished();
 }
 
-int IVSearcher4::currentProgress() const
+void IVSearcher4::update()
 {
-    return progress;
+    do
+    {
+        emit updateProgress(getResults(), progress);
+        QThread::sleep(1);
+    }
+    while (searching);
 }
 
 QVector<Frame4> IVSearcher4::getResults()
@@ -73,9 +106,4 @@ QVector<Frame4> IVSearcher4::getResults()
     auto data(results);
     results.clear();
     return data;
-}
-
-void IVSearcher4::cancelSearch()
-{
-    cancel = true;
 }

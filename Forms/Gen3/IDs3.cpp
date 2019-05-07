@@ -17,8 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "IDs3.hpp"
 #include "ui_IDs3.h"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Utilities.hpp>
 
 IDs3::IDs3(QWidget *parent) :
     QWidget(parent),
@@ -26,13 +29,15 @@ IDs3::IDs3(QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
 
 IDs3::~IDs3()
 {
+    QSettings setting;
+    setting.setValue("ids3/size", this->size());
+
     delete ui;
 }
 
@@ -72,6 +77,9 @@ void IDs3::setupModels()
 
     rs->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
     ui->tableViewRS->setModel(rs);
+
+    QSettings setting;
+    if (setting.contains("ids3/size")) this->resize(setting.value("ids3/size").toSize());
 }
 
 void IDs3::on_pushButtonFRLGESearch_clicked()

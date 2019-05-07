@@ -21,7 +21,6 @@
 #define PROFILEEDITOR4_HPP
 
 #include <QDialog>
-#include <QMessageBox>
 #include <Core/Gen4/Profile4.hpp>
 
 namespace Ui

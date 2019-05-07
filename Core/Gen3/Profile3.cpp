@@ -17,24 +17,28 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QApplication>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include "Profile3.hpp"
-
-Profile3::Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language, bool deadBattery)
-    : Profile(profileName, version, tid, sid, language)
-{
-    this->deadBattery = deadBattery;
-}
-
-Profile3::Profile3(QJsonObject data)
-    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
-{
-    deadBattery = data["battery"].toBool();
-}
 
 Profile3::Profile3()
 {
     version = Game::Emerald;
     deadBattery = false;
+}
+
+Profile3::Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language, bool deadBattery) :
+    Profile(profileName, version, tid, sid, language)
+{
+    this->deadBattery = deadBattery;
+}
+
+Profile3::Profile3(QJsonObject data) :
+    Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
+{
+    deadBattery = data["battery"].toBool();
 }
 
 bool Profile3::getDeadBattery() const

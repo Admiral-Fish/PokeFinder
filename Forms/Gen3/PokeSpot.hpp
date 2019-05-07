@@ -20,12 +20,7 @@
 #ifndef POKESPOT_HPP
 #define POKESPOT_HPP
 
-#include <QSettings>
 #include <QWidget>
-#include <Core/Gen3/Frame3.hpp>
-#include <Core/Parents/FrameCompare.hpp>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/Util/Nature.hpp>
 #include <Models/Gen3/PokeSpotModel.hpp>
 
 namespace Ui

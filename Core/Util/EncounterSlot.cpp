@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QVector>
 #include "EncounterSlot.hpp"
 
 u8 calcSlot(u8 compare, const QVector<u8> &ranges)

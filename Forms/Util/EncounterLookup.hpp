@@ -22,8 +22,9 @@
 
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/Gen3/Encounters3.hpp>
-#include <Core/Gen4/Encounters4.hpp>
+#include <Core/Util/Encounter.hpp>
+#include <Core/Util/Game.hpp>
+#include <Core/Util/Global.hpp>
 
 namespace Ui
 {

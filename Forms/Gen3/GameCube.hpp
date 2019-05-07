@@ -20,17 +20,8 @@
 #ifndef GAMECUBE_HPP
 #define GAMECUBE_HPP
 
-#include <QClipboard>
-#include <QFileDialog>
 #include <QMenu>
-#include <QSettings>
-#include <QThread>
-#include <QTimer>
-#include <Core/Gen3/Generator3.hpp>
-#include <Core/Gen3/IVSearcher3.hpp>
-#include <Core/Util/Translator.hpp>
-#include <Forms/Gen3/ProfileManager3.hpp>
-#include <Forms/Gen3/GameCubeRTC.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
 
@@ -60,13 +51,15 @@ private:
     QMenu *searcherMenu{};
 
     void setupModels();
-    void updateView(const QVector<Frame3> &frames, int progress);
 
 private slots:
+    void updateProgress(const QVector<Frame3> &frames, int progress);
     void refreshProfiles();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonGenerate_clicked();
     void on_pushButtonSearch_clicked();
+    void on_comboBoxGeneratorMethod_currentIndexChanged(int index);
+    void on_comboBoxGeneratorShadow_currentIndexChanged(int index);
     void on_comboBoxSearcherMethod_currentIndexChanged(int index);
     void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
     void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);

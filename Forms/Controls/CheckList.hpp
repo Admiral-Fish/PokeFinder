@@ -21,9 +21,6 @@
 #define CHECKLIST
 
 #include <QComboBox>
-#include <QEvent>
-#include <QLineEdit>
-#include <QListView>
 #include <QStandardItemModel>
 
 class CheckList : public QComboBox

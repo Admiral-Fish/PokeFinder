@@ -17,8 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "JirachiPattern.hpp"
 #include "ui_JirachiPattern.h"
+#include <Core/RNG/LCRNG.hpp>
 
 JirachiPattern::JirachiPattern(QWidget *parent) :
     QWidget(parent),
@@ -27,13 +29,15 @@ JirachiPattern::JirachiPattern(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
 
 JirachiPattern::~JirachiPattern()
 {
+    QSettings setting;
+    setting.setValue("jirachiPattern/size", this->size());
+
     delete ui;
 }
 
@@ -45,6 +49,9 @@ void JirachiPattern::setupModels()
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Pattern"));
     ui->tableView->setModel(model);
+
+    QSettings setting;
+    if (setting.contains("jirachiPattern/size")) this->resize(setting.value("jirachiPattern/size").toSize());
 }
 
 void JirachiPattern::generate(u32 seed)
@@ -74,7 +81,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     XDRNGR rng(seed);
 
     // Populate backwards data
-    for (int m = 0; m < 25; m++)
+    for (u8 m = 0; m < 25; m++)
     {
         seed = rng.nextUInt();
         data.append(seed);
@@ -123,7 +130,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
                     obtain[temp] = true;
 
                     // Check to see if pattern passes
-                    if (obtain[1] && obtain[2] && obtain[3])
+                    if (obtain.at(1) && obtain.at(2) && obtain.at(3))
                     {
                         break;
                     }

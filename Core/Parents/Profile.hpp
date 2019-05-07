@@ -20,10 +20,6 @@
 #ifndef PROFILE_HPP
 #define PROFILE_HPP
 
-#include <QApplication>
-#include <QFile>
-#include <QJsonArray>
-#include <QJsonDocument>
 #include <QJsonObject>
 #include <QVector>
 #include <Core/Util/Game.hpp>
@@ -34,8 +30,8 @@ class Profile
 {
 
 public:
-    Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English);
     Profile();
+    Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English);
     QString getVersionString() const;
     QString getLanguageString() const;
     Game getVersion() const;

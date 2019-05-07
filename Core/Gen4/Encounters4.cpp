@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QFile>
 #include "Encounters4.hpp"
 
 Encounters4::Encounters4(Encounter type, int time, const Profile4 &profile)

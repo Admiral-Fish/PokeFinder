@@ -19,6 +19,9 @@
 
 #include <QApplication>
 #include <QFile>
+#include <QSettings>
+#include <QTextStream>
+#include <QTranslator>
 #include <Forms/MainWindow.hpp>
 
 int main(int argc, char *argv[])
@@ -28,8 +31,9 @@ int main(int argc, char *argv[])
     a.setOrganizationName("PokeFinder Team");
 
     QSettings setting;
-    QString style = setting.value("style", "dark").toString();
+    if (setting.contains("style")) setting.clear();
 
+    QString style = setting.value("settings/style", "dark").toString();
     if (style == "dark")
     {
         QFile file(":/qdarkstyle/style.qss");
@@ -39,6 +43,12 @@ int main(int argc, char *argv[])
             a.setStyleSheet(ts.readAll());
             file.close();
         }
+    }
+
+    QTranslator translator;
+    if (translator.load(QString(":/i18n/PokeFinder_%1.qm").arg(setting.value("settings/locale", "en").toString())))
+    {
+        QApplication::installTranslator(&translator);
     }
 
     MainWindow w;

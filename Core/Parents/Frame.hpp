@@ -20,14 +20,11 @@
 #ifndef FRAME_HPP
 #define FRAME_HPP
 
-#include <QString>
 #include <QVector>
 #include <Core/Util/Encounter.hpp>
 #include <Core/Util/Global.hpp>
 #include <Core/Util/Lead.hpp>
 #include <Core/Util/Method.hpp>
-#include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
 
 class Frame
 {
@@ -40,9 +37,6 @@ public:
     void setIVs(u8 iv1, u8 iv2, u8 iv3, u8 iv4, u8 iv5, u8 iv6);
     void setIDs(u16 tid, u16 sid, u16 psv);
     void setIVs(u16 iv1, u16 iv2);
-    void setPID(u16 pid1, u16 pid2);
-    void setPID(u32 pid, u16 pid1, u16 pid2);
-    void setPID(u32 pid);
     u32 getFrame() const;
     u8 getIV(int index) const;
     QChar getInheritance(int index) const;
@@ -58,9 +52,8 @@ public:
     u32 getNature() const;
     void setNature(const u8 &value);
     u8 getHidden() const;
-    u16 getGender() const;
-    u8 getGenderRatio() const;
-    void setGenderRatio(const u8 &value);
+    u8 getGender() const;
+    void setGender(const u8 &value);
     void setFrame(const u32 &value);
     void setLeadType(const Lead &value);
 
@@ -71,8 +64,7 @@ protected:
     u8 encounterSlot{};
     Encounter encounterType;
     u32 frame{};
-    u16 gender{};
-    u8 genderRatio{};
+    u8 gender{};
     u8 hidden{};
     Lead leadType = Lead::None;
     u8 nature{};

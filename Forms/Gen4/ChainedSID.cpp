@@ -17,8 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "ChainedSID.hpp"
 #include "ui_ChainedSID.h"
+#include <Core/Util/Nature.hpp>
 
 ChainedSID::ChainedSID(QWidget *parent) :
     QWidget(parent),
@@ -27,13 +29,15 @@ ChainedSID::ChainedSID(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
 
 ChainedSID::~ChainedSID()
 {
+    QSettings setting;
+    setting.setValue("chainedSID/size", this->size());
+
     delete ui;
     delete chainedCalc;
 }
@@ -47,6 +51,9 @@ void ChainedSID::setupModels()
 
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->comboBoxNature->addItems(Nature::getFrameNatures());
+
+    QSettings setting;
+    if (setting.contains("chainedSID/size")) this->resize(setting.value("chainedSID/size").toSize());
 }
 
 void ChainedSID::on_pushButtonCalculate_clicked()
@@ -74,7 +81,7 @@ void ChainedSID::on_pushButtonCalculate_clicked()
     row << new QStandardItem(ui->comboBoxGender->currentText());
     model->appendRow(row);
 
-    chainedCalc->addEntry({hp, atk, def, spa, spd, spe}, nature, ability, gender);
+    chainedCalc->addEntry({ hp, atk, def, spa, spd, spe }, nature, ability, gender);
     QVector<u16> sids = chainedCalc->getSIDs();
     if (sids.size() == 1)
     {

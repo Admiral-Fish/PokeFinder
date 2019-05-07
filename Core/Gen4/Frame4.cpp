@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QTranslator>
 #include "Frame4.hpp"
 
 Frame4::Frame4()
@@ -91,6 +92,24 @@ void Frame4::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 
 
     calculateHidden();
     calculatePower();
+}
+
+void Frame4::setPID(u32 pid, u16 genderRatio)
+{
+    this->pid = pid;
+    nature = pid % 25;
+    gender = genderRatio > 2 ? ((pid & 255) >= genderRatio ? 1 : 2) : genderRatio;
+    ability = pid & 1;
+    shiny = ((pid >> 16) ^ (pid & 0xFFFF) ^ psv) < 8;
+}
+
+void Frame4::setPID(u16 pid1, u16 pid2, u16 genderRatio)
+{
+    pid = (pid2 << 16) | pid1;
+    nature = pid % 25;
+    gender = genderRatio > 2 ? ((pid & 255) >= genderRatio ? 1 : 2) : genderRatio;
+    ability = pid & 1;
+    shiny = ((pid >> 16) ^ (pid & 0xFFFF) ^ psv) < 8;
 }
 
 QString Frame4::getCall() const

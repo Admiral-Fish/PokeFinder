@@ -83,14 +83,4 @@
         <file alias="species_ko.txt">Core/Text/species_ko.txt</file>
         <file alias="species_zh.txt">Core/Text/species_zh.txt</file>
     </qresource>
-    <qresource prefix="/translations">
-        <file alias="PokeFinder_de.qm">Translations/PokeFinder_de.qm</file>
-        <file alias="PokeFinder_en.qm">Translations/PokeFinder_en.qm</file>
-        <file alias="PokeFinder_es.qm">Translations/PokeFinder_es.qm</file>
-        <file alias="PokeFinder_fr.qm">Translations/PokeFinder_fr.qm</file>
-        <file alias="PokeFinder_it.qm">Translations/PokeFinder_it.qm</file>
-        <file alias="PokeFinder_ja.qm">Translations/PokeFinder_ja.qm</file>
-        <file alias="PokeFinder_ko.qm">Translations/PokeFinder_ko.qm</file>
-        <file alias="PokeFinder_zh_Hans_CN.qm">Translations/PokeFinder_zh_Hans_CN.qm</file>
-    </qresource>
 </RCC>

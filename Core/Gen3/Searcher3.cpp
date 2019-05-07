@@ -17,7 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QTranslator>
 #include "Searcher3.hpp"
+#include <Core/Util/EncounterSlot.hpp>
 
 Searcher3::Searcher3()
 {
@@ -27,14 +29,14 @@ Searcher3::Searcher3()
     frame.setIDs(tid, sid, psv);
 }
 
-Searcher3::Searcher3(u16 tid, u16 sid, u32 ratio, const FrameCompare &compare)
+Searcher3::Searcher3(u16 tid, u16 sid, u8 genderRatio, const FrameCompare &compare)
 {
     this->tid = tid;
     this->sid = sid;
     psv = tid ^ sid;
+    this->genderRatio = genderRatio;
     this->compare = compare;
     frame.setIDs(tid, sid, psv);
-    frame.setGenderRatio(ratio);
 }
 
 QVector<Frame3> Searcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
@@ -135,7 +137,7 @@ QVector<Frame3> Searcher3::searchMethodChannel(u8 hp, u8 atk, u8 def, u8 spa, u8
         }
 
         frame.setIDs(40122, sid, 40122 ^ sid);
-        frame.setPID(pid2, pid1);
+        frame.setPID(pid2, pid1, genderRatio);
 
         if (compare.comparePID(frame))
         {
@@ -165,7 +167,7 @@ QVector<Frame3> Searcher3::searchMethodColo(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
         // Setup normal frame
         XDRNG rng(pair.second, 1);
         rng.setSeed(pair.second, 1);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
         if (compare.comparePID(frame))
         {
@@ -234,13 +236,13 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
     {
         // Setup normal frame
         PokeRNGR rng(val, frameType == Method::MethodH2 ? 1 : 0);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
         // Use for loop to check both normal and sister spread
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -251,7 +253,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
                 continue;
             }
 
-            LCRNG testRNG = PokeRNGR(seed);
+            PokeRNGR testRNG(seed);
             u32 testPID, slot;
             u16 nextRNG = seed >> 16;
             u16 nextRNG2 = testRNG.nextUShort();
@@ -388,7 +390,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
         {
             for (int i = 0; i < frames.size();)
             {
-                u32 check = frames[i].getSeed() * 0x41c64e6d + 0x6073;
+                u32 check = frames.at(i).getSeed() * 0x41c64e6d + 0x6073;
 
                 if (((check >> 16) % 2880) >= rate)
                 {
@@ -396,7 +398,7 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
                 }
                 else
                 {
-                    frames[i].setSeed(frames[i].getSeed() * 0xeeb9eb65 + 0xa3561a1);
+                    frames[i].setSeed(frames.at(i).getSeed() * 0xeeb9eb65 + 0xa3561a1);
                     i++;
                 }
             }
@@ -424,7 +426,7 @@ QVector<Frame3> Searcher3::searchMethodXD(u8 hp, u8 atk, u8 def, u8 spa, u8 spd,
     {
         // Setup normal frame
         XDRNG rng(pair.second, 1);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
         if (compare.comparePID(frame))
         {
@@ -567,7 +569,7 @@ QVector<Frame3> Searcher3::searchMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 
     {
         // Setup normal frame
         XDRNG rng(pair.second, 1);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
         if (compare.comparePID(frame))
         {
@@ -602,7 +604,7 @@ QVector<Frame3> Searcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd
     {
         // Setup normal frame
         PokeRNGR rng(seed, frameType == Method::Method2 ? 1 : 0);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         frame.setSeed(rng.nextUInt());
         if (compare.comparePID(frame))
         {
@@ -639,7 +641,7 @@ QVector<Frame3> Searcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u
         // Setup normal frame
         PokeRNGR rng(seed);
         u16 temp = rng.nextUShort();
-        frame.setPID(temp, rng.nextUShort());
+        frame.setPID(temp, rng.nextUShort(), genderRatio);
         frame.setSeed(rng.nextUInt());
         if (compare.comparePID(frame))
         {

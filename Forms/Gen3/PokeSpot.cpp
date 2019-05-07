@@ -17,8 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "PokeSpot.hpp"
 #include "ui_PokeSpot.h"
+#include <Core/Parents/FrameCompare.hpp>
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Nature.hpp>
 
 PokeSpot::PokeSpot(QWidget *parent) :
     QWidget(parent),
@@ -34,8 +38,11 @@ PokeSpot::PokeSpot(QWidget *parent) :
 PokeSpot::~PokeSpot()
 {
     QSettings setting;
-    setting.setValue("pokespotTID", ui->textBoxTID->text());
-    setting.setValue("pokespotSID", ui->textBoxSID->text());
+    setting.beginGroup("pokespot");
+    setting.setValue("tid", ui->textBoxTID->text());
+    setting.setValue("sid", ui->textBoxSID->text());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -50,14 +57,25 @@ void PokeSpot::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
+    ui->comboBoxGenderRatio->setItemData(0, 0);
+    ui->comboBoxGenderRatio->setItemData(1, 127);
+    ui->comboBoxGenderRatio->setItemData(2, 191);
+    ui->comboBoxGenderRatio->setItemData(3, 63);
+    ui->comboBoxGenderRatio->setItemData(4, 31);
+    ui->comboBoxGenderRatio->setItemData(5, 1);
+    ui->comboBoxGenderRatio->setItemData(6, 2);
+
     ui->tableView->setModel(model);
 
     ui->comboBoxNature->setup(Nature::getNatures());
     ui->comboBoxSpotType->setup();
 
     QSettings setting;
-    if (setting.contains("pokespotTID")) ui->textBoxTID->setText(setting.value("pokespotTID").toString());
-    if (setting.contains("pokespotSID")) ui->textBoxSID->setText(setting.value("pokespotSID").toString());
+    setting.beginGroup("pokespot");
+    if (setting.contains("tid")) ui->textBoxTID->setText(setting.value("tid").toString());
+    if (setting.contains("sid")) ui->textBoxSID->setText(setting.value("sid").toString());
+    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    setting.endGroup();
 }
 
 void PokeSpot::on_pushButtonGenerate_clicked()
@@ -71,7 +89,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
     u32 maxResults = ui->textBoxMaxResults->getUInt();
     u16 tid = ui->textBoxTID->getUShort();
     u16 sid = ui->textBoxSID->getUShort();
-    int genderRatio = ui->comboBoxGenderRatio->currentIndex();
+    u8 genderRatio = ui->comboBoxGenderRatio->currentData().toUInt();
 
     XDRNG rng(seed, initialFrame - 1);
     QVector<u16> rngList(maxResults + 5);
@@ -80,10 +98,9 @@ void PokeSpot::on_pushButtonGenerate_clicked()
         x = rng.nextUShort();
     }
 
-    Frame3 frame = Frame3(tid, sid, tid ^ sid);
-    FrameCompare compare = FrameCompare(ui->comboBoxGender->currentIndex(), genderRatio, ui->comboBoxAbility->currentIndex(),
-                                        ui->comboBoxNature->getChecked(), ui->checkBoxShinyOnly->isChecked());
-    frame.setGenderRatio(static_cast<u32>(genderRatio));
+    Frame3 frame(tid, sid, tid ^ sid);
+    FrameCompare compare(ui->comboBoxGender->currentIndex(), ui->comboBoxAbility->currentIndex(),
+                         ui->comboBoxNature->getChecked(), ui->checkBoxShinyOnly->isChecked());
 
     QVector<bool> spots = ui->comboBoxSpotType->getChecked();
 
@@ -122,7 +139,7 @@ void PokeSpot::on_pushButtonGenerate_clicked()
                     frame.setLockReason(tr("Rare"));
                 }
 
-                frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3));
+                frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3), genderRatio);
                 if (compare.comparePID(frame))
                 {
                     frame.setFrame(cnt + initialFrame);

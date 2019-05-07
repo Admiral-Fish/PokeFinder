@@ -17,6 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QMessageBox>
+#include <QSettings>
 #include "ProfileEditor3.hpp"
 #include "ui_ProfileEditor3.h"
 
@@ -26,7 +28,6 @@ ProfileEditor3::ProfileEditor3(QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
@@ -37,7 +38,6 @@ ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 
@@ -54,6 +54,9 @@ ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) :
 
 ProfileEditor3::~ProfileEditor3()
 {
+    QSettings setting;
+    setting.setValue("profileEditor3/size", this->size());
+
     delete ui;
 }
 
@@ -86,6 +89,9 @@ void ProfileEditor3::setupModels()
     ui->comboBoxLanguage->setItemData(3, Language::Italian);
     ui->comboBoxLanguage->setItemData(4, Language::German);
     ui->comboBoxLanguage->setItemData(5, Language::Japanese);
+
+    QSettings setting;
+    if (setting.contains("profileEditor3/size")) this->resize(setting.value("profileEditor3/size").toSize());
 }
 
 void ProfileEditor3::on_pushButtonAccept_clicked()

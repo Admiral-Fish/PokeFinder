@@ -20,11 +20,8 @@
 #ifndef EGGS3_HPP
 #define EGGS3_HPP
 
-#include <QSettings>
-#include <Core/Gen3/Egg3.hpp>
-#include <Core/Gen3/Frame3.hpp>
-#include <Core/Parents/FrameCompare.hpp>
-#include <Forms/Gen3/ProfileManager3.hpp>
+#include <QWidget>
+#include <Core/Gen3/Profile3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
 
 namespace Ui

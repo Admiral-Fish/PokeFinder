@@ -18,6 +18,10 @@
  */
 
 #include "Searcher4.hpp"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/EncounterSlot.hpp>
+
+static const QVector<u8> genderThreshHolds = { 0, 0x96, 0xC8, 0x4B, 0x32 };
 
 Searcher4::Searcher4()
 {
@@ -25,8 +29,6 @@ Searcher4::Searcher4()
     sid = 54321;
     psv = tid ^ sid;
 }
-
-#include <QDebug>
 
 Searcher4::Searcher4(u16 tid, u16 sid, u8 genderRatio, u32 minDelay, u32 maxDelay, u32 minFrame, u32 maxFrame, const FrameCompare &compare, Method method)
 {
@@ -114,7 +116,6 @@ QVector<Frame4> Searcher4::searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
@@ -130,7 +131,7 @@ QVector<Frame4> Searcher4::searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     {
         // Setup normal frame
         PokeRNGR rng(seed);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         frame.setSeed(rng.nextUInt());
         if (compare.comparePID(frame))
         {
@@ -154,7 +155,6 @@ QVector<Frame4> Searcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
@@ -172,12 +172,12 @@ QVector<Frame4> Searcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     {
         // Setup normal frame
         PokeRNGR rng(val);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -257,7 +257,6 @@ QVector<Frame4> Searcher4::searchMethodJSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setLeadType(Lead::Synchronize);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
@@ -276,12 +275,12 @@ QVector<Frame4> Searcher4::searchMethodJSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     {
         // Setup normal frame
         PokeRNGR rng(val);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -401,7 +400,6 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
@@ -424,9 +422,9 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
         u32 seed = rng.nextUInt();
         u32 nibble, slot;
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 pid2 ^= 0x8000;
                 pid1 ^= 0x8000;
@@ -472,7 +470,7 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
                 }
 
                 u8 choppedPID = pid2 / 0xa3e;
-                for (const auto &buffer : unbiasedBuffer)
+                for (const auto &buffer : genderThreshHolds)
                 {
                     switch (buffer)
                     {
@@ -496,7 +494,7 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
                             break;
                     }
 
-                    frame.setPID(choppedPID + buffer, 0);
+                    frame.setPID(choppedPID + buffer, genderRatio);
                     if (!compare.comparePID(frame))
                     {
                         continue;
@@ -519,7 +517,6 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
@@ -542,9 +539,9 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
         u16 pid1 = rng.nextUShort();
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 pid1 ^= 0x8000;
                 pid2 ^= 0x8000;
@@ -552,11 +549,11 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
             }
 
             PokeRNGR testRNG(seed);
-            u32 testPID, slot, nibble;
+            u32 testPID, slot = 0, nibble = 0;
             u16 nextRNG = seed >> 16;
             u16 nextRNG2 = testRNG.nextUShort();
 
-            frame.setPID(pid1, pid2);
+            frame.setPID(pid1, pid2, genderRatio);
             if (compare.comparePID(frame))
             {
                 do
@@ -755,7 +752,7 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
                 u8 choppedPID = pid2 / 0xA3E;
                 if (!skipFrame)
                 {
-                    for (const auto &buffer : unbiasedBuffer)
+                    for (const auto &buffer : genderThreshHolds)
                     {
                         switch (buffer)
                         {
@@ -779,7 +776,7 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
                                 break;
                         }
 
-                        frame.setPID(buffer + choppedPID, 0);
+                        frame.setPID(buffer + choppedPID, genderRatio);
                         if (!compare.comparePID(frame))
                         {
                             continue;
@@ -804,7 +801,6 @@ QVector<Frame4> Searcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
@@ -823,12 +819,12 @@ QVector<Frame4> Searcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     {
         // Setup normal frame
         PokeRNGR rng(val);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -923,7 +919,6 @@ QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setLeadType(Lead::Synchronize);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
@@ -943,12 +938,12 @@ QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     {
         // Setup normal frame
         PokeRNGR rng(val);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -1103,7 +1098,6 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
@@ -1127,9 +1121,9 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
         u32 seed = rng.nextUInt();
         u32 nibble, slot;
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 pid2 ^= 0x8000;
                 pid1 ^= 0x8000;
@@ -1190,7 +1184,7 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
                 }
 
                 u8 choppedPID = pid2 % 25;
-                for (const auto &buffer : unbiasedBuffer)
+                for (const auto &buffer : genderThreshHolds)
                 {
                     switch (buffer)
                     {
@@ -1214,7 +1208,7 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
                             break;
                     }
 
-                    frame.setPID(choppedPID + buffer, 0);
+                    frame.setPID(choppedPID + buffer, genderRatio);
                     if (!compare.comparePID(frame))
                     {
                         continue;
@@ -1237,7 +1231,6 @@ QVector<Frame4> Searcher4::searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 sp
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
@@ -1257,12 +1250,12 @@ QVector<Frame4> Searcher4::searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 sp
     {
         // Setup normal frame
         PokeRNG rng(val);
-        frame.setPID(rng.nextUShort(), rng.nextUShort());
+        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 frame.xorFrame();
                 seed ^= 0x80000000;
@@ -1362,7 +1355,6 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
@@ -1386,9 +1378,9 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
         u16 pid1 = rng.nextUShort();
         u32 seed = rng.nextUInt();
 
-        for (int i = 0; i < 2; i++)
+        for (const bool &flag : { false, true })
         {
-            if (i == 1)
+            if (flag)
             {
                 pid1 ^= 0x8000;
                 pid2 ^= 0x8000;
@@ -1396,11 +1388,11 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
             }
 
             PokeRNGR testRNG(seed);
-            u32 testPID, slot, nibble;
+            u32 testPID, slot = 0, nibble = 0;
             u16 nextRNG = seed >> 16;
             u16 nextRNG2 = testRNG.nextUShort();
 
-            frame.setPID(pid1, pid2);
+            frame.setPID(pid1, pid2, genderRatio);
             if (compare.comparePID(frame))
             {
                 do
@@ -1661,7 +1653,7 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
                 u8 choppedPID = pid2 % 25;
                 if (!skipFrame)
                 {
-                    for (const auto &buffer : unbiasedBuffer)
+                    for (const auto &buffer : genderThreshHolds)
                     {
                         switch (buffer)
                         {
@@ -1685,7 +1677,7 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
                                 break;
                         }
 
-                        frame.setPID(buffer + choppedPID, 0);
+                        frame.setPID(buffer + choppedPID, genderRatio);
                         if (!compare.comparePID(frame))
                         {
                             continue;
@@ -1710,7 +1702,6 @@ QVector<Frame4> Searcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))
@@ -1737,7 +1728,7 @@ QVector<Frame4> Searcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 
 
         low = chainedPIDLow(calls);
         high = chainedPIDHigh(calls[13], low, tid, sid);
-        frame.setPID(low, high);
+        frame.setPID(low, high, genderRatio);
 
         if (compare.comparePID(frame))
         {
@@ -1759,7 +1750,6 @@ QVector<Frame4> Searcher4::searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8
     QVector<Frame4> frames;
 
     Frame4 frame(tid, sid, psv);
-    frame.setGenderRatio(genderRatio);
     frame.setIVs(hp, atk, def, spa, spd, spe);
 
     if (!compare.compareHiddenPower(frame))

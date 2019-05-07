@@ -21,16 +21,7 @@
 #define STATIONARY4_HPP
 
 #include <QMenu>
-#include <QMutex>
-#include <QFileDialog>
-#include <QSettings>
-#include <QThread>
-#include <QTimer>
-#include <Core/Gen4/Generator4.hpp>
-#include <Core/Gen4/IVSearcher4.hpp>
-#include <Core/Util/Translator.hpp>
-#include <Forms/Gen4/ProfileManager4.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
+#include <Core/Gen4/Profile4.hpp>
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <Models/Gen4/Stationary4Model.hpp>
 
@@ -60,9 +51,9 @@ private:
     QMenu *searcherMenu{};
 
     void setupModels();
-    void updateView(const QVector<Frame4> &frames, int progress);
 
 private slots:
+    void updateProgress(const QVector<Frame4> &frames, int progress);
     void refreshProfiles();
     void on_pushButtonGenerate_clicked();
     void on_pushButtonSearch_clicked();

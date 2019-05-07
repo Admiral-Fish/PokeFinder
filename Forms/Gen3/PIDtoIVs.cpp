@@ -17,8 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QClipboard>
+#include <QSettings>
 #include "PIDtoIVs.hpp"
 #include "ui_PIDtoIVs.h"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/RNGCache.hpp>
+#include <Core/RNG/RNGEuclidean.hpp>
 
 PIDtoIVs::PIDtoIVs(QWidget *parent) :
     QWidget(parent),
@@ -27,14 +32,15 @@ PIDtoIVs::PIDtoIVs(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
-
 }
 
 PIDtoIVs::~PIDtoIVs()
 {
+    QSettings setting;
+    setting.setValue("pidToIVs/size", this->size());
+
     delete ui;
 }
 
@@ -66,6 +72,9 @@ void PIDtoIVs::setupModels()
         emit moveResultsToStationary("", "", ivs.at(0).toUShort(), ivs.at(1).toUShort(), ivs.at(2).toUShort(),
                                      ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
     });
+
+    QSettings setting;
+    if (setting.contains("pidToIVs/size")) this->resize(setting.value("pidToIVs/size").toSize());
 }
 
 void PIDtoIVs::calcFromPID(u32 pid)
@@ -77,7 +86,7 @@ void PIDtoIVs::calcFromPID(u32 pid)
 
 void PIDtoIVs::calcMethod124(u32 pid)
 {
-    RNGCache cache(Method1);
+    RNGCache cache(Method::Method1);
 
     u32 pidl = (pid & 0xFFFF) << 16;
     u32 pidh = pid & 0xFFFF0000;
@@ -93,7 +102,7 @@ void PIDtoIVs::calcMethod124(u32 pid)
 
 void PIDtoIVs::calcMethodXD(u32 pid)
 {
-    RNGEuclidean euclidean(XDColo);
+    RNGEuclidean euclidean(Method::XDColo);
 
     QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsPID(pid & 0xFFFF0000, (pid & 0xFFFF) << 16);
     for (const auto &pair : seeds)
@@ -107,7 +116,7 @@ void PIDtoIVs::calcMethodXD(u32 pid)
 
 void PIDtoIVs::calcMethodChannel(u32 pid)
 {
-    RNGEuclidean euclidean(XDColo);
+    RNGEuclidean euclidean(Method::XDColo);
 
     u32 pid1 = pid >> 16;
     u32 pid2 = pid & 0xFFFF;

@@ -20,18 +20,9 @@
 #ifndef WILD3_HPP
 #define WILD3_HPP
 
-#include <QClipboard>
-#include <QFileDialog>
 #include <QMenu>
-#include <QSettings>
-#include <QThread>
-#include <QTimer>
-#include <Core/Gen3/Encounters3.hpp>
-#include <Core/Gen3/Generator3.hpp>
-#include <Core/Gen3/IVSearcher3.hpp>
-#include <Core/Util/Translator.hpp>
-#include <Forms/Gen3/ProfileManager3.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
+#include <Core/Gen3/EncounterArea3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Wild3Model.hpp>
 
@@ -65,13 +56,13 @@ private:
     QVector<EncounterArea3> encounterSearcher;
 
     void setupModels();
-    void updateView(const QVector<Frame3> &frames, int progress);
     void updateLocationsGenerator();
     void updateLocationsSearcher();
     void updatePokemonGenerator();
     void updatePokemonSearcher();
 
 private slots:
+    void updateProgress(const QVector<Frame3> &frames, int progress);
     void refreshProfiles();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonGenerate_clicked();

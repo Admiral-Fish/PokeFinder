@@ -17,8 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "SearchCoinFlips.hpp"
 #include "ui_SearchCoinFlips.h"
+#include <Core/Util/Utilities.hpp>
 
 SearchCoinFlips::SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent) :
     QDialog(parent),
@@ -26,14 +28,19 @@ SearchCoinFlips::SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     data = model;
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
+
+    QSettings setting;
+    if (setting.contains("searchCoinFlips/size")) this->resize(setting.value("searchCoinFlips/size").toSize());
 }
 
 SearchCoinFlips::~SearchCoinFlips()
 {
+    QSettings setting;
+    setting.setValue("searchCoinFlips/size", this->size());
+
     delete ui;
 }
 
@@ -62,9 +69,9 @@ void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &val)
     int num = 0;
 
     possible.clear();
-    for (auto &i : data)
+    for (const auto &dt : data)
     {
-        QStringList compare = Utilities::coinFlips(i.getSeed(), 15).split(",", QString::SkipEmptyParts);
+        QStringList compare = Utilities::coinFlips(dt.getSeed(), 15).split(",", QString::SkipEmptyParts);
 
         bool pass = true;
         for (int j = 0; j < results.size(); j++)

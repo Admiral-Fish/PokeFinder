@@ -16,12 +16,6 @@
     <height>330</height>
    </size>
   </property>
-  <property name="maximumSize">
-   <size>
-    <width>480</width>
-    <height>330</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>PID to IV</string>
   </property>

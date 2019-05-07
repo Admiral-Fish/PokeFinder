@@ -17,8 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "IVtoPID.hpp"
 #include "ui_IVtoPID.h"
+#include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/RNGEuclidean.hpp>
+#include <Core/Util/Nature.hpp>
 
 IVtoPID::IVtoPID(QWidget *parent) :
     QWidget(parent),
@@ -27,13 +31,15 @@ IVtoPID::IVtoPID(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
 
 IVtoPID::~IVtoPID()
 {
+    QSettings setting;
+    setting.setValue("ivToPID/size", this->size());
+
     delete ui;
 }
 
@@ -45,6 +51,9 @@ void IVtoPID::setupModels()
 
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->comboBoxNature->addItems(Nature::getNatures());
+
+    QSettings setting;
+    if (setting.contains("ivToPID/size")) this->resize(setting.value("ivToPID/size").toSize());
 }
 
 QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid)

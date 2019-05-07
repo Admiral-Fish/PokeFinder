@@ -17,8 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QDateTime>
+#include <QMessageBox>
+#include <QSettings>
 #include "SeedToTime3.hpp"
 #include "ui_SeedToTime3.h"
+#include <Core/RNG/LCRNG.hpp>
 
 SeedToTime3::SeedToTime3(QWidget *parent) :
     QWidget(parent),
@@ -27,7 +31,6 @@ SeedToTime3::SeedToTime3(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
@@ -39,7 +42,6 @@ SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 
@@ -50,7 +52,10 @@ SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
 SeedToTime3::~SeedToTime3()
 {
     QSettings setting;
-    setting.setValue("seed3Year", ui->textBoxYear->text());
+    setting.beginGroup("seedToTime3");
+    setting.setValue("year", ui->textBoxYear->text());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -66,7 +71,10 @@ void SeedToTime3::setupModels()
     ui->tableView->setModel(model);
 
     QSettings setting;
-    if (setting.contains("seed3Year")) ui->textBoxYear->setText(setting.value("seed3Year").toString());
+    setting.beginGroup("seedToTime3");
+    if (setting.contains("year")) ui->textBoxYear->setText(setting.value("year").toString());
+    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    setting.endGroup();
 }
 
 u16 SeedToTime3::originSeed(u32 seed)
@@ -88,7 +96,7 @@ void SeedToTime3::seedToTime(u32 seed, u32 year)
     u32 maxDay = 0;
 
     // For whatever reason the start date is different if the year is greater then 2000
-    QDateTime start = QDateTime(QDate(year == 2000 ? 2000 : 2001, 1, 1), QTime(0, 0));
+    QDateTime start(QDate(year == 2000 ? 2000 : 2001, 1, 1), QTime(0, 0));
 
     // Hard cap upper year since game crashes above year 2037
     // Signed overflow error due to how the clock is setup

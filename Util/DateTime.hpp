@@ -20,9 +20,9 @@
 #ifndef DATETIME_HPP
 #define DATETIME_HPP
 
+#include <QDateTime>
 #include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/Util/Game.hpp>
-#include <Core/Util/Utilities.hpp>
 
 class DateTime
 {

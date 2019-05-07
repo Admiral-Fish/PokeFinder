@@ -20,13 +20,9 @@
 #ifndef PIDTOIVS_HPP
 #define PIDTOIVS_HPP
 
-#include <QClipboard>
 #include <QMenu>
 #include <QStandardItemModel>
-#include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/RNGCache.hpp>
-#include <Core/RNG/RNGEuclidean.hpp>
-#include <Core/Util/Method.hpp>
+#include <Core/Util/Global.hpp>
 
 namespace Ui
 {

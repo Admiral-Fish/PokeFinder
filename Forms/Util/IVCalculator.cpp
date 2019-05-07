@@ -17,8 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QSettings>
 #include "IVCalculator.hpp"
 #include "ui_IVCalculator.h"
+#include <Core/Util/IVChecker.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
 
 IVCalculator::IVCalculator(QWidget *parent) :
     QWidget(parent),
@@ -27,13 +32,15 @@ IVCalculator::IVCalculator(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
 
 IVCalculator::~IVCalculator()
 {
+    QSettings setting;
+    setting.setValue("ivCalculator/size", this->size());
+
     delete ui;
 }
 
@@ -45,6 +52,9 @@ void IVCalculator::setupModels()
     ui->comboBoxNature->addItems(Nature::getFrameNatures());
     ui->comboBoxHiddenPower->addItems(Power::getPowers());
     ui->comboBoxCharacteristic->addItems(Translator::getCharacteristic());
+
+    QSettings setting;
+    if (setting.contains("ivCalculator/size")) this->resize(setting.value("ivCalculator/size").toSize());
 }
 
 void IVCalculator::displayIVs(QLabel *label, const QVector<u8> &ivs)
@@ -110,14 +120,14 @@ void IVCalculator::on_pushButtonFindIVs_clicked()
     Characteristic characteristic = characteristics.at(ui->comboBoxCharacteristic->currentIndex());
 
     IVChecker ivCheck;
-    auto possible = ivCheck.calculateIVs(pokemon[ui->comboBoxPokemon->currentIndex() + 1], stats, level, nature, characteristic, hiddenPower);
+    auto possible = ivCheck.calculateIVs(pokemon.at(ui->comboBoxPokemon->currentIndex() + 1), stats, level, nature, characteristic, hiddenPower);
 
-    displayIVs(ui->labelHPIVValue, possible[0]);
-    displayIVs(ui->labelAtkIVValue, possible[1]);
-    displayIVs(ui->labelDefIVValue, possible[2]);
-    displayIVs(ui->labelSpAIVValue, possible[3]);
-    displayIVs(ui->labelSpDIVValue, possible[4]);
-    displayIVs(ui->labelSpeIVValue, possible[5]);
+    displayIVs(ui->labelHPIVValue, possible.at(0));
+    displayIVs(ui->labelAtkIVValue, possible.at(1));
+    displayIVs(ui->labelDefIVValue, possible.at(2));
+    displayIVs(ui->labelSpAIVValue, possible.at(3));
+    displayIVs(ui->labelSpDIVValue, possible.at(4));
+    displayIVs(ui->labelSpeIVValue, possible.at(5));
 }
 
 void IVCalculator::on_comboBoxPokemon_currentIndexChanged(int index)

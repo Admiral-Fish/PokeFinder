@@ -20,13 +20,10 @@
 #ifndef IVCHECKER_HPP
 #define IVCHECKER_HPP
 
-#include <QSet>
-#include <QtMath>
 #include <QVector>
 #include <Core/Parents/Pokemon.hpp>
 #include <Core/Util/Characteristic.hpp>
 #include <Core/Util/Global.hpp>
-#include <Core/Util/Nature.hpp>
 
 class IVChecker
 {

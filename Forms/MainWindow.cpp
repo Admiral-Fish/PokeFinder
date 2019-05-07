@@ -17,15 +17,29 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QDesktopServices>
+#include <QtNetwork>
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
+#include <Forms/Gen3/GameCubeRTC.hpp>
+#include <Forms/Gen3/GameCubeSeedFinder.hpp>
+#include <Forms/Gen3/JirachiPattern.hpp>
+#include <Forms/Gen3/PIDtoIVs.hpp>
+#include <Forms/Gen3/SeedToTime3.hpp>
+#include <Forms/Gen3/SpindaPainter.hpp>
+#include <Forms/Gen3/PokeSpot.hpp>
+#include <Forms/Gen4/ChainedSID.hpp>
+#include <Forms/Gen4/SeedtoTime4.hpp>
+#include <Forms/Util/EncounterLookup.hpp>
+#include <Forms/Util/IVCalculator.hpp>
+#include <Forms/Util/IVtoPID.hpp>
+#include <Forms/Util/Researcher.hpp>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     checkProfileJson();
@@ -36,6 +50,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    QSettings setting;
+    setting.beginGroup("settings");
+    setting.setValue("locale", currentLanguage);
+    setting.setValue("style", currentStyle);
+    setting.endGroup();
+
     delete ui;
     delete stationary3;
     delete wild3;
@@ -54,30 +74,23 @@ void MainWindow::setupLanguage()
     connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
 
     QSettings setting;
-    QString currLang = setting.value("locale", "en").toString();
+    currentLanguage = setting.value("settings/locale", "en").toString();
 
     QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh_Hans_CN" };
-    for (int i = 0; i < locales.size(); i++)
+    for (u8 i = 0; i < locales.size(); i++)
     {
         const QString &lang = locales.at(i);
 
         auto *action = ui->menuLanguage->actions()[i];
         action->setData(lang);
 
-        if (currLang == lang)
+        if (currentLanguage == lang)
         {
             action->setChecked(true);
         }
 
         langGroup->addAction(action);
     }
-
-    QApplication::removeTranslator(&translator);
-    if (translator.load(QString(":/translations/PokeFinder_%1.qm").arg(currLang)))
-    {
-        QApplication::installTranslator(&translator);
-    }
-    ui->retranslateUi(this);
 }
 
 void MainWindow::setupStyle()
@@ -87,17 +100,17 @@ void MainWindow::setupStyle()
     connect(styleGroup, &QActionGroup::triggered, this, &MainWindow::slotStyleChanged);
 
     QSettings setting;
-    QString currStyle = setting.value("style", "light").toString();
+    currentStyle = setting.value("settings/style", "dark").toString();
 
     QStringList styles = { "light", "dark" };
-    for (int i = 0; i < styles.size(); i++)
+    for (u8 i = 0; i < styles.size(); i++)
     {
         const QString &style = styles.at(i);
 
         auto *action = ui->menuStyle->actions()[i];
         action->setData(style);
 
-        if (currStyle == style)
+        if (currentStyle == style)
         {
             action->setChecked(true);
         }
@@ -119,7 +132,7 @@ void MainWindow::checkUpdates()
 {
     QSettings setting;
     QDate today = QDate::currentDate();
-    QDate lastOpened = setting.value("lastOpened", today).toDate();
+    QDate lastOpened = setting.value("settings/lastOpened", today).toDate();
 
     if (lastOpened.daysTo(today) > 0)
     {
@@ -144,7 +157,7 @@ void MainWindow::checkUpdates()
         }
     }
 
-    setting.setValue("lastOpened", today);
+    setting.setValue("settings/lastOpened", today);
 }
 
 void MainWindow::slotLanguageChanged(QAction *action)
@@ -152,11 +165,9 @@ void MainWindow::slotLanguageChanged(QAction *action)
     if (action)
     {
         QString lang = action->data().toString();
-
-        QSettings setting;
-        if (setting.value("locale", "en") != lang)
+        if (currentLanguage != lang)
         {
-            setting.setValue("locale", lang);
+            currentLanguage = lang;
 
             QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
             if (message.exec() == QMessageBox::Yes)
@@ -173,11 +184,9 @@ void MainWindow::slotStyleChanged(QAction *action)
     if (action)
     {
         QString style = action->data().toString();
-
-        QSettings setting;
-        if (setting.value("style", "light") != style)
+        if (currentStyle != style)
         {
-            setting.setValue("style", style);
+            currentStyle = style;
 
             QMessageBox message(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
             if (message.exec() == QMessageBox::Yes)
@@ -269,6 +278,13 @@ void MainWindow::on_actionGameCubeRTC_triggered()
     auto *rtc = new GameCubeRTC();
     rtc->show();
     rtc->raise();
+}
+
+void MainWindow::on_actionGameCube_Seed_Finder_triggered()
+{
+    auto *finder = new GameCubeSeedFinder();
+    finder->show();
+    finder->raise();
 }
 
 void MainWindow::on_actionIVtoPID3_triggered()

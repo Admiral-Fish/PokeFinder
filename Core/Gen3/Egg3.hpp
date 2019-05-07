@@ -22,15 +22,13 @@
 
 #include <Core/Gen3/Frame3.hpp>
 #include <Core/Parents/Egg.hpp>
-#include <Core/Parents/FrameCompare.hpp>
-#include <Core/RNG/LCRNG.hpp>
 
 class Egg3 : public Egg
 {
 
 public:
     Egg3();
-    Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed = 0);
+    Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u16 genderRatio, u32 seed = 0);
     QVector<Frame3> generate(const FrameCompare &compare) const;
     void setParents(const QVector<u8> &parent1, const QVector<u8> &parent2);
     void setMinRedraw(const u8 &value);
@@ -59,8 +57,8 @@ private:
 
     QVector<Frame3> generateEmeraldPID(const FrameCompare &compare) const;
     QVector<Frame3> generateEmeraldIVs(const FrameCompare &compare) const;
-    QVector<Frame3> generateLower(const FrameCompare &compare) const;
-    QVector<Frame3> generateUpper(const QVector<Frame3> &lower, const FrameCompare &compare) const;
+    QVector<QPair<u32, u16>> generateLower(const FrameCompare &compare) const;
+    QVector<Frame3> generateUpper(const QVector<QPair<u32, u16>> &lower, const FrameCompare &compare) const;
 
 };
 

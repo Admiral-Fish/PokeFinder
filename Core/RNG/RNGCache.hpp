@@ -20,7 +20,6 @@
 #ifndef RNGCACHE_HPP
 #define RNGCACHE_HPP
 
-#include <QHash>
 #include <QVector>
 #include <Core/Util/Global.hpp>
 #include <Core/Util/Method.hpp>
@@ -39,7 +38,8 @@ private:
     u32 add{};
     u32 k{};
     u32 mult{};
-    QHash<u16, u16> keys;
+    QVector<u8> low;
+    QVector<bool> flags;
 
     void populateMap();
     void setupCache(Method method);

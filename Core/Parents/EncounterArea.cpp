@@ -18,6 +18,7 @@
  */
 
 #include "EncounterArea.hpp"
+#include <Core/Util/Translator.hpp>
 
 EncounterArea::EncounterArea(int location, Encounter type, const QVector<Slot> &pokemon)
 {
@@ -92,45 +93,3 @@ void EncounterArea::setSlot(u8 index, u16 specie, Pokemon mon)
     pokemon[index].setSpecie(specie, mon);
 }
 
-
-Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon)
-{
-    this->specie = specie;
-    this->minLevel = minLevel;
-    this->maxLevel = maxLevel;
-    this->pokemon = pokemon;
-}
-
-Slot::Slot(u16 specie, u8 level, Pokemon pokemon)
-{
-    this->specie = specie;
-    minLevel = level;
-    maxLevel = level;
-    this->pokemon = pokemon;
-}
-
-u8 Slot::getMinLevel() const
-{
-    return minLevel;
-}
-
-u8 Slot::getMaxLevel() const
-{
-    return maxLevel;
-}
-
-u16 Slot::getSpecie() const
-{
-    return specie;
-}
-
-Pokemon Slot::getPokemon() const
-{
-    return pokemon;
-}
-
-void Slot::setSpecie(u16 specie, Pokemon pokemon)
-{
-    this->specie = specie;
-    this->pokemon = pokemon;
-}

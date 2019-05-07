@@ -17,8 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QClipboard>
+#include <QSettings>
 #include "GameCube.hpp"
 #include "ui_GameCube.h"
+#include <Core/Gen3/Generator3.hpp>
+#include <Core/Gen3/IVSearcher3.hpp>
+#include <Core/Util/Nature.hpp>
+#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
+#include <Forms/Gen3/GameCubeRTC.hpp>
+#include <Forms/Gen3/ProfileManager3.hpp>
 
 GameCube::GameCube(QWidget *parent) :
     QWidget(parent),
@@ -29,6 +38,10 @@ GameCube::GameCube(QWidget *parent) :
 
     ui->labelSearcherShadow->setVisible(false);
     ui->comboBoxSearcherShadow->setVisible(false);
+    ui->labelGeneratorShadow->setVisible(false);
+    ui->comboBoxGeneratorShadow->setVisible(false);
+    ui->labelGeneratorType->setVisible(false);
+    ui->comboBoxGeneratorType->setVisible(false);
 
     updateProfiles();
     setupModels();
@@ -39,7 +52,10 @@ GameCube::GameCube(QWidget *parent) :
 GameCube::~GameCube()
 {
     QSettings setting;
-    setting.setValue("gamecubeProfile", ui->comboBoxProfiles->currentIndex());
+    setting.beginGroup("gamecube");
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -62,10 +78,10 @@ void GameCube::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("gamecubeProfile").toInt();
+    int val = setting.value("gamecube/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
-        ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
+        ui->comboBoxProfiles->setCurrentIndex(val);
     }
 }
 
@@ -96,11 +112,29 @@ void GameCube::setupModels()
     ui->comboBoxSearcherHiddenPower->setup(Power::getPowers());
 
     ui->comboBoxGeneratorMethod->addItem(tr("XD/Colo"), Method::XDColo);
+    ui->comboBoxGeneratorMethod->addItem(tr("Gales"), Method::XD);
+    ui->comboBoxGeneratorMethod->addItem(tr("Colo"), Method::Colo);
     ui->comboBoxGeneratorMethod->addItem(tr("Channel"), Method::Channel);
     ui->comboBoxSearcherMethod->addItem(tr("XD/Colo"), Method::XDColo);
     ui->comboBoxSearcherMethod->addItem(tr("Gales"), Method::XD);
     ui->comboBoxSearcherMethod->addItem(tr("Colo"), Method::Colo);
     ui->comboBoxSearcherMethod->addItem(tr("Channel"), Method::Channel);
+
+    ui->comboBoxGeneratorGenderRatio->setItemData(0, 0);
+    ui->comboBoxGeneratorGenderRatio->setItemData(1, 127);
+    ui->comboBoxGeneratorGenderRatio->setItemData(2, 191);
+    ui->comboBoxGeneratorGenderRatio->setItemData(3, 63);
+    ui->comboBoxGeneratorGenderRatio->setItemData(4, 31);
+    ui->comboBoxGeneratorGenderRatio->setItemData(5, 1);
+    ui->comboBoxGeneratorGenderRatio->setItemData(6, 2);
+
+    ui->comboBoxSearcherGenderRatio->setItemData(0, 0);
+    ui->comboBoxSearcherGenderRatio->setItemData(1, 127);
+    ui->comboBoxSearcherGenderRatio->setItemData(2, 191);
+    ui->comboBoxSearcherGenderRatio->setItemData(3, 63);
+    ui->comboBoxSearcherGenderRatio->setItemData(4, 31);
+    ui->comboBoxSearcherGenderRatio->setItemData(5, 1);
+    ui->comboBoxSearcherGenderRatio->setItemData(6, 2);
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -117,9 +151,12 @@ void GameCube::setupModels()
     connect(seedToTime, &QAction::triggered, this, &GameCube::seedToTime);
     connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
     connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
+
+    QSettings setting;
+    if (setting.contains("gamecube/size")) this->resize(setting.value("gamecube/size").toSize());
 }
 
-void GameCube::updateView(const QVector<Frame3> &frames, int progress)
+void GameCube::updateProgress(const QVector<Frame3> &frames, int progress)
 {
     searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
@@ -165,14 +202,20 @@ void GameCube::on_pushButtonGenerate_clicked()
         offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
-    int genderRatioIndex = ui->comboBoxGeneratorGenderRatio->currentIndex();
-    Generator3 generator = Generator3(maxResults, startingFrame, seed, tid, sid, offset);
-    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                                        ui->comboBoxGeneratorGender->currentIndex(), genderRatioIndex, ui->comboBoxGeneratorAbility->currentIndex(),
-                                        ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                                        ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
+    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
+    Generator3 generator(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
+    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
+                         ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
 
-    generator.setup(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+    Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+    generator.setup(method);
+
+    if (method == Method::XD || method == Method::Colo)
+    {
+        generator.setShadowTeam(ui->comboBoxGeneratorShadow->currentIndex(), ui->comboBoxGeneratorType->currentIndex());
+    }
 
     QVector<Frame3> frames = generator.generate(compare);
     generatorModel->addItems(frames);
@@ -189,11 +232,11 @@ void GameCube::on_pushButtonSearch_clicked()
     u16 tid = ui->textBoxSearcherTID->getUShort();
     u16 sid = ui->textBoxSearcherSID->getUShort();
 
-    int genderRatioIndex = ui->comboBoxSearcherGenderRatio->currentIndex();
-    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
-                                        genderRatioIndex, ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                                        ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false);
-    Searcher3 searcher = Searcher3(tid, sid, static_cast<u32>(genderRatioIndex), compare);
+    u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
+    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
+                         ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
+                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false);
+    Searcher3 searcher(tid, sid, genderRatio, compare);
 
     searcher.setup(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
     if (searcher.getFrameType() == Method::XD || searcher.getFrameType() == Method::Colo)
@@ -205,7 +248,7 @@ void GameCube::on_pushButtonSearch_clicked()
     QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
     int maxProgress = 1;
-    for (int i = 0; i < 6; i++)
+    for (u8 i = 0; i < 6; i++)
     {
         maxProgress *= max.at(i) - min.at(i) + 1;
     }
@@ -214,16 +257,84 @@ void GameCube::on_pushButtonSearch_clicked()
     ui->progressBar->setMaximum(maxProgress);
 
     auto *search = new IVSearcher3(searcher, min, max);
-    auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher3::finished, timer, &QTimer::stop);
     connect(search, &IVSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &IVSearcher3::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
+    connect(search, &IVSearcher3::updateProgress, this, &GameCube::updateProgress);
     connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher3::cancelSearch);
 
-    search->start();
-    timer->start(1000);
+    search->startSearch();
+}
+
+void GameCube::on_comboBoxGeneratorMethod_currentIndexChanged(int index)
+{
+    (void) index;
+    Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+    ui->comboBoxGeneratorShadow->clear();
+
+    if (method == Method::XD)
+    {
+        QStringList s = Translator::getSpecies(
+        {
+            334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125, 83, 55, 88, 58,
+            316, 316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82,
+            296, 310, 105, 303, 52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261,
+            57, 280, 78, 20, 315, 302, 373, 123, 273, 273, 273, 86, 285, 143, 361,
+            338, 21, 363, 363, 363, 167, 121, 220, 114, 49, 100, 37, 70
+        });
+
+        s[15] += tr(" (Citadark)");
+        s[16] += tr(" (Initial)");
+        s[17] += tr(" (Phenac)");
+        s[52] += tr(" (Citadark)");
+        s[53] += tr(" (Initial)");
+        s[54] += tr(" (Phenac)");
+        s[61] += tr(" (Citadark)");
+        s[62] += tr(" (Initial)");
+        s[63] += tr(" (Phenac)");
+
+        ui->comboBoxGeneratorShadow->addItems(s);
+        ui->comboBoxGeneratorShadow->setVisible(true);
+        ui->labelGeneratorShadow->setVisible(true);
+
+        QVector<int> secondShadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
+        ui->comboBoxGeneratorType->setVisible(secondShadows.contains(ui->comboBoxGeneratorShadow->currentIndex()));
+        ui->labelGeneratorType->setVisible(secondShadows.contains(ui->comboBoxGeneratorShadow->currentIndex()));
+    }
+    else if (method == Method::Colo)
+    {
+        QStringList s = Translator::getSpecies({ 207, 214, 296, 179, 198, 212, 175, 217 });
+        s[3] += tr(" (E-Reader)");
+        s[5] += tr(" (E-Reader)");
+        s[6] += tr(" (E-Reader)");
+        ui->comboBoxGeneratorShadow->addItems(s);
+        ui->comboBoxGeneratorShadow->setVisible(true);
+        ui->labelGeneratorShadow->setVisible(true);
+        ui->comboBoxGeneratorType->setVisible(false);
+        ui->labelGeneratorType->setVisible(false);
+    }
+    else
+    {
+        ui->comboBoxGeneratorShadow->setVisible(false);
+        ui->labelGeneratorShadow->setVisible(false);
+        ui->comboBoxGeneratorType->setVisible(false);
+        ui->labelGeneratorType->setVisible(false);
+    }
+}
+
+void GameCube::on_comboBoxGeneratorShadow_currentIndexChanged(int index)
+{
+    Method version = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+    if (ui->comboBoxGeneratorShadow->isVisible() && version == Method::XD)
+    {
+        QVector<int> secondShadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
+        ui->comboBoxGeneratorType->setVisible(secondShadows.contains(index));
+        ui->labelGeneratorType->setVisible(secondShadows.contains(index));
+    }
+    else
+    {
+        ui->comboBoxGeneratorType->setVisible(false);
+        ui->labelGeneratorType->setVisible(false);
+    }
 }
 
 void GameCube::on_comboBoxSearcherMethod_currentIndexChanged(int index)

@@ -22,7 +22,6 @@
 
 #include <QVector>
 #include <Core/Parents/FrameCompare.hpp>
-#include <Core/RNG/IRNG.hpp>
 #include <Core/Util/Method.hpp>
 
 class Egg
@@ -37,6 +36,7 @@ protected:
     u16 psv{};
     u16 sid{};
     u16 tid{};
+    u8 genderRatio{};
     Method frameType = Method::EBred;
     u32 seed{};
     u32 initialFrame{};

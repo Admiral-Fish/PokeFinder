@@ -17,7 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QTranslator>
 #include "Profile.hpp"
+
+Profile::Profile()
+{
+    profileName = "None";
+    language = Language::English;
+    tid = 12345;
+    sid = 54321;
+}
 
 Profile::Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language)
 {
@@ -26,14 +35,6 @@ Profile::Profile(const QString &profileName, Game version, u16 tid, u16 sid, Lan
     this->tid = tid;
     this->sid = sid;
     this->language = language;
-}
-
-Profile::Profile()
-{
-    profileName = "None";
-    language = Language::English;
-    tid = 12345;
-    sid = 54321;
 }
 
 QString Profile::getVersionString() const

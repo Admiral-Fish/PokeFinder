@@ -17,8 +17,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QMessageBox>
+#include <QSettings>
 #include "SeedtoTime4.hpp"
 #include "ui_SeedtoTime4.h"
+#include <Core/Util/Utilities.hpp>
+#include <Forms/Gen4/RoamerMap.hpp>
+#include <Forms/Gen4/SearchCalls.hpp>
+#include <Forms/Gen4/SearchCoinFlips.hpp>
 
 SeedtoTime4::SeedtoTime4(QWidget *parent) :
     QWidget(parent),
@@ -56,17 +62,20 @@ SeedtoTime4::SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *
 
 SeedtoTime4::~SeedtoTime4()
 {
-    QSettings settings;
-    settings.setValue("dpptYear", ui->lineEditDPPtYear->text());
-    settings.setValue("minusDelayDPPt", ui->lineEditDPPtDelayMinus->text());
-    settings.setValue("plusDelayDPPt", ui->lineEditDPPtDelayPlus->text());
-    settings.setValue("minusSecondsDPPt", ui->lineEditDPPtSecondMinus->text());
-    settings.setValue("plusSecondsDPPt", ui->lineEditDPPtSecondPlus->text());
-    settings.setValue("hgssYear", ui->lineEditHGSSYear->text());
-    settings.setValue("minusDelayHGSS", ui->lineEditHGSSDelayMinus->text());
-    settings.setValue("plusDelayHGSS", ui->lineEditHGSSDelayPlus->text());
-    settings.setValue("minusSecondsHGSS", ui->lineEditHGSSSecondMinus->text());
-    settings.setValue("plusSecondsHGSS", ui->lineEditHGSSSecondPlus->text());
+    QSettings setting;
+    setting.beginGroup("seedToTime4");
+    setting.setValue("dpptYear", ui->lineEditDPPtYear->text());
+    setting.setValue("minusDelayDPPt", ui->lineEditDPPtDelayMinus->text());
+    setting.setValue("plusDelayDPPt", ui->lineEditDPPtDelayPlus->text());
+    setting.setValue("minusSecondsDPPt", ui->lineEditDPPtSecondMinus->text());
+    setting.setValue("plusSecondsDPPt", ui->lineEditDPPtSecondPlus->text());
+    setting.setValue("hgssYear", ui->lineEditHGSSYear->text());
+    setting.setValue("minusDelayHGSS", ui->lineEditHGSSDelayMinus->text());
+    setting.setValue("plusDelayHGSS", ui->lineEditHGSSDelayPlus->text());
+    setting.setValue("minusSecondsHGSS", ui->lineEditHGSSSecondMinus->text());
+    setting.setValue("plusSecondsHGSS", ui->lineEditHGSSSecondPlus->text());
+    setting.setValue("size", this->size());
+    setting.endGroup();
 
     delete ui;
 }
@@ -87,6 +96,7 @@ void SeedtoTime4::setupModels()
     ui->tableViewHGSSCalibrate->setModel(hgssCalibrate);
 
     QSettings setting;
+    setting.beginGroup("seedToTime4");
     if (setting.contains("dpptYear")) ui->lineEditDPPtYear->setText(setting.value("dpptYear").toString());
     if (setting.contains("minusDelayDPPt")) ui->lineEditDPPtDelayMinus->setText(setting.value("minusDelayDPPt").toString());
     if (setting.contains("plusDelayDPPt")) ui->lineEditDPPtDelayPlus->setText(setting.value("plusDelayDPPt").toString());
@@ -97,6 +107,8 @@ void SeedtoTime4::setupModels()
     if (setting.contains("plusDelayHGSS")) ui->lineEditHGSSDelayPlus->setText(setting.value("plusDelayHGSS").toString());
     if (setting.contains("minusSecondsHGSS")) ui->lineEditHGSSSecondMinus->setText(setting.value("minusSecondsHGSS").toString());
     if (setting.contains("plusSecondsHGSS")) ui->lineEditHGSSSecondPlus->setText(setting.value("plusSecondsHGSS").toString());
+    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    setting.endGroup();
 }
 
 QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version)

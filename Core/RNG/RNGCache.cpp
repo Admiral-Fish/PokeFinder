@@ -39,10 +39,9 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u32 first, u32 second) const
 
     for (u16 i = 0; i < 256; i++, search1 -= k, search2 -= k)
     {
-        auto locate = keys.find(search1 >> 16);
-        if (locate != keys.end())
+        if (flags.at(search1 >> 16))
         {
-            u32 test = first | (i << 8) | locate.value();
+            u32 test = first | (i << 8) | low.at(search1 >> 16);
             // Verify IV calls line up
             if (((test * mult + add) & 0x7fff0000) == second)
             {
@@ -50,10 +49,9 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u32 first, u32 second) const
             }
         }
 
-        locate = keys.find(search2 >> 16);
-        if (locate != keys.end())
+        if (flags.at(search2 >> 16))
         {
-            u32 test = first | (i << 8) | locate.value();
+            u32 test = first | (i << 8) | low.at(search2 >> 16);
             // Verify IV calls line up
             if (((test * mult + add) & 0x7fff0000) == second)
             {
@@ -73,10 +71,9 @@ QVector<u32> RNGCache::recoverLower16BitsPID(u32 first, u32 second) const
 
     for (u16 i = 0; i < 256; i++, search -= k)
     {
-        auto locate = keys.find(search >> 16);
-        if (locate != keys.end())
+        if (flags.at(search >> 16))
         {
-            u32 test = first | (i << 8) | locate.value();
+            u32 test = first | (i << 8) | low.at(search >> 16);
             // Verify PID calls line up
             if (((test * mult + add) & 0xffff0000) == second)
             {
@@ -94,14 +91,17 @@ void RNGCache::switchCache(Method MethodType)
 
 void RNGCache::populateMap()
 {
-    keys.clear();
+    low = QVector<u8>(0x10000, 0);
+    flags = QVector<bool>(0x10000, false);
     for (u16 i = 0; i < 256; i++)
     {
         u32 right = mult * i + add;
         u16 val = right >> 16;
 
-        keys[val] = i;
-        keys[val - 1] = i;
+        flags[val] = true;
+        low[val--] = i;
+        flags[val] = true;
+        low[val] = i;
     }
 }
 

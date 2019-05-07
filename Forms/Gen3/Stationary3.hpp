@@ -20,17 +20,8 @@
 #ifndef STATIONARY3_H
 #define STATIONARY3_H
 
-#include <QClipboard>
-#include <QFileDialog>
 #include <QMenu>
-#include <QSettings>
-#include <QThread>
-#include <QTimer>
-#include <Core/Gen3/Generator3.hpp>
-#include <Core/Gen3/IVSearcher3.hpp>
-#include <Core/Util/Translator.hpp>
-#include <Forms/Gen3/ProfileManager3.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
+#include <Core/Gen3/Profile3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
 
@@ -62,12 +53,12 @@ private:
     QModelIndex targetFrame;
 
     void setupModels();
-    void updateView(const QVector<Frame3> &frames, int progress);
 
 public slots:
     void moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
 private slots:
+    void updateProgress(const QVector<Frame3> &frames, int progress);
     void refreshProfiles();
     void on_comboBoxProfiles_currentIndexChanged(int index);
     void on_pushButtonGenerate_clicked();

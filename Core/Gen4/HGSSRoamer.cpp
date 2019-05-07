@@ -18,6 +18,7 @@
  */
 
 #include "HGSSRoamer.hpp"
+#include <Core/RNG/LCRNG.hpp>
 
 HGSSRoamer::HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes)
 {
@@ -80,15 +81,15 @@ QString HGSSRoamer::getRoutes() const
 {
     QString routes;
 
-    if (roamers[0])
+    if (roamers.at(0))
     {
         routes += QString("R: %1 ").arg(raikouRoute);
     }
-    if (roamers[1])
+    if (roamers.at(1))
     {
         routes += QString("E: %1 ").arg(enteiRoute);
     }
-    if (roamers[2])
+    if (roamers.at(2))
     {
         routes += QString("L: %1 ").arg(latiRoute);
     }

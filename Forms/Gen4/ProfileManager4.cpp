@@ -17,8 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QMessageBox>
+#include <QSettings>
 #include "ProfileManager4.hpp"
 #include "ui_ProfileManager4.h"
+#include <Forms/Gen4/ProfileEditor4.hpp>
 
 ProfileManager4::ProfileManager4(QWidget *parent) :
     QWidget(parent),
@@ -27,13 +30,15 @@ ProfileManager4::ProfileManager4(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
 }
 
 ProfileManager4::~ProfileManager4()
 {
+    QSettings setting;
+    setting.setValue("profileManager4/size", this->size());
+
     delete ui;
 }
 
@@ -42,6 +47,9 @@ void ProfileManager4::setupModels()
     model = new Profile4Model(ui->tableView);
     model->addItems(Profile4::loadProfileList());
     ui->tableView->setModel(model);
+
+    QSettings setting;
+    if (setting.contains("profileManager4/size")) this->resize(setting.value("profileManager4/size").toSize());
 }
 
 void ProfileManager4::on_pushButtonNew_clicked()
@@ -59,7 +67,6 @@ void ProfileManager4::on_pushButtonNew_clicked()
 void ProfileManager4::on_pushButtonEdit_clicked()
 {
     int row = ui->tableView->currentIndex().row();
-
     if (row < 0)
     {
         QMessageBox error;
@@ -81,7 +88,6 @@ void ProfileManager4::on_pushButtonEdit_clicked()
 void ProfileManager4::on_pushButtonDelete_clicked()
 {
     int row = ui->tableView->currentIndex().row();
-
     if (row < 0)
     {
         QMessageBox error;

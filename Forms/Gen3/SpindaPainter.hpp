@@ -20,11 +20,7 @@
 #ifndef SPINDAPAINTER_HPP
 #define SPINDAPAINTER_HPP
 
-#include <QGraphicsScene>
-#include <QVector>
 #include <QWidget>
-#include <Core/Util/Global.hpp>
-#include <Core/Util/Nature.hpp>
 #include <Forms/Controls/GraphicsPixmapItem.hpp>
 
 namespace Ui
