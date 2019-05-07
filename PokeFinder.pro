@@ -3,6 +3,7 @@ equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11):error("You need at le
 
 QT += concurrent network widgets
 CONFIG += c++1z
+CONFIG += lrelease embed_translations
 
 TARGET = PokeFinder
 TEMPLATE = app
@@ -16,14 +17,14 @@ ICON += Images/pokefinder.icns
 DEFINES += QT_DEPRECATED_WARNINGS
 
 TRANSLATIONS += \
-    Translations/PokeFinder_en.ts \
-    Translations/PokeFinder_fr.ts \
-    Translations/PokeFinder_es.ts \
-    Translations/PokeFinder_de.ts \
-    Translations/PokeFinder_it.ts \
-    Translations/PokeFinder_ja.ts \
-    Translations/PokeFinder_ko.ts \
-    Translations/PokeFinder_zh_Hans_CN.ts
+    i18n/PokeFinder_en.ts \
+    i18n/PokeFinder_fr.ts \
+    i18n/PokeFinder_es.ts \
+    i18n/PokeFinder_de.ts \
+    i18n/PokeFinder_it.ts \
+    i18n/PokeFinder_ja.ts \
+    i18n/PokeFinder_ko.ts \
+    i18n/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
     qdarkstyle/style.qrc \

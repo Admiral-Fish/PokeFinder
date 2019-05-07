@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     }
 
     QTranslator translator;
-    if (translator.load(QString(":/translations/PokeFinder_%1.qm").arg(setting.value("settings/locale", "en").toString())))
+    if (translator.load(QString(":/i18n/PokeFinder_%1.qm").arg(setting.value("settings/locale", "en").toString())))
     {
         QApplication::installTranslator(&translator);
     }
