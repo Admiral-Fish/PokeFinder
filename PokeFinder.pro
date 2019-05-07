@@ -27,7 +27,7 @@ TRANSLATIONS += \
     i18n/PokeFinder_zh_Hans_CN.ts
 
 RESOURCES += \
-    qdarkstyle/style.qrc \
+    QDarkStyleSheet/qdarkstyle/style.qrc \
     resources.qrc
 
 FORMS += \
