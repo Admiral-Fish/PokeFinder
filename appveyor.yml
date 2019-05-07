@@ -7,6 +7,7 @@ environment:
     OS: linux
 
 install:
+    - git submodule update --init --recursive
     # Windows
     - cmd: set PATH=%QTDIR%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
     - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
