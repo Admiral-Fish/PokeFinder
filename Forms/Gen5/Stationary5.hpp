@@ -26,7 +26,7 @@
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
-//#include <Core/Gen5/Generator5.hpp>
+#include <Core/Gen5/Generator5.hpp>
 //#include <Core/Gen5/IVSearcher5.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen5/ProfileManager5.hpp>
@@ -64,7 +64,7 @@ private:
     QMenu *searcherMenu{};
 
     void setupModels();
-    //void updateView(const QVector<Frame5> &frames, int progress);
+    void updateView(const QVector<Frame5> &frames, int progress);
 
 private slots:
     void refreshProfiles();

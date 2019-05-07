@@ -17,45 +17,49 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef METHOD_HPP
-#define METHOD_HPP
+#include "Frame5.hpp"
 
-// Different method types for various games
-enum Method
+Frame5::Frame5()
 {
-    Method1,
-    Method1Reverse,
-    Method2,
-    Method4,
-    MethodH1,
-    MethodH2,
-    MethodH4,
-    XD, // Used to signify XD shadows
-    Colo, // Used to signify Colo shadows
-    XDColo,
-    Channel,
-    EBred,
-    EBredSplit,
-    EBredAlternate,
-    EBredPID,
-    RSBred,
-    RSBredSplit,
-    RSBredAlternate,
-    FRLGBred,
-    FRLGBredSplit,
-    FRLGBredAlternate,
-    MethodJ,
-    MethodK,
-    ChainedShiny,
-    WondercardIVs,
-    Gen4Normal,
-    Gen4Masuada,
-    DPPtIVs,
-    HGSSIVs,
-    Method5IVs,
-    Method5CGear,
-    Method5
-    // TODO: Add Gen 5 egg/events
-};
+    tid = 12345;
+    sid = 54321;
+    psv = 12345 ^ 54321;
+}
 
-#endif // METHOD_HPP
+Frame5::Frame5(u16 tid, u16 sid, u16 psv)
+{
+    this->tid = tid;
+    this->sid = sid;
+    this->psv = psv;
+}
+
+void Frame5::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2, u16 inh3, const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken)
+{
+    // TODO
+}
+
+QString Frame5::chatotPitch() const
+{
+    // TODO
+    return QString();
+}
+
+u64 Frame5::getInitialSeed() const
+{
+    return initialSeed;
+}
+
+void Frame5::setInitialSeed(const u64 &value)
+{
+    initialSeed = value;
+}
+
+u64 Frame5::getSeed() const
+{
+    return seed;
+}
+
+void Frame5::setSeed(const u64 &value)
+{
+    seed = value;
+}

@@ -112,11 +112,11 @@ void Stationary5::setupModels()
     if (setting.contains("Stationary5MaxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("Stationary5MaxFrame").toString());
 }
 
-/*void Stationary5::updateView(const QVector<Frame5> &frames, int progress)
+void Stationary5::updateView(const QVector<Frame5> &frames, int progress)
 {
-    searcherModel->addItems(frames);
+    //searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
-}*/
+}
 
 void Stationary5::refreshProfiles()
 {
@@ -140,31 +140,31 @@ void Stationary5::on_pushButtonGenerate_clicked()
     }
 
     int genderRatioIndex = ui->comboBoxGeneratorGenderRatio->currentIndex();
-    //Generator5 generator(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+    Generator5 generator(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
     FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorGender->currentIndex(),
                          ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
                          ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), QVector<bool>());
 
-    //generator.setEncounterType(Stationary);
+    generator.setEncounterType(Stationary);
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
     {
-        //generator.setLeadType(static_cast<Lead>(ui->comboBoxGeneratorLead->currentData().toInt()));
+        generator.setLeadType(static_cast<Lead>(ui->comboBoxGeneratorLead->currentData().toInt()));
     }
     else
     {
         int num = ui->comboBoxGeneratorLead->currentIndex();
         if (num == 0)
         {
-            //generator.setLeadType(Lead::None);
+            generator.setLeadType(Lead::None);
         }
         else
         {
-            //generator.setLeadType(Lead::Synchronize);
-            //generator.setSynchNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
+            generator.setLeadType(Lead::Synchronize);
+            generator.setSynchNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
         }
     }
 
-    //QVector<Frame5> frames = generator.generate(compare);
+    QVector<Frame5> frames = generator.generate(compare);
     //generatorModel->setModel(frames);
 }
 
@@ -185,6 +185,7 @@ void Stationary5::on_pushButtonSearch_clicked()
                          ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false, QVector<bool>());
     //Searcher5 searcher(tid, sid, static_cast<u32>(genderRatioIndex), ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
     //                               ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(), compare, static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+
     //searcher.setLeadType(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
 
     QVector<u8> min = ui->ivFilterSearcher->getLower();

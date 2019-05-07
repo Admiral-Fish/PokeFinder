@@ -87,7 +87,7 @@ bool FrameCompare::compareIVs(const Frame &frame) const
         return false;
     }
 
-    for (int i = 0; i < 6; i++)
+    for (u8 i = 0; i < 6; i++)
     {
         u8 iv = frame.getIV(i);
 

@@ -94,6 +94,8 @@ HEADERS += \
     Core/Gen4/Profile4.hpp \
     Core/Gen4/Searcher4.hpp \
     Core/Gen5/DSType.hpp \
+    Core/Gen5/Frame5.hpp \
+    Core/Gen5/Generator5.hpp \
     Core/Gen5/Nazos.hpp \
     Core/Gen5/Profile5.hpp \
     Core/Parents/Egg.hpp \
@@ -214,6 +216,8 @@ SOURCES += \
     Core/Gen4/IVSearcher4.cpp \
     Core/Gen4/Profile4.cpp \
     Core/Gen4/Searcher4.cpp \
+    Core/Gen5/Frame5.cpp \
+    Core/Gen5/Generator5.cpp \
     Core/Gen5/Nazos.cpp \
     Core/Gen5/Profile5.cpp \
     Core/Parents/Egg.cpp \
