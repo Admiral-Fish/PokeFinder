@@ -60,9 +60,6 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="text">
-      <string>Entei</string>
-     </property>
     </widget>
    </item>
    <item row="1" column="2">
@@ -88,9 +85,6 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Raikou</string>
      </property>
     </widget>
    </item>
@@ -133,9 +127,6 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Latias / Latios</string>
      </property>
     </widget>
    </item>

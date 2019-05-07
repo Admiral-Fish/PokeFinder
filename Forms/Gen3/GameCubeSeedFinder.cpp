@@ -24,6 +24,7 @@
 #include "GameCubeSeedFinder.hpp"
 #include "ui_GameCubeSeedFinder.h"
 #include <Core/Gen3/GameCubeSeedSearcher.hpp>
+#include <Core/Util/Translator.hpp>
 
 GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) :
     QWidget(parent),
@@ -40,6 +41,28 @@ GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) :
     ui->textBoxGalesBottomLeft->setValues(1, 714, 10);
     ui->textBoxGalesTopRight->setValues(1, 714, 10);
     ui->textBoxGalesBottomRight->setValues(1, 714, 10);
+
+    QStringList gales = Translator::getSpecies({ 150, 151, 386, 384, 385, 144, 145, 146, 115, 380 });
+    ui->radioButtonGalesMewtwo->setText(gales.at(0));
+    ui->radioButtonGalesMew->setText(gales.at(1));
+    ui->radioButtonGalesDeoxys->setText(gales.at(2));
+    ui->radioButtonGalesRayquaza->setText(gales.at(3));
+    ui->radioButtonGalesJirachi->setText(gales.at(4));
+    ui->radioButtonGalesArticuno->setText(gales.at(5));
+    ui->radioButtonGalesZapdos->setText(gales.at(6));
+    ui->radioButtonGalesMoltres->setText(gales.at(7));
+    ui->radioButtonGalesKangaskhan->setText(gales.at(8));
+    ui->radioButtonGalesLatias->setText(gales.at(9));
+
+    QStringList colo = Translator::getSpecies({ 257, 244, 260, 243, 154, 245, 376, 214 });
+    ui->radioButtonColoBlaziken->setText(colo.at(0));
+    ui->radioButtonColoEntei->setText(colo.at(1));
+    ui->radioButtonColoSwampert->setText(colo.at(2));
+    ui->radioButtonColoRaikou->setText(colo.at(3));
+    ui->radioButtonColoMeganium->setText(colo.at(4));
+    ui->radioButtonColoSuicune->setText(colo.at(5));
+    ui->radioButtonColoMetagross->setText(colo.at(6));
+    ui->radioButtonColoHeracross->setText(colo.at(7));
 
 
     qRegisterMetaType<QVector<u32>>("QVector<u32>");

@@ -19,6 +19,7 @@
 
 #include "RoamerMap.hpp"
 #include "ui_RoamerMap.h"
+#include <Core/Util/Translator.hpp>
 
 RoamerMap::RoamerMap(QWidget *parent) :
     QDialog(parent),
@@ -28,6 +29,11 @@ RoamerMap::RoamerMap(QWidget *parent) :
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
+
+    QStringList roamers = Translator::getSpecies({ 244, 243, 380, 381 });
+    ui->labelEntei->setText(roamers.at(0));
+    ui->labelRaikou->setText(roamers.at(1));
+    ui->labelLatiasLatios->setText(roamers.at(2) + "/" + roamers.at(3));
 }
 
 RoamerMap::~RoamerMap()

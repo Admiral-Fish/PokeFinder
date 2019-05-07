@@ -91,9 +91,6 @@
          <layout class="QGridLayout" name="gridLayout_8">
           <item row="3" column="1">
            <widget class="QRadioButton" name="radioButtonGalesMoltres">
-            <property name="text">
-             <string>Moltres</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_2</string>
             </attribute>
@@ -101,9 +98,6 @@
           </item>
           <item row="4" column="1">
            <widget class="QRadioButton" name="radioButtonGalesKangaskhan">
-            <property name="text">
-             <string>Kangaskhan</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_2</string>
             </attribute>
@@ -111,9 +105,6 @@
           </item>
           <item row="2" column="0">
            <widget class="QRadioButton" name="radioButtonGalesMew">
-            <property name="text">
-             <string>Mew</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup</string>
             </attribute>
@@ -121,9 +112,6 @@
           </item>
           <item row="1" column="1">
            <widget class="QRadioButton" name="radioButtonGalesArticuno">
-            <property name="text">
-             <string>Articuno</string>
-            </property>
             <property name="checked">
              <bool>true</bool>
             </property>
@@ -134,9 +122,6 @@
           </item>
           <item row="5" column="1">
            <widget class="QRadioButton" name="radioButtonGalesLatias">
-            <property name="text">
-             <string>Latias</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_2</string>
             </attribute>
@@ -144,9 +129,6 @@
           </item>
           <item row="5" column="0">
            <widget class="QRadioButton" name="radioButtonGalesJirachi">
-            <property name="text">
-             <string>Jirachi</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup</string>
             </attribute>
@@ -161,9 +143,6 @@
           </item>
           <item row="3" column="0">
            <widget class="QRadioButton" name="radioButtonGalesDeoxys">
-            <property name="text">
-             <string>Deoxys</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup</string>
             </attribute>
@@ -171,9 +150,6 @@
           </item>
           <item row="1" column="0">
            <widget class="QRadioButton" name="radioButtonGalesMewtwo">
-            <property name="text">
-             <string>Mewtwo</string>
-            </property>
             <property name="checked">
              <bool>true</bool>
             </property>
@@ -184,9 +160,6 @@
           </item>
           <item row="2" column="1">
            <widget class="QRadioButton" name="radioButtonGalesZapdos">
-            <property name="text">
-             <string>Zapdos</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_2</string>
             </attribute>
@@ -194,9 +167,6 @@
           </item>
           <item row="4" column="0">
            <widget class="QRadioButton" name="radioButtonGalesRayquaza">
-            <property name="text">
-             <string>Rayquaza</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup</string>
             </attribute>
@@ -403,9 +373,6 @@
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="1" column="1">
            <widget class="QRadioButton" name="radioButtonColoSuicune">
-            <property name="text">
-             <string>Suicune</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_4</string>
             </attribute>
@@ -413,9 +380,6 @@
           </item>
           <item row="3" column="1">
            <widget class="QRadioButton" name="radioButtonColoHeracross">
-            <property name="text">
-             <string>Heracross</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_4</string>
             </attribute>
@@ -423,9 +387,6 @@
           </item>
           <item row="3" column="0">
            <widget class="QRadioButton" name="radioButtonColoRaikou">
-            <property name="text">
-             <string>Raikou</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_4</string>
             </attribute>
@@ -433,9 +394,6 @@
           </item>
           <item row="0" column="0">
            <widget class="QRadioButton" name="radioButtonColoBlaziken">
-            <property name="text">
-             <string>Blaziken</string>
-            </property>
             <property name="checked">
              <bool>true</bool>
             </property>
@@ -446,9 +404,6 @@
           </item>
           <item row="0" column="1">
            <widget class="QRadioButton" name="radioButtonColoMeganium">
-            <property name="text">
-             <string>Meganium</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_4</string>
             </attribute>
@@ -456,9 +411,6 @@
           </item>
           <item row="1" column="0">
            <widget class="QRadioButton" name="radioButtonColoEntei">
-            <property name="text">
-             <string>Entei</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_4</string>
             </attribute>
@@ -466,9 +418,6 @@
           </item>
           <item row="2" column="1">
            <widget class="QRadioButton" name="radioButtonColoMetagross">
-            <property name="text">
-             <string>Metagross</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_4</string>
             </attribute>
@@ -476,9 +425,6 @@
           </item>
           <item row="2" column="0">
            <widget class="QRadioButton" name="radioButtonColoSwampert">
-            <property name="text">
-             <string>Swampert</string>
-            </property>
             <attribute name="buttonGroup">
              <string notr="true">buttonGroup_4</string>
             </attribute>
@@ -544,9 +490,9 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup"/>
  </buttongroups>
 </ui>
