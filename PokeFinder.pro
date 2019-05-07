@@ -7,7 +7,7 @@ CONFIG += lrelease embed_translations
 
 TARGET = PokeFinder
 TEMPLATE = app
-VERSION = 2.3.1
+VERSION = 2.4.0
 QMAKE_TARGET_DESCRIPTION = PokeFinder
 QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
