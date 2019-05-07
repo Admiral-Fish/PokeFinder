@@ -30,6 +30,7 @@
 #include <Forms/Gen4/IDs4.hpp>
 #include <Forms/Gen4/Stationary4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
+#include <Forms/Gen5/Stationary5.hpp>
 
 namespace Ui
 {

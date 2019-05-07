@@ -21,27 +21,6 @@
 #include <Core/Util/Nature.hpp>
 
 FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int abilityIndex,
-                           const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare)
-{
-    this->min = min;
-    this->max = max;
-
-    gender = genderIndex;
-    ability = abilityIndex;
-
-    natures.resize(25);
-    for (u8 i = 0; i < 25; i++)
-    {
-        natures[Nature::getAdjustedNature(i)] = nature.at(i);
-    }
-
-    powers = power;
-
-    shiny = onlyShiny;
-    skip = skipCompare;
-}
-
-FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int abilityIndex,
                            const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare, const QVector<bool> &encounter)
 {
     this->min = min;
@@ -50,10 +29,13 @@ FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int g
     gender = genderIndex;
     ability = abilityIndex;
 
-    natures.resize(25);
-    for (u32 i = 0; i < 25; i++)
+    if (!nature.isEmpty())
     {
-        natures[Nature::getAdjustedNature(i)] = nature.at(i);
+        natures.resize(25);
+        for (u8 i = 0; i < 25; i++)
+        {
+            natures[Nature::getAdjustedNature(i)] = nature.at(i);
+        }
     }
 
     powers = power;
@@ -61,29 +43,6 @@ FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int g
 
     shiny = onlyShiny;
     skip = skipCompare;
-}
-
-FrameCompare::FrameCompare(int genderIndex, int abilityIndex, QVector<bool> nature, bool onlyShiny)
-{
-    gender = genderIndex;
-    ability = abilityIndex;
-
-    natures.resize(25);
-    for (u32 i = 0; i < 25; i++)
-    {
-        natures[Nature::getAdjustedNature(i)] = nature[i];
-    }
-
-    shiny = onlyShiny;
-    skip = false;
-}
-
-FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, const QVector<bool> &power)
-{
-    this->min = min;
-    this->max = max;
-    powers = power;
-    skip = false;
 }
 
 bool FrameCompare::comparePID(const Frame &frame) const
@@ -132,7 +91,7 @@ bool FrameCompare::compareIVs(const Frame &frame) const
     {
         u8 iv = frame.getIV(i);
 
-        if (iv < min[i] || iv > max[i])
+        if (iv < min.at(i) || iv > max.at(i))
         {
             return false;
         }

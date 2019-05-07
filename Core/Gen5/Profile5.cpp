@@ -17,6 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <QApplication>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include "Profile5.hpp"
 
 Profile5::Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u64 mac, const QVector<bool> &keypresses, u8 vcount,

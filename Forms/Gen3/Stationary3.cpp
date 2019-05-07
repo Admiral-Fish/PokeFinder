@@ -230,10 +230,9 @@ void Stationary3::on_pushButtonGenerate_clicked()
 
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toInt();
     Generator3 generator(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
-    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                         ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
+    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorGender->currentIndex(),
+                         ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), QVector<bool>());
 
     generator.setup(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
@@ -255,7 +254,7 @@ void Stationary3::on_pushButtonSearch_clicked()
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
     FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
                          ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false);
+                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false, QVector<bool>());
     Searcher3 searcher(tid, sid, genderRatio, compare);
 
     searcher.setup(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));

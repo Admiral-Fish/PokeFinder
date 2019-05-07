@@ -207,7 +207,7 @@ void GameCube::on_pushButtonGenerate_clicked()
     FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
                          ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
                          ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), QVector<bool>());
 
     Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
     generator.setup(method);
@@ -235,7 +235,7 @@ void GameCube::on_pushButtonSearch_clicked()
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
     FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
                          ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false);
+                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false, QVector<bool>());
     Searcher3 searcher(tid, sid, genderRatio, compare);
 
     searcher.setup(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));

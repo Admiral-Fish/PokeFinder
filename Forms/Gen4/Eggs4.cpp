@@ -200,7 +200,7 @@ void Eggs4::on_pushButtonGenerate_clicked()
 
     FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorGender->currentIndex(),
                          ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorNature->getChecked(),
-                         ui->comboBoxGeneratorHiddenPower->getChecked(), ui->checkBoxGeneratorShinyOnly->isChecked(), false);
+                         ui->comboBoxGeneratorHiddenPower->getChecked(), ui->checkBoxGeneratorShinyOnly->isChecked(), false, QVector<bool>());
 
     QVector<Frame4> frames = generator.generate(compare);
     generatorModel->addItems(frames);
@@ -218,8 +218,8 @@ void Eggs4::on_pushButtonSearchPID_clicked()
     u16 sid = ui->textBoxSearcherSID->getUShort();
 
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-    FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
-                         ui->comboBoxSearcherNature->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked());
+    FrameCompare compare(QVector<u8>(), QVector<u8>(), ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
+                         ui->comboBoxSearcherNature->getChecked(), QVector<bool>(), ui->checkBoxSearcherShinyOnly->isChecked(), false, QVector<bool>());
 
     u32 minDelay = ui->textBoxSearcherPIDMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherPIDMaxDelay->getUInt();
@@ -250,7 +250,8 @@ void Eggs4::on_pushButtonSearchIVs_clicked()
     ui->pushButtonSearchIVs->setEnabled(false);
     ui->pushButtonCancelIVs->setEnabled(true);
 
-    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherHiddenPower->getChecked());
+    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), 0, 0,
+                         QVector<bool>(), ui->comboBoxSearcherHiddenPower->getChecked(), false, false, QVector<bool>());
 
     u32 minDelay = ui->textBoxSearcherIVsMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherIVsMaxDelay->getUInt();

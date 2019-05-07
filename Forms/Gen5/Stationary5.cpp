@@ -140,11 +140,10 @@ void Stationary5::on_pushButtonGenerate_clicked()
     }
 
     int genderRatioIndex = ui->comboBoxGeneratorGenderRatio->currentIndex();
-    //Generator5 generator = Generator5(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
-    FrameCompare compare = FrameCompare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                                        ui->comboBoxGeneratorGender->currentIndex(), genderRatioIndex, ui->comboBoxGeneratorAbility->currentIndex(),
-                                        ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                                        ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
+    //Generator5 generator(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorGender->currentIndex(),
+                         ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), QVector<bool>());
 
     //generator.setEncounterType(Stationary);
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -181,10 +180,10 @@ void Stationary5::on_pushButtonSearch_clicked()
     u16 sid = ui->textBoxSearcherSID->getUShort();
 
     int genderRatioIndex = ui->comboBoxSearcherGenderRatio->currentIndex();
-    FrameCompare compare = FrameCompare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
-                                        genderRatioIndex, ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                                        ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false);
-    //Searcher5 searcher = Searcher5(tid, sid, static_cast<u32>(genderRatioIndex), ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
+    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
+                         ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
+                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false, QVector<bool>());
+    //Searcher5 searcher(tid, sid, static_cast<u32>(genderRatioIndex), ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
     //                               ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(), compare, static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
     //searcher.setLeadType(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
 

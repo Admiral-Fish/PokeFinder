@@ -198,8 +198,8 @@ void Eggs3::on_pushButtonEmeraldPIDGenerate_clicked()
         generator.setEverstoneNature(Nature::getAdjustedNature(ui->comboBoxEverstone->currentIndex() - 1));
     }
 
-    FrameCompare compare(ui->comboBoxEmeraldGender->currentIndex(), ui->comboBoxEmeraldAbility->currentIndex(),
-                         ui->comboBoxEmeraldNature->getChecked(), ui->checkBoxEmeraldShiny->isChecked());
+    FrameCompare compare(QVector<u8>(), QVector<u8>(), ui->comboBoxEmeraldGender->currentIndex(), ui->comboBoxEmeraldAbility->currentIndex(),
+                         ui->comboBoxEmeraldNature->getChecked(), QVector<bool>(), ui->checkBoxEmeraldShiny->isChecked(), false, QVector<bool>());
 
     QVector<Frame3> frames = generator.generate(compare);
     emeraldPID->addItems(frames);
@@ -218,7 +218,8 @@ void Eggs3::on_pushButtonEmeraldIVsGenerate_clicked()
     Egg3 generator = Egg3(maxResults, startingFrame, tid, sid, method, 0);
     generator.setParents(ui->eggSettingsEmerald->getParent1(), ui->eggSettingsEmerald->getParent2());
 
-    FrameCompare compare = FrameCompare(ui->ivFilterEmerald->getLower(), ui->ivFilterEmerald->getUpper(), ui->comboBoxEmeraldHiddenPower->getChecked());
+    FrameCompare compare = FrameCompare(ui->ivFilterEmerald->getLower(), ui->ivFilterEmerald->getUpper(), 0, 0,
+                                        QVector<bool>(), ui->comboBoxEmeraldHiddenPower->getChecked(), false, false, QVector<bool>());
 
     QVector<Frame3> frames = generator.generate(compare);
     emeraldIVs->addItems(frames);
@@ -245,7 +246,7 @@ void Eggs3::on_pushButtonRSGenerate_clicked()
 
     FrameCompare compare(ui->ivFilterRS->getLower(), ui->ivFilterRS->getUpper(), ui->comboBoxRSGender->currentIndex(),
                          ui->comboBoxRSAbility->currentIndex(), ui->comboBoxRSNature->getChecked(),
-                         ui->comboBoxRSHiddenPower->getChecked(), ui->checkBoxRSShiny->isChecked(), false);
+                         ui->comboBoxRSHiddenPower->getChecked(), ui->checkBoxRSShiny->isChecked(), false, QVector<bool>());
 
     QVector<Frame3> frames = generator.generate(compare);
     rs->addItems(frames);
@@ -272,7 +273,7 @@ void Eggs3::on_pushButtonFRLGGenerate_clicked()
 
     FrameCompare compare(ui->ivFilterFRLG->getLower(), ui->ivFilterFRLG->getUpper(), ui->comboBoxFRLGGender->currentIndex(),
                          ui->comboBoxFRLGAbility->currentIndex(), ui->comboBoxFRLGNature->getChecked(),
-                         ui->comboBoxFRLGHiddenPower->getChecked(), ui->checkBoxFRLGShiny->isChecked(), false);
+                         ui->comboBoxFRLGHiddenPower->getChecked(), ui->checkBoxFRLGShiny->isChecked(), false, QVector<bool>());
 
     QVector<Frame3> frames = generator.generate(compare);
     frlg->addItems(frames);
