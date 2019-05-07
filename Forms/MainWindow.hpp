@@ -49,6 +49,7 @@ private:
     Ui::MainWindow *ui;
     QActionGroup *langGroup{};
     QActionGroup *styleGroup{};
+    QActionGroup *threadGroup{};
     const QString VERSION = "v2.4.0";
     QString currentLanguage;
     QString currentStyle;
@@ -66,12 +67,14 @@ private:
 
     void setupLanguage();
     void setupStyle();
+    void setupThread();
     void checkProfileJson();
     void checkUpdates();
 
 private slots:
     void slotLanguageChanged(QAction *action);
     void slotStyleChanged(QAction *action);
+    void slotThreadChanged(QAction *action);
     void updateProfiles(int num);
     void on_pushButtonStationary3_clicked();
     void on_pushButtonWild3_clicked();

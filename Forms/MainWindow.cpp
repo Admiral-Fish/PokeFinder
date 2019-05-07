@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
     checkProfileJson();
     setupLanguage();
     setupStyle();
+    setupThread();
     QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
 }
 
@@ -116,6 +117,31 @@ void MainWindow::setupStyle()
         }
 
         styleGroup->addAction(action);
+    }
+}
+
+void MainWindow::setupThread()
+{
+    threadGroup = new QActionGroup(ui->menuThreads);
+    threadGroup->setExclusive(true);
+    connect(threadGroup, &QActionGroup::triggered, this, &MainWindow::slotThreadChanged);
+
+    QSettings setting;
+    int maxThread = QThread::idealThreadCount();
+    int thread = setting.value("settings/thread", maxThread).toInt();
+
+    for (u8 i = 1; i <= maxThread; i++)
+    {
+        auto *action = ui->menuThreads->addAction(QString::number(i));
+        action->setCheckable(true);
+        action->setData(i);
+
+        if (i == thread)
+        {
+            action->setChecked(true);
+        }
+
+        threadGroup->addAction(action);
     }
 }
 
@@ -194,6 +220,19 @@ void MainWindow::slotStyleChanged(QAction *action)
                 QProcess::startDetached(QApplication::applicationFilePath());
                 QApplication::quit();
             }
+        }
+    }
+}
+
+void MainWindow::slotThreadChanged(QAction *action)
+{
+    if (action)
+    {
+        int thread = action->data().toInt();
+        QSettings setting;
+        if (setting.value("settings/thread", QThread::idealThreadCount()).toInt() != thread)
+        {
+            setting.setValue("settings/thread", thread);
         }
     }
 }
