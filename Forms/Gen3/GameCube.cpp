@@ -88,7 +88,7 @@ void GameCube::updateProfiles()
 void GameCube::setupModels()
 {
     generatorModel = new Stationary3Model(ui->tableViewGenerator);
-    searcherModel = new Searcher3Model(ui->tableViewSearcher, Method::Method1);
+    searcherModel = new Searcher3Model(ui->tableViewSearcher, Method::XDColo);
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 

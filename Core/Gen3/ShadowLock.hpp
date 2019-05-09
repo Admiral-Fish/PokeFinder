@@ -56,7 +56,6 @@ private:
     u32 getPIDForward(XDRNG &rng);
     u32 getPIDBackward(XDRNGR &rng);
     u16 getPSVReverse(XDRNGR &rng);
-    void natureLockSetup(u8 lockNum, Method version);
 
 };
 

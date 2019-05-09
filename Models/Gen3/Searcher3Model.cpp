@@ -29,6 +29,7 @@ Searcher3Model::Searcher3Model(QObject *parent, Method method) :
 void Searcher3Model::setMethod(Method method)
 {
     this->method = method;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
 void Searcher3Model::sort(int column, Qt::SortOrder order)
