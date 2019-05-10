@@ -64,7 +64,7 @@ QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16
                 {
                     maxIVs[i] = iv;
                 }
-                if (iv <= minIVs.at(0))
+                if (iv <= minIVs.at(i))
                 {
                     minIVs[i] = iv;
                 }

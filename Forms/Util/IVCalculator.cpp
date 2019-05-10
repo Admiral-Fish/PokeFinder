@@ -76,7 +76,7 @@ void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)
             }
             else
             {
-                if (ivs[i] == ivs[i - 1] + 1)
+                if (ivs.at(i) == ivs.at(i - 1) + 1)
                 {
                     flag = true;
 
