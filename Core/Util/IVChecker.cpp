@@ -50,7 +50,7 @@ QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16
     }
 
     // Atk, Def, SpA, SpD, Spe
-    for (int i = 1; i < 6; i++)
+    for (u8 i = 1; i < 6; i++)
     {
         for (u8 iv = 0; iv < 32; iv++)
         {
@@ -64,7 +64,7 @@ QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16
                 {
                     maxIVs[i] = iv;
                 }
-                if (iv <= minIVs.at(0))
+                if (iv <= minIVs.at(i))
                 {
                     minIVs[i] = iv;
                 }
@@ -104,7 +104,6 @@ QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16
             //  Make sure we dont make any changes to the characteristic stat
             if (!characteristic.getActive() || characteristic.getStat() != i)
             {
-                //
                 for (u8 j = minIVs.at(i); j <= maxIVs.at(i); j++)
                 {
                     if (j <= characteristicHigh)
@@ -155,6 +154,7 @@ QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16
             {
                 possible[i].append(stat);
             }
+            std::sort(possible[i].begin(), possible[i].end());
         }
     }
 

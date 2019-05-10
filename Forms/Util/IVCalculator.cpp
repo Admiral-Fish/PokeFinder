@@ -68,36 +68,30 @@ void IVCalculator::displayIVs(QLabel *label, const QVector<u8> &ivs)
     else
     {
         bool flag = false;
-        for (int i = 0; i < ivs.size(); i++)
+        result += QString::number(ivs.at(0));
+        for (int i = 1; i < ivs.size(); i++)
         {
-            if (i == 0)
+            if (ivs.at(i) == ivs.at(i - 1) + 1)
             {
-                result += QString::number(ivs.at(i));
+                flag = true;
+
+                //  Check to see if we need to cap here.
+                if (i == ivs.size() - 1)
+                {
+                    result += QString("-%1").arg(ivs.at(i));
+                }
             }
             else
             {
-                if (ivs.at(i) == ivs.at(i - 1) + 1)
+                if (flag)
                 {
-                    flag = true;
-
-                    //  Check to see if we need to cap here.
-                    if (i == ivs.size() - 1)
-                    {
-                        result += QString("-%1").arg(ivs.at(i));
-                    }
+                    flag = false;
+                    result += QString("-%1").arg(ivs.at(i - 1));
+                    result += QString(", %1").arg(ivs.at(i));
                 }
                 else
                 {
-                    if (flag)
-                    {
-                        flag = false;
-                        result += QString("-%1").arg(ivs.at(i - 1));
-                        result += QString(", %1").arg(ivs.at(i));
-                    }
-                    else
-                    {
-                        result += QString(", %1").arg(ivs.at(i));
-                    }
+                    result += QString(", %1").arg(ivs.at(i));
                 }
             }
         }
