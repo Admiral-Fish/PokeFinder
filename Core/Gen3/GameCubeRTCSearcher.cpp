@@ -30,7 +30,11 @@ GameCubeRTCSearcher::GameCubeRTCSearcher(u32 initialSeed, u32 targetSeed, u32 mi
     searching = false;
     cancel = false;
 
-    connect(this, &GameCubeRTCSearcher::finished, this, &GameCubeRTCSearcher::deleteLater);
+    connect(this, &GameCubeRTCSearcher::finished, this, [ = ]
+    {
+        searching = false;
+        deleteLater();
+    });
 }
 
 void GameCubeRTCSearcher::startSearch()
@@ -72,7 +76,6 @@ void GameCubeRTCSearcher::search()
                 row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
                     << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initialSeed, 16).toUpper());
 
-                searching = false;
                 emit result(row);
                 emit finished();
                 return;
@@ -89,6 +92,5 @@ void GameCubeRTCSearcher::search()
             secoundCount = 0;
         }
     }
-    searching = false;
     emit finished();
 }

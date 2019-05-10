@@ -86,6 +86,8 @@ void GameCubeRTC::setupModels()
 
 void GameCubeRTC::on_pushButtonSearch_clicked()
 {
+    model->removeRows(0, model->rowCount());
+
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
