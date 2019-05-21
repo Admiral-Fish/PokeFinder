@@ -19,13 +19,55 @@
 
 #include <QApplication>
 #include <QFile>
+#include <QMessageBox>
 #include <QSettings>
 #include <QTextStream>
 #include <QTranslator>
 #include <Forms/MainWindow.hpp>
 
+void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QFile file("log.txt");
+    if (file.open(QIODevice::Append))
+    {
+        QString message;
+        switch (type)
+        {
+            case QtDebugMsg:
+                message = QString("Debug: %1 (%2:%3, %4)\n").arg(msg, QString(context.file), QString::number(context.line), QString(context.function));
+                break;
+            case QtInfoMsg:
+                message = QString("Info: %1 (%2:%3, %4)\n").arg(msg, QString(context.file), QString::number(context.line), QString(context.function));
+                break;
+            case QtWarningMsg:
+                message = QString("Warning: %1 (%2:%3, %4)\n").arg(msg, QString(context.file), QString::number(context.line), QString(context.function));
+                break;
+            case QtCriticalMsg:
+                message = QString("Critical: %1 (%2:%3, %4)\n").arg(msg, QString(context.file), QString::number(context.line), QString(context.function));
+                break;
+            case QtFatalMsg:
+                message = QString("Fatal: %1 (%2:%3, %4)\n").arg(msg, QString(context.file), QString::number(context.line), QString(context.function));
+                break;
+        }
+
+        QTextStream ts(&file);
+        ts << message;
+
+        file.close();
+    }
+
+    if (type == QtFatalMsg)
+    {
+        QMessageBox error(QMessageBox::Critical, QObject::tr("Crash detected"), QObject::tr("A crash has occured. Please look at log.txt for more detailed information."));
+        error.exec();
+        QApplication::exit(1);
+    }
+}
+
 int main(int argc, char *argv[])
 {
+    qInstallMessageHandler(myMessageOutput);
+
     QApplication a(argc, argv);
     a.setApplicationName("PokeFinder");
     a.setOrganizationName("PokeFinder Team");
