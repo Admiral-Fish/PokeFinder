@@ -48,7 +48,6 @@ private:
     int progress;
 
     void search();
-    void update();
     QVector<Frame4> getResults();
 
 };

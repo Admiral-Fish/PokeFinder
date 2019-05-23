@@ -46,7 +46,11 @@ void EggSearcher4::startSearch()
         searching = true;
         cancel = false;
 
-        QtConcurrent::run([ = ] { update(); });
+        auto *timer = new QTimer(this);
+        connect(this, &EggSearcher4::finished, timer, &QTimer::stop);
+        connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+        timer->start(1000);
+
         QtConcurrent::run([ = ] { search(); });
     }
 }
@@ -93,16 +97,6 @@ void EggSearcher4::search()
     }
     searching = false;
     emit finished();
-}
-
-void EggSearcher4::update()
-{
-    do
-    {
-        emit updateProgress(getResults(), progress);
-        QThread::sleep(1);
-    }
-    while (searching);
 }
 
 QVector<Frame4> EggSearcher4::getResults()

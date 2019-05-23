@@ -48,7 +48,6 @@ private:
     QMutex mutex;
 
     void search();
-    void update();
     QVector<Frame3> getResults();
 
 };

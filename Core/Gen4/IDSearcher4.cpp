@@ -51,7 +51,11 @@ void ShinyPIDSearcher::startSearch()
         searching = true;
         cancel = false;
 
-        QtConcurrent::run([ = ] { update(); });
+        auto *timer = new QTimer(this);
+        connect(this, &ShinyPIDSearcher::finished, timer, &QTimer::stop);
+        connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+        timer->start(1000);
+
         QtConcurrent::run([ = ] { search(); });
     }
 }
@@ -100,16 +104,6 @@ void ShinyPIDSearcher::search()
     emit finished();
 }
 
-void ShinyPIDSearcher::update()
-{
-    do
-    {
-        emit updateProgress(getResults(), progress);
-        QThread::sleep(1);
-    }
-    while (searching);
-}
-
 QVector<QList<QStandardItem *>> ShinyPIDSearcher::getResults()
 {
     QMutexLocker locker(&mutex);
@@ -148,7 +142,10 @@ void TIDSIDSearcher::startSearch()
         searching = true;
         cancel = false;
 
-        QtConcurrent::run([ = ] { update(); });
+        auto *timer = new QTimer(this);
+        connect(this, &TIDSIDSearcher::finished, timer, &QTimer::stop);
+        connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+
         QtConcurrent::run([ = ] { search(); });
     }
 }
@@ -195,16 +192,6 @@ void TIDSIDSearcher::search()
         }
     }
     emit finished();
-}
-
-void TIDSIDSearcher::update()
-{
-    do
-    {
-        emit updateProgress(getResults(), progress);
-        QThread::sleep(1);
-    }
-    while (searching);
 }
 
 QVector<QList<QStandardItem *>> TIDSIDSearcher::getResults()
