@@ -25,6 +25,12 @@ Stationary5::Stationary5(QWidget *parent) :
     ui(new Ui::Stationary5)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+
+    updateProfiles();
+    setupModels();
+
+    qRegisterMetaType<QVector<Frame5>>("QVector<Frame5>");
 }
 
 Stationary5::~Stationary5()
