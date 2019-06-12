@@ -134,7 +134,7 @@ QVector<Frame3> Generator3::generateMethodChannel(const FrameCompare &compare) c
 
         if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
         {
-            frame.setPID(high, low ^ 0x8000, genderRatio);
+            frame.setPID(high ^ 0x8000, low, genderRatio);
         }
         else
         {

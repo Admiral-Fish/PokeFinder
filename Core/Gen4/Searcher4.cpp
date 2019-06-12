@@ -426,8 +426,8 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
     {
         // Setup normal frame
         PokeRNGR rng(val);
-        u16 pid2 = rng.nextUShort();
-        u16 pid1 = rng.nextUShort();
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
         u32 seed = rng.nextUInt();
         u32 nibble, slot;
 
@@ -435,12 +435,12 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
         {
             if (flag)
             {
-                pid2 ^= 0x8000;
-                pid1 ^= 0x8000;
+                high ^= 0x8000;
+                low ^= 0x8000;
                 seed ^= 0x80000000;
             }
 
-            if ((pid1 / 0x5556) != 0)
+            if ((low / 0x5556) != 0)
             {
                 switch (encounterType)
                 {
@@ -478,7 +478,7 @@ QVector<Frame4> Searcher4::searchMethodJCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
                         break;
                 }
 
-                u8 choppedPID = pid2 / 0xa3e;
+                u8 choppedPID = high / 0xa3e;
                 for (const auto &buffer : genderThreshHolds)
                 {
                     switch (buffer)
@@ -950,8 +950,8 @@ QVector<Frame4> Searcher4::searchMethodKSynch(u8 hp, u8 atk, u8 def, u8 spa, u8 
     {
         // Setup normal frame
         PokeRNGR rng(val);
-        u16 low = rng.nextUShort();
         u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
 
         frame.setPID(high, low, genderRatio);
         u32 seed = rng.nextUInt();
@@ -1131,8 +1131,8 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
     {
         // Setup normal frame
         PokeRNGR rng(val);
-        u16 pid2 = rng.nextUShort();
-        u16 pid1 = rng.nextUShort();
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
         u32 seed = rng.nextUInt();
         u32 nibble, slot;
 
@@ -1140,12 +1140,12 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
         {
             if (flag)
             {
-                pid2 ^= 0x8000;
-                pid1 ^= 0x8000;
+                high ^= 0x8000;
+                low ^= 0x8000;
                 seed ^= 0x80000000;
             }
 
-            if ((pid1 % 3) != 0)
+            if ((low % 3) != 0)
             {
                 switch (encounterType)
                 {
@@ -1198,7 +1198,7 @@ QVector<Frame4> Searcher4::searchMethodKCuteCharm(u8 hp, u8 atk, u8 def, u8 spa,
                         break;
                 }
 
-                u8 choppedPID = pid2 % 25;
+                u8 choppedPID = high % 25;
                 for (const auto &buffer : genderThreshHolds)
                 {
                     switch (buffer)
@@ -1264,7 +1264,7 @@ QVector<Frame4> Searcher4::searchMethodKSuctionCups(u8 hp, u8 atk, u8 def, u8 sp
     for (const auto &val : seeds)
     {
         // Setup normal frame
-        PokeRNG rng(val);
+        PokeRNGR rng(val);
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
