@@ -40,12 +40,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     checkProfileJson();
     setupLanguage();
     setupStyle();
     QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
+
+    QSettings setting;
+    if (setting.contains("mainWindow/size")) this->resize(setting.value("mainWindow/size").toSize());
 }
 
 MainWindow::~MainWindow()
@@ -55,6 +57,8 @@ MainWindow::~MainWindow()
     setting.setValue("locale", currentLanguage);
     setting.setValue("style", currentStyle);
     setting.endGroup();
+
+    setting.setValue("mainWindow/size", this->size());
 
     delete ui;
     delete stationary3;

@@ -84,18 +84,18 @@ void Generator3::setup(Method method)
     frameType = method;
     if (frameType == Method::Method1 || frameType == Method::MethodH1)
     {
-        iv1 = frameType == Method::MethodH1 ? 1 : 2;
-        iv2 = frameType == Method::MethodH1 ? 2 : 3;
+        ivFirst = frameType == Method::MethodH1 ? 1 : 2;
+        ivSecond = frameType == Method::MethodH1 ? 2 : 3;
     }
     else if (frameType == Method::Method2 || frameType == Method::MethodH2)
     {
-        iv1 = frameType == Method::MethodH2 ? 2 : 3;
-        iv2 = frameType == Method::MethodH2 ? 3 : 4;
+        ivFirst = frameType == Method::MethodH2 ? 2 : 3;
+        ivSecond = frameType == Method::MethodH2 ? 3 : 4;
     }
     else if (frameType == Method::Method4 || frameType == Method::MethodH4)
     {
-        iv1 = frameType == Method::MethodH4 ? 1 : 2;
-        iv2 = frameType == Method::MethodH4 ? 3 : 4;
+        ivFirst = frameType == Method::MethodH4 ? 1 : 2;
+        ivSecond = frameType == Method::MethodH4 ? 3 : 4;
     }
 }
 
@@ -126,15 +126,19 @@ QVector<Frame3> Generator3::generateMethodChannel(const FrameCompare &compare) c
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setIDs(40122, rngList.at(cnt), 40122 ^ rngList.at(cnt));
+        u16 high = rngList.at(cnt + 1);
+        u16 low = rngList.at(cnt + 2);
+        u16 sid = rngList.at(cnt);
 
-        if ((rngList.at(cnt + 2) > 7 ? 0 : 1) != (rngList.at(cnt + 1) ^ 40122 ^ rngList.at(cnt)))
+        frame.setIDs(40122, sid, 40122 ^ sid);
+
+        if ((low > 7 ? 0 : 1) != (high ^ 40122 ^ sid))
         {
-            frame.setPID(rngList.at(cnt + 2), rngList.at(cnt + 1) ^ 0x8000, genderRatio);
+            frame.setPID(high, low ^ 0x8000, genderRatio);
         }
         else
         {
-            frame.setPID(rngList.at(cnt + 2), rngList.at(cnt + 1), genderRatio);
+            frame.setPID(high, low, genderRatio);
         }
 
         frame.setIVs(rngList.at(cnt + 6) >> 11, rngList.at(cnt + 7) >> 11, rngList.at(cnt + 8) >> 11,
@@ -158,7 +162,7 @@ QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) cons
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2, val1, val2;
+    u16 high, low, iv1, iv2;
 
     u16 rate = encounter.getEncounterRate() * 16;
     bool rock = rate == 2880;
@@ -235,9 +239,9 @@ QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) cons
         // Now search for a Method 124 PID that matches our hunt nature
         do
         {
-            pid2 = go.nextUShort();
-            pid1 = go.nextUShort();
-            pid = (pid1 << 16) | pid2;
+            low = go.nextUShort();
+            high = go.nextUShort();
+            pid = (high << 16) | low;
             hunt += 2;
         }
         while (pid % 25 != frame.getNature());
@@ -247,22 +251,22 @@ QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) cons
         // Valid PID is found now time to generate IVs
         if (frameType == Method::MethodH1)
         {
-            val1 = go.nextUShort();
-            val2 = go.nextUShort();
+            iv1 = go.nextUShort();
+            iv2 = go.nextUShort();
         }
         else if (frameType == Method::MethodH2)
         {
             go.nextUInt();
-            val1 = go.nextUShort();
-            val2 = go.nextUShort();
+            iv1 = go.nextUShort();
+            iv2 = go.nextUShort();
         }
         else
         {
-            val1 = go.nextUShort();
+            iv1 = go.nextUShort();
             go.nextUInt();
-            val2 = go.nextUShort();
+            iv2 = go.nextUShort();
         }
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -283,7 +287,7 @@ QVector<Frame3> Generator3::generateMethodH124Synch(const FrameCompare &compare)
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2, val1, val2;
+    u16 high, low, iv1, iv2;
 
     u16 rate = encounter.getEncounterRate() * 16;
     bool rock = rate == 2880;
@@ -369,9 +373,9 @@ QVector<Frame3> Generator3::generateMethodH124Synch(const FrameCompare &compare)
         // Now search for a Method 124 PID that matches our hunt nature
         do
         {
-            pid2 = go.nextUShort();
-            pid1 = go.nextUShort();
-            pid = (pid1 << 16) | pid2;
+            low = go.nextUShort();
+            high = go.nextUShort();
+            pid = (high << 16) | low;
             hunt += 2;
         }
         while (pid % 25 != frame.getNature());
@@ -381,22 +385,22 @@ QVector<Frame3> Generator3::generateMethodH124Synch(const FrameCompare &compare)
         // Valid PID is found now time to generate IVs
         if (frameType == Method::MethodH1)
         {
-            val1 = go.nextUShort();
-            val2 = go.nextUShort();
+            iv1 = go.nextUShort();
+            iv2 = go.nextUShort();
         }
         else if (frameType == Method::MethodH2)
         {
             go.nextUInt();
-            val1 = go.nextUShort();
-            val2 = go.nextUShort();
+            iv1 = go.nextUShort();
+            iv2 = go.nextUShort();
         }
         else
         {
-            val1 = go.nextUShort();
+            iv1 = go.nextUShort();
             go.nextUInt();
-            val2 = go.nextUShort();
+            iv2 = go.nextUShort();
         }
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -417,7 +421,7 @@ QVector<Frame3> Generator3::generateMethodH124CuteCharm(const FrameCompare &comp
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2, val1, val2;
+    u16 high, low, iv1, iv2;
 
     bool (*cuteCharm)(u32);
     switch (leadType)
@@ -526,9 +530,9 @@ QVector<Frame3> Generator3::generateMethodH124CuteCharm(const FrameCompare &comp
             // Now search for a Method 124 PID that matches our hunt nature and cute charm
             do
             {
-                pid2 = go.nextUShort();
-                pid1 = go.nextUShort();
-                pid = (pid1 << 16) | pid2;
+                low = go.nextUShort();
+                high = go.nextUShort();
+                pid = (high << 16) | low;
                 hunt += 2;
             }
             while (pid % 25 != frame.getNature() || !cuteCharm(pid));
@@ -546,9 +550,9 @@ QVector<Frame3> Generator3::generateMethodH124CuteCharm(const FrameCompare &comp
             // Only search for a Method 124 PID that matches our hunt nature
             do
             {
-                pid2 = go.nextUShort();
-                pid1 = go.nextUShort();
-                pid = (pid1 << 16) | pid2;
+                low = go.nextUShort();
+                high = go.nextUShort();
+                pid = (high << 16) | low;
                 hunt += 2;
             }
             while (pid % 25 != frame.getNature());
@@ -559,22 +563,22 @@ QVector<Frame3> Generator3::generateMethodH124CuteCharm(const FrameCompare &comp
         // Valid PID is found now time to generate IVs
         if (frameType == Method::MethodH1)
         {
-            val1 = go.nextUShort();
-            val2 = go.nextUShort();
+            iv1 = go.nextUShort();
+            iv2 = go.nextUShort();
         }
         else if (frameType == Method::MethodH2)
         {
             go.nextUInt();
-            val1 = go.nextUShort();
-            val2 = go.nextUShort();
+            iv1 = go.nextUShort();
+            iv2 = go.nextUShort();
         }
         else
         {
-            val1 = go.nextUShort();
+            iv1 = go.nextUShort();
             go.nextUInt();
-            val2 = go.nextUShort();
+            iv2 = go.nextUShort();
         }
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -603,8 +607,13 @@ QVector<Frame3> Generator3::generateMethodXDColo(const FrameCompare &compare) co
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3), genderRatio);
-        frame.setIVs(rngList.at(cnt), rngList.at(cnt + 1));
+        u16 high = rngList.at(cnt + 3);
+        u16 low = rngList.at(cnt + 4);
+        u16 iv1 = rngList.at(cnt);
+        u16 iv2 = rngList.at(cnt + 1);
+
+        frame.setPID(high, low, genderRatio);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -634,9 +643,9 @@ QVector<Frame3> Generator3::generateMethodXD(const FrameCompare &compare) const
 
         go.nextUInt();
 
-        u16 pid2 = go.nextUShort();
-        u16 pid1 = go.nextUShort();
-        frame.setPID(pid1, pid2, genderRatio);
+        u16 high = go.nextUShort();
+        u16 low = go.nextUShort();
+        frame.setPID(high, low, genderRatio);
 
         if (compare.compareFrame(frame))
         {
@@ -668,9 +677,9 @@ QVector<Frame3> Generator3::generateMethodColo(const FrameCompare &compare) cons
 
         go.nextUInt();
 
-        u16 pid2 = go.nextUShort();
-        u16 pid1 = go.nextUShort();
-        frame.setPID(pid1, pid2, genderRatio);
+        u16 high = go.nextUShort();
+        u16 low = go.nextUShort();
+        frame.setPID(high, low, genderRatio);
 
         if (compare.compareFrame(frame))
         {
@@ -700,8 +709,13 @@ QVector<Frame3> Generator3::generateMethod124(const FrameCompare &compare) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngList.at(cnt), rngList.at(cnt + 1), genderRatio);
-        frame.setIVs(rngList.at(cnt + iv1), rngList.at(cnt + iv2));
+        u16 high = rngList.at(cnt + 1);
+        u16 low = rngList.at(cnt);
+        u16 iv1 = rngList.at(cnt + ivFirst);
+        u16 iv2 = rngList.at(cnt + ivSecond);
+
+        frame.setPID(high, low, genderRatio);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -729,8 +743,13 @@ QVector<Frame3> Generator3::generateMethod1Reverse(const FrameCompare &compare) 
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngList.at(cnt + 1), rngList.at(cnt), genderRatio);
-        frame.setIVs(rngList.at(cnt + 2), rngList.at(cnt + 3));
+        u16 high = rngList.at(cnt);
+        u16 low = rngList.at(cnt + 1);
+        u16 iv1 = rngList.at(cnt + 2);
+        u16 iv2 = rngList.at(cnt + 3);
+
+        frame.setPID(high, low, genderRatio);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -750,9 +769,9 @@ void Generator3::generateNonShadows(XDRNG &rng) const
         rng.advanceFrames(3);
         do
         {
-            u16 pid1 = rng.nextUShort();
-            u16 pid2 = rng.nextUShort();
-            pid = (pid1 << 16) | pid2;
+            u16 high = rng.nextUShort();
+            u16 low = rng.nextUShort();
+            pid = (high << 16) | low;
         }
         while (!team.getLock(i).compare(pid));
     }

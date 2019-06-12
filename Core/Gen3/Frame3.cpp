@@ -146,9 +146,9 @@ void Frame3::setPID(u32 pid, u16 genderRatio)
     shiny = ((pid >> 16) ^ (pid & 0xFFFF) ^ psv) < 8;
 }
 
-void Frame3::setPID(u16 pid1, u16 pid2, u16 genderRatio)
+void Frame3::setPID(u16 high, u16 low, u16 genderRatio)
 {
-    pid = (pid2 << 16) | pid1;
+    pid = (high << 16) | low;
     nature = pid % 25;
     gender = genderRatio > 2 ? ((pid & 255) >= genderRatio ? 1 : 2) : genderRatio;
     ability = pid & 1;

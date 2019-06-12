@@ -139,7 +139,9 @@ void PokeSpot::on_pushButtonGenerate_clicked()
                     frame.setLockReason(tr("Rare"));
                 }
 
-                frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3), genderRatio);
+                u16 high = rngList.at(cnt + 3);
+                u16 low = rngList.at(cnt + 4);
+                frame.setPID(high, low, genderRatio);
                 if (compare.comparePID(frame))
                 {
                     frame.setFrame(cnt + initialFrame);

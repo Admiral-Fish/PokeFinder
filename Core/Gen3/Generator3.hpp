@@ -38,8 +38,8 @@ public:
     void setShadowTeam(u8 index, int type);
 
 private:
-    u8 iv1{};
-    u8 iv2{};
+    u8 ivFirst{};
+    u8 ivSecond{};
     EncounterArea3 encounter;
     ShadowTeam team;
     int type;

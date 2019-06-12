@@ -103,8 +103,13 @@ QVector<Frame4> Generator4::generateMethod1(const FrameCompare &compare) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngList.at(cnt), rngList.at(cnt + 1), genderRatio);
-        frame.setIVs(rngList.at(cnt + 2), rngList.at(cnt + 3));
+        u16 high = rngList.at(cnt + 1);
+        u16 low = rngList.at(cnt);
+        u16 iv1 = rngList.at(cnt + 2);
+        u16 iv2 = rngList.at(cnt + 3);
+
+        frame.setPID(high, low, genderRatio);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -125,7 +130,7 @@ QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2;
+    u16 low, high;
 
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
 
@@ -188,19 +193,19 @@ QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
         // Begin search for valid pid
         do
         {
-            pid1 = go.nextUShort();
-            pid2 = go.nextUShort();
-            pid = (pid2 << 16) | pid1;
+            low = go.nextUShort();
+            high = go.nextUShort();
+            pid = (high << 16) | low;
             hunt += 2;
         }
         while (pid % 25 != frame.getNature());
 
         frame.setPID(pid, genderRatio);
 
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
 
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -221,7 +226,7 @@ QVector<Frame4> Generator4::generateMethodJSynch(const FrameCompare &compare) co
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2;
+    u16 low, high;
 
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
 
@@ -291,19 +296,19 @@ QVector<Frame4> Generator4::generateMethodJSynch(const FrameCompare &compare) co
         // Begin search for valid pid
         do
         {
-            pid1 = go.nextUShort();
-            pid2 = go.nextUShort();
-            pid = (pid2 << 16) | pid1;
+            low = go.nextUShort();
+            high = go.nextUShort();
+            pid = (high << 16) | low;
             hunt += 2;
         }
         while (pid % 25 != frame.getNature());
 
         frame.setPID(pid, genderRatio);
 
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
 
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -324,7 +329,7 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2;
+    u16 low, high;
 
     u8 buffer = 0;
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
@@ -426,9 +431,9 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare
             // Begin search for valid pid
             do
             {
-                pid1 = go.nextUShort();
-                pid2 = go.nextUShort();
-                pid = (pid2 << 16) | pid1;
+                low = go.nextUShort();
+                high = go.nextUShort();
+                pid = (high << 16) | low;
                 hunt += 2;
             }
             while (pid % 25 != frame.getNature());
@@ -437,10 +442,10 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare
             frame.setOccidentary(hunt + cnt);
         }
 
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
 
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -460,7 +465,7 @@ QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2;
+    u16 low, high;
 
     u8 thresh = 0;
     if (encounterType == Encounter::OldRod)
@@ -556,19 +561,19 @@ QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
         // Begin search for valid pid
         do
         {
-            pid1 = go.nextUShort();
-            pid2 = go.nextUShort();
-            pid = (pid2 << 16) | pid1;
+            low = go.nextUShort();
+            high = go.nextUShort();
+            pid = (high << 16) | low;
             hunt += 2;
         }
         while (pid % 25 != frame.getNature());
 
         frame.setPID(pid, genderRatio);
 
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
 
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -589,7 +594,7 @@ QVector<Frame4> Generator4::generateMethodKSynch(const FrameCompare &compare) co
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2;
+    u16 low, high;
 
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
     u8 rock = encounter.getEncounterRate();
@@ -679,18 +684,18 @@ QVector<Frame4> Generator4::generateMethodKSynch(const FrameCompare &compare) co
         // Begin search for valid pid
         do
         {
-            pid1 = go.nextUShort();
-            pid2 = go.nextUShort();
-            pid = (pid2 << 16) | pid1;
+            low = go.nextUShort();
+            high = go.nextUShort();
+            pid = (high << 16) | low;
         }
         while (pid % 25 != frame.getNature());
 
         frame.setPID(pid, genderRatio);
 
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
 
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -711,7 +716,7 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2;
+    u16 low, high;
 
     u8 buffer = 0;
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
@@ -831,9 +836,9 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare
             // Begin search for valid pid
             do
             {
-                pid1 = go.nextUShort();
-                pid2 = go.nextUShort();
-                pid = (pid2 << 16) | pid1;
+                low = go.nextUShort();
+                high = go.nextUShort();
+                pid = (high << 16) | low;
             }
             while (pid % 25 != frame.getNature());
 
@@ -841,10 +846,10 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare
             frame.setOccidentary(hunt + cnt);
         }
 
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
 
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -873,9 +878,9 @@ QVector<Frame4> Generator4::generateChainedShiny(const FrameCompare &compare) co
     {
         low = chainedPIDLow(rngList.at(cnt + 1), rngList.at(cnt + 15), rngList.at(cnt + 14), rngList.at(cnt + 13), rngList.at(cnt + 12), rngList.at(cnt + 11), rngList.at(cnt + 10),
                             rngList.at(cnt + 9), rngList.at(cnt + 8), rngList.at(cnt + 7), rngList.at(cnt + 6), rngList.at(cnt + 5), rngList.at(cnt + 4), rngList.at(cnt + 3));
-        high = chainedPIDHigh(rngList[2 + cnt], low, tid, sid);
+        high = chainedPIDHigh(rngList.at(2 + cnt), low, tid, sid);
 
-        frame.setPID(low, high, genderRatio);
+        frame.setPID(high, low, genderRatio);
         frame.setIVs(rngList.at(cnt + 16), rngList.at(cnt + 17));
 
         if (compare.compareFrame(frame))

@@ -126,18 +126,18 @@ QVector<Frame3> Searcher3::searchMethodChannel(u8 hp, u8 atk, u8 def, u8 spa, u8
         XDRNGR rng(seed, 3);
 
         // Calculate PID
-        u16 pid2 = rng.nextUShort();
-        u16 pid1 = rng.nextUShort();
+        u16 low = rng.nextUShort();
+        u16 high = rng.nextUShort();
         u16 sid = rng.nextUShort();
 
         // Determine if PID needs to be XORed
-        if ((pid2 > 7 ? 0 : 1) != (pid1 ^ sid ^ 40122))
+        if ((low > 7 ? 0 : 1) != (high ^ sid ^ 40122))
         {
-            pid1 ^= 0x8000;
+            high ^= 0x8000;
         }
 
         frame.setIDs(40122, sid, 40122 ^ sid);
-        frame.setPID(pid2, pid1, genderRatio);
+        frame.setPID(high, low, genderRatio);
 
         if (compare.comparePID(frame))
         {
@@ -167,7 +167,10 @@ QVector<Frame3> Searcher3::searchMethodColo(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
         // Setup normal frame
         XDRNG rng(pair.second, 1);
         rng.setSeed(pair.second, 1);
-        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
+
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
+        frame.setPID(high, low, genderRatio);
         frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
         if (compare.comparePID(frame))
         {
@@ -236,7 +239,10 @@ QVector<Frame3> Searcher3::searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
     {
         // Setup normal frame
         PokeRNGR rng(val, frameType == Method::MethodH2 ? 1 : 0);
-        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
+
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
+        frame.setPID(high, low, genderRatio);
         u32 seed = rng.nextUInt();
 
         // Use for loop to check both normal and sister spread
@@ -426,7 +432,10 @@ QVector<Frame3> Searcher3::searchMethodXD(u8 hp, u8 atk, u8 def, u8 spa, u8 spd,
     {
         // Setup normal frame
         XDRNG rng(pair.second, 1);
-        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
+
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
+        frame.setPID(high, low, genderRatio);
         frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
         if (compare.comparePID(frame))
         {
@@ -569,7 +578,10 @@ QVector<Frame3> Searcher3::searchMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 
     {
         // Setup normal frame
         XDRNG rng(pair.second, 1);
-        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
+
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
+        frame.setPID(high, low, genderRatio);
         frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
         if (compare.comparePID(frame))
         {
@@ -604,7 +616,10 @@ QVector<Frame3> Searcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd
     {
         // Setup normal frame
         PokeRNGR rng(seed, frameType == Method::Method2 ? 1 : 0);
-        frame.setPID(rng.nextUShort(), rng.nextUShort(), genderRatio);
+
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
+        frame.setPID(high, low, genderRatio);
         frame.setSeed(rng.nextUInt());
         if (compare.comparePID(frame))
         {
@@ -640,8 +655,9 @@ QVector<Frame3> Searcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u
     {
         // Setup normal frame
         PokeRNGR rng(seed);
-        u16 temp = rng.nextUShort();
-        frame.setPID(temp, rng.nextUShort(), genderRatio);
+        u16 low = rng.nextUShort();
+        u16 high = rng.nextUShort();
+        frame.setPID(high, low, genderRatio);
         frame.setSeed(rng.nextUInt());
         if (compare.comparePID(frame))
         {
