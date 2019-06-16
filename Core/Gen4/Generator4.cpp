@@ -137,7 +137,7 @@ QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
         PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
+        frame.setSeed(go.getSeed() >> 16);
 
         switch (encounterType)
         {
@@ -233,7 +233,7 @@ QVector<Frame4> Generator4::generateMethodJSynch(const FrameCompare &compare) co
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
         PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
+        frame.setSeed(go.getSeed() >> 16);
 
         switch (encounterType)
         {
@@ -358,7 +358,7 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
         PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
+        frame.setSeed(go.getSeed() >> 16);
 
         switch (encounterType)
         {
@@ -486,7 +486,7 @@ QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
         PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
+        frame.setSeed(go.getSeed() >> 16);
 
         switch (encounterType)
         {
@@ -602,7 +602,7 @@ QVector<Frame4> Generator4::generateMethodKSynch(const FrameCompare &compare) co
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
         PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
+        frame.setSeed(go.getSeed() >> 16);
 
         switch (encounterType)
         {
@@ -746,7 +746,7 @@ QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
         PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
+        frame.setSeed(go.getSeed() >> 16);
 
         switch (encounterType)
         {
