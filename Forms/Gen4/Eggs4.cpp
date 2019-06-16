@@ -52,7 +52,7 @@ Eggs4::~Eggs4()
     setting.setValue("minFramePID", ui->textBoxSearcherPIDMinFrame->text());
     setting.setValue("maxFramePID", ui->textBoxSearcherPIDMaxFrame->text());
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -147,7 +147,7 @@ void Eggs4::setupModels()
     if (setting.contains("maxDelayPID")) ui->textBoxSearcherPIDMaxDelay->setText(setting.value("maxDelayPID").toString());
     if (setting.contains("minFramePID")) ui->textBoxSearcherPIDMinFrame->setText(setting.value("minFramePID").toString());
     if (setting.contains("maxFramePID")) ui->textBoxSearcherPIDMaxFrame->setText(setting.value("maxFramePID").toString());
-    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
     setting.endGroup();
 }
 

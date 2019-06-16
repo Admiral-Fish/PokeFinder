@@ -46,7 +46,7 @@ Stationary3::~Stationary3()
     QSettings setting;
     setting.beginGroup("stationary3");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -161,7 +161,7 @@ void Stationary3::setupModels()
     connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
 
     QSettings setting;
-    if (setting.contains("stationary3/size")) this->resize(setting.value("stationary3/size").toSize());
+    if (setting.contains("stationary3/geometry")) this->restoreGeometry(setting.value("stationary3/geometry").toByteArray());
 }
 
 void Stationary3::moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)

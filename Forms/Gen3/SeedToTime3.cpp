@@ -54,7 +54,7 @@ SeedToTime3::~SeedToTime3()
     QSettings setting;
     setting.beginGroup("seedToTime3");
     setting.setValue("year", ui->textBoxYear->text());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -73,7 +73,7 @@ void SeedToTime3::setupModels()
     QSettings setting;
     setting.beginGroup("seedToTime3");
     if (setting.contains("year")) ui->textBoxYear->setText(setting.value("year").toString());
-    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
     setting.endGroup();
 }
 

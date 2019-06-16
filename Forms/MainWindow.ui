@@ -167,8 +167,8 @@
      <property name="title">
       <string>Style</string>
      </property>
-     <addaction name="actionLight"/>
      <addaction name="actionDark"/>
+     <addaction name="actionLight"/>
     </widget>
     <addaction name="menuLanguage"/>
     <addaction name="menuStyle"/>
@@ -223,20 +223,20 @@
     <string>IV to PID</string>
    </property>
   </action>
-  <action name="actionLight">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Light</string>
-   </property>
-  </action>
   <action name="actionDark">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
     <string>Dark</string>
+   </property>
+  </action>
+  <action name="actionLight">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Light</string>
    </property>
   </action>
   <action name="actionGerman">

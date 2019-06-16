@@ -42,7 +42,7 @@ private:
     QVector<Characteristic> characteristics;
     QVector<Pokemon> pokemon;
     void setupModels();
-    void displayIVs(QLabel *label, QVector<u8> ivs);
+    void displayIVs(QLabel *label, const QVector<u8>& ivs);
 
 private slots:
     void on_pushButtonFindIVs_clicked();

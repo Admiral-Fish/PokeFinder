@@ -41,7 +41,7 @@ PokeSpot::~PokeSpot()
     setting.beginGroup("pokespot");
     setting.setValue("tid", ui->textBoxTID->text());
     setting.setValue("sid", ui->textBoxSID->text());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -74,7 +74,7 @@ void PokeSpot::setupModels()
     setting.beginGroup("pokespot");
     if (setting.contains("tid")) ui->textBoxTID->setText(setting.value("tid").toString());
     if (setting.contains("sid")) ui->textBoxSID->setText(setting.value("sid").toString());
-    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
     setting.endGroup();
 }
 

@@ -36,13 +36,13 @@ SearchCalls::SearchCalls(const QVector<DateTime> &model, const QVector<bool> &ro
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
 
     QSettings setting;
-    if (setting.contains("searchCalls/size")) this->resize(setting.value("searchCalls/size").toSize());
+    if (setting.contains("searchCalls/geometry")) this->restoreGeometry(setting.value("searchCalls/geometry").toByteArray());
 }
 
 SearchCalls::~SearchCalls()
 {
     QSettings setting;
-    setting.setValue("searchCalls/size", this->size());
+    setting.setValue("searchCalls/geometry", this->saveGeometry());
 
     delete ui;
 }

@@ -74,7 +74,7 @@ SeedtoTime4::~SeedtoTime4()
     setting.setValue("plusDelayHGSS", ui->lineEditHGSSDelayPlus->text());
     setting.setValue("minusSecondsHGSS", ui->lineEditHGSSSecondMinus->text());
     setting.setValue("plusSecondsHGSS", ui->lineEditHGSSSecondPlus->text());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -107,7 +107,7 @@ void SeedtoTime4::setupModels()
     if (setting.contains("plusDelayHGSS")) ui->lineEditHGSSDelayPlus->setText(setting.value("plusDelayHGSS").toString());
     if (setting.contains("minusSecondsHGSS")) ui->lineEditHGSSSecondMinus->setText(setting.value("minusSecondsHGSS").toString());
     if (setting.contains("plusSecondsHGSS")) ui->lineEditHGSSSecondPlus->setText(setting.value("plusSecondsHGSS").toString());
-    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
     setting.endGroup();
 }
 

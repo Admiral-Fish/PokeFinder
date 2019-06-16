@@ -41,7 +41,7 @@ Eggs3::~Eggs3()
     QSettings setting;
     setting.beginGroup("eggs3");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -169,7 +169,7 @@ void Eggs3::setupModels()
     connect(ui->eggSettingsFRLG, &EggSettings::toggleInheritance, frlg, &Egg3Model::toggleInheritance);
 
     QSettings setting;
-    if (setting.contains("eggs3/size")) this->resize(setting.value("eggs3/size").toSize());
+    if (setting.contains("eggs3/geometry")) this->restoreGeometry(setting.value("eggs3/geometry").toByteArray());
 }
 
 void Eggs3::refreshProfiles()

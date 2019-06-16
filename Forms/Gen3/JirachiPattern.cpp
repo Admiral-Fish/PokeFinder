@@ -36,7 +36,7 @@ JirachiPattern::JirachiPattern(QWidget *parent) :
 JirachiPattern::~JirachiPattern()
 {
     QSettings setting;
-    setting.setValue("jirachiPattern/size", this->size());
+    setting.setValue("jirachiPattern/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -51,7 +51,7 @@ void JirachiPattern::setupModels()
     ui->tableView->setModel(model);
 
     QSettings setting;
-    if (setting.contains("jirachiPattern/size")) this->resize(setting.value("jirachiPattern/size").toSize());
+    if (setting.contains("jirachiPattern/geometry")) this->restoreGeometry(setting.value("jirachiPattern/geometry").toByteArray());
 }
 
 void JirachiPattern::generate(u32 seed)

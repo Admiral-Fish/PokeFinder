@@ -37,7 +37,7 @@ ProfileManager3::ProfileManager3(QWidget *parent) :
 ProfileManager3::~ProfileManager3()
 {
     QSettings setting;
-    setting.setValue("profileManager3/size", this->size());
+    setting.setValue("profileManager3/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -49,7 +49,7 @@ void ProfileManager3::setupModels()
     ui->tableView->setModel(model);
 
     QSettings setting;
-    if (setting.contains("profileManager3/size")) this->resize(setting.value("profileManager3/size").toSize());
+    if (setting.contains("profileManager3/geometry")) this->restoreGeometry(setting.value("profileManager3/geometry").toByteArray());
 }
 
 void ProfileManager3::on_pushButtonNew_clicked()

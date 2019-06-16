@@ -37,7 +37,7 @@ ProfileManager4::ProfileManager4(QWidget *parent) :
 ProfileManager4::~ProfileManager4()
 {
     QSettings setting;
-    setting.setValue("profileManager4/size", this->size());
+    setting.setValue("profileManager4/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -49,7 +49,7 @@ void ProfileManager4::setupModels()
     ui->tableView->setModel(model);
 
     QSettings setting;
-    if (setting.contains("profileManager4/size")) this->resize(setting.value("profileManager4/size").toSize());
+    if (setting.contains("profileManager4/geometry")) this->restoreGeometry(setting.value("profileManager4/geometry").toByteArray());
 }
 
 void ProfileManager4::on_pushButtonNew_clicked()

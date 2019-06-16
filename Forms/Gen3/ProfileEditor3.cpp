@@ -55,7 +55,7 @@ ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) :
 ProfileEditor3::~ProfileEditor3()
 {
     QSettings setting;
-    setting.setValue("profileEditor3/size", this->size());
+    setting.setValue("profileEditor3/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -91,7 +91,7 @@ void ProfileEditor3::setupModels()
     ui->comboBoxLanguage->setItemData(5, Language::Japanese);
 
     QSettings setting;
-    if (setting.contains("profileEditor3/size")) this->resize(setting.value("profileEditor3/size").toSize());
+    if (setting.contains("profileEditor3/geometry")) this->restoreGeometry(setting.value("profileEditor3/geometry").toByteArray());
 }
 
 void ProfileEditor3::on_pushButtonAccept_clicked()

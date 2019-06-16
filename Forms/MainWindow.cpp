@@ -47,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
 
     QSettings setting;
-    if (setting.contains("mainWindow/size")) this->resize(setting.value("mainWindow/size").toSize());
+    if (setting.contains("mainWindow/geometry")) this->restoreGeometry(setting.value("mainWindow/geometry").toByteArray());
 }
 
 MainWindow::~MainWindow()
@@ -58,7 +58,7 @@ MainWindow::~MainWindow()
     setting.setValue("style", currentStyle);
     setting.endGroup();
 
-    setting.setValue("mainWindow/size", this->size());
+    setting.setValue("mainWindow/geometry", this->saveGeometry());
 
     delete ui;
     delete stationary3;
@@ -106,7 +106,7 @@ void MainWindow::setupStyle()
     QSettings setting;
     currentStyle = setting.value("settings/style", "dark").toString();
 
-    QStringList styles = { "light", "dark" };
+    QStringList styles = { "dark", "light" };
     for (u8 i = 0; i < styles.size(); i++)
     {
         const QString &style = styles.at(i);

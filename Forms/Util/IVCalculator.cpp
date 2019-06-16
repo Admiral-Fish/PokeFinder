@@ -39,7 +39,7 @@ IVCalculator::IVCalculator(QWidget *parent) :
 IVCalculator::~IVCalculator()
 {
     QSettings setting;
-    setting.setValue("ivCalculator/size", this->size());
+    setting.setValue("ivCalculator/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -54,10 +54,10 @@ void IVCalculator::setupModels()
     ui->comboBoxCharacteristic->addItems(Translator::getCharacteristic());
 
     QSettings setting;
-    if (setting.contains("ivCalculator/size")) this->resize(setting.value("ivCalculator/size").toSize());
+    if (setting.contains("ivCalculator/geometry")) this->restoreGeometry(setting.value("ivCalculator/geometry").toByteArray());
 }
 
-void IVCalculator::displayIVs(QLabel *label, QVector<u8> ivs)
+void IVCalculator::displayIVs(QLabel *label, const QVector<u8> &ivs)
 {
     QString result;
 

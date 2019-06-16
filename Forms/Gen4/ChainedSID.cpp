@@ -36,7 +36,7 @@ ChainedSID::ChainedSID(QWidget *parent) :
 ChainedSID::~ChainedSID()
 {
     QSettings setting;
-    setting.setValue("chainedSID/size", this->size());
+    setting.setValue("chainedSID/geometry", this->saveGeometry());
 
     delete ui;
     delete chainedCalc;
@@ -53,7 +53,7 @@ void ChainedSID::setupModels()
     ui->comboBoxNature->addItems(Nature::getFrameNatures());
 
     QSettings setting;
-    if (setting.contains("chainedSID/size")) this->resize(setting.value("chainedSID/size").toSize());
+    if (setting.contains("chainedSID/geometry")) this->restoreGeometry(setting.value("chainedSID/geometry").toByteArray());
 }
 
 void ChainedSID::on_pushButtonCalculate_clicked()

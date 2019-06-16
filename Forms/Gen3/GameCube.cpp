@@ -54,7 +54,7 @@ GameCube::~GameCube()
     QSettings setting;
     setting.beginGroup("gamecube");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -153,7 +153,7 @@ void GameCube::setupModels()
     connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
 
     QSettings setting;
-    if (setting.contains("gamecube/size")) this->resize(setting.value("gamecube/size").toSize());
+    if (setting.contains("gamecube/geometry")) this->restoreGeometry(setting.value("gamecube/geometry").toByteArray());
 }
 
 void GameCube::updateProgress(const QVector<Frame3> &frames, int progress)

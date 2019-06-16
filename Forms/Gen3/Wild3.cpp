@@ -48,7 +48,7 @@ Wild3::~Wild3()
     QSettings setting;
     setting.beginGroup("wild3");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -189,7 +189,7 @@ void Wild3::setupModels()
     connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
 
     QSettings setting;
-    if (setting.contains("wild3/size")) this->resize(setting.value("wild3/size").toSize());
+    if (setting.contains("wild3/geometry")) this->restoreGeometry(setting.value("wild3/geometry").toByteArray());
 }
 
 void Wild3::updateLocationsGenerator()

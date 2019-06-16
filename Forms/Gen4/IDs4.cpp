@@ -36,7 +36,7 @@ IDs4::IDs4(QWidget *parent) :
 IDs4::~IDs4()
 {
     QSettings setting;
-    setting.setValue("ids4/size", this->size());
+    setting.setValue("ids4/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -72,7 +72,7 @@ void IDs4::setupModels()
     ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
 
     QSettings setting;
-    if (setting.contains("ids4/size")) this->resize(setting.value("ids4/size").toSize());
+    if (setting.contains("ids4/geometry")) this->restoreGeometry(setting.value("ids4/geometry").toByteArray());
 }
 
 void IDs4::updateProgressShinyPID(const QVector<QList<QStandardItem *> > &frames, int progress)

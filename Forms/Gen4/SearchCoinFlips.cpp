@@ -33,13 +33,13 @@ SearchCoinFlips::SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent
     ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
 
     QSettings setting;
-    if (setting.contains("searchCoinFlips/size")) this->resize(setting.value("searchCoinFlips/size").toSize());
+    if (setting.contains("searchCoinFlips/geometry")) this->restoreGeometry(setting.value("searchCoinFlips/geometry").toByteArray());
 }
 
 SearchCoinFlips::~SearchCoinFlips()
 {
     QSettings setting;
-    setting.setValue("searchCoinFlips/size", this->size());
+    setting.setValue("searchCoinFlips/geometry", this->saveGeometry());
 
     delete ui;
 }

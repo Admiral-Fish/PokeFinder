@@ -38,7 +38,7 @@ EncounterLookup::EncounterLookup(QWidget *parent) :
 EncounterLookup::~EncounterLookup()
 {
     QSettings setting;
-    setting.setValue("encounterLookup/size", this->size());
+    setting.setValue("encounterLookup/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -62,7 +62,7 @@ void EncounterLookup::setupModels()
     ui->comboBoxGame->addItem(tr("Soul Silver"), Game::SoulSilver);
 
     QSettings setting;
-    if (setting.contains("encounterLookup/size")) this->resize(setting.value("encounterLookup/size").toSize());
+    if (setting.contains("encounterLookup/geometry")) this->restoreGeometry(setting.value("encounterLookup/geometry").toByteArray());
 }
 
 QSet<QPair<u8, QString>> EncounterLookup::getEncounters3(Game game, u16 specie)
