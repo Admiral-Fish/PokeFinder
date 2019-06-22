@@ -1,5 +1,5 @@
-lessThan(QT_MAJOR_VERSION, 5):error("You need at least Qt 5.11 to build PokeFinder")
-equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 11):error("You need at least Qt 5.11 to build PokeFinder")
+lessThan(QT_MAJOR_VERSION, 5):error("You need at least Qt 5.9 to build PokeFinder")
+equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 9):error("You need at least Qt 5.9 to build PokeFinder")
 
 QT += concurrent network widgets
 CONFIG += c++1z lrelease embed_translations

@@ -126,7 +126,7 @@ void MainWindow::setupStyle()
 void MainWindow::checkProfileJson()
 {
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
-    if (file.open(QIODevice::NewOnly | QIODevice::Text))
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         file.close();
     }

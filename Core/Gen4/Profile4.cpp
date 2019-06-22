@@ -124,8 +124,8 @@ QVector<Profile4> Profile4::loadProfileList()
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        QJsonDocument profiles(QJsonDocument::fromJson(file.readAll()));
-        QJsonArray gen4 = profiles["gen4"].toArray();
+        QJsonObject profiles(QJsonDocument::fromJson(file.readAll()).object());
+        QJsonArray gen4 = profiles[QString("gen4")].toArray();
 
         for (const auto &&i : gen4)
         {

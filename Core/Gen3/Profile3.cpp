@@ -65,7 +65,7 @@ QVector<Profile3> Profile3::loadProfileList()
     QFile file(QApplication::applicationDirPath() + "/profiles.json");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        QJsonDocument profiles(QJsonDocument::fromJson(file.readAll()));
+        QJsonObject profiles(QJsonDocument::fromJson(file.readAll()).object());
         QJsonArray gen3 = profiles["gen3"].toArray();
 
         for (const auto &&i : gen3)
