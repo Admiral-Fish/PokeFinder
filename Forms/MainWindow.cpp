@@ -41,7 +41,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    checkProfileJson();
     setupLanguage();
     setupStyle();
     QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
@@ -120,15 +119,6 @@ void MainWindow::setupStyle()
         }
 
         styleGroup->addAction(action);
-    }
-}
-
-void MainWindow::checkProfileJson()
-{
-    QFile file(QApplication::applicationDirPath() + "/profiles.json");
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        file.close();
     }
 }
 

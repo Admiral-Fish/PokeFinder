@@ -64,7 +64,6 @@ private:
 
     void setupLanguage();
     void setupStyle();
-    void checkProfileJson();
     void checkUpdates();
 
 private slots:

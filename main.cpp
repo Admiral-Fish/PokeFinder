@@ -19,6 +19,7 @@
 
 #include <QApplication>
 #include <QFile>
+#include <QJsonDocument>
 #include <QSettings>
 #include <QTextStream>
 #include <QTranslator>
@@ -49,6 +50,15 @@ int main(int argc, char *argv[])
     if (translator.load(QString(":/i18n/PokeFinder_%1.qm").arg(setting.value("settings/locale", "en").toString())))
     {
         QApplication::installTranslator(&translator);
+    }
+
+    // Migrate profiles
+    QFile profiles(QApplication::applicationDirPath() + "/profiles.json");
+    if (profiles.open(QIODevice::ReadOnly) && !setting.contains("profiles"))
+    {
+        QJsonDocument doc = QJsonDocument::fromJson(profiles.readAll());
+        setting.setValue("profiles", doc.toJson());
+        profiles.close();
     }
 
     MainWindow w;
