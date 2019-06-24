@@ -36,6 +36,7 @@ DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGS
     seed = Utilities::calcGen4Seed(dateTime, delay - (2000 - dateTime.date().year()));
     this->version = version;
     this->info = info;
+    this->info.recalculateRoamers(seed);
 }
 
 QString DateTime::sequence() const

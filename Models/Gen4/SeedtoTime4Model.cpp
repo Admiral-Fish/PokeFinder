@@ -64,7 +64,7 @@ QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
                     return version & Game::HGSS ? Utilities::getCalls(frame.getSeed(), 15, frame.getInfo()) : Utilities::coinFlips(frame.getSeed(), 15);
                 case 5:
                     {
-                        QString str = frame.getInfo().getRoutes();
+                        QString str = frame.getInfo().getRouteString();
                         return str.isEmpty() ? tr("No roamers") : str;
                     }
             }

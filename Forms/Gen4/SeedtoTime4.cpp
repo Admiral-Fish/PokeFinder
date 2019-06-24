@@ -153,7 +153,7 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
                     {
                         if (!forceSecond || second == forcedSecond)
                         {
-                            QDateTime dateTime = QDateTime(QDate(static_cast<int>(year), month, day), QTime(static_cast<int>(hour), minute, second));
+                            QDateTime dateTime(QDate(static_cast<int>(year), month, day), QTime(static_cast<int>(hour), minute, second));
                             results.append(DateTime(dateTime, delay, version, roamer, routes));
                         }
                     }
@@ -196,7 +196,7 @@ QVector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minu
         for (int j : delayRange)
         {
             QDateTime offset = time.addSecs(i);
-            DateTime result = DateTime(offset, delay + j, target.getVersion(), target.getInfo());
+            DateTime result(offset, delay + j, target.getVersion(), target.getInfo());
             results.append(result);
         }
     }
@@ -237,7 +237,7 @@ void SeedtoTime4::on_pushButtonHGSSGenerate_clicked()
 
     QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HeartGold);
     ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + Utilities::getCalls(seed, 15, info));
-    QString str = info.getRoutes();
+    QString str = info.getRouteString();
     str = str.isEmpty() ? tr("No roamers") : str;
     ui->labelHGSSRoamers->setText(tr("Roamers: ") + str);
 
