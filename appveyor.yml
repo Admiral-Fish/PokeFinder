@@ -10,10 +10,13 @@ environment:
     OS: win32
 
 install:
-    - git submodule update --init --recursive
+    - git submodule update --init --recursive    
+    
+before_build:
     # Windows
     - cmd: set PATH=%QTDIR%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
-    - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+    - cmd: if "%OS"=="win64" "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\vsdevcmd.bat" -arch=x64 -host_arch=x64
+    - cmd: if "%OS"=="win32" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\vsdevcmd.bat" -arch=x86 -host_arch=x64
     # Linux
     - sh: sudo add-apt-repository ppa:beineri/opt-qt-5.12.3-xenial -y
     - sh: sudo apt-get update -qq
