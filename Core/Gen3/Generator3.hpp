@@ -46,14 +46,12 @@ private:
 
     QVector<Frame3> generateMethodChannel(const FrameCompare &compare) const;
     QVector<Frame3> generateMethodH124(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodH124Synch(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodH124CuteCharm(const FrameCompare &compare) const;
     QVector<Frame3> generateMethodXDColo(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodXD(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodColo(const FrameCompare &compare) const;
+    QVector<Frame3> generateMethodXDColoShadow(const FrameCompare &compare) const;
     QVector<Frame3> generateMethod124(const FrameCompare &compare) const;
     QVector<Frame3> generateMethod1Reverse(const FrameCompare &compare) const;
     void generateNonShadows(XDRNG &rng) const;
+    bool (*getCuteCharmCompare (int))();
     static inline bool cuteCharm125F(u32 pid) { return (pid & 0xff) < 31; }
     static inline bool cuteCharm875M(u32 pid) { return (pid & 0xff) >= 31; }
     static inline bool cuteCharm25F(u32 pid) { return (pid & 0xff) < 63; }
