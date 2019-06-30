@@ -2,9 +2,12 @@ environment:
   matrix:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     QTDIR: C:\Qt\5.12\msvc2017_64
-    OS: windows
+    OS: win64
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
     OS: linux
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    QTDIR: C:\Qt\5.12\msvc2017
+    OS: win32
 
 install:
     - git submodule update --init --recursive
@@ -32,7 +35,7 @@ after_build:
     - cmd: del PokeFinder-windows\vc_redist*.exe
     - cmd: xcopy /I %QTDIR%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
     - cmd: xcopy /I %QTDIR%\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
-    - cmd: 7z a PokeFinder-windows.zip PokeFinder-windows\
+    - cmd: 7z a PokeFinder-%OS%.zip PokeFinder-windows\
     # Linux
     - sh: zip -r PokeFinder-linux.zip PokeFinder
     
