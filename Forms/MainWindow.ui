@@ -62,7 +62,7 @@
        <item row="4" column="0">
         <widget class="QPushButton" name="pushButtonIDs3">
          <property name="text">
-          <string>IDs</string>
+          <string>TID/SID</string>
          </property>
         </widget>
        </item>
@@ -99,7 +99,7 @@
        <item row="3" column="0">
         <widget class="QPushButton" name="pushButtonIDs4">
          <property name="text">
-          <string>IDs</string>
+          <string>TID/SID</string>
          </property>
         </widget>
        </item>
