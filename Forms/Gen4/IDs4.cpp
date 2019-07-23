@@ -45,11 +45,11 @@ void IDs4::setupModels()
 {
     shinyPID = new QStandardItemModel(ui->tableViewShinyPID);
     ui->tableViewShinyPID->setModel(shinyPID);
-    shinyPID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
+    shinyPID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay"));
 
     tidSID = new QStandardItemModel(ui->tableViewTIDSID);
     ui->tableViewTIDSID->setModel(tidSID);
-    tidSID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
+    tidSID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay"));
 
     seedFinder = new QStandardItemModel(ui->tableViewSeedFinder);
     ui->tableViewSeedFinder->setModel(seedFinder);

@@ -92,7 +92,7 @@ void ShinyPIDSearcher::search()
                 {
                     u32 delay = efgh + 2000 - year;
                     auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
-                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay)) << new QStandardItem("0");
+                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay));
                     QMutexLocker locker(&mutex);
                     results.append(frame);
                 }
@@ -182,7 +182,7 @@ void TIDSIDSearcher::search()
                 {
                     u32 delay = efgh + 2000 - year;
                     auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
-                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay)) << new QStandardItem("0");
+                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay));
                     QMutexLocker locker(&mutex);
                     results.append(frame);
                 }

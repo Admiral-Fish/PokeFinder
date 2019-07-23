@@ -98,16 +98,10 @@ void TextBox::onTextEdited(QString string)
     {
         string = string.toUpper();
         string.remove(filter);
-        u64 temp = string.toULongLong(nullptr, base);
 
-        if (temp > maxValue)
-        {
-            string = QString::number(maxValue, base);
-        }
-        if (temp < minValue)
-        {
-            string = QString::number(minValue, base);
-        }
+        u64 temp = string.toULongLong(nullptr, base);
+        temp = qBound(minValue, temp, maxValue);
+        string = QString::number(temp, base);
 
         int position = cursorPosition();
         setText(string);
