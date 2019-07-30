@@ -41,7 +41,7 @@ after_build:
     - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
     - cmd: 7z a PokeFinder-%OS%.zip PokeFinder-windows\
     # Linux
-    - sh: zip -r PokeFinder-%OS%.zip PokeFinder
+    - sh: zip -r PokeFinder-linux.zip PokeFinder
     
 artifacts:
 - path: PokeFinder-%OS%.zip
