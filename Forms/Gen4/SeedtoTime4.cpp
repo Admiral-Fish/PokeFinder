@@ -64,12 +64,12 @@ SeedtoTime4::~SeedtoTime4()
 {
     QSettings setting;
     setting.beginGroup("seedToTime4");
-    setting.setValue("dpptYear", ui->lineEditDPPtYear->text());
+    setting.setValue("dpptYear", ui->textBoxDPPtYear->text());
     setting.setValue("minusDelayDPPt", ui->lineEditDPPtDelayMinus->text());
     setting.setValue("plusDelayDPPt", ui->lineEditDPPtDelayPlus->text());
     setting.setValue("minusSecondsDPPt", ui->lineEditDPPtSecondMinus->text());
     setting.setValue("plusSecondsDPPt", ui->lineEditDPPtSecondPlus->text());
-    setting.setValue("hgssYear", ui->lineEditHGSSYear->text());
+    setting.setValue("hgssYear", ui->textBoxHGSSYear->text());
     setting.setValue("minusDelayHGSS", ui->lineEditHGSSDelayMinus->text());
     setting.setValue("plusDelayHGSS", ui->lineEditHGSSDelayPlus->text());
     setting.setValue("minusSecondsHGSS", ui->lineEditHGSSSecondMinus->text());
@@ -88,7 +88,11 @@ void SeedtoTime4::setupModels()
     hgssCalibrate = new SeedtoTime4Model(ui->tableViewHGSSCalibrate, true, Game::HeartGold);
 
     ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxDPPtYear->setValues(0, 2099);
+    ui->textBoxDPPtSecond->setValues(0, 59);
     ui->textBoxHGSSSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxHGSSYear->setValues(0, 2099);
+    ui->textBoxHGSSSecond->setValues(0, 59);
 
     ui->tableViewDPPtSearch->setModel(dppt);
     ui->tableViewDPPtCalibrate->setModel(dpptCalibrate);
@@ -97,12 +101,12 @@ void SeedtoTime4::setupModels()
 
     QSettings setting;
     setting.beginGroup("seedToTime4");
-    if (setting.contains("dpptYear")) ui->lineEditDPPtYear->setText(setting.value("dpptYear").toString());
+    if (setting.contains("dpptYear")) ui->textBoxDPPtYear->setText(setting.value("dpptYear").toString());
     if (setting.contains("minusDelayDPPt")) ui->lineEditDPPtDelayMinus->setText(setting.value("minusDelayDPPt").toString());
     if (setting.contains("plusDelayDPPt")) ui->lineEditDPPtDelayPlus->setText(setting.value("plusDelayDPPt").toString());
     if (setting.contains("minusSecondsDPPt")) ui->lineEditDPPtSecondMinus->setText(setting.value("minusSecondsDPPt").toString());
     if (setting.contains("plusSecondsDPPt")) ui->lineEditDPPtSecondPlus->setText(setting.value("plusSecondsDPPt").toString());
-    if (setting.contains("hgssYear")) ui->lineEditHGSSYear->setText(setting.value("hgssYear").toString());
+    if (setting.contains("hgssYear")) ui->textBoxHGSSYear->setText(setting.value("hgssYear").toString());
     if (setting.contains("minusDelayHGSS")) ui->lineEditHGSSDelayMinus->setText(setting.value("minusDelayHGSS").toString());
     if (setting.contains("plusDelayHGSS")) ui->lineEditHGSSDelayPlus->setText(setting.value("plusDelayHGSS").toString());
     if (setting.contains("minusSecondsHGSS")) ui->lineEditHGSSSecondMinus->setText(setting.value("minusSecondsHGSS").toString());
@@ -207,10 +211,10 @@ QVector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minu
 void SeedtoTime4::on_pushButtonDPPtGenerate_clicked()
 {
     u32 seed = ui->textBoxDPPtSeed->getUInt();
-    u32 year = ui->lineEditDPPtYear->text().toUInt();
+    u32 year = ui->textBoxDPPtYear->getUInt();
 
     bool forceSecond = ui->checkBoxDPPtSecond->isChecked();
-    int forcedSecond = ui->lineEditDPPtSecond->text().toInt();
+    int forcedSecond = ui->textBoxDPPtSecond->getInt();
 
     dppt->clearModel();
 
@@ -225,10 +229,10 @@ void SeedtoTime4::on_pushButtonHGSSGenerate_clicked()
     hgss->clearModel();
 
     u32 seed = ui->textBoxHGSSSeed->getUInt();
-    u32 year = ui->lineEditHGSSYear->text().toUInt();
+    u32 year = ui->textBoxHGSSYear->getUInt();
 
     bool forceSecond = ui->checkBoxHGSSSecond->isChecked();
-    int forcedSecond = ui->lineEditHGSSSecond->text().toInt();
+    int forcedSecond = ui->textBoxHGSSSecond->getInt();
 
     QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
     QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };

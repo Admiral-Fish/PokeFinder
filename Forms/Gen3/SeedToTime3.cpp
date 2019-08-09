@@ -65,7 +65,7 @@ void SeedToTime3::setupModels()
     model = new QStandardItemModel(ui->tableView);
 
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxYear->setValues(2000, 2037);
+    ui->textBoxYear->setValues(0, 2037);
 
     model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame"));
     ui->tableView->setModel(model);

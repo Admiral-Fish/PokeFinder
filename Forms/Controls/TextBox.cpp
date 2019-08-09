@@ -80,6 +80,12 @@ void TextBox::setValues(u64 minValue, u64 maxValue, int base)
     setup = true;
 }
 
+int TextBox::getInt()
+{
+    Q_ASSERT(setup);
+    return this->text().toInt(nullptr, base);
+}
+
 u16 TextBox::getUShort()
 {
     Q_ASSERT(setup);
