@@ -1260,24 +1260,14 @@
         <translation>Generate times for seed</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="285"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="288"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="291"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="357"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="360"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="363"/>
-        <source> (Citadark)</source>
-        <translation> (Citadark)</translation>
-    </message>
-    <message>
         <location filename="../Forms/Gen3/GameCube.cpp" line="286"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="289"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="292"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="358"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="361"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="364"/>
-        <source> (Initial)</source>
-        <translation> (Initial)</translation>
+        <source> (Citadark)</source>
+        <translation> (Citadark)</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.cpp" line="287"/>
@@ -1286,16 +1276,26 @@
         <location filename="../Forms/Gen3/GameCube.cpp" line="359"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="362"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="365"/>
+        <source> (Initial)</source>
+        <translation> (Initial)</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="288"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="291"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="294"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="360"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="363"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="366"/>
         <source> (Phenac)</source>
         <translation> (Phenac)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="306"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="307"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="308"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="374"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="309"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="375"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="376"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="377"/>
         <source> (E-Reader)</source>
         <translation> (E-Reader)</translation>
     </message>
@@ -4866,26 +4866,26 @@
         <translation>Max Results</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="275"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="280"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="276"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="281"/>
         <source>Method 1</source>
         <translation>Method 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="276"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="281"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="277"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="282"/>
         <source>Method J</source>
         <translation>Method J</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="276"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="281"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="277"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="282"/>
         <source>Method K</source>
         <translation>Method K</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="277"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="282"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="278"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="283"/>
         <source>Wondercard IVs</source>
         <translation>Wondercard IVs</translation>
     </message>
@@ -4901,8 +4901,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="289"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="302"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="290"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="303"/>
         <source>Synchronize</source>
         <translation>Synchronize</translation>
     </message>
@@ -4999,7 +4999,7 @@
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
         <location filename="../Forms/Gen4/Stationary4.cpp" line="191"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="291"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="292"/>
         <source>Cute Charm</source>
         <translation>Cute Charm</translation>
     </message>
@@ -5037,27 +5037,27 @@
         <translation>Output Results to CSV</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="294"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="295"/>
         <source>♂ Lead</source>
         <translation>♂ Lead</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="295"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="296"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation>♀ Lead (50% ♂ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="296"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="297"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation>♀ Lead (75% ♂ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="297"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="298"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation>♀ Lead (25% ♂ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="298"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="299"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation>♀ Lead (87.5% ♂ Target)</translation>
     </message>
@@ -5327,42 +5327,42 @@
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="491"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="492"/>
         <source>♂ Lead (50% ♀ Target)</source>
         <translation>♂ Lead (50% ♀ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="492"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="493"/>
         <source>♂ Lead (75% ♀ Target)</source>
         <translation>♂ Lead (75% ♀ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="493"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="494"/>
         <source>♂ Lead (25% ♀ Target)</source>
         <translation>♂ Lead (25% ♀ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="494"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="495"/>
         <source>♂ Lead (12.5% ♀ Target)</source>
         <translation>♂ Lead (12.5% ♀ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="495"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="496"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation>♀ Lead (50% ♂ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="496"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="497"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation>♀ Lead (75% ♂ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="497"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="498"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation>♀ Lead (25% ♂ Target)</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="498"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="499"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation>♀ Lead (87.5% ♂ Target)</translation>
     </message>
@@ -5458,8 +5458,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="487"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="502"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="488"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="503"/>
         <source>Synchronize</source>
         <translation>Synchronize</translation>
     </message>
@@ -5537,7 +5537,7 @@
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
         <location filename="../Forms/Gen3/Wild3.cpp" line="351"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="489"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="490"/>
         <source>Cute Charm</source>
         <translation>Cute Charm</translation>
     </message>
