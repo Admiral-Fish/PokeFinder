@@ -48,7 +48,7 @@ private:
     Ui::MainWindow *ui;
     QActionGroup *langGroup{};
     QActionGroup *styleGroup{};
-    const QString VERSION = "v2.4.0";
+    const QString VERSION = "v2.4.1";
     QString currentLanguage;
     QString currentStyle;
 
