@@ -341,10 +341,10 @@ void Wild3::on_pushButtonGenerate_clicked()
 
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
     Generator3 generator(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
-    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                         ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
+    FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+                         ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+                         ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
 
     generator.setup(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
     generator.setEncounterType(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
@@ -382,10 +382,11 @@ void Wild3::on_pushButtonSearch_clicked()
     u16 sid = ui->textBoxSearcherSID->getUShort();
 
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
-                         ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false,
-                         ui->comboBoxSearcherEncounterSlot->getChecked());
+    FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
+                         ui->checkBoxSearcherShinyOnly->isChecked(), false,
+                         ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherNature->getChecked(),
+                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->comboBoxSearcherEncounterSlot->getChecked());
+
     Searcher3 searcher(tid, sid, genderRatio, compare);
 
     searcher.setup(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));

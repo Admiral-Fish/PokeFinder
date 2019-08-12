@@ -198,9 +198,10 @@ void Eggs4::on_pushButtonGenerate_clicked()
     Egg4 generator(maxResults, startingFrame, tid, sid, method, seed, ui->comboBoxGeneratorGenderRatio->currentData().toUInt());
     generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
 
-    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorGender->currentIndex(),
-                         ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorNature->getChecked(),
-                         ui->comboBoxGeneratorHiddenPower->getChecked(), ui->checkBoxGeneratorShinyOnly->isChecked(), false);
+    FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), false,
+                         ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
+                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
     QVector<Frame4> frames = generator.generate(compare);
     generatorModel->addItems(frames);
@@ -219,7 +220,8 @@ void Eggs4::on_pushButtonSearchPID_clicked()
 
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
     FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
-                         ui->comboBoxSearcherNature->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked());
+                         ui->checkBoxSearcherShinyOnly->isChecked(), false, QVector<u8>(), QVector<u8>(),
+                         ui->comboBoxSearcherNature->getChecked(), QVector<bool>(), QVector<bool>());
 
     u32 minDelay = ui->textBoxSearcherPIDMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherPIDMaxDelay->getUInt();
@@ -250,7 +252,8 @@ void Eggs4::on_pushButtonSearchIVs_clicked()
     ui->pushButtonSearchIVs->setEnabled(false);
     ui->pushButtonCancelIVs->setEnabled(true);
 
-    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherHiddenPower->getChecked());
+    FrameCompare compare(0, 0, false, false, ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(),
+                         QVector<bool>(), ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
 
     u32 minDelay = ui->textBoxSearcherIVsMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherIVsMaxDelay->getUInt();

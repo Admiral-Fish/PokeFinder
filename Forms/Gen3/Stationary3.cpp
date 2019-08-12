@@ -230,10 +230,10 @@ void Stationary3::on_pushButtonGenerate_clicked()
 
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toInt();
     Generator3 generator(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
-    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                         ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked());
+    FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+                         ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
+                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
     generator.setup(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
@@ -251,17 +251,18 @@ void Stationary3::on_pushButtonSearch_clicked()
 
     u16 tid = ui->textBoxSearcherTID->getUShort();
     u16 sid = ui->textBoxSearcherSID->getUShort();
+    QVector<u8> min = ui->ivFilterSearcher->getLower();
+    QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
-                         ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false);
+    FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
+                         ui->checkBoxSearcherShinyOnly->isChecked(), false, min, max,
+                         ui->comboBoxSearcherNature->getChecked(), ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
     Searcher3 searcher(tid, sid, genderRatio, compare);
 
     searcher.setup(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
-    QVector<u8> min = ui->ivFilterSearcher->getLower();
-    QVector<u8> max = ui->ivFilterSearcher->getUpper();
+
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)

@@ -28,12 +28,8 @@ class FrameCompare
 
 public:
     FrameCompare() = default;
-    FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int abilityIndex,
-                 const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare);
-    FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int abilityIndex,
-                 const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare, const QVector<bool> &encounter);
-    FrameCompare(int genderIndex, int abilityIndex, QVector<bool> nature, bool onlyShiny);
-    FrameCompare(const QVector<u8> &min, const QVector<u8> &max, const QVector<bool> &power);
+    FrameCompare(int gender, int ability, bool shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max,
+                 const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters);
     bool comparePID(const Frame &frame) const;
     bool compareIVs(const Frame &frame) const;
     bool compareNature(const Frame &frame) const;
@@ -49,7 +45,7 @@ private:
     u8 ability{};
     QVector<bool> natures;
     QVector<bool> powers;
-    QVector<bool> encounterSlots;
+    QVector<bool> encounters;
     bool shiny{};
     bool skip{};
 
