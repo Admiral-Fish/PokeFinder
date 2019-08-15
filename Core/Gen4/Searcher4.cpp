@@ -557,14 +557,16 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
                 seed ^= 0x80000000;
             }
 
-            PokeRNGR testRNG(seed);
-            u32 testPID, slot = 0, nibble = 0;
-            u16 nextRNG = seed >> 16;
-            u16 nextRNG2 = testRNG.nextUShort();
+            u32 slot = 0, nibble = 0;
 
             frame.setPID(high, low, genderRatio);
             if (compare.comparePID(frame))
             {
+                PokeRNGR testRNG(seed);
+                u16 nextRNG = seed >> 16;
+                u16 nextRNG2 = testRNG.nextUShort();
+                u32 testPID;
+
                 do
                 {
                     bool skip = false;
@@ -719,9 +721,6 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
 
             if (low / 0x5556 != 0)
             {
-                u32 slot = 0;
-                bool skipFrame = false;
-
                 switch (encounterType)
                 {
                     case Encounter::Grass:
@@ -759,43 +758,39 @@ QVector<Frame4> Searcher4::searchMethodJSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
                 }
 
                 u8 choppedPID = high / 0xA3E;
-                if (!skipFrame)
+                for (const auto &buffer : genderThreshHolds)
                 {
-                    for (const auto &buffer : genderThreshHolds)
+                    switch (buffer)
                     {
-                        switch (buffer)
-                        {
-                            case 0x0:
-                                frame.setLeadType(Lead::CuteCharmFemale);
-                                break;
-                            case 0x96:
-                                frame.setLeadType(Lead::CuteCharm50M);
-                                break;
-                            case 0xC8:
-                                frame.setLeadType(Lead::CuteCharm25M);
-                                break;
-                            case 0x4B:
-                                frame.setLeadType(Lead::CuteCharm75M);
-                                break;
-                            case 0x32:
-                                frame.setLeadType(Lead::CuteCharm875M);
-                                break;
-                            default:
-                                frame.setLeadType(Lead::CuteCharm);
-                                break;
-                        }
+                        case 0x0:
+                            frame.setLeadType(Lead::CuteCharmFemale);
+                            break;
+                        case 0x96:
+                            frame.setLeadType(Lead::CuteCharm50M);
+                            break;
+                        case 0xC8:
+                            frame.setLeadType(Lead::CuteCharm25M);
+                            break;
+                        case 0x4B:
+                            frame.setLeadType(Lead::CuteCharm75M);
+                            break;
+                        case 0x32:
+                            frame.setLeadType(Lead::CuteCharm875M);
+                            break;
+                        default:
+                            frame.setLeadType(Lead::CuteCharm);
+                            break;
+                    }
 
-                        frame.setPID(buffer + choppedPID, genderRatio);
-                        if (!compare.comparePID(frame))
-                        {
-                            continue;
-                        }
+                    frame.setPID(buffer + choppedPID, genderRatio);
+                    if (!compare.comparePID(frame))
+                    {
+                        continue;
+                    }
 
-                        frame.setEncounterSlot(EncounterSlot::jSlot(slot >> 16, encounterType));
-                        if (encounterType == Encounter::Stationary || compare.compareSlot(frame))
-                        {
-                            frames.append(frame);
-                        }
+                    if (encounterType == Encounter::Stationary || compare.compareSlot(frame))
+                    {
+                        frames.append(frame);
                     }
                 }
             }
@@ -1405,14 +1400,16 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
                 seed ^= 0x80000000;
             }
 
-            PokeRNGR testRNG(seed);
-            u32 testPID, slot = 0, nibble = 0;
-            u16 nextRNG = seed >> 16;
-            u16 nextRNG2 = testRNG.nextUShort();
+            u32 slot = 0, nibble = 0;
 
             frame.setPID(high, low, genderRatio);
             if (compare.comparePID(frame))
             {
+                PokeRNGR testRNG(seed);
+                u16 nextRNG = seed >> 16;
+                u16 nextRNG2 = testRNG.nextUShort();
+                u32 testPID;
+
                 do
                 {
                     bool skip = false;
@@ -1614,9 +1611,6 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
 
             if ((low % 3) != 0)
             {
-                u32 slot = 0;
-                bool skipFrame = false;
-
                 switch (encounterType)
                 {
                     case Encounter::Grass:
@@ -1669,43 +1663,39 @@ QVector<Frame4> Searcher4::searchMethodKSearch(u8 hp, u8 atk, u8 def, u8 spa, u8
                 }
 
                 u8 choppedPID = high % 25;
-                if (!skipFrame)
+                for (const auto &buffer : genderThreshHolds)
                 {
-                    for (const auto &buffer : genderThreshHolds)
+                    switch (buffer)
                     {
-                        switch (buffer)
-                        {
-                            case 0x0:
-                                frame.setLeadType(Lead::CuteCharmFemale);
-                                break;
-                            case 0x96:
-                                frame.setLeadType(Lead::CuteCharm50M);
-                                break;
-                            case 0xC8:
-                                frame.setLeadType(Lead::CuteCharm25M);
-                                break;
-                            case 0x4B:
-                                frame.setLeadType(Lead::CuteCharm75M);
-                                break;
-                            case 0x32:
-                                frame.setLeadType(Lead::CuteCharm875M);
-                                break;
-                            default:
-                                frame.setLeadType(Lead::CuteCharm);
-                                break;
-                        }
+                        case 0x0:
+                            frame.setLeadType(Lead::CuteCharmFemale);
+                            break;
+                        case 0x96:
+                            frame.setLeadType(Lead::CuteCharm50M);
+                            break;
+                        case 0xC8:
+                            frame.setLeadType(Lead::CuteCharm25M);
+                            break;
+                        case 0x4B:
+                            frame.setLeadType(Lead::CuteCharm75M);
+                            break;
+                        case 0x32:
+                            frame.setLeadType(Lead::CuteCharm875M);
+                            break;
+                        default:
+                            frame.setLeadType(Lead::CuteCharm);
+                            break;
+                    }
 
-                        frame.setPID(buffer + choppedPID, genderRatio);
-                        if (!compare.comparePID(frame))
-                        {
-                            continue;
-                        }
+                    frame.setPID(buffer + choppedPID, genderRatio);
+                    if (!compare.comparePID(frame))
+                    {
+                        continue;
+                    }
 
-                        frame.setEncounterSlot(EncounterSlot::jSlot(slot >> 16, encounterType));
-                        if (encounterType == Encounter::Stationary || compare.compareSlot(frame))
-                        {
-                            frames.append(frame);
-                        }
+                    if (encounterType == Encounter::Stationary || compare.compareSlot(frame))
+                    {
+                        frames.append(frame);
                     }
                 }
             }
