@@ -84,7 +84,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 6:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(0) < frame2.getIV(1) : frame1.getIV(0) > frame2.getIV(0);
+                            return flag ? frame1.getIV(0) < frame2.getIV(0) : frame1.getIV(0) > frame2.getIV(0);
                         });
                         break;
                     case 7:
@@ -239,70 +239,76 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                     case 5:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getShiny() < frame2.getShiny() : frame1.getShiny() > frame2.getShiny();
+                            return flag ? frame1.getLevel() < frame2.getLevel() : frame1.getLevel() > frame2.getLevel();
                         });
                         break;
                     case 6:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getNature() < frame2.getNature() : frame1.getNature() > frame2.getNature();
+                            return flag ? frame1.getShiny() < frame2.getShiny() : frame1.getShiny() > frame2.getShiny();
                         });
                         break;
                     case 7:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getAbility() < frame2.getAbility() : frame1.getAbility() > frame2.getAbility();
+                            return flag ? frame1.getNature() < frame2.getNature() : frame1.getNature() > frame2.getNature();
                         });
                         break;
                     case 8:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(0) < frame2.getIV(0) : frame1.getIV(0) > frame2.getIV(0);
+                            return flag ? frame1.getAbility() < frame2.getAbility() : frame1.getAbility() > frame2.getAbility();
                         });
                         break;
                     case 9:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(1) < frame2.getIV(1) : frame1.getIV(1) > frame2.getIV(1);
+                            return flag ? frame1.getIV(0) < frame2.getIV(0) : frame1.getIV(0) > frame2.getIV(0);
                         });
                         break;
                     case 10:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(2) < frame2.getIV(2) : frame1.getIV(2) > frame2.getIV(2);
+                            return flag ? frame1.getIV(1) < frame2.getIV(1) : frame1.getIV(1) > frame2.getIV(1);
                         });
                         break;
                     case 11:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(3) < frame2.getIV(3) : frame1.getIV(3) > frame2.getIV(3);
+                            return flag ? frame1.getIV(2) < frame2.getIV(2) : frame1.getIV(2) > frame2.getIV(2);
                         });
                         break;
                     case 12:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(4) < frame2.getIV(4) : frame1.getIV(4) > frame2.getIV(4);
+                            return flag ? frame1.getIV(3) < frame2.getIV(3) : frame1.getIV(3) > frame2.getIV(3);
                         });
                         break;
                     case 13:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(5) < frame2.getIV(5) : frame1.getIV(5) > frame2.getIV(5);
+                            return flag ? frame1.getIV(4) < frame2.getIV(4) : frame1.getIV(4) > frame2.getIV(4);
                         });
                         break;
                     case 14:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getHidden() < frame2.getHidden() : frame1.getHidden() > frame2.getHidden();
+                            return flag ? frame1.getIV(5) < frame2.getIV(5) : frame1.getIV(5) > frame2.getIV(5);
                         });
                         break;
                     case 15:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getPower() < frame2.getPower() : frame1.getPower() > frame2.getPower();
+                            return flag ? frame1.getHidden() < frame2.getHidden() : frame1.getHidden() > frame2.getHidden();
                         });
                         break;
                     case 16:
+                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        {
+                            return flag ? frame1.getPower() < frame2.getPower() : frame1.getPower() > frame2.getPower();
+                        });
+                        break;
+                    case 17:
                         std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
                         {
                             return flag ? frame1.getGender() < frame2.getGender() : frame1.getGender() > frame2.getGender();
