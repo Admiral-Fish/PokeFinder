@@ -28,7 +28,7 @@ Wild3Model::Wild3Model(QObject *parent) :
 int Wild3Model::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return 18;
+    return 17;
 }
 
 QVariant Wild3Model::data(const QModelIndex &index, int role) const
@@ -41,38 +41,36 @@ QVariant Wild3Model::data(const QModelIndex &index, int role) const
             case 0:
                 return frame.getFrame();
             case 1:
-                return frame.getOccidentary();
-            case 2:
                 return frame.getEncounterSlot();
-            case 3:
+            case 2:
                 return frame.getLevel();
-            case 4:
+            case 3:
                 return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-            case 5:
+            case 4:
                 return frame.getShinyString();
-            case 6:
+            case 5:
                 return frame.getNatureString();
-            case 7:
+            case 6:
                 return frame.getAbility();
-            case 8:
+            case 7:
                 return frame.getIV(0);
-            case 9:
+            case 8:
                 return frame.getIV(1);
-            case 10:
+            case 9:
                 return frame.getIV(2);
-            case 11:
+            case 10:
                 return frame.getIV(3);
-            case 12:
+            case 11:
                 return frame.getIV(4);
-            case 13:
+            case 12:
                 return frame.getIV(5);
-            case 14:
+            case 13:
                 return frame.getPowerString();
-            case 15:
+            case 14:
                 return frame.getPower();
-            case 16:
+            case 15:
                 return frame.getGenderString();
-            case 17:
+            case 16:
                 return frame.getTime();
         }
     }

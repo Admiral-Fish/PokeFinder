@@ -150,7 +150,7 @@ QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) cons
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
-    u32 pid, hunt = 0;
+    u32 pid;
     u16 high, low, iv1, iv2;
 
     u16 rate = encounter.getEncounterRate() * 16;
@@ -252,12 +252,10 @@ QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) cons
 
         if (leadType == Lead::None)
         {
-            hunt = 2;
             frame.setNature(go.nextUShort() % 25);
         }
         else if (leadType == Lead::Synchronize)
         {
-            hunt = 2;
             if ((go.nextUShort() & 1) == 0) // Frame is synchable so set nature to synch nature
             {
                 frame.setNature(synchNature);
@@ -265,12 +263,10 @@ QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) cons
             else // Synch failed so grab hunt nature from next RNG call
             {
                 frame.setNature(go.nextUShort() % 25);
-                hunt++;
             }
         }
         else // Covers cutecharm
         {
-            hunt = 3;
             cuteCharmFlag = go.nextUShort() % 3 > 0;
             frame.setNature(go.nextUShort() % 25);
         }
@@ -286,7 +282,6 @@ QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) cons
             low = go.nextUShort();
             high = go.nextUShort();
             pid = (high << 16) | low;
-            hunt += 2;
         }
         while (pid % 25 != frame.getNature() || (cuteCharmFlag && !cuteCharm(pid)));
 
@@ -315,7 +310,6 @@ QVector<Frame3> Generator3::generateMethodH124(const FrameCompare &compare) cons
         if (compare.compareFrame(frame))
         {
             frame.setFrame(cnt);
-            frame.setOccidentary(hunt + cnt);
             frames.append(frame);
         }
     }

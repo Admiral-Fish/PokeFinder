@@ -36,15 +36,15 @@ public:
     void setPID(u16 high, u16 low, u16 genderRatio);
     QString getLockReason() const;
     void setLockReason(const QString &value);
-    u32 getOccidentary() const;
-    void setOccidentary(const u32 &value);
+    u32 getEggFrame() const;
+    void setEggFrame(const u32 &value);
     u32 getSeed() const;
     void setSeed(const u32 &value);
     void xorFrame(bool flag = false);
 
 private:
     QString lockReason;
-    u32 occidentary{};
+    u32 eggFrame{};
     u32 seed{};
 
 };

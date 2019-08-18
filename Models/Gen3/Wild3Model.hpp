@@ -36,8 +36,8 @@ public:
 private:
     QStringList header =
     {
-        tr("Frame"), tr("Occidentary"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
-        tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")
+        tr("Frame"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
+        tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")
     };
 
 };
