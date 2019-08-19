@@ -20,10 +20,11 @@
 #include "Searcher4Model.hpp"
 #include <Util/TableUtility.hpp>
 
-Searcher4Model::Searcher4Model(QObject *parent, Method method) :
+Searcher4Model::Searcher4Model(QObject *parent, Method method, bool stationary) :
     TableModel<Frame4>(parent)
 {
     this->method = method;
+    this->stationary = stationary;
 }
 
 void Searcher4Model::setMethod(Method method)
@@ -38,6 +39,7 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
     {
         emit layoutAboutToBeChanged();
         bool flag = order == Qt::AscendingOrder;
+        bool stat = stationary;
 
         switch (method)
         {
@@ -231,75 +233,99 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
                         });
                         break;
                     case 4:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getEncounterSlot() < frame2.getEncounterSlot() : frame1.getEncounterSlot() > frame2.getEncounterSlot();
+                            return stat ?
+                                   flag ? frame1.getShiny() < frame2.getShiny() : frame1.getShiny() > frame2.getShiny() :
+                                   flag ? frame1.getEncounterSlot() < frame2.getEncounterSlot() : frame1.getEncounterSlot() > frame2.getEncounterSlot();
                         });
                         break;
                     case 5:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getLevel() < frame2.getLevel() : frame1.getLevel() > frame2.getLevel();
+                            return stat ?
+                                   flag ? frame1.getNature() < frame2.getNature() : frame1.getNature() > frame2.getNature() :
+                                   flag ? frame1.getLevel() < frame2.getLevel() : frame1.getLevel() > frame2.getLevel();
                         });
                         break;
                     case 6:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getShiny() < frame2.getShiny() : frame1.getShiny() > frame2.getShiny();
+                            return stat ?
+                                   flag ? frame1.getAbility() < frame2.getAbility() : frame1.getAbility() > frame2.getAbility() :
+                                   flag ? frame1.getShiny() < frame2.getShiny() : frame1.getShiny() > frame2.getShiny();
                         });
                         break;
                     case 7:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getNature() < frame2.getNature() : frame1.getNature() > frame2.getNature();
+                            return stat ?
+                                   flag ? frame1.getIV(0) < frame2.getIV(0) : frame1.getIV(0) > frame2.getIV(0) :
+                                   flag ? frame1.getNature() < frame2.getNature() : frame1.getNature() > frame2.getNature();
                         });
                         break;
                     case 8:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getAbility() < frame2.getAbility() : frame1.getAbility() > frame2.getAbility();
+                            return stat ?
+                                   flag ? frame1.getIV(1) < frame2.getIV(1) : frame1.getIV(1) > frame2.getIV(1) :
+                                   flag ? frame1.getAbility() < frame2.getAbility() : frame1.getAbility() > frame2.getAbility();
                         });
                         break;
                     case 9:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(0) < frame2.getIV(0) : frame1.getIV(0) > frame2.getIV(0);
+                            return stat ?
+                                   flag ? frame1.getIV(2) < frame2.getIV(2) : frame1.getIV(2) > frame2.getIV(2) :
+                                   flag ? frame1.getIV(0) < frame2.getIV(0) : frame1.getIV(0) > frame2.getIV(0);
                         });
                         break;
                     case 10:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(1) < frame2.getIV(1) : frame1.getIV(1) > frame2.getIV(1);
+                            return stat ?
+                                   flag ? frame1.getIV(3) < frame2.getIV(3) : frame1.getIV(3) > frame2.getIV(3) :
+                                   flag ? frame1.getIV(1) < frame2.getIV(1) : frame1.getIV(1) > frame2.getIV(1);
                         });
                         break;
                     case 11:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(2) < frame2.getIV(2) : frame1.getIV(2) > frame2.getIV(2);
+                            return stat ?
+                                   flag ? frame1.getIV(4) < frame2.getIV(4) : frame1.getIV(4) > frame2.getIV(4) :
+                                   flag ? frame1.getIV(2) < frame2.getIV(2) : frame1.getIV(2) > frame2.getIV(2);
                         });
                         break;
                     case 12:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(3) < frame2.getIV(3) : frame1.getIV(3) > frame2.getIV(3);
+                            return stat ?
+                                   flag ? frame1.getIV(5) < frame2.getIV(5) : frame1.getIV(5) > frame2.getIV(5) :
+                                   flag ? frame1.getIV(3) < frame2.getIV(3) : frame1.getIV(3) > frame2.getIV(3);
                         });
                         break;
                     case 13:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(4) < frame2.getIV(4) : frame1.getIV(4) > frame2.getIV(4);
+                            return stat ?
+                                   flag ? frame1.getHidden() < frame2.getHidden() : frame1.getHidden() > frame2.getHidden() :
+                                   flag ? frame1.getIV(4) < frame2.getIV(4) : frame1.getIV(4) > frame2.getIV(4);
                         });
                         break;
                     case 14:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getIV(5) < frame2.getIV(5) : frame1.getIV(5) > frame2.getIV(5);
+                            return stat ?
+                                   flag ? frame1.getPower() < frame2.getPower() : frame1.getPower() > frame2.getPower() :
+                                   flag ? frame1.getIV(5) < frame2.getIV(5) : frame1.getIV(5) > frame2.getIV(5);
                         });
                         break;
                     case 15:
-                        std::sort(model.begin(), model.end(), [flag] (const Frame4 & frame1, const Frame4 & frame2)
+                        std::sort(model.begin(), model.end(), [flag, stat] (const Frame4 & frame1, const Frame4 & frame2)
                         {
-                            return flag ? frame1.getHidden() < frame2.getHidden() : frame1.getHidden() > frame2.getHidden();
+                            return stat ?
+                                   flag ? frame1.getGender() < frame2.getGender() : frame1.getGender() > frame2.getGender() :
+                                   flag ? frame1.getHidden() < frame2.getHidden() : frame1.getHidden() > frame2.getHidden();
                         });
                         break;
                     case 16:
@@ -336,7 +362,7 @@ int Searcher4Model::columnCount(const QModelIndex &parent) const
             return 10;
         case Method::MethodJ:
         case Method::MethodK:
-            return 18;
+            return stationary ? 16 : 18;
         default:
             return 0;
     }
@@ -443,28 +469,40 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                     case 3:
                         return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 4:
+                        if (stationary) return frame.getShinyString();
                         return frame.getEncounterSlot();
                     case 5:
+                        if (stationary) return frame.getNatureString();
                         return frame.getLevel();
                     case 6:
+                        if (stationary) return frame.getAbility();
                         return frame.getShinyString();
                     case 7:
+                        if (stationary) return frame.getIV(0);
                         return frame.getNatureString();
                     case 8:
+                        if (stationary) return frame.getIV(1);
                         return frame.getAbility();
                     case 9:
+                        if (stationary) return frame.getIV(2);
                         return frame.getIV(0);
                     case 10:
+                        if (stationary) return frame.getIV(3);
                         return frame.getIV(1);
                     case 11:
+                        if (stationary) return frame.getIV(4);
                         return frame.getIV(2);
                     case 12:
+                        if (stationary) return frame.getIV(5);
                         return frame.getIV(3);
                     case 13:
+                        if (stationary) return frame.getPowerString();
                         return frame.getIV(4);
                     case 14:
+                        if (stationary) return frame.getPower();
                         return frame.getIV(5);
                     case 15:
+                        if (stationary) return frame.getGenderString();
                         return frame.getPowerString();
                     case 16:
                         return frame.getPower();
@@ -518,20 +556,41 @@ QVariant Searcher4Model::data(const QModelIndex &index, int role) const
                 break;
             case Method::MethodJ:
             case Method::MethodK:
-                switch (index.column())
+                if (stationary)
                 {
-                    case 9:
-                        return TableUtility::getBold(frame.getIV(0));
-                    case 10:
-                        return TableUtility::getBold(frame.getIV(1));
-                    case 11:
-                        return TableUtility::getBold(frame.getIV(2));
-                    case 12:
-                        return TableUtility::getBold(frame.getIV(3));
-                    case 13:
-                        return TableUtility::getBold(frame.getIV(4));
-                    case 14:
-                        return TableUtility::getBold(frame.getIV(5));
+                    switch (index.column())
+                    {
+                        case 7:
+                            return TableUtility::getBold(frame.getIV(0));
+                        case 8:
+                            return TableUtility::getBold(frame.getIV(1));
+                        case 9:
+                            return TableUtility::getBold(frame.getIV(2));
+                        case 10:
+                            return TableUtility::getBold(frame.getIV(3));
+                        case 11:
+                            return TableUtility::getBold(frame.getIV(4));
+                        case 12:
+                            return TableUtility::getBold(frame.getIV(5));
+                    }
+                }
+                else
+                {
+                    switch (index.column())
+                    {
+                        case 9:
+                            return TableUtility::getBold(frame.getIV(0));
+                        case 10:
+                            return TableUtility::getBold(frame.getIV(1));
+                        case 11:
+                            return TableUtility::getBold(frame.getIV(2));
+                        case 12:
+                            return TableUtility::getBold(frame.getIV(3));
+                        case 13:
+                            return TableUtility::getBold(frame.getIV(4));
+                        case 14:
+                            return TableUtility::getBold(frame.getIV(5));
+                    }
                 }
             default:
                 break;
@@ -555,7 +614,7 @@ QVariant Searcher4Model::headerData(int section, Qt::Orientation orientation, in
                 break;
             case Method::MethodJ:
             case Method::MethodK:
-                return header3.at(section);
+                return stationary ? header4.at(section) : header3.at(section);
             default:
                 break;
         }

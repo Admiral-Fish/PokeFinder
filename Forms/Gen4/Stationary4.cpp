@@ -78,7 +78,7 @@ void Stationary4::updateProfiles()
 void Stationary4::setupModels()
 {
     generatorModel = new Stationary4Model(ui->tableViewGenerator, Method::Method1);
-    searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1);
+    searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1, true);
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 

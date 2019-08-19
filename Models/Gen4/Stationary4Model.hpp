@@ -44,12 +44,12 @@ private:
     };
     QStringList header2 =
     {
-        tr("Frame"), tr("Occidentary"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
+        tr("Frame"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
         tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
     };
     QStringList header3 =
     {
-        tr("Frame"), tr("Occidentary"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+        tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
         tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
     };
     QStringList header4 =
