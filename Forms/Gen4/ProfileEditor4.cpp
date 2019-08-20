@@ -134,7 +134,6 @@ void ProfileEditor4::on_comboBoxVersion_currentIndexChanged(int index)
     ui->labelRadio->setVisible(flag);
     ui->comboBoxRadio->setVisible(flag);
 
-    ui->labelRadar->setVisible(!flag);
     ui->checkBoxRadar->setVisible(!flag);
 
     ui->labelDualSlot->setVisible(!flag);
