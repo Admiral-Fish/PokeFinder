@@ -20,12 +20,14 @@
 #include <QtConcurrent>
 #include "EggSearcher4.hpp"
 
-EggSearcher4::EggSearcher4(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay)
+EggSearcher4::EggSearcher4(const Egg4 &generatorIV, const Egg4 &generatorPID, const FrameCompare &compare, u32 minDelay, u32 maxDelay, int type)
 {
-    this->generator = generator;
+    this->generatorIV = generatorIV;
+    this->generatorPID = generatorPID;
     this->compare = compare;
     this->minDelay = minDelay;
     this->maxDelay = maxDelay;
+    this->type = type;
     searching = false;
     cancel = false;
     progress = 0;
@@ -83,10 +85,47 @@ void EggSearcher4::search()
                     return;
                 }
 
+                QVector<Frame4> frames;
                 u32 seed = ((ab << 24) | (cd << 16)) + efgh;
-                generator.setSeed(seed);
 
-                auto frames = generator.generate(compare);
+                if (type == 0)
+                {
+                    generatorIV.setSeed(seed);
+                    frames = generatorIV.generate(compare);
+                }
+                else if (type == 1)
+                {
+                    generatorPID.setSeed(seed);
+                    frames = generatorPID.generate(compare);
+                }
+                else
+                {
+                    generatorIV.setSeed(seed);
+                    generatorPID.setSeed(seed);
+
+                    auto framesIV = generatorIV.generate(compare);
+                    auto framesPID = generatorPID.generate(compare);
+
+                    if (!framesIV.isEmpty() && !framesPID.isEmpty())
+                    {
+                        for (auto framePID : framesPID)
+                        {
+                            for (const auto &frameIV : framesIV)
+                            {
+                                framePID.setIVs(frameIV.getIV(0), frameIV.getIV(1), frameIV.getIV(2),
+                                                frameIV.getIV(3), frameIV.getIV(4), frameIV.getIV(5));
+                                for (u8 i = 0; i < 6; i++)
+                                {
+                                    framePID.setInheritance(i, frameIV.getInheritance(i));
+                                }
+                                framePID.setEggFrame(frameIV.getFrame());
+
+                                frames.append(framePID);
+                            }
+                        }
+                    }
+                }
+
                 total += frames.size();
 
                 QMutexLocker locker(&mutex);

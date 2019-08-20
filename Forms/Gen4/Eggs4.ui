@@ -395,31 +395,17 @@
             </item>
            </widget>
           </item>
-          <item row="5" column="1">
-           <widget class="QLabel" name="labelGeneratorMasuada">
-            <property name="text">
-             <string>Masuada</string>
-            </property>
-           </widget>
-          </item>
           <item row="5" column="2">
            <widget class="QCheckBox" name="checkBoxGeneratorMasuada">
             <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QLabel" name="labelGeneratorShinyOnly">
-            <property name="text">
-             <string>Shiny Only?</string>
+             <string>Masuada</string>
             </property>
            </widget>
           </item>
           <item row="6" column="2">
            <widget class="QCheckBox" name="checkBoxGeneratorShinyOnly">
             <property name="text">
-             <string/>
+             <string>Shiny Only</string>
             </property>
            </widget>
           </item>
@@ -442,180 +428,162 @@
       <attribute name="title">
        <string>Searcher</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_8">
-       <item row="2" column="0">
-        <widget class="TableView" name="tableViewPID">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBoxIVs">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxSearcherRNGInfo">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="styleSheet">
-          <string notr="true">QRadioButton::indicator {
-	border: 2px solid white;
-	border-radius: 3px;
-	height: 10px;
-	width: 10px;
-}
-
-QRadioButton::indicator:checked {
-	background-color: white;
-}
-
-QRadioButton::indicator:unchecked {
-	background-color: #274050;
-}
-
-QRadioButton {
-	color: white;
-}</string>
-         </property>
          <property name="title">
-          <string>Egg IVs</string>
+          <string>RNG Info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0" colspan="2">
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelSearcherIVsFrame">
-              <property name="text">
-               <string>Frame</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="TextBox" name="textBoxSearcherIVsMinFrame">
-              <property name="text">
-               <string notr="true">1</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="TextBox" name="textBoxSearcherIVsMaxFrame">
-              <property name="text">
-               <string notr="true">10</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelSearcherIVsDelay">
-              <property name="text">
-               <string>Delay</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="TextBox" name="textBoxSearcherIVsMinDelay">
-              <property name="text">
-               <string notr="true">600</string>
-              </property>
-              <property name="maxLength">
-               <number>10</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="TextBox" name="textBoxSearcherIVsMaxDelay">
-              <property name="text">
-               <string notr="true">2000</string>
-              </property>
-              <property name="maxLength">
-               <number>10</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSearcherMethod">
+            <property name="text">
+             <string>Method</string>
+            </property>
+           </widget>
           </item>
-          <item row="0" column="2" rowspan="3">
-           <widget class="IVFilter" name="ivFilterSearcher" native="true"/>
-          </item>
-          <item row="1" column="0" colspan="2">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QLabel" name="labelSearcherHiddenPower">
-              <property name="text">
-               <string>Hidden Power:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="CheckList" name="comboBoxSearcherHiddenPower"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonSearcherAnyHiddenPower">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Any</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelSearcherDelay">
+            <property name="text">
+             <string>Delay</string>
+            </property>
+           </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QPushButton" name="pushButtonSearchIVs">
+           <widget class="QLabel" name="labelSearcherIVFrame">
             <property name="text">
-             <string>Search</string>
+             <string>IV Frame</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="TextBox" name="textBoxSearcherIVMaxFrame">
+            <property name="text">
+             <string notr="true">100000</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="TextBox" name="textBoxSearcherMaxDelay">
+            <property name="text">
+             <string notr="true">2000</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="3">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QPushButton" name="pushButtonSearch">
+              <property name="text">
+               <string>Search</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonCancel">
+              <property name="text">
+               <string>Cancel</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherPIDFrame">
+            <property name="text">
+             <string>PID Frame</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QPushButton" name="pushButtonCancelIVs">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
+           <widget class="TextBox" name="textBoxSearcherIVMinFrame">
             <property name="text">
-             <string>Cancel</string>
+             <string notr="true">1</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="3">
-           <widget class="EggSettings" name="eggSettingsSearcher" native="true"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxPID">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Egg PID</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_7">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherPIDFrame">
+          <item row="4" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxSearcherTID">
             <property name="text">
-             <string>Frame</string>
+             <string notr="true">12345</string>
+            </property>
+            <property name="maxLength">
+             <number>5</number>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="1" column="2">
+           <widget class="TextBox" name="textBoxSearcherPIDMaxFrame">
+            <property name="text">
+             <string notr="true">30</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxSearcherMethod">
+            <item>
+             <property name="text">
+              <string>IVs</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>PID</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Both</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="5" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxSearcherSID">
+            <property name="text">
+             <string notr="true">54321</string>
+            </property>
+            <property name="maxLength">
+             <number>5</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="TextBox" name="textBoxSearcherMinDelay">
+            <property name="text">
+             <string notr="true">600</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelSearcherTID">
+            <property name="text">
+             <string>TID</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
            <widget class="TextBox" name="textBoxSearcherPIDMinFrame">
             <property name="text">
              <string notr="true">1</string>
@@ -625,24 +593,39 @@ QRadioButton {
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
-           <widget class="TextBox" name="textBoxSearcherPIDMaxFrame">
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelSearcherSID">
             <property name="text">
-             <string notr="true">10</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
+             <string>SID</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="3">
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBoxGeneratorFilters_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Filters</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0" rowspan="7">
+           <widget class="IVFilter" name="ivFilterSearcher" native="true"/>
+          </item>
+          <item row="0" column="1">
            <widget class="QLabel" name="labelSearcherGender">
             <property name="text">
              <string>Gender</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="5">
+          <item row="0" column="2">
            <widget class="QComboBox" name="comboBoxSearcherGender">
             <item>
              <property name="text">
@@ -661,41 +644,14 @@ QRadioButton {
             </item>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherPIDDelay">
-            <property name="text">
-             <string>Delay</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="1">
-           <widget class="TextBox" name="textBoxSearcherPIDMinDelay">
-            <property name="text">
-             <string notr="true">600</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="TextBox" name="textBoxSearcherPIDMaxDelay">
-            <property name="text">
-             <string notr="true">2000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
            <widget class="QLabel" name="labelSearcherAbility">
             <property name="text">
              <string>Ability</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="5">
+          <item row="1" column="2">
            <widget class="QComboBox" name="comboBoxSearcherAbility">
             <item>
              <property name="text">
@@ -714,31 +670,17 @@ QRadioButton {
             </item>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherMasuada">
-            <property name="text">
-             <string>Masuada</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="1">
-           <widget class="QCheckBox" name="checkBoxSearcherMasuada">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
            <widget class="QLabel" name="labelSearcherNature">
             <property name="text">
              <string>Nature</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="5">
+          <item row="2" column="2">
            <widget class="CheckList" name="comboBoxSearcherNature"/>
           </item>
-          <item row="2" column="6">
+          <item row="2" column="3">
            <widget class="QPushButton" name="pushButtonSearcherAnyNature">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -751,31 +693,37 @@ QRadioButton {
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelSearcherTID">
+          <item row="3" column="1">
+           <widget class="QLabel" name="labelSearcherHiddenPower">
             <property name="text">
-             <string>TID</string>
+             <string>Hidden Power</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxSearcherTID">
-            <property name="text">
-             <string notr="true">12345</string>
+          <item row="3" column="2">
+           <widget class="CheckList" name="comboBoxSearcherHiddenPower"/>
+          </item>
+          <item row="3" column="3">
+           <widget class="QPushButton" name="pushButtonSearcherAnyHiddenPower">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
-            <property name="maxLength">
-             <number>5</number>
+            <property name="text">
+             <string>Any</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="3" colspan="2">
+          <item row="4" column="1">
            <widget class="QLabel" name="labelSearcherGenderRatio">
             <property name="text">
              <string>Gender Ratio</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="5">
+          <item row="4" column="2">
            <widget class="QComboBox" name="comboBoxSearcherGenderRatio">
             <item>
              <property name="text">
@@ -814,59 +762,28 @@ QRadioButton {
             </item>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelSearcherSID">
+          <item row="5" column="2">
+           <widget class="QCheckBox" name="checkBoxSearcherMasuada">
             <property name="text">
-             <string>SID</string>
+             <string>Masuada</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxSearcherSID">
-            <property name="text">
-             <string notr="true">54321</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="3" colspan="2">
-           <widget class="QLabel" name="labelSearcherShinyOnly">
-            <property name="text">
-             <string>Shiny Only?</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="5">
+          <item row="6" column="2">
            <widget class="QCheckBox" name="checkBoxSearcherShinyOnly">
             <property name="text">
-             <string/>
+             <string>Shiny Only</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="4">
-           <widget class="QPushButton" name="pushButtonSearchPID">
-            <property name="text">
-             <string>Search</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="4" colspan="3">
-           <widget class="QPushButton" name="pushButtonCancelPID">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Cancel</string>
-            </property>
-           </widget>
+          <item row="7" column="0" colspan="4">
+           <widget class="EggSettings" name="eggSettingsSearcher" native="true"/>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="TableView" name="tableViewIVs">
+       <item row="2" column="0" colspan="2">
+        <widget class="TableView" name="tableViewSearcher">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>1</horstretch>
@@ -881,15 +798,8 @@ QRadioButton {
          </attribute>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QProgressBar" name="progressBarPID">
-         <property name="value">
-          <number>0</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QProgressBar" name="progressBarIVs">
+       <item row="1" column="0" colspan="2">
+        <widget class="QProgressBar" name="progressBarSearcher">
          <property name="value">
           <number>0</number>
          </property>
@@ -943,7 +853,6 @@ QRadioButton {
   <tabstop>textBoxGeneratorMaxResults</tabstop>
   <tabstop>textBoxGeneratorTID</tabstop>
   <tabstop>textBoxGeneratorSID</tabstop>
-  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>comboBoxGeneratorGender</tabstop>
   <tabstop>comboBoxGeneratorAbility</tabstop>
   <tabstop>comboBoxGeneratorNature</tabstop>
@@ -953,32 +862,25 @@ QRadioButton {
   <tabstop>comboBoxGeneratorGenderRatio</tabstop>
   <tabstop>checkBoxGeneratorMasuada</tabstop>
   <tabstop>checkBoxGeneratorShinyOnly</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableViewGenerator</tabstop>
+  <tabstop>comboBoxSearcherMethod</tabstop>
   <tabstop>textBoxSearcherPIDMinFrame</tabstop>
-  <tabstop>textBoxSearcherPIDMaxFrame</tabstop>
-  <tabstop>textBoxSearcherPIDMinDelay</tabstop>
-  <tabstop>textBoxSearcherPIDMaxDelay</tabstop>
-  <tabstop>checkBoxSearcherMasuada</tabstop>
+  <tabstop>textBoxSearcherIVMinFrame</tabstop>
   <tabstop>textBoxSearcherTID</tabstop>
   <tabstop>textBoxSearcherSID</tabstop>
-  <tabstop>pushButtonSearchPID</tabstop>
-  <tabstop>pushButtonCancelPID</tabstop>
   <tabstop>comboBoxSearcherGender</tabstop>
   <tabstop>comboBoxSearcherAbility</tabstop>
   <tabstop>comboBoxSearcherNature</tabstop>
   <tabstop>pushButtonSearcherAnyNature</tabstop>
-  <tabstop>comboBoxSearcherGenderRatio</tabstop>
-  <tabstop>checkBoxSearcherShinyOnly</tabstop>
-  <tabstop>textBoxSearcherIVsMinFrame</tabstop>
-  <tabstop>textBoxSearcherIVsMaxFrame</tabstop>
-  <tabstop>textBoxSearcherIVsMinDelay</tabstop>
-  <tabstop>textBoxSearcherIVsMaxDelay</tabstop>
   <tabstop>comboBoxSearcherHiddenPower</tabstop>
   <tabstop>pushButtonSearcherAnyHiddenPower</tabstop>
-  <tabstop>pushButtonSearchIVs</tabstop>
-  <tabstop>pushButtonCancelIVs</tabstop>
-  <tabstop>tableViewPID</tabstop>
-  <tabstop>tableViewIVs</tabstop>
+  <tabstop>comboBoxSearcherGenderRatio</tabstop>
+  <tabstop>checkBoxSearcherMasuada</tabstop>
+  <tabstop>checkBoxSearcherShinyOnly</tabstop>
+  <tabstop>pushButtonSearch</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>
  <connections>
@@ -1011,38 +913,6 @@ QRadioButton {
     <hint type="destinationlabel">
      <x>1065</x>
      <y>244</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButtonSearcherAnyNature</sender>
-   <signal>clicked()</signal>
-   <receiver>comboBoxSearcherNature</receiver>
-   <slot>resetChecks()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>569</x>
-     <y>222</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>499</x>
-     <y>222</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButtonSearcherAnyHiddenPower</sender>
-   <signal>clicked()</signal>
-   <receiver>comboBoxSearcherHiddenPower</receiver>
-   <slot>resetChecks()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>910</x>
-     <y>262</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>821</x>
-     <y>266</y>
     </hint>
    </hints>
   </connection>

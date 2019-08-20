@@ -82,6 +82,11 @@ private:
     {
         tr("Seed"), tr("Frame"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
     };
+    QStringList header3 =
+    {
+        tr("Seed"), tr("PID Frame"), tr("IV Frame"),  tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+        tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+    };
 
 };
 

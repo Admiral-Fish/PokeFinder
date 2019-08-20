@@ -39,6 +39,8 @@ public:
     void setIVs(u16 iv1, u16 iv2);
     u32 getFrame() const;
     u8 getIV(int index) const;
+    u16 getTID() const;
+    u16 getSID() const;
     QChar getInheritance(int index) const;
     u8 getPower() const;
     u32 getPID() const;

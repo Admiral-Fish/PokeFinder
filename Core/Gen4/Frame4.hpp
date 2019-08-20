@@ -30,6 +30,7 @@ public:
     Frame4(u16 tid, u16 sid, u16 psv);
     void setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2,
                         u16 inh3, const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken = false);
+    void setInheritance(int index, QChar value);
     void setPID(u32 pid, u16 genderRatio);
     void setPID(u16 high, u16 low, u16 genderRatio);
     QString getCall() const;
@@ -40,10 +41,13 @@ public:
     void setSeed(const u32 &value);
     u32 getOccidentary() const;
     void setOccidentary(const u32 &value);
+    void setEggFrame(const u32 &value);
+    u32 getEggFrame() const;
     void xorFrame();
 
 private:
     u32 occidentary{};
+    u32 eggFrame{};
     u32 seed{};
     u32 initialSeed{};
 

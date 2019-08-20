@@ -94,6 +94,11 @@ void Frame4::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 
     calculatePower();
 }
 
+void Frame4::setInheritance(int index, QChar value)
+{
+    inheritance[index] = value;
+}
+
 void Frame4::setPID(u32 pid, u16 genderRatio)
 {
     this->pid = pid;
@@ -176,6 +181,16 @@ u32 Frame4::getOccidentary() const
 void Frame4::setOccidentary(const u32 &value)
 {
     occidentary = value;
+}
+
+void Frame4::setEggFrame(const u32 &value)
+{
+    eggFrame = value;
+}
+
+u32 Frame4::getEggFrame() const
+{
+    return eggFrame;
 }
 
 void Frame4::xorFrame()

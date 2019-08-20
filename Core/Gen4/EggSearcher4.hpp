@@ -33,20 +33,21 @@ signals:
     void updateProgress(const QVector<Frame4> &, int);
 
 public:
-    EggSearcher4(const Egg4 &generator, const FrameCompare &compare, u32 minDelay, u32 maxDelay);
+    EggSearcher4(const Egg4 &generatorIV, const Egg4 &generatorPID, const FrameCompare &compare, u32 minDelay, u32 maxDelay, int type);
     void startSearch();
 
 public slots:
     void cancelSearch();
 
 private:
-    Egg4 generator;
+    Egg4 generatorIV;
+    Egg4 generatorPID;
     FrameCompare compare;
     u32 minDelay, maxDelay;
     QMutex mutex;
     QVector<Frame4> results;
     bool searching, cancel;
-    int progress;
+    int progress, type;
 
     void search();
     QVector<Frame4> getResults();
