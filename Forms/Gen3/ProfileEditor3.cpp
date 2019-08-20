@@ -111,15 +111,12 @@ void ProfileEditor3::on_pushButtonAccept_clicked()
     done(QDialog::Accepted);
 }
 
-void ProfileEditor3::on_comboBoxVersion_currentIndexChanged(int index)
+void ProfileEditor3::on_comboBoxVersion_currentIndexChanged(int /*index*/)
 {
-    (void) index;
-
     bool flag = ui->comboBoxVersion->currentData().toInt() & Game::RS;
-    ui->checkBoxDeadBattery->setVisible(true);
+    ui->checkBoxDeadBattery->setVisible(flag);
     if (!flag)
     {
         ui->checkBoxDeadBattery->setChecked(false);
     }
-
 }

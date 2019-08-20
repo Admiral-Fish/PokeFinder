@@ -25,9 +25,8 @@ Wild3Model::Wild3Model(QObject *parent) :
 {
 }
 
-int Wild3Model::columnCount(const QModelIndex &parent) const
+int Wild3Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     return 17;
 }
 

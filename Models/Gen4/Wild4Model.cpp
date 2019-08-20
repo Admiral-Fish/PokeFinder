@@ -32,9 +32,8 @@ void Wild4Model::setMethod(Method method)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-int Wild4Model::columnCount(const QModelIndex &parent) const
+int Wild4Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     switch (method)
     {
         case Method::MethodJ:

@@ -33,9 +33,8 @@ void Egg4GeneratorModel::setMethod(Method method)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-int Egg4GeneratorModel::columnCount(const QModelIndex &parent) const
+int Egg4GeneratorModel::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     switch (method)
     {
         case Method::Gen4Normal:
@@ -361,9 +360,8 @@ void Egg4SearcherModel::setMethod(Method method)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-int Egg4SearcherModel::columnCount(const QModelIndex &parent) const
+int Egg4SearcherModel::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     switch (method)
     {
         case Method::Gen4Normal:

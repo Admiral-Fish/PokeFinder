@@ -350,9 +350,8 @@ void Searcher4Model::sort(int column, Qt::SortOrder order)
     }
 }
 
-int Searcher4Model::columnCount(const QModelIndex &parent) const
+int Searcher4Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     switch (method)
     {
         case Method::Method1:

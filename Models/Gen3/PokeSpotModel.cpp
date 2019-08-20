@@ -24,9 +24,8 @@ PokeSpotModel::PokeSpotModel(QObject *parent) :
 {
 }
 
-int PokeSpotModel::columnCount(const QModelIndex &parent) const
+int PokeSpotModel::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     return 7;
 }
 

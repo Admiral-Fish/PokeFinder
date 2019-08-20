@@ -577,9 +577,8 @@ void Wild3::on_comboBoxGeneratorLocation_currentIndexChanged(int index)
     updatePokemonGenerator();
 }
 
-void Wild3::on_comboBoxSearcherLocation_currentIndexChanged(int index)
+void Wild3::on_comboBoxSearcherLocation_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     updatePokemonSearcher();
 }
 

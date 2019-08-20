@@ -25,9 +25,8 @@ Stationary3Model::Stationary3Model(QObject *parent) :
 {
 }
 
-int Stationary3Model::columnCount(const QModelIndex &parent) const
+int Stationary3Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     return 15;
 }
 

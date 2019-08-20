@@ -266,9 +266,8 @@ void GameCube::on_pushButtonSearch_clicked()
     search->startSearch();
 }
 
-void GameCube::on_comboBoxGeneratorMethod_currentIndexChanged(int index)
+void GameCube::on_comboBoxGeneratorMethod_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
     ui->comboBoxGeneratorShadow->clear();
 
@@ -338,9 +337,8 @@ void GameCube::on_comboBoxGeneratorShadow_currentIndexChanged(int index)
     }
 }
 
-void GameCube::on_comboBoxSearcherMethod_currentIndexChanged(int index)
+void GameCube::on_comboBoxSearcherMethod_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     Method method = static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt());
     ui->comboBoxSearcherShadow->clear();
 

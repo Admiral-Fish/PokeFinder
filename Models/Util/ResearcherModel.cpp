@@ -36,9 +36,8 @@ void ResearcherModel::setHex(const QVector<bool> &hex)
     this->hex = hex;
 }
 
-int ResearcherModel::columnCount(const QModelIndex &index) const
+int ResearcherModel::columnCount(const QModelIndex & /*index*/) const
 {
-    (void)index;
     return flag ? 22 : 20;
 }
 

@@ -32,9 +32,8 @@ void Stationary4Model::setMethod(Method method)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-int Stationary4Model::columnCount(const QModelIndex &parent) const
+int Stationary4Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     switch (method)
     {
         case Method::Method1:

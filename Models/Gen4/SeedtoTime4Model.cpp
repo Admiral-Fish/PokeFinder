@@ -33,9 +33,9 @@ void SeedtoTime4Model::setFlags(bool flag, Game version)
     this->version = version;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
-int SeedtoTime4Model::columnCount(const QModelIndex &parent) const
+
+int SeedtoTime4Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     if (calibrate)
     {
         return version & Game::HGSS ? 6 : 5;

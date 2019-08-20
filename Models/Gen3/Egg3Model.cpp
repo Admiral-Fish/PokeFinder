@@ -33,9 +33,8 @@ void Egg3Model::setMethod(Method method)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-int Egg3Model::columnCount(const QModelIndex &parent) const
+int Egg3Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     switch (method)
     {
         case Method::EBred:

@@ -462,9 +462,8 @@ void Wild4::on_pushButtonGeneratorLead_clicked()
     }
 }
 
-void Wild4::on_comboBoxGeneratorEncounter_currentIndexChanged(int index)
+void Wild4::on_comboBoxGeneratorEncounter_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     QStringList t;
     Encounter encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
 
@@ -490,9 +489,8 @@ void Wild4::on_comboBoxGeneratorEncounter_currentIndexChanged(int index)
     updateLocationsGenerator();
 }
 
-void Wild4::on_comboBoxSearcherEncounter_currentIndexChanged(int index)
+void Wild4::on_comboBoxSearcherEncounter_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     QStringList t;
     Encounter encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
 
@@ -518,15 +516,13 @@ void Wild4::on_comboBoxSearcherEncounter_currentIndexChanged(int index)
     updateLocationsSearcher();
 }
 
-void Wild4::on_comboBoxGeneratorLocation_currentIndexChanged(int index)
+void Wild4::on_comboBoxGeneratorLocation_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     updatePokemonGenerator();
 }
 
-void Wild4::on_comboBoxSearcherLocation_currentIndexChanged(int index)
+void Wild4::on_comboBoxSearcherLocation_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     updatePokemonSearcher();
 }
 
