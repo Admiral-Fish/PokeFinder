@@ -2911,13 +2911,13 @@
  <tabstops>
   <tabstop>rngSelection</tabstop>
   <tabstop>radioButtonCommon32Bit</tabstop>
-  <tabstop>comboBoxRNG32Bit</tabstop>
   <tabstop>radioButtonCustom32Bit</tabstop>
+  <tabstop>comboBoxRNG32Bit</tabstop>
   <tabstop>textBoxMult32Bit</tabstop>
   <tabstop>textBoxAdd32Bit</tabstop>
   <tabstop>radioButtonCommon64Bit</tabstop>
-  <tabstop>comboBoxRNG64Bit</tabstop>
   <tabstop>radioButtonCustom64Bit</tabstop>
+  <tabstop>comboBoxRNG64Bit</tabstop>
   <tabstop>textBoxMult64Bit</tabstop>
   <tabstop>textBoxAdd64Bit</tabstop>
   <tabstop>textBoxStatus3</tabstop>

@@ -68,6 +68,12 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>comboBoxPokemon</tabstop>
+  <tabstop>comboBoxGame</tabstop>
+  <tabstop>pushButtonFind</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

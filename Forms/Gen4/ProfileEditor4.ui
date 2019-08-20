@@ -30,13 +30,6 @@
    <item row="0" column="1">
     <widget class="QLineEdit" name="lineEditProfile"/>
    </item>
-   <item row="3" column="2">
-    <widget class="QLabel" name="labelSwarm">
-     <property name="text">
-      <string>Swarm</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="5">
     <widget class="TextBox" name="textBoxSID"/>
    </item>
@@ -83,13 +76,6 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="3">
-    <widget class="QCheckBox" name="checkBoxRadar">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="labelProfile">
      <property name="text">
@@ -108,13 +94,6 @@
     <widget class="QLabel" name="labelTID">
      <property name="text">
       <string>TID</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="labelRadar">
-     <property name="text">
-      <string>PokeRadar</string>
      </property>
     </widget>
    </item>
@@ -230,17 +209,24 @@
    <item row="0" column="5">
     <widget class="TextBox" name="textBoxTID"/>
    </item>
-   <item row="3" column="3">
-    <widget class="QCheckBox" name="checkBoxSwarm">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="6">
     <widget class="QPushButton" name="pushButtonCancel">
      <property name="text">
       <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2" colspan="2">
+    <widget class="QCheckBox" name="checkBoxRadar">
+     <property name="text">
+      <string>PokeRadar</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2" colspan="2">
+    <widget class="QCheckBox" name="checkBoxSwarm">
+     <property name="text">
+      <string>Swarm</string>
      </property>
     </widget>
    </item>
