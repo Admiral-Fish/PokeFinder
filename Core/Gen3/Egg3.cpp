@@ -123,6 +123,8 @@ QVector<Frame3> Egg3::generate(const FrameCompare &compare) const
             return generateEmeraldIVs(compare);
         case Method::RSBred:
         case Method::RSBredAlternate:
+        case Method::RSBredSplit:
+        case Method::FRLGBredSplit:
         case Method::FRLGBred:
         case Method::FRLGBredAlternate:
             {
