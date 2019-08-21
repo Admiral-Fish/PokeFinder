@@ -151,17 +151,10 @@
      </item>
     </widget>
    </item>
-   <item row="2" column="2">
-    <widget class="QLabel" name="labelDeadBattery">
-     <property name="text">
-      <string>Dead Battery?</string>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="3">
     <widget class="QCheckBox" name="checkBoxDeadBattery">
      <property name="text">
-      <string/>
+      <string>Dead Battery</string>
      </property>
     </widget>
    </item>
@@ -185,5 +178,22 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>ProfileEditor3</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>452</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>470</x>
+     <y>88</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

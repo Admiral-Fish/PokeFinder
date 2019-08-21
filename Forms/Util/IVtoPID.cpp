@@ -38,7 +38,7 @@ IVtoPID::IVtoPID(QWidget *parent) :
 IVtoPID::~IVtoPID()
 {
     QSettings setting;
-    setting.setValue("ivToPID/size", this->size());
+    setting.setValue("ivToPID/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -53,7 +53,7 @@ void IVtoPID::setupModels()
     ui->comboBoxNature->addItems(Nature::getNatures());
 
     QSettings setting;
-    if (setting.contains("ivToPID/size")) this->resize(setting.value("ivToPID/size").toSize());
+    if (setting.contains("ivToPID/geometry")) this->restoreGeometry(setting.value("ivToPID/geometry").toByteArray());
 }
 
 QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid)

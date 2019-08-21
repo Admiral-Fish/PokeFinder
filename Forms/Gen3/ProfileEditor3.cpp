@@ -55,7 +55,7 @@ ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) :
 ProfileEditor3::~ProfileEditor3()
 {
     QSettings setting;
-    setting.setValue("profileEditor3/size", this->size());
+    setting.setValue("profileEditor3/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -91,7 +91,7 @@ void ProfileEditor3::setupModels()
     ui->comboBoxLanguage->setItemData(5, Language::Japanese);
 
     QSettings setting;
-    if (setting.contains("profileEditor3/size")) this->resize(setting.value("profileEditor3/size").toSize());
+    if (setting.contains("profileEditor3/geometry")) this->restoreGeometry(setting.value("profileEditor3/geometry").toByteArray());
 }
 
 void ProfileEditor3::on_pushButtonAccept_clicked()
@@ -111,16 +111,12 @@ void ProfileEditor3::on_pushButtonAccept_clicked()
     done(QDialog::Accepted);
 }
 
-void ProfileEditor3::on_comboBoxVersion_currentIndexChanged(int index)
+void ProfileEditor3::on_comboBoxVersion_currentIndexChanged(int /*index*/)
 {
-    (void) index;
-
     bool flag = ui->comboBoxVersion->currentData().toInt() & Game::RS;
-    ui->labelDeadBattery->setVisible(true);
-    ui->checkBoxDeadBattery->setVisible(true);
+    ui->checkBoxDeadBattery->setVisible(flag);
     if (!flag)
     {
         ui->checkBoxDeadBattery->setChecked(false);
     }
-
 }

@@ -80,6 +80,12 @@ void TextBox::setValues(u64 minValue, u64 maxValue, int base)
     setup = true;
 }
 
+int TextBox::getInt() const
+{
+    Q_ASSERT(setup);
+    return this->text().toInt(nullptr, base);
+}
+
 u16 TextBox::getUShort() const
 {
     Q_ASSERT(setup);
@@ -104,16 +110,10 @@ void TextBox::onTextEdited(QString string)
     {
         string = string.toUpper();
         string.remove(filter);
-        u64 temp = string.toULongLong(nullptr, base);
 
-        if (temp > maxValue)
-        {
-            string = QString::number(maxValue, base);
-        }
-        if (temp < minValue)
-        {
-            string = QString::number(minValue, base);
-        }
+        u64 temp = string.toULongLong(nullptr, base);
+        temp = qBound(minValue, temp, maxValue);
+        string = QString::number(temp, base);
 
         int position = cursorPosition();
         setText(string);

@@ -52,7 +52,7 @@ Wild4::~Wild4()
     setting.setValue("minFrame", ui->textBoxSearcherMinFrame->text());
     setting.setValue("maxFrame", ui->textBoxSearcherMaxFrame->text());
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -150,7 +150,7 @@ void Wild4::setupModels()
     if (setting.contains("maxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
     if (setting.contains("minFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
     if (setting.contains("maxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
-    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
     setting.endGroup();
 }
 
@@ -261,10 +261,10 @@ void Wild4::on_pushButtonGenerate_clicked()
 
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
     Generator4 generator(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()), genderRatio);
-    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                         ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
+    FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+                         ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+                         ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
 
     generator.setEncounterType(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -306,10 +306,10 @@ void Wild4::on_pushButtonSearch_clicked()
     u16 sid = ui->textBoxSearcherSID->getUShort();
 
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
-                         ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false,
-                         ui->comboBoxSearcherEncounterSlot->getChecked());
+    FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
+                         ui->checkBoxSearcherShinyOnly->isChecked(), false,
+                         ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherNature->getChecked(),
+                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->comboBoxSearcherEncounterSlot->getChecked());
     Searcher4 searcher(tid, sid, genderRatio, ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
                        ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(), compare, static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
@@ -462,9 +462,8 @@ void Wild4::on_pushButtonGeneratorLead_clicked()
     }
 }
 
-void Wild4::on_comboBoxGeneratorEncounter_currentIndexChanged(int index)
+void Wild4::on_comboBoxGeneratorEncounter_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     QStringList t;
     Encounter encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
 
@@ -490,9 +489,8 @@ void Wild4::on_comboBoxGeneratorEncounter_currentIndexChanged(int index)
     updateLocationsGenerator();
 }
 
-void Wild4::on_comboBoxSearcherEncounter_currentIndexChanged(int index)
+void Wild4::on_comboBoxSearcherEncounter_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     QStringList t;
     Encounter encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
 
@@ -518,15 +516,13 @@ void Wild4::on_comboBoxSearcherEncounter_currentIndexChanged(int index)
     updateLocationsSearcher();
 }
 
-void Wild4::on_comboBoxGeneratorLocation_currentIndexChanged(int index)
+void Wild4::on_comboBoxGeneratorLocation_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     updatePokemonGenerator();
 }
 
-void Wild4::on_comboBoxSearcherLocation_currentIndexChanged(int index)
+void Wild4::on_comboBoxSearcherLocation_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     updatePokemonSearcher();
 }
 

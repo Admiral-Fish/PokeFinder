@@ -20,6 +20,7 @@
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QMessageBox>
+#include <QSettings>
 #include <QUrl>
 #include "GameCubeSeedFinder.hpp"
 #include "ui_GameCubeSeedFinder.h"
@@ -64,12 +65,17 @@ GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) :
     ui->radioButtonColoMetagross->setText(colo.at(6));
     ui->radioButtonColoHeracross->setText(colo.at(7));
 
+    QSettings setting;
+    if (setting.contains("gameCubeSeedFinder/geometry")) this->restoreGeometry(setting.value("gameCubeSeedFinder/geometry").toByteArray());
 
     qRegisterMetaType<QVector<u32>>("QVector<u32>");
 }
 
 GameCubeSeedFinder::~GameCubeSeedFinder()
 {
+    QSettings setting;
+    setting.setValue("gameCubeSeedFinder/geometry", this->saveGeometry());
+
     delete ui;
 }
 

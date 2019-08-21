@@ -56,27 +56,20 @@ QVector<Frame4> Generator4::generate(const FrameCompare &compare) const
         case Method::Method1:
             return generateMethod1(compare);
         case Method::MethodJ:
-            switch (leadType)
+            switch (encounterType)
             {
-                case Lead::None:
-                    return generateMethodJ(compare);
-                case Lead::Synchronize:
-                    return generateMethodJSynch(compare);
-                // Default to cover all cute charm cases
+                case Encounter::Stationary:
+                    return generateMethodJStationary(compare);
                 default:
-                    return generateMethodJCuteCharm(compare);
+                    return generateMethodJWild(compare);
             }
         case Method::MethodK:
-            switch (leadType)
+            switch (encounterType)
             {
-                case Lead::None:
-                case Lead::SuctionCups:
-                    return generateMethodK(compare);
-                case Synchronize:
-                    return generateMethodKSynch(compare);
-                // Default to cover all cute charm cases
+                case Encounter::Stationary:
+                    return generateMethodKStationary(compare);
                 default:
-                    return generateMethodKCuteCharm(compare);
+                    return generateMethodKWild(compare);
             }
         case Method::ChainedShiny:
             return generateChainedShiny(compare);
@@ -103,8 +96,13 @@ QVector<Frame4> Generator4::generateMethod1(const FrameCompare &compare) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        frame.setPID(rngList.at(cnt), rngList.at(cnt + 1), genderRatio);
-        frame.setIVs(rngList.at(cnt + 2), rngList.at(cnt + 3));
+        u16 high = rngList.at(cnt + 1);
+        u16 low = rngList.at(cnt);
+        u16 iv1 = rngList.at(cnt + 2);
+        u16 iv2 = rngList.at(cnt + 3);
+
+        frame.setPID(high, low, genderRatio);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -117,7 +115,146 @@ QVector<Frame4> Generator4::generateMethod1(const FrameCompare &compare) const
     return frames;
 }
 
-QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
+QVector<Frame4> Generator4::generateMethodJStationary(const FrameCompare &compare) const
+{
+    QVector<Frame4> frames;
+    Frame4 frame(tid, sid, psv);
+
+    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
+    u32 max = initialFrame + maxResults;
+    u32 pid;
+    u16 low, high;
+
+    u8 buffer = 0;
+
+    switch (leadType)
+    {
+        case Lead::CuteCharmFemale:
+            buffer = 0;
+            break;
+        case Lead::CuteCharm25M:
+            buffer = 0xC8;
+            break;
+        case Lead::CuteCharm50M:
+            buffer = 0x96;
+            break;
+        case Lead::CuteCharm75M:
+            buffer = 0x4B;
+            break;
+        case Lead::CuteCharm875M:
+            buffer = 0x32;
+            break;
+        default:
+            break;
+    }
+
+    for (u32 cnt = initialFrame; cnt < max; cnt++)
+    {
+        PokeRNG go(rng.nextUInt());
+        frame.setSeed(go.getSeed() >> 16);
+
+        switch (leadType)
+        {
+            case Lead::None:
+                // Get hunt nature
+                frame.setNature(go.nextUShort() / 0xa3e);
+
+                if (!compare.compareNature(frame))
+                {
+                    continue;
+                }
+
+                // Begin search for valid pid
+                do
+                {
+                    low = go.nextUShort();
+                    high = go.nextUShort();
+                    pid = (high << 16) | low;
+                }
+                while (pid % 25 != frame.getNature());
+                frame.setPID(pid, genderRatio);
+
+                break;
+            case Lead::Synchronize:
+                if ((go.nextUShort() >> 15) == 0) // Successful synch
+                {
+                    frame.setNature(synchNature);
+                }
+                else // Failed synch
+                {
+                    frame.setNature(go.nextUShort() / 0xa3e);
+                }
+
+                if (!compare.compareNature(frame))
+                {
+                    continue;
+                }
+
+                // Begin search for valid pid
+                do
+                {
+                    low = go.nextUShort();
+                    high = go.nextUShort();
+                    pid = (high << 16) | low;
+                }
+                while (pid % 25 != frame.getNature());
+                frame.setPID(pid, genderRatio);
+
+                break;
+            default: // Default to cover all cute charm cases
+                if ((go.nextUShort() / 0x5556) != 0) // Successful cute charm
+                {
+                    // Get nature
+                    frame.setNature(go.nextUShort() / 0xa3e);
+
+                    if (!compare.compareNature(frame))
+                    {
+                        continue;
+                    }
+
+                    // Cute charm doesn't hunt for a valid PID, just uses buffer and target nature
+                    frame.setPID(buffer + frame.getNature(), genderRatio);
+                }
+                else // Failed cute charm
+                {
+                    // Get nature
+                    frame.setNature(go.nextUShort() / 0xa3e);
+
+                    if (!compare.compareNature(frame))
+                    {
+                        continue;
+                    }
+
+                    // Begin search for valid pid
+                    do
+                    {
+                        low = go.nextUShort();
+                        high = go.nextUShort();
+                        pid = (high << 16) | low;
+                    }
+                    while (pid % 25 != frame.getNature());
+                    frame.setPID(pid, genderRatio);
+                }
+
+                break;
+        }
+
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
+
+        frame.setIVs(iv1, iv2);
+
+        if (compare.compareFrame(frame))
+        {
+            frame.setFrame(cnt);
+            frames.append(frame);
+        }
+    }
+
+    return frames;
+}
+
+QVector<Frame4> Generator4::generateMethodJWild(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame(tid, sid, psv);
@@ -125,14 +262,36 @@ QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2;
+    u16 low, high;
 
+    u8 buffer = 0;
     u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
+
+    switch (leadType)
+    {
+        case Lead::CuteCharmFemale:
+            buffer = 0;
+            break;
+        case Lead::CuteCharm25M:
+            buffer = 0xC8;
+            break;
+        case Lead::CuteCharm50M:
+            buffer = 0x96;
+            break;
+        case Lead::CuteCharm75M:
+            buffer = 0x4B;
+            break;
+        case Lead::CuteCharm875M:
+            buffer = 0x32;
+            break;
+        default:
+            break;
+    }
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
         PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
+        frame.setSeed(go.getSeed() >> 16);
 
         switch (encounterType)
         {
@@ -177,30 +336,103 @@ QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
                 break;
         }
 
-        // Get hunt nature
-        frame.setNature(go.nextUShort() / 0xa3e);
-
-        if (!compare.compareNature(frame))
+        switch (leadType)
         {
-            continue;
+            case Lead::None:
+                // Get hunt nature
+                frame.setNature(go.nextUShort() / 0xa3e);
+
+                if (!compare.compareNature(frame))
+                {
+                    continue;
+                }
+
+                // Begin search for valid pid
+                do
+                {
+                    low = go.nextUShort();
+                    high = go.nextUShort();
+                    pid = (high << 16) | low;
+                    hunt += 2;
+                }
+                while (pid % 25 != frame.getNature());
+                frame.setPID(pid, genderRatio);
+
+                break;
+            case Lead::Synchronize:
+                hunt++;
+                if ((go.nextUShort() >> 15) == 0) // Successful synch
+                {
+                    frame.setNature(synchNature);
+                }
+                else // Failed synch
+                {
+                    frame.setNature(go.nextUShort() / 0xa3e);
+                }
+
+                if (!compare.compareNature(frame))
+                {
+                    continue;
+                }
+
+                // Begin search for valid pid
+                do
+                {
+                    low = go.nextUShort();
+                    high = go.nextUShort();
+                    pid = (high << 16) | low;
+                    hunt += 2;
+                }
+                while (pid % 25 != frame.getNature());
+                frame.setPID(pid, genderRatio);
+
+                break;
+            default: // Default to cover all cute charm cases
+                if ((go.nextUShort() / 0x5556) != 0) // Successful cute charm
+                {
+                    // Get nature
+                    frame.setNature(go.nextUShort() / 0xa3e);
+
+                    if (!compare.compareNature(frame))
+                    {
+                        continue;
+                    }
+
+                    // Cute charm doesn't hunt for a valid PID, just uses buffer and target nature
+                    frame.setPID(buffer + frame.getNature(), genderRatio);
+                    hunt = 1;
+                }
+                else // Failed cute charm
+                {
+                    hunt++;
+
+                    // Get nature
+                    frame.setNature(go.nextUShort() / 0xa3e);
+
+                    if (!compare.compareNature(frame))
+                    {
+                        continue;
+                    }
+
+                    // Begin search for valid pid
+                    do
+                    {
+                        low = go.nextUShort();
+                        high = go.nextUShort();
+                        pid = (high << 16) | low;
+                        hunt += 2;
+                    }
+                    while (pid % 25 != frame.getNature());
+                    frame.setPID(pid, genderRatio);
+                }
+
+                break;
         }
 
-        // Begin search for valid pid
-        do
-        {
-            pid1 = go.nextUShort();
-            pid2 = go.nextUShort();
-            pid = (pid2 << 16) | pid1;
-            hunt += 2;
-        }
-        while (pid % 25 != frame.getNature());
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
 
-        frame.setPID(pid, genderRatio);
-
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
-
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -213,121 +445,17 @@ QVector<Frame4> Generator4::generateMethodJ(const FrameCompare &compare) const
     return frames;
 }
 
-QVector<Frame4> Generator4::generateMethodJSynch(const FrameCompare &compare) const
+QVector<Frame4> Generator4::generateMethodKStationary(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame(tid, sid, psv);
 
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
-    u32 pid, hunt = 0;
-    u16 pid1, pid2;
-
-    u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
-
-    for (u32 cnt = initialFrame; cnt < max; cnt++)
-    {
-        PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
-
-        switch (encounterType)
-        {
-            case Encounter::Grass:
-                frame.setEncounterSlot(EncounterSlot::jSlot(go.getSeed() >> 16, encounterType));
-                if (!compare.compareSlot(frame))
-                {
-                    continue;
-                }
-
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot()));
-                hunt = 1;
-                break;
-            case Encounter::Surfing:
-                frame.setEncounterSlot(EncounterSlot::jSlot(go.getSeed() >> 16, encounterType));
-                if (!compare.compareSlot(frame))
-                {
-                    continue;
-                }
-
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
-                hunt = 2;
-                break;
-            case Encounter::OldRod:
-            case Encounter::GoodRod:
-            case Encounter::SuperRod:
-                if (((go.getSeed() >> 16) / 656) >= thresh)
-                {
-                    continue;
-                }
-
-                frame.setEncounterSlot(EncounterSlot::jSlot(go.nextUShort(), encounterType));
-                if (!compare.compareSlot(frame))
-                {
-                    continue;
-                }
-
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
-                hunt = 2;
-                break;
-            default:
-                break;
-        }
-
-
-        if ((go.nextUShort() >> 15) == 0) // Successful synch
-        {
-            frame.setNature(synchNature);
-        }
-        else // Failed synch
-        {
-            frame.setNature(go.nextUShort() / 0xa3e);
-        }
-
-        if (!compare.compareNature(frame))
-        {
-            continue;
-        }
-
-        // Begin search for valid pid
-        do
-        {
-            pid1 = go.nextUShort();
-            pid2 = go.nextUShort();
-            pid = (pid2 << 16) | pid1;
-            hunt += 2;
-        }
-        while (pid % 25 != frame.getNature());
-
-        frame.setPID(pid, genderRatio);
-
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
-
-        frame.setIVs(val1, val2);
-
-        if (compare.compareFrame(frame))
-        {
-            frame.setFrame(cnt);
-            frame.setOccidentary(hunt + cnt);
-            frames.append(frame);
-        }
-    }
-
-    return frames;
-}
-
-QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare) const
-{
-    QVector<Frame4> frames;
-    Frame4 frame(tid, sid, psv);
-
-    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
-    u32 max = initialFrame + maxResults;
-    u32 pid, hunt = 0;
-    u16 pid1, pid2;
+    u32 pid;
+    u16 low, high;
 
     u8 buffer = 0;
-    u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
 
     switch (leadType)
     {
@@ -353,94 +481,98 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
         PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
+        frame.setSeed(go.getSeed() >> 16);
 
-        switch (encounterType)
+        switch (leadType)
         {
-            case Encounter::Grass:
-                frame.setEncounterSlot(EncounterSlot::jSlot(go.getSeed() >> 16, encounterType));
-                if (!compare.compareSlot(frame))
+            case Lead::None:
+                // Get hunt nature
+                frame.setNature(go.nextUShort() % 25);
+
+                if (!compare.compareNature(frame))
                 {
                     continue;
                 }
 
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot()));
-                hunt = 1;
+                // Begin search for valid pid
+                do
+                {
+                    low = go.nextUShort();
+                    high = go.nextUShort();
+                    pid = (high << 16) | low;
+                }
+                while (pid % 25 != frame.getNature());
+                frame.setPID(pid, genderRatio);
+
                 break;
-            case Encounter::Surfing:
-                frame.setEncounterSlot(EncounterSlot::jSlot(go.getSeed() >> 16, encounterType));
-                if (!compare.compareSlot(frame))
+            case Lead::Synchronize:
+                if ((go.nextUShort() & 1) == 0) // Successful synch
+                {
+                    frame.setNature(synchNature);
+                }
+                else // Failed synch
+                {
+                    frame.setNature(go.nextUShort() % 25);
+                }
+
+                if (!compare.compareNature(frame))
                 {
                     continue;
                 }
 
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
-                hunt = 2;
+                // Begin search for valid pid
+                do
+                {
+                    low = go.nextUShort();
+                    high = go.nextUShort();
+                    pid = (high << 16) | low;
+                }
+                while (pid % 25 != frame.getNature());
+                frame.setPID(pid, genderRatio);
+
                 break;
-            case Encounter::OldRod:
-            case Encounter::GoodRod:
-            case Encounter::SuperRod:
-                if (((go.getSeed() >> 16) / 656) >= thresh)
+            default: // Default to cover all cute charm cases
+                if ((go.nextUShort() % 3) != 0) // Successfull cute charm
                 {
-                    continue;
+                    // Get hunt nature
+                    frame.setNature(go.nextUShort() % 25);
+
+                    if (!compare.compareNature(frame))
+                    {
+                        continue;
+                    }
+
+                    frame.setPID(buffer + frame.getNature(), genderRatio);
+                }
+                else // Failed cutecharm
+                {
+                    // Get hunt nature
+                    frame.setNature(go.nextUShort() % 25);
+
+                    if (!compare.compareNature(frame))
+                    {
+                        continue;
+                    }
+
+                    // Begin search for valid pid
+                    do
+                    {
+                        low = go.nextUShort();
+                        high = go.nextUShort();
+                        pid = (high << 16) | low;
+                    }
+                    while (pid % 25 != frame.getNature());
+
+                    frame.setPID(pid, genderRatio);
                 }
 
-                frame.setEncounterSlot(EncounterSlot::jSlot(go.nextUShort(), encounterType));
-                if (!compare.compareSlot(frame))
-                {
-                    continue;
-                }
-
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
-                hunt = 2;
-                break;
-            default:
                 break;
         }
 
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
 
-        if ((go.nextUShort() / 0x5556) != 0) // Successful cute charm
-        {
-            // Get nature
-            frame.setNature(go.nextUShort() / 0xa3e);
-
-            if (!compare.compareNature(frame))
-            {
-                continue;
-            }
-
-            // Cute charm doesn't hunt for a valid PID, just uses buffer and target nature
-            frame.setPID(buffer + frame.getNature(), genderRatio);
-            frame.setOccidentary(cnt);
-        }
-        else // Failed cute charm
-        {
-            // Get nature
-            frame.setNature(go.nextUShort() / 0xa3e);
-
-            if (!compare.compareNature(frame))
-            {
-                continue;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                pid1 = go.nextUShort();
-                pid2 = go.nextUShort();
-                pid = (pid2 << 16) | pid1;
-                hunt += 2;
-            }
-            while (pid % 25 != frame.getNature());
-
-            frame.setPID(pid, genderRatio);
-            frame.setOccidentary(hunt + cnt);
-        }
-
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
-
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -452,7 +584,7 @@ QVector<Frame4> Generator4::generateMethodJCuteCharm(const FrameCompare &compare
     return frames;
 }
 
-QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
+QVector<Frame4> Generator4::generateMethodKWild(const FrameCompare &compare) const
 {
     QVector<Frame4> frames;
     Frame4 frame(tid, sid, psv);
@@ -460,9 +592,9 @@ QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
     PokeRNG rng(initialSeed, initialFrame - 1 + offset);
     u32 max = initialFrame + maxResults;
     u32 pid, hunt = 0;
-    u16 pid1, pid2;
+    u16 low, high;
 
-    u8 thresh = 0;
+    u8 buffer, thresh = 0, rate = encounter.getEncounterRate();
     if (encounterType == Encounter::OldRod)
     {
         thresh = leadType == Lead::SuctionCups ? 90 : 25;
@@ -476,12 +608,31 @@ QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
         thresh = leadType == Lead::SuctionCups ? 100 : 75;
     }
 
-    u8 rate = encounter.getEncounterRate();
+    switch (leadType)
+    {
+        case Lead::CuteCharmFemale:
+            buffer = 0;
+            break;
+        case Lead::CuteCharm25M:
+            buffer = 0xC8;
+            break;
+        case Lead::CuteCharm50M:
+            buffer = 0x96;
+            break;
+        case Lead::CuteCharm75M:
+            buffer = 0x4B;
+            break;
+        case Lead::CuteCharm875M:
+            buffer = 0x32;
+            break;
+        default:
+            break;
+    }
 
     for (u32 cnt = initialFrame; cnt < max; cnt++)
     {
         PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
+        frame.setSeed(go.getSeed() >> 16);
 
         switch (encounterType)
         {
@@ -545,306 +696,103 @@ QVector<Frame4> Generator4::generateMethodK(const FrameCompare &compare) const
                 break;
         }
 
-        // Get hunt nature
-        frame.setNature(go.nextUShort() % 25);
-
-        if (!compare.compareNature(frame))
+        switch (leadType)
         {
-            continue;
-        }
+            case Lead::None:
+            case Lead::SuctionCups:
+                // Get hunt nature
+                frame.setNature(go.nextUShort() % 25);
 
-        // Begin search for valid pid
-        do
-        {
-            pid1 = go.nextUShort();
-            pid2 = go.nextUShort();
-            pid = (pid2 << 16) | pid1;
-            hunt += 2;
-        }
-        while (pid % 25 != frame.getNature());
-
-        frame.setPID(pid, genderRatio);
-
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
-
-        frame.setIVs(val1, val2);
-
-        if (compare.compareFrame(frame))
-        {
-            frame.setFrame(cnt);
-            frame.setOccidentary(hunt + cnt);
-            frames.append(frame);
-        }
-    }
-
-    return frames;
-}
-
-QVector<Frame4> Generator4::generateMethodKSynch(const FrameCompare &compare) const
-{
-    QVector<Frame4> frames;
-    Frame4 frame(tid, sid, psv);
-
-    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
-    u32 max = initialFrame + maxResults;
-    u32 pid, hunt = 0;
-    u16 pid1, pid2;
-
-    u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
-    u8 rock = encounter.getEncounterRate();
-
-    for (u32 cnt = initialFrame; cnt < max; cnt++)
-    {
-        PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
-
-        switch (encounterType)
-        {
-            case Encounter::Grass:
-                frame.setEncounterSlot(EncounterSlot::kSlot(go.getSeed() >> 16, encounterType));
-                if (!compare.compareSlot(frame))
+                if (!compare.compareNature(frame))
                 {
                     continue;
                 }
 
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot()));
-                hunt = 2;
+                // Begin search for valid pid
+                do
+                {
+                    low = go.nextUShort();
+                    high = go.nextUShort();
+                    pid = (high << 16) | low;
+                    hunt += 2;
+                }
+                while (pid % 25 != frame.getNature());
+                frame.setPID(pid, genderRatio);
+
                 break;
-            case Encounter::Surfing:
-                frame.setEncounterSlot(EncounterSlot::kSlot(go.getSeed() >> 16, encounterType));
-                if (!compare.compareSlot(frame))
+            case Lead::Synchronize:
+                hunt++;
+
+                if ((go.nextUShort() & 1) == 0) // Successful synch
+                {
+                    frame.setNature(synchNature);
+                }
+                else // Failed synch
+                {
+                    frame.setNature(go.nextUShort() % 25);
+                }
+
+                if (!compare.compareNature(frame))
                 {
                     continue;
                 }
 
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
-                hunt = 3;
+                // Begin search for valid pid
+                do
+                {
+                    low = go.nextUShort();
+                    high = go.nextUShort();
+                    pid = (high << 16) | low;
+                }
+                while (pid % 25 != frame.getNature());
+                frame.setPID(pid, genderRatio);
+
                 break;
-            case Encounter::OldRod:
-            case Encounter::GoodRod:
-            case Encounter::SuperRod:
-                if (((go.getSeed() >> 16) % 100) >= thresh)
+            default: // Default to cover all cute charm cases
+                if ((go.nextUShort() % 3) != 0) // Successfull cute charm
                 {
-                    continue;
+                    // Get hunt nature
+                    frame.setNature(go.nextUShort() % 25);
+
+                    if (!compare.compareNature(frame))
+                    {
+                        continue;
+                    }
+
+                    frame.setPID(buffer + frame.getNature(), genderRatio);
+                    hunt = 1;
+                }
+                else // Failed cutecharm
+                {
+                    hunt++;
+
+                    // Get hunt nature
+                    frame.setNature(go.nextUShort() % 25);
+
+                    if (!compare.compareNature(frame))
+                    {
+                        continue;
+                    }
+
+                    // Begin search for valid pid
+                    do
+                    {
+                        low = go.nextUShort();
+                        high = go.nextUShort();
+                        pid = (high << 16) | low;
+                    }
+                    while (pid % 25 != frame.getNature());
+
+                    frame.setPID(pid, genderRatio);
                 }
 
-                frame.setEncounterSlot(EncounterSlot::kSlot(go.nextUShort(), encounterType));
-                if (!compare.compareSlot(frame))
-                {
-                    continue;
-                }
-
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot()));
-                go.advanceFrames(1);
-                hunt = 4;
-                break;
-            case Encounter::RockSmash:
-                // Blank(or maybe item) ???
-                if (((go.nextUShort()) % 100) >= rock)
-                {
-                    continue;
-                }
-
-                frame.setEncounterSlot(EncounterSlot::kSlot(go.nextUShort(), encounterType));
-                if (!compare.compareSlot(frame))
-                {
-                    continue;
-                }
-
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
-                hunt = 3;
-                break;
-            case Encounter::HeadButt: // TODO
-            case Encounter::BugCatchingContest: // TODO
-            default:
                 break;
         }
 
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
 
-        if ((go.nextUShort() & 1) == 0) // Successful synch
-        {
-            frame.setNature(synchNature);
-        }
-        else // Failed synch
-        {
-            frame.setNature(go.nextUShort() % 25);
-        }
-
-        if (!compare.compareNature(frame))
-        {
-            continue;
-        }
-
-        // Begin search for valid pid
-        do
-        {
-            pid1 = go.nextUShort();
-            pid2 = go.nextUShort();
-            pid = (pid2 << 16) | pid1;
-        }
-        while (pid % 25 != frame.getNature());
-
-        frame.setPID(pid, genderRatio);
-
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
-
-        frame.setIVs(val1, val2);
-
-        if (compare.compareFrame(frame))
-        {
-            frame.setFrame(cnt);
-            frame.setOccidentary(hunt + cnt);
-            frames.append(frame);
-        }
-    }
-
-    return frames;
-}
-
-QVector<Frame4> Generator4::generateMethodKCuteCharm(const FrameCompare &compare) const
-{
-    QVector<Frame4> frames;
-    Frame4 frame(tid, sid, psv);
-
-    PokeRNG rng(initialSeed, initialFrame - 1 + offset);
-    u32 max = initialFrame + maxResults;
-    u32 pid, hunt = 0;
-    u16 pid1, pid2;
-
-    u8 buffer = 0;
-    u8 thresh = encounterType == Encounter::OldRod ? 25 : encounterType == Encounter::GoodRod ? 50 : encounterType == Encounter::SuperRod ? 75 : 0;
-    u8 rock = encounter.getEncounterRate();
-
-    switch (leadType)
-    {
-        case Lead::CuteCharmFemale:
-            buffer = 0;
-            break;
-        case Lead::CuteCharm25M:
-            buffer = 0xC8;
-            break;
-        case Lead::CuteCharm50M:
-            buffer = 0x96;
-            break;
-        case Lead::CuteCharm75M:
-            buffer = 0x4B;
-            break;
-        case Lead::CuteCharm875M:
-            buffer = 0x32;
-            break;
-        default:
-            break;
-    }
-
-    for (u32 cnt = initialFrame; cnt < max; cnt++)
-    {
-        PokeRNG go(rng.nextUInt());
-        frame.setSeed(go.getSeed());
-
-        switch (encounterType)
-        {
-            case Encounter::Grass:
-                frame.setEncounterSlot(EncounterSlot::kSlot(go.getSeed() >> 16, encounterType));
-                if (!compare.compareSlot(frame))
-                {
-                    continue;
-                }
-
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot()));
-                hunt = 2;
-                break;
-            case Encounter::Surfing:
-                frame.setEncounterSlot(EncounterSlot::kSlot(go.getSeed() >> 16, encounterType));
-                if (!compare.compareSlot(frame))
-                {
-                    continue;
-                }
-
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
-                hunt = 3;
-                break;
-            case Encounter::OldRod:
-            case Encounter::GoodRod:
-            case Encounter::SuperRod:
-                if (((go.getSeed() >> 16) % 100) >= thresh)
-                {
-                    continue;
-                }
-
-                frame.setEncounterSlot(EncounterSlot::kSlot(go.nextUShort(), encounterType));
-                if (!compare.compareSlot(frame))
-                {
-                    continue;
-                }
-
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot()));
-                go.advanceFrames(1);
-                hunt = 4;
-                break;
-            case Encounter::RockSmash:
-                // Blank(or maybe item) ???
-                if (((go.nextUShort()) % 100) >= rock)
-                {
-                    continue;
-                }
-
-                frame.setEncounterSlot(EncounterSlot::kSlot(go.nextUShort(), encounterType));
-                if (!compare.compareSlot(frame))
-                {
-                    continue;
-                }
-
-                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
-                hunt = 3;
-                break;
-            case Encounter::HeadButt: // TODO
-            case Encounter::BugCatchingContest: // TODO
-            default:
-                break;
-        }
-
-        if ((go.nextUShort() % 3) != 0) // Successfull cute charm
-        {
-            // Get hunt nature
-            frame.setNature(go.nextUShort() % 25);
-
-            if (!compare.compareNature(frame))
-            {
-                continue;
-            }
-
-            frame.setPID(buffer + frame.getNature(), genderRatio);
-            frame.setOccidentary(cnt);
-        }
-        else // Failed cutecharm
-        {
-            // Get hunt nature
-            frame.setNature(go.nextUShort() % 25);
-
-            if (!compare.compareNature(frame))
-            {
-                continue;
-            }
-
-            // Begin search for valid pid
-            do
-            {
-                pid1 = go.nextUShort();
-                pid2 = go.nextUShort();
-                pid = (pid2 << 16) | pid1;
-            }
-            while (pid % 25 != frame.getNature());
-
-            frame.setPID(pid, genderRatio);
-            frame.setOccidentary(hunt + cnt);
-        }
-
-        u16 val1 = go.nextUShort();
-        u16 val2 = go.nextUShort();
-
-        frame.setIVs(val1, val2);
+        frame.setIVs(iv1, iv2);
 
         if (compare.compareFrame(frame))
         {
@@ -873,9 +821,9 @@ QVector<Frame4> Generator4::generateChainedShiny(const FrameCompare &compare) co
     {
         low = chainedPIDLow(rngList.at(cnt + 1), rngList.at(cnt + 15), rngList.at(cnt + 14), rngList.at(cnt + 13), rngList.at(cnt + 12), rngList.at(cnt + 11), rngList.at(cnt + 10),
                             rngList.at(cnt + 9), rngList.at(cnt + 8), rngList.at(cnt + 7), rngList.at(cnt + 6), rngList.at(cnt + 5), rngList.at(cnt + 4), rngList.at(cnt + 3));
-        high = chainedPIDHigh(rngList[2 + cnt], low, tid, sid);
+        high = chainedPIDHigh(rngList.at(2 + cnt), low, tid, sid);
 
-        frame.setPID(low, high, genderRatio);
+        frame.setPID(high, low, genderRatio);
         frame.setIVs(rngList.at(cnt + 16), rngList.at(cnt + 17));
 
         if (compare.compareFrame(frame))

@@ -39,7 +39,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1" colspan="2">
+      <item row="0" column="1">
        <widget class="TextBox" name="textBoxShinyPIDPID">
         <property name="maxLength">
          <number>8</number>
@@ -63,7 +63,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1" colspan="2">
+      <item row="2" column="1">
        <widget class="TextBox" name="textBoxShinyPIDTID">
         <property name="enabled">
          <bool>false</bool>
@@ -80,7 +80,7 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1" colspan="2">
+      <item row="3" column="1">
        <widget class="TextBox" name="textBoxShinyPIDYear">
         <property name="text">
          <string notr="true">2000</string>
@@ -97,7 +97,7 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1" colspan="2">
+      <item row="4" column="1">
        <widget class="TextBox" name="textBoxShinyPIDMinDelay">
         <property name="text">
          <string notr="true">5000</string>
@@ -114,7 +114,7 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="1" colspan="2">
+      <item row="5" column="1">
        <widget class="TextBox" name="textBoxShinyPIDMaxDelay">
         <property name="text">
          <string notr="true">6000</string>
@@ -132,21 +132,25 @@
        </widget>
       </item>
       <item row="7" column="0" colspan="2">
-       <widget class="QPushButton" name="pushButtonShinyPIDSearch">
-        <property name="text">
-         <string>Search</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="2">
-       <widget class="QPushButton" name="pushButtonShinyPIDCancel">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="pushButtonShinyPIDSearch">
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonShinyPIDCancel">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -170,7 +174,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1" colspan="2">
+      <item row="0" column="1">
        <widget class="TextBox" name="textBoxTIDSIDTID">
         <property name="maxLength">
          <number>5</number>
@@ -194,7 +198,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1" colspan="2">
+      <item row="2" column="1">
        <widget class="TextBox" name="textBoxTIDSIDSID">
         <property name="enabled">
          <bool>false</bool>
@@ -211,7 +215,7 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1" colspan="2">
+      <item row="3" column="1">
        <widget class="TextBox" name="textBoxTIDSIDYear">
         <property name="text">
          <string notr="true">2000</string>
@@ -228,7 +232,7 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1" colspan="2">
+      <item row="4" column="1">
        <widget class="TextBox" name="textBoxTIDSIDMinDelay">
         <property name="text">
          <string notr="true">5000</string>
@@ -245,7 +249,7 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="1" colspan="2">
+      <item row="5" column="1">
        <widget class="TextBox" name="textBoxTIDSIDMaxDelay">
         <property name="text">
          <string notr="true">6000</string>
@@ -263,21 +267,25 @@
        </widget>
       </item>
       <item row="7" column="0" colspan="2">
-       <widget class="QPushButton" name="pushButtonTIDSIDSearch">
-        <property name="text">
-         <string>Search</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="2">
-       <widget class="QPushButton" name="pushButtonTIDSIDCancel">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="pushButtonTIDSIDSearch">
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonTIDSIDCancel">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -453,6 +461,7 @@
   <tabstop>checkBoxShinyPIDInfiniteSearch</tabstop>
   <tabstop>pushButtonShinyPIDSearch</tabstop>
   <tabstop>pushButtonShinyPIDCancel</tabstop>
+  <tabstop>tableViewShinyPID</tabstop>
   <tabstop>textBoxTIDSIDTID</tabstop>
   <tabstop>checkBoxTIDSIDSearchSID</tabstop>
   <tabstop>textBoxTIDSIDSID</tabstop>
@@ -462,12 +471,13 @@
   <tabstop>checkBoxTIDSIDInfiniteSearch</tabstop>
   <tabstop>pushButtonTIDSIDSearch</tabstop>
   <tabstop>pushButtonTIDSIDCancel</tabstop>
+  <tabstop>tableViewTIDSID</tabstop>
   <tabstop>textBoxSeedFinderTID</tabstop>
   <tabstop>dateTimeEdit</tabstop>
   <tabstop>textBoxSeedFinderMinDelay</tabstop>
   <tabstop>textBoxSeedFinderMaxDelay</tabstop>
   <tabstop>pushButtonSeedFinderSearch</tabstop>
-  <tabstop>tableViewShinyPID</tabstop>
+  <tabstop>tableViewSeedFinder</tabstop>
  </tabstops>
  <resources/>
  <connections>

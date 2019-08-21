@@ -33,9 +33,9 @@ void SeedtoTime4Model::setFlags(bool flag, Game version)
     this->version = version;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
-int SeedtoTime4Model::columnCount(const QModelIndex &parent) const
+
+int SeedtoTime4Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     if (calibrate)
     {
         return version & Game::HGSS ? 6 : 5;
@@ -64,7 +64,7 @@ QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
                     return version & Game::HGSS ? Utilities::getCalls(frame.getSeed(), 15, frame.getInfo()) : Utilities::coinFlips(frame.getSeed(), 15);
                 case 5:
                     {
-                        QString str = frame.getInfo().getRoutes();
+                        QString str = frame.getInfo().getRouteString();
                         return str.isEmpty() ? tr("No roamers") : str;
                     }
             }

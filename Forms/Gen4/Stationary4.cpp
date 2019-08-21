@@ -49,7 +49,7 @@ Stationary4::~Stationary4()
     setting.setValue("minFrame", ui->textBoxSearcherMinFrame->text());
     setting.setValue("maxFrame", ui->textBoxSearcherMaxFrame->text());
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -78,7 +78,7 @@ void Stationary4::updateProfiles()
 void Stationary4::setupModels()
 {
     generatorModel = new Stationary4Model(ui->tableViewGenerator, Method::Method1);
-    searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1);
+    searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1, true);
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 
@@ -149,7 +149,7 @@ void Stationary4::setupModels()
     if (setting.contains("maxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
     if (setting.contains("minFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
     if (setting.contains("maxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
-    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
     setting.endGroup();
 }
 
@@ -182,9 +182,10 @@ void Stationary4::on_pushButtonGenerate_clicked()
 
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
     Generator4 generator(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()), genderRatio);
-    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorGender->currentIndex(),
-                         ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), QVector<bool>());
+    FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+                         ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+                         ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
     generator.setEncounterType(Stationary);
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -221,9 +222,10 @@ void Stationary4::on_pushButtonSearch_clicked()
     u16 sid = ui->textBoxSearcherSID->getUShort();
 
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
-                         ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false, QVector<bool>());
+    FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
+                         ui->checkBoxSearcherShinyOnly->isChecked(), false,
+                         ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherNature->getChecked(),
+                         ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
     Searcher4 searcher(tid, sid, genderRatio, ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
                        ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(), compare, static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
     searcher.setLeadType(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));

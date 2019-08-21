@@ -41,7 +41,7 @@ PokeSpot::~PokeSpot()
     setting.beginGroup("pokespot");
     setting.setValue("tid", ui->textBoxTID->text());
     setting.setValue("sid", ui->textBoxSID->text());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -74,7 +74,7 @@ void PokeSpot::setupModels()
     setting.beginGroup("pokespot");
     if (setting.contains("tid")) ui->textBoxTID->setText(setting.value("tid").toString());
     if (setting.contains("sid")) ui->textBoxSID->setText(setting.value("sid").toString());
-    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
     setting.endGroup();
 }
 
@@ -99,8 +99,8 @@ void PokeSpot::on_pushButtonGenerate_clicked()
     }
 
     Frame3 frame(tid, sid, tid ^ sid);
-    FrameCompare compare(QVector<u8>(), QVector<u8>(), ui->comboBoxGender->currentIndex(), ui->comboBoxAbility->currentIndex(),
-                         ui->comboBoxNature->getChecked(), QVector<bool>(), ui->checkBoxShinyOnly->isChecked(), false, QVector<bool>());
+    FrameCompare compare(ui->comboBoxGender->currentIndex(), ui->comboBoxAbility->currentIndex(),
+                         ui->checkBoxShinyOnly->isChecked(), false, QVector<u8>(), QVector<u8>(), ui->comboBoxNature->getChecked(), QVector<bool>(), QVector<bool>());
 
     QVector<bool> spots = ui->comboBoxSpotType->getChecked();
 
@@ -139,7 +139,9 @@ void PokeSpot::on_pushButtonGenerate_clicked()
                     frame.setLockReason(tr("Rare"));
                 }
 
-                frame.setPID(rngList.at(cnt + 4), rngList.at(cnt + 3), genderRatio);
+                u16 high = rngList.at(cnt + 3);
+                u16 low = rngList.at(cnt + 4);
+                frame.setPID(high, low, genderRatio);
                 if (compare.comparePID(frame))
                 {
                     frame.setFrame(cnt + initialFrame);

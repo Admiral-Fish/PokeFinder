@@ -172,7 +172,7 @@ bool ShadowLock::salamenceSet(u32 seed)
     // Build PID of non-shadow
     u32 pid = getPIDBackward(backward);
 
-    return team.getLock(0).compare(pid);
+    return currLock.compare(pid);
 }
 
 bool ShadowLock::salamenceShinySkip(u32 seed)
@@ -195,7 +195,7 @@ bool ShadowLock::salamenceShinySkip(u32 seed)
     u32 pid = getPIDBackward(backward);
 
     // Backwards nature lock check
-    return team.getLock(0).compare(pid);
+    return currLock.compare(pid);
 }
 
 bool ShadowLock::salamenceUnset(u32 seed)
@@ -206,7 +206,7 @@ bool ShadowLock::salamenceUnset(u32 seed)
     u32 pid = getPIDBackward(backward);
 
     // Backwards nature lock check
-    return team.getLock(0).compare(pid);
+    return currLock.compare(pid);
 }
 
 bool ShadowLock::singleNL(u32 seed)
@@ -217,7 +217,7 @@ bool ShadowLock::singleNL(u32 seed)
     u32 pid = getPIDBackward(backward);
 
     // Backwards nature lock check
-    return team.getLock(0).compare(pid);
+    return currLock.compare(pid);
 }
 
 // Needs more research
@@ -233,8 +233,10 @@ bool ShadowLock::eReader(u32 seed, u32 readerPID)
     XDRNGR backward(seed, 1);
     u32 pid;
 
-    // Backwards nature lock check loop
-    for (x = 1; x < backCount; x++)
+    x = 1;
+    compareBackwards(pid, backward);
+
+    for (x = 2; x < backCount; x++)
     {
         backward.advanceFrames(3);
         compareBackwards(pid, backward);
@@ -247,13 +249,13 @@ bool ShadowLock::eReader(u32 seed, u32 readerPID)
         compareForwards(pid, forward);
     }
 
-    // Checks if first NL PID back from target matches
+    // Checks if PID matches original
     return pid == readerPID;
 }
 
 void ShadowLock::switchLock(u8 lockNum, Method version)
 {
-    natureLockSetup(lockNum, version);
+    team = ShadowTeam::loadShadowTeams(version).at(lockNum);
 
     backCount = team.getSize();
     frontCount = backCount == 1 ? 0 : backCount - 2;
@@ -306,9 +308,4 @@ u32 ShadowLock::getPIDBackward(XDRNGR &rng)
 u16 ShadowLock::getPSVReverse(XDRNGR &rng)
 {
     return (rng.nextUShort() ^ rng.nextUShort()) >> 3;
-}
-
-void ShadowLock::natureLockSetup(u8 lockNum, Method version)
-{
-    team = ShadowTeam::loadShadowTeams(version).at(lockNum);
 }

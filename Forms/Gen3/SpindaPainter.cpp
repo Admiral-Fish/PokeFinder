@@ -36,7 +36,7 @@ SpindaPainter::SpindaPainter(QWidget *parent) :
 SpindaPainter::~SpindaPainter()
 {
     QSettings setting;
-    setting.setValue("spindaPainter/size", this->size());
+    setting.setValue("spindaPainter/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -67,7 +67,7 @@ void SpindaPainter::setupModels()
     scene->addItem(spot4);
 
     QSettings setting;
-    if (setting.contains("spindaPainter/size")) this->resize(setting.value("spindaPainter/size").toSize());
+    if (setting.contains("spindaPainter/geometry")) this->restoreGeometry(setting.value("spindaPainter/geometry").toByteArray());
 }
 
 void SpindaPainter::moveSpot(GraphicsPixmapItem *item, int index)

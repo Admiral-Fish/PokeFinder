@@ -33,9 +33,8 @@ void Egg4GeneratorModel::setMethod(Method method)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-int Egg4GeneratorModel::columnCount(const QModelIndex &parent) const
+int Egg4GeneratorModel::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     switch (method)
     {
         case Method::Gen4Normal:
@@ -361,9 +360,8 @@ void Egg4SearcherModel::setMethod(Method method)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-int Egg4SearcherModel::columnCount(const QModelIndex &parent) const
+int Egg4SearcherModel::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     switch (method)
     {
         case Method::Gen4Normal:
@@ -372,6 +370,8 @@ int Egg4SearcherModel::columnCount(const QModelIndex &parent) const
         case Method::DPPtIVs:
         case Method::HGSSIVs:
             return 10;
+        case Method::Gen4Combined:
+            return 16;
         default:
             return 0;
     }
@@ -402,6 +402,8 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
                         return frame.getAbility();
                     case 6:
                         return frame.getGenderString();
+                    default:
+                        break;
                 }
             case Method::DPPtIVs:
             case Method::HGSSIVs:
@@ -475,6 +477,94 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
                         return frame.getPowerString();
                     case 9:
                         return frame.getPower();
+                    default:
+                        break;
+                }
+            case Method::Gen4Combined:
+                switch (index.column())
+                {
+                    case 0:
+                        return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
+                    case 1:
+                        return frame.getFrame();
+                    case 2:
+                        return frame.getEggFrame();
+                    case 3:
+                        return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+                    case 4:
+                        return frame.getShinyString();
+                    case 5:
+                        return frame.getNatureString();
+                    case 6:
+                        return frame.getAbility();
+                    case 7:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(0);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
+                        return frame.getIV(0);
+                    case 8:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(1);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
+                        return frame.getIV(1);
+                    case 9:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(2);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
+                        return frame.getIV(2);
+                    case 10:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(3);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
+                        return frame.getIV(3);
+                    case 11:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(4);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
+                        return frame.getIV(4);
+                    case 12:
+                        if (showInheritance)
+                        {
+                            QChar inh = frame.getInheritance(5);
+                            if (!inh.isNull())
+                            {
+                                return inh;
+                            }
+                        }
+                        return frame.getIV(5);
+                    case 13:
+                        return frame.getPowerString();
+                    case 14:
+                        return frame.getPower();
+                    case 15:
+                        return frame.getGenderString();
+                    default:
+                        break;
                 }
             default:
                 break;
@@ -526,6 +616,46 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
                         }
                         break;
                 }
+            case Method::Gen4Combined:
+                switch (index.column())
+                {
+                    case 7:
+                        if (!showInheritance || frame.getInheritance(0).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(0));
+                        }
+                        break;
+                    case 8:
+                        if (!showInheritance || frame.getInheritance(1).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(1));
+                        }
+                        break;
+                    case 9:
+                        if (!showInheritance || frame.getInheritance(2).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(2));
+                        }
+                        break;
+                    case 10:
+                        if (!showInheritance || frame.getInheritance(3).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(3));
+                        }
+                        break;
+                    case 11:
+                        if (!showInheritance || frame.getInheritance(4).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(4));
+                        }
+                        break;
+                    case 12:
+                        if (!showInheritance || frame.getInheritance(5).isNull())
+                        {
+                            return TableUtility::getBold(frame.getIV(5));
+                        }
+                        break;
+                }
             default:
                 break;
         }
@@ -545,6 +675,8 @@ QVariant Egg4SearcherModel::headerData(int section, Qt::Orientation orientation,
             case Method::DPPtIVs:
             case Method::HGSSIVs:
                 return header2.at(section);
+            case Method::Gen4Combined:
+                return header3.at(section);
             default:
                 break;
         }

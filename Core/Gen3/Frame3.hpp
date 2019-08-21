@@ -33,18 +33,18 @@ public:
     void setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2,
                         u16 inh3, const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken = false);
     void setPID(u32 pid, u16 genderRatio);
-    void setPID(u16 pid1, u16 pid2, u16 genderRatio);
+    void setPID(u16 high, u16 low, u16 genderRatio);
     QString getLockReason() const;
     void setLockReason(const QString &value);
-    u32 getOccidentary() const;
-    void setOccidentary(const u32 &value);
+    u32 getEggFrame() const;
+    void setEggFrame(const u32 &value);
     u32 getSeed() const;
     void setSeed(const u32 &value);
     void xorFrame(bool flag = false);
 
 private:
     QString lockReason;
-    u32 occidentary{};
+    u32 eggFrame{};
     u32 seed{};
 
 };

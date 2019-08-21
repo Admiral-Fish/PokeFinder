@@ -51,7 +51,11 @@ void ShinyPIDSearcher::startSearch()
         searching = true;
         cancel = false;
 
-        QtConcurrent::run([ = ] { update(); });
+        auto *timer = new QTimer(this);
+        connect(this, &ShinyPIDSearcher::finished, timer, &QTimer::stop);
+        connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+        timer->start(1000);
+
         QtConcurrent::run([ = ] { search(); });
     }
 }
@@ -88,7 +92,7 @@ void ShinyPIDSearcher::search()
                 {
                     u32 delay = efgh + 2000 - year;
                     auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
-                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay)) << new QStandardItem("0");
+                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay));
                     QMutexLocker locker(&mutex);
                     results.append(frame);
                 }
@@ -98,16 +102,6 @@ void ShinyPIDSearcher::search()
         }
     }
     emit finished();
-}
-
-void ShinyPIDSearcher::update()
-{
-    do
-    {
-        emit updateProgress(getResults(), progress);
-        QThread::sleep(1);
-    }
-    while (searching);
 }
 
 QVector<QList<QStandardItem *>> ShinyPIDSearcher::getResults()
@@ -148,7 +142,10 @@ void TIDSIDSearcher::startSearch()
         searching = true;
         cancel = false;
 
-        QtConcurrent::run([ = ] { update(); });
+        auto *timer = new QTimer(this);
+        connect(this, &TIDSIDSearcher::finished, timer, &QTimer::stop);
+        connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+
         QtConcurrent::run([ = ] { search(); });
     }
 }
@@ -185,7 +182,7 @@ void TIDSIDSearcher::search()
                 {
                     u32 delay = efgh + 2000 - year;
                     auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
-                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay)) << new QStandardItem("0");
+                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay));
                     QMutexLocker locker(&mutex);
                     results.append(frame);
                 }
@@ -195,16 +192,6 @@ void TIDSIDSearcher::search()
         }
     }
     emit finished();
-}
-
-void TIDSIDSearcher::update()
-{
-    do
-    {
-        emit updateProgress(getResults(), progress);
-        QThread::sleep(1);
-    }
-    while (searching);
 }
 
 QVector<QList<QStandardItem *>> TIDSIDSearcher::getResults()

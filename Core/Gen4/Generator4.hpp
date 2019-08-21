@@ -37,12 +37,10 @@ private:
     EncounterArea4 encounter;
 
     QVector<Frame4> generateMethod1(const FrameCompare &compare) const;
-    QVector<Frame4> generateMethodJ(const FrameCompare &compare) const;
-    QVector<Frame4> generateMethodJSynch(const FrameCompare &compare) const;
-    QVector<Frame4> generateMethodJCuteCharm(const FrameCompare &compare) const;
-    QVector<Frame4> generateMethodK(const FrameCompare &compare) const;
-    QVector<Frame4> generateMethodKSynch(const FrameCompare &compare) const;
-    QVector<Frame4> generateMethodKCuteCharm(const FrameCompare &compare) const;
+    QVector<Frame4> generateMethodJStationary(const FrameCompare &compare) const;
+    QVector<Frame4> generateMethodJWild(const FrameCompare &compare) const;
+    QVector<Frame4> generateMethodKStationary(const FrameCompare &compare) const;
+    QVector<Frame4> generateMethodKWild(const FrameCompare &compare) const;
     QVector<Frame4> generateChainedShiny(const FrameCompare &compare) const;
     QVector<Frame4> generateWondercardIVs(const FrameCompare &compare) const;
     u16 chainedPIDLow(u16 low, u16 call1, u16 call2, u16 call3, u16 call4, u16 call5,

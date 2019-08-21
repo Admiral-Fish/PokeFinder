@@ -72,7 +72,11 @@ GameCubeSeedSearcher::GameCubeSeedSearcher(Game version, const QVector<u32> &cri
     cancel = false;
     progress = 0;
 
-    connect(this, &GameCubeSeedSearcher::finished, this, &GameCubeSeedSearcher::deleteLater);
+    connect(this, &GameCubeSeedSearcher::finished, this, [ = ]
+    {
+        searching = false;
+        QTimer::singleShot(1000, this, &GameCubeSeedSearcher::deleteLater);
+    });
 }
 
 QVector<u32> GameCubeSeedSearcher::getInitialSeeds(u8 num1, u8 num2)
@@ -113,6 +117,7 @@ QVector<u32> GameCubeSeedSearcher::getInitialSeeds(u8 num1, u8 num2)
         delete[] seedSizes;
         file.close();
     }
+
     emit finished();
     return seeds;
 }
@@ -126,7 +131,11 @@ void GameCubeSeedSearcher::startSearch(const QVector<u32> &seeds)
         searching = true;
         cancel = false;
 
-        QtConcurrent::run([ = ] { update(); });
+        auto *timer = new QTimer(this);
+        connect(this, &GameCubeSeedSearcher::finished, timer, &QTimer::stop);
+        connect(timer, &QTimer::timeout, this, [ = ] {  emit updateProgress(progress); });
+        timer->start(1000);
+
         QtConcurrent::run([ = ] { search(); });
     }
 }
@@ -148,7 +157,6 @@ void GameCubeSeedSearcher::search()
     {
         if (cancel)
         {
-            searching = false;
             emit finished();
             return;
         }
@@ -169,24 +177,14 @@ void GameCubeSeedSearcher::search()
         }
         progress++;
     }
+
     std::sort(newSeeds.begin(), newSeeds.end());
     auto unique = std::unique(newSeeds.begin(), newSeeds.end());
     newSeeds.erase(unique, newSeeds.end());
 
-    searching = false;
     emit updateProgress(progress);
     emit outputSeeds(newSeeds);
     emit finished();
-}
-
-void GameCubeSeedSearcher::update()
-{
-    do
-    {
-        emit updateProgress(progress);
-        QThread::sleep(1);
-    }
-    while (searching);
 }
 
 bool GameCubeSeedSearcher::generateTeamGales(u32 &seed)

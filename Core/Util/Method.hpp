@@ -30,8 +30,8 @@ enum Method
     MethodH1,
     MethodH2,
     MethodH4,
-    XD, // Used to signify XD shadows
-    Colo, // Used to signify Colo shadows
+    XD,
+    Colo,
     XDColo,
     Channel,
     EBred,
@@ -52,6 +52,7 @@ enum Method
     Gen4Masuada,
     DPPtIVs,
     HGSSIVs,
+    Gen4Combined,
     Method5IVs,
     Method5CGear,
     Method5

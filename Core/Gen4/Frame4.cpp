@@ -94,6 +94,11 @@ void Frame4::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 
     calculatePower();
 }
 
+void Frame4::setInheritance(int index, QChar value)
+{
+    inheritance[index] = value;
+}
+
 void Frame4::setPID(u32 pid, u16 genderRatio)
 {
     this->pid = pid;
@@ -103,9 +108,9 @@ void Frame4::setPID(u32 pid, u16 genderRatio)
     shiny = ((pid >> 16) ^ (pid & 0xFFFF) ^ psv) < 8;
 }
 
-void Frame4::setPID(u16 pid1, u16 pid2, u16 genderRatio)
+void Frame4::setPID(u16 high, u16 low, u16 genderRatio)
 {
-    pid = (pid2 << 16) | pid1;
+    pid = (high << 16) | low;
     nature = pid % 25;
     gender = genderRatio > 2 ? ((pid & 255) >= genderRatio ? 1 : 2) : genderRatio;
     ability = pid & 1;
@@ -176,6 +181,16 @@ u32 Frame4::getOccidentary() const
 void Frame4::setOccidentary(const u32 &value)
 {
     occidentary = value;
+}
+
+void Frame4::setEggFrame(const u32 &value)
+{
+    eggFrame = value;
+}
+
+u32 Frame4::getEggFrame() const
+{
+    return eggFrame;
 }
 
 void Frame4::xorFrame()

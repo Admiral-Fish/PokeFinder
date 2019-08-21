@@ -51,7 +51,6 @@ private:
     int progress;
 
     void search();
-    void update();
     bool generateTeamGales(u32 &seed);
     bool generateTeamColo(u32 &seed);
     void generatePokemonGales(u32 &seed, u16 tsv);

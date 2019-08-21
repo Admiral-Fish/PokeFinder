@@ -64,17 +64,17 @@ SeedtoTime4::~SeedtoTime4()
 {
     QSettings setting;
     setting.beginGroup("seedToTime4");
-    setting.setValue("dpptYear", ui->lineEditDPPtYear->text());
+    setting.setValue("dpptYear", ui->textBoxDPPtYear->text());
     setting.setValue("minusDelayDPPt", ui->lineEditDPPtDelayMinus->text());
     setting.setValue("plusDelayDPPt", ui->lineEditDPPtDelayPlus->text());
     setting.setValue("minusSecondsDPPt", ui->lineEditDPPtSecondMinus->text());
     setting.setValue("plusSecondsDPPt", ui->lineEditDPPtSecondPlus->text());
-    setting.setValue("hgssYear", ui->lineEditHGSSYear->text());
+    setting.setValue("hgssYear", ui->textBoxHGSSYear->text());
     setting.setValue("minusDelayHGSS", ui->lineEditHGSSDelayMinus->text());
     setting.setValue("plusDelayHGSS", ui->lineEditHGSSDelayPlus->text());
     setting.setValue("minusSecondsHGSS", ui->lineEditHGSSSecondMinus->text());
     setting.setValue("plusSecondsHGSS", ui->lineEditHGSSSecondPlus->text());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -88,7 +88,11 @@ void SeedtoTime4::setupModels()
     hgssCalibrate = new SeedtoTime4Model(ui->tableViewHGSSCalibrate, true, Game::HeartGold);
 
     ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxDPPtYear->setValues(0, 2099);
+    ui->textBoxDPPtSecond->setValues(0, 59);
     ui->textBoxHGSSSeed->setValues(InputType::Seed32Bit);
+    ui->textBoxHGSSYear->setValues(0, 2099);
+    ui->textBoxHGSSSecond->setValues(0, 59);
 
     ui->tableViewDPPtSearch->setModel(dppt);
     ui->tableViewDPPtCalibrate->setModel(dpptCalibrate);
@@ -97,17 +101,17 @@ void SeedtoTime4::setupModels()
 
     QSettings setting;
     setting.beginGroup("seedToTime4");
-    if (setting.contains("dpptYear")) ui->lineEditDPPtYear->setText(setting.value("dpptYear").toString());
+    if (setting.contains("dpptYear")) ui->textBoxDPPtYear->setText(setting.value("dpptYear").toString());
     if (setting.contains("minusDelayDPPt")) ui->lineEditDPPtDelayMinus->setText(setting.value("minusDelayDPPt").toString());
     if (setting.contains("plusDelayDPPt")) ui->lineEditDPPtDelayPlus->setText(setting.value("plusDelayDPPt").toString());
     if (setting.contains("minusSecondsDPPt")) ui->lineEditDPPtSecondMinus->setText(setting.value("minusSecondsDPPt").toString());
     if (setting.contains("plusSecondsDPPt")) ui->lineEditDPPtSecondPlus->setText(setting.value("plusSecondsDPPt").toString());
-    if (setting.contains("hgssYear")) ui->lineEditHGSSYear->setText(setting.value("hgssYear").toString());
+    if (setting.contains("hgssYear")) ui->textBoxHGSSYear->setText(setting.value("hgssYear").toString());
     if (setting.contains("minusDelayHGSS")) ui->lineEditHGSSDelayMinus->setText(setting.value("minusDelayHGSS").toString());
     if (setting.contains("plusDelayHGSS")) ui->lineEditHGSSDelayPlus->setText(setting.value("plusDelayHGSS").toString());
     if (setting.contains("minusSecondsHGSS")) ui->lineEditHGSSSecondMinus->setText(setting.value("minusSecondsHGSS").toString());
     if (setting.contains("plusSecondsHGSS")) ui->lineEditHGSSSecondPlus->setText(setting.value("plusSecondsHGSS").toString());
-    if (setting.contains("size")) this->resize(setting.value("size").toSize());
+    if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
     setting.endGroup();
 }
 
@@ -153,7 +157,7 @@ QVector<DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, in
                     {
                         if (!forceSecond || second == forcedSecond)
                         {
-                            QDateTime dateTime = QDateTime(QDate(static_cast<int>(year), month, day), QTime(static_cast<int>(hour), minute, second));
+                            QDateTime dateTime(QDate(static_cast<int>(year), month, day), QTime(static_cast<int>(hour), minute, second));
                             results.append(DateTime(dateTime, delay, version, roamer, routes));
                         }
                     }
@@ -196,7 +200,7 @@ QVector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minu
         for (int j : delayRange)
         {
             QDateTime offset = time.addSecs(i);
-            DateTime result = DateTime(offset, delay + j, target.getVersion(), target.getInfo());
+            DateTime result(offset, delay + j, target.getVersion(), target.getInfo());
             results.append(result);
         }
     }
@@ -207,10 +211,10 @@ QVector<DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minu
 void SeedtoTime4::on_pushButtonDPPtGenerate_clicked()
 {
     u32 seed = ui->textBoxDPPtSeed->getUInt();
-    u32 year = ui->lineEditDPPtYear->text().toUInt();
+    u32 year = ui->textBoxDPPtYear->getUInt();
 
     bool forceSecond = ui->checkBoxDPPtSecond->isChecked();
-    int forcedSecond = ui->lineEditDPPtSecond->text().toInt();
+    int forcedSecond = ui->textBoxDPPtSecond->getInt();
 
     dppt->clearModel();
 
@@ -225,10 +229,10 @@ void SeedtoTime4::on_pushButtonHGSSGenerate_clicked()
     hgss->clearModel();
 
     u32 seed = ui->textBoxHGSSSeed->getUInt();
-    u32 year = ui->lineEditHGSSYear->text().toUInt();
+    u32 year = ui->textBoxHGSSYear->getUInt();
 
     bool forceSecond = ui->checkBoxHGSSSecond->isChecked();
-    int forcedSecond = ui->lineEditHGSSSecond->text().toInt();
+    int forcedSecond = ui->textBoxHGSSSecond->getInt();
 
     QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
     QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
@@ -237,7 +241,7 @@ void SeedtoTime4::on_pushButtonHGSSGenerate_clicked()
 
     QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HeartGold);
     ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + Utilities::getCalls(seed, 15, info));
-    QString str = info.getRoutes();
+    QString str = info.getRouteString();
     str = str.isEmpty() ? tr("No roamers") : str;
     ui->labelHGSSRoamers->setText(tr("Roamers: ") + str);
 

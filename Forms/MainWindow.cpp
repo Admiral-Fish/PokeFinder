@@ -40,13 +40,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
-    checkProfileJson();
     setupLanguage();
     setupStyle();
     setupThread();
     QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
+
+    QSettings setting;
+    if (setting.contains("mainWindow/geometry")) this->restoreGeometry(setting.value("mainWindow/geometry").toByteArray());
 }
 
 MainWindow::~MainWindow()
@@ -56,6 +57,8 @@ MainWindow::~MainWindow()
     setting.setValue("locale", currentLanguage);
     setting.setValue("style", currentStyle);
     setting.endGroup();
+
+    setting.setValue("mainWindow/geometry", this->saveGeometry());
 
     delete ui;
     delete stationary3;
@@ -103,7 +106,7 @@ void MainWindow::setupStyle()
     QSettings setting;
     currentStyle = setting.value("settings/style", "dark").toString();
 
-    QStringList styles = { "light", "dark" };
+    QStringList styles = { "dark", "light" };
     for (u8 i = 0; i < styles.size(); i++)
     {
         const QString &style = styles.at(i);
@@ -142,15 +145,6 @@ void MainWindow::setupThread()
         }
 
         threadGroup->addAction(action);
-    }
-}
-
-void MainWindow::checkProfileJson()
-{
-    QFile file(QApplication::applicationDirPath() + "/profiles.json");
-    if (file.open(QIODevice::NewOnly | QIODevice::Text))
-    {
-        file.close();
     }
 }
 

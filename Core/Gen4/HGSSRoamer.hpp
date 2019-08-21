@@ -33,9 +33,13 @@ public:
     u8 getRaikouRoute() const;
     u8 getEnteiRoute() const;
     u8 getLatiRoute() const;
-    QString getRoutes() const;
+    QString getRouteString() const;
+    QVector<bool> getRoamers() const;
+    QVector<u8> getRoutes() const;
+    void recalculateRoamers(u32 seed);
 
 private:
+    void calculateRoamers();
     u8 getRouteJ(u16 prng) const;
     u8 getRouteK(u16 prng) const;
 
@@ -43,7 +47,9 @@ private:
     u8 raikouRoute{};
     u8 enteiRoute{};
     u8 latiRoute{};
+    u32 seed{};
     QVector<bool> roamers;
+    QVector<u8> routes;
 
 };
 

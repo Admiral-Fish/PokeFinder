@@ -36,7 +36,7 @@ IDs4::IDs4(QWidget *parent) :
 IDs4::~IDs4()
 {
     QSettings setting;
-    setting.setValue("ids4/size", this->size());
+    setting.setValue("ids4/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -45,11 +45,11 @@ void IDs4::setupModels()
 {
     shinyPID = new QStandardItemModel(ui->tableViewShinyPID);
     ui->tableViewShinyPID->setModel(shinyPID);
-    shinyPID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
+    shinyPID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay"));
 
     tidSID = new QStandardItemModel(ui->tableViewTIDSID);
     ui->tableViewTIDSID->setModel(tidSID);
-    tidSID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
+    tidSID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay"));
 
     seedFinder = new QStandardItemModel(ui->tableViewSeedFinder);
     ui->tableViewSeedFinder->setModel(seedFinder);
@@ -72,7 +72,7 @@ void IDs4::setupModels()
     ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
 
     QSettings setting;
-    if (setting.contains("ids4/size")) this->resize(setting.value("ids4/size").toSize());
+    if (setting.contains("ids4/geometry")) this->restoreGeometry(setting.value("ids4/geometry").toByteArray());
 }
 
 void IDs4::updateProgressShinyPID(const QVector<QList<QStandardItem *> > &frames, int progress)

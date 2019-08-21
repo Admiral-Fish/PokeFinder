@@ -16,14 +16,8 @@
     <height>390</height>
    </size>
   </property>
-  <property name="maximumSize">
-   <size>
-    <width>680</width>
-    <height>390</height>
-   </size>
-  </property>
   <property name="windowTitle">
-   <string notr="true">PokéFinder 2.4.0</string>
+   <string notr="true">PokéFinder 2.4.1</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -37,31 +31,10 @@
        <string>Gen 3</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="3" column="0">
-        <widget class="QPushButton" name="pushButtonEgg3">
-         <property name="text">
-          <string>Egg</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
         <widget class="QPushButton" name="pushButtonStationary3">
          <property name="text">
           <string>Stationary</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="pushButtonGameCube">
-         <property name="text">
-          <string>GameCube</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QPushButton" name="pushButtonIDs3">
-         <property name="text">
-          <string>IDs</string>
          </property>
         </widget>
        </item>
@@ -72,18 +45,26 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <spacer name="verticalSpacerGen3">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButtonGameCube">
+         <property name="text">
+          <string>GameCube</string>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="pushButtonEgg3">
+         <property name="text">
+          <string>Egg</string>
          </property>
-        </spacer>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="pushButtonIDs3">
+         <property name="text">
+          <string>TID/SID</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -94,25 +75,12 @@
        <string>Gen 4</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="2" column="0">
-        <widget class="QPushButton" name="pushButtonEgg4">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButtonStationary4">
          <property name="text">
-          <string>Egg</string>
+          <string>Stationary</string>
          </property>
         </widget>
-       </item>
-       <item row="4" column="0">
-        <spacer name="verticalSpacerGen4">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="pushButtonWild4">
@@ -121,17 +89,17 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="pushButtonStationary4">
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButtonEgg4">
          <property name="text">
-          <string>Stationary</string>
+          <string>Egg</string>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
         <widget class="QPushButton" name="pushButtonIDs4">
          <property name="text">
-          <string>IDs</string>
+          <string>TID/SID</string>
          </property>
         </widget>
        </item>
@@ -151,10 +119,17 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QPushButton" name="pushButtonIDs5">
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButtonWild5">
          <property name="text">
-          <string>IDs</string>
+          <string>Wild</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButtonEvent5">
+         <property name="text">
+          <string>Event</string>
          </property>
         </widget>
        </item>
@@ -172,30 +147,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="pushButtonWild5">
+       <item row="5" column="0">
+        <widget class="QPushButton" name="pushButtonIDs5">
          <property name="text">
-          <string>Wild</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <spacer name="verticalSpacerGen5">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="pushButtonEvent5">
-         <property name="text">
-          <string>Event</string>
+          <string>TID/SID</string>
          </property>
         </widget>
        </item>
@@ -263,8 +218,8 @@
      <property name="title">
       <string>Style</string>
      </property>
-     <addaction name="actionLight"/>
      <addaction name="actionDark"/>
+     <addaction name="actionLight"/>
     </widget>
     <widget class="QMenu" name="menuThreads">
      <property name="title">
@@ -275,14 +230,14 @@
     <addaction name="menuStyle"/>
     <addaction name="menuThreads"/>
    </widget>
-   <widget class="QMenu" name="menuGen_5_Tools">
+   <widget class="QMenu" name="menuGen5Tools">
     <property name="title">
      <string>Gen 5 Tools</string>
     </property>
    </widget>
    <addaction name="menuGen3Tools"/>
    <addaction name="menuGen4Tools"/>
-   <addaction name="menuGen_5_Tools"/>
+   <addaction name="menuGen5Tools"/>
    <addaction name="menuSettings"/>
    <addaction name="menuTools"/>
   </widget>
@@ -331,20 +286,20 @@
     <string>IV to PID</string>
    </property>
   </action>
-  <action name="actionLight">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Light</string>
-   </property>
-  </action>
   <action name="actionDark">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
     <string>Dark</string>
+   </property>
+  </action>
+  <action name="actionLight">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Light</string>
    </property>
   </action>
   <action name="actionGerman">
@@ -437,22 +392,6 @@
    </property>
   </action>
  </widget>
- <tabstops>
-  <tabstop>pushButtonStationary3</tabstop>
-  <tabstop>pushButtonWild3</tabstop>
-  <tabstop>pushButtonGameCube</tabstop>
-  <tabstop>pushButtonEgg3</tabstop>
-  <tabstop>pushButtonIDs3</tabstop>
-  <tabstop>pushButtonStationary4</tabstop>
-  <tabstop>pushButtonWild4</tabstop>
-  <tabstop>pushButtonEgg4</tabstop>
-  <tabstop>pushButtonIDs4</tabstop>
-  <tabstop>pushButtonStationary5</tabstop>
-  <tabstop>pushButtonWild5</tabstop>
-  <tabstop>pushButtonDreamRadar</tabstop>
-  <tabstop>pushButtonEgg5</tabstop>
-  <tabstop>pushButtonIDs5</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -39,7 +39,7 @@ PIDtoIVs::PIDtoIVs(QWidget *parent) :
 PIDtoIVs::~PIDtoIVs()
 {
     QSettings setting;
-    setting.setValue("pidToIVs/size", this->size());
+    setting.setValue("pidToIVs/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -74,7 +74,7 @@ void PIDtoIVs::setupModels()
     });
 
     QSettings setting;
-    if (setting.contains("pidToIVs/size")) this->resize(setting.value("pidToIVs/size").toSize());
+    if (setting.contains("pidToIVs/geometry")) this->restoreGeometry(setting.value("pidToIVs/geometry").toByteArray());
 }
 
 void PIDtoIVs::calcFromPID(u32 pid)

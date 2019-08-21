@@ -254,7 +254,7 @@ QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
                 if (compare.comparePID(frame))
                 {
                     frame.setFrame(cnt + initialFrame - offset);
-                    frame.setOccidentary(redraw);
+                    frame.setEggFrame(redraw);
                     frames.append(frame);
                 }
             }
@@ -348,7 +348,7 @@ QVector<Frame3> Egg3::generateUpper(const QVector<QPair<u32, u16>> &lower, const
 
         if (compare.compareIVs(frame))
         {
-            frame.setOccidentary(cnt + minPickup);
+            frame.setEggFrame(cnt + minPickup);
             upper.append(frame);
         }
     }

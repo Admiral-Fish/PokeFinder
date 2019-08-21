@@ -57,14 +57,14 @@ QString Frame3::getTime() const
 
 QString Frame3::getTimeEgg() const
 {
-    int seconds = occidentary / 60;
-    int milliseconds = ((occidentary % 60) * 100) / 60;
+    int seconds = eggFrame / 60;
+    int milliseconds = ((eggFrame % 60) * 100) / 60;
     if (seconds < 60)
     {
         return QString("%1.%2 s").arg(seconds).arg(milliseconds, 2, 10, QChar('0'));
     }
 
-    int minutes = occidentary / 3600;
+    int minutes = eggFrame / 3600;
     seconds -= minutes * 60;
     if (minutes < 60)
     {
@@ -146,9 +146,9 @@ void Frame3::setPID(u32 pid, u16 genderRatio)
     shiny = ((pid >> 16) ^ (pid & 0xFFFF) ^ psv) < 8;
 }
 
-void Frame3::setPID(u16 pid1, u16 pid2, u16 genderRatio)
+void Frame3::setPID(u16 high, u16 low, u16 genderRatio)
 {
-    pid = (pid2 << 16) | pid1;
+    pid = (high << 16) | low;
     nature = pid % 25;
     gender = genderRatio > 2 ? ((pid & 255) >= genderRatio ? 1 : 2) : genderRatio;
     ability = pid & 1;
@@ -165,14 +165,14 @@ void Frame3::setLockReason(const QString &value)
     lockReason = value;
 }
 
-u32 Frame3::getOccidentary() const
+u32 Frame3::getEggFrame() const
 {
-    return occidentary;
+    return eggFrame;
 }
 
-void Frame3::setOccidentary(const u32 &value)
+void Frame3::setEggFrame(const u32 &value)
 {
-    occidentary = value;
+    eggFrame = value;
 }
 
 u32 Frame3::getSeed() const

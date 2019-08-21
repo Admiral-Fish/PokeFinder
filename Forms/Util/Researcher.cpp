@@ -40,7 +40,7 @@ Researcher::Researcher(QWidget *parent) :
 Researcher::~Researcher()
 {
     QSettings setting;
-    setting.setValue("researcher/size", this->size());
+    setting.setValue("researcher/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -104,7 +104,7 @@ void Researcher::setupModels()
     keys[tr("Previous 9")] = 23;
 
     QSettings setting;
-    if (setting.contains("researcher/size")) this->resize(setting.value("researcher/size").toSize());
+    if (setting.contains("researcher/geometry")) this->restoreGeometry(setting.value("researcher/geometry").toByteArray());
 }
 
 u64 Researcher::getCustom(const QString &text, const ResearcherFrame &frame, const QVector<ResearcherFrame> &frames)

@@ -91,6 +91,16 @@ u8 Frame::getIV(int index) const
     return ivs.at(index);
 }
 
+u16 Frame::getTID() const
+{
+    return tid;
+}
+
+u16 Frame::getSID() const
+{
+    return sid;
+}
+
 QChar Frame::getInheritance(int index) const
 {
     return inheritance.at(index);

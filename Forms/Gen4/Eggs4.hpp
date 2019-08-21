@@ -45,23 +45,18 @@ private:
     Ui::Eggs4 *ui;
     QVector<Profile4> profiles;
     Egg4GeneratorModel *generatorModel{};
-    Egg4SearcherModel *searcherIVs{};
-    Egg4SearcherModel *searcherPID{};
+    Egg4SearcherModel *searcherModel{};
     QMenu *searcherMenu{};
-    bool flag{};
 
     void setupModels();
 
 private slots:
-    void updateProgressPID(const QVector<Frame4> &frames, int progress);
-    void updateProgressIVs(const QVector<Frame4> &frames, int progress);
+    void updateProgress(const QVector<Frame4> &frames, int progress);
     void refreshProfiles();
     void on_pushButtonGenerate_clicked();
-    void on_pushButtonSearchPID_clicked();
-    void on_pushButtonSearchIVs_clicked();
+    void on_pushButtonSearch_clicked();
     void on_comboBoxProfiles_currentIndexChanged(int index);
-    void on_tableViewPID_customContextMenuRequested(const QPoint &pos);
-    void on_tableViewIVs_customContextMenuRequested(const QPoint &pos);
+    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
     void seedToTime();
     void on_pushButtonProfileManager_clicked();
 

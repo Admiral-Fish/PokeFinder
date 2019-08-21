@@ -61,7 +61,7 @@ ProfileEditor4::ProfileEditor4(const Profile4 &profile, QWidget *parent) :
 ProfileEditor4::~ProfileEditor4()
 {
     QSettings setting;
-    setting.setValue("profileEditor4/size", this->size());
+    setting.setValue("profileEditor4/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -103,7 +103,7 @@ void ProfileEditor4::setupModels()
     ui->comboBoxLanguage->setItemData(6, Language::Korean);
 
     QSettings setting;
-    if (setting.contains("profileEditor4/size")) this->resize(setting.value("profileEditor4/size").toSize());
+    if (setting.contains("profileEditor4/geometry")) this->restoreGeometry(setting.value("profileEditor4/geometry").toByteArray());
 }
 
 void ProfileEditor4::on_pushButtonAccept_clicked()
@@ -134,7 +134,6 @@ void ProfileEditor4::on_comboBoxVersion_currentIndexChanged(int index)
     ui->labelRadio->setVisible(flag);
     ui->comboBoxRadio->setVisible(flag);
 
-    ui->labelRadar->setVisible(!flag);
     ui->checkBoxRadar->setVisible(!flag);
 
     ui->labelDualSlot->setVisible(!flag);

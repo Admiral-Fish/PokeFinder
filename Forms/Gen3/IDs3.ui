@@ -543,19 +543,19 @@
   <tabstop>textBoxXDColoTID</tabstop>
   <tabstop>checkBoxXDColoSID</tabstop>
   <tabstop>textBoxXDColoSID</tabstop>
-  <tabstop>pushButtonXDColoSearch</tabstop>
   <tabstop>textBoxXDColoSeed</tabstop>
   <tabstop>textBoxXDColoStartingFrame</tabstop>
   <tabstop>textBoxXDColoMaxResults</tabstop>
+  <tabstop>pushButtonXDColoSearch</tabstop>
   <tabstop>tableViewXDColo</tabstop>
   <tabstop>checkBoxFRLGEPID</tabstop>
   <tabstop>textBoxFRLGEPID</tabstop>
   <tabstop>checkBoxFRLGESID</tabstop>
   <tabstop>textBoxFRLGESID</tabstop>
-  <tabstop>pushButtonFRLGESearch</tabstop>
   <tabstop>textBoxFRLGETID</tabstop>
   <tabstop>textBoxFRLGEStartingFrame</tabstop>
   <tabstop>textBoxFRLGEMaxResults</tabstop>
+  <tabstop>pushButtonFRLGESearch</tabstop>
   <tabstop>tableViewFRLGE</tabstop>
   <tabstop>checkBoxRSPID</tabstop>
   <tabstop>textBoxRSPID</tabstop>
@@ -563,7 +563,6 @@
   <tabstop>textBoxRSTID</tabstop>
   <tabstop>checkBoxRSSID</tabstop>
   <tabstop>textBoxRSSID</tabstop>
-  <tabstop>pushButtonRSSearch</tabstop>
   <tabstop>checkBoxRSDeadBattery</tabstop>
   <tabstop>radioButtonRSDate</tabstop>
   <tabstop>dateTimeEdit</tabstop>
@@ -571,6 +570,7 @@
   <tabstop>textBoxRSInitialSeed</tabstop>
   <tabstop>textBoxRSStartingFrame</tabstop>
   <tabstop>textBoxRSMaxResults</tabstop>
+  <tabstop>pushButtonRSSearch</tabstop>
   <tabstop>tableViewRS</tabstop>
  </tabstops>
  <resources/>

@@ -46,7 +46,11 @@ void IVSearcher3::startSearch()
         searching = true;
         cancel = false;
 
-        QtConcurrent::run([ = ] { update(); });
+        auto *timer = new QTimer(this);
+        connect(this, &IVSearcher3::finished, timer, &QTimer::stop);
+        connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+        timer->start(1000);
+
         QtConcurrent::run([ = ] { search(); });
     }
 }
@@ -88,16 +92,6 @@ void IVSearcher3::search()
         }
     }
     emit finished();
-}
-
-void IVSearcher3::update()
-{
-    do
-    {
-        emit updateProgress(getResults(), progress);
-        QThread::sleep(1);
-    }
-    while (searching);
 }
 
 QVector<Frame3> IVSearcher3::getResults()

@@ -39,7 +39,7 @@ IVCalculator::IVCalculator(QWidget *parent) :
 IVCalculator::~IVCalculator()
 {
     QSettings setting;
-    setting.setValue("ivCalculator/size", this->size());
+    setting.setValue("ivCalculator/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -54,7 +54,7 @@ void IVCalculator::setupModels()
     ui->comboBoxCharacteristic->addItems(Translator::getCharacteristic());
 
     QSettings setting;
-    if (setting.contains("ivCalculator/size")) this->resize(setting.value("ivCalculator/size").toSize());
+    if (setting.contains("ivCalculator/geometry")) this->restoreGeometry(setting.value("ivCalculator/geometry").toByteArray());
 }
 
 void IVCalculator::displayIVs(QLabel *label, const QVector<u8> &ivs)
@@ -68,30 +68,36 @@ void IVCalculator::displayIVs(QLabel *label, const QVector<u8> &ivs)
     else
     {
         bool flag = false;
-        result += QString::number(ivs.at(0));
-        for (int i = 1; i < ivs.size(); i++)
+        for (int i = 0; i < ivs.size(); i++)
         {
-            if (ivs.at(i) == ivs.at(i - 1) + 1)
+            if (i == 0)
             {
-                flag = true;
-
-                //  Check to see if we need to cap here.
-                if (i == ivs.size() - 1)
-                {
-                    result += QString("-%1").arg(ivs.at(i));
-                }
+                result += QString::number(ivs.at(i));
             }
             else
             {
-                if (flag)
+                if (ivs.at(i) == ivs.at(i - 1) + 1)
                 {
-                    flag = false;
-                    result += QString("-%1").arg(ivs.at(i - 1));
-                    result += QString(", %1").arg(ivs.at(i));
+                    flag = true;
+
+                    //  Check to see if we need to cap here.
+                    if (i == ivs.size() - 1)
+                    {
+                        result += QString("-%1").arg(ivs.at(i));
+                    }
                 }
                 else
                 {
-                    result += QString(", %1").arg(ivs.at(i));
+                    if (flag)
+                    {
+                        flag = false;
+                        result += QString("-%1").arg(ivs.at(i - 1));
+                        result += QString(", %1").arg(ivs.at(i));
+                    }
+                    else
+                    {
+                        result += QString(", %1").arg(ivs.at(i));
+                    }
                 }
             }
         }

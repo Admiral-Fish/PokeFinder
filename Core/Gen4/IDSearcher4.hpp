@@ -51,7 +51,6 @@ private:
     int progress;
 
     void search();
-    void update();
     QVector<QList<QStandardItem *>> getResults();
 
 };
@@ -82,7 +81,6 @@ private:
     int progress;
 
     void search();
-    void update();
     QVector<QList<QStandardItem *>> getResults();
 
 };

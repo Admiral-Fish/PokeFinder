@@ -401,24 +401,17 @@
             </item>
            </widget>
           </item>
-          <item row="6" column="3">
-           <widget class="QLabel" name="labelEmeraldShinyOnly">
+          <item row="6" column="0" colspan="3">
+           <widget class="QPushButton" name="pushButtonEmeraldPIDGenerate">
             <property name="text">
-             <string>Shiny Only?</string>
+             <string>Generate</string>
             </property>
            </widget>
           </item>
           <item row="6" column="4">
            <widget class="QCheckBox" name="checkBoxEmeraldShiny">
             <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0" colspan="3">
-           <widget class="QPushButton" name="pushButtonEmeraldPIDGenerate">
-            <property name="text">
-             <string>Generate</string>
+             <string>Shiny Only</string>
             </property>
            </widget>
           </item>
@@ -939,17 +932,10 @@ QRadioButton {
             </item>
            </widget>
           </item>
-          <item row="6" column="1">
-           <widget class="QLabel" name="labelRSShinyOnly">
-            <property name="text">
-             <string>Shiny Only?</string>
-            </property>
-           </widget>
-          </item>
           <item row="6" column="2">
            <widget class="QCheckBox" name="checkBoxRSShiny">
             <property name="text">
-             <string/>
+             <string>Shiny Only</string>
             </property>
            </widget>
           </item>
@@ -1308,17 +1294,10 @@ QRadioButton {
             </item>
            </widget>
           </item>
-          <item row="6" column="1">
-           <widget class="QLabel" name="labelFRLGShinyOnly">
-            <property name="text">
-             <string>Shiny Only?</string>
-            </property>
-           </widget>
-          </item>
           <item row="6" column="2">
            <widget class="QCheckBox" name="checkBoxFRLGShiny">
             <property name="text">
-             <string/>
+             <string>Shiny Only</string>
             </property>
            </widget>
           </item>
@@ -1384,7 +1363,6 @@ QRadioButton {
   <tabstop>textBoxCalibration</tabstop>
   <tabstop>textBoxEmeraldTID</tabstop>
   <tabstop>textBoxEmeraldSID</tabstop>
-  <tabstop>pushButtonEmeraldPIDGenerate</tabstop>
   <tabstop>comboBoxEmeraldGender</tabstop>
   <tabstop>comboBoxEmeraldAbility</tabstop>
   <tabstop>pushButtonEmeraldAnyAbility</tabstop>
@@ -1394,13 +1372,14 @@ QRadioButton {
   <tabstop>comboBoxEmeraldCompatibility</tabstop>
   <tabstop>comboBoxEmeraldGenderRatio</tabstop>
   <tabstop>checkBoxEmeraldShiny</tabstop>
+  <tabstop>pushButtonEmeraldPIDGenerate</tabstop>
+  <tabstop>tableViewEmeraldPID</tabstop>
   <tabstop>textBoxEmeraldIVsMinFrame</tabstop>
   <tabstop>textBoxEmeraldIVsMaxFrame</tabstop>
   <tabstop>comboBoxEmeraldMethod</tabstop>
   <tabstop>comboBoxEmeraldHiddenPower</tabstop>
   <tabstop>pushButtonEmeraldAnyHiddenPower</tabstop>
   <tabstop>pushButtonEmeraldIVsGenerate</tabstop>
-  <tabstop>tableViewEmeraldPID</tabstop>
   <tabstop>tableViewEmeraldIVs</tabstop>
   <tabstop>textBoxRSSeedHeld</tabstop>
   <tabstop>textBoxRSSeedPickup</tabstop>
@@ -1411,7 +1390,6 @@ QRadioButton {
   <tabstop>comboBoxRSMethod</tabstop>
   <tabstop>textBoxRSTID</tabstop>
   <tabstop>textBoxRSSID</tabstop>
-  <tabstop>pushButtonRSGenerate</tabstop>
   <tabstop>comboBoxRSGender</tabstop>
   <tabstop>comboBoxRSAbility</tabstop>
   <tabstop>comboBoxRSNature</tabstop>
@@ -1421,6 +1399,7 @@ QRadioButton {
   <tabstop>comboBoxRSCompatibility</tabstop>
   <tabstop>comboBoxRSGenderRatio</tabstop>
   <tabstop>checkBoxRSShiny</tabstop>
+  <tabstop>pushButtonRSGenerate</tabstop>
   <tabstop>tableViewRS</tabstop>
   <tabstop>textBoxFRLGSeedHeld</tabstop>
   <tabstop>textBoxFRLGSeedPickup</tabstop>
@@ -1431,7 +1410,6 @@ QRadioButton {
   <tabstop>comboBoxFRLGMethod</tabstop>
   <tabstop>textBoxFRLGTID</tabstop>
   <tabstop>textBoxFRLGSID</tabstop>
-  <tabstop>pushButtonFRLGGenerate</tabstop>
   <tabstop>comboBoxFRLGGender</tabstop>
   <tabstop>comboBoxFRLGAbility</tabstop>
   <tabstop>comboBoxFRLGNature</tabstop>
@@ -1441,6 +1419,7 @@ QRadioButton {
   <tabstop>comboBoxFRLGCompatibility</tabstop>
   <tabstop>comboBoxFRLGGenderRatio</tabstop>
   <tabstop>checkBoxFRLGShiny</tabstop>
+  <tabstop>pushButtonFRLGGenerate</tabstop>
   <tabstop>tableViewFRLG</tabstop>
  </tabstops>
  <resources/>

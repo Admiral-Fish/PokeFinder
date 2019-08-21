@@ -32,16 +32,15 @@ void Stationary4Model::setMethod(Method method)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-int Stationary4Model::columnCount(const QModelIndex &parent) const
+int Stationary4Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     switch (method)
     {
         case Method::Method1:
-        case Method::MethodJ:
-            return 16;
         case Method::MethodK:
-            return 17;
+            return 16;
+        case Method::MethodJ:
+            return 15;
         case Method::WondercardIVs:
             return 11;
         default:
@@ -98,34 +97,32 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return frame.getFrame();
                     case 1:
-                        return frame.getOccidentary();
-                    case 2:
                         return frame.chatotPitch();
-                    case 3:
+                    case 2:
                         return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                    case 4:
+                    case 3:
                         return frame.getShinyString();
-                    case 5:
+                    case 4:
                         return frame.getNatureString();
-                    case 6:
+                    case 5:
                         return frame.getAbility();
-                    case 7:
+                    case 6:
                         return frame.getIV(0);
-                    case 8:
+                    case 7:
                         return frame.getIV(1);
-                    case 9:
+                    case 8:
                         return frame.getIV(2);
-                    case 10:
+                    case 9:
                         return frame.getIV(3);
-                    case 11:
+                    case 10:
                         return frame.getIV(4);
-                    case 12:
+                    case 11:
                         return frame.getIV(5);
-                    case 13:
+                    case 12:
                         return frame.getPowerString();
-                    case 14:
+                    case 13:
                         return frame.getPower();
-                    case 15:
+                    case 14:
                         return frame.getGenderString();
                 }
             case Method::MethodK:
@@ -134,36 +131,34 @@ QVariant Stationary4Model::data(const QModelIndex &index, int role) const
                     case 0:
                         return frame.getFrame();
                     case 1:
-                        return frame.getOccidentary();
-                    case 2:
                         return frame.getCall();
-                    case 3:
+                    case 2:
                         return frame.chatotPitch();
-                    case 4:
+                    case 3:
                         return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                    case 5:
+                    case 4:
                         return frame.getShinyString();
-                    case 6:
+                    case 5:
                         return frame.getNatureString();
-                    case 7:
+                    case 6:
                         return frame.getAbility();
-                    case 8:
+                    case 7:
                         return frame.getIV(0);
-                    case 9:
+                    case 8:
                         return frame.getIV(1);
-                    case 10:
+                    case 9:
                         return frame.getIV(2);
-                    case 11:
+                    case 10:
                         return frame.getIV(3);
-                    case 12:
+                    case 11:
                         return frame.getIV(4);
-                    case 13:
+                    case 12:
                         return frame.getIV(5);
-                    case 14:
+                    case 13:
                         return frame.getPowerString();
-                    case 15:
+                    case 14:
                         return frame.getPower();
-                    case 16:
+                    case 15:
                         return frame.getGenderString();
                 }
             case Method::WondercardIVs:

@@ -270,17 +270,10 @@
         </item>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="labelShinyOnly">
-        <property name="text">
-         <string>Shiny Only?</string>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="1">
        <widget class="QCheckBox" name="checkBoxShinyOnly">
         <property name="text">
-         <string/>
+         <string>Shiny Only</string>
         </property>
        </widget>
       </item>
@@ -361,7 +354,6 @@
   <tabstop>textBoxMaxResults</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
-  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>comboBoxGender</tabstop>
   <tabstop>comboBoxAbility</tabstop>
   <tabstop>pushButtonAnyAbility</tabstop>
@@ -371,6 +363,7 @@
   <tabstop>checkBoxShinyOnly</tabstop>
   <tabstop>comboBoxSpotType</tabstop>
   <tabstop>pushButtonAnySpotType</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableView</tabstop>
  </tabstops>
  <resources/>

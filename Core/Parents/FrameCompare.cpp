@@ -20,29 +20,27 @@
 #include "FrameCompare.hpp"
 #include <Core/Util/Nature.hpp>
 
-FrameCompare::FrameCompare(const QVector<u8> &min, const QVector<u8> &max, int genderIndex, int abilityIndex,
-                           const QVector<bool> &nature, const QVector<bool> &power, bool onlyShiny, bool skipCompare, const QVector<bool> &encounter)
+FrameCompare::FrameCompare(int gender, int ability, bool shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max, const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters)
 {
+    this->gender = gender;
+    this->ability = ability;
+    this->shiny = shiny;
+    this->skip = skip;
+
     this->min = min;
     this->max = max;
 
-    gender = genderIndex;
-    ability = abilityIndex;
-
-    if (!nature.isEmpty())
+    if (!natures.isEmpty())
     {
-        natures.resize(25);
+        this->natures.resize(25);
         for (u8 i = 0; i < 25; i++)
         {
-            natures[Nature::getAdjustedNature(i)] = nature.at(i);
+            this->natures[Nature::getAdjustedNature(i)] = natures.at(i);
         }
     }
 
-    powers = power;
-    encounterSlots = encounter;
-
-    shiny = onlyShiny;
-    skip = skipCompare;
+    this->powers = powers;
+    this->encounters = encounters;
 }
 
 bool FrameCompare::comparePID(const Frame &frame) const
@@ -112,7 +110,7 @@ bool FrameCompare::compareHiddenPower(const Frame &frame) const
 
 bool FrameCompare::compareSlot(const Frame &frame) const
 {
-    return encounterSlots.at(frame.getEncounterSlot());
+    return encounters.at(frame.getEncounterSlot());
 }
 
 bool FrameCompare::compareGender(const Frame &frame) const

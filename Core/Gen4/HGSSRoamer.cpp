@@ -22,8 +22,72 @@
 
 HGSSRoamer::HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes)
 {
-    PokeRNG rng(seed);
+    this->seed = seed;
     this->roamers = roamers;
+    this->routes = routes;
+
+    calculateRoamers();
+}
+
+u8 HGSSRoamer::getSkips() const
+{
+    return skips;
+}
+
+u8 HGSSRoamer::getRaikouRoute() const
+{
+    return raikouRoute;
+}
+
+u8 HGSSRoamer::getEnteiRoute() const
+{
+    return enteiRoute;
+}
+
+u8 HGSSRoamer::getLatiRoute() const
+{
+    return latiRoute;
+}
+
+QString HGSSRoamer::getRouteString() const
+{
+    QString routes;
+
+    if (roamers.at(0))
+    {
+        routes += QString("R: %1 ").arg(raikouRoute);
+    }
+    if (roamers.at(1))
+    {
+        routes += QString("E: %1 ").arg(enteiRoute);
+    }
+    if (roamers.at(2))
+    {
+        routes += QString("L: %1 ").arg(latiRoute);
+    }
+
+    return routes;
+}
+
+QVector<bool> HGSSRoamer::getRoamers() const
+{
+    return roamers;
+}
+
+QVector<u8> HGSSRoamer::getRoutes() const
+{
+    return routes;
+}
+
+void HGSSRoamer::recalculateRoamers(u32 seed)
+{
+    this->seed = seed;
+    calculateRoamers();
+}
+
+void HGSSRoamer::calculateRoamers()
+{
+    PokeRNG rng(seed);
     skips = 0;
 
     if (roamers.at(0))
@@ -55,46 +119,6 @@ HGSSRoamer::HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8>
         }
         while (routes.at(2) == latiRoute);
     }
-}
-
-u8 HGSSRoamer::getSkips() const
-{
-    return skips;
-}
-
-u8 HGSSRoamer::getRaikouRoute() const
-{
-    return raikouRoute;
-}
-
-u8 HGSSRoamer::getEnteiRoute() const
-{
-    return enteiRoute;
-}
-
-u8 HGSSRoamer::getLatiRoute() const
-{
-    return latiRoute;
-}
-
-QString HGSSRoamer::getRoutes() const
-{
-    QString routes;
-
-    if (roamers.at(0))
-    {
-        routes += QString("R: %1 ").arg(raikouRoute);
-    }
-    if (roamers.at(1))
-    {
-        routes += QString("E: %1 ").arg(enteiRoute);
-    }
-    if (roamers.at(2))
-    {
-        routes += QString("L: %1 ").arg(latiRoute);
-    }
-
-    return routes;
 }
 
 u8 HGSSRoamer::getRouteJ(u16 prng) const

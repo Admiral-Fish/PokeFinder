@@ -36,7 +36,7 @@ IDs3::IDs3(QWidget *parent) :
 IDs3::~IDs3()
 {
     QSettings setting;
-    setting.setValue("ids3/size", this->size());
+    setting.setValue("ids3/geometry", this->saveGeometry());
 
     delete ui;
 }
@@ -79,7 +79,7 @@ void IDs3::setupModels()
     ui->tableViewRS->setModel(rs);
 
     QSettings setting;
-    if (setting.contains("ids3/size")) this->resize(setting.value("ids3/size").toSize());
+    if (setting.contains("ids3/geometry")) this->restoreGeometry(setting.value("ids3/geometry").toByteArray());
 }
 
 void IDs3::on_pushButtonFRLGESearch_clicked()

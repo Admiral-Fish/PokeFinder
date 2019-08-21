@@ -38,19 +38,16 @@ public:
     void setShadowTeam(u8 index, int type);
 
 private:
-    u8 iv1{};
-    u8 iv2{};
+    u8 ivFirst{};
+    u8 ivSecond{};
     EncounterArea3 encounter;
     ShadowTeam team;
     int type;
 
     QVector<Frame3> generateMethodChannel(const FrameCompare &compare) const;
     QVector<Frame3> generateMethodH124(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodH124Synch(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodH124CuteCharm(const FrameCompare &compare) const;
     QVector<Frame3> generateMethodXDColo(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodXD(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodColo(const FrameCompare &compare) const;
+    QVector<Frame3> generateMethodXDColoShadow(const FrameCompare &compare) const;
     QVector<Frame3> generateMethod124(const FrameCompare &compare) const;
     QVector<Frame3> generateMethod1Reverse(const FrameCompare &compare) const;
     void generateNonShadows(XDRNG &rng) const;

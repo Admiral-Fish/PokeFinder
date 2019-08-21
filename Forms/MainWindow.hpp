@@ -50,7 +50,7 @@ private:
     QActionGroup *langGroup{};
     QActionGroup *styleGroup{};
     QActionGroup *threadGroup{};
-    const QString VERSION = "v2.4.0";
+    const QString VERSION = "v2.4.1";
     QString currentLanguage;
     QString currentStyle;
 
@@ -68,7 +68,6 @@ private:
     void setupLanguage();
     void setupStyle();
     void setupThread();
-    void checkProfileJson();
     void checkUpdates();
 
 private slots:

@@ -24,9 +24,8 @@ Profile3Model::Profile3Model(QObject *parent) :
 {
 }
 
-int Profile3Model::columnCount(const QModelIndex &parent) const
+int Profile3Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     return 6;
 }
 

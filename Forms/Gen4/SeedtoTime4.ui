@@ -164,7 +164,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QLineEdit" name="lineEditDPPtYear">
+           <widget class="TextBox" name="textBoxDPPtYear">
             <property name="text">
              <string notr="true">2000</string>
             </property>
@@ -198,7 +198,7 @@
            <widget class="TableView" name="tableViewDPPtSearch"/>
           </item>
           <item row="1" column="4">
-           <widget class="QLineEdit" name="lineEditDPPtSecond">
+           <widget class="TextBox" name="textBoxDPPtSecond">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -395,7 +395,7 @@
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="QLineEdit" name="lineEditHGSSYear">
+             <widget class="TextBox" name="textBoxHGSSYear">
               <property name="text">
                <string notr="true">2000</string>
               </property>
@@ -412,7 +412,7 @@
              </widget>
             </item>
             <item row="1" column="4">
-             <widget class="QLineEdit" name="lineEditHGSSSecond">
+             <widget class="TextBox" name="textBoxHGSSSecond">
               <property name="enabled">
                <bool>false</bool>
               </property>
@@ -542,9 +542,9 @@
  <tabstops>
   <tabstop>tabWidget</tabstop>
   <tabstop>textBoxDPPtSeed</tabstop>
-  <tabstop>lineEditDPPtYear</tabstop>
+  <tabstop>textBoxDPPtYear</tabstop>
   <tabstop>checkBoxDPPtSecond</tabstop>
-  <tabstop>lineEditDPPtSecond</tabstop>
+  <tabstop>textBoxDPPtSecond</tabstop>
   <tabstop>pushButtonDPPtGenerate</tabstop>
   <tabstop>tableViewDPPtSearch</tabstop>
   <tabstop>lineEditDPPtDelayMinus</tabstop>
@@ -555,9 +555,9 @@
   <tabstop>pushButtonDPPtCalibrate</tabstop>
   <tabstop>tableViewDPPtCalibrate</tabstop>
   <tabstop>textBoxHGSSSeed</tabstop>
-  <tabstop>lineEditHGSSYear</tabstop>
+  <tabstop>textBoxHGSSYear</tabstop>
   <tabstop>checkBoxHGSSSecond</tabstop>
-  <tabstop>lineEditHGSSSecond</tabstop>
+  <tabstop>textBoxHGSSSecond</tabstop>
   <tabstop>pushButtonHGSSMap</tabstop>
   <tabstop>checkBoxHGSSRaikou</tabstop>
   <tabstop>lineEditHGSSRaikou</tabstop>
@@ -628,7 +628,7 @@
   <connection>
    <sender>checkBoxHGSSSecond</sender>
    <signal>clicked(bool)</signal>
-   <receiver>lineEditHGSSSecond</receiver>
+   <receiver>textBoxHGSSSecond</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -644,7 +644,7 @@
   <connection>
    <sender>checkBoxDPPtSecond</sender>
    <signal>clicked(bool)</signal>
-   <receiver>lineEditDPPtSecond</receiver>
+   <receiver>textBoxDPPtSecond</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

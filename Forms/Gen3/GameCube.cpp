@@ -54,7 +54,7 @@ GameCube::~GameCube()
     QSettings setting;
     setting.beginGroup("gamecube");
     setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
-    setting.setValue("size", this->size());
+    setting.setValue("geometry", this->saveGeometry());
     setting.endGroup();
 
     delete ui;
@@ -88,7 +88,7 @@ void GameCube::updateProfiles()
 void GameCube::setupModels()
 {
     generatorModel = new Stationary3Model(ui->tableViewGenerator);
-    searcherModel = new Searcher3Model(ui->tableViewSearcher, Method::Method1);
+    searcherModel = new Searcher3Model(ui->tableViewSearcher, Method::XDColo);
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 
@@ -153,7 +153,7 @@ void GameCube::setupModels()
     connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
 
     QSettings setting;
-    if (setting.contains("gamecube/size")) this->resize(setting.value("gamecube/size").toSize());
+    if (setting.contains("gamecube/geometry")) this->restoreGeometry(setting.value("gamecube/geometry").toByteArray());
 }
 
 void GameCube::updateProgress(const QVector<Frame3> &frames, int progress)
@@ -204,10 +204,10 @@ void GameCube::on_pushButtonGenerate_clicked()
 
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
     Generator3 generator(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
-    FrameCompare compare(ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                         ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(),
-                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(), QVector<bool>());
+    FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
+                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+                         ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+                         ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
     Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
     generator.setup(method);
@@ -233,9 +233,10 @@ void GameCube::on_pushButtonSearch_clicked()
     u16 sid = ui->textBoxSearcherSID->getUShort();
 
     u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-    FrameCompare compare(ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherGender->currentIndex(),
-                         ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherNature->getChecked(),
-                         ui->comboBoxSearcherHiddenPower->getChecked(), ui->checkBoxSearcherShinyOnly->isChecked(), false, QVector<bool>());
+    FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
+                         ui->checkBoxSearcherShinyOnly->isChecked(), false,
+                         ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherNature->getChecked(),
+                         ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
     Searcher3 searcher(tid, sid, genderRatio, compare);
 
     searcher.setup(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
@@ -265,9 +266,8 @@ void GameCube::on_pushButtonSearch_clicked()
     search->startSearch();
 }
 
-void GameCube::on_comboBoxGeneratorMethod_currentIndexChanged(int index)
+void GameCube::on_comboBoxGeneratorMethod_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     Method method = static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
     ui->comboBoxGeneratorShadow->clear();
 
@@ -337,9 +337,8 @@ void GameCube::on_comboBoxGeneratorShadow_currentIndexChanged(int index)
     }
 }
 
-void GameCube::on_comboBoxSearcherMethod_currentIndexChanged(int index)
+void GameCube::on_comboBoxSearcherMethod_currentIndexChanged(int /*index*/)
 {
-    (void) index;
     Method method = static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt());
     ui->comboBoxSearcherShadow->clear();
 

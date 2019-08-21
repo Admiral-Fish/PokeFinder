@@ -33,9 +33,8 @@ void Egg3Model::setMethod(Method method)
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
-int Egg3Model::columnCount(const QModelIndex &parent) const
+int Egg3Model::columnCount(const QModelIndex & /*parent*/) const
 {
-    (void) parent;
     switch (method)
     {
         case Method::EBred:
@@ -143,7 +142,7 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.getTime();
                     case 2:
-                        return frame.getOccidentary();
+                        return frame.getEggFrame();
                     case 3:
                         return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
                     case 4:
@@ -164,7 +163,7 @@ QVariant Egg3Model::data(const QModelIndex &index, int role) const
                     case 1:
                         return frame.getTime();
                     case 2:
-                        return frame.getOccidentary();
+                        return frame.getEggFrame();
                     case 3:
                         return frame.getTimeEgg();
                     case 4:
