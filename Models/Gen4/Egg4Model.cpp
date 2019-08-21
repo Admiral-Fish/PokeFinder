@@ -402,7 +402,8 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
                         return frame.getAbility();
                     case 6:
                         return frame.getGenderString();
-                    default: break;
+                    default:
+                        break;
                 }
             case Method::DPPtIVs:
             case Method::HGSSIVs:
@@ -562,6 +563,8 @@ QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
                         return frame.getPower();
                     case 15:
                         return frame.getGenderString();
+                    default:
+                        break;
                 }
             default:
                 break;

@@ -347,7 +347,7 @@ void Encounters4::modifyRadar(QVector<Slot> &mons, const QByteArray &data) const
 {
     if (profile.getRadar())
     {
-        QVector<u16> species = { getValue(data, 51, 2), getValue(data, 53, 3), getValue(data, 55, 2), getValue(data, 57, 2) };
+        QVector<u16> species = { getValue(data, 51, 2), getValue(data, 53, 2), getValue(data, 55, 2), getValue(data, 57, 2) };
         mons[4].setSpecie(species.at(0), pokemon.at(species.at(0)));
         mons[5].setSpecie(species.at(1), pokemon.at(species.at(1)));
         mons[10].setSpecie(species.at(2), pokemon.at(species.at(2)));
