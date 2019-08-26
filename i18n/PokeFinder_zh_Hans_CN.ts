@@ -378,6 +378,7 @@
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="79"/>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="83"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="87"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -389,63 +390,85 @@
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="79"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="87"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="79"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="87"/>
         <source>Nature</source>
         <translation>性格</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="79"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="87"/>
         <source>Ability</source>
         <translation>特性</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="79"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="88"/>
         <source>Gender</source>
         <translation>性别</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="83"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="88"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="83"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="88"/>
         <source>Atk</source>
         <translation>攻击</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="83"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="88"/>
         <source>Def</source>
         <translation>防御</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="83"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="88"/>
         <source>SpA</source>
         <translation>特攻</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="83"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="88"/>
         <source>SpD</source>
         <translation>特防</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="83"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="88"/>
         <source>Spe</source>
         <translation>速度</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="83"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="88"/>
         <source>Hidden</source>
         <translation>觉醒</translation>
     </message>
     <message>
         <location filename="../Models/Gen4/Egg4Model.hpp" line="83"/>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="88"/>
         <source>Power</source>
         <translation>力量</translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="87"/>
+        <source>PID Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Models/Gen4/Egg4Model.hpp" line="87"/>
+        <source>IV Frame</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -585,11 +608,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
-        <source>Shiny Only?</source>
-        <translation>只有异色?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Generate</source>
         <translation>生成</translation>
     </message>
@@ -696,6 +714,11 @@
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>100% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Shiny Only</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -818,11 +841,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Shiny Only?</source>
-        <translation>只有异色?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>Gender Ratio</source>
         <translation>性别比</translation>
     </message>
@@ -838,23 +856,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Egg IVs</source>
-        <translation>个体</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Frame</source>
-        <translation>帧</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>Delay</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Hidden Power:</source>
-        <translation>觉醒力量:</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
@@ -862,12 +865,7 @@
         <translation>检索</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.ui"/>
-        <source>Egg PID</source>
-        <translation>PID</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="134"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="128"/>
         <source>Generate times for seed</source>
         <translation>为Seed生成时间</translation>
     </message>
@@ -904,6 +902,26 @@
     <message>
         <location filename="../Forms/Gen4/Eggs4.ui"/>
         <source>100% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>Shiny Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>IV Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>PID Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.ui"/>
+        <source>Both</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1176,23 +1194,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Shiny Only?</source>
-        <translation>只有异色?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>Use Delay?</source>
-        <translation>使用延迟?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
         <source>Disable Filters</source>
         <translation>关闭过滤器</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.ui"/>
-        <source>(F)</source>
-        <translation>(帧)</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.ui"/>
@@ -1260,42 +1263,42 @@
         <translation>为Seed生成时间</translation>
     </message>
     <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="285"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="288"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="291"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="356"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="359"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="362"/>
+        <source> (Citadark)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Forms/Gen3/GameCube.cpp" line="286"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="289"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="292"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="358"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="361"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="364"/>
-        <source> (Citadark)</source>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="357"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="360"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="363"/>
+        <source> (Initial)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.cpp" line="287"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="290"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="293"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="359"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="362"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="365"/>
-        <source> (Initial)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="288"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="291"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="294"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="360"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="363"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="366"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="358"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="361"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="364"/>
         <source> (Phenac)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="306"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="307"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="308"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="309"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="373"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="374"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="375"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="376"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="377"/>
         <source> (E-Reader)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1318,6 +1321,16 @@
         <location filename="../Forms/Gen3/GameCube.ui"/>
         <source>Shiny Skip</source>
         <translation type="unfinished">跳过异色</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Shiny Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.ui"/>
+        <source>Use Delay</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2449,11 +2462,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/PokeSpot.ui"/>
-        <source>Shiny Only?</source>
-        <translation>只有异色?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/PokeSpot.ui"/>
         <source>Spot Type</source>
         <translation>地点类型</translation>
     </message>
@@ -2510,6 +2518,11 @@
         <source>100% ♀</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen3/PokeSpot.ui"/>
+        <source>Shiny Only</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PokeSpotModel</name>
@@ -2547,12 +2560,12 @@
 <context>
     <name>Profile3Model</name>
     <message>
-        <location filename="../Models/Gen3/Profile3Model.cpp" line="53"/>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="52"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Profile3Model.cpp" line="53"/>
+        <location filename="../Models/Gen3/Profile3Model.cpp" line="52"/>
         <source>No</source>
         <translation>否</translation>
     </message>
@@ -2590,14 +2603,14 @@
 <context>
     <name>Profile4Model</name>
     <message>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="55"/>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="57"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="54"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="56"/>
         <source>True</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="55"/>
-        <location filename="../Models/Gen4/Profile4Model.cpp" line="57"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="54"/>
+        <location filename="../Models/Gen4/Profile4Model.cpp" line="56"/>
         <source>False</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2755,14 +2768,14 @@
         <translation type="unfinished">日</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/ProfileEditor3.ui"/>
-        <source>Dead Battery?</source>
-        <translation type="unfinished">无电池？</translation>
-    </message>
-    <message>
         <location filename="../Forms/Gen3/ProfileEditor3.cpp" line="103"/>
         <source>Enter a Profile Name.</source>
         <translation type="unfinished">输入一个配置名。</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/ProfileEditor3.ui"/>
+        <source>Dead Battery</source>
+        <translation type="unfinished">无电池</translation>
     </message>
 </context>
 <context>
@@ -3364,27 +3377,27 @@
         <translation>通过性格锁</translation>
     </message>
     <message>
-        <location filename="../Core/Gen4/Frame4.cpp" line="128"/>
+        <location filename="../Core/Gen4/Frame4.cpp" line="133"/>
         <source>Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen4/Frame4.cpp" line="132"/>
+        <location filename="../Core/Gen4/Frame4.cpp" line="137"/>
         <source>Mid-Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen4/Frame4.cpp" line="136"/>
+        <location filename="../Core/Gen4/Frame4.cpp" line="141"/>
         <source>Mid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen4/Frame4.cpp" line="140"/>
+        <location filename="../Core/Gen4/Frame4.cpp" line="145"/>
         <source>Mid-High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Core/Gen4/Frame4.cpp" line="144"/>
+        <location filename="../Core/Gen4/Frame4.cpp" line="149"/>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3731,32 +3744,32 @@
         <translation>帧</translation>
     </message>
     <message>
-        <location filename="../Models/Util/ResearcherModel.cpp" line="163"/>
+        <location filename="../Models/Util/ResearcherModel.cpp" line="162"/>
         <location filename="../Models/Util/ResearcherModel.hpp" line="45"/>
         <source>64Bit</source>
         <translation>64位</translation>
     </message>
     <message>
-        <location filename="../Models/Util/ResearcherModel.cpp" line="168"/>
+        <location filename="../Models/Util/ResearcherModel.cpp" line="167"/>
         <location filename="../Models/Util/ResearcherModel.hpp" line="45"/>
         <source>32Bit High</source>
         <translation>前32位</translation>
     </message>
     <message>
-        <location filename="../Models/Util/ResearcherModel.cpp" line="173"/>
+        <location filename="../Models/Util/ResearcherModel.cpp" line="172"/>
         <location filename="../Models/Util/ResearcherModel.hpp" line="45"/>
         <source>32Bit Low</source>
         <translation>后32位</translation>
     </message>
     <message>
-        <location filename="../Models/Util/ResearcherModel.cpp" line="183"/>
+        <location filename="../Models/Util/ResearcherModel.cpp" line="182"/>
         <location filename="../Models/Util/ResearcherModel.hpp" line="45"/>
         <location filename="../Models/Util/ResearcherModel.hpp" line="51"/>
         <source>16Bit High</source>
         <translation>前16位</translation>
     </message>
     <message>
-        <location filename="../Models/Util/ResearcherModel.cpp" line="188"/>
+        <location filename="../Models/Util/ResearcherModel.cpp" line="187"/>
         <location filename="../Models/Util/ResearcherModel.hpp" line="45"/>
         <location filename="../Models/Util/ResearcherModel.hpp" line="51"/>
         <source>16Bit Low</source>
@@ -3835,7 +3848,7 @@
         <translation>最高位</translation>
     </message>
     <message>
-        <location filename="../Models/Util/ResearcherModel.cpp" line="178"/>
+        <location filename="../Models/Util/ResearcherModel.cpp" line="177"/>
         <location filename="../Models/Util/ResearcherModel.hpp" line="51"/>
         <source>32Bit</source>
         <translation>32位</translation>
@@ -3953,17 +3966,17 @@
 <context>
     <name>Searcher3Model</name>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="391"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="390"/>
         <source>None</source>
         <translation>任意</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="391"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="390"/>
         <source>Synch</source>
         <translation>同步</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Searcher3Model.cpp" line="391"/>
+        <location filename="../Models/Gen3/Searcher3Model.cpp" line="390"/>
         <source>Cute Charm</source>
         <translation>迷人身躯</translation>
     </message>
@@ -4082,151 +4095,166 @@
 <context>
     <name>Searcher4Model</name>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="420"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="451"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="422"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="453"/>
         <source>Synchronize</source>
         <translation>同步</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="424"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="455"/>
         <source>Suction Cups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="426"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="457"/>
         <source>Cute Charm (♀)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="428"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="459"/>
         <source>Cute Charm (25% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="430"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="461"/>
         <source>Cute Charm (50% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="432"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="463"/>
         <source>Cute Charm (75% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.cpp" line="435"/>
+        <location filename="../Models/Gen4/Searcher4Model.cpp" line="466"/>
         <source>Cute Charm (87.5% ♂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="42"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="51"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="48"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="57"/>
         <source>Seed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="42"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="51"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="48"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="57"/>
         <source>Frame</source>
         <translation>帧</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="42"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="51"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="57"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="42"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="51"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="57"/>
         <source>Nature</source>
         <translation>性格</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="42"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="51"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="57"/>
         <source>Ability</source>
         <translation>特性</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="42"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="48"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="53"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="57"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="44"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="48"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="53"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="58"/>
         <source>Atk</source>
         <translation>攻击</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="44"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="48"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="53"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="58"/>
         <source>Def</source>
         <translation>防御</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="44"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="48"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="53"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="58"/>
         <source>SpA</source>
         <translation>特攻</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="44"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="48"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="53"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="58"/>
         <source>SpD</source>
         <translation>特防</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="44"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="48"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="53"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="58"/>
         <source>Spe</source>
         <translation>速度</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="44"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="48"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="53"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="58"/>
         <source>Hidden</source>
         <translation>觉醒</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="44"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="48"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="53"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="58"/>
         <source>Power</source>
         <translation>力量</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="43"/>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="44"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="53"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="58"/>
         <source>Gender</source>
         <translation>性别</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="51"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="57"/>
         <source>Lead</source>
         <translation>队首</translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="51"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
         <source>Slot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Models/Gen4/Searcher4Model.hpp" line="51"/>
+        <location filename="../Models/Gen4/Searcher4Model.hpp" line="52"/>
         <source>Level</source>
         <translation>等级</translation>
     </message>
@@ -4500,16 +4528,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Use Delay?</source>
-        <translation>使用延迟?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>Shiny Only?</source>
-        <translation>只有异色?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
         <source>Genderless</source>
         <translation>无性别</translation>
     </message>
@@ -4583,11 +4601,6 @@
         <location filename="../Forms/Gen3/Stationary3.ui"/>
         <source>Disable Filters</source>
         <translation>关闭过滤器</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.ui"/>
-        <source>(F)</source>
-        <translation>(帧)</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
@@ -4727,6 +4740,16 @@
     <message>
         <location filename="../Forms/Gen3/Stationary3.ui"/>
         <source>100% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>Shiny Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Stationary3.ui"/>
+        <source>Use Delay</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4948,23 +4971,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Use Delay?</source>
-        <translation>使用延迟?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
         <source>Disable Filters</source>
         <translation>关闭过滤器</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>Shiny Only?</source>
-        <translation>只有异色?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <source>(F)</source>
-        <translation>(帧)</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
@@ -5091,6 +5099,16 @@
         <source>100% ♀</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
+        <source>Shiny Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Stationary4.ui"/>
+        <source>Use Delay</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Stationary4Model</name>
@@ -5209,12 +5227,6 @@
         <source>Gender</source>
         <translation>性别</translation>
     </message>
-    <message>
-        <location filename="../Models/Gen4/Stationary4Model.hpp" line="47"/>
-        <location filename="../Models/Gen4/Stationary4Model.hpp" line="52"/>
-        <source>Occidentary</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>Wild3</name>
@@ -5247,11 +5259,6 @@
         <location filename="../Forms/Gen3/Wild3.ui"/>
         <source>Any</source>
         <translation>任何</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Use Delay?</source>
-        <translation>使用延迟?</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
@@ -5365,11 +5372,6 @@
         <location filename="../Forms/Gen3/Wild3.cpp" line="499"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation>♀ 队首（87.5% ♂ 目标）</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>Shiny Only?</source>
-        <translation>只有异色?</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
@@ -5500,11 +5502,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <source>(F)</source>
-        <translation>(帧)</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.ui"/>
         <source>Lead</source>
         <translation>队首</translation>
     </message>
@@ -5597,6 +5594,16 @@
         <source>100% ♀</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
+        <source>Shiny Only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Wild3.ui"/>
+        <source>Use Delay</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Wild3Model</name>
@@ -5604,11 +5611,6 @@
         <location filename="../Models/Gen3/Wild3Model.hpp" line="39"/>
         <source>Frame</source>
         <translation>帧</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/Wild3Model.hpp" line="39"/>
-        <source>Occidentary</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Models/Gen3/Wild3Model.hpp" line="39"/>
@@ -5636,7 +5638,7 @@
         <translation>特性</translation>
     </message>
     <message>
-        <location filename="../Models/Gen3/Wild3Model.hpp" line="40"/>
+        <location filename="../Models/Gen3/Wild3Model.hpp" line="39"/>
         <source>HP</source>
         <translation>HP</translation>
     </message>
@@ -5782,23 +5784,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Shiny Only?</source>
-        <translation>只有异色?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>Use Delay?</source>
-        <translation>使用延迟?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
         <source>Disable Filters</source>
         <translation>关闭过滤器</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen4/Wild4.ui"/>
-        <source>(F)</source>
-        <translation>(帧)</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
@@ -6093,6 +6080,16 @@
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
         <source>100% ♀</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>Use Delay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Wild4.ui"/>
+        <source>Shiny Only</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
