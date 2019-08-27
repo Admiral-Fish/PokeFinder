@@ -89,8 +89,8 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     for (u8 i = 0; i < 4; i++)
     {
         // Modify pattern with target, skip if invalid
-        int index = getTarget(i);
-        if (index != -1)
+        u8 index = getTarget(i);
+        if (index != 0)
         {
             // Menu advances can't stop on 0 so skip
             u8 target = data.at(data.size() - index - 1) >> 14;
@@ -108,7 +108,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
                 // Determine if spread is possible
                 // Need to work backwards to see if going forward with 1, 2, and 3 lands on our target
                 bool valid = true;
-                for (int x = data.size() - index; x < data.size(); x++)
+                for (u8 x = data.size() - index; x < data.size(); x++)
                 {
                     u8 temp = data.at(x) >> 14;
                     if (temp == target)
@@ -149,7 +149,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     return results;
 }
 
-int JirachiPattern::getTarget(u8 index)
+u8 JirachiPattern::getTarget(u8 index)
 {
     // From target initially advance 5 frames then
     // (prng >> 30 == 0) then advance 1
@@ -183,7 +183,7 @@ int JirachiPattern::getTarget(u8 index)
             }
             break;
     }
-    return -1;
+    return 0;
 }
 
 void JirachiPattern::on_pushButtonGenerate_clicked()

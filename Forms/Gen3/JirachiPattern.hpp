@@ -45,7 +45,7 @@ private:
     void setupModels();
     void generate(u32 seed);
     QStringList getPatterns(u32 seed);
-    int getTarget(u8 index);
+    u8 getTarget(u8 index);
 
 private slots:
     void on_pushButtonGenerate_clicked();
