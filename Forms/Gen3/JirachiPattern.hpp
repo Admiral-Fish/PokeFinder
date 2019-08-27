@@ -40,12 +40,12 @@ public:
 private:
     Ui::JirachiPattern *ui;
     QStandardItemModel *model{};
-    QVector<u32> data;
+    QVector<u16> data;
 
     void setupModels();
     void generate(u32 seed);
     QStringList getPatterns(u32 seed);
-    QString getTarget(QString in, int index);
+    QString getTarget(const QString &in, int index);
 
 private slots:
     void on_pushButtonGenerate_clicked();

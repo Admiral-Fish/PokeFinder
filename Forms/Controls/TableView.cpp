@@ -86,9 +86,10 @@ void TableView::outputModelTXT()
     }
 
     QFile file(fileName);
-    QAbstractItemModel *model = this->model();
     if (file.open(QIODevice::WriteOnly))
     {
+        QAbstractItemModel *model = this->model();
+
         QTextStream ts(&file);
         int rows = model->rowCount();
         int columns = model->columnCount();
@@ -137,9 +138,10 @@ void TableView::outputModelCSV()
     }
 
     QFile file(fileName);
-    QAbstractItemModel *model = this->model();
     if (file.open(QIODevice::WriteOnly))
     {
+        QAbstractItemModel *model = this->model();
+
         QTextStream ts(&file);
         int rows = model->rowCount();
         int columns = model->columnCount();

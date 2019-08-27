@@ -83,9 +83,9 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     // Populate backwards data
     for (u8 m = 0; m < 25; m++)
     {
-        seed = rng.nextUInt();
+        seed = rng.nextUShort();
         data.append(seed);
-        pattern = QString::number(seed >> 30) + "|" + pattern;
+        pattern = QString::number(seed >> 14) + "|" + pattern;
     }
 
     // Loop through 4 possible cases that would make a valid pattern
@@ -115,7 +115,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
                 bool valid = true;
                 for (int x = ((copy.length() - index + 2) / 2); x < data.size(); x++)
                 {
-                    u8 temp = data.at(x) >> 30;
+                    u8 temp = data.at(x) >> 14;
                     if (temp == target)
                     {
                         // Check if remaining numbers haven't occured yet
@@ -148,7 +148,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     return results;
 }
 
-QString JirachiPattern::getTarget(QString in, int index)
+QString JirachiPattern::getTarget(const QString &in, int index)
 {
     // (prng >> 30 == 0) then advance 1
     // (prng >> 30 == 2) then advance 2, (next prng >> 25 > 41) then advance 1 more
@@ -158,47 +158,31 @@ QString JirachiPattern::getTarget(QString in, int index)
     switch (index)
     {
         case 0:
-            if ((data.at(1) >> 30) == 0) // 6 advances total
+            if ((data.at(1) >> 14) == 0) // 6 advances total
             {
-                in = in.mid(0, in.length() - 13) + "T:" + in.mid(in.length() - 13);
-            }
-            else
-            {
-                return QString();
+                return in.mid(0, in.length() - 13) + "T:" + in.mid(in.length() - 13);
             }
             break;
         case 1:
-            if ((data.at(3) >> 30) == 1 || (data.at(3) >> 30) == 3) // 8 advances total
+            if ((data.at(3) >> 14) == 1 || (data.at(3) >> 14) == 3) // 8 advances total
             {
-                in = in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
-            }
-            else
-            {
-                return QString();
+                return in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
             }
             break;
         case 2:
-            if ((data.at(3) >> 30) == 2 && (data.at(1) >> 25) <= 41) // 7 advances total
+            if ((data.at(3) >> 14) == 2 && (data.at(1) >> 9) <= 41) // 7 advances total
             {
-                in = in.mid(0, in.length() - 15) + "T:" + in.mid(in.length() - 15);
-            }
-            else
-            {
-                return QString();
+                return in.mid(0, in.length() - 15) + "T:" + in.mid(in.length() - 15);
             }
             break;
         case 3:
-            if ((data.at(3) >> 30) == 2 && (data.at(1) >> 25) > 41) // 8 advances total
+            if ((data.at(3) >> 14) == 2 && (data.at(1) >> 9) > 41) // 8 advances total
             {
-                in = in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
-            }
-            else
-            {
-                return QString();
+                return in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
             }
             break;
     }
-    return in;
+    return QString();
 }
 
 void JirachiPattern::on_pushButtonGenerate_clicked()
