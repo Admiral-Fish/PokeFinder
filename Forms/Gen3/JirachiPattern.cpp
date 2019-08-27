@@ -75,30 +75,25 @@ QStringList JirachiPattern::getPatterns(u32 seed)
 {
     QStringList results;
 
-    QString pattern = QString::number(seed >> 30);
-    data.append(seed);
+    data.append(seed >> 16);
 
     XDRNGR rng(seed);
 
     // Populate backwards data
     for (u8 m = 0; m < 25; m++)
     {
-        seed = rng.nextUShort();
-        data.append(seed);
-        pattern = QString::number(seed >> 14) + "|" + pattern;
+        data.append(rng.nextUShort());
     }
 
     // Loop through 4 possible cases that would make a valid pattern
-    for (int i = 0; i < 4; i++)
+    for (u8 i = 0; i < 4; i++)
     {
         // Modify pattern with target, skip if invalid
-        QString copy = getTarget(QString(pattern), i);
-        if (!copy.isEmpty())
+        int index = getTarget(i);
+        if (index != -1)
         {
-            int index = copy.indexOf(QChar(':')) + 1;
-
             // Menu advances can't stop on 0 so skip
-            u8 target = QString(copy.at(index)).toUInt();
+            u8 target = data.at(data.size() - index - 1) >> 14;
             if (target != 0)
             {
                 // From start, game advances frames until (prng >> 30) gives a 1, 2, and 3
@@ -113,7 +108,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
                 // Determine if spread is possible
                 // Need to work backwards to see if going forward with 1, 2, and 3 lands on our target
                 bool valid = true;
-                for (int x = ((copy.length() - index + 2) / 2); x < data.size(); x++)
+                for (int x = data.size() - index; x < data.size(); x++)
                 {
                     u8 temp = data.at(x) >> 14;
                     if (temp == target)
@@ -139,7 +134,13 @@ QStringList JirachiPattern::getPatterns(u32 seed)
                 // This part actually skips when a pattern is impossible
                 if (valid)
                 {
-                    results.append(copy.replace("|", " | "));
+                    QStringList result;
+                    for (int j = data.length() - 1; j > 0; j--)
+                    {
+                        result.append(QString::number(data.at(j) >> 14));
+                    }
+                    result[index] = "T:" + result.at(index);
+                    results.append(result.join(" | "));
                 }
             }
         }
@@ -148,41 +149,41 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     return results;
 }
 
-QString JirachiPattern::getTarget(const QString &in, int index)
+int JirachiPattern::getTarget(u8 index)
 {
+    // From target initially advance 5 frames then
     // (prng >> 30 == 0) then advance 1
     // (prng >> 30 == 2) then advance 2, (next prng >> 25 > 41) then advance 1 more
     // (prng >> 30 == 1) or (prng >> 30 == 3) then advance 3
 
-    // Return an empty string if math doesn't fit
     switch (index)
     {
         case 0:
             if ((data.at(1) >> 14) == 0) // 6 advances total
             {
-                return in.mid(0, in.length() - 13) + "T:" + in.mid(in.length() - 13);
+                return 19;
             }
             break;
         case 1:
             if ((data.at(3) >> 14) == 1 || (data.at(3) >> 14) == 3) // 8 advances total
             {
-                return in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
+                return 17;
             }
             break;
         case 2:
             if ((data.at(3) >> 14) == 2 && (data.at(1) >> 9) <= 41) // 7 advances total
             {
-                return in.mid(0, in.length() - 15) + "T:" + in.mid(in.length() - 15);
+                return 18;
             }
             break;
         case 3:
             if ((data.at(3) >> 14) == 2 && (data.at(1) >> 9) > 41) // 8 advances total
             {
-                return in.mid(0, in.length() - 17) + "T:" + in.mid(in.length() - 17);
+                return 17;
             }
             break;
     }
-    return QString();
+    return -1;
 }
 
 void JirachiPattern::on_pushButtonGenerate_clicked()
