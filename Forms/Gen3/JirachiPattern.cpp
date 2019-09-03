@@ -75,9 +75,8 @@ QStringList JirachiPattern::getPatterns(u32 seed)
 {
     QStringList results;
 
-    data.append(seed >> 16);
-
     XDRNGR rng(seed);
+    data.append(seed >> 16);
 
     // Populate backwards data
     for (u8 m = 0; m < 25; m++)
@@ -88,7 +87,7 @@ QStringList JirachiPattern::getPatterns(u32 seed)
     // Loop through 4 possible cases that would make a valid pattern
     for (u8 i = 0; i < 4; i++)
     {
-        // Modify pattern with target, skip if invalid
+        // Get target from case if valid
         u8 index = getTarget(i);
         if (index != 0)
         {

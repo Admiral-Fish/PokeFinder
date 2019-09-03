@@ -1,4 +1,4 @@
-None
+Ninguno
 Le encanta comer
 A menudo se duerme
 Duerme mucho
@@ -10,22 +10,22 @@ A veces se enfada
 Le gusta luchar
 Tiene mal genio
 Cuerpo resistente
-Buen fajador
+Es buen fajador
 Muy persistente
 Muy resistente
 Muy perseverante
 Le gusta correr
-Oído siempre alerta
+Siempre tiene el oído alerta
 Impetuoso y bobo
 Es un poco payaso
 Huye rápido
 Extremadamente curioso
-Travieso
+Le gusta hacer travesuras
 Muy astuto
 A menudo está en Babia
 Muy melindroso
 Voluntarioso
-Algo orgulloso
+Es algo orgulloso
 Muy insolente
 Odia perder
 Un poco cabezota

@@ -1,113 +1,113 @@
-0,Canalave City
-1,Eterna City
-2,Pastoria City
-3,Sunyshore City
-4,Pokémon League
-5,Oreburgh Mine 1F
-6,Oreburgh Mine B1F
-7,Valley Windworks
-8,Eterna Forest
-9,Fuego Ironworks
-10,Mt. Coronet (Route 207/208 Entrance)
-11,Mt. Coronet 2F
-12,Mt. Coronet 3F
-13,Mt. Coronet Snow
-14,Mt. Coronet 4F
-15,Mt. Coronet 5F
-16,Mt. Coronet 6F
-17,Mt. Coronet 7F
-18,Mt. Coronet Top Cave
-19,Mt. Coronet (Route 216 Entrance)
-20,Mt. Coronet (Route 211 Entrance)
-21,Mt. Coronet B1F
-22,Great Marsh Area 1
-23,Great Marsh Area 2
-24,Great Marsh Area 3
-25,Great Marsh Area 4
-26,Great Marsh Area 5
-27,Great Marsh Area 6
-28,Solaceon Ruins
-29,Victory Road 1F
-30,Victory Road 2F
-31,Victory Road B1F
-32,Victory Road Back Room 1
-33,Victory Road Back Room 2
-34,Victory Road Back Room 3
-35,Ravaged Path
-36,Oreburgh Gate 1F
-37,Oreburgh Gate B1F
-38,Stark Mountain
-39,Stark Mountain Entrance
-40,Stark Mountain Interior
-41,Sendoff Spring
-42,Turnback Cave Entrance
-43,Turnback Cave 1st Pillar
-44,Turnback Cave 2nd Pillar
-45,Snowpoint Temple 1F
-46,Snowpoint Temple B1F
-47,Snowpoint Temple B2F
-48,Snowpoint Temple B3F
-49,Snowpoint Temple B4F
-50,Snowpoint Temple B5F
-51,Wayward Cave
-52,Wayward Cave (Secret)
-53,Ruin Maniac Cave (< 10 Unown)
-54,Ruin Maniac Cave (> 10 Unown)
-55,Maniac Tunnel
-56,Trophy Garden
-57,Iron Island
-58,Iron Island 1F
-59,Iron Island B1F
-60,Iron Island B2F (Left)
-61,Iron Island B2F (Right)
-62,Iron Island B3F
-63,Old Chateau
-64,Old Chateau Room 5
-65,Lake Verity
-66,Lake Valor
-67,Lake Acuity
-68,Valor Lakefront
-69,Acuity Lakefront
-70,Route 201
-71,Route 202
-72,Route 203
-73,Route 204 (South)
-74,Route 204 (North)
-75,Route 205 (South)
-76,Route 205 (North)
-77,Route 206
-78,Route 207
-79,Route 208
-80,Route 209
+0,Ciudad Canal
+1,Ciudad Vetusta
+2,Ciudad Pradera
+3,Ciudad Marina
+4,Liga Pokémon
+5,Mina Pirita Primer piso
+6,Mina Pirita Sótano
+7,Valle Eólico
+8,Bosque Vetusto
+9,Forja Fuego
+10,Monte Corona (Entrada Ruta 207/208)
+11,Monte Corona Primer piso
+12,Monte Corona Segundo piso
+13,Monte Corona En el exterior (zona de nieve)
+14,Monte Corona Tercer piso
+15,Monte Corona Cuarto piso
+16,Monte Corona Quinto piso
+17,Monte Corona Sexto piso
+18,Monte Corona Exterior
+19,Monte Corona (Entrada Ruta 216)
+20,Monte Corona (Entrada Ruta 211)
+21,Monte Corona Sótano
+22,Gran Pantano Zona 1
+23,Gran Pantano Zona 2
+24,Gran Pantano Zona 3
+25,Gran Pantano Zona 4
+26,Gran Pantano Zona 5
+27,Gran Pantano Zona 6
+28,Ruinas Sosiego
+29,Calle Victoria Entrada
+30,Calle Victoria Piso 1
+31,Calle Victoria Sótano
+32,Calle Victoria Entrada al sótano profundo
+33,Calle Victoria Sótano profundo
+34,Calle Victoria Salida del sótano profundo
+35,Senda Desolada
+36,Puerta Pirita Primer piso
+37,Puerta Pirita Sótano
+38,Montaña Dura
+39,Montaña Dura Entrada
+40,Montaña Dura Interior
+41,Fuente Despedida
+42,Cueva Retorno Entrada
+43,Cueva Retorno Primer Pilar
+44,Cueva Retorno Segundo Pilar
+45,Templo Puntaneva Sala 1
+46,Templo Puntaneva Sótano 1
+47,Templo Puntaneva Sótano 2
+48,Templo Puntaneva Sótano 3
+49,Templo Puntaneva Sótano 4
+50,Templo Puntaneva Sala de Regigigas
+51,Cueva Extravío Zona oscura
+52,Cueva Extravío Zona secreta
+53,Mina Ruinamaníaco (menos de 10 Unown Atrapados)
+54,Mina Ruinamaníaco (más de 10 Unown Atrapados)
+55,Túnel Maníaco
+56,Jardín Trofeo
+57,Isla Hierro Zona exterior
+58,Isla Hierro Planta baja
+59,Isla Hierro Sótano 1
+60,Isla Hierro Sótano 2 izquierdo
+61,Isla Hierro Sótano 2 derecho
+62,Isla Hierro Sótano 3
+63,Vieja Mansión
+64,Vieja Mansión 5to Cuarto
+65,Lago Veraz
+66,Lago Valor
+67,Lago Agudeza
+68,Orilla Valor
+69,Orilla Agudeza
+70,Ruta 201
+71,Ruta 202
+72,Ruta 203
+73,Ruta 204 (Sur)
+74,Ruta 204 (Norte)
+75,Ruta 205 (Sur)
+76,Ruta 205 (Norte)
+77,Ruta 206
+78,Ruta 207
+79,Ruta 208
+80,Ruta 209
 81,Lost Tower 1F
 82,Lost Tower 2F
 83,Lost Tower 3F
 84,Lost Tower 4F
 85,Lost Tower 5F
-86,Route 210 (South)
-87,Route 210 (North)
-88,Route 211 (West)
-89,Route 211 (East)
-90,Route 212 (North)
-91,Route 212 (South)
-92,Route 213
-93,Route 214
-94,Route 215
-95,Route 216
-96,Route 217
-97,Route 218
-98,Route 219
-99,Route 221
-100,Route 222
-101,Route 224
-102,Route 225
-103,Route 227
-104,Route 228
-105,Route 229
-106,Twinleaf Town
-107,Celestic Town
-108,Resort Area
-109,Route 220
-110,Route 223
-111,Route 226
-112,Route 230
+86,Ruta 210 (Sur)
+87,Ruta 210 (Norte)
+88,Ruta 211 (Oeste)
+89,Ruta 211 (Este)
+90,Ruta 212 (Norte)
+91,Ruta 212 (Sur)
+92,Ruta 213
+93,Ruta 214
+94,Ruta 215
+95,Ruta 216
+96,Ruta 217
+97,Ruta 218
+98,Ruta 219
+99,Ruta 221
+100,Ruta 222
+101,Ruta 224
+102,Ruta 225
+103,Ruta 227
+104,Ruta 228
+105,Ruta 229
+106,Pueblo Hojaverde
+107,Pueblo Caelestis
+108,Zona Descanso
+109,Ruta 220
+110,Ruta 223
+111,Ruta 226
+112,Ruta 230

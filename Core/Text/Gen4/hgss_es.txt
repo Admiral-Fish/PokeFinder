@@ -1,120 +1,120 @@
-0,New Bark Town
-1,Route 29
-2,Cherrygrove City
-3,Route 30
-4,Route 31
-5,Violet City
-6,Sprout Tower
-7,Route 32
-8,Ruins of Alph (Outside)
-9,Ruins of Alph (Inside)
-10,Union Cave 1F
-11,Union Cave B1F
-12,Union Cave B2F
-13,Route 33
-14,SLOWPOKE Well 1F
-15,SLOWPOKE Well B1F
-16,Ilex Forest
-17,Route 34
-18,Route 35
-19,National Park
-20,Route 36
-21,Route 37
-22,Ecruteak City
-23,Burned Tower 1F
-24,Burned Tower B1F
-25,Bell Tower
-26,Route 38
-27,Route 39
-28,Olivine City
-29,Route 40
-30,Route 41
-31,Whirl Islands 1F
-32,Whirl Islands B1F
-33,Whirl Islands B2F
-34,Whirl Islands B3F
-35,Cianwood City
-36,Route 42
-37,Mt. Mortar 1F
-38,Mt. Mortar 1F (Back)
-39,Mt. Mortar 2F
-40,Mt. Mortar B1F
-41,Route 43
-42,Lake of Rage
-43,Route 44
-44,Ice Path 1F
-45,Ice Path B1F
-46,Ice Path B2F
-47,Ice Path B3F
-48,Blackthorn City
-49,Dragon’s Den
-50,Route 45
-51,Route 46
-52,Dark Cave (Route 31)
-53,Dark Cave (Route 45)
-54,Route 47
-55,Mt. Moon
-56,Mt. Moon (Clefairy)
-57,Seafoam Islands 1F
-58,Seafoam Islands B1F
-59,Seafoam Islands B2F
-60,Seafoam Islands B3F
-61,Seafoam Islands B4F
-62,Mt. Silver 1F
-63,Mt. Silver Cave 1F Top
-64,Mt. Silver 4F
-65,Cliff Edge Gate
-66,Cliff Cave
-67,Mt. Silver
-68,Mt. Silver 2F
-69,Mt. Silver Cave Mountainside
-70,Mt. Silver Cave 3F
-71,Mt. Silver Top
-72,Route 12
-73,Route 19
-74,Route 20
-75,Pallet Town
-76,Viridian City
-77,Cerulean City
-78,Vermilion City
-79,Celadon City
-80,Fuchsia City
-81,Cinnabar Island
-82,Route 48
-83,Route 26
-84,Route 27
-85,Route 28
-86,Mt. Moon
-87,Rock Tunnel 1F
-88,Rock Tunnel 2F
-89,Victory Road 1F
-90,Route 1
-91,Route 2 (South)
-92,Route 3
-93,Route 4
-94,Route 5
-95,Route 6
-96,Route 7
-97,Route 8
-98,Route 9
-99,Route 10
-100,Route 11
-101,Route 13
-102,Route 14
-103,Route 15
-104,Route 16
-105,Route 17
-106,Route 18
-107,Route 21
-108,Route 22
-109,Route 24
-110,Route 25
-111,Tohjo Falls
-112,DIGLETT’s Cave
-113,Victory Road 2F
-114,Victory Road 3F
-115,Route 2 (North)
-116,Viridian Forest
-117,Cerulean Cave 1F
-118,Cerulean Cave 2F
-119,Cerulean Cave B1F
+0,Pueblo Primavera
+1,Ruta 29
+2,Ciudad Cerezo
+3,Ruta 30
+4,Ruta 31
+5,Ciudad Malva
+6,Torre Bellsprout
+7,Ruta 32
+8,Ruinas Alfa (Exterior)
+9,Ruinas Alfa (Interior)
+10,Cueva Unión Planta baja
+11,Cueva Unión Sótano 1
+12,Cueva Unión Sótano 2
+13,Ruta 33
+14,Pozo Slowpoke Planta baja
+15,Pozo Slowpoke Sótano
+16,Encinar
+17,Ruta 34
+18,Ruta 35
+19,Parque Nacional
+20,Ruta 36
+21,Ruta 37
+22,Ciudad Iris
+23,Torre Quemada Planta baja
+24,Torre Quemada Sótano
+25,Torre Campana
+26,Ruta 38
+27,Ruta 39
+28,Ciudad Olivo
+29,Ruta 40
+30,Ruta 41
+31,Islas Remolino Planta baja
+32,Islas Remolino Sótano 1
+33,Islas Remolino Sótano 2
+34,Islas Remolino Sótano 3
+35,Ciudad Orquídea
+36,Ruta 42
+37,Monte Mortero Planta baja (entrada)
+38,Monte Mortero Planta baja (interior)
+39,Monte Mortero Primera planta
+40,Monte Mortero Sótano
+41,Ruta 43
+42,Lago de la Furia
+43,Ruta 44
+44,Ruta Helada Planta baja
+45,Ruta Helada Sótano 1
+46,Ruta Helada Sótano 2
+47,Ruta Helada Sótano 3
+48,Ciudad Endrino
+49,Guarida Dragón
+50,Ruta 45
+51,Ruta 46
+52,Cueva Oscura (Ruta 31)
+53,Cueva Oscura (Ruta 45)
+54,Ruta 47
+55,Monte Moon Interior
+56,Monte Moon Exterior (Plaza Monte Moon)
+57,Islas Espuma Zonas de acceso
+58,Islas Espuma Sótano 1
+59,Islas Espuma Sótano 2
+60,Islas Espuma Sótano 3
+61,Islas Espuma Sótano 4
+62,Cueva M Plateado Cueva con cascadas
+63,Monte Plateado Ladera verde
+64,Cueva M Plateado Cueva pequeña
+65,Paso Acantilado
+66,Cueva Acantilado
+67,Monte Plateado Exterior
+68,Cueva M Plateado Cueva espiral
+69,Monte Plateado Ladera nevada
+70,Cueva M Plateado Cueva final
+71,Cueva M Plateado Cueva de Moltres
+72,Ruta 12
+73,Ruta 19
+74,Ruta 20
+75,Pueblo Paleta
+76,Ciudad Verde
+77,Ciudad Celeste
+78,Ciudad Carmín
+79,Ciudad Azulona
+80,Ciudad Fucsia
+81,Isla Canela
+82,Ruta 48
+83,Ruta 26
+84,Ruta 27
+85,Ruta 28
+86,Monte Moon
+87,Túnel Roca Planta baja
+88,Túnel Roca Sótano
+89,Calle Victoria Entrada
+90,Ruta 1
+91,Ruta 2 (Sur)
+92,Ruta 3
+93,Ruta 4
+94,Ruta 5
+95,Ruta 6
+96,Ruta 7
+97,Ruta 8
+98,Ruta 9
+99,Ruta 10
+100,Ruta 11
+101,Ruta 13
+102,Ruta 14
+103,Ruta 15
+104,Ruta 16
+105,Ruta 17
+106,Ruta 18
+107,Ruta 21
+108,Ruta 22
+109,Ruta 24
+110,Ruta 25
+111,Cataratas Tohjo
+112,Cueva Diglett
+113,Calle Victoria Piso 1
+114,Calle Victoria Piso 2
+115,Ruta 2 (Norte)
+116,Bosque Verde
+117,Cerulean Cave Planta baja
+118,Cerulean Cave Primer piso
+119,Cerulean Cave Sótano
