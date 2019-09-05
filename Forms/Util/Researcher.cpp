@@ -33,7 +33,6 @@ Researcher::Researcher(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
-
     setupModels();
 }
 
@@ -276,7 +275,9 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
                     break;
                 case 2:
                     if (seed > 0xffffffff)
+                    {
                         seed >>= 32;
+                    }
                     rng64 = new SFMT(static_cast<u32>(seed), startingFrame - 1);
                     break;
             }
@@ -364,6 +365,8 @@ void Researcher::on_pushButtonGenerate32Bit_clicked()
             QMessageBox error;
             error.setText(tr("You must check the Hex box in order to use Hex values."));
             error.exec();
+            delete rng;
+            delete rng64;
             return;
         }
     }
