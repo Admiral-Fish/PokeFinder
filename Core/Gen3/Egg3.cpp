@@ -360,7 +360,7 @@ QVector<Frame3> Egg3::generateUpper(const QVector<QPair<u32, u16>> &lower, const
     {
         for (auto up : upper)
         {
-            up.setPID(low.second, up.getPID(), genderRatio);
+            up.setPID(up.getPID(), low.second, genderRatio);
             if (compare.comparePID(up))
             {
                 up.setFrame(low.first);
