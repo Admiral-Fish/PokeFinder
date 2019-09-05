@@ -95,12 +95,12 @@ void IDs3::on_pushButtonFRLGESearch_clicked()
     u32 maxResults = ui->textBoxFRLGEMaxResults->getUInt();
 
     PokeRNG rng(tid, minFrame - 1);
-    u16 sid = rng.nextUShort();
+    rng.nextUShort();
 
     u32 max = minFrame + maxResults;
     for (u32 frame = minFrame; frame <= max; ++frame)
     {
-        sid = rng.nextUShort();
+        u16 sid = rng.nextUShort();
 
         if ((!usePID || Utilities::shiny(pid, tid, sid)) && (!useSID || searchSID == sid))
         {
