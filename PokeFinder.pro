@@ -107,6 +107,7 @@ HEADERS += \
     Core/RNG/SFMT.hpp \
     Core/RNG/TinyMT.hpp \
     Core/Util/Characteristic.hpp \
+    Core/Util/DateTime.hpp \
     Core/Util/Encounter.hpp \
     Core/Util/EncounterSlot.hpp \
     Core/Util/Game.hpp \
@@ -117,7 +118,9 @@ HEADERS += \
     Core/Util/Method.hpp \
     Core/Util/Nature.hpp \
     Core/Util/Power.hpp \
+    Core/Util/ResearcherFrame.hpp \
     Core/Util/ShadowType.hpp \
+    Core/Util/TableUtility.hpp \
     Core/Util/Translator.hpp \
     Core/Util/Utilities.hpp \
     Forms/Controls/CheckList.hpp \
@@ -170,10 +173,7 @@ HEADERS += \
     Models/Gen4/Stationary4Model.hpp \
     Models/Gen4/Wild4Model.hpp \
     Models/TableModel.hpp \
-    Models/Util/ResearcherModel.hpp \
-    Util/DateTime.hpp \
-    Util/ResearcherFrame.hpp \
-    Util/TableUtility.hpp
+    Models/Util/ResearcherModel.hpp
 
 SOURCES += \
     Core/Gen3/Egg3.cpp \
@@ -217,10 +217,13 @@ SOURCES += \
     Core/RNG/SFMT.cpp \
     Core/RNG/TinyMT.cpp \
     Core/Util/Characteristic.cpp \
+    Core/Util/DateTime.cpp \
     Core/Util/EncounterSlot.cpp \
     Core/Util/IVChecker.cpp \
     Core/Util/Nature.cpp \
     Core/Util/Power.cpp \
+    Core/Util/ResearcherFrame.cpp \
+    Core/Util/TableUtility.cpp \
     Core/Util/Translator.cpp \
     Core/Util/Utilities.cpp \
     Forms/Controls/CheckList.cpp \
@@ -273,7 +276,4 @@ SOURCES += \
     Models/Gen4/Stationary4Model.cpp \
     Models/Gen4/Wild4Model.cpp \
     Models/Util/ResearcherModel.cpp \
-    Util/DateTime.cpp \
-    Util/ResearcherFrame.cpp \
-    Util/TableUtility.cpp \
     main.cpp

@@ -26,32 +26,37 @@
 #include <Core/Util/Game.hpp>
 #include <Core/Util/Global.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class EncounterLookup;
+
+    namespace Ui
+    {
+        class EncounterLookup;
+    }
+
+    class EncounterLookup : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit EncounterLookup(QWidget *parent = nullptr);
+        ~EncounterLookup() override;
+
+    private:
+        Ui::EncounterLookup *ui;
+        QStandardItemModel *model{};
+
+        void setupModels();
+        QSet<QPair<u8, QString>> getEncounters3(PokeFinderCore::Game game, u16 specie);
+        QSet<QPair<u8, QString>> getEncounters4(PokeFinderCore::Game game, u16 specie);
+        QString getEncounterString(PokeFinderCore::Encounter type);
+
+    private slots:
+        void on_pushButtonFind_clicked();
+        void on_comboBoxGame_currentIndexChanged(int index);
+
+    };
+
 }
-
-class EncounterLookup : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit EncounterLookup(QWidget *parent = nullptr);
-    ~EncounterLookup() override;
-
-private:
-    Ui::EncounterLookup *ui;
-    QStandardItemModel *model{};
-
-    void setupModels();
-    QSet<QPair<u8, QString>> getEncounters3(Game game, u16 specie);
-    QSet<QPair<u8, QString>> getEncounters4(Game game, u16 specie);
-    QString getEncounterString(Encounter type);
-
-private slots:
-    void on_pushButtonFind_clicked();
-    void on_comboBoxGame_currentIndexChanged(int index);
-
-};
 
 #endif // ENCOUNTERLOOKUP_HPP

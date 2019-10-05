@@ -23,29 +23,34 @@
 #include <QWidget>
 #include <Models/Gen3/PokeSpotModel.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class PokeSpot;
+
+    namespace Ui
+    {
+        class PokeSpot;
+    }
+
+    class PokeSpot : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit PokeSpot(QWidget *parent = nullptr);
+        ~PokeSpot() override;
+
+    private:
+        Ui::PokeSpot *ui;
+        PokeFinderModels::PokeSpotModel *model{};
+
+        void setupModels();
+
+    private slots:
+        void on_pushButtonGenerate_clicked();
+        void on_pushButtonAnyAbility_clicked();
+
+    };
+
 }
-
-class PokeSpot : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit PokeSpot(QWidget *parent = nullptr);
-    ~PokeSpot() override;
-
-private:
-    Ui::PokeSpot *ui;
-    PokeSpotModel *model{};
-
-    void setupModels();
-
-private slots:
-    void on_pushButtonGenerate_clicked();
-    void on_pushButtonAnyAbility_clicked();
-
-};
 
 #endif // POKESPOT_HPP

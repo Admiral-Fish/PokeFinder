@@ -24,45 +24,50 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class Eggs3;
+
+    namespace Ui
+    {
+        class Eggs3;
+    }
+
+    class Eggs3 : public QWidget
+    {
+        Q_OBJECT
+
+    signals:
+        void alertProfiles(int);
+
+    public:
+        explicit Eggs3(QWidget *parent = nullptr);
+        ~Eggs3() override;
+        void updateProfiles();
+
+    private:
+        Ui::Eggs3 *ui;
+        QVector<PokeFinderCore::Profile3> profiles;
+        PokeFinderModels::Egg3Model *emeraldIVs{};
+        PokeFinderModels::Egg3Model *emeraldPID{};
+        PokeFinderModels::Egg3Model *rs{};
+        PokeFinderModels::Egg3Model *frlg{};
+
+        void setupModels();
+
+    private slots:
+        void refreshProfiles();
+        void on_pushButtonEmeraldPIDGenerate_clicked();
+        void on_pushButtonEmeraldIVsGenerate_clicked();
+        void on_pushButtonRSGenerate_clicked();
+        void on_pushButtonFRLGGenerate_clicked();
+        void on_comboBoxProfiles_currentIndexChanged(int index);
+        void on_pushButtonEmeraldAnyAbility_clicked();
+        void on_pushButtonRSAnyAbility_clicked();
+        void on_pushButtonFRLGAnyAbility_clicked();
+        void on_pushButtonProfileManager_clicked();
+
+    };
+
 }
-
-class Eggs3 : public QWidget
-{
-    Q_OBJECT
-
-signals:
-    void alertProfiles(int);
-
-public:
-    explicit Eggs3(QWidget *parent = nullptr);
-    ~Eggs3() override;
-    void updateProfiles();
-
-private:
-    Ui::Eggs3 *ui;
-    QVector<Profile3> profiles;
-    Egg3Model *emeraldIVs{};
-    Egg3Model *emeraldPID{};
-    Egg3Model *rs{};
-    Egg3Model *frlg{};
-
-    void setupModels();
-
-private slots:
-    void refreshProfiles();
-    void on_pushButtonEmeraldPIDGenerate_clicked();
-    void on_pushButtonEmeraldIVsGenerate_clicked();
-    void on_pushButtonRSGenerate_clicked();
-    void on_pushButtonFRLGGenerate_clicked();
-    void on_comboBoxProfiles_currentIndexChanged(int index);
-    void on_pushButtonEmeraldAnyAbility_clicked();
-    void on_pushButtonRSAnyAbility_clicked();
-    void on_pushButtonFRLGAnyAbility_clicked();
-    void on_pushButtonProfileManager_clicked();
-
-};
 
 #endif // EGGS3_HPP

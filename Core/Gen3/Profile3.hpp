@@ -22,28 +22,33 @@
 
 #include <Core/Parents/Profile.hpp>
 
-class Profile3 : public Profile
+namespace PokeFinderCore
 {
 
-public:
-    Profile3();
-    Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English, bool deadBattery = false);
-    Profile3(QJsonObject data);
-    bool getDeadBattery() const;
-    QJsonObject getJson() const;
-    static QVector<Profile3> loadProfileList();
-    void saveProfile() const;
-    void deleteProfile() const;
-    void updateProfile(const Profile3 &original) const;
-    friend bool operator==(const Profile3 &left, const Profile3 &right);
-    friend bool operator!=(const Profile3 &left, const Profile3 &right);
+    class Profile3 : public Profile
+    {
 
-private:
-    bool deadBattery;
+    public:
+        Profile3();
+        Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English, bool deadBattery = false);
+        Profile3(QJsonObject data);
+        bool getDeadBattery() const;
+        QJsonObject getJson() const;
+        static QVector<Profile3> loadProfileList();
+        void saveProfile() const;
+        void deleteProfile() const;
+        void updateProfile(const Profile3 &original) const;
+        friend bool operator==(const Profile3 &left, const Profile3 &right);
+        friend bool operator!=(const Profile3 &left, const Profile3 &right);
 
-};
+    private:
+        bool deadBattery;
 
-bool operator==(const Profile3 &left, const Profile3 &right);
-bool operator!=(const Profile3 &left, const Profile3 &right);
+    };
+
+    bool operator==(const Profile3 &left, const Profile3 &right);
+    bool operator!=(const Profile3 &left, const Profile3 &right);
+
+}
 
 #endif // PROFILE3_HPP

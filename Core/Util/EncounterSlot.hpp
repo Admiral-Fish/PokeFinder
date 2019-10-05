@@ -23,11 +23,16 @@
 #include <Core/Util/Encounter.hpp>
 #include <Core/Util/Global.hpp>
 
-namespace EncounterSlot
+namespace PokeFinderCore
 {
-    u8 hSlot(u16 result, Encounter encounterType);
-    u8 jSlot(u16 result, Encounter encounterType);
-    u8 kSlot(u16 result, Encounter encounterType);
-};
+
+    namespace EncounterSlot
+    {
+        u8 hSlot(u16 result, Encounter encounterType);
+        u8 jSlot(u16 result, Encounter encounterType);
+        u8 kSlot(u16 result, Encounter encounterType);
+    };
+
+}
 
 #endif // ENCOUNTERSLOT_HPP

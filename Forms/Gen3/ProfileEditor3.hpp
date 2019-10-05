@@ -23,38 +23,43 @@
 #include <QDialog>
 #include <Core/Gen3/Profile3.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class ProfileEditor3;
+
+    namespace Ui
+    {
+        class ProfileEditor3;
+    }
+
+    class ProfileEditor3 : public QDialog
+    {
+        Q_OBJECT
+
+    signals:
+        void newProfile(PokeFinderCore::Profile3);
+        void editProfile(PokeFinderCore::Profile3, PokeFinderCore::Profile3);
+
+    public:
+        explicit ProfileEditor3(QWidget *parent = nullptr);
+        explicit ProfileEditor3(const PokeFinderCore::Profile3 &profile, QWidget *parent = nullptr);
+        ~ProfileEditor3() override;
+        PokeFinderCore::Profile3 getNewProfile();
+        PokeFinderCore::Profile3 getOriginal();
+
+    private:
+        Ui::ProfileEditor3 *ui;
+        bool isEditing = false;
+        PokeFinderCore::Profile3 original;
+        PokeFinderCore::Profile3 fresh;
+
+        void setupModels();
+
+    private slots:
+        void on_pushButtonAccept_clicked();
+        void on_comboBoxVersion_currentIndexChanged(int index);
+
+    };
+
 }
-
-class ProfileEditor3 : public QDialog
-{
-    Q_OBJECT
-
-signals:
-    void newProfile(Profile3);
-    void editProfile(Profile3, Profile3);
-
-public:
-    explicit ProfileEditor3(QWidget *parent = nullptr);
-    explicit ProfileEditor3(const Profile3 &profile, QWidget *parent = nullptr);
-    ~ProfileEditor3() override;
-    Profile3 getNewProfile();
-    Profile3 getOriginal();
-
-private:
-    Ui::ProfileEditor3 *ui;
-    bool isEditing = false;
-    Profile3 original;
-    Profile3 fresh;
-
-    void setupModels();
-
-private slots:
-    void on_pushButtonAccept_clicked();
-    void on_comboBoxVersion_currentIndexChanged(int index);
-
-};
 
 #endif // PROFILEEDITOR3_HPP

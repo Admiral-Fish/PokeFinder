@@ -23,10 +23,10 @@
 #include <QStringList>
 #include <Core/Util/Global.hpp>
 
-namespace Power
+namespace PokeFinderCore::Power
 {
     QStringList getPowers();
     QString getPower(u8 power);
-};
+}
 
 #endif // POWER_HPP

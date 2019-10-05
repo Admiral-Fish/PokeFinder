@@ -26,27 +26,32 @@
 #include <Core/Util/Global.hpp>
 #include <Core/Util/Language.hpp>
 
-class Profile
+namespace PokeFinderCore
 {
 
-public:
-    Profile();
-    Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English);
-    QString getVersionString() const;
-    QString getLanguageString() const;
-    Game getVersion() const;
-    Language getLanguage() const;
-    QString getProfileName() const;
-    u16 getTID() const;
-    u16 getSID() const;
+    class Profile
+    {
 
-protected:
-    QString profileName;
-    Game version{};
-    Language language;
-    u16 tid;
-    u16 sid;
+    public:
+        Profile();
+        Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English);
+        QString getVersionString() const;
+        QString getLanguageString() const;
+        Game getVersion() const;
+        Language getLanguage() const;
+        QString getProfileName() const;
+        u16 getTID() const;
+        u16 getSID() const;
 
-};
+    protected:
+        QString profileName;
+        Game version{};
+        Language language;
+        u16 tid;
+        u16 sid;
+
+    };
+
+}
 
 #endif // PROFILE_HPP

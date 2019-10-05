@@ -20,13 +20,18 @@
 #ifndef SHADOWTYPE_HPP
 #define SHADOWTYPE_HPP
 
-enum ShadowType
+namespace PokeFinderCore
 {
-    SingleLock,
-    FirstShadow,
-    Salamence,
-    SecondShadow,
-    EReader
-};
+
+    enum ShadowType
+    {
+        SingleLock,
+        FirstShadow,
+        Salamence,
+        SecondShadow,
+        EReader
+    };
+
+}
 
 #endif // SHADOWTYPE_HPP

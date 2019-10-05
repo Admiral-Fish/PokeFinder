@@ -23,26 +23,31 @@
 #include <Core/Util/Global.hpp>
 #include <Core/Parents/Pokemon.hpp>
 
-class Slot
+namespace PokeFinderCore
 {
 
-public:
-    Slot() = default;
-    Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon);
-    Slot(u16 specie, u8 level, Pokemon pokemon);
+    class Slot
+    {
 
-    u8 getMinLevel() const;
-    u8 getMaxLevel() const;
-    u16 getSpecie() const;
-    Pokemon getPokemon() const;
-    void setSpecie(u16 specie, Pokemon pokemon);
+    public:
+        Slot() = default;
+        Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon);
+        Slot(u16 specie, u8 level, Pokemon pokemon);
 
-private:
-    u8 minLevel;
-    u8 maxLevel;
-    u16 specie;
-    Pokemon pokemon;
+        u8 getMinLevel() const;
+        u8 getMaxLevel() const;
+        u16 getSpecie() const;
+        Pokemon getPokemon() const;
+        void setSpecie(u16 specie, Pokemon pokemon);
 
-};
+    private:
+        u8 minLevel;
+        u8 maxLevel;
+        u16 specie;
+        Pokemon pokemon;
+
+    };
+
+}
 
 #endif // SLOT_HPP

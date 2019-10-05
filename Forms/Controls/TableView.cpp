@@ -25,46 +25,32 @@
 #include <QTextStream>
 #include "TableView.hpp"
 
-TableView::TableView(QWidget *parent) :
-    QTableView(parent)
+namespace PokeFinderForms
 {
-}
 
-void TableView::resizeEvent(QResizeEvent *event)
-{
-    QTableView::resizeEvent(event);
-
-    QHeaderView *header = this->horizontalHeader();
-    header->setSectionResizeMode(QHeaderView::Stretch);
-
-    for (int column = 0; column < header->count(); column++)
+    TableView::TableView(QWidget *parent) :
+        QTableView(parent)
     {
-        int width = header->sectionSize(column);
-        header->setSectionResizeMode(column, QHeaderView::Interactive);
-        header->resizeSection(column, width);
     }
-}
 
-void TableView::mouseDoubleClickEvent(QMouseEvent *event)
-{
-    if (event->type() == QMouseEvent::MouseButtonDblClick)
+    void TableView::resizeEvent(QResizeEvent *event)
     {
-        QModelIndex index = this->currentIndex();
-        if (index.isValid())
+        QTableView::resizeEvent(event);
+
+        QHeaderView *header = this->horizontalHeader();
+        header->setSectionResizeMode(QHeaderView::Stretch);
+
+        for (int column = 0; column < header->count(); column++)
         {
-            QString str = this->model()->data(index).toString();
-            QApplication::clipboard()->setText(str);
+            int width = header->sectionSize(column);
+            header->setSectionResizeMode(column, QHeaderView::Interactive);
+            header->resizeSection(column, width);
         }
     }
-}
 
-void TableView::keyPressEvent(QKeyEvent *event)
-{
-    QTableView::keyPressEvent(event);
-
-    if (event)
+    void TableView::mouseDoubleClickEvent(QMouseEvent *event)
     {
-        if ((event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
+        if (event->type() == QMouseEvent::MouseButtonDblClick)
         {
             QModelIndex index = this->currentIndex();
             if (index.isValid())
@@ -74,109 +60,128 @@ void TableView::keyPressEvent(QKeyEvent *event)
             }
         }
     }
-}
 
-void TableView::outputModelTXT()
-{
-    QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to TXT"), QDir::currentPath(), QObject::tr("Text File (*.txt);;All Files (*)"));
-
-    if (fileName.isEmpty())
+    void TableView::keyPressEvent(QKeyEvent *event)
     {
-        return;
-    }
+        QTableView::keyPressEvent(event);
 
-    QFile file(fileName);
-    if (file.open(QIODevice::WriteOnly))
-    {
-        QAbstractItemModel *model = this->model();
-
-        QTextStream ts(&file);
-        int rows = model->rowCount();
-        int columns = model->columnCount();
-
-        QString header = "";
-        for (int i = 0; i < columns; i++)
+        if (event)
         {
-            header += model->headerData(i, Qt::Horizontal, 0).toString();
-            if (i != columns - 1)
+            if ((event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
             {
-                header += "\t";
+                QModelIndex index = this->currentIndex();
+                if (index.isValid())
+                {
+                    QString str = this->model()->data(index).toString();
+                    QApplication::clipboard()->setText(str);
+                }
             }
         }
-        header += "\n";
+    }
 
-        for (int i = 0; i < rows; i++)
+    void TableView::outputModelTXT()
+    {
+        QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to TXT"), QDir::currentPath(), QObject::tr("Text File (*.txt);;All Files (*)"));
+
+        if (fileName.isEmpty())
         {
-            QString body = "";
-            for (int j = 0; j < columns; j++)
+            return;
+        }
+
+        QFile file(fileName);
+        if (file.open(QIODevice::WriteOnly))
+        {
+            QAbstractItemModel *model = this->model();
+
+            QTextStream ts(&file);
+            int rows = model->rowCount();
+            int columns = model->columnCount();
+
+            QString header = "";
+            for (int i = 0; i < columns; i++)
             {
-                QString entry = model->data(model->index(i, j)).toString();
-                body += (entry.isEmpty() ? "-" : entry);
+                header += model->headerData(i, Qt::Horizontal, 0).toString();
                 if (i != columns - 1)
                 {
-                    body += "\t";
+                    header += "\t";
                 }
             }
-            if (i != rows - 1)
+            header += "\n";
+
+            for (int i = 0; i < rows; i++)
             {
-                body += "\n";
-            }
-            ts << body;
-        }
-
-        file.close();
-    }
-}
-
-void TableView::outputModelCSV()
-{
-    QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to CSV"), QDir::currentPath(), QObject::tr("CSV File (*.csv);;All Files (*)"));
-
-    if (fileName.isEmpty())
-    {
-        return;
-    }
-
-    QFile file(fileName);
-    if (file.open(QIODevice::WriteOnly))
-    {
-        QAbstractItemModel *model = this->model();
-
-        QTextStream ts(&file);
-        int rows = model->rowCount();
-        int columns = model->columnCount();
-
-        QString header = "";
-        for (int i = 0; i < columns; i++)
-        {
-            header += model->headerData(i, Qt::Horizontal, 0).toString();
-            if (i != columns - 1)
-            {
-                header += ",";
-            }
-        }
-        header += "\n";
-        ts << header;
-
-        for (int i = 0; i < rows; i++)
-        {
-            QString body = "";
-            for (int j = 0; j < columns; j++)
-            {
-                QString entry = model->data(model->index(i, j)).toString();
-                body += (entry.isEmpty() ? "-" : entry);
-                if (j != columns - 1)
+                QString body = "";
+                for (int j = 0; j < columns; j++)
                 {
-                    body += ",";
+                    QString entry = model->data(model->index(i, j)).toString();
+                    body += (entry.isEmpty() ? "-" : entry);
+                    if (i != columns - 1)
+                    {
+                        body += "\t";
+                    }
                 }
+                if (i != rows - 1)
+                {
+                    body += "\n";
+                }
+                ts << body;
             }
-            if (i != rows - 1)
-            {
-                body += "\n";
-            }
-            ts << body;
+
+            file.close();
+        }
+    }
+
+    void TableView::outputModelCSV()
+    {
+        QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to CSV"), QDir::currentPath(), QObject::tr("CSV File (*.csv);;All Files (*)"));
+
+        if (fileName.isEmpty())
+        {
+            return;
         }
 
-        file.close();
+        QFile file(fileName);
+        if (file.open(QIODevice::WriteOnly))
+        {
+            QAbstractItemModel *model = this->model();
+
+            QTextStream ts(&file);
+            int rows = model->rowCount();
+            int columns = model->columnCount();
+
+            QString header = "";
+            for (int i = 0; i < columns; i++)
+            {
+                header += model->headerData(i, Qt::Horizontal, 0).toString();
+                if (i != columns - 1)
+                {
+                    header += ",";
+                }
+            }
+            header += "\n";
+            ts << header;
+
+            for (int i = 0; i < rows; i++)
+            {
+                QString body = "";
+                for (int j = 0; j < columns; j++)
+                {
+                    QString entry = model->data(model->index(i, j)).toString();
+                    body += (entry.isEmpty() ? "-" : entry);
+                    if (j != columns - 1)
+                    {
+                        body += ",";
+                    }
+                }
+                if (i != rows - 1)
+                {
+                    body += "\n";
+                }
+                ts << body;
+            }
+
+            file.close();
+        }
     }
+
 }

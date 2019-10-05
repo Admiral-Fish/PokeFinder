@@ -23,34 +23,39 @@
 #include <QVector>
 #include <Core/Util/Global.hpp>
 
-class HGSSRoamer
+namespace PokeFinderCore
 {
 
-public:
-    HGSSRoamer() = default;
-    HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes);
-    u8 getSkips() const;
-    u8 getRaikouRoute() const;
-    u8 getEnteiRoute() const;
-    u8 getLatiRoute() const;
-    QString getRouteString() const;
-    QVector<bool> getRoamers() const;
-    QVector<u8> getRoutes() const;
-    void recalculateRoamers(u32 seed);
+    class HGSSRoamer
+    {
 
-private:
-    void calculateRoamers();
-    u8 getRouteJ(u16 prng) const;
-    u8 getRouteK(u16 prng) const;
+    public:
+        HGSSRoamer() = default;
+        HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes);
+        u8 getSkips() const;
+        u8 getRaikouRoute() const;
+        u8 getEnteiRoute() const;
+        u8 getLatiRoute() const;
+        QString getRouteString() const;
+        QVector<bool> getRoamers() const;
+        QVector<u8> getRoutes() const;
+        void recalculateRoamers(u32 seed);
 
-    u8 skips{};
-    u8 raikouRoute{};
-    u8 enteiRoute{};
-    u8 latiRoute{};
-    u32 seed{};
-    QVector<bool> roamers;
-    QVector<u8> routes;
+    private:
+        void calculateRoamers();
+        u8 getRouteJ(u16 prng) const;
+        u8 getRouteK(u16 prng) const;
 
-};
+        u8 skips{};
+        u8 raikouRoute{};
+        u8 enteiRoute{};
+        u8 latiRoute{};
+        u32 seed{};
+        QVector<bool> roamers;
+        QVector<u8> routes;
+
+    };
+
+}
 
 #endif // HGSSROAMER_HPP

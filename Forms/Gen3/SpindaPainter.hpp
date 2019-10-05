@@ -23,40 +23,45 @@
 #include <QWidget>
 #include <Forms/Controls/GraphicsPixmapItem.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class SpindaPainter;
+
+    namespace Ui
+    {
+        class SpindaPainter;
+    }
+
+    class SpindaPainter : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit SpindaPainter(QWidget *parent = nullptr);
+        ~SpindaPainter() override;
+
+    private:
+        Ui::SpindaPainter *ui;
+        QGraphicsScene *scene{};
+        QGraphicsPixmapItem *spinda{};
+        GraphicsPixmapItem *spot1{};
+        GraphicsPixmapItem *spot2{};
+        GraphicsPixmapItem *spot3{};
+        GraphicsPixmapItem *spot4{};
+        u32 pid = 0;
+        const QVector<u8> coords = { 0, 0, 24, 1, 6, 18, 18, 19 };
+        const QVector<u8> origin = { 8, 6 };
+        bool text = false;
+
+        void setupModels();
+        void moveSpot(GraphicsPixmapItem *item, int index);
+        void updateInfo();
+
+    private slots:
+        void on_textBoxPID_textEdited(const QString &arg1);
+        void updatePID(const QList<QRectF> &);
+
+    };
+
 }
-
-class SpindaPainter : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit SpindaPainter(QWidget *parent = nullptr);
-    ~SpindaPainter() override;
-
-private:
-    Ui::SpindaPainter *ui;
-    QGraphicsScene *scene{};
-    QGraphicsPixmapItem *spinda{};
-    GraphicsPixmapItem *spot1{};
-    GraphicsPixmapItem *spot2{};
-    GraphicsPixmapItem *spot3{};
-    GraphicsPixmapItem *spot4{};
-    u32 pid = 0;
-    const QVector<u8> coords = { 0, 0, 24, 1, 6, 18, 18, 19 };
-    const QVector<u8> origin = { 8, 6 };
-    bool text = false;
-
-    void setupModels();
-    void moveSpot(GraphicsPixmapItem *item, int index);
-    void updateInfo();
-
-private slots:
-    void on_textBoxPID_textEdited(const QString &arg1);
-    void updatePID(const QList<QRectF> &);
-
-};
 
 #endif // SPINDAPAINTER_HPP

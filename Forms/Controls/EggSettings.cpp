@@ -20,61 +20,66 @@
 #include "EggSettings.hpp"
 #include "ui_EggSettings.h"
 
-EggSettings::EggSettings(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::EggSettings)
+namespace PokeFinderForms
 {
-    ui->setupUi(this);
-}
 
-EggSettings::~EggSettings()
-{
-    delete ui;
-}
-
-QVector<u8> EggSettings::getParent1() const
-{
-    QVector<u8> parent1 =
+    EggSettings::EggSettings(QWidget *parent) :
+        QWidget(parent),
+        ui(new Ui::EggSettings)
     {
-        static_cast<u8>(ui->spinBoxParent1HP->value()), static_cast<u8>(ui->spinBoxParent1Atk->value()), static_cast<u8>(ui->spinBoxParent1Def->value()),
-        static_cast<u8>(ui->spinBoxParent1SpA->value()), static_cast<u8>(ui->spinBoxParent1SpD->value()), static_cast<u8>(ui->spinBoxParent1Spe->value())
-    };
+        ui->setupUi(this);
+    }
 
-    return parent1;
-}
-
-QVector<u8> EggSettings::getParent2() const
-{
-    QVector<u8> parent2 =
+    EggSettings::~EggSettings()
     {
-        static_cast<u8>(ui->spinBoxParent2HP->value()), static_cast<u8>(ui->spinBoxParent2Atk->value()), static_cast<u8>(ui->spinBoxParent2Def->value()),
-        static_cast<u8>(ui->spinBoxParent2SpA->value()), static_cast<u8>(ui->spinBoxParent2SpD->value()), static_cast<u8>(ui->spinBoxParent2Spe->value())
-    };
+        delete ui;
+    }
 
-    return parent2;
-}
+    QVector<u8> EggSettings::getParent1() const
+    {
+        QVector<u8> parent1 =
+        {
+            static_cast<u8>(ui->spinBoxParent1HP->value()), static_cast<u8>(ui->spinBoxParent1Atk->value()), static_cast<u8>(ui->spinBoxParent1Def->value()),
+            static_cast<u8>(ui->spinBoxParent1SpA->value()), static_cast<u8>(ui->spinBoxParent1SpD->value()), static_cast<u8>(ui->spinBoxParent1Spe->value())
+        };
 
-void EggSettings::on_pushButtonSwapParents_clicked()
-{
-    QVector<u8> parent1 = getParent1();
-    QVector<u8> parent2 = getParent2();
+        return parent1;
+    }
 
-    ui->spinBoxParent1HP->setValue(parent2[0]);
-    ui->spinBoxParent1Atk->setValue(parent2[1]);
-    ui->spinBoxParent1Def->setValue(parent2[2]);
-    ui->spinBoxParent1SpA->setValue(parent2[3]);
-    ui->spinBoxParent1SpD->setValue(parent2[4]);
-    ui->spinBoxParent1Spe->setValue(parent2[5]);
+    QVector<u8> EggSettings::getParent2() const
+    {
+        QVector<u8> parent2 =
+        {
+            static_cast<u8>(ui->spinBoxParent2HP->value()), static_cast<u8>(ui->spinBoxParent2Atk->value()), static_cast<u8>(ui->spinBoxParent2Def->value()),
+            static_cast<u8>(ui->spinBoxParent2SpA->value()), static_cast<u8>(ui->spinBoxParent2SpD->value()), static_cast<u8>(ui->spinBoxParent2Spe->value())
+        };
 
-    ui->spinBoxParent2HP->setValue(parent1[0]);
-    ui->spinBoxParent2Atk->setValue(parent1[1]);
-    ui->spinBoxParent2Def->setValue(parent1[2]);
-    ui->spinBoxParent2SpA->setValue(parent1[3]);
-    ui->spinBoxParent2SpD->setValue(parent1[4]);
-    ui->spinBoxParent2Spe->setValue(parent1[5]);
-}
+        return parent2;
+    }
 
-void EggSettings::on_checkBoxShowInteritance_clicked(bool checked)
-{
-    emit toggleInheritance(checked);
+    void EggSettings::on_pushButtonSwapParents_clicked()
+    {
+        QVector<u8> parent1 = getParent1();
+        QVector<u8> parent2 = getParent2();
+
+        ui->spinBoxParent1HP->setValue(parent2[0]);
+        ui->spinBoxParent1Atk->setValue(parent2[1]);
+        ui->spinBoxParent1Def->setValue(parent2[2]);
+        ui->spinBoxParent1SpA->setValue(parent2[3]);
+        ui->spinBoxParent1SpD->setValue(parent2[4]);
+        ui->spinBoxParent1Spe->setValue(parent2[5]);
+
+        ui->spinBoxParent2HP->setValue(parent1[0]);
+        ui->spinBoxParent2Atk->setValue(parent1[1]);
+        ui->spinBoxParent2Def->setValue(parent1[2]);
+        ui->spinBoxParent2SpA->setValue(parent1[3]);
+        ui->spinBoxParent2SpD->setValue(parent1[4]);
+        ui->spinBoxParent2Spe->setValue(parent1[5]);
+    }
+
+    void EggSettings::on_checkBoxShowInteritance_clicked(bool checked)
+    {
+        emit toggleInheritance(checked);
+    }
+
 }

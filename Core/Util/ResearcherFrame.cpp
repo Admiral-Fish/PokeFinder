@@ -17,15 +17,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TABLEUTILITY_HPP
-#define TABLEUTILITY_HPP
+#include "ResearcherFrame.hpp"
 
-#include <QFont>
-#include <Core/Util/Global.hpp>
-
-namespace TableUtility
+namespace PokeFinderCore
 {
-    QFont getBold(u8 iv);
-}
 
-#endif // TABLEUTILITY_HPP
+    ResearcherFrame::ResearcherFrame()
+    {
+        custom = QVector<u64>(10, 0);
+        rng64Bit = false;
+        full32 = 0;
+        full64 = 0;
+        frame = 100000;
+    }
+
+    ResearcherFrame::ResearcherFrame(bool rng64Bit, u32 frame)
+    {
+        custom = QVector<u64>(10, 0);
+        this->rng64Bit = rng64Bit;
+        full32 = 0;
+        full64 = 0;
+        this->frame = frame;
+    }
+
+}

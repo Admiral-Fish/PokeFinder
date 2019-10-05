@@ -22,17 +22,22 @@
 
 #include <QTableView>
 
-class TableView : public QTableView
+namespace PokeFinderForms
 {
 
-public:
-    explicit TableView(QWidget *parent = nullptr);
-    void resizeEvent(QResizeEvent *event) override;
-    void mouseDoubleClickEvent(QMouseEvent *event) override;
-    void keyPressEvent(QKeyEvent *event) override;
-    void outputModelTXT();
-    void outputModelCSV();
+    class TableView : public QTableView
+    {
 
-};
+    public:
+        explicit TableView(QWidget *parent = nullptr);
+        void resizeEvent(QResizeEvent *event) override;
+        void mouseDoubleClickEvent(QMouseEvent *event) override;
+        void keyPressEvent(QKeyEvent *event) override;
+        void outputModelTXT();
+        void outputModelCSV();
+
+    };
+
+}
 
 #endif // TABLEVIEW_HPP

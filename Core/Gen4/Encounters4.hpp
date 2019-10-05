@@ -23,32 +23,37 @@
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
 
-class Encounters4
+namespace PokeFinderCore
 {
 
-public:
-    Encounters4(Encounter type, int time, const Profile4 &profile);
-    QVector<EncounterArea4> getEncounters();
+    class Encounters4
+    {
 
-private:
-    Profile4 profile;
-    Encounter type;
-    int time; // 0: Morning, 1: Day, 2: Night
-    // Dual is used in DPPt
-    // Radio 0: None, 1: Hoenn, 2: Sinnoh, For HGSS
-    QVector<Pokemon> pokemon;
+    public:
+        Encounters4(Encounter type, int time, const Profile4 &profile);
+        QVector<EncounterArea4> getEncounters();
 
-    QByteArrayList getData() const;
-    QVector<EncounterArea4> getHGSS(const QByteArray &data) const;
-    QVector<EncounterArea4> getDPPt(const QByteArray &data) const;
-    void modifyRadio(QVector<Slot> &mons, const QByteArray &data) const;
-    void modifyTime(QVector<Slot> &mons, const QByteArray &data) const;
-    void modifyDual(QVector<Slot> &mons, const QByteArray &data) const;
-    void modifyRadar(QVector<Slot> &mons, const QByteArray &data) const;
-    void modifySwarmHGSS(QVector<Slot> &mons, const QByteArray &data) const;
-    void modifySwarmDPPt(QVector<Slot> &mons, const QByteArray &data) const;
-    u16 getValue(const QByteArray &data, int offset, int length) const;
+    private:
+        Profile4 profile;
+        Encounter type;
+        int time; // 0: Morning, 1: Day, 2: Night
+        // Dual is used in DPPt
+        // Radio 0: None, 1: Hoenn, 2: Sinnoh, For HGSS
+        QVector<Pokemon> pokemon;
 
-};
+        QByteArrayList getData() const;
+        QVector<EncounterArea4> getHGSS(const QByteArray &data) const;
+        QVector<EncounterArea4> getDPPt(const QByteArray &data) const;
+        void modifyRadio(QVector<Slot> &mons, const QByteArray &data) const;
+        void modifyTime(QVector<Slot> &mons, const QByteArray &data) const;
+        void modifyDual(QVector<Slot> &mons, const QByteArray &data) const;
+        void modifyRadar(QVector<Slot> &mons, const QByteArray &data) const;
+        void modifySwarmHGSS(QVector<Slot> &mons, const QByteArray &data) const;
+        void modifySwarmDPPt(QVector<Slot> &mons, const QByteArray &data) const;
+        u16 getValue(const QByteArray &data, int offset, int length) const;
+
+    };
+
+}
 
 #endif // ENCOUNTERS4_HPP

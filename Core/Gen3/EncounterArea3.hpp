@@ -22,20 +22,25 @@
 
 #include <Core/Parents/EncounterArea.hpp>
 
-class EncounterArea3 : public EncounterArea
+namespace PokeFinderCore
 {
 
-public:
-    EncounterArea3() = default;
-    EncounterArea3(u8 location, u16 delay, Encounter type, const QVector<Slot> &pokemon);
-    u8 calcLevel(u8 index, u16 prng) const;
-    u8 calcLevel(u8 index) const;
-    u8 getEncounterRate() const;
-    u16 getDelay() const;
+    class EncounterArea3 : public EncounterArea
+    {
 
-private:
-    u16 delay{};
+    public:
+        EncounterArea3() = default;
+        EncounterArea3(u8 location, u16 delay, Encounter type, const QVector<Slot> &pokemon);
+        u8 calcLevel(u8 index, u16 prng) const;
+        u8 calcLevel(u8 index) const;
+        u8 getEncounterRate() const;
+        u16 getDelay() const;
 
-};
+    private:
+        u16 delay{};
+
+    };
+
+}
 
 #endif // ENCOUNTERAREA3_HPP

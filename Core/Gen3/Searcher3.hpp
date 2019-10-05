@@ -27,34 +27,39 @@
 #include <Core/RNG/RNGCache.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
 
-class Searcher3: public Searcher
+namespace PokeFinderCore
 {
 
-public:
-    Searcher3();
-    Searcher3(u16 tid, u16 sid, u8 genderRatio, const FrameCompare &compare);
-    QVector<Frame3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    void setup(Method method);
-    void setupNatureLock(int num);
-    void setEncounter(const EncounterArea3 &value);
+    class Searcher3: public Searcher
+    {
 
-private:
-    RNGCache cache;
-    RNGEuclidean euclidean{};
-    Frame3 frame = Frame3(0, 0, 0);
-    ShadowLock shadowLock;
-    ShadowType type{};
-    FrameCompare compare;
-    EncounterArea3 encounter;
+    public:
+        Searcher3();
+        Searcher3(u16 tid, u16 sid, u8 genderRatio, const FrameCompare &compare);
+        QVector<Frame3> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+        void setup(Method method);
+        void setupNatureLock(int num);
+        void setEncounter(const EncounterArea3 &value);
 
-    QVector<Frame3> searchMethodChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame3> searchMethodColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame3> searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame3> searchMethodXD(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame3> searchMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame3> searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<Frame3> searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+    private:
+        RNGCache cache;
+        RNGEuclidean euclidean{};
+        Frame3 frame = Frame3(0, 0, 0);
+        ShadowLock shadowLock;
+        ShadowType type{};
+        FrameCompare compare;
+        EncounterArea3 encounter;
 
-};
+        QVector<Frame3> searchMethodChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+        QVector<Frame3> searchMethodColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+        QVector<Frame3> searchMethodH124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+        QVector<Frame3> searchMethodXD(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+        QVector<Frame3> searchMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+        QVector<Frame3> searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+        QVector<Frame3> searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+
+    };
+
+}
 
 #endif // SEARCHER3_HPP

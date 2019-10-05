@@ -22,31 +22,36 @@
 
 #include <Core/Parents/Frame.hpp>
 
-class Frame3: public Frame
+namespace PokeFinderCore
 {
 
-public:
-    Frame3();
-    Frame3(u16 tid, u16 sid, u16 psv);
-    QString getTime() const;
-    QString getTimeEgg() const;
-    void setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2,
-                        u16 inh3, const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken = false);
-    void setPID(u32 pid, u16 genderRatio);
-    void setPID(u16 high, u16 low, u16 genderRatio);
-    QString getLockReason() const;
-    void setLockReason(const QString &value);
-    u32 getEggFrame() const;
-    void setEggFrame(const u32 &value);
-    u32 getSeed() const;
-    void setSeed(const u32 &value);
-    void xorFrame(bool flag = false);
+    class Frame3: public Frame
+    {
 
-private:
-    QString lockReason;
-    u32 eggFrame{};
-    u32 seed{};
+    public:
+        Frame3();
+        Frame3(u16 tid, u16 sid, u16 psv);
+        QString getTime() const;
+        QString getTimeEgg() const;
+        void setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2,
+                            u16 inh3, const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken = false);
+        void setPID(u32 pid, u16 genderRatio);
+        void setPID(u16 high, u16 low, u16 genderRatio);
+        QString getLockReason() const;
+        void setLockReason(const QString &value);
+        u32 getEggFrame() const;
+        void setEggFrame(const u32 &value);
+        u32 getSeed() const;
+        void setSeed(const u32 &value);
+        void xorFrame(bool flag = false);
 
-};
+    private:
+        QString lockReason;
+        u32 eggFrame{};
+        u32 seed{};
+
+    };
+
+}
 
 #endif // FRAME3_HPP

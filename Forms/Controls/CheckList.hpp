@@ -23,32 +23,37 @@
 #include <QComboBox>
 #include <QStandardItemModel>
 
-class CheckList : public QComboBox
+namespace PokeFinderForms
 {
-    Q_OBJECT
 
-public:
-    explicit CheckList(QWidget *parent = nullptr);
-    void setup(const QStringList &items = QStringList());
-    QVector<bool> getChecked();
-    void setChecks(QVector<bool> flags);
+    class CheckList : public QComboBox
+    {
+        Q_OBJECT
 
-public slots:
-    void resetChecks();
+    public:
+        explicit CheckList(QWidget *parent = nullptr);
+        void setup(const QStringList &items = QStringList());
+        QVector<bool> getChecked();
+        void setChecks(QVector<bool> flags);
 
-protected:
-    bool eventFilter(QObject *object, QEvent *event) override;
+    public slots:
+        void resetChecks();
 
-private:
-    QStandardItemModel *model;
+    protected:
+        bool eventFilter(QObject *object, QEvent *event) override;
 
-    void updateText();
-    int checkState();
+    private:
+        QStandardItemModel *model;
 
-private slots:
-    void modelDataChanged();
-    void itemPressed(const QModelIndex &index);
+        void updateText();
+        int checkState();
 
-};
+    private slots:
+        void modelDataChanged();
+        void itemPressed(const QModelIndex &index);
+
+    };
+
+}
 
 #endif // CHECKLIST

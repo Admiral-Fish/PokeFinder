@@ -17,36 +17,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef DATETIME_HPP
-#define DATETIME_HPP
+#include "TableUtility.hpp"
 
-#include <QDateTime>
-#include <Core/Gen4/HGSSRoamer.hpp>
-#include <Core/Util/Game.hpp>
-
-class DateTime
+namespace PokeFinderCore
 {
 
-public:
-    DateTime() = default;
-    DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes);
-    DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info);
-    QString sequence() const;
-    QString getDate() const;
-    QString getTime() const;
-    u32 getSeed() const;
-    u32 getDelay() const;
-    Game getVersion() const;
-    QDateTime getDateTime() const;
-    HGSSRoamer getInfo() const;
+    QFont TableUtility::getBold(u8 iv)
+    {
+        QFont font;
 
-private:
-    u32 seed{};
-    u32 delay{};
-    QDateTime dateTime;
-    Game version{};
-    HGSSRoamer info;
+        if (iv == 30 || iv == 31)
+        {
+            font.setBold(true);
+        }
 
-};
+        return font;
+    }
 
-#endif // DATETIME_HPP
+}

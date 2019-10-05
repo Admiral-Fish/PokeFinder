@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
         QApplication::installTranslator(&translator);
     }
 
-    MainWindow w;
+    PokeFinderForms::MainWindow w;
     w.show();
     w.raise();
 

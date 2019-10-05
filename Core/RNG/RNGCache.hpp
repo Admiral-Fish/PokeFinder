@@ -24,26 +24,31 @@
 #include <Core/Util/Global.hpp>
 #include <Core/Util/Method.hpp>
 
-class RNGCache
+namespace PokeFinderCore
 {
 
-public:
-    RNGCache() = default;
-    RNGCache(Method method);
-    QVector<u32> recoverLower16BitsIV(u32 first, u32 second) const;
-    QVector<u32> recoverLower16BitsPID(u32 first, u32 second) const;
-    void switchCache(Method MethodType);
+    class RNGCache
+    {
 
-private:
-    u32 add{};
-    u32 k{};
-    u32 mult{};
-    QVector<u8> low;
-    QVector<bool> flags;
+    public:
+        RNGCache() = default;
+        RNGCache(Method method);
+        QVector<u32> recoverLower16BitsIV(u32 first, u32 second) const;
+        QVector<u32> recoverLower16BitsPID(u32 first, u32 second) const;
+        void switchCache(Method MethodType);
 
-    void populateMap();
-    void setupCache(Method method);
+    private:
+        u32 add{};
+        u32 k{};
+        u32 mult{};
+        QVector<u8> low;
+        QVector<bool> flags;
 
-};
+        void populateMap();
+        void setupCache(Method method);
+
+    };
+
+}
 
 #endif // RNGCACHE_HPP

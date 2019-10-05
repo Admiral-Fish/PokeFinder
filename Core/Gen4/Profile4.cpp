@@ -23,186 +23,191 @@
 #include <QSettings>
 #include "Profile4.hpp"
 
-Profile4::Profile4()
+namespace PokeFinderCore
 {
-    version = Game::Diamond;
-    dual = Game::Blank;
-    radio = 0;
-    radar = false;
-    swarm = false;
-}
 
-Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, Language language, bool radar, bool swarm)  :
-    Profile(profileName, version, tid, sid, language)
-{
-    this->dual = dual;
-    this->radio = radio;
-    this->radar = radar;
-    this->swarm = swarm;
-}
-
-Profile4::Profile4(QJsonObject data) :
-    Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
-{
-    dual = static_cast<Game>(data["dual"].toInt());
-    radio = data["radio"].toInt();
-    radar = data["radar"].toBool();
-    swarm = data["swarm"].toBool();
-}
-
-QString Profile4::getDualSlotString() const
-{
-    switch (dual)
+    Profile4::Profile4()
     {
-        case Game::Ruby:
-            return QObject::tr("Ruby");
-        case Game::Sapphire:
-            return QObject::tr("Sapphire");
-        case Game::FireRed:
-            return QObject::tr("Fire Red");
-        case Game::LeafGreen:
-            return QObject::tr("Leaf Green");
-        case Game::Emerald:
-            return QObject::tr("Emerald");
-        default:
-            return QObject::tr("None");
-    }
-}
-
-Game Profile4::getDualSlot() const
-{
-    return dual;
-}
-
-QString Profile4::getRadioString() const
-{
-    switch (radio)
-    {
-        case 1:
-            return QObject::tr("Hoenn Sound");
-        case 2:
-            return QObject::tr("Sinnoh Sound");
-        default:
-            return QObject::tr("None");
-    }
-}
-
-int Profile4::getRadio() const
-{
-    return radio;
-}
-
-bool Profile4::getRadar() const
-{
-    return radar;
-}
-
-bool Profile4::getSwarm() const
-{
-    return swarm;
-}
-
-QJsonObject Profile4::getJson() const
-{
-    QJsonObject profile;
-    profile["name"] = profileName;
-    profile["version"] = version;
-    profile["language"] = language;
-    profile["tid"] = tid;
-    profile["sid"] = sid;
-    profile["dual"] = dual;
-    profile["radio"] = radio;
-    profile["radar"] = radar;
-    profile["swarm"] = swarm;
-    return profile;
-}
-
-QVector<Profile4> Profile4::loadProfileList()
-{
-    QVector<Profile4> profileList;
-
-    QSettings setting;
-    QByteArray data = setting.value("profiles").toByteArray();
-
-    QJsonObject profiles(QJsonDocument::fromJson(data).object());
-    QJsonArray gen4 = profiles[QString("gen4")].toArray();
-
-    for (const auto &&i : gen4)
-    {
-        profileList.append(Profile4(i.toObject()));
+        version = Game::Diamond;
+        dual = Game::Blank;
+        radio = 0;
+        radar = false;
+        swarm = false;
     }
 
-    return profileList;
-}
-
-void Profile4::saveProfile() const
-{
-    QSettings setting;
-    QByteArray data = setting.value("profiles").toByteArray();
-
-    QJsonObject profiles(QJsonDocument::fromJson(data).object());
-    QJsonArray gen4 = profiles["gen4"].toArray();
-
-    gen4.append(getJson());
-    profiles["gen4"] = gen4;
-
-    setting.setValue("profiles", QJsonDocument(profiles).toJson());
-}
-
-void Profile4::deleteProfile() const
-{
-    QSettings setting;
-    QByteArray data = setting.value("profiles").toByteArray();
-
-    QJsonObject profiles(QJsonDocument::fromJson(data).object());
-    QJsonArray gen4 = profiles["gen4"].toArray();
-
-    for (int i = 0; i < gen4.size(); i++)
+    Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, Language language, bool radar, bool swarm)  :
+        Profile(profileName, version, tid, sid, language)
     {
-        Profile4 profile(gen4[i].toObject());
+        this->dual = dual;
+        this->radio = radio;
+        this->radar = radar;
+        this->swarm = swarm;
+    }
 
-        if (profile == *this)
+    Profile4::Profile4(QJsonObject data) :
+        Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
+    {
+        dual = static_cast<Game>(data["dual"].toInt());
+        radio = data["radio"].toInt();
+        radar = data["radar"].toBool();
+        swarm = data["swarm"].toBool();
+    }
+
+    QString Profile4::getDualSlotString() const
+    {
+        switch (dual)
         {
-            gen4.removeAt(i);
-            profiles["gen4"] = gen4;
-
-            setting.setValue("profiles", QJsonDocument(profiles).toJson());
-            break;
+            case Game::Ruby:
+                return QObject::tr("Ruby");
+            case Game::Sapphire:
+                return QObject::tr("Sapphire");
+            case Game::FireRed:
+                return QObject::tr("Fire Red");
+            case Game::LeafGreen:
+                return QObject::tr("Leaf Green");
+            case Game::Emerald:
+                return QObject::tr("Emerald");
+            default:
+                return QObject::tr("None");
         }
     }
-}
 
-void Profile4::updateProfile(const Profile4 &original) const
-{
-    QSettings setting;
-    QByteArray data = setting.value("profiles").toByteArray();
-
-    QJsonObject profiles(QJsonDocument::fromJson(data).object());
-    QJsonArray gen4 = profiles["gen4"].toArray();
-
-    for (auto &&i : gen4)
+    Game Profile4::getDualSlot() const
     {
-        Profile4 profile(i.toObject());
+        return dual;
+    }
 
-        if (original == profile && original != *this)
+    QString Profile4::getRadioString() const
+    {
+        switch (radio)
         {
-            i = getJson();
-            profiles["gen4"] = gen4;
-
-            setting.setValue("profiles", QJsonDocument(profiles).toJson());
-            break;
+            case 1:
+                return QObject::tr("Hoenn Sound");
+            case 2:
+                return QObject::tr("Sinnoh Sound");
+            default:
+                return QObject::tr("None");
         }
     }
-}
 
-bool operator==(const Profile4 &left, const Profile4 &right)
-{
-    return left.profileName == right.profileName && left.version == right.version && left.language == right.language &&
-           left.tid == right.tid && left.sid == right.sid && left.dual == right.dual && left.radio == right.radio &&
-           left.radar == right.radar && left.swarm == right.swarm;
-}
+    int Profile4::getRadio() const
+    {
+        return radio;
+    }
 
-bool operator!=(const Profile4 &left, const Profile4 &right)
-{
-    return !(left == right);
+    bool Profile4::getRadar() const
+    {
+        return radar;
+    }
+
+    bool Profile4::getSwarm() const
+    {
+        return swarm;
+    }
+
+    QJsonObject Profile4::getJson() const
+    {
+        QJsonObject profile;
+        profile["name"] = profileName;
+        profile["version"] = version;
+        profile["language"] = language;
+        profile["tid"] = tid;
+        profile["sid"] = sid;
+        profile["dual"] = dual;
+        profile["radio"] = radio;
+        profile["radar"] = radar;
+        profile["swarm"] = swarm;
+        return profile;
+    }
+
+    QVector<Profile4> Profile4::loadProfileList()
+    {
+        QVector<Profile4> profileList;
+
+        QSettings setting;
+        QByteArray data = setting.value("profiles").toByteArray();
+
+        QJsonObject profiles(QJsonDocument::fromJson(data).object());
+        QJsonArray gen4 = profiles[QString("gen4")].toArray();
+
+        for (const auto &&i : gen4)
+        {
+            profileList.append(Profile4(i.toObject()));
+        }
+
+        return profileList;
+    }
+
+    void Profile4::saveProfile() const
+    {
+        QSettings setting;
+        QByteArray data = setting.value("profiles").toByteArray();
+
+        QJsonObject profiles(QJsonDocument::fromJson(data).object());
+        QJsonArray gen4 = profiles["gen4"].toArray();
+
+        gen4.append(getJson());
+        profiles["gen4"] = gen4;
+
+        setting.setValue("profiles", QJsonDocument(profiles).toJson());
+    }
+
+    void Profile4::deleteProfile() const
+    {
+        QSettings setting;
+        QByteArray data = setting.value("profiles").toByteArray();
+
+        QJsonObject profiles(QJsonDocument::fromJson(data).object());
+        QJsonArray gen4 = profiles["gen4"].toArray();
+
+        for (int i = 0; i < gen4.size(); i++)
+        {
+            Profile4 profile(gen4[i].toObject());
+
+            if (profile == *this)
+            {
+                gen4.removeAt(i);
+                profiles["gen4"] = gen4;
+
+                setting.setValue("profiles", QJsonDocument(profiles).toJson());
+                break;
+            }
+        }
+    }
+
+    void Profile4::updateProfile(const Profile4 &original) const
+    {
+        QSettings setting;
+        QByteArray data = setting.value("profiles").toByteArray();
+
+        QJsonObject profiles(QJsonDocument::fromJson(data).object());
+        QJsonArray gen4 = profiles["gen4"].toArray();
+
+        for (auto &&i : gen4)
+        {
+            Profile4 profile(i.toObject());
+
+            if (original == profile && original != *this)
+            {
+                i = getJson();
+                profiles["gen4"] = gen4;
+
+                setting.setValue("profiles", QJsonDocument(profiles).toJson());
+                break;
+            }
+        }
+    }
+
+    bool operator==(const Profile4 &left, const Profile4 &right)
+    {
+        return left.profileName == right.profileName && left.version == right.version && left.language == right.language &&
+               left.tid == right.tid && left.sid == right.sid && left.dual == right.dual && left.radio == right.radio &&
+               left.radar == right.radar && left.swarm == right.swarm;
+    }
+
+    bool operator!=(const Profile4 &left, const Profile4 &right)
+    {
+        return !(left == right);
+    }
+
 }

@@ -17,34 +17,41 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef STATIONARY3MODEL_HPP
-#define STATIONARY3MODEL_HPP
+#ifndef DATETIME_HPP
+#define DATETIME_HPP
 
-#include <Core/Gen3/Frame3.hpp>
-#include <Models/TableModel.hpp>
+#include <QDateTime>
+#include <Core/Gen4/HGSSRoamer.hpp>
+#include <Core/Util/Game.hpp>
 
-namespace PokeFinderModels
+namespace PokeFinderCore
 {
 
-    class Stationary3Model : public TableModel<PokeFinderCore::Frame3>
+    class DateTime
     {
-        Q_OBJECT
 
     public:
-        Stationary3Model(QObject *parent);
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-        QVariant data(const QModelIndex &index, int role) const override;
-        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+        DateTime() = default;
+        DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes);
+        DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info);
+        QString sequence() const;
+        QString getDate() const;
+        QString getTime() const;
+        u32 getSeed() const;
+        u32 getDelay() const;
+        Game getVersion() const;
+        QDateTime getDateTime() const;
+        HGSSRoamer getInfo() const;
 
     private:
-        QStringList header =
-        {
-            tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"),
-            tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")
-        };
+        u32 seed{};
+        u32 delay{};
+        QDateTime dateTime;
+        Game version{};
+        HGSSRoamer info;
 
     };
 
 }
 
-#endif // STATIONARY3MODEL_HPP
+#endif // DATETIME_HPP

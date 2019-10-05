@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ProfileManager3</class>
+ <class>PokeFinderForms::ProfileManager3</class>
  <widget class="QWidget" name="ProfileManager3">
   <property name="geometry">
    <rect>
@@ -59,7 +59,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TableView</class>
+   <class>PokeFinderForms::TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>

@@ -24,32 +24,37 @@
 #include <QWidget>
 #include <Core/Util/Global.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class JirachiPattern;
+
+    namespace Ui
+    {
+        class JirachiPattern;
+    }
+
+    class JirachiPattern : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit JirachiPattern(QWidget *parent = nullptr);
+        ~JirachiPattern() override;
+
+    private:
+        Ui::JirachiPattern *ui;
+        QStandardItemModel *model{};
+        QVector<u16> data;
+
+        void setupModels();
+        void generate(u32 seed);
+        QStringList getPatterns(u32 seed);
+        u8 getTarget(u8 index);
+
+    private slots:
+        void on_pushButtonGenerate_clicked();
+
+    };
+
 }
-
-class JirachiPattern : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit JirachiPattern(QWidget *parent = nullptr);
-    ~JirachiPattern() override;
-
-private:
-    Ui::JirachiPattern *ui;
-    QStandardItemModel *model{};
-    QVector<u16> data;
-
-    void setupModels();
-    void generate(u32 seed);
-    QStringList getPatterns(u32 seed);
-    u8 getTarget(u8 index);
-
-private slots:
-    void on_pushButtonGenerate_clicked();
-
-};
 
 #endif // JIRACHIPATTERN_HPP

@@ -23,48 +23,50 @@
 #include <QMessageBox>
 #include <Models/Util/ResearcherModel.hpp>
 
-using func = u64 (*)(u64, u64);
-using Calculator = QHash<QString, func>;
-
-namespace Ui
+namespace PokeFinderForms
 {
-    class Researcher;
+
+    namespace Ui
+    {
+        class Researcher;
+    }
+
+    class Researcher : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit Researcher(QWidget *parent = nullptr);
+        ~Researcher() override;;
+
+    private:
+        Ui::Researcher *ui;
+        PokeFinderModels::ResearcherModel *model{};
+        QHash<QString, u8> keys;
+
+        void setupModels();
+        u64 getCustom(const QString &text, const PokeFinderCore::ResearcherFrame &frame, const QVector<PokeFinderCore::ResearcherFrame> &frames);
+        void resizeHeader();
+        QVector<bool> getHexCheck();
+        static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
+        static inline u64 modulo(u64 x, u64 y) { return x % y; }
+        static inline u64 shiftRight(u64 x, u64 y) { return x >> y; }
+        static inline u64 shiftLeft(u64 x, u64 y) { return x << y; }
+        static inline u64 bitAnd(u64 x, u64 y) { return x & y; }
+        static inline u64 bitOr(u64 x, u64 y) { return x | y; }
+        static inline u64 bitXor(u64 x, u64 y) { return x ^ y; }
+        static inline u64 add(u64 x, u64 y) { return x + y; }
+        static inline u64 subtract(u64 x, u64 y) { return x - y; }
+        static inline u64 multiply(u64 x, u64 y) { return x * y; }
+
+    private slots:
+        void on_pushButtonGenerate32Bit_clicked();
+        void on_rngSelection_currentChanged(int index);
+        void on_pushButtonSearch_clicked();
+        void on_pushButtonNext_clicked();
+
+    };
+
 }
-
-class Researcher : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit Researcher(QWidget *parent = nullptr);
-    ~Researcher() override;;
-
-private:
-    Ui::Researcher *ui;
-    ResearcherModel *model{};
-    QHash<QString, u8> keys;
-
-    void setupModels();
-    u64 getCustom(const QString &text, const ResearcherFrame &frame, const QVector<ResearcherFrame> &frames);
-    void resizeHeader();
-    QVector<bool> getHexCheck();
-    static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
-    static inline u64 modulo(u64 x, u64 y) { return x % y; }
-    static inline u64 shiftRight(u64 x, u64 y) { return x >> y; }
-    static inline u64 shiftLeft(u64 x, u64 y) { return x << y; }
-    static inline u64 bitAnd(u64 x, u64 y) { return x & y; }
-    static inline u64 bitOr(u64 x, u64 y) { return x | y; }
-    static inline u64 bitXor(u64 x, u64 y) { return x ^ y; }
-    static inline u64 add(u64 x, u64 y) { return x + y; }
-    static inline u64 subtract(u64 x, u64 y) { return x - y; }
-    static inline u64 multiply(u64 x, u64 y) { return x * y; }
-
-private slots:
-    void on_pushButtonGenerate32Bit_clicked();
-    void on_rngSelection_currentChanged(int index);
-    void on_pushButtonSearch_clicked();
-    void on_pushButtonNext_clicked();
-
-};
 
 #endif // RESEARCHER_HPP

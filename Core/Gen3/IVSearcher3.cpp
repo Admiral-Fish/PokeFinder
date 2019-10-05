@@ -20,84 +20,89 @@
 #include <QtConcurrent>
 #include "IVSearcher3.hpp"
 
-IVSearcher3::IVSearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max)
+namespace PokeFinderCore
 {
-    this->searcher = searcher;
-    this->min = min;
-    this->max = max;
-    searching = false;
-    cancel = false;
-    progress = 0;
 
-    connect(this, &IVSearcher3::finished, this, &IVSearcher3::deleteLater);
-    connect(this, &IVSearcher3::finished, this, [ = ]
+    IVSearcher3::IVSearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max)
     {
+        this->searcher = searcher;
+        this->min = min;
+        this->max = max;
         searching = false;
-        emit updateProgress(getResults(), progress);
-        QTimer::singleShot(1000, this, &IVSearcher3::deleteLater);
-    });
-}
-
-void IVSearcher3::startSearch()
-{
-    if (!searching)
-    {
-        progress = 0;
-        searching = true;
         cancel = false;
+        progress = 0;
 
-        auto *timer = new QTimer(this);
-        connect(this, &IVSearcher3::finished, timer, &QTimer::stop);
-        connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
-        timer->start(1000);
-
-        QtConcurrent::run([ = ] { search(); });
-    }
-}
-
-void IVSearcher3::cancelSearch()
-{
-    cancel = true;
-}
-
-void IVSearcher3::search()
-{
-    for (u8 a = min.at(0); a <= max.at(0); a++)
-    {
-        for (u8 b = min.at(1); b <= max.at(1); b++)
+        connect(this, &IVSearcher3::finished, this, &IVSearcher3::deleteLater);
+        connect(this, &IVSearcher3::finished, this, [ = ]
         {
-            for (u8 c = min.at(2); c <= max.at(2); c++)
+            searching = false;
+            emit updateProgress(getResults(), progress);
+            QTimer::singleShot(1000, this, &IVSearcher3::deleteLater);
+        });
+    }
+
+    void IVSearcher3::startSearch()
+    {
+        if (!searching)
+        {
+            progress = 0;
+            searching = true;
+            cancel = false;
+
+            auto *timer = new QTimer(this);
+            connect(this, &IVSearcher3::finished, timer, &QTimer::stop);
+            connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+            timer->start(1000);
+
+            QtConcurrent::run([ = ] { search(); });
+        }
+    }
+
+    void IVSearcher3::cancelSearch()
+    {
+        cancel = true;
+    }
+
+    void IVSearcher3::search()
+    {
+        for (u8 a = min.at(0); a <= max.at(0); a++)
+        {
+            for (u8 b = min.at(1); b <= max.at(1); b++)
             {
-                for (u8 d = min.at(3); d <= max.at(3); d++)
+                for (u8 c = min.at(2); c <= max.at(2); c++)
                 {
-                    for (u8 e = min.at(4); e <= max.at(4); e++)
+                    for (u8 d = min.at(3); d <= max.at(3); d++)
                     {
-                        for (u8 f = min.at(5); f <= max.at(5); f++)
+                        for (u8 e = min.at(4); e <= max.at(4); e++)
                         {
-                            if (cancel)
+                            for (u8 f = min.at(5); f <= max.at(5); f++)
                             {
-                                emit finished();
-                                return;
+                                if (cancel)
+                                {
+                                    emit finished();
+                                    return;
+                                }
+
+                                auto frames = searcher.search(a, b, c, d, e, f);
+
+                                QMutexLocker locker(&mutex);
+                                results.append(frames);
+                                progress++;
                             }
-
-                            auto frames = searcher.search(a, b, c, d, e, f);
-
-                            QMutexLocker locker(&mutex);
-                            results.append(frames);
-                            progress++;
                         }
                     }
                 }
             }
         }
+        emit finished();
     }
-    emit finished();
-}
 
-QVector<Frame3> IVSearcher3::getResults()
-{
-    QMutexLocker locker(&mutex);
-    auto data(results);
-    results.clear();
-    return data;
+    QVector<Frame3> IVSearcher3::getResults()
+    {
+        QMutexLocker locker(&mutex);
+        auto data(results);
+        results.clear();
+        return data;
+    }
+
 }

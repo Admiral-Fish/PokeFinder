@@ -19,44 +19,49 @@
 
 #include "Slot.hpp"
 
-Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon)
+namespace PokeFinderCore
 {
-    this->specie = specie;
-    this->minLevel = minLevel;
-    this->maxLevel = maxLevel;
-    this->pokemon = pokemon;
-}
 
-Slot::Slot(u16 specie, u8 level, Pokemon pokemon)
-{
-    this->specie = specie;
-    minLevel = level;
-    maxLevel = level;
-    this->pokemon = pokemon;
-}
+    Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon)
+    {
+        this->specie = specie;
+        this->minLevel = minLevel;
+        this->maxLevel = maxLevel;
+        this->pokemon = pokemon;
+    }
 
-u8 Slot::getMinLevel() const
-{
-    return minLevel;
-}
+    Slot::Slot(u16 specie, u8 level, Pokemon pokemon)
+    {
+        this->specie = specie;
+        minLevel = level;
+        maxLevel = level;
+        this->pokemon = pokemon;
+    }
 
-u8 Slot::getMaxLevel() const
-{
-    return maxLevel;
-}
+    u8 Slot::getMinLevel() const
+    {
+        return minLevel;
+    }
 
-u16 Slot::getSpecie() const
-{
-    return specie;
-}
+    u8 Slot::getMaxLevel() const
+    {
+        return maxLevel;
+    }
 
-Pokemon Slot::getPokemon() const
-{
-    return pokemon;
-}
+    u16 Slot::getSpecie() const
+    {
+        return specie;
+    }
 
-void Slot::setSpecie(u16 specie, Pokemon pokemon)
-{
-    this->specie = specie;
-    this->pokemon = pokemon;
+    Pokemon Slot::getPokemon() const
+    {
+        return pokemon;
+    }
+
+    void Slot::setSpecie(u16 specie, Pokemon pokemon)
+    {
+        this->specie = specie;
+        this->pokemon = pokemon;
+    }
+
 }

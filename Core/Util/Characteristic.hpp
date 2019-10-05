@@ -23,24 +23,29 @@
 #include <QVector>
 #include <Core/Util/Global.hpp>
 
-class Characteristic
+namespace PokeFinderCore
 {
 
-public:
-    Characteristic() = default;
-    Characteristic(u8 index, u8 stat, u8 result);
-    static QVector<Characteristic> getCharacteristics();
-    u8 getIndex() const;
-    u8 getStat() const;
-    u8 getResult() const;
-    bool getActive() const;
+    class Characteristic
+    {
 
-private:
-    u8 index{};
-    u8 stat{};
-    u8 result{};
-    bool active = false;
+    public:
+        Characteristic() = default;
+        Characteristic(u8 index, u8 stat, u8 result);
+        static QVector<Characteristic> getCharacteristics();
+        u8 getIndex() const;
+        u8 getStat() const;
+        u8 getResult() const;
+        bool getActive() const;
 
-};
+    private:
+        u8 index{};
+        u8 stat{};
+        u8 result{};
+        bool active = false;
+
+    };
+
+}
 
 #endif // CHARACTERISTIC_HPP

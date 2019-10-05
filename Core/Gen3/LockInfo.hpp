@@ -25,37 +25,42 @@
 #include <Core/Util/Method.hpp>
 #include <Core/Util/ShadowType.hpp>
 
-class LockInfo
+namespace PokeFinderCore
 {
 
-public:
-    LockInfo() = default;
-    LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
-    bool compare(u32 pid) const;
+    class LockInfo
+    {
 
-private:
-    u8 genderUpper;
-    u8 genderLower;
-    u8 nature;
-    bool free;
+    public:
+        LockInfo() = default;
+        LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
+        bool compare(u32 pid) const;
 
-};
+    private:
+        u8 genderUpper;
+        u8 genderLower;
+        u8 nature;
+        bool free;
 
-class ShadowTeam
-{
+    };
 
-public:
-    ShadowTeam() = default;
-    ShadowTeam(const QVector<LockInfo> &locks, ShadowType type);
-    LockInfo getLock(u8 index) const;
-    ShadowType getType() const;
-    int getSize() const;
-    static QVector<ShadowTeam> loadShadowTeams(Method version);
+    class ShadowTeam
+    {
 
-private:
-    QVector<LockInfo> locks;
-    ShadowType type;
+    public:
+        ShadowTeam() = default;
+        ShadowTeam(const QVector<LockInfo> &locks, ShadowType type);
+        LockInfo getLock(u8 index) const;
+        ShadowType getType() const;
+        int getSize() const;
+        static QVector<ShadowTeam> loadShadowTeams(Method version);
 
-};
+    private:
+        QVector<LockInfo> locks;
+        ShadowType type;
+
+    };
+
+}
 
 #endif // LOCKINFO_HPP

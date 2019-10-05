@@ -21,36 +21,41 @@
 #define SEEDTOTIME4MODEL_HPP
 
 #include <Models/TableModel.hpp>
-#include <Util/DateTime.hpp>
+#include <Core/Util/DateTime.hpp>
 
-class SeedtoTime4Model : public TableModel<DateTime>
+namespace PokeFinderModels
 {
-    Q_OBJECT
 
-public:
-    SeedtoTime4Model(QObject *parent, bool flag = false, Game version = DPPt);
-    void setFlags(bool flag = false, Game version = Diamond);
-    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role) const override;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-
-private:
-    bool calibrate;
-    Game version;
-
-    QStringList header1 =
+    class SeedtoTime4Model : public TableModel<PokeFinderCore::DateTime>
     {
-        tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Calls"), tr("Roamer locations")
-    };
-    QStringList header2 =
-    {
-        tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Coin flips"), tr("Roamer locations")
-    };
-    QStringList header3 =
-    {
-        tr("Date"), tr("Time"), tr("Delay")
+        Q_OBJECT
+
+    public:
+        SeedtoTime4Model(QObject *parent, bool flag = false, PokeFinderCore::Game version = PokeFinderCore::DPPt);
+        void setFlags(bool flag = false, PokeFinderCore::Game version = PokeFinderCore::Diamond);
+        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+        QVariant data(const QModelIndex &index, int role) const override;
+        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+    private:
+        bool calibrate;
+        PokeFinderCore::Game version;
+
+        QStringList header1 =
+        {
+            tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Calls"), tr("Roamer locations")
+        };
+        QStringList header2 =
+        {
+            tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Coin flips"), tr("Roamer locations")
+        };
+        QStringList header3 =
+        {
+            tr("Date"), tr("Time"), tr("Delay")
+        };
+
     };
 
-};
+}
 
 #endif // SEEDTOTIME4MODEL_HPP

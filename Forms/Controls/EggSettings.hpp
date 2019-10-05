@@ -23,31 +23,36 @@
 #include <QWidget>
 #include <Core/Util/Global.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class EggSettings;
+
+    namespace Ui
+    {
+        class EggSettings;
+    }
+
+    class EggSettings : public QWidget
+    {
+        Q_OBJECT
+
+    signals:
+        void toggleInheritance(bool);
+
+    public:
+        explicit EggSettings(QWidget *parent = nullptr);
+        ~EggSettings() override;
+        QVector<u8> getParent1() const;
+        QVector<u8> getParent2() const;
+
+    private:
+        Ui::EggSettings *ui;
+
+    private slots:
+        void on_pushButtonSwapParents_clicked();
+        void on_checkBoxShowInteritance_clicked(bool checked);
+
+    };
+
 }
-
-class EggSettings : public QWidget
-{
-    Q_OBJECT
-
-signals:
-    void toggleInheritance(bool);
-
-public:
-    explicit EggSettings(QWidget *parent = nullptr);
-    ~EggSettings() override;
-    QVector<u8> getParent1() const;
-    QVector<u8> getParent2() const;
-
-private:
-    Ui::EggSettings *ui;
-
-private slots:
-    void on_pushButtonSwapParents_clicked();
-    void on_checkBoxShowInteritance_clicked(bool checked);
-
-};
 
 #endif // EGGSETTINGS_HPP

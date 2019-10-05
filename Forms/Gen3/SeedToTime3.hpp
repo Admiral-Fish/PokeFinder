@@ -24,32 +24,37 @@
 #include <QWidget>
 #include <Core/Util/Global.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class SeedToTime3;
+
+    namespace Ui
+    {
+        class SeedToTime3;
+    }
+
+    class SeedToTime3 : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit SeedToTime3(QWidget *parent = nullptr);
+        explicit SeedToTime3(u32 seed, QWidget *parent = nullptr);
+        ~SeedToTime3() override;
+
+    private:
+        Ui::SeedToTime3 *ui;
+        QStandardItemModel *model{};
+        u32 frame = 1;
+
+        void setupModels();
+        u16 originSeed(u32 seed);
+        void seedToTime(u32 seed, u32 year);
+
+    private slots:
+        void on_pushButtonFind_clicked();
+
+    };
+
 }
-
-class SeedToTime3 : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit SeedToTime3(QWidget *parent = nullptr);
-    explicit SeedToTime3(u32 seed, QWidget *parent = nullptr);
-    ~SeedToTime3() override;
-
-private:
-    Ui::SeedToTime3 *ui;
-    QStandardItemModel *model{};
-    u32 frame = 1;
-
-    void setupModels();
-    u16 originSeed(u32 seed);
-    void seedToTime(u32 seed, u32 year);
-
-private slots:
-    void on_pushButtonFind_clicked();
-
-};
 
 #endif // SEEDTOTIME3_HPP

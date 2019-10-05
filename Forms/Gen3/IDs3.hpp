@@ -23,35 +23,40 @@
 #include <QStandardItemModel>
 #include <QWidget>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class IDs3;
+
+    namespace Ui
+    {
+        class IDs3;
+    }
+
+    class IDs3 : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit IDs3(QWidget *parent = nullptr);
+        ~IDs3() override;
+
+    private:
+        Ui::IDs3 *ui;
+        QStandardItemModel *xdcolo{};
+        QStandardItemModel *frlge{};
+        QStandardItemModel *rs{};
+
+        void setupModels();
+
+    private slots:
+        void on_pushButtonXDColoSearch_clicked();
+        void on_pushButtonFRLGESearch_clicked();
+        void on_pushButtonRSSearch_clicked();
+        void on_checkBoxRSDeadBattery_clicked(bool checked);
+        void on_radioButtonRSDate_toggled(bool checked);
+        void on_radioButtonRSInitialSeed_toggled(bool checked);
+
+    };
+
 }
-
-class IDs3 : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit IDs3(QWidget *parent = nullptr);
-    ~IDs3() override;
-
-private:
-    Ui::IDs3 *ui;
-    QStandardItemModel *xdcolo{};
-    QStandardItemModel *frlge{};
-    QStandardItemModel *rs{};
-
-    void setupModels();
-
-private slots:
-    void on_pushButtonXDColoSearch_clicked();
-    void on_pushButtonFRLGESearch_clicked();
-    void on_pushButtonRSSearch_clicked();
-    void on_checkBoxRSDeadBattery_clicked(bool checked);
-    void on_radioButtonRSDate_toggled(bool checked);
-    void on_radioButtonRSInitialSeed_toggled(bool checked);
-
-};
 
 #endif // IDS3_HPP

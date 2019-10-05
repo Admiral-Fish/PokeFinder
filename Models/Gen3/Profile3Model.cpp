@@ -19,52 +19,57 @@
 
 #include "Profile3Model.hpp"
 
-Profile3Model::Profile3Model(QObject *parent) :
-    TableModel<Profile3>(parent)
+namespace PokeFinderModels
 {
-}
 
-int Profile3Model::columnCount(const QModelIndex & /*parent*/) const
-{
-    return 6;
-}
-
-QVariant Profile3Model::data(const QModelIndex &index, int role) const
-{
-    if (role == Qt::DisplayRole)
+    Profile3Model::Profile3Model(QObject *parent) :
+        TableModel<PokeFinderCore::Profile3>(parent)
     {
-        auto profile = model.at(index.row());
-        switch (index.column())
+    }
+
+    int Profile3Model::columnCount(const QModelIndex & /*parent*/) const
+    {
+        return 6;
+    }
+
+    QVariant Profile3Model::data(const QModelIndex &index, int role) const
+    {
+        if (role == Qt::DisplayRole)
         {
-            case 0:
-                return profile.getProfileName();
-            case 1:
-                return profile.getVersionString();
-            case 2:
-                return profile.getLanguageString();
-            case 3:
-                return profile.getTID();
-            case 4:
-                return profile.getSID();
-            case 5:
-                if (profile.getVersion() & Game::RS)
-                {
-                    return profile.getDeadBattery() ? tr("Yes") : tr("No");
-                }
-                else
-                {
-                    return "N/A";
-                }
+            auto profile = model.at(index.row());
+            switch (index.column())
+            {
+                case 0:
+                    return profile.getProfileName();
+                case 1:
+                    return profile.getVersionString();
+                case 2:
+                    return profile.getLanguageString();
+                case 3:
+                    return profile.getTID();
+                case 4:
+                    return profile.getSID();
+                case 5:
+                    if (profile.getVersion() & PokeFinderCore::Game::RS)
+                    {
+                        return profile.getDeadBattery() ? tr("Yes") : tr("No");
+                    }
+                    else
+                    {
+                        return "N/A";
+                    }
+            }
         }
+        return QVariant();
     }
-    return QVariant();
-}
 
-QVariant Profile3Model::headerData(int section, Qt::Orientation orientation, int role) const
-{
-    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+    QVariant Profile3Model::headerData(int section, Qt::Orientation orientation, int role) const
     {
-        return header.at(section);
+        if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+        {
+            return header.at(section);
+        }
+        return QVariant();
     }
-    return QVariant();
+
 }

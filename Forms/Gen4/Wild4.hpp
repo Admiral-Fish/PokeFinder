@@ -26,59 +26,64 @@
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <Models/Gen4/Wild4Model.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class Wild4;
+
+    namespace Ui
+    {
+        class Wild4;
+    }
+
+    class Wild4 : public QWidget
+    {
+        Q_OBJECT
+
+    signals:
+        void alertProfiles(int);
+
+    public:
+        explicit Wild4(QWidget *parent = nullptr);
+        ~Wild4() override;
+        void updateProfiles();
+
+    private:
+        Ui::Wild4 *ui;
+        QVector<PokeFinderCore::Profile4> profiles;
+        PokeFinderModels::Searcher4Model *searcherModel{};
+        PokeFinderModels::Wild4Model *generatorModel{};
+        QMenu *generatorMenu{};
+        QMenu *searcherMenu{};
+        QVector<PokeFinderCore::EncounterArea4> encounterGenerator;
+        QVector<PokeFinderCore::EncounterArea4> encounterSearcher;
+
+        void setupModels();
+        void updateLocationsGenerator();
+        void updateLocationsSearcher();
+        void updatePokemonGenerator();
+        void updatePokemonSearcher();
+
+    private slots:
+        void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
+        void refreshProfiles();
+        void on_pushButtonGenerate_clicked();
+        void on_pushButtonSearch_clicked();
+        void on_comboBoxProfiles_currentIndexChanged(int index);
+        void on_pushButtonGeneratorLead_clicked();
+        void on_comboBoxGeneratorEncounter_currentIndexChanged(int index);
+        void on_comboBoxSearcherEncounter_currentIndexChanged(int index);
+        void on_comboBoxGeneratorLocation_currentIndexChanged(int index);
+        void on_comboBoxSearcherLocation_currentIndexChanged(int index);
+        void on_comboBoxGeneratorPokemon_currentIndexChanged(int index);
+        void on_comboBoxSearcherPokemon_currentIndexChanged(int index);
+        void on_comboBoxGeneratorTime_currentIndexChanged(int index);
+        void on_comboBoxSearcherTime_currentIndexChanged(int index);
+        void seedToTime();
+        void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
+        void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
+        void on_pushButtonProfileManager_clicked();
+
+    };
+
 }
-
-class Wild4 : public QWidget
-{
-    Q_OBJECT
-
-signals:
-    void alertProfiles(int);
-
-public:
-    explicit Wild4(QWidget *parent = nullptr);
-    ~Wild4() override;
-    void updateProfiles();
-
-private:
-    Ui::Wild4 *ui;
-    QVector<Profile4> profiles;
-    Searcher4Model *searcherModel{};
-    Wild4Model *generatorModel{};
-    QMenu *generatorMenu{};
-    QMenu *searcherMenu{};
-    QVector<EncounterArea4> encounterGenerator;
-    QVector<EncounterArea4> encounterSearcher;
-
-    void setupModels();
-    void updateLocationsGenerator();
-    void updateLocationsSearcher();
-    void updatePokemonGenerator();
-    void updatePokemonSearcher();
-
-private slots:
-    void updateProgress(const QVector<Frame4> &frames, int progress);
-    void refreshProfiles();
-    void on_pushButtonGenerate_clicked();
-    void on_pushButtonSearch_clicked();
-    void on_comboBoxProfiles_currentIndexChanged(int index);
-    void on_pushButtonGeneratorLead_clicked();
-    void on_comboBoxGeneratorEncounter_currentIndexChanged(int index);
-    void on_comboBoxSearcherEncounter_currentIndexChanged(int index);
-    void on_comboBoxGeneratorLocation_currentIndexChanged(int index);
-    void on_comboBoxSearcherLocation_currentIndexChanged(int index);
-    void on_comboBoxGeneratorPokemon_currentIndexChanged(int index);
-    void on_comboBoxSearcherPokemon_currentIndexChanged(int index);
-    void on_comboBoxGeneratorTime_currentIndexChanged(int index);
-    void on_comboBoxSearcherTime_currentIndexChanged(int index);
-    void seedToTime();
-    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
-    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
-    void on_pushButtonProfileManager_clicked();
-
-};
 
 #endif // WILD4_HPP

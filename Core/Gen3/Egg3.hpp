@@ -23,43 +23,48 @@
 #include <Core/Gen3/Frame3.hpp>
 #include <Core/Parents/Egg.hpp>
 
-class Egg3 : public Egg
+namespace PokeFinderCore
 {
 
-public:
-    Egg3();
-    Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u16 genderRatio, u32 seed = 0);
-    QVector<Frame3> generate(const FrameCompare &compare) const;
-    void setParents(const QVector<u8> &parent1, const QVector<u8> &parent2);
-    void setMinRedraw(const u8 &value);
-    void setMaxRedraw(const u8 &value);
-    void setCompatability(const int &value);
-    void setCalibration(const u8 &value);
-    void setEverstone(bool value);
-    void setMinPickup(const u32 &value);
-    void setMaxPickup(const u32 &value);
-    u32 getSeed() const;
-    void setSeed(const u32 &value);
-    void setPickupSeed(const u16 &value);
+    class Egg3 : public Egg
+    {
 
-private:
-    QVector<u8> parent1;
-    QVector<u8> parent2;
-    u8 calibration{};
-    u8 minRedraw{};
-    u8 maxRedraw{};
-    int compatability{};
-    u32 minPickup{};
-    u32 maxPickup{};
-    bool everstone{};
-    u16 pickupSeed{};
-    u8 iv1{}, iv2{}, inh1{}, inh2{}, inh3{}, par1{}, par2{}, par3{};
+    public:
+        Egg3();
+        Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u16 genderRatio, u32 seed = 0);
+        QVector<Frame3> generate(const FrameCompare &compare) const;
+        void setParents(const QVector<u8> &parent1, const QVector<u8> &parent2);
+        void setMinRedraw(const u8 &value);
+        void setMaxRedraw(const u8 &value);
+        void setCompatability(const int &value);
+        void setCalibration(const u8 &value);
+        void setEverstone(bool value);
+        void setMinPickup(const u32 &value);
+        void setMaxPickup(const u32 &value);
+        u32 getSeed() const;
+        void setSeed(const u32 &value);
+        void setPickupSeed(const u16 &value);
 
-    QVector<Frame3> generateEmeraldPID(const FrameCompare &compare) const;
-    QVector<Frame3> generateEmeraldIVs(const FrameCompare &compare) const;
-    QVector<QPair<u32, u16>> generateLower(const FrameCompare &compare) const;
-    QVector<Frame3> generateUpper(const QVector<QPair<u32, u16>> &lower, const FrameCompare &compare) const;
+    private:
+        QVector<u8> parent1;
+        QVector<u8> parent2;
+        u8 calibration{};
+        u8 minRedraw{};
+        u8 maxRedraw{};
+        int compatability{};
+        u32 minPickup{};
+        u32 maxPickup{};
+        bool everstone{};
+        u16 pickupSeed{};
+        u8 iv1{}, iv2{}, inh1{}, inh2{}, inh3{}, par1{}, par2{}, par3{};
 
-};
+        QVector<Frame3> generateEmeraldPID(const FrameCompare &compare) const;
+        QVector<Frame3> generateEmeraldIVs(const FrameCompare &compare) const;
+        QVector<QPair<u32, u16>> generateLower(const FrameCompare &compare) const;
+        QVector<Frame3> generateUpper(const QVector<QPair<u32, u16>> &lower, const FrameCompare &compare) const;
+
+    };
+
+}
 
 #endif // EGG3_HPP

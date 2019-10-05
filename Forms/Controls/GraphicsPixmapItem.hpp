@@ -23,19 +23,24 @@
 #include <QGraphicsPixmapItem>
 #include <Core/Util/Global.hpp>
 
-class GraphicsPixmapItem : public QGraphicsPixmapItem
+namespace PokeFinderForms
 {
 
-public:
-    GraphicsPixmapItem(const QPixmap &pixmap, u16 minX = 0, u16 minY = 0, u16 maxX = 0, u16 maxY = 0);
-    void setMin(u16 minX, u16 minY);
-    void setMax(u16 maxX, u16 maxY);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    class GraphicsPixmapItem : public QGraphicsPixmapItem
+    {
 
-private:
-    u16 minX, maxX;
-    u16 minY, maxY;
+    public:
+        GraphicsPixmapItem(const QPixmap &pixmap, u16 minX = 0, u16 minY = 0, u16 maxX = 0, u16 maxY = 0);
+        void setMin(u16 minX, u16 minY);
+        void setMax(u16 maxX, u16 maxY);
+        void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 
-};
+    private:
+        u16 minX, maxX;
+        u16 minY, maxY;
+
+    };
+
+}
 
 #endif // GRAPHICSPIXMAPITEM_HPP

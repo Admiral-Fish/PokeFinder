@@ -24,25 +24,30 @@
 #include <Core/Parents/FrameCompare.hpp>
 #include <Core/Util/Method.hpp>
 
-class Egg
+namespace PokeFinderCore
 {
 
-public:
-    void setEverstoneNature(const u32 &value);
-    u32 getSeed() const;
-    void setSeed(const u32 &value);
+    class Egg
+    {
 
-protected:
-    u16 psv{};
-    u16 sid{};
-    u16 tid{};
-    u8 genderRatio{};
-    Method frameType = Method::EBred;
-    u32 seed{};
-    u32 initialFrame{};
-    u32 maxResults{};
-    u32 everstoneNature{};
+    public:
+        void setEverstoneNature(const u32 &value);
+        u32 getSeed() const;
+        void setSeed(const u32 &value);
 
-};
+    protected:
+        u16 psv{};
+        u16 sid{};
+        u16 tid{};
+        u8 genderRatio{};
+        Method frameType = Method::EBred;
+        u32 seed{};
+        u32 initialFrame{};
+        u32 maxResults{};
+        u32 everstoneNature{};
+
+    };
+
+}
 
 #endif // EGG_HPP

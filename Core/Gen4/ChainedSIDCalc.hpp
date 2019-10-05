@@ -23,20 +23,25 @@
 #include <QVector>
 #include <Core/Util/Global.hpp>
 
-class ChainedSIDCalc
+namespace PokeFinderCore
 {
 
-public:
-    ChainedSIDCalc(u16 tid);
-    void addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 gender);
-    QVector<u16> getSIDs() const;
+    class ChainedSIDCalc
+    {
 
-private:
-    QVector<u16> sids;
-    u16 tid;
+    public:
+        ChainedSIDCalc(u16 tid);
+        void addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 gender);
+        QVector<u16> getSIDs() const;
 
-    bool matchGender(u8 gender, u8 val) const;
+    private:
+        QVector<u16> sids;
+        u16 tid;
 
-};
+        bool matchGender(u8 gender, u8 val) const;
+
+    };
+
+}
 
 #endif // CHAINEDSIDCALC_HPP

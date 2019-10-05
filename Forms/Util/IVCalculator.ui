@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>IVCalculator</class>
+ <class>PokeFinderForms::IVCalculator</class>
  <widget class="QWidget" name="IVCalculator">
   <property name="geometry">
    <rect>

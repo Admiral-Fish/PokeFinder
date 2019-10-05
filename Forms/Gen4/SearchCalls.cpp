@@ -22,104 +22,109 @@
 #include "ui_SearchCalls.h"
 #include <Core/Util/Utilities.hpp>
 
-SearchCalls::SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SearchCalls)
+namespace PokeFinderForms
 {
-    ui->setupUi(this);
-    setAttribute(Qt::WA_QuitOnClose, false);
 
-    this->roamers = roamers;
-    this->routes = routes;
-
-    data = model;
-    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
-
-    QSettings setting;
-    if (setting.contains("searchCalls/geometry")) this->restoreGeometry(setting.value("searchCalls/geometry").toByteArray());
-}
-
-SearchCalls::~SearchCalls()
-{
-    QSettings setting;
-    setting.setValue("searchCalls/geometry", this->saveGeometry());
-
-    delete ui;
-}
-
-QVector<bool> SearchCalls::possibleResults() const
-{
-    return possible;
-}
-
-void SearchCalls::on_pushButtonK_clicked()
-{
-    QString string = ui->lineEditCalls->text();
-    string += string.isEmpty() ? "K" : ", K";
-    ui->lineEditCalls->setText(string);
-}
-
-void SearchCalls::on_pushButtonE_clicked()
-{
-    QString string = ui->lineEditCalls->text();
-    string += string.isEmpty() ? "E" : ", E";
-    ui->lineEditCalls->setText(string);
-}
-
-void SearchCalls::on_pushButtonP_clicked()
-{
-    QString string = ui->lineEditCalls->text();
-    string += string.isEmpty() ? "P" : ", P";
-    ui->lineEditCalls->setText(string);
-}
-
-void SearchCalls::on_lineEditCalls_textChanged(const QString &val)
-{
-    QStringList results = val.split(",", QString::SkipEmptyParts);
-    int num = 0;
-
-    possible.clear();
-    for (const auto &dt : data)
+    SearchCalls::SearchCalls(const QVector<PokeFinderCore::DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent) :
+        QDialog(parent),
+        ui(new Ui::SearchCalls)
     {
-        QString str = Utilities::getCalls(dt.getSeed(), 15, dt.getInfo());
+        ui->setupUi(this);
+        setAttribute(Qt::WA_QuitOnClose, false);
 
-        if (str.contains("skipped"))
-        {
-            int index = str.indexOf(")", 1);
-            str = str.mid(index + 3);
-        }
+        this->roamers = roamers;
+        this->routes = routes;
 
-        QStringList compare = str.split(",", QString::SkipEmptyParts);
+        data = model;
+        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
 
-        bool pass = true;
-        for (int j = 0; j < results.size(); j++)
-        {
-            if (results.at(j) != compare.at(j))
-            {
-                pass = false;
-                break;
-            }
-        }
-        possible.append(pass);
-        if (pass)
-        {
-            num++;
-        }
+        QSettings setting;
+        if (setting.contains("searchCalls/geometry")) this->restoreGeometry(setting.value("searchCalls/geometry").toByteArray());
     }
 
-    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
-}
+    SearchCalls::~SearchCalls()
+    {
+        QSettings setting;
+        setting.setValue("searchCalls/geometry", this->saveGeometry());
 
-void SearchCalls::on_radioButtonElm_clicked()
-{
-    ui->labelKResponse->setText(tr("K - I expect there are some Pokémon in the Kanto region that I don't know. There are probably methods of evolution that I'm not familiar with yet. I should use that perspective and discover what I can!"));
-    ui->labelEResponse->setText(tr("E - There are so many different ways that Pokémon evolve, aren't there?! Some Pokémon don't even evolve until they meet certain conditions first!"));
-    ui->labelPResponse->setText(tr("P - It seems that Pokémon that have been infected with Pokérus level up better. We're not quite sure why..."));
-}
+        delete ui;
+    }
 
-void SearchCalls::on_radioButtonIrwin_clicked()
-{
-    ui->labelKResponse->setText(tr("K - I'm so glad you called! I was just about to call you, too! I guess we must be a good match!"));
-    ui->labelEResponse->setText(tr("E - Hearing about your escapades rocks my soul! It sure does!"));
-    ui->labelPResponse->setText(tr("P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How's your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there's so much I want to chat about! This is going nowhere!"));
+    QVector<bool> SearchCalls::possibleResults() const
+    {
+        return possible;
+    }
+
+    void SearchCalls::on_pushButtonK_clicked()
+    {
+        QString string = ui->lineEditCalls->text();
+        string += string.isEmpty() ? "K" : ", K";
+        ui->lineEditCalls->setText(string);
+    }
+
+    void SearchCalls::on_pushButtonE_clicked()
+    {
+        QString string = ui->lineEditCalls->text();
+        string += string.isEmpty() ? "E" : ", E";
+        ui->lineEditCalls->setText(string);
+    }
+
+    void SearchCalls::on_pushButtonP_clicked()
+    {
+        QString string = ui->lineEditCalls->text();
+        string += string.isEmpty() ? "P" : ", P";
+        ui->lineEditCalls->setText(string);
+    }
+
+    void SearchCalls::on_lineEditCalls_textChanged(const QString &val)
+    {
+        QStringList results = val.split(",", QString::SkipEmptyParts);
+        int num = 0;
+
+        possible.clear();
+        for (const auto &dt : data)
+        {
+            QString str = PokeFinderCore::Utilities::getCalls(dt.getSeed(), 15, dt.getInfo());
+
+            if (str.contains("skipped"))
+            {
+                int index = str.indexOf(")", 1);
+                str = str.mid(index + 3);
+            }
+
+            QStringList compare = str.split(",", QString::SkipEmptyParts);
+
+            bool pass = true;
+            for (int j = 0; j < results.size(); j++)
+            {
+                if (results.at(j) != compare.at(j))
+                {
+                    pass = false;
+                    break;
+                }
+            }
+            possible.append(pass);
+            if (pass)
+            {
+                num++;
+            }
+        }
+
+        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
+    }
+
+    void SearchCalls::on_radioButtonElm_clicked()
+    {
+        ui->labelKResponse->setText(tr("K - I expect there are some Pokémon in the Kanto region that I don't know. There are probably methods of evolution that I'm not familiar with yet. I should use that perspective and discover what I can!"));
+        ui->labelEResponse->setText(tr("E - There are so many different ways that Pokémon evolve, aren't there?! Some Pokémon don't even evolve until they meet certain conditions first!"));
+        ui->labelPResponse->setText(tr("P - It seems that Pokémon that have been infected with Pokérus level up better. We're not quite sure why..."));
+    }
+
+    void SearchCalls::on_radioButtonIrwin_clicked()
+    {
+        ui->labelKResponse->setText(tr("K - I'm so glad you called! I was just about to call you, too! I guess we must be a good match!"));
+        ui->labelEResponse->setText(tr("E - Hearing about your escapades rocks my soul! It sure does!"));
+        ui->labelPResponse->setText(tr("P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How's your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there's so much I want to chat about! This is going nowhere!"));
+    }
+
 }

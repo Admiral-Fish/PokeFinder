@@ -22,96 +22,101 @@
 #include "ui_ChainedSID.h"
 #include <Core/Util/Nature.hpp>
 
-ChainedSID::ChainedSID(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ChainedSID)
+namespace PokeFinderForms
 {
-    ui->setupUi(this);
-    setAttribute(Qt::WA_QuitOnClose, false);
-    setAttribute(Qt::WA_DeleteOnClose);
 
-    setupModels();
-}
-
-ChainedSID::~ChainedSID()
-{
-    QSettings setting;
-    setting.setValue("chainedSID/geometry", this->saveGeometry());
-
-    delete ui;
-    delete chainedCalc;
-}
-
-void ChainedSID::setupModels()
-{
-    model = new QStandardItemModel(ui->tableView);
-    model->setHorizontalHeaderLabels(QStringList() << tr("IVs") << tr("Nature") << tr("Ability") << tr("Gender"));
-    ui->tableView->setModel(model);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    ui->textBoxTID->setValues(InputType::TIDSID);
-    ui->comboBoxNature->addItems(Nature::getFrameNatures());
-
-    QSettings setting;
-    if (setting.contains("chainedSID/geometry")) this->restoreGeometry(setting.value("chainedSID/geometry").toByteArray());
-}
-
-void ChainedSID::on_pushButtonCalculate_clicked()
-{
-    if (!chainedCalc)
+    ChainedSID::ChainedSID(QWidget *parent) :
+        QWidget(parent),
+        ui(new Ui::ChainedSID)
     {
-        chainedCalc = new ChainedSIDCalc(ui->textBoxTID->getUShort());
-        ui->textBoxTID->setEnabled(false);
+        ui->setupUi(this);
+        setAttribute(Qt::WA_QuitOnClose, false);
+        setAttribute(Qt::WA_DeleteOnClose);
+
+        setupModels();
     }
 
-    u8 hp = ui->spinBoxHP->value();
-    u8 atk = ui->spinBoxAtk->value();
-    u8 def = ui->spinBoxDef->value();
-    u8 spa = ui->spinBoxSpA->value();
-    u8 spd = ui->spinBoxSpD->value();
-    u8 spe = ui->spinBoxSpe->value();
-    u8 nature = ui->comboBoxNature->currentIndex();
-    u8 ability = ui->comboBoxAbility->currentIndex();
-    u8 gender = ui->comboBoxGender->currentIndex();
-
-    QList<QStandardItem *> row;
-    row << new QStandardItem(QString("%1.%2.%3.%4.%5.%6").arg(hp).arg(atk).arg(def).arg(spa).arg(spd).arg(spe));
-    row << new QStandardItem(Nature::getNature(nature));
-    row << new QStandardItem(ui->comboBoxAbility->currentText());
-    row << new QStandardItem(ui->comboBoxGender->currentText());
-    model->appendRow(row);
-
-    chainedCalc->addEntry({ hp, atk, def, spa, spd, spe }, nature, ability, gender);
-    QVector<u16> sids = chainedCalc->getSIDs();
-    if (sids.size() == 1)
+    ChainedSID::~ChainedSID()
     {
-        ui->labelPossibleResults->setText(tr("SID Found: ") + QString::number(sids.at(0)));
-    }
-    else
-    {
-        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(sids.size()));
-    }
+        QSettings setting;
+        setting.setValue("chainedSID/geometry", this->saveGeometry());
 
-    ui->spinBoxHP->setValue(0);
-    ui->spinBoxAtk->setValue(0);
-    ui->spinBoxDef->setValue(0);
-    ui->spinBoxSpA->setValue(0);
-    ui->spinBoxSpD->setValue(0);
-    ui->spinBoxSpe->setValue(0);
-    ui->comboBoxNature->setCurrentIndex(0);
-    ui->comboBoxAbility->setCurrentIndex(0);
-    ui->comboBoxGender->setCurrentIndex(0);
-}
-
-void ChainedSID::on_pushButtonClear_clicked()
-{
-    if (chainedCalc)
-    {
+        delete ui;
         delete chainedCalc;
-        chainedCalc = nullptr;
-        ui->textBoxTID->setEnabled(true);
     }
 
-    model->removeRows(0, model->rowCount());
-    ui->labelPossibleResults->setText("Possible Results: 8192");
+    void ChainedSID::setupModels()
+    {
+        model = new QStandardItemModel(ui->tableView);
+        model->setHorizontalHeaderLabels(QStringList() << tr("IVs") << tr("Nature") << tr("Ability") << tr("Gender"));
+        ui->tableView->setModel(model);
+        ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+        ui->textBoxTID->setValues(InputType::TIDSID);
+        ui->comboBoxNature->addItems(PokeFinderCore::Nature::getFrameNatures());
+
+        QSettings setting;
+        if (setting.contains("chainedSID/geometry")) this->restoreGeometry(setting.value("chainedSID/geometry").toByteArray());
+    }
+
+    void ChainedSID::on_pushButtonCalculate_clicked()
+    {
+        if (!chainedCalc)
+        {
+            chainedCalc = new PokeFinderCore::ChainedSIDCalc(ui->textBoxTID->getUShort());
+            ui->textBoxTID->setEnabled(false);
+        }
+
+        u8 hp = ui->spinBoxHP->value();
+        u8 atk = ui->spinBoxAtk->value();
+        u8 def = ui->spinBoxDef->value();
+        u8 spa = ui->spinBoxSpA->value();
+        u8 spd = ui->spinBoxSpD->value();
+        u8 spe = ui->spinBoxSpe->value();
+        u8 nature = ui->comboBoxNature->currentIndex();
+        u8 ability = ui->comboBoxAbility->currentIndex();
+        u8 gender = ui->comboBoxGender->currentIndex();
+
+        QList<QStandardItem *> row;
+        row << new QStandardItem(QString("%1.%2.%3.%4.%5.%6").arg(hp).arg(atk).arg(def).arg(spa).arg(spd).arg(spe));
+        row << new QStandardItem(PokeFinderCore::Nature::getNature(nature));
+        row << new QStandardItem(ui->comboBoxAbility->currentText());
+        row << new QStandardItem(ui->comboBoxGender->currentText());
+        model->appendRow(row);
+
+        chainedCalc->addEntry({ hp, atk, def, spa, spd, spe }, nature, ability, gender);
+        QVector<u16> sids = chainedCalc->getSIDs();
+        if (sids.size() == 1)
+        {
+            ui->labelPossibleResults->setText(tr("SID Found: ") + QString::number(sids.at(0)));
+        }
+        else
+        {
+            ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(sids.size()));
+        }
+
+        ui->spinBoxHP->setValue(0);
+        ui->spinBoxAtk->setValue(0);
+        ui->spinBoxDef->setValue(0);
+        ui->spinBoxSpA->setValue(0);
+        ui->spinBoxSpD->setValue(0);
+        ui->spinBoxSpe->setValue(0);
+        ui->comboBoxNature->setCurrentIndex(0);
+        ui->comboBoxAbility->setCurrentIndex(0);
+        ui->comboBoxGender->setCurrentIndex(0);
+    }
+
+    void ChainedSID::on_pushButtonClear_clicked()
+    {
+        if (chainedCalc)
+        {
+            delete chainedCalc;
+            chainedCalc = nullptr;
+            ui->textBoxTID->setEnabled(true);
+        }
+
+        model->removeRows(0, model->rowCount());
+        ui->labelPossibleResults->setText("Possible Results: 8192");
+    }
+
 }

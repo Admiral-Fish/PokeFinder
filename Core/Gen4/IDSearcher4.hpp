@@ -25,63 +25,69 @@
 #include <QStandardItem>
 #include <Core/Util/Global.hpp>
 
-class ShinyPIDSearcher : public QObject
+namespace PokeFinderCore
 {
-    Q_OBJECT
 
-signals:
-    void finished();
-    void updateProgress(const QVector<QList<QStandardItem *>> &, int);
+    class ShinyPIDSearcher : public QObject
+    {
+        Q_OBJECT
 
-public:
-    ShinyPIDSearcher(u32 pid, bool useTID, u16 tid, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
-    void startSearch();
+    signals:
+        void finished();
+        void updateProgress(const QVector<QList<QStandardItem *>> &, int);
 
-public slots:
-    void cancelSearch();
+    public:
+        ShinyPIDSearcher(u32 pid, bool useTID, u16 tid, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
+        void startSearch();
 
-private:
-    u32 pid;
-    bool useTID, infinite;
-    u16 tid;
-    u32 year, minDelay, maxDelay;
-    QMutex mutex;
-    QVector<QList<QStandardItem *>> results;
-    bool searching, cancel;
-    int progress;
+    public slots:
+        void cancelSearch();
 
-    void search();
-    QVector<QList<QStandardItem *>> getResults();
+    private:
+        u32 pid;
+        bool useTID, infinite;
+        u16 tid;
+        u32 year, minDelay, maxDelay;
+        QMutex mutex;
+        QVector<QList<QStandardItem *>> results;
+        bool searching, cancel;
+        int progress;
 
-};
+        void search();
+        QVector<QList<QStandardItem *>> getResults();
 
-class TIDSIDSearcher : public QObject
-{
-    Q_OBJECT
+    };
 
-signals:
-    void finished();
-    void updateProgress(const QVector<QList<QStandardItem *>> &, int);
+    class TIDSIDSearcher : public QObject
+    {
+        Q_OBJECT
 
-public:
-    TIDSIDSearcher(u16 tid, bool useSID, u16 searchSID, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
-    void startSearch();
+    signals:
+        void finished();
+        void updateProgress(const QVector<QList<QStandardItem *>> &, int);
 
-public slots:
-    void cancelSearch();
+    public:
+        TIDSIDSearcher(u16 tid, bool useSID, u16 searchSID, u32 year, u32 minDelay, u32 maxDelay, bool infinite);
+        void startSearch();
 
-private:
-    u16 tid;
-    bool useSID, infinite;
-    u16 searchSID;
-    u32 year, minDelay, maxDelay;
-    QMutex mutex;
-    QVector<QList<QStandardItem *>> results;
-    bool searching, cancel;
-    int progress;
+    public slots:
+        void cancelSearch();
 
-    void search();
-    QVector<QList<QStandardItem *>> getResults();
+    private:
+        u16 tid;
+        bool useSID, infinite;
+        u16 searchSID;
+        u32 year, minDelay, maxDelay;
+        QMutex mutex;
+        QVector<QList<QStandardItem *>> results;
+        bool searching, cancel;
+        int progress;
 
-};
+        void search();
+        QVector<QList<QStandardItem *>> getResults();
+
+    };
+
+}
+
 #endif // IDSEARCHER4_HPP

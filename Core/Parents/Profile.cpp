@@ -20,102 +20,107 @@
 #include <QTranslator>
 #include "Profile.hpp"
 
-Profile::Profile()
+namespace PokeFinderCore
 {
-    profileName = "None";
-    language = Language::English;
-    tid = 12345;
-    sid = 54321;
-}
 
-Profile::Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language)
-{
-    this->profileName = profileName;
-    this->version = version;
-    this->tid = tid;
-    this->sid = sid;
-    this->language = language;
-}
-
-QString Profile::getVersionString() const
-{
-    switch (version)
+    Profile::Profile()
     {
-        case Game::Ruby:
-            return QObject::tr("Ruby");
-        case Game::Sapphire:
-            return QObject::tr("Sapphire");
-        case Game::FireRed:
-            return QObject::tr("Fire Red");
-        case Game::LeafGreen:
-            return QObject::tr("Leaf Green");
-        case Game::Emerald:
-            return QObject::tr("Emerald");
-        case Game::Gales:
-            return QObject::tr("Gales");
-        case Game::Colosseum:
-            return QObject::tr("Colosseum");
-        case Game::Diamond:
-            return QObject::tr("Diamond");
-        case Game::Pearl:
-            return QObject::tr("Pearl");
-        case Game::Platinum:
-            return QObject::tr("Platinum");
-        case Game::HeartGold:
-            return QObject::tr("Heart Gold");
-        case Game::SoulSilver:
-            return QObject::tr("Soul Silver");
-        default:
-            return "-";
+        profileName = "None";
+        language = Language::English;
+        tid = 12345;
+        sid = 54321;
     }
-}
 
-QString Profile::getLanguageString() const
-{
-    switch (language)
+    Profile::Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language)
     {
-        case Language::Chinese:
-            return "CHI";
-        case Language::English:
-            return "ENG";
-        case Language::French:
-            return "FRE";
-        case Language::German:
-            return "DEU";
-        case Language::Italian:
-            return "ITA";
-        case Language::Japanese:
-            return "JPN";
-        case Language::Korean:
-            return "KOR";
-        case Language::Spanish:
-            return "SPA";
-        default:
-            return "-";
+        this->profileName = profileName;
+        this->version = version;
+        this->tid = tid;
+        this->sid = sid;
+        this->language = language;
     }
-}
 
-Game Profile::getVersion() const
-{
-    return version;
-}
+    QString Profile::getVersionString() const
+    {
+        switch (version)
+        {
+            case Game::Ruby:
+                return QObject::tr("Ruby");
+            case Game::Sapphire:
+                return QObject::tr("Sapphire");
+            case Game::FireRed:
+                return QObject::tr("Fire Red");
+            case Game::LeafGreen:
+                return QObject::tr("Leaf Green");
+            case Game::Emerald:
+                return QObject::tr("Emerald");
+            case Game::Gales:
+                return QObject::tr("Gales");
+            case Game::Colosseum:
+                return QObject::tr("Colosseum");
+            case Game::Diamond:
+                return QObject::tr("Diamond");
+            case Game::Pearl:
+                return QObject::tr("Pearl");
+            case Game::Platinum:
+                return QObject::tr("Platinum");
+            case Game::HeartGold:
+                return QObject::tr("Heart Gold");
+            case Game::SoulSilver:
+                return QObject::tr("Soul Silver");
+            default:
+                return "-";
+        }
+    }
 
-Language Profile::getLanguage() const
-{
-    return language;
-}
+    QString Profile::getLanguageString() const
+    {
+        switch (language)
+        {
+            case Language::Chinese:
+                return "CHI";
+            case Language::English:
+                return "ENG";
+            case Language::French:
+                return "FRE";
+            case Language::German:
+                return "DEU";
+            case Language::Italian:
+                return "ITA";
+            case Language::Japanese:
+                return "JPN";
+            case Language::Korean:
+                return "KOR";
+            case Language::Spanish:
+                return "SPA";
+            default:
+                return "-";
+        }
+    }
 
-QString Profile::getProfileName() const
-{
-    return profileName;
-}
+    Game Profile::getVersion() const
+    {
+        return version;
+    }
 
-u16 Profile::getTID() const
-{
-    return tid;
-}
+    Language Profile::getLanguage() const
+    {
+        return language;
+    }
 
-u16 Profile::getSID() const
-{
-    return sid;
+    QString Profile::getProfileName() const
+    {
+        return profileName;
+    }
+
+    u16 Profile::getTID() const
+    {
+        return tid;
+    }
+
+    u16 Profile::getSID() const
+    {
+        return sid;
+    }
+
 }

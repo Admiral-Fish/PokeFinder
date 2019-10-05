@@ -26,28 +26,33 @@
 #include <Core/Util/Lead.hpp>
 #include <Core/Util/Method.hpp>
 
-class Searcher
+namespace PokeFinderCore
 {
 
-public:
-    Encounter getEncounterType() const;
-    void setEncounterType(const Encounter &value);
-    Method getFrameType() const;
-    void setFrameType(const Method &value);
-    Lead getLeadType() const;
-    void setLeadType(const Lead &value);
+    class Searcher
+    {
 
-protected:
-    u16 psv{};
-    u16 sid{};
-    u16 tid{};
-    u8 genderRatio{};
-    Encounter encounterType = Encounter::Stationary;
-    Method frameType = Method::Method1;
-    Lead leadType = Lead::None;
-    u8 synchNature{};
-    u8 cuteCharm{};
+    public:
+        Encounter getEncounterType() const;
+        void setEncounterType(const Encounter &value);
+        Method getFrameType() const;
+        void setFrameType(const Method &value);
+        Lead getLeadType() const;
+        void setLeadType(const Lead &value);
 
-};
+    protected:
+        u16 psv{};
+        u16 sid{};
+        u16 tid{};
+        u8 genderRatio{};
+        Encounter encounterType = Encounter::Stationary;
+        Method frameType = Method::Method1;
+        Lead leadType = Lead::None;
+        u8 synchNature{};
+        u8 cuteCharm{};
+
+    };
+
+}
 
 #endif // SEARCHER_HPP

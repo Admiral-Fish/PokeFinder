@@ -24,35 +24,38 @@
 #include <QStandardItemModel>
 #include <Core/Util/Global.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class GameCubeRTC;
+
+    namespace Ui
+    {
+        class GameCubeRTC;
+    }
+
+    class GameCubeRTC : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit GameCubeRTC(QWidget *parent = nullptr);
+        explicit GameCubeRTC(u32 seed, QWidget *parent = nullptr);
+        ~GameCubeRTC() override;
+
+    private:
+        Ui::GameCubeRTC *ui;
+        QStandardItemModel *model{};
+        QMenu *contextMenu{};
+
+        void setupModels();
+
+    private slots:
+        void on_pushButtonSearch_clicked();
+        void updateTableView(const QList<QStandardItem *> &row);
+        void copySeed();
+        void on_tableView_customContextMenuRequested(const QPoint &pos);
+
+    };
+
 }
-
-class Search;
-
-class GameCubeRTC : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit GameCubeRTC(QWidget *parent = nullptr);
-    explicit GameCubeRTC(u32 seed, QWidget *parent = nullptr);
-    ~GameCubeRTC() override;
-
-private:
-    Ui::GameCubeRTC *ui;
-    QStandardItemModel *model{};
-    QMenu *contextMenu{};
-
-    void setupModels();
-
-private slots:
-    void on_pushButtonSearch_clicked();
-    void updateTableView(const QList<QStandardItem *> &row);
-    void copySeed();
-    void on_tableView_customContextMenuRequested(const QPoint &pos);
-
-};
 
 #endif // GAMECUBERTC_HPP

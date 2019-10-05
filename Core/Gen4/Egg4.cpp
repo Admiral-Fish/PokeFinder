@@ -21,159 +21,164 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MTRNG.hpp>
 
-Egg4::Egg4()
+namespace PokeFinderCore
 {
-    maxResults = 100000;
-    initialFrame = 1;
-    seed = 0;
-    tid = 12345;
-    sid = 54321;
-    psv = tid ^ sid;
-}
 
-Egg4::Egg4(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed, u8 genderRatio)
-{
-    maxResults = maxFrame;
-    this->initialFrame = initialFrame;
-    this->tid = tid;
-    this->sid = sid;
-    psv = tid ^ sid;
-    frameType = method;
-    this->seed = seed;
-    this->genderRatio = genderRatio;
-}
-
-void Egg4::setParents(const QVector<u8> &parent1, const QVector<u8> &parent2)
-{
-    this->parent1 = parent1;
-    this->parent2 = parent2;
-}
-
-QVector<Frame4> Egg4::generate(const FrameCompare &compare) const
-{
-    switch (frameType)
+    Egg4::Egg4()
     {
-        case Method::Gen4Normal:
-            return generatePID(compare);
-        case Method::Gen4Masuada:
-            return generatePIDMasuada(compare);
-        case Method::DPPtIVs:
-            return generateIVsDPPt(compare);
-        case Method::HGSSIVs:
-            return generateIVsHGSS(compare);
-        default:
-            return QVector<Frame4>();
+        maxResults = 100000;
+        initialFrame = 1;
+        seed = 0;
+        tid = 12345;
+        sid = 54321;
+        psv = tid ^ sid;
     }
-}
 
-QVector<Frame4> Egg4::generatePID(const FrameCompare &compare) const
-{
-    QVector<Frame4> frames;
-    Frame4 frame(tid, sid, psv);
-    frame.setInitialSeed(seed);
-
-    MersenneTwister mt(seed, initialFrame - 1);
-    for (u32 cnt = initialFrame; cnt <= maxResults; cnt++)
+    Egg4::Egg4(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed, u8 genderRatio)
     {
-        frame.setPID(mt.nextUInt(), genderRatio);
-        if (compare.comparePID(frame))
+        maxResults = maxFrame;
+        this->initialFrame = initialFrame;
+        this->tid = tid;
+        this->sid = sid;
+        psv = tid ^ sid;
+        frameType = method;
+        this->seed = seed;
+        this->genderRatio = genderRatio;
+    }
+
+    void Egg4::setParents(const QVector<u8> &parent1, const QVector<u8> &parent2)
+    {
+        this->parent1 = parent1;
+        this->parent2 = parent2;
+    }
+
+    QVector<Frame4> Egg4::generate(const FrameCompare &compare) const
+    {
+        switch (frameType)
         {
-            frame.setFrame(cnt);
-            frames.append(frame);
+            case Method::Gen4Normal:
+                return generatePID(compare);
+            case Method::Gen4Masuada:
+                return generatePIDMasuada(compare);
+            case Method::DPPtIVs:
+                return generateIVsDPPt(compare);
+            case Method::HGSSIVs:
+                return generateIVsHGSS(compare);
+            default:
+                return QVector<Frame4>();
         }
     }
 
-    return frames;
-}
-
-QVector<Frame4> Egg4::generatePIDMasuada(const FrameCompare &compare) const
-{
-    QVector<Frame4> frames;
-    Frame4 frame(tid, sid, psv);
-    frame.setInitialSeed(seed);
-
-    MersenneTwister mt(seed, initialFrame - 1);
-    for (u32 cnt = initialFrame; cnt <= maxResults; cnt++)
+    QVector<Frame4> Egg4::generatePID(const FrameCompare &compare) const
     {
-        u32 pid = mt.nextUInt();
+        QVector<Frame4> frames;
+        Frame4 frame(tid, sid, psv);
+        frame.setInitialSeed(seed);
 
-        for (int i = 0; i <= 3; i++)
+        MersenneTwister mt(seed, initialFrame - 1);
+        for (u32 cnt = initialFrame; cnt <= maxResults; cnt++)
         {
-            u16 val = (pid >> 16) ^ (pid & 0xFFFF);
-
-            if ((val ^ psv) < 8)
+            frame.setPID(mt.nextUInt(), genderRatio);
+            if (compare.comparePID(frame))
             {
-                break;
+                frame.setFrame(cnt);
+                frames.append(frame);
+            }
+        }
+
+        return frames;
+    }
+
+    QVector<Frame4> Egg4::generatePIDMasuada(const FrameCompare &compare) const
+    {
+        QVector<Frame4> frames;
+        Frame4 frame(tid, sid, psv);
+        frame.setInitialSeed(seed);
+
+        MersenneTwister mt(seed, initialFrame - 1);
+        for (u32 cnt = initialFrame; cnt <= maxResults; cnt++)
+        {
+            u32 pid = mt.nextUInt();
+
+            for (int i = 0; i <= 3; i++)
+            {
+                u16 val = (pid >> 16) ^ (pid & 0xFFFF);
+
+                if ((val ^ psv) < 8)
+                {
+                    break;
+                }
+
+                pid = pid * 0x6c078965 + 1; // Advance with ARNG
             }
 
-            pid = pid * 0x6c078965 + 1; // Advance with ARNG
+            frame.setPID(pid, genderRatio);
+            if (compare.comparePID(frame))
+            {
+                frame.setFrame(cnt);
+                frames.append(frame);
+            }
         }
 
-        frame.setPID(pid, genderRatio);
-        if (compare.comparePID(frame))
+        return frames;
+    }
+
+    QVector<Frame4> Egg4::generateIVsDPPt(const FrameCompare &compare) const
+    {
+        QVector<Frame4> frames;
+
+        PokeRNG rng(seed, initialFrame - 1);
+        QVector<u16> rngList(maxResults + 8);
+        for (u16 &x : rngList)
         {
-            frame.setFrame(cnt);
-            frames.append(frame);
+            x = rng.nextUShort();
         }
-    }
 
-    return frames;
-}
-
-QVector<Frame4> Egg4::generateIVsDPPt(const FrameCompare &compare) const
-{
-    QVector<Frame4> frames;
-
-    PokeRNG rng(seed, initialFrame - 1);
-    QVector<u16> rngList(maxResults + 8);
-    for (u16 &x : rngList)
-    {
-        x = rng.nextUShort();
-    }
-
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
-    {
-        Frame4 frame(tid, sid, psv);
-        frame.setInitialSeed(seed);
-        frame.setInheritance(rngList.at(cnt), rngList.at(cnt + 1), rngList.at(cnt + 5), rngList.at(cnt + 6), rngList.at(cnt + 7),
-                             rngList.at(cnt + 2), rngList.at(cnt + 3), rngList.at(cnt + 4), parent1, parent2, true);
-
-        if (compare.compareIVs(frame))
+        for (u32 cnt = 0; cnt < maxResults; cnt++)
         {
-            frame.setSeed(rngList.at(cnt));
-            frame.setFrame(cnt + initialFrame);
-            frames.append(frame);
+            Frame4 frame(tid, sid, psv);
+            frame.setInitialSeed(seed);
+            frame.setInheritance(rngList.at(cnt), rngList.at(cnt + 1), rngList.at(cnt + 5), rngList.at(cnt + 6), rngList.at(cnt + 7),
+                                 rngList.at(cnt + 2), rngList.at(cnt + 3), rngList.at(cnt + 4), parent1, parent2, true);
+
+            if (compare.compareIVs(frame))
+            {
+                frame.setSeed(rngList.at(cnt));
+                frame.setFrame(cnt + initialFrame);
+                frames.append(frame);
+            }
         }
+
+        return frames;
     }
 
-    return frames;
-}
-
-QVector<Frame4> Egg4::generateIVsHGSS(const FrameCompare &compare) const
-{
-    QVector<Frame4> frames;
-
-    PokeRNG rng(seed, initialFrame - 1);
-    QVector<u16> rngList(maxResults + 8);
-    for (u16 &x : rngList)
+    QVector<Frame4> Egg4::generateIVsHGSS(const FrameCompare &compare) const
     {
-        x = rng.nextUShort();
-    }
+        QVector<Frame4> frames;
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
-    {
-        Frame4 frame(tid, sid, psv);
-        frame.setInitialSeed(seed);
-        frame.setInheritance(rngList.at(cnt), rngList.at(cnt + 1), rngList.at(cnt + 5), rngList.at(cnt + 6), rngList.at(cnt + 7),
-                             rngList.at(cnt + 2), rngList.at(cnt + 3), rngList.at(cnt + 4), parent1, parent2);
-
-        if (compare.compareIVs(frame))
+        PokeRNG rng(seed, initialFrame - 1);
+        QVector<u16> rngList(maxResults + 8);
+        for (u16 &x : rngList)
         {
-            frame.setSeed(rngList.at(cnt));
-            frame.setFrame(cnt + initialFrame);
-            frames.append(frame);
+            x = rng.nextUShort();
         }
+
+        for (u32 cnt = 0; cnt < maxResults; cnt++)
+        {
+            Frame4 frame(tid, sid, psv);
+            frame.setInitialSeed(seed);
+            frame.setInheritance(rngList.at(cnt), rngList.at(cnt + 1), rngList.at(cnt + 5), rngList.at(cnt + 6), rngList.at(cnt + 7),
+                                 rngList.at(cnt + 2), rngList.at(cnt + 3), rngList.at(cnt + 4), parent1, parent2);
+
+            if (compare.compareIVs(frame))
+            {
+                frame.setSeed(rngList.at(cnt));
+                frame.setFrame(cnt + initialFrame);
+                frames.append(frame);
+            }
+        }
+
+        return frames;
     }
 
-    return frames;
 }

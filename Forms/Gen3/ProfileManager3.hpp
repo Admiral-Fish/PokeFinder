@@ -23,33 +23,38 @@
 #include <QWidget>
 #include <Models/Gen3/Profile3Model.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class ProfileManager3;
+
+    namespace Ui
+    {
+        class ProfileManager3;
+    }
+
+    class ProfileManager3 : public QWidget
+    {
+        Q_OBJECT
+
+    signals:
+        void updateProfiles();
+
+    public:
+        explicit ProfileManager3(QWidget *parent = nullptr);
+        ~ProfileManager3() override;
+
+    private:
+        Ui::ProfileManager3 *ui;
+        PokeFinderModels::Profile3Model *model{};
+
+        void setupModels();
+
+    private slots:
+        void on_pushButtonNew_clicked();
+        void on_pushButtonEdit_clicked();
+        void on_pushButtonDelete_clicked();
+
+    };
+
 }
-
-class ProfileManager3 : public QWidget
-{
-    Q_OBJECT
-
-signals:
-    void updateProfiles();
-
-public:
-    explicit ProfileManager3(QWidget *parent = nullptr);
-    ~ProfileManager3() override;
-
-private:
-    Ui::ProfileManager3 *ui;
-    Profile3Model *model{};
-
-    void setupModels();
-
-private slots:
-    void on_pushButtonNew_clicked();
-    void on_pushButtonEdit_clicked();
-    void on_pushButtonDelete_clicked();
-
-};
 
 #endif // PROFILEMANAGER3_HPP

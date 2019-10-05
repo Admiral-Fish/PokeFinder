@@ -21,37 +21,42 @@
 #define SEARCHCALLS_HPP
 
 #include <QDialog>
-#include <Util/DateTime.hpp>
+#include <Core/Util/DateTime.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class SearchCalls;
+
+    namespace Ui
+    {
+        class SearchCalls;
+    }
+
+    class SearchCalls : public QDialog
+    {
+        Q_OBJECT
+
+    public:
+        explicit SearchCalls(const QVector<PokeFinderCore::DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent = nullptr);
+        ~SearchCalls() override;
+        QVector<bool> possibleResults() const;
+
+    private:
+        Ui::SearchCalls *ui;
+        QVector<PokeFinderCore::DateTime> data;
+        QVector<bool> possible;
+        QVector<bool> roamers;
+        QVector<u8> routes;
+
+    private slots:
+        void on_pushButtonK_clicked();
+        void on_pushButtonE_clicked();
+        void on_pushButtonP_clicked();
+        void on_lineEditCalls_textChanged(const QString &val);
+        void on_radioButtonElm_clicked();
+        void on_radioButtonIrwin_clicked();
+
+    };
+
 }
-
-class SearchCalls : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit SearchCalls(const QVector<DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent = nullptr);
-    ~SearchCalls() override;
-    QVector<bool> possibleResults() const;
-
-private:
-    Ui::SearchCalls *ui;
-    QVector<DateTime> data;
-    QVector<bool> possible;
-    QVector<bool> roamers;
-    QVector<u8> routes;
-
-private slots:
-    void on_pushButtonK_clicked();
-    void on_pushButtonE_clicked();
-    void on_pushButtonP_clicked();
-    void on_lineEditCalls_textChanged(const QString &val);
-    void on_radioButtonElm_clicked();
-    void on_radioButtonIrwin_clicked();
-
-};
 
 #endif // SEARCHCALLS_HPP

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Stationary3</class>
+ <class>PokeFinderForms::Stationary3</class>
  <widget class="QWidget" name="Stationary3">
   <property name="geometry">
    <rect>
@@ -839,23 +839,23 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>TextBox</class>
+   <class>PokeFinderForms::TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>TableView</class>
+   <class>PokeFinderForms::TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>IVFilter</class>
+   <class>PokeFinderForms::IVFilter</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/IVFilter.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>CheckList</class>
+   <class>PokeFinderForms::CheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
    <slots>

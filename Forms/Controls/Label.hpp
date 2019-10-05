@@ -23,17 +23,22 @@
 #include <QLabel>
 #include <QMouseEvent>
 
-class Label : public QLabel
+namespace PokeFinderForms
 {
-    Q_OBJECT
 
-signals:
-    void pressed(int);
+    class Label : public QLabel
+    {
+        Q_OBJECT
 
-public:
-    explicit Label(QWidget *parent = nullptr);
-    void mousePressEvent(QMouseEvent *event) override;
+    signals:
+        void pressed(int);
 
-};
+    public:
+        explicit Label(QWidget *parent = nullptr);
+        void mousePressEvent(QMouseEvent *event) override;
+
+    };
+
+}
 
 #endif // LABEL_HPP

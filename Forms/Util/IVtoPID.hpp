@@ -24,30 +24,35 @@
 #include <QWidget>
 #include <Core/Util/Global.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class IVtoPID;
+
+    namespace Ui
+    {
+        class IVtoPID;
+    }
+
+    class IVtoPID : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit IVtoPID(QWidget *parent = nullptr);
+        ~IVtoPID() override;
+
+    private:
+        Ui::IVtoPID *ui;
+        QStandardItemModel *model{};
+
+        void setupModels();
+        QVector<QList<QStandardItem *>> getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid);
+        QVector<QList<QStandardItem *>> getSeedsChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature);
+
+    private slots:
+        void on_pushButtonFind_clicked();
+
+    };
+
 }
-
-class IVtoPID : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit IVtoPID(QWidget *parent = nullptr);
-    ~IVtoPID() override;
-
-private:
-    Ui::IVtoPID *ui;
-    QStandardItemModel *model{};
-
-    void setupModels();
-    QVector<QList<QStandardItem *>> getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid);
-    QVector<QList<QStandardItem *>> getSeedsChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature);
-
-private slots:
-    void on_pushButtonFind_clicked();
-
-};
 
 #endif // IVTOPID

@@ -24,40 +24,45 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <Models/Gen4/SeedtoTime4Model.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class SeedtoTime4;
+
+    namespace Ui
+    {
+        class SeedtoTime4;
+    }
+
+    class SeedtoTime4 : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit SeedtoTime4(QWidget *parent = nullptr);
+        explicit SeedtoTime4(const QString &seed, const PokeFinderCore::Profile4 &profile, QWidget *parent = nullptr);
+        ~SeedtoTime4() override;
+
+    private:
+        Ui::SeedtoTime4 *ui;
+        PokeFinderModels::SeedtoTime4Model *dppt{};
+        PokeFinderModels::SeedtoTime4Model *dpptCalibrate{};
+        PokeFinderModels::SeedtoTime4Model *hgss{};
+        PokeFinderModels::SeedtoTime4Model *hgssCalibrate{};
+
+        void setupModels();
+        QVector<PokeFinderCore::DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, PokeFinderCore::Game version);
+        QVector<PokeFinderCore::DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const PokeFinderCore::DateTime &target);
+
+    private slots:
+        void on_pushButtonDPPtGenerate_clicked();
+        void on_pushButtonHGSSGenerate_clicked();
+        void on_pushButtonHGSSCalibrate_clicked();
+        void on_pushButtonDPPtCalibrate_clicked();
+        void on_pushButtonDPPtSearchFlips_clicked();
+        void on_pushButtonHGSSSearchCalls_clicked();
+        void on_pushButtonHGSSMap_clicked();
+
+    };
+
 }
-
-class SeedtoTime4 : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit SeedtoTime4(QWidget *parent = nullptr);
-    explicit SeedtoTime4(const QString &seed, const Profile4 &profile, QWidget *parent = nullptr);
-    ~SeedtoTime4() override;
-
-private:
-    Ui::SeedtoTime4 *ui;
-    SeedtoTime4Model *dppt{};
-    SeedtoTime4Model *dpptCalibrate{};
-    SeedtoTime4Model *hgss{};
-    SeedtoTime4Model *hgssCalibrate{};
-
-    void setupModels();
-    QVector<DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, Game version);
-    QVector<DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const DateTime &target);
-
-private slots:
-    void on_pushButtonDPPtGenerate_clicked();
-    void on_pushButtonHGSSGenerate_clicked();
-    void on_pushButtonHGSSCalibrate_clicked();
-    void on_pushButtonDPPtCalibrate_clicked();
-    void on_pushButtonDPPtSearchFlips_clicked();
-    void on_pushButtonHGSSSearchCalls_clicked();
-    void on_pushButtonHGSSMap_clicked();
-
-};
 
 #endif // SEEDTOTIME4_HPP

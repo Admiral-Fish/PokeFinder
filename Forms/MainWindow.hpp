@@ -31,69 +31,74 @@
 #include <Forms/Gen4/Stationary4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class MainWindow;
+
+    namespace Ui
+    {
+        class MainWindow;
+    }
+
+    class MainWindow : public QMainWindow
+    {
+        Q_OBJECT
+
+    public:
+        explicit MainWindow(QWidget *parent = nullptr);
+        ~MainWindow() override;
+
+    private:
+        Ui::MainWindow *ui;
+        QActionGroup *langGroup{};
+        QActionGroup *styleGroup{};
+        const QString VERSION = "v2.4.1";
+        QString currentLanguage;
+        QString currentStyle;
+
+        Stationary3 *stationary3{};
+        Wild3 *wild3{};
+        GameCube *gamecube{};
+        Eggs3 *egg3{};
+        IDs3 *ids3{};
+        Stationary4 *stationary4{};
+        Wild4 *wild4{};
+        Eggs4 *egg4{};
+        IDs4 *ids4{};
+
+        void setupLanguage();
+        void setupStyle();
+        void checkUpdates();
+
+    private slots:
+        void slotLanguageChanged(QAction *action);
+        void slotStyleChanged(QAction *action);
+        void updateProfiles(int num);
+        void on_pushButtonStationary3_clicked();
+        void on_pushButtonWild3_clicked();
+        void on_pushButtonGameCube_clicked();
+        void on_pushButtonEgg3_clicked();
+        void on_pushButtonIDs3_clicked();
+        void on_actionGameCubeRTC_triggered();
+        void on_actionGameCube_Seed_Finder_triggered();
+        void on_actionIVtoPID3_triggered();
+        void on_actionJirachiPattern_triggered();
+        void on_actionPIDtoIV_triggered();
+        void on_actionPokeSpot_triggered();
+        void on_actionSeedtoTime3_triggered();
+        void on_actionSpinda_Painter_triggered();
+        void on_pushButtonStationary4_clicked();
+        void on_pushButtonWild4_clicked();
+        void on_pushButtonEgg4_clicked();
+        void on_pushButtonIDs4_clicked();
+        void on_actionIVtoPID4_triggered();
+        void on_actionSeedtoTime4_triggered();
+        void on_actionSID_from_Chained_Shiny_triggered();
+        void on_actionEncounter_Lookup_triggered();
+        void on_actionIV_Calculator_triggered();
+        void on_actionResearcher_triggered();
+
+    };
+
 }
-
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
-
-public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow() override;
-
-private:
-    Ui::MainWindow *ui;
-    QActionGroup *langGroup{};
-    QActionGroup *styleGroup{};
-    const QString VERSION = "v2.4.1";
-    QString currentLanguage;
-    QString currentStyle;
-
-    Stationary3 *stationary3{};
-    Wild3 *wild3{};
-    GameCube *gamecube{};
-    Eggs3 *egg3{};
-    IDs3 *ids3{};
-    Stationary4 *stationary4{};
-    Wild4 *wild4{};
-    Eggs4 *egg4{};
-    IDs4 *ids4{};
-
-    void setupLanguage();
-    void setupStyle();
-    void checkUpdates();
-
-private slots:
-    void slotLanguageChanged(QAction *action);
-    void slotStyleChanged(QAction *action);
-    void updateProfiles(int num);
-    void on_pushButtonStationary3_clicked();
-    void on_pushButtonWild3_clicked();
-    void on_pushButtonGameCube_clicked();
-    void on_pushButtonEgg3_clicked();
-    void on_pushButtonIDs3_clicked();
-    void on_actionGameCubeRTC_triggered();
-    void on_actionGameCube_Seed_Finder_triggered();
-    void on_actionIVtoPID3_triggered();
-    void on_actionJirachiPattern_triggered();
-    void on_actionPIDtoIV_triggered();
-    void on_actionPokeSpot_triggered();
-    void on_actionSeedtoTime3_triggered();
-    void on_actionSpinda_Painter_triggered();
-    void on_pushButtonStationary4_clicked();
-    void on_pushButtonWild4_clicked();
-    void on_pushButtonEgg4_clicked();
-    void on_pushButtonIDs4_clicked();
-    void on_actionIVtoPID4_triggered();
-    void on_actionSeedtoTime4_triggered();
-    void on_actionSID_from_Chained_Shiny_triggered();
-    void on_actionEncounter_Lookup_triggered();
-    void on_actionIV_Calculator_triggered();
-    void on_actionResearcher_triggered();
-
-};
 
 #endif // MAINWINDOW_HPP

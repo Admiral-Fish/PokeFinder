@@ -19,51 +19,56 @@
 
 #include "Profile4Model.hpp"
 
-Profile4Model::Profile4Model(QObject *parent) :
-    TableModel<Profile4>(parent)
+namespace PokeFinderModels
 {
-}
 
-int Profile4Model::columnCount(const QModelIndex & /*parent*/) const
-{
-    return 9;
-}
-
-QVariant Profile4Model::data(const QModelIndex &index, int role) const
-{
-    if (role == Qt::DisplayRole)
+    Profile4Model::Profile4Model(QObject *parent) :
+        TableModel<PokeFinderCore::Profile4>(parent)
     {
-        auto profile = model.at(index.row());
-        switch (index.column())
+    }
+
+    int Profile4Model::columnCount(const QModelIndex & /*parent*/) const
+    {
+        return 9;
+    }
+
+    QVariant Profile4Model::data(const QModelIndex &index, int role) const
+    {
+        if (role == Qt::DisplayRole)
         {
-            case 0:
-                return profile.getProfileName();
-            case 1:
-                return profile.getVersionString();
-            case 2:
-                return profile.getLanguageString();
-            case 3:
-                return profile.getTID();
-            case 4:
-                return profile.getSID();
-            case 5:
-                return profile.getDualSlotString();
-            case 6:
-                return profile.getRadioString();
-            case 7:
-                return profile.getRadar() ? tr("True") : tr("False");
-            case 8:
-                return profile.getSwarm() ? tr("True") : tr("False");
+            auto profile = model.at(index.row());
+            switch (index.column())
+            {
+                case 0:
+                    return profile.getProfileName();
+                case 1:
+                    return profile.getVersionString();
+                case 2:
+                    return profile.getLanguageString();
+                case 3:
+                    return profile.getTID();
+                case 4:
+                    return profile.getSID();
+                case 5:
+                    return profile.getDualSlotString();
+                case 6:
+                    return profile.getRadioString();
+                case 7:
+                    return profile.getRadar() ? tr("True") : tr("False");
+                case 8:
+                    return profile.getSwarm() ? tr("True") : tr("False");
+            }
         }
+        return QVariant();
     }
-    return QVariant();
-}
 
-QVariant Profile4Model::headerData(int section, Qt::Orientation orientation, int role) const
-{
-    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+    QVariant Profile4Model::headerData(int section, Qt::Orientation orientation, int role) const
     {
-        return header.at(section);
+        if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+        {
+            return header.at(section);
+        }
+        return QVariant();
     }
-    return QVariant();
+
 }

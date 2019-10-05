@@ -21,177 +21,182 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Power.hpp>
 
-QString Frame::getGenderString()
+namespace PokeFinderCore
 {
-    switch (gender)
+
+    QString Frame::getGenderString()
     {
-        case 1:
-            return "♂";
-        case 2:
-            return "♀";
-        case 0:
-        default:
-            return "-";
+        switch (gender)
+        {
+            case 1:
+                return "♂";
+            case 2:
+                return "♀";
+            case 0:
+            default:
+                return "-";
+        }
     }
-}
 
-QString Frame::getNatureString()
-{
-    return Nature::getNature(nature);
-}
+    QString Frame::getNatureString()
+    {
+        return Nature::getNature(nature);
+    }
 
-QString Frame::getPowerString()
-{
-    return Power::getPower(hidden);
-}
+    QString Frame::getPowerString()
+    {
+        return Power::getPower(hidden);
+    }
 
-QString Frame::getShinyString()
-{
-    return shiny ? "!!!" : "";
-}
+    QString Frame::getShinyString()
+    {
+        return shiny ? "!!!" : "";
+    }
 
-void Frame::setIVs(u8 iv1, u8 iv2, u8 iv3, u8 iv4, u8 iv5, u8 iv6)
-{
-    ivs[0] = iv1;
-    ivs[1] = iv2;
-    ivs[2] = iv3;
-    ivs[3] = iv4;
-    ivs[4] = iv5;
-    ivs[5] = iv6;
-    calculateHidden();
-    calculatePower();
-}
+    void Frame::setIVs(u8 iv1, u8 iv2, u8 iv3, u8 iv4, u8 iv5, u8 iv6)
+    {
+        ivs[0] = iv1;
+        ivs[1] = iv2;
+        ivs[2] = iv3;
+        ivs[3] = iv4;
+        ivs[4] = iv5;
+        ivs[5] = iv6;
+        calculateHidden();
+        calculatePower();
+    }
 
-void Frame::setIDs(u16 tid, u16 sid, u16 psv)
-{
-    this->tid = tid;
-    this->sid = sid;
-    this->psv = psv;
-}
+    void Frame::setIDs(u16 tid, u16 sid, u16 psv)
+    {
+        this->tid = tid;
+        this->sid = sid;
+        this->psv = psv;
+    }
 
-void Frame::setIVs(u16 iv1, u16 iv2)
-{
-    ivs[0] = iv1 & 0x1f;
-    ivs[1] = (iv1 >> 5) & 0x1f;
-    ivs[2] = (iv1 >> 10) & 0x1f;
-    ivs[3] = (iv2 >> 5) & 0x1f;
-    ivs[4] = (iv2 >> 10) & 0x1f;
-    ivs[5] = iv2 & 0x1f;
-    calculateHidden();
-    calculatePower();
-}
+    void Frame::setIVs(u16 iv1, u16 iv2)
+    {
+        ivs[0] = iv1 & 0x1f;
+        ivs[1] = (iv1 >> 5) & 0x1f;
+        ivs[2] = (iv1 >> 10) & 0x1f;
+        ivs[3] = (iv2 >> 5) & 0x1f;
+        ivs[4] = (iv2 >> 10) & 0x1f;
+        ivs[5] = iv2 & 0x1f;
+        calculateHidden();
+        calculatePower();
+    }
 
-u32 Frame::getFrame() const
-{
-    return frame;
-}
+    u32 Frame::getFrame() const
+    {
+        return frame;
+    }
 
-u8 Frame::getIV(int index) const
-{
-    return ivs.at(index);
-}
+    u8 Frame::getIV(int index) const
+    {
+        return ivs.at(index);
+    }
 
-u16 Frame::getTID() const
-{
-    return tid;
-}
+    u16 Frame::getTID() const
+    {
+        return tid;
+    }
 
-u16 Frame::getSID() const
-{
-    return sid;
-}
+    u16 Frame::getSID() const
+    {
+        return sid;
+    }
 
-QChar Frame::getInheritance(int index) const
-{
-    return inheritance.at(index);
-}
+    QChar Frame::getInheritance(int index) const
+    {
+        return inheritance.at(index);
+    }
 
-u8 Frame::getPower() const
-{
-    return power;
-}
+    u8 Frame::getPower() const
+    {
+        return power;
+    }
 
-u32 Frame::getPID() const
-{
-    return pid;
-}
+    u32 Frame::getPID() const
+    {
+        return pid;
+    }
 
-u8 Frame::getAbility() const
-{
-    return ability;
-}
+    u8 Frame::getAbility() const
+    {
+        return ability;
+    }
 
-Lead Frame::getLeadType() const
-{
-    return leadType;
-}
+    Lead Frame::getLeadType() const
+    {
+        return leadType;
+    }
 
-u8 Frame::getEncounterSlot() const
-{
-    return encounterSlot;
-}
+    u8 Frame::getEncounterSlot() const
+    {
+        return encounterSlot;
+    }
 
-void Frame::setEncounterSlot(const u8 &value)
-{
-    encounterSlot = value;
-}
+    void Frame::setEncounterSlot(const u8 &value)
+    {
+        encounterSlot = value;
+    }
 
-u8 Frame::getLevel() const
-{
-    return level;
-}
+    u8 Frame::getLevel() const
+    {
+        return level;
+    }
 
-void Frame::setLevel(const u8 &value)
-{
-    level = value;
-}
+    void Frame::setLevel(const u8 &value)
+    {
+        level = value;
+    }
 
-bool Frame::getShiny() const
-{
-    return shiny;
-}
+    bool Frame::getShiny() const
+    {
+        return shiny;
+    }
 
-u32 Frame::getNature() const
-{
-    return nature;
-}
+    u32 Frame::getNature() const
+    {
+        return nature;
+    }
 
-void Frame::setNature(const u8 &value)
-{
-    nature = value;
-}
+    void Frame::setNature(const u8 &value)
+    {
+        nature = value;
+    }
 
-u8 Frame::getHidden() const
-{
-    return hidden;
-}
+    u8 Frame::getHidden() const
+    {
+        return hidden;
+    }
 
-u8 Frame::getGender() const
-{
-    return gender;
-}
+    u8 Frame::getGender() const
+    {
+        return gender;
+    }
 
-void Frame::setGender(const u8 &value)
-{
-    gender = value;
-}
+    void Frame::setGender(const u8 &value)
+    {
+        gender = value;
+    }
 
-void Frame::setFrame(const u32 &value)
-{
-    frame = value;
-}
+    void Frame::setFrame(const u32 &value)
+    {
+        frame = value;
+    }
 
-void Frame::setLeadType(const Lead &value)
-{
-    leadType = value;
-}
+    void Frame::setLeadType(const Lead &value)
+    {
+        leadType = value;
+    }
 
-void Frame::calculateHidden()
-{
-    hidden = ((((ivs.at(0) & 1) + 2 * (ivs.at(1) & 1) + 4 * (ivs.at(2) & 1) + 8 * (ivs.at(5) & 1) + 16 * (ivs.at(3) & 1) + 32 * (ivs.at(4) & 1)) * 15) / 63);
-}
+    void Frame::calculateHidden()
+    {
+        hidden = ((((ivs.at(0) & 1) + 2 * (ivs.at(1) & 1) + 4 * (ivs.at(2) & 1) + 8 * (ivs.at(5) & 1) + 16 * (ivs.at(3) & 1) + 32 * (ivs.at(4) & 1)) * 15) / 63);
+    }
 
-void Frame::calculatePower()
-{
-    power = 30 + ((((ivs.at(0) >> 1) & 1) + 2 * ((ivs.at(1) >> 1) & 1) + 4 * ((ivs.at(2) >> 1) & 1) + 8 * ((ivs.at(5) >> 1) & 1) + 16 * ((ivs.at(3) >> 1) & 1) + 32 * ((ivs.at(4) >> 1) & 1)) * 40 / 63);
+    void Frame::calculatePower()
+    {
+        power = 30 + ((((ivs.at(0) >> 1) & 1) + 2 * ((ivs.at(1) >> 1) & 1) + 4 * ((ivs.at(2) >> 1) & 1) + 8 * ((ivs.at(5) >> 1) & 1) + 16 * ((ivs.at(3) >> 1) & 1) + 32 * ((ivs.at(4) >> 1) & 1)) * 40 / 63);
+    }
+
 }

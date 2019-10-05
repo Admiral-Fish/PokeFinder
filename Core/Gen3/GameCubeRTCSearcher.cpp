@@ -21,76 +21,81 @@
 #include "GameCubeRTCSearcher.hpp"
 #include <Core/RNG/LCRNG.hpp>
 
-GameCubeRTCSearcher::GameCubeRTCSearcher(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame)
+namespace PokeFinderCore
 {
-    this->initialSeed = initialSeed;
-    this->targetSeed = targetSeed;
-    this->minFrame = minFrame;
-    this->maxFrame = maxFrame;
-    searching = false;
-    cancel = false;
 
-    connect(this, &GameCubeRTCSearcher::finished, this, [ = ]
+    GameCubeRTCSearcher::GameCubeRTCSearcher(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame)
     {
+        this->initialSeed = initialSeed;
+        this->targetSeed = targetSeed;
+        this->minFrame = minFrame;
+        this->maxFrame = maxFrame;
         searching = false;
-        deleteLater();
-    });
-}
-
-void GameCubeRTCSearcher::startSearch()
-{
-    if (!searching)
-    {
-        searching = true;
         cancel = false;
 
-        QtConcurrent::run([ = ] { search(); });
-    }
-}
-
-void GameCubeRTCSearcher::cancelSearch()
-{
-    cancel = true;
-}
-
-void GameCubeRTCSearcher::search()
-{
-    XDRNGR back(targetSeed, minFrame);
-    targetSeed = back.getSeed();
-
-    u32 seconds = 0;
-    u32 minutes = 0;
-    u8 secoundCount = 0;
-
-    while (!cancel)
-    {
-        XDRNG rng(initialSeed);
-
-        for (u32 x = 0; x < maxFrame; x++)
+        connect(this, &GameCubeRTCSearcher::finished, this, [ = ]
         {
-            if (rng.nextUInt() == targetSeed)
-            {
-                QDateTime finalTime = date.addSecs(seconds);
-                QList<QStandardItem *> row;
-                QString time = finalTime.toString(Qt::SystemLocaleShortDate);
-                row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
-                    << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initialSeed, 16).toUpper());
+            searching = false;
+            deleteLater();
+        });
+    }
 
-                emit result(row);
-                emit finished();
-                return;
+    void GameCubeRTCSearcher::startSearch()
+    {
+        if (!searching)
+        {
+            searching = true;
+            cancel = false;
+
+            QtConcurrent::run([ = ] { search(); });
+        }
+    }
+
+    void GameCubeRTCSearcher::cancelSearch()
+    {
+        cancel = true;
+    }
+
+    void GameCubeRTCSearcher::search()
+    {
+        XDRNGR back(targetSeed, minFrame);
+        targetSeed = back.getSeed();
+
+        u32 seconds = 0;
+        u32 minutes = 0;
+        u8 secoundCount = 0;
+
+        while (!cancel)
+        {
+            XDRNG rng(initialSeed);
+
+            for (u32 x = 0; x < maxFrame; x++)
+            {
+                if (rng.nextUInt() == targetSeed)
+                {
+                    QDateTime finalTime = date.addSecs(seconds);
+                    QList<QStandardItem *> row;
+                    QString time = finalTime.toString(Qt::SystemLocaleShortDate);
+                    row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
+                        << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initialSeed, 16).toUpper());
+
+                    emit result(row);
+                    emit finished();
+                    return;
+                }
+            }
+
+            initialSeed += 40500000;
+            seconds++;
+            secoundCount++;
+
+            if (secoundCount == 60)
+            {
+                minutes++;
+                secoundCount = 0;
             }
         }
-
-        initialSeed += 40500000;
-        seconds++;
-        secoundCount++;
-
-        if (secoundCount == 60)
-        {
-            minutes++;
-            secoundCount = 0;
-        }
+        emit finished();
     }
-    emit finished();
+
 }

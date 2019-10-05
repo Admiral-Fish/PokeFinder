@@ -25,28 +25,31 @@
 #include <Core/Util/Encounter.hpp>
 #include <Core/Util/Global.hpp>
 
-class EncounterArea
+namespace PokeFinderCore
 {
 
-public:
-    EncounterArea() = default;
-    EncounterArea(int location, Encounter type, const QVector<Slot> &pokemon);
-    Encounter getType() const;
-    u8 getLocation() const;
-    QVector<Slot> getPokemon() const;
-    QVector<u16> getUniqueSpecies() const;
-    QVector<bool> getSlots(u16 num) const;
-    QPair<u8, u8> getLevelRange(u16 specie) const;
-    QStringList getSpecieNames() const;
-    void setSlot(u8 index, u16 specie, Pokemon mon);
+    class EncounterArea
+    {
 
-protected:
-    QVector<Slot> pokemon;
-    u8 location{};
-    Encounter type{};
+    public:
+        EncounterArea() = default;
+        EncounterArea(int location, Encounter type, const QVector<Slot> &pokemon);
+        Encounter getType() const;
+        u8 getLocation() const;
+        QVector<Slot> getPokemon() const;
+        QVector<u16> getUniqueSpecies() const;
+        QVector<bool> getSlots(u16 num) const;
+        QPair<u8, u8> getLevelRange(u16 specie) const;
+        QStringList getSpecieNames() const;
+        void setSlot(u8 index, u16 specie, Pokemon mon);
 
-};
+    protected:
+        QVector<Slot> pokemon;
+        u8 location{};
+        Encounter type{};
 
+    };
 
+}
 
 #endif // ENCOUNTERAREA_HPP

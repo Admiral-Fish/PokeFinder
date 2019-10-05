@@ -19,32 +19,37 @@
 
 #include "Searcher.hpp"
 
-Encounter Searcher::getEncounterType() const
+namespace PokeFinderCore
 {
-    return encounterType;
-}
 
-void Searcher::setEncounterType(const Encounter &value)
-{
-    encounterType = value;
-}
+    Encounter Searcher::getEncounterType() const
+    {
+        return encounterType;
+    }
 
-Method Searcher::getFrameType() const
-{
-    return frameType;
-}
+    void Searcher::setEncounterType(const Encounter &value)
+    {
+        encounterType = value;
+    }
 
-void Searcher::setFrameType(const Method &value)
-{
-    frameType = value;
-}
+    Method Searcher::getFrameType() const
+    {
+        return frameType;
+    }
 
-Lead Searcher::getLeadType() const
-{
-    return leadType;
-}
+    void Searcher::setFrameType(const Method &value)
+    {
+        frameType = value;
+    }
 
-void Searcher::setLeadType(const Lead &value)
-{
-    leadType = value;
+    Lead Searcher::getLeadType() const
+    {
+        return leadType;
+    }
+
+    void Searcher::setLeadType(const Lead &value)
+    {
+        leadType = value;
+    }
+
 }

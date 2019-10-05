@@ -26,32 +26,37 @@
 #include <Core/Util/Lead.hpp>
 #include <Core/Util/Method.hpp>
 
-class Generator
+namespace PokeFinderCore
 {
 
-public:
-    Encounter getEncounterType() const;
-    void setEncounterType(const Encounter &value);
-    Lead getLeadType() const;
-    void setLeadType(const Lead &value);
-    u8 getSynchNature() const;
-    void setSynchNature(const u8 &value);
+    class Generator
+    {
 
-protected:
-    u16 psv{};
-    u16 sid{};
-    u16 tid{};
-    u8 genderRatio{};
-    u32 offset{};
-    Method frameType = Method::Method1;
-    Encounter encounterType = Encounter::Stationary;
-    Lead leadType = Lead::None;
-    u32 initialSeed{};
-    u32 initialFrame{};
-    u32 maxResults{};
-    u8 synchNature{};
-    u8 cuteCharm{};
+    public:
+        Encounter getEncounterType() const;
+        void setEncounterType(const Encounter &value);
+        Lead getLeadType() const;
+        void setLeadType(const Lead &value);
+        u8 getSynchNature() const;
+        void setSynchNature(const u8 &value);
 
-};
+    protected:
+        u16 psv{};
+        u16 sid{};
+        u16 tid{};
+        u8 genderRatio{};
+        u32 offset{};
+        Method frameType = Method::Method1;
+        Encounter encounterType = Encounter::Stationary;
+        Lead leadType = Lead::None;
+        u32 initialSeed{};
+        u32 initialFrame{};
+        u32 maxResults{};
+        u8 synchNature{};
+        u8 cuteCharm{};
+
+    };
+
+}
 
 #endif // GENERATOR_HPP

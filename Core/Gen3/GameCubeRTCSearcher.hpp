@@ -26,28 +26,33 @@
 #include <QStandardItem>
 #include <Core/Util/Global.hpp>
 
-class GameCubeRTCSearcher : public QObject
+namespace PokeFinderCore
 {
-    Q_OBJECT
 
-signals:
-    void finished();
-    void result(QList<QStandardItem *>);
+    class GameCubeRTCSearcher : public QObject
+    {
+        Q_OBJECT
 
-public:
-    GameCubeRTCSearcher(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame);
-    void startSearch();
+    signals:
+        void finished();
+        void result(QList<QStandardItem *>);
 
-public slots:
-    void cancelSearch();
+    public:
+        GameCubeRTCSearcher(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame);
+        void startSearch();
 
-private:
-    const QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
-    u32 initialSeed, targetSeed;
-    u32 minFrame, maxFrame;
-    bool searching, cancel;
+    public slots:
+        void cancelSearch();
 
-    void search();
-};
+    private:
+        const QDateTime date = QDateTime(QDate(2000, 1, 1), QTime(0, 0));
+        u32 initialSeed, targetSeed;
+        u32 minFrame, maxFrame;
+        bool searching, cancel;
+
+        void search();
+    };
+
+}
 
 #endif // GAMECUBERTCSEARCHER_HPP

@@ -35,375 +35,380 @@
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Util/Researcher.hpp>
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+namespace PokeFinderForms
 {
-    ui->setupUi(this);
 
-    setupLanguage();
-    setupStyle();
-    QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
-
-    QSettings setting;
-    if (setting.contains("mainWindow/geometry")) this->restoreGeometry(setting.value("mainWindow/geometry").toByteArray());
-}
-
-MainWindow::~MainWindow()
-{
-    QSettings setting;
-    setting.beginGroup("settings");
-    setting.setValue("locale", currentLanguage);
-    setting.setValue("style", currentStyle);
-    setting.endGroup();
-
-    setting.setValue("mainWindow/geometry", this->saveGeometry());
-
-    delete ui;
-    delete stationary3;
-    delete wild3;
-    delete egg3;
-    delete ids3;
-    delete stationary4;
-    delete wild4;
-    delete egg4;
-    delete ids4;
-}
-
-void MainWindow::setupLanguage()
-{
-    langGroup = new QActionGroup(ui->menuLanguage);
-    langGroup->setExclusive(true);
-    connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
-
-    QSettings setting;
-    currentLanguage = setting.value("settings/locale", "en").toString();
-
-    QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh_Hans_CN" };
-    for (u8 i = 0; i < locales.size(); i++)
+    MainWindow::MainWindow(QWidget *parent) :
+        QMainWindow(parent),
+        ui(new Ui::MainWindow)
     {
-        const QString &lang = locales.at(i);
+        ui->setupUi(this);
 
-        auto *action = ui->menuLanguage->actions()[i];
-        action->setData(lang);
+        setupLanguage();
+        setupStyle();
+        QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
 
-        if (currentLanguage == lang)
-        {
-            action->setChecked(true);
-        }
-
-        langGroup->addAction(action);
+        QSettings setting;
+        if (setting.contains("mainWindow/geometry")) this->restoreGeometry(setting.value("mainWindow/geometry").toByteArray());
     }
-}
 
-void MainWindow::setupStyle()
-{
-    styleGroup = new QActionGroup(ui->menuStyle);
-    styleGroup->setExclusive(true);
-    connect(styleGroup, &QActionGroup::triggered, this, &MainWindow::slotStyleChanged);
-
-    QSettings setting;
-    currentStyle = setting.value("settings/style", "dark").toString();
-
-    QStringList styles = { "dark", "light" };
-    for (u8 i = 0; i < styles.size(); i++)
+    MainWindow::~MainWindow()
     {
-        const QString &style = styles.at(i);
+        QSettings setting;
+        setting.beginGroup("settings");
+        setting.setValue("locale", currentLanguage);
+        setting.setValue("style", currentStyle);
+        setting.endGroup();
 
-        auto *action = ui->menuStyle->actions()[i];
-        action->setData(style);
+        setting.setValue("mainWindow/geometry", this->saveGeometry());
 
-        if (currentStyle == style)
-        {
-            action->setChecked(true);
-        }
-
-        styleGroup->addAction(action);
+        delete ui;
+        delete stationary3;
+        delete wild3;
+        delete egg3;
+        delete ids3;
+        delete stationary4;
+        delete wild4;
+        delete egg4;
+        delete ids4;
     }
-}
 
-void MainWindow::checkUpdates()
-{
-    QSettings setting;
-    QDate today = QDate::currentDate();
-    QDate lastOpened = setting.value("settings/lastOpened", today).toDate();
-
-    if (lastOpened.daysTo(today) > 0)
+    void MainWindow::setupLanguage()
     {
-        QNetworkAccessManager manager;
-        QNetworkRequest request(QUrl("https://api.github.com/repos/Admiral-Fish/PokeFinder/releases/latest"));
-        QScopedPointer<QNetworkReply> reply(manager.get(request));
+        langGroup = new QActionGroup(ui->menuLanguage);
+        langGroup->setExclusive(true);
+        connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
 
-        QEventLoop loop;
-        connect(reply.data(), SIGNAL(finished()), &loop, SLOT(quit()));
-        connect(reply.data(), SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-        loop.exec();
+        QSettings setting;
+        currentLanguage = setting.value("settings/locale", "en").toString();
 
-        auto response = QJsonDocument::fromJson(reply->readAll());
-        QString webVersion = response.object()["tag_name"].toString();
-        if (!webVersion.isEmpty() && VERSION != webVersion)
+        QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh_Hans_CN" };
+        for (u8 i = 0; i < locales.size(); i++)
         {
-            QMessageBox info(QMessageBox::Question, tr("Update Check"), tr("An update is available. Would you like to download the newest version?"), QMessageBox::Yes | QMessageBox::No);
-            if (info.exec() == QMessageBox::Yes)
+            const QString &lang = locales.at(i);
+
+            auto *action = ui->menuLanguage->actions()[i];
+            action->setData(lang);
+
+            if (currentLanguage == lang)
             {
-                QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/latest"));
+                action->setChecked(true);
+            }
+
+            langGroup->addAction(action);
+        }
+    }
+
+    void MainWindow::setupStyle()
+    {
+        styleGroup = new QActionGroup(ui->menuStyle);
+        styleGroup->setExclusive(true);
+        connect(styleGroup, &QActionGroup::triggered, this, &MainWindow::slotStyleChanged);
+
+        QSettings setting;
+        currentStyle = setting.value("settings/style", "dark").toString();
+
+        QStringList styles = { "dark", "light" };
+        for (u8 i = 0; i < styles.size(); i++)
+        {
+            const QString &style = styles.at(i);
+
+            auto *action = ui->menuStyle->actions()[i];
+            action->setData(style);
+
+            if (currentStyle == style)
+            {
+                action->setChecked(true);
+            }
+
+            styleGroup->addAction(action);
+        }
+    }
+
+    void MainWindow::checkUpdates()
+    {
+        QSettings setting;
+        QDate today = QDate::currentDate();
+        QDate lastOpened = setting.value("settings/lastOpened", today).toDate();
+
+        if (lastOpened.daysTo(today) > 0)
+        {
+            QNetworkAccessManager manager;
+            QNetworkRequest request(QUrl("https://api.github.com/repos/Admiral-Fish/PokeFinder/releases/latest"));
+            QScopedPointer<QNetworkReply> reply(manager.get(request));
+
+            QEventLoop loop;
+            connect(reply.data(), SIGNAL(finished()), &loop, SLOT(quit()));
+            connect(reply.data(), SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+            loop.exec();
+
+            auto response = QJsonDocument::fromJson(reply->readAll());
+            QString webVersion = response.object()["tag_name"].toString();
+            if (!webVersion.isEmpty() && VERSION != webVersion)
+            {
+                QMessageBox info(QMessageBox::Question, tr("Update Check"), tr("An update is available. Would you like to download the newest version?"), QMessageBox::Yes | QMessageBox::No);
+                if (info.exec() == QMessageBox::Yes)
+                {
+                    QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/latest"));
+                }
+            }
+        }
+
+        setting.setValue("settings/lastOpened", today);
+    }
+
+    void MainWindow::slotLanguageChanged(QAction *action)
+    {
+        if (action)
+        {
+            QString lang = action->data().toString();
+            if (currentLanguage != lang)
+            {
+                currentLanguage = lang;
+
+                QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
+                if (message.exec() == QMessageBox::Yes)
+                {
+                    QProcess::startDetached(QApplication::applicationFilePath());
+                    QApplication::quit();
+                }
             }
         }
     }
 
-    setting.setValue("settings/lastOpened", today);
-}
-
-void MainWindow::slotLanguageChanged(QAction *action)
-{
-    if (action)
+    void MainWindow::slotStyleChanged(QAction *action)
     {
-        QString lang = action->data().toString();
-        if (currentLanguage != lang)
+        if (action)
         {
-            currentLanguage = lang;
-
-            QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
-            if (message.exec() == QMessageBox::Yes)
+            QString style = action->data().toString();
+            if (currentStyle != style)
             {
-                QProcess::startDetached(QApplication::applicationFilePath());
-                QApplication::quit();
+                currentStyle = style;
+
+                QMessageBox message(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
+                if (message.exec() == QMessageBox::Yes)
+                {
+                    QProcess::startDetached(QApplication::applicationFilePath());
+                    QApplication::quit();
+                }
             }
         }
     }
-}
 
-void MainWindow::slotStyleChanged(QAction *action)
-{
-    if (action)
+    void MainWindow::updateProfiles(int num)
     {
-        QString style = action->data().toString();
-        if (currentStyle != style)
+        if (num == 3)
         {
-            currentStyle = style;
-
-            QMessageBox message(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
-            if (message.exec() == QMessageBox::Yes)
-            {
-                QProcess::startDetached(QApplication::applicationFilePath());
-                QApplication::quit();
-            }
+            if (stationary3) stationary3->updateProfiles();
+            if (wild3) wild3->updateProfiles();
+            if (gamecube) gamecube->updateProfiles();
+            if (egg3) egg3->updateProfiles();
+        }
+        else if (num == 4)
+        {
+            if (stationary4) stationary4->updateProfiles();
+            if (wild4) wild4->updateProfiles();
+            if (egg4) egg4->updateProfiles();
         }
     }
-}
 
-void MainWindow::updateProfiles(int num)
-{
-    if (num == 3)
+    void MainWindow::on_pushButtonStationary3_clicked()
     {
-        if (stationary3) stationary3->updateProfiles();
-        if (wild3) wild3->updateProfiles();
-        if (gamecube) gamecube->updateProfiles();
-        if (egg3) egg3->updateProfiles();
+        if (!stationary3)
+        {
+            stationary3 = new Stationary3();
+            connect(stationary3, &Stationary3::alertProfiles, this, &MainWindow::updateProfiles);
+        }
+        stationary3->show();
+        stationary3->raise();
     }
-    else if (num == 4)
+
+    void MainWindow::on_pushButtonWild3_clicked()
     {
-        if (stationary4) stationary4->updateProfiles();
-        if (wild4) wild4->updateProfiles();
-        if (egg4) egg4->updateProfiles();
+        if (!wild3)
+        {
+            wild3 = new Wild3();
+            connect(wild3, &Wild3::alertProfiles, this, &MainWindow::updateProfiles);
+        }
+        wild3->show();
+        wild3->raise();
     }
-}
 
-void MainWindow::on_pushButtonStationary3_clicked()
-{
-    if (!stationary3)
+    void MainWindow::on_pushButtonGameCube_clicked()
     {
-        stationary3 = new Stationary3();
-        connect(stationary3, &Stationary3::alertProfiles, this, &MainWindow::updateProfiles);
+        if (!gamecube)
+        {
+            gamecube = new GameCube();
+            connect(gamecube, &GameCube::alertProfiles, this, &MainWindow::updateProfiles);
+        }
+        gamecube->show();
+        gamecube->raise();
     }
-    stationary3->show();
-    stationary3->raise();
-}
 
-void MainWindow::on_pushButtonWild3_clicked()
-{
-    if (!wild3)
+    void MainWindow::on_pushButtonEgg3_clicked()
     {
-        wild3 = new Wild3();
-        connect(wild3, &Wild3::alertProfiles, this, &MainWindow::updateProfiles);
+        if (!egg3)
+        {
+            egg3 = new Eggs3();
+            connect(egg3, &Eggs3::alertProfiles, this, &MainWindow::updateProfiles);
+        }
+        egg3->show();
+        egg3->raise();
     }
-    wild3->show();
-    wild3->raise();
-}
 
-void MainWindow::on_pushButtonGameCube_clicked()
-{
-    if (!gamecube)
+    void MainWindow::on_pushButtonIDs3_clicked()
     {
-        gamecube = new GameCube();
-        connect(gamecube, &GameCube::alertProfiles, this, &MainWindow::updateProfiles);
+        if (!ids3)
+        {
+            ids3 = new IDs3();
+        }
+        ids3->show();
+        ids3->raise();
     }
-    gamecube->show();
-    gamecube->raise();
-}
 
-void MainWindow::on_pushButtonEgg3_clicked()
-{
-    if (!egg3)
+    void MainWindow::on_actionGameCubeRTC_triggered()
     {
-        egg3 = new Eggs3();
-        connect(egg3, &Eggs3::alertProfiles, this, &MainWindow::updateProfiles);
+        auto *rtc = new GameCubeRTC();
+        rtc->show();
+        rtc->raise();
     }
-    egg3->show();
-    egg3->raise();
-}
 
-void MainWindow::on_pushButtonIDs3_clicked()
-{
-    if (!ids3)
+    void MainWindow::on_actionGameCube_Seed_Finder_triggered()
     {
-        ids3 = new IDs3();
+        auto *finder = new GameCubeSeedFinder();
+        finder->show();
+        finder->raise();
     }
-    ids3->show();
-    ids3->raise();
-}
 
-void MainWindow::on_actionGameCubeRTC_triggered()
-{
-    auto *rtc = new GameCubeRTC();
-    rtc->show();
-    rtc->raise();
-}
-
-void MainWindow::on_actionGameCube_Seed_Finder_triggered()
-{
-    auto *finder = new GameCubeSeedFinder();
-    finder->show();
-    finder->raise();
-}
-
-void MainWindow::on_actionIVtoPID3_triggered()
-{
-    auto *ivToPID = new IVtoPID();
-    ivToPID->show();
-    ivToPID->raise();
-}
-
-void MainWindow::on_actionJirachiPattern_triggered()
-{
-    auto *jirachi = new JirachiPattern();
-    jirachi->show();
-    jirachi->raise();
-}
-
-void MainWindow::on_actionPIDtoIV_triggered()
-{
-    auto *pidToIV = new PIDtoIVs();
-    if (stationary3)
+    void MainWindow::on_actionIVtoPID3_triggered()
     {
-        connect(pidToIV, &PIDtoIVs::moveResultsToStationary, stationary3, &Stationary3::moveResults);
+        auto *ivToPID = new IVtoPID();
+        ivToPID->show();
+        ivToPID->raise();
     }
-    pidToIV->show();
-    pidToIV->raise();
-}
 
-void MainWindow::on_actionPokeSpot_triggered()
-{
-    auto *pokeSpot = new PokeSpot();
-    pokeSpot->show();
-    pokeSpot->raise();
-}
-
-void MainWindow::on_actionSeedtoTime3_triggered()
-{
-    auto *seedToTime = new SeedToTime3();
-    seedToTime->show();
-    seedToTime->raise();
-}
-
-void MainWindow::on_actionSpinda_Painter_triggered()
-{
-    auto *spinda = new SpindaPainter();
-    spinda->show();
-    spinda->raise();
-}
-
-void MainWindow::on_pushButtonStationary4_clicked()
-{
-    if (!stationary4)
+    void MainWindow::on_actionJirachiPattern_triggered()
     {
-        stationary4 = new Stationary4();
-        connect(stationary4, &Stationary4::alertProfiles, this, &MainWindow::updateProfiles);
+        auto *jirachi = new JirachiPattern();
+        jirachi->show();
+        jirachi->raise();
     }
-    stationary4->show();
-    stationary4->raise();
-}
 
-void MainWindow::on_pushButtonWild4_clicked()
-{
-    if (!wild4)
+    void MainWindow::on_actionPIDtoIV_triggered()
     {
-        wild4 = new Wild4();
-        connect(wild4, &Wild4::alertProfiles, this, &MainWindow::updateProfiles);
+        auto *pidToIV = new PIDtoIVs();
+        if (stationary3)
+        {
+            connect(pidToIV, &PIDtoIVs::moveResultsToStationary, stationary3, &Stationary3::moveResults);
+        }
+        pidToIV->show();
+        pidToIV->raise();
     }
-    wild4->show();
-    wild4->raise();
-}
 
-void MainWindow::on_pushButtonEgg4_clicked()
-{
-    if (!egg4)
+    void MainWindow::on_actionPokeSpot_triggered()
     {
-        egg4 = new Eggs4();
-        connect(egg4, &Eggs4::alertProfiles, this, &MainWindow::updateProfiles);
+        auto *pokeSpot = new PokeSpot();
+        pokeSpot->show();
+        pokeSpot->raise();
     }
-    egg4->show();
-    egg4->raise();
-}
 
-void MainWindow::on_pushButtonIDs4_clicked()
-{
-    if (!ids4)
+    void MainWindow::on_actionSeedtoTime3_triggered()
     {
-        ids4 = new IDs4();
+        auto *seedToTime = new SeedToTime3();
+        seedToTime->show();
+        seedToTime->raise();
     }
-    ids4->show();
-    ids4->raise();
-}
 
-void MainWindow::on_actionIVtoPID4_triggered()
-{
-    auto *ivToPID = new IVtoPID();
-    ivToPID->show();
-    ivToPID->raise();
-}
+    void MainWindow::on_actionSpinda_Painter_triggered()
+    {
+        auto *spinda = new SpindaPainter();
+        spinda->show();
+        spinda->raise();
+    }
 
-void MainWindow::on_actionSeedtoTime4_triggered()
-{
-    auto *seedToTime = new SeedtoTime4();
-    seedToTime->show();
-    seedToTime->raise();
-}
+    void MainWindow::on_pushButtonStationary4_clicked()
+    {
+        if (!stationary4)
+        {
+            stationary4 = new Stationary4();
+            connect(stationary4, &Stationary4::alertProfiles, this, &MainWindow::updateProfiles);
+        }
+        stationary4->show();
+        stationary4->raise();
+    }
 
-void MainWindow::on_actionSID_from_Chained_Shiny_triggered()
-{
-    auto *chainedSID = new ChainedSID();
-    chainedSID->show();
-    chainedSID->raise();
-}
+    void MainWindow::on_pushButtonWild4_clicked()
+    {
+        if (!wild4)
+        {
+            wild4 = new Wild4();
+            connect(wild4, &Wild4::alertProfiles, this, &MainWindow::updateProfiles);
+        }
+        wild4->show();
+        wild4->raise();
+    }
 
-void MainWindow::on_actionEncounter_Lookup_triggered()
-{
-    auto *lookup = new EncounterLookup();
-    lookup->show();
-    lookup->raise();
-}
+    void MainWindow::on_pushButtonEgg4_clicked()
+    {
+        if (!egg4)
+        {
+            egg4 = new Eggs4();
+            connect(egg4, &Eggs4::alertProfiles, this, &MainWindow::updateProfiles);
+        }
+        egg4->show();
+        egg4->raise();
+    }
 
-void MainWindow::on_actionIV_Calculator_triggered()
-{
-    auto *iv = new IVCalculator();
-    iv->show();
-    iv->raise();
-}
+    void MainWindow::on_pushButtonIDs4_clicked()
+    {
+        if (!ids4)
+        {
+            ids4 = new IDs4();
+        }
+        ids4->show();
+        ids4->raise();
+    }
 
-void MainWindow::on_actionResearcher_triggered()
-{
-    auto *r = new Researcher();
-    r->show();
-    r->raise();
+    void MainWindow::on_actionIVtoPID4_triggered()
+    {
+        auto *ivToPID = new IVtoPID();
+        ivToPID->show();
+        ivToPID->raise();
+    }
+
+    void MainWindow::on_actionSeedtoTime4_triggered()
+    {
+        auto *seedToTime = new SeedtoTime4();
+        seedToTime->show();
+        seedToTime->raise();
+    }
+
+    void MainWindow::on_actionSID_from_Chained_Shiny_triggered()
+    {
+        auto *chainedSID = new ChainedSID();
+        chainedSID->show();
+        chainedSID->raise();
+    }
+
+    void MainWindow::on_actionEncounter_Lookup_triggered()
+    {
+        auto *lookup = new EncounterLookup();
+        lookup->show();
+        lookup->raise();
+    }
+
+    void MainWindow::on_actionIV_Calculator_triggered()
+    {
+        auto *iv = new IVCalculator();
+        iv->show();
+        iv->raise();
+    }
+
+    void MainWindow::on_actionResearcher_triggered()
+    {
+        auto *r = new Researcher();
+        r->show();
+        r->raise();
+    }
+
 }

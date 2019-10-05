@@ -22,53 +22,58 @@
 
 #include <Core/RNG/IRNG64.hpp>
 
-class LCRNG64 : public IRNG64
+namespace PokeFinderCore
 {
 
-public:
-    LCRNG64() = default;
-    LCRNG64(u64 add, u64 mult, u64 seed, u32 frames = 0);
-    void advanceFrames(u32 frames) override;
-    u32 nextUInt(u32 max);
-    u64 nextULong() override;
-    u32 nextUInt() override;
-    void setSeed(u64 seed) override;
-    void setSeed(u64 seed, u32 frames) override;
-    u64 getSeed() override;
-
-protected:
-    u64 add{};
-    u64 mult{};
-    u64 seed{};
-
-};
-
-class BWRNG : public LCRNG64
-{
-
-public:
-    BWRNG() : LCRNG64(0x269ec3, 0x5d588b656c078965, 0, 0)
+    class LCRNG64 : public IRNG64
     {
-    }
 
-    BWRNG(u64 seed, u32 frames = 0) : LCRNG64(0x269ec3, 0x5d588b656c078965, seed, frames)
+    public:
+        LCRNG64() = default;
+        LCRNG64(u64 add, u64 mult, u64 seed, u32 frames = 0);
+        void advanceFrames(u32 frames) override;
+        u32 nextUInt(u32 max);
+        u64 nextULong() override;
+        u32 nextUInt() override;
+        void setSeed(u64 seed) override;
+        void setSeed(u64 seed, u32 frames) override;
+        u64 getSeed() override;
+
+    protected:
+        u64 add{};
+        u64 mult{};
+        u64 seed{};
+
+    };
+
+    class BWRNG : public LCRNG64
     {
-    }
 
-};
+    public:
+        BWRNG() : LCRNG64(0x269ec3, 0x5d588b656c078965, 0, 0)
+        {
+        }
 
-class BWRNGR : public LCRNG64
-{
+        BWRNG(u64 seed, u32 frames = 0) : LCRNG64(0x269ec3, 0x5d588b656c078965, seed, frames)
+        {
+        }
 
-public:
-    BWRNGR() : LCRNG64(0x9b1ae6e9a384e6f9, 0xdedcedae9638806d, 0, 0)
+    };
+
+    class BWRNGR : public LCRNG64
     {
-    }
 
-    BWRNGR(u64 seed, u32 frames = 0) : LCRNG64(0x9b1ae6e9a384e6f9, 0xdedcedae9638806d, seed, frames)
-    {
-    }
+    public:
+        BWRNGR() : LCRNG64(0x9b1ae6e9a384e6f9, 0xdedcedae9638806d, 0, 0)
+        {
+        }
 
-};
+        BWRNGR(u64 seed, u32 frames = 0) : LCRNG64(0x9b1ae6e9a384e6f9, 0xdedcedae9638806d, seed, frames)
+        {
+        }
+
+    };
+
+}
 
 #endif // LCRNG64_HPP

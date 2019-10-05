@@ -19,32 +19,37 @@
 
 #include "Generator.hpp"
 
-Encounter Generator::getEncounterType() const
+namespace PokeFinderCore
 {
-    return encounterType;
-}
 
-void Generator::setEncounterType(const Encounter &value)
-{
-    encounterType = value;
-}
+    Encounter Generator::getEncounterType() const
+    {
+        return encounterType;
+    }
 
-Lead Generator::getLeadType() const
-{
-    return leadType;
-}
+    void Generator::setEncounterType(const Encounter &value)
+    {
+        encounterType = value;
+    }
 
-void Generator::setLeadType(const Lead &value)
-{
-    leadType = value;
-}
+    Lead Generator::getLeadType() const
+    {
+        return leadType;
+    }
 
-u8 Generator::getSynchNature() const
-{
-    return synchNature;
-}
+    void Generator::setLeadType(const Lead &value)
+    {
+        leadType = value;
+    }
 
-void Generator::setSynchNature(const u8 &value)
-{
-    synchNature = value;
+    u8 Generator::getSynchNature() const
+    {
+        return synchNature;
+    }
+
+    void Generator::setSynchNature(const u8 &value)
+    {
+        synchNature = value;
+    }
+
 }

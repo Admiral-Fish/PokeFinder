@@ -19,17 +19,22 @@
 
 #include "Egg.hpp"
 
-void Egg::setEverstoneNature(const u32 &value)
+namespace PokeFinderCore
 {
-    everstoneNature = value;
-}
 
-u32 Egg::getSeed() const
-{
-    return seed;
-}
+    void Egg::setEverstoneNature(const u32 &value)
+    {
+        everstoneNature = value;
+    }
 
-void Egg::setSeed(const u32 &value)
-{
-    seed = value;
+    u32 Egg::getSeed() const
+    {
+        return seed;
+    }
+
+    void Egg::setSeed(const u32 &value)
+    {
+        seed = value;
+    }
+
 }

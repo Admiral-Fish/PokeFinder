@@ -23,41 +23,46 @@
 #include <Core/Gen3/Frame3.hpp>
 #include <Models/TableModel.hpp>
 
-class Egg3Model : public TableModel<Frame3>
+namespace PokeFinderModels
 {
-    Q_OBJECT
 
-public:
-    Egg3Model(QObject *parent, Method method);
-    void setMethod(Method method);
-    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role) const override;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-
-public slots:
-    void toggleInheritance(bool flag);
-
-private:
-    Method method;
-    bool showInheritance;
-
-    QStringList header1 =
+    class Egg3Model : public TableModel<PokeFinderCore::Frame3>
     {
-        tr("Frame"), tr("Time"), tr("HP"), tr("Atk"), tr("Def"),
-        tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
-    };
-    QStringList header2 =
-    {
-        tr("Frame"), tr("Time"), tr("Redraws"), tr("PID"), "!!!", tr("Nature"),
-        tr("Ability"), tr("Gender")
-    };
-    QStringList header3 =
-    {
-        tr("Held Frame"), tr("Held Time"), tr("Pickup Frame"), tr("Pickup Time"),
-        tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-        tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+        Q_OBJECT
+
+    public:
+        Egg3Model(QObject *parent, PokeFinderCore::Method method);
+        void setMethod(PokeFinderCore::Method method);
+        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+        QVariant data(const QModelIndex &index, int role) const override;
+        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+    public slots:
+        void toggleInheritance(bool flag);
+
+    private:
+        PokeFinderCore::Method method;
+        bool showInheritance;
+
+        QStringList header1 =
+        {
+            tr("Frame"), tr("Time"), tr("HP"), tr("Atk"), tr("Def"),
+            tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
+        };
+        QStringList header2 =
+        {
+            tr("Frame"), tr("Time"), tr("Redraws"), tr("PID"), "!!!", tr("Nature"),
+            tr("Ability"), tr("Gender")
+        };
+        QStringList header3 =
+        {
+            tr("Held Frame"), tr("Held Time"), tr("Pickup Frame"), tr("Pickup Time"),
+            tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+            tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+        };
+
     };
 
-};
+}
 
 #endif // EGG3MODEL_HPP

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>IDs4</class>
+ <class>PokeFinderForms::IDs4</class>
  <widget class="QWidget" name="IDs4">
   <property name="geometry">
    <rect>
@@ -441,12 +441,12 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TextBox</class>
+   <class>PokeFinderForms::TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>TableView</class>
+   <class>PokeFinderForms::TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>

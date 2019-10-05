@@ -23,22 +23,27 @@
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 
-class Encounters3
+namespace PokeFinderCore
 {
 
-public:
-    Encounters3(Encounter type, const Profile3 &profile);
-    QVector<EncounterArea3> getEncounters() const;
+    class Encounters3
+    {
 
-private:
-    QVector<Pokemon> pokemon;
-    Encounter type;
-    Profile3 profile;
+    public:
+        Encounters3(Encounter type, const Profile3 &profile);
+        QVector<EncounterArea3> getEncounters() const;
 
-    QByteArrayList getData() const;
-    QVector<EncounterArea3> getArea(const QByteArray &data) const;
-    u16 getValue(const QByteArray &data, int offset, int length) const;
+    private:
+        QVector<Pokemon> pokemon;
+        Encounter type;
+        Profile3 profile;
 
-};
+        QByteArrayList getData() const;
+        QVector<EncounterArea3> getArea(const QByteArray &data) const;
+        u16 getValue(const QByteArray &data, int offset, int length) const;
+
+    };
+
+}
 
 #endif // ENCOUNTERS3_HPP

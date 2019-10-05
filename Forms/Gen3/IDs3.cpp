@@ -23,176 +23,181 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Utilities.hpp>
 
-IDs3::IDs3(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::IDs3)
+namespace PokeFinderForms
 {
-    ui->setupUi(this);
-    setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
-}
-
-IDs3::~IDs3()
-{
-    QSettings setting;
-    setting.setValue("ids3/geometry", this->saveGeometry());
-
-    delete ui;
-}
-
-void IDs3::setupModels()
-{
-    xdcolo = new QStandardItemModel(ui->tableViewXDColo);
-    frlge = new QStandardItemModel(ui->tableViewFRLGE);
-    rs = new QStandardItemModel(ui->tableViewFRLGE);
-
-    ui->textBoxFRLGEPID->setValues(InputType::Seed32Bit);
-    ui->textBoxFRLGETID->setValues(InputType::TIDSID);
-    ui->textBoxFRLGESID->setValues(InputType::TIDSID);
-    ui->textBoxFRLGEStartingFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxFRLGEMaxResults->setValues(InputType::Frame32Bit);
-
-    ui->textBoxRSPID->setValues(InputType::Seed32Bit);
-    ui->textBoxRSTID->setValues(InputType::TIDSID);
-    ui->textBoxRSSID->setValues(InputType::TIDSID);
-    ui->textBoxRSInitialSeed->setValues(InputType::Seed16Bit);
-    ui->textBoxRSStartingFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxRSMaxResults->setValues(InputType::Frame32Bit);
-
-    ui->textBoxXDColoPID->setValues(InputType::Seed32Bit);
-    ui->textBoxXDColoTID->setValues(InputType::TIDSID);
-    ui->textBoxXDColoSID->setValues(InputType::TIDSID);
-    ui->textBoxXDColoSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxXDColoStartingFrame->setValues(InputType::Frame32Bit);
-    ui->textBoxXDColoMaxResults->setValues(InputType::Frame32Bit);
-
-    ui->dateTimeEdit->setDisplayFormat(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
-
-    xdcolo->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
-    ui->tableViewXDColo->setModel(xdcolo);
-
-    frlge->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
-    ui->tableViewFRLGE->setModel(frlge);
-
-    rs->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
-    ui->tableViewRS->setModel(rs);
-
-    QSettings setting;
-    if (setting.contains("ids3/geometry")) this->restoreGeometry(setting.value("ids3/geometry").toByteArray());
-}
-
-void IDs3::on_pushButtonFRLGESearch_clicked()
-{
-    frlge->removeRows(0, frlge->rowCount());
-
-    u16 tid = ui->textBoxFRLGETID->getUShort();
-    bool usePID = ui->checkBoxFRLGEPID->isChecked();
-    bool useSID = ui->checkBoxFRLGESID->isChecked();
-    u32 pid = ui->textBoxFRLGEPID->getUInt();
-    u16 searchSID = ui->textBoxFRLGESID->getUShort();
-    u32 minFrame = ui->textBoxFRLGEStartingFrame->getUInt();
-    u32 maxResults = ui->textBoxFRLGEMaxResults->getUInt();
-
-    PokeRNG rng(tid, minFrame - 1);
-    rng.nextUShort();
-
-    u32 max = minFrame + maxResults;
-    for (u32 frame = minFrame; frame <= max; ++frame)
+    IDs3::IDs3(QWidget *parent) :
+        QWidget(parent),
+        ui(new Ui::IDs3)
     {
-        u16 sid = rng.nextUShort();
+        ui->setupUi(this);
+        setAttribute(Qt::WA_QuitOnClose, false);
 
-        if ((!usePID || Utilities::shiny(pid, tid, sid)) && (!useSID || searchSID == sid))
+        setupModels();
+    }
+
+    IDs3::~IDs3()
+    {
+        QSettings setting;
+        setting.setValue("ids3/geometry", this->saveGeometry());
+
+        delete ui;
+    }
+
+    void IDs3::setupModels()
+    {
+        xdcolo = new QStandardItemModel(ui->tableViewXDColo);
+        frlge = new QStandardItemModel(ui->tableViewFRLGE);
+        rs = new QStandardItemModel(ui->tableViewFRLGE);
+
+        ui->textBoxFRLGEPID->setValues(InputType::Seed32Bit);
+        ui->textBoxFRLGETID->setValues(InputType::TIDSID);
+        ui->textBoxFRLGESID->setValues(InputType::TIDSID);
+        ui->textBoxFRLGEStartingFrame->setValues(InputType::Frame32Bit);
+        ui->textBoxFRLGEMaxResults->setValues(InputType::Frame32Bit);
+
+        ui->textBoxRSPID->setValues(InputType::Seed32Bit);
+        ui->textBoxRSTID->setValues(InputType::TIDSID);
+        ui->textBoxRSSID->setValues(InputType::TIDSID);
+        ui->textBoxRSInitialSeed->setValues(InputType::Seed16Bit);
+        ui->textBoxRSStartingFrame->setValues(InputType::Frame32Bit);
+        ui->textBoxRSMaxResults->setValues(InputType::Frame32Bit);
+
+        ui->textBoxXDColoPID->setValues(InputType::Seed32Bit);
+        ui->textBoxXDColoTID->setValues(InputType::TIDSID);
+        ui->textBoxXDColoSID->setValues(InputType::TIDSID);
+        ui->textBoxXDColoSeed->setValues(InputType::Seed32Bit);
+        ui->textBoxXDColoStartingFrame->setValues(InputType::Frame32Bit);
+        ui->textBoxXDColoMaxResults->setValues(InputType::Frame32Bit);
+
+        ui->dateTimeEdit->setDisplayFormat(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
+
+        xdcolo->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
+        ui->tableViewXDColo->setModel(xdcolo);
+
+        frlge->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
+        ui->tableViewFRLGE->setModel(frlge);
+
+        rs->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
+        ui->tableViewRS->setModel(rs);
+
+        QSettings setting;
+        if (setting.contains("ids3/geometry")) this->restoreGeometry(setting.value("ids3/geometry").toByteArray());
+    }
+
+    void IDs3::on_pushButtonFRLGESearch_clicked()
+    {
+        frlge->removeRows(0, frlge->rowCount());
+
+        u16 tid = ui->textBoxFRLGETID->getUShort();
+        bool usePID = ui->checkBoxFRLGEPID->isChecked();
+        bool useSID = ui->checkBoxFRLGESID->isChecked();
+        u32 pid = ui->textBoxFRLGEPID->getUInt();
+        u16 searchSID = ui->textBoxFRLGESID->getUShort();
+        u32 minFrame = ui->textBoxFRLGEStartingFrame->getUInt();
+        u32 maxResults = ui->textBoxFRLGEMaxResults->getUInt();
+
+        PokeFinderCore::PokeRNG rng(tid, minFrame - 1);
+        rng.nextUShort();
+
+        u32 max = minFrame + maxResults;
+        for (u32 frame = minFrame; frame <= max; ++frame)
         {
-            frlge->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+            u16 sid = rng.nextUShort();
+
+            if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useSID || searchSID == sid))
+            {
+                frlge->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+            }
         }
     }
-}
 
-void IDs3::on_pushButtonRSSearch_clicked()
-{
-    rs->removeRows(0, rs->rowCount());
-
-    u32 seed;
-    bool usePID = ui->checkBoxRSPID->isChecked();
-    bool useSID = ui->checkBoxRSSID->isChecked();
-    bool useTID = ui->checkBoxRSTID->isChecked();
-    u32 pid = ui->textBoxRSPID->getUInt();
-    u16 searchSID = ui->textBoxRSSID->getUShort();
-    u16 searchTID = ui->textBoxRSTID->getUShort();
-    u32 minFrame = ui->textBoxRSStartingFrame->getUInt();
-    u32 maxResults = ui->textBoxRSMaxResults->getUInt();
-
-    if (ui->radioButtonRSInitialSeed->isChecked())
+    void IDs3::on_pushButtonRSSearch_clicked()
     {
-        seed = ui->textBoxRSInitialSeed->getUInt();
-    }
-    else
-    {
-        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->date(), ui->dateTimeEdit->time().hour(), ui->dateTimeEdit->time().minute());
-    }
+        rs->removeRows(0, rs->rowCount());
 
-    PokeRNG rng(seed, minFrame);
+        u32 seed;
+        bool usePID = ui->checkBoxRSPID->isChecked();
+        bool useSID = ui->checkBoxRSSID->isChecked();
+        bool useTID = ui->checkBoxRSTID->isChecked();
+        u32 pid = ui->textBoxRSPID->getUInt();
+        u16 searchSID = ui->textBoxRSSID->getUShort();
+        u16 searchTID = ui->textBoxRSTID->getUShort();
+        u32 minFrame = ui->textBoxRSStartingFrame->getUInt();
+        u32 maxResults = ui->textBoxRSMaxResults->getUInt();
 
-    u16 tid = rng.nextUShort(), sid;
-
-    u32 max = minFrame + maxResults;
-    for (u32 frame = minFrame; frame <= max; ++frame)
-    {
-        sid = tid;
-        tid = rng.nextUShort();
-
-        if ((!usePID || Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid) && (!useSID || searchSID == sid))
+        if (ui->radioButtonRSInitialSeed->isChecked())
         {
-            rs->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+            seed = ui->textBoxRSInitialSeed->getUInt();
+        }
+        else
+        {
+            seed = PokeFinderCore::Utilities::calcGen3Seed(ui->dateTimeEdit->date(), ui->dateTimeEdit->time().hour(), ui->dateTimeEdit->time().minute());
+        }
+
+        PokeFinderCore::PokeRNG rng(seed, minFrame);
+
+        u16 tid = rng.nextUShort(), sid;
+
+        u32 max = minFrame + maxResults;
+        for (u32 frame = minFrame; frame <= max; ++frame)
+        {
+            sid = tid;
+            tid = rng.nextUShort();
+
+            if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid) && (!useSID || searchSID == sid))
+            {
+                rs->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+            }
         }
     }
-}
 
-void IDs3::on_pushButtonXDColoSearch_clicked()
-{
-    xdcolo->removeRows(0, xdcolo->rowCount());
-
-    u32 seed = ui->textBoxXDColoSeed->getUInt();
-    bool usePID = ui->checkBoxXDColoPID->isChecked();
-    bool useSID = ui->checkBoxXDColoSID->isChecked();
-    bool useTID = ui->checkBoxXDColoTID->isChecked();
-    u32 pid = ui->textBoxXDColoPID->getUInt();
-    u16 searchSID = ui->textBoxXDColoSID->getUShort();
-    u16 searchTID = ui->textBoxXDColoTID->getUShort();
-    u32 minFrame = ui->textBoxXDColoStartingFrame->getUInt();
-    u32 maxResults = ui->textBoxXDColoMaxResults->getUInt();
-
-    XDRNG rng(seed, minFrame + 1);
-    u16 sid = rng.nextUShort(), tid;
-
-    u32 max = minFrame + maxResults;
-    for (u32 frame = minFrame; frame <= max; ++frame)
+    void IDs3::on_pushButtonXDColoSearch_clicked()
     {
-        tid = sid;
-        sid = rng.nextUShort();
+        xdcolo->removeRows(0, xdcolo->rowCount());
 
-        if ((!usePID || Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid) && (!useSID || searchSID == sid))
+        u32 seed = ui->textBoxXDColoSeed->getUInt();
+        bool usePID = ui->checkBoxXDColoPID->isChecked();
+        bool useSID = ui->checkBoxXDColoSID->isChecked();
+        bool useTID = ui->checkBoxXDColoTID->isChecked();
+        u32 pid = ui->textBoxXDColoPID->getUInt();
+        u16 searchSID = ui->textBoxXDColoSID->getUShort();
+        u16 searchTID = ui->textBoxXDColoTID->getUShort();
+        u32 minFrame = ui->textBoxXDColoStartingFrame->getUInt();
+        u32 maxResults = ui->textBoxXDColoMaxResults->getUInt();
+
+        PokeFinderCore::XDRNG rng(seed, minFrame + 1);
+        u16 sid = rng.nextUShort(), tid;
+
+        u32 max = minFrame + maxResults;
+        for (u32 frame = minFrame; frame <= max; ++frame)
         {
-            xdcolo->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+            tid = sid;
+            sid = rng.nextUShort();
+
+            if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid) && (!useSID || searchSID == sid))
+            {
+                xdcolo->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+            }
         }
     }
-}
 
-void IDs3::on_checkBoxRSDeadBattery_clicked(bool checked)
-{
-    ui->radioButtonRSDate->setEnabled(!checked);
-    ui->radioButtonRSInitialSeed->setEnabled(!checked);
-    ui->dateTimeEdit->setEnabled(!checked ? ui->radioButtonRSDate->isChecked() : false);
-    ui->textBoxRSInitialSeed->setEnabled(!checked ? ui->radioButtonRSInitialSeed->isChecked() : false);
-}
+    void IDs3::on_checkBoxRSDeadBattery_clicked(bool checked)
+    {
+        ui->radioButtonRSDate->setEnabled(!checked);
+        ui->radioButtonRSInitialSeed->setEnabled(!checked);
+        ui->dateTimeEdit->setEnabled(!checked ? ui->radioButtonRSDate->isChecked() : false);
+        ui->textBoxRSInitialSeed->setEnabled(!checked ? ui->radioButtonRSInitialSeed->isChecked() : false);
+    }
 
-void IDs3::on_radioButtonRSDate_toggled(bool checked)
-{
-    ui->dateTimeEdit->setEnabled(checked);
-}
+    void IDs3::on_radioButtonRSDate_toggled(bool checked)
+    {
+        ui->dateTimeEdit->setEnabled(checked);
+    }
 
-void IDs3::on_radioButtonRSInitialSeed_toggled(bool checked)
-{
-    ui->textBoxRSInitialSeed->setEnabled(checked);
+    void IDs3::on_radioButtonRSInitialSeed_toggled(bool checked)
+    {
+        ui->textBoxRSInitialSeed->setEnabled(checked);
+    }
+
 }

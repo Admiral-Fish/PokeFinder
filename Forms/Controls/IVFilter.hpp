@@ -23,41 +23,46 @@
 #include <QWidget>
 #include <Core/Util/Global.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class IVFilter;
+
+    namespace Ui
+    {
+        class IVFilter;
+    }
+
+    class IVFilter : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit IVFilter(QWidget *parent = nullptr);
+        ~IVFilter() override;
+        QVector<u8> getLower() const;
+        QVector<u8> getUpper() const;
+        void clearValues();
+        void setValues(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+
+    private:
+        Ui::IVFilter *ui;
+
+        void changeHP(int min, int max);
+        void changeAtk(int min, int max);
+        void changeDef(int min, int max);
+        void changeSpA(int min, int max);
+        void changeSpD(int min, int max);
+        void changeSpe(int min, int max);
+
+    private slots:
+        void changeCompareHP(int type);
+        void changeCompareAtk(int type);
+        void changeCompareDef(int type);
+        void changeCompareSpA(int type);
+        void changeCompareSpD(int type);
+        void changeCompareSpe(int type);
+
+    };
+
 }
-
-class IVFilter : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit IVFilter(QWidget *parent = nullptr);
-    ~IVFilter() override;
-    QVector<u8> getLower() const;
-    QVector<u8> getUpper() const;
-    void clearValues();
-    void setValues(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-
-private:
-    Ui::IVFilter *ui;
-
-    void changeHP(int min, int max);
-    void changeAtk(int min, int max);
-    void changeDef(int min, int max);
-    void changeSpA(int min, int max);
-    void changeSpD(int min, int max);
-    void changeSpe(int min, int max);
-
-private slots:
-    void changeCompareHP(int type);
-    void changeCompareAtk(int type);
-    void changeCompareDef(int type);
-    void changeCompareSpA(int type);
-    void changeCompareSpD(int type);
-    void changeCompareSpe(int type);
-
-};
 
 #endif // IVFILTER_HPP

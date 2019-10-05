@@ -23,40 +23,45 @@
 #include <Core/Gen4/Frame4.hpp>
 #include <Models/TableModel.hpp>
 
-class Stationary4Model : public TableModel<Frame4>
+namespace PokeFinderModels
 {
-    Q_OBJECT
 
-public:
-    Stationary4Model(QObject *parent, Method method);
-    void setMethod(Method method);
-    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role) const override;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    class Stationary4Model : public TableModel<PokeFinderCore::Frame4>
+    {
+        Q_OBJECT
 
-private:
-    Method method;
+    public:
+        Stationary4Model(QObject *parent, PokeFinderCore::Method method);
+        void setMethod(PokeFinderCore::Method method);
+        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+        QVariant data(const QModelIndex &index, int role) const override;
+        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    QStringList header1 =
-    {
-        tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
-        tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-    };
-    QStringList header2 =
-    {
-        tr("Frame"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
-        tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-    };
-    QStringList header3 =
-    {
-        tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
-        tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-    };
-    QStringList header4 =
-    {
-        tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
+    private:
+        PokeFinderCore::Method method;
+
+        QStringList header1 =
+        {
+            tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
+            tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+        };
+        QStringList header2 =
+        {
+            tr("Frame"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
+            tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+        };
+        QStringList header3 =
+        {
+            tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+            tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
+        };
+        QStringList header4 =
+        {
+            tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
+        };
+
     };
 
-};
+}
 
 #endif // STATIONARY4MODEL_HPP

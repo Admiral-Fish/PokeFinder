@@ -22,72 +22,77 @@
 #include "ui_SearchCoinFlips.h"
 #include <Core/Util/Utilities.hpp>
 
-SearchCoinFlips::SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SearchCoinFlips)
+namespace PokeFinderForms
 {
-    ui->setupUi(this);
-    setAttribute(Qt::WA_QuitOnClose, false);
 
-    data = model;
-    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
-
-    QSettings setting;
-    if (setting.contains("searchCoinFlips/geometry")) this->restoreGeometry(setting.value("searchCoinFlips/geometry").toByteArray());
-}
-
-SearchCoinFlips::~SearchCoinFlips()
-{
-    QSettings setting;
-    setting.setValue("searchCoinFlips/geometry", this->saveGeometry());
-
-    delete ui;
-}
-
-QVector<bool> SearchCoinFlips::possibleResults() const
-{
-    return possible;
-}
-
-void SearchCoinFlips::on_pushButtonHeads_clicked()
-{
-    QString string = ui->lineEditFlips->text();
-    string += string.isEmpty() ? "H" : ", H";
-    ui->lineEditFlips->setText(string);
-}
-
-void SearchCoinFlips::on_pushButtonTails_clicked()
-{
-    QString string = ui->lineEditFlips->text();
-    string += string.isEmpty() ? "T" : ", T";
-    ui->lineEditFlips->setText(string);
-}
-
-void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &val)
-{
-    QStringList results = val.split(",", QString::SkipEmptyParts);
-    int num = 0;
-
-    possible.clear();
-    for (const auto &dt : data)
+    SearchCoinFlips::SearchCoinFlips(const QVector<PokeFinderCore::DateTime> &model, QWidget *parent) :
+        QDialog(parent),
+        ui(new Ui::SearchCoinFlips)
     {
-        QStringList compare = Utilities::coinFlips(dt.getSeed(), 15).split(",", QString::SkipEmptyParts);
+        ui->setupUi(this);
+        setAttribute(Qt::WA_QuitOnClose, false);
 
-        bool pass = true;
-        for (int j = 0; j < results.size(); j++)
-        {
-            if (results.at(j) != compare.at(j))
-            {
-                pass = false;
-                break;
-            }
-        }
-        possible.append(pass);
-        if (pass)
-        {
-            num++;
-        }
+        data = model;
+        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
+
+        QSettings setting;
+        if (setting.contains("searchCoinFlips/geometry")) this->restoreGeometry(setting.value("searchCoinFlips/geometry").toByteArray());
     }
 
-    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
+    SearchCoinFlips::~SearchCoinFlips()
+    {
+        QSettings setting;
+        setting.setValue("searchCoinFlips/geometry", this->saveGeometry());
+
+        delete ui;
+    }
+
+    QVector<bool> SearchCoinFlips::possibleResults() const
+    {
+        return possible;
+    }
+
+    void SearchCoinFlips::on_pushButtonHeads_clicked()
+    {
+        QString string = ui->lineEditFlips->text();
+        string += string.isEmpty() ? "H" : ", H";
+        ui->lineEditFlips->setText(string);
+    }
+
+    void SearchCoinFlips::on_pushButtonTails_clicked()
+    {
+        QString string = ui->lineEditFlips->text();
+        string += string.isEmpty() ? "T" : ", T";
+        ui->lineEditFlips->setText(string);
+    }
+
+    void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &val)
+    {
+        QStringList results = val.split(",", QString::SkipEmptyParts);
+        int num = 0;
+
+        possible.clear();
+        for (const auto &dt : data)
+        {
+            QStringList compare = PokeFinderCore::Utilities::coinFlips(dt.getSeed(), 15).split(",", QString::SkipEmptyParts);
+
+            bool pass = true;
+            for (int j = 0; j < results.size(); j++)
+            {
+                if (results.at(j) != compare.at(j))
+                {
+                    pass = false;
+                    break;
+                }
+            }
+            possible.append(pass);
+            if (pass)
+            {
+                num++;
+            }
+        }
+
+        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
+    }
+
 }

@@ -25,48 +25,53 @@
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class GameCube;
+
+    namespace Ui
+    {
+        class GameCube;
+    }
+
+    class GameCube : public QWidget
+    {
+        Q_OBJECT
+
+    signals:
+        void alertProfiles(int);
+
+    public:
+        explicit GameCube(QWidget *parent = nullptr);
+        ~GameCube() override;
+        void updateProfiles();
+
+    private:
+        Ui::GameCube *ui;
+        PokeFinderModels::Searcher3Model *searcherModel{};
+        PokeFinderModels::Stationary3Model *generatorModel{};
+        QVector<PokeFinderCore::Profile3> profiles;
+        QMenu *generatorMenu{};
+        QMenu *searcherMenu{};
+
+        void setupModels();
+
+    private slots:
+        void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
+        void refreshProfiles();
+        void on_comboBoxProfiles_currentIndexChanged(int index);
+        void on_pushButtonGenerate_clicked();
+        void on_pushButtonSearch_clicked();
+        void on_comboBoxGeneratorMethod_currentIndexChanged(int index);
+        void on_comboBoxGeneratorShadow_currentIndexChanged(int index);
+        void on_comboBoxSearcherMethod_currentIndexChanged(int index);
+        void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
+        void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
+        void seedToTime();
+        void copySeedToClipboard();
+        void on_pushButtonProfileManager_clicked();
+
+    };
+
 }
-
-class GameCube : public QWidget
-{
-    Q_OBJECT
-
-signals:
-    void alertProfiles(int);
-
-public:
-    explicit GameCube(QWidget *parent = nullptr);
-    ~GameCube() override;
-    void updateProfiles();
-
-private:
-    Ui::GameCube *ui;
-    Searcher3Model *searcherModel{};
-    Stationary3Model *generatorModel{};
-    QVector<Profile3> profiles;
-    QMenu *generatorMenu{};
-    QMenu *searcherMenu{};
-
-    void setupModels();
-
-private slots:
-    void updateProgress(const QVector<Frame3> &frames, int progress);
-    void refreshProfiles();
-    void on_comboBoxProfiles_currentIndexChanged(int index);
-    void on_pushButtonGenerate_clicked();
-    void on_pushButtonSearch_clicked();
-    void on_comboBoxGeneratorMethod_currentIndexChanged(int index);
-    void on_comboBoxGeneratorShadow_currentIndexChanged(int index);
-    void on_comboBoxSearcherMethod_currentIndexChanged(int index);
-    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
-    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
-    void seedToTime();
-    void copySeedToClipboard();
-    void on_pushButtonProfileManager_clicked();
-
-};
 
 #endif // GAMECUBE_HPP

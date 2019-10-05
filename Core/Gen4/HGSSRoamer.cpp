@@ -20,128 +20,133 @@
 #include "HGSSRoamer.hpp"
 #include <Core/RNG/LCRNG.hpp>
 
-HGSSRoamer::HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes)
+namespace PokeFinderCore
 {
-    this->seed = seed;
-    this->roamers = roamers;
-    this->routes = routes;
 
-    calculateRoamers();
-}
-
-u8 HGSSRoamer::getSkips() const
-{
-    return skips;
-}
-
-u8 HGSSRoamer::getRaikouRoute() const
-{
-    return raikouRoute;
-}
-
-u8 HGSSRoamer::getEnteiRoute() const
-{
-    return enteiRoute;
-}
-
-u8 HGSSRoamer::getLatiRoute() const
-{
-    return latiRoute;
-}
-
-QString HGSSRoamer::getRouteString() const
-{
-    QString routes;
-
-    if (roamers.at(0))
+    HGSSRoamer::HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes)
     {
-        routes += QString("R: %1 ").arg(raikouRoute);
-    }
-    if (roamers.at(1))
-    {
-        routes += QString("E: %1 ").arg(enteiRoute);
-    }
-    if (roamers.at(2))
-    {
-        routes += QString("L: %1 ").arg(latiRoute);
+        this->seed = seed;
+        this->roamers = roamers;
+        this->routes = routes;
+
+        calculateRoamers();
     }
 
-    return routes;
-}
-
-QVector<bool> HGSSRoamer::getRoamers() const
-{
-    return roamers;
-}
-
-QVector<u8> HGSSRoamer::getRoutes() const
-{
-    return routes;
-}
-
-void HGSSRoamer::recalculateRoamers(u32 seed)
-{
-    this->seed = seed;
-    calculateRoamers();
-}
-
-void HGSSRoamer::calculateRoamers()
-{
-    PokeRNG rng(seed);
-    skips = 0;
-
-    if (roamers.at(0))
+    u8 HGSSRoamer::getSkips() const
     {
-        do
+        return skips;
+    }
+
+    u8 HGSSRoamer::getRaikouRoute() const
+    {
+        return raikouRoute;
+    }
+
+    u8 HGSSRoamer::getEnteiRoute() const
+    {
+        return enteiRoute;
+    }
+
+    u8 HGSSRoamer::getLatiRoute() const
+    {
+        return latiRoute;
+    }
+
+    QString HGSSRoamer::getRouteString() const
+    {
+        QString routes;
+
+        if (roamers.at(0))
         {
-            skips++;
-            raikouRoute = getRouteJ(rng.nextUShort());
+            routes += QString("R: %1 ").arg(raikouRoute);
         }
-        while (routes.at(0) == raikouRoute);
-    }
-
-    if (roamers.at(1))
-    {
-        do
+        if (roamers.at(1))
         {
-            skips++;
-            enteiRoute = getRouteJ(rng.nextUShort());
+            routes += QString("E: %1 ").arg(enteiRoute);
         }
-        while (routes.at(1) == enteiRoute);
-    }
-
-    if (roamers.at(2))
-    {
-        do
+        if (roamers.at(2))
         {
-            skips++;
-            latiRoute = getRouteK(rng.nextUShort());
+            routes += QString("L: %1 ").arg(latiRoute);
         }
-        while (routes.at(2) == latiRoute);
+
+        return routes;
     }
-}
 
-u8 HGSSRoamer::getRouteJ(u16 prng) const
-{
-    u8 val = prng & 15;
-    return val < 11 ? val + 29 : val + 31;
-}
-
-u8 HGSSRoamer::getRouteK(u16 prng) const
-{
-    u8 val = prng % 25;
-    if (val > 21)
+    QVector<bool> HGSSRoamer::getRoamers() const
     {
-        switch (val)
+        return roamers;
+    }
+
+    QVector<u8> HGSSRoamer::getRoutes() const
+    {
+        return routes;
+    }
+
+    void HGSSRoamer::recalculateRoamers(u32 seed)
+    {
+        this->seed = seed;
+        calculateRoamers();
+    }
+
+    void HGSSRoamer::calculateRoamers()
+    {
+        PokeRNG rng(seed);
+        skips = 0;
+
+        if (roamers.at(0))
         {
-            case 22:
-                return 24;
-            case 23:
-                return 26;
-            case 24:
-                return 28;
+            do
+            {
+                skips++;
+                raikouRoute = getRouteJ(rng.nextUShort());
+            }
+            while (routes.at(0) == raikouRoute);
+        }
+
+        if (roamers.at(1))
+        {
+            do
+            {
+                skips++;
+                enteiRoute = getRouteJ(rng.nextUShort());
+            }
+            while (routes.at(1) == enteiRoute);
+        }
+
+        if (roamers.at(2))
+        {
+            do
+            {
+                skips++;
+                latiRoute = getRouteK(rng.nextUShort());
+            }
+            while (routes.at(2) == latiRoute);
         }
     }
 
-    return val + 1;
+    u8 HGSSRoamer::getRouteJ(u16 prng) const
+    {
+        u8 val = prng & 15;
+        return val < 11 ? val + 29 : val + 31;
+    }
+
+    u8 HGSSRoamer::getRouteK(u16 prng) const
+    {
+        u8 val = prng % 25;
+        if (val > 21)
+        {
+            switch (val)
+            {
+                case 22:
+                    return 24;
+                case 23:
+                    return 26;
+                case 24:
+                    return 28;
+            }
+        }
+
+        return val + 1;
+    }
+
 }

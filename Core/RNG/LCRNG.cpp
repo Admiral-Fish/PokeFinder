@@ -19,45 +19,50 @@
 
 #include "LCRNG.hpp"
 
-LCRNG::LCRNG(u32 add, u32 mult, u32 seed, u32 frames)
+namespace PokeFinderCore
 {
-    this->add = add;
-    this->mult = mult;
-    this->seed = seed;
-    advanceFrames(frames);
-}
 
-void LCRNG::advanceFrames(u32 frames)
-{
-    for (u32 i = 0; i < frames; i++)
+    LCRNG::LCRNG(u32 add, u32 mult, u32 seed, u32 frames)
+    {
+        this->add = add;
+        this->mult = mult;
+        this->seed = seed;
+        advanceFrames(frames);
+    }
+
+    void LCRNG::advanceFrames(u32 frames)
+    {
+        for (u32 i = 0; i < frames; i++)
+        {
+            seed = seed * mult + add;
+        }
+    }
+
+    u16 LCRNG::nextUShort()
+    {
+        return nextUInt() >> 16;
+    }
+
+    u32 LCRNG::nextUInt()
     {
         seed = seed * mult + add;
+        return seed;
     }
-}
 
-u16 LCRNG::nextUShort()
-{
-    return nextUInt() >> 16;
-}
+    void LCRNG::setSeed(u32 seed)
+    {
+        this->seed = seed;
+    }
 
-u32 LCRNG::nextUInt()
-{
-    seed = seed * mult + add;
-    return seed;
-}
+    void LCRNG::setSeed(u32 seed, u32 frames)
+    {
+        this->seed = seed;
+        advanceFrames(frames);
+    }
 
-void LCRNG::setSeed(u32 seed)
-{
-    this->seed = seed;
-}
+    u32 LCRNG::getSeed()
+    {
+        return seed;
+    }
 
-void LCRNG::setSeed(u32 seed, u32 frames)
-{
-    this->seed = seed;
-    advanceFrames(frames);
-}
-
-u32 LCRNG::getSeed()
-{
-    return seed;
 }

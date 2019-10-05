@@ -23,86 +23,91 @@
 #include "ui_ProfileManager4.h"
 #include <Forms/Gen4/ProfileEditor4.hpp>
 
-ProfileManager4::ProfileManager4(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ProfileManager4)
+namespace PokeFinderForms
 {
-    ui->setupUi(this);
-    setAttribute(Qt::WA_QuitOnClose, false);
-    setAttribute(Qt::WA_DeleteOnClose);
 
-    setupModels();
-}
-
-ProfileManager4::~ProfileManager4()
-{
-    QSettings setting;
-    setting.setValue("profileManager4/geometry", this->saveGeometry());
-
-    delete ui;
-}
-
-void ProfileManager4::setupModels()
-{
-    model = new Profile4Model(ui->tableView);
-    model->addItems(Profile4::loadProfileList());
-    ui->tableView->setModel(model);
-
-    QSettings setting;
-    if (setting.contains("profileManager4/geometry")) this->restoreGeometry(setting.value("profileManager4/geometry").toByteArray());
-}
-
-void ProfileManager4::on_pushButtonNew_clicked()
-{
-    QScopedPointer<ProfileEditor4> dialog(new ProfileEditor4);
-    if (dialog->exec() == QDialog::Accepted)
+    ProfileManager4::ProfileManager4(QWidget *parent) :
+        QWidget(parent),
+        ui(new Ui::ProfileManager4)
     {
-        Profile4 profile = dialog->getNewProfile();
-        profile.saveProfile();
-        model->addItem(profile);
-        emit updateProfiles();
-    }
-}
+        ui->setupUi(this);
+        setAttribute(Qt::WA_QuitOnClose, false);
+        setAttribute(Qt::WA_DeleteOnClose);
 
-void ProfileManager4::on_pushButtonEdit_clicked()
-{
-    int row = ui->tableView->currentIndex().row();
-    if (row < 0)
-    {
-        QMessageBox error;
-        error.setText(tr("Please select a profile."));
-        error.exec();
-        return;
+        setupModels();
     }
 
-    QScopedPointer<ProfileEditor4> dialog(new ProfileEditor4(model->getItem(row)));
-    if (dialog->exec() == QDialog::Accepted)
+    ProfileManager4::~ProfileManager4()
     {
-        Profile4 profile = dialog->getNewProfile();
-        profile.updateProfile(dialog->getOriginal());
-        model->updateItem(profile, row);
-        emit updateProfiles();
-    }
-}
+        QSettings setting;
+        setting.setValue("profileManager4/geometry", this->saveGeometry());
 
-void ProfileManager4::on_pushButtonDelete_clicked()
-{
-    int row = ui->tableView->currentIndex().row();
-    if (row < 0)
-    {
-        QMessageBox error;
-        error.setText(tr("Please select a profile."));
-        error.exec();
-        return;
+        delete ui;
     }
 
-    QMessageBox message(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"), QMessageBox::Yes | QMessageBox::No);
-    if (message.exec() == QMessageBox::Yes)
+    void ProfileManager4::setupModels()
     {
-        Profile4 profile = model->getItem(row);
-        profile.deleteProfile();
-        model->removeItem(row);
+        model = new PokeFinderModels::Profile4Model(ui->tableView);
+        model->addItems(PokeFinderCore::Profile4::loadProfileList());
+        ui->tableView->setModel(model);
 
-        emit updateProfiles();
+        QSettings setting;
+        if (setting.contains("profileManager4/geometry")) this->restoreGeometry(setting.value("profileManager4/geometry").toByteArray());
     }
+
+    void ProfileManager4::on_pushButtonNew_clicked()
+    {
+        QScopedPointer<ProfileEditor4> dialog(new ProfileEditor4);
+        if (dialog->exec() == QDialog::Accepted)
+        {
+            PokeFinderCore::Profile4 profile = dialog->getNewProfile();
+            profile.saveProfile();
+            model->addItem(profile);
+            emit updateProfiles();
+        }
+    }
+
+    void ProfileManager4::on_pushButtonEdit_clicked()
+    {
+        int row = ui->tableView->currentIndex().row();
+        if (row < 0)
+        {
+            QMessageBox error;
+            error.setText(tr("Please select a profile."));
+            error.exec();
+            return;
+        }
+
+        QScopedPointer<ProfileEditor4> dialog(new ProfileEditor4(model->getItem(row)));
+        if (dialog->exec() == QDialog::Accepted)
+        {
+            PokeFinderCore::Profile4 profile = dialog->getNewProfile();
+            profile.updateProfile(dialog->getOriginal());
+            model->updateItem(profile, row);
+            emit updateProfiles();
+        }
+    }
+
+    void ProfileManager4::on_pushButtonDelete_clicked()
+    {
+        int row = ui->tableView->currentIndex().row();
+        if (row < 0)
+        {
+            QMessageBox error;
+            error.setText(tr("Please select a profile."));
+            error.exec();
+            return;
+        }
+
+        QMessageBox message(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"), QMessageBox::Yes | QMessageBox::No);
+        if (message.exec() == QMessageBox::Yes)
+        {
+            PokeFinderCore::Profile4 profile = model->getItem(row);
+            profile.deleteProfile();
+            model->removeItem(row);
+
+            emit updateProfiles();
+        }
+    }
+
 }

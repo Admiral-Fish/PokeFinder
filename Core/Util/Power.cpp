@@ -20,19 +20,24 @@
 #include <QTranslator>
 #include "Power.hpp"
 
-QStringList Power::getPowers()
+namespace PokeFinderCore
 {
-    QStringList powers =
-    {
-        QObject::tr("Fighting"), QObject::tr("Flying"), QObject::tr("Poison"), QObject::tr("Ground"),
-        QObject::tr("Rock"), QObject::tr("Bug"), QObject::tr("Ghost"), QObject::tr("Steel"),
-        QObject::tr("Fire"), QObject::tr("Water"), QObject::tr("Grass"), QObject::tr("Electric"),
-        QObject::tr("Psychic"), QObject::tr("Ice"), QObject::tr("Dragon"), QObject::tr("Dark")
-    };
-    return powers;
-}
 
-QString Power::getPower(u8 power)
-{
-    return getPowers().at(power);
+    QStringList Power::getPowers()
+    {
+        QStringList powers =
+        {
+            QObject::tr("Fighting"), QObject::tr("Flying"), QObject::tr("Poison"), QObject::tr("Ground"),
+            QObject::tr("Rock"), QObject::tr("Bug"), QObject::tr("Ghost"), QObject::tr("Steel"),
+            QObject::tr("Fire"), QObject::tr("Water"), QObject::tr("Grass"), QObject::tr("Electric"),
+            QObject::tr("Psychic"), QObject::tr("Ice"), QObject::tr("Dragon"), QObject::tr("Dark")
+        };
+        return powers;
+    }
+
+    QString Power::getPower(u8 power)
+    {
+        return getPowers().at(power);
+    }
+
 }

@@ -19,145 +19,150 @@
 
 #include "SFMT.hpp"
 
-#define CMSK1   0xdfffffef
-#define CMSK2   0xddfecb7f
-#define CMSK3   0xbffaffff
-#define CMSK4   0xbffffff6
-#define CSL1    18
-#define CSR1    11
-#define N32     624
+constexpr u32 CMSK1 = 0xdfffffef;
+constexpr u32 CMSK3 = 0xbffaffff;
+constexpr u32 CMSK2 = 0xddfecb7f;
+constexpr u32 CMSK4 = 0xbffffff6;
+constexpr u8 CSL1 = 18;
+constexpr u8 CSR1 = 11;
+constexpr u16 N32 = 624;
 
-SFMT::SFMT()
+namespace PokeFinderCore
 {
-    initialize(0);
-}
 
-SFMT::SFMT(u32 seed, u32 frames)
-{
-    initialize(seed);
-    advanceFrames(frames);
-}
-
-void SFMT::advanceFrames(u32 frames)
-{
-    u32 temp = index + (frames * 2);
-    while (temp >= N32)
+    SFMT::SFMT()
     {
-        temp -= N32;
-        shuffle();
-    }
-    index = temp;
-}
-
-u32 SFMT::nextUInt()
-{
-    if (index >= N32)
-    {
-        shuffle();
-        index = 0;
+        initialize(0);
     }
 
-    return sfmt[index++];
-}
-
-u64 SFMT::nextULong()
-{
-    if (index >= N32)
+    SFMT::SFMT(u32 seed, u32 frames)
     {
-        shuffle();
-        index = 0;
+        initialize(seed);
+        advanceFrames(frames);
     }
 
-    u32 high = sfmt[index++];
-    u32 low = sfmt[index++];
-    return high | (static_cast<u64>(low) << 32);
-}
-
-void SFMT::setSeed(u64 seed)
-{
-    initialize(static_cast<u32>(seed));
-}
-
-void SFMT::setSeed(u64 seed, u32 frames)
-{
-    initialize(static_cast<u32>(seed));
-    advanceFrames(frames);
-}
-
-u64 SFMT::getSeed()
-{
-    return seed;
-}
-
-void SFMT::initialize(u32 seed)
-{
-    this->seed = seed;
-    sfmt = QVector<u32>(624);
-    sfmt[0] = seed;
-
-    for (index = 1; index < N32; index++)
+    void SFMT::advanceFrames(u32 frames)
     {
-        sfmt[index] = 0x6C078965 * (sfmt.at(index - 1) ^ (sfmt.at(index - 1) >> 30)) + index;
-    }
-
-    periodCertificaion();
-}
-
-void SFMT::periodCertificaion()
-{
-    u32 inner = 0;
-    u32 work;
-
-    for (u8 i = 0; i < 4; i++)
-    {
-        inner ^= sfmt.at(i) & parity.at(i);
-    }
-    for (u8 i = 16; i > 0; i >>= 1)
-    {
-        inner ^= inner >> i;
-    }
-    if (inner & 1)
-    {
-        return;
-    }
-
-    for (u8 i = 0; i < 4; i++)
-    {
-        work = 1;
-        for (u8 j = 0; j < 32; j++)
+        u32 temp = index + (frames * 2);
+        while (temp >= N32)
         {
-            if ((work & parity.at(i)) != 0)
+            temp -= N32;
+            shuffle();
+        }
+        index = temp;
+    }
+
+    u32 SFMT::nextUInt()
+    {
+        if (index >= N32)
+        {
+            shuffle();
+            index = 0;
+        }
+
+        return sfmt[index++];
+    }
+
+    u64 SFMT::nextULong()
+    {
+        if (index >= N32)
+        {
+            shuffle();
+            index = 0;
+        }
+
+        u32 high = sfmt[index++];
+        u32 low = sfmt[index++];
+        return high | (static_cast<u64>(low) << 32);
+    }
+
+    void SFMT::setSeed(u64 seed)
+    {
+        initialize(static_cast<u32>(seed));
+    }
+
+    void SFMT::setSeed(u64 seed, u32 frames)
+    {
+        initialize(static_cast<u32>(seed));
+        advanceFrames(frames);
+    }
+
+    u64 SFMT::getSeed()
+    {
+        return seed;
+    }
+
+    void SFMT::initialize(u32 seed)
+    {
+        this->seed = seed;
+        sfmt = QVector<u32>(624);
+        sfmt[0] = seed;
+
+        for (index = 1; index < N32; index++)
+        {
+            sfmt[index] = 0x6C078965 * (sfmt.at(index - 1) ^ (sfmt.at(index - 1) >> 30)) + index;
+        }
+
+        periodCertificaion();
+    }
+
+    void SFMT::periodCertificaion()
+    {
+        u32 inner = 0;
+        u32 work;
+
+        for (u8 i = 0; i < 4; i++)
+        {
+            inner ^= sfmt.at(i) & parity.at(i);
+        }
+        for (u8 i = 16; i > 0; i >>= 1)
+        {
+            inner ^= inner >> i;
+        }
+        if (inner & 1)
+        {
+            return;
+        }
+
+        for (u8 i = 0; i < 4; i++)
+        {
+            work = 1;
+            for (u8 j = 0; j < 32; j++)
             {
-                sfmt[i] ^= work;
-                return;
+                if ((work & parity.at(i)) != 0)
+                {
+                    sfmt[i] ^= work;
+                    return;
+                }
+                work <<= 1;
             }
-            work <<= 1;
         }
     }
-}
 
-void SFMT::shuffle()
-{
-    u16 a = 0;
-    u16 b = 488;
-    u16 c = 616;
-    u16 d = 620;
-
-    do
+    void SFMT::shuffle()
     {
-        sfmt[a + 3] = sfmt.at(a + 3) ^ (sfmt.at(a + 3) << 8) ^ (sfmt.at(a + 2) >> 24) ^ (sfmt.at(c + 3) >> 8) ^ ((sfmt.at(b + 3) >> CSR1) & CMSK4) ^ (sfmt.at(d + 3) << CSL1);
-        sfmt[a + 2] = sfmt.at(a + 2) ^ (sfmt.at(a + 2) << 8) ^ (sfmt.at(a + 1) >> 24) ^ (sfmt.at(c + 3) << 24) ^ (sfmt.at(c + 2) >> 8) ^ ((sfmt.at(b + 2) >> CSR1) & CMSK3) ^ (sfmt.at(d + 2) << CSL1);
-        sfmt[a + 1] = sfmt.at(a + 1) ^ (sfmt.at(a + 1) << 8) ^ (sfmt.at(a) >> 24) ^ (sfmt.at(c + 2) << 24) ^ (sfmt.at(c + 1) >> 8) ^ ((sfmt.at(b + 1) >> CSR1) & CMSK2) ^ (sfmt.at(d + 1) << CSL1);
-        sfmt[a] = sfmt.at(a) ^ (sfmt.at(a) << 8) ^ (sfmt.at(c + 1) << 24) ^ (sfmt.at(c) >> 8) ^ ((sfmt.at(b) >> CSR1) & CMSK1) ^ (sfmt.at(d) << CSL1);
+        u16 a = 0;
+        u16 b = 488;
+        u16 c = 616;
+        u16 d = 620;
 
-        c = d;
-        d = a;
-        a += 4;
-        b += 4;
-        if (b >= N32)
+        do
         {
-            b = 0;
+            sfmt[a + 3] = sfmt.at(a + 3) ^ (sfmt.at(a + 3) << 8) ^ (sfmt.at(a + 2) >> 24) ^ (sfmt.at(c + 3) >> 8) ^ ((sfmt.at(b + 3) >> CSR1) & CMSK4) ^ (sfmt.at(d + 3) << CSL1);
+            sfmt[a + 2] = sfmt.at(a + 2) ^ (sfmt.at(a + 2) << 8) ^ (sfmt.at(a + 1) >> 24) ^ (sfmt.at(c + 3) << 24) ^ (sfmt.at(c + 2) >> 8) ^ ((sfmt.at(b + 2) >> CSR1) & CMSK3) ^ (sfmt.at(d + 2) << CSL1);
+            sfmt[a + 1] = sfmt.at(a + 1) ^ (sfmt.at(a + 1) << 8) ^ (sfmt.at(a) >> 24) ^ (sfmt.at(c + 2) << 24) ^ (sfmt.at(c + 1) >> 8) ^ ((sfmt.at(b + 1) >> CSR1) & CMSK2) ^ (sfmt.at(d + 1) << CSL1);
+            sfmt[a] = sfmt.at(a) ^ (sfmt.at(a) << 8) ^ (sfmt.at(c + 1) << 24) ^ (sfmt.at(c) >> 8) ^ ((sfmt.at(b) >> CSR1) & CMSK1) ^ (sfmt.at(d) << CSL1);
+
+            c = d;
+            d = a;
+            a += 4;
+            b += 4;
+            if (b >= N32)
+            {
+                b = 0;
+            }
         }
+        while (a < N32);
     }
-    while (a < N32);
+
 }

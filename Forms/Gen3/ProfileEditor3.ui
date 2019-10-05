@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ProfileEditor3</class>
+ <class>PokeFinderForms::ProfileEditor3</class>
  <widget class="QDialog" name="ProfileEditor3">
   <property name="geometry">
    <rect>
@@ -162,7 +162,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TextBox</class>
+   <class>PokeFinderForms::TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>

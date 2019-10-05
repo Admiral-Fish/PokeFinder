@@ -22,37 +22,42 @@
 
 #include <Core/Parents/Profile.hpp>
 
-class Profile4 : public Profile
+namespace PokeFinderCore
 {
 
-public:
-    Profile4();
-    Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual = Game::Blank,
-             int radio = 0, Language language = Language::English, bool radar = false, bool swarm = false);
-    Profile4(QJsonObject data);
-    QString getDualSlotString() const;
-    Game getDualSlot() const;
-    QString getRadioString() const;
-    int getRadio() const;
-    bool getRadar() const;
-    bool getSwarm() const;
-    QJsonObject getJson() const;
-    static QVector<Profile4> loadProfileList();
-    void saveProfile() const;
-    void deleteProfile() const;
-    void updateProfile(const Profile4 &original) const;
-    friend bool operator==(const Profile4 &left, const Profile4 &right);
-    friend bool operator!=(const Profile4 &left, const Profile4 &right);
+    class Profile4 : public Profile
+    {
 
-private:
-    Game dual;
-    int radio;
-    bool radar;
-    bool swarm;
+    public:
+        Profile4();
+        Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual = Game::Blank,
+                 int radio = 0, Language language = Language::English, bool radar = false, bool swarm = false);
+        Profile4(QJsonObject data);
+        QString getDualSlotString() const;
+        Game getDualSlot() const;
+        QString getRadioString() const;
+        int getRadio() const;
+        bool getRadar() const;
+        bool getSwarm() const;
+        QJsonObject getJson() const;
+        static QVector<Profile4> loadProfileList();
+        void saveProfile() const;
+        void deleteProfile() const;
+        void updateProfile(const Profile4 &original) const;
+        friend bool operator==(const Profile4 &left, const Profile4 &right);
+        friend bool operator!=(const Profile4 &left, const Profile4 &right);
 
-};
+    private:
+        Game dual;
+        int radio;
+        bool radar;
+        bool swarm;
 
-bool operator==(const Profile4 &left, const Profile4 &right);
-bool operator!=(const Profile4 &left, const Profile4 &right);
+    };
+
+    bool operator==(const Profile4 &left, const Profile4 &right);
+    bool operator!=(const Profile4 &left, const Profile4 &right);
+
+}
 
 #endif // PROFILE4_HPP

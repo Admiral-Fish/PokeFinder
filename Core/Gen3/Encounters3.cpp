@@ -20,148 +20,153 @@
 #include <QFile>
 #include "Encounters3.hpp"
 
-Encounters3::Encounters3(Encounter type, const Profile3 &profile)
+namespace PokeFinderCore
 {
-    this->type = type;
-    this->profile = profile;
-    pokemon = Pokemon::loadPersonal(3);
-}
 
-QVector<EncounterArea3> Encounters3::getEncounters() const
-{
-    QVector<EncounterArea3> encounters;
-    for (const auto &data : getData())
+    Encounters3::Encounters3(Encounter type, const Profile3 &profile)
     {
-        for (const auto &encounter : getArea(data))
+        this->type = type;
+        this->profile = profile;
+        pokemon = Pokemon::loadPersonal(3);
+    }
+
+    QVector<EncounterArea3> Encounters3::getEncounters() const
+    {
+        QVector<EncounterArea3> encounters;
+        for (const auto &data : getData())
         {
-            if (encounter.getType() == type)
+            for (const auto &encounter : getArea(data))
             {
-                encounters.append(encounter);
+                if (encounter.getType() == type)
+                {
+                    encounters.append(encounter);
+                }
             }
         }
+
+        return encounters;
     }
 
-    return encounters;
-}
-
-QByteArrayList Encounters3::getData() const
-{
-    QString path;
-    int size = 122;
-    switch (profile.getVersion())
+    QByteArrayList Encounters3::getData() const
     {
-        case Game::Emerald:
-            path = ":/encounters/emerald.bin";
-            break;
-        case Game::Ruby:
-            path = ":/encounters/ruby.bin";
-            break;
-        case Game::Sapphire:
-            path = ":/encounters/sapphire.bin";
-            break;
-        case Game::FireRed:
-            path = ":/encounters/firered.bin";
-            break;
-        case Game::LeafGreen:
-        default:
-            path = ":/encounters/leafgreen.bin";
-            break;
-    }
-
-    QByteArray data;
-    QFile file(path);
-    if (file.open(QIODevice::ReadOnly))
-    {
-        data = file.readAll();
-        file.close();
-    }
-
-    QByteArrayList encounters;
-    for (int i = 0; i < data.size(); i += size)
-    {
-        encounters.append(data.mid(i, size));
-    }
-
-    return encounters;
-}
-
-QVector<EncounterArea3> Encounters3::getArea(const QByteArray &data) const
-{
-    QVector<EncounterArea3> encounters;
-    u8 location = getValue(data, 0, 1);
-    u16 delay = getValue(data, 1, 2);
-
-    if (getValue(data, 3, 1) == 1 || getValue(data, 3, 1) == 2)
-    {
-        QVector<Slot> grass;
-        for (int i = 0; i < 12; i++)
+        QString path;
+        int size = 122;
+        switch (profile.getVersion())
         {
-            u8 level = getValue(data, 6 + i * 3, 1);
-            u16 specie = getValue(data, 7 + i * 3, 2);
-            grass.append(Slot(specie, level, pokemon.at(specie)));
+            case Game::Emerald:
+                path = ":/encounters/emerald.bin";
+                break;
+            case Game::Ruby:
+                path = ":/encounters/ruby.bin";
+                break;
+            case Game::Sapphire:
+                path = ":/encounters/sapphire.bin";
+                break;
+            case Game::FireRed:
+                path = ":/encounters/firered.bin";
+                break;
+            case Game::LeafGreen:
+            default:
+                path = ":/encounters/leafgreen.bin";
+                break;
         }
 
-        u16 val = getValue(data, 3, 1);
-        encounters.append(EncounterArea3(location, delay, val == 1 ? Encounter::Grass : Encounter::SafariZone, grass));
+        QByteArray data;
+        QFile file(path);
+        if (file.open(QIODevice::ReadOnly))
+        {
+            data = file.readAll();
+            file.close();
+        }
+
+        QByteArrayList encounters;
+        for (int i = 0; i < data.size(); i += size)
+        {
+            encounters.append(data.mid(i, size));
+        }
+
+        return encounters;
     }
-    if (getValue(data, 4, 1) == 1)
+
+    QVector<EncounterArea3> Encounters3::getArea(const QByteArray &data) const
     {
-        QVector<Slot> rock;
-        for (int i = 0; i < 5; i++)
+        QVector<EncounterArea3> encounters;
+        u8 location = getValue(data, 0, 1);
+        u16 delay = getValue(data, 1, 2);
+
+        if (getValue(data, 3, 1) == 1 || getValue(data, 3, 1) == 2)
         {
-            u8 min = getValue(data, 42 + i * 4, 1);
-            u8 max = getValue(data, 43 + i * 4, 1);
-            u16 specie = getValue(data, 44 + i * 4, 2);
-            rock.append(Slot(specie, min, max, pokemon.at(specie)));
+            QVector<Slot> grass;
+            for (int i = 0; i < 12; i++)
+            {
+                u8 level = getValue(data, 6 + i * 3, 1);
+                u16 specie = getValue(data, 7 + i * 3, 2);
+                grass.append(Slot(specie, level, pokemon.at(specie)));
+            }
+
+            u16 val = getValue(data, 3, 1);
+            encounters.append(EncounterArea3(location, delay, val == 1 ? Encounter::Grass : Encounter::SafariZone, grass));
         }
-        encounters.append(EncounterArea3(location, delay, Encounter::RockSmash, rock));
+        if (getValue(data, 4, 1) == 1)
+        {
+            QVector<Slot> rock;
+            for (int i = 0; i < 5; i++)
+            {
+                u8 min = getValue(data, 42 + i * 4, 1);
+                u8 max = getValue(data, 43 + i * 4, 1);
+                u16 specie = getValue(data, 44 + i * 4, 2);
+                rock.append(Slot(specie, min, max, pokemon.at(specie)));
+            }
+            encounters.append(EncounterArea3(location, delay, Encounter::RockSmash, rock));
+        }
+        if (getValue(data, 5, 1) == 1)
+        {
+            QVector<Slot> surf;
+            for (int i = 0; i < 5; i++)
+            {
+                u8 min = getValue(data, 62 + i * 4, 1);
+                u8 max = getValue(data, 63 + i * 4, 1);
+                u16 specie = getValue(data, 64 + i * 4, 2);
+                surf.append(Slot(specie, min, max, pokemon.at(specie)));
+            }
+            encounters.append(EncounterArea3(location, delay, Encounter::Surfing, surf));
+
+            QVector<Slot> old;
+            for (int i = 0; i < 2; i++)
+            {
+                u8 min = getValue(data, 82 + i * 4, 1);
+                u8 max = getValue(data, 83 + i * 4, 1);
+                u16 specie = getValue(data, 84 + i * 4, 2);
+                old.append(Slot(specie, min, max, pokemon.at(specie)));
+            }
+            encounters.append(EncounterArea3(location, delay, Encounter::OldRod, old));
+
+            QVector<Slot> good;
+            for (int i = 0; i < 3; i++)
+            {
+                u8 min = getValue(data, 90 + i * 4, 1);
+                u8 max = getValue(data, 91 + i * 4, 1);
+                u16 specie = getValue(data, 92 + i * 4, 2);
+                good.append(Slot(specie, min, max, pokemon.at(specie)));
+            }
+            encounters.append(EncounterArea3(location, delay, Encounter::GoodRod, good));
+
+            QVector<Slot> super;
+            for (int i = 0; i < 5; i++)
+            {
+                u8 min = getValue(data, 102 + i * 4, 1);
+                u8 max = getValue(data, 103 + i * 4, 1);
+                u16 specie = getValue(data, 104 + i * 4, 2);
+                super.append(Slot(specie, min, max, pokemon.at(specie)));
+            }
+            encounters.append(EncounterArea3(location, delay, Encounter::SuperRod, super));
+        }
+        return encounters;
     }
-    if (getValue(data, 5, 1) == 1)
+
+    u16 Encounters3::getValue(const QByteArray &data, int offset, int length) const
     {
-        QVector<Slot> surf;
-        for (int i = 0; i < 5; i++)
-        {
-            u8 min = getValue(data, 62 + i * 4, 1);
-            u8 max = getValue(data, 63 + i * 4, 1);
-            u16 specie = getValue(data, 64 + i * 4, 2);
-            surf.append(Slot(specie, min, max, pokemon.at(specie)));
-        }
-        encounters.append(EncounterArea3(location, delay, Encounter::Surfing, surf));
-
-        QVector<Slot> old;
-        for (int i = 0; i < 2; i++)
-        {
-            u8 min = getValue(data, 82 + i * 4, 1);
-            u8 max = getValue(data, 83 + i * 4, 1);
-            u16 specie = getValue(data, 84 + i * 4, 2);
-            old.append(Slot(specie, min, max, pokemon.at(specie)));
-        }
-        encounters.append(EncounterArea3(location, delay, Encounter::OldRod, old));
-
-        QVector<Slot> good;
-        for (int i = 0; i < 3; i++)
-        {
-            u8 min = getValue(data, 90 + i * 4, 1);
-            u8 max = getValue(data, 91 + i * 4, 1);
-            u16 specie = getValue(data, 92 + i * 4, 2);
-            good.append(Slot(specie, min, max, pokemon.at(specie)));
-        }
-        encounters.append(EncounterArea3(location, delay, Encounter::GoodRod, good));
-
-        QVector<Slot> super;
-        for (int i = 0; i < 5; i++)
-        {
-            u8 min = getValue(data, 102 + i * 4, 1);
-            u8 max = getValue(data, 103 + i * 4, 1);
-            u16 specie = getValue(data, 104 + i * 4, 2);
-            super.append(Slot(specie, min, max, pokemon.at(specie)));
-        }
-        encounters.append(EncounterArea3(location, delay, Encounter::SuperRod, super));
+        return data.mid(offset, length).toHex().toUShort(nullptr, 16);
     }
-    return encounters;
-}
 
-u16 Encounters3::getValue(const QByteArray &data, int offset, int length) const
-{
-    return data.mid(offset, length).toHex().toUShort(nullptr, 16);
 }

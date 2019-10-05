@@ -23,30 +23,35 @@
 #include <QVector>
 #include <Core/RNG/IRNG.hpp>
 
-class TinyMT : public IRNG
+namespace PokeFinderCore
 {
 
-public:
-    TinyMT();
-    TinyMT(u32 seed, u32 frames = 0);
-    TinyMT(const QVector<u32> &state, u32 frames = 0);
-    void advanceFrames(u32 frames) override;
-    void nextState();
-    u32 nextUInt() override;
-    u16 nextUShort() override;
-    u32 temper();
-    void setSeed(u32 seed) override;
-    void setSeed(u32 seed, u32 frames) override;
-    u32 getSeed() override;
-    QVector<u32> getState();
+    class TinyMT : public IRNG
+    {
 
-private:
-    QVector<u32> state;
-    u32 seed{};
+    public:
+        TinyMT();
+        TinyMT(u32 seed, u32 frames = 0);
+        TinyMT(const QVector<u32> &state, u32 frames = 0);
+        void advanceFrames(u32 frames) override;
+        void nextState();
+        u32 nextUInt() override;
+        u16 nextUShort() override;
+        u32 temper();
+        void setSeed(u32 seed) override;
+        void setSeed(u32 seed, u32 frames) override;
+        u32 getSeed() override;
+        QVector<u32> getState();
 
-    void initialize(u32 seed);
-    void periodCertification();
+    private:
+        QVector<u32> state;
+        u32 seed{};
 
-};
+        void initialize(u32 seed);
+        void periodCertification();
+
+    };
+
+}
 
 #endif // TINYMT_HPP

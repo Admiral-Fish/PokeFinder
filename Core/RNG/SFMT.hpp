@@ -23,29 +23,34 @@
 #include <QVector>
 #include <Core/RNG/IRNG64.hpp>
 
-class SFMT : public IRNG64
+namespace PokeFinderCore
 {
 
-public:
-    SFMT();
-    SFMT(u32 seed, u32 frames = 0);
-    void advanceFrames(u32 frames) override;
-    u32 nextUInt() override;
-    u64 nextULong() override;
-    void setSeed(u64 seed) override;
-    void setSeed(u64 seed, u32 frames) override;
-    u64 getSeed() override;
+    class SFMT : public IRNG64
+    {
 
-private:
-    const QVector<u32> parity = { 0x1, 0x0, 0x0, 0x13c9e684 };
-    QVector<u32> sfmt;
-    u32 seed{};
-    u32 index{};
+    public:
+        SFMT();
+        SFMT(u32 seed, u32 frames = 0);
+        void advanceFrames(u32 frames) override;
+        u32 nextUInt() override;
+        u64 nextULong() override;
+        void setSeed(u64 seed) override;
+        void setSeed(u64 seed, u32 frames) override;
+        u64 getSeed() override;
 
-    void initialize(u32 seed);
-    void periodCertificaion();
-    void shuffle();
+    private:
+        const QVector<u32> parity = { 0x1, 0x0, 0x0, 0x13c9e684 };
+        QVector<u32> sfmt;
+        u32 seed{};
+        u32 index{};
 
-};
+        void initialize(u32 seed);
+        void periodCertificaion();
+        void shuffle();
+
+    };
+
+}
 
 #endif // SFMT_HPP

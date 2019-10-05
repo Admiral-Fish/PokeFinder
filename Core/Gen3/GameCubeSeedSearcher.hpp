@@ -17,46 +17,51 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GAMECUBESEEDSEARCHER_HPP
-#define GAMECUBESEEDSEARCHER_HPP
+#ifndef GAMECUBESEED_HPP
+#define GAMECUBESEED_HPP
 
 #include <QObject>
 #include <QVector>
 #include <Core/Util/Game.hpp>
 #include <Core/Util/Global.hpp>
 
-class GameCubeSeedSearcher : public QObject
+namespace PokeFinderCore
 {
-    Q_OBJECT
 
-signals:
-    void finished();
-    void outputSeeds(QVector<u32> seeds);
-    void updateProgress(int);
+    class GameCubeSeedSearcher : public QObject
+    {
+        Q_OBJECT
 
-public:
-    GameCubeSeedSearcher(Game version, const QVector<u32> &criteria);
-    QVector<u32> getInitialSeeds(u8 num1, u8 num2);
-    void startSearch(const QVector<u32> &seeds);
-    void addHPCriteria(const QVector<u32> &criteria);
+    signals:
+        void finished();
+        void outputSeeds(QVector<u32> seeds);
+        void updateProgress(int);
 
-public slots:
-    void cancelSearch();
+    public:
+        GameCubeSeedSearcher(Game version, const QVector<u32> &criteria);
+        QVector<u32> getInitialSeeds(u8 num1, u8 num2);
+        void startSearch(const QVector<u32> &seeds);
+        void addHPCriteria(const QVector<u32> &criteria);
 
-private:
-    QVector<u32> seeds;
-    QVector<u32> criteria;
-    Game version;
-    bool searching, cancel;
-    int progress;
+    public slots:
+        void cancelSearch();
 
-    void search();
-    bool generateTeamGales(u32 &seed);
-    bool generateTeamColo(u32 &seed);
-    void generatePokemonGales(u32 &seed, u16 tsv);
-    void generatePokemonColo(u32 &seed, u16 tsv, u32 dummyPID, u8 nature, u8 gender, u8 genderRatio);
-    QVector<u8> generateEVs(u32 &seed);
+    private:
+        QVector<u32> seeds;
+        QVector<u32> criteria;
+        Game version;
+        bool searching, cancel;
+        int progress;
 
-};
+        void search();
+        bool generateTeamGales(u32 &seed);
+        bool generateTeamColo(u32 &seed);
+        void generatePokemonGales(u32 &seed, u16 tsv);
+        void generatePokemonColo(u32 &seed, u16 tsv, u32 dummyPID, u8 nature, u8 gender, u8 genderRatio);
+        QVector<u8> generateEVs(u32 &seed);
 
-#endif // GAMECUBESEEDSEARCHER_HPP
+    };
+
+}
+
+#endif // GAMECUBESEED_HPP

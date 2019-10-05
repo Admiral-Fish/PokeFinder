@@ -23,39 +23,44 @@
 #include <QLineEdit>
 #include <Core/Util/Global.hpp>
 
-enum InputType
+namespace PokeFinderForms
 {
-    Seed64Bit   = 1 << 0,
-    Frame64Bit  = 1 << 1,
-    Seed32Bit   = 1 << 2,
-    Frame32Bit  = 1 << 3,
-    Seed16Bit   = 1 << 4,
-    Delay       = 1 << 5,
-    TIDSID      = 1 << 6
-};
 
-class TextBox : public QLineEdit
-{
-    Q_OBJECT
+    enum InputType
+    {
+        Seed64Bit   = 1 << 0,
+        Frame64Bit  = 1 << 1,
+        Seed32Bit   = 1 << 2,
+        Frame32Bit  = 1 << 3,
+        Seed16Bit   = 1 << 4,
+        Delay       = 1 << 5,
+        TIDSID      = 1 << 6
+    };
 
-public:
-    explicit TextBox(QWidget *parent = nullptr);
-    void setValues(InputType type);
-    void setValues(u64 minValue, u64 maxValue, int base = 10);
-    int getInt();
-    u16 getUShort();
-    u32 getUInt();
+    class TextBox : public QLineEdit
+    {
+        Q_OBJECT
 
-private:
-    bool setup;
-    u64 maxValue = 0;
-    u64 minValue{};
-    int base{};
-    QRegExp filter;
+    public:
+        explicit TextBox(QWidget *parent = nullptr);
+        void setValues(InputType type);
+        void setValues(u64 minValue, u64 maxValue, int base = 10);
+        int getInt();
+        u16 getUShort();
+        u32 getUInt();
 
-private slots:
-    void onTextEdited(QString string);
+    private:
+        bool setup;
+        u64 maxValue = 0;
+        u64 minValue{};
+        int base{};
+        QRegExp filter;
 
-};
+    private slots:
+        void onTextEdited(QString string);
+
+    };
+
+}
 
 #endif // TEXTBOX_HPP

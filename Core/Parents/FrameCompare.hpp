@@ -23,32 +23,37 @@
 #include <QVector>
 #include <Core/Parents/Frame.hpp>
 
-class FrameCompare
+namespace PokeFinderCore
 {
 
-public:
-    FrameCompare() = default;
-    FrameCompare(int gender, int ability, bool shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max,
-                 const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters);
-    bool comparePID(const Frame &frame) const;
-    bool compareIVs(const Frame &frame) const;
-    bool compareNature(const Frame &frame) const;
-    bool compareHiddenPower(const Frame &frame) const;
-    bool compareSlot(const Frame &frame) const;
-    bool compareGender(const Frame &frame) const;
-    bool compareFrame(const Frame &frame) const;
+    class FrameCompare
+    {
 
-private:
-    QVector<u8> min;
-    QVector<u8> max;
-    u8 gender{};
-    u8 ability{};
-    QVector<bool> natures;
-    QVector<bool> powers;
-    QVector<bool> encounters;
-    bool shiny{};
-    bool skip{};
+    public:
+        FrameCompare() = default;
+        FrameCompare(int gender, int ability, bool shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max,
+                     const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters);
+        bool comparePID(const Frame &frame) const;
+        bool compareIVs(const Frame &frame) const;
+        bool compareNature(const Frame &frame) const;
+        bool compareHiddenPower(const Frame &frame) const;
+        bool compareSlot(const Frame &frame) const;
+        bool compareGender(const Frame &frame) const;
+        bool compareFrame(const Frame &frame) const;
 
-};
+    private:
+        QVector<u8> min;
+        QVector<u8> max;
+        u8 gender{};
+        u8 ability{};
+        QVector<bool> natures;
+        QVector<bool> powers;
+        QVector<bool> encounters;
+        bool shiny{};
+        bool skip{};
+
+    };
+
+}
 
 #endif // FRAMECOMPARE_HPP

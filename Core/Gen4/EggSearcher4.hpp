@@ -24,34 +24,39 @@
 #include <QObject>
 #include <Core/Gen4/Egg4.hpp>
 
-class EggSearcher4 : public QObject
+namespace PokeFinderCore
 {
-    Q_OBJECT
 
-signals:
-    void finished();
-    void updateProgress(const QVector<Frame4> &, int);
+    class EggSearcher4 : public QObject
+    {
+        Q_OBJECT
 
-public:
-    EggSearcher4(const Egg4 &generatorIV, const Egg4 &generatorPID, const FrameCompare &compare, u32 minDelay, u32 maxDelay, int type);
-    void startSearch();
+    signals:
+        void finished();
+        void updateProgress(const QVector<Frame4> &, int);
 
-public slots:
-    void cancelSearch();
+    public:
+        EggSearcher4(const Egg4 &generatorIV, const Egg4 &generatorPID, const FrameCompare &compare, u32 minDelay, u32 maxDelay, int type);
+        void startSearch();
 
-private:
-    Egg4 generatorIV;
-    Egg4 generatorPID;
-    FrameCompare compare;
-    u32 minDelay, maxDelay;
-    QMutex mutex;
-    QVector<Frame4> results;
-    bool searching, cancel;
-    int progress, type;
+    public slots:
+        void cancelSearch();
 
-    void search();
-    QVector<Frame4> getResults();
+    private:
+        Egg4 generatorIV;
+        Egg4 generatorPID;
+        FrameCompare compare;
+        u32 minDelay, maxDelay;
+        QMutex mutex;
+        QVector<Frame4> results;
+        bool searching, cancel;
+        int progress, type;
 
-};
+        void search();
+        QVector<Frame4> getResults();
+
+    };
+
+}
 
 #endif // EGGSEARCHER4_HPP

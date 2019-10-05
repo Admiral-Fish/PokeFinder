@@ -22,22 +22,27 @@
 
 #include <QDialog>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class RoamerMap;
+
+    namespace Ui
+    {
+        class RoamerMap;
+    }
+
+    class RoamerMap : public QDialog
+    {
+        Q_OBJECT
+
+    public:
+        explicit RoamerMap(QWidget *parent = nullptr);
+        ~RoamerMap() override;
+
+    private:
+        Ui::RoamerMap *ui;
+
+    };
+
 }
-
-class RoamerMap : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit RoamerMap(QWidget *parent = nullptr);
-    ~RoamerMap() override;
-
-private:
-    Ui::RoamerMap *ui;
-
-};
 
 #endif // ROAMERMAP_HPP

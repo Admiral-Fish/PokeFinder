@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SearchCoinFlips</class>
+ <class>PokeFinderForms::SearchCoinFlips</class>
  <widget class="QDialog" name="SearchCoinFlips">
   <property name="geometry">
    <rect>

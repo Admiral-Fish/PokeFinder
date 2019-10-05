@@ -22,101 +22,106 @@
 #include "ProfileEditor3.hpp"
 #include "ui_ProfileEditor3.h"
 
-ProfileEditor3::ProfileEditor3(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ProfileEditor3)
+namespace PokeFinderForms
 {
-    ui->setupUi(this);
-    setAttribute(Qt::WA_QuitOnClose, false);
 
-    setupModels();
-}
-
-ProfileEditor3::ProfileEditor3(const Profile3 &profile, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ProfileEditor3)
-{
-    ui->setupUi(this);
-    setAttribute(Qt::WA_QuitOnClose, false);
-
-    setupModels();
-
-    ui->lineEditProfile->setText(profile.getProfileName());
-    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
-    ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(profile.getLanguage()));
-    ui->textBoxTID->setText(QString::number(profile.getTID()));
-    ui->textBoxSID->setText(QString::number(profile.getSID()));
-    ui->checkBoxDeadBattery->setChecked(profile.getDeadBattery());
-
-    isEditing = true;
-    original = profile;
-}
-
-ProfileEditor3::~ProfileEditor3()
-{
-    QSettings setting;
-    setting.setValue("profileEditor3/geometry", this->saveGeometry());
-
-    delete ui;
-}
-
-Profile3 ProfileEditor3::getNewProfile()
-{
-    return fresh;
-}
-
-Profile3 ProfileEditor3::getOriginal()
-{
-    return original;
-}
-
-void ProfileEditor3::setupModels()
-{
-    ui->textBoxTID->setValues(InputType::TIDSID);
-    ui->textBoxSID->setValues(InputType::TIDSID);
-
-    ui->comboBoxVersion->setItemData(0, Game::Ruby);
-    ui->comboBoxVersion->setItemData(1, Game::Sapphire);
-    ui->comboBoxVersion->setItemData(2, Game::FireRed);
-    ui->comboBoxVersion->setItemData(3, Game::LeafGreen);
-    ui->comboBoxVersion->setItemData(4, Game::Emerald);
-    ui->comboBoxVersion->setItemData(5, Game::Gales);
-    ui->comboBoxVersion->setItemData(6, Game::Colosseum);
-
-    ui->comboBoxLanguage->setItemData(0, Language::English);
-    ui->comboBoxLanguage->setItemData(1, Language::Spanish);
-    ui->comboBoxLanguage->setItemData(2, Language::French);
-    ui->comboBoxLanguage->setItemData(3, Language::Italian);
-    ui->comboBoxLanguage->setItemData(4, Language::German);
-    ui->comboBoxLanguage->setItemData(5, Language::Japanese);
-
-    QSettings setting;
-    if (setting.contains("profileEditor3/geometry")) this->restoreGeometry(setting.value("profileEditor3/geometry").toByteArray());
-}
-
-void ProfileEditor3::on_pushButtonAccept_clicked()
-{
-    QString input = ui->lineEditProfile->text().trimmed();
-    if (input.isEmpty())
+    ProfileEditor3::ProfileEditor3(QWidget *parent) :
+        QDialog(parent),
+        ui(new Ui::ProfileEditor3)
     {
-        QMessageBox error;
-        error.setText(tr("Enter a Profile Name."));
-        error.exec();
-        return;
+        ui->setupUi(this);
+        setAttribute(Qt::WA_QuitOnClose, false);
+
+        setupModels();
     }
 
-    fresh = Profile3(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
-                     ui->textBoxSID->getUShort(), static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()), ui->checkBoxDeadBattery->isChecked());
-
-    done(QDialog::Accepted);
-}
-
-void ProfileEditor3::on_comboBoxVersion_currentIndexChanged(int /*index*/)
-{
-    bool flag = ui->comboBoxVersion->currentData().toInt() & Game::RS;
-    ui->checkBoxDeadBattery->setVisible(flag);
-    if (!flag)
+    ProfileEditor3::ProfileEditor3(const PokeFinderCore::Profile3 &profile, QWidget *parent) :
+        QDialog(parent),
+        ui(new Ui::ProfileEditor3)
     {
-        ui->checkBoxDeadBattery->setChecked(false);
+        ui->setupUi(this);
+        setAttribute(Qt::WA_QuitOnClose, false);
+
+        setupModels();
+
+        ui->lineEditProfile->setText(profile.getProfileName());
+        ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(profile.getVersion()));
+        ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(profile.getLanguage()));
+        ui->textBoxTID->setText(QString::number(profile.getTID()));
+        ui->textBoxSID->setText(QString::number(profile.getSID()));
+        ui->checkBoxDeadBattery->setChecked(profile.getDeadBattery());
+
+        isEditing = true;
+        original = profile;
     }
+
+    ProfileEditor3::~ProfileEditor3()
+    {
+        QSettings setting;
+        setting.setValue("profileEditor3/geometry", this->saveGeometry());
+
+        delete ui;
+    }
+
+    PokeFinderCore::Profile3 ProfileEditor3::getNewProfile()
+    {
+        return fresh;
+    }
+
+    PokeFinderCore::Profile3 ProfileEditor3::getOriginal()
+    {
+        return original;
+    }
+
+    void ProfileEditor3::setupModels()
+    {
+        ui->textBoxTID->setValues(InputType::TIDSID);
+        ui->textBoxSID->setValues(InputType::TIDSID);
+
+        ui->comboBoxVersion->setItemData(0, PokeFinderCore::Game::Ruby);
+        ui->comboBoxVersion->setItemData(1, PokeFinderCore::Game::Sapphire);
+        ui->comboBoxVersion->setItemData(2, PokeFinderCore::Game::FireRed);
+        ui->comboBoxVersion->setItemData(3, PokeFinderCore::Game::LeafGreen);
+        ui->comboBoxVersion->setItemData(4, PokeFinderCore::Game::Emerald);
+        ui->comboBoxVersion->setItemData(5, PokeFinderCore::Game::Gales);
+        ui->comboBoxVersion->setItemData(6, PokeFinderCore::Game::Colosseum);
+
+        ui->comboBoxLanguage->setItemData(0, PokeFinderCore::Language::English);
+        ui->comboBoxLanguage->setItemData(1, PokeFinderCore::Language::Spanish);
+        ui->comboBoxLanguage->setItemData(2, PokeFinderCore::Language::French);
+        ui->comboBoxLanguage->setItemData(3, PokeFinderCore::Language::Italian);
+        ui->comboBoxLanguage->setItemData(4, PokeFinderCore::Language::German);
+        ui->comboBoxLanguage->setItemData(5, PokeFinderCore::Language::Japanese);
+
+        QSettings setting;
+        if (setting.contains("profileEditor3/geometry")) this->restoreGeometry(setting.value("profileEditor3/geometry").toByteArray());
+    }
+
+    void ProfileEditor3::on_pushButtonAccept_clicked()
+    {
+        QString input = ui->lineEditProfile->text().trimmed();
+        if (input.isEmpty())
+        {
+            QMessageBox error;
+            error.setText(tr("Enter a Profile Name."));
+            error.exec();
+            return;
+        }
+
+        fresh = PokeFinderCore::Profile3(ui->lineEditProfile->text(), static_cast<PokeFinderCore::Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
+                                         ui->textBoxSID->getUShort(), static_cast<PokeFinderCore::Language>(ui->comboBoxLanguage->currentData().toInt()), ui->checkBoxDeadBattery->isChecked());
+
+        done(QDialog::Accepted);
+    }
+
+    void ProfileEditor3::on_comboBoxVersion_currentIndexChanged(int /*index*/)
+    {
+        bool flag = ui->comboBoxVersion->currentData().toInt() & PokeFinderCore::Game::RS;
+        ui->checkBoxDeadBattery->setVisible(flag);
+        if (!flag)
+        {
+            ui->checkBoxDeadBattery->setChecked(false);
+        }
+    }
+
 }

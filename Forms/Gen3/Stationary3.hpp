@@ -25,53 +25,58 @@
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class Stationary3;
+
+    namespace Ui
+    {
+        class Stationary3;
+    }
+
+    class Stationary3 : public QWidget
+    {
+        Q_OBJECT
+
+    signals:
+        void alertProfiles(int);
+
+    public:
+        explicit Stationary3(QWidget *parent = nullptr);
+        ~Stationary3() override;
+        void updateProfiles();
+
+    private:
+        Ui::Stationary3 *ui;
+        PokeFinderModels::Searcher3Model *searcherModel{};
+        PokeFinderModels::Stationary3Model *generatorModel{};
+        QVector<PokeFinderCore::Profile3> profiles;
+        QMenu *generatorMenu{};
+        QMenu *searcherMenu{};
+        QModelIndex lastIndex;
+        QModelIndex targetFrame;
+
+        void setupModels();
+
+    public slots:
+        void moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+
+    private slots:
+        void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
+        void refreshProfiles();
+        void on_comboBoxProfiles_currentIndexChanged(int index);
+        void on_pushButtonGenerate_clicked();
+        void on_pushButtonSearch_clicked();
+        void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
+        void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
+        void setTargetFrameGenerator();
+        void jumpToTargetGenerator();
+        void centerFramesAndSetTargetGenerator(u32 centerFrames);
+        void seedToTime();
+        void copySeedToClipboard();
+        void on_pushButtonProfileManager_clicked();
+
+    };
+
 }
-
-class Stationary3 : public QWidget
-{
-    Q_OBJECT
-
-signals:
-    void alertProfiles(int);
-
-public:
-    explicit Stationary3(QWidget *parent = nullptr);
-    ~Stationary3() override;
-    void updateProfiles();
-
-private:
-    Ui::Stationary3 *ui;
-    Searcher3Model *searcherModel{};
-    Stationary3Model *generatorModel{};
-    QVector<Profile3> profiles;
-    QMenu *generatorMenu{};
-    QMenu *searcherMenu{};
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
-
-    void setupModels();
-
-public slots:
-    void moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-
-private slots:
-    void updateProgress(const QVector<Frame3> &frames, int progress);
-    void refreshProfiles();
-    void on_comboBoxProfiles_currentIndexChanged(int index);
-    void on_pushButtonGenerate_clicked();
-    void on_pushButtonSearch_clicked();
-    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
-    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
-    void setTargetFrameGenerator();
-    void jumpToTargetGenerator();
-    void centerFramesAndSetTargetGenerator(u32 centerFrames);
-    void seedToTime();
-    void copySeedToClipboard();
-    void on_pushButtonProfileManager_clicked();
-
-};
 
 #endif // STATIONARY3_H

@@ -25,45 +25,50 @@
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <Models/Gen4/Stationary4Model.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class Stationary4;
+
+    namespace Ui
+    {
+        class Stationary4;
+    }
+
+    class Stationary4 : public QWidget
+    {
+        Q_OBJECT
+
+    signals:
+        void alertProfiles(int);
+
+    public:
+        explicit Stationary4(QWidget *parent = nullptr);
+        ~Stationary4() override;
+        void updateProfiles();
+
+    private:
+        Ui::Stationary4 *ui;
+        PokeFinderModels::Searcher4Model *searcherModel{};
+        PokeFinderModels::Stationary4Model *generatorModel{};
+        QVector<PokeFinderCore::Profile4> profiles;
+        QMenu *generatorMenu{};
+        QMenu *searcherMenu{};
+
+        void setupModels();
+
+    private slots:
+        void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
+        void refreshProfiles();
+        void on_pushButtonGenerate_clicked();
+        void on_pushButtonSearch_clicked();
+        void on_comboBoxProfiles_currentIndexChanged(int index);
+        void on_pushButtonGeneratorLead_clicked();
+        void seedToTime();
+        void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
+        void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
+        void on_pushButtonProfileManager_clicked();
+
+    };
+
 }
-
-class Stationary4 : public QWidget
-{
-    Q_OBJECT
-
-signals:
-    void alertProfiles(int);
-
-public:
-    explicit Stationary4(QWidget *parent = nullptr);
-    ~Stationary4() override;
-    void updateProfiles();
-
-private:
-    Ui::Stationary4 *ui;
-    Searcher4Model *searcherModel{};
-    Stationary4Model *generatorModel{};
-    QVector<Profile4> profiles;
-    QMenu *generatorMenu{};
-    QMenu *searcherMenu{};
-
-    void setupModels();
-
-private slots:
-    void updateProgress(const QVector<Frame4> &frames, int progress);
-    void refreshProfiles();
-    void on_pushButtonGenerate_clicked();
-    void on_pushButtonSearch_clicked();
-    void on_comboBoxProfiles_currentIndexChanged(int index);
-    void on_pushButtonGeneratorLead_clicked();
-    void seedToTime();
-    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
-    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
-    void on_pushButtonProfileManager_clicked();
-
-};
 
 #endif // STATIONARY4_HPP

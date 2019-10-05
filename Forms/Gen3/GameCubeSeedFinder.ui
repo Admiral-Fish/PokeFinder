@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GameCubeSeedFinder</class>
+ <class>PokeFinderForms::GameCubeSeedFinder</class>
  <widget class="QWidget" name="GameCubeSeedFinder">
   <property name="geometry">
    <rect>
@@ -448,7 +448,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TextBox</class>
+   <class>PokeFinderForms::TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>

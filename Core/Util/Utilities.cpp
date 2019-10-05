@@ -21,74 +21,79 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MTRNG.hpp>
 
-u16 Utilities::calcGen3Seed(const QDate &time, u32 h, u32 m)
+namespace PokeFinderCore
 {
-    u32 d = QDate(time.year() == 2000 ? 1999 : 2000, 12, 31).daysTo(time);
 
-    u32 seed = 1440 * d + 960 * (h / 10) + 60 * (h % 10) + 16 * (m / 10) + m % 10;
-    return (seed >> 16) ^ (seed & 0xFFFF);
-}
-
-u32 Utilities::calcGen4Seed(const QDateTime &dateTime, u32 delay)
-{
-    QDate date = dateTime.date();
-    QTime time = dateTime.time();
-
-    u8 ab = date.month() * date.day() + time.minute() + time.second();
-    u8 cd = time.hour();
-
-    return ((ab << 24) | (cd << 16)) + delay;
-}
-
-bool Utilities::shiny(u32 pid, u16 tid, u16 sid)
-{
-    return ((pid & 0xFFFF) ^ (pid >> 16) ^ tid ^ sid) < 8;
-}
-
-QString Utilities::coinFlips(u32 seed, u8 flips)
-{
-    QStringList coins;
-
-    MersenneTwister rng(seed);
-
-    for (int i = 0; i < flips; i++)
+    u16 Utilities::calcGen3Seed(const QDate &time, u32 h, u32 m)
     {
-        coins.append((rng.nextUInt() & 1) == 0 ? "T" : "H");
+        u32 d = QDate(time.year() == 2000 ? 1999 : 2000, 12, 31).daysTo(time);
+
+        u32 seed = 1440 * d + 960 * (h / 10) + 60 * (h % 10) + 16 * (m / 10) + m % 10;
+        return (seed >> 16) ^ (seed & 0xFFFF);
     }
 
-    return coins.join(", ");
-}
-
-QString Utilities::getCalls(u32 seed, u8 num, const HGSSRoamer &info)
-{
-    QString calls = "";
-
-    u8 skips = info.getSkips();
-
-    if (skips > 0)
+    u32 Utilities::calcGen4Seed(const QDateTime &dateTime, u32 delay)
     {
-        calls += "(";
+        QDate date = dateTime.date();
+        QTime time = dateTime.time();
+
+        u8 ab = date.month() * date.day() + time.minute() + time.second();
+        u8 cd = time.hour();
+
+        return ((ab << 24) | (cd << 16)) + delay;
     }
 
-    PokeRNG rng(seed);
-
-    for (int i = 0; i < num + skips; i++)
+    bool Utilities::shiny(u32 pid, u16 tid, u16 sid)
     {
-        u8 call = rng.nextUShort() % 3;
+        return ((pid & 0xFFFF) ^ (pid >> 16) ^ tid ^ sid) < 8;
+    }
 
-        calls += call == 0 ? "E" : call == 1 ? "K" : "P";
+    QString Utilities::coinFlips(u32 seed, u8 flips)
+    {
+        QStringList coins;
 
-        if (i != (num + skips - 1))
+        MersenneTwister rng(seed);
+
+        for (int i = 0; i < flips; i++)
         {
-            if (skips != 0 && skips == i + 1)
+            coins.append((rng.nextUInt() & 1) == 0 ? "T" : "H");
+        }
+
+        return coins.join(", ");
+    }
+
+    QString Utilities::getCalls(u32 seed, u8 num, const HGSSRoamer &info)
+    {
+        QString calls = "";
+
+        u8 skips = info.getSkips();
+
+        if (skips > 0)
+        {
+            calls += "(";
+        }
+
+        PokeRNG rng(seed);
+
+        for (int i = 0; i < num + skips; i++)
+        {
+            u8 call = rng.nextUShort() % 3;
+
+            calls += call == 0 ? "E" : call == 1 ? "K" : "P";
+
+            if (i != (num + skips - 1))
             {
-                calls += " skipped)  ";
-            }
-            else
-            {
-                calls += ", ";
+                if (skips != 0 && skips == i + 1)
+                {
+                    calls += " skipped)  ";
+                }
+                else
+                {
+                    calls += ", ";
+                }
             }
         }
+        return calls;
     }
-    return calls;
+
 }

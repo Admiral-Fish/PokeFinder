@@ -19,47 +19,52 @@
 
 #include "PokeSpotModel.hpp"
 
-PokeSpotModel::PokeSpotModel(QObject *parent) :
-    TableModel<Frame3>(parent)
+namespace PokeFinderModels
 {
-}
 
-int PokeSpotModel::columnCount(const QModelIndex & /*parent*/) const
-{
-    return 7;
-}
-
-QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
-{
-    if (role == Qt::DisplayRole)
+    PokeSpotModel::PokeSpotModel(QObject *parent) :
+        TableModel<PokeFinderCore::Frame3>(parent)
     {
-        auto frame = model.at(index.row());
-        switch (index.column())
+    }
+
+    int PokeSpotModel::columnCount(const QModelIndex & /*parent*/) const
+    {
+        return 7;
+    }
+
+    QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
+    {
+        if (role == Qt::DisplayRole)
         {
-            case 0:
-                return frame.getFrame();
-            case 1:
-                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-            case 2:
-                return frame.getShinyString();
-            case 3:
-                return frame.getLockReason();
-            case 4:
-                return frame.getNatureString();
-            case 5:
-                return frame.getAbility();
-            case 6:
-                return frame.getGenderString();
+            auto frame = model.at(index.row());
+            switch (index.column())
+            {
+                case 0:
+                    return frame.getFrame();
+                case 1:
+                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+                case 2:
+                    return frame.getShinyString();
+                case 3:
+                    return frame.getLockReason();
+                case 4:
+                    return frame.getNatureString();
+                case 5:
+                    return frame.getAbility();
+                case 6:
+                    return frame.getGenderString();
+            }
         }
+        return QVariant();
     }
-    return QVariant();
-}
 
-QVariant PokeSpotModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
-    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+    QVariant PokeSpotModel::headerData(int section, Qt::Orientation orientation, int role) const
     {
-        return header.at(section);
+        if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+        {
+            return header.at(section);
+        }
+        return QVariant();
     }
-    return QVariant();
+
 }

@@ -24,30 +24,35 @@
 #include <QWidget>
 #include <Core/Gen4/ChainedSIDCalc.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class ChainedSID;
+
+    namespace Ui
+    {
+        class ChainedSID;
+    }
+
+    class ChainedSID : public QWidget
+    {
+        Q_OBJECT
+
+    public:
+        explicit ChainedSID(QWidget *parent = nullptr);
+        ~ChainedSID() override;
+
+    private:
+        Ui::ChainedSID *ui;
+        QStandardItemModel *model{};
+        PokeFinderCore::ChainedSIDCalc *chainedCalc = nullptr;
+
+        void setupModels();
+
+    private slots:
+        void on_pushButtonCalculate_clicked();
+        void on_pushButtonClear_clicked();
+
+    };
+
 }
-
-class ChainedSID : public QWidget
-{
-    Q_OBJECT
-
-public:
-    explicit ChainedSID(QWidget *parent = nullptr);
-    ~ChainedSID() override;
-
-private:
-    Ui::ChainedSID *ui;
-    QStandardItemModel *model{};
-    ChainedSIDCalc *chainedCalc = nullptr;
-
-    void setupModels();
-
-private slots:
-    void on_pushButtonCalculate_clicked();
-    void on_pushButtonClear_clicked();
-
-};
 
 #endif // CHAINEDSID_HPP

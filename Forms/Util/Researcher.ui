@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Researcher</class>
+ <class>PokeFinderForms::Researcher</class>
  <widget class="QWidget" name="Researcher">
   <property name="geometry">
    <rect>
@@ -22,15 +22,6 @@
   <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
     <widget class="QTabWidget" name="rngSelection">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -119,14 +110,14 @@
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="TextBox" name="textBoxMult32Bit">
+        <widget class="TextBox" name="textBoxMult32Bit" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
+         <property name="maxLength" stdset="0">
           <number>8</number>
          </property>
         </widget>
@@ -145,14 +136,14 @@
         </widget>
        </item>
        <item row="2" column="2">
-        <widget class="TextBox" name="textBoxAdd32Bit">
+        <widget class="TextBox" name="textBoxAdd32Bit" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
+         <property name="maxLength" stdset="0">
           <number>8</number>
          </property>
         </widget>
@@ -238,14 +229,14 @@
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="TextBox" name="textBoxMult64Bit">
+        <widget class="TextBox" name="textBoxMult64Bit" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
+         <property name="maxLength" stdset="0">
           <number>16</number>
          </property>
         </widget>
@@ -264,14 +255,14 @@
         </widget>
        </item>
        <item row="2" column="2">
-        <widget class="TextBox" name="textBoxAdd64Bit">
+        <widget class="TextBox" name="textBoxAdd64Bit" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
+         <property name="maxLength" stdset="0">
           <number>16</number>
          </property>
         </widget>
@@ -298,14 +289,14 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="TextBox" name="textBoxStatus3">
+        <widget class="TextBox" name="textBoxStatus3" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
+         <property name="maxLength" stdset="0">
           <number>8</number>
          </property>
         </widget>
@@ -318,14 +309,14 @@
         </widget>
        </item>
        <item row="1" column="3">
-        <widget class="TextBox" name="textBoxStatus2">
+        <widget class="TextBox" name="textBoxStatus2" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
+         <property name="maxLength" stdset="0">
           <number>8</number>
          </property>
         </widget>
@@ -338,14 +329,14 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="TextBox" name="textBoxStatus1">
+        <widget class="TextBox" name="textBoxStatus1" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
+         <property name="maxLength" stdset="0">
           <number>8</number>
          </property>
         </widget>
@@ -358,14 +349,14 @@
         </widget>
        </item>
        <item row="2" column="3">
-        <widget class="TextBox" name="textBoxStatus0">
+        <widget class="TextBox" name="textBoxStatus0" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
+         <property name="maxLength" stdset="0">
           <number>8</number>
          </property>
         </widget>
@@ -376,9 +367,6 @@
    </item>
    <item row="0" column="1" rowspan="3">
     <widget class="QGroupBox" name="groupBoxCustoms">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="title">
       <string>Customs</string>
      </property>
@@ -479,8 +467,8 @@
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="TextBox" name="lineEditRValue1">
-        <property name="maxLength">
+       <widget class="TextBox" name="lineEditRValue1" native="true">
+        <property name="maxLength" stdset="0">
          <number>10</number>
         </property>
        </widget>
@@ -598,8 +586,8 @@
        </widget>
       </item>
       <item row="1" column="3">
-       <widget class="TextBox" name="lineEditRValue2">
-        <property name="maxLength">
+       <widget class="TextBox" name="lineEditRValue2" native="true">
+        <property name="maxLength" stdset="0">
          <number>10</number>
         </property>
        </widget>
@@ -776,8 +764,8 @@
        </widget>
       </item>
       <item row="2" column="3">
-       <widget class="TextBox" name="lineEditRValue3">
-        <property name="maxLength">
+       <widget class="TextBox" name="lineEditRValue3" native="true">
+        <property name="maxLength" stdset="0">
          <number>10</number>
         </property>
        </widget>
@@ -974,8 +962,8 @@
        </widget>
       </item>
       <item row="3" column="3">
-       <widget class="TextBox" name="lineEditRValue4">
-        <property name="maxLength">
+       <widget class="TextBox" name="lineEditRValue4" native="true">
+        <property name="maxLength" stdset="0">
          <number>10</number>
         </property>
        </widget>
@@ -1192,8 +1180,8 @@
        </widget>
       </item>
       <item row="4" column="3">
-       <widget class="TextBox" name="lineEditRValue5">
-        <property name="maxLength">
+       <widget class="TextBox" name="lineEditRValue5" native="true">
+        <property name="maxLength" stdset="0">
          <number>10</number>
         </property>
        </widget>
@@ -1430,8 +1418,8 @@
        </widget>
       </item>
       <item row="5" column="3">
-       <widget class="TextBox" name="lineEditRValue6">
-        <property name="maxLength">
+       <widget class="TextBox" name="lineEditRValue6" native="true">
+        <property name="maxLength" stdset="0">
          <number>10</number>
         </property>
        </widget>
@@ -1688,8 +1676,8 @@
        </widget>
       </item>
       <item row="6" column="3">
-       <widget class="TextBox" name="lineEditRValue7">
-        <property name="maxLength">
+       <widget class="TextBox" name="lineEditRValue7" native="true">
+        <property name="maxLength" stdset="0">
          <number>10</number>
         </property>
        </widget>
@@ -1966,8 +1954,8 @@
        </widget>
       </item>
       <item row="7" column="3">
-       <widget class="TextBox" name="lineEditRValue8">
-        <property name="maxLength">
+       <widget class="TextBox" name="lineEditRValue8" native="true">
+        <property name="maxLength" stdset="0">
          <number>10</number>
         </property>
        </widget>
@@ -2264,8 +2252,8 @@
        </widget>
       </item>
       <item row="8" column="3">
-       <widget class="TextBox" name="lineEditRValue9">
-        <property name="maxLength">
+       <widget class="TextBox" name="lineEditRValue9" native="true">
+        <property name="maxLength" stdset="0">
          <number>10</number>
         </property>
        </widget>
@@ -2582,8 +2570,8 @@
        </widget>
       </item>
       <item row="9" column="3">
-       <widget class="TextBox" name="lineEditRValue10">
-        <property name="maxLength">
+       <widget class="TextBox" name="lineEditRValue10" native="true">
+        <property name="maxLength" stdset="0">
          <number>10</number>
         </property>
        </widget>
@@ -2729,15 +2717,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBoxParameters">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="title">
       <string>Parameters</string>
      </property>
@@ -2750,11 +2729,11 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="TextBox" name="textBoxStartingFrame">
-        <property name="text">
+       <widget class="TextBox" name="textBoxStartingFrame" native="true">
+        <property name="text" stdset="0">
          <string notr="true">1</string>
         </property>
-        <property name="maxLength">
+        <property name="maxLength" stdset="0">
          <number>20</number>
         </property>
        </widget>
@@ -2767,11 +2746,11 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="TextBox" name="textBoxMaxFrames">
-        <property name="text">
+       <widget class="TextBox" name="textBoxMaxFrames" native="true">
+        <property name="text" stdset="0">
          <string notr="true">1000</string>
         </property>
-        <property name="maxLength">
+        <property name="maxLength" stdset="0">
          <number>20</number>
         </property>
        </widget>
@@ -2784,8 +2763,8 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="TextBox" name="textBoxSeed">
-        <property name="maxLength">
+       <widget class="TextBox" name="textBoxSeed" native="true">
+        <property name="maxLength" stdset="0">
          <number>16</number>
         </property>
        </widget>
@@ -2808,15 +2787,6 @@
    </item>
    <item row="2" column="0">
     <widget class="QGroupBox" name="groupBoxSearch">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="title">
       <string>Search</string>
      </property>
@@ -2829,8 +2799,8 @@
        </widget>
       </item>
       <item row="0" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxSearch">
-        <property name="maxLength">
+       <widget class="TextBox" name="textBoxSearch" native="true">
+        <property name="maxLength" stdset="0">
          <number>16</number>
         </property>
        </widget>
@@ -2903,8 +2873,8 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TextBox</class>
-   <extends>QLineEdit</extends>
+   <class>PokeFinderForms::TextBox</class>
+   <extends>QWidget</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
  </customwidgets>

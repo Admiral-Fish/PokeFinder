@@ -23,7 +23,7 @@
 #include <QStringList>
 #include <Core/Util/Global.hpp>
 
-namespace Nature
+namespace PokeFinderCore::Nature
 {
     QStringList getNatures();
     QString getNature(u8 nature);
@@ -31,6 +31,6 @@ namespace Nature
     QVector<double> getNatureModifier(u8 nature);
     u8 getAdjustedNature(u8 nature);
     u8 getReversedNature(u8 nature);
-};
+}
 
 #endif // NATURE_HPP

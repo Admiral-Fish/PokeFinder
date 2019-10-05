@@ -26,40 +26,45 @@
 #include <Core/Parents/Generator.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-class Generator3: public Generator
+namespace PokeFinderCore
 {
 
-public:
-    Generator3();
-    Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, u8 genderRatio);
-    QVector<Frame3> generate(const FrameCompare &compare) const;
-    void setup(Method method);
-    void setEncounter(const EncounterArea3 &value);
-    void setShadowTeam(u8 index, int type);
+    class Generator3: public Generator
+    {
 
-private:
-    u8 ivFirst{};
-    u8 ivSecond{};
-    EncounterArea3 encounter;
-    ShadowTeam team;
-    int type;
+    public:
+        Generator3();
+        Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, u8 genderRatio);
+        QVector<Frame3> generate(const FrameCompare &compare) const;
+        void setup(Method method);
+        void setEncounter(const EncounterArea3 &value);
+        void setShadowTeam(u8 index, int type);
 
-    QVector<Frame3> generateMethodChannel(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodH124(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodXDColo(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethodXDColoShadow(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethod124(const FrameCompare &compare) const;
-    QVector<Frame3> generateMethod1Reverse(const FrameCompare &compare) const;
-    void generateNonShadows(XDRNG &rng) const;
-    static inline bool cuteCharm125F(u32 pid) { return (pid & 0xff) < 31; }
-    static inline bool cuteCharm875M(u32 pid) { return (pid & 0xff) >= 31; }
-    static inline bool cuteCharm25F(u32 pid) { return (pid & 0xff) < 63; }
-    static inline bool cuteCharm75M(u32 pid) { return (pid & 0xff) >= 63; }
-    static inline bool cuteCharm50F(u32 pid) { return (pid & 0xff) < 127; }
-    static inline bool cuteCharm50M(u32 pid) { return (pid & 0xff) >= 127; }
-    static inline bool cuteCharm75F(u32 pid) { return (pid & 0xff) < 191; }
-    static inline bool cuteCharm25M(u32 pid) { return (pid & 0xff) >= 191; }
+    private:
+        u8 ivFirst{};
+        u8 ivSecond{};
+        EncounterArea3 encounter;
+        ShadowTeam team;
+        int type;
 
-};
+        QVector<Frame3> generateMethodChannel(const FrameCompare &compare) const;
+        QVector<Frame3> generateMethodH124(const FrameCompare &compare) const;
+        QVector<Frame3> generateMethodXDColo(const FrameCompare &compare) const;
+        QVector<Frame3> generateMethodXDColoShadow(const FrameCompare &compare) const;
+        QVector<Frame3> generateMethod124(const FrameCompare &compare) const;
+        QVector<Frame3> generateMethod1Reverse(const FrameCompare &compare) const;
+        void generateNonShadows(XDRNG &rng) const;
+        static inline bool cuteCharm125F(u32 pid) { return (pid & 0xff) < 31; }
+        static inline bool cuteCharm875M(u32 pid) { return (pid & 0xff) >= 31; }
+        static inline bool cuteCharm25F(u32 pid) { return (pid & 0xff) < 63; }
+        static inline bool cuteCharm75M(u32 pid) { return (pid & 0xff) >= 63; }
+        static inline bool cuteCharm50F(u32 pid) { return (pid & 0xff) < 127; }
+        static inline bool cuteCharm50M(u32 pid) { return (pid & 0xff) >= 127; }
+        static inline bool cuteCharm75F(u32 pid) { return (pid & 0xff) < 191; }
+        static inline bool cuteCharm25M(u32 pid) { return (pid & 0xff) >= 191; }
+
+    };
+
+}
 
 #endif // GENERATOR3_HPP

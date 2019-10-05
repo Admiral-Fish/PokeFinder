@@ -23,33 +23,38 @@
 #include <QWidget>
 #include <Models/Gen4/Profile4Model.hpp>
 
-namespace Ui
+namespace PokeFinderForms
 {
-    class ProfileManager4;
+
+    namespace Ui
+    {
+        class ProfileManager4;
+    }
+
+    class ProfileManager4 : public QWidget
+    {
+        Q_OBJECT
+
+    signals:
+        void updateProfiles();
+
+    public:
+        explicit ProfileManager4(QWidget *parent = nullptr);
+        ~ProfileManager4() override;
+
+    private:
+        Ui::ProfileManager4 *ui;
+        PokeFinderModels::Profile4Model *model{};
+
+        void setupModels();
+
+    private slots:
+        void on_pushButtonNew_clicked();
+        void on_pushButtonEdit_clicked();
+        void on_pushButtonDelete_clicked();
+
+    };
+
 }
-
-class ProfileManager4 : public QWidget
-{
-    Q_OBJECT
-
-signals:
-    void updateProfiles();
-
-public:
-    explicit ProfileManager4(QWidget *parent = nullptr);
-    ~ProfileManager4() override;
-
-private:
-    Ui::ProfileManager4 *ui;
-    Profile4Model *model{};
-
-    void setupModels();
-
-private slots:
-    void on_pushButtonNew_clicked();
-    void on_pushButtonEdit_clicked();
-    void on_pushButtonDelete_clicked();
-
-};
 
 #endif // PROFILEMANAGER4_HPP

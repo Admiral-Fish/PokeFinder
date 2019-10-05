@@ -24,32 +24,37 @@
 #include <QMutex>
 #include <Core/Gen3/Searcher3.hpp>
 
-class IVSearcher3 : public QObject
+namespace PokeFinderCore
 {
-    Q_OBJECT
 
-signals:
-    void finished();
-    void updateProgress(const QVector<Frame3> &, int progress);
+    class IVSearcher3 : public QObject
+    {
+        Q_OBJECT
 
-public:
-    IVSearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max);
-    void startSearch();
+    signals:
+        void finished();
+        void updateProgress(const QVector<Frame3> &, int progress);
 
-public slots:
-    void cancelSearch();
+    public:
+        IVSearcher3(const Searcher3 &searcher, const QVector<u8> &min, const QVector<u8> &max);
+        void startSearch();
 
-private:
-    Searcher3 searcher;
-    QVector<u8> min, max;
-    QVector<Frame3> results;
-    bool searching, cancel;
-    int progress;
-    QMutex mutex;
+    public slots:
+        void cancelSearch();
 
-    void search();
-    QVector<Frame3> getResults();
+    private:
+        Searcher3 searcher;
+        QVector<u8> min, max;
+        QVector<Frame3> results;
+        bool searching, cancel;
+        int progress;
+        QMutex mutex;
 
-};
+        void search();
+        QVector<Frame3> getResults();
+
+    };
+
+}
 
 #endif // IVSEARCHER3_HPP

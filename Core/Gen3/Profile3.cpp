@@ -23,126 +23,131 @@
 #include <QSettings>
 #include "Profile3.hpp"
 
-Profile3::Profile3()
+namespace PokeFinderCore
 {
-    version = Game::Emerald;
-    deadBattery = false;
-}
 
-Profile3::Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language, bool deadBattery) :
-    Profile(profileName, version, tid, sid, language)
-{
-    this->deadBattery = deadBattery;
-}
-
-Profile3::Profile3(QJsonObject data) :
-    Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
-{
-    deadBattery = data["battery"].toBool();
-}
-
-bool Profile3::getDeadBattery() const
-{
-    return deadBattery;
-}
-
-QJsonObject Profile3::getJson() const
-{
-    QJsonObject data;
-    data["name"] = profileName;
-    data["version"] = version;
-    data["language"] = language;
-    data["tid"] = tid;
-    data["sid"] = sid;
-    data["battery"] = deadBattery;
-    return data;
-}
-
-QVector<Profile3> Profile3::loadProfileList()
-{
-    QVector<Profile3> profileList;
-
-    QSettings setting;
-    QByteArray data = setting.value("profiles").toByteArray();
-
-    QJsonObject profiles(QJsonDocument::fromJson(data).object());
-    QJsonArray gen3 = profiles["gen3"].toArray();
-
-    for (const auto &&i : gen3)
+    Profile3::Profile3()
     {
-        profileList.append(Profile3(i.toObject()));
+        version = Game::Emerald;
+        deadBattery = false;
     }
 
-    return profileList;
-}
-
-void Profile3::saveProfile() const
-{
-    QSettings setting;
-    QByteArray data = setting.value("profiles").toByteArray();
-
-    QJsonObject profiles(QJsonDocument::fromJson(data).object());
-    QJsonArray gen3 = profiles["gen3"].toArray();
-
-    gen3.append(getJson());
-    profiles["gen3"] = gen3;
-
-    setting.setValue("profiles", QJsonDocument(profiles).toJson());
-}
-
-void Profile3::deleteProfile() const
-{
-    QSettings setting;
-    QByteArray data = setting.value("profiles").toByteArray();
-
-    QJsonObject profiles(QJsonDocument::fromJson(data).object());
-    QJsonArray gen3 = profiles["gen3"].toArray();
-
-    for (int i = 0; i < gen3.size(); i++)
+    Profile3::Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language, bool deadBattery) :
+        Profile(profileName, version, tid, sid, language)
     {
-        Profile3 profile(gen3[i].toObject());
+        this->deadBattery = deadBattery;
+    }
 
-        if (profile == *this)
+    Profile3::Profile3(QJsonObject data) :
+        Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
+    {
+        deadBattery = data["battery"].toBool();
+    }
+
+    bool Profile3::getDeadBattery() const
+    {
+        return deadBattery;
+    }
+
+    QJsonObject Profile3::getJson() const
+    {
+        QJsonObject data;
+        data["name"] = profileName;
+        data["version"] = version;
+        data["language"] = language;
+        data["tid"] = tid;
+        data["sid"] = sid;
+        data["battery"] = deadBattery;
+        return data;
+    }
+
+    QVector<Profile3> Profile3::loadProfileList()
+    {
+        QVector<Profile3> profileList;
+
+        QSettings setting;
+        QByteArray data = setting.value("profiles").toByteArray();
+
+        QJsonObject profiles(QJsonDocument::fromJson(data).object());
+        QJsonArray gen3 = profiles["gen3"].toArray();
+
+        for (const auto &&i : gen3)
         {
-            gen3.removeAt(i);
-            profiles["gen3"] = gen3;
+            profileList.append(Profile3(i.toObject()));
+        }
 
-            setting.setValue("profiles", QJsonDocument(profiles).toJson());
-            break;
+        return profileList;
+    }
+
+    void Profile3::saveProfile() const
+    {
+        QSettings setting;
+        QByteArray data = setting.value("profiles").toByteArray();
+
+        QJsonObject profiles(QJsonDocument::fromJson(data).object());
+        QJsonArray gen3 = profiles["gen3"].toArray();
+
+        gen3.append(getJson());
+        profiles["gen3"] = gen3;
+
+        setting.setValue("profiles", QJsonDocument(profiles).toJson());
+    }
+
+    void Profile3::deleteProfile() const
+    {
+        QSettings setting;
+        QByteArray data = setting.value("profiles").toByteArray();
+
+        QJsonObject profiles(QJsonDocument::fromJson(data).object());
+        QJsonArray gen3 = profiles["gen3"].toArray();
+
+        for (int i = 0; i < gen3.size(); i++)
+        {
+            Profile3 profile(gen3[i].toObject());
+
+            if (profile == *this)
+            {
+                gen3.removeAt(i);
+                profiles["gen3"] = gen3;
+
+                setting.setValue("profiles", QJsonDocument(profiles).toJson());
+                break;
+            }
         }
     }
-}
 
-void Profile3::updateProfile(const Profile3 &original) const
-{
-    QSettings setting;
-    QByteArray data = setting.value("profiles").toByteArray();
-
-    QJsonObject profiles(QJsonDocument::fromJson(data).object());
-    QJsonArray gen3 = profiles["gen3"].toArray();
-
-    for (auto &&i : gen3)
+    void Profile3::updateProfile(const Profile3 &original) const
     {
-        Profile3 profile(i.toObject());
+        QSettings setting;
+        QByteArray data = setting.value("profiles").toByteArray();
 
-        if (original == profile && original != *this)
+        QJsonObject profiles(QJsonDocument::fromJson(data).object());
+        QJsonArray gen3 = profiles["gen3"].toArray();
+
+        for (auto &&i : gen3)
         {
-            i = getJson();
-            profiles["gen3"] = gen3;
+            Profile3 profile(i.toObject());
 
-            setting.setValue("profiles", QJsonDocument(profiles).toJson());
-            break;
+            if (original == profile && original != *this)
+            {
+                i = getJson();
+                profiles["gen3"] = gen3;
+
+                setting.setValue("profiles", QJsonDocument(profiles).toJson());
+                break;
+            }
         }
     }
-}
 
-bool operator==(const Profile3 &left, const Profile3 &right)
-{
-    return left.profileName == right.profileName && left.version == right.version && left.language == right.language &&
-           left.tid == right.tid && left.sid == right.sid && left.deadBattery == right.deadBattery;
-}
+    bool operator==(const Profile3 &left, const Profile3 &right)
+    {
+        return left.profileName == right.profileName && left.version == right.version && left.language == right.language &&
+               left.tid == right.tid && left.sid == right.sid && left.deadBattery == right.deadBattery;
+    }
 
-bool operator!=(const Profile3 &left, const Profile3 &right)
-{
-    return !(left == right);
+    bool operator!=(const Profile3 &left, const Profile3 &right)
+    {
+        return !(left == right);
+    }
+
 }

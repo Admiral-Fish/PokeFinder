@@ -21,33 +21,37 @@
 #define SEARCHCOINFLIPS_HPP
 
 #include <QDialog>
-#include <Util/DateTime.hpp>
+#include <Core/Util/DateTime.hpp>
 
-
-namespace Ui
+namespace PokeFinderForms
 {
-    class SearchCoinFlips;
+
+    namespace Ui
+    {
+        class SearchCoinFlips;
+    }
+
+    class SearchCoinFlips : public QDialog
+    {
+        Q_OBJECT
+
+    public:
+        explicit SearchCoinFlips(const QVector<PokeFinderCore::DateTime> &model, QWidget *parent = nullptr);
+        ~SearchCoinFlips() override;
+        QVector<bool> possibleResults() const;
+
+    private:
+        Ui::SearchCoinFlips *ui;
+        QVector<PokeFinderCore::DateTime> data;
+        QVector<bool> possible;
+
+    private slots:
+        void on_pushButtonHeads_clicked();
+        void on_pushButtonTails_clicked();
+        void on_lineEditFlips_textChanged(const QString &val);
+
+    };
+
 }
-
-class SearchCoinFlips : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit SearchCoinFlips(const QVector<DateTime> &model, QWidget *parent = nullptr);
-    ~SearchCoinFlips() override;
-    QVector<bool> possibleResults() const;
-
-private:
-    Ui::SearchCoinFlips *ui;
-    QVector<DateTime> data;
-    QVector<bool> possible;
-
-private slots:
-    void on_pushButtonHeads_clicked();
-    void on_pushButtonTails_clicked();
-    void on_lineEditFlips_textChanged(const QString &val);
-
-};
 
 #endif // SEARCHCOINFLIPS_HPP
