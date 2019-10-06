@@ -25,55 +25,42 @@
 
 namespace PokeFinderCore
 {
-
-    class MT : public IRNG
+    class MT : public IRNG<u32>
     {
-
     public:
         void advanceFrames(u32 frames) override;
 
     protected:
-        const QVector<u32> mag01 = { 0x0, 0x9908B0DF };
         QVector<u32> mt;
-        u32 seed;
         u32 index;
 
         virtual void shuffle();
         virtual void initialize(u32 seed);
-        void setSeed(u32 seed) override;
         void setSeed(u32 seed, u32 frames) override;
-        u16 nextUShort() override;
-        u32 getSeed() override;
-
+        u16 nextUShort(u32 frames = 0);
+        u32 next(u32 frames = 0) override;
+        virtual u32 nextUInt(u32 frames = 0) = 0;
     };
 
     class MersenneTwister : public MT
     {
-
     public:
-        MersenneTwister();
-        MersenneTwister(u32 seed, u32 frames = 0);
-        u32 nextUInt() override;
-
+        MersenneTwister(u32 seed = 0, u32 frames = 0);
+        u32 nextUInt(u32 frames = 0) override;
     };
 
     class MersenneTwisterUntempered : public MT
     {
-
     public:
-        MersenneTwisterUntempered();
-        MersenneTwisterUntempered(u32 seed, u32 frames = 0);
-        u32 nextUInt() override;
-
+        MersenneTwisterUntempered(u32 seed = 0, u32 frames = 0);
+        u32 nextUInt(u32 frames = 0) override;
     };
 
     class MersenneTwisterFast : public MT
     {
-
     public:
-        MersenneTwisterFast();
-        MersenneTwisterFast(u32 seed, u32 calls, u32 frames = 0);
-        u32 nextUInt() override;
+        MersenneTwisterFast(u32 calls, u32 seed = 0, u32 frames = 0);
+        u32 nextUInt(u32 frames = 0) override;
 
     private:
         u16 max;
@@ -81,9 +68,7 @@ namespace PokeFinderCore
 
         void initialize(u32 seed) override;
         void shuffle() override;
-
     };
-
 }
 
 #endif //MTRNG_HPP

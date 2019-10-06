@@ -20,60 +20,79 @@
 #ifndef LCRNG64_HPP
 #define LCRNG64_HPP
 
-#include <Core/RNG/IRNG64.hpp>
+#include <Core/RNG/IRNG.hpp>
 
 namespace PokeFinderCore
 {
-
-    class LCRNG64 : public IRNG64
+    template<u64 add, u64 mult>
+    class LCRNG64 : public IRNG<u64>
     {
-
     public:
-        LCRNG64() = default;
-        LCRNG64(u64 add, u64 mult, u64 seed, u32 frames = 0);
-        void advanceFrames(u32 frames) override;
-        u32 nextUInt(u32 max);
-        u64 nextULong() override;
-        u32 nextUInt() override;
-        void setSeed(u64 seed) override;
-        void setSeed(u64 seed, u32 frames) override;
-        u64 getSeed() override;
+        LCRNG64(u64 seed = 0, u32 frames = 0)
+        {
+            this->seed = seed;
+            advanceFrames(frames);
+        }
+
+        void advanceFrames(u32 frames) override
+        {
+            for (u32 frame = 0; frame < frames; frame++)
+            {
+                seed = seed * mult + add;
+            }
+        }
+
+        u32 nextUInt(u32 max, u32 frames = 0)
+        {
+            return ((nextULong(frames) >> 32) * max) >> 32;
+        }
+
+        u64 nextULong(u32 frames = 0)
+        {
+            advanceFrames(frames + 1);
+            return seed;
+        }
+
+        u32 nextUInt(u32 frames = 0)
+        {
+            return nextULong(frames) >> 32;
+        }
+
+        u64 next(u32 frames = 0) override
+        {
+            return nextULong(frames);
+        }
+
+        void setSeed(u64 seed, u32 frames = 0) override
+        {
+            this->seed = seed;
+            advanceFrames(frames);
+        }
+
+        u64 getSeed()
+        {
+            return seed;
+        }
 
     protected:
-        u64 add{};
-        u64 mult{};
         u64 seed{};
-
     };
 
-    class BWRNG : public LCRNG64
+    class BWRNG : public LCRNG64<0x269ec3, 0x5d588b656c078965>
     {
-
     public:
-        BWRNG() : LCRNG64(0x269ec3, 0x5d588b656c078965, 0, 0)
+        BWRNG(u64 seed = 0, u32 frames = 0) : LCRNG64(seed, frames)
         {
         }
-
-        BWRNG(u64 seed, u32 frames = 0) : LCRNG64(0x269ec3, 0x5d588b656c078965, seed, frames)
-        {
-        }
-
     };
 
-    class BWRNGR : public LCRNG64
+    class BWRNGR : public LCRNG64<0x9b1ae6e9a384e6f9, 0xdedcedae9638806d>
     {
-
     public:
-        BWRNGR() : LCRNG64(0x9b1ae6e9a384e6f9, 0xdedcedae9638806d, 0, 0)
+        BWRNGR(u64 seed = 0, u32 frames = 0) : LCRNG64(seed, frames)
         {
         }
-
-        BWRNGR(u64 seed, u32 frames = 0) : LCRNG64(0x9b1ae6e9a384e6f9, 0xdedcedae9638806d, seed, frames)
-        {
-        }
-
     };
-
 }
 
 #endif // LCRNG64_HPP

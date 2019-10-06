@@ -29,12 +29,6 @@ constexpr u8 TINYMT32SH8 = 8;
 
 namespace PokeFinderCore
 {
-
-    TinyMT::TinyMT()
-    {
-        initialize(0);
-    }
-
     TinyMT::TinyMT(u32 seed, u32 frames)
     {
         initialize(seed);
@@ -50,57 +44,26 @@ namespace PokeFinderCore
 
     void TinyMT::advanceFrames(u32 frames)
     {
-        for (u32 i = 0; i < frames; i++)
+        for (u32 frame = 0; frame < frames; frame++)
         {
             nextState();
         }
     }
 
-    void TinyMT::nextState()
+    u32 TinyMT::nextUInt(u32 frames)
     {
-        u32 y = state.at(3);
-        u32 x = (state.at(0) & TINYMT32MASK) ^ state.at(1) ^ state.at(2);
-        x ^= (x << TINYMT32SH0);
-        y ^= (y >> TINYMT32SH0) ^ x;
-        state[0] = state.at(1);
-        state[1] = state.at(2);
-        state[2] = x ^ (y << TINYMT32SH1);
-        state[3] = y;
-
-        if (y & 1)
-        {
-            state[1] ^= MAT1;
-            state[2] ^= MAT2;
-        }
-    }
-
-    u32 TinyMT::nextUInt()
-    {
-        nextState();
+        advanceFrames(frames + 1);
         return temper();
     }
 
-    u16 TinyMT::nextUShort()
+    u16 TinyMT::nextUShort(u32 frames)
     {
-        return nextUInt() >> 16;
+        return nextUInt(frames) >> 16;
     }
 
-    u32 TinyMT::temper()
+    u32 TinyMT::next(u32 frames)
     {
-        u32 t0 = state.at(3);
-        u32 t1 = state.at(0) + (state.at(2) >> TINYMT32SH8);
-
-        t0 ^= t1;
-        if (t1 & 1)
-        {
-            t0 ^= TMAT;
-        }
-        return t0;
-    }
-
-    void TinyMT::setSeed(u32 seed)
-    {
-        initialize(seed);
+        return nextUInt(frames);
     }
 
     void TinyMT::setSeed(u32 seed, u32 frames)
@@ -114,14 +77,8 @@ namespace PokeFinderCore
         return state;
     }
 
-    u32 TinyMT::getSeed()
-    {
-        return seed;
-    }
-
     void TinyMT::initialize(u32 seed)
     {
-        this->seed = seed;
         state = { seed, MAT1, MAT2, TMAT };
 
         for (u8 i = 1; i < 8; i++)
@@ -145,4 +102,34 @@ namespace PokeFinderCore
         }
     }
 
+    void TinyMT::nextState()
+    {
+        u32 y = state.at(3);
+        u32 x = (state.at(0) & TINYMT32MASK) ^ state.at(1) ^ state.at(2);
+        x ^= (x << TINYMT32SH0);
+        y ^= (y >> TINYMT32SH0) ^ x;
+        state[0] = state.at(1);
+        state[1] = state.at(2);
+        state[2] = x ^ (y << TINYMT32SH1);
+        state[3] = y;
+
+        if (y & 1)
+        {
+            state[1] ^= MAT1;
+            state[2] ^= MAT2;
+        }
+    }
+
+    u32 TinyMT::temper()
+    {
+        u32 t0 = state.at(3);
+        u32 t1 = state.at(0) + (state.at(2) >> TINYMT32SH8);
+
+        t0 ^= t1;
+        if (t1 & 1)
+        {
+            t0 ^= TMAT;
+        }
+        return t0;
+    }
 }

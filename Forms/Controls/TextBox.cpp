@@ -82,19 +82,19 @@ namespace PokeFinderForms
         setup = true;
     }
 
-    int TextBox::getInt()
+    int TextBox::getInt() const
     {
         Q_ASSERT(setup);
         return this->text().toInt(nullptr, base);
     }
 
-    u16 TextBox::getUShort()
+    u16 TextBox::getUShort() const
     {
         Q_ASSERT(setup);
         return this->text().toUShort(nullptr, base);
     }
 
-    u32 TextBox::getUInt()
+    u32 TextBox::getUInt() const
     {
         Q_ASSERT(setup);
         return this->text().toUInt(nullptr, base);

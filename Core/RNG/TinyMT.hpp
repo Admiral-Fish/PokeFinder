@@ -25,33 +25,26 @@
 
 namespace PokeFinderCore
 {
-
-    class TinyMT : public IRNG
+    class TinyMT : public IRNG<u32>
     {
-
     public:
-        TinyMT();
-        TinyMT(u32 seed, u32 frames = 0);
+        TinyMT(u32 seed = 0, u32 frames = 0);
         TinyMT(const QVector<u32> &state, u32 frames = 0);
         void advanceFrames(u32 frames) override;
-        void nextState();
-        u32 nextUInt() override;
-        u16 nextUShort() override;
-        u32 temper();
-        void setSeed(u32 seed) override;
+        u32 nextUInt(u32 frames = 0);
+        u16 nextUShort(u32 frames = 0);
+        u32 next(u32 frames = 0) override;
         void setSeed(u32 seed, u32 frames) override;
-        u32 getSeed() override;
         QVector<u32> getState();
 
     private:
         QVector<u32> state;
-        u32 seed{};
 
         void initialize(u32 seed);
         void periodCertification();
-
+        void nextState();
+        u32 temper();
     };
-
 }
 
 #endif // TINYMT_HPP

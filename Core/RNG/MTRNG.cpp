@@ -26,10 +26,11 @@ constexpr u32 UPPERMASK = 0x80000000;
 constexpr u32 TEMPERINGMASKB = 0x9D2C5680;
 constexpr u32 TEMPERINGMASKC = 0xEFC60000;
 constexpr u32 TEMPERINGMASKC2 = 0xEF000000;
+constexpr u32 mag01[2] = { 0x0, 0x9908B0DF };
+
 
 namespace PokeFinderCore
 {
-
     void MT::advanceFrames(u32 frames)
     {
         index += frames;
@@ -45,25 +46,24 @@ namespace PokeFinderCore
         u32 y;
         u16 i = 0;
 
-        for (; i < 227; i++)
+        for (; i < N - M; i++)
         {
             y = (mt.at(i) & UPPERMASK) | (mt.at(i + 1) & LOWERMASK);
-            mt[i] = mt.at(i + M) ^ (y >> 1) ^ mag01.at(y & 0x1);
+            mt[i] = mt.at(i + M) ^ (y >> 1) ^ mag01[y & 0x1];
         }
 
-        for (; i < 623; ++i)
+        for (; i < N - 1; ++i)
         {
             y = (mt.at(i) & UPPERMASK) | (mt.at(i + 1) & LOWERMASK);
-            mt[i] = mt.at(i - 227) ^ (y >> 1) ^ mag01.at(y & 0x1);
+            mt[i] = mt.at(i - 227) ^ (y >> 1) ^ mag01[y & 0x1];
         }
 
-        y = (mt.at(623) & UPPERMASK) | (mt.at(0) & LOWERMASK);
-        mt[623] = mt.at(396) ^ (y >> 1) ^ mag01.at(y & 0x1);
+        y = (mt.at(N - 1) & UPPERMASK) | (mt.at(0) & LOWERMASK);
+        mt[N - 1] = mt.at(396) ^ (y >> 1) ^ mag01[y & 0x1];
     }
 
     void MT::initialize(u32 seed)
     {
-        this->seed = seed;
         mt = QVector<u32>(624);
         mt[0] = seed;
 
@@ -73,32 +73,22 @@ namespace PokeFinderCore
         }
     }
 
-    void MT::setSeed(u32 seed)
-    {
-        initialize(seed);
-    }
-
     void MT::setSeed(u32 seed, u32 frames)
     {
         initialize(seed);
         advanceFrames(frames);
     }
 
-    u16 MT::nextUShort()
+    u16 MT::nextUShort(u32 frames)
     {
-        return nextUInt() >> 16;
+        return nextUInt(frames) >> 16;
     }
 
-    u32 MT::getSeed()
+    u32 MT::next(u32 frames)
     {
-        return seed;
+        return nextUInt(frames);
     }
 
-
-    MersenneTwister::MersenneTwister()
-    {
-        initialize(0);
-    }
 
     MersenneTwister::MersenneTwister(u32 seed, u32 frames)
     {
@@ -106,13 +96,9 @@ namespace PokeFinderCore
         advanceFrames(frames);
     }
 
-    u32 MersenneTwister::nextUInt()
+    u32 MersenneTwister::nextUInt(u32 frames)
     {
-        if (index >= N)
-        {
-            shuffle();
-            index = 0;
-        }
+        advanceFrames(frames);
 
         u32 y = mt.at(index++);
         y ^= (y >> 11);
@@ -124,37 +110,20 @@ namespace PokeFinderCore
     }
 
 
-    MersenneTwisterUntempered::MersenneTwisterUntempered()
-    {
-        initialize(0);
-    }
-
     MersenneTwisterUntempered::MersenneTwisterUntempered(u32 seed, u32 frames)
     {
         initialize(seed);
         advanceFrames(frames);
     }
 
-    u32 MersenneTwisterUntempered::nextUInt()
+    u32 MersenneTwisterUntempered::nextUInt(u32 frames)
     {
-        if (index >= N)
-        {
-            shuffle();
-            index = 0;
-        }
-
+        advanceFrames(frames);
         return mt.at(index++);
     }
 
 
-    MersenneTwisterFast::MersenneTwisterFast()
-    {
-        maxCalls = 227;
-        max = M + 227;
-        initialize(0);
-    }
-
-    MersenneTwisterFast::MersenneTwisterFast(u32 seed, u32 calls, u32 frames)
+    MersenneTwisterFast::MersenneTwisterFast(u32 calls, u32 seed, u32 frames)
     {
         maxCalls = calls;
 
@@ -167,13 +136,9 @@ namespace PokeFinderCore
         advanceFrames(frames);
     }
 
-    u32 MersenneTwisterFast::nextUInt()
+    u32 MersenneTwisterFast::nextUInt(u32 frames)
     {
-        if (index >= max)
-        {
-            shuffle();
-            index = 0;
-        }
+        advanceFrames(frames);
 
         u32 y = mt[index++];
         y ^= (y >> 11);
@@ -185,7 +150,6 @@ namespace PokeFinderCore
 
     void MersenneTwisterFast::initialize(u32 seed)
     {
-        this->seed = seed;
         mt = QVector<u32>(max);
         mt[0] = seed;
 
@@ -202,8 +166,7 @@ namespace PokeFinderCore
         for (u16 i = 0; i < maxCalls; ++i)
         {
             y = (mt.at(i) & UPPERMASK) | (mt.at(i + 1) & LOWERMASK);
-            mt[i] = mt.at(i + M) ^ (y >> 1) ^ mag01.at(y & 0x1);
+            mt[i] = mt.at(i + M) ^ (y >> 1) ^ mag01[y & 0x1];
         }
     }
-
 }

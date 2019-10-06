@@ -45,9 +45,9 @@ namespace PokeFinderForms
         explicit TextBox(QWidget *parent = nullptr);
         void setValues(InputType type);
         void setValues(u64 minValue, u64 maxValue, int base = 10);
-        int getInt();
-        u16 getUShort();
-        u32 getUInt();
+        int getInt() const;
+        u16 getUShort() const;
+        u32 getUInt() const;
 
     private:
         bool setup;

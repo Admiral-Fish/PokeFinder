@@ -26,15 +26,10 @@ constexpr u32 CMSK4 = 0xbffffff6;
 constexpr u8 CSL1 = 18;
 constexpr u8 CSR1 = 11;
 constexpr u16 N32 = 624;
+const u32 parity[4] = { 0x1, 0x0, 0x0, 0x13c9e684 };
 
 namespace PokeFinderCore
 {
-
-    SFMT::SFMT()
-    {
-        initialize(0);
-    }
-
     SFMT::SFMT(u32 seed, u32 frames)
     {
         initialize(seed);
@@ -43,42 +38,33 @@ namespace PokeFinderCore
 
     void SFMT::advanceFrames(u32 frames)
     {
-        u32 temp = index + (frames * 2);
-        while (temp >= N32)
+        index += (frames * 2);
+        while (index >= N32)
         {
-            temp -= N32;
+            index -= N32;
             shuffle();
         }
-        index = temp;
     }
 
-    u32 SFMT::nextUInt()
+    u64 SFMT::next(u32 frames)
     {
-        if (index >= N32)
-        {
-            shuffle();
-            index = 0;
-        }
+        return nextULong(frames);
+    }
+
+    u32 SFMT::nextUInt(u32 frames)
+    {
+        advanceFrames(frames);
 
         return sfmt[index++];
     }
 
-    u64 SFMT::nextULong()
+    u64 SFMT::nextULong(u32 frames)
     {
-        if (index >= N32)
-        {
-            shuffle();
-            index = 0;
-        }
+        advanceFrames(frames);
 
         u32 high = sfmt[index++];
         u32 low = sfmt[index++];
         return high | (static_cast<u64>(low) << 32);
-    }
-
-    void SFMT::setSeed(u64 seed)
-    {
-        initialize(static_cast<u32>(seed));
     }
 
     void SFMT::setSeed(u64 seed, u32 frames)
@@ -87,14 +73,8 @@ namespace PokeFinderCore
         advanceFrames(frames);
     }
 
-    u64 SFMT::getSeed()
-    {
-        return seed;
-    }
-
     void SFMT::initialize(u32 seed)
     {
-        this->seed = seed;
         sfmt = QVector<u32>(624);
         sfmt[0] = seed;
 
@@ -113,7 +93,7 @@ namespace PokeFinderCore
 
         for (u8 i = 0; i < 4; i++)
         {
-            inner ^= sfmt.at(i) & parity.at(i);
+            inner ^= sfmt.at(i) & parity[i];
         }
         for (u8 i = 16; i > 0; i >>= 1)
         {
@@ -129,7 +109,7 @@ namespace PokeFinderCore
             work = 1;
             for (u8 j = 0; j < 32; j++)
             {
-                if ((work & parity.at(i)) != 0)
+                if ((work & parity[i]) != 0)
                 {
                     sfmt[i] ^= work;
                     return;
@@ -157,12 +137,11 @@ namespace PokeFinderCore
             d = a;
             a += 4;
             b += 4;
-            if (b >= N32)
+            if (b == N32)
             {
                 b = 0;
             }
         }
         while (a < N32);
     }
-
 }

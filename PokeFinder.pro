@@ -98,7 +98,6 @@ HEADERS += \
     Core/Parents/Searcher.hpp \
     Core/Parents/Slot.hpp \
     Core/RNG/IRNG.hpp \
-    Core/RNG/IRNG64.hpp \
     Core/RNG/LCRNG.hpp \
     Core/RNG/LCRNG64.hpp \
     Core/RNG/MTRNG.hpp \
@@ -209,8 +208,6 @@ SOURCES += \
     Core/Parents/Profile.cpp \
     Core/Parents/Searcher.cpp \
     Core/Parents/Slot.cpp \
-    Core/RNG/LCRNG.cpp \
-    Core/RNG/LCRNG64.cpp \
     Core/RNG/MTRNG.cpp \
     Core/RNG/RNGCache.cpp \
     Core/RNG/RNGEuclidean.cpp \
