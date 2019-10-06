@@ -53,7 +53,7 @@ namespace PokeFinderCore
 
         MersenneTwister rng(seed);
 
-        for (int i = 0; i < flips; i++)
+        for (u8 i = 0; i < flips; i++)
         {
             coins.append((rng.nextUInt() & 1) == 0 ? "T" : "H");
         }
@@ -74,7 +74,7 @@ namespace PokeFinderCore
 
         PokeRNG rng(seed);
 
-        for (int i = 0; i < num + skips; i++)
+        for (u8 i = 0; i < num + skips; i++)
         {
             u8 call = rng.nextUShort() % 3;
 

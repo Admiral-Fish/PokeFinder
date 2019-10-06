@@ -212,11 +212,8 @@ namespace PokeFinderCore
         u16 tsv = (tid ^ sid) >> 3;
         for (u8 i = 0; i < 2; i++)
         {
-            rng.advanceFrames(2);
-            u8 hpIV = rng.nextUShort() & 31;
-            rng.advanceFrames(2);
-
-            seed = rng.getSeed();
+            u8 hpIV = rng.nextUShort(2) & 31;
+            seed = rng.nextUInt(1);
             generatePokemonGales(seed, tsv);
             QVector<u8> evs = generateEVs(seed);
             u16 hp = evs.at(0) / 4 + hpIV + galesHPStat[enemyIndex + 5][i];
@@ -233,11 +230,8 @@ namespace PokeFinderCore
         tsv = (tid ^ sid) >> 3;
         for (u8 i = 0; i < 2; i++)
         {
-            rng.advanceFrames(2);
-            u8 hpIV = rng.nextUShort() & 31;
-            rng.advanceFrames(2);
-
-            seed = rng.getSeed();
+            u8 hpIV = rng.nextUShort(2) & 31;
+            seed = rng.nextUInt(1);
             generatePokemonGales(seed, tsv);
             QVector<u8> evs = generateEVs(seed);
             u16 hp = evs.at(0) / 4 + hpIV + galesHPStat[playerIndex][i];
@@ -277,8 +271,7 @@ namespace PokeFinderCore
             u16 low = rng.nextUShort();
             u32 pid = (high << 16) | (low);
 
-            rng.advanceFrames(3);
-            seed = rng.getSeed();
+            seed = rng.nextUInt(2);
             generatePokemonColo(seed, tsv, pid, coloNatures[enemyIndex][i], coloGenders[enemyIndex][i], coloGenderRatios[enemyIndex][i]);
             rng.setSeed(seed);
         }
@@ -298,8 +291,7 @@ namespace PokeFinderCore
             u16 low = rng.nextUShort();
             u32 pid = (high << 16) | (low);
 
-            rng.advanceFrames(3);
-            seed = rng.getSeed();
+            seed = rng.nextUInt(2);
             generatePokemonColo(seed, tsv, pid, coloNatures[playerIndex][i], coloGenders[playerIndex][i], coloGenderRatios[playerIndex][i]);
             rng.setSeed(seed);
         }

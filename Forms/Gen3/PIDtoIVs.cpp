@@ -145,8 +145,7 @@ namespace PokeFinderForms
             u32 val = (high << 16) | low;
             if (val == pid) // PID matches based on SID
             {
-                forward.advanceFrames(3);
-                addSeedChannel(seed, forward.nextUInt());
+                addSeedChannel(seed, forward.nextUInt(3));
             }
         }
 
@@ -169,8 +168,7 @@ namespace PokeFinderForms
             u32 val = (high << 16) | low;
             if (val == pid) // PID matches based on SID
             {
-                forward.advanceFrames(3);
-                addSeedChannel(seed, forward.nextUInt());
+                addSeedChannel(seed, forward.nextUInt(3));
             }
         }
     }
