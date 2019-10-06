@@ -25,7 +25,6 @@
 
 namespace PokeFinderModels
 {
-
     class Wild3Model : public TableModel<PokeFinderCore::Frame3>
     {
         Q_OBJECT
@@ -42,9 +41,7 @@ namespace PokeFinderModels
             tr("Frame"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
             tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")
         };
-
     };
-
 }
 
 #endif // WILD3MODEL_HPP

@@ -28,10 +28,8 @@
 
 namespace PokeFinderCore
 {
-
     class Generator3: public Generator
     {
-
     public:
         Generator3();
         Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, u8 genderRatio);
@@ -54,17 +52,15 @@ namespace PokeFinderCore
         QVector<Frame3> generateMethod124(const FrameCompare &compare) const;
         QVector<Frame3> generateMethod1Reverse(const FrameCompare &compare) const;
         void generateNonShadows(XDRNG &rng) const;
-        static inline bool cuteCharm125F(u32 pid) { return (pid & 0xff) < 31; }
-        static inline bool cuteCharm875M(u32 pid) { return (pid & 0xff) >= 31; }
-        static inline bool cuteCharm25F(u32 pid) { return (pid & 0xff) < 63; }
-        static inline bool cuteCharm75M(u32 pid) { return (pid & 0xff) >= 63; }
-        static inline bool cuteCharm50F(u32 pid) { return (pid & 0xff) < 127; }
-        static inline bool cuteCharm50M(u32 pid) { return (pid & 0xff) >= 127; }
-        static inline bool cuteCharm75F(u32 pid) { return (pid & 0xff) < 191; }
-        static inline bool cuteCharm25M(u32 pid) { return (pid & 0xff) >= 191; }
-
+        static bool cuteCharm125F(u32 pid) { return (pid & 0xff) < 31; }
+        static bool cuteCharm875M(u32 pid) { return (pid & 0xff) >= 31; }
+        static bool cuteCharm25F(u32 pid) { return (pid & 0xff) < 63; }
+        static bool cuteCharm75M(u32 pid) { return (pid & 0xff) >= 63; }
+        static bool cuteCharm50F(u32 pid) { return (pid & 0xff) < 127; }
+        static bool cuteCharm50M(u32 pid) { return (pid & 0xff) >= 127; }
+        static bool cuteCharm75F(u32 pid) { return (pid & 0xff) < 191; }
+        static bool cuteCharm25M(u32 pid) { return (pid & 0xff) >= 191; }
     };
-
 }
 
 #endif // GENERATOR3_HPP

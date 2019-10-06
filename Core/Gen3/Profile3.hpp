@@ -24,10 +24,8 @@
 
 namespace PokeFinderCore
 {
-
     class Profile3 : public Profile
     {
-
     public:
         Profile3();
         Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English, bool deadBattery = false);
@@ -43,12 +41,10 @@ namespace PokeFinderCore
 
     private:
         bool deadBattery;
-
     };
 
     bool operator==(const Profile3 &left, const Profile3 &right);
     bool operator!=(const Profile3 &left, const Profile3 &right);
-
 }
 
 #endif // PROFILE3_HPP

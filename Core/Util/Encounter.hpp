@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     // All the different encounter types wild pokémon can have
     enum Encounter
     {
@@ -37,7 +36,6 @@ namespace PokeFinderCore
         BugCatchingContest  = 1 << 8,
         HeadButt            = 1 << 9
     };
-
 }
 
 #endif // ENCOUNTER_HPP

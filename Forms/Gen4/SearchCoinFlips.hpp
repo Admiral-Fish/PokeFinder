@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class SearchCoinFlips;
@@ -34,7 +33,6 @@ namespace PokeFinderForms
     class SearchCoinFlips : public QDialog
     {
         Q_OBJECT
-
     public:
         explicit SearchCoinFlips(const QVector<PokeFinderCore::DateTime> &model, QWidget *parent = nullptr);
         ~SearchCoinFlips() override;
@@ -49,9 +47,7 @@ namespace PokeFinderForms
         void on_pushButtonHeads_clicked();
         void on_pushButtonTails_clicked();
         void on_lineEditFlips_textChanged(const QString &val);
-
     };
-
 }
 
 #endif // SEARCHCOINFLIPS_HPP

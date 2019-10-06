@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     SeedToTime3::SeedToTime3(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::SeedToTime3)
@@ -160,5 +159,4 @@ namespace PokeFinderForms
 
         seedToTime(seed, year);
     }
-
 }

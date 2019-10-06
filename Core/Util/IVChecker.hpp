@@ -27,19 +27,15 @@
 
 namespace PokeFinderCore
 {
-
     class IVChecker
     {
-
     public:
         IVChecker() = default;
-        QVector<QVector<u8>> calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower);
+        QVector<QVector<u8>> calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower) const;
 
     private:
         QVector<QVector<u8>> ivs;
-
     };
-
 }
 
 #endif // IVCHECKER_HPP

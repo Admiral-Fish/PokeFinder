@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     LockInfo::LockInfo(u8 nature, u8 genderLower, u8 genderUpper)
     {
         this->nature = nature;
@@ -96,5 +95,4 @@ namespace PokeFinderCore
 
         return shadowTeams;
     }
-
 }

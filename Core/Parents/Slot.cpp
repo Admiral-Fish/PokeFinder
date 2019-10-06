@@ -21,7 +21,6 @@
 
 namespace PokeFinderCore
 {
-
     Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon)
     {
         this->specie = specie;
@@ -63,5 +62,4 @@ namespace PokeFinderCore
         this->specie = specie;
         this->pokemon = pokemon;
     }
-
 }

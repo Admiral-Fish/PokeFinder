@@ -21,7 +21,6 @@
 
 namespace PokeFinderModels
 {
-
     Profile4Model::Profile4Model(QObject *parent) :
         TableModel<PokeFinderCore::Profile4>(parent)
     {
@@ -70,5 +69,4 @@ namespace PokeFinderModels
         }
         return QVariant();
     }
-
 }

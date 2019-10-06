@@ -22,7 +22,6 @@
 
 namespace PokeFinderModels
 {
-
     Egg3Model::Egg3Model(QObject *parent, PokeFinderCore::Method method) :
         TableModel<PokeFinderCore::Frame3>(parent)
     {
@@ -372,5 +371,4 @@ namespace PokeFinderModels
         showInheritance = flag;
         endResetModel();
     }
-
 }

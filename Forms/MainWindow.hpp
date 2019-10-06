@@ -33,7 +33,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class MainWindow;
@@ -42,7 +41,6 @@ namespace PokeFinderForms
     class MainWindow : public QMainWindow
     {
         Q_OBJECT
-
     public:
         explicit MainWindow(QWidget *parent = nullptr);
         ~MainWindow() override;
@@ -96,9 +94,7 @@ namespace PokeFinderForms
         void on_actionEncounter_Lookup_triggered();
         void on_actionIV_Calculator_triggered();
         void on_actionResearcher_triggered();
-
     };
-
 }
 
 #endif // MAINWINDOW_HPP

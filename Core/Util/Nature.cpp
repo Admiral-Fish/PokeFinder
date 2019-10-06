@@ -23,7 +23,6 @@
 
 namespace PokeFinderCore
 {
-
     QStringList Nature::getNatures()
     {
         const QStringList natures =
@@ -103,5 +102,4 @@ namespace PokeFinderCore
         };
         return modifiers.at(nature);
     }
-
 }

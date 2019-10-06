@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     enum Language
     {
         Chinese     = 1 << 0,
@@ -34,7 +33,6 @@ namespace PokeFinderCore
         Korean      = 1 << 6,
         Spanish     = 1 << 7
     };
-
 }
 
 #endif // LANGUAGE_HPP

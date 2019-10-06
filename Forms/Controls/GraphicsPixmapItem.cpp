@@ -21,7 +21,6 @@
 
 namespace PokeFinderForms
 {
-
     GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap, u16 minX, u16 minY, u16 maxX, u16 maxY)
     {
         setPixmap(pixmap);
@@ -77,5 +76,4 @@ namespace PokeFinderForms
             setY(maxY);
         }
     }
-
 }

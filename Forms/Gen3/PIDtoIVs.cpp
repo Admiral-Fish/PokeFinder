@@ -27,7 +27,6 @@
 
 namespace PokeFinderForms
 {
-
     PIDtoIVs::PIDtoIVs(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::PIDtoIVs)
@@ -287,5 +286,4 @@ namespace PokeFinderForms
         QVariant data = ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(), 0));
         QApplication::clipboard()->setText(data.toString());
     }
-
 }

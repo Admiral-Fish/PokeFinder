@@ -24,7 +24,7 @@
 namespace PokeFinderCore
 {
 
-    QString Frame::getGenderString()
+    QString Frame::getGenderString() const
     {
         switch (gender)
         {
@@ -38,17 +38,17 @@ namespace PokeFinderCore
         }
     }
 
-    QString Frame::getNatureString()
+    QString Frame::getNatureString() const
     {
         return Nature::getNature(nature);
     }
 
-    QString Frame::getPowerString()
+    QString Frame::getPowerString() const
     {
         return Power::getPower(hidden);
     }
 
-    QString Frame::getShinyString()
+    QString Frame::getShinyString() const
     {
         return shiny ? "!!!" : "";
     }

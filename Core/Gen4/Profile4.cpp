@@ -25,7 +25,6 @@
 
 namespace PokeFinderCore
 {
-
     Profile4::Profile4()
     {
         version = Game::Diamond;
@@ -209,5 +208,4 @@ namespace PokeFinderCore
     {
         return !(left == right);
     }
-
 }

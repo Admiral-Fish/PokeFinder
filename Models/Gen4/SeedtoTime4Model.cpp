@@ -22,7 +22,6 @@
 
 namespace PokeFinderModels
 {
-
     SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, PokeFinderCore::Game version) :
         TableModel<PokeFinderCore::DateTime>(parent)
     {
@@ -102,5 +101,4 @@ namespace PokeFinderModels
         }
         return QVariant();
     }
-
 }

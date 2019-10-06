@@ -24,10 +24,8 @@
 
 namespace PokeFinderCore
 {
-
     class Frame4 : public Frame
     {
-
     public:
         Frame4();
         Frame4(u16 tid, u16 sid, u16 psv);
@@ -53,9 +51,7 @@ namespace PokeFinderCore
         u32 eggFrame{};
         u32 seed{};
         u32 initialSeed{};
-
     };
-
 }
 
 #endif // FRAME4_HPP

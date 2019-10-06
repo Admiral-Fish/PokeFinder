@@ -22,7 +22,6 @@
 
 namespace PokeFinderModels
 {
-
     Searcher4Model::Searcher4Model(QObject *parent, PokeFinderCore::Method method, bool stationary) :
         TableModel<PokeFinderCore::Frame4>(parent)
     {
@@ -623,5 +622,4 @@ namespace PokeFinderModels
         }
         return QVariant();
     }
-
 }

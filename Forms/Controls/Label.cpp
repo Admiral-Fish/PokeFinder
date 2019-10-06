@@ -21,7 +21,6 @@
 
 namespace PokeFinderForms
 {
-
     Label::Label(QWidget *parent) :
         QLabel(parent)
     {
@@ -34,5 +33,4 @@ namespace PokeFinderForms
             emit pressed(event->modifiers());
         }
     }
-
 }

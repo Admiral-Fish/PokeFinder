@@ -25,11 +25,9 @@
 
 namespace PokeFinderModels
 {
-
     class Searcher3Model : public TableModel<PokeFinderCore::Frame3>
     {
         Q_OBJECT
-
     public:
         Searcher3Model(QObject *parent, PokeFinderCore::Method method);
         void setMethod(PokeFinderCore::Method method);
@@ -56,9 +54,7 @@ namespace PokeFinderModels
             tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"),
             tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Reason")
         };
-
     };
-
 }
 
 #endif // SEARCHER3MODEL_HPP

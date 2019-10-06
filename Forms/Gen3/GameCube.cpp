@@ -31,7 +31,6 @@
 
 namespace PokeFinderForms
 {
-
     GameCube::GameCube(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::GameCube)
@@ -142,8 +141,8 @@ namespace PokeFinderForms
         QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
 
-        connect(outputTXTGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModelTXT(); });
-        connect(outputCSVGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModelCSV(); });
+        connect(outputTXTGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModel(); });
+        connect(outputCSVGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModel(true); });
 
         QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
@@ -152,8 +151,8 @@ namespace PokeFinderForms
 
         connect(copySeedToClipboard, &QAction::triggered, this, &GameCube::copySeedToClipboard);
         connect(seedToTime, &QAction::triggered, this, &GameCube::seedToTime);
-        connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
-        connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
+        connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModel(); });
+        connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModel(true); });
 
         QSettings setting;
         if (setting.contains("gamecube/geometry")) this->restoreGeometry(setting.value("gamecube/geometry").toByteArray());
@@ -428,5 +427,4 @@ namespace PokeFinderForms
         connect(manager, &ProfileManager3::updateProfiles, this, &GameCube::refreshProfiles);
         manager->show();
     }
-
 }

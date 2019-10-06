@@ -22,7 +22,6 @@
 
 namespace PokeFinderModels
 {
-
     Egg4GeneratorModel::Egg4GeneratorModel(QObject *parent, PokeFinderCore::Method method) :
         TableModel<PokeFinderCore::Frame4>(parent)
     {
@@ -693,5 +692,4 @@ namespace PokeFinderModels
         showInheritance = flag;
         endResetModel();
     }
-
 }

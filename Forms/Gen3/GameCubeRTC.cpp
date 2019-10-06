@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     GameCubeRTC::GameCubeRTC(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::GameCubeRTC)
@@ -128,5 +127,4 @@ namespace PokeFinderForms
 
         contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
     }
-
 }

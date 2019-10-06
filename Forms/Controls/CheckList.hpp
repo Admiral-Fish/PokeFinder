@@ -25,15 +25,13 @@
 
 namespace PokeFinderForms
 {
-
     class CheckList : public QComboBox
     {
         Q_OBJECT
-
     public:
         explicit CheckList(QWidget *parent = nullptr);
         void setup(const QStringList &items = QStringList());
-        QVector<bool> getChecked();
+        QVector<bool> getChecked() const;
         void setChecks(QVector<bool> flags);
 
     public slots:
@@ -46,14 +44,12 @@ namespace PokeFinderForms
         QStandardItemModel *model;
 
         void updateText();
-        int checkState();
+        int checkState() const;
 
     private slots:
         void modelDataChanged();
         void itemPressed(const QModelIndex &index);
-
     };
-
 }
 
 #endif // CHECKLIST

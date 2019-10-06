@@ -24,10 +24,8 @@
 
 namespace PokeFinderCore
 {
-
     class Frame3: public Frame
     {
-
     public:
         Frame3();
         Frame3(u16 tid, u16 sid, u16 psv);
@@ -49,9 +47,7 @@ namespace PokeFinderCore
         QString lockReason;
         u32 eggFrame{};
         u32 seed{};
-
     };
-
 }
 
 #endif // FRAME3_HPP

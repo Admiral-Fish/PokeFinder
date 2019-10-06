@@ -26,10 +26,8 @@
 
 namespace PokeFinderCore
 {
-
     class Generator4 : public Generator
     {
-
     public:
         Generator4();
         Generator4(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, Method type, u8 genderRatio);
@@ -50,9 +48,7 @@ namespace PokeFinderCore
                           u16 call6, u16 call7, u16 call8, u16 call9, u16 call10, u16 call11,
                           u16 call12, u16 call13) const;
         u16 chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid) const;
-
     };
-
 }
 
 #endif // GENERATOR4_HPP

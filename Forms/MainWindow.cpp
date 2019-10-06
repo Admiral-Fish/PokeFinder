@@ -37,7 +37,6 @@
 
 namespace PokeFinderForms
 {
-
     MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow)
@@ -410,5 +409,4 @@ namespace PokeFinderForms
         r->show();
         r->raise();
     }
-
 }

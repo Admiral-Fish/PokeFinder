@@ -24,7 +24,6 @@
 
 namespace PokeFinderForms
 {
-
     ChainedSID::ChainedSID(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::ChainedSID)
@@ -118,5 +117,4 @@ namespace PokeFinderForms
         model->removeRows(0, model->rowCount());
         ui->labelPossibleResults->setText("Possible Results: 8192");
     }
-
 }

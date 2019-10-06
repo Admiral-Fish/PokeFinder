@@ -24,7 +24,6 @@
 
 namespace PokeFinderCore
 {
-
     class EncounterArea4 : public EncounterArea
     {
 
@@ -34,9 +33,7 @@ namespace PokeFinderCore
         u8 calcLevel(u8 index, u16 prng) const;
         u8 calcLevel(u8 index) const;
         u16 getEncounterRate() const;
-
     };
-
 }
 
 #endif // ENCOUNTERAREA4_HPP

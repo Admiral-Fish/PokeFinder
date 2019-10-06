@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     enum ShadowType
     {
         SingleLock,
@@ -31,7 +30,6 @@ namespace PokeFinderCore
         SecondShadow,
         EReader
     };
-
 }
 
 #endif // SHADOWTYPE_HPP

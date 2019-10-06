@@ -24,7 +24,6 @@
 
 namespace PokeFinderForms
 {
-
     CheckList::CheckList(QWidget *parent) : QComboBox(parent)
     {
         model = new QStandardItemModel(this);
@@ -55,7 +54,7 @@ namespace PokeFinderForms
         }
     }
 
-    QVector<bool> CheckList::getChecked()
+    QVector<bool> CheckList::getChecked() const
     {
         QVector<bool> result;
 
@@ -133,7 +132,7 @@ namespace PokeFinderForms
         lineEdit()->setText(text);
     }
 
-    int CheckList::checkState()
+    int CheckList::checkState() const
     {
         int total = model->rowCount(), checked = 0, unchecked = 0;
 
@@ -162,5 +161,4 @@ namespace PokeFinderForms
         QStandardItem *item = model->itemFromIndex(index);
         item->setCheckState(item->checkState() == Qt::Checked ? Qt::Unchecked : Qt::Checked);
     }
-
 }

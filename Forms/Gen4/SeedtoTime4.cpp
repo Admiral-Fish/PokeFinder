@@ -28,7 +28,6 @@
 
 namespace PokeFinderForms
 {
-
     SeedtoTime4::SeedtoTime4(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::SeedtoTime4)
@@ -384,5 +383,4 @@ namespace PokeFinderForms
         map->show();
         map->raise();
     }
-
 }

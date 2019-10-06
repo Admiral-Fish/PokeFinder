@@ -25,11 +25,9 @@
 
 namespace PokeFinderModels
 {
-
     class Searcher4Model : public TableModel<PokeFinderCore::Frame4>
     {
         Q_OBJECT
-
     public:
         Searcher4Model(QObject *parent, PokeFinderCore::Method method, bool stationary = false);
         void setMethod(PokeFinderCore::Method method);
@@ -62,7 +60,6 @@ namespace PokeFinderModels
         };
 
     };
-
 }
 
 #endif // SEARCHER3MODEL_HPP

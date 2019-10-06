@@ -27,7 +27,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class Stationary4;
@@ -36,7 +35,6 @@ namespace PokeFinderForms
     class Stationary4 : public QWidget
     {
         Q_OBJECT
-
     signals:
         void alertProfiles(int);
 
@@ -66,9 +64,7 @@ namespace PokeFinderForms
         void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
         void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
         void on_pushButtonProfileManager_clicked();
-
     };
-
 }
 
 #endif // STATIONARY4_HPP

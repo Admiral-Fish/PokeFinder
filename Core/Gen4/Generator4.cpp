@@ -23,7 +23,6 @@
 
 namespace PokeFinderCore
 {
-
     Generator4::Generator4()
     {
         maxResults = 100000;
@@ -880,5 +879,4 @@ namespace PokeFinderCore
     {
         return (((low ^ tid ^ sid) & 0xFFF8) | (high & 7));
     }
-
 }

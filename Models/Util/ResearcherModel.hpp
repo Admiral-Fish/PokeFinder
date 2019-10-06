@@ -25,11 +25,9 @@
 
 namespace PokeFinderModels
 {
-
     class ResearcherModel : public TableModel<PokeFinderCore::ResearcherFrame>
     {
         Q_OBJECT
-
     public :
         ResearcherModel(QObject *parent, bool is64Bit);
         void setFlag(bool is64Bit);
@@ -61,9 +59,7 @@ namespace PokeFinderModels
         static u64 get32(const PokeFinderCore::ResearcherFrame &f) { return f.getFull32(); }
         static u64 get16BitHigh(const PokeFinderCore::ResearcherFrame &f) { return f.getHigh16(); }
         static u64 get16BitLow(const PokeFinderCore::ResearcherFrame &f) { return f.getLow16(); }
-
     };
-
 }
 
 #endif // RESEARCHERMODEL_HPP

@@ -28,7 +28,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class Wild3;
@@ -37,7 +36,6 @@ namespace PokeFinderForms
     class Wild3 : public QWidget
     {
         Q_OBJECT
-
     signals:
         void alertProfiles(int);
 
@@ -85,9 +83,7 @@ namespace PokeFinderForms
         void on_comboBoxGeneratorPokemon_currentIndexChanged(int index);
         void on_comboBoxSearcherPokemon_currentIndexChanged(int index);
         void on_pushButtonProfileManager_clicked();
-
     };
-
 }
 
 #endif // WILD3_HPP

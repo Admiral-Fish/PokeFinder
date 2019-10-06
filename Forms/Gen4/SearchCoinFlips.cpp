@@ -24,7 +24,6 @@
 
 namespace PokeFinderForms
 {
-
     SearchCoinFlips::SearchCoinFlips(const QVector<PokeFinderCore::DateTime> &model, QWidget *parent) :
         QDialog(parent),
         ui(new Ui::SearchCoinFlips)
@@ -94,5 +93,4 @@ namespace PokeFinderForms
 
         ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
     }
-
 }

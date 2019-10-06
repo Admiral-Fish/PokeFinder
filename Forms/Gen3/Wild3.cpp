@@ -32,7 +32,6 @@
 
 namespace PokeFinderForms
 {
-
     Wild3::Wild3(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::Wild3)
@@ -178,8 +177,8 @@ namespace PokeFinderForms
         connect(center5Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(300); });
         connect(center10Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(600); });
         connect(center1Minute, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(3600); });
-        connect(outputTXTGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModelTXT(); });
-        connect(outputCSVGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModelCSV(); });
+        connect(outputTXTGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModel(); });
+        connect(outputCSVGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModel(true); });
 
         QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
@@ -188,8 +187,8 @@ namespace PokeFinderForms
 
         connect(copySeedToClipboard, &QAction::triggered, this, &Wild3::copySeedToClipboard);
         connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
-        connect(outputTXTSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
-        connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
+        connect(outputTXTSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModel(); });
+        connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModel(true); });
 
         QSettings setting;
         if (setting.contains("wild3/geometry")) this->restoreGeometry(setting.value("wild3/geometry").toByteArray());
@@ -619,5 +618,4 @@ namespace PokeFinderForms
         connect(manager, &ProfileManager3::updateProfiles, this, &Wild3::refreshProfiles);
         manager->show();
     }
-
 }

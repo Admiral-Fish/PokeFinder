@@ -25,10 +25,8 @@
 
 namespace PokeFinderCore
 {
-
     class HGSSRoamer
     {
-
     public:
         HGSSRoamer() = default;
         HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes);
@@ -53,9 +51,7 @@ namespace PokeFinderCore
         u32 seed{};
         QVector<bool> roamers;
         QVector<u8> routes;
-
     };
-
 }
 
 #endif // HGSSROAMER_HPP

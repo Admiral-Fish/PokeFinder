@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     EncounterLookup::EncounterLookup(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::EncounterLookup)
@@ -267,5 +266,4 @@ namespace PokeFinderForms
             }
         }
     }
-
 }

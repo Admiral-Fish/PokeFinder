@@ -27,10 +27,8 @@
 
 namespace PokeFinderCore
 {
-
     class Searcher4 : public Searcher
     {
-
     public:
         Searcher4();
         Searcher4(u16 tid, u16 sid, u8 genderRatio, u32 minDelay, u32 maxDelay, u32 minFrame, u32 maxFrame, const FrameCompare &compare, Method method);
@@ -62,9 +60,7 @@ namespace PokeFinderCore
         QVector<Frame4> searchInitialSeeds(const QVector<Frame4> &results) const;
         u16 chainedPIDLow(const QVector<u16> &calls) const;
         u16 chainedPIDHigh(u16 high, u16 low, u16 tid, u16 sid) const;
-
     };
-
 }
 
 #endif // SEARCHER4_HPP

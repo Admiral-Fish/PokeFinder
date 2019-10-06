@@ -29,7 +29,6 @@
 
 namespace PokeFinderForms
 {
-
     Stationary4::Stationary4(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::Stationary4)
@@ -135,16 +134,16 @@ namespace PokeFinderForms
         QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
 
-        connect(outputTXTGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModelTXT(); });
-        connect(outputCSVGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModelCSV(); });
+        connect(outputTXTGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModel(); });
+        connect(outputCSVGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModel(true); });
 
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
         QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
 
         connect(seedToTime, &QAction::triggered, this, &Stationary4::seedToTime);
-        connect(outputTXTSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
-        connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
+        connect(outputTXTSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModel(); });
+        connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModel(true); });
 
         QSettings setting;
         setting.beginGroup("stationary4");
@@ -344,5 +343,4 @@ namespace PokeFinderForms
         connect(manager, &ProfileManager4::updateProfiles, this, &Stationary4::refreshProfiles);
         manager->show();
     }
-
 }

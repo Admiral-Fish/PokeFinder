@@ -21,7 +21,6 @@
 
 namespace PokeFinderCore
 {
-
     EncounterArea3::EncounterArea3(u8 location, u16 delay, Encounter type, const QVector<Slot> &pokemon)
         : EncounterArea(location, type, pokemon)
     {
@@ -78,5 +77,4 @@ namespace PokeFinderCore
     {
         return delay;
     }
-
 }

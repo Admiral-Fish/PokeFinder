@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     IVtoPID::IVtoPID(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::IVtoPID)
@@ -349,5 +348,4 @@ namespace PokeFinderForms
             model->appendRow(seed);
         }
     }
-
 }

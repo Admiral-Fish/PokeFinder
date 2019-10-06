@@ -28,11 +28,9 @@
 
 namespace PokeFinderCore
 {
-
     class GameCubeRTCSearcher : public QObject
     {
         Q_OBJECT
-
     signals:
         void finished();
         void result(QList<QStandardItem *>);
@@ -52,7 +50,6 @@ namespace PokeFinderCore
 
         void search();
     };
-
 }
 
 #endif // GAMECUBERTCSEARCHER_HPP

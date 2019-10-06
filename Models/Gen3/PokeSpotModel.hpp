@@ -25,11 +25,9 @@
 
 namespace PokeFinderModels
 {
-
     class PokeSpotModel : public TableModel<PokeFinderCore::Frame3>
     {
         Q_OBJECT
-
     public:
         PokeSpotModel(QObject *parent);
         int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -41,9 +39,7 @@ namespace PokeFinderModels
         {
             tr("Frame"), tr("PID"), "!!!", tr("Type"), tr("Nature"), tr("Ability"), tr("Gender")
         };
-
     };
-
 }
 
 #endif // POKESPOTMODEL_HPP

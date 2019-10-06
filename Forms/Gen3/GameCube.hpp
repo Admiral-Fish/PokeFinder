@@ -27,7 +27,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class GameCube;
@@ -36,7 +35,6 @@ namespace PokeFinderForms
     class GameCube : public QWidget
     {
         Q_OBJECT
-
     signals:
         void alertProfiles(int);
 
@@ -69,9 +67,7 @@ namespace PokeFinderForms
         void seedToTime();
         void copySeedToClipboard();
         void on_pushButtonProfileManager_clicked();
-
     };
-
 }
 
 #endif // GAMECUBE_HPP

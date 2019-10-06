@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class PokeSpot;
@@ -34,7 +33,6 @@ namespace PokeFinderForms
     class PokeSpot : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit PokeSpot(QWidget *parent = nullptr);
         ~PokeSpot() override;
@@ -48,9 +46,7 @@ namespace PokeFinderForms
     private slots:
         void on_pushButtonGenerate_clicked();
         void on_pushButtonAnyAbility_clicked();
-
     };
-
 }
 
 #endif // POKESPOT_HPP

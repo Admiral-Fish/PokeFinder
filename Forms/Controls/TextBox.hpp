@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     enum InputType
     {
         Seed64Bit   = 1 << 0,
@@ -40,7 +39,6 @@ namespace PokeFinderForms
     class TextBox : public QLineEdit
     {
         Q_OBJECT
-
     public:
         explicit TextBox(QWidget *parent = nullptr);
         void setValues(InputType type);
@@ -58,9 +56,7 @@ namespace PokeFinderForms
 
     private slots:
         void onTextEdited(QString string);
-
     };
-
 }
 
 #endif // TEXTBOX_HPP

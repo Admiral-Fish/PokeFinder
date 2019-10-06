@@ -24,10 +24,8 @@
 
 namespace PokeFinderCore
 {
-
     class EncounterArea3 : public EncounterArea
     {
-
     public:
         EncounterArea3() = default;
         EncounterArea3(u8 location, u16 delay, Encounter type, const QVector<Slot> &pokemon);
@@ -38,9 +36,7 @@ namespace PokeFinderCore
 
     private:
         u16 delay{};
-
     };
-
 }
 
 #endif // ENCOUNTERAREA3_HPP

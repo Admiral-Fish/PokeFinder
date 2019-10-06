@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     Encounters4::Encounters4(Encounter type, int time, const Profile4 &profile)
     {
         this->type = type;
@@ -31,7 +30,7 @@ namespace PokeFinderCore
         pokemon = Pokemon::loadPersonal(4);
     }
 
-    QVector<EncounterArea4> Encounters4::getEncounters()
+    QVector<EncounterArea4> Encounters4::getEncounters() const
     {
         QVector<EncounterArea4> encounters;
         for (const auto &data : getData())
@@ -403,5 +402,4 @@ namespace PokeFinderCore
     {
         return data.mid(offset, length).toHex().toUShort(nullptr, 16);
     }
-
 }

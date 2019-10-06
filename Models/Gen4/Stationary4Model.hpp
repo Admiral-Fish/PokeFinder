@@ -25,11 +25,9 @@
 
 namespace PokeFinderModels
 {
-
     class Stationary4Model : public TableModel<PokeFinderCore::Frame4>
     {
         Q_OBJECT
-
     public:
         Stationary4Model(QObject *parent, PokeFinderCore::Method method);
         void setMethod(PokeFinderCore::Method method);
@@ -59,9 +57,7 @@ namespace PokeFinderModels
         {
             tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
         };
-
     };
-
 }
 
 #endif // STATIONARY4MODEL_HPP

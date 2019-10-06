@@ -21,7 +21,6 @@
 
 namespace PokeFinderCore
 {
-
     ResearcherFrame::ResearcherFrame()
     {
         custom = QVector<u64>(10, 0);
@@ -39,5 +38,4 @@ namespace PokeFinderCore
         full64 = 0;
         this->frame = frame;
     }
-
 }

@@ -28,15 +28,13 @@
 
 namespace PokeFinderCore
 {
-
     class Frame
     {
-
     public:
-        QString getGenderString();
-        QString getNatureString();
-        QString getPowerString();
-        QString getShinyString();
+        QString getGenderString() const;
+        QString getNatureString() const;
+        QString getPowerString() const;
+        QString getShinyString() const;
         void setIVs(u8 iv1, u8 iv2, u8 iv3, u8 iv4, u8 iv5, u8 iv6);
         void setIDs(u16 tid, u16 sid, u16 psv);
         void setIVs(u16 iv1, u16 iv2);
@@ -83,9 +81,7 @@ namespace PokeFinderCore
 
         void calculateHidden();
         void calculatePower();
-
     };
-
 }
 
 #endif // FRAME_HPP

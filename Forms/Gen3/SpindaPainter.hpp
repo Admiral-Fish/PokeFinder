@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class SpindaPainter;
@@ -34,7 +33,6 @@ namespace PokeFinderForms
     class SpindaPainter : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit SpindaPainter(QWidget *parent = nullptr);
         ~SpindaPainter() override;
@@ -59,9 +57,7 @@ namespace PokeFinderForms
     private slots:
         void on_textBoxPID_textEdited(const QString &arg1);
         void updatePID(const QList<QRectF> &);
-
     };
-
 }
 
 #endif // SPINDAPAINTER_HPP

@@ -25,11 +25,9 @@
 
 namespace PokeFinderModels
 {
-
     class Profile3Model : public TableModel<PokeFinderCore::Profile3>
     {
         Q_OBJECT
-
     public:
         Profile3Model(QObject *parent);
         int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -41,9 +39,7 @@ namespace PokeFinderModels
         {
             tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dead Battery")
         };
-
     };
-
 }
 
 #endif // PROFILE3MODEL_HPP

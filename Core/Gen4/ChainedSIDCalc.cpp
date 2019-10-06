@@ -23,7 +23,6 @@
 
 namespace PokeFinderCore
 {
-
     ChainedSIDCalc::ChainedSIDCalc(u16 tid)
     {
         this->tid = tid;
@@ -121,5 +120,4 @@ namespace PokeFinderCore
         }
         return false;
     }
-
 }

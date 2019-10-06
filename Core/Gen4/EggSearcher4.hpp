@@ -26,11 +26,9 @@
 
 namespace PokeFinderCore
 {
-
     class EggSearcher4 : public QObject
     {
         Q_OBJECT
-
     signals:
         void finished();
         void updateProgress(const QVector<Frame4> &, int);
@@ -54,9 +52,7 @@ namespace PokeFinderCore
 
         void search();
         QVector<Frame4> getResults();
-
     };
-
 }
 
 #endif // EGGSEARCHER4_HPP

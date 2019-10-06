@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     Generator3::Generator3()
     {
         maxResults = 100000;
@@ -507,5 +506,4 @@ namespace PokeFinderCore
                 break;
         }
     }
-
 }

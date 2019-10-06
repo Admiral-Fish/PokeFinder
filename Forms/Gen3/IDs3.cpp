@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     IDs3::IDs3(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::IDs3)
@@ -199,5 +198,4 @@ namespace PokeFinderForms
     {
         ui->textBoxRSInitialSeed->setEnabled(checked);
     }
-
 }

@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     u8 calcSlot(u8 compare, const QVector<u8> &ranges)
     {
         for (u8 i = 0; i < ranges.size(); i++)
@@ -108,5 +107,4 @@ namespace PokeFinderCore
                 return calcSlot(compare, { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
         }
     }
-
 }

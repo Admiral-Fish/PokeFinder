@@ -25,10 +25,8 @@
 
 namespace PokeFinderCore
 {
-
     class Characteristic
     {
-
     public:
         Characteristic() = default;
         Characteristic(u8 index, u8 stat, u8 result);
@@ -43,9 +41,7 @@ namespace PokeFinderCore
         u8 stat{};
         u8 result{};
         bool active = false;
-
     };
-
 }
 
 #endif // CHARACTERISTIC_HPP

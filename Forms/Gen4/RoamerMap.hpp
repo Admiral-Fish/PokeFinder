@@ -24,7 +24,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class RoamerMap;
@@ -33,16 +32,13 @@ namespace PokeFinderForms
     class RoamerMap : public QDialog
     {
         Q_OBJECT
-
     public:
         explicit RoamerMap(QWidget *parent = nullptr);
         ~RoamerMap() override;
 
     private:
         Ui::RoamerMap *ui;
-
     };
-
 }
 
 #endif // ROAMERMAP_HPP

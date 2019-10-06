@@ -27,7 +27,6 @@
 
 namespace PokeFinderForms
 {
-
     IVCalculator::IVCalculator(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::IVCalculator)
@@ -174,5 +173,4 @@ namespace PokeFinderForms
             ui->comboBoxPokemon->addItems(PokeFinderCore::Translator::getSpecies(species));
         }
     }
-
 }

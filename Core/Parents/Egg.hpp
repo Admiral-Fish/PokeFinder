@@ -26,10 +26,8 @@
 
 namespace PokeFinderCore
 {
-
     class Egg
     {
-
     public:
         void setEverstoneNature(const u32 &value);
         u32 getSeed() const;
@@ -45,9 +43,7 @@ namespace PokeFinderCore
         u32 initialFrame{};
         u32 maxResults{};
         u32 everstoneNature{};
-
     };
-
 }
 
 #endif // EGG_HPP

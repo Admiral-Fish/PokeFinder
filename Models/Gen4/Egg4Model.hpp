@@ -25,11 +25,9 @@
 
 namespace PokeFinderModels
 {
-
     class Egg4GeneratorModel : public TableModel<PokeFinderCore::Frame4>
     {
         Q_OBJECT
-
     public:
         Egg4GeneratorModel(QObject *parent, PokeFinderCore::Method method);
         void setMethod(PokeFinderCore::Method method);
@@ -90,9 +88,7 @@ namespace PokeFinderModels
             tr("Seed"), tr("PID Frame"), tr("IV Frame"),  tr("PID"), "!!!", tr("Nature"), tr("Ability"),
             tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
         };
-
     };
-
 }
 
 #endif // EGG4MODEL_HPP

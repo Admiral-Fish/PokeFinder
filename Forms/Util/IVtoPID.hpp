@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class IVtoPID;
@@ -35,7 +34,6 @@ namespace PokeFinderForms
     class IVtoPID : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit IVtoPID(QWidget *parent = nullptr);
         ~IVtoPID() override;
@@ -50,9 +48,7 @@ namespace PokeFinderForms
 
     private slots:
         void on_pushButtonFind_clicked();
-
     };
-
 }
 
 #endif // IVTOPID

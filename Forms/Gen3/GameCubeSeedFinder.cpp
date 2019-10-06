@@ -29,7 +29,6 @@
 
 namespace PokeFinderForms
 {
-
     GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::GameCubeSeedFinder)
@@ -255,5 +254,4 @@ namespace PokeFinderForms
     {
         ui->progressBarColo->setValue(progress);
     }
-
 }

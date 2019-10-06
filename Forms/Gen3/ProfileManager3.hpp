@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class ProfileManager3;
@@ -34,7 +33,6 @@ namespace PokeFinderForms
     class ProfileManager3 : public QWidget
     {
         Q_OBJECT
-
     signals:
         void updateProfiles();
 
@@ -52,9 +50,7 @@ namespace PokeFinderForms
         void on_pushButtonNew_clicked();
         void on_pushButtonEdit_clicked();
         void on_pushButtonDelete_clicked();
-
     };
-
 }
 
 #endif // PROFILEMANAGER3_HPP

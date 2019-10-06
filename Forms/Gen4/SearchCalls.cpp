@@ -24,7 +24,6 @@
 
 namespace PokeFinderForms
 {
-
     SearchCalls::SearchCalls(const QVector<PokeFinderCore::DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent) :
         QDialog(parent),
         ui(new Ui::SearchCalls)
@@ -126,5 +125,4 @@ namespace PokeFinderForms
         ui->labelEResponse->setText(tr("E - Hearing about your escapades rocks my soul! It sure does!"));
         ui->labelPResponse->setText(tr("P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How's your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there's so much I want to chat about! This is going nowhere!"));
     }
-
 }

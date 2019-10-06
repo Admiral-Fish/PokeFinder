@@ -25,10 +25,8 @@
 
 namespace PokeFinderCore
 {
-
     class ResearcherFrame
     {
-
     private:
         QVector<u64> custom;
         bool rng64Bit;
@@ -47,19 +45,17 @@ namespace PokeFinderCore
         void setFrame(u32 val) { frame = val; }
         u64 getCustom(int x) const { return custom.at(x); }
         void setCustom(int x, u64 val) { custom[x] = val; }
-        inline u32 getHigh32() const { return full64 >> 32; }
-        inline u32 getLow32() const { return full64 & 0xFFFFFFFF; }
-        inline u32 getHigh16() const { return rng64Bit ? getHigh32() >> 16 : full32 >> 16; }
-        inline u32 getLow16() const { return rng64Bit ? getHigh32() & 0xFFFF : full32 & 0xFFFF; }
-        inline u32 getMod25() const { return rng64Bit ? getHigh32() % 25 : getHigh16() % 25; }
-        inline u32 getMod100() const { return rng64Bit ? getHigh32() % 100 : getHigh16() % 100; }
-        inline u32 getMod3() const { return rng64Bit ? getHigh32() % 3 : getHigh16() % 3; }
-        inline u32 getDiv656() const { return getHigh16() / 656; }
-        inline u32 getHighBit() const { return rng64Bit ? getHigh32() >> 31 : getHigh16() >> 15; }
-        inline u32 getLowBit() const { return rng64Bit ? getHigh32() & 1 : getHigh16() & 1; }
-
+        u32 getHigh32() const { return full64 >> 32; }
+        u32 getLow32() const { return full64 & 0xFFFFFFFF; }
+        u32 getHigh16() const { return rng64Bit ? getHigh32() >> 16 : full32 >> 16; }
+        u32 getLow16() const { return rng64Bit ? getHigh32() & 0xFFFF : full32 & 0xFFFF; }
+        u32 getMod25() const { return rng64Bit ? getHigh32() % 25 : getHigh16() % 25; }
+        u32 getMod100() const { return rng64Bit ? getHigh32() % 100 : getHigh16() % 100; }
+        u32 getMod3() const { return rng64Bit ? getHigh32() % 3 : getHigh16() % 3; }
+        u32 getDiv656() const { return getHigh16() / 656; }
+        u32 getHighBit() const { return rng64Bit ? getHigh32() >> 31 : getHigh16() >> 15; }
+        u32 getLowBit() const { return rng64Bit ? getHigh32() & 1 : getHigh16() & 1; }
     };
-
 }
 
 #endif // RESEARCHERFRAME_HPP

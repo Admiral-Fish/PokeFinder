@@ -23,7 +23,6 @@
 
 namespace PokeFinderForms
 {
-
     RoamerMap::RoamerMap(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::RoamerMap)
@@ -43,5 +42,4 @@ namespace PokeFinderForms
     {
         delete ui;
     }
-
 }

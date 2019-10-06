@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class SeedtoTime4;
@@ -35,7 +34,6 @@ namespace PokeFinderForms
     class SeedtoTime4 : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit SeedtoTime4(QWidget *parent = nullptr);
         explicit SeedtoTime4(const QString &seed, const PokeFinderCore::Profile4 &profile, QWidget *parent = nullptr);
@@ -60,9 +58,7 @@ namespace PokeFinderForms
         void on_pushButtonDPPtSearchFlips_clicked();
         void on_pushButtonHGSSSearchCalls_clicked();
         void on_pushButtonHGSSMap_clicked();
-
     };
-
 }
 
 #endif // SEEDTOTIME4_HPP

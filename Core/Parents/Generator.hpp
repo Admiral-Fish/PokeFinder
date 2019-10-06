@@ -28,10 +28,8 @@
 
 namespace PokeFinderCore
 {
-
     class Generator
     {
-
     public:
         Encounter getEncounterType() const;
         void setEncounterType(const Encounter &value);
@@ -54,9 +52,7 @@ namespace PokeFinderCore
         u32 maxResults{};
         u8 synchNature{};
         u8 cuteCharm{};
-
     };
-
 }
 
 #endif // GENERATOR_HPP

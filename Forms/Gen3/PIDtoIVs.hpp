@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class PIDtoIVs;
@@ -35,7 +34,6 @@ namespace PokeFinderForms
     class PIDtoIVs : public QWidget
     {
         Q_OBJECT
-
     signals:
         void moveResultsToStationary(QString, QString, u8, u8, u8, u8, u8, u8);
 
@@ -64,9 +62,7 @@ namespace PokeFinderForms
         void on_pushButtonGenerate_clicked();
         void on_tableView_customContextMenuRequested(const QPoint &pos);
         void copySeed();
-
     };
-
 }
 
 #endif // PIDTOIVS_HPP

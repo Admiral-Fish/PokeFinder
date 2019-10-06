@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     Profile::Profile()
     {
         profileName = "None";
@@ -122,5 +121,4 @@ namespace PokeFinderCore
     {
         return sid;
     }
-
 }

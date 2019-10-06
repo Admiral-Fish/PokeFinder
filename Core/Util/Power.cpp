@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     QStringList Power::getPowers()
     {
         QStringList powers =
@@ -39,5 +38,4 @@ namespace PokeFinderCore
     {
         return getPowers().at(power);
     }
-
 }

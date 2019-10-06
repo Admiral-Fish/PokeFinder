@@ -28,7 +28,6 @@
 
 namespace PokeFinderForms
 {
-
     Eggs4::Eggs4(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::Eggs4)
@@ -298,5 +297,4 @@ namespace PokeFinderForms
         connect(manager, &ProfileManager4::updateProfiles, this, &Eggs4::refreshProfiles);
         manager->show();
     }
-
 }

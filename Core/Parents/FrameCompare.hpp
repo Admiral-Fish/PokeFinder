@@ -25,10 +25,8 @@
 
 namespace PokeFinderCore
 {
-
     class FrameCompare
     {
-
     public:
         FrameCompare() = default;
         FrameCompare(int gender, int ability, bool shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max,
@@ -51,9 +49,7 @@ namespace PokeFinderCore
         QVector<bool> encounters;
         bool shiny{};
         bool skip{};
-
     };
-
 }
 
 #endif // FRAMECOMPARE_HPP

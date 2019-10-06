@@ -25,10 +25,8 @@
 
 namespace PokeFinderForms
 {
-
     class GraphicsPixmapItem : public QGraphicsPixmapItem
     {
-
     public:
         GraphicsPixmapItem(const QPixmap &pixmap, u16 minX = 0, u16 minY = 0, u16 maxX = 0, u16 maxY = 0);
         void setMin(u16 minX, u16 minY);
@@ -38,9 +36,7 @@ namespace PokeFinderForms
     private:
         u16 minX, maxX;
         u16 minY, maxY;
-
     };
-
 }
 
 #endif // GRAPHICSPIXMAPITEM_HPP

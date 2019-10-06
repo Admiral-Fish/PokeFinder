@@ -27,10 +27,8 @@
 
 namespace PokeFinderCore
 {
-
     class LockInfo
     {
-
     public:
         LockInfo() = default;
         LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
@@ -58,9 +56,7 @@ namespace PokeFinderCore
     private:
         QVector<LockInfo> locks;
         ShadowType type;
-
     };
-
 }
 
 #endif // LOCKINFO_HPP

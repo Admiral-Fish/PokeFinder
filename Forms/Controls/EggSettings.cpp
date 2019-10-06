@@ -22,7 +22,6 @@
 
 namespace PokeFinderForms
 {
-
     EggSettings::EggSettings(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::EggSettings)
@@ -81,5 +80,4 @@ namespace PokeFinderForms
     {
         emit toggleInheritance(checked);
     }
-
 }

@@ -21,7 +21,6 @@
 
 namespace PokeFinderModels
 {
-
     ResearcherModel::ResearcherModel(QObject *parent, bool is64Bit) :
         TableModel<PokeFinderCore::ResearcherFrame>(parent)
     {
@@ -205,5 +204,4 @@ namespace PokeFinderModels
 
         return QModelIndex();
     }
-
 }

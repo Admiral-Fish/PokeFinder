@@ -21,7 +21,6 @@
 
 namespace PokeFinderCore
 {
-
     Frame3::Frame3()
     {
         tid = 12345;
@@ -197,5 +196,4 @@ namespace PokeFinderCore
         pid ^= 0x80008000;
         nature = pid % 25;
     }
-
 }

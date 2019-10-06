@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class Eggs4;
@@ -35,7 +34,6 @@ namespace PokeFinderForms
     class Eggs4 : public QWidget
     {
         Q_OBJECT
-
     signals:
         void alertProfiles(int);
 
@@ -62,9 +60,7 @@ namespace PokeFinderForms
         void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
         void seedToTime();
         void on_pushButtonProfileManager_clicked();
-
     };
-
 }
 
 #endif // EGGS4_HPP

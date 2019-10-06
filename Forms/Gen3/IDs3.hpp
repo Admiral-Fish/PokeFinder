@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class IDs3;
@@ -34,7 +33,6 @@ namespace PokeFinderForms
     class IDs3 : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit IDs3(QWidget *parent = nullptr);
         ~IDs3() override;
@@ -54,9 +52,7 @@ namespace PokeFinderForms
         void on_checkBoxRSDeadBattery_clicked(bool checked);
         void on_radioButtonRSDate_toggled(bool checked);
         void on_radioButtonRSInitialSeed_toggled(bool checked);
-
     };
-
 }
 
 #endif // IDS3_HPP

@@ -69,7 +69,7 @@ namespace PokeFinderCore
             advanceFrames(frames);
         }
 
-        u64 getSeed()
+        u64 getSeed() const
         {
             return seed;
         }

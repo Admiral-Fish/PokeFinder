@@ -23,7 +23,6 @@
 
 namespace PokeFinderCore
 {
-
     u16 Utilities::calcGen3Seed(const QDate &time, u32 h, u32 m)
     {
         u32 d = QDate(time.year() == 2000 ? 1999 : 2000, 12, 31).daysTo(time);
@@ -95,5 +94,4 @@ namespace PokeFinderCore
         }
         return calls;
     }
-
 }

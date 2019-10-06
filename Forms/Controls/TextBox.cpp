@@ -21,7 +21,6 @@
 
 namespace PokeFinderForms
 {
-
     TextBox::TextBox(QWidget *parent) : QLineEdit(parent)
     {
         connect(this, &TextBox::textEdited, this, &TextBox::onTextEdited);
@@ -116,5 +115,4 @@ namespace PokeFinderForms
             setCursorPosition(position);
         }
     }
-
 }

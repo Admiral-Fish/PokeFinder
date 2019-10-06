@@ -28,10 +28,8 @@
 
 namespace PokeFinderCore
 {
-
     class Profile
     {
-
     public:
         Profile();
         Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English);
@@ -49,9 +47,7 @@ namespace PokeFinderCore
         Language language;
         u16 tid;
         u16 sid;
-
     };
-
 }
 
 #endif // PROFILE_HPP

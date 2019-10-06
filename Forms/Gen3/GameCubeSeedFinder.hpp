@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class GameCubeSeedFinder;
@@ -34,7 +33,6 @@ namespace PokeFinderForms
     class GameCubeSeedFinder : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit GameCubeSeedFinder(QWidget *parent = nullptr);
         ~GameCubeSeedFinder() override;
@@ -57,9 +55,7 @@ namespace PokeFinderForms
         void updateGalesProgress(int progress);
         void updateColo(const QVector<u32> &seeds);
         void updateColoProgress(int progress);
-
     };
-
 }
 
 #endif // GAMECUBESEEDFINDER_HPP

@@ -25,11 +25,9 @@
 
 namespace PokeFinderModels
 {
-
     class SeedtoTime4Model : public TableModel<PokeFinderCore::DateTime>
     {
         Q_OBJECT
-
     public:
         SeedtoTime4Model(QObject *parent, bool flag = false, PokeFinderCore::Game version = PokeFinderCore::DPPt);
         void setFlags(bool flag = false, PokeFinderCore::Game version = PokeFinderCore::Diamond);
@@ -53,9 +51,7 @@ namespace PokeFinderModels
         {
             tr("Date"), tr("Time"), tr("Delay")
         };
-
     };
-
 }
 
 #endif // SEEDTOTIME4MODEL_HPP

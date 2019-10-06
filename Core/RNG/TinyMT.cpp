@@ -72,7 +72,7 @@ namespace PokeFinderCore
         advanceFrames(frames);
     }
 
-    QVector<u32> TinyMT::getState()
+    QVector<u32> TinyMT::getState() const
     {
         return state;
     }

@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     Encounters3::Encounters3(Encounter type, const Profile3 &profile)
     {
         this->type = type;
@@ -168,5 +167,4 @@ namespace PokeFinderCore
     {
         return data.mid(offset, length).toHex().toUShort(nullptr, 16);
     }
-
 }

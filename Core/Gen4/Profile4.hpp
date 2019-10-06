@@ -24,10 +24,8 @@
 
 namespace PokeFinderCore
 {
-
     class Profile4 : public Profile
     {
-
     public:
         Profile4();
         Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual = Game::Blank,
@@ -52,12 +50,10 @@ namespace PokeFinderCore
         int radio;
         bool radar;
         bool swarm;
-
     };
 
     bool operator==(const Profile4 &left, const Profile4 &right);
     bool operator!=(const Profile4 &left, const Profile4 &right);
-
 }
 
 #endif // PROFILE4_HPP

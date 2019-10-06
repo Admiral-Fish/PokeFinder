@@ -25,10 +25,8 @@
 
 namespace PokeFinderCore
 {
-
     class Slot
     {
-
     public:
         Slot() = default;
         Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon);
@@ -45,9 +43,7 @@ namespace PokeFinderCore
         u8 maxLevel;
         u16 specie;
         Pokemon pokemon;
-
     };
-
 }
 
 #endif // SLOT_HPP

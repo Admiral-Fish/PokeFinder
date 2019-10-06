@@ -29,10 +29,8 @@
 
 namespace PokeFinderCore
 {
-
     class Searcher3: public Searcher
     {
-
     public:
         Searcher3();
         Searcher3(u16 tid, u16 sid, u8 genderRatio, const FrameCompare &compare);
@@ -57,9 +55,7 @@ namespace PokeFinderCore
         QVector<Frame3> searchMethodXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
         QVector<Frame3> searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
         QVector<Frame3> searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-
     };
-
 }
 
 #endif // SEARCHER3_HPP

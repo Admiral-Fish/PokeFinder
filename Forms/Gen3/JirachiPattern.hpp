@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class JirachiPattern;
@@ -35,7 +34,6 @@ namespace PokeFinderForms
     class JirachiPattern : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit JirachiPattern(QWidget *parent = nullptr);
         ~JirachiPattern() override;
@@ -52,9 +50,7 @@ namespace PokeFinderForms
 
     private slots:
         void on_pushButtonGenerate_clicked();
-
     };
-
 }
 
 #endif // JIRACHIPATTERN_HPP

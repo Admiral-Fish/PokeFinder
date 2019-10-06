@@ -27,7 +27,6 @@
 
 namespace PokeFinderForms
 {
-
     TableView::TableView(QWidget *parent) :
         QTableView(parent)
     {
@@ -79,9 +78,10 @@ namespace PokeFinderForms
         }
     }
 
-    void TableView::outputModelTXT()
+    void TableView::outputModel(bool csv) const
     {
-        QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to TXT"), QDir::currentPath(), QObject::tr("Text File (*.txt);;All Files (*)"));
+        QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr(csv ? "Save Output to CSV" : "Save Output to TXT"),
+                           QDir::currentPath(), QObject::tr(csv ? "CSV File (*.csv);;All Files (*)" : "Text File (*.txt);;All Files (*)"));
 
         if (fileName.isEmpty())
         {
@@ -103,59 +103,7 @@ namespace PokeFinderForms
                 header += model->headerData(i, Qt::Horizontal, 0).toString();
                 if (i != columns - 1)
                 {
-                    header += "\t";
-                }
-            }
-            header += "\n";
-
-            for (int i = 0; i < rows; i++)
-            {
-                QString body = "";
-                for (int j = 0; j < columns; j++)
-                {
-                    QString entry = model->data(model->index(i, j)).toString();
-                    body += (entry.isEmpty() ? "-" : entry);
-                    if (i != columns - 1)
-                    {
-                        body += "\t";
-                    }
-                }
-                if (i != rows - 1)
-                {
-                    body += "\n";
-                }
-                ts << body;
-            }
-
-            file.close();
-        }
-    }
-
-    void TableView::outputModelCSV()
-    {
-        QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to CSV"), QDir::currentPath(), QObject::tr("CSV File (*.csv);;All Files (*)"));
-
-        if (fileName.isEmpty())
-        {
-            return;
-        }
-
-        QFile file(fileName);
-        if (file.open(QIODevice::WriteOnly))
-        {
-            QAbstractItemModel *model = this->model();
-
-            QTextStream ts(&file);
-            int rows = model->rowCount();
-            int columns = model->columnCount();
-
-            QString header = "";
-            for (int i = 0; i < columns; i++)
-            {
-                header += model->headerData(i, Qt::Horizontal, 0).toString();
-                if (i != columns - 1)
-                {
-                    header += ",";
+                    header += csv ? "," : "\n";
                 }
             }
             header += "\n";
@@ -170,7 +118,7 @@ namespace PokeFinderForms
                     body += (entry.isEmpty() ? "-" : entry);
                     if (j != columns - 1)
                     {
-                        body += ",";
+                        body += csv ? "," : "\t";
                     }
                 }
                 if (i != rows - 1)
@@ -183,5 +131,4 @@ namespace PokeFinderForms
             file.close();
         }
     }
-
 }

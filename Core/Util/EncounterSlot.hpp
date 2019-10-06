@@ -25,14 +25,12 @@
 
 namespace PokeFinderCore
 {
-
     namespace EncounterSlot
     {
         u8 hSlot(u16 result, Encounter encounterType);
         u8 jSlot(u16 result, Encounter encounterType);
         u8 kSlot(u16 result, Encounter encounterType);
     };
-
 }
 
 #endif // ENCOUNTERSLOT_HPP

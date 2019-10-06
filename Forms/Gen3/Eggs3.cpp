@@ -27,7 +27,6 @@
 
 namespace PokeFinderForms
 {
-
     Eggs3::Eggs3(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::Eggs3)
@@ -326,5 +325,4 @@ namespace PokeFinderForms
         connect(manager, &ProfileManager3::updateProfiles, this, &Eggs3::refreshProfiles);
         manager->show();
     }
-
 }

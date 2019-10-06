@@ -21,7 +21,6 @@
 
 namespace PokeFinderCore
 {
-
     QFont TableUtility::getBold(u8 iv)
     {
         QFont font;
@@ -33,5 +32,4 @@ namespace PokeFinderCore
 
         return font;
     }
-
 }

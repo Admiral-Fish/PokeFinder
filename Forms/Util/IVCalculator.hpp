@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class IVCalculator;
@@ -35,7 +34,6 @@ namespace PokeFinderForms
     class IVCalculator : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit IVCalculator(QWidget *parent = nullptr);
         ~IVCalculator() override;
@@ -51,9 +49,7 @@ namespace PokeFinderForms
         void on_pushButtonFindIVs_clicked();
         void on_comboBoxPokemon_currentIndexChanged(int index);
         void on_comboBoxGeneration_currentIndexChanged(int index);
-
     };
-
 }
 
 #endif // IVCALCULATOR_HPP

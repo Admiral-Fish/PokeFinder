@@ -27,11 +27,9 @@
 
 namespace PokeFinderCore
 {
-
     class GameCubeSeedSearcher : public QObject
     {
         Q_OBJECT
-
     signals:
         void finished();
         void outputSeeds(QVector<u32> seeds);
@@ -59,9 +57,7 @@ namespace PokeFinderCore
         void generatePokemonGales(u32 &seed, u16 tsv);
         void generatePokemonColo(u32 &seed, u16 tsv, u32 dummyPID, u8 nature, u8 gender, u8 genderRatio);
         QVector<u8> generateEVs(u32 &seed);
-
     };
-
 }
 
 #endif // GAMECUBESEED_HPP

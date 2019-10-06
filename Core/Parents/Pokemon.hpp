@@ -25,10 +25,8 @@
 
 namespace PokeFinderCore
 {
-
     class Pokemon
     {
-
     public:
         Pokemon() = default;
         Pokemon(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 spe, u16 gender, u16 ability1, u16 ability2, u16 abilityH = 0, u16 formCount = 0, u16 formStatIndex = 0);
@@ -60,9 +58,7 @@ namespace PokeFinderCore
         u16 abilityH;
         u16 formCount;
         u16 formStatIndex;
-
     };
-
 }
 
 #endif // POKEMON_HPP

@@ -23,7 +23,6 @@
 
 namespace PokeFinderCore
 {
-
     GameCubeRTCSearcher::GameCubeRTCSearcher(u32 initialSeed, u32 targetSeed, u32 minFrame, u32 maxFrame)
     {
         this->initialSeed = initialSeed;
@@ -97,5 +96,4 @@ namespace PokeFinderCore
         }
         emit finished();
     }
-
 }

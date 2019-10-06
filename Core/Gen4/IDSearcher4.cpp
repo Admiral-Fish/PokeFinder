@@ -24,7 +24,6 @@
 
 namespace PokeFinderCore
 {
-
     ShinyPIDSearcher::ShinyPIDSearcher(u32 pid, bool useTID, u16 tid, u32 year, u32 minDelay, u32 maxDelay, bool infinite)
     {
         this->pid = pid;
@@ -204,5 +203,4 @@ namespace PokeFinderCore
         results.clear();
         return data;
     }
-
 }

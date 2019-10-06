@@ -28,10 +28,8 @@
 
 namespace PokeFinderCore
 {
-
     class ShadowLock
     {
-
     public:
         ShadowLock() = default;
         ShadowLock(u8 num, Method version);
@@ -59,9 +57,7 @@ namespace PokeFinderCore
         u32 getPIDForward(XDRNG &rng);
         u32 getPIDBackward(XDRNGR &rng);
         u16 getPSVReverse(XDRNGR &rng);
-
     };
-
 }
 
 #endif // SHADOWLOCK_HPP

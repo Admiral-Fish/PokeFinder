@@ -25,10 +25,8 @@
 
 namespace PokeFinderCore
 {
-
     class Encounters3
     {
-
     public:
         Encounters3(Encounter type, const Profile3 &profile);
         QVector<EncounterArea3> getEncounters() const;
@@ -41,9 +39,7 @@ namespace PokeFinderCore
         QByteArrayList getData() const;
         QVector<EncounterArea3> getArea(const QByteArray &data) const;
         u16 getValue(const QByteArray &data, int offset, int length) const;
-
     };
-
 }
 
 #endif // ENCOUNTERS3_HPP

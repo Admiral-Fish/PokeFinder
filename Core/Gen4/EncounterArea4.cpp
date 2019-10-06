@@ -21,7 +21,6 @@
 
 namespace PokeFinderCore
 {
-
     EncounterArea4::EncounterArea4(u8 location, Encounter type, const QVector<Slot> &pokemon) :
         EncounterArea(location, type, pokemon)
     {
@@ -60,5 +59,4 @@ namespace PokeFinderCore
                 return 0;
         }
     }
-
 }

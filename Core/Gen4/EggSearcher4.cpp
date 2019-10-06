@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     EggSearcher4::EggSearcher4(const Egg4 &generatorIV, const Egg4 &generatorPID, const FrameCompare &compare, u32 minDelay, u32 maxDelay, int type)
     {
         this->generatorIV = generatorIV;
@@ -148,5 +147,4 @@ namespace PokeFinderCore
         results.clear();
         return data;
     }
-
 }

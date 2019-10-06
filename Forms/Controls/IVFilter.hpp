@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class IVFilter;
@@ -34,7 +33,6 @@ namespace PokeFinderForms
     class IVFilter : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit IVFilter(QWidget *parent = nullptr);
         ~IVFilter() override;
@@ -60,9 +58,7 @@ namespace PokeFinderForms
         void changeCompareSpA(int type);
         void changeCompareSpD(int type);
         void changeCompareSpe(int type);
-
     };
-
 }
 
 #endif // IVFILTER_HPP

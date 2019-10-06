@@ -35,7 +35,7 @@ namespace PokeFinderCore
         u16 nextUShort(u32 frames = 0);
         u32 next(u32 frames = 0) override;
         void setSeed(u32 seed, u32 frames) override;
-        QVector<u32> getState();
+        QVector<u32> getState() const;
 
     private:
         QVector<u32> state;

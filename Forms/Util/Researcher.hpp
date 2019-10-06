@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class Researcher;
@@ -34,7 +33,6 @@ namespace PokeFinderForms
     class Researcher : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit Researcher(QWidget *parent = nullptr);
         ~Researcher() override;;
@@ -64,9 +62,7 @@ namespace PokeFinderForms
         void on_rngSelection_currentChanged(int index);
         void on_pushButtonSearch_clicked();
         void on_pushButtonNext_clicked();
-
     };
-
 }
 
 #endif // RESEARCHER_HPP

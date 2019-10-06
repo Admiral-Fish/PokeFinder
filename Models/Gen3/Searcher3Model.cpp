@@ -22,7 +22,6 @@
 
 namespace PokeFinderModels
 {
-
     Searcher3Model::Searcher3Model(QObject *parent, PokeFinderCore::Method method) :
         TableModel<PokeFinderCore::Frame3>(parent)
     {
@@ -581,5 +580,4 @@ namespace PokeFinderModels
         }
         return QVariant();
     }
-
 }

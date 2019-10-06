@@ -24,7 +24,6 @@
 
 namespace PokeFinderForms
 {
-
     JirachiPattern::JirachiPattern(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::JirachiPattern)
@@ -194,5 +193,4 @@ namespace PokeFinderForms
         data.clear();
         generate(ui->textBoxSeed->getUInt());
     }
-
 }

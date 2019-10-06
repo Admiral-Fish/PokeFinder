@@ -25,7 +25,7 @@
 namespace PokeFinderCore
 {
 
-    QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower)
+    QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower) const
     {
         QVector<bool> valid(6, false);
         QVector<u8> minIVs(6, 31);

@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     ProfileManager4::ProfileManager4(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::ProfileManager4)
@@ -109,5 +108,4 @@ namespace PokeFinderForms
             emit updateProfiles();
         }
     }
-
 }

@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     enum Game
     {
         Blank       = 0, // Placeholder
@@ -45,7 +44,6 @@ namespace PokeFinderCore
         SoulSilver  = 1 << 11,
         HGSS        = HeartGold | SoulSilver
     };
-
 }
 
 #endif // GAME_HPP

@@ -23,7 +23,6 @@
 
 namespace PokeFinderCore
 {
-
     EncounterArea::EncounterArea(int location, Encounter type, const QVector<Slot> &pokemon)
     {
         this->location = location;
@@ -96,5 +95,4 @@ namespace PokeFinderCore
     {
         pokemon[index].setSpecie(specie, mon);
     }
-
 }

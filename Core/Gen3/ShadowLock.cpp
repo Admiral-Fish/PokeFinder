@@ -26,7 +26,6 @@
 
 namespace PokeFinderCore
 {
-
     ShadowLock::ShadowLock(u8 num, Method version)
     {
         switchLock(num, version);
@@ -312,5 +311,4 @@ namespace PokeFinderCore
     {
         return (rng.nextUShort() ^ rng.nextUShort()) >> 3;
     }
-
 }

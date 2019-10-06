@@ -24,18 +24,16 @@
 
 namespace PokeFinderModels
 {
-
-    template <typename T>
+    template <typename Item>
     class TableModel : public QAbstractTableModel
     {
-
     public:
         TableModel(QObject *parent = nullptr) :
             QAbstractTableModel(parent)
         {
         }
 
-        void addItems(const QVector<T> &items)
+        void addItems(const QVector<Item> &items)
         {
             if (!items.isEmpty())
             {
@@ -46,7 +44,7 @@ namespace PokeFinderModels
             }
         }
 
-        void addItem(const T &item)
+        void addItem(const Item &item)
         {
             int i = rowCount();
             emit beginInsertRows(QModelIndex(), i, i);
@@ -54,7 +52,7 @@ namespace PokeFinderModels
             emit endInsertRows();
         }
 
-        void updateItem(const T &item, int row)
+        void updateItem(const Item &item, int row)
         {
             model[row] = item;
             emit dataChanged(index(row, 0), index(row, columnCount()));
@@ -68,12 +66,12 @@ namespace PokeFinderModels
             emit endRemoveRows();
         }
 
-        T getItem(int row) const
+        Item getItem(int row) const
         {
             return model.at(row);
         }
 
-        QVector<T> getModel() const
+        QVector<Item> getModel() const
         {
             return model;
         }
@@ -95,10 +93,8 @@ namespace PokeFinderModels
         }
 
     protected:
-        QVector<T> model;
-
+        QVector<Item> model;
     };
-
 }
 
 #endif // TABLEMODEL_HPP

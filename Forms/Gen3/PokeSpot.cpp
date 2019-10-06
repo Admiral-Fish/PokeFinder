@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     PokeSpot::PokeSpot(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::PokeSpot)
@@ -161,5 +160,4 @@ namespace PokeFinderForms
     {
         ui->comboBoxAbility->setCurrentIndex(0);
     }
-
 }

@@ -22,7 +22,6 @@
 
 namespace PokeFinderForms
 {
-
     IVFilter::IVFilter(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::IVFilter)
@@ -248,5 +247,4 @@ namespace PokeFinderForms
             changeSpe(0, 0);
         }
     }
-
 }

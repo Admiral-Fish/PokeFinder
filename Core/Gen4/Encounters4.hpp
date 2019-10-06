@@ -25,13 +25,11 @@
 
 namespace PokeFinderCore
 {
-
     class Encounters4
     {
-
     public:
         Encounters4(Encounter type, int time, const Profile4 &profile);
-        QVector<EncounterArea4> getEncounters();
+        QVector<EncounterArea4> getEncounters() const;
 
     private:
         Profile4 profile;
@@ -51,9 +49,7 @@ namespace PokeFinderCore
         void modifySwarmHGSS(QVector<Slot> &mons, const QByteArray &data) const;
         void modifySwarmDPPt(QVector<Slot> &mons, const QByteArray &data) const;
         u16 getValue(const QByteArray &data, int offset, int length) const;
-
     };
-
 }
 
 #endif // ENCOUNTERS4_HPP

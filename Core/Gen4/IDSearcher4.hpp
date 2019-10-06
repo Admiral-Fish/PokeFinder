@@ -27,11 +27,9 @@
 
 namespace PokeFinderCore
 {
-
     class ShinyPIDSearcher : public QObject
     {
         Q_OBJECT
-
     signals:
         void finished();
         void updateProgress(const QVector<QList<QStandardItem *>> &, int);
@@ -55,13 +53,11 @@ namespace PokeFinderCore
 
         void search();
         QVector<QList<QStandardItem *>> getResults();
-
     };
 
     class TIDSIDSearcher : public QObject
     {
         Q_OBJECT
-
     signals:
         void finished();
         void updateProgress(const QVector<QList<QStandardItem *>> &, int);
@@ -85,9 +81,7 @@ namespace PokeFinderCore
 
         void search();
         QVector<QList<QStandardItem *>> getResults();
-
     };
-
 }
 
 #endif // IDSEARCHER4_HPP

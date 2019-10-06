@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class ChainedSID;
@@ -35,7 +34,6 @@ namespace PokeFinderForms
     class ChainedSID : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit ChainedSID(QWidget *parent = nullptr);
         ~ChainedSID() override;
@@ -50,9 +48,7 @@ namespace PokeFinderForms
     private slots:
         void on_pushButtonCalculate_clicked();
         void on_pushButtonClear_clicked();
-
     };
-
 }
 
 #endif // CHAINEDSID_HPP

@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     // Different method types for various games
     enum Method
     {
@@ -57,7 +56,6 @@ namespace PokeFinderCore
         HGSSIVs,
         Gen4Combined
     };
-
 }
 
 #endif // METHOD_HPP

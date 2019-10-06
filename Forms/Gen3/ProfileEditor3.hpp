@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class ProfileEditor3;
@@ -34,7 +33,6 @@ namespace PokeFinderForms
     class ProfileEditor3 : public QDialog
     {
         Q_OBJECT
-
     signals:
         void newProfile(PokeFinderCore::Profile3);
         void editProfile(PokeFinderCore::Profile3, PokeFinderCore::Profile3);
@@ -57,9 +55,7 @@ namespace PokeFinderForms
     private slots:
         void on_pushButtonAccept_clicked();
         void on_comboBoxVersion_currentIndexChanged(int index);
-
     };
-
 }
 
 #endif // PROFILEEDITOR3_HPP

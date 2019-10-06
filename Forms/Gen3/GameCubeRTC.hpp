@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class GameCubeRTC;
@@ -35,7 +34,6 @@ namespace PokeFinderForms
     class GameCubeRTC : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit GameCubeRTC(QWidget *parent = nullptr);
         explicit GameCubeRTC(u32 seed, QWidget *parent = nullptr);
@@ -53,9 +51,7 @@ namespace PokeFinderForms
         void updateTableView(const QList<QStandardItem *> &row);
         void copySeed();
         void on_tableView_customContextMenuRequested(const QPoint &pos);
-
     };
-
 }
 
 #endif // GAMECUBERTC_HPP

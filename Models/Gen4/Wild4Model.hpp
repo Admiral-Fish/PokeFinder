@@ -25,11 +25,9 @@
 
 namespace PokeFinderModels
 {
-
     class Wild4Model : public TableModel<PokeFinderCore::Frame4>
     {
         Q_OBJECT
-
     public:
         Wild4Model(QObject *parent, PokeFinderCore::Method method);
         void setMethod(PokeFinderCore::Method method);
@@ -55,9 +53,7 @@ namespace PokeFinderModels
             tr("Frame"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
             tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
         };
-
     };
-
 }
 
 #endif // WILD4MODEL_HPP

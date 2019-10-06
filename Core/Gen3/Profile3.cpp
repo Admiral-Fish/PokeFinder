@@ -25,7 +25,6 @@
 
 namespace PokeFinderCore
 {
-
     Profile3::Profile3()
     {
         version = Game::Emerald;
@@ -149,5 +148,4 @@ namespace PokeFinderCore
     {
         return !(left == right);
     }
-
 }

@@ -24,7 +24,6 @@
 
 namespace PokeFinderCore
 {
-
     QStringList Translator::getCharacteristic()
     {
         QStringList names;
@@ -149,5 +148,4 @@ namespace PokeFinderCore
 
         return locations;
     }
-
 }

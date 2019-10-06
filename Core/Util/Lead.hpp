@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     // Different modifiers that can lead a party
     enum Lead
     {
@@ -41,7 +40,6 @@ namespace PokeFinderCore
         CuteCharmFemale = 1 << 12,
         SuctionCups     = 1 << 13
     };
-
 }
 
 #endif // LEAD_HPP

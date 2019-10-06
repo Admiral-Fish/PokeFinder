@@ -28,10 +28,8 @@
 
 namespace PokeFinderCore
 {
-
     class Searcher
     {
-
     public:
         Encounter getEncounterType() const;
         void setEncounterType(const Encounter &value);
@@ -50,9 +48,7 @@ namespace PokeFinderCore
         Lead leadType = Lead::None;
         u8 synchNature{};
         u8 cuteCharm{};
-
     };
-
 }
 
 #endif // SEARCHER_HPP

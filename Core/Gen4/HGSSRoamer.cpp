@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     HGSSRoamer::HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes)
     {
         this->seed = seed;
@@ -148,5 +147,4 @@ namespace PokeFinderCore
 
         return val + 1;
     }
-
 }

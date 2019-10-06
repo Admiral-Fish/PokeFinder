@@ -64,7 +64,7 @@ namespace PokeFinderCore
             advanceFrames(frames);
         }
 
-        u32 getSeed()
+        u32 getSeed() const
         {
             return seed;
         }

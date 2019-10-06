@@ -24,7 +24,6 @@
 
 namespace PokeFinderForms
 {
-
     SpindaPainter::SpindaPainter(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::SpindaPainter)
@@ -141,5 +140,4 @@ namespace PokeFinderForms
             text = false;
         }
     }
-
 }

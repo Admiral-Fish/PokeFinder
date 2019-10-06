@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class SeedToTime3;
@@ -35,7 +34,6 @@ namespace PokeFinderForms
     class SeedToTime3 : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit SeedToTime3(QWidget *parent = nullptr);
         explicit SeedToTime3(u32 seed, QWidget *parent = nullptr);
@@ -52,9 +50,7 @@ namespace PokeFinderForms
 
     private slots:
         void on_pushButtonFind_clicked();
-
     };
-
 }
 
 #endif // SEEDTOTIME3_HPP

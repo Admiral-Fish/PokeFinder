@@ -25,10 +25,8 @@
 
 namespace PokeFinderCore
 {
-
     class ChainedSIDCalc
     {
-
     public:
         ChainedSIDCalc(u16 tid);
         void addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 gender);
@@ -39,9 +37,7 @@ namespace PokeFinderCore
         u16 tid;
 
         bool matchGender(u8 gender, u8 val) const;
-
     };
-
 }
 
 #endif // CHAINEDSIDCALC_HPP

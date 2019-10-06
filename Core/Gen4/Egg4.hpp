@@ -25,10 +25,8 @@
 
 namespace PokeFinderCore
 {
-
     class Egg4 : public Egg
     {
-
     public:
         Egg4();
         Egg4(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u32 seed, u8 genderRatio);
@@ -43,9 +41,7 @@ namespace PokeFinderCore
         QVector<Frame4> generatePIDMasuada(const FrameCompare &compare) const;
         QVector<Frame4> generateIVsDPPt(const FrameCompare &compare) const;
         QVector<Frame4> generateIVsHGSS(const FrameCompare &compare) const;
-
     };
-
 }
 
 #endif // EGG4_HPP

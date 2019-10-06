@@ -21,7 +21,6 @@
 
 namespace PokeFinderModels
 {
-
     PokeSpotModel::PokeSpotModel(QObject *parent) :
         TableModel<PokeFinderCore::Frame3>(parent)
     {
@@ -66,5 +65,4 @@ namespace PokeFinderModels
         }
         return QVariant();
     }
-
 }

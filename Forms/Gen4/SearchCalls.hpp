@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class SearchCalls;
@@ -34,7 +33,6 @@ namespace PokeFinderForms
     class SearchCalls : public QDialog
     {
         Q_OBJECT
-
     public:
         explicit SearchCalls(const QVector<PokeFinderCore::DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent = nullptr);
         ~SearchCalls() override;
@@ -54,9 +52,7 @@ namespace PokeFinderForms
         void on_lineEditCalls_textChanged(const QString &val);
         void on_radioButtonElm_clicked();
         void on_radioButtonIrwin_clicked();
-
     };
-
 }
 
 #endif // SEARCHCALLS_HPP

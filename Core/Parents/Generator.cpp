@@ -21,7 +21,6 @@
 
 namespace PokeFinderCore
 {
-
     Encounter Generator::getEncounterType() const
     {
         return encounterType;
@@ -51,5 +50,4 @@ namespace PokeFinderCore
     {
         synchNature = value;
     }
-
 }

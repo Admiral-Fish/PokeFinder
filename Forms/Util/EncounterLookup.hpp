@@ -28,7 +28,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class EncounterLookup;
@@ -37,7 +36,6 @@ namespace PokeFinderForms
     class EncounterLookup : public QWidget
     {
         Q_OBJECT
-
     public:
         explicit EncounterLookup(QWidget *parent = nullptr);
         ~EncounterLookup() override;
@@ -54,9 +52,7 @@ namespace PokeFinderForms
     private slots:
         void on_pushButtonFind_clicked();
         void on_comboBoxGame_currentIndexChanged(int index);
-
     };
-
 }
 
 #endif // ENCOUNTERLOOKUP_HPP

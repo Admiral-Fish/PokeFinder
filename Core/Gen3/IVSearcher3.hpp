@@ -26,11 +26,9 @@
 
 namespace PokeFinderCore
 {
-
     class IVSearcher3 : public QObject
     {
         Q_OBJECT
-
     signals:
         void finished();
         void updateProgress(const QVector<Frame3> &, int progress);
@@ -52,9 +50,7 @@ namespace PokeFinderCore
 
         void search();
         QVector<Frame3> getResults();
-
     };
-
 }
 
 #endif // IVSEARCHER3_HPP

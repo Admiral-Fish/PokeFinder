@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     IVSearcher4::IVSearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max)
     {
         this->searcher = searcher;
@@ -103,5 +102,4 @@ namespace PokeFinderCore
         results.clear();
         return data;
     }
-
 }

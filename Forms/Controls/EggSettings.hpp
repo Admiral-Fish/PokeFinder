@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class EggSettings;
@@ -52,7 +51,6 @@ namespace PokeFinderForms
         void on_checkBoxShowInteritance_clicked(bool checked);
 
     };
-
 }
 
 #endif // EGGSETTINGS_HPP

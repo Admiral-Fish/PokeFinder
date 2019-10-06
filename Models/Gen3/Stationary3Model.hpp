@@ -25,11 +25,9 @@
 
 namespace PokeFinderModels
 {
-
     class Stationary3Model : public TableModel<PokeFinderCore::Frame3>
     {
         Q_OBJECT
-
     public:
         Stationary3Model(QObject *parent);
         int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -42,9 +40,7 @@ namespace PokeFinderModels
             tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"),
             tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")
         };
-
     };
-
 }
 
 #endif // STATIONARY3MODEL_HPP

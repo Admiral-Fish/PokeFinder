@@ -24,7 +24,6 @@
 
 namespace PokeFinderForms
 {
-
     ProfileEditor3::ProfileEditor3(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::ProfileEditor3)
@@ -123,5 +122,4 @@ namespace PokeFinderForms
             ui->checkBoxDeadBattery->setChecked(false);
         }
     }
-
 }

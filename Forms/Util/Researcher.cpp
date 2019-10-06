@@ -28,7 +28,6 @@
 
 namespace PokeFinderForms
 {
-
     Researcher::Researcher(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::Researcher)
@@ -57,12 +56,6 @@ namespace PokeFinderForms
         ui->textBoxMaxFrames->setValues(InputType::Frame64Bit);
         ui->textBoxSeed->setValues(InputType::Seed64Bit);
         ui->textBoxSearch->setValues(InputType::Seed64Bit);
-
-        ui->textBoxMult32Bit->setValues(InputType::Seed32Bit);
-        ui->textBoxAdd32Bit->setValues(InputType::Seed32Bit);
-
-        ui->textBoxMult64Bit->setValues(InputType::Seed64Bit);
-        ui->textBoxAdd64Bit->setValues(InputType::Seed64Bit);
 
         ui->textBoxStatus3->setValues(InputType::Seed32Bit);
         ui->textBoxStatus2->setValues(InputType::Seed32Bit);
@@ -207,8 +200,8 @@ namespace PokeFinderForms
         u32 maxFrames = ui->textBoxMaxFrames->getUInt();
         u32 startingFrame = ui->textBoxStartingFrame->getUInt();
 
-        PokeFinderCore::IRNG *rng = nullptr;
-        PokeFinderCore::IRNG64 *rng64 = nullptr;
+        PokeFinderCore::IRNG<u32> *rng = nullptr;
+        PokeFinderCore::IRNG<u64> *rng64 = nullptr;
 
         if (ui->rngSelection->currentIndex() != 1 && (seed > 0xffffffff))
         {
@@ -217,79 +210,61 @@ namespace PokeFinderForms
 
         if (ui->rngSelection->currentIndex() == 0)
         {
-            if (ui->radioButtonCommon32Bit->isChecked())
+            switch (ui->comboBoxRNG32Bit->currentIndex())
             {
-                switch (ui->comboBoxRNG32Bit->currentIndex())
-                {
-                    case 0:
-                        rng = new PokeFinderCore::PokeRNG(static_cast<u32>(seed), startingFrame - 1);
-                        break;
-                    case 1:
-                        rng = new PokeFinderCore::PokeRNGR(static_cast<u32>(seed), startingFrame - 1);
-                        break;
-                    case 2:
-                        rng = new PokeFinderCore::XDRNG(static_cast<u32>(seed), startingFrame - 1);
-                        break;
-                    case 3:
-                        rng = new PokeFinderCore::XDRNGR(static_cast<u32>(seed), startingFrame - 1);
-                        break;
-                    case 4:
-                        rng = new PokeFinderCore::ARNG(static_cast<u32>(seed), startingFrame - 1);
-                        break;
-                    case 5:
-                        rng = new PokeFinderCore::ARNGR(static_cast<u32>(seed), startingFrame - 1);
-                        break;
-                    case 6:
-                        rng = new PokeFinderCore::MersenneTwister(static_cast<u32>(seed), startingFrame - 1);
-                        break;
-                    case 7:
-                        rng = new PokeFinderCore::MersenneTwisterUntempered(static_cast<u32>(seed), startingFrame - 1);
-                        break;
-                    case 8:
-                        if (maxFrames > 227 || startingFrame > 227 || (startingFrame + maxFrames > 227))
-                        {
-                            QMessageBox error;
-                            error.setText(tr("Please enter a search range lower then 228"));
-                            error.exec();
-                            return;
-                        }
-                        rng = new PokeFinderCore::MersenneTwisterFast(static_cast<u32>(seed), maxFrames, startingFrame - 1);
-                        break;
-                }
-            }
-            else
-            {
-                u32 add = ui->textBoxAdd32Bit->getUInt();
-                u32 mult = ui->textBoxMult32Bit->getUInt();
-                rng = new PokeFinderCore::LCRNG(add, mult, static_cast<u32>(seed), startingFrame - 1);
+                case 0:
+                    rng = new PokeFinderCore::PokeRNG(static_cast<u32>(seed), startingFrame - 1);
+                    break;
+                case 1:
+                    rng = new PokeFinderCore::PokeRNGR(static_cast<u32>(seed), startingFrame - 1);
+                    break;
+                case 2:
+                    rng = new PokeFinderCore::XDRNG(static_cast<u32>(seed), startingFrame - 1);
+                    break;
+                case 3:
+                    rng = new PokeFinderCore::XDRNGR(static_cast<u32>(seed), startingFrame - 1);
+                    break;
+                case 4:
+                    rng = new PokeFinderCore::ARNG(static_cast<u32>(seed), startingFrame - 1);
+                    break;
+                case 5:
+                    rng = new PokeFinderCore::ARNGR(static_cast<u32>(seed), startingFrame - 1);
+                    break;
+                case 6:
+                    rng = new PokeFinderCore::MersenneTwister(static_cast<u32>(seed), startingFrame - 1);
+                    break;
+                case 7:
+                    rng = new PokeFinderCore::MersenneTwisterUntempered(static_cast<u32>(seed), startingFrame - 1);
+                    break;
+                case 8:
+                    if (maxFrames > 227 || startingFrame > 227 || (startingFrame + maxFrames > 227))
+                    {
+                        QMessageBox error;
+                        error.setText(tr("Please enter a search range lower then 228"));
+                        error.exec();
+                        return;
+                    }
+                    rng = new PokeFinderCore::MersenneTwisterFast(static_cast<u32>(seed), maxFrames, startingFrame - 1);
+                    break;
             }
         }
         else if (ui->rngSelection->currentIndex() == 1)
         {
-            if (ui->radioButtonCommon64Bit->isChecked())
+            switch (ui->comboBoxRNG64Bit->currentIndex())
             {
-                switch (ui->comboBoxRNG64Bit->currentIndex())
-                {
-                    case 0:
-                        rng64 = new PokeFinderCore::BWRNG(seed, startingFrame - 1);
-                        break;
-                    case 1:
-                        rng64 = new PokeFinderCore::BWRNGR(seed, startingFrame - 1);
-                        break;
-                    case 2:
-                        if (seed > 0xffffffff)
-                        {
-                            seed >>= 32;
-                        }
-                        rng64 = new PokeFinderCore::SFMT(static_cast<u32>(seed), startingFrame - 1);
-                        break;
-                }
-            }
-            else
-            {
-                u64 add = ui->textBoxAdd64Bit->getUInt();
-                u64 mult = ui->textBoxMult64Bit->getUInt();
-                rng64 = new PokeFinderCore::LCRNG64(add, mult, seed, startingFrame - 1);
+                case 0:
+                    rng64 = new PokeFinderCore::BWRNG(seed, startingFrame - 1);
+                    break;
+                case 1:
+                    rng64 = new PokeFinderCore::BWRNGR(seed, startingFrame - 1);
+                    break;
+                case 2:
+                    if (seed > 0xffffffff)
+                    {
+                        seed >>= 32;
+                    }
+                    rng64 = new PokeFinderCore::SFMT(static_cast<u32>(seed), startingFrame - 1);
+                    break;
             }
         }
         else
@@ -409,11 +384,11 @@ namespace PokeFinderForms
             PokeFinderCore::ResearcherFrame frame(rng64Bit, i);
             if (rng64Bit)
             {
-                frame.setFull64(rng64->nextULong());
+                frame.setFull64(rng64->next());
             }
             else
             {
-                frame.setFull32(rng->nextUInt());
+                frame.setFull32(rng->next());
             }
 
             for (int j = 0; j < 10; j++)
@@ -515,5 +490,4 @@ namespace PokeFinderForms
             return;
         }
     }
-
 }

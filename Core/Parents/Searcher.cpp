@@ -21,7 +21,6 @@
 
 namespace PokeFinderCore
 {
-
     Encounter Searcher::getEncounterType() const
     {
         return encounterType;
@@ -51,5 +50,4 @@ namespace PokeFinderCore
     {
         leadType = value;
     }
-
 }

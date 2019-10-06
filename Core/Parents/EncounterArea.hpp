@@ -27,10 +27,8 @@
 
 namespace PokeFinderCore
 {
-
     class EncounterArea
     {
-
     public:
         EncounterArea() = default;
         EncounterArea(int location, Encounter type, const QVector<Slot> &pokemon);
@@ -47,9 +45,7 @@ namespace PokeFinderCore
         QVector<Slot> pokemon;
         u8 location{};
         Encounter type{};
-
     };
-
 }
 
 #endif // ENCOUNTERAREA_HPP

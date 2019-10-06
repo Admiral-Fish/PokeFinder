@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     Egg3::Egg3()
     {
         maxResults = 100000;
@@ -373,5 +372,4 @@ namespace PokeFinderCore
         }
         return frames;
     }
-
 }

@@ -24,7 +24,6 @@
 
 namespace PokeFinderForms
 {
-
     ProfileEditor4::ProfileEditor4(QWidget *parent) :
         QDialog(parent),
         ui(new Ui::ProfileEditor4)
@@ -152,5 +151,4 @@ namespace PokeFinderForms
             ui->comboBoxRadio->setCurrentIndex(0);
         }
     }
-
 }

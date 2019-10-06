@@ -22,13 +22,13 @@
 #include "GameCubeSeedSearcher.hpp"
 #include <Core/RNG/LCRNG.hpp>
 
-static const QVector<QVector<u16>> galesHPStat =
+constexpr u16 galesHPStat[10][2] =
 {
     { 322, 340 }, { 310, 290 }, { 210, 620 }, { 320, 230 }, { 310, 310 },
     { 290, 310 }, { 290, 270 }, { 290, 250 }, { 320, 270 }, { 270, 230 }
 };
 
-static const QVector<QVector<u8>> coloNatures =
+constexpr u8 coloNatures[8][6] =
 {
     { 0x16, 0x15, 0x0f, 0x13, 0x04, 0x04 },
     { 0x0b, 0x08, 0x01, 0x10, 0x10, 0x0C },
@@ -40,7 +40,7 @@ static const QVector<QVector<u8>> coloNatures =
     { 0x03, 0x0a, 0x0f, 0x03, 0x0f, 0x03 }
 };
 
-static const QVector<QVector<u8>> coloGenders =
+constexpr u8 coloGenders[8][6] =
 {
     { 0, 1, 1, 0, 0, 1 },
     { 2, 1, 0, 0, 1, 0 },
@@ -52,7 +52,7 @@ static const QVector<QVector<u8>> coloGenders =
     { 1, 0, 1, 0, 1, 0 }
 };
 
-static const QVector<QVector<u8>> coloGenderRatios =
+constexpr u8 coloGenderRatios [8][6] =
 {
     { 0x1f, 0x7f, 0x7f, 0x7f, 0xbf, 0x7f },
     { 0xff, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f },
@@ -66,7 +66,6 @@ static const QVector<QVector<u8>> coloGenderRatios =
 
 namespace PokeFinderCore
 {
-
     GameCubeSeedSearcher::GameCubeSeedSearcher(Game version, const QVector<u32> &criteria)
     {
         this->version = version;
@@ -220,7 +219,7 @@ namespace PokeFinderCore
             seed = rng.getSeed();
             generatePokemonGales(seed, tsv);
             QVector<u8> evs = generateEVs(seed);
-            u16 hp = evs.at(0) / 4 + hpIV + galesHPStat.at(enemyIndex + 5).at(i);
+            u16 hp = evs.at(0) / 4 + hpIV + galesHPStat[enemyIndex + 5][i];
             if (hp != criteria.at(4 + i))
             {
                 return false;
@@ -241,7 +240,7 @@ namespace PokeFinderCore
             seed = rng.getSeed();
             generatePokemonGales(seed, tsv);
             QVector<u8> evs = generateEVs(seed);
-            u16 hp = evs.at(0) / 4 + hpIV + galesHPStat.at(playerIndex).at(i);
+            u16 hp = evs.at(0) / 4 + hpIV + galesHPStat[playerIndex][i];
             if (hp != criteria.at(2 + i))
             {
                 return false;
@@ -280,7 +279,7 @@ namespace PokeFinderCore
 
             rng.advanceFrames(3);
             seed = rng.getSeed();
-            generatePokemonColo(seed, tsv, pid, coloNatures.at(enemyIndex).at(i), coloGenders.at(enemyIndex).at(i), coloGenderRatios.at(enemyIndex).at(i));
+            generatePokemonColo(seed, tsv, pid, coloNatures[enemyIndex][i], coloGenders[enemyIndex][i], coloGenderRatios[enemyIndex][i]);
             rng.setSeed(seed);
         }
 
@@ -301,7 +300,7 @@ namespace PokeFinderCore
 
             rng.advanceFrames(3);
             seed = rng.getSeed();
-            generatePokemonColo(seed, tsv, pid, coloNatures.at(playerIndex).at(i), coloGenders.at(playerIndex).at(i), coloGenderRatios.at(playerIndex).at(i));
+            generatePokemonColo(seed, tsv, pid, coloNatures[playerIndex][i], coloGenders[playerIndex][i], coloGenderRatios[playerIndex][i]);
             rng.setSeed(seed);
         }
 
@@ -354,7 +353,9 @@ namespace PokeFinderCore
                 {
                     u8 pidGender = genderRatio > (pid & 0xFF) ? 1 : 0;
                     if (pidGender != gender)
+                    {
                         continue;
+                    }
                 }
             }
 
@@ -436,5 +437,4 @@ namespace PokeFinderCore
         seed = rng.getSeed();
         return evs;
     }
-
 }

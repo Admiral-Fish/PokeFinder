@@ -25,7 +25,6 @@
 
 namespace PokeFinderForms
 {
-
     IDs4::IDs4(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::IDs4)
@@ -208,5 +207,4 @@ namespace PokeFinderForms
             }
         }
     }
-
 }

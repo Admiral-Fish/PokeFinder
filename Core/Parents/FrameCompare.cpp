@@ -22,7 +22,6 @@
 
 namespace PokeFinderCore
 {
-
     FrameCompare::FrameCompare(int gender, int ability, bool shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max, const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters)
     {
         this->gender = gender;
@@ -140,5 +139,4 @@ namespace PokeFinderCore
 
         return true;
     }
-
 }

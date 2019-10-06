@@ -26,7 +26,6 @@
 
 namespace PokeFinderForms
 {
-
     namespace Ui
     {
         class IDs4;
@@ -35,7 +34,6 @@ namespace PokeFinderForms
     class IDs4 : public QWidget
     {
         Q_OBJECT
-
     signals:
         void updateProgress();
 
@@ -57,9 +55,7 @@ namespace PokeFinderForms
         void on_pushButtonShinyPIDSearch_clicked();
         void on_pushButtonTIDSIDSearch_clicked();
         void on_pushButtonSeedFinderSearch_clicked();
-
     };
-
 }
 
 #endif // IDS4_HPP
