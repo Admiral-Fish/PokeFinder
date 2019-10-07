@@ -115,9 +115,13 @@ QVector<Frame3> Generator3::generateMethodChannel(const FrameCompare &compare) c
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
+        u16 sid = rngList.at(cnt);
         u16 high = rngList.at(cnt + 1);
         u16 low = rngList.at(cnt + 2);
-        u16 sid = rngList.at(cnt);
+
+        // u16 berry = rngList.at(cnt + 3) >> 13; If >= 4 salac, else ganlon
+        // u16 game = rngList.at(cnt + 4) >> 12; If >= 8 ruby, else sapphire
+        // u16 gender = rngList.at(cnt + 5) >> 11; If >= 16 female, else male
 
         frame.setIDs(40122, sid, 40122 ^ sid);
 

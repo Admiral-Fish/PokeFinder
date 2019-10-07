@@ -232,7 +232,7 @@ QString PIDtoIVs::calcIVsChannel(u32 iv1)
     XDRNG rng(iv1);
 
     QVector<u32> val = { iv1 >> 27, 0, 0, 0, 0, 0 };
-    for (u8 x : { 1, 2, 4, 5, 3 })
+    for (u8 x : { 1, 2, 5, 3, 4 })
     {
         val[x] = rng.nextUInt() >> 27;
     }
