@@ -84,8 +84,8 @@ QStringList JirachiPattern::getPatterns(u32 seed)
         data.append(rng.nextUShort());
     }
 
-    // Loop through 4 possible cases that would make a valid pattern
-    for (u8 i = 0; i < 4; i++)
+    // Loop through 3 possible cases that would make a valid pattern
+    for (u8 i = 0; i < 3; i++)
     {
         // Get target from case if valid
         u8 index = getTarget(i);
@@ -150,33 +150,36 @@ QStringList JirachiPattern::getPatterns(u32 seed)
 
 u8 JirachiPattern::getTarget(u8 index)
 {
-    // From target initially advance 5 frames then
-    // (prng >> 30 == 0) then advance 1
-    // (prng >> 30 == 2) then advance 2, (next prng >> 25 > 41) then advance 1 more
-    // (prng >> 30 == 1) or (prng >> 30 == 3) then advance 3
+    /*
+     *  thresh = [.25,.33]
+     *  rng.advanceFrames(4)
+     *  flag = false
+     *  for (u8 i = 0; i < 2; i++)
+     *      rand = (double)rng.nextUShort()/65536.0
+     *      if rand <= thresh[i]
+     *          flag = true
+     *          break
+     *  rng.advanceFrames(flag ? 1 : 2)
+     */
 
     switch (index)
     {
-        case 0:
-            if ((data.at(1) >> 14) == 0) // 6 advances total
+        case 0: // 6 advances total
+            if ((double)data.at(1) / 65536.0 <= 0.25)
             {
                 return 19;
             }
             break;
-        case 1:
-            if ((data.at(3) >> 14) == 1 || (data.at(3) >> 14) == 3) // 8 advances total
-            {
-                return 17;
-            }
-            break;
-        case 2:
-            if ((data.at(3) >> 14) == 2 && (data.at(1) >> 9) <= 41) // 7 advances total
+        case 1: // 7 advances total
+            if ((double)data.at(2) / 65536.0 > 0.25 &&
+                    (double)data.at(1) / 65536.0 <= 0.33)
             {
                 return 18;
             }
             break;
-        case 3:
-            if ((data.at(3) >> 14) == 2 && (data.at(1) >> 9) > 41) // 8 advances total
+        case 2: // 8 advances total
+            if ((double)data.at(3) / 65536.0 > 0.25 &&
+                    (double)data.at(2) / 65536.0 > 0.33)
             {
                 return 17;
             }
