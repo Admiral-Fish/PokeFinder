@@ -825,7 +825,7 @@ QRadioButton {
            <widget class="CheckList" name="comboBoxRSNature"/>
           </item>
           <item row="2" column="3">
-           <widget class="QPushButton" name="pushButtonRSAnyAbility">
+           <widget class="QPushButton" name="pushButtonRSAnyNature">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -848,7 +848,7 @@ QRadioButton {
            <widget class="CheckList" name="comboBoxRSHiddenPower"/>
           </item>
           <item row="3" column="3">
-           <widget class="QPushButton" name="pushButtonRSAnyNature">
+           <widget class="QPushButton" name="pushButtonRSAnyHiddenPower">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -1187,7 +1187,7 @@ QRadioButton {
            <widget class="CheckList" name="comboBoxFRLGNature"/>
           </item>
           <item row="2" column="3">
-           <widget class="QPushButton" name="pushButtonFRLGAnyAbility">
+           <widget class="QPushButton" name="pushButtonFRLGAnyNature">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -1210,7 +1210,7 @@ QRadioButton {
            <widget class="CheckList" name="comboBoxFRLGHiddenPower"/>
           </item>
           <item row="3" column="3">
-           <widget class="QPushButton" name="pushButtonFRLGAnyNature">
+           <widget class="QPushButton" name="pushButtonFRLGAnyHiddenPower">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -1393,9 +1393,9 @@ QRadioButton {
   <tabstop>comboBoxRSGender</tabstop>
   <tabstop>comboBoxRSAbility</tabstop>
   <tabstop>comboBoxRSNature</tabstop>
-  <tabstop>pushButtonRSAnyAbility</tabstop>
-  <tabstop>comboBoxRSHiddenPower</tabstop>
   <tabstop>pushButtonRSAnyNature</tabstop>
+  <tabstop>comboBoxRSHiddenPower</tabstop>
+  <tabstop>pushButtonRSAnyHiddenPower</tabstop>
   <tabstop>comboBoxRSCompatibility</tabstop>
   <tabstop>comboBoxRSGenderRatio</tabstop>
   <tabstop>checkBoxRSShiny</tabstop>
@@ -1413,9 +1413,9 @@ QRadioButton {
   <tabstop>comboBoxFRLGGender</tabstop>
   <tabstop>comboBoxFRLGAbility</tabstop>
   <tabstop>comboBoxFRLGNature</tabstop>
-  <tabstop>pushButtonFRLGAnyAbility</tabstop>
-  <tabstop>comboBoxFRLGHiddenPower</tabstop>
   <tabstop>pushButtonFRLGAnyNature</tabstop>
+  <tabstop>comboBoxFRLGHiddenPower</tabstop>
+  <tabstop>pushButtonFRLGAnyHiddenPower</tabstop>
   <tabstop>comboBoxFRLGCompatibility</tabstop>
   <tabstop>comboBoxFRLGGenderRatio</tabstop>
   <tabstop>checkBoxFRLGShiny</tabstop>
@@ -1432,43 +1432,11 @@ QRadioButton {
    <hints>
     <hint type="sourcelabel">
      <x>585</x>
-     <y>249</y>
+     <y>228</y>
     </hint>
     <hint type="destinationlabel">
-     <x>529</x>
-     <y>247</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButtonRSAnyNature</sender>
-   <signal>clicked()</signal>
-   <receiver>comboBoxRSNature</receiver>
-   <slot>resetChecks()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1167</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>903</x>
-     <y>223</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButtonFRLGAnyNature</sender>
-   <signal>clicked()</signal>
-   <receiver>comboBoxFRLGNature</receiver>
-   <slot>resetChecks()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1167</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>903</x>
-     <y>223</y>
+     <x>504</x>
+     <y>226</y>
     </hint>
    </hints>
   </connection>
@@ -1479,12 +1447,76 @@ QRadioButton {
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>840</x>
-     <y>280</y>
+     <x>1150</x>
+     <y>253</y>
     </hint>
     <hint type="destinationlabel">
-     <x>766</x>
-     <y>279</y>
+     <x>1069</x>
+     <y>251</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonRSAnyNature</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxRSNature</receiver>
+   <slot>resetChecks()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1108</x>
+     <y>210</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1057</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonRSAnyHiddenPower</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxRSHiddenPower</receiver>
+   <slot>resetChecks()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1106</x>
+     <y>244</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1067</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonFRLGAnyNature</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxFRLGNature</receiver>
+   <slot>resetChecks()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1158</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1032</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonFRLGAnyHiddenPower</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxFRLGHiddenPower</receiver>
+   <slot>resetChecks()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1120</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1068</x>
+     <y>241</y>
     </hint>
    </hints>
   </connection>
