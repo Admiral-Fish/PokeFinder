@@ -1,16 +1,16 @@
 environment:
   matrix:
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
     QTPATH: C:\Qt\5.13\msvc2017_64
     OS: win64
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x64
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu1804
     OS: linux
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
     QTPATH: C:\Qt\5.13\msvc2017
     OS: win32
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x86
 
 install:
