@@ -3,9 +3,6 @@ equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 9):error("You need at lea
 
 QT += concurrent network widgets
 CONFIG += c++1z lrelease embed_translations
-QMAKE_CXXFLAGS_RELEASE += -O3
-QMAKE_CXXFLAGS_RELEASE -= -O2
-QMAKE_CXXFLAGS_RELEASE -= -O1
 
 TARGET = PokeFinder
 TEMPLATE = app
