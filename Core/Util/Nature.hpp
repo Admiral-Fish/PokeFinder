@@ -21,6 +21,7 @@
 #define NATURE_HPP
 
 #include <QStringList>
+#include <QVector>
 #include <Core/Util/Global.hpp>
 
 namespace PokeFinderCore::Nature
