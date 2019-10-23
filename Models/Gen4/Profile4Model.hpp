@@ -20,12 +20,8 @@
 #ifndef PROFILE4MODEL_HPP
 #define PROFILE4MODEL_HPP
 
+#include <Core/Gen4/Profile4.hpp>
 #include <Models/TableModel.hpp>
-
-namespace PokeFinderCore
-{
-    class Profile4;
-}
 
 namespace PokeFinderModels
 {

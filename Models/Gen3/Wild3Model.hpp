@@ -20,12 +20,8 @@
 #ifndef WILD3MODEL_HPP
 #define WILD3MODEL_HPP
 
+#include <Core/Gen3/Frame3.hpp>
 #include <Models/TableModel.hpp>
-
-namespace PokeFinderCore
-{
-    class Frame3;
-}
 
 namespace PokeFinderModels
 {

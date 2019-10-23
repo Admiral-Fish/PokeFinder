@@ -22,6 +22,7 @@
 
 #include <QMutex>
 #include <QObject>
+#include <Core/Gen4/Frame4.hpp>
 #include <Core/Gen4/Searcher4.hpp>
 
 namespace PokeFinderCore

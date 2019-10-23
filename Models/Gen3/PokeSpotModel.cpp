@@ -18,7 +18,6 @@
  */
 
 #include "PokeSpotModel.hpp"
-#include <Core/Gen3/Frame3.hpp>
 
 namespace PokeFinderModels
 {

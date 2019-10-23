@@ -18,7 +18,6 @@
  */
 
 #include "SeedtoTime4Model.hpp"
-#include <Core/Util/DateTime.hpp>
 #include <Core/Util/Utilities.hpp>
 
 namespace PokeFinderModels

@@ -23,6 +23,7 @@
 #include <QMutex>
 #include <QObject>
 #include <Core/Gen4/Egg4.hpp>
+#include <Core/Gen4/Frame4.hpp>
 #include <Core/Parents/FrameCompare.hpp>
 
 namespace PokeFinderCore

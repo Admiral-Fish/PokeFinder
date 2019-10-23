@@ -18,7 +18,6 @@
  */
 
 #include "Profile3Model.hpp"
-#include <Core/Gen3/Profile3.hpp>
 
 namespace PokeFinderModels
 {

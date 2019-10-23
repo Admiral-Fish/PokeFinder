@@ -20,12 +20,8 @@
 #ifndef POKESPOTMODEL_HPP
 #define POKESPOTMODEL_HPP
 
+#include <Core/Gen3/Frame3.hpp>
 #include <Models/TableModel.hpp>
-
-namespace PokeFinderCore
-{
-    class Frame3;
-}
 
 namespace PokeFinderModels
 {

@@ -20,8 +20,8 @@
 #ifndef RESEARCHERMODEL_HPP
 #define RESEARCHERMODEL_HPP
 
-#include <Models/TableModel.hpp>
 #include <Core/Util/ResearcherFrame.hpp>
+#include <Models/TableModel.hpp>
 
 namespace PokeFinderModels
 {

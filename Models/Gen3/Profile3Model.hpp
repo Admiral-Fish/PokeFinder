@@ -20,12 +20,8 @@
 #ifndef PROFILE3MODEL_HPP
 #define PROFILE3MODEL_HPP
 
+#include <Core/Gen3/Profile3.hpp>
 #include <Models/TableModel.hpp>
-
-namespace PokeFinderCore
-{
-    class Profile3;
-}
 
 namespace PokeFinderModels
 {

@@ -19,7 +19,6 @@
 
 #include <QtConcurrent>
 #include "EggSearcher4.hpp"
-#include <Core/Gen4/Frame4.hpp>
 
 namespace PokeFinderCore
 {
