@@ -20,12 +20,12 @@
 #ifndef STATIONARY4MODEL_HPP
 #define STATIONARY4MODEL_HPP
 
+#include <Core/Gen4/Frame4.hpp>
 #include <Models/TableModel.hpp>
 
 namespace PokeFinderCore
 {
-    class Frame4;
-    enum Method;
+    enum Method : u8;
 }
 
 namespace PokeFinderModels

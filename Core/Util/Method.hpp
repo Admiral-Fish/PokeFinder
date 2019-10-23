@@ -20,10 +20,12 @@
 #ifndef METHOD_HPP
 #define METHOD_HPP
 
+#include <Core/Util/Global.hpp>
+
 namespace PokeFinderCore
 {
     // Different method types for various games
-    enum Method
+    enum Method : u8
     {
         Method1,
         Method1Reverse,

@@ -27,7 +27,7 @@
 namespace PokeFinderCore
 {
     class EncounterArea3;
-    enum Encounter;
+    enum Encounter : u8;
 
     class Encounters3
     {

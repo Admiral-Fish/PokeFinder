@@ -26,7 +26,7 @@
 
 namespace PokeFinderCore
 {
-    enum Game;
+    enum Game : u16;
 
     class GameCubeSeedSearcher : public QObject
     {

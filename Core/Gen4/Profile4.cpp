@@ -109,11 +109,11 @@ namespace PokeFinderCore
     {
         QJsonObject profile;
         profile["name"] = profileName;
-        profile["version"] = version;
-        profile["language"] = language;
+        profile["version"] = static_cast<int>(version);
+        profile["language"] = static_cast<int>(language);
         profile["tid"] = tid;
         profile["sid"] = sid;
-        profile["dual"] = dual;
+        profile["dual"] = static_cast<int>(dual);
         profile["radio"] = radio;
         profile["radar"] = radar;
         profile["swarm"] = swarm;

@@ -20,9 +20,11 @@
 #ifndef SHADOWTYPE_HPP
 #define SHADOWTYPE_HPP
 
+#include <Core/Util/Global.hpp>
+
 namespace PokeFinderCore
 {
-    enum ShadowType
+    enum ShadowType : u8
     {
         SingleLock,
         FirstShadow,

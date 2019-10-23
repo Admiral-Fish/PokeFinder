@@ -20,18 +20,20 @@
 #ifndef LANGUAGE_HPP
 #define LANGUAGE_HPP
 
+#include <Core/Util/Global.hpp>
+
 namespace PokeFinderCore
 {
-    enum Language
+    enum Language : u8
     {
-        Chinese     = 1 << 0,
-        English     = 1 << 1,
-        French      = 1 << 2,
-        German      = 1 << 3,
-        Italian     = 1 << 4,
-        Japanese    = 1 << 5,
-        Korean      = 1 << 6,
-        Spanish     = 1 << 7
+        Chinese,
+        English,
+        French,
+        German,
+        Italian,
+        Japanese,
+        Korean,
+        Spanish
     };
 }
 

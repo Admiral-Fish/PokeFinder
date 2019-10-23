@@ -53,8 +53,8 @@ namespace PokeFinderCore
     {
         QJsonObject data;
         data["name"] = profileName;
-        data["version"] = version;
-        data["language"] = language;
+        data["version"] = static_cast<int>(version);
+        data["language"] = static_cast<int>(language);
         data["tid"] = tid;
         data["sid"] = sid;
         data["battery"] = deadBattery;

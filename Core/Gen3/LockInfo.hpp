@@ -25,8 +25,8 @@
 
 namespace PokeFinderCore
 {
-    enum Method;
-    enum ShadowType;
+    enum Method : u8;
+    enum ShadowType : u8;
 
     class LockInfo
     {

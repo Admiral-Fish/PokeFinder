@@ -18,6 +18,7 @@
  */
 
 #include "Searcher4Model.hpp"
+#include <Core/Gen4/Frame4.hpp>
 #include <Core/Util/TableUtility.hpp>
 
 namespace PokeFinderModels

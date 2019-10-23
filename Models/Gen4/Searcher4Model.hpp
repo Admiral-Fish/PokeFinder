@@ -20,12 +20,13 @@
 #ifndef SEARCHER4MODEL_HPP
 #define SEARCHER4MODEL_HPP
 
-#include <Core/Gen4/Frame4.hpp>
+#include <Core/Util/Global.hpp>
 #include <Models/TableModel.hpp>
 
 namespace PokeFinderCore
 {
-    enum Method;
+    class Frame4;
+    enum Method : u8;
 }
 
 namespace PokeFinderModels

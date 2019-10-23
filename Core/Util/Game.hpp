@@ -20,9 +20,11 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include <Core/Util/Global.hpp>
+
 namespace PokeFinderCore
 {
-    enum Game
+    enum Game : u16
     {
         Blank       = 0, // Placeholder
         Ruby        = 1 << 0,

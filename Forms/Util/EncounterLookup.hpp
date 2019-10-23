@@ -26,8 +26,8 @@
 
 namespace PokeFinderCore
 {
-    enum Encounter;
-    enum Game;
+    enum Encounter : u8;
+    enum Game : u16;
 }
 
 namespace PokeFinderForms

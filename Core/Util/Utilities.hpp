@@ -26,15 +26,15 @@
 namespace PokeFinderCore
 {
     class HGSSRoamer;
-}
 
-namespace PokeFinderCore::Utilities
-{
-    u16 calcGen3Seed(const QDate &time, u32 h, u32 m);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    bool shiny(u32 pid, u16 tid, u16  sid);
-    QString coinFlips(u32 seed, u8 flips);
-    QString getCalls(u32 seed, u8 num, const HGSSRoamer &info);
+    namespace Utilities
+    {
+        u16 calcGen3Seed(const QDate &time, u32 h, u32 m);
+        u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
+        bool shiny(u32 pid, u16 tid, u16  sid);
+        QString coinFlips(u32 seed, u8 flips);
+        QString getCalls(u32 seed, u8 num, const HGSSRoamer &info);
+    }
 }
 
 #endif // UTILITIES_HPP

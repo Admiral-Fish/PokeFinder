@@ -25,7 +25,7 @@
 
 namespace PokeFinderCore
 {
-    enum Method;
+    enum Method : u8;
 }
 
 namespace PokeFinderModels
