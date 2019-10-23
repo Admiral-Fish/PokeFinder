@@ -22,7 +22,11 @@
 
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/Gen4/ChainedSIDCalc.hpp>
+
+namespace PokeFinderCore
+{
+    class ChainedSIDCalc;
+}
 
 namespace PokeFinderForms
 {

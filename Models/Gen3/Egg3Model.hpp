@@ -23,6 +23,11 @@
 #include <Core/Gen3/Frame3.hpp>
 #include <Models/TableModel.hpp>
 
+namespace PokeFinderCore
+{
+    enum Method;
+}
+
 namespace PokeFinderModels
 {
     class Egg3Model : public TableModel<PokeFinderCore::Frame3>

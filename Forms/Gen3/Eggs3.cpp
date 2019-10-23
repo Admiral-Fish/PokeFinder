@@ -21,9 +21,11 @@
 #include "Eggs3.hpp"
 #include "ui_Eggs3.h"
 #include <Core/Gen3/Egg3.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Power.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
+#include <Models/Gen3/Egg3Model.hpp>
 
 namespace PokeFinderForms
 {

@@ -28,6 +28,8 @@
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
+#include <Models/Gen4/Searcher4Model.hpp>
+#include <Models/Gen4/Wild4Model.hpp>
 
 namespace PokeFinderForms
 {

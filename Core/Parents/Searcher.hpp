@@ -21,8 +21,8 @@
 #define SEARCHER_HPP
 
 #include <QVector>
-#include <Core/Parents/FrameCompare.hpp>
 #include <Core/Util/Encounter.hpp>
+#include <Core/Util/Global.hpp>
 #include <Core/Util/Lead.hpp>
 #include <Core/Util/Method.hpp>
 

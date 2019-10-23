@@ -21,6 +21,7 @@
 #include "SpindaPainter.hpp"
 #include "ui_SpindaPainter.h"
 #include <Core/Util/Nature.hpp>
+#include <Forms/Controls/GraphicsPixmapItem.hpp>
 
 namespace PokeFinderForms
 {

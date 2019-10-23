@@ -35,8 +35,24 @@ namespace PokeFinderCore
         u32 frame;
 
     public:
-        ResearcherFrame();
-        ResearcherFrame(bool rng64Bit, u32 frame);
+        ResearcherFrame()
+        {
+            custom = QVector<u64>(10, 0);
+            rng64Bit = false;
+            full32 = 0;
+            full64 = 0;
+            frame = 100000;
+        }
+
+        ResearcherFrame(bool rng64Bit, u32 frame)
+        {
+            custom = QVector<u64>(10, 0);
+            this->rng64Bit = rng64Bit;
+            full32 = 0;
+            full64 = 0;
+            this->frame = frame;
+        }
+
         u32 getFull32() const { return full32; }
         void setFull32(u32 seed) { full32 = seed; }
         u64 getFull64() const { return full64; }

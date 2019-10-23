@@ -22,6 +22,7 @@
 #include "ProfileManager3.hpp"
 #include "ui_ProfileManager3.h"
 #include <Forms/Gen3/ProfileEditor3.hpp>
+#include <Models/Gen3/Profile3Model.hpp>
 
 namespace PokeFinderForms
 {

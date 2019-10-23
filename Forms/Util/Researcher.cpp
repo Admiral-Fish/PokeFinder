@@ -25,6 +25,7 @@
 #include <Core/RNG/MTRNG.hpp>
 #include <Core/RNG/SFMT.hpp>
 #include <Core/RNG/TinyMT.hpp>
+#include <Models/Util/ResearcherModel.hpp>
 
 namespace PokeFinderForms
 {
@@ -269,7 +270,7 @@ namespace PokeFinderForms
         }
         else
         {
-            QVector<u32> status =
+            u32 status[4] =
             {
                 ui->textBoxStatus0->getUInt(), ui->textBoxStatus1->getUInt(),
                 ui->textBoxStatus2->getUInt(), ui->textBoxStatus3->getUInt()

@@ -22,7 +22,16 @@
 
 #include <QWidget>
 #include <Core/Gen3/Profile3.hpp>
-#include <Models/Gen3/Egg3Model.hpp>
+
+namespace PokeFinderCore
+{
+    class Frame3;
+}
+
+namespace PokeFinderModels
+{
+    class Egg3Model;
+}
 
 namespace PokeFinderForms
 {

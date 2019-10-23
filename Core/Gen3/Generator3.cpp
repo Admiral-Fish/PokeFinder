@@ -18,7 +18,10 @@
  */
 
 #include "Generator3.hpp"
+#include <Core/Gen3/Frame3.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Core/Util/EncounterSlot.hpp>
+#include <Core/Util/ShadowType.hpp>
 
 namespace PokeFinderCore
 {

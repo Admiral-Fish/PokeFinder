@@ -21,10 +21,20 @@
 #define WILD3_HPP
 
 #include <QMenu>
+#include <QModelIndex>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
-#include <Models/Gen3/Searcher3Model.hpp>
-#include <Models/Gen3/Wild3Model.hpp>
+
+namespace PokeFinderCore
+{
+    class Frame3;
+}
+
+namespace PokeFinderModels
+{
+    class Searcher3Model;
+    class Wild3Model;
+}
 
 namespace PokeFinderForms
 {

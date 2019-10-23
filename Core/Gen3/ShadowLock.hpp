@@ -22,12 +22,14 @@
 
 #include <QVector>
 #include <Core/Gen3/LockInfo.hpp>
-#include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Method.hpp>
 #include <Core/Util/ShadowType.hpp>
 
 namespace PokeFinderCore
 {
+    class XDRNG;
+    class XDRNGR;
+
     class ShadowLock
     {
     public:

@@ -21,7 +21,13 @@
 #define EGG4MODEL_HPP
 
 #include <Core/Gen4/Frame4.hpp>
+#include <Core/Util/Global.hpp>
 #include <Models/TableModel.hpp>
+
+namespace PokeFinderCore
+{
+    enum Method;
+}
 
 namespace PokeFinderModels
 {
@@ -54,7 +60,6 @@ namespace PokeFinderModels
         {
             tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
         };
-
     };
 
     class Egg4SearcherModel : public TableModel<PokeFinderCore::Frame4>

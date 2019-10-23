@@ -18,6 +18,8 @@
  */
 
 #include "Generator4.hpp"
+#include <Core/Gen4/Frame4.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 

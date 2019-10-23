@@ -18,6 +18,7 @@
  */
 
 #include "EncounterArea3.hpp"
+#include <Core/Parents/Slot.hpp>
 
 namespace PokeFinderCore
 {

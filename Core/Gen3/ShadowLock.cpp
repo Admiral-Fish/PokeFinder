@@ -19,6 +19,7 @@
 
 #include <QFile>
 #include "ShadowLock.hpp"
+#include <Core/RNG/LCRNG.hpp>
 
 /* Each non-shadow before a shadow has to match
  * a specific gender/nature and these preset

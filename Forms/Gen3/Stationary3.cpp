@@ -27,6 +27,8 @@
 #include <Core/Util/Power.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
+#include <Models/Gen3/Searcher3Model.hpp>
+#include <Models/Gen3/Stationary3Model.hpp>
 
 namespace PokeFinderForms
 {

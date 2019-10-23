@@ -20,8 +20,13 @@
 #ifndef SEEDTOTIME4MODEL_HPP
 #define SEEDTOTIME4MODEL_HPP
 
+#include <Core/Util/Game.hpp>
 #include <Models/TableModel.hpp>
-#include <Core/Util/DateTime.hpp>
+
+namespace PokeFinderCore
+{
+    class DateTime;
+}
 
 namespace PokeFinderModels
 {

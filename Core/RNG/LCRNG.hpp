@@ -69,7 +69,7 @@ namespace PokeFinderCore
             return seed;
         }
 
-    protected:
+    private:
         u32 seed{};
     };
 

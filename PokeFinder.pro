@@ -219,8 +219,6 @@ SOURCES += \
     Core/Util/IVChecker.cpp \
     Core/Util/Nature.cpp \
     Core/Util/Power.cpp \
-    Core/Util/ResearcherFrame.cpp \
-    Core/Util/TableUtility.cpp \
     Core/Util/Translator.cpp \
     Core/Util/Utilities.cpp \
     Forms/Controls/CheckList.cpp \

@@ -21,15 +21,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-#include <Forms/Gen3/Eggs3.hpp>
-#include <Forms/Gen3/GameCube.hpp>
-#include <Forms/Gen3/IDs3.hpp>
-#include <Forms/Gen3/Stationary3.hpp>
-#include <Forms/Gen3/Wild3.hpp>
-#include <Forms/Gen4/Eggs4.hpp>
-#include <Forms/Gen4/IDs4.hpp>
-#include <Forms/Gen4/Stationary4.hpp>
-#include <Forms/Gen4/Wild4.hpp>
+#include <QActionGroup>
 
 namespace PokeFinderForms
 {
@@ -37,6 +29,16 @@ namespace PokeFinderForms
     {
         class MainWindow;
     }
+
+    class Eggs3;
+    class GameCube;
+    class IDs3;
+    class Stationary3;
+    class Wild3;
+    class Eggs4;
+    class IDs4;
+    class Stationary4;
+    class Wild4;
 
     class MainWindow : public QMainWindow
     {

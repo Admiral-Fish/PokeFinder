@@ -20,7 +20,6 @@
 #ifndef TINYMT_HPP
 #define TINYMT_HPP
 
-#include <QVector>
 #include <Core/RNG/IRNG.hpp>
 
 namespace PokeFinderCore
@@ -29,16 +28,15 @@ namespace PokeFinderCore
     {
     public:
         TinyMT(u32 seed = 0, u32 frames = 0);
-        TinyMT(const QVector<u32> &state, u32 frames = 0);
+        TinyMT(const u32 state[4], u32 frames = 0);
         void advanceFrames(u32 frames) override;
         u32 nextUInt(u32 frames = 0);
         u16 nextUShort(u32 frames = 0);
         u32 next(u32 frames = 0) override;
         void setSeed(u32 seed, u32 frames) override;
-        QVector<u32> getState() const;
 
     private:
-        QVector<u32> state;
+        u32 state[4];
 
         void initialize(u32 seed);
         void periodCertification();

@@ -20,11 +20,13 @@
 #ifndef EGG3_HPP
 #define EGG3_HPP
 
-#include <Core/Gen3/Frame3.hpp>
 #include <Core/Parents/Egg.hpp>
 
 namespace PokeFinderCore
 {
+    class FrameCompare;
+    class Frame3;
+
     class Egg3 : public Egg
     {
     public:

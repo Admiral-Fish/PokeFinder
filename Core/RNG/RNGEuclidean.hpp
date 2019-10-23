@@ -26,10 +26,8 @@
 
 namespace PokeFinderCore
 {
-
     class RNGEuclidean
     {
-
     public:
         RNGEuclidean() = default;
         RNGEuclidean(Method FrameType);
@@ -44,9 +42,7 @@ namespace PokeFinderCore
         u32 sub2{};
 
         void setupEuclidean(Method frameType);
-
     };
-
 }
 
 #endif // RNGEUCLIDEAN_HPP

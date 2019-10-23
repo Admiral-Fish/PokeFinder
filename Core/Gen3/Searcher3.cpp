@@ -19,6 +19,7 @@
 
 #include <QTranslator>
 #include "Searcher3.hpp"
+#include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
 namespace PokeFinderCore

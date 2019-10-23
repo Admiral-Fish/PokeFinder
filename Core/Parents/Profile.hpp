@@ -20,7 +20,6 @@
 #ifndef PROFILE_HPP
 #define PROFILE_HPP
 
-#include <QJsonObject>
 #include <QVector>
 #include <Core/Util/Game.hpp>
 #include <Core/Util/Global.hpp>

@@ -21,7 +21,11 @@
 #define PROFILEMANAGER4_HPP
 
 #include <QWidget>
-#include <Models/Gen4/Profile4Model.hpp>
+
+namespace PokeFinderModels
+{
+    class Profile4Model;
+}
 
 namespace PokeFinderForms
 {

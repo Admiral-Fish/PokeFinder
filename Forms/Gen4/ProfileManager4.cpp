@@ -22,6 +22,7 @@
 #include "ProfileManager4.hpp"
 #include "ui_ProfileManager4.h"
 #include <Forms/Gen4/ProfileEditor4.hpp>
+#include <Models/Gen4/Profile4Model.hpp>
 
 namespace PokeFinderForms
 {

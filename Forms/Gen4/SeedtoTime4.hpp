@@ -22,7 +22,16 @@
 
 #include <QWidget>
 #include <Core/Gen4/Profile4.hpp>
-#include <Models/Gen4/SeedtoTime4Model.hpp>
+
+namespace PokeFinderCore
+{
+    class DateTime;
+}
+
+namespace PokeFinderModels
+{
+    class SeedtoTime4Model;
+}
 
 namespace PokeFinderForms
 {

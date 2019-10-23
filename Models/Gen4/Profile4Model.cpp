@@ -18,6 +18,7 @@
  */
 
 #include "Profile4Model.hpp"
+#include <Core/Gen4/Profile4.hpp>
 
 namespace PokeFinderModels
 {

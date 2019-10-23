@@ -21,13 +21,15 @@
 #define GENERATOR3_HPP
 
 #include <Core/Gen3/EncounterArea3.hpp>
-#include <Core/Gen3/Frame3.hpp>
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/Parents/Generator.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
 namespace PokeFinderCore
 {
+    class FrameCompare;
+    class Frame3;
+
     class Generator3: public Generator
     {
     public:

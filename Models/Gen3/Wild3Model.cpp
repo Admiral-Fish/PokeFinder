@@ -18,6 +18,7 @@
  */
 
 #include "Wild3Model.hpp"
+#include <Core/Gen3/Frame3.hpp>
 #include <Core/Util/TableUtility.hpp>
 
 namespace PokeFinderModels

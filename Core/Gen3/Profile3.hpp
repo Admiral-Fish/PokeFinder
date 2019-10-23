@@ -22,6 +22,8 @@
 
 #include <Core/Parents/Profile.hpp>
 
+class QJsonObject;
+
 namespace PokeFinderCore
 {
     class Profile3 : public Profile

@@ -20,8 +20,9 @@
 #ifndef SPINDAPAINTER_HPP
 #define SPINDAPAINTER_HPP
 
+#include <QGraphicsScene>
 #include <QWidget>
-#include <Forms/Controls/GraphicsPixmapItem.hpp>
+#include <Core/Util/Global.hpp>
 
 namespace PokeFinderForms
 {
@@ -29,6 +30,8 @@ namespace PokeFinderForms
     {
         class SpindaPainter;
     }
+
+    class GraphicsPixmapItem;
 
     class SpindaPainter : public QWidget
     {

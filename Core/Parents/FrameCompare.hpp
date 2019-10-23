@@ -21,7 +21,12 @@
 #define FRAMECOMPARE_HPP
 
 #include <QVector>
-#include <Core/Parents/Frame.hpp>
+#include <Core/Util/Global.hpp>
+
+namespace PokeFinderCore
+{
+    class Frame;
+}
 
 namespace PokeFinderCore
 {

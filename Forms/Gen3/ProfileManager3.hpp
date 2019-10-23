@@ -21,7 +21,11 @@
 #define PROFILEMANAGER3_HPP
 
 #include <QWidget>
-#include <Models/Gen3/Profile3Model.hpp>
+
+namespace PokeFinderModels
+{
+    class Profile3Model;
+}
 
 namespace PokeFinderForms
 {

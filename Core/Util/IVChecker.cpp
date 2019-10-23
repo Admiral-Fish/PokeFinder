@@ -20,11 +20,12 @@
 #include <QSet>
 #include <QtMath>
 #include "IVChecker.hpp"
+#include <Core/Parents/Pokemon.hpp>
+#include <Core/Util/Characteristic.hpp>
 #include <Core/Util/Nature.hpp>
 
 namespace PokeFinderCore
 {
-
     QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower) const
     {
         QVector<bool> valid(6, false);
@@ -163,5 +164,4 @@ namespace PokeFinderCore
 
         return possible;
     }
-
 }

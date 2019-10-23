@@ -21,6 +21,7 @@
 #include <QtConcurrent>
 #include "GameCubeSeedSearcher.hpp"
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/Util/Game.hpp>
 
 constexpr u16 galesHPStat[10][2] =
 {

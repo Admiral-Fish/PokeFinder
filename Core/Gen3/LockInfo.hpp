@@ -22,11 +22,12 @@
 
 #include <QVector>
 #include <Core/Util/Global.hpp>
-#include <Core/Util/Method.hpp>
-#include <Core/Util/ShadowType.hpp>
 
 namespace PokeFinderCore
 {
+    enum Method;
+    enum ShadowType;
+
     class LockInfo
     {
     public:

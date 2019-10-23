@@ -21,12 +21,14 @@
 #define SEARCHER4_HPP
 
 #include <Core/Gen4/EncounterArea4.hpp>
-#include <Core/Gen4/Frame4.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Core/Parents/Searcher.hpp>
 #include <Core/RNG/RNGCache.hpp>
 
 namespace PokeFinderCore
 {
+    class Frame4;
+
     class Searcher4 : public Searcher
     {
     public:

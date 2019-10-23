@@ -20,6 +20,7 @@
 #include <QSettings>
 #include "ChainedSID.hpp"
 #include "ui_ChainedSID.h"
+#include <Core/Gen4/ChainedSIDCalc.hpp>
 #include <Core/Util/Nature.hpp>
 
 namespace PokeFinderForms

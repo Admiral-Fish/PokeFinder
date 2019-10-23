@@ -20,7 +20,6 @@
 #ifndef MTRNG_HPP
 #define MTRNG_HPP
 
-#include <QVector>
 #include <Core/RNG/IRNG.hpp>
 
 namespace PokeFinderCore
@@ -31,9 +30,8 @@ namespace PokeFinderCore
         void advanceFrames(u32 frames) override;
 
     protected:
-        QVector<u32> mt;
+        u32 mt[624];
         u32 index;
-
         virtual void shuffle();
         virtual void initialize(u32 seed);
         void setSeed(u32 seed, u32 frames) override;

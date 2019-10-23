@@ -20,6 +20,8 @@
 #include <QSettings>
 #include "IVCalculator.hpp"
 #include "ui_IVCalculator.h"
+#include <Core/Parents/Pokemon.hpp>
+#include <Core/Util/Characteristic.hpp>
 #include <Core/Util/IVChecker.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Power.hpp>

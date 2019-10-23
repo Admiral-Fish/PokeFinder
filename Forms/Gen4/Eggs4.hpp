@@ -22,7 +22,17 @@
 
 #include <QMenu>
 #include <Core/Gen4/Profile4.hpp>
-#include <Models/Gen4/Egg4Model.hpp>
+
+namespace PokeFinderCore
+{
+    class Frame4;
+}
+
+namespace PokeFinderModels
+{
+    class Egg4GeneratorModel;
+    class Egg4SearcherModel;
+}
 
 namespace PokeFinderForms
 {

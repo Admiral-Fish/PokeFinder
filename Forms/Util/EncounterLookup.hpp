@@ -22,9 +22,13 @@
 
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/Util/Encounter.hpp>
-#include <Core/Util/Game.hpp>
 #include <Core/Util/Global.hpp>
+
+namespace PokeFinderCore
+{
+    enum Encounter;
+    enum Game;
+}
 
 namespace PokeFinderForms
 {

@@ -18,7 +18,6 @@
  */
 
 #include <QTranslator>
-#include <QVector>
 #include "Nature.hpp"
 
 namespace PokeFinderCore

@@ -26,7 +26,6 @@ namespace PokeFinderCore
 {
     class EncounterArea4 : public EncounterArea
     {
-
     public:
         EncounterArea4() = default;
         EncounterArea4(u8 location, Encounter type, const QVector<Slot> &pokemon);

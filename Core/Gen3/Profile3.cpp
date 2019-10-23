@@ -20,6 +20,7 @@
 #include <QApplication>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QJsonObject>
 #include <QSettings>
 #include "Profile3.hpp"
 

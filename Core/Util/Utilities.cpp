@@ -20,6 +20,7 @@
 #include "Utilities.hpp"
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MTRNG.hpp>
+#include <Core/Gen4/HGSSRoamer.hpp>
 
 namespace PokeFinderCore
 {

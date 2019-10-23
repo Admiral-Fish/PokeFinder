@@ -22,8 +22,17 @@
 
 #include <QMenu>
 #include <Core/Gen4/Profile4.hpp>
-#include <Models/Gen4/Searcher4Model.hpp>
-#include <Models/Gen4/Stationary4Model.hpp>
+
+namespace PokeFinderCore
+{
+    class Frame4;
+}
+
+namespace PokeFinderModels
+{
+    class Searcher4Model;
+    class Stationary4Model;
+}
 
 namespace PokeFinderForms
 {

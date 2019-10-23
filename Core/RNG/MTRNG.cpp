@@ -48,28 +48,27 @@ namespace PokeFinderCore
 
         for (; i < N - M; i++)
         {
-            y = (mt.at(i) & UPPERMASK) | (mt.at(i + 1) & LOWERMASK);
-            mt[i] = mt.at(i + M) ^ (y >> 1) ^ mag01[y & 0x1];
+            y = (mt[i] & UPPERMASK) | (mt[i + 1] & LOWERMASK);
+            mt[i] = mt[i + M] ^ (y >> 1) ^ mag01[y & 0x1];
         }
 
         for (; i < N - 1; ++i)
         {
-            y = (mt.at(i) & UPPERMASK) | (mt.at(i + 1) & LOWERMASK);
-            mt[i] = mt.at(i - 227) ^ (y >> 1) ^ mag01[y & 0x1];
+            y = (mt[i] & UPPERMASK) | (mt[i + 1] & LOWERMASK);
+            mt[i] = mt[i - 227] ^ (y >> 1) ^ mag01[y & 0x1];
         }
 
-        y = (mt.at(N - 1) & UPPERMASK) | (mt.at(0) & LOWERMASK);
-        mt[N - 1] = mt.at(396) ^ (y >> 1) ^ mag01[y & 0x1];
+        y = (mt[N - 1] & UPPERMASK) | (mt[0] & LOWERMASK);
+        mt[N - 1] = mt[396] ^ (y >> 1) ^ mag01[y & 0x1];
     }
 
     void MT::initialize(u32 seed)
     {
-        mt = QVector<u32>(624);
         mt[0] = seed;
 
         for (index = 1; index < N; index++)
         {
-            mt[index] = (0x6C078965 * (mt.at(index - 1) ^ (mt.at(index - 1) >> 30)) + index);
+            mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
         }
     }
 
@@ -100,7 +99,7 @@ namespace PokeFinderCore
     {
         advanceFrames(frames);
 
-        u32 y = mt.at(index++);
+        u32 y = mt[index++];
         y ^= (y >> 11);
         y ^= (y << 7) & TEMPERINGMASKB;
         y ^= (y << 15) & TEMPERINGMASKC;
@@ -119,7 +118,7 @@ namespace PokeFinderCore
     u32 MersenneTwisterUntempered::nextUInt(u32 frames)
     {
         advanceFrames(frames);
-        return mt.at(index++);
+        return mt[index++];
     }
 
 
@@ -150,12 +149,11 @@ namespace PokeFinderCore
 
     void MersenneTwisterFast::initialize(u32 seed)
     {
-        mt = QVector<u32>(max);
         mt[0] = seed;
 
         for (index = 1; index < max; ++index)
         {
-            mt[index] = (0x6C078965 * (mt.at(index - 1) ^ (mt.at(index - 1) >> 30)) + index);
+            mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
         }
     }
 
@@ -165,8 +163,8 @@ namespace PokeFinderCore
 
         for (u16 i = 0; i < maxCalls; ++i)
         {
-            y = (mt.at(i) & UPPERMASK) | (mt.at(i + 1) & LOWERMASK);
-            mt[i] = mt.at(i + M) ^ (y >> 1) ^ mag01[y & 0x1];
+            y = (mt[i] & UPPERMASK) | (mt[i + 1] & LOWERMASK);
+            mt[i] = mt[i + M] ^ (y >> 1) ^ mag01[y & 0x1];
         }
     }
 }

@@ -20,7 +20,6 @@
 #ifndef SFMT_HPP
 #define SFMT_HPP
 
-#include <QVector>
 #include <Core/RNG/IRNG.hpp>
 
 namespace PokeFinderCore
@@ -36,7 +35,7 @@ namespace PokeFinderCore
         void setSeed(u64 seed, u32 frames) override;
 
     private:
-        QVector<u32> sfmt;
+        u32 sfmt[624];
         u32 index{};
 
         void initialize(u32 seed);

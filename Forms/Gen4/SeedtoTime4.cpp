@@ -25,6 +25,7 @@
 #include <Forms/Gen4/RoamerMap.hpp>
 #include <Forms/Gen4/SearchCalls.hpp>
 #include <Forms/Gen4/SearchCoinFlips.hpp>
+#include <Models/Gen4/SeedtoTime4Model.hpp>
 
 namespace PokeFinderForms
 {

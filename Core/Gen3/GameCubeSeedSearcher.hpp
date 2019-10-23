@@ -22,11 +22,12 @@
 
 #include <QObject>
 #include <QVector>
-#include <Core/Util/Game.hpp>
 #include <Core/Util/Global.hpp>
 
 namespace PokeFinderCore
 {
+    enum Game;
+
     class GameCubeSeedSearcher : public QObject
     {
         Q_OBJECT

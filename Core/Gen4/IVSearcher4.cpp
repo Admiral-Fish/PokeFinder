@@ -19,6 +19,7 @@
 
 #include <QtConcurrent>
 #include "IVSearcher4.hpp"
+#include <Core/Gen4/Frame4.hpp>
 
 namespace PokeFinderCore
 {

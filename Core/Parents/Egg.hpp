@@ -21,7 +21,7 @@
 #define EGG_HPP
 
 #include <QVector>
-#include <Core/Parents/FrameCompare.hpp>
+#include <Core/Util/Global.hpp>
 #include <Core/Util/Method.hpp>
 
 namespace PokeFinderCore

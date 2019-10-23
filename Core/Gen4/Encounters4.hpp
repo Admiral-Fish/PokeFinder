@@ -20,11 +20,16 @@
 #ifndef ENCOUNTERS4_HPP
 #define ENCOUNTERS4_HPP
 
-#include <Core/Gen4/EncounterArea4.hpp>
+#include <QByteArrayList>
+#include <Core/Parents/Pokemon.hpp>
 #include <Core/Gen4/Profile4.hpp>
 
 namespace PokeFinderCore
 {
+    class EncounterArea4;
+    class Slot;
+    enum Encounter;
+
     class Encounters4
     {
     public:

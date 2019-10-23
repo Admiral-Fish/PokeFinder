@@ -19,6 +19,8 @@
 
 #include <QFile>
 #include "LockInfo.hpp"
+#include <Core/Util/Method.hpp>
+#include <Core/Util/ShadowType.hpp>
 
 namespace PokeFinderCore
 {

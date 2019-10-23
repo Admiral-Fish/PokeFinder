@@ -21,7 +21,12 @@
 #define UTILITIES_HPP
 
 #include <QDateTime>
-#include <Core/Gen4/HGSSRoamer.hpp>
+#include <Core/Util/Global.hpp>
+
+namespace PokeFinderCore
+{
+    class HGSSRoamer;
+}
 
 namespace PokeFinderCore::Utilities
 {

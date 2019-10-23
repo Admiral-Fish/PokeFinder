@@ -18,6 +18,7 @@
  */
 
 #include "Searcher4.hpp"
+#include <Core/Gen4/Frame4.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
@@ -600,7 +601,9 @@ namespace PokeFinderCore
                                     if (((nibble >> 16) / 656) < adjustedThresh)
                                     {
                                         if (((nibble >> 16) / 656) >= thresh)
+                                        {
                                             frame.setLeadType(Lead::SuctionCups);
+                                        }
                                         frame.setEncounterSlot(EncounterSlot::jSlot(slot >> 16, encounterType));
                                         frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), slot >> 16));
                                         frame.setSeed(nibble * 0xeeb9eb65 + 0xa3561a1);

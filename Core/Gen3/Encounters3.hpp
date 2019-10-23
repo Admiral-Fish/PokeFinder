@@ -20,11 +20,15 @@
 #ifndef ENCOUNTERS3_HPP
 #define ENCOUNTERS3_HPP
 
-#include <Core/Gen3/EncounterArea3.hpp>
+#include <QByteArrayList>
 #include <Core/Gen3/Profile3.hpp>
+#include <Core/Parents/Pokemon.hpp>
 
 namespace PokeFinderCore
 {
+    class EncounterArea3;
+    enum Encounter;
+
     class Encounters3
     {
     public:

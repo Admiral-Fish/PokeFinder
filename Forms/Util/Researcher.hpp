@@ -20,8 +20,19 @@
 #ifndef RESEARCHER_HPP
 #define RESEARCHER_HPP
 
+#include <QHash>
 #include <QMessageBox>
-#include <Models/Util/ResearcherModel.hpp>
+#include <Core/Util/Global.hpp>
+
+namespace PokeFinderCore
+{
+    class ResearcherFrame;
+}
+
+namespace PokeFinderModels
+{
+    class ResearcherModel;
+}
 
 namespace PokeFinderForms
 {
@@ -35,7 +46,7 @@ namespace PokeFinderForms
         Q_OBJECT
     public:
         explicit Researcher(QWidget *parent = nullptr);
-        ~Researcher() override;;
+        ~Researcher() override;
 
     private:
         Ui::Researcher *ui;

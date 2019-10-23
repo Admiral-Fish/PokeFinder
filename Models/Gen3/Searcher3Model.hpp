@@ -20,8 +20,13 @@
 #ifndef SEARCHER3MODEL_HPP
 #define SEARCHER3MODEL_HPP
 
-#include <Core/Gen3/Frame3.hpp>
 #include <Models/TableModel.hpp>
+
+namespace PokeFinderCore
+{
+    class Frame3;
+    enum Method;
+}
 
 namespace PokeFinderModels
 {

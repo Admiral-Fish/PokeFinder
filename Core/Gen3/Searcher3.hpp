@@ -23,6 +23,7 @@
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Frame3.hpp>
 #include <Core/Gen3/ShadowLock.hpp>
+#include <Core/Parents/FrameCompare.hpp>
 #include <Core/Parents/Searcher.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>

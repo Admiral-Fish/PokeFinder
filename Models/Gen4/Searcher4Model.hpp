@@ -23,6 +23,11 @@
 #include <Core/Gen4/Frame4.hpp>
 #include <Models/TableModel.hpp>
 
+namespace PokeFinderCore
+{
+    enum Method;
+}
+
 namespace PokeFinderModels
 {
     class Searcher4Model : public TableModel<PokeFinderCore::Frame4>

@@ -35,9 +35,12 @@ namespace PokeFinderCore
         advanceFrames(frames);
     }
 
-    TinyMT::TinyMT(const QVector<u32> &state, u32 frames)
+    TinyMT::TinyMT(const u32 state[], u32 frames)
     {
-        this->state = state;
+        for (u8 i = 0; i < 4; i++)
+        {
+            this->state[i] = state[i];
+        }
         periodCertification();
         advanceFrames(frames);
     }
@@ -72,18 +75,16 @@ namespace PokeFinderCore
         advanceFrames(frames);
     }
 
-    QVector<u32> TinyMT::getState() const
-    {
-        return state;
-    }
-
     void TinyMT::initialize(u32 seed)
     {
-        state = { seed, MAT1, MAT2, TMAT };
+        state[0] = seed;
+        state[1] = MAT1;
+        state[2] = MAT2;
+        state[3] = TMAT;
 
         for (u8 i = 1; i < 8; i++)
         {
-            state[i & 3] ^= 0x6c078965 * (state.at((i - 1) & 3) ^ (state.at((i - 1) & 3) >> 30)) + 1;
+            state[i & 3] ^= 0x6c078965 * (state[(i - 1) & 3] ^ (state[(i - 1) & 3] >> 30)) + 1;
         }
 
         periodCertification();
@@ -98,18 +99,21 @@ namespace PokeFinderCore
     {
         if (state[0] == 0 && state[1] == 0 && state[2] == 0 && state[3] == 0)
         {
-            state = { 'T', 'I', 'N', 'Y' };
+            state[0] = 'T';
+            state[1] = 'I';
+            state[2] = 'N';
+            state[3] = 'Y';
         }
     }
 
     void TinyMT::nextState()
     {
-        u32 y = state.at(3);
-        u32 x = (state.at(0) & TINYMT32MASK) ^ state.at(1) ^ state.at(2);
+        u32 y = state[3];
+        u32 x = (state[0] & TINYMT32MASK) ^ state[1] ^ state[2];
         x ^= (x << TINYMT32SH0);
         y ^= (y >> TINYMT32SH0) ^ x;
-        state[0] = state.at(1);
-        state[1] = state.at(2);
+        state[0] = state[1];
+        state[1] = state[2];
         state[2] = x ^ (y << TINYMT32SH1);
         state[3] = y;
 
@@ -122,8 +126,8 @@ namespace PokeFinderCore
 
     u32 TinyMT::temper()
     {
-        u32 t0 = state.at(3);
-        u32 t1 = state.at(0) + (state.at(2) >> TINYMT32SH8);
+        u32 t0 = state[3];
+        u32 t1 = state[0] + (state[2] >> TINYMT32SH8);
 
         t0 ^= t1;
         if (t1 & 1)

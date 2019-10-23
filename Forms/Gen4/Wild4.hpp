@@ -23,8 +23,17 @@
 #include <QMenu>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
-#include <Models/Gen4/Searcher4Model.hpp>
-#include <Models/Gen4/Wild4Model.hpp>
+
+namespace PokeFinderCore
+{
+    class Frame4;
+}
+
+namespace PokeFinderModels
+{
+    class Searcher4Model;
+    class Wild4Model;
+}
 
 namespace PokeFinderForms
 {

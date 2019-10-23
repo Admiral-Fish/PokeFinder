@@ -19,6 +19,9 @@
 
 #include <QFile>
 #include "Encounters4.hpp"
+#include <Core/Gen4/EncounterArea4.hpp>
+#include <Core/Parents/Slot.hpp>
+#include <Core/Util/Encounter.hpp>
 
 namespace PokeFinderCore
 {
@@ -115,11 +118,17 @@ namespace PokeFinderCore
         {
             int t;
             if (time == 0)
+            {
                 t = 1;
+            }
             else if (time == 1)
+            {
                 t = 3;
+            }
             else
+            {
                 t = 5;
+            }
 
             QVector<Slot> grass;
             for (int i = 0; i < 12; i++)

@@ -25,7 +25,17 @@
 
 namespace PokeFinderCore::TableUtility
 {
-    QFont getBold(u8 iv);
+    inline QFont getBold(u8 iv)
+    {
+        QFont font;
+
+        if (iv == 30 || iv == 31)
+        {
+            font.setBold(true);
+        }
+
+        return font;
+    }
 }
 
 #endif // TABLEUTILITY_HPP

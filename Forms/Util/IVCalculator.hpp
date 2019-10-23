@@ -21,8 +21,13 @@
 #define IVCALCULATOR_HPP
 
 #include <QLabel>
-#include <Core/Parents/Pokemon.hpp>
-#include <Core/Util/Characteristic.hpp>
+#include <Core/Util/Global.hpp>
+
+namespace PokeFinderCore
+{
+    class Pokemon;
+    class Characteristic;
+}
 
 namespace PokeFinderForms
 {

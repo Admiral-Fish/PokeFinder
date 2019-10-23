@@ -20,8 +20,13 @@
 #include <QSettings>
 #include "EncounterLookup.hpp"
 #include "ui_EncounterLookup.h"
+#include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Encounters3.hpp>
+#include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Encounters4.hpp>
+#include <Core/Parents/Slot.hpp>
+#include <Core/Util/Encounter.hpp>
+#include <Core/Util/Game.hpp>
 #include <Core/Util/Translator.hpp>
 
 namespace PokeFinderForms

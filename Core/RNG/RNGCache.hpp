@@ -26,7 +26,6 @@
 
 namespace PokeFinderCore
 {
-
     class RNGCache
     {
 
@@ -46,9 +45,7 @@ namespace PokeFinderCore
 
         void populateMap();
         void setupCache(Method method);
-
     };
-
 }
 
 #endif // RNGCACHE_HPP

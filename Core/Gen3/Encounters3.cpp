@@ -19,6 +19,9 @@
 
 #include <QFile>
 #include "Encounters3.hpp"
+#include <Core/Gen3/EncounterArea3.hpp>
+#include <Core/Parents/Slot.hpp>
+#include <Core/Util/Encounter.hpp>
 
 namespace PokeFinderCore
 {

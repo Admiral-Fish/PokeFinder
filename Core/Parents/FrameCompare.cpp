@@ -18,6 +18,7 @@
  */
 
 #include "FrameCompare.hpp"
+#include <Core/Parents/Frame.hpp>
 #include <Core/Util/Nature.hpp>
 
 namespace PokeFinderCore

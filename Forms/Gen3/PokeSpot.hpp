@@ -21,7 +21,11 @@
 #define POKESPOT_HPP
 
 #include <QWidget>
-#include <Models/Gen3/PokeSpotModel.hpp>
+
+namespace PokeFinderModels
+{
+    class PokeSpotModel;
+}
 
 namespace PokeFinderForms
 {

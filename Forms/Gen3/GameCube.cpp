@@ -28,6 +28,8 @@
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/GameCubeRTC.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
+#include <Models/Gen3/Searcher3Model.hpp>
+#include <Models/Gen3/Stationary3Model.hpp>
 
 namespace PokeFinderForms
 {
