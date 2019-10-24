@@ -6,7 +6,7 @@ CONFIG += c++1z lrelease embed_translations
 
 TARGET = PokeFinder
 TEMPLATE = app
-VERSION = 2.4.1
+VERSION = 2.4.2
 GIT_VERSION = $$system(git rev-parse HEAD)
 GIT_BRANCH = $$system(git rev-parse --abbrev-ref HEAD)
 QMAKE_TARGET_DESCRIPTION = PokeFinder
