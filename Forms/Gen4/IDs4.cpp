@@ -39,7 +39,6 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("ids4/geometry", this->saveGeometry());
-
         delete ui;
     }
 
@@ -59,13 +58,13 @@ namespace PokeFinderForms
 
         ui->textBoxTIDSIDTID->setValues(InputType::TIDSID);
         ui->textBoxTIDSIDSID->setValues(InputType::TIDSID);
-        ui->textBoxTIDSIDYear->setValues(2000, 2099);
+        ui->textBoxTIDSIDYear->setValues(0, 2099);
         ui->textBoxTIDSIDMinDelay->setValues(InputType::Delay);
         ui->textBoxTIDSIDMaxDelay->setValues(InputType::Delay);
 
         ui->textBoxShinyPIDPID->setValues(InputType::Seed32Bit);
         ui->textBoxShinyPIDTID->setValues(InputType::TIDSID);
-        ui->textBoxShinyPIDYear->setValues(2000, 2099);
+        ui->textBoxShinyPIDYear->setValues(0, 2099);
         ui->textBoxShinyPIDMinDelay->setValues(InputType::Delay);
         ui->textBoxShinyPIDMaxDelay->setValues(InputType::Delay);
 

@@ -16,9 +16,6 @@
     <height>390</height>
    </size>
   </property>
-  <property name="windowTitle">
-   <string notr="true">PokéFinder 2.4.1</string>
-  </property>
   <property name="windowIcon">
    <iconset>
     <normaloff>../pokefinder.ico</normaloff>../pokefinder.ico</iconset>

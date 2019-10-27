@@ -2240,28 +2240,28 @@ Zufallswert</translation>
         <translation>Chinesisch</translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="166"/>
+        <location filename="../Forms/MainWindow.cpp" line="167"/>
         <source>Language update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="166"/>
-        <location filename="../Forms/MainWindow.cpp" line="185"/>
+        <location filename="../Forms/MainWindow.cpp" line="167"/>
+        <location filename="../Forms/MainWindow.cpp" line="186"/>
         <source>Restart for changes to take effect. Restart now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="185"/>
+        <location filename="../Forms/MainWindow.cpp" line="186"/>
         <source>Style change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="146"/>
+        <location filename="../Forms/MainWindow.cpp" line="147"/>
         <source>Update Check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/MainWindow.cpp" line="146"/>
+        <location filename="../Forms/MainWindow.cpp" line="147"/>
         <source>An update is available. Would you like to download the newest version?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3413,12 +3413,12 @@ Zufallswert</translation>
         <translation>Textdatei (*.txt);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../Forms/Controls/TableView.cpp" line="132"/>
+        <location filename="../Forms/Controls/TableView.cpp" line="133"/>
         <source>Save Output to CSV</source>
         <translation>Ergebnisse als CSV speichern</translation>
     </message>
     <message>
-        <location filename="../Forms/Controls/TableView.cpp" line="132"/>
+        <location filename="../Forms/Controls/TableView.cpp" line="133"/>
         <source>CSV File (*.csv);;All Files (*)</source>
         <translation>CSV-Datei (*.csv);;Alle Dateien (*)</translation>
     </message>
@@ -3502,15 +3502,15 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="451"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="80"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="454"/>
         <source>64Bit</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="450"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="453"/>
         <source>32Bit</source>
         <translation></translation>
     </message>
@@ -3521,38 +3521,38 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="451"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="454"/>
         <source>32Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="451"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="454"/>
         <source>32Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="450"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="451"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="453"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="454"/>
         <source>16Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="450"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="451"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="453"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="454"/>
         <source>16Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="393"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="419"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="396"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="422"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3588,19 +3588,19 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="102"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="101"/>
         <source>Previous 7</source>
         <translation>Vorherige 7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="103"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="102"/>
         <source>Previous 8</source>
         <translation>Vorherige 8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="104"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="103"/>
         <source>Previous 9</source>
         <translation>Vorherige 9</translation>
     </message>
@@ -3621,91 +3621,91 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
         <source>Custom 1</source>
         <translation>Nummer 1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
         <source>Custom 2</source>
         <translation>Nummer 2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
         <source>Custom 3</source>
         <translation>Nummer 3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="96"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
         <source>Previous 1</source>
         <translation>Vorherige 1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="97"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="96"/>
         <source>Previous 2</source>
         <translation>Vorherige 2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
         <source>Custom 4</source>
         <translation>Nummer 4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="98"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="97"/>
         <source>Previous 3</source>
         <translation>Vorherige 3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
         <source>Custom 5</source>
         <translation>Nummer 5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
         <source>Custom 6</source>
         <translation>Nummer 6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="99"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="98"/>
         <source>Previous 4</source>
         <translation>Vorherige 4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="100"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="99"/>
         <source>Previous 5</source>
         <translation>Vorherige 5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="101"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="100"/>
         <source>Previous 6</source>
         <translation>Vorherige 6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
         <source>Custom 7</source>
         <translation>Nummer 7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
         <source>Custom 8</source>
         <translation>Nummer 8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
         <source>Custom 9</source>
         <translation>Nummer 9</translation>
     </message>
@@ -3720,20 +3720,20 @@ Zufallswert</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="250"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="249"/>
         <source>Please enter a search range lower then 228</source>
         <translatorcomment>Bitte einen Suchbereich unter 228 angeben.</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="365"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="366"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translatorcomment>Du musst die Hex-Checkbox aktivieren, um Hex-Werte nutzen zu können.</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="475"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="507"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="478"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="510"/>
         <source>No result found</source>
         <translation>Keine Ergebnisse gefunden</translation>
     </message>
@@ -3898,19 +3898,16 @@ Zufallswert</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SearchCalls.ui"/>
         <location filename="../Forms/Gen4/SearchCalls.cpp" line="117"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SearchCalls.ui"/>
         <location filename="../Forms/Gen4/SearchCalls.cpp" line="116"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/SearchCalls.ui"/>
         <location filename="../Forms/Gen4/SearchCalls.cpp" line="115"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation type="unfinished"></translation>
@@ -3922,16 +3919,19 @@ Zufallswert</translation>
         <translation>Mögliche Ergebnisse: </translation>
     </message>
     <message>
+        <location filename="../Forms/Gen4/SearchCalls.ui"/>
         <location filename="../Forms/Gen4/SearchCalls.cpp" line="122"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Forms/Gen4/SearchCalls.ui"/>
         <location filename="../Forms/Gen4/SearchCalls.cpp" line="123"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Forms/Gen4/SearchCalls.ui"/>
         <location filename="../Forms/Gen4/SearchCalls.cpp" line="124"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation type="unfinished"></translation>

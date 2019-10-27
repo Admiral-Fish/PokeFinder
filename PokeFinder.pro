@@ -6,13 +6,19 @@ CONFIG += c++1z lrelease embed_translations
 
 TARGET = PokeFinder
 TEMPLATE = app
-VERSION = 2.4.1
+VERSION = 2.4.2
+GIT_VERSION = $$system(git rev-parse HEAD)
+GIT_BRANCH = $$system(git rev-parse --abbrev-ref HEAD)
 QMAKE_TARGET_DESCRIPTION = PokeFinder
 QMAKE_TARGET_COPYRIGHT = Admiral_Fish
 
 RC_ICONS += Images/pokefinder.ico
 ICON += Images/pokefinder.icns
 
+
+DEFINES += GIT_VERSION=\\\"$$GIT_VERSION\\\"
+DEFINES += GIT_BRANCH=\\\"$$GIT_BRANCH\\\"
+DEFINES += VERSION=\\\"$$VERSION\\\"
 DEFINES += QT_DEPRECATED_WARNINGS
 
 TRANSLATIONS += \

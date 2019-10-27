@@ -96,9 +96,9 @@ namespace PokeFinderForms
         QVector<u32> seeds = cache.recoverLower16BitsPID(pidl, pidh);
         for (const auto &seed : seeds)
         {
-            PokeFinderCore::PokeRNG forward(seed, 1);
+            PokeFinderCore::PokeRNG forward(seed);
             PokeFinderCore::PokeRNGR backward(seed);
-            addSeed(backward.nextUInt(), forward.nextUInt());
+            addSeed(backward.nextUInt(), forward.nextUInt(1));
         }
     }
 
@@ -232,7 +232,7 @@ namespace PokeFinderForms
         PokeFinderCore::XDRNG rng(iv1);
 
         QVector<u32> val = { iv1 >> 27, 0, 0, 0, 0, 0 };
-        for (u8 x : { 1, 2, 4, 5, 3 })
+        for (u8 x : { 1, 2, 5, 3, 4 })
         {
             val[x] = rng.nextUInt() >> 27;
         }

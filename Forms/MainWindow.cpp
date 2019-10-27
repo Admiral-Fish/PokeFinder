@@ -51,6 +51,7 @@ namespace PokeFinderForms
         ui(new Ui::MainWindow)
     {
         ui->setupUi(this);
+        setWindowTitle(QString("Pok\303\251Finder %1").arg(VERSION));
 
         setupLanguage();
         setupStyle();
@@ -151,7 +152,7 @@ namespace PokeFinderForms
             loop.exec();
 
             auto response = QJsonDocument::fromJson(reply->readAll());
-            QString webVersion = response.object()["tag_name"].toString();
+            QString webVersion = response.object()["tag_name"].toString().right(5);
             if (!webVersion.isEmpty() && VERSION != webVersion)
             {
                 QMessageBox info(QMessageBox::Question, tr("Update Check"), tr("An update is available. Would you like to download the newest version?"), QMessageBox::Yes | QMessageBox::No);
