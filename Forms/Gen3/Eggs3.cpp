@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "Eggs3.hpp"
 #include "ui_Eggs3.h"
 #include <Core/Gen3/Egg3.hpp>
@@ -26,12 +25,13 @@
 #include <Core/Util/Power.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    Eggs3::Eggs3(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::Eggs3)
+    Eggs3::Eggs3(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::Eggs3)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -47,8 +47,6 @@ namespace PokeFinderForms
         setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
-
-        delete ui;
     }
 
     void Eggs3::updateProfiles()
@@ -168,18 +166,19 @@ namespace PokeFinderForms
         ui->comboBoxFRLGMethod->setItemData(1, PokeFinderCore::Method::FRLGBredSplit);
         ui->comboBoxFRLGMethod->setItemData(2, PokeFinderCore::Method::FRLGBredAlternate);
 
-        connect(ui->eggSettingsEmerald, &EggSettings::toggleInheritance, emeraldIVs, &PokeFinderModels::Egg3Model::toggleInheritance);
-        connect(ui->eggSettingsRS, &EggSettings::toggleInheritance, rs, &PokeFinderModels::Egg3Model::toggleInheritance);
-        connect(ui->eggSettingsFRLG, &EggSettings::toggleInheritance, frlg, &PokeFinderModels::Egg3Model::toggleInheritance);
+        connect(ui->eggSettingsEmerald, &EggSettings::toggleInheritance, emeraldIVs,
+            &PokeFinderModels::Egg3Model::toggleInheritance);
+        connect(
+            ui->eggSettingsRS, &EggSettings::toggleInheritance, rs, &PokeFinderModels::Egg3Model::toggleInheritance);
+        connect(ui->eggSettingsFRLG, &EggSettings::toggleInheritance, frlg,
+            &PokeFinderModels::Egg3Model::toggleInheritance);
 
         QSettings setting;
-        if (setting.contains("eggs3/geometry")) this->restoreGeometry(setting.value("eggs3/geometry").toByteArray());
+        if (setting.contains("eggs3/geometry"))
+            this->restoreGeometry(setting.value("eggs3/geometry").toByteArray());
     }
 
-    void Eggs3::refreshProfiles()
-    {
-        emit alertProfiles(3);
-    }
+    void Eggs3::refreshProfiles() { emit alertProfiles(3); }
 
     void Eggs3::on_pushButtonEmeraldPIDGenerate_clicked()
     {
@@ -191,7 +190,8 @@ namespace PokeFinderForms
         u16 sid = ui->textBoxEmeraldSID->getUShort();
         u8 genderRatio = ui->comboBoxEmeraldGenderRatio->currentData().toUInt();
 
-        PokeFinderCore::Egg3 generator(maxResults, startingFrame, tid, sid, PokeFinderCore::Method::EBredPID, genderRatio);
+        PokeFinderCore::Egg3 generator(
+            maxResults, startingFrame, tid, sid, PokeFinderCore::Method::EBredPID, genderRatio);
         generator.setMinRedraw(ui->textBoxMinRedraws->getUInt());
         generator.setMaxRedraw(ui->textBoxMaxRedraws->getUInt());
         generator.setCalibration(ui->textBoxCalibration->getUInt());
@@ -199,12 +199,13 @@ namespace PokeFinderForms
         generator.setEverstone(ui->comboBoxEverstone->currentIndex() != 0);
         if (ui->comboBoxEverstone->currentIndex() != 0)
         {
-            generator.setEverstoneNature(PokeFinderCore::Nature::getAdjustedNature(ui->comboBoxEverstone->currentIndex() - 1));
+            generator.setEverstoneNature(
+                PokeFinderCore::Nature::getAdjustedNature(ui->comboBoxEverstone->currentIndex() - 1));
         }
 
-        PokeFinderCore::FrameCompare compare(ui->comboBoxEmeraldGender->currentIndex(), ui->comboBoxEmeraldAbility->currentIndex(),
-                                             ui->checkBoxEmeraldShiny->isChecked(), false, QVector<u8>(), QVector<u8>(),
-                                             ui->comboBoxEmeraldNature->getChecked(), QVector<bool>(), QVector<bool>());
+        PokeFinderCore::FrameCompare compare(ui->comboBoxEmeraldGender->currentIndex(),
+            ui->comboBoxEmeraldAbility->currentIndex(), ui->checkBoxEmeraldShiny->isChecked(), false, QVector<u8>(),
+            QVector<u8>(), ui->comboBoxEmeraldNature->getChecked(), QVector<bool>(), QVector<bool>());
 
         QVector<PokeFinderCore::Frame3> frames = generator.generate(compare);
         emeraldPID->addItems(frames);
@@ -218,13 +219,15 @@ namespace PokeFinderForms
         u32 maxResults = ui->textBoxEmeraldIVsMaxFrame->getUInt();
         u16 tid = ui->textBoxEmeraldTID->getUShort();
         u16 sid = ui->textBoxEmeraldSID->getUShort();
-        PokeFinderCore::Method method = static_cast<PokeFinderCore::Method>(ui->comboBoxEmeraldMethod->currentData().toUInt());
+        PokeFinderCore::Method method
+            = static_cast<PokeFinderCore::Method>(ui->comboBoxEmeraldMethod->currentData().toUInt());
 
         PokeFinderCore::Egg3 generator(maxResults, startingFrame, tid, sid, method, 0);
         generator.setParents(ui->eggSettingsEmerald->getParent1(), ui->eggSettingsEmerald->getParent2());
 
-        PokeFinderCore::FrameCompare compare(0, 0, false, false, ui->ivFilterEmerald->getLower(), ui->ivFilterEmerald->getUpper(),
-                                             QVector<bool>(), ui->comboBoxEmeraldHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::FrameCompare compare(0, 0, false, false, ui->ivFilterEmerald->getLower(),
+            ui->ivFilterEmerald->getUpper(), QVector<bool>(), ui->comboBoxEmeraldHiddenPower->getChecked(),
+            QVector<bool>());
 
         QVector<PokeFinderCore::Frame3> frames = generator.generate(compare);
         emeraldIVs->addItems(frames);
@@ -239,9 +242,11 @@ namespace PokeFinderForms
         u16 tid = ui->textBoxRSTID->getUShort();
         u16 sid = ui->textBoxRSSID->getUShort();
         u8 genderRatio = ui->comboBoxRSGenderRatio->currentData().toUInt();
-        PokeFinderCore::Method method = static_cast<PokeFinderCore::Method>(ui->comboBoxRSMethod->currentData().toUInt());
+        PokeFinderCore::Method method
+            = static_cast<PokeFinderCore::Method>(ui->comboBoxRSMethod->currentData().toUInt());
 
-        PokeFinderCore::Egg3 generator(maxHeld, minHeld, tid, sid, method, genderRatio, ui->textBoxRSSeedHeld->getUInt());
+        PokeFinderCore::Egg3 generator(
+            maxHeld, minHeld, tid, sid, method, genderRatio, ui->textBoxRSSeedHeld->getUInt());
         generator.setPickupSeed(ui->textBoxRSSeedPickup->getUInt());
         generator.setParents(ui->eggSettingsRS->getParent1(), ui->eggSettingsRS->getParent2());
 
@@ -249,9 +254,10 @@ namespace PokeFinderForms
         generator.setMaxPickup(ui->textBoxRSMaxPickup->getUInt());
         generator.setCompatability(ui->comboBoxRSCompatibility->currentData().toUInt());
 
-        PokeFinderCore::FrameCompare compare(ui->comboBoxRSGender->currentIndex(), ui->comboBoxRSAbility->currentIndex(),
-                                             ui->checkBoxRSShiny->isChecked(), false, ui->ivFilterRS->getLower(), ui->ivFilterRS->getUpper(),
-                                             ui->comboBoxRSNature->getChecked(), ui->comboBoxRSHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::FrameCompare compare(ui->comboBoxRSGender->currentIndex(),
+            ui->comboBoxRSAbility->currentIndex(), ui->checkBoxRSShiny->isChecked(), false, ui->ivFilterRS->getLower(),
+            ui->ivFilterRS->getUpper(), ui->comboBoxRSNature->getChecked(), ui->comboBoxRSHiddenPower->getChecked(),
+            QVector<bool>());
 
         QVector<PokeFinderCore::Frame3> frames = generator.generate(compare);
         rs->addItems(frames);
@@ -266,9 +272,11 @@ namespace PokeFinderForms
         u16 tid = ui->textBoxFRLGTID->getUShort();
         u16 sid = ui->textBoxFRLGSID->getUShort();
         u8 genderRatio = ui->comboBoxFRLGGenderRatio->currentData().toUInt();
-        PokeFinderCore::Method method = static_cast<PokeFinderCore::Method>(ui->comboBoxFRLGMethod->currentData().toUInt());
+        PokeFinderCore::Method method
+            = static_cast<PokeFinderCore::Method>(ui->comboBoxFRLGMethod->currentData().toUInt());
 
-        PokeFinderCore::Egg3 generator(maxHeld, minHeld, tid, sid, method, genderRatio, ui->textBoxFRLGSeedHeld->getUInt());
+        PokeFinderCore::Egg3 generator(
+            maxHeld, minHeld, tid, sid, method, genderRatio, ui->textBoxFRLGSeedHeld->getUInt());
         generator.setPickupSeed(ui->textBoxFRLGSeedPickup->getUInt());
         generator.setParents(ui->eggSettingsFRLG->getParent1(), ui->eggSettingsFRLG->getParent2());
 
@@ -276,9 +284,10 @@ namespace PokeFinderForms
         generator.setMaxPickup(ui->textBoxFRLGMaxPickup->getUInt());
         generator.setCompatability(ui->comboBoxFRLGCompatibility->currentData().toUInt());
 
-        PokeFinderCore::FrameCompare compare(ui->comboBoxFRLGGender->currentIndex(), ui->comboBoxFRLGAbility->currentIndex(),
-                                             ui->checkBoxFRLGShiny->isChecked(), false, ui->ivFilterFRLG->getLower(), ui->ivFilterFRLG->getUpper(),
-                                             ui->comboBoxFRLGNature->getChecked(), ui->comboBoxFRLGHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::FrameCompare compare(ui->comboBoxFRLGGender->currentIndex(),
+            ui->comboBoxFRLGAbility->currentIndex(), ui->checkBoxFRLGShiny->isChecked(), false,
+            ui->ivFilterFRLG->getLower(), ui->ivFilterFRLG->getUpper(), ui->comboBoxFRLGNature->getChecked(),
+            ui->comboBoxFRLGHiddenPower->getChecked(), QVector<bool>());
 
         QVector<PokeFinderCore::Frame3> frames = generator.generate(compare);
         frlg->addItems(frames);
@@ -306,20 +315,11 @@ namespace PokeFinderForms
         ui->labelProfileGameValue->setText(profile.getVersionString());
     }
 
-    void Eggs3::on_pushButtonEmeraldAnyAbility_clicked()
-    {
-        ui->comboBoxEmeraldAbility->setCurrentIndex(0);
-    }
+    void Eggs3::on_pushButtonEmeraldAnyAbility_clicked() { ui->comboBoxEmeraldAbility->setCurrentIndex(0); }
 
-    void Eggs3::on_pushButtonRSAnyAbility_clicked()
-    {
-        ui->comboBoxRSAbility->setCurrentIndex(0);
-    }
+    void Eggs3::on_pushButtonRSAnyAbility_clicked() { ui->comboBoxRSAbility->setCurrentIndex(0); }
 
-    void Eggs3::on_pushButtonFRLGAnyAbility_clicked()
-    {
-        ui->comboBoxFRLGAbility->setCurrentIndex(0);
-    }
+    void Eggs3::on_pushButtonFRLGAnyAbility_clicked() { ui->comboBoxFRLGAbility->setCurrentIndex(0); }
 
     void Eggs3::on_pushButtonProfileManager_clicked()
     {

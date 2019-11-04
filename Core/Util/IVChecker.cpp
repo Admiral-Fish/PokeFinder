@@ -17,16 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSet>
-#include <QtMath>
 #include "IVChecker.hpp"
 #include <Core/Parents/Pokemon.hpp>
 #include <Core/Util/Characteristic.hpp>
 #include <Core/Util/Nature.hpp>
+#include <QSet>
+#include <QtMath>
 
 namespace PokeFinderCore
 {
-    QVector<QVector<u8> > IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower) const
+    QVector<QVector<u8>> IVChecker::calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature,
+        Characteristic characteristic, int hiddenPower) const
     {
         QVector<bool> valid(6, false);
         QVector<u8> minIVs(6, 31);
@@ -58,7 +59,8 @@ namespace PokeFinderCore
         {
             for (u8 iv = 0; iv < 32; iv++)
             {
-                double stat = qFloor((((2 * baseStats.at(i) + iv) * level) / 100.0) + 5) * Nature::getNatureModifier(nature).at(i);
+                double stat = qFloor((((2 * baseStats.at(i) + iv) * level) / 100.0) + 5)
+                    * Nature::getNatureModifier(nature).at(i);
 
                 if (static_cast<u16>(stat) == stats.at(i))
                 {
@@ -135,7 +137,10 @@ namespace PokeFinderCore
                             {
                                 for (const u8 spe : possible.at(5))
                                 {
-                                    u8 hpType = ((((hp & 1) + 2 * (atk & 1) + 4 * (def & 1) + 8 * (spe & 1) + 16 * (spa & 1) + 32 * (spd & 1)) * 15) / 63);
+                                    u8 hpType = ((((hp & 1) + 2 * (atk & 1) + 4 * (def & 1) + 8 * (spe & 1)
+                                                      + 16 * (spa & 1) + 32 * (spd & 1))
+                                                     * 15)
+                                        / 63);
                                     if (hpType == hiddenPower)
                                     {
                                         final[0].insert(hp);

@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "PokeSpot.hpp"
 #include "ui_PokeSpot.h"
 #include <Core/Gen3/Frame3.hpp>
@@ -25,12 +24,13 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Nature.hpp>
 #include <Models/Gen3/PokeSpotModel.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    PokeSpot::PokeSpot(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::PokeSpot)
+    PokeSpot::PokeSpot(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::PokeSpot)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -47,8 +47,6 @@ namespace PokeFinderForms
         setting.setValue("sid", ui->textBoxSID->text());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
-
-        delete ui;
     }
 
     void PokeSpot::setupModels()
@@ -76,9 +74,12 @@ namespace PokeFinderForms
 
         QSettings setting;
         setting.beginGroup("pokespot");
-        if (setting.contains("tid")) ui->textBoxTID->setText(setting.value("tid").toString());
-        if (setting.contains("sid")) ui->textBoxSID->setText(setting.value("sid").toString());
-        if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
+        if (setting.contains("tid"))
+            ui->textBoxTID->setText(setting.value("tid").toString());
+        if (setting.contains("sid"))
+            ui->textBoxSID->setText(setting.value("sid").toString());
+        if (setting.contains("geometry"))
+            this->restoreGeometry(setting.value("geometry").toByteArray());
         setting.endGroup();
     }
 
@@ -97,14 +98,12 @@ namespace PokeFinderForms
 
         PokeFinderCore::XDRNG rng(seed, initialFrame - 1);
         QVector<u16> rngList(maxResults + 5);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         PokeFinderCore::Frame3 frame(tid, sid, tid ^ sid);
         PokeFinderCore::FrameCompare compare(ui->comboBoxGender->currentIndex(), ui->comboBoxAbility->currentIndex(),
-                                             ui->checkBoxShinyOnly->isChecked(), false, QVector<u8>(), QVector<u8>(), ui->comboBoxNature->getChecked(), QVector<bool>(), QVector<bool>());
+            ui->checkBoxShinyOnly->isChecked(), false, QVector<u8>(), QVector<u8>(), ui->comboBoxNature->getChecked(),
+            QVector<bool>(), QVector<bool>());
 
         QVector<bool> spots = ui->comboBoxSpotType->getChecked();
 
@@ -158,8 +157,5 @@ namespace PokeFinderForms
         model->addItems(frames);
     }
 
-    void PokeSpot::on_pushButtonAnyAbility_clicked()
-    {
-        ui->comboBoxAbility->setCurrentIndex(0);
-    }
+    void PokeSpot::on_pushButtonAnyAbility_clicked() { ui->comboBoxAbility->setCurrentIndex(0); }
 }

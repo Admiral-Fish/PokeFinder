@@ -30,7 +30,8 @@ namespace PokeFinderModels
     {
         Q_OBJECT
     public:
-        SeedtoTime4Model(QObject *parent, bool flag = false, PokeFinderCore::Game version = PokeFinderCore::DPPt);
+        explicit SeedtoTime4Model(
+            QObject *parent, bool flag = false, PokeFinderCore::Game version = PokeFinderCore::DPPt);
         void setFlags(bool flag = false, PokeFinderCore::Game version = PokeFinderCore::Diamond);
         int columnCount(const QModelIndex &parent = QModelIndex()) const override;
         QVariant data(const QModelIndex &index, int role) const override;
@@ -40,18 +41,10 @@ namespace PokeFinderModels
         bool calibrate;
         PokeFinderCore::Game version;
 
-        QStringList header1 =
-        {
-            tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Calls"), tr("Roamer locations")
-        };
-        QStringList header2 =
-        {
-            tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Coin flips"), tr("Roamer locations")
-        };
-        QStringList header3 =
-        {
-            tr("Date"), tr("Time"), tr("Delay")
-        };
+        QStringList header1 = { tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Calls"), tr("Roamer locations") };
+        QStringList header2
+            = { tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Coin flips"), tr("Roamer locations") };
+        QStringList header3 = { tr("Date"), tr("Time"), tr("Delay") };
     };
 }
 

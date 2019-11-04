@@ -20,8 +20,8 @@
 #ifndef IVCHECKER_HPP
 #define IVCHECKER_HPP
 
-#include <QVector>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -35,7 +35,8 @@ namespace PokeFinderCore
     {
     public:
         IVChecker() = default;
-        QVector<QVector<u8>> calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower) const;
+        QVector<QVector<u8>> calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature,
+            Characteristic characteristic, int hiddenPower) const;
 
     private:
         QVector<QVector<u8>> ivs;

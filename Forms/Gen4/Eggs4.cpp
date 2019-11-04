@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "Eggs4.hpp"
 #include "ui_Eggs4.h"
 #include <Core/Gen4/EggSearcher4.hpp>
@@ -26,12 +25,13 @@
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Models/Gen4/Egg4Model.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    Eggs4::Eggs4(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::Eggs4)
+    Eggs4::Eggs4(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::Eggs4)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -55,8 +55,6 @@ namespace PokeFinderForms
         setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
-
-        delete ui;
     }
 
     void Eggs4::updateProfiles()
@@ -81,7 +79,8 @@ namespace PokeFinderForms
 
     void Eggs4::setupModels()
     {
-        generatorModel = new PokeFinderModels::Egg4GeneratorModel(ui->tableViewGenerator, PokeFinderCore::Method::DPPtIVs);
+        generatorModel
+            = new PokeFinderModels::Egg4GeneratorModel(ui->tableViewGenerator, PokeFinderCore::Method::DPPtIVs);
         searcherModel = new PokeFinderModels::Egg4SearcherModel(ui->tableViewSearcher, PokeFinderCore::Method::DPPtIVs);
         searcherMenu = new QMenu(this);
 
@@ -131,18 +130,27 @@ namespace PokeFinderForms
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
         connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
 
-        connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel, &PokeFinderModels::Egg4GeneratorModel::toggleInheritance);
-        connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel, &PokeFinderModels::Egg4SearcherModel::toggleInheritance);
+        connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel,
+            &PokeFinderModels::Egg4GeneratorModel::toggleInheritance);
+        connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel,
+            &PokeFinderModels::Egg4SearcherModel::toggleInheritance);
 
         QSettings setting;
         setting.beginGroup("eggs4");
-        if (setting.contains("minDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("minDelayPID").toString());
-        if (setting.contains("maxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelayPID").toString());
-        if (setting.contains("minFrameIV")) ui->textBoxSearcherIVMinFrame->setText(setting.value("minFramePID").toString());
-        if (setting.contains("maxFrameIV")) ui->textBoxSearcherIVMaxFrame->setText(setting.value("maxFramePID").toString());
-        if (setting.contains("minFramePID")) ui->textBoxSearcherPIDMinFrame->setText(setting.value("minFramePID").toString());
-        if (setting.contains("maxFramePID")) ui->textBoxSearcherPIDMaxFrame->setText(setting.value("maxFramePID").toString());
-        if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
+        if (setting.contains("minDelay"))
+            ui->textBoxSearcherMinDelay->setText(setting.value("minDelayPID").toString());
+        if (setting.contains("maxDelay"))
+            ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelayPID").toString());
+        if (setting.contains("minFrameIV"))
+            ui->textBoxSearcherIVMinFrame->setText(setting.value("minFramePID").toString());
+        if (setting.contains("maxFrameIV"))
+            ui->textBoxSearcherIVMaxFrame->setText(setting.value("maxFramePID").toString());
+        if (setting.contains("minFramePID"))
+            ui->textBoxSearcherPIDMinFrame->setText(setting.value("minFramePID").toString());
+        if (setting.contains("maxFramePID"))
+            ui->textBoxSearcherPIDMaxFrame->setText(setting.value("maxFramePID").toString());
+        if (setting.contains("geometry"))
+            this->restoreGeometry(setting.value("geometry").toByteArray());
         setting.endGroup();
     }
 
@@ -152,10 +160,7 @@ namespace PokeFinderForms
         ui->progressBarSearcher->setValue(progress);
     }
 
-    void Eggs4::refreshProfiles()
-    {
-        emit alertProfiles(4);
-    }
+    void Eggs4::refreshProfiles() { emit alertProfiles(4); }
 
     void Eggs4::on_pushButtonGenerate_clicked()
     {
@@ -167,7 +172,8 @@ namespace PokeFinderForms
         u16 tid = ui->textBoxGeneratorTID->getUShort();
         u16 sid = ui->textBoxGeneratorSID->getUShort();
 
-        PokeFinderCore::Method method = static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+        PokeFinderCore::Method method
+            = static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
 
         if (method == PokeFinderCore::Method::Gen4Normal)
         {
@@ -179,18 +185,20 @@ namespace PokeFinderForms
         else
         {
             PokeFinderCore::Game version = profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion();
-            method = version & PokeFinderCore::Game::HGSS ? PokeFinderCore::Method::HGSSIVs : PokeFinderCore::Method::DPPtIVs;
+            method = (version & PokeFinderCore::Game::HGSS) ? PokeFinderCore::Method::HGSSIVs
+                                                            : PokeFinderCore::Method::DPPtIVs;
         }
 
         generatorModel->setMethod(method);
 
-        PokeFinderCore::Egg4 generator(maxResults, startingFrame, tid, sid, method, seed, ui->comboBoxGeneratorGenderRatio->currentData().toUInt());
+        PokeFinderCore::Egg4 generator(maxResults, startingFrame, tid, sid, method, seed,
+            ui->comboBoxGeneratorGenderRatio->currentData().toUInt());
         generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
 
-        PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                                             ui->checkBoxGeneratorShinyOnly->isChecked(), false,
-                                             ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                                             ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(),
+            ui->comboBoxGeneratorAbility->currentIndex(), ui->checkBoxGeneratorShinyOnly->isChecked(), false,
+            ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
+            ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
         QVector<PokeFinderCore::Frame4> frames = generator.generate(compare);
         generatorModel->addItems(frames);
@@ -203,15 +211,18 @@ namespace PokeFinderForms
         PokeFinderCore::Method model;
         switch (ui->comboBoxSearcherMethod->currentIndex())
         {
-            case 0:
-                model = profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion() & PokeFinderCore::Game::HGSS ? PokeFinderCore::Method::HGSSIVs : PokeFinderCore::Method::DPPtIVs;
-                break;
-            case 1:
-                model = ui->checkBoxSearcherMasuada->isChecked() ? PokeFinderCore::Method::Gen4Masuada : PokeFinderCore::Method::Gen4Normal;
-                break;
-            case 2:
-                model = PokeFinderCore::Method::Gen4Combined;
-                break;
+        case 0:
+            model = (profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion() & PokeFinderCore::Game::HGSS)
+                ? PokeFinderCore::Method::HGSSIVs
+                : PokeFinderCore::Method::DPPtIVs;
+            break;
+        case 1:
+            model = ui->checkBoxSearcherMasuada->isChecked() ? PokeFinderCore::Method::Gen4Masuada
+                                                             : PokeFinderCore::Method::Gen4Normal;
+            break;
+        case 2:
+            model = PokeFinderCore::Method::Gen4Combined;
+            break;
         }
         searcherModel->setMethod(model);
 
@@ -222,9 +233,10 @@ namespace PokeFinderForms
         u16 sid = ui->textBoxSearcherSID->getUShort();
 
         u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-        PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
-                                             ui->checkBoxSearcherShinyOnly->isChecked(), false, ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(),
-                                             ui->comboBoxSearcherNature->getChecked(), ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(),
+            ui->comboBoxSearcherAbility->currentIndex(), ui->checkBoxSearcherShinyOnly->isChecked(), false,
+            ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(),
+            ui->comboBoxSearcherNature->getChecked(), ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
 
         u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
         u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();
@@ -233,19 +245,28 @@ namespace PokeFinderForms
         u32 minFramePID = ui->textBoxSearcherPIDMinFrame->getUInt();
         u32 maxFramePID = ui->textBoxSearcherPIDMaxFrame->getUInt();
 
-        PokeFinderCore::Method typeIV = profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion() & PokeFinderCore::Game::HGSS ? PokeFinderCore::Method::HGSSIVs : PokeFinderCore::Method::DPPtIVs;
+        PokeFinderCore::Method typeIV
+            = (profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion() & PokeFinderCore::Game::HGSS)
+            ? PokeFinderCore::Method::HGSSIVs
+            : PokeFinderCore::Method::DPPtIVs;
         PokeFinderCore::Egg4 generatorIV(maxFrameIV - minFrameIV + 1, minFrameIV, tid, sid, typeIV, 0, genderRatio);
         generatorIV.setParents(ui->eggSettingsSearcher->getParent1(), ui->eggSettingsSearcher->getParent2());
 
-        PokeFinderCore::Method typePID = ui->checkBoxSearcherMasuada->isChecked() ? PokeFinderCore::Method::Gen4Masuada : PokeFinderCore::Method::Gen4Normal;
-        PokeFinderCore::Egg4 generatorPID(maxFramePID - minFramePID + 1, minFramePID, tid, sid, typePID, 0, genderRatio);
+        PokeFinderCore::Method typePID = ui->checkBoxSearcherMasuada->isChecked() ? PokeFinderCore::Method::Gen4Masuada
+                                                                                  : PokeFinderCore::Method::Gen4Normal;
+        PokeFinderCore::Egg4 generatorPID(
+            maxFramePID - minFramePID + 1, minFramePID, tid, sid, typePID, 0, genderRatio);
 
         ui->progressBarSearcher->setValue(0);
         ui->progressBarSearcher->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));
 
-        auto *search = new PokeFinderCore::EggSearcher4(generatorIV, generatorPID, compare, minDelay, maxDelay, ui->comboBoxSearcherMethod->currentIndex());
+        auto *search = new PokeFinderCore::EggSearcher4(
+            generatorIV, generatorPID, compare, minDelay, maxDelay, ui->comboBoxSearcherMethod->currentIndex());
 
-        connect(search, &PokeFinderCore::EggSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+        connect(search, &PokeFinderCore::EggSearcher4::finished, this, [=] {
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+        });
         connect(search, &PokeFinderCore::EggSearcher4::updateProgress, this, &Eggs4::updateProgress);
         connect(ui->pushButtonCancel, &QPushButton::clicked, search, &PokeFinderCore::EggSearcher4::cancelSearch);
 

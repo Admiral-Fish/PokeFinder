@@ -17,17 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "IDs3.hpp"
 #include "ui_IDs3.h"
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    IDs3::IDs3(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::IDs3)
+    IDs3::IDs3(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::IDs3)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -39,8 +39,6 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("ids3/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
     void IDs3::setupModels()
@@ -81,7 +79,8 @@ namespace PokeFinderForms
         ui->tableViewRS->setModel(rs);
 
         QSettings setting;
-        if (setting.contains("ids3/geometry")) this->restoreGeometry(setting.value("ids3/geometry").toByteArray());
+        if (setting.contains("ids3/geometry"))
+            this->restoreGeometry(setting.value("ids3/geometry").toByteArray());
     }
 
     void IDs3::on_pushButtonFRLGESearch_clicked()
@@ -106,7 +105,9 @@ namespace PokeFinderForms
 
             if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useSID || searchSID == sid))
             {
-                frlge->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+                frlge->appendRow(QList<QStandardItem *>()
+                    << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid))
+                    << new QStandardItem(QString::number(sid)));
             }
         }
     }
@@ -131,7 +132,8 @@ namespace PokeFinderForms
         }
         else
         {
-            seed = PokeFinderCore::Utilities::calcGen3Seed(ui->dateTimeEdit->date(), ui->dateTimeEdit->time().hour(), ui->dateTimeEdit->time().minute());
+            seed = PokeFinderCore::Utilities::calcGen3Seed(
+                ui->dateTimeEdit->date(), ui->dateTimeEdit->time().hour(), ui->dateTimeEdit->time().minute());
         }
 
         PokeFinderCore::PokeRNG rng(seed, minFrame);
@@ -144,9 +146,12 @@ namespace PokeFinderForms
             sid = tid;
             tid = rng.nextUShort();
 
-            if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid) && (!useSID || searchSID == sid))
+            if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid)
+                && (!useSID || searchSID == sid))
             {
-                rs->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+                rs->appendRow(QList<QStandardItem *>()
+                    << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid))
+                    << new QStandardItem(QString::number(sid)));
             }
         }
     }
@@ -174,9 +179,12 @@ namespace PokeFinderForms
             tid = sid;
             sid = rng.nextUShort();
 
-            if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid) && (!useSID || searchSID == sid))
+            if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid)
+                && (!useSID || searchSID == sid))
             {
-                xdcolo->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid)) << new QStandardItem(QString::number(sid)));
+                xdcolo->appendRow(QList<QStandardItem *>()
+                    << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid))
+                    << new QStandardItem(QString::number(sid)));
             }
         }
     }
@@ -189,13 +197,7 @@ namespace PokeFinderForms
         ui->textBoxRSInitialSeed->setEnabled(!checked ? ui->radioButtonRSInitialSeed->isChecked() : false);
     }
 
-    void IDs3::on_radioButtonRSDate_toggled(bool checked)
-    {
-        ui->dateTimeEdit->setEnabled(checked);
-    }
+    void IDs3::on_radioButtonRSDate_toggled(bool checked) { ui->dateTimeEdit->setEnabled(checked); }
 
-    void IDs3::on_radioButtonRSInitialSeed_toggled(bool checked)
-    {
-        ui->textBoxRSInitialSeed->setEnabled(checked);
-    }
+    void IDs3::on_radioButtonRSInitialSeed_toggled(bool checked) { ui->textBoxRSInitialSeed->setEnabled(checked); }
 }

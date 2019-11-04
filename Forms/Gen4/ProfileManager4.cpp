@@ -17,18 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QMessageBox>
-#include <QSettings>
 #include "ProfileManager4.hpp"
 #include "ui_ProfileManager4.h"
 #include <Forms/Gen4/ProfileEditor4.hpp>
 #include <Models/Gen4/Profile4Model.hpp>
+#include <QMessageBox>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    ProfileManager4::ProfileManager4(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::ProfileManager4)
+    ProfileManager4::ProfileManager4(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::ProfileManager4)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -41,8 +41,6 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("profileManager4/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
     void ProfileManager4::setupModels()
@@ -52,7 +50,8 @@ namespace PokeFinderForms
         ui->tableView->setModel(model);
 
         QSettings setting;
-        if (setting.contains("profileManager4/geometry")) this->restoreGeometry(setting.value("profileManager4/geometry").toByteArray());
+        if (setting.contains("profileManager4/geometry"))
+            this->restoreGeometry(setting.value("profileManager4/geometry").toByteArray());
     }
 
     void ProfileManager4::on_pushButtonNew_clicked()
@@ -99,7 +98,8 @@ namespace PokeFinderForms
             return;
         }
 
-        QMessageBox message(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"), QMessageBox::Yes | QMessageBox::No);
+        QMessageBox message(QMessageBox::Question, tr("Delete profile"),
+            tr("Are you sure you wish to delete this profile?"), QMessageBox::Yes | QMessageBox::No);
         if (message.exec() == QMessageBox::Yes)
         {
             PokeFinderCore::Profile4 profile = model->getItem(row);

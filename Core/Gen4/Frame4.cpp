@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QTranslator>
 #include "Frame4.hpp"
+#include <QTranslator>
 
 namespace PokeFinderCore
 {
@@ -36,7 +36,8 @@ namespace PokeFinderCore
         this->psv = psv;
     }
 
-    void Frame4::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2, u16 inh3, const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken)
+    void Frame4::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2, u16 inh3,
+        const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken)
     {
         ivs[0] = iv1 & 0x1f;
         ivs[1] = (iv1 >> 5) & 0x1f;
@@ -45,7 +46,7 @@ namespace PokeFinderCore
         ivs[4] = (iv2 >> 10) & 0x1f;
         ivs[5] = iv2 & 0x1f;
 
-        QVector<u8> available =  { 0, 1, 2, 3, 4, 5 };
+        QVector<u8> available = { 0, 1, 2, 3, 4, 5 };
         QVector<u16> val = { inh1, inh2, inh3, par1, par2, par3 };
 
         for (u8 cnt = 0; cnt < 3; cnt++)
@@ -58,30 +59,30 @@ namespace PokeFinderCore
 
             switch (ivslot)
             {
-                case 0:
-                    ivs[0] = par == 0 ? parent1.at(0) : parent2.at(0);
-                    inheritance[0] = par == 0 ? 'A' : 'B';
-                    break;
-                case 1:
-                    ivs[1] = par == 0 ? parent1.at(1) : parent2.at(1);
-                    inheritance[1] = par == 0 ? 'A' : 'B';
-                    break;
-                case 2:
-                    ivs[2] = par == 0 ? parent1.at(2) : parent2.at(2);
-                    inheritance[2] = par == 0 ? 'A' : 'B';
-                    break;
-                case 3:
-                    ivs[5] = par == 0 ? parent1.at(5) : parent2.at(5);
-                    inheritance[5] = par == 0 ? 'A' : 'B';
-                    break;
-                case 4:
-                    ivs[3] = par == 0 ? parent1.at(3) : parent2.at(3);
-                    inheritance[3] = par == 0 ? 'A' : 'B';
-                    break;
-                case 5:
-                    ivs[4] = par == 0 ? parent1.at(4) : parent2.at(4);
-                    inheritance[4] = par == 0 ? 'A' : 'B';
-                    break;
+            case 0:
+                ivs[0] = par == 0 ? parent1.at(0) : parent2.at(0);
+                inheritance[0] = par == 0 ? 'A' : 'B';
+                break;
+            case 1:
+                ivs[1] = par == 0 ? parent1.at(1) : parent2.at(1);
+                inheritance[1] = par == 0 ? 'A' : 'B';
+                break;
+            case 2:
+                ivs[2] = par == 0 ? parent1.at(2) : parent2.at(2);
+                inheritance[2] = par == 0 ? 'A' : 'B';
+                break;
+            case 3:
+                ivs[5] = par == 0 ? parent1.at(5) : parent2.at(5);
+                inheritance[5] = par == 0 ? 'A' : 'B';
+                break;
+            case 4:
+                ivs[3] = par == 0 ? parent1.at(3) : parent2.at(3);
+                inheritance[3] = par == 0 ? 'A' : 'B';
+                break;
+            case 5:
+                ivs[4] = par == 0 ? parent1.at(4) : parent2.at(4);
+                inheritance[4] = par == 0 ? 'A' : 'B';
+                break;
             }
 
             // Avoids repeat IV inheritance
@@ -96,10 +97,7 @@ namespace PokeFinderCore
         calculatePower();
     }
 
-    void Frame4::setInheritance(int index, QChar value)
-    {
-        inheritance[index] = value;
-    }
+    void Frame4::setInheritance(int index, QChar value) { inheritance[index] = value; }
 
     void Frame4::setPID(u32 pid, u16 genderRatio)
     {
@@ -155,45 +153,21 @@ namespace PokeFinderCore
         return pitch;
     }
 
-    u32 Frame4::getInitialSeed() const
-    {
-        return initialSeed;
-    }
+    u32 Frame4::getInitialSeed() const { return initialSeed; }
 
-    void Frame4::setInitialSeed(const u32 &value)
-    {
-        initialSeed = value;
-    }
+    void Frame4::setInitialSeed(const u32 &value) { initialSeed = value; }
 
-    u32 Frame4::getSeed() const
-    {
-        return seed;
-    }
+    u32 Frame4::getSeed() const { return seed; }
 
-    void Frame4::setSeed(const u32 &value)
-    {
-        seed = value;
-    }
+    void Frame4::setSeed(const u32 &value) { seed = value; }
 
-    u32 Frame4::getOccidentary() const
-    {
-        return occidentary;
-    }
+    u32 Frame4::getOccidentary() const { return occidentary; }
 
-    void Frame4::setOccidentary(const u32 &value)
-    {
-        occidentary = value;
-    }
+    void Frame4::setOccidentary(const u32 &value) { occidentary = value; }
 
-    void Frame4::setEggFrame(const u32 &value)
-    {
-        eggFrame = value;
-    }
+    void Frame4::setEggFrame(const u32 &value) { eggFrame = value; }
 
-    u32 Frame4::getEggFrame() const
-    {
-        return eggFrame;
-    }
+    u32 Frame4::getEggFrame() const { return eggFrame; }
 
     void Frame4::xorFrame()
     {

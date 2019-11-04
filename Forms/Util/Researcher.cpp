@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "Researcher.hpp"
 #include "ui_Researcher.h"
 #include <Core/RNG/LCRNG.hpp>
@@ -26,12 +25,13 @@
 #include <Core/RNG/SFMT.hpp>
 #include <Core/RNG/TinyMT.hpp>
 #include <Models/Util/ResearcherModel.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    Researcher::Researcher(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::Researcher)
+    Researcher::Researcher(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::Researcher)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -43,8 +43,6 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("researcher/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
     void Researcher::setupModels()
@@ -100,63 +98,65 @@ namespace PokeFinderForms
         keys[tr("Previous 9")] = 23;
 
         QSettings setting;
-        if (setting.contains("researcher/geometry")) this->restoreGeometry(setting.value("researcher/geometry").toByteArray());
+        if (setting.contains("researcher/geometry"))
+            this->restoreGeometry(setting.value("researcher/geometry").toByteArray());
     }
 
-    u64 Researcher::getCustom(const QString &text, const PokeFinderCore::ResearcherFrame &frame, const QVector<PokeFinderCore::ResearcherFrame> &frames)
+    u64 Researcher::getCustom(const QString &text, const PokeFinderCore::ResearcherFrame &frame,
+        const QVector<PokeFinderCore::ResearcherFrame> &frames)
     {
         switch (keys[text])
         {
-            case 0:
-                return frame.getFull64();
-            case 1:
-                return frame.getFull32();
-            case 2:
-                return frame.getHigh32();
-            case 3:
-                return frame.getLow32();
-            case 4:
-                return frame.getHigh16();
-            case 5:
-                return frame.getLow16();
-            case 6:
-                return frame.getCustom(0);
-            case 7:
-                return frame.getCustom(1);
-            case 8:
-                return frame.getCustom(2);
-            case 9:
-                return frame.getCustom(3);
-            case 10:
-                return frame.getCustom(4);
-            case 11:
-                return frame.getCustom(5);
-            case 12:
-                return frame.getCustom(6);
-            case 13:
-                return frame.getCustom(7);
-            case 14:
-                return frame.getCustom(8);
-            case 15:
-                return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(0);
-            case 16:
-                return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(1);
-            case 17:
-                return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(2);
-            case 18:
-                return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(3);
-            case 19:
-                return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(4);
-            case 20:
-                return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(5);
-            case 21:
-                return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(6);
-            case 22:
-                return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(7);
-            case 23:
-                return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(8);
-            default:
-                return 0;
+        case 0:
+            return frame.getFull64();
+        case 1:
+            return frame.getFull32();
+        case 2:
+            return frame.getHigh32();
+        case 3:
+            return frame.getLow32();
+        case 4:
+            return frame.getHigh16();
+        case 5:
+            return frame.getLow16();
+        case 6:
+            return frame.getCustom(0);
+        case 7:
+            return frame.getCustom(1);
+        case 8:
+            return frame.getCustom(2);
+        case 9:
+            return frame.getCustom(3);
+        case 10:
+            return frame.getCustom(4);
+        case 11:
+            return frame.getCustom(5);
+        case 12:
+            return frame.getCustom(6);
+        case 13:
+            return frame.getCustom(7);
+        case 14:
+            return frame.getCustom(8);
+        case 15:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(0);
+        case 16:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(1);
+        case 17:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(2);
+        case 18:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(3);
+        case 19:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(4);
+        case 20:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(5);
+        case 21:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(6);
+        case 22:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(7);
+        case 23:
+            return frames.isEmpty() ? 0 : frames[frames.size() - 1].getCustom(8);
+        default:
+            return 0;
         }
     }
 
@@ -213,72 +213,69 @@ namespace PokeFinderForms
         {
             switch (ui->comboBoxRNG32Bit->currentIndex())
             {
-                case 0:
-                    rng = new PokeFinderCore::PokeRNG(static_cast<u32>(seed), startingFrame - 1);
-                    break;
-                case 1:
-                    rng = new PokeFinderCore::PokeRNGR(static_cast<u32>(seed), startingFrame - 1);
-                    break;
-                case 2:
-                    rng = new PokeFinderCore::XDRNG(static_cast<u32>(seed), startingFrame - 1);
-                    break;
-                case 3:
-                    rng = new PokeFinderCore::XDRNGR(static_cast<u32>(seed), startingFrame - 1);
-                    break;
-                case 4:
-                    rng = new PokeFinderCore::ARNG(static_cast<u32>(seed), startingFrame - 1);
-                    break;
-                case 5:
-                    rng = new PokeFinderCore::ARNGR(static_cast<u32>(seed), startingFrame - 1);
-                    break;
-                case 6:
-                    rng = new PokeFinderCore::MersenneTwister(static_cast<u32>(seed), startingFrame - 1);
-                    break;
-                case 7:
-                    rng = new PokeFinderCore::MersenneTwisterUntempered(static_cast<u32>(seed), startingFrame - 1);
-                    break;
-                case 8:
-                    if (maxFrames > 227 || startingFrame > 227 || (startingFrame + maxFrames > 227))
-                    {
-                        QMessageBox error;
-                        error.setText(tr("Please enter a search range lower then 228"));
-                        error.exec();
-                        return;
-                    }
-                    rng = new PokeFinderCore::MersenneTwisterFast(static_cast<u32>(seed), maxFrames, startingFrame - 1);
-                    break;
+            case 0:
+                rng = new PokeFinderCore::PokeRNG(static_cast<u32>(seed), startingFrame - 1);
+                break;
+            case 1:
+                rng = new PokeFinderCore::PokeRNGR(static_cast<u32>(seed), startingFrame - 1);
+                break;
+            case 2:
+                rng = new PokeFinderCore::XDRNG(static_cast<u32>(seed), startingFrame - 1);
+                break;
+            case 3:
+                rng = new PokeFinderCore::XDRNGR(static_cast<u32>(seed), startingFrame - 1);
+                break;
+            case 4:
+                rng = new PokeFinderCore::ARNG(static_cast<u32>(seed), startingFrame - 1);
+                break;
+            case 5:
+                rng = new PokeFinderCore::ARNGR(static_cast<u32>(seed), startingFrame - 1);
+                break;
+            case 6:
+                rng = new PokeFinderCore::MersenneTwister(static_cast<u32>(seed), startingFrame - 1);
+                break;
+            case 7:
+                rng = new PokeFinderCore::MersenneTwisterUntempered(static_cast<u32>(seed), startingFrame - 1);
+                break;
+            case 8:
+                if (maxFrames > 227 || startingFrame > 227 || (startingFrame + maxFrames > 227))
+                {
+                    QMessageBox error;
+                    error.setText(tr("Please enter a search range lower then 228"));
+                    error.exec();
+                    return;
+                }
+                rng = new PokeFinderCore::MersenneTwisterFast(static_cast<u32>(seed), maxFrames, startingFrame - 1);
+                break;
             }
         }
         else if (ui->rngSelection->currentIndex() == 1)
         {
             switch (ui->comboBoxRNG64Bit->currentIndex())
             {
-                case 0:
-                    rng64 = new PokeFinderCore::BWRNG(seed, startingFrame - 1);
-                    break;
-                case 1:
-                    rng64 = new PokeFinderCore::BWRNGR(seed, startingFrame - 1);
-                    break;
-                case 2:
-                    if (seed > 0xffffffff)
-                    {
-                        seed >>= 32;
-                    }
-                    rng64 = new PokeFinderCore::SFMT(static_cast<u32>(seed), startingFrame - 1);
-                    break;
+            case 0:
+                rng64 = new PokeFinderCore::BWRNG(seed, startingFrame - 1);
+                break;
+            case 1:
+                rng64 = new PokeFinderCore::BWRNGR(seed, startingFrame - 1);
+                break;
+            case 2:
+                if (seed > 0xffffffff)
+                {
+                    seed >>= 32;
+                }
+                rng64 = new PokeFinderCore::SFMT(static_cast<u32>(seed), startingFrame - 1);
+                break;
             }
         }
         else
         {
-            u32 status[4] =
-            {
-                ui->textBoxStatus0->getUInt(), ui->textBoxStatus1->getUInt(),
-                ui->textBoxStatus2->getUInt(), ui->textBoxStatus3->getUInt()
-            };
+            u32 status[4] = { ui->textBoxStatus0->getUInt(), ui->textBoxStatus1->getUInt(),
+                ui->textBoxStatus2->getUInt(), ui->textBoxStatus3->getUInt() };
             rng = new PokeFinderCore::TinyMT(status, startingFrame - 1);
         }
 
-        QHash <QString, u64 (*)(u64, u64)> calc;
+        QHash<QString, u64 (*)(u64, u64)> calc;
         calc["/"] = &Researcher::divide;
         calc["%"] = &Researcher::modulo;
         calc[">>"] = &Researcher::shiftRight;
@@ -306,36 +303,26 @@ namespace PokeFinderForms
         calcCustom[8] = ui->lineEditRValue9->text() != "" || ui->comboBoxRValue9->currentIndex() != 0;
         calcCustom[9] = ui->lineEditRValue10->text() != "" || ui->comboBoxRValue10->currentIndex() != 0;
 
-        customRValue[0] = ui->checkBoxHex1->isChecked()
-                          ? ui->lineEditRValue1->text().toULongLong(&pass[0], 16)
-                          : ui->lineEditRValue1->text().toULongLong(&pass[0]);
-        customRValue[1] = ui->checkBoxHex2->isChecked()
-                          ? ui->lineEditRValue2->text().toULongLong(&pass[1], 16)
-                          : ui->lineEditRValue2->text().toULongLong(&pass[1]);
-        customRValue[2] = ui->checkBoxHex3->isChecked()
-                          ? ui->lineEditRValue3->text().toULongLong(&pass[2], 16)
-                          : ui->lineEditRValue3->text().toULongLong(&pass[2]);
-        customRValue[3] = ui->checkBoxHex4->isChecked()
-                          ? ui->lineEditRValue4->text().toULongLong(&pass[3], 16)
-                          : ui->lineEditRValue4->text().toULongLong(&pass[3]);
-        customRValue[4] = ui->checkBoxHex5->isChecked()
-                          ? ui->lineEditRValue5->text().toULongLong(&pass[4], 16)
-                          : ui->lineEditRValue5->text().toULongLong(&pass[4]);
-        customRValue[5] = ui->checkBoxHex6->isChecked()
-                          ? ui->lineEditRValue6->text().toULongLong(&pass[5], 16)
-                          : ui->lineEditRValue6->text().toULongLong(&pass[5]);
-        customRValue[6] = ui->checkBoxHex7->isChecked()
-                          ? ui->lineEditRValue7->text().toULongLong(&pass[6], 16)
-                          : ui->lineEditRValue7->text().toULongLong(&pass[6]);
-        customRValue[7] = ui->checkBoxHex8->isChecked()
-                          ? ui->lineEditRValue8->text().toULongLong(&pass[7], 16)
-                          : ui->lineEditRValue8->text().toULongLong(&pass[7]);
-        customRValue[8] = ui->checkBoxHex9->isChecked()
-                          ? ui->lineEditRValue9->text().toULongLong(&pass[8], 16)
-                          : ui->lineEditRValue9->text().toULongLong(&pass[8]);
-        customRValue[9] = ui->checkBoxHex10->isChecked()
-                          ? ui->lineEditRValue10->text().toULongLong(&pass[9], 16)
-                          : ui->lineEditRValue10->text().toULongLong(&pass[9]);
+        customRValue[0] = ui->checkBoxHex1->isChecked() ? ui->lineEditRValue1->text().toULongLong(&pass[0], 16)
+                                                        : ui->lineEditRValue1->text().toULongLong(&pass[0]);
+        customRValue[1] = ui->checkBoxHex2->isChecked() ? ui->lineEditRValue2->text().toULongLong(&pass[1], 16)
+                                                        : ui->lineEditRValue2->text().toULongLong(&pass[1]);
+        customRValue[2] = ui->checkBoxHex3->isChecked() ? ui->lineEditRValue3->text().toULongLong(&pass[2], 16)
+                                                        : ui->lineEditRValue3->text().toULongLong(&pass[2]);
+        customRValue[3] = ui->checkBoxHex4->isChecked() ? ui->lineEditRValue4->text().toULongLong(&pass[3], 16)
+                                                        : ui->lineEditRValue4->text().toULongLong(&pass[3]);
+        customRValue[4] = ui->checkBoxHex5->isChecked() ? ui->lineEditRValue5->text().toULongLong(&pass[4], 16)
+                                                        : ui->lineEditRValue5->text().toULongLong(&pass[4]);
+        customRValue[5] = ui->checkBoxHex6->isChecked() ? ui->lineEditRValue6->text().toULongLong(&pass[5], 16)
+                                                        : ui->lineEditRValue6->text().toULongLong(&pass[5]);
+        customRValue[6] = ui->checkBoxHex7->isChecked() ? ui->lineEditRValue7->text().toULongLong(&pass[6], 16)
+                                                        : ui->lineEditRValue7->text().toULongLong(&pass[6]);
+        customRValue[7] = ui->checkBoxHex8->isChecked() ? ui->lineEditRValue8->text().toULongLong(&pass[7], 16)
+                                                        : ui->lineEditRValue8->text().toULongLong(&pass[7]);
+        customRValue[8] = ui->checkBoxHex9->isChecked() ? ui->lineEditRValue9->text().toULongLong(&pass[8], 16)
+                                                        : ui->lineEditRValue9->text().toULongLong(&pass[8]);
+        customRValue[9] = ui->checkBoxHex10->isChecked() ? ui->lineEditRValue10->text().toULongLong(&pass[9], 16)
+                                                         : ui->lineEditRValue10->text().toULongLong(&pass[9]);
 
         for (int i = 0; i < 10; i++)
         {
@@ -361,23 +348,15 @@ namespace PokeFinderForms
         calculators[8] = calc[ui->comboBoxOperator9->currentText()];
         calculators[9] = calc[ui->comboBoxOperator10->currentText()];
 
-        QStringList textL =
-        {
-            ui->comboBoxLValue1->currentText(), ui->comboBoxLValue2->currentText(),
-            ui->comboBoxLValue3->currentText(), ui->comboBoxLValue4->currentText(),
-            ui->comboBoxLValue5->currentText(), ui->comboBoxLValue6->currentText(),
-            ui->comboBoxLValue7->currentText(), ui->comboBoxLValue8->currentText(),
-            ui->comboBoxLValue9->currentText(), ui->comboBoxLValue10->currentText()
-        };
+        QStringList textL = { ui->comboBoxLValue1->currentText(), ui->comboBoxLValue2->currentText(),
+            ui->comboBoxLValue3->currentText(), ui->comboBoxLValue4->currentText(), ui->comboBoxLValue5->currentText(),
+            ui->comboBoxLValue6->currentText(), ui->comboBoxLValue7->currentText(), ui->comboBoxLValue8->currentText(),
+            ui->comboBoxLValue9->currentText(), ui->comboBoxLValue10->currentText() };
 
-        QStringList textR =
-        {
-            tr("None"), ui->comboBoxRValue2->currentText(),
-            ui->comboBoxRValue3->currentText(), ui->comboBoxRValue4->currentText(),
-            ui->comboBoxRValue5->currentText(), ui->comboBoxRValue6->currentText(),
-            ui->comboBoxRValue7->currentText(), ui->comboBoxRValue8->currentText(),
-            ui->comboBoxRValue9->currentText(), ui->comboBoxRValue10->currentText()
-        };
+        QStringList textR = { tr("None"), ui->comboBoxRValue2->currentText(), ui->comboBoxRValue3->currentText(),
+            ui->comboBoxRValue4->currentText(), ui->comboBoxRValue5->currentText(), ui->comboBoxRValue6->currentText(),
+            ui->comboBoxRValue7->currentText(), ui->comboBoxRValue8->currentText(), ui->comboBoxRValue9->currentText(),
+            ui->comboBoxRValue10->currentText() };
 
         QVector<PokeFinderCore::ResearcherFrame> frames;
         for (u32 i = startingFrame; i < maxFrames + startingFrame; i++)
@@ -429,8 +408,9 @@ namespace PokeFinderForms
         ui->textBoxSeed->setVisible(index != 2);
         ui->labelSeed->setVisible(index != 2);
         ui->comboBoxSearch->clear();
-        QStringList items = index != 1 ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low") :
-                            QStringList() << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low") ;
+        QStringList items = index != 1 ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low")
+                                       : QStringList()
+                << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low");
         ui->comboBoxSearch->addItems(items);
     }
 

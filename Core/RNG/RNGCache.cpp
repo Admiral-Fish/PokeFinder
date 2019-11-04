@@ -24,11 +24,7 @@
 
 namespace PokeFinderCore
 {
-
-    RNGCache::RNGCache(Method method)
-    {
-        setupCache(method);
-    }
+    RNGCache::RNGCache(Method method) { setupCache(method); }
 
     // Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap based on the cache
     QVector<u32> RNGCache::recoverLower16BitsIV(u32 first, u32 second) const
@@ -87,10 +83,7 @@ namespace PokeFinderCore
         return origin;
     }
 
-    void RNGCache::switchCache(Method MethodType)
-    {
-        setupCache(MethodType);
-    }
+    void RNGCache::switchCache(Method MethodType) { setupCache(MethodType); }
 
     void RNGCache::populateMap()
     {

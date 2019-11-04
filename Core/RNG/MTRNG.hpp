@@ -57,7 +57,7 @@ namespace PokeFinderCore
     class MersenneTwisterFast : public MT
     {
     public:
-        MersenneTwisterFast(u32 calls, u32 seed = 0, u32 frames = 0);
+        explicit MersenneTwisterFast(u32 calls, u32 seed = 0, u32 frames = 0);
         u32 nextUInt(u32 frames = 0) override;
 
     private:
@@ -69,4 +69,4 @@ namespace PokeFinderCore
     };
 }
 
-#endif //MTRNG_HPP
+#endif // MTRNG_HPP

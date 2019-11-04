@@ -17,12 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <Forms/MainWindow.hpp>
 #include <QApplication>
 #include <QFile>
 #include <QSettings>
 #include <QTextStream>
 #include <QTranslator>
-#include <Forms/MainWindow.hpp>
 
 int main(int argc, char *argv[])
 {

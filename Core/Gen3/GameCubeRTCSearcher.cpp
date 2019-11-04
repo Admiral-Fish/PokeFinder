@@ -17,9 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QtConcurrent>
 #include "GameCubeRTCSearcher.hpp"
 #include <Core/RNG/LCRNG.hpp>
+#include <QtConcurrent>
 
 namespace PokeFinderCore
 {
@@ -32,8 +32,7 @@ namespace PokeFinderCore
         searching = false;
         cancel = false;
 
-        connect(this, &GameCubeRTCSearcher::finished, this, [ = ]
-        {
+        connect(this, &GameCubeRTCSearcher::finished, this, [=] {
             searching = false;
             deleteLater();
         });
@@ -46,14 +45,11 @@ namespace PokeFinderCore
             searching = true;
             cancel = false;
 
-            QtConcurrent::run([ = ] { search(); });
+            QtConcurrent::run([=] { search(); });
         }
     }
 
-    void GameCubeRTCSearcher::cancelSearch()
-    {
-        cancel = true;
-    }
+    void GameCubeRTCSearcher::cancelSearch() { cancel = true; }
 
     void GameCubeRTCSearcher::search()
     {
@@ -75,8 +71,12 @@ namespace PokeFinderCore
                     QDateTime finalTime = date.addSecs(seconds);
                     QList<QStandardItem *> row;
                     QString time = finalTime.toString(Qt::SystemLocaleShortDate);
-                    row << (time.contains("M") ? new QStandardItem(time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second()))) : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
-                        << new QStandardItem(QString::number(x + 2 + minFrame)) << new QStandardItem(QString::number(initialSeed, 16).toUpper());
+                    row << (time.contains("M")
+                            ? new QStandardItem(
+                                time.insert((time.indexOf('M') - 2), ":" + QString::number(finalTime.time().second())))
+                            : new QStandardItem(time.append(":" + QString::number(finalTime.time().second()))))
+                        << new QStandardItem(QString::number(x + 2 + minFrame))
+                        << new QStandardItem(QString::number(initialSeed, 16).toUpper());
 
                     emit result(row);
                     emit finished();

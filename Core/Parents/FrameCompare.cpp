@@ -23,7 +23,9 @@
 
 namespace PokeFinderCore
 {
-    FrameCompare::FrameCompare(int gender, int ability, bool shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max, const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters)
+    FrameCompare::FrameCompare(int gender, int ability, bool shiny, bool skip, const QVector<u8> &min,
+        const QVector<u8> &max, const QVector<bool> &natures, const QVector<bool> &powers,
+        const QVector<bool> &encounters)
     {
         this->gender = gender;
         this->ability = ability;
@@ -101,25 +103,13 @@ namespace PokeFinderCore
         return true;
     }
 
-    bool FrameCompare::compareNature(const Frame &frame) const
-    {
-        return natures.at(frame.getNature());
-    }
+    bool FrameCompare::compareNature(const Frame &frame) const { return natures.at(frame.getNature()); }
 
-    bool FrameCompare::compareHiddenPower(const Frame &frame) const
-    {
-        return powers.at(frame.getHidden());
-    }
+    bool FrameCompare::compareHiddenPower(const Frame &frame) const { return powers.at(frame.getHidden()); }
 
-    bool FrameCompare::compareSlot(const Frame &frame) const
-    {
-        return encounters.at(frame.getEncounterSlot());
-    }
+    bool FrameCompare::compareSlot(const Frame &frame) const { return encounters.at(frame.getEncounterSlot()); }
 
-    bool FrameCompare::compareGender(const Frame &frame) const
-    {
-        return gender == 0 || gender == frame.getGender();
-    }
+    bool FrameCompare::compareGender(const Frame &frame) const { return gender == 0 || gender == frame.getGender(); }
 
     bool FrameCompare::compareFrame(const Frame &frame) const
     {

@@ -20,9 +20,9 @@
 #ifndef TRANSLATOR_HPP
 #define TRANSLATOR_HPP
 
-#include <QVector>
 #include <Core/Util/Game.hpp>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 namespace PokeFinderCore::Translator
 {

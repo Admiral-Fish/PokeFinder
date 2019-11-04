@@ -17,16 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "SearchCoinFlips.hpp"
 #include "ui_SearchCoinFlips.h"
 #include <Core/Util/Utilities.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    SearchCoinFlips::SearchCoinFlips(const QVector<PokeFinderCore::DateTime> &model, QWidget *parent) :
-        QDialog(parent),
-        ui(new Ui::SearchCoinFlips)
+    SearchCoinFlips::SearchCoinFlips(const QVector<PokeFinderCore::DateTime> &model, QWidget *parent)
+        : QDialog(parent)
+        , ui(new Ui::SearchCoinFlips)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -35,21 +35,17 @@ namespace PokeFinderForms
         ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
 
         QSettings setting;
-        if (setting.contains("searchCoinFlips/geometry")) this->restoreGeometry(setting.value("searchCoinFlips/geometry").toByteArray());
+        if (setting.contains("searchCoinFlips/geometry"))
+            this->restoreGeometry(setting.value("searchCoinFlips/geometry").toByteArray());
     }
 
     SearchCoinFlips::~SearchCoinFlips()
     {
         QSettings setting;
         setting.setValue("searchCoinFlips/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
-    QVector<bool> SearchCoinFlips::possibleResults() const
-    {
-        return possible;
-    }
+    QVector<bool> SearchCoinFlips::possibleResults() const { return possible; }
 
     void SearchCoinFlips::on_pushButtonHeads_clicked()
     {
@@ -73,7 +69,8 @@ namespace PokeFinderForms
         possible.clear();
         for (const auto &dt : data)
         {
-            QStringList compare = PokeFinderCore::Utilities::coinFlips(dt.getSeed(), 15).split(",", QString::SkipEmptyParts);
+            QStringList compare
+                = PokeFinderCore::Utilities::coinFlips(dt.getSeed(), 15).split(",", QString::SkipEmptyParts);
 
             bool pass = true;
             for (int j = 0; j < results.size(); j++)

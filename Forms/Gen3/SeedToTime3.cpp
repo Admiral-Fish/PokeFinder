@@ -17,18 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QDateTime>
-#include <QMessageBox>
-#include <QSettings>
 #include "SeedToTime3.hpp"
 #include "ui_SeedToTime3.h"
 #include <Core/RNG/LCRNG.hpp>
+#include <QDateTime>
+#include <QMessageBox>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    SeedToTime3::SeedToTime3(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::SeedToTime3)
+    SeedToTime3::SeedToTime3(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::SeedToTime3)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -37,9 +37,9 @@ namespace PokeFinderForms
         setupModels();
     }
 
-    SeedToTime3::SeedToTime3(u32 seed, QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::SeedToTime3)
+    SeedToTime3::SeedToTime3(u32 seed, QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::SeedToTime3)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -58,8 +58,6 @@ namespace PokeFinderForms
         setting.setValue("year", ui->textBoxYear->text());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
-
-        delete ui;
     }
 
     void SeedToTime3::setupModels()
@@ -74,8 +72,10 @@ namespace PokeFinderForms
 
         QSettings setting;
         setting.beginGroup("seedToTime3");
-        if (setting.contains("year")) ui->textBoxYear->setText(setting.value("year").toString());
-        if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
+        if (setting.contains("year"))
+            ui->textBoxYear->setText(setting.value("year").toString());
+        if (setting.contains("geometry"))
+            this->restoreGeometry(setting.value("geometry").toByteArray());
         setting.endGroup();
     }
 
@@ -130,14 +130,16 @@ namespace PokeFinderForms
                     for (u32 minute = 0; minute < 60; minute++)
                     {
                         // Formula to generate intial seed
-                        u32 v = 1440 * day + 960 * (hour / 10) + 60 * (hour % 10) + 16 * (minute / 10) + (minute % 10) + 0x5A0;
+                        u32 v = 1440 * day + 960 * (hour / 10) + 60 * (hour % 10) + 16 * (minute / 10) + (minute % 10)
+                            + 0x5A0;
                         v = (v >> 16) ^ (v & 0xFFFF);
 
                         if (v == seed)
                         {
                             QDateTime finalTime = start.addDays(day).addSecs((hour * 60 * 60) + (minute * 60));
                             QString result = finalTime.toString(Qt::SystemLocaleShortDate);
-                            model->appendRow(QList<QStandardItem *>() << new QStandardItem(result) << new QStandardItem(QString::number(frame)));
+                            model->appendRow(QList<QStandardItem *>()
+                                << new QStandardItem(result) << new QStandardItem(QString::number(frame)));
                         }
                     }
                 }

@@ -20,9 +20,9 @@
 #ifndef PIDTOIVS_HPP
 #define PIDTOIVS_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QMenu>
 #include <QStandardItemModel>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderForms
 {
@@ -42,9 +42,9 @@ namespace PokeFinderForms
         ~PIDtoIVs() override;
 
     private:
-        Ui::PIDtoIVs *ui;
-        QStandardItemModel *model{};
-        QMenu *contextMenu{};
+        std::unique_ptr<Ui::PIDtoIVs> ui;
+        QStandardItemModel *model {};
+        QMenu *contextMenu {};
 
         void setupModels();
         void calcFromPID(u32 pid);

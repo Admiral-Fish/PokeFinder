@@ -20,11 +20,11 @@
 #ifndef FRAME_HPP
 #define FRAME_HPP
 
-#include <QVector>
 #include <Core/Util/Encounter.hpp>
 #include <Core/Util/Global.hpp>
 #include <Core/Util/Lead.hpp>
 #include <Core/Util/Method.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -63,21 +63,21 @@ namespace PokeFinderCore
     protected:
         QVector<u8> ivs = QVector<u8>(6);
         QVector<QChar> inheritance = QVector<QChar>(6);
-        u8 ability{};
-        u8 encounterSlot{};
+        u8 ability {};
+        u8 encounterSlot {};
         Encounter encounterType;
-        u32 frame{};
-        u8 gender{};
-        u8 hidden{};
+        u32 frame {};
+        u8 gender {};
+        u8 hidden {};
         Lead leadType = Lead::None;
-        u8 nature{};
-        u32 pid{};
-        u8 power{};
-        u16 psv{};
-        bool shiny{};
-        u16 sid{};
-        u16 tid{};
-        u8 level{};
+        u8 nature {};
+        u32 pid {};
+        u8 power {};
+        u16 psv {};
+        bool shiny {};
+        u16 sid {};
+        u16 tid {};
+        u8 level {};
 
         void calculateHidden();
         void calculatePower();

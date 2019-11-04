@@ -17,26 +17,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include "Profile4.hpp"
 #include <QApplication>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QSettings>
-#include "Profile4.hpp"
 
 namespace PokeFinderCore
 {
     Profile4::Profile4()
+        : dual(Game::Blank)
     {
         version = Game::Diamond;
-        dual = Game::Blank;
         radio = 0;
         radar = false;
         swarm = false;
     }
 
-    Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, Language language, bool radar, bool swarm)  :
-        Profile(profileName, version, tid, sid, language)
+    Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual, int radio,
+        Language language, bool radar, bool swarm)
+        : Profile(profileName, version, tid, sid, language)
     {
         this->dual = dual;
         this->radio = radio;
@@ -44,10 +45,11 @@ namespace PokeFinderCore
         this->swarm = swarm;
     }
 
-    Profile4::Profile4(QJsonObject data) :
-        Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
+    Profile4::Profile4(QJsonObject data)
+        : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(),
+            data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
+        , dual(static_cast<Game>(data["dual"].toInt()))
     {
-        dual = static_cast<Game>(data["dual"].toInt());
         radio = data["radio"].toInt();
         radar = data["radar"].toBool();
         swarm = data["swarm"].toBool();
@@ -57,53 +59,41 @@ namespace PokeFinderCore
     {
         switch (dual)
         {
-            case Game::Ruby:
-                return QObject::tr("Ruby");
-            case Game::Sapphire:
-                return QObject::tr("Sapphire");
-            case Game::FireRed:
-                return QObject::tr("Fire Red");
-            case Game::LeafGreen:
-                return QObject::tr("Leaf Green");
-            case Game::Emerald:
-                return QObject::tr("Emerald");
-            default:
-                return QObject::tr("None");
+        case Game::Ruby:
+            return QObject::tr("Ruby");
+        case Game::Sapphire:
+            return QObject::tr("Sapphire");
+        case Game::FireRed:
+            return QObject::tr("Fire Red");
+        case Game::LeafGreen:
+            return QObject::tr("Leaf Green");
+        case Game::Emerald:
+            return QObject::tr("Emerald");
+        default:
+            return QObject::tr("None");
         }
     }
 
-    Game Profile4::getDualSlot() const
-    {
-        return dual;
-    }
+    Game Profile4::getDualSlot() const { return dual; }
 
     QString Profile4::getRadioString() const
     {
         switch (radio)
         {
-            case 1:
-                return QObject::tr("Hoenn Sound");
-            case 2:
-                return QObject::tr("Sinnoh Sound");
-            default:
-                return QObject::tr("None");
+        case 1:
+            return QObject::tr("Hoenn Sound");
+        case 2:
+            return QObject::tr("Sinnoh Sound");
+        default:
+            return QObject::tr("None");
         }
     }
 
-    int Profile4::getRadio() const
-    {
-        return radio;
-    }
+    int Profile4::getRadio() const { return radio; }
 
-    bool Profile4::getRadar() const
-    {
-        return radar;
-    }
+    bool Profile4::getRadar() const { return radar; }
 
-    bool Profile4::getSwarm() const
-    {
-        return swarm;
-    }
+    bool Profile4::getSwarm() const { return swarm; }
 
     QJsonObject Profile4::getJson() const
     {
@@ -200,13 +190,10 @@ namespace PokeFinderCore
 
     bool operator==(const Profile4 &left, const Profile4 &right)
     {
-        return left.profileName == right.profileName && left.version == right.version && left.language == right.language &&
-               left.tid == right.tid && left.sid == right.sid && left.dual == right.dual && left.radio == right.radio &&
-               left.radar == right.radar && left.swarm == right.swarm;
+        return left.profileName == right.profileName && left.version == right.version && left.language == right.language
+            && left.tid == right.tid && left.sid == right.sid && left.dual == right.dual && left.radio == right.radio
+            && left.radar == right.radar && left.swarm == right.swarm;
     }
 
-    bool operator!=(const Profile4 &left, const Profile4 &right)
-    {
-        return !(left == right);
-    }
+    bool operator!=(const Profile4 &left, const Profile4 &right) { return !(left == right); }
 }

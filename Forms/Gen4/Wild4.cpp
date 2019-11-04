@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "Wild4.hpp"
 #include "ui_Wild4.h"
 #include <Core/Gen4/Encounters4.hpp>
@@ -30,12 +29,13 @@
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <Models/Gen4/Wild4Model.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    Wild4::Wild4(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::Wild4)
+    Wild4::Wild4(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::Wild4)
     {
         ui->setupUi(this);
 
@@ -58,8 +58,6 @@ namespace PokeFinderForms
         setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
-
-        delete ui;
     }
 
     void Wild4::updateProfiles()
@@ -137,39 +135,43 @@ namespace PokeFinderForms
         QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
 
-        connect(outputTXTGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModel(); });
-        connect(outputCSVGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModel(true); });
+        connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(); });
+        connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(true); });
 
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
         QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
 
         connect(seedToTime, &QAction::triggered, this, &Wild4::seedToTime);
-        connect(outputTXTSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModel(); });
-        connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModel(true); });
+        connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(); });
+        connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
         QSettings setting;
         setting.beginGroup("wild4");
-        if (setting.contains("minDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
-        if (setting.contains("maxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
-        if (setting.contains("minFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
-        if (setting.contains("maxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
-        if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
+        if (setting.contains("minDelay"))
+            ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
+        if (setting.contains("maxDelay"))
+            ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
+        if (setting.contains("minFrame"))
+            ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+        if (setting.contains("maxFrame"))
+            ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+        if (setting.contains("geometry"))
+            this->restoreGeometry(setting.value("geometry").toByteArray());
         setting.endGroup();
     }
 
     void Wild4::updateLocationsGenerator()
     {
-        PokeFinderCore::Encounter encounter = static_cast<PokeFinderCore::Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
+        PokeFinderCore::Encounter encounter
+            = static_cast<PokeFinderCore::Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
         int time = ui->comboBoxGeneratorTime->currentIndex();
         auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
 
         encounterGenerator = PokeFinderCore::Encounters4(encounter, time, profile).getEncounters();
         QVector<u8> locs;
-        for (const auto &area : encounterGenerator)
-        {
-            locs.append(area.getLocation());
-        }
+        std::transform(encounterGenerator.begin(), encounterGenerator.end(), locs.end(),
+            [](const auto &area) { return area.getLocation(); });
 
         QStringList locations = PokeFinderCore::Translator::getLocationsGen4(locs, profile.getVersion());
 
@@ -179,16 +181,15 @@ namespace PokeFinderForms
 
     void Wild4::updateLocationsSearcher()
     {
-        PokeFinderCore::Encounter encounter = static_cast<PokeFinderCore::Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
+        PokeFinderCore::Encounter encounter
+            = static_cast<PokeFinderCore::Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
         int time = ui->comboBoxSearcherTime->currentIndex();
         auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
 
         encounterSearcher = PokeFinderCore::Encounters4(encounter, time, profile).getEncounters();
         QVector<u8> locs;
-        for (const auto &area : encounterSearcher)
-        {
-            locs.push_back(area.getLocation());
-        }
+        std::transform(encounterSearcher.begin(), encounterSearcher.end(), locs.end(),
+            [](const auto &area) { return area.getLocation(); });
 
         QStringList locations = PokeFinderCore::Translator::getLocationsGen4(locs, profile.getVersion());
 
@@ -242,15 +243,13 @@ namespace PokeFinderForms
         ui->progressBar->setValue(progress);
     }
 
-    void Wild4::refreshProfiles()
-    {
-        emit alertProfiles(4);
-    }
+    void Wild4::refreshProfiles() { emit alertProfiles(4); }
 
     void Wild4::on_pushButtonGenerate_clicked()
     {
         generatorModel->clearModel();
-        generatorModel->setMethod(static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+        generatorModel->setMethod(
+            static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
         u32 seed = ui->textBoxGeneratorSeed->getUInt();
         u32 startingFrame = ui->textBoxGeneratorStartingFrame->getUInt();
@@ -264,16 +263,20 @@ namespace PokeFinderForms
         }
 
         u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
-        PokeFinderCore::Generator4 generator(maxResults, startingFrame, seed, tid, sid, offset, static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt()), genderRatio);
-        PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                                             ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                                             ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-                                             ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
+        PokeFinderCore::Generator4 generator(maxResults, startingFrame, seed, tid, sid, offset,
+            static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt()), genderRatio);
+        PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(),
+            ui->comboBoxGeneratorAbility->currentIndex(), ui->checkBoxGeneratorShinyOnly->isChecked(),
+            ui->checkBoxGeneratorDisableFilters->isChecked(), ui->ivFilterGenerator->getLower(),
+            ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+            ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
 
-        generator.setEncounterType(static_cast<PokeFinderCore::Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
+        generator.setEncounterType(
+            static_cast<PokeFinderCore::Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
         if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
         {
-            generator.setLeadType((static_cast<PokeFinderCore::Lead>(ui->comboBoxGeneratorLead->currentData().toInt())));
+            generator.setLeadType(
+                (static_cast<PokeFinderCore::Lead>(ui->comboBoxGeneratorLead->currentData().toInt())));
         }
         else if (ui->pushButtonGeneratorLead->text() == tr("Suction Cups"))
         {
@@ -289,7 +292,8 @@ namespace PokeFinderForms
             else
             {
                 generator.setLeadType(PokeFinderCore::Lead::Synchronize);
-                generator.setSynchNature(PokeFinderCore::Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
+                generator.setSynchNature(PokeFinderCore::Nature::getAdjustedNature(
+                    static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
             }
         }
         generator.setEncounter(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()]);
@@ -301,7 +305,8 @@ namespace PokeFinderForms
     void Wild4::on_pushButtonSearch_clicked()
     {
         searcherModel->clearModel();
-        searcherModel->setMethod(static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+        searcherModel->setMethod(
+            static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
         ui->pushButtonSearch->setEnabled(false);
         ui->pushButtonCancel->setEnabled(true);
@@ -310,14 +315,18 @@ namespace PokeFinderForms
         u16 sid = ui->textBoxSearcherSID->getUShort();
 
         u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-        PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
-                                             ui->checkBoxSearcherShinyOnly->isChecked(), false,
-                                             ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherNature->getChecked(),
-                                             ui->comboBoxSearcherHiddenPower->getChecked(), ui->comboBoxSearcherEncounterSlot->getChecked());
-        PokeFinderCore::Searcher4 searcher(tid, sid, genderRatio, ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
-                                           ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(), compare, static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+        PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(),
+            ui->comboBoxSearcherAbility->currentIndex(), ui->checkBoxSearcherShinyOnly->isChecked(), false,
+            ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(),
+            ui->comboBoxSearcherNature->getChecked(), ui->comboBoxSearcherHiddenPower->getChecked(),
+            ui->comboBoxSearcherEncounterSlot->getChecked());
+        PokeFinderCore::Searcher4 searcher(tid, sid, genderRatio, ui->textBoxSearcherMinDelay->getUInt(),
+            ui->textBoxSearcherMaxDelay->getUInt(), ui->textBoxSearcherMinFrame->getUInt(),
+            ui->textBoxSearcherMaxFrame->getUInt(), compare,
+            static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
-        searcher.setEncounterType(static_cast<PokeFinderCore::Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()));
+        searcher.setEncounterType(
+            static_cast<PokeFinderCore::Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()));
         searcher.setLeadType(static_cast<PokeFinderCore::Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
         searcher.setEncounter(encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()]);
 
@@ -335,7 +344,10 @@ namespace PokeFinderForms
 
         auto *search = new PokeFinderCore::IVSearcher4(searcher, min, max);
 
-        connect(search, &PokeFinderCore::IVSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+        connect(search, &PokeFinderCore::IVSearcher4::finished, this, [=] {
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+        });
         connect(search, &PokeFinderCore::IVSearcher4::updateProgress, this, &Wild4::updateProgress);
         connect(ui->pushButtonCancel, &QPushButton::clicked, search, &PokeFinderCore::IVSearcher4::cancelSearch);
 
@@ -368,14 +380,16 @@ namespace PokeFinderForms
         bool flag = profile.getVersion() & PokeFinderCore::Game::HGSS;
 
         ui->comboBoxGeneratorMethod->clear();
-        ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? PokeFinderCore::Method::MethodK : PokeFinderCore::Method::MethodJ);
+        ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"),
+            flag ? PokeFinderCore::Method::MethodK : PokeFinderCore::Method::MethodJ);
         if (!flag)
         {
             ui->comboBoxGeneratorMethod->addItem(tr("Chained Shiny"), PokeFinderCore::Method::ChainedShiny);
         }
 
         ui->comboBoxSearcherMethod->clear();
-        ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? PokeFinderCore::Method::MethodK : PokeFinderCore::Method::MethodJ);
+        ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"),
+            flag ? PokeFinderCore::Method::MethodK : PokeFinderCore::Method::MethodJ);
         if (!flag)
         {
             ui->comboBoxSearcherMethod->addItem(tr("Chained Shiny"), PokeFinderCore::Method::ChainedShiny);
@@ -469,24 +483,41 @@ namespace PokeFinderForms
     void Wild4::on_comboBoxGeneratorEncounter_currentIndexChanged(int /*index*/)
     {
         QStringList t;
-        PokeFinderCore::Encounter encounter = static_cast<PokeFinderCore::Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
+        PokeFinderCore::Encounter encounter
+            = static_cast<PokeFinderCore::Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
 
         switch (encounter)
         {
-            case PokeFinderCore::Encounter::Grass:
-                t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
-                break;
-            case PokeFinderCore::Encounter::Surfing:
-            case PokeFinderCore::Encounter::OldRod:
-            case PokeFinderCore::Encounter::GoodRod:
-            case PokeFinderCore::Encounter::SuperRod:
-                t << "0" << "1" << "2" << "3" << "4";
-                break;
-            case PokeFinderCore::Encounter::RockSmash:
-                t << "0" << "1";
-                break;
-            default:
-                break;
+        case PokeFinderCore::Encounter::Grass:
+            t << "0"
+              << "1"
+              << "2"
+              << "3"
+              << "4"
+              << "5"
+              << "6"
+              << "7"
+              << "8"
+              << "9"
+              << "10"
+              << "11";
+            break;
+        case PokeFinderCore::Encounter::Surfing:
+        case PokeFinderCore::Encounter::OldRod:
+        case PokeFinderCore::Encounter::GoodRod:
+        case PokeFinderCore::Encounter::SuperRod:
+            t << "0"
+              << "1"
+              << "2"
+              << "3"
+              << "4";
+            break;
+        case PokeFinderCore::Encounter::RockSmash:
+            t << "0"
+              << "1";
+            break;
+        default:
+            break;
         }
 
         ui->comboBoxGeneratorEncounterSlot->setup(t);
@@ -496,39 +527,50 @@ namespace PokeFinderForms
     void Wild4::on_comboBoxSearcherEncounter_currentIndexChanged(int /*index*/)
     {
         QStringList t;
-        PokeFinderCore::Encounter encounter = static_cast<PokeFinderCore::Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
+        PokeFinderCore::Encounter encounter
+            = static_cast<PokeFinderCore::Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
 
         switch (encounter)
         {
-            case PokeFinderCore::Encounter::Grass:
-                t << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11";
-                break;
-            case PokeFinderCore::Encounter::Surfing:
-            case PokeFinderCore::Encounter::OldRod:
-            case PokeFinderCore::Encounter::GoodRod:
-            case PokeFinderCore::Encounter::SuperRod:
-                t << "0" << "1" << "2" << "3" << "4";
-                break;
-            case PokeFinderCore::Encounter::RockSmash:
-                t << "0" << "1";
-                break;
-            default:
-                break;
+        case PokeFinderCore::Encounter::Grass:
+            t << "0"
+              << "1"
+              << "2"
+              << "3"
+              << "4"
+              << "5"
+              << "6"
+              << "7"
+              << "8"
+              << "9"
+              << "10"
+              << "11";
+            break;
+        case PokeFinderCore::Encounter::Surfing:
+        case PokeFinderCore::Encounter::OldRod:
+        case PokeFinderCore::Encounter::GoodRod:
+        case PokeFinderCore::Encounter::SuperRod:
+            t << "0"
+              << "1"
+              << "2"
+              << "3"
+              << "4";
+            break;
+        case PokeFinderCore::Encounter::RockSmash:
+            t << "0"
+              << "1";
+            break;
+        default:
+            break;
         }
 
         ui->comboBoxSearcherEncounterSlot->setup(t);
         updateLocationsSearcher();
     }
 
-    void Wild4::on_comboBoxGeneratorLocation_currentIndexChanged(int /*index*/)
-    {
-        updatePokemonGenerator();
-    }
+    void Wild4::on_comboBoxGeneratorLocation_currentIndexChanged(int /*index*/) { updatePokemonGenerator(); }
 
-    void Wild4::on_comboBoxSearcherLocation_currentIndexChanged(int /*index*/)
-    {
-        updatePokemonSearcher();
-    }
+    void Wild4::on_comboBoxSearcherLocation_currentIndexChanged(int /*index*/) { updatePokemonSearcher(); }
 
     void Wild4::on_comboBoxGeneratorPokemon_currentIndexChanged(int index)
     {
@@ -575,7 +617,9 @@ namespace PokeFinderForms
     void Wild4::seedToTime()
     {
         QModelIndex index = ui->tableViewSearcher->currentIndex();
-        auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(), profiles.at(ui->comboBoxProfiles->currentIndex()));
+        auto *time
+            = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(),
+                profiles.at(ui->comboBoxProfiles->currentIndex()));
         time->show();
         time->raise();
     }

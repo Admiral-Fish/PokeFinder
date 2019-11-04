@@ -47,22 +47,13 @@ namespace PokeFinderModels
         PokeFinderCore::Method method;
         bool showInheritance;
 
-        QStringList header1 =
-        {
-            tr("Frame"), tr("Time"), tr("HP"), tr("Atk"), tr("Def"),
-            tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
-        };
-        QStringList header2 =
-        {
-            tr("Frame"), tr("Time"), tr("Redraws"), tr("PID"), "!!!", tr("Nature"),
-            tr("Ability"), tr("Gender")
-        };
-        QStringList header3 =
-        {
-            tr("Held Frame"), tr("Held Time"), tr("Pickup Frame"), tr("Pickup Time"),
-            tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-            tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-        };
+        QStringList header1 = { tr("Frame"), tr("Time"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"),
+            tr("Spe"), tr("Hidden"), tr("Power") };
+        QStringList header2
+            = { tr("Frame"), tr("Time"), tr("Redraws"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender") };
+        QStringList header3 = { tr("Held Frame"), tr("Held Time"), tr("Pickup Frame"), tr("Pickup Time"), tr("PID"),
+            "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"),
+            tr("Hidden"), tr("Power"), tr("Gender") };
     };
 }
 

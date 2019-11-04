@@ -20,8 +20,8 @@
 #ifndef TABLEUTILITY_HPP
 #define TABLEUTILITY_HPP
 
-#include <QFont>
 #include <Core/Util/Global.hpp>
+#include <QFont>
 
 namespace PokeFinderCore::TableUtility
 {

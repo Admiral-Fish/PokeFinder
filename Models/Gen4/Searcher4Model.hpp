@@ -45,26 +45,15 @@ namespace PokeFinderModels
     private:
         PokeFinderCore::Method method;
         bool stationary;
-        QStringList header1 =
-        {
-            tr("Seed"), tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
-            tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-        };
-        QStringList header2 =
-        {
-            tr("Seed"), tr("Frame"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
-        };
-        QStringList header3 =
-        {
-            tr("Seed"), tr("Frame"), tr("Lead"), tr("PID"), tr("Slot"), tr("Level"), "!!!", tr("Nature"), tr("Ability"),
-            tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-        };
-        QStringList header4 =
-        {
-            tr("Seed"), tr("Frame"), tr("Lead"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
-            tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-        };
-
+        QStringList header1 = { tr("Seed"), tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
+            tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
+        QStringList header2 = { tr("Seed"), tr("Frame"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"),
+            tr("Spe"), tr("Hidden"), tr("Power") };
+        QStringList header3 = { tr("Seed"), tr("Frame"), tr("Lead"), tr("PID"), tr("Slot"), tr("Level"), "!!!",
+            tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"),
+            tr("Power"), tr("Gender") };
+        QStringList header4 = { tr("Seed"), tr("Frame"), tr("Lead"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+            tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
     };
 }
 

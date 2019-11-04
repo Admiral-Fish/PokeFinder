@@ -20,8 +20,8 @@
 #ifndef SEARCHCALLS_HPP
 #define SEARCHCALLS_HPP
 
-#include <QDialog>
 #include <Core/Util/DateTime.hpp>
+#include <QDialog>
 
 namespace PokeFinderForms
 {
@@ -34,12 +34,13 @@ namespace PokeFinderForms
     {
         Q_OBJECT
     public:
-        explicit SearchCalls(const QVector<PokeFinderCore::DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent = nullptr);
+        explicit SearchCalls(const QVector<PokeFinderCore::DateTime> &model, const QVector<bool> &roamers,
+            const QVector<u8> &routes, QWidget *parent = nullptr);
         ~SearchCalls() override;
         QVector<bool> possibleResults() const;
 
     private:
-        Ui::SearchCalls *ui;
+        std::unique_ptr<Ui::SearchCalls> ui;
         QVector<PokeFinderCore::DateTime> data;
         QVector<bool> possible;
         QVector<bool> roamers;

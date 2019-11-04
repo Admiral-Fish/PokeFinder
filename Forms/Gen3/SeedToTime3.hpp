@@ -20,9 +20,9 @@
 #ifndef SEEDTOTIME3_HPP
 #define SEEDTOTIME3_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderForms
 {
@@ -40,8 +40,8 @@ namespace PokeFinderForms
         ~SeedToTime3() override;
 
     private:
-        Ui::SeedToTime3 *ui;
-        QStandardItemModel *model{};
+        std::unique_ptr<Ui::SeedToTime3> ui;
+        QStandardItemModel *model {};
         u32 frame = 1;
 
         void setupModels();

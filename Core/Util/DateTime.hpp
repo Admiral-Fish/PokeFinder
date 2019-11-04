@@ -20,9 +20,9 @@
 #ifndef DATETIME_HPP
 #define DATETIME_HPP
 
-#include <QDateTime>
 #include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/Util/Game.hpp>
+#include <QDateTime>
 
 namespace PokeFinderCore
 {
@@ -30,7 +30,8 @@ namespace PokeFinderCore
     {
     public:
         DateTime() = default;
-        DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes);
+        DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers,
+            const QVector<u8> &routes);
         DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info);
         QString sequence() const;
         QString getDate() const;
@@ -42,10 +43,10 @@ namespace PokeFinderCore
         HGSSRoamer getInfo() const;
 
     private:
-        u32 seed{};
-        u32 delay{};
+        u32 seed {};
+        u32 delay {};
         QDateTime dateTime;
-        Game version{};
+        Game version {};
         HGSSRoamer info;
     };
 }

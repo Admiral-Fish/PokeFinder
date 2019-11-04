@@ -59,15 +59,9 @@ namespace PokeFinderCore
         return temper();
     }
 
-    u16 TinyMT::nextUShort(u32 frames)
-    {
-        return nextUInt(frames) >> 16;
-    }
+    u16 TinyMT::nextUShort(u32 frames) { return nextUInt(frames) >> 16; }
 
-    u32 TinyMT::next(u32 frames)
-    {
-        return nextUInt(frames);
-    }
+    u32 TinyMT::next(u32 frames) { return nextUInt(frames); }
 
     void TinyMT::setSeed(u32 seed, u32 frames)
     {

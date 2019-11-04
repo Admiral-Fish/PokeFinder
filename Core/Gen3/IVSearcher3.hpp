@@ -20,9 +20,9 @@
 #ifndef IVSEARCHER3_HPP
 #define IVSEARCHER3_HPP
 
-#include <QObject>
-#include <QMutex>
 #include <Core/Gen3/Searcher3.hpp>
+#include <QMutex>
+#include <QObject>
 
 namespace PokeFinderCore
 {

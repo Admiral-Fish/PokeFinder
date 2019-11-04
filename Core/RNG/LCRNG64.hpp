@@ -24,7 +24,7 @@
 
 namespace PokeFinderCore
 {
-    template<u64 add, u64 mult>
+    template <u64 add, u64 mult>
     class LCRNG64 : public IRNG<u64>
     {
     public:
@@ -42,10 +42,7 @@ namespace PokeFinderCore
             }
         }
 
-        u32 nextUInt(u32 max, u32 frames = 0)
-        {
-            return ((nextULong(frames) >> 32) * max) >> 32;
-        }
+        u32 nextUInt(u32 max, u32 frames = 0) { return ((nextULong(frames) >> 32) * max) >> 32; }
 
         u64 nextULong(u32 frames = 0)
         {
@@ -53,15 +50,9 @@ namespace PokeFinderCore
             return seed;
         }
 
-        u32 nextUInt(u32 frames = 0)
-        {
-            return nextULong(frames) >> 32;
-        }
+        u32 nextUInt(u32 frames = 0) { return nextULong(frames) >> 32; }
 
-        u64 next(u32 frames = 0) override
-        {
-            return nextULong(frames);
-        }
+        u64 next(u32 frames = 0) override { return nextULong(frames); }
 
         void setSeed(u64 seed, u32 frames = 0) override
         {
@@ -69,19 +60,17 @@ namespace PokeFinderCore
             advanceFrames(frames);
         }
 
-        u64 getSeed() const
-        {
-            return seed;
-        }
+        u64 getSeed() const { return seed; }
 
     private:
-        u64 seed{};
+        u64 seed {};
     };
 
     class BWRNG : public LCRNG64<0x269ec3, 0x5d588b656c078965>
     {
     public:
-        BWRNG(u64 seed = 0, u32 frames = 0) : LCRNG64(seed, frames)
+        BWRNG(u64 seed = 0, u32 frames = 0)
+            : LCRNG64(seed, frames)
         {
         }
     };
@@ -89,7 +78,8 @@ namespace PokeFinderCore
     class BWRNGR : public LCRNG64<0x9b1ae6e9a384e6f9, 0xdedcedae9638806d>
     {
     public:
-        BWRNGR(u64 seed = 0, u32 frames = 0) : LCRNG64(seed, frames)
+        BWRNGR(u64 seed = 0, u32 frames = 0)
+            : LCRNG64(seed, frames)
         {
         }
     };

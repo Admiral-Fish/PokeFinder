@@ -30,32 +30,20 @@ namespace PokeFinderCore
     }
 
     Slot::Slot(u16 specie, u8 level, Pokemon pokemon)
+        : minLevel(level)
+        , maxLevel(level)
     {
         this->specie = specie;
-        minLevel = level;
-        maxLevel = level;
         this->pokemon = pokemon;
     }
 
-    u8 Slot::getMinLevel() const
-    {
-        return minLevel;
-    }
+    u8 Slot::getMinLevel() const { return minLevel; }
 
-    u8 Slot::getMaxLevel() const
-    {
-        return maxLevel;
-    }
+    u8 Slot::getMaxLevel() const { return maxLevel; }
 
-    u16 Slot::getSpecie() const
-    {
-        return specie;
-    }
+    u16 Slot::getSpecie() const { return specie; }
 
-    Pokemon Slot::getPokemon() const
-    {
-        return pokemon;
-    }
+    Pokemon Slot::getPokemon() const { return pokemon; }
 
     void Slot::setSpecie(u16 specie, Pokemon pokemon)
     {

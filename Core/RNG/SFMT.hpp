@@ -36,7 +36,7 @@ namespace PokeFinderCore
 
     private:
         u32 sfmt[624];
-        u32 index{};
+        u32 index {};
 
         void initialize(u32 seed);
         void periodCertificaion();

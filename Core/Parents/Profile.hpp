@@ -20,10 +20,10 @@
 #ifndef PROFILE_HPP
 #define PROFILE_HPP
 
-#include <QVector>
 #include <Core/Util/Game.hpp>
 #include <Core/Util/Global.hpp>
 #include <Core/Util/Language.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -42,7 +42,7 @@ namespace PokeFinderCore
 
     protected:
         QString profileName;
-        Game version{};
+        Game version {};
         Language language;
         u16 tid;
         u16 sid;

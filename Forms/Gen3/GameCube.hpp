@@ -20,8 +20,8 @@
 #ifndef GAMECUBE_HPP
 #define GAMECUBE_HPP
 
-#include <QMenu>
 #include <Core/Gen3/Profile3.hpp>
+#include <QMenu>
 
 namespace PokeFinderCore
 {
@@ -53,12 +53,12 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        Ui::GameCube *ui;
-        PokeFinderModels::Searcher3Model *searcherModel{};
-        PokeFinderModels::Stationary3Model *generatorModel{};
+        std::unique_ptr<Ui::GameCube> ui;
+        PokeFinderModels::Searcher3Model *searcherModel {};
+        PokeFinderModels::Stationary3Model *generatorModel {};
         QVector<PokeFinderCore::Profile3> profiles;
-        QMenu *generatorMenu{};
-        QMenu *searcherMenu{};
+        QMenu *generatorMenu {};
+        QMenu *searcherMenu {};
 
         void setupModels();
 

@@ -20,8 +20,8 @@
 #ifndef HGSSROAMER_HPP
 #define HGSSROAMER_HPP
 
-#include <QVector>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -44,11 +44,11 @@ namespace PokeFinderCore
         u8 getRouteJ(u16 prng) const;
         u8 getRouteK(u16 prng) const;
 
-        u8 skips{};
-        u8 raikouRoute{};
-        u8 enteiRoute{};
-        u8 latiRoute{};
-        u32 seed{};
+        u8 skips {};
+        u8 raikouRoute {};
+        u8 enteiRoute {};
+        u8 latiRoute {};
+        u32 seed {};
         QVector<bool> roamers;
         QVector<u8> routes;
     };

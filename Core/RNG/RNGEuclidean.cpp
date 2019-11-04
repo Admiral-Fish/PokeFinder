@@ -28,11 +28,7 @@ constexpr u32 MULT = 0x343FD;
 
 namespace PokeFinderCore
 {
-
-    RNGEuclidean::RNGEuclidean(Method FrameType)
-    {
-        setupEuclidean(FrameType);
-    }
+    RNGEuclidean::RNGEuclidean(Method FrameType) { setupEuclidean(FrameType); }
 
     // Recovers origin seeds for two 16 bit calls(15 bits known)
     QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u32 first, u32 second) const
@@ -115,19 +111,15 @@ namespace PokeFinderCore
         return origin;
     }
 
-    void RNGEuclidean::switchEuclidean(Method frameType)
-    {
-        setupEuclidean(frameType);
-    }
+    void RNGEuclidean::switchEuclidean(Method frameType) { setupEuclidean(frameType); }
 
     void RNGEuclidean::setupEuclidean(Method frameType)
     {
         if (frameType == Method::Channel)
         {
             // Channel is a unique situation having 6 rng calls with each call 5 bits known
-            // It is unable to use the cache method and uses a modified Euclidean approach to keep kmax as low as possible
-            // Using the first and last calls we can produce a modified adder and multiplier
-            // Mult:j = Mult^j
+            // It is unable to use the cache method and uses a modified Euclidean approach to keep kmax as low as
+            // possible Using the first and last calls we can produce a modified adder and multiplier Mult:j = Mult^j
             // Add:j = Add * (1 + Mult + ... + Mult^(j-1))
             // Using j = 5 and XDRNG gives Mult = 0x284A930D and Add = 0xa2974c77
             sub1 = 0x284A930D; // Modified mult

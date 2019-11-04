@@ -43,25 +43,14 @@ namespace PokeFinderModels
     private:
         PokeFinderCore::Method method;
 
-        QStringList header1 =
-        {
-            tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
-            tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-        };
-        QStringList header2 =
-        {
-            tr("Frame"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
-            tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-        };
-        QStringList header3 =
-        {
-            tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
-            tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-        };
-        QStringList header4 =
-        {
-            tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
-        };
+        QStringList header1 = { tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+            tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
+        QStringList header2 = { tr("Frame"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
+            tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
+        QStringList header3 = { tr("Frame"), tr("Call"), tr("Chatot"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+            tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
+        QStringList header4 = { tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"),
+            tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power") };
     };
 }
 

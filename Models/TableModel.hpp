@@ -28,8 +28,8 @@ namespace PokeFinderModels
     class TableModel : public QAbstractTableModel
     {
     public:
-        TableModel(QObject *parent = nullptr) :
-            QAbstractTableModel(parent)
+        TableModel(QObject *parent = nullptr)
+            : QAbstractTableModel(parent)
         {
         }
 
@@ -66,15 +66,9 @@ namespace PokeFinderModels
             emit endRemoveRows();
         }
 
-        Item getItem(int row) const
-        {
-            return model.at(row);
-        }
+        Item getItem(int row) const { return model.at(row); }
 
-        QVector<Item> getModel() const
-        {
-            return model;
-        }
+        QVector<Item> getModel() const { return model; }
 
         void clearModel()
         {
@@ -87,10 +81,7 @@ namespace PokeFinderModels
             }
         }
 
-        int rowCount(const QModelIndex & /*parent*/ = QModelIndex()) const override
-        {
-            return model.size();
-        }
+        int rowCount(const QModelIndex & /*parent*/ = QModelIndex()) const override { return model.size(); }
 
     protected:
         QVector<Item> model;

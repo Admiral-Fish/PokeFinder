@@ -20,15 +20,15 @@
 #ifndef CHAINEDSIDCALC_HPP
 #define CHAINEDSIDCALC_HPP
 
-#include <QVector>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
     class ChainedSIDCalc
     {
     public:
-        ChainedSIDCalc(u16 tid);
+        explicit ChainedSIDCalc(u16 tid);
         void addEntry(const QVector<u8> &ivs, u8 nature, u8 ability, u8 gender);
         QVector<u16> getSIDs() const;
 

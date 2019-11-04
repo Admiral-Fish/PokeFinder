@@ -79,7 +79,8 @@ namespace PokeFinderCore
         return QString("%1 h %2 m %3.%4 s").arg(hours).arg(minutes).arg(seconds).arg(milliseconds, 2, 10, QChar('0'));
     }
 
-    void Frame3::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2, u16 inh3, const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken)
+    void Frame3::setInheritance(u16 iv1, u16 iv2, u16 par1, u16 par2, u16 par3, u16 inh1, u16 inh2, u16 inh3,
+        const QVector<u8> &parent1, const QVector<u8> &parent2, bool broken)
     {
         ivs[0] = iv1 & 0x1f;
         ivs[1] = (iv1 >> 5) & 0x1f;
@@ -101,30 +102,30 @@ namespace PokeFinderCore
 
             switch (ivslot)
             {
-                case 0:
-                    ivs[0] = par == 0 ? parent1.at(0) : parent2.at(0);
-                    inheritance[0] = par == 0 ? 'A' : 'B';
-                    break;
-                case 1:
-                    ivs[1] = par == 0 ? parent1.at(1) : parent2.at(1);
-                    inheritance[1] = par == 0 ? 'A' : 'B';
-                    break;
-                case 2:
-                    ivs[2] = par == 0 ? parent1.at(2) : parent2.at(2);
-                    inheritance[2] = par == 0 ? 'A' : 'B';
-                    break;
-                case 3:
-                    ivs[5] = par == 0 ? parent1.at(5) : parent2.at(5);
-                    inheritance[5] = par == 0 ? 'A' : 'B';
-                    break;
-                case 4:
-                    ivs[3] = par == 0 ? parent1.at(3) : parent2.at(3);
-                    inheritance[3] = par == 0 ? 'A' : 'B';
-                    break;
-                case 5:
-                    ivs[4] = par == 0 ? parent1.at(4) : parent2.at(4);
-                    inheritance[4] = par == 0 ? 'A' : 'B';
-                    break;
+            case 0:
+                ivs[0] = par == 0 ? parent1.at(0) : parent2.at(0);
+                inheritance[0] = par == 0 ? 'A' : 'B';
+                break;
+            case 1:
+                ivs[1] = par == 0 ? parent1.at(1) : parent2.at(1);
+                inheritance[1] = par == 0 ? 'A' : 'B';
+                break;
+            case 2:
+                ivs[2] = par == 0 ? parent1.at(2) : parent2.at(2);
+                inheritance[2] = par == 0 ? 'A' : 'B';
+                break;
+            case 3:
+                ivs[5] = par == 0 ? parent1.at(5) : parent2.at(5);
+                inheritance[5] = par == 0 ? 'A' : 'B';
+                break;
+            case 4:
+                ivs[3] = par == 0 ? parent1.at(3) : parent2.at(3);
+                inheritance[3] = par == 0 ? 'A' : 'B';
+                break;
+            case 5:
+                ivs[4] = par == 0 ? parent1.at(4) : parent2.at(4);
+                inheritance[4] = par == 0 ? 'A' : 'B';
+                break;
             }
 
             // Avoids repeat IV inheritance
@@ -157,35 +158,17 @@ namespace PokeFinderCore
         shiny = ((pid >> 16) ^ (pid & 0xFFFF) ^ psv) < 8;
     }
 
-    QString Frame3::getLockReason() const
-    {
-        return lockReason;
-    }
+    QString Frame3::getLockReason() const { return lockReason; }
 
-    void Frame3::setLockReason(const QString &value)
-    {
-        lockReason = value;
-    }
+    void Frame3::setLockReason(const QString &value) { lockReason = value; }
 
-    u32 Frame3::getEggFrame() const
-    {
-        return eggFrame;
-    }
+    u32 Frame3::getEggFrame() const { return eggFrame; }
 
-    void Frame3::setEggFrame(const u32 &value)
-    {
-        eggFrame = value;
-    }
+    void Frame3::setEggFrame(const u32 &value) { eggFrame = value; }
 
-    u32 Frame3::getSeed() const
-    {
-        return seed;
-    }
+    u32 Frame3::getSeed() const { return seed; }
 
-    void Frame3::setSeed(const u32 &value)
-    {
-        seed = value;
-    }
+    void Frame3::setSeed(const u32 &value) { seed = value; }
 
     void Frame3::xorFrame(bool flag)
     {

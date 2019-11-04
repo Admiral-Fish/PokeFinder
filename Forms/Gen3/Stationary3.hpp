@@ -20,9 +20,9 @@
 #ifndef STATIONARY3_H
 #define STATIONARY3_H
 
+#include <Core/Gen3/Profile3.hpp>
 #include <QMenu>
 #include <QModelIndex>
-#include <Core/Gen3/Profile3.hpp>
 
 namespace PokeFinderCore
 {
@@ -54,12 +54,12 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        Ui::Stationary3 *ui;
-        PokeFinderModels::Searcher3Model *searcherModel{};
-        PokeFinderModels::Stationary3Model *generatorModel{};
+        std::unique_ptr<Ui::Stationary3> ui;
+        PokeFinderModels::Searcher3Model *searcherModel {};
+        PokeFinderModels::Stationary3Model *generatorModel {};
         QVector<PokeFinderCore::Profile3> profiles;
-        QMenu *generatorMenu{};
-        QMenu *searcherMenu{};
+        QMenu *generatorMenu {};
+        QMenu *searcherMenu {};
         QModelIndex lastIndex;
         QModelIndex targetFrame;
 

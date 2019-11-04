@@ -17,19 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QClipboard>
-#include <QSettings>
 #include "PIDtoIVs.hpp"
 #include "ui_PIDtoIVs.h"
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/RNGCache.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
+#include <QClipboard>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    PIDtoIVs::PIDtoIVs(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::PIDtoIVs)
+    PIDtoIVs::PIDtoIVs(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::PIDtoIVs)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -42,8 +42,6 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("pidToIVs/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
     void PIDtoIVs::setupModels()
@@ -60,23 +58,26 @@ namespace PokeFinderForms
         QAction *moveResults = contextMenu->addAction(tr("Move Result to Stationary Generator"));
         QAction *moveIVs = contextMenu->addAction(tr("Move IVs to Stationary Generator"));
 
-        auto data = [ = ](int column) { return ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(), column)); };
+        auto data = [=](int column) {
+            return ui->tableView->model()->data(
+                ui->tableView->model()->index(ui->tableView->currentIndex().row(), column));
+        };
         connect(copySeed, &QAction::triggered, this, &PIDtoIVs::copySeed);
-        connect(moveResults, &QAction::triggered, this, [ = ]
-        {
+        connect(moveResults, &QAction::triggered, this, [=] {
             QStringList ivs = data(2).toString().split(".");
-            emit moveResultsToStationary(data(0).toString(), data(1).toString(), ivs.at(0).toUShort(), ivs.at(1).toUShort(),
-                                         ivs.at(2).toUShort(), ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
+            emit moveResultsToStationary(data(0).toString(), data(1).toString(), ivs.at(0).toUShort(),
+                ivs.at(1).toUShort(), ivs.at(2).toUShort(), ivs.at(3).toUShort(), ivs.at(4).toUShort(),
+                ivs.at(5).toUShort());
         });
-        connect(moveIVs, &QAction::triggered, this, [ = ]
-        {
+        connect(moveIVs, &QAction::triggered, this, [=] {
             QStringList ivs = data(2).toString().split(".");
             emit moveResultsToStationary("", "", ivs.at(0).toUShort(), ivs.at(1).toUShort(), ivs.at(2).toUShort(),
-                                         ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
+                ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
         });
 
         QSettings setting;
-        if (setting.contains("pidToIVs/geometry")) this->restoreGeometry(setting.value("pidToIVs/geometry").toByteArray());
+        if (setting.contains("pidToIVs/geometry"))
+            this->restoreGeometry(setting.value("pidToIVs/geometry").toByteArray());
     }
 
     void PIDtoIVs::calcFromPID(u32 pid)
@@ -247,19 +248,29 @@ namespace PokeFinderForms
 
     void PIDtoIVs::addSeed(u32 seed, u32 iv1)
     {
-        model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 1")) << new QStandardItem(calcIVs(iv1, 1)));
-        model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 2")) << new QStandardItem(calcIVs(iv1, 2)));
-        model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 4")) << new QStandardItem(calcIVs(iv1, 4)));
+        model->appendRow(QList<QStandardItem *>()
+            << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 1"))
+            << new QStandardItem(calcIVs(iv1, 1)));
+        model->appendRow(QList<QStandardItem *>()
+            << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 2"))
+            << new QStandardItem(calcIVs(iv1, 2)));
+        model->appendRow(QList<QStandardItem *>()
+            << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Method 4"))
+            << new QStandardItem(calcIVs(iv1, 4)));
     }
 
     void PIDtoIVs::addSeedGC(u32 seed, u16 iv1, u16 iv2)
     {
-        model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("XD/Colo")) << new QStandardItem(calcIVsXD(iv1, iv2)));
+        model->appendRow(QList<QStandardItem *>()
+            << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("XD/Colo"))
+            << new QStandardItem(calcIVsXD(iv1, iv2)));
     }
 
     void PIDtoIVs::addSeedChannel(u32 seed, u32 iv1)
     {
-        model->appendRow(QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Channel")) << new QStandardItem(calcIVsChannel(iv1)));
+        model->appendRow(QList<QStandardItem *>()
+            << new QStandardItem(QString::number(seed, 16).toUpper()) << new QStandardItem(tr("Channel"))
+            << new QStandardItem(calcIVsChannel(iv1)));
     }
 
     void PIDtoIVs::on_pushButtonGenerate_clicked()
@@ -281,7 +292,8 @@ namespace PokeFinderForms
 
     void PIDtoIVs::copySeed()
     {
-        QVariant data = ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(), 0));
+        QVariant data
+            = ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(), 0));
         QApplication::clipboard()->setText(data.toString());
     }
 }

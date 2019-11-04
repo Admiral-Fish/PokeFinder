@@ -20,8 +20,8 @@
 #ifndef CHARACTERISTIC_HPP
 #define CHARACTERISTIC_HPP
 
-#include <QVector>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -37,9 +37,9 @@ namespace PokeFinderCore
         bool getActive() const;
 
     private:
-        u8 index{};
-        u8 stat{};
-        u8 result{};
+        u8 index {};
+        u8 stat {};
+        u8 result {};
         bool active = false;
     };
 }

@@ -22,8 +22,8 @@
 
 namespace PokeFinderModels
 {
-    Egg3Model::Egg3Model(QObject *parent, PokeFinderCore::Method method) :
-        TableModel<PokeFinderCore::Frame3>(parent)
+    Egg3Model::Egg3Model(QObject *parent, PokeFinderCore::Method method)
+        : TableModel<PokeFinderCore::Frame3>(parent)
     {
         this->method = method;
         showInheritance = false;
@@ -39,17 +39,17 @@ namespace PokeFinderModels
     {
         switch (method)
         {
-            case PokeFinderCore::Method::EBred:
-            case PokeFinderCore::Method::EBredAlternate:
-            case PokeFinderCore::Method::EBredSplit:
-                return 10;
-            case PokeFinderCore::Method::EBredPID:
-                return 8;
-            case PokeFinderCore::Method::RSBred:
-            case PokeFinderCore::Method::FRLGBred:
-                return 17;
-            default:
-                return 0;
+        case PokeFinderCore::Method::EBred:
+        case PokeFinderCore::Method::EBredAlternate:
+        case PokeFinderCore::Method::EBredSplit:
+            return 10;
+        case PokeFinderCore::Method::EBredPID:
+            return 8;
+        case PokeFinderCore::Method::RSBred:
+        case PokeFinderCore::Method::FRLGBred:
+            return 17;
+        default:
+            return 0;
         }
     }
 
@@ -60,191 +60,191 @@ namespace PokeFinderModels
             auto frame = model.at(index.row());
             switch (method)
             {
-                case PokeFinderCore::Method::EBred:
-                case PokeFinderCore::Method::EBredAlternate:
-                case PokeFinderCore::Method::EBredSplit:
-                    switch (index.column())
+            case PokeFinderCore::Method::EBred:
+            case PokeFinderCore::Method::EBredAlternate:
+            case PokeFinderCore::Method::EBredSplit:
+                switch (index.column())
+                {
+                case 0:
+                    return frame.getFrame();
+                case 1:
+                    return frame.getTime();
+                case 2:
+                    if (showInheritance)
                     {
-                        case 0:
-                            return frame.getFrame();
-                        case 1:
-                            return frame.getTime();
-                        case 2:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(0);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(0);
-                        case 3:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(1);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(1);
-                        case 4:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(2);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(2);
-                        case 5:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(3);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(3);
-                        case 6:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(4);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(4);
-                        case 7:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(5);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(5);
-                        case 8:
-                            return frame.getPowerString();
-                        case 9:
-                            return frame.getPower();
-                        default:
-                            return QVariant();
+                        QChar inh = frame.getInheritance(0);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
                     }
-                case PokeFinderCore::Method::EBredPID:
-                    switch (index.column())
+                    return frame.getIV(0);
+                case 3:
+                    if (showInheritance)
                     {
-                        case 0:
-                            return frame.getFrame();
-                        case 1:
-                            return frame.getTime();
-                        case 2:
-                            return frame.getEggFrame();
-                        case 3:
-                            return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                        case 4:
-                            return frame.getShinyString();
-                        case 5:
-                            return frame.getNatureString();
-                        case 6:
-                            return frame.getAbility();
-                        case 7:
-                            return frame.getGenderString();
+                        QChar inh = frame.getInheritance(1);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
                     }
-                case PokeFinderCore::Method::RSBred:
-                case PokeFinderCore::Method::FRLGBred:
-                    switch (index.column())
+                    return frame.getIV(1);
+                case 4:
+                    if (showInheritance)
                     {
-                        case 0:
-                            return frame.getFrame();
-                        case 1:
-                            return frame.getTime();
-                        case 2:
-                            return frame.getEggFrame();
-                        case 3:
-                            return frame.getTimeEgg();
-                        case 4:
-                            return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                        case 5:
-                            return frame.getShinyString();
-                        case 6:
-                            return frame.getNatureString();
-                        case 7:
-                            return frame.getAbility();
-                        case 8:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(0);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(0);
-                        case 9:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(1);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(1);
-                        case 10:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(2);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(2);
-                        case 11:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(3);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(3);
-                        case 12:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(4);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(4);
-                        case 13:
-                            if (showInheritance)
-                            {
-                                QChar inh = frame.getInheritance(5);
-                                if (!inh.isNull())
-                                {
-                                    return inh;
-                                }
-                            }
-                            return frame.getIV(5);
-                        case 14:
-                            return frame.getPowerString();
-                        case 15:
-                            return frame.getPower();
-                        case 16:
-                            return frame.getGenderString();
+                        QChar inh = frame.getInheritance(2);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
                     }
+                    return frame.getIV(2);
+                case 5:
+                    if (showInheritance)
+                    {
+                        QChar inh = frame.getInheritance(3);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
+                    }
+                    return frame.getIV(3);
+                case 6:
+                    if (showInheritance)
+                    {
+                        QChar inh = frame.getInheritance(4);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
+                    }
+                    return frame.getIV(4);
+                case 7:
+                    if (showInheritance)
+                    {
+                        QChar inh = frame.getInheritance(5);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
+                    }
+                    return frame.getIV(5);
+                case 8:
+                    return frame.getPowerString();
+                case 9:
+                    return frame.getPower();
                 default:
-                    break;
+                    return QVariant();
+                }
+            case PokeFinderCore::Method::EBredPID:
+                switch (index.column())
+                {
+                case 0:
+                    return frame.getFrame();
+                case 1:
+                    return frame.getTime();
+                case 2:
+                    return frame.getEggFrame();
+                case 3:
+                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+                case 4:
+                    return frame.getShinyString();
+                case 5:
+                    return frame.getNatureString();
+                case 6:
+                    return frame.getAbility();
+                case 7:
+                    return frame.getGenderString();
+                }
+            case PokeFinderCore::Method::RSBred:
+            case PokeFinderCore::Method::FRLGBred:
+                switch (index.column())
+                {
+                case 0:
+                    return frame.getFrame();
+                case 1:
+                    return frame.getTime();
+                case 2:
+                    return frame.getEggFrame();
+                case 3:
+                    return frame.getTimeEgg();
+                case 4:
+                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+                case 5:
+                    return frame.getShinyString();
+                case 6:
+                    return frame.getNatureString();
+                case 7:
+                    return frame.getAbility();
+                case 8:
+                    if (showInheritance)
+                    {
+                        QChar inh = frame.getInheritance(0);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
+                    }
+                    return frame.getIV(0);
+                case 9:
+                    if (showInheritance)
+                    {
+                        QChar inh = frame.getInheritance(1);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
+                    }
+                    return frame.getIV(1);
+                case 10:
+                    if (showInheritance)
+                    {
+                        QChar inh = frame.getInheritance(2);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
+                    }
+                    return frame.getIV(2);
+                case 11:
+                    if (showInheritance)
+                    {
+                        QChar inh = frame.getInheritance(3);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
+                    }
+                    return frame.getIV(3);
+                case 12:
+                    if (showInheritance)
+                    {
+                        QChar inh = frame.getInheritance(4);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
+                    }
+                    return frame.getIV(4);
+                case 13:
+                    if (showInheritance)
+                    {
+                        QChar inh = frame.getInheritance(5);
+                        if (!inh.isNull())
+                        {
+                            return inh;
+                        }
+                    }
+                    return frame.getIV(5);
+                case 14:
+                    return frame.getPowerString();
+                case 15:
+                    return frame.getPower();
+                case 16:
+                    return frame.getGenderString();
+                }
+            default:
+                break;
             }
         }
         else if (role == Qt::FontRole)
@@ -252,92 +252,93 @@ namespace PokeFinderModels
             auto frame = model.at(index.row());
             switch (method)
             {
-                case PokeFinderCore::Method::EBred:
-                case PokeFinderCore::Method::EBredSplit:
-                case PokeFinderCore::Method::EBredAlternate:
-                    switch (index.column())
+            case PokeFinderCore::Method::EBred:
+            case PokeFinderCore::Method::EBredSplit:
+            case PokeFinderCore::Method::EBredAlternate:
+                switch (index.column())
+                {
+                case 2:
+                    if (!showInheritance || frame.getInheritance(0).isNull())
                     {
-                        case 2:
-                            if (!showInheritance || frame.getInheritance(0).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
-                            }
-                            break;
-                        case 3:
-                            if (!showInheritance || frame.getInheritance(1).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
-                            }
-                            break;
-                        case 4:
-                            if (!showInheritance || frame.getInheritance(2).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
-                            }
-                            break;
-                        case 5:
-                            if (!showInheritance || frame.getInheritance(3).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
-                            }
-                            break;
-                        case 6:
-                            if (!showInheritance || frame.getInheritance(4).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
-                            }
-                            break;
-                        case 7:
-                            if (!showInheritance || frame.getInheritance(5).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
-                            }
-                            break;
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
                     }
                     break;
-                case PokeFinderCore::Method::RSBred:
-                case PokeFinderCore::Method::FRLGBred:
-                    switch (index.column())
+                case 3:
+                    if (!showInheritance || frame.getInheritance(1).isNull())
                     {
-                        case 8:
-                            if (!showInheritance || frame.getInheritance(0).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
-                            }
-                            break;
-                        case 9:
-                            if (!showInheritance || frame.getInheritance(1).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
-                            }
-                            break;
-                        case 10:
-                            if (!showInheritance || frame.getInheritance(2).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
-                            }
-                            break;
-                        case 11:
-                            if (!showInheritance || frame.getInheritance(3).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
-                            }
-                            break;
-                        case 12:
-                            if (!showInheritance || frame.getInheritance(4).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
-                            }
-                            break;
-                        case 13:
-                            if (!showInheritance || frame.getInheritance(5).isNull())
-                            {
-                                return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
-                            }
-                            break;
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
                     }
-                default:
                     break;
+                case 4:
+                    if (!showInheritance || frame.getInheritance(2).isNull())
+                    {
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
+                    }
+                    break;
+                case 5:
+                    if (!showInheritance || frame.getInheritance(3).isNull())
+                    {
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
+                    }
+                    break;
+                case 6:
+                    if (!showInheritance || frame.getInheritance(4).isNull())
+                    {
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
+                    }
+                    break;
+                case 7:
+                    if (!showInheritance || frame.getInheritance(5).isNull())
+                    {
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
+                    }
+                    break;
+                }
+                break;
+            case PokeFinderCore::Method::RSBred:
+            case PokeFinderCore::Method::FRLGBred:
+                switch (index.column())
+                {
+                case 8:
+                    if (!showInheritance || frame.getInheritance(0).isNull())
+                    {
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
+                    }
+                    break;
+                case 9:
+                    if (!showInheritance || frame.getInheritance(1).isNull())
+                    {
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
+                    }
+                    break;
+                case 10:
+                    if (!showInheritance || frame.getInheritance(2).isNull())
+                    {
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
+                    }
+                    break;
+                case 11:
+                    if (!showInheritance || frame.getInheritance(3).isNull())
+                    {
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
+                    }
+                    break;
+                case 12:
+                    if (!showInheritance || frame.getInheritance(4).isNull())
+                    {
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
+                    }
+                    break;
+                case 13:
+                    if (!showInheritance || frame.getInheritance(5).isNull())
+                    {
+                        return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
+                    }
+                    break;
+                }
+                break;
+            default:
+                break;
             }
         }
         return QVariant();
@@ -349,17 +350,17 @@ namespace PokeFinderModels
         {
             switch (method)
             {
-                case PokeFinderCore::Method::EBred:
-                case PokeFinderCore::Method::EBredSplit:
-                case PokeFinderCore::Method::EBredAlternate:
-                    return header1.at(section);
-                case PokeFinderCore::Method::EBredPID:
-                    return header2.at(section);
-                case PokeFinderCore::Method::RSBred:
-                case PokeFinderCore::Method::FRLGBred:
-                    return header3.at(section);
-                default:
-                    break;
+            case PokeFinderCore::Method::EBred:
+            case PokeFinderCore::Method::EBredSplit:
+            case PokeFinderCore::Method::EBredAlternate:
+                return header1.at(section);
+            case PokeFinderCore::Method::EBredPID:
+                return header2.at(section);
+            case PokeFinderCore::Method::RSBred:
+            case PokeFinderCore::Method::FRLGBred:
+                return header3.at(section);
+            default:
+                break;
             }
         }
         return QVariant();

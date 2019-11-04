@@ -17,21 +17,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include "GameCubeSeedFinder.hpp"
+#include "ui_GameCubeSeedFinder.h"
+#include <Core/Gen3/GameCubeSeedSearcher.hpp>
+#include <Core/Util/Translator.hpp>
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QMessageBox>
 #include <QSettings>
 #include <QUrl>
-#include "GameCubeSeedFinder.hpp"
-#include "ui_GameCubeSeedFinder.h"
-#include <Core/Gen3/GameCubeSeedSearcher.hpp>
-#include <Core/Util/Translator.hpp>
 
 namespace PokeFinderForms
 {
-    GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::GameCubeSeedFinder)
+    GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::GameCubeSeedFinder)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -45,7 +45,8 @@ namespace PokeFinderForms
         ui->textBoxGalesTopRight->setValues(1, 714, 10);
         ui->textBoxGalesBottomRight->setValues(1, 714, 10);
 
-        QStringList gales = PokeFinderCore::Translator::getSpecies({ 150, 151, 386, 384, 385, 144, 145, 146, 115, 380 });
+        QStringList gales
+            = PokeFinderCore::Translator::getSpecies({ 150, 151, 386, 384, 385, 144, 145, 146, 115, 380 });
         ui->radioButtonGalesMewtwo->setText(gales.at(0));
         ui->radioButtonGalesMew->setText(gales.at(1));
         ui->radioButtonGalesDeoxys->setText(gales.at(2));
@@ -68,7 +69,8 @@ namespace PokeFinderForms
         ui->radioButtonColoHeracross->setText(colo.at(7));
 
         QSettings setting;
-        if (setting.contains("gameCubeSeedFinder/geometry")) this->restoreGeometry(setting.value("gameCubeSeedFinder/geometry").toByteArray());
+        if (setting.contains("gameCubeSeedFinder/geometry"))
+            this->restoreGeometry(setting.value("gameCubeSeedFinder/geometry").toByteArray());
 
         qRegisterMetaType<QVector<u32>>("QVector<u32>");
     }
@@ -77,41 +79,52 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("gameCubeSeedFinder/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
     void GameCubeSeedFinder::on_pushButtonGalesSearch_clicked()
     {
         u32 num1, num2;
-        if (ui->radioButtonGalesMewtwo->isChecked()) num1 = 0;
-        else if (ui->radioButtonGalesMew->isChecked()) num1 = 1;
-        else if (ui->radioButtonGalesDeoxys->isChecked()) num1 = 2;
-        else if (ui->radioButtonGalesRayquaza->isChecked()) num1 = 3;
-        else num1 = 4;
+        if (ui->radioButtonGalesMewtwo->isChecked())
+            num1 = 0;
+        else if (ui->radioButtonGalesMew->isChecked())
+            num1 = 1;
+        else if (ui->radioButtonGalesDeoxys->isChecked())
+            num1 = 2;
+        else if (ui->radioButtonGalesRayquaza->isChecked())
+            num1 = 3;
+        else
+            num1 = 4;
 
-        if (ui->radioButtonGalesArticuno->isChecked()) num2 = 0;
-        else if (ui->radioButtonGalesZapdos->isChecked()) num2 = 1;
-        else if (ui->radioButtonGalesMoltres->isChecked()) num2 = 2;
-        else if (ui->radioButtonGalesKangaskhan->isChecked()) num2 = 3;
-        else num2 = 4;
+        if (ui->radioButtonGalesArticuno->isChecked())
+            num2 = 0;
+        else if (ui->radioButtonGalesZapdos->isChecked())
+            num2 = 1;
+        else if (ui->radioButtonGalesMoltres->isChecked())
+            num2 = 2;
+        else if (ui->radioButtonGalesKangaskhan->isChecked())
+            num2 = 3;
+        else
+            num2 = 4;
 
         u16 topLeft = ui->textBoxGalesTopLeft->getUShort();
         u16 bottomLeft = ui->textBoxGalesBottomLeft->getUShort();
         u16 topRight = ui->textBoxGalesTopRight->getUShort();
         u16 bottomRight = ui->textBoxGalesBottomRight->getUShort();
 
-        auto *searcher = new PokeFinderCore::GameCubeSeedSearcher(PokeFinderCore::Game::Gales, { num1, num2, topLeft, bottomLeft, topRight, bottomRight });
+        auto *searcher = new PokeFinderCore::GameCubeSeedSearcher(
+            PokeFinderCore::Game::Gales, { num1, num2, topLeft, bottomLeft, topRight, bottomRight });
         if (galesRound == 1)
         {
             galeSeeds = searcher->getInitialSeeds(num1, num2);
 
             if (galeSeeds.isEmpty())
             {
-                QMessageBox info(QMessageBox::Question, tr("Missing precalc file"), tr("Would you like to download the precalc file?"), QMessageBox::Yes | QMessageBox::No);
+                QMessageBox info(QMessageBox::Question, tr("Missing precalc file"),
+                    tr("Would you like to download the precalc file?"), QMessageBox::Yes | QMessageBox::No);
                 if (info.exec() == QMessageBox::Yes)
                 {
-                    QDesktopServices::openUrl(QUrl("https://github.com/aldelaro5/GC-pokemon-RNG-manipulation-assistant/releases"));
+                    QDesktopServices::openUrl(
+                        QUrl("https://github.com/aldelaro5/GC-pokemon-RNG-manipulation-assistant/releases"));
                 }
                 return;
             }
@@ -123,10 +136,16 @@ namespace PokeFinderForms
             ui->pushButtonGalesSearch->setEnabled(false);
             ui->pushButtonGalesCancel->setEnabled(true);
 
-            connect(searcher, &PokeFinderCore::GameCubeSeedSearcher::finished, this, [ = ] { ui->pushButtonGalesSearch->setEnabled(true); ui->pushButtonGalesCancel->setEnabled(false); });
-            connect(searcher, &PokeFinderCore::GameCubeSeedSearcher::updateProgress, this, &GameCubeSeedFinder::updateGalesProgress);
-            connect(searcher, &PokeFinderCore::GameCubeSeedSearcher::outputSeeds, this, &GameCubeSeedFinder::updateGales);
-            connect(ui->pushButtonGalesCancel, &QPushButton::clicked, searcher, &PokeFinderCore::GameCubeSeedSearcher::cancelSearch);
+            connect(searcher, &PokeFinderCore::GameCubeSeedSearcher::finished, this, [=] {
+                ui->pushButtonGalesSearch->setEnabled(true);
+                ui->pushButtonGalesCancel->setEnabled(false);
+            });
+            connect(searcher, &PokeFinderCore::GameCubeSeedSearcher::updateProgress, this,
+                &GameCubeSeedFinder::updateGalesProgress);
+            connect(
+                searcher, &PokeFinderCore::GameCubeSeedSearcher::outputSeeds, this, &GameCubeSeedFinder::updateGales);
+            connect(ui->pushButtonGalesCancel, &QPushButton::clicked, searcher,
+                &PokeFinderCore::GameCubeSeedSearcher::cancelSearch);
 
             ui->progressBarGales->setValue(0);
             ui->progressBarGales->setMaximum(galeSeeds.size());
@@ -148,18 +167,29 @@ namespace PokeFinderForms
     void GameCubeSeedFinder::on_pushButtonColoSearch_clicked()
     {
         u32 num1, num2;
-        if (ui->radioButtonColoBlaziken->isChecked()) num1 = 0;
-        else if (ui->radioButtonColoEntei->isChecked()) num1 = 1;
-        else if (ui->radioButtonColoSwampert->isChecked()) num1 = 2;
-        else if (ui->radioButtonColoRaikou->isChecked()) num1 = 3;
-        else if (ui->radioButtonColoMeganium->isChecked()) num1 = 4;
-        else if (ui->radioButtonColoSuicune->isChecked()) num1 = 5;
-        else if (ui->radioButtonColoMetagross->isChecked()) num1 = 6;
-        else num1 = 7;
+        if (ui->radioButtonColoBlaziken->isChecked())
+            num1 = 0;
+        else if (ui->radioButtonColoEntei->isChecked())
+            num1 = 1;
+        else if (ui->radioButtonColoSwampert->isChecked())
+            num1 = 2;
+        else if (ui->radioButtonColoRaikou->isChecked())
+            num1 = 3;
+        else if (ui->radioButtonColoMeganium->isChecked())
+            num1 = 4;
+        else if (ui->radioButtonColoSuicune->isChecked())
+            num1 = 5;
+        else if (ui->radioButtonColoMetagross->isChecked())
+            num1 = 6;
+        else
+            num1 = 7;
 
-        if (ui->radioButtonColoWes->isChecked()) num2 = 0;
-        else if (ui->radioButtonColoSeth->isChecked()) num2 = 1;
-        else num2 = 2;
+        if (ui->radioButtonColoWes->isChecked())
+            num2 = 0;
+        else if (ui->radioButtonColoSeth->isChecked())
+            num2 = 1;
+        else
+            num2 = 2;
 
         auto *searcher = new PokeFinderCore::GameCubeSeedSearcher(PokeFinderCore::Game::Colosseum, { num1, num2 });
         if (coloRound == 1)
@@ -168,10 +198,12 @@ namespace PokeFinderForms
 
             if (coloSeeds.isEmpty())
             {
-                QMessageBox info(QMessageBox::Question, tr("Missing precalc file"), tr("Would you like to download the precalc file?"), QMessageBox::Yes | QMessageBox::No);
+                QMessageBox info(QMessageBox::Question, tr("Missing precalc file"),
+                    tr("Would you like to download the precalc file?"), QMessageBox::Yes | QMessageBox::No);
                 if (info.exec() == QMessageBox::Yes)
                 {
-                    QDesktopServices::openUrl(QUrl("https://github.com/aldelaro5/GC-pokemon-RNG-manipulation-assistant/releases"));
+                    QDesktopServices::openUrl(
+                        QUrl("https://github.com/aldelaro5/GC-pokemon-RNG-manipulation-assistant/releases"));
                 }
                 return;
             }
@@ -183,10 +215,16 @@ namespace PokeFinderForms
             ui->pushButtonColoSearch->setEnabled(false);
             ui->pushButtonColoCancel->setEnabled(true);
 
-            connect(searcher, &PokeFinderCore::GameCubeSeedSearcher::finished, this, [ = ] { ui->pushButtonColoSearch->setEnabled(true); ui->pushButtonColoCancel->setEnabled(false); });
-            connect(searcher, &PokeFinderCore::GameCubeSeedSearcher::updateProgress, this, &GameCubeSeedFinder::updateColoProgress);
-            connect(searcher, &PokeFinderCore::GameCubeSeedSearcher::outputSeeds, this, &GameCubeSeedFinder::updateColo);
-            connect(ui->pushButtonColoCancel, &QPushButton::clicked, searcher, &PokeFinderCore::GameCubeSeedSearcher::cancelSearch);
+            connect(searcher, &PokeFinderCore::GameCubeSeedSearcher::finished, this, [=] {
+                ui->pushButtonColoSearch->setEnabled(true);
+                ui->pushButtonColoCancel->setEnabled(false);
+            });
+            connect(searcher, &PokeFinderCore::GameCubeSeedSearcher::updateProgress, this,
+                &GameCubeSeedFinder::updateColoProgress);
+            connect(
+                searcher, &PokeFinderCore::GameCubeSeedSearcher::outputSeeds, this, &GameCubeSeedFinder::updateColo);
+            connect(ui->pushButtonColoCancel, &QPushButton::clicked, searcher,
+                &PokeFinderCore::GameCubeSeedSearcher::cancelSearch);
 
             ui->progressBarColo->setValue(0);
             ui->progressBarColo->setMaximum(coloSeeds.size());
@@ -213,7 +251,8 @@ namespace PokeFinderForms
         {
             QString seed = QString::number(galeSeeds.at(0), 16).toUpper();
             ui->labelGalesResults->setText(tr("Seed: ") + seed);
-            QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is ") + seed + ".\n Copy to clipboard?", QMessageBox::Yes | QMessageBox::No);
+            QMessageBox info(QMessageBox::Question, tr("Seed found"),
+                tr("Your seed is ") + seed + ".\n Copy to clipboard?", QMessageBox::Yes | QMessageBox::No);
             if (info.exec() == QMessageBox::Yes)
             {
                 QApplication::clipboard()->setText(seed);
@@ -225,10 +264,7 @@ namespace PokeFinderForms
         }
     }
 
-    void GameCubeSeedFinder::updateGalesProgress(int progress)
-    {
-        ui->progressBarGales->setValue(progress);
-    }
+    void GameCubeSeedFinder::updateGalesProgress(int progress) { ui->progressBarGales->setValue(progress); }
 
     void GameCubeSeedFinder::updateColo(const QVector<u32> &seeds)
     {
@@ -238,7 +274,8 @@ namespace PokeFinderForms
         {
             QString seed = QString::number(coloSeeds.at(0), 16).toUpper();
             ui->labelColoResults->setText(tr("Seed: ") + seed);
-            QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is ") + seed + ".\n Copy to clipboard?", QMessageBox::Yes | QMessageBox::No);
+            QMessageBox info(QMessageBox::Question, tr("Seed found"),
+                tr("Your seed is ") + seed + ".\n Copy to clipboard?", QMessageBox::Yes | QMessageBox::No);
             if (info.exec() == QMessageBox::Yes)
             {
                 QApplication::clipboard()->setText(seed);
@@ -250,8 +287,5 @@ namespace PokeFinderForms
         }
     }
 
-    void GameCubeSeedFinder::updateColoProgress(int progress)
-    {
-        ui->progressBarColo->setValue(progress);
-    }
+    void GameCubeSeedFinder::updateColoProgress(int progress) { ui->progressBarColo->setValue(progress); }
 }

@@ -22,8 +22,8 @@
 
 namespace PokeFinderModels
 {
-    SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, PokeFinderCore::Game version) :
-        TableModel<PokeFinderCore::DateTime>(parent)
+    SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, PokeFinderCore::Game version)
+        : TableModel<PokeFinderCore::DateTime>(parent)
     {
         calibrate = flag;
         this->version = version;
@@ -40,7 +40,7 @@ namespace PokeFinderModels
     {
         if (calibrate)
         {
-            return version & PokeFinderCore::Game::HGSS ? 6 : 5;
+            return (version & PokeFinderCore::Game::HGSS) ? 6 : 5;
         }
         return 3;
     }
@@ -54,35 +54,35 @@ namespace PokeFinderModels
             {
                 switch (index.column())
                 {
-                    case 0:
-                        return QString::number(frame.getSeed(), 16).toUpper().toUpper().rightJustified(8, '0');
-                    case 1:
-                        return frame.getDate();
-                    case 2:
-                        return frame.getTime();
-                    case 3:
-                        return frame.getDelay();
-                    case 4:
-                        return version & PokeFinderCore::Game::HGSS ?
-                               PokeFinderCore::Utilities::getCalls(frame.getSeed(), 15, frame.getInfo()) :
-                               PokeFinderCore::Utilities::coinFlips(frame.getSeed(), 15);
-                    case 5:
-                        {
-                            QString str = frame.getInfo().getRouteString();
-                            return str.isEmpty() ? tr("No roamers") : str;
-                        }
+                case 0:
+                    return QString::number(frame.getSeed(), 16).toUpper().toUpper().rightJustified(8, '0');
+                case 1:
+                    return frame.getDate();
+                case 2:
+                    return frame.getTime();
+                case 3:
+                    return frame.getDelay();
+                case 4:
+                    return (version & PokeFinderCore::Game::HGSS)
+                        ? PokeFinderCore::Utilities::getCalls(frame.getSeed(), 15, frame.getInfo())
+                        : PokeFinderCore::Utilities::coinFlips(frame.getSeed(), 15);
+                case 5:
+                {
+                    QString str = frame.getInfo().getRouteString();
+                    return str.isEmpty() ? tr("No roamers") : str;
+                }
                 }
             }
             else
             {
                 switch (index.column())
                 {
-                    case 0:
-                        return frame.getDate();
-                    case 1:
-                        return frame.getTime();
-                    case 2:
-                        return frame.getDelay();
+                case 0:
+                    return frame.getDate();
+                case 1:
+                    return frame.getTime();
+                case 2:
+                    return frame.getDelay();
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace PokeFinderModels
         {
             if (calibrate)
             {
-                return version & PokeFinderCore::Game::HGSS ? header1.at(section) : header2.at(section);
+                return (version & PokeFinderCore::Game::HGSS) ? header1.at(section) : header2.at(section);
             }
             return header3.at(section);
         }

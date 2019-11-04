@@ -30,7 +30,7 @@ namespace PokeFinderCore
     class FrameCompare;
     class Frame3;
 
-    class Generator3: public Generator
+    class Generator3 : public Generator
     {
     public:
         Generator3();
@@ -41,8 +41,8 @@ namespace PokeFinderCore
         void setShadowTeam(u8 index, int type);
 
     private:
-        u8 ivFirst{};
-        u8 ivSecond{};
+        u8 ivFirst {};
+        u8 ivSecond {};
         EncounterArea3 encounter;
         ShadowTeam team;
         int type;

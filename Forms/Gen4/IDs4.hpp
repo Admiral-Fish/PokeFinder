@@ -20,9 +20,9 @@
 #ifndef IDS4_HPP
 #define IDS4_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderForms
 {
@@ -42,10 +42,10 @@ namespace PokeFinderForms
         ~IDs4() override;
 
     private:
-        Ui::IDs4 *ui;
-        QStandardItemModel *shinyPID{};
-        QStandardItemModel *tidSID{};
-        QStandardItemModel *seedFinder{};
+        std::unique_ptr<Ui::IDs4> ui;
+        QStandardItemModel *shinyPID {};
+        QStandardItemModel *tidSID {};
+        QStandardItemModel *seedFinder {};
 
         void setupModels();
 

@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QVector>
 #include "EncounterSlot.hpp"
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -52,17 +52,17 @@ namespace PokeFinderCore
         u8 compare = result % 100;
         switch (encounterType)
         {
-            case Encounter::OldRod:
-                return calcSlot(compare, { 70, 100 });
-            case Encounter::GoodRod:
-                return calcSlot(compare, { 60, 80, 100 });
-            case Encounter::SuperRod:
-                return calcSlot(compare, { 40, 80, 95, 99, 100 });
-            case Encounter::Surfing:
-            case Encounter::RockSmash:
-                return calcSlot(compare, { 60, 90, 95, 99, 100 });
-            default:
-                return calcSlot(compare, { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+        case Encounter::OldRod:
+            return calcSlot(compare, { 70, 100 });
+        case Encounter::GoodRod:
+            return calcSlot(compare, { 60, 80, 100 });
+        case Encounter::SuperRod:
+            return calcSlot(compare, { 40, 80, 95, 99, 100 });
+        case Encounter::Surfing:
+        case Encounter::RockSmash:
+            return calcSlot(compare, { 60, 90, 95, 99, 100 });
+        default:
+            return calcSlot(compare, { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
         }
     }
 
@@ -72,14 +72,14 @@ namespace PokeFinderCore
         u8 compare = result / 656;
         switch (encounterType)
         {
-            case Encounter::GoodRod:
-            case Encounter::SuperRod:
-                return calcSlot(compare, { 40, 80, 95, 99, 100 });
-            case Encounter::OldRod:
-            case Encounter::Surfing:
-                return calcSlot(compare, { 60, 90, 95, 99, 100 });
-            default:
-                return calcSlot(compare, { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+        case Encounter::GoodRod:
+        case Encounter::SuperRod:
+            return calcSlot(compare, { 40, 80, 95, 99, 100 });
+        case Encounter::OldRod:
+        case Encounter::Surfing:
+            return calcSlot(compare, { 60, 90, 95, 99, 100 });
+        default:
+            return calcSlot(compare, { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
         }
     }
 
@@ -89,22 +89,24 @@ namespace PokeFinderCore
         u8 compare = result % 100;
         switch (encounterType)
         {
-            case Encounter::OldRod:
-            case Encounter::GoodRod:
-            case Encounter::SuperRod:
-                return calcSlot(compare, { 40, 70, 85, 95, 100 });
-            case Encounter::Surfing:
-                return calcSlot(compare, { 60, 90, 95, 99, 100 });
-            case Encounter::BugCatchingContest:
-                return calcSlot(compare, { { 80, 99 }, { 60, 79 }, { 50, 59 }, { 40, 49 }, { 30, 39 }, { 20, 29 }, { 15, 19 }, { 10, 14 }, { 5, 9 }, { 0, 4 } });
-            case Encounter::SafariZone:
-                return compare % 10;
-            case Encounter::HeadButt:
-                return calcSlot(compare, { 50, 65, 80, 90, 95, 100 });
-            case Encounter::RockSmash:
-                return calcSlot(compare, { 80, 100 });
-            default:
-                return calcSlot(compare, { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
+        case Encounter::OldRod:
+        case Encounter::GoodRod:
+        case Encounter::SuperRod:
+            return calcSlot(compare, { 40, 70, 85, 95, 100 });
+        case Encounter::Surfing:
+            return calcSlot(compare, { 60, 90, 95, 99, 100 });
+        case Encounter::BugCatchingContest:
+            return calcSlot(compare,
+                { { 80, 99 }, { 60, 79 }, { 50, 59 }, { 40, 49 }, { 30, 39 }, { 20, 29 }, { 15, 19 }, { 10, 14 },
+                    { 5, 9 }, { 0, 4 } });
+        case Encounter::SafariZone:
+            return compare % 10;
+        case Encounter::HeadButt:
+            return calcSlot(compare, { 50, 65, 80, 90, 95, 100 });
+        case Encounter::RockSmash:
+            return calcSlot(compare, { 80, 100 });
+        default:
+            return calcSlot(compare, { 20, 40, 50, 60, 70, 80, 85, 90, 94, 98, 99, 100 });
         }
     }
 }

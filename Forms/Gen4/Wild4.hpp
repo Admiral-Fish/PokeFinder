@@ -20,9 +20,9 @@
 #ifndef WILD4_HPP
 #define WILD4_HPP
 
-#include <QMenu>
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Gen4/Profile4.hpp>
+#include <QMenu>
 
 namespace PokeFinderCore
 {
@@ -54,12 +54,12 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        Ui::Wild4 *ui;
+        std::unique_ptr<Ui::Wild4> ui;
         QVector<PokeFinderCore::Profile4> profiles;
-        PokeFinderModels::Searcher4Model *searcherModel{};
-        PokeFinderModels::Wild4Model *generatorModel{};
-        QMenu *generatorMenu{};
-        QMenu *searcherMenu{};
+        PokeFinderModels::Searcher4Model *searcherModel {};
+        PokeFinderModels::Wild4Model *generatorModel {};
+        QMenu *generatorMenu {};
+        QMenu *searcherMenu {};
         QVector<PokeFinderCore::EncounterArea4> encounterGenerator;
         QVector<PokeFinderCore::EncounterArea4> encounterSearcher;
 

@@ -20,8 +20,8 @@
 #ifndef STATIONARY4_HPP
 #define STATIONARY4_HPP
 
-#include <QMenu>
 #include <Core/Gen4/Profile4.hpp>
+#include <QMenu>
 
 namespace PokeFinderCore
 {
@@ -53,12 +53,12 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        Ui::Stationary4 *ui;
-        PokeFinderModels::Searcher4Model *searcherModel{};
-        PokeFinderModels::Stationary4Model *generatorModel{};
+        std::unique_ptr<Ui::Stationary4> ui;
+        PokeFinderModels::Searcher4Model *searcherModel {};
+        PokeFinderModels::Stationary4Model *generatorModel {};
         QVector<PokeFinderCore::Profile4> profiles;
-        QMenu *generatorMenu{};
-        QMenu *searcherMenu{};
+        QMenu *generatorMenu {};
+        QMenu *searcherMenu {};
 
         void setupModels();
 

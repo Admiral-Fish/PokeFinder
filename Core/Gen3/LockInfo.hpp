@@ -20,8 +20,8 @@
 #ifndef LOCKINFO_HPP
 #define LOCKINFO_HPP
 
-#include <QVector>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -40,7 +40,6 @@ namespace PokeFinderCore
         u8 genderLower;
         u8 nature;
         bool free;
-
     };
 
     class ShadowTeam

@@ -17,12 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QtConcurrent>
 #include "EggSearcher4.hpp"
+#include <QtConcurrent>
 
 namespace PokeFinderCore
 {
-    EggSearcher4::EggSearcher4(const Egg4 &generatorIV, const Egg4 &generatorPID, const FrameCompare &compare, u32 minDelay, u32 maxDelay, int type)
+    EggSearcher4::EggSearcher4(const Egg4 &generatorIV, const Egg4 &generatorPID, const FrameCompare &compare,
+        u32 minDelay, u32 maxDelay, int type)
     {
         this->generatorIV = generatorIV;
         this->generatorPID = generatorPID;
@@ -34,8 +35,7 @@ namespace PokeFinderCore
         cancel = false;
         progress = 0;
 
-        connect(this, &EggSearcher4::finished, this, [ = ]
-        {
+        connect(this, &EggSearcher4::finished, this, [=] {
             searching = false;
             emit updateProgress(getResults(), progress);
             QTimer::singleShot(1000, this, &EggSearcher4::deleteLater);
@@ -52,17 +52,14 @@ namespace PokeFinderCore
 
             auto *timer = new QTimer(this);
             connect(this, &EggSearcher4::finished, timer, &QTimer::stop);
-            connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+            connect(timer, &QTimer::timeout, this, [=] { emit updateProgress(getResults(), progress); });
             timer->start(1000);
 
-            QtConcurrent::run([ = ] { search(); });
+            QtConcurrent::run([=] { search(); });
         }
     }
 
-    void EggSearcher4::cancelSearch()
-    {
-        cancel = true;
-    }
+    void EggSearcher4::cancelSearch() { cancel = true; }
 
     void EggSearcher4::search()
     {
@@ -115,7 +112,7 @@ namespace PokeFinderCore
                                 for (const auto &frameIV : framesIV)
                                 {
                                     framePID.setIVs(frameIV.getIV(0), frameIV.getIV(1), frameIV.getIV(2),
-                                                    frameIV.getIV(3), frameIV.getIV(4), frameIV.getIV(5));
+                                        frameIV.getIV(3), frameIV.getIV(4), frameIV.getIV(5));
                                     for (u8 i = 0; i < 6; i++)
                                     {
                                         framePID.setInheritance(i, frameIV.getInheritance(i));

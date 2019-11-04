@@ -20,9 +20,9 @@
 #ifndef RESEARCHER_HPP
 #define RESEARCHER_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QHash>
 #include <QMessageBox>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderCore
 {
@@ -49,12 +49,13 @@ namespace PokeFinderForms
         ~Researcher() override;
 
     private:
-        Ui::Researcher *ui;
-        PokeFinderModels::ResearcherModel *model{};
+        std::unique_ptr<Ui::Researcher> ui;
+        PokeFinderModels::ResearcherModel *model {};
         QHash<QString, u8> keys;
 
         void setupModels();
-        u64 getCustom(const QString &text, const PokeFinderCore::ResearcherFrame &frame, const QVector<PokeFinderCore::ResearcherFrame> &frames);
+        u64 getCustom(const QString &text, const PokeFinderCore::ResearcherFrame &frame,
+            const QVector<PokeFinderCore::ResearcherFrame> &frames);
         void resizeHeader();
         QVector<bool> getHexCheck();
         static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }

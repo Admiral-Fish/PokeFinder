@@ -28,7 +28,6 @@ constexpr u32 TEMPERINGMASKC = 0xEFC60000;
 constexpr u32 TEMPERINGMASKC2 = 0xEF000000;
 constexpr u32 mag01[2] = { 0x0, 0x9908B0DF };
 
-
 namespace PokeFinderCore
 {
     void MT::advanceFrames(u32 frames)
@@ -78,16 +77,9 @@ namespace PokeFinderCore
         advanceFrames(frames);
     }
 
-    u16 MT::nextUShort(u32 frames)
-    {
-        return nextUInt(frames) >> 16;
-    }
+    u16 MT::nextUShort(u32 frames) { return nextUInt(frames) >> 16; }
 
-    u32 MT::next(u32 frames)
-    {
-        return nextUInt(frames);
-    }
-
+    u32 MT::next(u32 frames) { return nextUInt(frames); }
 
     MersenneTwister::MersenneTwister(u32 seed, u32 frames)
     {
@@ -108,7 +100,6 @@ namespace PokeFinderCore
         return y;
     }
 
-
     MersenneTwisterUntempered::MersenneTwisterUntempered(u32 seed, u32 frames)
     {
         initialize(seed);
@@ -121,11 +112,9 @@ namespace PokeFinderCore
         return mt[index++];
     }
 
-
     MersenneTwisterFast::MersenneTwisterFast(u32 calls, u32 seed, u32 frames)
+        : maxCalls(calls)
     {
-        maxCalls = calls;
-
         if (maxCalls > 227)
         {
             return;

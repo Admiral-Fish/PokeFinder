@@ -57,16 +57,16 @@ namespace PokeFinderCore
     {
         switch (frameType)
         {
-            case Method::Gen4Normal:
-                return generatePID(compare);
-            case Method::Gen4Masuada:
-                return generatePIDMasuada(compare);
-            case Method::DPPtIVs:
-                return generateIVsDPPt(compare);
-            case Method::HGSSIVs:
-                return generateIVsHGSS(compare);
-            default:
-                return QVector<Frame4>();
+        case Method::Gen4Normal:
+            return generatePID(compare);
+        case Method::Gen4Masuada:
+            return generatePIDMasuada(compare);
+        case Method::DPPtIVs:
+            return generateIVsDPPt(compare);
+        case Method::HGSSIVs:
+            return generateIVsHGSS(compare);
+        default:
+            return QVector<Frame4>();
         }
     }
 
@@ -130,17 +130,15 @@ namespace PokeFinderCore
 
         PokeRNG rng(seed, initialFrame - 1);
         QVector<u16> rngList(maxResults + 8);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         for (u32 cnt = 0; cnt < maxResults; cnt++)
         {
             Frame4 frame(tid, sid, psv);
             frame.setInitialSeed(seed);
-            frame.setInheritance(rngList.at(cnt), rngList.at(cnt + 1), rngList.at(cnt + 5), rngList.at(cnt + 6), rngList.at(cnt + 7),
-                                 rngList.at(cnt + 2), rngList.at(cnt + 3), rngList.at(cnt + 4), parent1, parent2, true);
+            frame.setInheritance(rngList.at(cnt), rngList.at(cnt + 1), rngList.at(cnt + 5), rngList.at(cnt + 6),
+                rngList.at(cnt + 7), rngList.at(cnt + 2), rngList.at(cnt + 3), rngList.at(cnt + 4), parent1, parent2,
+                true);
 
             if (compare.compareIVs(frame))
             {
@@ -159,17 +157,14 @@ namespace PokeFinderCore
 
         PokeRNG rng(seed, initialFrame - 1);
         QVector<u16> rngList(maxResults + 8);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         for (u32 cnt = 0; cnt < maxResults; cnt++)
         {
             Frame4 frame(tid, sid, psv);
             frame.setInitialSeed(seed);
-            frame.setInheritance(rngList.at(cnt), rngList.at(cnt + 1), rngList.at(cnt + 5), rngList.at(cnt + 6), rngList.at(cnt + 7),
-                                 rngList.at(cnt + 2), rngList.at(cnt + 3), rngList.at(cnt + 4), parent1, parent2);
+            frame.setInheritance(rngList.at(cnt), rngList.at(cnt + 1), rngList.at(cnt + 5), rngList.at(cnt + 6),
+                rngList.at(cnt + 7), rngList.at(cnt + 2), rngList.at(cnt + 3), rngList.at(cnt + 4), parent1, parent2);
 
             if (compare.compareIVs(frame))
             {

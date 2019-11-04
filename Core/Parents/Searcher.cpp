@@ -21,33 +21,15 @@
 
 namespace PokeFinderCore
 {
-    Encounter Searcher::getEncounterType() const
-    {
-        return encounterType;
-    }
+    Encounter Searcher::getEncounterType() const { return encounterType; }
 
-    void Searcher::setEncounterType(const Encounter &value)
-    {
-        encounterType = value;
-    }
+    void Searcher::setEncounterType(const Encounter &value) { encounterType = value; }
 
-    Method Searcher::getFrameType() const
-    {
-        return frameType;
-    }
+    Method Searcher::getFrameType() const { return frameType; }
 
-    void Searcher::setFrameType(const Method &value)
-    {
-        frameType = value;
-    }
+    void Searcher::setFrameType(const Method &value) { frameType = value; }
 
-    Lead Searcher::getLeadType() const
-    {
-        return leadType;
-    }
+    Lead Searcher::getLeadType() const { return leadType; }
 
-    void Searcher::setLeadType(const Lead &value)
-    {
-        leadType = value;
-    }
+    void Searcher::setLeadType(const Lead &value) { leadType = value; }
 }

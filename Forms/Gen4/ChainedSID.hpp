@@ -43,8 +43,8 @@ namespace PokeFinderForms
         ~ChainedSID() override;
 
     private:
-        Ui::ChainedSID *ui;
-        QStandardItemModel *model{};
+        std::unique_ptr<Ui::ChainedSID> ui;
+        QStandardItemModel *model {};
         PokeFinderCore::ChainedSIDCalc *chainedCalc = nullptr;
 
         void setupModels();

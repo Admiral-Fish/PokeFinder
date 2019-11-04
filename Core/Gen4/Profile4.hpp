@@ -30,9 +30,9 @@ namespace PokeFinderCore
     {
     public:
         Profile4();
-        Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual = Game::Blank,
-                 int radio = 0, Language language = Language::English, bool radar = false, bool swarm = false);
-        Profile4(QJsonObject data);
+        Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual = Game::Blank, int radio = 0,
+            Language language = Language::English, bool radar = false, bool swarm = false);
+        explicit Profile4(QJsonObject data);
         QString getDualSlotString() const;
         Game getDualSlot() const;
         QString getRadioString() const;

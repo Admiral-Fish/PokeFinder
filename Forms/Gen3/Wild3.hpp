@@ -20,10 +20,10 @@
 #ifndef WILD3_HPP
 #define WILD3_HPP
 
-#include <QMenu>
-#include <QModelIndex>
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
+#include <QMenu>
+#include <QModelIndex>
 
 namespace PokeFinderCore
 {
@@ -55,12 +55,12 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        Ui::Wild3 *ui;
+        std::unique_ptr<Ui::Wild3> ui;
         QVector<PokeFinderCore::Profile3> profiles;
-        PokeFinderModels::Searcher3Model *searcherModel{};
-        PokeFinderModels::Wild3Model *generatorModel{};
-        QMenu *generatorMenu{};
-        QMenu *searcherMenu{};
+        PokeFinderModels::Searcher3Model *searcherModel {};
+        PokeFinderModels::Wild3Model *generatorModel {};
+        QMenu *generatorMenu {};
+        QMenu *searcherMenu {};
         QModelIndex lastIndex;
         QModelIndex targetFrame;
         QVector<PokeFinderCore::EncounterArea3> encounterGenerator;

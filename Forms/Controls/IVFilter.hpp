@@ -20,8 +20,8 @@
 #ifndef IVFILTER_HPP
 #define IVFILTER_HPP
 
-#include <QWidget>
 #include <Core/Util/Global.hpp>
+#include <QWidget>
 
 namespace PokeFinderForms
 {
@@ -35,14 +35,14 @@ namespace PokeFinderForms
         Q_OBJECT
     public:
         explicit IVFilter(QWidget *parent = nullptr);
-        ~IVFilter() override;
+        ~IVFilter() override = default;
         QVector<u8> getLower() const;
         QVector<u8> getUpper() const;
         void clearValues();
         void setValues(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
     private:
-        Ui::IVFilter *ui;
+        std::unique_ptr<Ui::IVFilter> ui;
 
         void changeHP(int min, int max);
         void changeAtk(int min, int max);

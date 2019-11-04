@@ -33,7 +33,8 @@ namespace PokeFinderCore
     {
     public:
         Searcher4();
-        Searcher4(u16 tid, u16 sid, u8 genderRatio, u32 minDelay, u32 maxDelay, u32 minFrame, u32 maxFrame, const FrameCompare &compare, Method method);
+        Searcher4(u16 tid, u16 sid, u8 genderRatio, u32 minDelay, u32 maxDelay, u32 minFrame, u32 maxFrame,
+            const FrameCompare &compare, Method method);
         void setEncounter(const EncounterArea4 &value);
         QVector<Frame4> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
 
@@ -41,11 +42,10 @@ namespace PokeFinderCore
         RNGCache cache;
         EncounterArea4 encounter;
         FrameCompare compare;
-        u8 genderRatio{};
-        u32 minDelay{};
-        u32 maxDelay{};
-        u32 minFrame{};
-        u32 maxFrame{};
+        u32 minDelay {};
+        u32 maxDelay {};
+        u32 minFrame {};
+        u32 maxFrame {};
 
         QVector<Frame4> searchMethod1(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
         QVector<Frame4> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;

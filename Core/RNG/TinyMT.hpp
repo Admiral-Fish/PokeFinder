@@ -28,7 +28,7 @@ namespace PokeFinderCore
     {
     public:
         TinyMT(u32 seed = 0, u32 frames = 0);
-        TinyMT(const u32 state[4], u32 frames = 0);
+        explicit TinyMT(const u32 state[4], u32 frames = 0);
         void advanceFrames(u32 frames) override;
         u32 nextUInt(u32 frames = 0);
         u16 nextUShort(u32 frames = 0);

@@ -17,19 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QFile>
 #include "Encounters3.hpp"
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Util/Encounter.hpp>
+#include <QFile>
 
 namespace PokeFinderCore
 {
     Encounters3::Encounters3(Encounter type, const Profile3 &profile)
+        : pokemon(Pokemon::loadPersonal(3))
     {
         this->type = type;
         this->profile = profile;
-        pokemon = Pokemon::loadPersonal(3);
     }
 
     QVector<EncounterArea3> Encounters3::getEncounters() const
@@ -55,22 +55,22 @@ namespace PokeFinderCore
         int size = 122;
         switch (profile.getVersion())
         {
-            case Game::Emerald:
-                path = ":/encounters/emerald.bin";
-                break;
-            case Game::Ruby:
-                path = ":/encounters/ruby.bin";
-                break;
-            case Game::Sapphire:
-                path = ":/encounters/sapphire.bin";
-                break;
-            case Game::FireRed:
-                path = ":/encounters/firered.bin";
-                break;
-            case Game::LeafGreen:
-            default:
-                path = ":/encounters/leafgreen.bin";
-                break;
+        case Game::Emerald:
+            path = ":/encounters/emerald.bin";
+            break;
+        case Game::Ruby:
+            path = ":/encounters/ruby.bin";
+            break;
+        case Game::Sapphire:
+            path = ":/encounters/sapphire.bin";
+            break;
+        case Game::FireRed:
+            path = ":/encounters/firered.bin";
+            break;
+        case Game::LeafGreen:
+        default:
+            path = ":/encounters/leafgreen.bin";
+            break;
         }
 
         QByteArray data;
@@ -107,7 +107,8 @@ namespace PokeFinderCore
             }
 
             u16 val = getValue(data, 3, 1);
-            encounters.append(EncounterArea3(location, delay, val == 1 ? Encounter::Grass : Encounter::SafariZone, grass));
+            encounters.append(
+                EncounterArea3(location, delay, val == 1 ? Encounter::Grass : Encounter::SafariZone, grass));
         }
         if (getValue(data, 4, 1) == 1)
         {

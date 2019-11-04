@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "IVCalculator.hpp"
 #include "ui_IVCalculator.h"
 #include <Core/Parents/Pokemon.hpp>
@@ -26,12 +25,13 @@
 #include <Core/Util/Nature.hpp>
 #include <Core/Util/Power.hpp>
 #include <Core/Util/Translator.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    IVCalculator::IVCalculator(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::IVCalculator)
+    IVCalculator::IVCalculator(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::IVCalculator)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -44,8 +44,6 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("ivCalculator/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
     void IVCalculator::setupModels()
@@ -58,7 +56,8 @@ namespace PokeFinderForms
         ui->comboBoxCharacteristic->addItems(PokeFinderCore::Translator::getCharacteristic());
 
         QSettings setting;
-        if (setting.contains("ivCalculator/geometry")) this->restoreGeometry(setting.value("ivCalculator/geometry").toByteArray());
+        if (setting.contains("ivCalculator/geometry"))
+            this->restoreGeometry(setting.value("ivCalculator/geometry").toByteArray());
     }
 
     void IVCalculator::displayIVs(QLabel *label, const QVector<u8> &ivs)
@@ -112,11 +111,9 @@ namespace PokeFinderForms
 
     void IVCalculator::on_pushButtonFindIVs_clicked()
     {
-        QVector<u16> stats =
-        {
-            static_cast<u16>(ui->spinBoxHP->value()), static_cast<u16>(ui->spinBoxAtk->value()), static_cast<u16>( ui->spinBoxDef->value()),
-            static_cast<u16>(ui->spinBoxSpA->value()), static_cast<u16>(ui->spinBoxSpD->value()), static_cast<u16>(ui->spinBoxSpe->value())
-        };
+        QVector<u16> stats = { static_cast<u16>(ui->spinBoxHP->value()), static_cast<u16>(ui->spinBoxAtk->value()),
+            static_cast<u16>(ui->spinBoxDef->value()), static_cast<u16>(ui->spinBoxSpA->value()),
+            static_cast<u16>(ui->spinBoxSpD->value()), static_cast<u16>(ui->spinBoxSpe->value()) };
 
         u8 level = ui->spinBoxLevel->value();
         u8 nature = ui->comboBoxNature->currentIndex();
@@ -124,7 +121,8 @@ namespace PokeFinderForms
         PokeFinderCore::Characteristic characteristic = characteristics.at(ui->comboBoxCharacteristic->currentIndex());
 
         PokeFinderCore::IVChecker ivCheck;
-        auto possible = ivCheck.calculateIVs(pokemon.at(ui->comboBoxPokemon->currentIndex() + 1), stats, level, nature, characteristic, hiddenPower);
+        auto possible = ivCheck.calculateIVs(
+            pokemon.at(ui->comboBoxPokemon->currentIndex() + 1), stats, level, nature, characteristic, hiddenPower);
 
         displayIVs(ui->labelHPIVValue, possible.at(0));
         displayIVs(ui->labelAtkIVValue, possible.at(1));

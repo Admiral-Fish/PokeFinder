@@ -20,7 +20,6 @@
 #ifndef EGG4_HPP
 #define EGG4_HPP
 
-//#include <Core/Gen4/Frame4.hpp>
 #include <Core/Parents/Egg.hpp>
 
 namespace PokeFinderCore

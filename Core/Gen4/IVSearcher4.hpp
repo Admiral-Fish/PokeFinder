@@ -20,10 +20,10 @@
 #ifndef IVSEARCHER4_HPP
 #define IVSEARCHER4_HPP
 
-#include <QMutex>
-#include <QObject>
 #include <Core/Gen4/Frame4.hpp>
 #include <Core/Gen4/Searcher4.hpp>
+#include <QMutex>
+#include <QObject>
 
 namespace PokeFinderCore
 {

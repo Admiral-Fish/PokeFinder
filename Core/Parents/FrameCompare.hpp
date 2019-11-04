@@ -20,8 +20,8 @@
 #ifndef FRAMECOMPARE_HPP
 #define FRAMECOMPARE_HPP
 
-#include <QVector>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -35,7 +35,7 @@ namespace PokeFinderCore
     public:
         FrameCompare() = default;
         FrameCompare(int gender, int ability, bool shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max,
-                     const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters);
+            const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters);
         bool comparePID(const Frame &frame) const;
         bool compareIVs(const Frame &frame) const;
         bool compareNature(const Frame &frame) const;
@@ -47,13 +47,13 @@ namespace PokeFinderCore
     private:
         QVector<u8> min;
         QVector<u8> max;
-        u8 gender{};
-        u8 ability{};
+        u8 gender {};
+        u8 ability {};
         QVector<bool> natures;
         QVector<bool> powers;
         QVector<bool> encounters;
-        bool shiny{};
-        bool skip{};
+        bool shiny {};
+        bool skip {};
     };
 }
 

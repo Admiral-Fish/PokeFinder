@@ -17,8 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QMessageBox>
-#include <QSettings>
 #include "SeedtoTime4.hpp"
 #include "ui_SeedtoTime4.h"
 #include <Core/Util/Utilities.hpp>
@@ -26,12 +24,14 @@
 #include <Forms/Gen4/SearchCalls.hpp>
 #include <Forms/Gen4/SearchCoinFlips.hpp>
 #include <Models/Gen4/SeedtoTime4Model.hpp>
+#include <QMessageBox>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    SeedtoTime4::SeedtoTime4(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::SeedtoTime4)
+    SeedtoTime4::SeedtoTime4(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::SeedtoTime4)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -40,9 +40,9 @@ namespace PokeFinderForms
         setupModels();
     }
 
-    SeedtoTime4::SeedtoTime4(const QString &seed, const PokeFinderCore::Profile4 &profile, QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::SeedtoTime4)
+    SeedtoTime4::SeedtoTime4(const QString &seed, const PokeFinderCore::Profile4 &profile, QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::SeedtoTime4)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -79,8 +79,6 @@ namespace PokeFinderForms
         setting.setValue("plusSecondsHGSS", ui->lineEditHGSSSecondPlus->text());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
-
-        delete ui;
     }
 
     void SeedtoTime4::setupModels()
@@ -88,7 +86,8 @@ namespace PokeFinderForms
         dppt = new PokeFinderModels::SeedtoTime4Model(ui->tableViewDPPtSearch, false);
         dpptCalibrate = new PokeFinderModels::SeedtoTime4Model(ui->tableViewDPPtCalibrate, true);
         hgss = new PokeFinderModels::SeedtoTime4Model(ui->tableViewHGSSSearch, false, PokeFinderCore::Game::HeartGold);
-        hgssCalibrate = new PokeFinderModels::SeedtoTime4Model(ui->tableViewHGSSCalibrate, true, PokeFinderCore::Game::HeartGold);
+        hgssCalibrate
+            = new PokeFinderModels::SeedtoTime4Model(ui->tableViewHGSSCalibrate, true, PokeFinderCore::Game::HeartGold);
 
         ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
         ui->textBoxDPPtYear->setValues(0, 2099);
@@ -104,21 +103,33 @@ namespace PokeFinderForms
 
         QSettings setting;
         setting.beginGroup("seedToTime4");
-        if (setting.contains("dpptYear")) ui->textBoxDPPtYear->setText(setting.value("dpptYear").toString());
-        if (setting.contains("minusDelayDPPt")) ui->lineEditDPPtDelayMinus->setText(setting.value("minusDelayDPPt").toString());
-        if (setting.contains("plusDelayDPPt")) ui->lineEditDPPtDelayPlus->setText(setting.value("plusDelayDPPt").toString());
-        if (setting.contains("minusSecondsDPPt")) ui->lineEditDPPtSecondMinus->setText(setting.value("minusSecondsDPPt").toString());
-        if (setting.contains("plusSecondsDPPt")) ui->lineEditDPPtSecondPlus->setText(setting.value("plusSecondsDPPt").toString());
-        if (setting.contains("hgssYear")) ui->textBoxHGSSYear->setText(setting.value("hgssYear").toString());
-        if (setting.contains("minusDelayHGSS")) ui->lineEditHGSSDelayMinus->setText(setting.value("minusDelayHGSS").toString());
-        if (setting.contains("plusDelayHGSS")) ui->lineEditHGSSDelayPlus->setText(setting.value("plusDelayHGSS").toString());
-        if (setting.contains("minusSecondsHGSS")) ui->lineEditHGSSSecondMinus->setText(setting.value("minusSecondsHGSS").toString());
-        if (setting.contains("plusSecondsHGSS")) ui->lineEditHGSSSecondPlus->setText(setting.value("plusSecondsHGSS").toString());
-        if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
+        if (setting.contains("dpptYear"))
+            ui->textBoxDPPtYear->setText(setting.value("dpptYear").toString());
+        if (setting.contains("minusDelayDPPt"))
+            ui->lineEditDPPtDelayMinus->setText(setting.value("minusDelayDPPt").toString());
+        if (setting.contains("plusDelayDPPt"))
+            ui->lineEditDPPtDelayPlus->setText(setting.value("plusDelayDPPt").toString());
+        if (setting.contains("minusSecondsDPPt"))
+            ui->lineEditDPPtSecondMinus->setText(setting.value("minusSecondsDPPt").toString());
+        if (setting.contains("plusSecondsDPPt"))
+            ui->lineEditDPPtSecondPlus->setText(setting.value("plusSecondsDPPt").toString());
+        if (setting.contains("hgssYear"))
+            ui->textBoxHGSSYear->setText(setting.value("hgssYear").toString());
+        if (setting.contains("minusDelayHGSS"))
+            ui->lineEditHGSSDelayMinus->setText(setting.value("minusDelayHGSS").toString());
+        if (setting.contains("plusDelayHGSS"))
+            ui->lineEditHGSSDelayPlus->setText(setting.value("plusDelayHGSS").toString());
+        if (setting.contains("minusSecondsHGSS"))
+            ui->lineEditHGSSSecondMinus->setText(setting.value("minusSecondsHGSS").toString());
+        if (setting.contains("plusSecondsHGSS"))
+            ui->lineEditHGSSSecondPlus->setText(setting.value("plusSecondsHGSS").toString());
+        if (setting.contains("geometry"))
+            this->restoreGeometry(setting.value("geometry").toByteArray());
         setting.endGroup();
     }
 
-    QVector<PokeFinderCore::DateTime> SeedtoTime4::generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, PokeFinderCore::Game version)
+    QVector<PokeFinderCore::DateTime> SeedtoTime4::generate(
+        u32 seed, u32 year, bool forceSecond, int forcedSecond, PokeFinderCore::Game version)
     {
         if (year < 2000 || year > 2099)
         {
@@ -143,8 +154,11 @@ namespace PokeFinderForms
             return QVector<PokeFinderCore::DateTime>();
         }
 
-        QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-        QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
+        QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(),
+            ui->checkBoxHGSSLati->isChecked() };
+        QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()),
+            static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
+            static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
         QVector<PokeFinderCore::DateTime> results;
         for (int month = 0; month < 13; month++)
@@ -160,7 +174,8 @@ namespace PokeFinderForms
                         {
                             if (!forceSecond || second == forcedSecond)
                             {
-                                QDateTime dateTime(QDate(static_cast<int>(year), month, day), QTime(static_cast<int>(hour), minute, second));
+                                QDateTime dateTime(QDate(static_cast<int>(year), month, day),
+                                    QTime(static_cast<int>(hour), minute, second));
                                 results.append(PokeFinderCore::DateTime(dateTime, delay, version, roamer, routes));
                             }
                         }
@@ -171,7 +186,8 @@ namespace PokeFinderForms
         return results;
     }
 
-    QVector<PokeFinderCore::DateTime> SeedtoTime4::calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const PokeFinderCore::DateTime &target)
+    QVector<PokeFinderCore::DateTime> SeedtoTime4::calibrate(
+        int minusDelay, int plusDelay, int minusSecond, int plusSecond, const PokeFinderCore::DateTime &target)
     {
         QDateTime time = target.getDateTime();
         u32 delay = target.getDelay();
@@ -221,7 +237,8 @@ namespace PokeFinderForms
 
         dppt->clearModel();
 
-        QVector<PokeFinderCore::DateTime> results = generate(seed, year, forceSecond, forcedSecond, PokeFinderCore::Game::Diamond);
+        QVector<PokeFinderCore::DateTime> results
+            = generate(seed, year, forceSecond, forcedSecond, PokeFinderCore::Game::Diamond);
         ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + PokeFinderCore::Utilities::coinFlips(seed, 15));
 
         dppt->addItems(results);
@@ -237,12 +254,16 @@ namespace PokeFinderForms
         bool forceSecond = ui->checkBoxHGSSSecond->isChecked();
         int forcedSecond = ui->textBoxHGSSSecond->getInt();
 
-        QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-        QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
+        QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(),
+            ui->checkBoxHGSSLati->isChecked() };
+        QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()),
+            static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
+            static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
         PokeFinderCore::HGSSRoamer info(seed, roamer, routes);
 
-        QVector<PokeFinderCore::DateTime> results = generate(seed, year, forceSecond, forcedSecond, PokeFinderCore::Game::HeartGold);
+        QVector<PokeFinderCore::DateTime> results
+            = generate(seed, year, forceSecond, forcedSecond, PokeFinderCore::Game::HeartGold);
         ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + PokeFinderCore::Utilities::getCalls(seed, 15, info));
         QString str = info.getRouteString();
         str = str.isEmpty() ? tr("No roamers") : str;
@@ -352,8 +373,11 @@ namespace PokeFinderForms
             return;
         }
 
-        QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(), ui->checkBoxHGSSLati->isChecked() };
-        QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()), static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()), static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
+        QVector<bool> roamer = { ui->checkBoxHGSSRaikou->isChecked(), ui->checkBoxHGSSEntei->isChecked(),
+            ui->checkBoxHGSSLati->isChecked() };
+        QVector<u8> routes = { static_cast<u8>(ui->lineEditHGSSRaikou->text().toUInt()),
+            static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
+            static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
         QScopedPointer<SearchCalls> search(new SearchCalls(hgssCalibrate->getModel(), roamer, routes));
         if (search->exec() == QDialog::Rejected)

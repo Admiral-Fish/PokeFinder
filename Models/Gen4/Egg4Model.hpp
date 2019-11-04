@@ -48,18 +48,11 @@ namespace PokeFinderModels
         PokeFinderCore::Method method;
         bool showInheritance;
 
-        QStringList header1 =
-        {
-            tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender")
-        };
-        QStringList header2 =
-        {
-            tr("Frame"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
-        };
-        QStringList header3 =
-        {
-            tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
-        };
+        QStringList header1 = { tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender") };
+        QStringList header2 = { tr("Frame"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"),
+            tr("Spe"), tr("Hidden"), tr("Power") };
+        QStringList header3 = { tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"),
+            tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power") };
     };
 
     class Egg4SearcherModel : public TableModel<PokeFinderCore::Frame4>
@@ -80,19 +73,12 @@ namespace PokeFinderModels
         PokeFinderCore::Method method;
         bool showInheritance;
 
-        QStringList header1 =
-        {
-            tr("Seed"), tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender")
-        };
-        QStringList header2 =
-        {
-            tr("Seed"), tr("Frame"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power")
-        };
-        QStringList header3 =
-        {
-            tr("Seed"), tr("PID Frame"), tr("IV Frame"),  tr("PID"), "!!!", tr("Nature"), tr("Ability"),
-            tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-        };
+        QStringList header1 = { tr("Seed"), tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender") };
+        QStringList header2 = { tr("Seed"), tr("Frame"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"),
+            tr("Spe"), tr("Hidden"), tr("Power") };
+        QStringList header3
+            = { tr("Seed"), tr("PID Frame"), tr("IV Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
+                  tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
     };
 }
 

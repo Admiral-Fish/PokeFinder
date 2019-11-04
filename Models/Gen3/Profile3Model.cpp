@@ -21,15 +21,12 @@
 
 namespace PokeFinderModels
 {
-    Profile3Model::Profile3Model(QObject *parent) :
-        TableModel<PokeFinderCore::Profile3>(parent)
+    Profile3Model::Profile3Model(QObject *parent)
+        : TableModel<PokeFinderCore::Profile3>(parent)
     {
     }
 
-    int Profile3Model::columnCount(const QModelIndex & /*parent*/) const
-    {
-        return 6;
-    }
+    int Profile3Model::columnCount(const QModelIndex & /*parent*/) const { return 6; }
 
     QVariant Profile3Model::data(const QModelIndex &index, int role) const
     {
@@ -38,25 +35,25 @@ namespace PokeFinderModels
             auto profile = model.at(index.row());
             switch (index.column())
             {
-                case 0:
-                    return profile.getProfileName();
-                case 1:
-                    return profile.getVersionString();
-                case 2:
-                    return profile.getLanguageString();
-                case 3:
-                    return profile.getTID();
-                case 4:
-                    return profile.getSID();
-                case 5:
-                    if (profile.getVersion() & PokeFinderCore::Game::RS)
-                    {
-                        return profile.getDeadBattery() ? tr("Yes") : tr("No");
-                    }
-                    else
-                    {
-                        return "N/A";
-                    }
+            case 0:
+                return profile.getProfileName();
+            case 1:
+                return profile.getVersionString();
+            case 2:
+                return profile.getLanguageString();
+            case 3:
+                return profile.getTID();
+            case 4:
+                return profile.getSID();
+            case 5:
+                if (profile.getVersion() & PokeFinderCore::Game::RS)
+                {
+                    return profile.getDeadBattery() ? tr("Yes") : tr("No");
+                }
+                else
+                {
+                    return "N/A";
+                }
             }
         }
         return QVariant();

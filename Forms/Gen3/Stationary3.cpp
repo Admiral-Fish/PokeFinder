@@ -17,8 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QClipboard>
-#include <QSettings>
 #include "Stationary3.hpp"
 #include "ui_Stationary3.h"
 #include <Core/Gen3/Generator3.hpp>
@@ -29,12 +27,14 @@
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
+#include <QClipboard>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    Stationary3::Stationary3(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::Stationary3)
+    Stationary3::Stationary3(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::Stationary3)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -52,8 +52,6 @@ namespace PokeFinderForms
         setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
-
-        delete ui;
     }
 
     void Stationary3::updateProfiles()
@@ -145,14 +143,14 @@ namespace PokeFinderForms
 
         connect(setTargetFrame, &QAction::triggered, this, &Stationary3::setTargetFrameGenerator);
         connect(jumpToTarget, &QAction::triggered, this, &Stationary3::jumpToTargetGenerator);
-        connect(center1Second, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(60); });
-        connect(center2Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(120); });
-        connect(center3Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(180); });
-        connect(center5Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(300); });
-        connect(center10Seconds, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(600); });
-        connect(center1Minute, &QAction::triggered, this, [ = ]() { centerFramesAndSetTargetGenerator(3600); });
-        connect(outputTXTGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModel(); });
-        connect(outputCSVGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModel(true); });
+        connect(center1Second, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(60); });
+        connect(center2Seconds, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(120); });
+        connect(center3Seconds, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(180); });
+        connect(center5Seconds, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(300); });
+        connect(center10Seconds, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(600); });
+        connect(center1Minute, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(3600); });
+        connect(outputTXTGenerator, &QAction::triggered, this, [=]() { ui->tableViewGenerator->outputModel(); });
+        connect(outputCSVGenerator, &QAction::triggered, this, [=]() { ui->tableViewGenerator->outputModel(true); });
 
         QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
@@ -161,14 +159,16 @@ namespace PokeFinderForms
 
         connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
         connect(seedToTime, &QAction::triggered, this, &Stationary3::seedToTime);
-        connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModel(); });
-        connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModel(true); });
+        connect(outputTXTSearcher, &QAction::triggered, this, [=]() { ui->tableViewSearcher->outputModel(); });
+        connect(outputCSVSearcher, &QAction::triggered, this, [=]() { ui->tableViewSearcher->outputModel(true); });
 
         QSettings setting;
-        if (setting.contains("stationary3/geometry")) this->restoreGeometry(setting.value("stationary3/geometry").toByteArray());
+        if (setting.contains("stationary3/geometry"))
+            this->restoreGeometry(setting.value("stationary3/geometry").toByteArray());
     }
 
-    void Stationary3::moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+    void Stationary3::moveResults(
+        const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
     {
         if (!seed.isEmpty())
         {
@@ -177,7 +177,8 @@ namespace PokeFinderForms
 
         for (auto i = 0; i < ui->comboBoxGeneratorMethod->model()->rowCount(); i++)
         {
-            if (ui->comboBoxGeneratorMethod->model()->data(ui->comboBoxGeneratorMethod->model()->index(i, 0)).toString() == method)
+            if (ui->comboBoxGeneratorMethod->model()->data(ui->comboBoxGeneratorMethod->model()->index(i, 0)).toString()
+                == method)
             {
                 ui->comboBoxGeneratorMethod->setCurrentIndex(i);
                 break;
@@ -192,10 +193,7 @@ namespace PokeFinderForms
         ui->progressBar->setValue(progress);
     }
 
-    void Stationary3::refreshProfiles()
-    {
-        emit alertProfiles(3);
-    }
+    void Stationary3::refreshProfiles() { emit alertProfiles(3); }
 
     void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
     {
@@ -234,10 +232,11 @@ namespace PokeFinderForms
 
         u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toInt();
         PokeFinderCore::Generator3 generator(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
-        PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                                             ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                                             ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(),
-                                             ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(),
+            ui->comboBoxGeneratorAbility->currentIndex(), ui->checkBoxGeneratorShinyOnly->isChecked(),
+            ui->checkBoxGeneratorDisableFilters->isChecked(), ui->ivFilterGenerator->getLower(),
+            ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+            ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
         generator.setup(static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
@@ -248,7 +247,8 @@ namespace PokeFinderForms
     void Stationary3::on_pushButtonSearch_clicked()
     {
         searcherModel->clearModel();
-        searcherModel->setMethod(static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+        searcherModel->setMethod(
+            static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
         ui->pushButtonSearch->setEnabled(false);
         ui->pushButtonCancel->setEnabled(true);
@@ -259,9 +259,9 @@ namespace PokeFinderForms
         QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
         u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-        PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
-                                             ui->checkBoxSearcherShinyOnly->isChecked(), false, min, max,
-                                             ui->comboBoxSearcherNature->getChecked(), ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(),
+            ui->comboBoxSearcherAbility->currentIndex(), ui->checkBoxSearcherShinyOnly->isChecked(), false, min, max,
+            ui->comboBoxSearcherNature->getChecked(), ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
         PokeFinderCore::Searcher3 searcher(tid, sid, genderRatio, compare);
 
         searcher.setup(static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
@@ -277,7 +277,10 @@ namespace PokeFinderForms
 
         auto *search = new PokeFinderCore::IVSearcher3(searcher, min, max);
 
-        connect(search, &PokeFinderCore::IVSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+        connect(search, &PokeFinderCore::IVSearcher3::finished, this, [=] {
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+        });
         connect(search, &PokeFinderCore::IVSearcher3::updateProgress, this, &Stationary3::updateProgress);
         connect(ui->pushButtonCancel, &QPushButton::clicked, search, &PokeFinderCore::IVSearcher3::cancelSearch);
 
@@ -306,22 +309,23 @@ namespace PokeFinderForms
         searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
     }
 
-    void Stationary3::setTargetFrameGenerator()
-    {
-        targetFrame = lastIndex;
-    }
+    void Stationary3::setTargetFrameGenerator() { targetFrame = lastIndex; }
 
     void Stationary3::jumpToTargetGenerator()
     {
         ui->tableViewGenerator->scrollTo(targetFrame, QAbstractItemView::PositionAtTop);
-        ui->tableViewGenerator->selectionModel()->select(targetFrame, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+        ui->tableViewGenerator->selectionModel()->select(
+            targetFrame, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
 
     void Stationary3::centerFramesAndSetTargetGenerator(u32 centerFrames)
     {
         ui->checkBoxGeneratorDisableFilters->setChecked(true);
 
-        u32 frameNumber = ui->tableViewGenerator->model()->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 0)).toString().toUInt();
+        u32 frameNumber = ui->tableViewGenerator->model()
+                              ->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 0))
+                              .toString()
+                              .toUInt();
 
         u32 startingFrame = frameNumber < centerFrames + 1 ? 1 : frameNumber - centerFrames;
         u32 selectedIndex = frameNumber < centerFrames + 1 ? frameNumber - 1 : centerFrames;
@@ -339,7 +343,9 @@ namespace PokeFinderForms
 
     void Stationary3::seedToTime()
     {
-        u32 seed = searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
+        u32 seed = searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole)
+                       .toString()
+                       .toUInt(nullptr, 16);
         auto *seedToTime = new SeedToTime3(seed);
         seedToTime->show();
         seedToTime->raise();
@@ -347,7 +353,8 @@ namespace PokeFinderForms
 
     void Stationary3::copySeedToClipboard()
     {
-        QApplication::clipboard()->setText(searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
+        QApplication::clipboard()->setText(
+            searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
     }
 
     void Stationary3::on_pushButtonProfileManager_clicked()

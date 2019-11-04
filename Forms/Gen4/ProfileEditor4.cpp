@@ -17,16 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QMessageBox>
-#include <QSettings>
 #include "ProfileEditor4.hpp"
 #include "ui_ProfileEditor4.h"
+#include <QMessageBox>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    ProfileEditor4::ProfileEditor4(QWidget *parent) :
-        QDialog(parent),
-        ui(new Ui::ProfileEditor4)
+    ProfileEditor4::ProfileEditor4(QWidget *parent)
+        : QDialog(parent)
+        , ui(new Ui::ProfileEditor4)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -37,9 +37,9 @@ namespace PokeFinderForms
         setupModels();
     }
 
-    ProfileEditor4::ProfileEditor4(const PokeFinderCore::Profile4 &profile, QWidget *parent) :
-        QDialog(parent),
-        ui(new Ui::ProfileEditor4)
+    ProfileEditor4::ProfileEditor4(const PokeFinderCore::Profile4 &profile, QWidget *parent)
+        : QDialog(parent)
+        , ui(new Ui::ProfileEditor4)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -64,19 +64,11 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("profileEditor4/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
-    PokeFinderCore::Profile4 ProfileEditor4::getNewProfile()
-    {
-        return fresh;
-    }
+    PokeFinderCore::Profile4 ProfileEditor4::getNewProfile() { return fresh; }
 
-    PokeFinderCore::Profile4 ProfileEditor4::getOriginal()
-    {
-        return original;
-    }
+    PokeFinderCore::Profile4 ProfileEditor4::getOriginal() { return original; }
 
     void ProfileEditor4::setupModels()
     {
@@ -105,7 +97,8 @@ namespace PokeFinderForms
         ui->comboBoxLanguage->setItemData(6, PokeFinderCore::Language::Korean);
 
         QSettings setting;
-        if (setting.contains("profileEditor4/geometry")) this->restoreGeometry(setting.value("profileEditor4/geometry").toByteArray());
+        if (setting.contains("profileEditor4/geometry"))
+            this->restoreGeometry(setting.value("profileEditor4/geometry").toByteArray());
     }
 
     void ProfileEditor4::on_pushButtonAccept_clicked()
@@ -119,9 +112,12 @@ namespace PokeFinderForms
             return;
         }
 
-        fresh = PokeFinderCore::Profile4(ui->lineEditProfile->text(), static_cast<PokeFinderCore::Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
-                                         ui->textBoxSID->getUShort(), static_cast<PokeFinderCore::Game>(ui->comboBoxDualSlot->currentData().toInt()), ui->comboBoxRadio->currentIndex(),
-                                         static_cast<PokeFinderCore::Language>(ui->comboBoxLanguage->currentData().toInt()), ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
+        fresh = PokeFinderCore::Profile4(ui->lineEditProfile->text(),
+            static_cast<PokeFinderCore::Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
+            ui->textBoxSID->getUShort(), static_cast<PokeFinderCore::Game>(ui->comboBoxDualSlot->currentData().toInt()),
+            ui->comboBoxRadio->currentIndex(),
+            static_cast<PokeFinderCore::Language>(ui->comboBoxLanguage->currentData().toInt()),
+            ui->checkBoxRadar->isChecked(), ui->checkBoxSwarm->isChecked());
 
         done(QDialog::Accepted);
     }

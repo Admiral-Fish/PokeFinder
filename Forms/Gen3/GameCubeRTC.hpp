@@ -20,9 +20,9 @@
 #ifndef GAMECUBERTC_HPP
 #define GAMECUBERTC_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QMenu>
 #include <QStandardItemModel>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderForms
 {
@@ -40,9 +40,9 @@ namespace PokeFinderForms
         ~GameCubeRTC() override;
 
     private:
-        Ui::GameCubeRTC *ui;
-        QStandardItemModel *model{};
-        QMenu *contextMenu{};
+        std::unique_ptr<Ui::GameCubeRTC> ui;
+        QStandardItemModel *model {};
+        QMenu *contextMenu {};
 
         void setupModels();
 

@@ -28,30 +28,21 @@ namespace PokeFinderCore
     {
         switch (gender)
         {
-            case 1:
-                return "♂";
-            case 2:
-                return "♀";
-            case 0:
-            default:
-                return "-";
+        case 1:
+            return "♂";
+        case 2:
+            return "♀";
+        case 0:
+        default:
+            return "-";
         }
     }
 
-    QString Frame::getNatureString() const
-    {
-        return Nature::getNature(nature);
-    }
+    QString Frame::getNatureString() const { return Nature::getNature(nature); }
 
-    QString Frame::getPowerString() const
-    {
-        return Power::getPower(hidden);
-    }
+    QString Frame::getPowerString() const { return Power::getPower(hidden); }
 
-    QString Frame::getShinyString() const
-    {
-        return shiny ? "!!!" : "";
-    }
+    QString Frame::getShinyString() const { return shiny ? "!!!" : ""; }
 
     void Frame::setIVs(u8 iv1, u8 iv2, u8 iv3, u8 iv4, u8 iv5, u8 iv6)
     {
@@ -84,119 +75,62 @@ namespace PokeFinderCore
         calculatePower();
     }
 
-    u32 Frame::getFrame() const
-    {
-        return frame;
-    }
+    u32 Frame::getFrame() const { return frame; }
 
-    u8 Frame::getIV(int index) const
-    {
-        return ivs.at(index);
-    }
+    u8 Frame::getIV(int index) const { return ivs.at(index); }
 
-    u16 Frame::getTID() const
-    {
-        return tid;
-    }
+    u16 Frame::getTID() const { return tid; }
 
-    u16 Frame::getSID() const
-    {
-        return sid;
-    }
+    u16 Frame::getSID() const { return sid; }
 
-    QChar Frame::getInheritance(int index) const
-    {
-        return inheritance.at(index);
-    }
+    QChar Frame::getInheritance(int index) const { return inheritance.at(index); }
 
-    u8 Frame::getPower() const
-    {
-        return power;
-    }
+    u8 Frame::getPower() const { return power; }
 
-    u32 Frame::getPID() const
-    {
-        return pid;
-    }
+    u32 Frame::getPID() const { return pid; }
 
-    u8 Frame::getAbility() const
-    {
-        return ability;
-    }
+    u8 Frame::getAbility() const { return ability; }
 
-    Lead Frame::getLeadType() const
-    {
-        return leadType;
-    }
+    Lead Frame::getLeadType() const { return leadType; }
 
-    u8 Frame::getEncounterSlot() const
-    {
-        return encounterSlot;
-    }
+    u8 Frame::getEncounterSlot() const { return encounterSlot; }
 
-    void Frame::setEncounterSlot(const u8 &value)
-    {
-        encounterSlot = value;
-    }
+    void Frame::setEncounterSlot(const u8 &value) { encounterSlot = value; }
 
-    u8 Frame::getLevel() const
-    {
-        return level;
-    }
+    u8 Frame::getLevel() const { return level; }
 
-    void Frame::setLevel(const u8 &value)
-    {
-        level = value;
-    }
+    void Frame::setLevel(const u8 &value) { level = value; }
 
-    bool Frame::getShiny() const
-    {
-        return shiny;
-    }
+    bool Frame::getShiny() const { return shiny; }
 
-    u32 Frame::getNature() const
-    {
-        return nature;
-    }
+    u32 Frame::getNature() const { return nature; }
 
-    void Frame::setNature(const u8 &value)
-    {
-        nature = value;
-    }
+    void Frame::setNature(const u8 &value) { nature = value; }
 
-    u8 Frame::getHidden() const
-    {
-        return hidden;
-    }
+    u8 Frame::getHidden() const { return hidden; }
 
-    u8 Frame::getGender() const
-    {
-        return gender;
-    }
+    u8 Frame::getGender() const { return gender; }
 
-    void Frame::setGender(const u8 &value)
-    {
-        gender = value;
-    }
+    void Frame::setGender(const u8 &value) { gender = value; }
 
-    void Frame::setFrame(const u32 &value)
-    {
-        frame = value;
-    }
+    void Frame::setFrame(const u32 &value) { frame = value; }
 
-    void Frame::setLeadType(const Lead &value)
-    {
-        leadType = value;
-    }
+    void Frame::setLeadType(const Lead &value) { leadType = value; }
 
     void Frame::calculateHidden()
     {
-        hidden = ((((ivs.at(0) & 1) + 2 * (ivs.at(1) & 1) + 4 * (ivs.at(2) & 1) + 8 * (ivs.at(5) & 1) + 16 * (ivs.at(3) & 1) + 32 * (ivs.at(4) & 1)) * 15) / 63);
+        hidden = ((((ivs.at(0) & 1) + 2 * (ivs.at(1) & 1) + 4 * (ivs.at(2) & 1) + 8 * (ivs.at(5) & 1)
+                       + 16 * (ivs.at(3) & 1) + 32 * (ivs.at(4) & 1))
+                      * 15)
+            / 63);
     }
 
     void Frame::calculatePower()
     {
-        power = 30 + ((((ivs.at(0) >> 1) & 1) + 2 * ((ivs.at(1) >> 1) & 1) + 4 * ((ivs.at(2) >> 1) & 1) + 8 * ((ivs.at(5) >> 1) & 1) + 16 * ((ivs.at(3) >> 1) & 1) + 32 * ((ivs.at(4) >> 1) & 1)) * 40 / 63);
+        power = 30
+            + ((((ivs.at(0) >> 1) & 1) + 2 * ((ivs.at(1) >> 1) & 1) + 4 * ((ivs.at(2) >> 1) & 1)
+                   + 8 * ((ivs.at(5) >> 1) & 1) + 16 * ((ivs.at(3) >> 1) & 1) + 32 * ((ivs.at(4) >> 1) & 1))
+                * 40 / 63);
     }
 
 }

@@ -20,8 +20,8 @@
 #ifndef PROFILEEDITOR3_HPP
 #define PROFILEEDITOR3_HPP
 
-#include <QDialog>
 #include <Core/Gen3/Profile3.hpp>
+#include <QDialog>
 
 namespace PokeFinderForms
 {
@@ -45,7 +45,7 @@ namespace PokeFinderForms
         PokeFinderCore::Profile3 getOriginal();
 
     private:
-        Ui::ProfileEditor3 *ui;
+        std::unique_ptr<Ui::ProfileEditor3> ui;
         bool isEditing = false;
         PokeFinderCore::Profile3 original;
         PokeFinderCore::Profile3 fresh;

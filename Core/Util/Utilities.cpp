@@ -18,9 +18,9 @@
  */
 
 #include "Utilities.hpp"
+#include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MTRNG.hpp>
-#include <Core/Gen4/HGSSRoamer.hpp>
 
 namespace PokeFinderCore
 {
@@ -43,10 +43,7 @@ namespace PokeFinderCore
         return ((ab << 24) | (cd << 16)) + delay;
     }
 
-    bool Utilities::shiny(u32 pid, u16 tid, u16 sid)
-    {
-        return ((pid & 0xFFFF) ^ (pid >> 16) ^ tid ^ sid) < 8;
-    }
+    bool Utilities::shiny(u32 pid, u16 tid, u16 sid) { return ((pid & 0xFFFF) ^ (pid >> 16) ^ tid ^ sid) < 8; }
 
     QString Utilities::coinFlips(u32 seed, u8 flips)
     {

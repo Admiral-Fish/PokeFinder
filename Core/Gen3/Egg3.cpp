@@ -47,71 +47,71 @@ namespace PokeFinderCore
 
         switch (method)
         {
-            case Method::EBred:
-                iv1 = 0;
-                iv2 = 1;
-                inh1 = 3;
-                inh2 = 4;
-                inh3 = 5;
-                par1 = 6;
-                par2 = 7;
-                par3 = 8;
-                break;
-            case Method::EBredSplit:
-                iv1 = 0;
-                iv2 = 2;
-                inh1 = 4;
-                inh2 = 5;
-                inh3 = 6;
-                par1 = 7;
-                par2 = 8;
-                par3 = 9;
-                break;
-            case Method::EBredAlternate:
-                iv1 = 0;
-                iv2 = 1;
-                inh1 = 4;
-                inh2 = 5;
-                inh3 = 6;
-                par1 = 7;
-                par2 = 8;
-                par3 = 9;
-                break;
-            case Method::RSBred:
-            case Method::FRLGBred:
-                iv1 = 2;
-                iv2 = 3;
-                inh1 = 5;
-                inh2 = 6;
-                inh3 = 7;
-                par1 = 8;
-                par2 = 9;
-                par3 = 10;
-                break;
-            case Method::RSBredSplit:
-            case Method::FRLGBredSplit:
-                iv1 = 1;
-                iv2 = 3;
-                inh1 = 5;
-                inh2 = 6;
-                inh3 = 7;
-                par1 = 8;
-                par2 = 9;
-                par3 = 10;
-                break;
-            case Method::RSBredAlternate:
-            case Method::FRLGBredAlternate:
-                iv1 = 2;
-                iv2 = 3;
-                inh1 = 6;
-                inh2 = 7;
-                inh3 = 8;
-                par1 = 9;
-                par2 = 10;
-                par3 = 11;
-                break;
-            default:
-                break;
+        case Method::EBred:
+            iv1 = 0;
+            iv2 = 1;
+            inh1 = 3;
+            inh2 = 4;
+            inh3 = 5;
+            par1 = 6;
+            par2 = 7;
+            par3 = 8;
+            break;
+        case Method::EBredSplit:
+            iv1 = 0;
+            iv2 = 2;
+            inh1 = 4;
+            inh2 = 5;
+            inh3 = 6;
+            par1 = 7;
+            par2 = 8;
+            par3 = 9;
+            break;
+        case Method::EBredAlternate:
+            iv1 = 0;
+            iv2 = 1;
+            inh1 = 4;
+            inh2 = 5;
+            inh3 = 6;
+            par1 = 7;
+            par2 = 8;
+            par3 = 9;
+            break;
+        case Method::RSBred:
+        case Method::FRLGBred:
+            iv1 = 2;
+            iv2 = 3;
+            inh1 = 5;
+            inh2 = 6;
+            inh3 = 7;
+            par1 = 8;
+            par2 = 9;
+            par3 = 10;
+            break;
+        case Method::RSBredSplit:
+        case Method::FRLGBredSplit:
+            iv1 = 1;
+            iv2 = 3;
+            inh1 = 5;
+            inh2 = 6;
+            inh3 = 7;
+            par1 = 8;
+            par2 = 9;
+            par3 = 10;
+            break;
+        case Method::RSBredAlternate:
+        case Method::FRLGBredAlternate:
+            iv1 = 2;
+            iv2 = 3;
+            inh1 = 6;
+            inh2 = 7;
+            inh3 = 8;
+            par1 = 9;
+            par2 = 10;
+            par3 = 11;
+            break;
+        default:
+            break;
         }
     }
 
@@ -119,24 +119,24 @@ namespace PokeFinderCore
     {
         switch (frameType)
         {
-            case Method::EBredPID:
-                return generateEmeraldPID(compare);
-            case Method::EBred:
-            case Method::EBredSplit:
-            case Method::EBredAlternate:
-                return generateEmeraldIVs(compare);
-            case Method::RSBred:
-            case Method::RSBredAlternate:
-            case Method::RSBredSplit:
-            case Method::FRLGBredSplit:
-            case Method::FRLGBred:
-            case Method::FRLGBredAlternate:
-                {
-                    auto lower = generateLower(compare);
-                    return lower.isEmpty() ? QVector<Frame3>() : generateUpper(lower, compare);
-                }
-            default:
-                return QVector<Frame3>();
+        case Method::EBredPID:
+            return generateEmeraldPID(compare);
+        case Method::EBred:
+        case Method::EBredSplit:
+        case Method::EBredAlternate:
+            return generateEmeraldIVs(compare);
+        case Method::RSBred:
+        case Method::RSBredAlternate:
+        case Method::RSBredSplit:
+        case Method::FRLGBredSplit:
+        case Method::FRLGBred:
+        case Method::FRLGBredAlternate:
+        {
+            auto lower = generateLower(compare);
+            return lower.isEmpty() ? QVector<Frame3>() : generateUpper(lower, compare);
+        }
+        default:
+            return QVector<Frame3>();
         }
     }
 
@@ -146,55 +146,25 @@ namespace PokeFinderCore
         this->parent2 = parent2;
     }
 
-    void Egg3::setMinRedraw(const u8 &value)
-    {
-        minRedraw = value;
-    }
+    void Egg3::setMinRedraw(const u8 &value) { minRedraw = value; }
 
-    void Egg3::setMaxRedraw(const u8 &value)
-    {
-        maxRedraw = value;
-    }
+    void Egg3::setMaxRedraw(const u8 &value) { maxRedraw = value; }
 
-    void Egg3::setCompatability(const int &value)
-    {
-        compatability = value;
-    }
+    void Egg3::setCompatability(const int &value) { compatability = value; }
 
-    void Egg3::setCalibration(const u8 &value)
-    {
-        calibration = value;
-    }
+    void Egg3::setCalibration(const u8 &value) { calibration = value; }
 
-    void Egg3::setEverstone(bool value)
-    {
-        everstone = value;
-    }
+    void Egg3::setEverstone(bool value) { everstone = value; }
 
-    void Egg3::setMinPickup(const u32 &value)
-    {
-        minPickup = value;
-    }
+    void Egg3::setMinPickup(const u32 &value) { minPickup = value; }
 
-    void Egg3::setMaxPickup(const u32 &value)
-    {
-        maxPickup = value;
-    }
+    void Egg3::setMaxPickup(const u32 &value) { maxPickup = value; }
 
-    u32 Egg3::getSeed() const
-    {
-        return seed;
-    }
+    u32 Egg3::getSeed() const { return seed; }
 
-    void Egg3::setSeed(const u32 &value)
-    {
-        seed = value;
-    }
+    void Egg3::setSeed(const u32 &value) { seed = value; }
 
-    void Egg3::setPickupSeed(const u16 &value)
-    {
-        pickupSeed = value;
-    }
+    void Egg3::setPickupSeed(const u16 &value) { pickupSeed = value; }
 
     QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
     {
@@ -205,10 +175,7 @@ namespace PokeFinderCore
 
         PokeRNG rng(seed, initialFrame - 1);
         QVector<u16> rngList(maxResults + 19);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         u32 val = initialFrame;
 
@@ -247,8 +214,7 @@ namespace PokeFinderCore
                             }
 
                             pid = rngList.at(cnt + i++) | (trng.nextUInt() & 0xFFFF0000);
-                        }
-                        while (pid % 25 != everstoneNature);
+                        } while (pid % 25 != everstoneNature);
 
                         if (i != 19)
                         {
@@ -267,10 +233,8 @@ namespace PokeFinderCore
             }
         }
 
-        std::sort(frames.begin(), frames.end(), [](const Frame3 & frame1, const Frame3 & frame2)
-        {
-            return frame1.getFrame() < frame2.getFrame();
-        });
+        std::sort(frames.begin(), frames.end(),
+            [](const Frame3 &frame1, const Frame3 &frame2) { return frame1.getFrame() < frame2.getFrame(); });
 
         return frames;
     }
@@ -281,17 +245,15 @@ namespace PokeFinderCore
 
         PokeRNG rng(seed, initialFrame - 1);
         QVector<u16> rngList(maxResults + 10);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         u32 max = maxResults - initialFrame + 1;
         for (u32 cnt = 0; cnt < max; cnt++)
         {
             Frame3 frame(tid, sid, psv);
-            frame.setInheritance(rngList.at(cnt + iv1), rngList.at(cnt + iv2), rngList.at(cnt + par1), rngList.at(cnt + par2), rngList.at(cnt + par3),
-                                 rngList.at(cnt + inh1), rngList.at(cnt + inh2), rngList.at(cnt + inh3), parent1, parent2, true);
+            frame.setInheritance(rngList.at(cnt + iv1), rngList.at(cnt + iv2), rngList.at(cnt + par1),
+                rngList.at(cnt + par2), rngList.at(cnt + par3), rngList.at(cnt + inh1), rngList.at(cnt + inh2),
+                rngList.at(cnt + inh3), parent1, parent2, true);
 
             if (compare.compareIVs(frame))
             {
@@ -309,10 +271,7 @@ namespace PokeFinderCore
 
         PokeRNG rng(seed, initialFrame - 1);
         QVector<u16> rngList(maxResults + 2);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         u32 max = maxResults - initialFrame + 1;
         for (u32 cnt = 0; cnt < max; cnt++)
@@ -339,18 +298,16 @@ namespace PokeFinderCore
 
         PokeRNG rng(pickupSeed, minPickup - 1);
         QVector<u16> rngList(maxPickup + 12);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         u32 max = maxPickup - minPickup + 1;
         for (u32 cnt = 0; cnt < max; cnt++)
         {
             Frame3 frame(tid, sid, psv);
             frame.setPID(rngList.at(cnt), genderRatio);
-            frame.setInheritance(rngList.at(cnt + iv1), rngList.at(cnt + iv2), rngList.at(cnt + par1), rngList.at(cnt + par2), rngList.at(cnt + par3),
-                                 rngList.at(cnt + inh1), rngList.at(cnt + inh2), rngList.at(cnt + inh3), parent1, parent2);
+            frame.setInheritance(rngList.at(cnt + iv1), rngList.at(cnt + iv2), rngList.at(cnt + par1),
+                rngList.at(cnt + par2), rngList.at(cnt + par3), rngList.at(cnt + inh1), rngList.at(cnt + inh2),
+                rngList.at(cnt + inh3), parent1, parent2);
 
             if (compare.compareIVs(frame))
             {

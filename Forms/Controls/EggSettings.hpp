@@ -20,8 +20,8 @@
 #ifndef EGGSETTINGS_HPP
 #define EGGSETTINGS_HPP
 
-#include <QWidget>
 #include <Core/Util/Global.hpp>
+#include <QWidget>
 
 namespace PokeFinderForms
 {
@@ -39,17 +39,16 @@ namespace PokeFinderForms
 
     public:
         explicit EggSettings(QWidget *parent = nullptr);
-        ~EggSettings() override;
+        ~EggSettings() override = default;
         QVector<u8> getParent1() const;
         QVector<u8> getParent2() const;
 
     private:
-        Ui::EggSettings *ui;
+        std::unique_ptr<Ui::EggSettings> ui;
 
     private slots:
         void on_pushButtonSwapParents_clicked();
         void on_checkBoxShowInteritance_clicked(bool checked);
-
     };
 }
 

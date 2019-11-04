@@ -20,8 +20,8 @@
 #ifndef SLOT_HPP
 #define SLOT_HPP
 
-#include <Core/Util/Global.hpp>
 #include <Core/Parents/Pokemon.hpp>
+#include <Core/Util/Global.hpp>
 
 namespace PokeFinderCore
 {

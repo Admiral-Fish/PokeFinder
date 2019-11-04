@@ -21,15 +21,12 @@
 
 namespace PokeFinderModels
 {
-    PokeSpotModel::PokeSpotModel(QObject *parent) :
-        TableModel<PokeFinderCore::Frame3>(parent)
+    PokeSpotModel::PokeSpotModel(QObject *parent)
+        : TableModel<PokeFinderCore::Frame3>(parent)
     {
     }
 
-    int PokeSpotModel::columnCount(const QModelIndex & /*parent*/) const
-    {
-        return 7;
-    }
+    int PokeSpotModel::columnCount(const QModelIndex & /*parent*/) const { return 7; }
 
     QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
     {
@@ -38,20 +35,20 @@ namespace PokeFinderModels
             auto frame = model.at(index.row());
             switch (index.column())
             {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                case 2:
-                    return frame.getShinyString();
-                case 3:
-                    return frame.getLockReason();
-                case 4:
-                    return frame.getNatureString();
-                case 5:
-                    return frame.getAbility();
-                case 6:
-                    return frame.getGenderString();
+            case 0:
+                return frame.getFrame();
+            case 1:
+                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            case 2:
+                return frame.getShinyString();
+            case 3:
+                return frame.getLockReason();
+            case 4:
+                return frame.getNatureString();
+            case 5:
+                return frame.getAbility();
+            case 6:
+                return frame.getGenderString();
             }
         }
         return QVariant();

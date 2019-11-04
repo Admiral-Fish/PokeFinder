@@ -35,7 +35,7 @@ namespace PokeFinderCore
         u16 getDelay() const;
 
     private:
-        u16 delay{};
+        u16 delay {};
     };
 }
 

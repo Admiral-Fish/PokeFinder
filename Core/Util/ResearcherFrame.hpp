@@ -20,8 +20,8 @@
 #ifndef RESEARCHERFRAME_HPP
 #define RESEARCHERFRAME_HPP
 
-#include <QVector>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -36,20 +36,20 @@ namespace PokeFinderCore
 
     public:
         ResearcherFrame()
+            : custom(10, 0)
+            , full64(0)
+            , full32(0)
+            , frame(100000)
         {
-            custom = QVector<u64>(10, 0);
             rng64Bit = false;
-            full32 = 0;
-            full64 = 0;
-            frame = 100000;
         }
 
         ResearcherFrame(bool rng64Bit, u32 frame)
+            : custom(10, 0)
+            , full64(0)
+            , full32(0)
         {
-            custom = QVector<u64>(10, 0);
             this->rng64Bit = rng64Bit;
-            full32 = 0;
-            full64 = 0;
             this->frame = frame;
         }
 

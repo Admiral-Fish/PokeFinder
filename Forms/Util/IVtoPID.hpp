@@ -20,9 +20,9 @@
 #ifndef IVTOPIDHPP
 #define IVTOPIDHPP
 
+#include <Core/Util/Global.hpp>
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderForms
 {
@@ -39,8 +39,8 @@ namespace PokeFinderForms
         ~IVtoPID() override;
 
     private:
-        Ui::IVtoPID *ui;
-        QStandardItemModel *model{};
+        std::unique_ptr<Ui::IVtoPID> ui;
+        QStandardItemModel *model {};
 
         void setupModels();
         QVector<QList<QStandardItem *>> getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid);

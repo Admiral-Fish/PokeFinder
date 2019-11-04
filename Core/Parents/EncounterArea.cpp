@@ -17,9 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QStringList>
 #include "EncounterArea.hpp"
 #include <Core/Util/Translator.hpp>
+#include <QStringList>
 
 namespace PokeFinderCore
 {
@@ -30,20 +30,11 @@ namespace PokeFinderCore
         this->pokemon = pokemon;
     }
 
-    Encounter EncounterArea::getType() const
-    {
-        return type;
-    }
+    Encounter EncounterArea::getType() const { return type; }
 
-    u8 EncounterArea::getLocation() const
-    {
-        return location;
-    }
+    u8 EncounterArea::getLocation() const { return location; }
 
-    QVector<Slot> EncounterArea::getPokemon() const
-    {
-        return pokemon;
-    }
+    QVector<Slot> EncounterArea::getPokemon() const { return pokemon; }
 
     QVector<u16> EncounterArea::getUniqueSpecies() const
     {
@@ -86,13 +77,7 @@ namespace PokeFinderCore
         return range;
     }
 
-    QStringList EncounterArea::getSpecieNames() const
-    {
-        return Translator::getSpecies(getUniqueSpecies());
-    }
+    QStringList EncounterArea::getSpecieNames() const { return Translator::getSpecies(getUniqueSpecies()); }
 
-    void EncounterArea::setSlot(u8 index, u16 specie, Pokemon mon)
-    {
-        pokemon[index].setSpecie(specie, mon);
-    }
+    void EncounterArea::setSlot(u8 index, u16 specie, Pokemon mon) { pokemon[index].setSpecie(specie, mon); }
 }

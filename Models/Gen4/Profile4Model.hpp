@@ -29,16 +29,14 @@ namespace PokeFinderModels
     {
         Q_OBJECT
     public:
-        Profile4Model(QObject *parent);
+        explicit Profile4Model(QObject *parent);
         int columnCount(const QModelIndex &parent = QModelIndex()) const override;
         QVariant data(const QModelIndex &index, int role) const override;
         QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
     private:
-        QStringList header =
-        {
-            tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dual Slot"), tr("Radio"), tr("Pokeradar"), tr("Swarm")
-        };
+        QStringList header = { tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dual Slot"),
+            tr("Radio"), tr("Pokeradar"), tr("Swarm") };
     };
 }
 

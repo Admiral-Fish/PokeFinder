@@ -20,8 +20,8 @@
 #ifndef IVCALCULATOR_HPP
 #define IVCALCULATOR_HPP
 
-#include <QLabel>
 #include <Core/Util/Global.hpp>
+#include <QLabel>
 
 namespace PokeFinderCore
 {
@@ -44,7 +44,7 @@ namespace PokeFinderForms
         ~IVCalculator() override;
 
     private:
-        Ui::IVCalculator *ui;
+        std::unique_ptr<Ui::IVCalculator> ui;
         QVector<PokeFinderCore::Characteristic> characteristics;
         QVector<PokeFinderCore::Pokemon> pokemon;
         void setupModels();

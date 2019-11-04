@@ -21,7 +21,8 @@
 
 namespace PokeFinderForms
 {
-    TextBox::TextBox(QWidget *parent) : QLineEdit(parent)
+    TextBox::TextBox(QWidget *parent)
+        : QLineEdit(parent)
     {
         connect(this, &TextBox::textEdited, this, &TextBox::onTextEdited);
         setup = false;
@@ -31,41 +32,41 @@ namespace PokeFinderForms
     {
         switch (type)
         {
-            case InputType::Seed64Bit:
-                minValue = 0;
-                maxValue = 0xffffffffffffffff;
-                base = 16;
-                break;
-            case InputType::Frame64Bit:
-                minValue = 1;
-                maxValue = 0xffffffffffffffff;
-                base = 10;
-                break;
-            case InputType::Seed32Bit:
-                minValue = 0;
-                maxValue = 0xffffffff;
-                base = 16;
-                break;
-            case InputType::Frame32Bit:
-                minValue = 1;
-                maxValue = 0xffffffff;
-                base = 10;
-                break;
-            case InputType::Seed16Bit:
-                minValue = 0;
-                maxValue = 0xffff;
-                base = 16;
-                break;
-            case InputType::Delay:
-                minValue = 0;
-                maxValue = 0xffffffff;
-                base = 10;
-                break;
-            case InputType::TIDSID:
-                minValue = 0;
-                maxValue = 0xffff;
-                base = 10;
-                break;
+        case InputType::Seed64Bit:
+            minValue = 0;
+            maxValue = 0xffffffffffffffff;
+            base = 16;
+            break;
+        case InputType::Frame64Bit:
+            minValue = 1;
+            maxValue = 0xffffffffffffffff;
+            base = 10;
+            break;
+        case InputType::Seed32Bit:
+            minValue = 0;
+            maxValue = 0xffffffff;
+            base = 16;
+            break;
+        case InputType::Frame32Bit:
+            minValue = 1;
+            maxValue = 0xffffffff;
+            base = 10;
+            break;
+        case InputType::Seed16Bit:
+            minValue = 0;
+            maxValue = 0xffff;
+            base = 16;
+            break;
+        case InputType::Delay:
+            minValue = 0;
+            maxValue = 0xffffffff;
+            base = 10;
+            break;
+        case InputType::TIDSID:
+            minValue = 0;
+            maxValue = 0xffff;
+            base = 10;
+            break;
         }
 
         filter = QRegExp(base == 10 ? "[^0-9]" : "[^0-9A-F]");

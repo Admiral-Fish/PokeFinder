@@ -17,10 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QTranslator>
 #include "Searcher3.hpp"
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
+#include <QTranslator>
 
 namespace PokeFinderCore
 {
@@ -47,26 +47,26 @@ namespace PokeFinderCore
     {
         switch (frameType)
         {
-            case Method::Method1:
-            case Method::Method2:
-            case Method::Method4:
-                return searchMethod124(hp, atk, def, spa, spd, spe);
-            case Method::Method1Reverse:
-                return searchMethod1Reverse(hp, atk, def, spa, spd, spe);
-            case Method::MethodH1:
-            case Method::MethodH2:
-            case Method::MethodH4:
-                return searchMethodH124(hp, atk, def, spa, spd, spe);
-            case Method::Colo:
-                return searchMethodColo(hp, atk, def, spa, spd, spe);
-            case Method::XD:
-                return searchMethodXD(hp, atk, def, spa, spd, spe);
-            case Method::XDColo:
-                return searchMethodXDColo(hp, atk, def, spa, spd, spe);
-            case Method::Channel:
-                return searchMethodChannel(hp, atk, def, spa, spd, spe);
-            default:
-                return QVector<Frame3>();
+        case Method::Method1:
+        case Method::Method2:
+        case Method::Method4:
+            return searchMethod124(hp, atk, def, spa, spd, spe);
+        case Method::Method1Reverse:
+            return searchMethod1Reverse(hp, atk, def, spa, spd, spe);
+        case Method::MethodH1:
+        case Method::MethodH2:
+        case Method::MethodH4:
+            return searchMethodH124(hp, atk, def, spa, spd, spe);
+        case Method::Colo:
+            return searchMethodColo(hp, atk, def, spa, spd, spe);
+        case Method::XD:
+            return searchMethodXD(hp, atk, def, spa, spd, spe);
+        case Method::XDColo:
+            return searchMethodXDColo(hp, atk, def, spa, spd, spe);
+        case Method::Channel:
+            return searchMethodChannel(hp, atk, def, spa, spd, spe);
+        default:
+            return QVector<Frame3>();
         }
     }
 
@@ -76,29 +76,29 @@ namespace PokeFinderCore
 
         switch (frameType)
         {
-            case Method::Method1:
-            case Method::Method1Reverse:
-            case Method::MethodH1:
-                cache.switchCache(Method::Method1);
-                break;
-            case Method::Method2:
-            case Method::MethodH2:
-                cache.switchCache(Method::Method2);
-                break;
-            case Method::Method4:
-            case Method::MethodH4:
-                cache.switchCache(Method::Method4);
-                break;
-            case Method::Colo:
-            case Method::XD:
-            case Method::XDColo:
-                euclidean.switchEuclidean(Method::XDColo);
-                break;
-            case Method::Channel:
-                euclidean.switchEuclidean(Method::Channel);
-                break;
-            default:
-                break;
+        case Method::Method1:
+        case Method::Method1Reverse:
+        case Method::MethodH1:
+            cache.switchCache(Method::Method1);
+            break;
+        case Method::Method2:
+        case Method::MethodH2:
+            cache.switchCache(Method::Method2);
+            break;
+        case Method::Method4:
+        case Method::MethodH4:
+            cache.switchCache(Method::Method4);
+            break;
+        case Method::Colo:
+        case Method::XD:
+        case Method::XDColo:
+            euclidean.switchEuclidean(Method::XDColo);
+            break;
+        case Method::Channel:
+            euclidean.switchEuclidean(Method::Channel);
+            break;
+        default:
+            break;
         }
     }
 
@@ -109,10 +109,7 @@ namespace PokeFinderCore
         frame.setLockReason(QObject::tr("Pass NL"));
     }
 
-    void Searcher3::setEncounter(const EncounterArea3 &value)
-    {
-        encounter = value;
-    }
+    void Searcher3::setEncounter(const EncounterArea3 &value) { encounter = value; }
 
     QVector<Frame3> Searcher3::searchMethodChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
     {
@@ -180,22 +177,23 @@ namespace PokeFinderCore
             {
                 switch (type)
                 {
-                    case ShadowType::FirstShadow:
-                        if (shadowLock.firstShadowNormal(frame.getSeed()))
-                        {
-                            frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                            continue;
-                        }
-                        break;
-                    case ShadowType::EReader:
-                        if (shadowLock.eReader(frame.getSeed(), frame.getPID()))
-                        {
-                            frames.push_back(frame); // If this seed passes it is impossible for the sister spread to generate
-                            continue;
-                        }
-                        break;
-                    default:
-                        break;
+                case ShadowType::FirstShadow:
+                    if (shadowLock.firstShadowNormal(frame.getSeed()))
+                    {
+                        frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                        continue;
+                    }
+                    break;
+                case ShadowType::EReader:
+                    if (shadowLock.eReader(frame.getSeed(), frame.getPID()))
+                    {
+                        frames.push_back(
+                            frame); // If this seed passes it is impossible for the sister spread to generate
+                        continue;
+                    }
+                    break;
+                default:
+                    break;
                 }
             }
 
@@ -205,20 +203,20 @@ namespace PokeFinderCore
             {
                 switch (type)
                 {
-                    case ShadowType::FirstShadow:
-                        if (shadowLock.firstShadowNormal(frame.getSeed()))
-                        {
-                            frames.append(frame);
-                        }
-                        break;
-                    case ShadowType::EReader:
-                        if (shadowLock.eReader(frame.getSeed(), frame.getPID()))
-                        {
-                            frames.append(frame);
-                        }
-                        break;
-                    default:
-                        break;
+                case ShadowType::FirstShadow:
+                    if (shadowLock.firstShadowNormal(frame.getSeed()))
+                    {
+                        frames.append(frame);
+                    }
+                    break;
+                case ShadowType::EReader:
+                    if (shadowLock.eReader(frame.getSeed(), frame.getPID()))
+                    {
+                        frames.append(frame);
+                    }
+                    break;
+                default:
+                    break;
                 }
             }
         }
@@ -272,121 +270,119 @@ namespace PokeFinderCore
                 {
                     switch (leadType)
                     {
-                        case Lead::None:
-                            if ((nextRNG % 25) == frame.getNature())
+                    case Lead::None:
+                        if ((nextRNG % 25) == frame.getNature())
+                        {
+                            frame.setLeadType(Lead::None);
+                            slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+                            frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                            frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
+                            if (compare.compareSlot(frame))
                             {
-                                frame.setLeadType(Lead::None);
-                                slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                                frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                                frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
-                                if (compare.compareSlot(frame))
-                                {
-                                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-                                    frames.append(frame);
-                                }
+                                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
+                                frames.append(frame);
                             }
-                            break;
-                        case Lead::Synchronize:
-                            // Successful synch
-                            if ((nextRNG & 1) == 0)
+                        }
+                        break;
+                    case Lead::Synchronize:
+                        // Successful synch
+                        if ((nextRNG & 1) == 0)
+                        {
+                            frame.setLeadType(Lead::Synchronize);
+                            slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+                            frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                            frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
+                            if (compare.compareSlot(frame))
                             {
-                                frame.setLeadType(Lead::Synchronize);
-                                slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                                frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                                frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
-                                if (compare.compareSlot(frame))
-                                {
-                                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-                                    frames.append(frame);
-                                }
+                                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
+                                frames.append(frame);
                             }
-                            // Failed synch
-                            else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == frame.getNature())
+                        }
+                        // Failed synch
+                        else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == frame.getNature())
+                        {
+                            frame.setLeadType(Lead::Synchronize);
+                            slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
+                            frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                            frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
+                            if (compare.compareSlot(frame))
                             {
-                                frame.setLeadType(Lead::Synchronize);
-                                slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
-                                frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                                frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
-                                if (compare.compareSlot(frame))
-                                {
-                                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-                                    frames.append(frame);
-                                }
+                                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
+                                frames.append(frame);
                             }
-                            break;
-                        case Lead::CuteCharm:
-                            if ((nextRNG % 25) == frame.getNature() && (nextRNG2 % 3) > 0)
+                        }
+                        break;
+                    case Lead::CuteCharm:
+                        if ((nextRNG % 25) == frame.getNature() && (nextRNG2 % 3) > 0)
+                        {
+                            frame.setLeadType(Lead::CuteCharm);
+                            slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
+                            frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                            frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
+                            if (compare.compareSlot(frame))
                             {
-                                frame.setLeadType(Lead::CuteCharm);
-                                slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
-                                frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                                frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
-                                if (compare.compareSlot(frame))
-                                {
-                                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-                                    frames.append(frame);
-                                }
+                                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
+                                frames.append(frame);
                             }
-                            break;
-                        case Lead::Search:
-                        default:
-                            // Normal
-                            if ((nextRNG % 25) == frame.getNature())
+                        }
+                        break;
+                    case Lead::Search:
+                    default:
+                        // Normal
+                        if ((nextRNG % 25) == frame.getNature())
+                        {
+                            frame.setLeadType(Lead::None);
+                            slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+                            frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                            frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
+                            if (compare.compareSlot(frame))
                             {
-                                frame.setLeadType(Lead::None);
-                                slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                                frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                                frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
-                                if (compare.compareSlot(frame))
+                                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
+                                frames.append(frame);
+                            }
+
+                            slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
+                            frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                            frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
+                            if (compare.compareSlot(frame))
+                            {
+                                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
+
+                                // Failed synch
+                                if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == frame.getNature())
                                 {
-                                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
+                                    frame.setLeadType(Lead::Synchronize);
                                     frames.append(frame);
                                 }
 
-                                slot = testRNG.getSeed() * 0xdc6c95d9 + 0x4d3cb126;
-                                frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                                frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
-                                if (compare.compareSlot(frame))
+                                // Cute Charm
+                                if ((nextRNG2 % 3) > 0)
                                 {
-                                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
-
-                                    // Failed synch
-                                    if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == frame.getNature())
-                                    {
-                                        frame.setLeadType(Lead::Synchronize);
-                                        frames.append(frame);
-                                    }
-
-                                    // Cute Charm
-                                    if ((nextRNG2 % 3) > 0)
-                                    {
-                                        frame.setLeadType(Lead::CuteCharm);
-                                        frames.append(frame);
-                                    }
-                                }
-                            }
-                            // Successful Synch
-                            else if ((nextRNG & 1) == 0)
-                            {
-                                frame.setLeadType(Lead::Synchronize);
-                                slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
-                                frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
-                                frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
-                                if (compare.compareSlot(frame))
-                                {
-                                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
+                                    frame.setLeadType(Lead::CuteCharm);
                                     frames.append(frame);
                                 }
-
                             }
-                            break;
+                        }
+                        // Successful Synch
+                        else if ((nextRNG & 1) == 0)
+                        {
+                            frame.setLeadType(Lead::Synchronize);
+                            slot = testRNG.getSeed() * 0xeeb9eb65 + 0xa3561a1;
+                            frame.setSeed(slot * 0xdc6c95d9 + 0x4d3cb126);
+                            frame.setEncounterSlot(EncounterSlot::hSlot(slot >> 16, encounterType));
+                            if (compare.compareSlot(frame))
+                            {
+                                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), testRNG.getSeed() >> 16));
+                                frames.append(frame);
+                            }
+                        }
+                        break;
                     }
 
                     testPID = (nextRNG << 16) | nextRNG2;
                     nextRNG = testRNG.nextUShort();
                     nextRNG2 = testRNG.nextUShort();
-                }
-                while ((testPID % 25) != frame.getNature());
+                } while ((testPID % 25) != frame.getNature());
             }
         }
 
@@ -445,62 +441,68 @@ namespace PokeFinderCore
             {
                 switch (type)
                 {
-                    case ShadowType::SingleLock:
-                        if (shadowLock.singleNL(frame.getSeed()))
-                        {
-                            frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                            continue;
-                        }
-                        break;
-                    case ShadowType::FirstShadow:
-                        if (shadowLock.firstShadowNormal(frame.getSeed()))
-                        {
-                            frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                            continue;
-                        }
-                        break;
-                    case ShadowType::SecondShadow:
-                        if (shadowLock.firstShadowUnset(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("First shadow unset")); // Also unlikely for the other methods of encounter to pass
-                            frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                            continue;
-                        }
-                        if (shadowLock.firstShadowSet(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("First shadow set")); // Also unlikely for the other methods of encounter to pass
-                            frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                            continue;
-                        }
-                        if (shadowLock.firstShadowShinySkip(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("Shiny Skip")); // Also unlikely for the other methods of encounter to pass
-                            frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                            continue;
-                        }
-                        break;
-                    case ShadowType::Salamence:
-                        if (shadowLock.salamenceUnset(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("First shadow unset")); // Also unlikely for the other methods of encounter to pass
-                            frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                            continue;
-                        }
-                        if (shadowLock.salamenceSet(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("First shadow set")); // Also unlikely for the other methods of encounter to pass
-                            frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                            continue;
-                        }
-                        if (shadowLock.salamenceShinySkip(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("Shiny Skip")); // Also unlikely for the other methods of encounter to pass
-                            frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                            continue;
-                        }
-                        break;
-                    default:
-                        break;
+                case ShadowType::SingleLock:
+                    if (shadowLock.singleNL(frame.getSeed()))
+                    {
+                        frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                        continue;
+                    }
+                    break;
+                case ShadowType::FirstShadow:
+                    if (shadowLock.firstShadowNormal(frame.getSeed()))
+                    {
+                        frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                        continue;
+                    }
+                    break;
+                case ShadowType::SecondShadow:
+                    if (shadowLock.firstShadowUnset(frame.getSeed()))
+                    {
+                        frame.setLockReason(QObject::tr(
+                            "First shadow unset")); // Also unlikely for the other methods of encounter to pass
+                        frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                        continue;
+                    }
+                    if (shadowLock.firstShadowSet(frame.getSeed()))
+                    {
+                        frame.setLockReason(QObject::tr(
+                            "First shadow set")); // Also unlikely for the other methods of encounter to pass
+                        frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                        continue;
+                    }
+                    if (shadowLock.firstShadowShinySkip(frame.getSeed()))
+                    {
+                        frame.setLockReason(
+                            QObject::tr("Shiny Skip")); // Also unlikely for the other methods of encounter to pass
+                        frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                        continue;
+                    }
+                    break;
+                case ShadowType::Salamence:
+                    if (shadowLock.salamenceUnset(frame.getSeed()))
+                    {
+                        frame.setLockReason(QObject::tr(
+                            "First shadow unset")); // Also unlikely for the other methods of encounter to pass
+                        frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                        continue;
+                    }
+                    if (shadowLock.salamenceSet(frame.getSeed()))
+                    {
+                        frame.setLockReason(QObject::tr(
+                            "First shadow set")); // Also unlikely for the other methods of encounter to pass
+                        frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                        continue;
+                    }
+                    if (shadowLock.salamenceShinySkip(frame.getSeed()))
+                    {
+                        frame.setLockReason(
+                            QObject::tr("Shiny Skip")); // Also unlikely for the other methods of encounter to pass
+                        frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                        continue;
+                    }
+                    break;
+                default:
+                    break;
                 }
             }
 
@@ -510,54 +512,54 @@ namespace PokeFinderCore
             {
                 switch (type)
                 {
-                    case ShadowType::SingleLock:
-                        if (shadowLock.singleNL(frame.getSeed()))
-                        {
-                            frames.append(frame);
-                        }
-                        break;
-                    case ShadowType::FirstShadow:
-                        if (shadowLock.firstShadowNormal(frame.getSeed()))
-                        {
-                            frames.append(frame);
-                        }
-                        break;
-                    case ShadowType::SecondShadow:
-                        if (shadowLock.firstShadowUnset(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("First shadow unset"));
-                            frames.append(frame);
-                        }
-                        else if (shadowLock.firstShadowSet(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("First shadow set"));
-                            frames.append(frame);
-                        }
-                        else if (shadowLock.firstShadowShinySkip(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("Shiny Skip"));
-                            frames.append(frame);
-                        }
-                        break;
-                    case ShadowType::Salamence:
-                        if (shadowLock.salamenceUnset(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("First shadow unset"));
-                            frames.append(frame);
-                        }
-                        else if (shadowLock.salamenceSet(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("First shadow set"));
-                            frames.append(frame);
-                        }
-                        else if (shadowLock.salamenceShinySkip(frame.getSeed()))
-                        {
-                            frame.setLockReason(QObject::tr("Shiny Skip"));
-                            frames.append(frame);
-                        }
-                        break;
-                    default:
-                        break;
+                case ShadowType::SingleLock:
+                    if (shadowLock.singleNL(frame.getSeed()))
+                    {
+                        frames.append(frame);
+                    }
+                    break;
+                case ShadowType::FirstShadow:
+                    if (shadowLock.firstShadowNormal(frame.getSeed()))
+                    {
+                        frames.append(frame);
+                    }
+                    break;
+                case ShadowType::SecondShadow:
+                    if (shadowLock.firstShadowUnset(frame.getSeed()))
+                    {
+                        frame.setLockReason(QObject::tr("First shadow unset"));
+                        frames.append(frame);
+                    }
+                    else if (shadowLock.firstShadowSet(frame.getSeed()))
+                    {
+                        frame.setLockReason(QObject::tr("First shadow set"));
+                        frames.append(frame);
+                    }
+                    else if (shadowLock.firstShadowShinySkip(frame.getSeed()))
+                    {
+                        frame.setLockReason(QObject::tr("Shiny Skip"));
+                        frames.append(frame);
+                    }
+                    break;
+                case ShadowType::Salamence:
+                    if (shadowLock.salamenceUnset(frame.getSeed()))
+                    {
+                        frame.setLockReason(QObject::tr("First shadow unset"));
+                        frames.append(frame);
+                    }
+                    else if (shadowLock.salamenceSet(frame.getSeed()))
+                    {
+                        frame.setLockReason(QObject::tr("First shadow set"));
+                        frames.append(frame);
+                    }
+                    else if (shadowLock.salamenceShinySkip(frame.getSeed()))
+                    {
+                        frame.setLockReason(QObject::tr("Shiny Skip"));
+                        frames.append(frame);
+                    }
+                    break;
+                default:
+                    break;
                 }
             }
         }

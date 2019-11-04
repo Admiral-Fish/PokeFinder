@@ -22,15 +22,12 @@
 
 namespace PokeFinderModels
 {
-    Stationary3Model::Stationary3Model(QObject *parent) :
-        TableModel<PokeFinderCore::Frame3>(parent)
+    Stationary3Model::Stationary3Model(QObject *parent)
+        : TableModel<PokeFinderCore::Frame3>(parent)
     {
     }
 
-    int Stationary3Model::columnCount(const QModelIndex & /*parent*/) const
-    {
-        return 15;
-    }
+    int Stationary3Model::columnCount(const QModelIndex & /*parent*/) const { return 15; }
 
     QVariant Stationary3Model::data(const QModelIndex &index, int role) const
     {
@@ -39,36 +36,36 @@ namespace PokeFinderModels
             auto frame = model.at(index.row());
             switch (index.column())
             {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                case 2:
-                    return frame.getShinyString();
-                case 3:
-                    return frame.getNatureString();
-                case 4:
-                    return frame.getAbility();
-                case 5:
-                    return frame.getIV(0);
-                case 6:
-                    return frame.getIV(1);
-                case 7:
-                    return frame.getIV(2);
-                case 8:
-                    return frame.getIV(3);
-                case 9:
-                    return frame.getIV(4);
-                case 10:
-                    return frame.getIV(5);
-                case 11:
-                    return frame.getPowerString();
-                case 12:
-                    return frame.getPower();
-                case 13:
-                    return frame.getGenderString();
-                case 14:
-                    return frame.getTime();
+            case 0:
+                return frame.getFrame();
+            case 1:
+                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            case 2:
+                return frame.getShinyString();
+            case 3:
+                return frame.getNatureString();
+            case 4:
+                return frame.getAbility();
+            case 5:
+                return frame.getIV(0);
+            case 6:
+                return frame.getIV(1);
+            case 7:
+                return frame.getIV(2);
+            case 8:
+                return frame.getIV(3);
+            case 9:
+                return frame.getIV(4);
+            case 10:
+                return frame.getIV(5);
+            case 11:
+                return frame.getPowerString();
+            case 12:
+                return frame.getPower();
+            case 13:
+                return frame.getGenderString();
+            case 14:
+                return frame.getTime();
             }
         }
         else if (role == Qt::FontRole)
@@ -76,18 +73,18 @@ namespace PokeFinderModels
             auto frame = model.at(index.row());
             switch (index.column())
             {
-                case 5:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
-                case 6:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
-                case 7:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
-                case 8:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
-                case 9:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
-                case 10:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
+            case 5:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
+            case 6:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
+            case 7:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
+            case 8:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
+            case 9:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
+            case 10:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
             }
         }
         return QVariant();

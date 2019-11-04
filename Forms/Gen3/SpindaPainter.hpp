@@ -20,9 +20,9 @@
 #ifndef SPINDAPAINTER_HPP
 #define SPINDAPAINTER_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QGraphicsScene>
 #include <QWidget>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderForms
 {
@@ -41,16 +41,14 @@ namespace PokeFinderForms
         ~SpindaPainter() override;
 
     private:
-        Ui::SpindaPainter *ui;
-        QGraphicsScene *scene{};
-        QGraphicsPixmapItem *spinda{};
-        GraphicsPixmapItem *spot1{};
-        GraphicsPixmapItem *spot2{};
-        GraphicsPixmapItem *spot3{};
-        GraphicsPixmapItem *spot4{};
+        std::unique_ptr<Ui::SpindaPainter> ui;
+        QGraphicsScene *scene {};
+        QGraphicsPixmapItem *spinda {};
+        GraphicsPixmapItem *spot1 {};
+        GraphicsPixmapItem *spot2 {};
+        GraphicsPixmapItem *spot3 {};
+        GraphicsPixmapItem *spot4 {};
         u32 pid = 0;
-        const QVector<u8> coords = { 0, 0, 24, 1, 6, 18, 18, 19 };
-        const QVector<u8> origin = { 8, 6 };
         bool text = false;
 
         void setupModels();

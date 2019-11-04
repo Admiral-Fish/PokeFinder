@@ -20,8 +20,8 @@
 #ifndef EGGS3_HPP
 #define EGGS3_HPP
 
-#include <QWidget>
 #include <Core/Gen3/Profile3.hpp>
+#include <QWidget>
 
 namespace PokeFinderCore
 {
@@ -52,12 +52,12 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        Ui::Eggs3 *ui;
+        std::unique_ptr<Ui::Eggs3> ui;
         QVector<PokeFinderCore::Profile3> profiles;
-        PokeFinderModels::Egg3Model *emeraldIVs{};
-        PokeFinderModels::Egg3Model *emeraldPID{};
-        PokeFinderModels::Egg3Model *rs{};
-        PokeFinderModels::Egg3Model *frlg{};
+        PokeFinderModels::Egg3Model *emeraldIVs {};
+        PokeFinderModels::Egg3Model *emeraldPID {};
+        PokeFinderModels::Egg3Model *rs {};
+        PokeFinderModels::Egg3Model *frlg {};
 
         void setupModels();
 

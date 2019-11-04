@@ -17,18 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include "TableView.hpp"
 #include <QApplication>
 #include <QClipboard>
 #include <QFileDialog>
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QTextStream>
-#include "TableView.hpp"
 
 namespace PokeFinderForms
 {
-    TableView::TableView(QWidget *parent) :
-        QTableView(parent)
+    TableView::TableView(QWidget *parent)
+        : QTableView(parent)
     {
     }
 
@@ -80,8 +80,9 @@ namespace PokeFinderForms
 
     void TableView::outputModel(bool csv) const
     {
-        QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr(csv ? "Save Output to CSV" : "Save Output to TXT"),
-                           QDir::currentPath(), QObject::tr(csv ? "CSV File (*.csv);;All Files (*)" : "Text File (*.txt);;All Files (*)"));
+        QString fileName = QFileDialog::getSaveFileName(nullptr,
+            QObject::tr(csv ? "Save Output to CSV" : "Save Output to TXT"), QDir::currentPath(),
+            QObject::tr(csv ? "CSV File (*.csv);;All Files (*)" : "Text File (*.txt);;All Files (*)"));
 
         if (fileName.isEmpty())
         {

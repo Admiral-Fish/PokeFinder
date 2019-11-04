@@ -17,53 +17,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QFile>
-#include <QtConcurrent>
 #include "GameCubeSeedSearcher.hpp"
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/Game.hpp>
+#include <QFile>
+#include <QtConcurrent>
 
-constexpr u16 galesHPStat[10][2] =
-{
-    { 322, 340 }, { 310, 290 }, { 210, 620 }, { 320, 230 }, { 310, 310 },
-    { 290, 310 }, { 290, 270 }, { 290, 250 }, { 320, 270 }, { 270, 230 }
-};
+constexpr u16 galesHPStat[10][2] = { { 322, 340 }, { 310, 290 }, { 210, 620 }, { 320, 230 }, { 310, 310 }, { 290, 310 },
+    { 290, 270 }, { 290, 250 }, { 320, 270 }, { 270, 230 } };
 
-constexpr u8 coloNatures[8][6] =
-{
-    { 0x16, 0x15, 0x0f, 0x13, 0x04, 0x04 },
-    { 0x0b, 0x08, 0x01, 0x10, 0x10, 0x0C },
-    { 0x02, 0x10, 0x0f, 0x12, 0x0f, 0x03 },
-    { 0x10, 0x13, 0x03, 0x16, 0x03, 0x18 },
-    { 0x11, 0x10, 0x0f, 0x13, 0x05, 0x04 },
-    { 0x0f, 0x11, 0x01, 0x03, 0x13, 0x03 },
-    { 0x01, 0x08, 0x03, 0x01, 0x03, 0x03 },
-    { 0x03, 0x0a, 0x0f, 0x03, 0x0f, 0x03 }
-};
+constexpr u8 coloNatures[8][6] = { { 0x16, 0x15, 0x0f, 0x13, 0x04, 0x04 }, { 0x0b, 0x08, 0x01, 0x10, 0x10, 0x0C },
+    { 0x02, 0x10, 0x0f, 0x12, 0x0f, 0x03 }, { 0x10, 0x13, 0x03, 0x16, 0x03, 0x18 },
+    { 0x11, 0x10, 0x0f, 0x13, 0x05, 0x04 }, { 0x0f, 0x11, 0x01, 0x03, 0x13, 0x03 },
+    { 0x01, 0x08, 0x03, 0x01, 0x03, 0x03 }, { 0x03, 0x0a, 0x0f, 0x03, 0x0f, 0x03 } };
 
-constexpr u8 coloGenders[8][6] =
-{
-    { 0, 1, 1, 0, 0, 1 },
-    { 2, 1, 0, 0, 1, 0 },
-    { 0, 1, 0, 1, 0, 1 },
-    { 2, 1, 1, 1, 0, 0 },
-    { 0, 0, 0, 0, 0, 1 },
-    { 2, 1, 2, 0, 2, 1 },
-    { 2, 0, 0, 1, 1, 0 },
-    { 1, 0, 1, 0, 1, 0 }
-};
+constexpr u8 coloGenders[8][6] = { { 0, 1, 1, 0, 0, 1 }, { 2, 1, 0, 0, 1, 0 }, { 0, 1, 0, 1, 0, 1 },
+    { 2, 1, 1, 1, 0, 0 }, { 0, 0, 0, 0, 0, 1 }, { 2, 1, 2, 0, 2, 1 }, { 2, 0, 0, 1, 1, 0 }, { 1, 0, 1, 0, 1, 0 } };
 
-constexpr u8 coloGenderRatios [8][6] =
-{
-    { 0x1f, 0x7f, 0x7f, 0x7f, 0xbf, 0x7f },
-    { 0xff, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f },
-    { 0x1f, 0x3f, 0x7f, 0x7f, 0x7f, 0x7f },
-    { 0xff, 0xbf, 0x7f, 0x7f, 0x1f, 0x7f },
-    { 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x7f },
-    { 0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f },
-    { 0xff, 0x1f, 0x3f, 0x7f, 0x7f, 0x3f },
-    { 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f }
-};
+constexpr u8 coloGenderRatios[8][6] = { { 0x1f, 0x7f, 0x7f, 0x7f, 0xbf, 0x7f }, { 0xff, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f },
+    { 0x1f, 0x3f, 0x7f, 0x7f, 0x7f, 0x7f }, { 0xff, 0xbf, 0x7f, 0x7f, 0x1f, 0x7f },
+    { 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x7f }, { 0xff, 0x7f, 0xff, 0x7f, 0xff, 0x7f },
+    { 0xff, 0x1f, 0x3f, 0x7f, 0x7f, 0x3f }, { 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f } };
 
 namespace PokeFinderCore
 {
@@ -75,8 +49,7 @@ namespace PokeFinderCore
         cancel = false;
         progress = 0;
 
-        connect(this, &GameCubeSeedSearcher::finished, this, [ = ]
-        {
+        connect(this, &GameCubeSeedSearcher::finished, this, [=] {
             searching = false;
             QTimer::singleShot(1000, this, &GameCubeSeedSearcher::deleteLater);
         });
@@ -136,22 +109,16 @@ namespace PokeFinderCore
 
             auto *timer = new QTimer(this);
             connect(this, &GameCubeSeedSearcher::finished, timer, &QTimer::stop);
-            connect(timer, &QTimer::timeout, this, [ = ] {  emit updateProgress(progress); });
+            connect(timer, &QTimer::timeout, this, [=] { emit updateProgress(progress); });
             timer->start(1000);
 
-            QtConcurrent::run([ = ] { search(); });
+            QtConcurrent::run([=] { search(); });
         }
     }
 
-    void GameCubeSeedSearcher::addHPCriteria(const QVector<u32> &criteria)
-    {
-        this->criteria.append(criteria);
-    }
+    void GameCubeSeedSearcher::addHPCriteria(const QVector<u32> &criteria) { this->criteria.append(criteria); }
 
-    void GameCubeSeedSearcher::cancelSearch()
-    {
-        cancel = true;
-    }
+    void GameCubeSeedSearcher::cancelSearch() { cancel = true; }
 
     void GameCubeSeedSearcher::search()
     {
@@ -255,8 +222,7 @@ namespace PokeFinderCore
         do
         {
             playerIndex = rng.nextUShort() & 7;
-        }
-        while (enemyIndex == playerIndex);
+        } while (enemyIndex == playerIndex);
 
         if (playerIndex != criteria.at(0))
         {
@@ -273,7 +239,8 @@ namespace PokeFinderCore
             u32 pid = (high << 16) | (low);
 
             seed = rng.nextUInt(2);
-            generatePokemonColo(seed, tsv, pid, coloNatures[enemyIndex][i], coloGenders[enemyIndex][i], coloGenderRatios[enemyIndex][i]);
+            generatePokemonColo(seed, tsv, pid, coloNatures[enemyIndex][i], coloGenders[enemyIndex][i],
+                coloGenderRatios[enemyIndex][i]);
             rng.setSeed(seed);
         }
 
@@ -293,7 +260,8 @@ namespace PokeFinderCore
             u32 pid = (high << 16) | (low);
 
             seed = rng.nextUInt(2);
-            generatePokemonColo(seed, tsv, pid, coloNatures[playerIndex][i], coloGenders[playerIndex][i], coloGenderRatios[playerIndex][i]);
+            generatePokemonColo(seed, tsv, pid, coloNatures[playerIndex][i], coloGenders[playerIndex][i],
+                coloGenderRatios[playerIndex][i]);
             rng.setSeed(seed);
         }
 
@@ -320,7 +288,8 @@ namespace PokeFinderCore
         seed = rng.getSeed();
     }
 
-    void GameCubeSeedSearcher::generatePokemonColo(u32 &seed, u16 tsv, u32 dummyPID, u8 nature, u8 gender, u8 genderRatio)
+    void GameCubeSeedSearcher::generatePokemonColo(
+        u32 &seed, u16 tsv, u32 dummyPID, u8 nature, u8 gender, u8 genderRatio)
     {
         bool flag = false;
         XDRNG rng(seed);

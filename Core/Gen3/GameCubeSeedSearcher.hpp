@@ -20,9 +20,9 @@
 #ifndef GAMECUBESEED_HPP
 #define GAMECUBESEED_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QObject>
 #include <QVector>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderCore
 {

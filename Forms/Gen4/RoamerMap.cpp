@@ -23,9 +23,9 @@
 
 namespace PokeFinderForms
 {
-    RoamerMap::RoamerMap(QWidget *parent) :
-        QDialog(parent),
-        ui(new Ui::RoamerMap)
+    RoamerMap::RoamerMap(QWidget *parent)
+        : QDialog(parent)
+        , ui(new Ui::RoamerMap)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -36,10 +36,5 @@ namespace PokeFinderForms
         ui->labelEntei->setText(roamers.at(0));
         ui->labelRaikou->setText(roamers.at(1));
         ui->labelLatiasLatios->setText(roamers.at(2) + "/" + roamers.at(3));
-    }
-
-    RoamerMap::~RoamerMap()
-    {
-        delete ui;
     }
 }

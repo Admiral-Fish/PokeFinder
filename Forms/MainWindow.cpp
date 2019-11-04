@@ -17,8 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QDesktopServices>
-#include <QtNetwork>
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
 #include <Forms/Gen3/Eggs3.hpp>
@@ -28,10 +26,10 @@
 #include <Forms/Gen3/IDs3.hpp>
 #include <Forms/Gen3/JirachiPattern.hpp>
 #include <Forms/Gen3/PIDtoIVs.hpp>
+#include <Forms/Gen3/PokeSpot.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Forms/Gen3/SpindaPainter.hpp>
 #include <Forms/Gen3/Stationary3.hpp>
-#include <Forms/Gen3/PokeSpot.hpp>
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen4/ChainedSID.hpp>
 #include <Forms/Gen4/Eggs4.hpp>
@@ -43,12 +41,14 @@
 #include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Util/Researcher.hpp>
+#include <QDesktopServices>
+#include <QtNetwork>
 
 namespace PokeFinderForms
 {
-    MainWindow::MainWindow(QWidget *parent) :
-        QMainWindow(parent),
-        ui(new Ui::MainWindow)
+    MainWindow::MainWindow(QWidget *parent)
+        : QMainWindow(parent)
+        , ui(new Ui::MainWindow)
     {
         ui->setupUi(this);
         setWindowTitle(QString("Pok\303\251Finder %1").arg(VERSION));
@@ -58,7 +58,8 @@ namespace PokeFinderForms
         QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
 
         QSettings setting;
-        if (setting.contains("mainWindow/geometry")) this->restoreGeometry(setting.value("mainWindow/geometry").toByteArray());
+        if (setting.contains("mainWindow/geometry"))
+            this->restoreGeometry(setting.value("mainWindow/geometry").toByteArray());
     }
 
     MainWindow::~MainWindow()
@@ -140,7 +141,7 @@ namespace PokeFinderForms
         QDate today = QDate::currentDate();
         QDate lastOpened = setting.value("settings/lastOpened", today).toDate();
 
-        if (lastOpened.daysTo(today) > 0)
+        if (lastOpened.daysTo(today) >= 0)
         {
             QNetworkAccessManager manager;
             QNetworkRequest request(QUrl("https://api.github.com/repos/Admiral-Fish/PokeFinder/releases/latest"));
@@ -155,7 +156,9 @@ namespace PokeFinderForms
             QString webVersion = response.object()["tag_name"].toString().right(5);
             if (!webVersion.isEmpty() && VERSION != webVersion)
             {
-                QMessageBox info(QMessageBox::Question, tr("Update Check"), tr("An update is available. Would you like to download the newest version?"), QMessageBox::Yes | QMessageBox::No);
+                QMessageBox info(QMessageBox::Question, tr("Update Check"),
+                    tr("An update is available. Would you like to download the newest version?"),
+                    QMessageBox::Yes | QMessageBox::No);
                 if (info.exec() == QMessageBox::Yes)
                 {
                     QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/latest"));
@@ -175,7 +178,8 @@ namespace PokeFinderForms
             {
                 currentLanguage = lang;
 
-                QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
+                QMessageBox message(QMessageBox::Question, tr("Language update"),
+                    tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
                 if (message.exec() == QMessageBox::Yes)
                 {
                     QProcess::startDetached(QApplication::applicationFilePath());
@@ -194,7 +198,8 @@ namespace PokeFinderForms
             {
                 currentStyle = style;
 
-                QMessageBox message(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
+                QMessageBox message(QMessageBox::Question, tr("Style change"),
+                    tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
                 if (message.exec() == QMessageBox::Yes)
                 {
                     QProcess::startDetached(QApplication::applicationFilePath());
@@ -208,16 +213,23 @@ namespace PokeFinderForms
     {
         if (num == 3)
         {
-            if (stationary3) stationary3->updateProfiles();
-            if (wild3) wild3->updateProfiles();
-            if (gamecube) gamecube->updateProfiles();
-            if (egg3) egg3->updateProfiles();
+            if (stationary3)
+                stationary3->updateProfiles();
+            if (wild3)
+                wild3->updateProfiles();
+            if (gamecube)
+                gamecube->updateProfiles();
+            if (egg3)
+                egg3->updateProfiles();
         }
         else if (num == 4)
         {
-            if (stationary4) stationary4->updateProfiles();
-            if (wild4) wild4->updateProfiles();
-            if (egg4) egg4->updateProfiles();
+            if (stationary4)
+                stationary4->updateProfiles();
+            if (wild4)
+                wild4->updateProfiles();
+            if (egg4)
+                egg4->updateProfiles();
         }
     }
 

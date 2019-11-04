@@ -20,11 +20,11 @@
 #ifndef EGGSEARCHER4_HPP
 #define EGGSEARCHER4_HPP
 
-#include <QMutex>
-#include <QObject>
 #include <Core/Gen4/Egg4.hpp>
 #include <Core/Gen4/Frame4.hpp>
 #include <Core/Parents/FrameCompare.hpp>
+#include <QMutex>
+#include <QObject>
 
 namespace PokeFinderCore
 {
@@ -36,7 +36,8 @@ namespace PokeFinderCore
         void updateProgress(const QVector<Frame4> &, int);
 
     public:
-        EggSearcher4(const Egg4 &generatorIV, const Egg4 &generatorPID, const FrameCompare &compare, u32 minDelay, u32 maxDelay, int type);
+        EggSearcher4(const Egg4 &generatorIV, const Egg4 &generatorPID, const FrameCompare &compare, u32 minDelay,
+            u32 maxDelay, int type);
         void startSearch();
 
     public slots:

@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QtConcurrent>
 #include "IVSearcher3.hpp"
+#include <QtConcurrent>
 
 namespace PokeFinderCore
 {
@@ -32,8 +32,7 @@ namespace PokeFinderCore
         progress = 0;
 
         connect(this, &IVSearcher3::finished, this, &IVSearcher3::deleteLater);
-        connect(this, &IVSearcher3::finished, this, [ = ]
-        {
+        connect(this, &IVSearcher3::finished, this, [=] {
             searching = false;
             emit updateProgress(getResults(), progress);
             QTimer::singleShot(1000, this, &IVSearcher3::deleteLater);
@@ -50,17 +49,14 @@ namespace PokeFinderCore
 
             auto *timer = new QTimer(this);
             connect(this, &IVSearcher3::finished, timer, &QTimer::stop);
-            connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+            connect(timer, &QTimer::timeout, this, [=] { emit updateProgress(getResults(), progress); });
             timer->start(1000);
 
-            QtConcurrent::run([ = ] { search(); });
+            QtConcurrent::run([=] { search(); });
         }
     }
 
-    void IVSearcher3::cancelSearch()
-    {
-        cancel = true;
-    }
+    void IVSearcher3::cancelSearch() { cancel = true; }
 
     void IVSearcher3::search()
     {

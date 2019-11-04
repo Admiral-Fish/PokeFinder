@@ -20,10 +20,10 @@
 #ifndef SHADOWLOCK_HPP
 #define SHADOWLOCK_HPP
 
-#include <QVector>
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/Util/Method.hpp>
 #include <Core/Util/ShadowType.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -48,10 +48,10 @@ namespace PokeFinderCore
         void switchLock(u8 lockNum, Method version);
 
     private:
-        int backCount{}, frontCount{};
+        int backCount {}, frontCount {};
         LockInfo currLock;
         ShadowTeam team;
-        int x{};
+        int x {};
 
         void compareBackwards(u32 &pid, XDRNGR &rng);
         void compareForwards(u32 &pid, XDRNG &rng);

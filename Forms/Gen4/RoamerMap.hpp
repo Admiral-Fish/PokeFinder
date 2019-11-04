@@ -34,10 +34,10 @@ namespace PokeFinderForms
         Q_OBJECT
     public:
         explicit RoamerMap(QWidget *parent = nullptr);
-        ~RoamerMap() override;
+        ~RoamerMap() override = default;
 
     private:
-        Ui::RoamerMap *ui;
+        std::unique_ptr<Ui::RoamerMap> ui;
     };
 }
 

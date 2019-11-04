@@ -21,18 +21,9 @@
 
 namespace PokeFinderCore
 {
-    void Egg::setEverstoneNature(const u32 &value)
-    {
-        everstoneNature = value;
-    }
+    void Egg::setEverstoneNature(const u32 &value) { everstoneNature = value; }
 
-    u32 Egg::getSeed() const
-    {
-        return seed;
-    }
+    u32 Egg::getSeed() const { return seed; }
 
-    void Egg::setSeed(const u32 &value)
-    {
-        seed = value;
-    }
+    void Egg::setSeed(const u32 &value) { seed = value; }
 }

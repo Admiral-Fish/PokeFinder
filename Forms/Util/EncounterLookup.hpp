@@ -20,9 +20,9 @@
 #ifndef ENCOUNTERLOOKUP_HPP
 #define ENCOUNTERLOOKUP_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderCore
 {
@@ -45,8 +45,8 @@ namespace PokeFinderForms
         ~EncounterLookup() override;
 
     private:
-        Ui::EncounterLookup *ui;
-        QStandardItemModel *model{};
+        std::unique_ptr<Ui::EncounterLookup> ui;
+        QStandardItemModel *model {};
 
         void setupModels();
         QSet<QPair<u8, QString>> getEncounters3(PokeFinderCore::Game game, u16 specie);

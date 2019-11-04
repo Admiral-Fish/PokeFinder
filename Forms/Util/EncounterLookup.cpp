@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "EncounterLookup.hpp"
 #include "ui_EncounterLookup.h"
 #include <Core/Gen3/EncounterArea3.hpp>
@@ -28,12 +27,13 @@
 #include <Core/Util/Encounter.hpp>
 #include <Core/Util/Game.hpp>
 #include <Core/Util/Translator.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    EncounterLookup::EncounterLookup(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::EncounterLookup)
+    EncounterLookup::EncounterLookup(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::EncounterLookup)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -46,8 +46,6 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("encounterLookup/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
     void EncounterLookup::setupModels()
@@ -69,7 +67,8 @@ namespace PokeFinderForms
         ui->comboBoxGame->addItem(tr("Soul Silver"), PokeFinderCore::Game::SoulSilver);
 
         QSettings setting;
-        if (setting.contains("encounterLookup/geometry")) this->restoreGeometry(setting.value("encounterLookup/geometry").toByteArray());
+        if (setting.contains("encounterLookup/geometry"))
+            this->restoreGeometry(setting.value("encounterLookup/geometry").toByteArray());
     }
 
     QSet<QPair<u8, QString>> EncounterLookup::getEncounters3(PokeFinderCore::Game game, u16 specie)
@@ -78,11 +77,10 @@ namespace PokeFinderForms
         PokeFinderCore::Profile3 profile("", game, 0, 0);
 
         // Encounter variables to iterate through
-        QVector<PokeFinderCore::Encounter> types =
-        {
-            PokeFinderCore::Encounter::Grass, PokeFinderCore::Encounter::SafariZone, PokeFinderCore::Encounter::RockSmash,
-            PokeFinderCore::Encounter::OldRod, PokeFinderCore::Encounter::GoodRod, PokeFinderCore::Encounter::SuperRod
-        };
+        QVector<PokeFinderCore::Encounter> types
+            = { PokeFinderCore::Encounter::Grass, PokeFinderCore::Encounter::SafariZone,
+                  PokeFinderCore::Encounter::RockSmash, PokeFinderCore::Encounter::OldRod,
+                  PokeFinderCore::Encounter::GoodRod, PokeFinderCore::Encounter::SuperRod };
 
         for (const auto &type : types)
         {
@@ -90,16 +88,13 @@ namespace PokeFinderForms
             for (const auto &area : areas)
             {
                 QVector<PokeFinderCore::Slot> pokemon = area.getPokemon();
-                for (const auto &entry : pokemon)
+                if (std::any_of(pokemon.begin(), pokemon.end(),
+                        [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                 {
-                    if (entry.getSpecie() == specie)
-                    {
-                        QString info = getEncounterString(type);
-                        QPair<u8, u8> range = area.getLevelRange(specie);
-                        info += QString("/%1-%2").arg(range.first).arg(range.second);
-                        encounters.insert(qMakePair(area.getLocation(), info));
-                        break;
-                    }
+                    QString info = getEncounterString(type);
+                    QPair<u8, u8> range = area.getLevelRange(specie);
+                    info += QString("/%1-%2").arg(range.first).arg(range.second);
+                    encounters.insert(qMakePair(area.getLocation(), info));
                 }
             }
         }
@@ -113,16 +108,11 @@ namespace PokeFinderForms
         QVector<PokeFinderCore::Profile4> profiles;
 
         // Encounter variables to iterate through
-        QVector<PokeFinderCore::Encounter> types =
-        {
-            PokeFinderCore::Encounter::Grass, PokeFinderCore::Encounter::RockSmash, PokeFinderCore::Encounter::OldRod,
-            PokeFinderCore::Encounter::GoodRod, PokeFinderCore::Encounter::SuperRod
-        };
-        QVector<PokeFinderCore::Game> duals =
-        {
-            PokeFinderCore::Game::Emerald, PokeFinderCore::Game::Ruby, PokeFinderCore::Game::Sapphire,
-            PokeFinderCore::Game::FireRed, PokeFinderCore::Game::LeafGreen
-        };
+        QVector<PokeFinderCore::Encounter> types = { PokeFinderCore::Encounter::Grass,
+            PokeFinderCore::Encounter::RockSmash, PokeFinderCore::Encounter::OldRod, PokeFinderCore::Encounter::GoodRod,
+            PokeFinderCore::Encounter::SuperRod };
+        QVector<PokeFinderCore::Game> duals = { PokeFinderCore::Game::Emerald, PokeFinderCore::Game::Ruby,
+            PokeFinderCore::Game::Sapphire, PokeFinderCore::Game::FireRed, PokeFinderCore::Game::LeafGreen };
 
         // Setup profiles to iterate through of the different combinations of possibilities depending on HGSS vs DPPt
         if (game & PokeFinderCore::Game::HGSS)
@@ -131,7 +121,8 @@ namespace PokeFinderForms
             {
                 for (const auto &swarm : { false, true })
                 {
-                    profiles.append(PokeFinderCore::Profile4("", game, 0, 0, PokeFinderCore::Game::Blank, radio, PokeFinderCore::Language::English, false, swarm));
+                    profiles.append(PokeFinderCore::Profile4("", game, 0, 0, PokeFinderCore::Game::Blank, radio,
+                        PokeFinderCore::Language::English, false, swarm));
                 }
             }
         }
@@ -143,7 +134,8 @@ namespace PokeFinderForms
                 {
                     for (const auto &radar : { false, true })
                     {
-                        profiles.append(PokeFinderCore::Profile4("", game, 0, 0, dual, 0, PokeFinderCore::Language::English, radar, swarm));
+                        profiles.append(PokeFinderCore::Profile4(
+                            "", game, 0, 0, dual, 0, PokeFinderCore::Language::English, radar, swarm));
                     }
                 }
             }
@@ -155,20 +147,18 @@ namespace PokeFinderForms
             {
                 for (const auto &time : { 0, 1, 2 })
                 {
-                    QVector<PokeFinderCore::EncounterArea4> areas = PokeFinderCore::Encounters4(type, time, profile).getEncounters();
+                    QVector<PokeFinderCore::EncounterArea4> areas
+                        = PokeFinderCore::Encounters4(type, time, profile).getEncounters();
                     for (const auto &area : areas)
                     {
                         QVector<PokeFinderCore::Slot> pokemon = area.getPokemon();
-                        for (const auto &entry : pokemon)
+                        if (std::any_of(pokemon.begin(), pokemon.end(),
+                                [specie](const auto &entry) { return entry.getSpecie() == specie; }))
                         {
-                            if (entry.getSpecie() == specie)
-                            {
-                                QString info = getEncounterString(type);
-                                QPair<u8, u8> range = area.getLevelRange(specie);
-                                info += QString("/%1-%2").arg(range.first).arg(range.second);
-                                encounters.insert(qMakePair(area.getLocation(), info));
-                                break;
-                            }
+                            QString info = getEncounterString(type);
+                            QPair<u8, u8> range = area.getLevelRange(specie);
+                            info += QString("/%1-%2").arg(range.first).arg(range.second);
+                            encounters.insert(qMakePair(area.getLocation(), info));
                         }
                     }
                 }
@@ -182,22 +172,22 @@ namespace PokeFinderForms
     {
         switch (type)
         {
-            case PokeFinderCore::Encounter::Grass:
-                return tr("Grass");
-            case PokeFinderCore::Encounter::SafariZone:
-                return tr("Safari Zone");
-            case PokeFinderCore::Encounter::Surfing:
-                return tr("Surfing");
-            case PokeFinderCore::Encounter::OldRod:
-                return tr("Old Rod");
-            case PokeFinderCore::Encounter::GoodRod:
-                return tr("Good Rod");
-            case PokeFinderCore::Encounter::SuperRod:
-                return tr("Super Rod");
-            case PokeFinderCore::Encounter::RockSmash:
-                return tr("Rock Smash");
-            default:
-                return "-";
+        case PokeFinderCore::Encounter::Grass:
+            return tr("Grass");
+        case PokeFinderCore::Encounter::SafariZone:
+            return tr("Safari Zone");
+        case PokeFinderCore::Encounter::Surfing:
+            return tr("Surfing");
+        case PokeFinderCore::Encounter::OldRod:
+            return tr("Old Rod");
+        case PokeFinderCore::Encounter::GoodRod:
+            return tr("Good Rod");
+        case PokeFinderCore::Encounter::SuperRod:
+            return tr("Super Rod");
+        case PokeFinderCore::Encounter::RockSmash:
+            return tr("Rock Smash");
+        default:
+            return "-";
         }
     }
 
@@ -235,7 +225,8 @@ namespace PokeFinderForms
         {
             QList<QStandardItem *> row;
             QStringList split = encounter.second.split('/');
-            row << new QStandardItem(locationNames[i++]) << new QStandardItem(split.at(0)) << new QStandardItem(split.at(1));
+            row << new QStandardItem(locationNames[i++]) << new QStandardItem(split.at(0))
+                << new QStandardItem(split.at(1));
             model->appendRow(row);
         }
     }

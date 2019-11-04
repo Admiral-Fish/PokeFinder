@@ -45,21 +45,13 @@ namespace PokeFinderModels
     private:
         PokeFinderCore::Method method;
 
-        QStringList header1 =
-        {
-            tr("Seed"), tr("Lead"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
-            tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-        };
-        QStringList header2 =
-        {
-            tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-            tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender")
-        };
-        QStringList header3 =
-        {
-            tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"),
-            tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Reason")
-        };
+        QStringList header1 = { tr("Seed"), tr("Lead"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"),
+            tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"),
+            tr("Gender") };
+        QStringList header2 = { tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+            tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
+        QStringList header3 = { tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
+            tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Reason") };
     };
 }
 

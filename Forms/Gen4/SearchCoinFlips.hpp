@@ -20,8 +20,8 @@
 #ifndef SEARCHCOINFLIPS_HPP
 #define SEARCHCOINFLIPS_HPP
 
-#include <QDialog>
 #include <Core/Util/DateTime.hpp>
+#include <QDialog>
 
 namespace PokeFinderForms
 {
@@ -39,7 +39,7 @@ namespace PokeFinderForms
         QVector<bool> possibleResults() const;
 
     private:
-        Ui::SearchCoinFlips *ui;
+        std::unique_ptr<Ui::SearchCoinFlips> ui;
         QVector<PokeFinderCore::DateTime> data;
         QVector<bool> possible;
 

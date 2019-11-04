@@ -20,9 +20,9 @@
 #ifndef NATURE_HPP
 #define NATURE_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QStringList>
 #include <QVector>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderCore::Nature
 {

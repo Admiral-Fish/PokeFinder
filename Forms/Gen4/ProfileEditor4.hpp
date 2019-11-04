@@ -20,8 +20,8 @@
 #ifndef PROFILEEDITOR4_HPP
 #define PROFILEEDITOR4_HPP
 
-#include <QDialog>
 #include <Core/Gen4/Profile4.hpp>
+#include <QDialog>
 
 namespace PokeFinderForms
 {
@@ -45,7 +45,7 @@ namespace PokeFinderForms
         PokeFinderCore::Profile4 getOriginal();
 
     private:
-        Ui::ProfileEditor4 *ui;
+        std::unique_ptr<Ui::ProfileEditor4> ui;
         bool isEditing = false;
         PokeFinderCore::Profile4 original;
         PokeFinderCore::Profile4 fresh;
@@ -55,7 +55,6 @@ namespace PokeFinderForms
     private slots:
         void on_pushButtonAccept_clicked();
         void on_comboBoxVersion_currentIndexChanged(int index);
-
     };
 }
 

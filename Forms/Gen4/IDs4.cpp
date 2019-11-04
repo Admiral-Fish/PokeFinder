@@ -17,17 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "IDs4.hpp"
 #include "ui_IDs4.h"
 #include <Core/Gen4/IDSearcher4.hpp>
 #include <Core/RNG/MTRNG.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    IDs4::IDs4(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::IDs4)
+    IDs4::IDs4(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::IDs4)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -39,7 +39,6 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("ids4/geometry", this->saveGeometry());
-        delete ui;
     }
 
     void IDs4::setupModels()
@@ -54,7 +53,8 @@ namespace PokeFinderForms
 
         seedFinder = new QStandardItemModel(ui->tableViewSeedFinder);
         ui->tableViewSeedFinder->setModel(seedFinder);
-        seedFinder->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
+        seedFinder->setHorizontalHeaderLabels(
+            QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
 
         ui->textBoxTIDSIDTID->setValues(InputType::TIDSID);
         ui->textBoxTIDSIDSID->setValues(InputType::TIDSID);
@@ -73,10 +73,11 @@ namespace PokeFinderForms
         ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
 
         QSettings setting;
-        if (setting.contains("ids4/geometry")) this->restoreGeometry(setting.value("ids4/geometry").toByteArray());
+        if (setting.contains("ids4/geometry"))
+            this->restoreGeometry(setting.value("ids4/geometry").toByteArray());
     }
 
-    void IDs4::updateProgressShinyPID(const QVector<QList<QStandardItem *> > &frames, int progress)
+    void IDs4::updateProgressShinyPID(const QVector<QList<QStandardItem *>> &frames, int progress)
     {
         for (const auto &item : frames)
         {
@@ -85,7 +86,7 @@ namespace PokeFinderForms
         ui->progressBarShinyPID->setValue(progress);
     }
 
-    void IDs4::updateProgressTIDSID(const QVector<QList<QStandardItem *> > &frames, int progress)
+    void IDs4::updateProgressTIDSID(const QVector<QList<QStandardItem *>> &frames, int progress)
     {
         for (const auto &item : frames)
         {
@@ -117,13 +118,18 @@ namespace PokeFinderForms
         maxDelay += (year - 2000);
 
         ui->progressBarShinyPID->setValue(0);
-        ui->progressBarShinyPID->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
+        ui->progressBarShinyPID->setMaximum(
+            static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
         auto *search = new PokeFinderCore::ShinyPIDSearcher(pid, useTID, tid, year, minDelay, maxDelay, infinite);
 
-        connect(search, &PokeFinderCore::ShinyPIDSearcher::finished, this, [ = ] { ui->pushButtonShinyPIDSearch->setEnabled(true); ui->pushButtonShinyPIDCancel->setEnabled(false); });
+        connect(search, &PokeFinderCore::ShinyPIDSearcher::finished, this, [=] {
+            ui->pushButtonShinyPIDSearch->setEnabled(true);
+            ui->pushButtonShinyPIDCancel->setEnabled(false);
+        });
         connect(search, &PokeFinderCore::ShinyPIDSearcher::updateProgress, this, &IDs4::updateProgressShinyPID);
-        connect(ui->pushButtonShinyPIDCancel, &QPushButton::clicked, search, &PokeFinderCore::ShinyPIDSearcher::cancelSearch);
+        connect(ui->pushButtonShinyPIDCancel, &QPushButton::clicked, search,
+            &PokeFinderCore::ShinyPIDSearcher::cancelSearch);
 
         search->startSearch();
     }
@@ -151,13 +157,18 @@ namespace PokeFinderForms
         maxDelay += (year - 2000);
 
         ui->progressBarTIDSID->setValue(0);
-        ui->progressBarTIDSID->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
+        ui->progressBarTIDSID->setMaximum(
+            static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
         auto *search = new PokeFinderCore::TIDSIDSearcher(tid, useSID, searchSID, year, minDelay, maxDelay, infinite);
 
-        connect(search, &PokeFinderCore::TIDSIDSearcher::finished, this, [ = ] { ui->pushButtonTIDSIDSearch->setEnabled(true); ui->pushButtonTIDSIDCancel->setEnabled(false); });
+        connect(search, &PokeFinderCore::TIDSIDSearcher::finished, this, [=] {
+            ui->pushButtonTIDSIDSearch->setEnabled(true);
+            ui->pushButtonTIDSIDCancel->setEnabled(false);
+        });
         connect(search, &PokeFinderCore::TIDSIDSearcher::updateProgress, this, &IDs4::updateProgressTIDSID);
-        connect(ui->pushButtonTIDSIDCancel, &QPushButton::clicked, search, &PokeFinderCore::TIDSIDSearcher::cancelSearch);
+        connect(
+            ui->pushButtonTIDSIDCancel, &QPushButton::clicked, search, &PokeFinderCore::TIDSIDSearcher::cancelSearch);
 
         search->startSearch();
     }
@@ -199,8 +210,10 @@ namespace PokeFinderForms
                 if (tid == id)
                 {
                     u32 delay = efgh + 2000 - year;
-                    auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
-                                 << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay)) << new QStandardItem(QString::number(second));
+                    auto frame = QList<QStandardItem *>()
+                        << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0'))
+                        << new QStandardItem(QString::number(id)) << new QStandardItem(QString::number(sid))
+                        << new QStandardItem(QString::number(delay)) << new QStandardItem(QString::number(second));
                     seedFinder->appendRow(frame);
                 }
             }

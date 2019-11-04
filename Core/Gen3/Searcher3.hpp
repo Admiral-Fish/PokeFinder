@@ -30,7 +30,7 @@
 
 namespace PokeFinderCore
 {
-    class Searcher3: public Searcher
+    class Searcher3 : public Searcher
     {
     public:
         Searcher3();
@@ -42,10 +42,10 @@ namespace PokeFinderCore
 
     private:
         RNGCache cache;
-        RNGEuclidean euclidean{};
+        RNGEuclidean euclidean {};
         Frame3 frame = Frame3(0, 0, 0);
         ShadowLock shadowLock;
-        ShadowType type{};
+        ShadowType type {};
         FrameCompare compare;
         EncounterArea3 encounter;
 

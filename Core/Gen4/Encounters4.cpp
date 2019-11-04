@@ -17,20 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QFile>
 #include "Encounters4.hpp"
 #include <Core/Gen4/EncounterArea4.hpp>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Util/Encounter.hpp>
+#include <QFile>
 
 namespace PokeFinderCore
 {
     Encounters4::Encounters4(Encounter type, int time, const Profile4 &profile)
+        : pokemon(Pokemon::loadPersonal(4))
     {
         this->type = type;
         this->time = time;
         this->profile = profile;
-        pokemon = Pokemon::loadPersonal(4);
     }
 
     QVector<EncounterArea4> Encounters4::getEncounters() const
@@ -69,27 +69,27 @@ namespace PokeFinderCore
         int size;
         switch (profile.getVersion())
         {
-            case Game::Diamond:
-                path = ":/encounters/diamond.bin";
-                size = 159;
-                break;
-            case Game::Pearl:
-                path = ":/encounters/pearl.bin";
-                size = 159;
-                break;
-            case Game::Platinum:
-                path = ":/encounters/platinum.bin";
-                size = 159;
-                break;
-            case Game::HeartGold:
-                path = ":/encounters/heartgold.bin";
-                size = 192;
-                break;
-            case Game::SoulSilver:
-            default:
-                path = ":/encounters/soulsilver.bin";
-                size = 192;
-                break;
+        case Game::Diamond:
+            path = ":/encounters/diamond.bin";
+            size = 159;
+            break;
+        case Game::Pearl:
+            path = ":/encounters/pearl.bin";
+            size = 159;
+            break;
+        case Game::Platinum:
+            path = ":/encounters/platinum.bin";
+            size = 159;
+            break;
+        case Game::HeartGold:
+            path = ":/encounters/heartgold.bin";
+            size = 192;
+            break;
+        case Game::SoulSilver:
+        default:
+            path = ":/encounters/soulsilver.bin";
+            size = 192;
+            break;
         }
 
         QByteArray data;
@@ -358,7 +358,8 @@ namespace PokeFinderCore
     {
         if (profile.getRadar())
         {
-            QVector<u16> species = { getValue(data, 51, 2), getValue(data, 53, 2), getValue(data, 55, 2), getValue(data, 57, 2) };
+            QVector<u16> species
+                = { getValue(data, 51, 2), getValue(data, 53, 2), getValue(data, 55, 2), getValue(data, 57, 2) };
             mons[4].setSpecie(species.at(0), pokemon.at(species.at(0)));
             mons[5].setSpecie(species.at(1), pokemon.at(species.at(1)));
             mons[10].setSpecie(species.at(2), pokemon.at(species.at(2)));

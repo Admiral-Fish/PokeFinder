@@ -20,11 +20,11 @@
 #ifndef GAMECUBERTCSEARCHER_HPP
 #define GAMECUBERTCSEARCHER_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QDateTime>
 #include <QMutex>
 #include <QObject>
 #include <QStandardItem>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderCore
 {

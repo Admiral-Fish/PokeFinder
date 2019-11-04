@@ -17,19 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QFile>
 #include "Pokemon.hpp"
+#include <QFile>
 
 namespace PokeFinderCore
 {
-    Pokemon::Pokemon(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 spe, u16 gender, u16 ability1, u16 ability2, u16 abilityH, u16 formCount, u16 formStatIndex)
+    Pokemon::Pokemon(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 spe, u16 gender, u16 ability1, u16 ability2,
+        u16 abilityH, u16 formCount, u16 formStatIndex)
+        : baseHP(hp)
+        , baseAtk(atk)
+        , baseDef(def)
+        , baseSpA(spa)
+        , baseSpD(spd)
+        , baseSpe(spe)
     {
-        baseHP = hp;
-        baseAtk = atk;
-        baseDef = def;
-        baseSpA = spa;
-        baseSpD = spd;
-        baseSpe = spe;
         this->gender = gender;
         this->ability1 = ability1;
         this->ability2 = ability2;
@@ -90,7 +91,8 @@ namespace PokeFinderCore
                     formStatIndex = data.mid(11, 2).toHex().toUShort(nullptr, 16);
                 }
 
-                pokemon.append(Pokemon(hp, atk, def, spa, spd, spe, gender, ability1, ability2, abilityH, formCount, formStatIndex));
+                pokemon.append(Pokemon(
+                    hp, atk, def, spa, spd, spe, gender, ability1, ability2, abilityH, formCount, formStatIndex));
                 data = data.mid(size);
             }
         }
@@ -98,68 +100,29 @@ namespace PokeFinderCore
         return pokemon;
     }
 
-    u16 Pokemon::getBaseHP() const
-    {
-        return baseHP;
-    }
+    u16 Pokemon::getBaseHP() const { return baseHP; }
 
-    u16 Pokemon::getBaseAtk() const
-    {
-        return baseAtk;
-    }
+    u16 Pokemon::getBaseAtk() const { return baseAtk; }
 
-    u16 Pokemon::getBaseDef() const
-    {
-        return baseDef;
-    }
+    u16 Pokemon::getBaseDef() const { return baseDef; }
 
-    u16 Pokemon::getBaseSpA() const
-    {
-        return baseSpA;
-    }
+    u16 Pokemon::getBaseSpA() const { return baseSpA; }
 
-    u16 Pokemon::getBaseSpD() const
-    {
-        return baseSpD;
-    }
+    u16 Pokemon::getBaseSpD() const { return baseSpD; }
 
-    u16 Pokemon::getBaseSpe() const
-    {
-        return baseSpe;
-    }
+    u16 Pokemon::getBaseSpe() const { return baseSpe; }
 
-    QVector<u16> Pokemon::getBaseStats() const
-    {
-        return { baseHP, baseAtk, baseDef, baseSpA, baseSpD, baseSpe };
-    }
+    QVector<u16> Pokemon::getBaseStats() const { return { baseHP, baseAtk, baseDef, baseSpA, baseSpD, baseSpe }; }
 
-    u16 Pokemon::getGender() const
-    {
-        return gender;
-    }
+    u16 Pokemon::getGender() const { return gender; }
 
-    u16 Pokemon::getAbility1() const
-    {
-        return ability1;
-    }
+    u16 Pokemon::getAbility1() const { return ability1; }
 
-    u16 Pokemon::getAbility2() const
-    {
-        return ability2;
-    }
+    u16 Pokemon::getAbility2() const { return ability2; }
 
-    u16 Pokemon::getAbilityH() const
-    {
-        return abilityH;
-    }
+    u16 Pokemon::getAbilityH() const { return abilityH; }
 
-    u16 Pokemon::getFormCount() const
-    {
-        return formCount;
-    }
+    u16 Pokemon::getFormCount() const { return formCount; }
 
-    u16 Pokemon::getFormStatIndex() const
-    {
-        return formStatIndex;
-    }
+    u16 Pokemon::getFormStatIndex() const { return formStatIndex; }
 }

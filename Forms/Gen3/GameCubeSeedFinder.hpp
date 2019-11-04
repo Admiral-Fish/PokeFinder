@@ -20,8 +20,8 @@
 #ifndef GAMECUBESEEDFINDER_HPP
 #define GAMECUBESEEDFINDER_HPP
 
-#include <QWidget>
 #include <Core/Util/Global.hpp>
+#include <QWidget>
 
 namespace PokeFinderForms
 {
@@ -44,7 +44,7 @@ namespace PokeFinderForms
         void on_pushButtonColoReset_clicked();
 
     private:
-        Ui::GameCubeSeedFinder *ui;
+        std::unique_ptr<Ui::GameCubeSeedFinder> ui;
         QVector<u32> galeSeeds;
         QVector<u32> coloSeeds;
         u8 galesRound;

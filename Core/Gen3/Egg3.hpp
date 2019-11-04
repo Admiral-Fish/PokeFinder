@@ -48,15 +48,15 @@ namespace PokeFinderCore
     private:
         QVector<u8> parent1;
         QVector<u8> parent2;
-        u8 calibration{};
-        u8 minRedraw{};
-        u8 maxRedraw{};
-        int compatability{};
-        u32 minPickup{};
-        u32 maxPickup{};
-        bool everstone{};
-        u16 pickupSeed{};
-        u8 iv1{}, iv2{}, inh1{}, inh2{}, inh3{}, par1{}, par2{}, par3{};
+        u8 calibration {};
+        u8 minRedraw {};
+        u8 maxRedraw {};
+        int compatability {};
+        u32 minPickup {};
+        u32 maxPickup {};
+        bool everstone {};
+        u16 pickupSeed {};
+        u8 iv1 {}, iv2 {}, inh1 {}, inh2 {}, inh3 {}, par1 {}, par2 {}, par3 {};
 
         QVector<Frame3> generateEmeraldPID(const FrameCompare &compare) const;
         QVector<Frame3> generateEmeraldIVs(const FrameCompare &compare) const;

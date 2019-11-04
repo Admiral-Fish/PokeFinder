@@ -20,10 +20,10 @@
 #ifndef ENCOUNTERAREA_HPP
 #define ENCOUNTERAREA_HPP
 
-#include <QVector>
 #include <Core/Parents/Slot.hpp>
 #include <Core/Util/Encounter.hpp>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -43,8 +43,8 @@ namespace PokeFinderCore
 
     protected:
         QVector<Slot> pokemon;
-        u8 location{};
-        Encounter type{};
+        u8 location {};
+        Encounter type {};
     };
 }
 

@@ -20,11 +20,11 @@
 #ifndef SEARCHER_HPP
 #define SEARCHER_HPP
 
-#include <QVector>
 #include <Core/Util/Encounter.hpp>
 #include <Core/Util/Global.hpp>
 #include <Core/Util/Lead.hpp>
 #include <Core/Util/Method.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -39,15 +39,15 @@ namespace PokeFinderCore
         void setLeadType(const Lead &value);
 
     protected:
-        u16 psv{};
-        u16 sid{};
-        u16 tid{};
-        u8 genderRatio{};
+        u16 psv {};
+        u16 sid {};
+        u16 tid {};
+        u8 genderRatio {};
         Encounter encounterType = Encounter::Stationary;
         Method frameType = Method::Method1;
         Lead leadType = Lead::None;
-        u8 synchNature{};
-        u8 cuteCharm{};
+        u8 synchNature {};
+        u8 cuteCharm {};
     };
 }
 

@@ -20,8 +20,8 @@
 #ifndef POKEMON_HPP
 #define POKEMON_HPP
 
-#include <QVector>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -29,7 +29,8 @@ namespace PokeFinderCore
     {
     public:
         Pokemon() = default;
-        Pokemon(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 spe, u16 gender, u16 ability1, u16 ability2, u16 abilityH = 0, u16 formCount = 0, u16 formStatIndex = 0);
+        Pokemon(u16 hp, u16 atk, u16 def, u16 spa, u16 spd, u16 spe, u16 gender, u16 ability1, u16 ability2,
+            u16 abilityH = 0, u16 formCount = 0, u16 formStatIndex = 0);
         static QVector<Pokemon> loadPersonal(u8 gen);
         u16 getBaseHP() const;
         u16 getBaseAtk() const;

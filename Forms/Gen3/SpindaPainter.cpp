@@ -17,17 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "SpindaPainter.hpp"
 #include "ui_SpindaPainter.h"
 #include <Core/Util/Nature.hpp>
 #include <Forms/Controls/GraphicsPixmapItem.hpp>
+#include <QSettings>
+
+constexpr u8 coords[8] = { 0, 0, 24, 1, 6, 18, 18, 19 };
+constexpr u8 origin[2] = { 8, 6 };
 
 namespace PokeFinderForms
 {
-    SpindaPainter::SpindaPainter(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::SpindaPainter)
+    SpindaPainter::SpindaPainter(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::SpindaPainter)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -40,8 +43,6 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("spindaPainter/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
     void SpindaPainter::setupModels()
@@ -70,7 +71,8 @@ namespace PokeFinderForms
         scene->addItem(spot4);
 
         QSettings setting;
-        if (setting.contains("spindaPainter/geometry")) this->restoreGeometry(setting.value("spindaPainter/geometry").toByteArray());
+        if (setting.contains("spindaPainter/geometry"))
+            this->restoreGeometry(setting.value("spindaPainter/geometry").toByteArray());
     }
 
     void SpindaPainter::moveSpot(GraphicsPixmapItem *item, int index)
@@ -78,8 +80,8 @@ namespace PokeFinderForms
         u8 x = (pid >> (index * 8)) & 0xf;
         u8 y = (pid >> (index * 8 + 4)) & 0xf;
 
-        x += coords.at(2 * index) + origin.at(0);
-        y += coords.at(2 * index + 1) + origin.at(1);
+        x += coords[2 * index] + origin[0];
+        y += coords[2 * index + 1] + origin[1];
 
         item->setPos(x * 8, y * 8);
     }
@@ -126,8 +128,8 @@ namespace PokeFinderForms
             pid = 0;
             for (u8 i = 0; i < 4; i++)
             {
-                u32 left = static_cast<u32>(pos.at(i * 2) / 8) - coords.at(2 * i) - origin.at(0);
-                u32 right = static_cast<u32>(pos.at(i * 2 + 1) / 8) - coords.at(2 * i + 1) - origin.at(1);
+                u32 left = static_cast<u32>(pos.at(i * 2) / 8) - coords[2 * i] - origin[0];
+                u32 right = static_cast<u32>(pos.at(i * 2 + 1) / 8) - coords[2 * i + 1] - origin[1];
 
                 pid |= (left << (28 - i * 8));
                 pid |= (right << (24 - i * 8));

@@ -17,14 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QtConcurrent>
 #include "IDSearcher4.hpp"
 #include <Core/RNG/MTRNG.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <QtConcurrent>
 
 namespace PokeFinderCore
 {
-    ShinyPIDSearcher::ShinyPIDSearcher(u32 pid, bool useTID, u16 tid, u32 year, u32 minDelay, u32 maxDelay, bool infinite)
+    ShinyPIDSearcher::ShinyPIDSearcher(
+        u32 pid, bool useTID, u16 tid, u32 year, u32 minDelay, u32 maxDelay, bool infinite)
     {
         this->pid = pid;
         this->useTID = useTID;
@@ -37,8 +38,7 @@ namespace PokeFinderCore
         cancel = false;
         progress = 0;
 
-        connect(this, &ShinyPIDSearcher::finished, this, [ = ]
-        {
+        connect(this, &ShinyPIDSearcher::finished, this, [=] {
             searching = false;
             emit updateProgress(getResults(), progress);
             QTimer::singleShot(1000, this, &ShinyPIDSearcher::deleteLater);
@@ -55,17 +55,14 @@ namespace PokeFinderCore
 
             auto *timer = new QTimer(this);
             connect(this, &ShinyPIDSearcher::finished, timer, &QTimer::stop);
-            connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+            connect(timer, &QTimer::timeout, this, [=] { emit updateProgress(getResults(), progress); });
             timer->start(1000);
 
-            QtConcurrent::run([ = ] { search(); });
+            QtConcurrent::run([=] { search(); });
         }
     }
 
-    void ShinyPIDSearcher::cancelSearch()
-    {
-        cancel = true;
-    }
+    void ShinyPIDSearcher::cancelSearch() { cancel = true; }
 
     void ShinyPIDSearcher::search()
     {
@@ -93,8 +90,10 @@ namespace PokeFinderCore
                     if (Utilities::shiny(pid, id, sid) && (!useTID || id == tid))
                     {
                         u32 delay = efgh + 2000 - year;
-                        auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
-                                     << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay));
+                        auto frame = QList<QStandardItem *>()
+                            << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0'))
+                            << new QStandardItem(QString::number(id)) << new QStandardItem(QString::number(sid))
+                            << new QStandardItem(QString::number(delay));
                         QMutexLocker locker(&mutex);
                         results.append(frame);
                     }
@@ -114,8 +113,8 @@ namespace PokeFinderCore
         return data;
     }
 
-
-    TIDSIDSearcher::TIDSIDSearcher(u16 tid, bool useSID, u16 searchSID, u32 year, u32 minDelay, u32 maxDelay, bool infinite)
+    TIDSIDSearcher::TIDSIDSearcher(
+        u16 tid, bool useSID, u16 searchSID, u32 year, u32 minDelay, u32 maxDelay, bool infinite)
     {
         this->tid = tid;
         this->useSID = useSID;
@@ -128,8 +127,7 @@ namespace PokeFinderCore
         cancel = false;
         progress = 0;
 
-        connect(this, &TIDSIDSearcher::finished, this, [ = ]
-        {
+        connect(this, &TIDSIDSearcher::finished, this, [=] {
             searching = false;
             emit updateProgress(getResults(), progress);
             QTimer::singleShot(1000, this, &TIDSIDSearcher::deleteLater);
@@ -146,16 +144,13 @@ namespace PokeFinderCore
 
             auto *timer = new QTimer(this);
             connect(this, &TIDSIDSearcher::finished, timer, &QTimer::stop);
-            connect(timer, &QTimer::timeout, this, [ = ] { emit updateProgress(getResults(), progress); });
+            connect(timer, &QTimer::timeout, this, [=] { emit updateProgress(getResults(), progress); });
 
-            QtConcurrent::run([ = ] { search(); });
+            QtConcurrent::run([=] { search(); });
         }
     }
 
-    void TIDSIDSearcher::cancelSearch()
-    {
-        cancel = true;
-    }
+    void TIDSIDSearcher::cancelSearch() { cancel = true; }
 
     void TIDSIDSearcher::search()
     {
@@ -183,8 +178,10 @@ namespace PokeFinderCore
                     if (id == tid && (!useSID || sid == searchSID))
                     {
                         u32 delay = efgh + 2000 - year;
-                        auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
-                                     << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay));
+                        auto frame = QList<QStandardItem *>()
+                            << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0'))
+                            << new QStandardItem(QString::number(id)) << new QStandardItem(QString::number(sid))
+                            << new QStandardItem(QString::number(delay));
                         QMutexLocker locker(&mutex);
                         results.append(frame);
                     }

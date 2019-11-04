@@ -20,9 +20,9 @@
 #ifndef EGG_HPP
 #define EGG_HPP
 
-#include <QVector>
 #include <Core/Util/Global.hpp>
 #include <Core/Util/Method.hpp>
+#include <QVector>
 
 namespace PokeFinderCore
 {
@@ -34,15 +34,15 @@ namespace PokeFinderCore
         void setSeed(const u32 &value);
 
     protected:
-        u16 psv{};
-        u16 sid{};
-        u16 tid{};
-        u8 genderRatio{};
+        u16 psv {};
+        u16 sid {};
+        u16 tid {};
+        u8 genderRatio {};
         Method frameType = Method::EBred;
-        u32 seed{};
-        u32 initialFrame{};
-        u32 maxResults{};
-        u32 everstoneNature{};
+        u32 seed {};
+        u32 initialFrame {};
+        u32 maxResults {};
+        u32 everstoneNature {};
     };
 }
 

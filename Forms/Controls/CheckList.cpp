@@ -17,14 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include "CheckList.hpp"
 #include <QEvent>
 #include <QLineEdit>
 #include <QListView>
-#include "CheckList.hpp"
 
 namespace PokeFinderForms
 {
-    CheckList::CheckList(QWidget *parent) : QComboBox(parent)
+    CheckList::CheckList(QWidget *parent)
+        : QComboBox(parent)
     {
         model = new QStandardItemModel(this);
         setModel(model);
@@ -105,28 +106,28 @@ namespace PokeFinderForms
 
         switch (checkState())
         {
-            case Qt::Checked:
-                text = tr("Any");
-                break;
-            case Qt::Unchecked:
-                text = tr("Any");
-                break;
-            case Qt::PartiallyChecked:
-                for (int i = 0; i < model->rowCount(); i++)
+        case Qt::Checked:
+            text = tr("Any");
+            break;
+        case Qt::Unchecked:
+            text = tr("Any");
+            break;
+        case Qt::PartiallyChecked:
+            for (int i = 0; i < model->rowCount(); i++)
+            {
+                if (model->item(i)->checkState() == Qt::Checked)
                 {
-                    if (model->item(i)->checkState() == Qt::Checked)
+                    if (!text.isEmpty())
                     {
-                        if (!text.isEmpty())
-                        {
-                            text += ", ";
-                        }
-
-                        text += model->item(i)->text();
+                        text += ", ";
                     }
+
+                    text += model->item(i)->text();
                 }
-                break;
-            default:
-                text = tr("Any");
+            }
+            break;
+        default:
+            text = tr("Any");
         }
 
         lineEdit()->setText(text);
@@ -151,10 +152,7 @@ namespace PokeFinderForms
         return checked == total ? Qt::Checked : unchecked == total ? Qt::Unchecked : Qt::PartiallyChecked;
     }
 
-    void CheckList::modelDataChanged()
-    {
-        updateText();
-    }
+    void CheckList::modelDataChanged() { updateText(); }
 
     void CheckList::itemPressed(const QModelIndex &index)
     {

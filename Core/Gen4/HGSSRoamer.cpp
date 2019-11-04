@@ -31,25 +31,13 @@ namespace PokeFinderCore
         calculateRoamers();
     }
 
-    u8 HGSSRoamer::getSkips() const
-    {
-        return skips;
-    }
+    u8 HGSSRoamer::getSkips() const { return skips; }
 
-    u8 HGSSRoamer::getRaikouRoute() const
-    {
-        return raikouRoute;
-    }
+    u8 HGSSRoamer::getRaikouRoute() const { return raikouRoute; }
 
-    u8 HGSSRoamer::getEnteiRoute() const
-    {
-        return enteiRoute;
-    }
+    u8 HGSSRoamer::getEnteiRoute() const { return enteiRoute; }
 
-    u8 HGSSRoamer::getLatiRoute() const
-    {
-        return latiRoute;
-    }
+    u8 HGSSRoamer::getLatiRoute() const { return latiRoute; }
 
     QString HGSSRoamer::getRouteString() const
     {
@@ -71,15 +59,9 @@ namespace PokeFinderCore
         return routes;
     }
 
-    QVector<bool> HGSSRoamer::getRoamers() const
-    {
-        return roamers;
-    }
+    QVector<bool> HGSSRoamer::getRoamers() const { return roamers; }
 
-    QVector<u8> HGSSRoamer::getRoutes() const
-    {
-        return routes;
-    }
+    QVector<u8> HGSSRoamer::getRoutes() const { return routes; }
 
     void HGSSRoamer::recalculateRoamers(u32 seed)
     {
@@ -98,8 +80,7 @@ namespace PokeFinderCore
             {
                 skips++;
                 raikouRoute = getRouteJ(rng.nextUShort());
-            }
-            while (routes.at(0) == raikouRoute);
+            } while (routes.at(0) == raikouRoute);
         }
 
         if (roamers.at(1))
@@ -108,8 +89,7 @@ namespace PokeFinderCore
             {
                 skips++;
                 enteiRoute = getRouteJ(rng.nextUShort());
-            }
-            while (routes.at(1) == enteiRoute);
+            } while (routes.at(1) == enteiRoute);
         }
 
         if (roamers.at(2))
@@ -118,8 +98,7 @@ namespace PokeFinderCore
             {
                 skips++;
                 latiRoute = getRouteK(rng.nextUShort());
-            }
-            while (routes.at(2) == latiRoute);
+            } while (routes.at(2) == latiRoute);
         }
     }
 
@@ -136,12 +115,12 @@ namespace PokeFinderCore
         {
             switch (val)
             {
-                case 22:
-                    return 24;
-                case 23:
-                    return 26;
-                case 24:
-                    return 28;
+            case 22:
+                return 24;
+            case 23:
+                return 26;
+            case 24:
+                return 28;
             }
         }
 

@@ -17,10 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QFile>
 #include "LockInfo.hpp"
 #include <Core/Util/Method.hpp>
 #include <Core/Util/ShadowType.hpp>
+#include <QFile>
 
 namespace PokeFinderCore
 {
@@ -49,20 +49,11 @@ namespace PokeFinderCore
         this->type = type;
     }
 
-    LockInfo ShadowTeam::getLock(u8 index) const
-    {
-        return locks.at(index);
-    }
+    LockInfo ShadowTeam::getLock(u8 index) const { return locks.at(index); }
 
-    ShadowType ShadowTeam::getType() const
-    {
-        return type;
-    }
+    ShadowType ShadowTeam::getType() const { return type; }
 
-    int ShadowTeam::getSize() const
-    {
-        return locks.size();
-    }
+    int ShadowTeam::getSize() const { return locks.size(); }
 
     QVector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
     {

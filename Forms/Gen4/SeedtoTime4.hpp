@@ -20,8 +20,8 @@
 #ifndef SEEDTOTIME4_HPP
 #define SEEDTOTIME4_HPP
 
-#include <QWidget>
 #include <Core/Gen4/Profile4.hpp>
+#include <QWidget>
 
 namespace PokeFinderCore
 {
@@ -49,15 +49,17 @@ namespace PokeFinderForms
         ~SeedtoTime4() override;
 
     private:
-        Ui::SeedtoTime4 *ui;
-        PokeFinderModels::SeedtoTime4Model *dppt{};
-        PokeFinderModels::SeedtoTime4Model *dpptCalibrate{};
-        PokeFinderModels::SeedtoTime4Model *hgss{};
-        PokeFinderModels::SeedtoTime4Model *hgssCalibrate{};
+        std::unique_ptr<Ui::SeedtoTime4> ui;
+        PokeFinderModels::SeedtoTime4Model *dppt {};
+        PokeFinderModels::SeedtoTime4Model *dpptCalibrate {};
+        PokeFinderModels::SeedtoTime4Model *hgss {};
+        PokeFinderModels::SeedtoTime4Model *hgssCalibrate {};
 
         void setupModels();
-        QVector<PokeFinderCore::DateTime> generate(u32 seed, u32 year, bool forceSecond, int forcedSecond, PokeFinderCore::Game version);
-        QVector<PokeFinderCore::DateTime> calibrate(int minusDelay, int plusDelay, int minusSecond, int plusSecond, const PokeFinderCore::DateTime &target);
+        QVector<PokeFinderCore::DateTime> generate(
+            u32 seed, u32 year, bool forceSecond, int forcedSecond, PokeFinderCore::Game version);
+        QVector<PokeFinderCore::DateTime> calibrate(
+            int minusDelay, int plusDelay, int minusSecond, int plusSecond, const PokeFinderCore::DateTime &target);
 
     private slots:
         void on_pushButtonDPPtGenerate_clicked();

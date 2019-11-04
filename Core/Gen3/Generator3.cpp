@@ -35,7 +35,8 @@ namespace PokeFinderCore
         psv = tid ^ sid;
     }
 
-    Generator3::Generator3(u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, u8 genderRatio)
+    Generator3::Generator3(
+        u32 maxResults, u32 initialFrame, u32 initialSeed, u16 tid, u16 sid, u32 offset, u8 genderRatio)
     {
         this->maxResults = maxResults;
         this->initialFrame = initialFrame;
@@ -51,25 +52,25 @@ namespace PokeFinderCore
     {
         switch (frameType)
         {
-            case Method::Method1:
-            case Method::Method2:
-            case Method::Method4:
-                return generateMethod124(compare);
-            case Method::Method1Reverse:
-                return generateMethod1Reverse(compare);
-            case Method::MethodH1:
-            case Method::MethodH2:
-            case Method::MethodH4:
-                return generateMethodH124(compare);
-            case Method::XDColo:
-                return generateMethodXDColo(compare);
-            case Method::XD:
-            case Method::Colo:
-                return generateMethodXDColoShadow(compare);
-            case Method::Channel:
-                return generateMethodChannel(compare);
-            default:
-                return QVector<Frame3>();
+        case Method::Method1:
+        case Method::Method2:
+        case Method::Method4:
+            return generateMethod124(compare);
+        case Method::Method1Reverse:
+            return generateMethod1Reverse(compare);
+        case Method::MethodH1:
+        case Method::MethodH2:
+        case Method::MethodH4:
+            return generateMethodH124(compare);
+        case Method::XDColo:
+            return generateMethodXDColo(compare);
+        case Method::XD:
+        case Method::Colo:
+            return generateMethodXDColoShadow(compare);
+        case Method::Channel:
+            return generateMethodChannel(compare);
+        default:
+            return QVector<Frame3>();
         }
     }
 
@@ -93,10 +94,7 @@ namespace PokeFinderCore
         }
     }
 
-    void Generator3::setEncounter(const EncounterArea3 &value)
-    {
-        encounter = value;
-    }
+    void Generator3::setEncounter(const EncounterArea3 &value) { encounter = value; }
 
     void Generator3::setShadowTeam(u8 index, int type)
     {
@@ -111,10 +109,7 @@ namespace PokeFinderCore
 
         XDRNG rng(initialSeed, initialFrame - 1 + offset);
         QVector<u16> rngList(maxResults + 12);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         // Method Channel [SEED] [SID] [PID] [PID] [BERRY] [GAME ORIGIN] [OT GENDER] [IV] [IV] [IV] [IV] [IV] [IV]
 
@@ -140,7 +135,7 @@ namespace PokeFinderCore
             }
 
             frame.setIVs(rngList.at(cnt + 6) >> 11, rngList.at(cnt + 7) >> 11, rngList.at(cnt + 8) >> 11,
-                         rngList.at(cnt + 10) >> 11, rngList.at(cnt + 11) >> 11, rngList.at(cnt + 9) >> 11);
+                rngList.at(cnt + 10) >> 11, rngList.at(cnt + 11) >> 11, rngList.at(cnt + 9) >> 11);
 
             if (compare.compareFrame(frame))
             {
@@ -166,35 +161,35 @@ namespace PokeFinderCore
         bool rock = rate == 2880;
 
         bool cuteCharmFlag = false;
-        bool (*cuteCharm)(u32);
+        bool (*cuteCharm)(u32) = nullptr;
         switch (leadType)
         {
-            case Lead::CuteCharm125F:
-                cuteCharm = &Generator3::cuteCharm125F;
-                break;
-            case Lead::CuteCharm875M:
-                cuteCharm = &Generator3::cuteCharm875M;
-                break;
-            case Lead::CuteCharm25F:
-                cuteCharm = &Generator3::cuteCharm25F;
-                break;
-            case Lead::CuteCharm75M:
-                cuteCharm = &Generator3::cuteCharm75M;
-                break;
-            case Lead::CuteCharm50F:
-                cuteCharm = &Generator3::cuteCharm50F;
-                break;
-            case Lead::CuteCharm50M:
-                cuteCharm = &Generator3::cuteCharm50M;
-                break;
-            case Lead::CuteCharm75F:
-                cuteCharm = &Generator3::cuteCharm75F;
-                break;
-            case Lead::CuteCharm25M:
-                cuteCharm = &Generator3::cuteCharm25F;
-                break;
-            default:
-                break;
+        case Lead::CuteCharm125F:
+            cuteCharm = &Generator3::cuteCharm125F;
+            break;
+        case Lead::CuteCharm875M:
+            cuteCharm = &Generator3::cuteCharm875M;
+            break;
+        case Lead::CuteCharm25F:
+            cuteCharm = &Generator3::cuteCharm25F;
+            break;
+        case Lead::CuteCharm75M:
+            cuteCharm = &Generator3::cuteCharm75M;
+            break;
+        case Lead::CuteCharm50F:
+            cuteCharm = &Generator3::cuteCharm50F;
+            break;
+        case Lead::CuteCharm50M:
+            cuteCharm = &Generator3::cuteCharm50M;
+            break;
+        case Lead::CuteCharm75F:
+            cuteCharm = &Generator3::cuteCharm75F;
+            break;
+        case Lead::CuteCharm25M:
+            cuteCharm = &Generator3::cuteCharm25F;
+            break;
+        default:
+            break;
         }
 
         for (u32 cnt = initialFrame; cnt < max; cnt++)
@@ -203,61 +198,62 @@ namespace PokeFinderCore
 
             switch (encounterType)
             {
-                case Encounter::RockSmash:
-                    if (!rock)
-                    {
-                        go.nextUInt();
-                    }
-                    if (((go.getSeed() >> 16) % 2880) >= rate)
-                    {
-                        continue;
-                    }
+            case Encounter::RockSmash:
+                if (!rock)
+                {
+                    go.nextUInt();
+                }
+                if (((go.getSeed() >> 16) % 2880) >= rate)
+                {
+                    continue;
+                }
 
-                    frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounterType));
-                    if (!compare.compareSlot(frame))
-                    {
-                        continue;
-                    }
+                frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounterType));
+                if (!compare.compareSlot(frame))
+                {
+                    continue;
+                }
 
-                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
-                    break;
-                case Encounter::SafariZone:
-                    frame.setEncounterSlot(EncounterSlot::hSlot(go.getSeed() >> 16, encounterType));
-                    if (!compare.compareSlot(frame))
-                    {
-                        continue;
-                    }
+                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
+                break;
+            case Encounter::SafariZone:
+                frame.setEncounterSlot(EncounterSlot::hSlot(go.getSeed() >> 16, encounterType));
+                if (!compare.compareSlot(frame))
+                {
+                    continue;
+                }
 
-                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot()));
-                    go.advanceFrames(2);
-                    break;
-                case Encounter::Grass:
-                    frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounterType));
-                    if (!compare.compareSlot(frame))
-                    {
-                        continue;
-                    }
+                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot()));
+                go.advanceFrames(2);
+                break;
+            case Encounter::Grass:
+                frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounterType));
+                if (!compare.compareSlot(frame))
+                {
+                    continue;
+                }
 
-                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot()));
-                    go.advanceFrames(1);
-                    break;
-                case Encounter::Surfing:
-                case Encounter::OldRod:
-                case Encounter::GoodRod:
-                case Encounter::SuperRod:
-                    frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounterType));
-                    if (!compare.compareSlot(frame))
-                    {
-                        continue;
-                    }
+                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot()));
+                go.advanceFrames(1);
+                break;
+            case Encounter::Surfing:
+            case Encounter::OldRod:
+            case Encounter::GoodRod:
+            case Encounter::SuperRod:
+                frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounterType));
+                if (!compare.compareSlot(frame))
+                {
+                    continue;
+                }
 
-                    frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
-                    break;
-                default:
-                    break;
+                frame.setLevel(encounter.calcLevel(frame.getEncounterSlot(), go.nextUShort()));
+                break;
+            default:
+                break;
             }
 
-            // Method H relies on grabbing a hunt nature and generating PIDs until the PID nature matches the hunt nature
+            // Method H relies on grabbing a hunt nature and generating PIDs until the PID nature matches the hunt
+            // nature
 
             if (leadType == Lead::None)
             {
@@ -291,8 +287,7 @@ namespace PokeFinderCore
                 low = go.nextUShort();
                 high = go.nextUShort();
                 pid = (high << 16) | low;
-            }
-            while (pid % 25 != frame.getNature() || (cuteCharmFlag && !cuteCharm(pid)));
+            } while (pid % 25 != frame.getNature() || (cuteCharmFlag && !cuteCharm(pid)));
 
             frame.setPID(pid, genderRatio);
 
@@ -333,10 +328,7 @@ namespace PokeFinderCore
 
         XDRNG rng(initialSeed, initialFrame - 1 + offset);
         QVector<u16> rngList(maxResults + 5);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
 
@@ -399,10 +391,7 @@ namespace PokeFinderCore
 
         PokeRNG rng(initialSeed, initialFrame - 1 + offset);
         QVector<u16> rngList(maxResults + 5);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
         // Method 2 [SEED] [PID] [PID] [BLANK] [IVS] [IVS]
@@ -435,10 +424,7 @@ namespace PokeFinderCore
 
         PokeRNG rng(initialSeed, initialFrame - 1 + offset);
         QVector<u16> rngList(maxResults + 4);
-        for (u16 &x : rngList)
-        {
-            x = rng.nextUShort();
-        }
+        std::generate(rngList.begin(), rngList.end(), [&rng]() { return rng.nextUShort(); });
 
         // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]
 
@@ -473,44 +459,43 @@ namespace PokeFinderCore
                 u16 high = rng.nextUShort();
                 u16 low = rng.nextUShort();
                 pid = (high << 16) | low;
-            }
-            while (!team.getLock(i).compare(pid));
+            } while (!team.getLock(i).compare(pid));
         }
 
         switch (team.getType())
         {
-            case ShadowType::SingleLock:
-            case ShadowType::FirstShadow:
+        case ShadowType::SingleLock:
+        case ShadowType::FirstShadow:
+            rng.advanceFrames(2);
+            break;
+        case ShadowType::SecondShadow:
+        case ShadowType::Salamence:
+            switch (type)
+            {
+            case 0: // Set
+                rng.advanceFrames(7);
+                break;
+            case 1: // Unset
+                rng.advanceFrames(9);
+                break;
+            case 2: // Shinyskip
+                rng.advanceFrames(5);
+                u16 psv = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
+                u16 psvTemp = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
+                while (psv == psvTemp)
+                {
+                    psvTemp = psv;
+                    psv = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
+                }
                 rng.advanceFrames(2);
                 break;
-            case ShadowType::SecondShadow:
-            case ShadowType::Salamence:
-                switch (type)
-                {
-                    case 0: // Set
-                        rng.advanceFrames(7);
-                        break;
-                    case 1: // Unset
-                        rng.advanceFrames(9);
-                        break;
-                    case 2: // Shinyskip
-                        rng.advanceFrames(5);
-                        u16 psv = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
-                        u16 psvTemp =  (rng.nextUShort() ^ rng.nextUShort()) >> 3;
-                        while (psv == psvTemp)
-                        {
-                            psvTemp = psv;
-                            psv = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
-                        }
-                        rng.advanceFrames(2);
-                        break;
-                }
-                break;
-            case ShadowType::EReader:
-                // Unconsume calls for IVs/PID for shadow
-                XDRNGR backward(rng.getSeed(), 5);
-                rng.setSeed(backward.getSeed());
-                break;
+            }
+            break;
+        case ShadowType::EReader:
+            // Unconsume calls for IVs/PID for shadow
+            XDRNGR backward(rng.getSeed(), 5);
+            rng.setSeed(backward.getSeed());
+            break;
         }
     }
 }

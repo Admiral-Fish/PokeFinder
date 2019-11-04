@@ -21,8 +21,8 @@
 
 namespace PokeFinderForms
 {
-    Label::Label(QWidget *parent) :
-        QLabel(parent)
+    Label::Label(QWidget *parent)
+        : QLabel(parent)
     {
     }
 

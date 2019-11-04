@@ -30,17 +30,15 @@ namespace PokeFinderModels
         Q_OBJECT
 
     public:
-        Wild3Model(QObject *parent);
+        explicit Wild3Model(QObject *parent);
         int columnCount(const QModelIndex &parent = QModelIndex()) const override;
         QVariant data(const QModelIndex &index, int role) const override;
         QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
     private:
-        QStringList header =
-        {
-            tr("Frame"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
-            tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time")
-        };
+        QStringList header = { tr("Frame"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+            tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"),
+            tr("Time") };
     };
 }
 

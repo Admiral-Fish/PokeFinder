@@ -45,8 +45,8 @@ namespace PokeFinderForms
         ~ProfileManager4() override;
 
     private:
-        Ui::ProfileManager4 *ui;
-        PokeFinderModels::Profile4Model *model{};
+        std::unique_ptr<Ui::ProfileManager4> ui;
+        PokeFinderModels::Profile4Model *model {};
 
         void setupModels();
 

@@ -20,8 +20,8 @@
 #ifndef POWER_HPP
 #define POWER_HPP
 
-#include <QStringList>
 #include <Core/Util/Global.hpp>
+#include <QStringList>
 
 namespace PokeFinderCore::Power
 {

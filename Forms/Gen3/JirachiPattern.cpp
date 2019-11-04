@@ -17,16 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "JirachiPattern.hpp"
 #include "ui_JirachiPattern.h"
 #include <Core/RNG/LCRNG.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    JirachiPattern::JirachiPattern(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::JirachiPattern)
+    JirachiPattern::JirachiPattern(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::JirachiPattern)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -39,8 +39,6 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("jirachiPattern/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
     void JirachiPattern::setupModels()
@@ -53,7 +51,8 @@ namespace PokeFinderForms
         ui->tableView->setModel(model);
 
         QSettings setting;
-        if (setting.contains("jirachiPattern/geometry")) this->restoreGeometry(setting.value("jirachiPattern/geometry").toByteArray());
+        if (setting.contains("jirachiPattern/geometry"))
+            this->restoreGeometry(setting.value("jirachiPattern/geometry").toByteArray());
     }
 
     void JirachiPattern::generate(u32 seed)
@@ -166,26 +165,24 @@ namespace PokeFinderForms
 
         switch (index)
         {
-            case 0: // 6 advances total
-                if ((double)data.at(1) / 65536.0 <= 0.25)
-                {
-                    return 19;
-                }
-                break;
-            case 1: // 7 advances total
-                if ((double)data.at(2) / 65536.0 > 0.25 &&
-                        (double)data.at(1) / 65536.0 <= 0.33)
-                {
-                    return 18;
-                }
-                break;
-            case 2: // 8 advances total
-                if ((double)data.at(3) / 65536.0 > 0.25 &&
-                        (double)data.at(2) / 65536.0 > 0.33)
-                {
-                    return 17;
-                }
-                break;
+        case 0: // 6 advances total
+            if (static_cast<double>(data.at(1)) / 65536.0 <= 0.25)
+            {
+                return 19;
+            }
+            break;
+        case 1: // 7 advances total
+            if (static_cast<double>(data.at(2)) / 65536.0 > 0.25 && static_cast<double>(data.at(1)) / 65536.0 <= 0.33)
+            {
+                return 18;
+            }
+            break;
+        case 2: // 8 advances total
+            if (static_cast<double>(data.at(3)) / 65536.0 > 0.25 && static_cast<double>(data.at(2)) / 65536.0 > 0.33)
+            {
+                return 17;
+            }
+            break;
         }
         return 0;
     }

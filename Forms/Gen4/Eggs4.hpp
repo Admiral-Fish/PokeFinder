@@ -20,8 +20,8 @@
 #ifndef EGGS4_HPP
 #define EGGS4_HPP
 
-#include <QMenu>
 #include <Core/Gen4/Profile4.hpp>
+#include <QMenu>
 
 namespace PokeFinderCore
 {
@@ -53,11 +53,11 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        Ui::Eggs4 *ui;
+        std::unique_ptr<Ui::Eggs4> ui;
         QVector<PokeFinderCore::Profile4> profiles;
-        PokeFinderModels::Egg4GeneratorModel *generatorModel{};
-        PokeFinderModels::Egg4SearcherModel *searcherModel{};
-        QMenu *searcherMenu{};
+        PokeFinderModels::Egg4GeneratorModel *generatorModel {};
+        PokeFinderModels::Egg4SearcherModel *searcherModel {};
+        QMenu *searcherMenu {};
 
         void setupModels();
 

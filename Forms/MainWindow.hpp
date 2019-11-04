@@ -20,8 +20,8 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include <QMainWindow>
 #include <QActionGroup>
+#include <QMainWindow>
 
 namespace PokeFinderForms
 {
@@ -49,20 +49,20 @@ namespace PokeFinderForms
 
     private:
         Ui::MainWindow *ui;
-        QActionGroup *langGroup{};
-        QActionGroup *styleGroup{};
+        QActionGroup *langGroup {};
+        QActionGroup *styleGroup {};
         QString currentLanguage;
         QString currentStyle;
 
-        Stationary3 *stationary3{};
-        Wild3 *wild3{};
-        GameCube *gamecube{};
-        Eggs3 *egg3{};
-        IDs3 *ids3{};
-        Stationary4 *stationary4{};
-        Wild4 *wild4{};
-        Eggs4 *egg4{};
-        IDs4 *ids4{};
+        Stationary3 *stationary3 {};
+        Wild3 *wild3 {};
+        GameCube *gamecube {};
+        Eggs3 *egg3 {};
+        IDs3 *ids3 {};
+        Stationary4 *stationary4 {};
+        Wild4 *wild4 {};
+        Eggs4 *egg4 {};
+        IDs4 *ids4 {};
 
         void setupLanguage();
         void setupStyle();

@@ -20,9 +20,9 @@
 #ifndef JIRACHIPATTERN_HPP
 #define JIRACHIPATTERN_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderForms
 {
@@ -39,8 +39,8 @@ namespace PokeFinderForms
         ~JirachiPattern() override;
 
     private:
-        Ui::JirachiPattern *ui;
-        QStandardItemModel *model{};
+        std::unique_ptr<Ui::JirachiPattern> ui;
+        QStandardItemModel *model {};
         QVector<u16> data;
 
         void setupModels();

@@ -17,17 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "ChainedSID.hpp"
 #include "ui_ChainedSID.h"
 #include <Core/Gen4/ChainedSIDCalc.hpp>
 #include <Core/Util/Nature.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    ChainedSID::ChainedSID(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::ChainedSID)
+    ChainedSID::ChainedSID(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::ChainedSID)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -41,7 +41,6 @@ namespace PokeFinderForms
         QSettings setting;
         setting.setValue("chainedSID/geometry", this->saveGeometry());
 
-        delete ui;
         delete chainedCalc;
     }
 
@@ -56,7 +55,8 @@ namespace PokeFinderForms
         ui->comboBoxNature->addItems(PokeFinderCore::Nature::getFrameNatures());
 
         QSettings setting;
-        if (setting.contains("chainedSID/geometry")) this->restoreGeometry(setting.value("chainedSID/geometry").toByteArray());
+        if (setting.contains("chainedSID/geometry"))
+            this->restoreGeometry(setting.value("chainedSID/geometry").toByteArray());
     }
 
     void ChainedSID::on_pushButtonCalculate_clicked()

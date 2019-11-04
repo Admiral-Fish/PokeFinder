@@ -30,8 +30,9 @@ namespace PokeFinderCore
     {
     public:
         Profile3();
-        Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English, bool deadBattery = false);
-        Profile3(QJsonObject data);
+        Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English,
+            bool deadBattery = false);
+        explicit Profile3(QJsonObject data);
         bool getDeadBattery() const;
         QJsonObject getJson() const;
         static QVector<Profile3> loadProfileList();

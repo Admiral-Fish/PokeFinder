@@ -17,16 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "SearchCalls.hpp"
 #include "ui_SearchCalls.h"
 #include <Core/Util/Utilities.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    SearchCalls::SearchCalls(const QVector<PokeFinderCore::DateTime> &model, const QVector<bool> &roamers, const QVector<u8> &routes, QWidget *parent) :
-        QDialog(parent),
-        ui(new Ui::SearchCalls)
+    SearchCalls::SearchCalls(const QVector<PokeFinderCore::DateTime> &model, const QVector<bool> &roamers,
+        const QVector<u8> &routes, QWidget *parent)
+        : QDialog(parent)
+        , ui(new Ui::SearchCalls)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -38,21 +39,17 @@ namespace PokeFinderForms
         ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
 
         QSettings setting;
-        if (setting.contains("searchCalls/geometry")) this->restoreGeometry(setting.value("searchCalls/geometry").toByteArray());
+        if (setting.contains("searchCalls/geometry"))
+            this->restoreGeometry(setting.value("searchCalls/geometry").toByteArray());
     }
 
     SearchCalls::~SearchCalls()
     {
         QSettings setting;
         setting.setValue("searchCalls/geometry", this->saveGeometry());
-
-        delete ui;
     }
 
-    QVector<bool> SearchCalls::possibleResults() const
-    {
-        return possible;
-    }
+    QVector<bool> SearchCalls::possibleResults() const { return possible; }
 
     void SearchCalls::on_pushButtonK_clicked()
     {
@@ -114,15 +111,23 @@ namespace PokeFinderForms
 
     void SearchCalls::on_radioButtonElm_clicked()
     {
-        ui->labelKResponse->setText(tr("K - I expect there are some Pokémon in the Kanto region that I don't know. There are probably methods of evolution that I'm not familiar with yet. I should use that perspective and discover what I can!"));
-        ui->labelEResponse->setText(tr("E - There are so many different ways that Pokémon evolve, aren't there?! Some Pokémon don't even evolve until they meet certain conditions first!"));
-        ui->labelPResponse->setText(tr("P - It seems that Pokémon that have been infected with Pokérus level up better. We're not quite sure why..."));
+        ui->labelKResponse->setText(
+            tr("K - I expect there are some Pokémon in the Kanto region that I don't know. There are probably methods "
+               "of evolution that I'm not familiar with yet. I should use that perspective and discover what I can!"));
+        ui->labelEResponse->setText(tr("E - There are so many different ways that Pokémon evolve, aren't there?! Some "
+                                       "Pokémon don't even evolve until they meet certain conditions first!"));
+        ui->labelPResponse->setText(tr("P - It seems that Pokémon that have been infected with Pokérus level up "
+                                       "better. We're not quite sure why..."));
     }
 
     void SearchCalls::on_radioButtonIrwin_clicked()
     {
-        ui->labelKResponse->setText(tr("K - I'm so glad you called! I was just about to call you, too! I guess we must be a good match!"));
+        ui->labelKResponse->setText(
+            tr("K - I'm so glad you called! I was just about to call you, too! I guess we must be a good match!"));
         ui->labelEResponse->setText(tr("E - Hearing about your escapades rocks my soul! It sure does!"));
-        ui->labelPResponse->setText(tr("P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How's your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there's so much I want to chat about! This is going nowhere!"));
+        ui->labelPResponse->setText(
+            tr("P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money "
+               "have you saved? How's your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, "
+               "there's so much I want to chat about! This is going nowhere!"));
     }
 }

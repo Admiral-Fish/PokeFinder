@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "Stationary4.hpp"
 #include "ui_Stationary4.h"
 #include <Core/Gen4/Generator4.hpp>
@@ -28,12 +27,13 @@
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Models/Gen4/Searcher4Model.hpp>
 #include <Models/Gen4/Stationary4Model.hpp>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    Stationary4::Stationary4(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::Stationary4)
+    Stationary4::Stationary4(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::Stationary4)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -55,8 +55,6 @@ namespace PokeFinderForms
         setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
-
-        delete ui;
     }
 
     void Stationary4::updateProfiles()
@@ -81,8 +79,10 @@ namespace PokeFinderForms
 
     void Stationary4::setupModels()
     {
-        generatorModel = new PokeFinderModels::Stationary4Model(ui->tableViewGenerator, PokeFinderCore::Method::Method1);
-        searcherModel = new PokeFinderModels::Searcher4Model(ui->tableViewSearcher, PokeFinderCore::Method::Method1, true);
+        generatorModel
+            = new PokeFinderModels::Stationary4Model(ui->tableViewGenerator, PokeFinderCore::Method::Method1);
+        searcherModel
+            = new PokeFinderModels::Searcher4Model(ui->tableViewSearcher, PokeFinderCore::Method::Method1, true);
         generatorMenu = new QMenu(ui->tableViewGenerator);
         searcherMenu = new QMenu(ui->tableViewSearcher);
 
@@ -136,24 +136,29 @@ namespace PokeFinderForms
         QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
 
-        connect(outputTXTGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModel(); });
-        connect(outputCSVGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModel(true); });
+        connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(); });
+        connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(true); });
 
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
         QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
 
         connect(seedToTime, &QAction::triggered, this, &Stationary4::seedToTime);
-        connect(outputTXTSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModel(); });
-        connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModel(true); });
+        connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(); });
+        connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
         QSettings setting;
         setting.beginGroup("stationary4");
-        if (setting.contains("minDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
-        if (setting.contains("maxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
-        if (setting.contains("minFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
-        if (setting.contains("maxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
-        if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
+        if (setting.contains("minDelay"))
+            ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
+        if (setting.contains("maxDelay"))
+            ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
+        if (setting.contains("minFrame"))
+            ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+        if (setting.contains("maxFrame"))
+            ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+        if (setting.contains("geometry"))
+            this->restoreGeometry(setting.value("geometry").toByteArray());
         setting.endGroup();
     }
 
@@ -163,15 +168,13 @@ namespace PokeFinderForms
         ui->progressBar->setValue(progress);
     }
 
-    void Stationary4::refreshProfiles()
-    {
-        emit alertProfiles(4);
-    }
+    void Stationary4::refreshProfiles() { emit alertProfiles(4); }
 
     void Stationary4::on_pushButtonGenerate_clicked()
     {
         generatorModel->clearModel();
-        generatorModel->setMethod(static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+        generatorModel->setMethod(
+            static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
         u32 seed = ui->textBoxGeneratorSeed->getUInt();
         u32 startingFrame = ui->textBoxGeneratorStartingFrame->getUInt();
@@ -185,11 +188,13 @@ namespace PokeFinderForms
         }
 
         u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
-        PokeFinderCore::Generator4 generator(maxResults, startingFrame, seed, tid, sid, offset, static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt()), genderRatio);
-        PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                                             ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                                             ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-                                             ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::Generator4 generator(maxResults, startingFrame, seed, tid, sid, offset,
+            static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt()), genderRatio);
+        PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(),
+            ui->comboBoxGeneratorAbility->currentIndex(), ui->checkBoxGeneratorShinyOnly->isChecked(),
+            ui->checkBoxGeneratorDisableFilters->isChecked(), ui->ivFilterGenerator->getLower(),
+            ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+            ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
         generator.setEncounterType(PokeFinderCore::Encounter::Stationary);
         if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -206,7 +211,8 @@ namespace PokeFinderForms
             else
             {
                 generator.setLeadType(PokeFinderCore::Lead::Synchronize);
-                generator.setSynchNature(PokeFinderCore::Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
+                generator.setSynchNature(PokeFinderCore::Nature::getAdjustedNature(
+                    static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
             }
         }
 
@@ -217,7 +223,8 @@ namespace PokeFinderForms
     void Stationary4::on_pushButtonSearch_clicked()
     {
         searcherModel->clearModel();
-        searcherModel->setMethod(static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+        searcherModel->setMethod(
+            static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
         ui->pushButtonSearch->setEnabled(false);
         ui->pushButtonCancel->setEnabled(true);
@@ -226,12 +233,14 @@ namespace PokeFinderForms
         u16 sid = ui->textBoxSearcherSID->getUShort();
 
         u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-        PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
-                                             ui->checkBoxSearcherShinyOnly->isChecked(), false,
-                                             ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherNature->getChecked(),
-                                             ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
-        PokeFinderCore::Searcher4 searcher(tid, sid, genderRatio, ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
-                                           ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(), compare, static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+        PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(),
+            ui->comboBoxSearcherAbility->currentIndex(), ui->checkBoxSearcherShinyOnly->isChecked(), false,
+            ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(),
+            ui->comboBoxSearcherNature->getChecked(), ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::Searcher4 searcher(tid, sid, genderRatio, ui->textBoxSearcherMinDelay->getUInt(),
+            ui->textBoxSearcherMaxDelay->getUInt(), ui->textBoxSearcherMinFrame->getUInt(),
+            ui->textBoxSearcherMaxFrame->getUInt(), compare,
+            static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
         searcher.setLeadType(static_cast<PokeFinderCore::Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
 
         QVector<u8> min = ui->ivFilterSearcher->getLower();
@@ -248,7 +257,10 @@ namespace PokeFinderForms
 
         auto *search = new PokeFinderCore::IVSearcher4(searcher, min, max);
 
-        connect(search, &PokeFinderCore::IVSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+        connect(search, &PokeFinderCore::IVSearcher4::finished, this, [=] {
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+        });
         connect(search, &PokeFinderCore::IVSearcher4::updateProgress, this, &Stationary4::updateProgress);
         connect(ui->pushButtonCancel, &QPushButton::clicked, search, &PokeFinderCore::IVSearcher4::cancelSearch);
 
@@ -278,12 +290,14 @@ namespace PokeFinderForms
 
         ui->comboBoxGeneratorMethod->clear();
         ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), PokeFinderCore::Method::Method1);
-        ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? PokeFinderCore::Method::MethodK : PokeFinderCore::Method::MethodJ);
+        ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"),
+            flag ? PokeFinderCore::Method::MethodK : PokeFinderCore::Method::MethodJ);
         ui->comboBoxGeneratorMethod->addItem(tr("Wondercard IVs"), PokeFinderCore::Method::WondercardIVs);
 
         ui->comboBoxSearcherMethod->clear();
         ui->comboBoxSearcherMethod->addItem(tr("Method 1"), PokeFinderCore::Method::Method1);
-        ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? PokeFinderCore::Method::MethodK : PokeFinderCore::Method::MethodJ);
+        ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"),
+            flag ? PokeFinderCore::Method::MethodK : PokeFinderCore::Method::MethodJ);
         ui->comboBoxSearcherMethod->addItem(tr("Wondercard IVs"), PokeFinderCore::Method::WondercardIVs);
     }
 
@@ -314,7 +328,9 @@ namespace PokeFinderForms
     void Stationary4::seedToTime()
     {
         QModelIndex index = ui->tableViewSearcher->currentIndex();
-        auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(), profiles[ui->comboBoxProfiles->currentIndex()]);
+        auto *time
+            = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(),
+                profiles[ui->comboBoxProfiles->currentIndex()]);
         time->show();
         time->raise();
     }

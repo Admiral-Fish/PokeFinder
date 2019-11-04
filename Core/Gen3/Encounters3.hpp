@@ -20,9 +20,9 @@
 #ifndef ENCOUNTERS3_HPP
 #define ENCOUNTERS3_HPP
 
-#include <QByteArrayList>
 #include <Core/Gen3/Profile3.hpp>
 #include <Core/Parents/Pokemon.hpp>
+#include <QByteArrayList>
 
 namespace PokeFinderCore
 {

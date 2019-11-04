@@ -17,9 +17,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QFile>
 #include "ShadowLock.hpp"
 #include <Core/RNG/LCRNG.hpp>
+#include <QFile>
 
 /* Each non-shadow before a shadow has to match
  * a specific gender/nature and these preset
@@ -27,20 +27,14 @@
 
 namespace PokeFinderCore
 {
-    ShadowLock::ShadowLock(u8 num, Method version)
-    {
-        switchLock(num, version);
-    }
+    ShadowLock::ShadowLock(u8 num, Method version) { switchLock(num, version); }
 
-    ShadowType ShadowLock::getType()
-    {
-        return team.getType();
-    }
+    ShadowType ShadowLock::getType() { return team.getType(); }
 
     bool ShadowLock::firstShadowNormal(u32 seed)
     {
         XDRNGR backward(seed, 1);
-        u32 pid, pidOriginal;
+        u32 pid = 0, pidOriginal;
 
         // Grab PID from first non-shadow going backwards
         // If it doesn't match spread fails
@@ -70,7 +64,7 @@ namespace PokeFinderCore
     bool ShadowLock::firstShadowSet(u32 seed)
     {
         XDRNGR backward(seed, 6);
-        u32 pid, pidOriginal;
+        u32 pid = 0, pidOriginal;
 
         // Grab PID from first non-shadow going backwards
         // If it doesn't match spread fails
@@ -100,7 +94,7 @@ namespace PokeFinderCore
     bool ShadowLock::firstShadowShinySkip(u32 seed)
     {
         XDRNGR backward(seed, 1);
-        u32 pid, pidOriginal;
+        u32 pid = 0, pidOriginal;
         u16 psv, psvtemp;
 
         // Check how many advances from shiny skip
@@ -141,7 +135,7 @@ namespace PokeFinderCore
     bool ShadowLock::firstShadowUnset(u32 seed)
     {
         XDRNGR backward(seed, 8);
-        u32 pid, pidOriginal;
+        u32 pid = 0, pidOriginal;
 
         // Grab PID from first non-shadow going backwards
         // If it doesn't match spread fails
@@ -275,8 +269,7 @@ namespace PokeFinderCore
         do
         {
             pid = getPIDBackward(rng);
-        }
-        while (!currLock.compare(pid));
+        } while (!currLock.compare(pid));
     }
 
     void ShadowLock::compareForwards(u32 &pid, XDRNG &rng)
@@ -285,14 +278,10 @@ namespace PokeFinderCore
         do
         {
             pid = getPIDForward(rng);
-        }
-        while (!currLock.compare(pid));
+        } while (!currLock.compare(pid));
     }
 
-    void ShadowLock::getCurrLock()
-    {
-        currLock = team.getLock(x);
-    }
+    void ShadowLock::getCurrLock() { currLock = team.getLock(x); }
 
     u32 ShadowLock::getPIDForward(XDRNG &rng)
     {
@@ -308,8 +297,5 @@ namespace PokeFinderCore
         return low | high;
     }
 
-    u16 ShadowLock::getPSVReverse(XDRNGR &rng)
-    {
-        return (rng.nextUShort() ^ rng.nextUShort()) >> 3;
-    }
+    u16 ShadowLock::getPSVReverse(XDRNGR &rng) { return (rng.nextUShort() ^ rng.nextUShort()) >> 3; }
 }

@@ -61,7 +61,8 @@ namespace PokeFinderCore
             u8 abilityNum = adjustLow & 1;
             u8 genderNum = adjustLow & 0xFF;
 
-            if ((ability == 0 || (abilityNum == 0 && ability == 1) || (abilityNum == 1 && ability == 2)) && matchGender(gender, genderNum))
+            if ((ability == 0 || (abilityNum == 0 && ability == 1) || (abilityNum == 1 && ability == 2))
+                && matchGender(gender, genderNum))
             {
                 pids.append(qMakePair(adjustLow, pid2));
             }
@@ -70,7 +71,7 @@ namespace PokeFinderCore
         QVector<u16> newSids;
         for (const auto sid : sids)
         {
-            for (const auto pair : pids)
+            for (const auto &pair : pids)
             {
                 u32 adjustHigh = pair.first ^ tid ^ sid;
                 adjustHigh &= 0xFFF8;
@@ -86,37 +87,34 @@ namespace PokeFinderCore
         sids = newSids;
     }
 
-    QVector<u16> ChainedSIDCalc::getSIDs() const
-    {
-        return sids;
-    }
+    QVector<u16> ChainedSIDCalc::getSIDs() const { return sids; }
 
     bool ChainedSIDCalc::matchGender(u8 gender, u8 val) const
     {
         switch (gender)
         {
-            case 0: // Genderless
-                return true;
-            case 1: // Male (50 M / 50 F)
-                return val >= 127;
-            case 2: // Female (50 M / 50 F)
-                return val <= 126;
-            case 3: // Male (25 M / 75 F)
-                return val >= 191;
-            case 4: // Female (25 M / 75 F)
-                return val <= 190;
-            case 5: // Male (75 M / 25 F)
-                return val >= 64;
-            case 6: // Female (75 M / 25 F)
-                return val <= 63;
-            case 7: // Male (87.5 M / 12.5 F)
-                return val >= 31;
-            case 8: // Female (87.5 < / 12.5 F)
-                return val <= 30;
-            case 9: // Male only
-                return true;
-            case 10: // Female only
-                return true;
+        case 0: // Genderless
+            return true;
+        case 1: // Male (50 M / 50 F)
+            return val >= 127;
+        case 2: // Female (50 M / 50 F)
+            return val <= 126;
+        case 3: // Male (25 M / 75 F)
+            return val >= 191;
+        case 4: // Female (25 M / 75 F)
+            return val <= 190;
+        case 5: // Male (75 M / 25 F)
+            return val >= 64;
+        case 6: // Female (75 M / 25 F)
+            return val <= 63;
+        case 7: // Male (87.5 M / 12.5 F)
+            return val >= 31;
+        case 8: // Female (87.5 < / 12.5 F)
+            return val <= 30;
+        case 9: // Male only
+            return true;
+        case 10: // Female only
+            return true;
         }
         return false;
     }

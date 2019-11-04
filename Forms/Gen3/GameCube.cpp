@@ -17,8 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QClipboard>
-#include <QSettings>
 #include "GameCube.hpp"
 #include "ui_GameCube.h"
 #include <Core/Gen3/Generator3.hpp>
@@ -30,12 +28,14 @@
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
 #include <Models/Gen3/Stationary3Model.hpp>
+#include <QClipboard>
+#include <QSettings>
 
 namespace PokeFinderForms
 {
-    GameCube::GameCube(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::GameCube)
+    GameCube::GameCube(QWidget *parent)
+        : QWidget(parent)
+        , ui(new Ui::GameCube)
     {
         ui->setupUi(this);
         setAttribute(Qt::WA_QuitOnClose, false);
@@ -60,13 +60,12 @@ namespace PokeFinderForms
         setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
-
-        delete ui;
     }
 
     void GameCube::updateProfiles()
     {
-        profiles = { PokeFinderCore::Profile3(tr("None"), PokeFinderCore::Game::Gales, 12345, 54321, PokeFinderCore::Language::English) };
+        profiles = { PokeFinderCore::Profile3(
+            tr("None"), PokeFinderCore::Game::Gales, 12345, 54321, PokeFinderCore::Language::English) };
         for (const auto &profile : PokeFinderCore::Profile3::loadProfileList())
         {
             if (profile.getVersion() & PokeFinderCore::Game::GC)
@@ -143,8 +142,8 @@ namespace PokeFinderForms
         QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
 
-        connect(outputTXTGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModel(); });
-        connect(outputCSVGenerator, &QAction::triggered, this, [ = ]() { ui->tableViewGenerator->outputModel(true); });
+        connect(outputTXTGenerator, &QAction::triggered, this, [=]() { ui->tableViewGenerator->outputModel(); });
+        connect(outputCSVGenerator, &QAction::triggered, this, [=]() { ui->tableViewGenerator->outputModel(true); });
 
         QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
@@ -153,11 +152,12 @@ namespace PokeFinderForms
 
         connect(copySeedToClipboard, &QAction::triggered, this, &GameCube::copySeedToClipboard);
         connect(seedToTime, &QAction::triggered, this, &GameCube::seedToTime);
-        connect(outputTXTSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModel(); });
-        connect(outputCSVSearcher, &QAction::triggered, this, [ = ]() { ui->tableViewSearcher->outputModel(true); });
+        connect(outputTXTSearcher, &QAction::triggered, this, [=]() { ui->tableViewSearcher->outputModel(); });
+        connect(outputCSVSearcher, &QAction::triggered, this, [=]() { ui->tableViewSearcher->outputModel(true); });
 
         QSettings setting;
-        if (setting.contains("gamecube/geometry")) this->restoreGeometry(setting.value("gamecube/geometry").toByteArray());
+        if (setting.contains("gamecube/geometry"))
+            this->restoreGeometry(setting.value("gamecube/geometry").toByteArray());
     }
 
     void GameCube::updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress)
@@ -166,10 +166,7 @@ namespace PokeFinderForms
         ui->progressBar->setValue(progress);
     }
 
-    void GameCube::refreshProfiles()
-    {
-        emit alertProfiles(3);
-    }
+    void GameCube::refreshProfiles() { emit alertProfiles(3); }
 
     void GameCube::on_comboBoxProfiles_currentIndexChanged(int index)
     {
@@ -208,17 +205,20 @@ namespace PokeFinderForms
 
         u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
         PokeFinderCore::Generator3 generator(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
-        PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                                             ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                                             ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-                                             ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(),
+            ui->comboBoxGeneratorAbility->currentIndex(), ui->checkBoxGeneratorShinyOnly->isChecked(),
+            ui->checkBoxGeneratorDisableFilters->isChecked(), ui->ivFilterGenerator->getLower(),
+            ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+            ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
-        PokeFinderCore::Method method = static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+        PokeFinderCore::Method method
+            = static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
         generator.setup(method);
 
         if (method == PokeFinderCore::Method::XD || method == PokeFinderCore::Method::Colo)
         {
-            generator.setShadowTeam(ui->comboBoxGeneratorShadow->currentIndex(), ui->comboBoxGeneratorType->currentIndex());
+            generator.setShadowTeam(
+                ui->comboBoxGeneratorShadow->currentIndex(), ui->comboBoxGeneratorType->currentIndex());
         }
 
         QVector<PokeFinderCore::Frame3> frames = generator.generate(compare);
@@ -228,7 +228,8 @@ namespace PokeFinderForms
     void GameCube::on_pushButtonSearch_clicked()
     {
         searcherModel->clearModel();
-        searcherModel->setMethod(static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+        searcherModel->setMethod(
+            static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
         ui->pushButtonSearch->setEnabled(false);
         ui->pushButtonCancel->setEnabled(true);
@@ -237,14 +238,15 @@ namespace PokeFinderForms
         u16 sid = ui->textBoxSearcherSID->getUShort();
 
         u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-        PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
-                                             ui->checkBoxSearcherShinyOnly->isChecked(), false,
-                                             ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherNature->getChecked(),
-                                             ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
+        PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(),
+            ui->comboBoxSearcherAbility->currentIndex(), ui->checkBoxSearcherShinyOnly->isChecked(), false,
+            ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(),
+            ui->comboBoxSearcherNature->getChecked(), ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
         PokeFinderCore::Searcher3 searcher(tid, sid, genderRatio, compare);
 
         searcher.setup(static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
-        if (searcher.getFrameType() == PokeFinderCore::Method::XD || searcher.getFrameType() == PokeFinderCore::Method::Colo)
+        if (searcher.getFrameType() == PokeFinderCore::Method::XD
+            || searcher.getFrameType() == PokeFinderCore::Method::Colo)
         {
             searcher.setupNatureLock(ui->comboBoxSearcherShadow->currentIndex());
         }
@@ -263,7 +265,10 @@ namespace PokeFinderForms
 
         auto *search = new PokeFinderCore::IVSearcher3(searcher, min, max);
 
-        connect(search, &PokeFinderCore::IVSearcher3::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
+        connect(search, &PokeFinderCore::IVSearcher3::finished, this, [=] {
+            ui->pushButtonSearch->setEnabled(true);
+            ui->pushButtonCancel->setEnabled(false);
+        });
         connect(search, &PokeFinderCore::IVSearcher3::updateProgress, this, &GameCube::updateProgress);
         connect(ui->pushButtonCancel, &QPushButton::clicked, search, &PokeFinderCore::IVSearcher3::cancelSearch);
 
@@ -272,19 +277,16 @@ namespace PokeFinderForms
 
     void GameCube::on_comboBoxGeneratorMethod_currentIndexChanged(int /*index*/)
     {
-        PokeFinderCore::Method method = static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+        PokeFinderCore::Method method
+            = static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
         ui->comboBoxGeneratorShadow->clear();
 
         if (method == PokeFinderCore::Method::XD)
         {
-            QStringList s = PokeFinderCore::Translator::getSpecies(
-            {
-                334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125, 83, 55, 88, 58,
-                316, 316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82,
-                296, 310, 105, 303, 52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261,
-                57, 280, 78, 20, 315, 302, 373, 123, 273, 273, 273, 86, 285, 143, 361,
-                338, 21, 363, 363, 363, 167, 121, 220, 114, 49, 100, 37, 70
-            });
+            QStringList s = PokeFinderCore::Translator::getSpecies({ 334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125,
+                83, 55, 88, 58, 316, 316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82, 296, 310, 105, 303,
+                52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261, 57, 280, 78, 20, 315, 302, 373, 123, 273, 273, 273,
+                86, 285, 143, 361, 338, 21, 363, 363, 363, 167, 121, 220, 114, 49, 100, 37, 70 });
 
             s[15] += tr(" (Citadark)");
             s[16] += tr(" (Initial)");
@@ -327,7 +329,8 @@ namespace PokeFinderForms
 
     void GameCube::on_comboBoxGeneratorShadow_currentIndexChanged(int index)
     {
-        PokeFinderCore::Method version = static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
+        PokeFinderCore::Method version
+            = static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
         if (ui->comboBoxGeneratorShadow->isVisible() && version == PokeFinderCore::Method::XD)
         {
             QVector<int> secondShadows = { 0, 2, 3, 4, 14, 20, 22, 26, 34, 41, 49, 50, 57, 71 };
@@ -343,19 +346,16 @@ namespace PokeFinderForms
 
     void GameCube::on_comboBoxSearcherMethod_currentIndexChanged(int /*index*/)
     {
-        PokeFinderCore::Method method = static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt());
+        PokeFinderCore::Method method
+            = static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt());
         ui->comboBoxSearcherShadow->clear();
 
         if (method == PokeFinderCore::Method::XD)
         {
-            QStringList s = PokeFinderCore::Translator::getSpecies(
-            {
-                334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125, 83, 55, 88, 58,
-                316, 316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82,
-                296, 310, 105, 303, 52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261,
-                57, 280, 78, 20, 315, 302, 373, 123, 273, 273, 273, 86, 285, 143, 361,
-                338, 21, 363, 363, 363, 167, 121, 220, 114, 49, 100, 37, 70
-            });
+            QStringList s = PokeFinderCore::Translator::getSpecies({ 334, 24, 354, 12, 113, 301, 85, 149, 51, 355, 125,
+                83, 55, 88, 58, 316, 316, 316, 107, 106, 97, 115, 131, 165, 108, 337, 219, 126, 82, 296, 310, 105, 303,
+                52, 122, 177, 299, 322, 46, 17, 204, 127, 62, 261, 57, 280, 78, 20, 315, 302, 373, 123, 273, 273, 273,
+                86, 285, 143, 361, 338, 21, 363, 363, 363, 167, 121, 220, 114, 49, 100, 37, 70 });
 
             s[15] += tr(" (Citadark)");
             s[16] += tr(" (Initial)");
@@ -411,7 +411,8 @@ namespace PokeFinderForms
     void GameCube::seedToTime()
     {
         QModelIndex index = ui->tableViewSearcher->currentIndex();
-        u32 seed = searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
+        u32 seed
+            = searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
         auto *rtc = new GameCubeRTC(seed);
         rtc->show();
         rtc->raise();
@@ -420,7 +421,8 @@ namespace PokeFinderForms
     void GameCube::copySeedToClipboard()
     {
         QModelIndex index = ui->tableViewSearcher->currentIndex();
-        QApplication::clipboard()->setText(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString());
+        QApplication::clipboard()->setText(
+            searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString());
     }
 
     void GameCube::on_pushButtonProfileManager_clicked()

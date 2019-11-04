@@ -20,20 +20,20 @@
 #ifndef TEXTBOX_HPP
 #define TEXTBOX_HPP
 
-#include <QLineEdit>
 #include <Core/Util/Global.hpp>
+#include <QLineEdit>
 
 namespace PokeFinderForms
 {
     enum InputType
     {
-        Seed64Bit   = 1 << 0,
-        Frame64Bit  = 1 << 1,
-        Seed32Bit   = 1 << 2,
-        Frame32Bit  = 1 << 3,
-        Seed16Bit   = 1 << 4,
-        Delay       = 1 << 5,
-        TIDSID      = 1 << 6
+        Seed64Bit = 1 << 0,
+        Frame64Bit = 1 << 1,
+        Seed32Bit = 1 << 2,
+        Frame32Bit = 1 << 3,
+        Seed16Bit = 1 << 4,
+        Delay = 1 << 5,
+        TIDSID = 1 << 6
     };
 
     class TextBox : public QLineEdit
@@ -50,8 +50,8 @@ namespace PokeFinderForms
     private:
         bool setup;
         u64 maxValue = 0;
-        u64 minValue{};
-        int base{};
+        u64 minValue {};
+        int base {};
         QRegExp filter;
 
     private slots:

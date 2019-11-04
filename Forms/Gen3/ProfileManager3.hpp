@@ -45,8 +45,8 @@ namespace PokeFinderForms
         ~ProfileManager3() override;
 
     private:
-        Ui::ProfileManager3 *ui;
-        PokeFinderModels::Profile3Model *model{};
+        std::unique_ptr<Ui::ProfileManager3> ui;
+        PokeFinderModels::Profile3Model *model {};
 
         void setupModels();
 

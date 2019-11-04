@@ -20,10 +20,10 @@
 #ifndef IDSEARCHER4_HPP
 #define IDSEARCHER4_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QMutex>
 #include <QObject>
 #include <QStandardItem>
-#include <Core/Util/Global.hpp>
 
 namespace PokeFinderCore
 {

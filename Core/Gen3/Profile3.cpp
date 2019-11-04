@@ -17,12 +17,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include "Profile3.hpp"
 #include <QApplication>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QSettings>
-#include "Profile3.hpp"
 
 namespace PokeFinderCore
 {
@@ -32,22 +32,20 @@ namespace PokeFinderCore
         deadBattery = false;
     }
 
-    Profile3::Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language, bool deadBattery) :
-        Profile(profileName, version, tid, sid, language)
+    Profile3::Profile3(const QString &profileName, Game version, u16 tid, u16 sid, Language language, bool deadBattery)
+        : Profile(profileName, version, tid, sid, language)
     {
         this->deadBattery = deadBattery;
     }
 
-    Profile3::Profile3(QJsonObject data) :
-        Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
+    Profile3::Profile3(QJsonObject data)
+        : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(),
+            data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
     {
         deadBattery = data["battery"].toBool();
     }
 
-    bool Profile3::getDeadBattery() const
-    {
-        return deadBattery;
-    }
+    bool Profile3::getDeadBattery() const { return deadBattery; }
 
     QJsonObject Profile3::getJson() const
     {
@@ -141,12 +139,9 @@ namespace PokeFinderCore
 
     bool operator==(const Profile3 &left, const Profile3 &right)
     {
-        return left.profileName == right.profileName && left.version == right.version && left.language == right.language &&
-               left.tid == right.tid && left.sid == right.sid && left.deadBattery == right.deadBattery;
+        return left.profileName == right.profileName && left.version == right.version && left.language == right.language
+            && left.tid == right.tid && left.sid == right.sid && left.deadBattery == right.deadBattery;
     }
 
-    bool operator!=(const Profile3 &left, const Profile3 &right)
-    {
-        return !(left == right);
-    }
+    bool operator!=(const Profile3 &left, const Profile3 &right) { return !(left == right); }
 }
