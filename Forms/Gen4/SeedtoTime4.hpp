@@ -49,7 +49,7 @@ namespace PokeFinderForms
         ~SeedtoTime4() override;
 
     private:
-        std::unique_ptr<Ui::SeedtoTime4> ui;
+        Ui::SeedtoTime4 *ui;
         PokeFinderModels::SeedtoTime4Model *dppt {};
         PokeFinderModels::SeedtoTime4Model *dpptCalibrate {};
         PokeFinderModels::SeedtoTime4Model *hgss {};

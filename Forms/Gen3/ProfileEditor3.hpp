@@ -45,7 +45,7 @@ namespace PokeFinderForms
         PokeFinderCore::Profile3 getOriginal();
 
     private:
-        std::unique_ptr<Ui::ProfileEditor3> ui;
+        Ui::ProfileEditor3 *ui;
         bool isEditing = false;
         PokeFinderCore::Profile3 original;
         PokeFinderCore::Profile3 fresh;

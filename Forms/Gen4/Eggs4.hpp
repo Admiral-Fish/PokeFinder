@@ -53,7 +53,7 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        std::unique_ptr<Ui::Eggs4> ui;
+        Ui::Eggs4 *ui;
         QVector<PokeFinderCore::Profile4> profiles;
         PokeFinderModels::Egg4GeneratorModel *generatorModel {};
         PokeFinderModels::Egg4SearcherModel *searcherModel {};

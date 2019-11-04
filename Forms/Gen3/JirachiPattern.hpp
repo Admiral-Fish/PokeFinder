@@ -39,7 +39,7 @@ namespace PokeFinderForms
         ~JirachiPattern() override;
 
     private:
-        std::unique_ptr<Ui::JirachiPattern> ui;
+        Ui::JirachiPattern *ui;
         QStandardItemModel *model {};
         QVector<u16> data;
 

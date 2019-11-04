@@ -40,6 +40,8 @@ namespace PokeFinderForms
         ui->labelSpe->setToolTip(tip);
     }
 
+    IVFilter::~IVFilter() { delete ui; }
+
     QVector<u8> IVFilter::getLower() const
     {
         QVector<u8> low = { static_cast<u8>(ui->spinBoxHPMin->value()), static_cast<u8>(ui->spinBoxAtkMin->value()),

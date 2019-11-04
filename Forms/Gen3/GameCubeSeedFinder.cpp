@@ -79,6 +79,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("gameCubeSeedFinder/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     void GameCubeSeedFinder::on_pushButtonGalesSearch_clicked()

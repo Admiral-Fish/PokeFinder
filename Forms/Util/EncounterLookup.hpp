@@ -45,7 +45,7 @@ namespace PokeFinderForms
         ~EncounterLookup() override;
 
     private:
-        std::unique_ptr<Ui::EncounterLookup> ui;
+        Ui::EncounterLookup *ui;
         QStandardItemModel *model {};
 
         void setupModels();

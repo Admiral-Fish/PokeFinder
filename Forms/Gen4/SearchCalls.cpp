@@ -47,6 +47,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("searchCalls/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     QVector<bool> SearchCalls::possibleResults() const { return possible; }

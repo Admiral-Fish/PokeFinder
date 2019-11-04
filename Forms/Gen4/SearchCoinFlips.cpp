@@ -43,6 +43,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("searchCoinFlips/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     QVector<bool> SearchCoinFlips::possibleResults() const { return possible; }

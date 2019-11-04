@@ -43,6 +43,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("researcher/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     void Researcher::setupModels()

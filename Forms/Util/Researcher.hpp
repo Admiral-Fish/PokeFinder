@@ -49,7 +49,7 @@ namespace PokeFinderForms
         ~Researcher() override;
 
     private:
-        std::unique_ptr<Ui::Researcher> ui;
+        Ui::Researcher *ui;
         PokeFinderModels::ResearcherModel *model {};
         QHash<QString, u8> keys;
 

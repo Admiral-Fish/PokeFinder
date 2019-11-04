@@ -41,7 +41,7 @@ namespace PokeFinderForms
         ~SpindaPainter() override;
 
     private:
-        std::unique_ptr<Ui::SpindaPainter> ui;
+        Ui::SpindaPainter *ui;
         QGraphicsScene *scene {};
         QGraphicsPixmapItem *spinda {};
         GraphicsPixmapItem *spot1 {};

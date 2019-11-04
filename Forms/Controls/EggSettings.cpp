@@ -29,6 +29,8 @@ namespace PokeFinderForms
         ui->setupUi(this);
     }
 
+    EggSettings::~EggSettings() { delete ui; }
+
     QVector<u8> EggSettings::getParent1() const
     {
         QVector<u8> parent1

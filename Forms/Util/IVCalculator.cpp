@@ -44,6 +44,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("ivCalculator/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     void IVCalculator::setupModels()

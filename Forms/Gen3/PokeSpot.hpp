@@ -42,7 +42,7 @@ namespace PokeFinderForms
         ~PokeSpot() override;
 
     private:
-        std::unique_ptr<Ui::PokeSpot> ui;
+        Ui::PokeSpot *ui;
         PokeFinderModels::PokeSpotModel *model {};
 
         void setupModels();

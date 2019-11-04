@@ -43,6 +43,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("spindaPainter/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     void SpindaPainter::setupModels()

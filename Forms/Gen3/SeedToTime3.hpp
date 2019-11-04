@@ -40,7 +40,7 @@ namespace PokeFinderForms
         ~SeedToTime3() override;
 
     private:
-        std::unique_ptr<Ui::SeedToTime3> ui;
+        Ui::SeedToTime3 *ui;
         QStandardItemModel *model {};
         u32 frame = 1;
 

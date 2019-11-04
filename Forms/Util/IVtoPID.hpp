@@ -39,7 +39,7 @@ namespace PokeFinderForms
         ~IVtoPID() override;
 
     private:
-        std::unique_ptr<Ui::IVtoPID> ui;
+        Ui::IVtoPID *ui;
         QStandardItemModel *model {};
 
         void setupModels();

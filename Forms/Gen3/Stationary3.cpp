@@ -52,6 +52,8 @@ namespace PokeFinderForms
         setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
+
+        delete ui;
     }
 
     void Stationary3::updateProfiles()

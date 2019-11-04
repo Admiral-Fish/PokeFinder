@@ -39,7 +39,7 @@ namespace PokeFinderForms
         QVector<bool> possibleResults() const;
 
     private:
-        std::unique_ptr<Ui::SearchCoinFlips> ui;
+        Ui::SearchCoinFlips *ui;
         QVector<PokeFinderCore::DateTime> data;
         QVector<bool> possible;
 

@@ -37,4 +37,6 @@ namespace PokeFinderForms
         ui->labelRaikou->setText(roamers.at(1));
         ui->labelLatiasLatios->setText(roamers.at(2) + "/" + roamers.at(3));
     }
+
+    RoamerMap::~RoamerMap() { delete ui; }
 }

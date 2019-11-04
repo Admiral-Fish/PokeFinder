@@ -40,7 +40,7 @@ namespace PokeFinderForms
         QVector<bool> possibleResults() const;
 
     private:
-        std::unique_ptr<Ui::SearchCalls> ui;
+        Ui::SearchCalls *ui;
         QVector<PokeFinderCore::DateTime> data;
         QVector<bool> possible;
         QVector<bool> roamers;

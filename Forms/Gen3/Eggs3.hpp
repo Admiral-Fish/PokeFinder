@@ -52,7 +52,7 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        std::unique_ptr<Ui::Eggs3> ui;
+        Ui::Eggs3 *ui;
         QVector<PokeFinderCore::Profile3> profiles;
         PokeFinderModels::Egg3Model *emeraldIVs {};
         PokeFinderModels::Egg3Model *emeraldPID {};

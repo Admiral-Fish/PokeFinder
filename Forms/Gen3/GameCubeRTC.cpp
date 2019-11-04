@@ -59,6 +59,8 @@ namespace PokeFinderForms
         setting.setValue("seed", ui->textBoxStartSeed->text());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
+
+        delete ui;
     }
 
     void GameCubeRTC::setupModels()

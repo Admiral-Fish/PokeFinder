@@ -79,6 +79,8 @@ namespace PokeFinderForms
         setting.setValue("plusSecondsHGSS", ui->lineEditHGSSSecondPlus->text());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
+
+        delete ui;
     }
 
     void SeedtoTime4::setupModels()

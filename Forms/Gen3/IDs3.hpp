@@ -38,7 +38,7 @@ namespace PokeFinderForms
         ~IDs3() override;
 
     private:
-        std::unique_ptr<Ui::IDs3> ui;
+        Ui::IDs3 *ui;
         QStandardItemModel *xdcolo {};
         QStandardItemModel *frlge {};
         QStandardItemModel *rs {};

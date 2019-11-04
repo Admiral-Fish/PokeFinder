@@ -41,7 +41,11 @@ namespace PokeFinderForms
         QSettings setting;
         setting.setValue("chainedSID/geometry", this->saveGeometry());
 
-        delete chainedCalc;
+        delete ui;
+        if (chainedCalc)
+        {
+            delete chainedCalc;
+        }
     }
 
     void ChainedSID::setupModels()

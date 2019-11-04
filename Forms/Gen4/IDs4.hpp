@@ -42,7 +42,7 @@ namespace PokeFinderForms
         ~IDs4() override;
 
     private:
-        std::unique_ptr<Ui::IDs4> ui;
+        Ui::IDs4 *ui;
         QStandardItemModel *shinyPID {};
         QStandardItemModel *tidSID {};
         QStandardItemModel *seedFinder {};

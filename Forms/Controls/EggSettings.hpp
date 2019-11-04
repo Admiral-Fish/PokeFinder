@@ -39,12 +39,12 @@ namespace PokeFinderForms
 
     public:
         explicit EggSettings(QWidget *parent = nullptr);
-        ~EggSettings() override = default;
+        ~EggSettings() override;
         QVector<u8> getParent1() const;
         QVector<u8> getParent2() const;
 
     private:
-        std::unique_ptr<Ui::EggSettings> ui;
+        Ui::EggSettings *ui;
 
     private slots:
         void on_pushButtonSwapParents_clicked();

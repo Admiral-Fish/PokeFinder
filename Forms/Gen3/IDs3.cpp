@@ -39,6 +39,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("ids3/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     void IDs3::setupModels()

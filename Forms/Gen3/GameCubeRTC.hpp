@@ -40,7 +40,7 @@ namespace PokeFinderForms
         ~GameCubeRTC() override;
 
     private:
-        std::unique_ptr<Ui::GameCubeRTC> ui;
+        Ui::GameCubeRTC *ui;
         QStandardItemModel *model {};
         QMenu *contextMenu {};
 

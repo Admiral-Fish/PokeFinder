@@ -46,6 +46,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("encounterLookup/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     void EncounterLookup::setupModels()

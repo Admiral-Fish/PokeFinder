@@ -58,6 +58,8 @@ namespace PokeFinderForms
         setting.setValue("year", ui->textBoxYear->text());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
+
+        delete ui;
     }
 
     void SeedToTime3::setupModels()

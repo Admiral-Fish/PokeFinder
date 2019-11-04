@@ -44,7 +44,7 @@ namespace PokeFinderForms
         ~IVCalculator() override;
 
     private:
-        std::unique_ptr<Ui::IVCalculator> ui;
+        Ui::IVCalculator *ui;
         QVector<PokeFinderCore::Characteristic> characteristics;
         QVector<PokeFinderCore::Pokemon> pokemon;
         void setupModels();

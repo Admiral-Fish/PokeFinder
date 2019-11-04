@@ -42,7 +42,7 @@ namespace PokeFinderForms
         ~PIDtoIVs() override;
 
     private:
-        std::unique_ptr<Ui::PIDtoIVs> ui;
+        Ui::PIDtoIVs *ui;
         QStandardItemModel *model {};
         QMenu *contextMenu {};
 

@@ -44,7 +44,7 @@ namespace PokeFinderForms
         void on_pushButtonColoReset_clicked();
 
     private:
-        std::unique_ptr<Ui::GameCubeSeedFinder> ui;
+        Ui::GameCubeSeedFinder *ui;
         QVector<u32> galeSeeds;
         QVector<u32> coloSeeds;
         u8 galesRound;

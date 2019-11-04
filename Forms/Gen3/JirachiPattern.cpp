@@ -39,6 +39,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("jirachiPattern/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     void JirachiPattern::setupModels()

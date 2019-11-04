@@ -53,7 +53,7 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        std::unique_ptr<Ui::GameCube> ui;
+        Ui::GameCube *ui;
         PokeFinderModels::Searcher3Model *searcherModel {};
         PokeFinderModels::Stationary3Model *generatorModel {};
         QVector<PokeFinderCore::Profile3> profiles;

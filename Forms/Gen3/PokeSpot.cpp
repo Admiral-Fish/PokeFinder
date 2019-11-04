@@ -47,6 +47,8 @@ namespace PokeFinderForms
         setting.setValue("sid", ui->textBoxSID->text());
         setting.setValue("geometry", this->saveGeometry());
         setting.endGroup();
+
+        delete ui;
     }
 
     void PokeSpot::setupModels()

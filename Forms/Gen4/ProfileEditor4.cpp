@@ -64,6 +64,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("profileEditor4/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     PokeFinderCore::Profile4 ProfileEditor4::getNewProfile() { return fresh; }

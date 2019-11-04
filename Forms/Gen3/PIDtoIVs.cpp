@@ -42,6 +42,8 @@ namespace PokeFinderForms
     {
         QSettings setting;
         setting.setValue("pidToIVs/geometry", this->saveGeometry());
+
+        delete ui;
     }
 
     void PIDtoIVs::setupModels()

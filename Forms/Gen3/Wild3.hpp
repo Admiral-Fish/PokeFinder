@@ -55,7 +55,7 @@ namespace PokeFinderForms
         void updateProfiles();
 
     private:
-        std::unique_ptr<Ui::Wild3> ui;
+        Ui::Wild3 *ui;
         QVector<PokeFinderCore::Profile3> profiles;
         PokeFinderModels::Searcher3Model *searcherModel {};
         PokeFinderModels::Wild3Model *generatorModel {};
