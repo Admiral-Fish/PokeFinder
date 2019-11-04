@@ -171,9 +171,12 @@ namespace PokeFinderForms
         auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
 
         encounterGenerator = PokeFinderCore::Encounters4(encounter, time, profile).getEncounters();
+
         QVector<u8> locs;
-        std::transform(encounterGenerator.begin(), encounterGenerator.end(), locs.end(),
-            [](const auto &area) { return area.getLocation(); });
+        for (const auto &area : encounterGenerator)
+        {
+            locs.append(area.getLocation());
+        }
 
         QStringList locations = PokeFinderCore::Translator::getLocationsGen4(locs, profile.getVersion());
 
@@ -189,9 +192,12 @@ namespace PokeFinderForms
         auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
 
         encounterSearcher = PokeFinderCore::Encounters4(encounter, time, profile).getEncounters();
+
         QVector<u8> locs;
-        std::transform(encounterSearcher.begin(), encounterSearcher.end(), locs.end(),
-            [](const auto &area) { return area.getLocation(); });
+        for (const auto &area : encounterSearcher)
+        {
+            locs.append(area.getLocation());
+        }
 
         QStringList locations = PokeFinderCore::Translator::getLocationsGen4(locs, profile.getVersion());
 
@@ -443,7 +449,7 @@ namespace PokeFinderForms
         QString text = ui->pushButtonGeneratorLead->text();
         if (text == tr("Synchronize"))
         {
-            auto profile = profiles[ui->comboBoxProfiles->currentIndex()];
+            auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
             bool flag = profile.getVersion() & PokeFinderCore::Game::HGSS;
             if (flag)
             {

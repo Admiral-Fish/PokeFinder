@@ -204,9 +204,12 @@ namespace PokeFinderForms
         auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
 
         encounterGenerator = PokeFinderCore::Encounters3(encounter, profile).getEncounters();
+
         QVector<u8> locs;
-        std::transform(encounterGenerator.begin(), encounterGenerator.end(), locs.end(),
-            [](const auto &area) { return area.getLocation(); });
+        for (const auto &area : encounterGenerator)
+        {
+            locs.append(area.getLocation());
+        }
 
         QStringList locations = PokeFinderCore::Translator::getLocationsGen3(locs, profile.getVersion());
 
@@ -221,9 +224,12 @@ namespace PokeFinderForms
         auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
 
         encounterSearcher = PokeFinderCore::Encounters3(encounter, profile).getEncounters();
+
         QVector<u8> locs;
-        std::transform(encounterSearcher.begin(), encounterSearcher.end(), locs.end(),
-            [](const auto &area) { return area.getLocation(); });
+        for (const auto &area : encounterSearcher)
+        {
+            locs.append(area.getLocation());
+        }
 
         QStringList locations = PokeFinderCore::Translator::getLocationsGen3(locs, profile.getVersion());
 
@@ -623,7 +629,7 @@ namespace PokeFinderForms
     {
         if (index >= 0)
         {
-            ui->textBoxGeneratorDelay->setText(QString::number(encounterGenerator[index].getDelay()));
+            ui->textBoxGeneratorDelay->setText(QString::number(encounterGenerator.at(index).getDelay()));
         }
         updatePokemonGenerator();
     }
