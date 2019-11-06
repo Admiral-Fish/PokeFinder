@@ -40,17 +40,20 @@ after_build:
     - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
     - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
     - cmd: 7z a PokeFinder-%OS%.zip PokeFinder-windows\
+    - ps: sha256sum PokeFinder-%OS%.zip > PokeFinder-%OS%.zip.sha256
     # Linux
     - sh: zip -r PokeFinder-linux.zip PokeFinder
+    - sh: sha256sum PokeFinder-linux.zip > PokeFinder-linux.zip.sha256
     
 artifacts:
 - path: PokeFinder-%OS%.zip
+- path: PokeFinder-%OS%.zip.sha256
 
 deploy:
     provider: GitHub
     description: ''
     auth_token:
         secure: u3c5wUq11csZ77TpgKMImu9U+ibNiviMcEpTuQXmqp1YGSHA/+u5FhqZ3KRZBAQX
-    artifact: PokeFinder-%OS%.zip
+    artifact: PokeFinder-%OS%.zip,PokeFinder-%OS%.zip.sha256
     on:
         APPVEYOR_REPO_TAG: true
