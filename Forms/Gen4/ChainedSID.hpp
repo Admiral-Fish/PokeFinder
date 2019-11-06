@@ -50,8 +50,8 @@ namespace PokeFinderForms
         void setupModels();
 
     private slots:
-        void on_pushButtonCalculate_clicked();
-        void on_pushButtonClear_clicked();
+        void calculate();
+        void clear();
     };
 }
 

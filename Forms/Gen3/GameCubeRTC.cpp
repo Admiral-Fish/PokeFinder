@@ -79,16 +79,23 @@ namespace PokeFinderForms
         QAction *copySeed = contextMenu->addAction(tr("Copy Seed to Clipboard"));
         connect(copySeed, &QAction::triggered, this, &GameCubeRTC::copySeed);
 
+        connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCubeRTC::search);
+        connect(ui->tableView, &QTableView::customContextMenuRequested, this, &GameCubeRTC::tableViewContextMenu);
+
         QSettings setting;
         setting.beginGroup("gamecubeRTC");
         if (setting.contains("seed"))
+        {
             ui->textBoxStartSeed->setText(setting.value("seed").toString());
+        }
         if (setting.contains("geometry"))
+        {
             this->restoreGeometry(setting.value("geometry").toByteArray());
+        }
         setting.endGroup();
     }
 
-    void GameCubeRTC::on_pushButtonSearch_clicked()
+    void GameCubeRTC::search()
     {
         model->removeRows(0, model->rowCount());
 
@@ -122,7 +129,7 @@ namespace PokeFinderForms
         QApplication::clipboard()->setText(data.toString());
     }
 
-    void GameCubeRTC::on_tableView_customContextMenuRequested(const QPoint &pos)
+    void GameCubeRTC::tableViewContextMenu(QPoint pos)
     {
         if (model->rowCount() == 0)
         {

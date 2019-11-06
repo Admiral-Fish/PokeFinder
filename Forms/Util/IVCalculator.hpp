@@ -51,9 +51,9 @@ namespace PokeFinderForms
         void displayIVs(QLabel *label, const QVector<u8> &ivs);
 
     private slots:
-        void on_pushButtonFindIVs_clicked();
-        void on_comboBoxPokemon_currentIndexChanged(int index);
-        void on_comboBoxGeneration_currentIndexChanged(int index);
+        void findIVs();
+        void pokemonIndexChanged(int index);
+        void generationIndexChanged(int index);
     };
 }
 

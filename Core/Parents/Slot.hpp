@@ -29,14 +29,14 @@ namespace PokeFinderCore
     {
     public:
         Slot() = default;
-        Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon);
-        Slot(u16 specie, u8 level, Pokemon pokemon);
+        Slot(u16 specie, u8 minLevel, u8 maxLevel, const Pokemon &pokemon);
+        Slot(u16 specie, u8 level, const Pokemon &pokemon);
 
         u8 getMinLevel() const;
         u8 getMaxLevel() const;
         u16 getSpecie() const;
         Pokemon getPokemon() const;
-        void setSpecie(u16 specie, Pokemon pokemon);
+        void setSpecie(u16 specie, const Pokemon &pokemon);
 
     private:
         u8 minLevel;

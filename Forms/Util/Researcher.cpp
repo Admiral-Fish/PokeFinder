@@ -99,9 +99,16 @@ namespace PokeFinderForms
         keys[tr("Previous 8")] = 22;
         keys[tr("Previous 9")] = 23;
 
+        connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Researcher::generate);
+        connect(ui->rngSelection, &QTabWidget::currentChanged, this, &Researcher::selectionIndexChanged);
+        connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Researcher::search);
+        connect(ui->pushButtonNext, &QPushButton::clicked, this, &Researcher::next);
+
         QSettings setting;
         if (setting.contains("researcher/geometry"))
+        {
             this->restoreGeometry(setting.value("researcher/geometry").toByteArray());
+        }
     }
 
     u64 Researcher::getCustom(const QString &text, const PokeFinderCore::ResearcherFrame &frame,
@@ -192,7 +199,7 @@ namespace PokeFinderForms
         return hex;
     }
 
-    void Researcher::on_pushButtonGenerate32Bit_clicked()
+    void Researcher::generate()
     {
         bool rng64Bit = ui->rngSelection->currentIndex() == 1;
 
@@ -405,7 +412,7 @@ namespace PokeFinderForms
         delete rng64;
     }
 
-    void Researcher::on_rngSelection_currentChanged(int index)
+    void Researcher::selectionIndexChanged(int index)
     {
         ui->textBoxSeed->setVisible(index != 2);
         ui->labelSeed->setVisible(index != 2);
@@ -416,7 +423,7 @@ namespace PokeFinderForms
         ui->comboBoxSearch->addItems(items);
     }
 
-    void Researcher::on_pushButtonSearch_clicked()
+    void Researcher::search()
     {
         if (model->rowCount() == 0)
         {
@@ -442,7 +449,7 @@ namespace PokeFinderForms
         }
     }
 
-    void Researcher::on_pushButtonNext_clicked()
+    void Researcher::next()
     {
         if (model->rowCount() == 0)
         {

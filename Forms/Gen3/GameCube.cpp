@@ -66,6 +66,9 @@ namespace PokeFinderForms
 
     void GameCube::updateProfiles()
     {
+        connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &GameCube::profilesIndexChanged);
+
         profiles = { PokeFinderCore::Profile3(
             tr("None"), PokeFinderCore::Game::Gales, 12345, 54321, PokeFinderCore::Language::English) };
         for (const auto &profile : PokeFinderCore::Profile3::loadProfileList())
@@ -143,7 +146,6 @@ namespace PokeFinderForms
 
         QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
-
         connect(outputTXTGenerator, &QAction::triggered, this, [=]() { ui->tableViewGenerator->outputModel(); });
         connect(outputCSVGenerator, &QAction::triggered, this, [=]() { ui->tableViewGenerator->outputModel(true); });
 
@@ -151,15 +153,30 @@ namespace PokeFinderForms
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
         QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-
         connect(copySeedToClipboard, &QAction::triggered, this, &GameCube::copySeedToClipboard);
         connect(seedToTime, &QAction::triggered, this, &GameCube::seedToTime);
         connect(outputTXTSearcher, &QAction::triggered, this, [=]() { ui->tableViewSearcher->outputModel(); });
         connect(outputCSVSearcher, &QAction::triggered, this, [=]() { ui->tableViewSearcher->outputModel(true); });
 
+        connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &GameCube::generate);
+        connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCube::search);
+        connect(ui->comboBoxGeneratorMethod, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &GameCube::generatorMethodIndexChanged);
+        connect(ui->comboBoxGeneratorShadow, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &GameCube::generatorShadowIndexChanged);
+        connect(ui->comboBoxSearcherMethod, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &GameCube::searcherMethodIndexChanged);
+        connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this,
+            &GameCube::tableViewGeneratorContextMenu);
+        connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this,
+            &GameCube::tableViewSearcherContextMenu);
+        connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &GameCube::profileManager);
+
         QSettings setting;
         if (setting.contains("gamecube/geometry"))
+        {
             this->restoreGeometry(setting.value("gamecube/geometry").toByteArray());
+        }
     }
 
     void GameCube::updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress)
@@ -170,27 +187,7 @@ namespace PokeFinderForms
 
     void GameCube::refreshProfiles() { emit alertProfiles(3); }
 
-    void GameCube::on_comboBoxProfiles_currentIndexChanged(int index)
-    {
-        if (index < 0)
-        {
-            return;
-        }
-
-        auto profile = profiles.at(index);
-        QString tid = QString::number(profile.getTID());
-        QString sid = QString::number(profile.getSID());
-
-        ui->textBoxGeneratorTID->setText(tid);
-        ui->textBoxGeneratorSID->setText(sid);
-        ui->textBoxSearcherTID->setText(tid);
-        ui->textBoxSearcherSID->setText(sid);
-        ui->labelProfileTIDValue->setText(tid);
-        ui->labelProfileSIDValue->setText(sid);
-        ui->labelProfileGameValue->setText(profile.getVersionString());
-    }
-
-    void GameCube::on_pushButtonGenerate_clicked()
+    void GameCube::generate()
     {
         generatorModel->clearModel();
 
@@ -227,7 +224,7 @@ namespace PokeFinderForms
         generatorModel->addItems(frames);
     }
 
-    void GameCube::on_pushButtonSearch_clicked()
+    void GameCube::search()
     {
         searcherModel->clearModel();
         searcherModel->setMethod(
@@ -277,8 +274,30 @@ namespace PokeFinderForms
         search->startSearch();
     }
 
-    void GameCube::on_comboBoxGeneratorMethod_currentIndexChanged(int /*index*/)
+    void GameCube::profilesIndexChanged(int index)
     {
+        if (index < 0)
+        {
+            return;
+        }
+
+        auto profile = profiles.at(index);
+        QString tid = QString::number(profile.getTID());
+        QString sid = QString::number(profile.getSID());
+
+        ui->textBoxGeneratorTID->setText(tid);
+        ui->textBoxGeneratorSID->setText(sid);
+        ui->textBoxSearcherTID->setText(tid);
+        ui->textBoxSearcherSID->setText(sid);
+        ui->labelProfileTIDValue->setText(tid);
+        ui->labelProfileSIDValue->setText(sid);
+        ui->labelProfileGameValue->setText(profile.getVersionString());
+    }
+
+    void GameCube::generatorMethodIndexChanged(int index)
+    {
+        (void)index;
+
         PokeFinderCore::Method method
             = static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
         ui->comboBoxGeneratorShadow->clear();
@@ -329,7 +348,7 @@ namespace PokeFinderForms
         }
     }
 
-    void GameCube::on_comboBoxGeneratorShadow_currentIndexChanged(int index)
+    void GameCube::generatorShadowIndexChanged(int index)
     {
         PokeFinderCore::Method version
             = static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt());
@@ -346,8 +365,10 @@ namespace PokeFinderForms
         }
     }
 
-    void GameCube::on_comboBoxSearcherMethod_currentIndexChanged(int /*index*/)
+    void GameCube::searcherMethodIndexChanged(int index)
     {
+        (void)index;
+
         PokeFinderCore::Method method
             = static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt());
         ui->comboBoxSearcherShadow->clear();
@@ -390,7 +411,7 @@ namespace PokeFinderForms
         }
     }
 
-    void GameCube::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+    void GameCube::tableViewGeneratorContextMenu(QPoint pos)
     {
         if (generatorModel->rowCount() == 0)
         {
@@ -400,7 +421,7 @@ namespace PokeFinderForms
         generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
     }
 
-    void GameCube::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+    void GameCube::tableViewSearcherContextMenu(QPoint pos)
     {
         if (searcherModel->rowCount() == 0)
         {
@@ -427,7 +448,7 @@ namespace PokeFinderForms
             searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString());
     }
 
-    void GameCube::on_pushButtonProfileManager_clicked()
+    void GameCube::profileManager()
     {
         auto *manager = new ProfileManager3();
         connect(manager, &ProfileManager3::updateProfiles, this, &GameCube::refreshProfiles);

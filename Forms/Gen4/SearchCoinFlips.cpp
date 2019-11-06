@@ -34,9 +34,15 @@ namespace PokeFinderForms
         data = model;
         ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
 
+        connect(ui->pushButtonHeads, &QPushButton::clicked, this, &SearchCoinFlips::heads);
+        connect(ui->pushButtonTails, &QPushButton::clicked, this, &SearchCoinFlips::tails);
+        connect(ui->lineEditFlips, &QLineEdit::textChanged, this, &SearchCoinFlips::flipsTextChanged);
+
         QSettings setting;
         if (setting.contains("searchCoinFlips/geometry"))
+        {
             this->restoreGeometry(setting.value("searchCoinFlips/geometry").toByteArray());
+        }
     }
 
     SearchCoinFlips::~SearchCoinFlips()
@@ -49,21 +55,21 @@ namespace PokeFinderForms
 
     QVector<bool> SearchCoinFlips::possibleResults() const { return possible; }
 
-    void SearchCoinFlips::on_pushButtonHeads_clicked()
+    void SearchCoinFlips::heads()
     {
         QString string = ui->lineEditFlips->text();
         string += string.isEmpty() ? "H" : ", H";
         ui->lineEditFlips->setText(string);
     }
 
-    void SearchCoinFlips::on_pushButtonTails_clicked()
+    void SearchCoinFlips::tails()
     {
         QString string = ui->lineEditFlips->text();
         string += string.isEmpty() ? "T" : ", T";
         ui->lineEditFlips->setText(string);
     }
 
-    void SearchCoinFlips::on_lineEditFlips_textChanged(const QString &val)
+    void SearchCoinFlips::flipsTextChanged(const QString &val)
     {
         QStringList results = val.split(",", QString::SkipEmptyParts);
         int num = 0;

@@ -155,17 +155,17 @@ namespace PokeFinderCore
 
     u32 Frame4::getInitialSeed() const { return initialSeed; }
 
-    void Frame4::setInitialSeed(const u32 &value) { initialSeed = value; }
+    void Frame4::setInitialSeed(u32 value) { initialSeed = value; }
 
     u32 Frame4::getSeed() const { return seed; }
 
-    void Frame4::setSeed(const u32 &value) { seed = value; }
+    void Frame4::setSeed(u32 value) { seed = value; }
 
     u32 Frame4::getOccidentary() const { return occidentary; }
 
-    void Frame4::setOccidentary(const u32 &value) { occidentary = value; }
+    void Frame4::setOccidentary(u32 value) { occidentary = value; }
 
-    void Frame4::setEggFrame(const u32 &value) { eggFrame = value; }
+    void Frame4::setEggFrame(u32 value) { eggFrame = value; }
 
     u32 Frame4::getEggFrame() const { return eggFrame; }
 

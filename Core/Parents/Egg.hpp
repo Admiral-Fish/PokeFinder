@@ -29,9 +29,9 @@ namespace PokeFinderCore
     class Egg
     {
     public:
-        void setEverstoneNature(const u32 &value);
+        void setEverstoneNature(u32 value);
         u32 getSeed() const;
-        void setSeed(const u32 &value);
+        void setSeed(u32 value);
 
     protected:
         u16 psv {};

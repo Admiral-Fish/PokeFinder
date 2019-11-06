@@ -79,5 +79,5 @@ namespace PokeFinderCore
 
     QStringList EncounterArea::getSpecieNames() const { return Translator::getSpecies(getUniqueSpecies()); }
 
-    void EncounterArea::setSlot(u8 index, u16 specie, Pokemon mon) { pokemon[index].setSpecie(specie, mon); }
+    void EncounterArea::setSlot(u8 index, u16 specie, const Pokemon &mon) { pokemon[index].setSpecie(specie, mon); }
 }

@@ -77,9 +77,14 @@ namespace PokeFinderForms
                 ivs.at(3).toUShort(), ivs.at(4).toUShort(), ivs.at(5).toUShort());
         });
 
+        connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &PIDtoIVs::generate);
+        connect(ui->tableView, &QTableView::customContextMenuRequested, this, &PIDtoIVs::tableViewContextMenu);
+
         QSettings setting;
         if (setting.contains("pidToIVs/geometry"))
+        {
             this->restoreGeometry(setting.value("pidToIVs/geometry").toByteArray());
+        }
     }
 
     void PIDtoIVs::calcFromPID(u32 pid)
@@ -275,14 +280,14 @@ namespace PokeFinderForms
             << new QStandardItem(calcIVsChannel(iv1)));
     }
 
-    void PIDtoIVs::on_pushButtonGenerate_clicked()
+    void PIDtoIVs::generate()
     {
         model->removeRows(0, model->rowCount());
         u32 pid = ui->textBoxPID->getUInt();
         calcFromPID(pid);
     }
 
-    void PIDtoIVs::on_tableView_customContextMenuRequested(const QPoint &pos)
+    void PIDtoIVs::tableViewContextMenu(QPoint pos)
     {
         if (model->rowCount() == 0)
         {

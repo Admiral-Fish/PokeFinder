@@ -164,11 +164,11 @@ namespace PokeFinderCore
 
     u32 Frame3::getEggFrame() const { return eggFrame; }
 
-    void Frame3::setEggFrame(const u32 &value) { eggFrame = value; }
+    void Frame3::setEggFrame(u32 value) { eggFrame = value; }
 
     u32 Frame3::getSeed() const { return seed; }
 
-    void Frame3::setSeed(const u32 &value) { seed = value; }
+    void Frame3::setSeed(u32 value) { seed = value; }
 
     void Frame3::xorFrame(bool flag)
     {

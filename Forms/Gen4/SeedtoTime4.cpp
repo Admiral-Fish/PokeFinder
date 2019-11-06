@@ -54,12 +54,12 @@ namespace PokeFinderForms
         {
             ui->tabWidget->setCurrentIndex(1);
             ui->textBoxHGSSSeed->setText(seed);
-            on_pushButtonHGSSGenerate_clicked();
+            hgssGenerate();
         }
         else
         {
             ui->textBoxDPPtSeed->setText(seed);
-            on_pushButtonDPPtGenerate_clicked();
+            dpptGenerate();
         }
     }
 
@@ -85,10 +85,11 @@ namespace PokeFinderForms
 
     void SeedtoTime4::setupModels()
     {
-        dppt = new PokeFinderModels::SeedtoTime4Model(ui->tableViewDPPtSearch, false);
-        dpptCalibrate = new PokeFinderModels::SeedtoTime4Model(ui->tableViewDPPtCalibrate, true);
-        hgss = new PokeFinderModels::SeedtoTime4Model(ui->tableViewHGSSSearch, false, PokeFinderCore::Game::HeartGold);
-        hgssCalibrate
+        dpptModel = new PokeFinderModels::SeedtoTime4Model(ui->tableViewDPPtSearch, false);
+        dpptCalibrateModel = new PokeFinderModels::SeedtoTime4Model(ui->tableViewDPPtCalibrate, true);
+        hgssModel
+            = new PokeFinderModels::SeedtoTime4Model(ui->tableViewHGSSSearch, false, PokeFinderCore::Game::HeartGold);
+        hgssCalibrateModel
             = new PokeFinderModels::SeedtoTime4Model(ui->tableViewHGSSCalibrate, true, PokeFinderCore::Game::HeartGold);
 
         ui->textBoxDPPtSeed->setValues(InputType::Seed32Bit);
@@ -98,35 +99,65 @@ namespace PokeFinderForms
         ui->textBoxHGSSYear->setValues(0, 2099);
         ui->textBoxHGSSSecond->setValues(0, 59);
 
-        ui->tableViewDPPtSearch->setModel(dppt);
-        ui->tableViewDPPtCalibrate->setModel(dpptCalibrate);
-        ui->tableViewHGSSSearch->setModel(hgss);
-        ui->tableViewHGSSCalibrate->setModel(hgssCalibrate);
+        ui->tableViewDPPtSearch->setModel(dpptModel);
+        ui->tableViewDPPtCalibrate->setModel(dpptCalibrateModel);
+        ui->tableViewHGSSSearch->setModel(hgssModel);
+        ui->tableViewHGSSCalibrate->setModel(hgssCalibrateModel);
+
+        connect(ui->pushButtonDPPtGenerate, &QPushButton::clicked, this, &SeedtoTime4::dpptGenerate);
+        connect(ui->pushButtonDPPtCalibrate, &QPushButton::clicked, this, &SeedtoTime4::dpptCalibrate);
+        connect(ui->pushButtonHGSSGenerate, &QPushButton::clicked, this, &SeedtoTime4::hgssGenerate);
+        connect(ui->pushButtonHGSSCalibrate, &QPushButton::clicked, this, &SeedtoTime4::hgssCalibrate);
+        connect(ui->pushButtonDPPtSearchFlips, &QPushButton::clicked, this, &SeedtoTime4::searchFlips);
+        connect(ui->pushButtonHGSSSearchCalls, &QPushButton::clicked, this, &SeedtoTime4::searchCalls);
+        connect(ui->pushButtonHGSSMap, &QPushButton::clicked, this, &SeedtoTime4::map);
 
         QSettings setting;
         setting.beginGroup("seedToTime4");
         if (setting.contains("dpptYear"))
+        {
             ui->textBoxDPPtYear->setText(setting.value("dpptYear").toString());
+        }
         if (setting.contains("minusDelayDPPt"))
+        {
             ui->lineEditDPPtDelayMinus->setText(setting.value("minusDelayDPPt").toString());
+        }
         if (setting.contains("plusDelayDPPt"))
+        {
             ui->lineEditDPPtDelayPlus->setText(setting.value("plusDelayDPPt").toString());
+        }
         if (setting.contains("minusSecondsDPPt"))
+        {
             ui->lineEditDPPtSecondMinus->setText(setting.value("minusSecondsDPPt").toString());
+        }
         if (setting.contains("plusSecondsDPPt"))
+        {
             ui->lineEditDPPtSecondPlus->setText(setting.value("plusSecondsDPPt").toString());
+        }
         if (setting.contains("hgssYear"))
+        {
             ui->textBoxHGSSYear->setText(setting.value("hgssYear").toString());
+        }
         if (setting.contains("minusDelayHGSS"))
+        {
             ui->lineEditHGSSDelayMinus->setText(setting.value("minusDelayHGSS").toString());
+        }
         if (setting.contains("plusDelayHGSS"))
+        {
             ui->lineEditHGSSDelayPlus->setText(setting.value("plusDelayHGSS").toString());
+        }
         if (setting.contains("minusSecondsHGSS"))
+        {
             ui->lineEditHGSSSecondMinus->setText(setting.value("minusSecondsHGSS").toString());
+        }
         if (setting.contains("plusSecondsHGSS"))
+        {
             ui->lineEditHGSSSecondPlus->setText(setting.value("plusSecondsHGSS").toString());
+        }
         if (setting.contains("geometry"))
+        {
             this->restoreGeometry(setting.value("geometry").toByteArray());
+        }
         setting.endGroup();
     }
 
@@ -229,7 +260,7 @@ namespace PokeFinderForms
         return results;
     }
 
-    void SeedtoTime4::on_pushButtonDPPtGenerate_clicked()
+    void SeedtoTime4::dpptGenerate()
     {
         u32 seed = ui->textBoxDPPtSeed->getUInt();
         u32 year = ui->textBoxDPPtYear->getUInt();
@@ -237,18 +268,50 @@ namespace PokeFinderForms
         bool forceSecond = ui->checkBoxDPPtSecond->isChecked();
         int forcedSecond = ui->textBoxDPPtSecond->getInt();
 
-        dppt->clearModel();
+        dpptModel->clearModel();
 
         QVector<PokeFinderCore::DateTime> results
             = generate(seed, year, forceSecond, forcedSecond, PokeFinderCore::Game::Diamond);
         ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + PokeFinderCore::Utilities::coinFlips(seed, 15));
 
-        dppt->addItems(results);
+        dpptModel->addItems(results);
     }
 
-    void SeedtoTime4::on_pushButtonHGSSGenerate_clicked()
+    void SeedtoTime4::dpptCalibrate()
     {
-        hgss->clearModel();
+        int minusDelay = ui->lineEditDPPtDelayMinus->text().toInt();
+        int plusDelay = ui->lineEditDPPtDelayPlus->text().toInt();
+
+        int minusSecond = ui->lineEditDPPtSecondMinus->text().toInt();
+        int plusSecond = ui->lineEditDPPtSecondPlus->text().toInt();
+
+        QModelIndex index = ui->tableViewDPPtSearch->currentIndex();
+
+        if (!index.isValid())
+        {
+            QMessageBox error;
+            error.setText("Please select a result from Seed to Time.");
+            error.exec();
+            return;
+        }
+
+        dpptCalibrateModel->clearModel();
+
+        PokeFinderCore::DateTime target = dpptModel->getItem(index.row());
+        QVector<PokeFinderCore::DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
+
+        dpptCalibrateModel->addItems(results);
+
+        int count = (results.size() - 1) / 2;
+        QModelIndex scroll = dpptCalibrateModel->index(count, 0);
+        ui->tableViewDPPtCalibrate->setCurrentIndex(scroll);
+        ui->tableViewDPPtCalibrate->scrollTo(scroll);
+        ui->tableViewDPPtCalibrate->setFocus();
+    }
+
+    void SeedtoTime4::hgssGenerate()
+    {
+        hgssModel->clearModel();
 
         u32 seed = ui->textBoxHGSSSeed->getUInt();
         u32 year = ui->textBoxHGSSYear->getUInt();
@@ -271,42 +334,10 @@ namespace PokeFinderForms
         str = str.isEmpty() ? tr("No roamers") : str;
         ui->labelHGSSRoamers->setText(tr("Roamers: ") + str);
 
-        hgss->addItems(results);
+        hgssModel->addItems(results);
     }
 
-    void SeedtoTime4::on_pushButtonDPPtCalibrate_clicked()
-    {
-        int minusDelay = ui->lineEditDPPtDelayMinus->text().toInt();
-        int plusDelay = ui->lineEditDPPtDelayPlus->text().toInt();
-
-        int minusSecond = ui->lineEditDPPtSecondMinus->text().toInt();
-        int plusSecond = ui->lineEditDPPtSecondPlus->text().toInt();
-
-        QModelIndex index = ui->tableViewDPPtSearch->currentIndex();
-
-        if (!index.isValid())
-        {
-            QMessageBox error;
-            error.setText("Please select a result from Seed to Time.");
-            error.exec();
-            return;
-        }
-
-        dpptCalibrate->clearModel();
-
-        PokeFinderCore::DateTime target = dppt->getItem(index.row());
-        QVector<PokeFinderCore::DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
-
-        dpptCalibrate->addItems(results);
-
-        int count = (results.size() - 1) / 2;
-        QModelIndex scroll = dpptCalibrate->index(count, 0);
-        ui->tableViewDPPtCalibrate->setCurrentIndex(scroll);
-        ui->tableViewDPPtCalibrate->scrollTo(scroll);
-        ui->tableViewDPPtCalibrate->setFocus();
-    }
-
-    void SeedtoTime4::on_pushButtonHGSSCalibrate_clicked()
+    void SeedtoTime4::hgssCalibrate()
     {
         int minusDelay = ui->lineEditHGSSDelayMinus->text().toInt();
         int plusDelay = ui->lineEditHGSSDelayPlus->text().toInt();
@@ -324,28 +355,28 @@ namespace PokeFinderForms
             return;
         }
 
-        hgssCalibrate->clearModel();
+        hgssCalibrateModel->clearModel();
 
-        PokeFinderCore::DateTime target = hgss->getItem(index.row());
+        PokeFinderCore::DateTime target = hgssModel->getItem(index.row());
         QVector<PokeFinderCore::DateTime> results = calibrate(minusDelay, plusDelay, minusSecond, plusSecond, target);
 
-        hgssCalibrate->addItems(results);
+        hgssCalibrateModel->addItems(results);
 
         int count = (results.size() - 1) / 2;
-        QModelIndex scroll = hgssCalibrate->index(count, 0);
+        QModelIndex scroll = hgssCalibrateModel->index(count, 0);
         ui->tableViewHGSSCalibrate->setCurrentIndex(scroll);
         ui->tableViewHGSSCalibrate->scrollTo(scroll);
         ui->tableViewHGSSCalibrate->setFocus();
     }
 
-    void SeedtoTime4::on_pushButtonDPPtSearchFlips_clicked()
+    void SeedtoTime4::searchFlips()
     {
-        if (dpptCalibrate->rowCount() == 0)
+        if (dpptCalibrateModel->rowCount() == 0)
         {
             return;
         }
 
-        QScopedPointer<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrate->getModel()));
+        QScopedPointer<SearchCoinFlips> search(new SearchCoinFlips(dpptCalibrateModel->getModel()));
         if (search->exec() == QDialog::Rejected)
         {
             return;
@@ -368,9 +399,9 @@ namespace PokeFinderForms
         ui->tableViewDPPtCalibrate->setFocus();
     }
 
-    void SeedtoTime4::on_pushButtonHGSSSearchCalls_clicked()
+    void SeedtoTime4::searchCalls()
     {
-        if (hgssCalibrate->rowCount() == 0)
+        if (hgssCalibrateModel->rowCount() == 0)
         {
             return;
         }
@@ -381,7 +412,7 @@ namespace PokeFinderForms
             static_cast<u8>(ui->lineEditHGSSEntei->text().toUInt()),
             static_cast<u8>(ui->lineEditHGSSLati->text().toUInt()) };
 
-        QScopedPointer<SearchCalls> search(new SearchCalls(hgssCalibrate->getModel(), roamer, routes));
+        QScopedPointer<SearchCalls> search(new SearchCalls(hgssCalibrateModel->getModel(), roamer, routes));
         if (search->exec() == QDialog::Rejected)
         {
             return;
@@ -404,10 +435,10 @@ namespace PokeFinderForms
         ui->tableViewHGSSCalibrate->setFocus();
     }
 
-    void SeedtoTime4::on_pushButtonHGSSMap_clicked()
+    void SeedtoTime4::map()
     {
-        auto *map = new RoamerMap();
-        map->show();
-        map->raise();
+        auto *roamerMap = new RoamerMap();
+        roamerMap->show();
+        roamerMap->raise();
     }
 }

@@ -52,9 +52,9 @@ namespace PokeFinderForms
     private slots:
         void updateProgressShinyPID(const QVector<QList<QStandardItem *>> &frames, int progress);
         void updateProgressTIDSID(const QVector<QList<QStandardItem *>> &frames, int progress);
-        void on_pushButtonShinyPIDSearch_clicked();
-        void on_pushButtonTIDSIDSearch_clicked();
-        void on_pushButtonSeedFinderSearch_clicked();
+        void shinyPIDSearch();
+        void tidSIDSearch();
+        void seedFinderSearch();
     };
 }
 

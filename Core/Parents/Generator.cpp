@@ -23,13 +23,13 @@ namespace PokeFinderCore
 {
     Encounter Generator::getEncounterType() const { return encounterType; }
 
-    void Generator::setEncounterType(const Encounter &value) { encounterType = value; }
+    void Generator::setEncounterType(PokeFinderCore::Encounter value) { encounterType = value; }
 
     Lead Generator::getLeadType() const { return leadType; }
 
-    void Generator::setLeadType(const Lead &value) { leadType = value; }
+    void Generator::setLeadType(PokeFinderCore::Lead value) { leadType = value; }
 
     u8 Generator::getSynchNature() const { return synchNature; }
 
-    void Generator::setSynchNature(const u8 &value) { synchNature = value; }
+    void Generator::setSynchNature(u8 value) { synchNature = value; }
 }

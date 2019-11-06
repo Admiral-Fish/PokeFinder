@@ -75,24 +75,24 @@ namespace PokeFinderForms
     private slots:
         void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
         void refreshProfiles();
-        void on_comboBoxProfiles_currentIndexChanged(int index);
-        void on_pushButtonGenerate_clicked();
-        void on_pushButtonSearch_clicked();
-        void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
-        void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
+        void generate();
+        void search();
+        void profilesIndexChanged(int index);
+        void tableViewGeneratorContextMenu(QPoint pos);
+        void tableViewSearcherContextMenu(QPoint pos);
         void setTargetFrameGenerator();
         void jumpToTargetGenerator();
         void centerFramesAndSetTargetGenerator(u32 centerFrames);
         void seedToTime();
         void copySeedToClipboard();
-        void on_pushButtonGeneratorLead_clicked();
-        void on_comboBoxGeneratorEncounter_currentIndexChanged(int index);
-        void on_comboBoxSearcherEncounter_currentIndexChanged(int index);
-        void on_comboBoxGeneratorLocation_currentIndexChanged(int index);
-        void on_comboBoxSearcherLocation_currentIndexChanged(int index);
-        void on_comboBoxGeneratorPokemon_currentIndexChanged(int index);
-        void on_comboBoxSearcherPokemon_currentIndexChanged(int index);
-        void on_pushButtonProfileManager_clicked();
+        void generatorLead();
+        void generatorEncounterIndexChanged(int index);
+        void searcherEncounterIndexChanged(int index);
+        void generatorLocationIndexChanged(int index);
+        void searcherLocationIndexChanged(int index);
+        void generatorPokemonIndexChanged(int index);
+        void searcherPokemonIndexChanged(int index);
+        void profileManager();
     };
 }
 

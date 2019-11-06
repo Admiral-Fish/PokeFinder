@@ -39,7 +39,7 @@ namespace PokeFinderCore
         QVector<bool> getSlots(u16 num) const;
         QPair<u8, u8> getLevelRange(u16 specie) const;
         QStringList getSpecieNames() const;
-        void setSlot(u8 index, u16 specie, Pokemon mon);
+        void setSlot(u8 index, u16 specie, const Pokemon &mon);
 
     protected:
         QVector<Slot> pokemon;

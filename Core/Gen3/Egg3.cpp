@@ -146,25 +146,25 @@ namespace PokeFinderCore
         this->parent2 = parent2;
     }
 
-    void Egg3::setMinRedraw(const u8 &value) { minRedraw = value; }
+    void Egg3::setMinRedraw(u8 value) { minRedraw = value; }
 
-    void Egg3::setMaxRedraw(const u8 &value) { maxRedraw = value; }
+    void Egg3::setMaxRedraw(u8 value) { maxRedraw = value; }
 
-    void Egg3::setCompatability(const int &value) { compatability = value; }
+    void Egg3::setCompatability(int value) { compatability = value; }
 
-    void Egg3::setCalibration(const u8 &value) { calibration = value; }
+    void Egg3::setCalibration(u8 value) { calibration = value; }
 
     void Egg3::setEverstone(bool value) { everstone = value; }
 
-    void Egg3::setMinPickup(const u32 &value) { minPickup = value; }
+    void Egg3::setMinPickup(u32 value) { minPickup = value; }
 
-    void Egg3::setMaxPickup(const u32 &value) { maxPickup = value; }
+    void Egg3::setMaxPickup(u32 value) { maxPickup = value; }
 
     u32 Egg3::getSeed() const { return seed; }
 
-    void Egg3::setSeed(const u32 &value) { seed = value; }
+    void Egg3::setSeed(u32 value) { seed = value; }
 
-    void Egg3::setPickupSeed(const u16 &value) { pickupSeed = value; }
+    void Egg3::setPickupSeed(u16 value) { pickupSeed = value; }
 
     QVector<Frame3> Egg3::generateEmeraldPID(const FrameCompare &compare) const
     {

@@ -58,9 +58,13 @@ namespace PokeFinderForms
         ui->textBoxTID->setValues(InputType::TIDSID);
         ui->comboBoxNature->addItems(PokeFinderCore::Nature::getNatures());
 
+        connect(ui->pushButtonFind, &QPushButton::clicked, this, &IVtoPID::find);
+
         QSettings setting;
         if (setting.contains("ivToPID/geometry"))
+        {
             this->restoreGeometry(setting.value("ivToPID/geometry").toByteArray());
+        }
     }
 
     QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid)
@@ -289,7 +293,7 @@ namespace PokeFinderForms
         return results;
     }
 
-    void IVtoPID::on_pushButtonFind_clicked()
+    void IVtoPID::find()
     {
         model->removeRows(0, model->rowCount());
 

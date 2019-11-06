@@ -47,10 +47,10 @@ namespace PokeFinderForms
         void setupModels();
 
     private slots:
-        void on_pushButtonSearch_clicked();
+        void search();
         void updateTableView(const QList<QStandardItem *> &row);
         void copySeed();
-        void on_tableView_customContextMenuRequested(const QPoint &pos);
+        void tableViewContextMenu(QPoint pos);
     };
 }
 

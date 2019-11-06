@@ -68,9 +68,17 @@ namespace PokeFinderForms
         ui->comboBoxGame->addItem(tr("Heart Gold"), PokeFinderCore::Game::HeartGold);
         ui->comboBoxGame->addItem(tr("Soul Silver"), PokeFinderCore::Game::SoulSilver);
 
+        connect(ui->pushButtonFind, &QPushButton::clicked, this, &EncounterLookup::find);
+        connect(ui->comboBoxGame, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &EncounterLookup::gameIndexChanged);
+
+        gameIndexChanged(0);
+
         QSettings setting;
         if (setting.contains("encounterLookup/geometry"))
+        {
             this->restoreGeometry(setting.value("encounterLookup/geometry").toByteArray());
+        }
     }
 
     QSet<QPair<u8, QString>> EncounterLookup::getEncounters3(PokeFinderCore::Game game, u16 specie)
@@ -193,7 +201,7 @@ namespace PokeFinderForms
         }
     }
 
-    void EncounterLookup::on_pushButtonFind_clicked()
+    void EncounterLookup::find()
     {
         model->removeRows(0, model->rowCount());
 
@@ -233,7 +241,7 @@ namespace PokeFinderForms
         }
     }
 
-    void EncounterLookup::on_comboBoxGame_currentIndexChanged(int index)
+    void EncounterLookup::gameIndexChanged(int index)
     {
         if (index >= 0)
         {

@@ -34,16 +34,16 @@ namespace PokeFinderCore
         Egg3(u32 maxFrame, u32 initialFrame, u16 tid, u16 sid, Method method, u16 genderRatio, u32 seed = 0);
         QVector<Frame3> generate(const FrameCompare &compare) const;
         void setParents(const QVector<u8> &parent1, const QVector<u8> &parent2);
-        void setMinRedraw(const u8 &value);
-        void setMaxRedraw(const u8 &value);
-        void setCompatability(const int &value);
-        void setCalibration(const u8 &value);
+        void setMinRedraw(u8 value);
+        void setMaxRedraw(u8 value);
+        void setCompatability(int value);
+        void setCalibration(u8 value);
         void setEverstone(bool value);
-        void setMinPickup(const u32 &value);
-        void setMaxPickup(const u32 &value);
+        void setMinPickup(u32 value);
+        void setMaxPickup(u32 value);
         u32 getSeed() const;
-        void setSeed(const u32 &value);
-        void setPickupSeed(const u16 &value);
+        void setSeed(u32 value);
+        void setPickupSeed(u16 value);
 
     private:
         QVector<u8> parent1;

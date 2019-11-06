@@ -38,9 +38,9 @@ namespace PokeFinderCore
         QString getLockReason() const;
         void setLockReason(const QString &value);
         u32 getEggFrame() const;
-        void setEggFrame(const u32 &value);
+        void setEggFrame(u32 value);
         u32 getSeed() const;
-        void setSeed(const u32 &value);
+        void setSeed(u32 value);
         void xorFrame(bool flag = false);
 
     private:

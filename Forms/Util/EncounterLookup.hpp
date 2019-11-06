@@ -54,8 +54,8 @@ namespace PokeFinderForms
         QString getEncounterString(PokeFinderCore::Encounter type);
 
     private slots:
-        void on_pushButtonFind_clicked();
-        void on_comboBoxGame_currentIndexChanged(int index);
+        void find();
+        void gameIndexChanged(int index);
     };
 }
 

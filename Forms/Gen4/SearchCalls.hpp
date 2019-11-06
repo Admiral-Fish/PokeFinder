@@ -47,12 +47,12 @@ namespace PokeFinderForms
         QVector<u8> routes;
 
     private slots:
-        void on_pushButtonK_clicked();
-        void on_pushButtonE_clicked();
-        void on_pushButtonP_clicked();
-        void on_lineEditCalls_textChanged(const QString &val);
-        void on_radioButtonElm_clicked();
-        void on_radioButtonIrwin_clicked();
+        void k();
+        void e();
+        void p();
+        void callsTextChanged(const QString &val);
+        void elm();
+        void irwin();
     };
 }
 

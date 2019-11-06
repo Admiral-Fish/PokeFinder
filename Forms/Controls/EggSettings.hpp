@@ -47,8 +47,8 @@ namespace PokeFinderForms
         Ui::EggSettings *ui;
 
     private slots:
-        void on_pushButtonSwapParents_clicked();
-        void on_checkBoxShowInteritance_clicked(bool checked);
+        void swapParents();
+        void showInheritance(bool checked);
     };
 }
 

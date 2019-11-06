@@ -31,7 +31,7 @@
     <widget class="QLineEdit" name="lineEditProfile"/>
    </item>
    <item row="1" column="5">
-    <widget class="TextBox" name="textBoxSID"/>
+    <widget class="TextBox" name="textBoxSID" native="true"/>
    </item>
    <item row="0" column="2">
     <widget class="QLabel" name="labelDualSlot">
@@ -84,9 +84,9 @@
     </widget>
    </item>
    <item row="0" column="6">
-    <widget class="QPushButton" name="pushButtonAccept">
+    <widget class="QPushButton" name="pushButtonOkay">
      <property name="text">
-      <string>Accept</string>
+      <string>Okay</string>
      </property>
     </widget>
    </item>
@@ -207,7 +207,7 @@
     </widget>
    </item>
    <item row="0" column="5">
-    <widget class="TextBox" name="textBoxTID"/>
+    <widget class="TextBox" name="textBoxTID" native="true"/>
    </item>
    <item row="1" column="6">
     <widget class="QPushButton" name="pushButtonCancel">
@@ -234,8 +234,8 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PokeFinderForms::TextBox</class>
-   <extends>QLineEdit</extends>
+   <class>TextBox</class>
+   <extends>QWidget</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
  </customwidgets>
@@ -249,7 +249,7 @@
   <tabstop>checkBoxSwarm</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
-  <tabstop>pushButtonAccept</tabstop>
+  <tabstop>pushButtonOkay</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources/>

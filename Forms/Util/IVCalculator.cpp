@@ -52,14 +52,23 @@ namespace PokeFinderForms
     {
         characteristics = PokeFinderCore::Characteristic::getCharacteristics();
 
-        on_comboBoxGeneration_currentIndexChanged(0);
         ui->comboBoxNature->addItems(PokeFinderCore::Nature::getFrameNatures());
         ui->comboBoxHiddenPower->addItems(PokeFinderCore::Power::getPowers());
         ui->comboBoxCharacteristic->addItems(PokeFinderCore::Translator::getCharacteristic());
 
+        connect(ui->pushButtonFindIVs, &QPushButton::clicked, this, &IVCalculator::findIVs);
+        connect(ui->comboBoxPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &IVCalculator::pokemonIndexChanged);
+        connect(ui->comboBoxGeneration, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &IVCalculator::generationIndexChanged);
+
+        generationIndexChanged(0);
+
         QSettings setting;
         if (setting.contains("ivCalculator/geometry"))
+        {
             this->restoreGeometry(setting.value("ivCalculator/geometry").toByteArray());
+        }
     }
 
     void IVCalculator::displayIVs(QLabel *label, const QVector<u8> &ivs)
@@ -111,7 +120,7 @@ namespace PokeFinderForms
         label->setText(result);
     }
 
-    void IVCalculator::on_pushButtonFindIVs_clicked()
+    void IVCalculator::findIVs()
     {
         QVector<u16> stats = { static_cast<u16>(ui->spinBoxHP->value()), static_cast<u16>(ui->spinBoxAtk->value()),
             static_cast<u16>(ui->spinBoxDef->value()), static_cast<u16>(ui->spinBoxSpA->value()),
@@ -134,7 +143,7 @@ namespace PokeFinderForms
         displayIVs(ui->labelSpeIVValue, possible.at(5));
     }
 
-    void IVCalculator::on_comboBoxPokemon_currentIndexChanged(int index)
+    void IVCalculator::pokemonIndexChanged(int index)
     {
         if (index >= 0 && !pokemon.isEmpty())
         {
@@ -149,7 +158,7 @@ namespace PokeFinderForms
         }
     }
 
-    void IVCalculator::on_comboBoxGeneration_currentIndexChanged(int index)
+    void IVCalculator::generationIndexChanged(int index)
     {
         if (index >= 0)
         {

@@ -50,10 +50,10 @@ namespace PokeFinderForms
 
     private:
         Ui::SeedtoTime4 *ui;
-        PokeFinderModels::SeedtoTime4Model *dppt {};
-        PokeFinderModels::SeedtoTime4Model *dpptCalibrate {};
-        PokeFinderModels::SeedtoTime4Model *hgss {};
-        PokeFinderModels::SeedtoTime4Model *hgssCalibrate {};
+        PokeFinderModels::SeedtoTime4Model *dpptModel {};
+        PokeFinderModels::SeedtoTime4Model *dpptCalibrateModel {};
+        PokeFinderModels::SeedtoTime4Model *hgssModel {};
+        PokeFinderModels::SeedtoTime4Model *hgssCalibrateModel {};
 
         void setupModels();
         QVector<PokeFinderCore::DateTime> generate(
@@ -62,13 +62,13 @@ namespace PokeFinderForms
             int minusDelay, int plusDelay, int minusSecond, int plusSecond, const PokeFinderCore::DateTime &target);
 
     private slots:
-        void on_pushButtonDPPtGenerate_clicked();
-        void on_pushButtonHGSSGenerate_clicked();
-        void on_pushButtonHGSSCalibrate_clicked();
-        void on_pushButtonDPPtCalibrate_clicked();
-        void on_pushButtonDPPtSearchFlips_clicked();
-        void on_pushButtonHGSSSearchCalls_clicked();
-        void on_pushButtonHGSSMap_clicked();
+        void dpptGenerate();
+        void dpptCalibrate();
+        void hgssGenerate();
+        void hgssCalibrate();
+        void searchFlips();
+        void searchCalls();
+        void map();
     };
 }
 

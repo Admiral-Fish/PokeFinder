@@ -27,6 +27,9 @@ namespace PokeFinderForms
         , ui(new Ui::EggSettings)
     {
         ui->setupUi(this);
+
+        connect(ui->pushButtonSwapParents, &QPushButton::clicked, this, &EggSettings::swapParents);
+        connect(ui->checkBoxShowInteritance, &QCheckBox::clicked, this, &EggSettings::toggleInheritance);
     }
 
     EggSettings::~EggSettings() { delete ui; }
@@ -51,7 +54,7 @@ namespace PokeFinderForms
         return parent2;
     }
 
-    void EggSettings::on_pushButtonSwapParents_clicked()
+    void EggSettings::swapParents()
     {
         QVector<u8> parent1 = getParent1();
         QVector<u8> parent2 = getParent2();
@@ -71,5 +74,5 @@ namespace PokeFinderForms
         ui->spinBoxParent2Spe->setValue(parent1[5]);
     }
 
-    void EggSettings::on_checkBoxShowInteritance_clicked(bool checked) { emit toggleInheritance(checked); }
+    void EggSettings::showInheritance(bool checked) { emit toggleInheritance(checked); }
 }

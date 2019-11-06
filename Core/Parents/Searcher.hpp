@@ -32,11 +32,11 @@ namespace PokeFinderCore
     {
     public:
         Encounter getEncounterType() const;
-        void setEncounterType(const Encounter &value);
+        void setEncounterType(PokeFinderCore::Encounter value);
         Method getFrameType() const;
-        void setFrameType(const Method &value);
+        void setFrameType(PokeFinderCore::Method value);
         Lead getLeadType() const;
-        void setLeadType(const Lead &value);
+        void setLeadType(PokeFinderCore::Lead value);
 
     protected:
         u16 psv {};

@@ -59,8 +59,8 @@ namespace PokeFinderForms
         void addSeedChannel(u32 seed, u32 iv1);
 
     private slots:
-        void on_pushButtonGenerate_clicked();
-        void on_tableView_customContextMenuRequested(const QPoint &pos);
+        void generate();
+        void tableViewContextMenu(QPoint pos);
         void copySeed();
     };
 }

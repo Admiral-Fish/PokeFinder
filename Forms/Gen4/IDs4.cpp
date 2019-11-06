@@ -74,9 +74,15 @@ namespace PokeFinderForms
         ui->textBoxSeedFinderMinDelay->setValues(InputType::Delay);
         ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
 
+        connect(ui->pushButtonShinyPIDSearch, &QPushButton::clicked, this, &IDs4::shinyPIDSearch);
+        connect(ui->pushButtonTIDSIDSearch, &QPushButton::clicked, this, &IDs4::tidSIDSearch);
+        connect(ui->pushButtonSeedFinderSearch, &QPushButton::clicked, this, &IDs4::seedFinderSearch);
+
         QSettings setting;
         if (setting.contains("ids4/geometry"))
+        {
             this->restoreGeometry(setting.value("ids4/geometry").toByteArray());
+        }
     }
 
     void IDs4::updateProgressShinyPID(const QVector<QList<QStandardItem *>> &frames, int progress)
@@ -97,7 +103,7 @@ namespace PokeFinderForms
         ui->progressBarTIDSID->setValue(progress);
     }
 
-    void IDs4::on_pushButtonShinyPIDSearch_clicked()
+    void IDs4::shinyPIDSearch()
     {
         if (!ui->pushButtonTIDSIDSearch->isEnabled())
         {
@@ -136,7 +142,7 @@ namespace PokeFinderForms
         search->startSearch();
     }
 
-    void IDs4::on_pushButtonTIDSIDSearch_clicked()
+    void IDs4::tidSIDSearch()
     {
         if (!ui->pushButtonShinyPIDSearch->isEnabled())
         {
@@ -175,7 +181,7 @@ namespace PokeFinderForms
         search->startSearch();
     }
 
-    void IDs4::on_pushButtonSeedFinderSearch_clicked()
+    void IDs4::seedFinderSearch()
     {
         if (!ui->pushButtonShinyPIDSearch->isEnabled() || !ui->pushButtonTIDSIDSearch->isEnabled())
         {

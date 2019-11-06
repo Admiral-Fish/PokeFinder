@@ -2614,7 +2614,7 @@
        </widget>
       </item>
       <item row="2" column="2">
-       <widget class="QPushButton" name="pushButtonGenerate32Bit">
+       <widget class="QPushButton" name="pushButtonGenerate">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -2733,7 +2733,7 @@
   <tabstop>textBoxStartingFrame</tabstop>
   <tabstop>textBoxMaxFrames</tabstop>
   <tabstop>textBoxSeed</tabstop>
-  <tabstop>pushButtonGenerate32Bit</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>textBoxSearch</tabstop>
   <tabstop>comboBoxSearch</tabstop>
   <tabstop>pushButtonSearch</tabstop>

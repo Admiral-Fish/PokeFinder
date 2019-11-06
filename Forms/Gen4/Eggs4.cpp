@@ -61,6 +61,9 @@ namespace PokeFinderForms
 
     void Eggs4::updateProfiles()
     {
+        connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Eggs4::profilesIndexChanged);
+
         profiles = PokeFinderCore::Profile4::loadProfileList();
         profiles.insert(profiles.begin(), PokeFinderCore::Profile4());
 
@@ -132,6 +135,11 @@ namespace PokeFinderForms
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
         connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
 
+        connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs4::generate);
+        connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs4::search);
+        connect(
+            ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Eggs4::tableViewSearcherContextMenu);
+        connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs4::profileManager);
         connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel,
             &PokeFinderModels::Egg4GeneratorModel::toggleInheritance);
         connect(ui->eggSettingsSearcher, &EggSettings::toggleInheritance, searcherModel,
@@ -140,19 +148,33 @@ namespace PokeFinderForms
         QSettings setting;
         setting.beginGroup("eggs4");
         if (setting.contains("minDelay"))
+        {
             ui->textBoxSearcherMinDelay->setText(setting.value("minDelayPID").toString());
+        }
         if (setting.contains("maxDelay"))
+        {
             ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelayPID").toString());
+        }
         if (setting.contains("minFrameIV"))
+        {
             ui->textBoxSearcherIVMinFrame->setText(setting.value("minFramePID").toString());
+        }
         if (setting.contains("maxFrameIV"))
+        {
             ui->textBoxSearcherIVMaxFrame->setText(setting.value("maxFramePID").toString());
+        }
         if (setting.contains("minFramePID"))
+        {
             ui->textBoxSearcherPIDMinFrame->setText(setting.value("minFramePID").toString());
+        }
         if (setting.contains("maxFramePID"))
+        {
             ui->textBoxSearcherPIDMaxFrame->setText(setting.value("maxFramePID").toString());
+        }
         if (setting.contains("geometry"))
+        {
             this->restoreGeometry(setting.value("geometry").toByteArray());
+        }
         setting.endGroup();
     }
 
@@ -164,7 +186,7 @@ namespace PokeFinderForms
 
     void Eggs4::refreshProfiles() { emit alertProfiles(4); }
 
-    void Eggs4::on_pushButtonGenerate_clicked()
+    void Eggs4::generate()
     {
         generatorModel->clearModel();
 
@@ -206,7 +228,7 @@ namespace PokeFinderForms
         generatorModel->addItems(frames);
     }
 
-    void Eggs4::on_pushButtonSearch_clicked()
+    void Eggs4::search()
     {
         searcherModel->clearModel();
 
@@ -275,7 +297,7 @@ namespace PokeFinderForms
         search->startSearch();
     }
 
-    void Eggs4::on_comboBoxProfiles_currentIndexChanged(int index)
+    void Eggs4::profilesIndexChanged(int index)
     {
         if (index < 0)
         {
@@ -295,7 +317,7 @@ namespace PokeFinderForms
         ui->labelProfileGameValue->setText(profile.getVersionString());
     }
 
-    void Eggs4::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+    void Eggs4::tableViewSearcherContextMenu(QPoint pos)
     {
         if (searcherModel->rowCount() == 0)
         {
@@ -315,7 +337,7 @@ namespace PokeFinderForms
         time->raise();
     }
 
-    void Eggs4::on_pushButtonProfileManager_clicked()
+    void Eggs4::profileManager()
     {
         auto *manager = new ProfileManager4();
         connect(manager, &ProfileManager4::updateProfiles, this, &Eggs4::refreshProfiles);

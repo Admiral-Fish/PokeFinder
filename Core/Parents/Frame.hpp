@@ -48,17 +48,17 @@ namespace PokeFinderCore
         u8 getAbility() const;
         Lead getLeadType() const;
         u8 getEncounterSlot() const;
-        void setEncounterSlot(const u8 &value);
+        void setEncounterSlot(u8 value);
         u8 getLevel() const;
-        void setLevel(const u8 &value);
+        void setLevel(u8 value);
         bool getShiny() const;
         u32 getNature() const;
-        void setNature(const u8 &value);
+        void setNature(u8 value);
         u8 getHidden() const;
         u8 getGender() const;
-        void setGender(const u8 &value);
-        void setFrame(const u32 &value);
-        void setLeadType(const Lead &value);
+        void setGender(u8 value);
+        void setFrame(u32 value);
+        void setLeadType(PokeFinderCore::Lead value);
 
     protected:
         QVector<u8> ivs = QVector<u8>(6);

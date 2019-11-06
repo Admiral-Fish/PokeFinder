@@ -70,10 +70,10 @@ namespace PokeFinderForms
         static inline u64 multiply(u64 x, u64 y) { return x * y; }
 
     private slots:
-        void on_pushButtonGenerate32Bit_clicked();
-        void on_rngSelection_currentChanged(int index);
-        void on_pushButtonSearch_clicked();
-        void on_pushButtonNext_clicked();
+        void generate();
+        void selectionIndexChanged(int index);
+        void search();
+        void next();
     };
 }
 

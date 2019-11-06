@@ -69,7 +69,7 @@ namespace PokeFinderCore
         }
 
         QVector<u16> newSids;
-        for (const auto sid : sids)
+        for (const auto &sid : sids)
         {
             for (const auto &pair : pids)
             {

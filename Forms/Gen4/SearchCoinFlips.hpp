@@ -44,9 +44,9 @@ namespace PokeFinderForms
         QVector<bool> possible;
 
     private slots:
-        void on_pushButtonHeads_clicked();
-        void on_pushButtonTails_clicked();
-        void on_lineEditFlips_textChanged(const QString &val);
+        void heads();
+        void tails();
+        void flipsTextChanged(const QString &val);
     };
 }
 

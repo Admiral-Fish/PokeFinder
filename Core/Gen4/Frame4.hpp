@@ -37,12 +37,12 @@ namespace PokeFinderCore
         QString getCall() const;
         QString chatotPitch() const;
         u32 getInitialSeed() const;
-        void setInitialSeed(const u32 &value);
+        void setInitialSeed(u32 value);
         u32 getSeed() const;
-        void setSeed(const u32 &value);
+        void setSeed(u32 value);
         u32 getOccidentary() const;
-        void setOccidentary(const u32 &value);
-        void setEggFrame(const u32 &value);
+        void setOccidentary(u32 value);
+        void setEggFrame(u32 value);
         u32 getEggFrame() const;
         void xorFrame();
 

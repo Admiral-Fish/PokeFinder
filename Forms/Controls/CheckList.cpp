@@ -35,7 +35,7 @@ namespace PokeFinderForms
         lineEdit()->installEventFilter(this);
 
         connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
-        connect(dynamic_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &CheckList::itemPressed);
+        connect(qobject_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &CheckList::itemPressed);
         connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
     }
 

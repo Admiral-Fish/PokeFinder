@@ -65,14 +65,14 @@ namespace PokeFinderForms
     private slots:
         void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
         void refreshProfiles();
-        void on_pushButtonGenerate_clicked();
-        void on_pushButtonSearch_clicked();
-        void on_comboBoxProfiles_currentIndexChanged(int index);
-        void on_pushButtonGeneratorLead_clicked();
+        void generate();
+        void search();
+        void profileIndexChanged(int index);
+        void generatorLead();
         void seedToTime();
-        void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
-        void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
-        void on_pushButtonProfileManager_clicked();
+        void tableViewGeneratorContextMenu(QPoint pos);
+        void tableViewSearcherContextMenu(QPoint pos);
+        void profileManager();
     };
 }
 

@@ -60,6 +60,9 @@ namespace PokeFinderForms
 
     void Wild3::updateProfiles()
     {
+        connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Wild3::profilesIndexChanged);
+
         profiles = { PokeFinderCore::Profile3() };
         for (const auto &profile : PokeFinderCore::Profile3::loadProfileList())
         {
@@ -156,10 +159,6 @@ namespace PokeFinderForms
 
         ui->comboBoxGeneratorHiddenPower->setup(PokeFinderCore::Power::getPowers());
         ui->comboBoxSearcherHiddenPower->setup(PokeFinderCore::Power::getPowers());
-
-        on_comboBoxGeneratorEncounter_currentIndexChanged(0);
-        on_comboBoxSearcherEncounter_currentIndexChanged(0);
-
         QAction *setTargetFrame = generatorMenu->addAction(tr("Set Target Frame"));
         QAction *jumpToTarget = generatorMenu->addAction(tr("Jump to Target Frame"));
         QAction *center1Second = generatorMenu->addAction(tr("Center to +/- 1 Second and Set as Target Frame"));
@@ -170,7 +169,6 @@ namespace PokeFinderForms
         QAction *center1Minute = generatorMenu->addAction(tr("Center to +/- 1 Minute and Set as Target Frame"));
         QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
-
         connect(setTargetFrame, &QAction::triggered, this, &Wild3::setTargetFrameGenerator);
         connect(jumpToTarget, &QAction::triggered, this, &Wild3::jumpToTargetGenerator);
         connect(center1Second, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(60); });
@@ -186,15 +184,40 @@ namespace PokeFinderForms
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
         QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-
         connect(copySeedToClipboard, &QAction::triggered, this, &Wild3::copySeedToClipboard);
         connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
         connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(); });
         connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
+        connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Wild3::generate);
+        connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild3::search);
+        connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this,
+            &Wild3::tableViewGeneratorContextMenu);
+        connect(
+            ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Wild3::tableViewSearcherContextMenu);
+        connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Wild3::generatorLead);
+        connect(ui->comboBoxGeneratorEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Wild3::generatorEncounterIndexChanged);
+        connect(ui->comboBoxSearcherEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Wild3::searcherEncounterIndexChanged);
+        connect(ui->comboBoxGeneratorLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Wild3::generatorLocationIndexChanged);
+        connect(ui->comboBoxSearcherLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Wild3::searcherLocationIndexChanged);
+        connect(ui->comboBoxGeneratorPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Wild3::generatorPokemonIndexChanged);
+        connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Wild3::searcherPokemonIndexChanged);
+        connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild3::profileManager);
+
+        generatorEncounterIndexChanged(0);
+        searcherEncounterIndexChanged(0);
+
         QSettings setting;
         if (setting.contains("wild3/geometry"))
+        {
             this->restoreGeometry(setting.value("wild3/geometry").toByteArray());
+        }
     }
 
     void Wild3::updateLocationsGenerator()
@@ -285,52 +308,7 @@ namespace PokeFinderForms
 
     void Wild3::refreshProfiles() { emit alertProfiles(3); }
 
-    void Wild3::on_comboBoxProfiles_currentIndexChanged(int index)
-    {
-        if (index < 0)
-        {
-            return;
-        }
-
-        auto profile = profiles.at(index);
-        QString tid = QString::number(profile.getTID());
-        QString sid = QString::number(profile.getSID());
-
-        ui->textBoxGeneratorTID->setText(tid);
-        ui->textBoxGeneratorSID->setText(sid);
-        ui->textBoxSearcherTID->setText(tid);
-        ui->textBoxSearcherSID->setText(sid);
-        ui->labelProfileTIDValue->setText(tid);
-        ui->labelProfileSIDValue->setText(sid);
-        ui->labelProfileGameValue->setText(profile.getVersionString());
-
-        bool flag = profile.getVersion() & PokeFinderCore::Game::FRLG;
-        ui->comboBoxGeneratorEncounter->clear();
-        ui->comboBoxSearcherEncounter->clear();
-
-        ui->comboBoxGeneratorEncounter->addItem(tr("Grass"), PokeFinderCore::Encounter::Grass);
-        ui->comboBoxSearcherEncounter->addItem(tr("Grass"), PokeFinderCore::Encounter::Grass);
-        if (!flag)
-        {
-            ui->comboBoxGeneratorEncounter->addItem(tr("Safari Zone"), PokeFinderCore::Encounter::SafariZone);
-            ui->comboBoxSearcherEncounter->addItem(tr("Safari Zone"), PokeFinderCore::Encounter::Grass);
-        }
-        ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), PokeFinderCore::Encounter::RockSmash);
-        ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), PokeFinderCore::Encounter::RockSmash);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), PokeFinderCore::Encounter::Surfing);
-        ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), PokeFinderCore::Encounter::Surfing);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), PokeFinderCore::Encounter::OldRod);
-        ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), PokeFinderCore::Encounter::OldRod);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Good Rod"), PokeFinderCore::Encounter::GoodRod);
-        ui->comboBoxSearcherEncounter->addItem(tr("Good Rod"), PokeFinderCore::Encounter::GoodRod);
-        ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), PokeFinderCore::Encounter::SuperRod);
-        ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), PokeFinderCore::Encounter::SuperRod);
-
-        updateLocationsSearcher();
-        updateLocationsGenerator();
-    }
-
-    void Wild3::on_pushButtonGenerate_clicked()
+    void Wild3::generate()
     {
         generatorModel->clearModel();
 
@@ -379,7 +357,7 @@ namespace PokeFinderForms
         generatorModel->addItems(frames);
     }
 
-    void Wild3::on_pushButtonSearch_clicked()
+    void Wild3::search()
     {
         searcherModel->clearModel();
         searcherModel->setMethod(
@@ -430,7 +408,52 @@ namespace PokeFinderForms
         search->startSearch();
     }
 
-    void Wild3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+    void Wild3::profilesIndexChanged(int index)
+    {
+        if (index < 0)
+        {
+            return;
+        }
+
+        auto profile = profiles.at(index);
+        QString tid = QString::number(profile.getTID());
+        QString sid = QString::number(profile.getSID());
+
+        ui->textBoxGeneratorTID->setText(tid);
+        ui->textBoxGeneratorSID->setText(sid);
+        ui->textBoxSearcherTID->setText(tid);
+        ui->textBoxSearcherSID->setText(sid);
+        ui->labelProfileTIDValue->setText(tid);
+        ui->labelProfileSIDValue->setText(sid);
+        ui->labelProfileGameValue->setText(profile.getVersionString());
+
+        bool flag = profile.getVersion() & PokeFinderCore::Game::FRLG;
+        ui->comboBoxGeneratorEncounter->clear();
+        ui->comboBoxSearcherEncounter->clear();
+
+        ui->comboBoxGeneratorEncounter->addItem(tr("Grass"), PokeFinderCore::Encounter::Grass);
+        ui->comboBoxSearcherEncounter->addItem(tr("Grass"), PokeFinderCore::Encounter::Grass);
+        if (!flag)
+        {
+            ui->comboBoxGeneratorEncounter->addItem(tr("Safari Zone"), PokeFinderCore::Encounter::SafariZone);
+            ui->comboBoxSearcherEncounter->addItem(tr("Safari Zone"), PokeFinderCore::Encounter::Grass);
+        }
+        ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), PokeFinderCore::Encounter::RockSmash);
+        ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), PokeFinderCore::Encounter::RockSmash);
+        ui->comboBoxGeneratorEncounter->addItem(tr("Surfing"), PokeFinderCore::Encounter::Surfing);
+        ui->comboBoxSearcherEncounter->addItem(tr("Surfing"), PokeFinderCore::Encounter::Surfing);
+        ui->comboBoxGeneratorEncounter->addItem(tr("Old Rod"), PokeFinderCore::Encounter::OldRod);
+        ui->comboBoxSearcherEncounter->addItem(tr("Old Rod"), PokeFinderCore::Encounter::OldRod);
+        ui->comboBoxGeneratorEncounter->addItem(tr("Good Rod"), PokeFinderCore::Encounter::GoodRod);
+        ui->comboBoxSearcherEncounter->addItem(tr("Good Rod"), PokeFinderCore::Encounter::GoodRod);
+        ui->comboBoxGeneratorEncounter->addItem(tr("Super Rod"), PokeFinderCore::Encounter::SuperRod);
+        ui->comboBoxSearcherEncounter->addItem(tr("Super Rod"), PokeFinderCore::Encounter::SuperRod);
+
+        updateLocationsSearcher();
+        updateLocationsGenerator();
+    }
+
+    void Wild3::tableViewGeneratorContextMenu(QPoint pos)
     {
         if (generatorModel->rowCount() == 0)
         {
@@ -441,7 +464,7 @@ namespace PokeFinderForms
         generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
     }
 
-    void Wild3::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+    void Wild3::tableViewSearcherContextMenu(QPoint pos)
     {
         if (searcherModel->rowCount() == 0)
         {
@@ -477,7 +500,7 @@ namespace PokeFinderForms
         ui->textBoxGeneratorStartingFrame->setText(QString::number(startingFrame));
         ui->textBoxGeneratorMaxResults->setText(QString::number(maxFrames));
 
-        on_pushButtonGenerate_clicked();
+        generate();
 
         targetFrame = ui->tableViewGenerator->model()->index(static_cast<int>(selectedIndex), 0);
 
@@ -500,7 +523,7 @@ namespace PokeFinderForms
             searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
     }
 
-    void Wild3::on_pushButtonGeneratorLead_clicked()
+    void Wild3::generatorLead()
     {
         ui->comboBoxGeneratorLead->clear();
         QString text = ui->pushButtonGeneratorLead->text();
@@ -526,7 +549,7 @@ namespace PokeFinderForms
         }
     }
 
-    void Wild3::on_comboBoxGeneratorEncounter_currentIndexChanged(int index)
+    void Wild3::generatorEncounterIndexChanged(int index)
     {
         (void)index;
         QStringList t;
@@ -576,7 +599,7 @@ namespace PokeFinderForms
         updateLocationsGenerator();
     }
 
-    void Wild3::on_comboBoxSearcherEncounter_currentIndexChanged(int index)
+    void Wild3::searcherEncounterIndexChanged(int index)
     {
         (void)index;
         QStringList t;
@@ -625,7 +648,7 @@ namespace PokeFinderForms
         updateLocationsSearcher();
     }
 
-    void Wild3::on_comboBoxGeneratorLocation_currentIndexChanged(int index)
+    void Wild3::generatorLocationIndexChanged(int index)
     {
         if (index >= 0)
         {
@@ -634,9 +657,13 @@ namespace PokeFinderForms
         updatePokemonGenerator();
     }
 
-    void Wild3::on_comboBoxSearcherLocation_currentIndexChanged(int /*index*/) { updatePokemonSearcher(); }
+    void Wild3::searcherLocationIndexChanged(int index)
+    {
+        (void)index;
+        updatePokemonSearcher();
+    }
 
-    void Wild3::on_comboBoxGeneratorPokemon_currentIndexChanged(int index)
+    void Wild3::generatorPokemonIndexChanged(int index)
     {
         if (index <= 0)
         {
@@ -650,7 +677,7 @@ namespace PokeFinderForms
         ui->comboBoxGeneratorEncounterSlot->setChecks(flags);
     }
 
-    void Wild3::on_comboBoxSearcherPokemon_currentIndexChanged(int index)
+    void Wild3::searcherPokemonIndexChanged(int index)
     {
         if (index <= 0)
         {
@@ -664,7 +691,7 @@ namespace PokeFinderForms
         ui->comboBoxSearcherEncounterSlot->setChecks(flags);
     }
 
-    void Wild3::on_pushButtonProfileManager_clicked()
+    void Wild3::profileManager()
     {
         auto *manager = new ProfileManager3();
         connect(manager, &ProfileManager3::updateProfiles, this, &Wild3::refreshProfiles);

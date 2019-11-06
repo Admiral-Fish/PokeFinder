@@ -38,9 +38,18 @@ namespace PokeFinderForms
         data = model;
         ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
 
+        connect(ui->pushButtonE, &QPushButton::clicked, this, &SearchCalls::e);
+        connect(ui->pushButtonK, &QPushButton::clicked, this, &SearchCalls::k);
+        connect(ui->pushButtonP, &QPushButton::clicked, this, &SearchCalls::p);
+        connect(ui->lineEditCalls, &QLineEdit::textChanged, this, &SearchCalls::callsTextChanged);
+        connect(ui->radioButtonElm, &QRadioButton::clicked, this, &SearchCalls::elm);
+        connect(ui->radioButtonIrwin, &QRadioButton::clicked, this, &SearchCalls::irwin);
+
         QSettings setting;
         if (setting.contains("searchCalls/geometry"))
+        {
             this->restoreGeometry(setting.value("searchCalls/geometry").toByteArray());
+        }
     }
 
     SearchCalls::~SearchCalls()
@@ -53,28 +62,28 @@ namespace PokeFinderForms
 
     QVector<bool> SearchCalls::possibleResults() const { return possible; }
 
-    void SearchCalls::on_pushButtonK_clicked()
+    void SearchCalls::k()
     {
         QString string = ui->lineEditCalls->text();
         string += string.isEmpty() ? "K" : ", K";
         ui->lineEditCalls->setText(string);
     }
 
-    void SearchCalls::on_pushButtonE_clicked()
+    void SearchCalls::e()
     {
         QString string = ui->lineEditCalls->text();
         string += string.isEmpty() ? "E" : ", E";
         ui->lineEditCalls->setText(string);
     }
 
-    void SearchCalls::on_pushButtonP_clicked()
+    void SearchCalls::p()
     {
         QString string = ui->lineEditCalls->text();
         string += string.isEmpty() ? "P" : ", P";
         ui->lineEditCalls->setText(string);
     }
 
-    void SearchCalls::on_lineEditCalls_textChanged(const QString &val)
+    void SearchCalls::callsTextChanged(const QString &val)
     {
         QStringList results = val.split(",", QString::SkipEmptyParts);
         int num = 0;
@@ -111,7 +120,7 @@ namespace PokeFinderForms
         ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
     }
 
-    void SearchCalls::on_radioButtonElm_clicked()
+    void SearchCalls::elm()
     {
         ui->labelKResponse->setText(
             tr("K - I expect there are some Pokémon in the Kanto region that I don't know. There are probably methods "
@@ -122,7 +131,7 @@ namespace PokeFinderForms
                                        "better. We're not quite sure why..."));
     }
 
-    void SearchCalls::on_radioButtonIrwin_clicked()
+    void SearchCalls::irwin()
     {
         ui->labelKResponse->setText(
             tr("K - I'm so glad you called! I was just about to call you, too! I guess we must be a good match!"));

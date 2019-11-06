@@ -95,27 +95,27 @@ namespace PokeFinderCore
 
     u8 Frame::getEncounterSlot() const { return encounterSlot; }
 
-    void Frame::setEncounterSlot(const u8 &value) { encounterSlot = value; }
+    void Frame::setEncounterSlot(u8 value) { encounterSlot = value; }
 
     u8 Frame::getLevel() const { return level; }
 
-    void Frame::setLevel(const u8 &value) { level = value; }
+    void Frame::setLevel(u8 value) { level = value; }
 
     bool Frame::getShiny() const { return shiny; }
 
     u32 Frame::getNature() const { return nature; }
 
-    void Frame::setNature(const u8 &value) { nature = value; }
+    void Frame::setNature(u8 value) { nature = value; }
 
     u8 Frame::getHidden() const { return hidden; }
 
     u8 Frame::getGender() const { return gender; }
 
-    void Frame::setGender(const u8 &value) { gender = value; }
+    void Frame::setGender(u8 value) { gender = value; }
 
-    void Frame::setFrame(const u32 &value) { frame = value; }
+    void Frame::setFrame(u32 value) { frame = value; }
 
-    void Frame::setLeadType(const Lead &value) { leadType = value; }
+    void Frame::setLeadType(PokeFinderCore::Lead value) { leadType = value; }
 
     void Frame::calculateHidden()
     {

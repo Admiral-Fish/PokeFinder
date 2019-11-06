@@ -64,37 +64,36 @@ namespace PokeFinderForms
         Eggs4 *egg4 {};
         IDs4 *ids4 {};
 
-        void setupLanguage();
-        void setupStyle();
+        void setupModels();
         void checkUpdates();
 
     private slots:
         void slotLanguageChanged(QAction *action);
         void slotStyleChanged(QAction *action);
         void updateProfiles(int num);
-        void on_pushButtonStationary3_clicked();
-        void on_pushButtonWild3_clicked();
-        void on_pushButtonGameCube_clicked();
-        void on_pushButtonEgg3_clicked();
-        void on_pushButtonIDs3_clicked();
-        void on_actionGameCubeRTC_triggered();
-        void on_actionGameCube_Seed_Finder_triggered();
-        void on_actionIVtoPID3_triggered();
-        void on_actionJirachiPattern_triggered();
-        void on_actionPIDtoIV_triggered();
-        void on_actionPokeSpot_triggered();
-        void on_actionSeedtoTime3_triggered();
-        void on_actionSpinda_Painter_triggered();
-        void on_pushButtonStationary4_clicked();
-        void on_pushButtonWild4_clicked();
-        void on_pushButtonEgg4_clicked();
-        void on_pushButtonIDs4_clicked();
-        void on_actionIVtoPID4_triggered();
-        void on_actionSeedtoTime4_triggered();
-        void on_actionSID_from_Chained_Shiny_triggered();
-        void on_actionEncounter_Lookup_triggered();
-        void on_actionIV_Calculator_triggered();
-        void on_actionResearcher_triggered();
+        void openStationary3();
+        void openWild3();
+        void openGameCube();
+        void openEgg3();
+        void openIDs3();
+        void openGameCubeRTC();
+        void openGameCubeSeedFinder();
+        void openIVtoPID3();
+        void openJirachiPattern();
+        void openPIDtoIV();
+        void openPokeSpot();
+        void openSeedtoTime3();
+        void openSpindaPainter();
+        void openStationary4();
+        void openWild4();
+        void openEgg4();
+        void openIDs4();
+        void openIVtoPID4();
+        void openSeedtoTime4();
+        void openSIDFromChainedShiny();
+        void openEncounterLookup();
+        void openIVCalculator();
+        void openResearcher();
     };
 }
 

@@ -98,12 +98,18 @@ namespace PokeFinderForms
         ui->comboBoxLanguage->setItemData(5, PokeFinderCore::Language::Japanese);
         ui->comboBoxLanguage->setItemData(6, PokeFinderCore::Language::Korean);
 
+        connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor4::okay);
+        connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &ProfileEditor4::versionIndexChanged);
+
         QSettings setting;
         if (setting.contains("profileEditor4/geometry"))
+        {
             this->restoreGeometry(setting.value("profileEditor4/geometry").toByteArray());
+        }
     }
 
-    void ProfileEditor4::on_pushButtonAccept_clicked()
+    void ProfileEditor4::okay()
     {
         QString input = ui->lineEditProfile->text().trimmed();
         if (input.isEmpty())
@@ -124,7 +130,7 @@ namespace PokeFinderForms
         done(QDialog::Accepted);
     }
 
-    void ProfileEditor4::on_comboBoxVersion_currentIndexChanged(int index)
+    void ProfileEditor4::versionIndexChanged(int index)
     {
         (void)index;
 

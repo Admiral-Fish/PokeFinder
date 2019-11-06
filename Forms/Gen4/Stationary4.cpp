@@ -61,6 +61,9 @@ namespace PokeFinderForms
 
     void Stationary4::updateProfiles()
     {
+        connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Stationary4::profileIndexChanged);
+
         profiles = PokeFinderCore::Profile4::loadProfileList();
         profiles.insert(profiles.begin(), PokeFinderCore::Profile4());
 
@@ -137,30 +140,47 @@ namespace PokeFinderForms
 
         QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
-
         connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(); });
         connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(true); });
 
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
         QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-
         connect(seedToTime, &QAction::triggered, this, &Stationary4::seedToTime);
         connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(); });
         connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
+        connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary4::generate);
+        connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary4::search);
+        connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Stationary4::generatorLead);
+        connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this,
+            &Stationary4::tableViewGeneratorContextMenu);
+        connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this,
+            &Stationary4::tableViewSearcherContextMenu);
+        connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Stationary4::profileManager);
+
         QSettings setting;
         setting.beginGroup("stationary4");
         if (setting.contains("minDelay"))
+        {
             ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
+        }
         if (setting.contains("maxDelay"))
+        {
             ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
+        }
         if (setting.contains("minFrame"))
+        {
             ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+        }
         if (setting.contains("maxFrame"))
+        {
             ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+        }
         if (setting.contains("geometry"))
+        {
             this->restoreGeometry(setting.value("geometry").toByteArray());
+        }
         setting.endGroup();
     }
 
@@ -172,7 +192,7 @@ namespace PokeFinderForms
 
     void Stationary4::refreshProfiles() { emit alertProfiles(4); }
 
-    void Stationary4::on_pushButtonGenerate_clicked()
+    void Stationary4::generate()
     {
         generatorModel->clearModel();
         generatorModel->setMethod(
@@ -222,7 +242,7 @@ namespace PokeFinderForms
         generatorModel->addItems(frames);
     }
 
-    void Stationary4::on_pushButtonSearch_clicked()
+    void Stationary4::search()
     {
         searcherModel->clearModel();
         searcherModel->setMethod(
@@ -269,7 +289,7 @@ namespace PokeFinderForms
         search->startSearch();
     }
 
-    void Stationary4::on_comboBoxProfiles_currentIndexChanged(int index)
+    void Stationary4::profileIndexChanged(int index)
     {
         if (index < 0)
         {
@@ -303,7 +323,7 @@ namespace PokeFinderForms
         ui->comboBoxSearcherMethod->addItem(tr("Wondercard IVs"), PokeFinderCore::Method::WondercardIVs);
     }
 
-    void Stationary4::on_pushButtonGeneratorLead_clicked()
+    void Stationary4::generatorLead()
     {
         ui->comboBoxGeneratorLead->clear();
         QString text = ui->pushButtonGeneratorLead->text();
@@ -332,12 +352,12 @@ namespace PokeFinderForms
         QModelIndex index = ui->tableViewSearcher->currentIndex();
         auto *time
             = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(),
-                profiles[ui->comboBoxProfiles->currentIndex()]);
+                profiles.at(ui->comboBoxProfiles->currentIndex()));
         time->show();
         time->raise();
     }
 
-    void Stationary4::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+    void Stationary4::tableViewGeneratorContextMenu(QPoint pos)
     {
         if (generatorModel->rowCount() == 0)
         {
@@ -347,7 +367,7 @@ namespace PokeFinderForms
         generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
     }
 
-    void Stationary4::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+    void Stationary4::tableViewSearcherContextMenu(QPoint pos)
     {
         if (searcherModel->rowCount() == 0)
         {
@@ -357,7 +377,7 @@ namespace PokeFinderForms
         searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
     }
 
-    void Stationary4::on_pushButtonProfileManager_clicked()
+    void Stationary4::profileManager()
     {
         auto *manager = new ProfileManager4();
         connect(manager, &ProfileManager4::updateProfiles, this, &Stationary4::refreshProfiles);

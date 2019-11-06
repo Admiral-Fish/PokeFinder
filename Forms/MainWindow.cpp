@@ -53,13 +53,8 @@ namespace PokeFinderForms
         ui->setupUi(this);
         setWindowTitle(QString("Pok\303\251Finder %1").arg(VERSION));
 
-        setupLanguage();
-        setupStyle();
+        setupModels();
         QTimer::singleShot(1000, this, &MainWindow::checkUpdates);
-
-        QSettings setting;
-        if (setting.contains("mainWindow/geometry"))
-            this->restoreGeometry(setting.value("mainWindow/geometry").toByteArray());
     }
 
     MainWindow::~MainWindow()
@@ -83,15 +78,14 @@ namespace PokeFinderForms
         delete ids4;
     }
 
-    void MainWindow::setupLanguage()
+    void MainWindow::setupModels()
     {
+        QSettings setting;
+
         langGroup = new QActionGroup(ui->menuLanguage);
         langGroup->setExclusive(true);
         connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
-
-        QSettings setting;
         currentLanguage = setting.value("settings/locale", "en").toString();
-
         QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh_Hans_CN" };
         for (u8 i = 0; i < locales.size(); i++)
         {
@@ -107,17 +101,11 @@ namespace PokeFinderForms
 
             langGroup->addAction(action);
         }
-    }
 
-    void MainWindow::setupStyle()
-    {
         styleGroup = new QActionGroup(ui->menuStyle);
         styleGroup->setExclusive(true);
         connect(styleGroup, &QActionGroup::triggered, this, &MainWindow::slotStyleChanged);
-
-        QSettings setting;
         currentStyle = setting.value("settings/style", "dark").toString();
-
         QStringList styles = { "dark", "light" };
         for (u8 i = 0; i < styles.size(); i++)
         {
@@ -132,6 +120,35 @@ namespace PokeFinderForms
             }
 
             styleGroup->addAction(action);
+        }
+
+        connect(ui->pushButtonStationary3, &QPushButton::clicked, this, &MainWindow::openStationary3);
+        connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
+        connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
+        connect(ui->pushButtonEgg3, &QPushButton::clicked, this, &MainWindow::openEgg3);
+        connect(ui->pushButtonIDs3, &QPushButton::clicked, this, &MainWindow::openIDs3);
+        connect(ui->actionGameCubeRTC, &QAction::triggered, this, &MainWindow::openGameCubeRTC);
+        connect(ui->actionGameCube_Seed_Finder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
+        connect(ui->actionIVtoPID3, &QAction::triggered, this, &MainWindow::openIVtoPID3);
+        connect(ui->actionJirachiPattern, &QAction::triggered, this, &MainWindow::openJirachiPattern);
+        connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
+        connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
+        connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
+        connect(ui->actionSpinda_Painter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
+        connect(ui->pushButtonStationary4, &QPushButton::clicked, this, &MainWindow::openStationary4);
+        connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
+        connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
+        connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
+        connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID4);
+        connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
+        connect(ui->actionSID_from_Chained_Shiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
+        connect(ui->actionEncounter_Lookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
+        connect(ui->actionIV_Calculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
+        connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
+
+        if (setting.contains("mainWindow/geometry"))
+        {
+            this->restoreGeometry(setting.value("mainWindow/geometry").toByteArray());
         }
     }
 
@@ -214,26 +231,40 @@ namespace PokeFinderForms
         if (num == 3)
         {
             if (stationary3)
+            {
                 stationary3->updateProfiles();
+            }
             if (wild3)
+            {
                 wild3->updateProfiles();
+            }
             if (gamecube)
+            {
                 gamecube->updateProfiles();
+            }
             if (egg3)
+            {
                 egg3->updateProfiles();
+            }
         }
         else if (num == 4)
         {
             if (stationary4)
+            {
                 stationary4->updateProfiles();
+            }
             if (wild4)
+            {
                 wild4->updateProfiles();
+            }
             if (egg4)
+            {
                 egg4->updateProfiles();
+            }
         }
     }
 
-    void MainWindow::on_pushButtonStationary3_clicked()
+    void MainWindow::openStationary3()
     {
         if (!stationary3)
         {
@@ -244,7 +275,7 @@ namespace PokeFinderForms
         stationary3->raise();
     }
 
-    void MainWindow::on_pushButtonWild3_clicked()
+    void MainWindow::openWild3()
     {
         if (!wild3)
         {
@@ -255,7 +286,7 @@ namespace PokeFinderForms
         wild3->raise();
     }
 
-    void MainWindow::on_pushButtonGameCube_clicked()
+    void MainWindow::openGameCube()
     {
         if (!gamecube)
         {
@@ -266,7 +297,7 @@ namespace PokeFinderForms
         gamecube->raise();
     }
 
-    void MainWindow::on_pushButtonEgg3_clicked()
+    void MainWindow::openEgg3()
     {
         if (!egg3)
         {
@@ -277,7 +308,7 @@ namespace PokeFinderForms
         egg3->raise();
     }
 
-    void MainWindow::on_pushButtonIDs3_clicked()
+    void MainWindow::openIDs3()
     {
         if (!ids3)
         {
@@ -287,35 +318,35 @@ namespace PokeFinderForms
         ids3->raise();
     }
 
-    void MainWindow::on_actionGameCubeRTC_triggered()
+    void MainWindow::openGameCubeRTC()
     {
         auto *rtc = new GameCubeRTC();
         rtc->show();
         rtc->raise();
     }
 
-    void MainWindow::on_actionGameCube_Seed_Finder_triggered()
+    void MainWindow::openGameCubeSeedFinder()
     {
         auto *finder = new GameCubeSeedFinder();
         finder->show();
         finder->raise();
     }
 
-    void MainWindow::on_actionIVtoPID3_triggered()
+    void MainWindow::openIVtoPID3()
     {
         auto *ivToPID = new IVtoPID();
         ivToPID->show();
         ivToPID->raise();
     }
 
-    void MainWindow::on_actionJirachiPattern_triggered()
+    void MainWindow::openJirachiPattern()
     {
         auto *jirachi = new JirachiPattern();
         jirachi->show();
         jirachi->raise();
     }
 
-    void MainWindow::on_actionPIDtoIV_triggered()
+    void MainWindow::openPIDtoIV()
     {
         auto *pidToIV = new PIDtoIVs();
         if (stationary3)
@@ -326,28 +357,28 @@ namespace PokeFinderForms
         pidToIV->raise();
     }
 
-    void MainWindow::on_actionPokeSpot_triggered()
+    void MainWindow::openPokeSpot()
     {
         auto *pokeSpot = new PokeSpot();
         pokeSpot->show();
         pokeSpot->raise();
     }
 
-    void MainWindow::on_actionSeedtoTime3_triggered()
+    void MainWindow::openSeedtoTime3()
     {
         auto *seedToTime = new SeedToTime3();
         seedToTime->show();
         seedToTime->raise();
     }
 
-    void MainWindow::on_actionSpinda_Painter_triggered()
+    void MainWindow::openSpindaPainter()
     {
         auto *spinda = new SpindaPainter();
         spinda->show();
         spinda->raise();
     }
 
-    void MainWindow::on_pushButtonStationary4_clicked()
+    void MainWindow::openStationary4()
     {
         if (!stationary4)
         {
@@ -358,7 +389,7 @@ namespace PokeFinderForms
         stationary4->raise();
     }
 
-    void MainWindow::on_pushButtonWild4_clicked()
+    void MainWindow::openWild4()
     {
         if (!wild4)
         {
@@ -369,7 +400,7 @@ namespace PokeFinderForms
         wild4->raise();
     }
 
-    void MainWindow::on_pushButtonEgg4_clicked()
+    void MainWindow::openEgg4()
     {
         if (!egg4)
         {
@@ -380,7 +411,7 @@ namespace PokeFinderForms
         egg4->raise();
     }
 
-    void MainWindow::on_pushButtonIDs4_clicked()
+    void MainWindow::openIDs4()
     {
         if (!ids4)
         {
@@ -390,42 +421,42 @@ namespace PokeFinderForms
         ids4->raise();
     }
 
-    void MainWindow::on_actionIVtoPID4_triggered()
+    void MainWindow::openIVtoPID4()
     {
         auto *ivToPID = new IVtoPID();
         ivToPID->show();
         ivToPID->raise();
     }
 
-    void MainWindow::on_actionSeedtoTime4_triggered()
+    void MainWindow::openSeedtoTime4()
     {
         auto *seedToTime = new SeedtoTime4();
         seedToTime->show();
         seedToTime->raise();
     }
 
-    void MainWindow::on_actionSID_from_Chained_Shiny_triggered()
+    void MainWindow::openSIDFromChainedShiny()
     {
         auto *chainedSID = new ChainedSID();
         chainedSID->show();
         chainedSID->raise();
     }
 
-    void MainWindow::on_actionEncounter_Lookup_triggered()
+    void MainWindow::openEncounterLookup()
     {
         auto *lookup = new EncounterLookup();
         lookup->show();
         lookup->raise();
     }
 
-    void MainWindow::on_actionIV_Calculator_triggered()
+    void MainWindow::openIVCalculator()
     {
         auto *iv = new IVCalculator();
         iv->show();
         iv->raise();
     }
 
-    void MainWindow::on_actionResearcher_triggered()
+    void MainWindow::openResearcher()
     {
         auto *r = new Researcher();
         r->show();

@@ -32,7 +32,7 @@ namespace PokeFinderCore
         Q_OBJECT
     signals:
         void finished();
-        void updateProgress(const QVector<Frame4> &, int);
+        void updateProgress(const QVector<PokeFinderCore::Frame4> &, int);
 
     public:
         IVSearcher4(const Searcher4 &searcher, const QVector<u8> &min, const QVector<u8> &max);

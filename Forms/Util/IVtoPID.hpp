@@ -47,7 +47,7 @@ namespace PokeFinderForms
         QVector<QList<QStandardItem *>> getSeedsChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature);
 
     private slots:
-        void on_pushButtonFind_clicked();
+        void find();
     };
 }
 

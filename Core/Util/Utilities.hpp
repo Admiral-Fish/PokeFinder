@@ -29,7 +29,7 @@ namespace PokeFinderCore
 
     namespace Utilities
     {
-        u16 calcGen3Seed(const QDate &time, u32 h, u32 m);
+        u16 calcGen3Seed(QDate time, u32 h, u32 m);
         u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
         bool shiny(u32 pid, u16 tid, u16 sid);
         QString coinFlips(u32 seed, u8 flips);

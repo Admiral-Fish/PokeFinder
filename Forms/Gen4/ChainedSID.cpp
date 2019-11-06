@@ -58,12 +58,17 @@ namespace PokeFinderForms
         ui->textBoxTID->setValues(InputType::TIDSID);
         ui->comboBoxNature->addItems(PokeFinderCore::Nature::getFrameNatures());
 
+        connect(ui->pushButtonCalculate, &QPushButton::clicked, this, &ChainedSID::calculate);
+        connect(ui->pushButtonClear, &QPushButton::clicked, this, &ChainedSID::clear);
+
         QSettings setting;
         if (setting.contains("chainedSID/geometry"))
+        {
             this->restoreGeometry(setting.value("chainedSID/geometry").toByteArray());
+        }
     }
 
-    void ChainedSID::on_pushButtonCalculate_clicked()
+    void ChainedSID::calculate()
     {
         if (!chainedCalc)
         {
@@ -110,7 +115,7 @@ namespace PokeFinderForms
         ui->comboBoxGender->setCurrentIndex(0);
     }
 
-    void ChainedSID::on_pushButtonClear_clicked()
+    void ChainedSID::clear()
     {
         if (chainedCalc)
         {

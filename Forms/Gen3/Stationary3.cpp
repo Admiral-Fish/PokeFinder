@@ -58,6 +58,9 @@ namespace PokeFinderForms
 
     void Stationary3::updateProfiles()
     {
+        connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Stationary3::profilesIndexChanged);
+
         profiles = { PokeFinderCore::Profile3() };
         for (const auto &profile : PokeFinderCore::Profile3::loadProfileList())
         {
@@ -142,7 +145,6 @@ namespace PokeFinderForms
         QAction *center1Minute = generatorMenu->addAction(tr("Center to +/- 1 Minute and Set as Target Frame"));
         QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
-
         connect(setTargetFrame, &QAction::triggered, this, &Stationary3::setTargetFrameGenerator);
         connect(jumpToTarget, &QAction::triggered, this, &Stationary3::jumpToTargetGenerator);
         connect(center1Second, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(60); });
@@ -158,15 +160,24 @@ namespace PokeFinderForms
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
         QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-
         connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
         connect(seedToTime, &QAction::triggered, this, &Stationary3::seedToTime);
         connect(outputTXTSearcher, &QAction::triggered, this, [=]() { ui->tableViewSearcher->outputModel(); });
         connect(outputCSVSearcher, &QAction::triggered, this, [=]() { ui->tableViewSearcher->outputModel(true); });
 
+        connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary3::generate);
+        connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary3::search);
+        connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this,
+            &Stationary3::tableViewGeneratorContextMenu);
+        connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this,
+            &Stationary3::tableViewSearcherContextMenu);
+        connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Stationary3::profileManager);
+
         QSettings setting;
         if (setting.contains("stationary3/geometry"))
+        {
             this->restoreGeometry(setting.value("stationary3/geometry").toByteArray());
+        }
     }
 
     void Stationary3::moveResults(
@@ -197,27 +208,7 @@ namespace PokeFinderForms
 
     void Stationary3::refreshProfiles() { emit alertProfiles(3); }
 
-    void Stationary3::on_comboBoxProfiles_currentIndexChanged(int index)
-    {
-        if (index < 0)
-        {
-            return;
-        }
-
-        auto profile = profiles.at(index);
-        QString tid = QString::number(profile.getTID());
-        QString sid = QString::number(profile.getSID());
-
-        ui->textBoxGeneratorTID->setText(tid);
-        ui->textBoxGeneratorSID->setText(sid);
-        ui->textBoxSearcherTID->setText(tid);
-        ui->textBoxSearcherSID->setText(sid);
-        ui->labelProfileTIDValue->setText(tid);
-        ui->labelProfileSIDValue->setText(sid);
-        ui->labelProfileGameValue->setText(profile.getVersionString());
-    }
-
-    void Stationary3::on_pushButtonGenerate_clicked()
+    void Stationary3::generate()
     {
         generatorModel->clearModel();
 
@@ -246,7 +237,7 @@ namespace PokeFinderForms
         generatorModel->addItems(frames);
     }
 
-    void Stationary3::on_pushButtonSearch_clicked()
+    void Stationary3::search()
     {
         searcherModel->clearModel();
         searcherModel->setMethod(
@@ -289,7 +280,27 @@ namespace PokeFinderForms
         search->startSearch();
     }
 
-    void Stationary3::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+    void Stationary3::profilesIndexChanged(int index)
+    {
+        if (index < 0)
+        {
+            return;
+        }
+
+        auto profile = profiles.at(index);
+        QString tid = QString::number(profile.getTID());
+        QString sid = QString::number(profile.getSID());
+
+        ui->textBoxGeneratorTID->setText(tid);
+        ui->textBoxGeneratorSID->setText(sid);
+        ui->textBoxSearcherTID->setText(tid);
+        ui->textBoxSearcherSID->setText(sid);
+        ui->labelProfileTIDValue->setText(tid);
+        ui->labelProfileSIDValue->setText(sid);
+        ui->labelProfileGameValue->setText(profile.getVersionString());
+    }
+
+    void Stationary3::tableViewGeneratorContextMenu(QPoint pos)
     {
         if (generatorModel->rowCount() == 0)
         {
@@ -300,7 +311,7 @@ namespace PokeFinderForms
         generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
     }
 
-    void Stationary3::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+    void Stationary3::tableViewSearcherContextMenu(QPoint pos)
     {
         if (searcherModel->rowCount() == 0)
         {
@@ -336,7 +347,7 @@ namespace PokeFinderForms
         ui->textBoxGeneratorStartingFrame->setText(QString::number(startingFrame));
         ui->textBoxGeneratorMaxResults->setText(QString::number(maxFrames));
 
-        on_pushButtonGenerate_clicked();
+        generate();
 
         targetFrame = ui->tableViewGenerator->model()->index(static_cast<int>(selectedIndex), 0);
 
@@ -359,7 +370,7 @@ namespace PokeFinderForms
             searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
     }
 
-    void Stationary3::on_pushButtonProfileManager_clicked()
+    void Stationary3::profileManager()
     {
         auto *manager = new ProfileManager3();
         connect(manager, &ProfileManager3::updateProfiles, this, &Stationary3::refreshProfiles);
