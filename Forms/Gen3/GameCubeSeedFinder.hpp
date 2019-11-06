@@ -37,12 +37,6 @@ namespace PokeFinderForms
         explicit GameCubeSeedFinder(QWidget *parent = nullptr);
         ~GameCubeSeedFinder() override;
 
-    private slots:
-        void on_pushButtonGalesSearch_clicked();
-        void on_pushButtonGalesReset_clicked();
-        void on_pushButtonColoSearch_clicked();
-        void on_pushButtonColoReset_clicked();
-
     private:
         Ui::GameCubeSeedFinder *ui;
         QVector<u32> galeSeeds;
@@ -51,6 +45,10 @@ namespace PokeFinderForms
         u8 coloRound;
 
     private slots:
+        void galesSearch();
+        void galesReset();
+        void coloSearch();
+        void coloReset();
         void updateGales(const QVector<u32> &seeds);
         void updateGalesProgress(int progress);
         void updateColo(const QVector<u32> &seeds);

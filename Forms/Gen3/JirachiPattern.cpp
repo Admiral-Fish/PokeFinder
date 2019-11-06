@@ -52,12 +52,16 @@ namespace PokeFinderForms
         model->setHorizontalHeaderLabels(QStringList() << tr("Pattern"));
         ui->tableView->setModel(model);
 
+        connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &JirachiPattern::generate);
+
         QSettings setting;
         if (setting.contains("jirachiPattern/geometry"))
+        {
             this->restoreGeometry(setting.value("jirachiPattern/geometry").toByteArray());
+        }
     }
 
-    void JirachiPattern::generate(u32 seed)
+    void JirachiPattern::search(u32 seed)
     {
         QStringList result = getPatterns(seed).toSet().toList();
 
@@ -189,10 +193,10 @@ namespace PokeFinderForms
         return 0;
     }
 
-    void JirachiPattern::on_pushButtonGenerate_clicked()
+    void JirachiPattern::generate()
     {
         model->removeRows(0, model->rowCount());
         data.clear();
-        generate(ui->textBoxSeed->getUInt());
+        search(ui->textBoxSeed->getUInt());
     }
 }

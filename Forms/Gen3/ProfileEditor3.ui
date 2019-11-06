@@ -38,12 +38,12 @@
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="TextBox" name="textBoxTID"/>
+    <widget class="PokeFinderForms::TextBox" name="textBoxTID"/>
    </item>
    <item row="0" column="4">
-    <widget class="QPushButton" name="pushButtonAccept">
+    <widget class="QPushButton" name="pushButtonOkay">
      <property name="text">
-      <string>Accept</string>
+      <string>Okay</string>
      </property>
     </widget>
    </item>
@@ -101,7 +101,7 @@
     </widget>
    </item>
    <item row="1" column="3">
-    <widget class="TextBox" name="textBoxSID"/>
+    <widget class="PokeFinderForms::TextBox" name="textBoxSID"/>
    </item>
    <item row="1" column="4">
     <widget class="QPushButton" name="pushButtonCancel">
@@ -174,7 +174,7 @@
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
   <tabstop>checkBoxDeadBattery</tabstop>
-  <tabstop>pushButtonAccept</tabstop>
+  <tabstop>pushButtonOkay</tabstop>
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources/>

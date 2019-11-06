@@ -68,9 +68,16 @@ namespace PokeFinderForms
         ui->radioButtonColoMetagross->setText(colo.at(6));
         ui->radioButtonColoHeracross->setText(colo.at(7));
 
+        connect(ui->pushButtonGalesSearch, &QPushButton::clicked, this, &GameCubeSeedFinder::galesSearch);
+        connect(ui->pushButtonGalesReset, &QPushButton::clicked, this, &GameCubeSeedFinder::galesReset);
+        connect(ui->pushButtonColoSearch, &QPushButton::clicked, this, &GameCubeSeedFinder::coloSearch);
+        connect(ui->pushButtonColoReset, &QPushButton::clicked, this, &GameCubeSeedFinder::coloReset);
+
         QSettings setting;
         if (setting.contains("gameCubeSeedFinder/geometry"))
+        {
             this->restoreGeometry(setting.value("gameCubeSeedFinder/geometry").toByteArray());
+        }
 
         qRegisterMetaType<QVector<u32>>("QVector<u32>");
     }
@@ -83,30 +90,50 @@ namespace PokeFinderForms
         delete ui;
     }
 
-    void GameCubeSeedFinder::on_pushButtonGalesSearch_clicked()
+    void GameCubeSeedFinder::galesSearch()
     {
         u32 num1, num2;
         if (ui->radioButtonGalesMewtwo->isChecked())
+        {
             num1 = 0;
+        }
         else if (ui->radioButtonGalesMew->isChecked())
+        {
             num1 = 1;
+        }
         else if (ui->radioButtonGalesDeoxys->isChecked())
+        {
             num1 = 2;
+        }
         else if (ui->radioButtonGalesRayquaza->isChecked())
+        {
             num1 = 3;
+        }
         else
+        {
             num1 = 4;
+        }
 
         if (ui->radioButtonGalesArticuno->isChecked())
+        {
             num2 = 0;
+        }
         else if (ui->radioButtonGalesZapdos->isChecked())
+        {
             num2 = 1;
+        }
         else if (ui->radioButtonGalesMoltres->isChecked())
+        {
             num2 = 2;
+        }
         else if (ui->radioButtonGalesKangaskhan->isChecked())
+        {
             num2 = 3;
+        }
         else
+        {
             num2 = 4;
+        }
 
         u16 topLeft = ui->textBoxGalesTopLeft->getUShort();
         u16 bottomLeft = ui->textBoxGalesBottomLeft->getUShort();
@@ -155,7 +182,7 @@ namespace PokeFinderForms
         }
     }
 
-    void GameCubeSeedFinder::on_pushButtonGalesReset_clicked()
+    void GameCubeSeedFinder::galesReset()
     {
         if (ui->pushButtonGalesSearch->isEnabled())
         {
@@ -166,32 +193,55 @@ namespace PokeFinderForms
         }
     }
 
-    void GameCubeSeedFinder::on_pushButtonColoSearch_clicked()
+    void GameCubeSeedFinder::coloSearch()
     {
         u32 num1, num2;
         if (ui->radioButtonColoBlaziken->isChecked())
+        {
             num1 = 0;
+        }
         else if (ui->radioButtonColoEntei->isChecked())
+        {
             num1 = 1;
+        }
         else if (ui->radioButtonColoSwampert->isChecked())
+        {
             num1 = 2;
+        }
         else if (ui->radioButtonColoRaikou->isChecked())
+        {
             num1 = 3;
+        }
         else if (ui->radioButtonColoMeganium->isChecked())
+        {
             num1 = 4;
+        }
         else if (ui->radioButtonColoSuicune->isChecked())
+        {
             num1 = 5;
+        }
         else if (ui->radioButtonColoMetagross->isChecked())
+        {
             num1 = 6;
+        }
         else
+        {
             num1 = 7;
+        }
 
         if (ui->radioButtonColoWes->isChecked())
+        {
             num2 = 0;
+        }
         else if (ui->radioButtonColoSeth->isChecked())
+        {
             num2 = 1;
+        }
+
         else
+        {
             num2 = 2;
+        }
 
         auto *searcher = new PokeFinderCore::GameCubeSeedSearcher(PokeFinderCore::Game::Colosseum, { num1, num2 });
         if (coloRound == 1)
@@ -234,7 +284,7 @@ namespace PokeFinderForms
         }
     }
 
-    void GameCubeSeedFinder::on_pushButtonColoReset_clicked()
+    void GameCubeSeedFinder::coloReset()
     {
         if (ui->pushButtonColoSearch->isEnabled())
         {

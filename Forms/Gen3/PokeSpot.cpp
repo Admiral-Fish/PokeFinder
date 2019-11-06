@@ -74,18 +74,26 @@ namespace PokeFinderForms
         ui->comboBoxNature->setup(PokeFinderCore::Nature::getNatures());
         ui->comboBoxSpotType->setup();
 
+        connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &PokeSpot::generate);
+
         QSettings setting;
         setting.beginGroup("pokespot");
         if (setting.contains("tid"))
+        {
             ui->textBoxTID->setText(setting.value("tid").toString());
+        }
         if (setting.contains("sid"))
+        {
             ui->textBoxSID->setText(setting.value("sid").toString());
+        }
         if (setting.contains("geometry"))
+        {
             this->restoreGeometry(setting.value("geometry").toByteArray());
+        }
         setting.endGroup();
     }
 
-    void PokeSpot::on_pushButtonGenerate_clicked()
+    void PokeSpot::generate()
     {
         model->clearModel();
 
@@ -158,6 +166,4 @@ namespace PokeFinderForms
 
         model->addItems(frames);
     }
-
-    void PokeSpot::on_pushButtonAnyAbility_clicked() { ui->comboBoxAbility->setCurrentIndex(0); }
 }

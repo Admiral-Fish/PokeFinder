@@ -53,6 +53,9 @@ namespace PokeFinderForms
 
     void Eggs3::updateProfiles()
     {
+        connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &Eggs3::profilesIndexChanged);
+
         profiles = PokeFinderCore::Profile3::loadProfileList();
         profiles.insert(profiles.begin(), PokeFinderCore::Profile3());
 
@@ -168,6 +171,11 @@ namespace PokeFinderForms
         ui->comboBoxFRLGMethod->setItemData(1, PokeFinderCore::Method::FRLGBredSplit);
         ui->comboBoxFRLGMethod->setItemData(2, PokeFinderCore::Method::FRLGBredAlternate);
 
+        connect(ui->pushButtonEmeraldPIDGenerate, &QPushButton::clicked, this, &Eggs3::emeraldPIDGenerate);
+        connect(ui->pushButtonEmeraldIVsGenerate, &QPushButton::clicked, this, &Eggs3::emeraldIVsGenerate);
+        connect(ui->pushButtonRSGenerate, &QPushButton::clicked, this, &Eggs3::rsGenerate);
+        connect(ui->pushButtonFRLGGenerate, &QPushButton::clicked, this, &Eggs3::frlgGenerate);
+        connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs3::profileManager);
         connect(ui->eggSettingsEmerald, &EggSettings::toggleInheritance, emeraldIVs,
             &PokeFinderModels::Egg3Model::toggleInheritance);
         connect(
@@ -177,12 +185,14 @@ namespace PokeFinderForms
 
         QSettings setting;
         if (setting.contains("eggs3/geometry"))
+        {
             this->restoreGeometry(setting.value("eggs3/geometry").toByteArray());
+        }
     }
 
     void Eggs3::refreshProfiles() { emit alertProfiles(3); }
 
-    void Eggs3::on_pushButtonEmeraldPIDGenerate_clicked()
+    void Eggs3::emeraldPIDGenerate()
     {
         emeraldPID->clearModel();
 
@@ -213,7 +223,7 @@ namespace PokeFinderForms
         emeraldPID->addItems(frames);
     }
 
-    void Eggs3::on_pushButtonEmeraldIVsGenerate_clicked()
+    void Eggs3::emeraldIVsGenerate()
     {
         emeraldIVs->clearModel();
 
@@ -235,7 +245,7 @@ namespace PokeFinderForms
         emeraldIVs->addItems(frames);
     }
 
-    void Eggs3::on_pushButtonRSGenerate_clicked()
+    void Eggs3::rsGenerate()
     {
         rs->clearModel();
 
@@ -265,7 +275,7 @@ namespace PokeFinderForms
         rs->addItems(frames);
     }
 
-    void Eggs3::on_pushButtonFRLGGenerate_clicked()
+    void Eggs3::frlgGenerate()
     {
         frlg->clearModel();
 
@@ -295,7 +305,7 @@ namespace PokeFinderForms
         frlg->addItems(frames);
     }
 
-    void Eggs3::on_comboBoxProfiles_currentIndexChanged(int index)
+    void Eggs3::profilesIndexChanged(int index)
     {
         if (index < 0)
         {
@@ -317,13 +327,7 @@ namespace PokeFinderForms
         ui->labelProfileGameValue->setText(profile.getVersionString());
     }
 
-    void Eggs3::on_pushButtonEmeraldAnyAbility_clicked() { ui->comboBoxEmeraldAbility->setCurrentIndex(0); }
-
-    void Eggs3::on_pushButtonRSAnyAbility_clicked() { ui->comboBoxRSAbility->setCurrentIndex(0); }
-
-    void Eggs3::on_pushButtonFRLGAnyAbility_clicked() { ui->comboBoxFRLGAbility->setCurrentIndex(0); }
-
-    void Eggs3::on_pushButtonProfileManager_clicked()
+    void Eggs3::profileManager()
     {
         auto *manager = new ProfileManager3();
         connect(manager, &ProfileManager3::updateProfiles, this, &Eggs3::refreshProfiles);

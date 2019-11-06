@@ -72,9 +72,13 @@ namespace PokeFinderForms
         scene->addItem(spot3);
         scene->addItem(spot4);
 
+        connect(ui->textBoxPID, &QLineEdit::textChanged, this, &SpindaPainter::textBoxPIDEdited);
+
         QSettings setting;
         if (setting.contains("spindaPainter/geometry"))
+        {
             this->restoreGeometry(setting.value("spindaPainter/geometry").toByteArray());
+        }
     }
 
     void SpindaPainter::moveSpot(GraphicsPixmapItem *item, int index)
@@ -96,7 +100,7 @@ namespace PokeFinderForms
         ui->labelInfo->setText(info);
     }
 
-    void SpindaPainter::on_textBoxPID_textEdited(const QString &arg1)
+    void SpindaPainter::textBoxPIDEdited(const QString &arg1)
     {
         u32 newPID = arg1.toUInt(nullptr, 16);
 

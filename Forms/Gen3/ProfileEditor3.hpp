@@ -53,8 +53,8 @@ namespace PokeFinderForms
         void setupModels();
 
     private slots:
-        void on_pushButtonAccept_clicked();
-        void on_comboBoxVersion_currentIndexChanged(int index);
+        void okay();
+        void versionIndexChanged(int index);
     };
 }
 

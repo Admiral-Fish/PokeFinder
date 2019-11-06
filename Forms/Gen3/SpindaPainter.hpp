@@ -56,7 +56,7 @@ namespace PokeFinderForms
         void updateInfo();
 
     private slots:
-        void on_textBoxPID_textEdited(const QString &arg1);
+        void textBoxPIDEdited(const QString &arg1);
         void updatePID(const QList<QRectF> &);
     };
 }

@@ -63,15 +63,12 @@ namespace PokeFinderForms
 
     private slots:
         void refreshProfiles();
-        void on_pushButtonEmeraldPIDGenerate_clicked();
-        void on_pushButtonEmeraldIVsGenerate_clicked();
-        void on_pushButtonRSGenerate_clicked();
-        void on_pushButtonFRLGGenerate_clicked();
-        void on_comboBoxProfiles_currentIndexChanged(int index);
-        void on_pushButtonEmeraldAnyAbility_clicked();
-        void on_pushButtonRSAnyAbility_clicked();
-        void on_pushButtonFRLGAnyAbility_clicked();
-        void on_pushButtonProfileManager_clicked();
+        void emeraldPIDGenerate();
+        void emeraldIVsGenerate();
+        void rsGenerate();
+        void frlgGenerate();
+        void profilesIndexChanged(int index);
+        void profileManager();
     };
 }
 

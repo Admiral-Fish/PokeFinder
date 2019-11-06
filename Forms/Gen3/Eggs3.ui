@@ -128,7 +128,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="TextBox" name="textBoxEmeraldPIDMinFrame">
+           <widget class="PokeFinderForms::TextBox" name="textBoxEmeraldPIDMinFrame">
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -138,7 +138,7 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="TextBox" name="textBoxEmeraldPIDMaxFrame">
+           <widget class="PokeFinderForms::TextBox" name="textBoxEmeraldPIDMaxFrame">
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -181,7 +181,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="TextBox" name="textBoxMinRedraws">
+           <widget class="PokeFinderForms::TextBox" name="textBoxMinRedraws">
             <property name="text">
              <string notr="true">0</string>
             </property>
@@ -191,7 +191,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="TextBox" name="textBoxMaxRedraws">
+           <widget class="PokeFinderForms::TextBox" name="textBoxMaxRedraws">
             <property name="text">
              <string notr="true">5</string>
             </property>
@@ -226,19 +226,6 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="5">
-           <widget class="QPushButton" name="pushButtonEmeraldAnyAbility">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Any</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelEmeraldCalibration">
             <property name="text">
@@ -247,7 +234,7 @@
            </widget>
           </item>
           <item row="2" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxCalibration">
+           <widget class="PokeFinderForms::TextBox" name="textBoxCalibration">
             <property name="text">
              <string notr="true">18</string>
             </property>
@@ -264,7 +251,7 @@
            </widget>
           </item>
           <item row="2" column="4">
-           <widget class="CheckList" name="comboBoxEmeraldNature"/>
+           <widget class="PokeFinderForms::CheckList" name="comboBoxEmeraldNature"/>
           </item>
           <item row="2" column="5">
            <widget class="QPushButton" name="pushButtonEmeraldAnyNature">
@@ -303,7 +290,7 @@
            </widget>
           </item>
           <item row="4" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxEmeraldTID">
+           <widget class="PokeFinderForms::TextBox" name="textBoxEmeraldTID">
             <property name="text">
              <string notr="true">12345</string>
             </property>
@@ -346,7 +333,7 @@
            </widget>
           </item>
           <item row="5" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxEmeraldSID">
+           <widget class="PokeFinderForms::TextBox" name="textBoxEmeraldSID">
             <property name="text">
              <string notr="true">54321</string>
             </property>
@@ -419,7 +406,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="TableView" name="tableViewEmeraldIVs">
+        <widget class="PokeFinderForms::TableView" name="tableViewEmeraldIVs">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>1</horstretch>
@@ -432,7 +419,7 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="TableView" name="tableViewEmeraldPID">
+        <widget class="PokeFinderForms::TableView" name="tableViewEmeraldPID">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>1</horstretch>
@@ -486,14 +473,14 @@ QRadioButton {
              </widget>
             </item>
             <item>
-             <widget class="TextBox" name="textBoxEmeraldIVsMinFrame">
+             <widget class="PokeFinderForms::TextBox" name="textBoxEmeraldIVsMinFrame">
               <property name="text">
                <string notr="true">1000</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="TextBox" name="textBoxEmeraldIVsMaxFrame">
+             <widget class="PokeFinderForms::TextBox" name="textBoxEmeraldIVsMaxFrame">
               <property name="text">
                <string notr="true">5000</string>
               </property>
@@ -502,7 +489,7 @@ QRadioButton {
            </layout>
           </item>
           <item row="0" column="1" rowspan="3">
-           <widget class="IVFilter" name="ivFilterEmerald" native="true"/>
+           <widget class="PokeFinderForms::IVFilter" name="ivFilterEmerald" native="true"/>
           </item>
           <item row="1" column="0">
            <layout class="QGridLayout" name="gridLayout_4">
@@ -540,7 +527,7 @@ QRadioButton {
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="CheckList" name="comboBoxEmeraldHiddenPower"/>
+             <widget class="PokeFinderForms::CheckList" name="comboBoxEmeraldHiddenPower"/>
             </item>
             <item row="1" column="2">
              <widget class="QPushButton" name="pushButtonEmeraldAnyHiddenPower">
@@ -565,7 +552,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="3" column="0" colspan="2">
-           <widget class="EggSettings" name="eggSettingsEmerald" native="true"/>
+           <widget class="PokeFinderForms::EggSettings" name="eggSettingsEmerald" native="true"/>
           </item>
          </layout>
         </widget>
@@ -578,7 +565,7 @@ QRadioButton {
       </attribute>
       <layout class="QGridLayout" name="gridLayout_7">
        <item row="1" column="0" colspan="2">
-        <widget class="TableView" name="tableViewRS">
+        <widget class="QTableView" name="tableViewRS">
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
          </attribute>
@@ -604,7 +591,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="TextBox" name="textBoxRSSeedHeld">
+           <widget class="PokeFinderForms::TextBox" name="textBoxRSSeedHeld">
             <property name="text">
              <string notr="true">5A0</string>
             </property>
@@ -614,7 +601,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="TextBox" name="textBoxRSSeedPickup">
+           <widget class="PokeFinderForms::TextBox" name="textBoxRSSeedPickup">
             <property name="text">
              <string notr="true">5A0</string>
             </property>
@@ -631,7 +618,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="TextBox" name="textBoxRSMinHeld">
+           <widget class="PokeFinderForms::TextBox" name="textBoxRSMinHeld">
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -641,7 +628,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="TextBox" name="textBoxRSMaxHeld">
+           <widget class="PokeFinderForms::TextBox" name="textBoxRSMaxHeld">
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -658,7 +645,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="TextBox" name="textBoxRSMinPickup">
+           <widget class="PokeFinderForms::TextBox" name="textBoxRSMinPickup">
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -668,7 +655,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="TextBox" name="textBoxRSMaxPickup">
+           <widget class="PokeFinderForms::TextBox" name="textBoxRSMaxPickup">
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -718,7 +705,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="4" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxRSTID">
+           <widget class="PokeFinderForms::TextBox" name="textBoxRSTID">
             <property name="text">
              <string notr="true">12345</string>
             </property>
@@ -728,7 +715,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="5" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxRSSID">
+           <widget class="PokeFinderForms::TextBox" name="textBoxRSSID">
             <property name="text">
              <string notr="true">54321</string>
             </property>
@@ -760,7 +747,7 @@ QRadioButton {
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0" rowspan="7">
-           <widget class="IVFilter" name="ivFilterRS" native="true"/>
+           <widget class="PokeFinderForms::IVFilter" name="ivFilterRS" native="true"/>
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelRSGender">
@@ -822,7 +809,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="CheckList" name="comboBoxRSNature"/>
+           <widget class="PokeFinderForms::CheckList" name="comboBoxRSNature"/>
           </item>
           <item row="2" column="3">
            <widget class="QPushButton" name="pushButtonRSAnyNature">
@@ -845,7 +832,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="3" column="2">
-           <widget class="CheckList" name="comboBoxRSHiddenPower"/>
+           <widget class="PokeFinderForms::CheckList" name="comboBoxRSHiddenPower"/>
           </item>
           <item row="3" column="3">
            <widget class="QPushButton" name="pushButtonRSAnyHiddenPower">
@@ -940,7 +927,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="7" column="0" colspan="4">
-           <widget class="EggSettings" name="eggSettingsRS" native="true"/>
+           <widget class="PokeFinderForms::EggSettings" name="eggSettingsRS" native="true"/>
           </item>
          </layout>
         </widget>
@@ -972,14 +959,14 @@ QRadioButton {
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="TextBox" name="textBoxFRLGSeedHeld">
+           <widget class="PokeFinderForms::TextBox" name="textBoxFRLGSeedHeld">
             <property name="maxLength">
              <number>4</number>
             </property>
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="TextBox" name="textBoxFRLGSeedPickup">
+           <widget class="PokeFinderForms::TextBox" name="textBoxFRLGSeedPickup">
             <property name="maxLength">
              <number>4</number>
             </property>
@@ -993,7 +980,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="TextBox" name="textBoxFRLGMinHeld">
+           <widget class="PokeFinderForms::TextBox" name="textBoxFRLGMinHeld">
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -1003,7 +990,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="TextBox" name="textBoxFRLGMaxHeld">
+           <widget class="PokeFinderForms::TextBox" name="textBoxFRLGMaxHeld">
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -1020,7 +1007,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="TextBox" name="textBoxFRLGMinPickup">
+           <widget class="PokeFinderForms::TextBox" name="textBoxFRLGMinPickup">
             <property name="text">
              <string notr="true">1000</string>
             </property>
@@ -1030,7 +1017,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="TextBox" name="textBoxFRLGMaxPickup">
+           <widget class="PokeFinderForms::TextBox" name="textBoxFRLGMaxPickup">
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -1073,7 +1060,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="4" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxFRLGTID">
+           <widget class="PokeFinderForms::TextBox" name="textBoxFRLGTID">
             <property name="text">
              <string notr="true">12345</string>
             </property>
@@ -1090,7 +1077,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="5" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxFRLGSID">
+           <widget class="PokeFinderForms::TextBox" name="textBoxFRLGSID">
             <property name="text">
              <string notr="true">54321</string>
             </property>
@@ -1122,7 +1109,7 @@ QRadioButton {
          </property>
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="0" column="0" rowspan="7">
-           <widget class="IVFilter" name="ivFilterFRLG" native="true"/>
+           <widget class="PokeFinderForms::IVFilter" name="ivFilterFRLG" native="true"/>
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelFRLGGender">
@@ -1184,7 +1171,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="CheckList" name="comboBoxFRLGNature"/>
+           <widget class="PokeFinderForms::CheckList" name="comboBoxFRLGNature"/>
           </item>
           <item row="2" column="3">
            <widget class="QPushButton" name="pushButtonFRLGAnyNature">
@@ -1207,7 +1194,7 @@ QRadioButton {
            </widget>
           </item>
           <item row="3" column="2">
-           <widget class="CheckList" name="comboBoxFRLGHiddenPower"/>
+           <widget class="PokeFinderForms::CheckList" name="comboBoxFRLGHiddenPower"/>
           </item>
           <item row="3" column="3">
            <widget class="QPushButton" name="pushButtonFRLGAnyHiddenPower">
@@ -1302,13 +1289,13 @@ QRadioButton {
            </widget>
           </item>
           <item row="7" column="0" colspan="4">
-           <widget class="EggSettings" name="eggSettingsFRLG" native="true"/>
+           <widget class="PokeFinderForms::EggSettings" name="eggSettingsFRLG" native="true"/>
           </item>
          </layout>
         </widget>
        </item>
        <item row="1" column="0" colspan="2">
-        <widget class="TableView" name="tableViewFRLG">
+        <widget class="PokeFinderForms::TableView" name="tableViewFRLG">
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
          </attribute>
@@ -1322,33 +1309,30 @@ QRadioButton {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PokeFinderForms::TextBox</class>
-   <extends>QLineEdit</extends>
-   <header>Forms/Controls/TextBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>PokeFinderForms::TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>PokeFinderForms::IVFilter</class>
-   <extends>QWidget</extends>
-   <header>Forms/Controls/IVFilter.hpp</header>
-   <container>1</container>
+   <class>PokeFinderForms::TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>PokeFinderForms::CheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
-   <slots>
-    <slot>resetChecks()</slot>
-   </slots>
   </customwidget>
   <customwidget>
-   <class>EggSettings</class>
+   <class>PokeFinderForms::EggSettings</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/EggSettings.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PokeFinderForms::IVFilter</class>
+   <extends>QWidget</extends>
+   <header>Forms/Controls/IVFilter.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
@@ -1365,7 +1349,6 @@ QRadioButton {
   <tabstop>textBoxEmeraldSID</tabstop>
   <tabstop>comboBoxEmeraldGender</tabstop>
   <tabstop>comboBoxEmeraldAbility</tabstop>
-  <tabstop>pushButtonEmeraldAnyAbility</tabstop>
   <tabstop>comboBoxEmeraldNature</tabstop>
   <tabstop>pushButtonEmeraldAnyNature</tabstop>
   <tabstop>comboBoxEverstone</tabstop>
@@ -1447,12 +1430,12 @@ QRadioButton {
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1150</x>
+     <x>885</x>
      <y>253</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1069</x>
-     <y>251</y>
+     <x>804</x>
+     <y>253</y>
     </hint>
    </hints>
   </connection>
@@ -1463,12 +1446,12 @@ QRadioButton {
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1108</x>
-     <y>210</y>
+     <x>1093</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1057</x>
-     <y>210</y>
+     <x>869</x>
+     <y>203</y>
     </hint>
    </hints>
   </connection>
@@ -1479,12 +1462,12 @@ QRadioButton {
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1106</x>
-     <y>244</y>
+     <x>1093</x>
+     <y>232</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1067</x>
-     <y>242</y>
+     <x>869</x>
+     <y>232</y>
     </hint>
    </hints>
   </connection>
@@ -1495,12 +1478,12 @@ QRadioButton {
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1158</x>
-     <y>222</y>
+     <x>1093</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1032</x>
-     <y>219</y>
+     <x>869</x>
+     <y>203</y>
     </hint>
    </hints>
   </connection>
@@ -1511,14 +1494,17 @@ QRadioButton {
    <slot>resetChecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1120</x>
-     <y>250</y>
+     <x>1093</x>
+     <y>232</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1068</x>
-     <y>241</y>
+     <x>869</x>
+     <y>232</y>
     </hint>
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>emeraldAnyAbility()</slot>
+ </slots>
 </ui>

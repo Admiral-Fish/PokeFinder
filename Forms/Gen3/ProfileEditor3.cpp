@@ -86,12 +86,18 @@ namespace PokeFinderForms
         ui->comboBoxLanguage->setItemData(4, PokeFinderCore::Language::German);
         ui->comboBoxLanguage->setItemData(5, PokeFinderCore::Language::Japanese);
 
+        connect(ui->pushButtonOkay, &QPushButton::clicked, this, &ProfileEditor3::okay);
+        connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
+            &ProfileEditor3::versionIndexChanged);
+
         QSettings setting;
         if (setting.contains("profileEditor3/geometry"))
+        {
             this->restoreGeometry(setting.value("profileEditor3/geometry").toByteArray());
+        }
     }
 
-    void ProfileEditor3::on_pushButtonAccept_clicked()
+    void ProfileEditor3::okay()
     {
         QString input = ui->lineEditProfile->text().trimmed();
         if (input.isEmpty())
@@ -111,8 +117,10 @@ namespace PokeFinderForms
         done(QDialog::Accepted);
     }
 
-    void ProfileEditor3::on_comboBoxVersion_currentIndexChanged(int /*index*/)
+    void ProfileEditor3::versionIndexChanged(int index)
     {
+        (void)index;
+
         bool flag = ui->comboBoxVersion->currentData().toInt() & PokeFinderCore::Game::RS;
         ui->checkBoxDeadBattery->setVisible(flag);
         if (!flag)

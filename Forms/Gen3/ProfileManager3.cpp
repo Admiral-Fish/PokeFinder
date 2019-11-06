@@ -51,12 +51,18 @@ namespace PokeFinderForms
         model->addItems(PokeFinderCore::Profile3::loadProfileList());
         ui->tableView->setModel(model);
 
+        connect(ui->pushButtonNew, &QPushButton::clicked, this, &ProfileManager3::create);
+        connect(ui->pushButtonEdit, &QPushButton::clicked, this, &ProfileManager3::edit);
+        connect(ui->pushButtonDelete, &QPushButton::clicked, this, &ProfileManager3::remove);
+
         QSettings setting;
         if (setting.contains("profileManager3/geometry"))
+        {
             this->restoreGeometry(setting.value("profileManager3/geometry").toByteArray());
+        }
     }
 
-    void ProfileManager3::on_pushButtonNew_clicked()
+    void ProfileManager3::create()
     {
         QScopedPointer<ProfileEditor3> dialog(new ProfileEditor3);
         if (dialog->exec() == QDialog::Accepted)
@@ -68,7 +74,7 @@ namespace PokeFinderForms
         }
     }
 
-    void ProfileManager3::on_pushButtonEdit_clicked()
+    void ProfileManager3::edit()
     {
         int row = ui->tableView->currentIndex().row();
         if (row < 0)
@@ -89,7 +95,7 @@ namespace PokeFinderForms
         }
     }
 
-    void ProfileManager3::on_pushButtonDelete_clicked()
+    void ProfileManager3::remove()
     {
         int row = ui->tableView->currentIndex().row();
         if (row < 0)

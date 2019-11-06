@@ -48,7 +48,7 @@ namespace PokeFinderForms
         setupModels();
 
         ui->textBoxSeed->setText(QString::number(seed, 16));
-        on_pushButtonFind_clicked();
+        find();
     }
 
     SeedToTime3::~SeedToTime3()
@@ -72,12 +72,18 @@ namespace PokeFinderForms
         model->setHorizontalHeaderLabels(QStringList() << tr("Time") << tr("Frame"));
         ui->tableView->setModel(model);
 
+        connect(ui->pushButtonFind, &QPushButton::clicked, this, &SeedToTime3::find);
+
         QSettings setting;
         setting.beginGroup("seedToTime3");
         if (setting.contains("year"))
+        {
             ui->textBoxYear->setText(setting.value("year").toString());
+        }
         if (setting.contains("geometry"))
+        {
             this->restoreGeometry(setting.value("geometry").toByteArray());
+        }
         setting.endGroup();
     }
 
@@ -150,7 +156,7 @@ namespace PokeFinderForms
         }
     }
 
-    void SeedToTime3::on_pushButtonFind_clicked()
+    void SeedToTime3::find()
     {
         u32 seed = ui->textBoxSeed->getUInt();
         u32 year = ui->textBoxYear->getUInt();

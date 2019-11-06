@@ -44,12 +44,12 @@ namespace PokeFinderForms
         QVector<u16> data;
 
         void setupModels();
-        void generate(u32 seed);
+        void search(u32 seed);
         QStringList getPatterns(u32 seed);
         u8 getTarget(u8 index);
 
     private slots:
-        void on_pushButtonGenerate_clicked();
+        void generate();
     };
 }
 

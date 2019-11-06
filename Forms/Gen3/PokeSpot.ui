@@ -40,7 +40,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="TextBox" name="textBoxSeed">
+       <widget class="PokeFinderForms::TextBox" name="textBoxSeed">
         <property name="maxLength">
          <number>8</number>
         </property>
@@ -54,7 +54,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="TextBox" name="textBoxStartingFrame">
+       <widget class="PokeFinderForms::TextBox" name="textBoxStartingFrame">
         <property name="text">
          <string notr="true">1</string>
         </property>
@@ -71,7 +71,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="TextBox" name="textBoxMaxResults">
+       <widget class="PokeFinderForms::TextBox" name="textBoxMaxResults">
         <property name="text">
          <string notr="true">100000</string>
         </property>
@@ -88,7 +88,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="TextBox" name="textBoxTID">
+       <widget class="PokeFinderForms::TextBox" name="textBoxTID">
         <property name="text">
          <string notr="true">12345</string>
         </property>
@@ -105,7 +105,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="TextBox" name="textBoxSID">
+       <widget class="PokeFinderForms::TextBox" name="textBoxSID">
         <property name="text">
          <string notr="true">54321</string>
         </property>
@@ -188,19 +188,6 @@
         </item>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QPushButton" name="pushButtonAnyAbility">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Any</string>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelNature">
         <property name="text">
@@ -209,7 +196,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="CheckList" name="comboBoxNature"/>
+       <widget class="PokeFinderForms::CheckList" name="comboBoxNature"/>
       </item>
       <item row="2" column="2">
        <widget class="QPushButton" name="pushButtonAnyNature">
@@ -285,23 +272,7 @@
        </widget>
       </item>
       <item row="5" column="1">
-       <widget class="CheckList" name="comboBoxSpotType">
-        <item>
-         <property name="text">
-          <string>Common</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Uncommon</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Rare</string>
-         </property>
-        </item>
-       </widget>
+       <widget class="PokeFinderForms::CheckList" name="comboBoxSpotType"/>
       </item>
       <item row="5" column="2">
        <widget class="QPushButton" name="pushButtonAnySpotType">
@@ -320,11 +291,7 @@
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
-    <widget class="TableView" name="tableView">
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-    </widget>
+    <widget class="QTableView" name="tableView"/>
    </item>
   </layout>
  </widget>
@@ -335,17 +302,9 @@
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>PokeFinderForms::TableView</class>
-   <extends>QTableView</extends>
-   <header>Forms/Controls/TableView.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>PokeFinderForms::CheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
-   <slots>
-    <slot>resetChecks()</slot>
-   </slots>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -356,7 +315,6 @@
   <tabstop>textBoxSID</tabstop>
   <tabstop>comboBoxGender</tabstop>
   <tabstop>comboBoxAbility</tabstop>
-  <tabstop>pushButtonAnyAbility</tabstop>
   <tabstop>comboBoxNature</tabstop>
   <tabstop>pushButtonAnyNature</tabstop>
   <tabstop>comboBoxGenderRatio</tabstop>

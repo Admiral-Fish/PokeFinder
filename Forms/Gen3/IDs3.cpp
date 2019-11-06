@@ -80,12 +80,21 @@ namespace PokeFinderForms
         rs->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
         ui->tableViewRS->setModel(rs);
 
+        connect(ui->pushButtonXDColoSearch, &QPushButton::clicked, this, &IDs3::xdColoSearch);
+        connect(ui->pushButtonFRLGESearch, &QPushButton::clicked, this, &IDs3::frlgeSearch);
+        connect(ui->pushButtonRSSearch, &QPushButton::clicked, this, &IDs3::rsSearch);
+        connect(ui->checkBoxRSDeadBattery, &QCheckBox::clicked, this, &IDs3::rsDeadBattery);
+        connect(ui->radioButtonRSDate, &QRadioButton::toggled, this, &IDs3::rsDate);
+        connect(ui->radioButtonRSInitialSeed, &QRadioButton::toggled, this, &IDs3::rsInitialSeed);
+
         QSettings setting;
         if (setting.contains("ids3/geometry"))
+        {
             this->restoreGeometry(setting.value("ids3/geometry").toByteArray());
+        }
     }
 
-    void IDs3::on_pushButtonFRLGESearch_clicked()
+    void IDs3::xdColoSearch()
     {
         frlge->removeRows(0, frlge->rowCount());
 
@@ -114,7 +123,7 @@ namespace PokeFinderForms
         }
     }
 
-    void IDs3::on_pushButtonRSSearch_clicked()
+    void IDs3::frlgeSearch()
     {
         rs->removeRows(0, rs->rowCount());
 
@@ -158,7 +167,7 @@ namespace PokeFinderForms
         }
     }
 
-    void IDs3::on_pushButtonXDColoSearch_clicked()
+    void IDs3::rsSearch()
     {
         xdcolo->removeRows(0, xdcolo->rowCount());
 
@@ -191,7 +200,7 @@ namespace PokeFinderForms
         }
     }
 
-    void IDs3::on_checkBoxRSDeadBattery_clicked(bool checked)
+    void IDs3::rsDeadBattery(bool checked)
     {
         ui->radioButtonRSDate->setEnabled(!checked);
         ui->radioButtonRSInitialSeed->setEnabled(!checked);
@@ -199,7 +208,7 @@ namespace PokeFinderForms
         ui->textBoxRSInitialSeed->setEnabled(!checked ? ui->radioButtonRSInitialSeed->isChecked() : false);
     }
 
-    void IDs3::on_radioButtonRSDate_toggled(bool checked) { ui->dateTimeEdit->setEnabled(checked); }
+    void IDs3::rsDate(bool checked) { ui->dateTimeEdit->setEnabled(checked); }
 
-    void IDs3::on_radioButtonRSInitialSeed_toggled(bool checked) { ui->textBoxRSInitialSeed->setEnabled(checked); }
+    void IDs3::rsInitialSeed(bool checked) { ui->textBoxRSInitialSeed->setEnabled(checked); }
 }

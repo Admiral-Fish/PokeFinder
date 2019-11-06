@@ -49,7 +49,7 @@ namespace PokeFinderForms
         void seedToTime(u32 seed, u32 year);
 
     private slots:
-        void on_pushButtonFind_clicked();
+        void find();
     };
 }
 

@@ -48,8 +48,7 @@ namespace PokeFinderForms
         void setupModels();
 
     private slots:
-        void on_pushButtonGenerate_clicked();
-        void on_pushButtonAnyAbility_clicked();
+        void generate();
     };
 }
 

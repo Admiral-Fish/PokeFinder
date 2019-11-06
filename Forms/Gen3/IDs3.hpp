@@ -46,12 +46,12 @@ namespace PokeFinderForms
         void setupModels();
 
     private slots:
-        void on_pushButtonXDColoSearch_clicked();
-        void on_pushButtonFRLGESearch_clicked();
-        void on_pushButtonRSSearch_clicked();
-        void on_checkBoxRSDeadBattery_clicked(bool checked);
-        void on_radioButtonRSDate_toggled(bool checked);
-        void on_radioButtonRSInitialSeed_toggled(bool checked);
+        void xdColoSearch();
+        void frlgeSearch();
+        void rsSearch();
+        void rsDeadBattery(bool checked);
+        void rsDate(bool checked);
+        void rsInitialSeed(bool checked);
     };
 }
 
