@@ -78,7 +78,7 @@ namespace PokeFinderCore
 
         for (u8 i = 1; i < 8; i++)
         {
-            state[i & 3] ^= 0x6c078965 * (state[(i - 1) & 3] ^ (state[(i - 1) & 3] >> 30)) + 1;
+            state[i & 3] ^= 0x6c078965 * (state[(i - 1) & 3] ^ (state[(i - 1) & 3] >> 30)) + i;
         }
 
         periodCertification();
@@ -91,7 +91,7 @@ namespace PokeFinderCore
 
     void TinyMT::periodCertification()
     {
-        if (state[0] == 0 && state[1] == 0 && state[2] == 0 && state[3] == 0)
+        if ((state[0] & TINYMT32MASK) == 0 && state[1] == 0 && state[2] == 0 && state[3] == 0)
         {
             state[0] = 'T';
             state[1] = 'I';
