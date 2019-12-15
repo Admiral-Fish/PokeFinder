@@ -23,78 +23,75 @@
 #include <QActionGroup>
 #include <QMainWindow>
 
-namespace PokeFinderForms
+namespace Ui
 {
-    namespace Ui
-    {
-        class MainWindow;
-    }
-
-    class Eggs3;
-    class GameCube;
-    class IDs3;
-    class Stationary3;
-    class Wild3;
-    class Eggs4;
-    class IDs4;
-    class Stationary4;
-    class Wild4;
-
-    class MainWindow : public QMainWindow
-    {
-        Q_OBJECT
-    public:
-        explicit MainWindow(QWidget *parent = nullptr);
-        ~MainWindow() override;
-
-    private:
-        Ui::MainWindow *ui;
-        QActionGroup *langGroup {};
-        QActionGroup *styleGroup {};
-        QString currentLanguage;
-        QString currentStyle;
-
-        Stationary3 *stationary3 {};
-        Wild3 *wild3 {};
-        GameCube *gamecube {};
-        Eggs3 *egg3 {};
-        IDs3 *ids3 {};
-        Stationary4 *stationary4 {};
-        Wild4 *wild4 {};
-        Eggs4 *egg4 {};
-        IDs4 *ids4 {};
-
-        void setupModels();
-        void checkUpdates();
-
-    private slots:
-        void slotLanguageChanged(QAction *action);
-        void slotStyleChanged(QAction *action);
-        void updateProfiles(int num);
-        void openStationary3();
-        void openWild3();
-        void openGameCube();
-        void openEgg3();
-        void openIDs3();
-        void openGameCubeRTC();
-        void openGameCubeSeedFinder();
-        void openIVtoPID3();
-        void openJirachiPattern();
-        void openPIDtoIV();
-        void openPokeSpot();
-        void openSeedtoTime3();
-        void openSpindaPainter();
-        void openStationary4();
-        void openWild4();
-        void openEgg4();
-        void openIDs4();
-        void openIVtoPID4();
-        void openSeedtoTime4();
-        void openSIDFromChainedShiny();
-        void openEncounterLookup();
-        void openIVCalculator();
-        void openResearcher();
-    };
+    class MainWindow;
 }
+
+class Eggs3;
+class GameCube;
+class IDs3;
+class Stationary3;
+class Wild3;
+class Eggs4;
+class IDs4;
+class Stationary4;
+class Wild4;
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+public:
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow() override;
+
+private:
+    Ui::MainWindow *ui;
+    QActionGroup *langGroup {};
+    QActionGroup *styleGroup {};
+    QString currentLanguage;
+    QString currentStyle;
+
+    Stationary3 *stationary3 {};
+    Wild3 *wild3 {};
+    GameCube *gamecube {};
+    Eggs3 *egg3 {};
+    IDs3 *ids3 {};
+    Stationary4 *stationary4 {};
+    Wild4 *wild4 {};
+    Eggs4 *egg4 {};
+    IDs4 *ids4 {};
+
+    void setupModels();
+    void checkUpdates();
+
+private slots:
+    void slotLanguageChanged(QAction *action);
+    void slotStyleChanged(QAction *action);
+    void updateProfiles(int num);
+    void openStationary3();
+    void openWild3();
+    void openGameCube();
+    void openEgg3();
+    void openIDs3();
+    void openGameCubeRTC();
+    void openGameCubeSeedFinder();
+    void openIVtoPID3();
+    void openJirachiPattern();
+    void openPIDtoIV();
+    void openPokeSpot();
+    void openSeedtoTime3();
+    void openSpindaPainter();
+    void openStationary4();
+    void openWild4();
+    void openEgg4();
+    void openIDs4();
+    void openIVtoPID4();
+    void openSeedtoTime4();
+    void openSIDFromChainedShiny();
+    void openEncounterLookup();
+    void openIVCalculator();
+    void openResearcher();
+};
 
 #endif // MAINWINDOW_HPP

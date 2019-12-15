@@ -23,60 +23,54 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <QMenu>
 
+class Searcher3Model;
+class Stationary3Model;
+
 namespace PokeFinderCore
 {
     class Frame3;
 }
 
-namespace PokeFinderModels
+namespace Ui
 {
-    class Searcher3Model;
-    class Stationary3Model;
+    class GameCube;
 }
 
-namespace PokeFinderForms
+class GameCube : public QWidget
 {
-    namespace Ui
-    {
-        class GameCube;
-    }
+    Q_OBJECT
+signals:
+    void alertProfiles(int);
 
-    class GameCube : public QWidget
-    {
-        Q_OBJECT
-    signals:
-        void alertProfiles(int);
+public:
+    explicit GameCube(QWidget *parent = nullptr);
+    ~GameCube() override;
+    void updateProfiles();
 
-    public:
-        explicit GameCube(QWidget *parent = nullptr);
-        ~GameCube() override;
-        void updateProfiles();
+private:
+    Ui::GameCube *ui;
+    Searcher3Model *searcherModel {};
+    Stationary3Model *generatorModel {};
+    QVector<PokeFinderCore::Profile3> profiles;
+    QMenu *generatorMenu {};
+    QMenu *searcherMenu {};
 
-    private:
-        Ui::GameCube *ui;
-        PokeFinderModels::Searcher3Model *searcherModel {};
-        PokeFinderModels::Stationary3Model *generatorModel {};
-        QVector<PokeFinderCore::Profile3> profiles;
-        QMenu *generatorMenu {};
-        QMenu *searcherMenu {};
+    void setupModels();
 
-        void setupModels();
-
-    private slots:
-        void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
-        void refreshProfiles();
-        void generate();
-        void search();
-        void profilesIndexChanged(int index);
-        void generatorMethodIndexChanged(int index);
-        void generatorShadowIndexChanged(int index);
-        void searcherMethodIndexChanged(int index);
-        void tableViewGeneratorContextMenu(QPoint pos);
-        void tableViewSearcherContextMenu(QPoint pos);
-        void seedToTime();
-        void copySeedToClipboard();
-        void profileManager();
-    };
-}
+private slots:
+    void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
+    void refreshProfiles();
+    void generate();
+    void search();
+    void profilesIndexChanged(int index);
+    void generatorMethodIndexChanged(int index);
+    void generatorShadowIndexChanged(int index);
+    void searcherMethodIndexChanged(int index);
+    void tableViewGeneratorContextMenu(QPoint pos);
+    void tableViewSearcherContextMenu(QPoint pos);
+    void seedToTime();
+    void copySeedToClipboard();
+    void profileManager();
+};
 
 #endif // GAMECUBE_HPP

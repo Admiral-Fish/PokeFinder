@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PokeFinderForms::ProfileEditor4</class>
+ <class>ProfileEditor4</class>
  <widget class="QDialog" name="ProfileEditor4">
   <property name="geometry">
    <rect>

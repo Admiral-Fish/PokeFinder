@@ -25,75 +25,69 @@
 #include <QMenu>
 #include <QModelIndex>
 
+class Searcher3Model;
+class Wild3Model;
+
 namespace PokeFinderCore
 {
     class Frame3;
 }
 
-namespace PokeFinderModels
+namespace Ui
 {
-    class Searcher3Model;
-    class Wild3Model;
+    class Wild3;
 }
 
-namespace PokeFinderForms
+class Wild3 : public QWidget
 {
-    namespace Ui
-    {
-        class Wild3;
-    }
+    Q_OBJECT
+signals:
+    void alertProfiles(int);
 
-    class Wild3 : public QWidget
-    {
-        Q_OBJECT
-    signals:
-        void alertProfiles(int);
+public:
+    explicit Wild3(QWidget *parent = nullptr);
+    ~Wild3() override;
+    void updateProfiles();
 
-    public:
-        explicit Wild3(QWidget *parent = nullptr);
-        ~Wild3() override;
-        void updateProfiles();
+private:
+    Ui::Wild3 *ui;
+    QVector<PokeFinderCore::Profile3> profiles;
+    Searcher3Model *searcherModel {};
+    Wild3Model *generatorModel {};
+    QMenu *generatorMenu {};
+    QMenu *searcherMenu {};
+    QModelIndex lastIndex;
+    QModelIndex targetFrame;
+    QVector<PokeFinderCore::EncounterArea3> encounterGenerator;
+    QVector<PokeFinderCore::EncounterArea3> encounterSearcher;
 
-    private:
-        Ui::Wild3 *ui;
-        QVector<PokeFinderCore::Profile3> profiles;
-        PokeFinderModels::Searcher3Model *searcherModel {};
-        PokeFinderModels::Wild3Model *generatorModel {};
-        QMenu *generatorMenu {};
-        QMenu *searcherMenu {};
-        QModelIndex lastIndex;
-        QModelIndex targetFrame;
-        QVector<PokeFinderCore::EncounterArea3> encounterGenerator;
-        QVector<PokeFinderCore::EncounterArea3> encounterSearcher;
+    void setupModels();
+    void updateLocationsGenerator();
+    void updateLocationsSearcher();
+    void updatePokemonGenerator();
+    void updatePokemonSearcher();
 
-        void setupModels();
-        void updateLocationsGenerator();
-        void updateLocationsSearcher();
-        void updatePokemonGenerator();
-        void updatePokemonSearcher();
-
-    private slots:
-        void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
-        void refreshProfiles();
-        void generate();
-        void search();
-        void profilesIndexChanged(int index);
-        void tableViewGeneratorContextMenu(QPoint pos);
-        void tableViewSearcherContextMenu(QPoint pos);
-        void setTargetFrameGenerator();
-        void jumpToTargetGenerator();
-        void centerFramesAndSetTargetGenerator(u32 centerFrames);
-        void seedToTime();
-        void copySeedToClipboard();
-        void generatorLead();
-        void generatorEncounterIndexChanged(int index);
-        void searcherEncounterIndexChanged(int index);
-        void generatorLocationIndexChanged(int index);
-        void searcherLocationIndexChanged(int index);
-        void generatorPokemonIndexChanged(int index);
-        void searcherPokemonIndexChanged(int index);
-        void profileManager();
-    };
-}
+private slots:
+    void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
+    void refreshProfiles();
+    void generate();
+    void search();
+    void profilesIndexChanged(int index);
+    void tableViewGeneratorContextMenu(QPoint pos);
+    void tableViewSearcherContextMenu(QPoint pos);
+    void setTargetFrameGenerator();
+    void jumpToTargetGenerator();
+    void centerFramesAndSetTargetGenerator(u32 centerFrames);
+    void seedToTime();
+    void copySeedToClipboard();
+    void generatorLead();
+    void generatorEncounterIndexChanged(int index);
+    void searcherEncounterIndexChanged(int index);
+    void generatorLocationIndexChanged(int index);
+    void searcherLocationIndexChanged(int index);
+    void generatorPokemonIndexChanged(int index);
+    void searcherPokemonIndexChanged(int index);
+    void profileManager();
+};
 
 #endif // WILD3_HPP

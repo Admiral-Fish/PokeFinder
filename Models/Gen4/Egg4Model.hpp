@@ -29,57 +29,53 @@ namespace PokeFinderCore
     enum Method : u8;
 }
 
-namespace PokeFinderModels
+class Egg4GeneratorModel : public TableModel<PokeFinderCore::Frame4>
 {
-    class Egg4GeneratorModel : public TableModel<PokeFinderCore::Frame4>
-    {
-        Q_OBJECT
-    public:
-        Egg4GeneratorModel(QObject *parent, PokeFinderCore::Method method);
-        void setMethod(PokeFinderCore::Method method);
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-        QVariant data(const QModelIndex &index, int role) const override;
-        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    Q_OBJECT
+public:
+    Egg4GeneratorModel(QObject *parent, PokeFinderCore::Method method);
+    void setMethod(PokeFinderCore::Method method);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    public slots:
-        void toggleInheritance(bool flag);
+public slots:
+    void toggleInheritance(bool flag);
 
-    private:
-        PokeFinderCore::Method method;
-        bool showInheritance;
+private:
+    PokeFinderCore::Method method;
+    bool showInheritance;
 
-        QStringList header1 = { tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender") };
-        QStringList header2 = { tr("Frame"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"),
-            tr("Spe"), tr("Hidden"), tr("Power") };
-        QStringList header3 = { tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"),
-            tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power") };
-    };
+    QStringList header1 = { tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender") };
+    QStringList header2 = { tr("Frame"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"),
+        tr("Hidden"), tr("Power") };
+    QStringList header3 = { tr("Frame"), tr("Call"), tr("Chatot"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"),
+        tr("Spe"), tr("Hidden"), tr("Power") };
+};
 
-    class Egg4SearcherModel : public TableModel<PokeFinderCore::Frame4>
-    {
-        Q_OBJECT
+class Egg4SearcherModel : public TableModel<PokeFinderCore::Frame4>
+{
+    Q_OBJECT
 
-    public:
-        Egg4SearcherModel(QObject *parent, PokeFinderCore::Method method);
-        void setMethod(PokeFinderCore::Method method);
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-        QVariant data(const QModelIndex &index, int role) const override;
-        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+public:
+    Egg4SearcherModel(QObject *parent, PokeFinderCore::Method method);
+    void setMethod(PokeFinderCore::Method method);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    public slots:
-        void toggleInheritance(bool flag);
+public slots:
+    void toggleInheritance(bool flag);
 
-    private:
-        PokeFinderCore::Method method;
-        bool showInheritance;
+private:
+    PokeFinderCore::Method method;
+    bool showInheritance;
 
-        QStringList header1 = { tr("Seed"), tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender") };
-        QStringList header2 = { tr("Seed"), tr("Frame"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"),
-            tr("Spe"), tr("Hidden"), tr("Power") };
-        QStringList header3
-            = { tr("Seed"), tr("PID Frame"), tr("IV Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
-                  tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
-    };
-}
+    QStringList header1 = { tr("Seed"), tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("Gender") };
+    QStringList header2 = { tr("Seed"), tr("Frame"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"),
+        tr("Hidden"), tr("Power") };
+    QStringList header3 = { tr("Seed"), tr("PID Frame"), tr("IV Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"),
+        tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
+};
 
 #endif // EGG4MODEL_HPP

@@ -24,65 +24,59 @@
 #include <QMenu>
 #include <QModelIndex>
 
+class Searcher3Model;
+class Stationary3Model;
+
 namespace PokeFinderCore
 {
     class Frame3;
 }
 
-namespace PokeFinderModels
+namespace Ui
 {
-    class Searcher3Model;
-    class Stationary3Model;
+    class Stationary3;
 }
 
-namespace PokeFinderForms
+class Stationary3 : public QWidget
 {
-    namespace Ui
-    {
-        class Stationary3;
-    }
+    Q_OBJECT
+signals:
+    void alertProfiles(int);
 
-    class Stationary3 : public QWidget
-    {
-        Q_OBJECT
-    signals:
-        void alertProfiles(int);
+public:
+    explicit Stationary3(QWidget *parent = nullptr);
+    ~Stationary3() override;
+    void updateProfiles();
 
-    public:
-        explicit Stationary3(QWidget *parent = nullptr);
-        ~Stationary3() override;
-        void updateProfiles();
+private:
+    Ui::Stationary3 *ui;
+    Searcher3Model *searcherModel {};
+    Stationary3Model *generatorModel {};
+    QVector<PokeFinderCore::Profile3> profiles;
+    QMenu *generatorMenu {};
+    QMenu *searcherMenu {};
+    QModelIndex lastIndex;
+    QModelIndex targetFrame;
 
-    private:
-        Ui::Stationary3 *ui;
-        PokeFinderModels::Searcher3Model *searcherModel {};
-        PokeFinderModels::Stationary3Model *generatorModel {};
-        QVector<PokeFinderCore::Profile3> profiles;
-        QMenu *generatorMenu {};
-        QMenu *searcherMenu {};
-        QModelIndex lastIndex;
-        QModelIndex targetFrame;
+    void setupModels();
 
-        void setupModels();
+public slots:
+    void moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
 
-    public slots:
-        void moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-
-    private slots:
-        void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
-        void refreshProfiles();
-        void generate();
-        void search();
-        void profilesIndexChanged(int index);
-        void tableViewGeneratorContextMenu(QPoint pos);
-        void tableViewSearcherContextMenu(QPoint pos);
-        void setTargetFrameGenerator();
-        void jumpToTargetGenerator();
-        void centerFramesAndSetTargetGenerator(u32 centerFrames);
-        void seedToTime();
-        void copySeedToClipboard();
-        void profileManager();
-    };
-}
+private slots:
+    void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
+    void refreshProfiles();
+    void generate();
+    void search();
+    void profilesIndexChanged(int index);
+    void tableViewGeneratorContextMenu(QPoint pos);
+    void tableViewSearcherContextMenu(QPoint pos);
+    void setTargetFrameGenerator();
+    void jumpToTargetGenerator();
+    void centerFramesAndSetTargetGenerator(u32 centerFrames);
+    void seedToTime();
+    void copySeedToClipboard();
+    void profileManager();
+};
 
 #endif // STATIONARY3_H

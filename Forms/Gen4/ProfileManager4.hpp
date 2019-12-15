@@ -22,39 +22,33 @@
 
 #include <QWidget>
 
-namespace PokeFinderModels
+class Profile4Model;
+
+namespace Ui
 {
-    class Profile4Model;
+    class ProfileManager4;
 }
 
-namespace PokeFinderForms
+class ProfileManager4 : public QWidget
 {
-    namespace Ui
-    {
-        class ProfileManager4;
-    }
+    Q_OBJECT
+signals:
+    void updateProfiles();
 
-    class ProfileManager4 : public QWidget
-    {
-        Q_OBJECT
-    signals:
-        void updateProfiles();
+public:
+    explicit ProfileManager4(QWidget *parent = nullptr);
+    ~ProfileManager4() override;
 
-    public:
-        explicit ProfileManager4(QWidget *parent = nullptr);
-        ~ProfileManager4() override;
+private:
+    Ui::ProfileManager4 *ui;
+    Profile4Model *model {};
 
-    private:
-        Ui::ProfileManager4 *ui;
-        PokeFinderModels::Profile4Model *model {};
+    void setupModels();
 
-        void setupModels();
-
-    private slots:
-        void create();
-        void edit();
-        void remove();
-    };
-}
+private slots:
+    void create();
+    void edit();
+    void remove();
+};
 
 #endif // PROFILEMANAGER4_HPP

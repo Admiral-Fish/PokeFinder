@@ -20,260 +20,257 @@
 #include "Stationary4Model.hpp"
 #include <Core/Util/TableUtility.hpp>
 
-namespace PokeFinderModels
+Stationary4Model::Stationary4Model(QObject *parent, PokeFinderCore::Method method)
+    : TableModel<PokeFinderCore::Frame4>(parent)
 {
-    Stationary4Model::Stationary4Model(QObject *parent, PokeFinderCore::Method method)
-        : TableModel<PokeFinderCore::Frame4>(parent)
-    {
-        this->method = method;
-    }
+    this->method = method;
+}
 
-    void Stationary4Model::setMethod(PokeFinderCore::Method method)
-    {
-        this->method = method;
-        emit headerDataChanged(Qt::Horizontal, 0, columnCount());
-    }
+void Stationary4Model::setMethod(PokeFinderCore::Method method)
+{
+    this->method = method;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
+}
 
-    int Stationary4Model::columnCount(const QModelIndex & /*parent*/) const
+int Stationary4Model::columnCount(const QModelIndex & /*parent*/) const
+{
+    switch (method)
+    {
+    case PokeFinderCore::Method::Method1:
+    case PokeFinderCore::Method::MethodK:
+        return 16;
+    case PokeFinderCore::Method::MethodJ:
+        return 15;
+    case PokeFinderCore::Method::WondercardIVs:
+        return 11;
+    default:
+        return 0;
+    }
+}
+
+QVariant Stationary4Model::data(const QModelIndex &index, int role) const
+{
+    if (role == Qt::DisplayRole)
+    {
+        auto frame = model.at(index.row());
+        switch (method)
+        {
+        case PokeFinderCore::Method::Method1:
+            switch (index.column())
+            {
+            case 0:
+                return frame.getFrame();
+            case 1:
+                return frame.getCall();
+            case 2:
+                return frame.chatotPitch();
+            case 3:
+                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            case 4:
+                return frame.getShinyString();
+            case 5:
+                return frame.getNatureString();
+            case 6:
+                return frame.getAbility();
+            case 7:
+                return frame.getIV(0);
+            case 8:
+                return frame.getIV(1);
+            case 9:
+                return frame.getIV(2);
+            case 10:
+                return frame.getIV(3);
+            case 11:
+                return frame.getIV(4);
+            case 12:
+                return frame.getIV(5);
+            case 13:
+                return frame.getPowerString();
+            case 14:
+                return frame.getPower();
+            case 15:
+                return frame.getGenderString();
+            }
+        case PokeFinderCore::Method::MethodJ:
+            switch (index.column())
+            {
+            case 0:
+                return frame.getFrame();
+            case 1:
+                return frame.chatotPitch();
+            case 2:
+                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            case 3:
+                return frame.getShinyString();
+            case 4:
+                return frame.getNatureString();
+            case 5:
+                return frame.getAbility();
+            case 6:
+                return frame.getIV(0);
+            case 7:
+                return frame.getIV(1);
+            case 8:
+                return frame.getIV(2);
+            case 9:
+                return frame.getIV(3);
+            case 10:
+                return frame.getIV(4);
+            case 11:
+                return frame.getIV(5);
+            case 12:
+                return frame.getPowerString();
+            case 13:
+                return frame.getPower();
+            case 14:
+                return frame.getGenderString();
+            }
+        case PokeFinderCore::Method::MethodK:
+            switch (index.column())
+            {
+            case 0:
+                return frame.getFrame();
+            case 1:
+                return frame.getCall();
+            case 2:
+                return frame.chatotPitch();
+            case 3:
+                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            case 4:
+                return frame.getShinyString();
+            case 5:
+                return frame.getNatureString();
+            case 6:
+                return frame.getAbility();
+            case 7:
+                return frame.getIV(0);
+            case 8:
+                return frame.getIV(1);
+            case 9:
+                return frame.getIV(2);
+            case 10:
+                return frame.getIV(3);
+            case 11:
+                return frame.getIV(4);
+            case 12:
+                return frame.getIV(5);
+            case 13:
+                return frame.getPowerString();
+            case 14:
+                return frame.getPower();
+            case 15:
+                return frame.getGenderString();
+            }
+        case PokeFinderCore::Method::WondercardIVs:
+            switch (index.column())
+            {
+            case 0:
+                return frame.getFrame();
+            case 1:
+                return frame.getCall();
+            case 2:
+                return frame.chatotPitch();
+            case 3:
+                return frame.getIV(0);
+            case 4:
+                return frame.getIV(1);
+            case 5:
+                return frame.getIV(2);
+            case 6:
+                return frame.getIV(3);
+            case 7:
+                return frame.getIV(4);
+            case 8:
+                return frame.getIV(5);
+            case 9:
+                return frame.getPowerString();
+            case 10:
+                return frame.getPower();
+            }
+        default:
+            break;
+        }
+    }
+    else if (role == Qt::FontRole)
+    {
+        auto frame = model.at(index.row());
+        switch (method)
+        {
+        case PokeFinderCore::Method::Method1:
+        case PokeFinderCore::Method::MethodJ:
+            switch (index.column())
+            {
+            case 7:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
+            case 8:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
+            case 9:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
+            case 10:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
+            case 11:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
+            case 12:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
+            }
+            break;
+        case PokeFinderCore::Method::MethodK:
+            switch (index.column())
+            {
+            case 8:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
+            case 9:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
+            case 10:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
+            case 11:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
+            case 12:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
+            case 13:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
+            }
+            break;
+        case PokeFinderCore::Method::WondercardIVs:
+            switch (index.column())
+            {
+            case 3:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
+            case 4:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
+            case 5:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
+            case 6:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
+            case 7:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
+            case 8:
+                return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
+            }
+        default:
+            break;
+        }
+    }
+    return QVariant();
+}
+
+QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         switch (method)
         {
         case PokeFinderCore::Method::Method1:
-        case PokeFinderCore::Method::MethodK:
-            return 16;
+            return header1.at(section);
         case PokeFinderCore::Method::MethodJ:
-            return 15;
+            return header2.at(section);
+        case PokeFinderCore::Method::MethodK:
+            return header3.at(section);
         case PokeFinderCore::Method::WondercardIVs:
-            return 11;
+            return header4.at(section);
         default:
-            return 0;
+            break;
         }
     }
-
-    QVariant Stationary4Model::data(const QModelIndex &index, int role) const
-    {
-        if (role == Qt::DisplayRole)
-        {
-            auto frame = model.at(index.row());
-            switch (method)
-            {
-            case PokeFinderCore::Method::Method1:
-                switch (index.column())
-                {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return frame.getCall();
-                case 2:
-                    return frame.chatotPitch();
-                case 3:
-                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                case 4:
-                    return frame.getShinyString();
-                case 5:
-                    return frame.getNatureString();
-                case 6:
-                    return frame.getAbility();
-                case 7:
-                    return frame.getIV(0);
-                case 8:
-                    return frame.getIV(1);
-                case 9:
-                    return frame.getIV(2);
-                case 10:
-                    return frame.getIV(3);
-                case 11:
-                    return frame.getIV(4);
-                case 12:
-                    return frame.getIV(5);
-                case 13:
-                    return frame.getPowerString();
-                case 14:
-                    return frame.getPower();
-                case 15:
-                    return frame.getGenderString();
-                }
-            case PokeFinderCore::Method::MethodJ:
-                switch (index.column())
-                {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return frame.chatotPitch();
-                case 2:
-                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                case 3:
-                    return frame.getShinyString();
-                case 4:
-                    return frame.getNatureString();
-                case 5:
-                    return frame.getAbility();
-                case 6:
-                    return frame.getIV(0);
-                case 7:
-                    return frame.getIV(1);
-                case 8:
-                    return frame.getIV(2);
-                case 9:
-                    return frame.getIV(3);
-                case 10:
-                    return frame.getIV(4);
-                case 11:
-                    return frame.getIV(5);
-                case 12:
-                    return frame.getPowerString();
-                case 13:
-                    return frame.getPower();
-                case 14:
-                    return frame.getGenderString();
-                }
-            case PokeFinderCore::Method::MethodK:
-                switch (index.column())
-                {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return frame.getCall();
-                case 2:
-                    return frame.chatotPitch();
-                case 3:
-                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                case 4:
-                    return frame.getShinyString();
-                case 5:
-                    return frame.getNatureString();
-                case 6:
-                    return frame.getAbility();
-                case 7:
-                    return frame.getIV(0);
-                case 8:
-                    return frame.getIV(1);
-                case 9:
-                    return frame.getIV(2);
-                case 10:
-                    return frame.getIV(3);
-                case 11:
-                    return frame.getIV(4);
-                case 12:
-                    return frame.getIV(5);
-                case 13:
-                    return frame.getPowerString();
-                case 14:
-                    return frame.getPower();
-                case 15:
-                    return frame.getGenderString();
-                }
-            case PokeFinderCore::Method::WondercardIVs:
-                switch (index.column())
-                {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return frame.getCall();
-                case 2:
-                    return frame.chatotPitch();
-                case 3:
-                    return frame.getIV(0);
-                case 4:
-                    return frame.getIV(1);
-                case 5:
-                    return frame.getIV(2);
-                case 6:
-                    return frame.getIV(3);
-                case 7:
-                    return frame.getIV(4);
-                case 8:
-                    return frame.getIV(5);
-                case 9:
-                    return frame.getPowerString();
-                case 10:
-                    return frame.getPower();
-                }
-            default:
-                break;
-            }
-        }
-        else if (role == Qt::FontRole)
-        {
-            auto frame = model.at(index.row());
-            switch (method)
-            {
-            case PokeFinderCore::Method::Method1:
-            case PokeFinderCore::Method::MethodJ:
-                switch (index.column())
-                {
-                case 7:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
-                case 8:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
-                case 9:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
-                case 10:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
-                case 11:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
-                case 12:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
-                }
-                break;
-            case PokeFinderCore::Method::MethodK:
-                switch (index.column())
-                {
-                case 8:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
-                case 9:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
-                case 10:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
-                case 11:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
-                case 12:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
-                case 13:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
-                }
-                break;
-            case PokeFinderCore::Method::WondercardIVs:
-                switch (index.column())
-                {
-                case 3:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
-                case 4:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
-                case 5:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
-                case 6:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
-                case 7:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
-                case 8:
-                    return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
-                }
-            default:
-                break;
-            }
-        }
-        return QVariant();
-    }
-
-    QVariant Stationary4Model::headerData(int section, Qt::Orientation orientation, int role) const
-    {
-        if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
-        {
-            switch (method)
-            {
-            case PokeFinderCore::Method::Method1:
-                return header1.at(section);
-            case PokeFinderCore::Method::MethodJ:
-                return header2.at(section);
-            case PokeFinderCore::Method::MethodK:
-                return header3.at(section);
-            case PokeFinderCore::Method::WondercardIVs:
-                return header4.at(section);
-            default:
-                break;
-            }
-        }
-        return QVariant();
-    }
+    return QVariant();
 }

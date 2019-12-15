@@ -20,85 +20,82 @@
 #include "SeedtoTime4Model.hpp"
 #include <Core/Util/Utilities.hpp>
 
-namespace PokeFinderModels
+SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, PokeFinderCore::Game version)
+    : TableModel<PokeFinderCore::DateTime>(parent)
 {
-    SeedtoTime4Model::SeedtoTime4Model(QObject *parent, bool flag, PokeFinderCore::Game version)
-        : TableModel<PokeFinderCore::DateTime>(parent)
-    {
-        calibrate = flag;
-        this->version = version;
-    }
+    calibrate = flag;
+    this->version = version;
+}
 
-    void SeedtoTime4Model::setFlags(bool flag, PokeFinderCore::Game version)
-    {
-        calibrate = flag;
-        this->version = version;
-        emit headerDataChanged(Qt::Horizontal, 0, columnCount());
-    }
+void SeedtoTime4Model::setFlags(bool flag, PokeFinderCore::Game version)
+{
+    calibrate = flag;
+    this->version = version;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
+}
 
-    int SeedtoTime4Model::columnCount(const QModelIndex & /*parent*/) const
+int SeedtoTime4Model::columnCount(const QModelIndex & /*parent*/) const
+{
+    if (calibrate)
+    {
+        return (version & PokeFinderCore::Game::HGSS) ? 6 : 5;
+    }
+    return 3;
+}
+
+QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
+{
+    if (role == Qt::DisplayRole)
+    {
+        auto frame = model.at(index.row());
+        if (calibrate)
+        {
+            switch (index.column())
+            {
+            case 0:
+                return QString::number(frame.getSeed(), 16).toUpper().toUpper().rightJustified(8, '0');
+            case 1:
+                return frame.getDate();
+            case 2:
+                return frame.getTime();
+            case 3:
+                return frame.getDelay();
+            case 4:
+                return (version & PokeFinderCore::Game::HGSS)
+                    ? PokeFinderCore::Utilities::getCalls(frame.getSeed(), 15, frame.getInfo())
+                    : PokeFinderCore::Utilities::coinFlips(frame.getSeed(), 15);
+            case 5:
+            {
+                QString str = frame.getInfo().getRouteString();
+                return str.isEmpty() ? tr("No roamers") : str;
+            }
+            }
+        }
+        else
+        {
+            switch (index.column())
+            {
+            case 0:
+                return frame.getDate();
+            case 1:
+                return frame.getTime();
+            case 2:
+                return frame.getDelay();
+            }
+        }
+    }
+    return QVariant();
+}
+
+QVariant SeedtoTime4Model::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         if (calibrate)
         {
-            return (version & PokeFinderCore::Game::HGSS) ? 6 : 5;
+            return (version & PokeFinderCore::Game::HGSS) ? header1.at(section) : header2.at(section);
         }
-        return 3;
+        return header3.at(section);
     }
-
-    QVariant SeedtoTime4Model::data(const QModelIndex &index, int role) const
-    {
-        if (role == Qt::DisplayRole)
-        {
-            auto frame = model.at(index.row());
-            if (calibrate)
-            {
-                switch (index.column())
-                {
-                case 0:
-                    return QString::number(frame.getSeed(), 16).toUpper().toUpper().rightJustified(8, '0');
-                case 1:
-                    return frame.getDate();
-                case 2:
-                    return frame.getTime();
-                case 3:
-                    return frame.getDelay();
-                case 4:
-                    return (version & PokeFinderCore::Game::HGSS)
-                        ? PokeFinderCore::Utilities::getCalls(frame.getSeed(), 15, frame.getInfo())
-                        : PokeFinderCore::Utilities::coinFlips(frame.getSeed(), 15);
-                case 5:
-                {
-                    QString str = frame.getInfo().getRouteString();
-                    return str.isEmpty() ? tr("No roamers") : str;
-                }
-                }
-            }
-            else
-            {
-                switch (index.column())
-                {
-                case 0:
-                    return frame.getDate();
-                case 1:
-                    return frame.getTime();
-                case 2:
-                    return frame.getDelay();
-                }
-            }
-        }
-        return QVariant();
-    }
-
-    QVariant SeedtoTime4Model::headerData(int section, Qt::Orientation orientation, int role) const
-    {
-        if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
-        {
-            if (calibrate)
-            {
-                return (version & PokeFinderCore::Game::HGSS) ? header1.at(section) : header2.at(section);
-            }
-            return header3.at(section);
-        }
-        return QVariant();
-    }
+    return QVariant();
 }

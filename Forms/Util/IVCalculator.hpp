@@ -29,32 +29,29 @@ namespace PokeFinderCore
     class Characteristic;
 }
 
-namespace PokeFinderForms
+namespace Ui
 {
-    namespace Ui
-    {
-        class IVCalculator;
-    }
-
-    class IVCalculator : public QWidget
-    {
-        Q_OBJECT
-    public:
-        explicit IVCalculator(QWidget *parent = nullptr);
-        ~IVCalculator() override;
-
-    private:
-        Ui::IVCalculator *ui;
-        QVector<PokeFinderCore::Characteristic> characteristics;
-        QVector<PokeFinderCore::Pokemon> pokemon;
-        void setupModels();
-        void displayIVs(QLabel *label, const QVector<u8> &ivs);
-
-    private slots:
-        void findIVs();
-        void pokemonIndexChanged(int index);
-        void generationIndexChanged(int index);
-    };
+    class IVCalculator;
 }
+
+class IVCalculator : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit IVCalculator(QWidget *parent = nullptr);
+    ~IVCalculator() override;
+
+private:
+    Ui::IVCalculator *ui;
+    QVector<PokeFinderCore::Characteristic> characteristics;
+    QVector<PokeFinderCore::Pokemon> pokemon;
+    void setupModels();
+    void displayIVs(QLabel *label, const QVector<u8> &ivs);
+
+private slots:
+    void findIVs();
+    void pokemonIndexChanged(int index);
+    void generationIndexChanged(int index);
+};
 
 #endif // IVCALCULATOR_HPP

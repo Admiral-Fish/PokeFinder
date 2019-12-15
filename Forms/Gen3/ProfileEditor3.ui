@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PokeFinderForms::ProfileEditor3</class>
+ <class>ProfileEditor3</class>
  <widget class="QDialog" name="ProfileEditor3">
   <property name="geometry">
    <rect>
@@ -38,7 +38,7 @@
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="PokeFinderForms::TextBox" name="textBoxTID"/>
+    <widget class="TextBox" name="textBoxTID"/>
    </item>
    <item row="0" column="4">
     <widget class="QPushButton" name="pushButtonOkay">
@@ -101,7 +101,7 @@
     </widget>
    </item>
    <item row="1" column="3">
-    <widget class="PokeFinderForms::TextBox" name="textBoxSID"/>
+    <widget class="TextBox" name="textBoxSID"/>
    </item>
    <item row="1" column="4">
     <widget class="QPushButton" name="pushButtonCancel">
@@ -162,7 +162,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PokeFinderForms::TextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>

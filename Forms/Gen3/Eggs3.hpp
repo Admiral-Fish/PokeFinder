@@ -23,53 +23,47 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <QWidget>
 
+class Egg3Model;
+
 namespace PokeFinderCore
 {
     class Frame3;
 }
 
-namespace PokeFinderModels
+namespace Ui
 {
-    class Egg3Model;
+    class Eggs3;
 }
 
-namespace PokeFinderForms
+class Eggs3 : public QWidget
 {
-    namespace Ui
-    {
-        class Eggs3;
-    }
+    Q_OBJECT
+signals:
+    void alertProfiles(int);
 
-    class Eggs3 : public QWidget
-    {
-        Q_OBJECT
-    signals:
-        void alertProfiles(int);
+public:
+    explicit Eggs3(QWidget *parent = nullptr);
+    ~Eggs3() override;
+    void updateProfiles();
 
-    public:
-        explicit Eggs3(QWidget *parent = nullptr);
-        ~Eggs3() override;
-        void updateProfiles();
+private:
+    Ui::Eggs3 *ui;
+    QVector<PokeFinderCore::Profile3> profiles;
+    Egg3Model *emeraldIVs {};
+    Egg3Model *emeraldPID {};
+    Egg3Model *rs {};
+    Egg3Model *frlg {};
 
-    private:
-        Ui::Eggs3 *ui;
-        QVector<PokeFinderCore::Profile3> profiles;
-        PokeFinderModels::Egg3Model *emeraldIVs {};
-        PokeFinderModels::Egg3Model *emeraldPID {};
-        PokeFinderModels::Egg3Model *rs {};
-        PokeFinderModels::Egg3Model *frlg {};
+    void setupModels();
 
-        void setupModels();
-
-    private slots:
-        void refreshProfiles();
-        void emeraldPIDGenerate();
-        void emeraldIVsGenerate();
-        void rsGenerate();
-        void frlgGenerate();
-        void profilesIndexChanged(int index);
-        void profileManager();
-    };
-}
+private slots:
+    void refreshProfiles();
+    void emeraldPIDGenerate();
+    void emeraldIVsGenerate();
+    void rsGenerate();
+    void frlgGenerate();
+    void profilesIndexChanged(int index);
+    void profileManager();
+};
 
 #endif // EGGS3_HPP

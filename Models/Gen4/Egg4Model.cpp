@@ -20,681 +20,678 @@
 #include "Egg4Model.hpp"
 #include <Core/Util/TableUtility.hpp>
 
-namespace PokeFinderModels
+Egg4GeneratorModel::Egg4GeneratorModel(QObject *parent, PokeFinderCore::Method method)
+    : TableModel<PokeFinderCore::Frame4>(parent)
 {
-    Egg4GeneratorModel::Egg4GeneratorModel(QObject *parent, PokeFinderCore::Method method)
-        : TableModel<PokeFinderCore::Frame4>(parent)
-    {
-        this->method = method;
-        showInheritance = false;
-    }
+    this->method = method;
+    showInheritance = false;
+}
 
-    void Egg4GeneratorModel::setMethod(PokeFinderCore::Method method)
-    {
-        this->method = method;
-        emit headerDataChanged(Qt::Horizontal, 0, columnCount());
-    }
+void Egg4GeneratorModel::setMethod(PokeFinderCore::Method method)
+{
+    this->method = method;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
+}
 
-    int Egg4GeneratorModel::columnCount(const QModelIndex & /*parent*/) const
+int Egg4GeneratorModel::columnCount(const QModelIndex & /*parent*/) const
+{
+    switch (method)
     {
+    case PokeFinderCore::Method::Gen4Normal:
+    case PokeFinderCore::Method::Gen4Masuada:
+        return 6;
+    case PokeFinderCore::Method::DPPtIVs:
+        return 10;
+    case PokeFinderCore::Method::HGSSIVs:
+        return 11;
+    default:
+        return 0;
+    }
+}
+
+QVariant Egg4GeneratorModel::data(const QModelIndex &index, int role) const
+{
+    if (role == Qt::DisplayRole)
+    {
+        auto frame = model.at(index.row());
         switch (method)
         {
         case PokeFinderCore::Method::Gen4Normal:
         case PokeFinderCore::Method::Gen4Masuada:
-            return 6;
+            switch (index.column())
+            {
+            case 0:
+                return frame.getFrame();
+            case 1:
+                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            case 2:
+                return frame.getShinyString();
+            case 3:
+                return frame.getNatureString();
+            case 4:
+                return frame.getAbility();
+            case 5:
+                return frame.getGenderString();
+            }
         case PokeFinderCore::Method::DPPtIVs:
-            return 10;
+            switch (index.column())
+            {
+            case 0:
+                return frame.getFrame();
+            case 1:
+                return frame.chatotPitch();
+            case 2:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(0);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(0);
+            case 3:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(1);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(1);
+            case 4:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(2);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(2);
+            case 5:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(3);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(3);
+            case 6:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(4);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(4);
+            case 7:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(5);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(5);
+            case 8:
+                return frame.getPowerString();
+            case 9:
+                return frame.getPower();
+            default:
+                return QVariant();
+            }
         case PokeFinderCore::Method::HGSSIVs:
-            return 11;
+            switch (index.column())
+            {
+            case 0:
+                return frame.getFrame();
+            case 1:
+                return frame.getCall();
+            case 2:
+                return frame.chatotPitch();
+            case 3:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(0);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(0);
+            case 4:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(1);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(1);
+            case 5:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(2);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(2);
+            case 6:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(3);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(3);
+            case 7:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(4);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(4);
+            case 8:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(5);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(5);
+            case 9:
+                return frame.getPowerString();
+            case 10:
+                return frame.getPower();
+            }
         default:
-            return 0;
+            break;
         }
     }
-
-    QVariant Egg4GeneratorModel::data(const QModelIndex &index, int role) const
+    else if (role == Qt::FontRole)
     {
-        if (role == Qt::DisplayRole)
+        auto frame = model.at(index.row());
+
+        switch (method)
         {
-            auto frame = model.at(index.row());
-            switch (method)
+        case PokeFinderCore::Method::DPPtIVs:
+            switch (index.column())
             {
-            case PokeFinderCore::Method::Gen4Normal:
-            case PokeFinderCore::Method::Gen4Masuada:
-                switch (index.column())
+            case 2:
+                if (!showInheritance || frame.getInheritance(0).isNull())
                 {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                case 2:
-                    return frame.getShinyString();
-                case 3:
-                    return frame.getNatureString();
-                case 4:
-                    return frame.getAbility();
-                case 5:
-                    return frame.getGenderString();
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
                 }
-            case PokeFinderCore::Method::DPPtIVs:
-                switch (index.column())
+                break;
+            case 3:
+                if (!showInheritance || frame.getInheritance(1).isNull())
                 {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return frame.chatotPitch();
-                case 2:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(0);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(0);
-                case 3:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(1);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(1);
-                case 4:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(2);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(2);
-                case 5:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(3);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(3);
-                case 6:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(4);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(4);
-                case 7:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(5);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(5);
-                case 8:
-                    return frame.getPowerString();
-                case 9:
-                    return frame.getPower();
-                default:
-                    return QVariant();
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
                 }
-            case PokeFinderCore::Method::HGSSIVs:
-                switch (index.column())
+                break;
+            case 4:
+                if (!showInheritance || frame.getInheritance(2).isNull())
                 {
-                case 0:
-                    return frame.getFrame();
-                case 1:
-                    return frame.getCall();
-                case 2:
-                    return frame.chatotPitch();
-                case 3:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(0);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(0);
-                case 4:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(1);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(1);
-                case 5:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(2);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(2);
-                case 6:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(3);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(3);
-                case 7:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(4);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(4);
-                case 8:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(5);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(5);
-                case 9:
-                    return frame.getPowerString();
-                case 10:
-                    return frame.getPower();
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
                 }
-            default:
+                break;
+            case 5:
+                if (!showInheritance || frame.getInheritance(3).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
+                }
+                break;
+            case 6:
+                if (!showInheritance || frame.getInheritance(4).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
+                }
+                break;
+            case 7:
+                if (!showInheritance || frame.getInheritance(5).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
+                }
                 break;
             }
-        }
-        else if (role == Qt::FontRole)
-        {
-            auto frame = model.at(index.row());
-
-            switch (method)
+            break;
+        case PokeFinderCore::Method::HGSSIVs:
+            switch (index.column())
             {
-            case PokeFinderCore::Method::DPPtIVs:
-                switch (index.column())
+            case 3:
+                if (!showInheritance || frame.getInheritance(0).isNull())
                 {
-                case 2:
-                    if (!showInheritance || frame.getInheritance(0).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
-                    }
-                    break;
-                case 3:
-                    if (!showInheritance || frame.getInheritance(1).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
-                    }
-                    break;
-                case 4:
-                    if (!showInheritance || frame.getInheritance(2).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
-                    }
-                    break;
-                case 5:
-                    if (!showInheritance || frame.getInheritance(3).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
-                    }
-                    break;
-                case 6:
-                    if (!showInheritance || frame.getInheritance(4).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
-                    }
-                    break;
-                case 7:
-                    if (!showInheritance || frame.getInheritance(5).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
-                    }
-                    break;
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
                 }
                 break;
-            case PokeFinderCore::Method::HGSSIVs:
-                switch (index.column())
+            case 4:
+                if (!showInheritance || frame.getInheritance(1).isNull())
                 {
-                case 3:
-                    if (!showInheritance || frame.getInheritance(0).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
-                    }
-                    break;
-                case 4:
-                    if (!showInheritance || frame.getInheritance(1).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
-                    }
-                    break;
-                case 5:
-                    if (!showInheritance || frame.getInheritance(2).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
-                    }
-                    break;
-                case 6:
-                    if (!showInheritance || frame.getInheritance(3).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
-                    }
-                    break;
-                case 7:
-                    if (!showInheritance || frame.getInheritance(4).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
-                    }
-                    break;
-                case 8:
-                    if (!showInheritance || frame.getInheritance(5).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
-                    }
-                    break;
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
                 }
                 break;
-            default:
+            case 5:
+                if (!showInheritance || frame.getInheritance(2).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
+                }
+                break;
+            case 6:
+                if (!showInheritance || frame.getInheritance(3).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
+                }
+                break;
+            case 7:
+                if (!showInheritance || frame.getInheritance(4).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
+                }
+                break;
+            case 8:
+                if (!showInheritance || frame.getInheritance(5).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
+                }
                 break;
             }
+            break;
+        default:
+            break;
         }
-        return QVariant();
     }
+    return QVariant();
+}
 
-    QVariant Egg4GeneratorModel::headerData(int section, Qt::Orientation orientation, int role) const
-    {
-        if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
-        {
-            switch (method)
-            {
-            case PokeFinderCore::Method::Gen4Normal:
-            case PokeFinderCore::Method::Gen4Masuada:
-                return header1.at(section);
-            case PokeFinderCore::Method::DPPtIVs:
-                return header2.at(section);
-            case PokeFinderCore::Method::HGSSIVs:
-                return header3.at(section);
-            default:
-                break;
-            }
-        }
-        return QVariant();
-    }
-
-    void Egg4GeneratorModel::toggleInheritance(bool flag)
-    {
-        beginResetModel();
-        showInheritance = flag;
-        endResetModel();
-    }
-
-    Egg4SearcherModel::Egg4SearcherModel(QObject *parent, PokeFinderCore::Method method)
-        : TableModel<PokeFinderCore::Frame4>(parent)
-    {
-        this->method = method;
-        showInheritance = false;
-    }
-
-    void Egg4SearcherModel::setMethod(PokeFinderCore::Method method)
-    {
-        this->method = method;
-        emit headerDataChanged(Qt::Horizontal, 0, columnCount());
-    }
-
-    int Egg4SearcherModel::columnCount(const QModelIndex & /*parent*/) const
+QVariant Egg4GeneratorModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
         switch (method)
         {
         case PokeFinderCore::Method::Gen4Normal:
         case PokeFinderCore::Method::Gen4Masuada:
-            return 7;
+            return header1.at(section);
+        case PokeFinderCore::Method::DPPtIVs:
+            return header2.at(section);
+        case PokeFinderCore::Method::HGSSIVs:
+            return header3.at(section);
+        default:
+            break;
+        }
+    }
+    return QVariant();
+}
+
+void Egg4GeneratorModel::toggleInheritance(bool flag)
+{
+    beginResetModel();
+    showInheritance = flag;
+    endResetModel();
+}
+
+Egg4SearcherModel::Egg4SearcherModel(QObject *parent, PokeFinderCore::Method method)
+    : TableModel<PokeFinderCore::Frame4>(parent)
+{
+    this->method = method;
+    showInheritance = false;
+}
+
+void Egg4SearcherModel::setMethod(PokeFinderCore::Method method)
+{
+    this->method = method;
+    emit headerDataChanged(Qt::Horizontal, 0, columnCount());
+}
+
+int Egg4SearcherModel::columnCount(const QModelIndex & /*parent*/) const
+{
+    switch (method)
+    {
+    case PokeFinderCore::Method::Gen4Normal:
+    case PokeFinderCore::Method::Gen4Masuada:
+        return 7;
+    case PokeFinderCore::Method::DPPtIVs:
+    case PokeFinderCore::Method::HGSSIVs:
+        return 10;
+    case PokeFinderCore::Method::Gen4Combined:
+        return 16;
+    default:
+        return 0;
+    }
+}
+
+QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
+{
+    if (role == Qt::DisplayRole)
+    {
+        auto frame = model.at(index.row());
+        switch (method)
+        {
+        case PokeFinderCore::Method::Gen4Normal:
+        case PokeFinderCore::Method::Gen4Masuada:
+            switch (index.column())
+            {
+            case 0:
+                return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
+            case 1:
+                return frame.getFrame();
+            case 2:
+                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            case 3:
+                return frame.getShinyString();
+            case 4:
+                return frame.getNatureString();
+            case 5:
+                return frame.getAbility();
+            case 6:
+                return frame.getGenderString();
+            default:
+                break;
+            }
+            break;
         case PokeFinderCore::Method::DPPtIVs:
         case PokeFinderCore::Method::HGSSIVs:
-            return 10;
+            switch (index.column())
+            {
+            case 0:
+                return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
+            case 1:
+                return frame.getFrame();
+            case 2:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(0);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(0);
+            case 3:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(1);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(1);
+            case 4:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(2);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(2);
+            case 5:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(3);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(3);
+            case 6:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(4);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(4);
+            case 7:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(5);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(5);
+            case 8:
+                return frame.getPowerString();
+            case 9:
+                return frame.getPower();
+            default:
+                break;
+            }
+            break;
         case PokeFinderCore::Method::Gen4Combined:
-            return 16;
+            switch (index.column())
+            {
+            case 0:
+                return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
+            case 1:
+                return frame.getFrame();
+            case 2:
+                return frame.getEggFrame();
+            case 3:
+                return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
+            case 4:
+                return frame.getShinyString();
+            case 5:
+                return frame.getNatureString();
+            case 6:
+                return frame.getAbility();
+            case 7:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(0);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(0);
+            case 8:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(1);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(1);
+            case 9:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(2);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(2);
+            case 10:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(3);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(3);
+            case 11:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(4);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(4);
+            case 12:
+                if (showInheritance)
+                {
+                    QChar inh = frame.getInheritance(5);
+                    if (!inh.isNull())
+                    {
+                        return inh;
+                    }
+                }
+                return frame.getIV(5);
+            case 13:
+                return frame.getPowerString();
+            case 14:
+                return frame.getPower();
+            case 15:
+                return frame.getGenderString();
+            default:
+                break;
+            }
+            break;
         default:
-            return 0;
+            break;
         }
     }
-
-    QVariant Egg4SearcherModel::data(const QModelIndex &index, int role) const
+    else if (role == Qt::FontRole)
     {
-        if (role == Qt::DisplayRole)
+        auto frame = model.at(index.row());
+        switch (method)
         {
-            auto frame = model.at(index.row());
-            switch (method)
+        case PokeFinderCore::Method::DPPtIVs:
+        case PokeFinderCore::Method::HGSSIVs:
+            switch (index.column())
             {
-            case PokeFinderCore::Method::Gen4Normal:
-            case PokeFinderCore::Method::Gen4Masuada:
-                switch (index.column())
+            case 2:
+                if (!showInheritance || frame.getInheritance(0).isNull())
                 {
-                case 0:
-                    return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
-                case 1:
-                    return frame.getFrame();
-                case 2:
-                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                case 3:
-                    return frame.getShinyString();
-                case 4:
-                    return frame.getNatureString();
-                case 5:
-                    return frame.getAbility();
-                case 6:
-                    return frame.getGenderString();
-                default:
-                    break;
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
                 }
                 break;
-            case PokeFinderCore::Method::DPPtIVs:
-            case PokeFinderCore::Method::HGSSIVs:
-                switch (index.column())
+            case 3:
+                if (!showInheritance || frame.getInheritance(1).isNull())
                 {
-                case 0:
-                    return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
-                case 1:
-                    return frame.getFrame();
-                case 2:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(0);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(0);
-                case 3:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(1);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(1);
-                case 4:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(2);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(2);
-                case 5:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(3);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(3);
-                case 6:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(4);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(4);
-                case 7:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(5);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(5);
-                case 8:
-                    return frame.getPowerString();
-                case 9:
-                    return frame.getPower();
-                default:
-                    break;
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
                 }
                 break;
-            case PokeFinderCore::Method::Gen4Combined:
-                switch (index.column())
+            case 4:
+                if (!showInheritance || frame.getInheritance(2).isNull())
                 {
-                case 0:
-                    return QString::number(frame.getInitialSeed(), 16).toUpper().rightJustified(8, '0');
-                case 1:
-                    return frame.getFrame();
-                case 2:
-                    return frame.getEggFrame();
-                case 3:
-                    return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
-                case 4:
-                    return frame.getShinyString();
-                case 5:
-                    return frame.getNatureString();
-                case 6:
-                    return frame.getAbility();
-                case 7:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(0);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(0);
-                case 8:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(1);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(1);
-                case 9:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(2);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(2);
-                case 10:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(3);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(3);
-                case 11:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(4);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(4);
-                case 12:
-                    if (showInheritance)
-                    {
-                        QChar inh = frame.getInheritance(5);
-                        if (!inh.isNull())
-                        {
-                            return inh;
-                        }
-                    }
-                    return frame.getIV(5);
-                case 13:
-                    return frame.getPowerString();
-                case 14:
-                    return frame.getPower();
-                case 15:
-                    return frame.getGenderString();
-                default:
-                    break;
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
                 }
                 break;
-            default:
+            case 5:
+                if (!showInheritance || frame.getInheritance(3).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
+                }
+                break;
+            case 6:
+                if (!showInheritance || frame.getInheritance(4).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
+                }
+                break;
+            case 7:
+                if (!showInheritance || frame.getInheritance(5).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
+                }
                 break;
             }
-        }
-        else if (role == Qt::FontRole)
-        {
-            auto frame = model.at(index.row());
-            switch (method)
+            break;
+        case PokeFinderCore::Method::Gen4Combined:
+            switch (index.column())
             {
-            case PokeFinderCore::Method::DPPtIVs:
-            case PokeFinderCore::Method::HGSSIVs:
-                switch (index.column())
+            case 7:
+                if (!showInheritance || frame.getInheritance(0).isNull())
                 {
-                case 2:
-                    if (!showInheritance || frame.getInheritance(0).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
-                    }
-                    break;
-                case 3:
-                    if (!showInheritance || frame.getInheritance(1).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
-                    }
-                    break;
-                case 4:
-                    if (!showInheritance || frame.getInheritance(2).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
-                    }
-                    break;
-                case 5:
-                    if (!showInheritance || frame.getInheritance(3).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
-                    }
-                    break;
-                case 6:
-                    if (!showInheritance || frame.getInheritance(4).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
-                    }
-                    break;
-                case 7:
-                    if (!showInheritance || frame.getInheritance(5).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
-                    }
-                    break;
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
                 }
                 break;
-            case PokeFinderCore::Method::Gen4Combined:
-                switch (index.column())
+            case 8:
+                if (!showInheritance || frame.getInheritance(1).isNull())
                 {
-                case 7:
-                    if (!showInheritance || frame.getInheritance(0).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(0));
-                    }
-                    break;
-                case 8:
-                    if (!showInheritance || frame.getInheritance(1).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
-                    }
-                    break;
-                case 9:
-                    if (!showInheritance || frame.getInheritance(2).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
-                    }
-                    break;
-                case 10:
-                    if (!showInheritance || frame.getInheritance(3).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
-                    }
-                    break;
-                case 11:
-                    if (!showInheritance || frame.getInheritance(4).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
-                    }
-                    break;
-                case 12:
-                    if (!showInheritance || frame.getInheritance(5).isNull())
-                    {
-                        return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
-                    }
-                    break;
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(1));
                 }
                 break;
-            default:
+            case 9:
+                if (!showInheritance || frame.getInheritance(2).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(2));
+                }
+                break;
+            case 10:
+                if (!showInheritance || frame.getInheritance(3).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(3));
+                }
+                break;
+            case 11:
+                if (!showInheritance || frame.getInheritance(4).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(4));
+                }
+                break;
+            case 12:
+                if (!showInheritance || frame.getInheritance(5).isNull())
+                {
+                    return PokeFinderCore::TableUtility::getBold(frame.getIV(5));
+                }
                 break;
             }
+            break;
+        default:
+            break;
         }
-        return QVariant();
     }
+    return QVariant();
+}
 
-    QVariant Egg4SearcherModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant Egg4SearcherModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
     {
-        if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+        switch (method)
         {
-            switch (method)
-            {
-            case PokeFinderCore::Method::Gen4Normal:
-            case PokeFinderCore::Method::Gen4Masuada:
-                return header1.at(section);
-            case PokeFinderCore::Method::DPPtIVs:
-            case PokeFinderCore::Method::HGSSIVs:
-                return header2.at(section);
-            case PokeFinderCore::Method::Gen4Combined:
-                return header3.at(section);
-            default:
-                break;
-            }
+        case PokeFinderCore::Method::Gen4Normal:
+        case PokeFinderCore::Method::Gen4Masuada:
+            return header1.at(section);
+        case PokeFinderCore::Method::DPPtIVs:
+        case PokeFinderCore::Method::HGSSIVs:
+            return header2.at(section);
+        case PokeFinderCore::Method::Gen4Combined:
+            return header3.at(section);
+        default:
+            break;
         }
-        return QVariant();
     }
+    return QVariant();
+}
 
-    void Egg4SearcherModel::toggleInheritance(bool flag)
-    {
-        beginResetModel();
-        showInheritance = flag;
-        endResetModel();
-    }
+void Egg4SearcherModel::toggleInheritance(bool flag)
+{
+    beginResetModel();
+    showInheritance = flag;
+    endResetModel();
 }

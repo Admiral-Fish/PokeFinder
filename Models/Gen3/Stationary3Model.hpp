@@ -23,21 +23,18 @@
 #include <Core/Gen3/Frame3.hpp>
 #include <Models/TableModel.hpp>
 
-namespace PokeFinderModels
+class Stationary3Model : public TableModel<PokeFinderCore::Frame3>
 {
-    class Stationary3Model : public TableModel<PokeFinderCore::Frame3>
-    {
-        Q_OBJECT
-    public:
-        explicit Stationary3Model(QObject *parent);
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-        QVariant data(const QModelIndex &index, int role) const override;
-        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    Q_OBJECT
+public:
+    explicit Stationary3Model(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    private:
-        QStringList header = { tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-            tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time") };
-    };
-}
+private:
+    QStringList header = { tr("Frame"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"),
+        tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Time") };
+};
 
 #endif // STATIONARY3MODEL_HPP

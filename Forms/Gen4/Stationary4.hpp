@@ -23,57 +23,51 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QMenu>
 
+class Searcher4Model;
+class Stationary4Model;
+
 namespace PokeFinderCore
 {
     class Frame4;
 }
 
-namespace PokeFinderModels
+namespace Ui
 {
-    class Searcher4Model;
-    class Stationary4Model;
+    class Stationary4;
 }
 
-namespace PokeFinderForms
+class Stationary4 : public QWidget
 {
-    namespace Ui
-    {
-        class Stationary4;
-    }
+    Q_OBJECT
+signals:
+    void alertProfiles(int);
 
-    class Stationary4 : public QWidget
-    {
-        Q_OBJECT
-    signals:
-        void alertProfiles(int);
+public:
+    explicit Stationary4(QWidget *parent = nullptr);
+    ~Stationary4() override;
+    void updateProfiles();
 
-    public:
-        explicit Stationary4(QWidget *parent = nullptr);
-        ~Stationary4() override;
-        void updateProfiles();
+private:
+    Ui::Stationary4 *ui;
+    Searcher4Model *searcherModel {};
+    Stationary4Model *generatorModel {};
+    QVector<PokeFinderCore::Profile4> profiles;
+    QMenu *generatorMenu {};
+    QMenu *searcherMenu {};
 
-    private:
-        Ui::Stationary4 *ui;
-        PokeFinderModels::Searcher4Model *searcherModel {};
-        PokeFinderModels::Stationary4Model *generatorModel {};
-        QVector<PokeFinderCore::Profile4> profiles;
-        QMenu *generatorMenu {};
-        QMenu *searcherMenu {};
+    void setupModels();
 
-        void setupModels();
-
-    private slots:
-        void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
-        void refreshProfiles();
-        void generate();
-        void search();
-        void profileIndexChanged(int index);
-        void generatorLead();
-        void seedToTime();
-        void tableViewGeneratorContextMenu(QPoint pos);
-        void tableViewSearcherContextMenu(QPoint pos);
-        void profileManager();
-    };
-}
+private slots:
+    void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
+    void refreshProfiles();
+    void generate();
+    void search();
+    void profileIndexChanged(int index);
+    void generatorLead();
+    void seedToTime();
+    void tableViewGeneratorContextMenu(QPoint pos);
+    void tableViewSearcherContextMenu(QPoint pos);
+    void profileManager();
+};
 
 #endif // STATIONARY4_HPP

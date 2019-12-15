@@ -23,21 +23,18 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <Models/TableModel.hpp>
 
-namespace PokeFinderModels
+class Profile4Model : public TableModel<PokeFinderCore::Profile4>
 {
-    class Profile4Model : public TableModel<PokeFinderCore::Profile4>
-    {
-        Q_OBJECT
-    public:
-        explicit Profile4Model(QObject *parent);
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-        QVariant data(const QModelIndex &index, int role) const override;
-        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    Q_OBJECT
+public:
+    explicit Profile4Model(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    private:
-        QStringList header = { tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dual Slot"),
-            tr("Radio"), tr("Pokeradar"), tr("Swarm") };
-    };
-}
+private:
+    QStringList header = { tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dual Slot"),
+        tr("Radio"), tr("Pokeradar"), tr("Swarm") };
+};
 
 #endif // PROFILE4MODEL_HPP

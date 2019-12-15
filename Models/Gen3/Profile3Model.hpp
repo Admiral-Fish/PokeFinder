@@ -23,21 +23,18 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <Models/TableModel.hpp>
 
-namespace PokeFinderModels
+class Profile3Model : public TableModel<PokeFinderCore::Profile3>
 {
-    class Profile3Model : public TableModel<PokeFinderCore::Profile3>
-    {
-        Q_OBJECT
-    public:
-        explicit Profile3Model(QObject *parent);
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-        QVariant data(const QModelIndex &index, int role) const override;
-        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    Q_OBJECT
+public:
+    explicit Profile3Model(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    private:
-        QStringList header
-            = { tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dead Battery") };
-    };
-}
+private:
+    QStringList header
+        = { tr("Profile Name"), tr("Version"), tr("Language"), tr("TID"), tr("SID"), tr("Dead Battery") };
+};
 
 #endif // PROFILE3MODEL_HPP

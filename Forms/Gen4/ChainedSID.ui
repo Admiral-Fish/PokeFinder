@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PokeFinderForms::ChainedSID</class>
+ <class>ChainedSID</class>
  <widget class="QWidget" name="ChainedSID">
   <property name="geometry">
    <rect>
@@ -235,7 +235,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PokeFinderForms::TextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>

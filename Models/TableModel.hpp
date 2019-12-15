@@ -22,70 +22,67 @@
 
 #include <QAbstractTableModel>
 
-namespace PokeFinderModels
+template <typename Item>
+class TableModel : public QAbstractTableModel
 {
-    template <typename Item>
-    class TableModel : public QAbstractTableModel
+public:
+    TableModel(QObject *parent = nullptr)
+        : QAbstractTableModel(parent)
     {
-    public:
-        TableModel(QObject *parent = nullptr)
-            : QAbstractTableModel(parent)
-        {
-        }
+    }
 
-        void addItems(const QVector<Item> &items)
-        {
-            if (!items.isEmpty())
-            {
-                int i = rowCount();
-                emit beginInsertRows(QModelIndex(), i, i + items.size() - 1);
-                model.append(items);
-                emit endInsertRows();
-            }
-        }
-
-        void addItem(const Item &item)
+    void addItems(const QVector<Item> &items)
+    {
+        if (!items.isEmpty())
         {
             int i = rowCount();
-            emit beginInsertRows(QModelIndex(), i, i);
-            model.push_back(item);
+            emit beginInsertRows(QModelIndex(), i, i + items.size() - 1);
+            model.append(items);
             emit endInsertRows();
         }
+    }
 
-        void updateItem(const Item &item, int row)
-        {
-            model[row] = item;
-            emit dataChanged(index(row, 0), index(row, columnCount()));
-        }
+    void addItem(const Item &item)
+    {
+        int i = rowCount();
+        emit beginInsertRows(QModelIndex(), i, i);
+        model.push_back(item);
+        emit endInsertRows();
+    }
 
-        void removeItem(int row)
+    void updateItem(const Item &item, int row)
+    {
+        model[row] = item;
+        emit dataChanged(index(row, 0), index(row, columnCount()));
+    }
+
+    void removeItem(int row)
+    {
+        emit beginRemoveRows(QModelIndex(), row, row);
+        model.erase(model.begin() + row);
+        model.squeeze();
+        emit endRemoveRows();
+    }
+
+    Item getItem(int row) const { return model.at(row); }
+
+    QVector<Item> getModel() const { return model; }
+
+    void clearModel()
+    {
+        if (!model.isEmpty())
         {
-            emit beginRemoveRows(QModelIndex(), row, row);
-            model.erase(model.begin() + row);
+            emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+            model.clear();
             model.squeeze();
             emit endRemoveRows();
         }
+    }
 
-        Item getItem(int row) const { return model.at(row); }
+    int rowCount(const QModelIndex & /*parent*/ = QModelIndex()) const override { return model.size(); }
 
-        QVector<Item> getModel() const { return model; }
-
-        void clearModel()
-        {
-            if (!model.isEmpty())
-            {
-                emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-                model.clear();
-                model.squeeze();
-                emit endRemoveRows();
-            }
-        }
-
-        int rowCount(const QModelIndex & /*parent*/ = QModelIndex()) const override { return model.size(); }
-
-    protected:
-        QVector<Item> model;
-    };
-}
+protected:
+    QVector<Item> model;
+};
 
 #endif // TABLEMODEL_HPP

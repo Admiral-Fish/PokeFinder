@@ -28,31 +28,28 @@ namespace PokeFinderCore
     class ChainedSIDCalc;
 }
 
-namespace PokeFinderForms
+namespace Ui
 {
-    namespace Ui
-    {
-        class ChainedSID;
-    }
-
-    class ChainedSID : public QWidget
-    {
-        Q_OBJECT
-    public:
-        explicit ChainedSID(QWidget *parent = nullptr);
-        ~ChainedSID() override;
-
-    private:
-        Ui::ChainedSID *ui;
-        QStandardItemModel *model {};
-        PokeFinderCore::ChainedSIDCalc *chainedCalc = nullptr;
-
-        void setupModels();
-
-    private slots:
-        void calculate();
-        void clear();
-    };
+    class ChainedSID;
 }
+
+class ChainedSID : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit ChainedSID(QWidget *parent = nullptr);
+    ~ChainedSID() override;
+
+private:
+    Ui::ChainedSID *ui;
+    QStandardItemModel *model {};
+    PokeFinderCore::ChainedSIDCalc *chainedCalc = nullptr;
+
+    void setupModels();
+
+private slots:
+    void calculate();
+    void clear();
+};
 
 #endif // CHAINEDSID_HPP

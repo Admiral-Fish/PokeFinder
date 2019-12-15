@@ -24,39 +24,36 @@
 #include <Core/Util/ResearcherFrame.hpp>
 #include <Models/TableModel.hpp>
 
-namespace PokeFinderModels
+class ResearcherModel : public TableModel<PokeFinderCore::ResearcherFrame>
 {
-    class ResearcherModel : public TableModel<PokeFinderCore::ResearcherFrame>
-    {
-        Q_OBJECT
-    public:
-        ResearcherModel(QObject *parent, bool is64Bit);
-        void setFlag(bool is64Bit);
-        void setHex(const QVector<bool> &hex);
-        int columnCount(const QModelIndex &index = QModelIndex()) const override;
-        QVariant data(const QModelIndex &index, int role) const override;
-        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-        QModelIndex search(const QString &string, u64 result, int row);
+    Q_OBJECT
+public:
+    ResearcherModel(QObject *parent, bool is64Bit);
+    void setFlag(bool is64Bit);
+    void setHex(const QVector<bool> &hex);
+    int columnCount(const QModelIndex &index = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    QModelIndex search(const QString &string, u64 result, int row);
 
-    private:
-        bool flag;
-        QVector<bool> hex;
+private:
+    bool flag;
+    QVector<bool> hex;
 
-        QStringList header1 = { tr("Frame"), tr("64Bit"), tr("32Bit High"), tr("32Bit Low"), tr("16Bit High"),
-            tr("16Bit Low"), tr("Custom 1"), tr("Custom 2"), tr("Custom 3"), tr("Custom 4"), tr("Custom 5"),
-            tr("Custom 6"), tr("Custom 7"), tr("Custom 8"), tr("Custom 9"), tr("Custom 10"), "%3", "%25", "%100",
-            "/656", tr("HBit"), tr("LBit") };
-        QStringList header2 = { tr("Frame"), tr("32Bit"), tr("16Bit High"), tr("16Bit Low"), tr("Custom 1"),
-            tr("Custom 2"), tr("Custom 3"), tr("Custom 4"), tr("Custom 5"), tr("Custom 6"), tr("Custom 7"),
-            tr("Custom 8"), tr("Custom 9"), tr("Custom 10"), "%3", "%25", "%100", "/656", tr("HBit"), tr("LBit") };
+    QStringList header1 = { tr("Frame"), tr("64Bit"), tr("32Bit High"), tr("32Bit Low"), tr("16Bit High"),
+        tr("16Bit Low"), tr("Custom 1"), tr("Custom 2"), tr("Custom 3"), tr("Custom 4"), tr("Custom 5"), tr("Custom 6"),
+        tr("Custom 7"), tr("Custom 8"), tr("Custom 9"), tr("Custom 10"), "%3", "%25", "%100", "/656", tr("HBit"),
+        tr("LBit") };
+    QStringList header2 = { tr("Frame"), tr("32Bit"), tr("16Bit High"), tr("16Bit Low"), tr("Custom 1"), tr("Custom 2"),
+        tr("Custom 3"), tr("Custom 4"), tr("Custom 5"), tr("Custom 6"), tr("Custom 7"), tr("Custom 8"), tr("Custom 9"),
+        tr("Custom 10"), "%3", "%25", "%100", "/656", tr("HBit"), tr("LBit") };
 
-        static u64 get64Bit(const PokeFinderCore::ResearcherFrame &f) { return f.getFull64(); }
-        static u64 get32BitHigh(const PokeFinderCore::ResearcherFrame &f) { return f.getHigh32(); }
-        static u64 get32BitLow(const PokeFinderCore::ResearcherFrame &f) { return f.getLow32(); }
-        static u64 get32(const PokeFinderCore::ResearcherFrame &f) { return f.getFull32(); }
-        static u64 get16BitHigh(const PokeFinderCore::ResearcherFrame &f) { return f.getHigh16(); }
-        static u64 get16BitLow(const PokeFinderCore::ResearcherFrame &f) { return f.getLow16(); }
-    };
-}
+    static u64 get64Bit(const PokeFinderCore::ResearcherFrame &f) { return f.getFull64(); }
+    static u64 get32BitHigh(const PokeFinderCore::ResearcherFrame &f) { return f.getHigh32(); }
+    static u64 get32BitLow(const PokeFinderCore::ResearcherFrame &f) { return f.getLow32(); }
+    static u64 get32(const PokeFinderCore::ResearcherFrame &f) { return f.getFull32(); }
+    static u64 get16BitHigh(const PokeFinderCore::ResearcherFrame &f) { return f.getHigh16(); }
+    static u64 get16BitLow(const PokeFinderCore::ResearcherFrame &f) { return f.getLow16(); }
+};
 
 #endif // RESEARCHERMODEL_HPP

@@ -24,45 +24,42 @@
 #include <QMenu>
 #include <QStandardItemModel>
 
-namespace PokeFinderForms
+namespace Ui
 {
-    namespace Ui
-    {
-        class PIDtoIVs;
-    }
-
-    class PIDtoIVs : public QWidget
-    {
-        Q_OBJECT
-    signals:
-        void moveResultsToStationary(QString, QString, u8, u8, u8, u8, u8, u8);
-
-    public:
-        explicit PIDtoIVs(QWidget *parent = nullptr);
-        ~PIDtoIVs() override;
-
-    private:
-        Ui::PIDtoIVs *ui;
-        QStandardItemModel *model {};
-        QMenu *contextMenu {};
-
-        void setupModels();
-        void calcFromPID(u32 pid);
-        void calcMethod124(u32 pid);
-        void calcMethodXD(u32 pid);
-        void calcMethodChannel(u32 pid);
-        QString calcIVs(u32 iv1, int num);
-        QString calcIVsXD(u16 iv1, u16 iv2);
-        QString calcIVsChannel(u32 iv1);
-        void addSeed(u32 seed, u32 iv1);
-        void addSeedGC(u32 seed, u16 iv1, u16 iv2);
-        void addSeedChannel(u32 seed, u32 iv1);
-
-    private slots:
-        void generate();
-        void tableViewContextMenu(QPoint pos);
-        void copySeed();
-    };
+    class PIDtoIVs;
 }
+
+class PIDtoIVs : public QWidget
+{
+    Q_OBJECT
+signals:
+    void moveResultsToStationary(QString, QString, u8, u8, u8, u8, u8, u8);
+
+public:
+    explicit PIDtoIVs(QWidget *parent = nullptr);
+    ~PIDtoIVs() override;
+
+private:
+    Ui::PIDtoIVs *ui;
+    QStandardItemModel *model {};
+    QMenu *contextMenu {};
+
+    void setupModels();
+    void calcFromPID(u32 pid);
+    void calcMethod124(u32 pid);
+    void calcMethodXD(u32 pid);
+    void calcMethodChannel(u32 pid);
+    QString calcIVs(u32 iv1, int num);
+    QString calcIVsXD(u16 iv1, u16 iv2);
+    QString calcIVsChannel(u32 iv1);
+    void addSeed(u32 seed, u32 iv1);
+    void addSeedGC(u32 seed, u16 iv1, u16 iv2);
+    void addSeedChannel(u32 seed, u32 iv1);
+
+private slots:
+    void generate();
+    void tableViewContextMenu(QPoint pos);
+    void copySeed();
+};
 
 #endif // PIDTOIVS_HPP

@@ -23,54 +23,48 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QMenu>
 
+class Egg4GeneratorModel;
+class Egg4SearcherModel;
+
 namespace PokeFinderCore
 {
     class Frame4;
 }
 
-namespace PokeFinderModels
+namespace Ui
 {
-    class Egg4GeneratorModel;
-    class Egg4SearcherModel;
+    class Eggs4;
 }
 
-namespace PokeFinderForms
+class Eggs4 : public QWidget
 {
-    namespace Ui
-    {
-        class Eggs4;
-    }
+    Q_OBJECT
+signals:
+    void alertProfiles(int);
 
-    class Eggs4 : public QWidget
-    {
-        Q_OBJECT
-    signals:
-        void alertProfiles(int);
+public:
+    explicit Eggs4(QWidget *parent = nullptr);
+    ~Eggs4() override;
+    void updateProfiles();
 
-    public:
-        explicit Eggs4(QWidget *parent = nullptr);
-        ~Eggs4() override;
-        void updateProfiles();
+private:
+    Ui::Eggs4 *ui;
+    QVector<PokeFinderCore::Profile4> profiles;
+    Egg4GeneratorModel *generatorModel {};
+    Egg4SearcherModel *searcherModel {};
+    QMenu *searcherMenu {};
 
-    private:
-        Ui::Eggs4 *ui;
-        QVector<PokeFinderCore::Profile4> profiles;
-        PokeFinderModels::Egg4GeneratorModel *generatorModel {};
-        PokeFinderModels::Egg4SearcherModel *searcherModel {};
-        QMenu *searcherMenu {};
+    void setupModels();
 
-        void setupModels();
-
-    private slots:
-        void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
-        void refreshProfiles();
-        void generate();
-        void search();
-        void profilesIndexChanged(int index);
-        void tableViewSearcherContextMenu(QPoint pos);
-        void seedToTime();
-        void profileManager();
-    };
-}
+private slots:
+    void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
+    void refreshProfiles();
+    void generate();
+    void search();
+    void profilesIndexChanged(int index);
+    void tableViewSearcherContextMenu(QPoint pos);
+    void seedToTime();
+    void profileManager();
+};
 
 #endif // EGGS4_HPP

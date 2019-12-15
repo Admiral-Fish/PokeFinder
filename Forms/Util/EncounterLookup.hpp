@@ -30,33 +30,30 @@ namespace PokeFinderCore
     enum Game : u16;
 }
 
-namespace PokeFinderForms
+namespace Ui
 {
-    namespace Ui
-    {
-        class EncounterLookup;
-    }
-
-    class EncounterLookup : public QWidget
-    {
-        Q_OBJECT
-    public:
-        explicit EncounterLookup(QWidget *parent = nullptr);
-        ~EncounterLookup() override;
-
-    private:
-        Ui::EncounterLookup *ui;
-        QStandardItemModel *model {};
-
-        void setupModels();
-        QSet<QPair<u8, QString>> getEncounters3(PokeFinderCore::Game game, u16 specie);
-        QSet<QPair<u8, QString>> getEncounters4(PokeFinderCore::Game game, u16 specie);
-        QString getEncounterString(PokeFinderCore::Encounter type);
-
-    private slots:
-        void find();
-        void gameIndexChanged(int index);
-    };
+    class EncounterLookup;
 }
+
+class EncounterLookup : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit EncounterLookup(QWidget *parent = nullptr);
+    ~EncounterLookup() override;
+
+private:
+    Ui::EncounterLookup *ui;
+    QStandardItemModel *model {};
+
+    void setupModels();
+    QSet<QPair<u8, QString>> getEncounters3(PokeFinderCore::Game game, u16 specie);
+    QSet<QPair<u8, QString>> getEncounters4(PokeFinderCore::Game game, u16 specie);
+    QString getEncounterString(PokeFinderCore::Encounter type);
+
+private slots:
+    void find();
+    void gameIndexChanged(int index);
+};
 
 #endif // ENCOUNTERLOOKUP_HPP

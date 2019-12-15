@@ -22,80 +22,80 @@
 #include <Core/Util/Utilities.hpp>
 #include <QSettings>
 
-namespace PokeFinderForms
+SearchCoinFlips::SearchCoinFlips(const QVector<PokeFinderCore::DateTime> &model, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::SearchCoinFlips)
 {
-    SearchCoinFlips::SearchCoinFlips(const QVector<PokeFinderCore::DateTime> &model, QWidget *parent)
-        : QDialog(parent)
-        , ui(new Ui::SearchCoinFlips)
+    ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+
+    data = model;
+    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
+
+    connect(ui->pushButtonHeads, &QPushButton::clicked, this, &SearchCoinFlips::heads);
+    connect(ui->pushButtonTails, &QPushButton::clicked, this, &SearchCoinFlips::tails);
+    connect(ui->lineEditFlips, &QLineEdit::textChanged, this, &SearchCoinFlips::flipsTextChanged);
+
+    QSettings setting;
+    if (setting.contains("searchCoinFlips/geometry"))
     {
-        ui->setupUi(this);
-        setAttribute(Qt::WA_QuitOnClose, false);
+        this->restoreGeometry(setting.value("searchCoinFlips/geometry").toByteArray());
+    }
+}
 
-        data = model;
-        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(model.size()));
+SearchCoinFlips::~SearchCoinFlips()
+{
+    QSettings setting;
+    setting.setValue("searchCoinFlips/geometry", this->saveGeometry());
 
-        connect(ui->pushButtonHeads, &QPushButton::clicked, this, &SearchCoinFlips::heads);
-        connect(ui->pushButtonTails, &QPushButton::clicked, this, &SearchCoinFlips::tails);
-        connect(ui->lineEditFlips, &QLineEdit::textChanged, this, &SearchCoinFlips::flipsTextChanged);
+    delete ui;
+}
 
-        QSettings setting;
-        if (setting.contains("searchCoinFlips/geometry"))
+QVector<bool> SearchCoinFlips::possibleResults() const
+{
+    return possible;
+}
+
+void SearchCoinFlips::heads()
+{
+    QString string = ui->lineEditFlips->text();
+    string += string.isEmpty() ? "H" : ", H";
+    ui->lineEditFlips->setText(string);
+}
+
+void SearchCoinFlips::tails()
+{
+    QString string = ui->lineEditFlips->text();
+    string += string.isEmpty() ? "T" : ", T";
+    ui->lineEditFlips->setText(string);
+}
+
+void SearchCoinFlips::flipsTextChanged(const QString &val)
+{
+    QStringList results = val.split(",", QString::SkipEmptyParts);
+    int num = 0;
+
+    possible.clear();
+    for (const auto &dt : data)
+    {
+        QStringList compare
+            = PokeFinderCore::Utilities::coinFlips(dt.getSeed(), 15).split(",", QString::SkipEmptyParts);
+
+        bool pass = true;
+        for (int j = 0; j < results.size(); j++)
         {
-            this->restoreGeometry(setting.value("searchCoinFlips/geometry").toByteArray());
+            if (results.at(j) != compare.at(j))
+            {
+                pass = false;
+                break;
+            }
+        }
+        possible.append(pass);
+        if (pass)
+        {
+            num++;
         }
     }
 
-    SearchCoinFlips::~SearchCoinFlips()
-    {
-        QSettings setting;
-        setting.setValue("searchCoinFlips/geometry", this->saveGeometry());
-
-        delete ui;
-    }
-
-    QVector<bool> SearchCoinFlips::possibleResults() const { return possible; }
-
-    void SearchCoinFlips::heads()
-    {
-        QString string = ui->lineEditFlips->text();
-        string += string.isEmpty() ? "H" : ", H";
-        ui->lineEditFlips->setText(string);
-    }
-
-    void SearchCoinFlips::tails()
-    {
-        QString string = ui->lineEditFlips->text();
-        string += string.isEmpty() ? "T" : ", T";
-        ui->lineEditFlips->setText(string);
-    }
-
-    void SearchCoinFlips::flipsTextChanged(const QString &val)
-    {
-        QStringList results = val.split(",", QString::SkipEmptyParts);
-        int num = 0;
-
-        possible.clear();
-        for (const auto &dt : data)
-        {
-            QStringList compare
-                = PokeFinderCore::Utilities::coinFlips(dt.getSeed(), 15).split(",", QString::SkipEmptyParts);
-
-            bool pass = true;
-            for (int j = 0; j < results.size(); j++)
-            {
-                if (results.at(j) != compare.at(j))
-                {
-                    pass = false;
-                    break;
-                }
-            }
-            possible.append(pass);
-            if (pass)
-            {
-                num++;
-            }
-        }
-
-        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
-    }
+    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
 }

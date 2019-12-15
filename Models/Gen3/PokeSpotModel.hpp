@@ -23,20 +23,17 @@
 #include <Core/Gen3/Frame3.hpp>
 #include <Models/TableModel.hpp>
 
-namespace PokeFinderModels
+class PokeSpotModel : public TableModel<PokeFinderCore::Frame3>
 {
-    class PokeSpotModel : public TableModel<PokeFinderCore::Frame3>
-    {
-        Q_OBJECT
-    public:
-        explicit PokeSpotModel(QObject *parent);
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-        QVariant data(const QModelIndex &index, int role) const override;
-        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    Q_OBJECT
+public:
+    explicit PokeSpotModel(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    private:
-        QStringList header = { tr("Frame"), tr("PID"), "!!!", tr("Type"), tr("Nature"), tr("Ability"), tr("Gender") };
-    };
-}
+private:
+    QStringList header = { tr("Frame"), tr("PID"), "!!!", tr("Type"), tr("Nature"), tr("Ability"), tr("Gender") };
+};
 
 #endif // POKESPOTMODEL_HPP

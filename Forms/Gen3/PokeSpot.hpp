@@ -22,34 +22,28 @@
 
 #include <QWidget>
 
-namespace PokeFinderModels
+class PokeSpotModel;
+
+namespace Ui
 {
-    class PokeSpotModel;
+    class PokeSpot;
 }
 
-namespace PokeFinderForms
+class PokeSpot : public QWidget
 {
-    namespace Ui
-    {
-        class PokeSpot;
-    }
+    Q_OBJECT
+public:
+    explicit PokeSpot(QWidget *parent = nullptr);
+    ~PokeSpot() override;
 
-    class PokeSpot : public QWidget
-    {
-        Q_OBJECT
-    public:
-        explicit PokeSpot(QWidget *parent = nullptr);
-        ~PokeSpot() override;
+private:
+    Ui::PokeSpot *ui;
+    PokeSpotModel *model {};
 
-    private:
-        Ui::PokeSpot *ui;
-        PokeFinderModels::PokeSpotModel *model {};
+    void setupModels();
 
-        void setupModels();
-
-    private slots:
-        void generate();
-    };
-}
+private slots:
+    void generate();
+};
 
 #endif // POKESPOT_HPP

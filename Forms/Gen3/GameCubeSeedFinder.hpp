@@ -23,37 +23,34 @@
 #include <Core/Util/Global.hpp>
 #include <QWidget>
 
-namespace PokeFinderForms
+namespace Ui
 {
-    namespace Ui
-    {
-        class GameCubeSeedFinder;
-    }
-
-    class GameCubeSeedFinder : public QWidget
-    {
-        Q_OBJECT
-    public:
-        explicit GameCubeSeedFinder(QWidget *parent = nullptr);
-        ~GameCubeSeedFinder() override;
-
-    private:
-        Ui::GameCubeSeedFinder *ui;
-        QVector<u32> galeSeeds;
-        QVector<u32> coloSeeds;
-        u8 galesRound;
-        u8 coloRound;
-
-    private slots:
-        void galesSearch();
-        void galesReset();
-        void coloSearch();
-        void coloReset();
-        void updateGales(const QVector<u32> &seeds);
-        void updateGalesProgress(int progress);
-        void updateColo(const QVector<u32> &seeds);
-        void updateColoProgress(int progress);
-    };
+    class GameCubeSeedFinder;
 }
+
+class GameCubeSeedFinder : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit GameCubeSeedFinder(QWidget *parent = nullptr);
+    ~GameCubeSeedFinder() override;
+
+private:
+    Ui::GameCubeSeedFinder *ui;
+    QVector<u32> galeSeeds;
+    QVector<u32> coloSeeds;
+    u8 galesRound;
+    u8 coloRound;
+
+private slots:
+    void galesSearch();
+    void galesReset();
+    void coloSearch();
+    void coloReset();
+    void updateGales(const QVector<u32> &seeds);
+    void updateGalesProgress(int progress);
+    void updateColo(const QVector<u32> &seeds);
+    void updateColoProgress(int progress);
+};
 
 #endif // GAMECUBESEEDFINDER_HPP

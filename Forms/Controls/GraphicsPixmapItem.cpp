@@ -19,61 +19,58 @@
 
 #include "GraphicsPixmapItem.hpp"
 
-namespace PokeFinderForms
+GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap, u16 minX, u16 minY, u16 maxX, u16 maxY)
 {
-    GraphicsPixmapItem::GraphicsPixmapItem(const QPixmap &pixmap, u16 minX, u16 minY, u16 maxX, u16 maxY)
-    {
-        setPixmap(pixmap);
-        this->minX = minX;
-        this->minY = minY;
-        this->maxX = maxX;
-        this->maxY = maxY;
+    setPixmap(pixmap);
+    this->minX = minX;
+    this->minY = minY;
+    this->maxX = maxX;
+    this->maxY = maxY;
 
+    setX(minX);
+    setY(minY);
+}
+
+void GraphicsPixmapItem::setMin(u16 minX, u16 minY)
+{
+    this->minX = minX;
+    this->minY = minY;
+
+    if (x() < minX)
+    {
         setX(minX);
+    }
+    if (y() < minY)
+    {
         setY(minY);
     }
+}
 
-    void GraphicsPixmapItem::setMin(u16 minX, u16 minY)
+void GraphicsPixmapItem::setMax(u16 maxX, u16 maxY)
+{
+    this->maxX = maxX;
+    this->maxY = maxY;
+}
+
+void GraphicsPixmapItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsPixmapItem::mouseMoveEvent(event);
+
+    if (x() < minX)
     {
-        this->minX = minX;
-        this->minY = minY;
-
-        if (x() < minX)
-        {
-            setX(minX);
-        }
-        if (y() < minY)
-        {
-            setY(minY);
-        }
+        setX(minX);
+    }
+    else if (x() > maxX)
+    {
+        setX(maxX);
     }
 
-    void GraphicsPixmapItem::setMax(u16 maxX, u16 maxY)
+    if (y() < minY)
     {
-        this->maxX = maxX;
-        this->maxY = maxY;
+        setY(minY);
     }
-
-    void GraphicsPixmapItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+    else if (y() > maxY)
     {
-        QGraphicsPixmapItem::mouseMoveEvent(event);
-
-        if (x() < minX)
-        {
-            setX(minX);
-        }
-        else if (x() > maxX)
-        {
-            setX(maxX);
-        }
-
-        if (y() < minY)
-        {
-            setY(minY);
-        }
-        else if (y() > maxY)
-        {
-            setY(maxY);
-        }
+        setY(maxY);
     }
 }

@@ -29,30 +29,27 @@ namespace PokeFinderCore
     enum Method : u8;
 }
 
-namespace PokeFinderModels
+class Searcher3Model : public TableModel<PokeFinderCore::Frame3>
 {
-    class Searcher3Model : public TableModel<PokeFinderCore::Frame3>
-    {
-        Q_OBJECT
-    public:
-        Searcher3Model(QObject *parent, PokeFinderCore::Method method);
-        void setMethod(PokeFinderCore::Method method);
-        void sort(int column, Qt::SortOrder order) override;
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-        QVariant data(const QModelIndex &index, int role) const override;
-        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    Q_OBJECT
+public:
+    Searcher3Model(QObject *parent, PokeFinderCore::Method method);
+    void setMethod(PokeFinderCore::Method method);
+    void sort(int column, Qt::SortOrder order) override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    private:
-        PokeFinderCore::Method method;
+private:
+    PokeFinderCore::Method method;
 
-        QStringList header1 = { tr("Seed"), tr("Lead"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"),
-            tr("Ability"), tr("HP"), tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"),
-            tr("Gender") };
-        QStringList header2 = { tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-            tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
-        QStringList header3 = { tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"),
-            tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Reason") };
-    };
-}
+    QStringList header1
+        = { tr("Seed"), tr("Lead"), tr("Slot"), tr("Level"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"),
+              tr("Atk"), tr("Def"), tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
+    QStringList header2 = { tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"),
+        tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender") };
+    QStringList header3 = { tr("Seed"), tr("PID"), "!!!", tr("Nature"), tr("Ability"), tr("HP"), tr("Atk"), tr("Def"),
+        tr("SpA"), tr("SpD"), tr("Spe"), tr("Hidden"), tr("Power"), tr("Gender"), tr("Reason") };
+};
 
 #endif // SEARCHER3MODEL_HPP

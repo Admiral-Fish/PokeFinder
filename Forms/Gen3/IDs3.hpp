@@ -23,36 +23,33 @@
 #include <QStandardItemModel>
 #include <QWidget>
 
-namespace PokeFinderForms
+namespace Ui
 {
-    namespace Ui
-    {
-        class IDs3;
-    }
-
-    class IDs3 : public QWidget
-    {
-        Q_OBJECT
-    public:
-        explicit IDs3(QWidget *parent = nullptr);
-        ~IDs3() override;
-
-    private:
-        Ui::IDs3 *ui;
-        QStandardItemModel *xdcolo {};
-        QStandardItemModel *frlge {};
-        QStandardItemModel *rs {};
-
-        void setupModels();
-
-    private slots:
-        void xdColoSearch();
-        void frlgeSearch();
-        void rsSearch();
-        void rsDeadBattery(bool checked);
-        void rsDate(bool checked);
-        void rsInitialSeed(bool checked);
-    };
+    class IDs3;
 }
+
+class IDs3 : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit IDs3(QWidget *parent = nullptr);
+    ~IDs3() override;
+
+private:
+    Ui::IDs3 *ui;
+    QStandardItemModel *xdcolo {};
+    QStandardItemModel *frlge {};
+    QStandardItemModel *rs {};
+
+    void setupModels();
+
+private slots:
+    void xdColoSearch();
+    void frlgeSearch();
+    void rsSearch();
+    void rsDeadBattery(bool checked);
+    void rsDate(bool checked);
+    void rsInitialSeed(bool checked);
+};
 
 #endif // IDS3_HPP

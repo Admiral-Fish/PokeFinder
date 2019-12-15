@@ -24,57 +24,51 @@
 #include <QHash>
 #include <QMessageBox>
 
+class ResearcherModel;
+
 namespace PokeFinderCore
 {
     class ResearcherFrame;
 }
 
-namespace PokeFinderModels
+namespace Ui
 {
-    class ResearcherModel;
+    class Researcher;
 }
 
-namespace PokeFinderForms
+class Researcher : public QWidget
 {
-    namespace Ui
-    {
-        class Researcher;
-    }
+    Q_OBJECT
+public:
+    explicit Researcher(QWidget *parent = nullptr);
+    ~Researcher() override;
 
-    class Researcher : public QWidget
-    {
-        Q_OBJECT
-    public:
-        explicit Researcher(QWidget *parent = nullptr);
-        ~Researcher() override;
+private:
+    Ui::Researcher *ui;
+    ResearcherModel *model {};
+    QHash<QString, u8> keys;
 
-    private:
-        Ui::Researcher *ui;
-        PokeFinderModels::ResearcherModel *model {};
-        QHash<QString, u8> keys;
+    void setupModels();
+    u64 getCustom(const QString &text, const PokeFinderCore::ResearcherFrame &frame,
+        const QVector<PokeFinderCore::ResearcherFrame> &frames);
+    void resizeHeader();
+    QVector<bool> getHexCheck();
+    static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
+    static inline u64 modulo(u64 x, u64 y) { return x % y; }
+    static inline u64 shiftRight(u64 x, u64 y) { return x >> y; }
+    static inline u64 shiftLeft(u64 x, u64 y) { return x << y; }
+    static inline u64 bitAnd(u64 x, u64 y) { return x & y; }
+    static inline u64 bitOr(u64 x, u64 y) { return x | y; }
+    static inline u64 bitXor(u64 x, u64 y) { return x ^ y; }
+    static inline u64 add(u64 x, u64 y) { return x + y; }
+    static inline u64 subtract(u64 x, u64 y) { return x - y; }
+    static inline u64 multiply(u64 x, u64 y) { return x * y; }
 
-        void setupModels();
-        u64 getCustom(const QString &text, const PokeFinderCore::ResearcherFrame &frame,
-            const QVector<PokeFinderCore::ResearcherFrame> &frames);
-        void resizeHeader();
-        QVector<bool> getHexCheck();
-        static inline u64 divide(u64 x, u64 y) { return y == 0 ? 0 : x / y; }
-        static inline u64 modulo(u64 x, u64 y) { return x % y; }
-        static inline u64 shiftRight(u64 x, u64 y) { return x >> y; }
-        static inline u64 shiftLeft(u64 x, u64 y) { return x << y; }
-        static inline u64 bitAnd(u64 x, u64 y) { return x & y; }
-        static inline u64 bitOr(u64 x, u64 y) { return x | y; }
-        static inline u64 bitXor(u64 x, u64 y) { return x ^ y; }
-        static inline u64 add(u64 x, u64 y) { return x + y; }
-        static inline u64 subtract(u64 x, u64 y) { return x - y; }
-        static inline u64 multiply(u64 x, u64 y) { return x * y; }
-
-    private slots:
-        void generate();
-        void selectionIndexChanged(int index);
-        void search();
-        void next();
-    };
-}
+private slots:
+    void generate();
+    void selectionIndexChanged(int index);
+    void search();
+    void next();
+};
 
 #endif // RESEARCHER_HPP

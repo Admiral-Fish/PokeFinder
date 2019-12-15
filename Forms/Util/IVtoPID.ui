@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PokeFinderForms::IVtoPID</class>
+ <class>IVtoPID</class>
  <widget class="QWidget" name="IVtoPID">
   <property name="geometry">
    <rect>
@@ -212,12 +212,12 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PokeFinderForms::TextBox</class>
+   <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>PokeFinderForms::TableView</class>
+   <class>TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>

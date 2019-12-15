@@ -24,28 +24,23 @@
 #include <Core/Util/Game.hpp>
 #include <Models/TableModel.hpp>
 
-namespace PokeFinderModels
+class SeedtoTime4Model : public TableModel<PokeFinderCore::DateTime>
 {
-    class SeedtoTime4Model : public TableModel<PokeFinderCore::DateTime>
-    {
-        Q_OBJECT
-    public:
-        explicit SeedtoTime4Model(
-            QObject *parent, bool flag = false, PokeFinderCore::Game version = PokeFinderCore::DPPt);
-        void setFlags(bool flag = false, PokeFinderCore::Game version = PokeFinderCore::Diamond);
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-        QVariant data(const QModelIndex &index, int role) const override;
-        QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    Q_OBJECT
+public:
+    explicit SeedtoTime4Model(QObject *parent, bool flag = false, PokeFinderCore::Game version = PokeFinderCore::DPPt);
+    void setFlags(bool flag = false, PokeFinderCore::Game version = PokeFinderCore::Diamond);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    private:
-        bool calibrate;
-        PokeFinderCore::Game version;
+private:
+    bool calibrate;
+    PokeFinderCore::Game version;
 
-        QStringList header1 = { tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Calls"), tr("Roamer locations") };
-        QStringList header2
-            = { tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Coin flips"), tr("Roamer locations") };
-        QStringList header3 = { tr("Date"), tr("Time"), tr("Delay") };
-    };
-}
+    QStringList header1 = { tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Calls"), tr("Roamer locations") };
+    QStringList header2 = { tr("Seed"), tr("Date"), tr("Time"), tr("Delay"), tr("Coin flips"), tr("Roamer locations") };
+    QStringList header3 = { tr("Date"), tr("Time"), tr("Delay") };
+};
 
 #endif // SEEDTOTIME4MODEL_HPP

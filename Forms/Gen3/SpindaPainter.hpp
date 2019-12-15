@@ -24,41 +24,38 @@
 #include <QGraphicsScene>
 #include <QWidget>
 
-namespace PokeFinderForms
+namespace Ui
 {
-    namespace Ui
-    {
-        class SpindaPainter;
-    }
-
-    class GraphicsPixmapItem;
-
-    class SpindaPainter : public QWidget
-    {
-        Q_OBJECT
-    public:
-        explicit SpindaPainter(QWidget *parent = nullptr);
-        ~SpindaPainter() override;
-
-    private:
-        Ui::SpindaPainter *ui;
-        QGraphicsScene *scene {};
-        QGraphicsPixmapItem *spinda {};
-        GraphicsPixmapItem *spot1 {};
-        GraphicsPixmapItem *spot2 {};
-        GraphicsPixmapItem *spot3 {};
-        GraphicsPixmapItem *spot4 {};
-        u32 pid = 0;
-        bool text = false;
-
-        void setupModels();
-        void moveSpot(GraphicsPixmapItem *item, int index);
-        void updateInfo();
-
-    private slots:
-        void textBoxPIDEdited(const QString &arg1);
-        void updatePID(const QList<QRectF> &);
-    };
+    class SpindaPainter;
 }
+
+class GraphicsPixmapItem;
+
+class SpindaPainter : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit SpindaPainter(QWidget *parent = nullptr);
+    ~SpindaPainter() override;
+
+private:
+    Ui::SpindaPainter *ui;
+    QGraphicsScene *scene {};
+    QGraphicsPixmapItem *spinda {};
+    GraphicsPixmapItem *spot1 {};
+    GraphicsPixmapItem *spot2 {};
+    GraphicsPixmapItem *spot3 {};
+    GraphicsPixmapItem *spot4 {};
+    u32 pid = 0;
+    bool text = false;
+
+    void setupModels();
+    void moveSpot(GraphicsPixmapItem *item, int index);
+    void updateInfo();
+
+private slots:
+    void textBoxPIDEdited(const QString &arg1);
+    void updatePID(const QList<QRectF> &);
+};
 
 #endif // SPINDAPAINTER_HPP

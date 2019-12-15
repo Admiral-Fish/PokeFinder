@@ -23,53 +23,47 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QWidget>
 
+class SeedtoTime4Model;
+
 namespace PokeFinderCore
 {
     class DateTime;
 }
 
-namespace PokeFinderModels
+namespace Ui
 {
-    class SeedtoTime4Model;
+    class SeedtoTime4;
 }
 
-namespace PokeFinderForms
+class SeedtoTime4 : public QWidget
 {
-    namespace Ui
-    {
-        class SeedtoTime4;
-    }
+    Q_OBJECT
+public:
+    explicit SeedtoTime4(QWidget *parent = nullptr);
+    explicit SeedtoTime4(const QString &seed, const PokeFinderCore::Profile4 &profile, QWidget *parent = nullptr);
+    ~SeedtoTime4() override;
 
-    class SeedtoTime4 : public QWidget
-    {
-        Q_OBJECT
-    public:
-        explicit SeedtoTime4(QWidget *parent = nullptr);
-        explicit SeedtoTime4(const QString &seed, const PokeFinderCore::Profile4 &profile, QWidget *parent = nullptr);
-        ~SeedtoTime4() override;
+private:
+    Ui::SeedtoTime4 *ui;
+    SeedtoTime4Model *dpptModel {};
+    SeedtoTime4Model *dpptCalibrateModel {};
+    SeedtoTime4Model *hgssModel {};
+    SeedtoTime4Model *hgssCalibrateModel {};
 
-    private:
-        Ui::SeedtoTime4 *ui;
-        PokeFinderModels::SeedtoTime4Model *dpptModel {};
-        PokeFinderModels::SeedtoTime4Model *dpptCalibrateModel {};
-        PokeFinderModels::SeedtoTime4Model *hgssModel {};
-        PokeFinderModels::SeedtoTime4Model *hgssCalibrateModel {};
+    void setupModels();
+    QVector<PokeFinderCore::DateTime> generate(
+        u32 seed, u32 year, bool forceSecond, int forcedSecond, PokeFinderCore::Game version);
+    QVector<PokeFinderCore::DateTime> calibrate(
+        int minusDelay, int plusDelay, int minusSecond, int plusSecond, const PokeFinderCore::DateTime &target);
 
-        void setupModels();
-        QVector<PokeFinderCore::DateTime> generate(
-            u32 seed, u32 year, bool forceSecond, int forcedSecond, PokeFinderCore::Game version);
-        QVector<PokeFinderCore::DateTime> calibrate(
-            int minusDelay, int plusDelay, int minusSecond, int plusSecond, const PokeFinderCore::DateTime &target);
-
-    private slots:
-        void dpptGenerate();
-        void dpptCalibrate();
-        void hgssGenerate();
-        void hgssCalibrate();
-        void searchFlips();
-        void searchCalls();
-        void map();
-    };
-}
+private slots:
+    void dpptGenerate();
+    void dpptCalibrate();
+    void hgssGenerate();
+    void hgssCalibrate();
+    void searchFlips();
+    void searchCalls();
+    void map();
+};
 
 #endif // SEEDTOTIME4_HPP

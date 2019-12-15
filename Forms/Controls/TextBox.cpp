@@ -19,101 +19,98 @@
 
 #include "TextBox.hpp"
 
-namespace PokeFinderForms
+TextBox::TextBox(QWidget *parent)
+    : QLineEdit(parent)
 {
-    TextBox::TextBox(QWidget *parent)
-        : QLineEdit(parent)
+    connect(this, &TextBox::textEdited, this, &TextBox::onTextEdited);
+    setup = false;
+}
+
+void TextBox::setValues(InputType type)
+{
+    switch (type)
     {
-        connect(this, &TextBox::textEdited, this, &TextBox::onTextEdited);
-        setup = false;
+    case InputType::Seed64Bit:
+        minValue = 0;
+        maxValue = 0xffffffffffffffff;
+        base = 16;
+        break;
+    case InputType::Frame64Bit:
+        minValue = 1;
+        maxValue = 0xffffffffffffffff;
+        base = 10;
+        break;
+    case InputType::Seed32Bit:
+        minValue = 0;
+        maxValue = 0xffffffff;
+        base = 16;
+        break;
+    case InputType::Frame32Bit:
+        minValue = 1;
+        maxValue = 0xffffffff;
+        base = 10;
+        break;
+    case InputType::Seed16Bit:
+        minValue = 0;
+        maxValue = 0xffff;
+        base = 16;
+        break;
+    case InputType::Delay:
+        minValue = 0;
+        maxValue = 0xffffffff;
+        base = 10;
+        break;
+    case InputType::TIDSID:
+        minValue = 0;
+        maxValue = 0xffff;
+        base = 10;
+        break;
     }
 
-    void TextBox::setValues(InputType type)
+    filter = QRegExp(base == 10 ? "[^0-9]" : "[^0-9A-F]");
+    setup = true;
+}
+
+void TextBox::setValues(u64 minValue, u64 maxValue, int base)
+{
+    this->minValue = minValue;
+    this->maxValue = maxValue;
+    this->base = base;
+    filter = QRegExp(base == 10 ? "[^0-9]" : "[^0-9A-F]");
+    setup = true;
+}
+
+int TextBox::getInt() const
+{
+    Q_ASSERT(setup);
+    return this->text().toInt(nullptr, base);
+}
+
+u16 TextBox::getUShort() const
+{
+    Q_ASSERT(setup);
+    return this->text().toUShort(nullptr, base);
+}
+
+u32 TextBox::getUInt() const
+{
+    Q_ASSERT(setup);
+    return this->text().toUInt(nullptr, base);
+}
+
+void TextBox::onTextEdited(QString string)
+{
+    if (setup)
     {
-        switch (type)
-        {
-        case InputType::Seed64Bit:
-            minValue = 0;
-            maxValue = 0xffffffffffffffff;
-            base = 16;
-            break;
-        case InputType::Frame64Bit:
-            minValue = 1;
-            maxValue = 0xffffffffffffffff;
-            base = 10;
-            break;
-        case InputType::Seed32Bit:
-            minValue = 0;
-            maxValue = 0xffffffff;
-            base = 16;
-            break;
-        case InputType::Frame32Bit:
-            minValue = 1;
-            maxValue = 0xffffffff;
-            base = 10;
-            break;
-        case InputType::Seed16Bit:
-            minValue = 0;
-            maxValue = 0xffff;
-            base = 16;
-            break;
-        case InputType::Delay:
-            minValue = 0;
-            maxValue = 0xffffffff;
-            base = 10;
-            break;
-        case InputType::TIDSID:
-            minValue = 0;
-            maxValue = 0xffff;
-            base = 10;
-            break;
-        }
+        string = string.toUpper();
+        string.remove(filter);
 
-        filter = QRegExp(base == 10 ? "[^0-9]" : "[^0-9A-F]");
-        setup = true;
-    }
+        u64 temp = string.toULongLong(nullptr, base);
+        temp = qBound(minValue, temp, maxValue);
+        string = QString::number(temp, base);
 
-    void TextBox::setValues(u64 minValue, u64 maxValue, int base)
-    {
-        this->minValue = minValue;
-        this->maxValue = maxValue;
-        this->base = base;
-        filter = QRegExp(base == 10 ? "[^0-9]" : "[^0-9A-F]");
-        setup = true;
-    }
-
-    int TextBox::getInt() const
-    {
-        Q_ASSERT(setup);
-        return this->text().toInt(nullptr, base);
-    }
-
-    u16 TextBox::getUShort() const
-    {
-        Q_ASSERT(setup);
-        return this->text().toUShort(nullptr, base);
-    }
-
-    u32 TextBox::getUInt() const
-    {
-        Q_ASSERT(setup);
-        return this->text().toUInt(nullptr, base);
-    }
-
-    void TextBox::onTextEdited(QString string)
-    {
-        if (setup)
-        {
-            string = string.toUpper();
-            string.remove(filter);
-
-            u64 temp = string.toULongLong(nullptr, base);
-            temp = qBound(minValue, temp, maxValue);
-            string = QString::number(temp, base);
-
-            int position = cursorPosition();
-            setText(string);
-            setCursorPosition(position);
-        }
+        int position = cursorPosition();
+        setText(string);
+        setCursorPosition(position);
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PokeFinderForms::IVFilter</class>
+ <class>IVFilter</class>
  <widget class="QWidget" name="IVFilter">
   <property name="geometry">
    <rect>
@@ -288,7 +288,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PokeFinderForms::Label</class>
+   <class>Label</class>
    <extends>QLabel</extends>
    <header>Forms/Controls/Label.hpp</header>
    <slots>

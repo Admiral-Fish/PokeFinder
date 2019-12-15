@@ -22,141 +22,141 @@
 #include <QLineEdit>
 #include <QListView>
 
-namespace PokeFinderForms
+CheckList::CheckList(QWidget *parent)
+    : QComboBox(parent)
 {
-    CheckList::CheckList(QWidget *parent)
-        : QComboBox(parent)
+    model = new QStandardItemModel(this);
+    setModel(model);
+
+    setEditable(true);
+    lineEdit()->setReadOnly(true);
+    lineEdit()->installEventFilter(this);
+
+    connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
+    connect(qobject_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &CheckList::itemPressed);
+    connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
+}
+
+void CheckList::setup(const QStringList &items)
+{
+    if (!items.isEmpty())
     {
-        model = new QStandardItemModel(this);
-        setModel(model);
-
-        setEditable(true);
-        lineEdit()->setReadOnly(true);
-        lineEdit()->installEventFilter(this);
-
-        connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
-        connect(qobject_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &CheckList::itemPressed);
-        connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
+        clear();
+        addItems(items);
     }
 
-    void CheckList::setup(const QStringList &items)
+    for (int i = 0; i < model->rowCount(); i++)
     {
-        if (!items.isEmpty())
-        {
-            clear();
-            addItems(items);
-        }
+        QStandardItem *item = model->item(i);
+        item->setCheckState(Qt::Unchecked);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+    }
+}
 
+QVector<bool> CheckList::getChecked() const
+{
+    QVector<bool> result;
+
+    if (checkState() == Qt::PartiallyChecked)
+    {
+        for (auto i = 0; i < model->rowCount(); i++)
+        {
+            result.append(model->item(i)->checkState() == Qt::Checked);
+        }
+    }
+    else
+    {
+        result = QVector<bool>(model->rowCount(), true);
+    }
+    return result;
+}
+
+void CheckList::setChecks(QVector<bool> flags)
+{
+    for (auto i = 0; i < model->rowCount(); i++)
+    {
+        model->item(i)->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
+    }
+}
+
+void CheckList::resetChecks()
+{
+    for (auto i = 0; i < model->rowCount(); i++)
+    {
+        model->item(i)->setCheckState(Qt::Unchecked);
+    }
+}
+
+bool CheckList::eventFilter(QObject *object, QEvent *event)
+{
+    if (object == lineEdit() && event->type() == QEvent::MouseButtonPress)
+    {
+        showPopup();
+        return true;
+    }
+
+    return false;
+}
+
+void CheckList::updateText()
+{
+    QString text;
+
+    switch (checkState())
+    {
+    case Qt::Checked:
+        text = tr("Any");
+        break;
+    case Qt::Unchecked:
+        text = tr("Any");
+        break;
+    case Qt::PartiallyChecked:
         for (int i = 0; i < model->rowCount(); i++)
-        {
-            QStandardItem *item = model->item(i);
-            item->setCheckState(Qt::Unchecked);
-            item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-        }
-    }
-
-    QVector<bool> CheckList::getChecked() const
-    {
-        QVector<bool> result;
-
-        if (checkState() == Qt::PartiallyChecked)
-        {
-            for (auto i = 0; i < model->rowCount(); i++)
-            {
-                result.append(model->item(i)->checkState() == Qt::Checked);
-            }
-        }
-        else
-        {
-            result = QVector<bool>(model->rowCount(), true);
-        }
-        return result;
-    }
-
-    void CheckList::setChecks(QVector<bool> flags)
-    {
-        for (auto i = 0; i < model->rowCount(); i++)
-        {
-            model->item(i)->setCheckState(flags[i] ? Qt::Checked : Qt::Unchecked);
-        }
-    }
-
-    void CheckList::resetChecks()
-    {
-        for (auto i = 0; i < model->rowCount(); i++)
-        {
-            model->item(i)->setCheckState(Qt::Unchecked);
-        }
-    }
-
-    bool CheckList::eventFilter(QObject *object, QEvent *event)
-    {
-        if (object == lineEdit() && event->type() == QEvent::MouseButtonPress)
-        {
-            showPopup();
-            return true;
-        }
-
-        return false;
-    }
-
-    void CheckList::updateText()
-    {
-        QString text;
-
-        switch (checkState())
-        {
-        case Qt::Checked:
-            text = tr("Any");
-            break;
-        case Qt::Unchecked:
-            text = tr("Any");
-            break;
-        case Qt::PartiallyChecked:
-            for (int i = 0; i < model->rowCount(); i++)
-            {
-                if (model->item(i)->checkState() == Qt::Checked)
-                {
-                    if (!text.isEmpty())
-                    {
-                        text += ", ";
-                    }
-
-                    text += model->item(i)->text();
-                }
-            }
-            break;
-        default:
-            text = tr("Any");
-        }
-
-        lineEdit()->setText(text);
-    }
-
-    int CheckList::checkState() const
-    {
-        int total = model->rowCount(), checked = 0, unchecked = 0;
-
-        for (int i = 0; i < total; i++)
         {
             if (model->item(i)->checkState() == Qt::Checked)
             {
-                checked++;
-            }
-            else if (model->item(i)->checkState() == Qt::Unchecked)
-            {
-                unchecked++;
+                if (!text.isEmpty())
+                {
+                    text += ", ";
+                }
+
+                text += model->item(i)->text();
             }
         }
-
-        return checked == total ? Qt::Checked : unchecked == total ? Qt::Unchecked : Qt::PartiallyChecked;
+        break;
+    default:
+        text = tr("Any");
     }
 
-    void CheckList::modelDataChanged() { updateText(); }
+    lineEdit()->setText(text);
+}
 
-    void CheckList::itemPressed(const QModelIndex &index)
+int CheckList::checkState() const
+{
+    int total = model->rowCount(), checked = 0, unchecked = 0;
+
+    for (int i = 0; i < total; i++)
     {
-        QStandardItem *item = model->itemFromIndex(index);
-        item->setCheckState(item->checkState() == Qt::Checked ? Qt::Unchecked : Qt::Checked);
+        if (model->item(i)->checkState() == Qt::Checked)
+        {
+            checked++;
+        }
+        else if (model->item(i)->checkState() == Qt::Unchecked)
+        {
+            unchecked++;
+        }
     }
+
+    return checked == total ? Qt::Checked : unchecked == total ? Qt::Unchecked : Qt::PartiallyChecked;
+}
+
+void CheckList::modelDataChanged()
+{
+    updateText();
+}
+
+void CheckList::itemPressed(const QModelIndex &index)
+{
+    QStandardItem *item = model->itemFromIndex(index);
+    item->setCheckState(item->checkState() == Qt::Checked ? Qt::Unchecked : Qt::Checked);
 }

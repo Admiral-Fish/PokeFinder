@@ -24,71 +24,65 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QMenu>
 
+class Searcher4Model;
+class Wild4Model;
+
 namespace PokeFinderCore
 {
     class Frame4;
 }
 
-namespace PokeFinderModels
+namespace Ui
 {
-    class Searcher4Model;
-    class Wild4Model;
+    class Wild4;
 }
 
-namespace PokeFinderForms
+class Wild4 : public QWidget
 {
-    namespace Ui
-    {
-        class Wild4;
-    }
+    Q_OBJECT
+signals:
+    void alertProfiles(int);
 
-    class Wild4 : public QWidget
-    {
-        Q_OBJECT
-    signals:
-        void alertProfiles(int);
+public:
+    explicit Wild4(QWidget *parent = nullptr);
+    ~Wild4() override;
+    void updateProfiles();
 
-    public:
-        explicit Wild4(QWidget *parent = nullptr);
-        ~Wild4() override;
-        void updateProfiles();
+private:
+    Ui::Wild4 *ui;
+    QVector<PokeFinderCore::Profile4> profiles;
+    Searcher4Model *searcherModel {};
+    Wild4Model *generatorModel {};
+    QMenu *generatorMenu {};
+    QMenu *searcherMenu {};
+    QVector<PokeFinderCore::EncounterArea4> encounterGenerator;
+    QVector<PokeFinderCore::EncounterArea4> encounterSearcher;
 
-    private:
-        Ui::Wild4 *ui;
-        QVector<PokeFinderCore::Profile4> profiles;
-        PokeFinderModels::Searcher4Model *searcherModel {};
-        PokeFinderModels::Wild4Model *generatorModel {};
-        QMenu *generatorMenu {};
-        QMenu *searcherMenu {};
-        QVector<PokeFinderCore::EncounterArea4> encounterGenerator;
-        QVector<PokeFinderCore::EncounterArea4> encounterSearcher;
+    void setupModels();
+    void updateLocationsGenerator();
+    void updateLocationsSearcher();
+    void updatePokemonGenerator();
+    void updatePokemonSearcher();
 
-        void setupModels();
-        void updateLocationsGenerator();
-        void updateLocationsSearcher();
-        void updatePokemonGenerator();
-        void updatePokemonSearcher();
-
-    private slots:
-        void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
-        void refreshProfiles();
-        void generate();
-        void search();
-        void profilesIndexChanged(int index);
-        void generatorLead();
-        void generatorEncounterIndexChanged(int index);
-        void searcherEncounterIndexChanged(int index);
-        void generatorLocationIndexChanged(int index);
-        void searcherLocationIndexChanged(int index);
-        void generatorPokemonIndexChanged(int index);
-        void searcherPokemonIndexChanged(int index);
-        void generatorTimeIndexChanged(int index);
-        void searcherTimeIndexChanged(int index);
-        void seedToTime();
-        void tableViewGeneratorContextMenu(QPoint pos);
-        void tableViewSearcherContextMenu(QPoint pos);
-        void profileManager();
-    };
-}
+private slots:
+    void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
+    void refreshProfiles();
+    void generate();
+    void search();
+    void profilesIndexChanged(int index);
+    void generatorLead();
+    void generatorEncounterIndexChanged(int index);
+    void searcherEncounterIndexChanged(int index);
+    void generatorLocationIndexChanged(int index);
+    void searcherLocationIndexChanged(int index);
+    void generatorPokemonIndexChanged(int index);
+    void searcherPokemonIndexChanged(int index);
+    void generatorTimeIndexChanged(int index);
+    void searcherTimeIndexChanged(int index);
+    void seedToTime();
+    void tableViewGeneratorContextMenu(QPoint pos);
+    void tableViewSearcherContextMenu(QPoint pos);
+    void profileManager();
+};
 
 #endif // WILD4_HPP

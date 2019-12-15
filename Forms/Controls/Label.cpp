@@ -19,18 +19,15 @@
 
 #include "Label.hpp"
 
-namespace PokeFinderForms
+Label::Label(QWidget *parent)
+    : QLabel(parent)
 {
-    Label::Label(QWidget *parent)
-        : QLabel(parent)
-    {
-    }
+}
 
-    void Label::mousePressEvent(QMouseEvent *event)
+void Label::mousePressEvent(QMouseEvent *event)
+{
+    if (event->type() == QMouseEvent::MouseButtonPress)
     {
-        if (event->type() == QMouseEvent::MouseButtonPress)
-        {
-            emit pressed(event->modifiers());
-        }
+        emit pressed(event->modifiers());
     }
 }

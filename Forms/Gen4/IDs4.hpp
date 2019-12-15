@@ -24,38 +24,35 @@
 #include <QStandardItemModel>
 #include <QWidget>
 
-namespace PokeFinderForms
+namespace Ui
 {
-    namespace Ui
-    {
-        class IDs4;
-    }
-
-    class IDs4 : public QWidget
-    {
-        Q_OBJECT
-    signals:
-        void updateProgress();
-
-    public:
-        explicit IDs4(QWidget *parent = nullptr);
-        ~IDs4() override;
-
-    private:
-        Ui::IDs4 *ui;
-        QStandardItemModel *shinyPID {};
-        QStandardItemModel *tidSID {};
-        QStandardItemModel *seedFinder {};
-
-        void setupModels();
-
-    private slots:
-        void updateProgressShinyPID(const QVector<QList<QStandardItem *>> &frames, int progress);
-        void updateProgressTIDSID(const QVector<QList<QStandardItem *>> &frames, int progress);
-        void shinyPIDSearch();
-        void tidSIDSearch();
-        void seedFinderSearch();
-    };
+    class IDs4;
 }
+
+class IDs4 : public QWidget
+{
+    Q_OBJECT
+signals:
+    void updateProgress();
+
+public:
+    explicit IDs4(QWidget *parent = nullptr);
+    ~IDs4() override;
+
+private:
+    Ui::IDs4 *ui;
+    QStandardItemModel *shinyPID {};
+    QStandardItemModel *tidSID {};
+    QStandardItemModel *seedFinder {};
+
+    void setupModels();
+
+private slots:
+    void updateProgressShinyPID(const QVector<QList<QStandardItem *>> &frames, int progress);
+    void updateProgressTIDSID(const QVector<QList<QStandardItem *>> &frames, int progress);
+    void shinyPIDSearch();
+    void tidSIDSearch();
+    void seedFinderSearch();
+};
 
 #endif // IDS4_HPP
