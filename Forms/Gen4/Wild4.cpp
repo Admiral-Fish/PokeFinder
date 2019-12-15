@@ -23,7 +23,6 @@
 #include <Core/Gen4/Generator4.hpp>
 #include <Core/Gen4/IVSearcher4.hpp>
 #include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
@@ -126,13 +125,13 @@ namespace PokeFinderForms
         ui->comboBoxSearcherGenderRatio->setItemData(6, 2);
 
         ui->comboBoxGeneratorLead->addItem(tr("None"));
-        ui->comboBoxGeneratorLead->addItems(PokeFinderCore::Nature::getNatures());
+        ui->comboBoxGeneratorLead->addItems(PokeFinderCore::Translator::getNatures());
 
-        ui->comboBoxGeneratorNature->setup(PokeFinderCore::Nature::getNatures());
-        ui->comboBoxSearcherNature->setup(PokeFinderCore::Nature::getNatures());
+        ui->comboBoxGeneratorNature->setup(PokeFinderCore::Translator::getNatures());
+        ui->comboBoxSearcherNature->setup(PokeFinderCore::Translator::getNatures());
 
-        ui->comboBoxGeneratorHiddenPower->setup(PokeFinderCore::Power::getPowers());
-        ui->comboBoxSearcherHiddenPower->setup(PokeFinderCore::Power::getPowers());
+        ui->comboBoxGeneratorHiddenPower->setup(PokeFinderCore::Translator::getPowers());
+        ui->comboBoxSearcherHiddenPower->setup(PokeFinderCore::Translator::getPowers());
 
         QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
         QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -473,7 +472,7 @@ namespace PokeFinderForms
 
         ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
         ui->comboBoxGeneratorLead->addItem("None");
-        ui->comboBoxGeneratorLead->addItems(PokeFinderCore::Nature::getNatures());
+        ui->comboBoxGeneratorLead->addItems(PokeFinderCore::Translator::getNatures());
 
         updateLocationsSearcher();
         updateLocationsGenerator();
@@ -520,7 +519,7 @@ namespace PokeFinderForms
             ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
 
             ui->comboBoxGeneratorLead->addItem("None");
-            ui->comboBoxGeneratorLead->addItems(PokeFinderCore::Nature::getNatures());
+            ui->comboBoxGeneratorLead->addItems(PokeFinderCore::Translator::getNatures());
         }
     }
 

@@ -55,12 +55,12 @@ namespace PokeFinderCore
         }
 
         // Atk, Def, SpA, SpD, Spe
-        for (int i = 1; i < 6; i++)
+        for (u8 i = 1; i < 6; i++)
         {
             for (u8 iv = 0; iv < 32; iv++)
             {
-                double stat = qFloor((((2 * baseStats.at(i) + iv) * level) / 100.0) + 5)
-                    * Nature::getNatureModifier(nature).at(i);
+                double stat
+                    = qFloor((((2 * baseStats.at(i) + iv) * level) / 100.0) + 5) * Nature::getNatureModifier(nature, i);
 
                 if (static_cast<u16>(stat) == stats.at(i))
                 {

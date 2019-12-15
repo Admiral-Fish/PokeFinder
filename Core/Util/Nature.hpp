@@ -21,15 +21,11 @@
 #define NATURE_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QStringList>
 #include <QVector>
 
 namespace PokeFinderCore::Nature
 {
-    QStringList getNatures();
-    QString getNature(u8 nature);
-    QStringList getFrameNatures();
-    QVector<double> getNatureModifier(u8 nature);
+    double getNatureModifier(u8 nature, u8 stat);
     u8 getAdjustedNature(u8 nature);
     u8 getReversedNature(u8 nature);
 }

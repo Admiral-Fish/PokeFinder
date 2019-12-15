@@ -19,7 +19,7 @@
 
 #include "SpindaPainter.hpp"
 #include "ui_SpindaPainter.h"
-#include <Core/Util/Nature.hpp>
+#include <Core/Util/Translator.hpp>
 #include <Forms/Controls/GraphicsPixmapItem.hpp>
 #include <QSettings>
 
@@ -94,7 +94,7 @@ namespace PokeFinderForms
 
     void SpindaPainter::updateInfo()
     {
-        QString info = PokeFinderCore::Nature::getNature(pid % 25) + ", ";
+        QString info = PokeFinderCore::Translator::getNature(pid % 25) + ", ";
         info += QString((pid & 0xff) > 126 ? "♂" : "♀") + ", ";
         info += QString((pid & 1) == 0 ? tr("Ability 0") : tr("Ability 1"));
         ui->labelInfo->setText(info);

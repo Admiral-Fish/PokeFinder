@@ -21,8 +21,7 @@
 #include "ui_Stationary3.h"
 #include <Core/Gen3/Generator3.hpp>
 #include <Core/Gen3/IVSearcher3.hpp>
-#include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Forms/Gen3/SeedToTime3.hpp>
 #include <Models/Gen3/Searcher3Model.hpp>
@@ -104,11 +103,11 @@ namespace PokeFinderForms
         ui->textBoxSearcherTID->setValues(InputType::TIDSID);
         ui->textBoxSearcherSID->setValues(InputType::TIDSID);
 
-        ui->comboBoxGeneratorNature->setup(PokeFinderCore::Nature::getNatures());
-        ui->comboBoxSearcherNature->setup(PokeFinderCore::Nature::getNatures());
+        ui->comboBoxGeneratorNature->setup(PokeFinderCore::Translator::getNatures());
+        ui->comboBoxSearcherNature->setup(PokeFinderCore::Translator::getNatures());
 
-        ui->comboBoxGeneratorHiddenPower->setup(PokeFinderCore::Power::getPowers());
-        ui->comboBoxSearcherHiddenPower->setup(PokeFinderCore::Power::getPowers());
+        ui->comboBoxGeneratorHiddenPower->setup(PokeFinderCore::Translator::getPowers());
+        ui->comboBoxSearcherHiddenPower->setup(PokeFinderCore::Translator::getPowers());
 
         ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), PokeFinderCore::Method::Method1);
         ui->comboBoxGeneratorMethod->addItem(tr("Method 1 Reverse"), PokeFinderCore::Method::Method1Reverse);

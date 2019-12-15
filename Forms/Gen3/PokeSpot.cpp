@@ -22,7 +22,7 @@
 #include <Core/Gen3/Frame3.hpp>
 #include <Core/Parents/FrameCompare.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <Core/Util/Nature.hpp>
+#include <Core/Util/Translator.hpp>
 #include <Models/Gen3/PokeSpotModel.hpp>
 #include <QSettings>
 
@@ -71,7 +71,7 @@ namespace PokeFinderForms
 
         ui->tableView->setModel(model);
 
-        ui->comboBoxNature->setup(PokeFinderCore::Nature::getNatures());
+        ui->comboBoxNature->setup(PokeFinderCore::Translator::getNatures());
         ui->comboBoxSpotType->setup();
 
         connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &PokeSpot::generate);

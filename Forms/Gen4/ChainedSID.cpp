@@ -20,7 +20,7 @@
 #include "ChainedSID.hpp"
 #include "ui_ChainedSID.h"
 #include <Core/Gen4/ChainedSIDCalc.hpp>
-#include <Core/Util/Nature.hpp>
+#include <Core/Util/Translator.hpp>
 #include <QSettings>
 
 namespace PokeFinderForms
@@ -56,7 +56,7 @@ namespace PokeFinderForms
         ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
         ui->textBoxTID->setValues(InputType::TIDSID);
-        ui->comboBoxNature->addItems(PokeFinderCore::Nature::getFrameNatures());
+        ui->comboBoxNature->addItems(PokeFinderCore::Translator::getFrameNatures());
 
         connect(ui->pushButtonCalculate, &QPushButton::clicked, this, &ChainedSID::calculate);
         connect(ui->pushButtonClear, &QPushButton::clicked, this, &ChainedSID::clear);
@@ -88,7 +88,7 @@ namespace PokeFinderForms
 
         QList<QStandardItem *> row;
         row << new QStandardItem(QString("%1.%2.%3.%4.%5.%6").arg(hp).arg(atk).arg(def).arg(spa).arg(spd).arg(spe));
-        row << new QStandardItem(PokeFinderCore::Nature::getNature(nature));
+        row << new QStandardItem(PokeFinderCore::Translator::getNature(nature));
         row << new QStandardItem(ui->comboBoxAbility->currentText());
         row << new QStandardItem(ui->comboBoxGender->currentText());
         model->appendRow(row);

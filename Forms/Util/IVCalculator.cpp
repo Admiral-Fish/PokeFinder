@@ -22,8 +22,6 @@
 #include <Core/Parents/Pokemon.hpp>
 #include <Core/Util/Characteristic.hpp>
 #include <Core/Util/IVChecker.hpp>
-#include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QSettings>
 
@@ -52,8 +50,8 @@ namespace PokeFinderForms
     {
         characteristics = PokeFinderCore::Characteristic::getCharacteristics();
 
-        ui->comboBoxNature->addItems(PokeFinderCore::Nature::getFrameNatures());
-        ui->comboBoxHiddenPower->addItems(PokeFinderCore::Power::getPowers());
+        ui->comboBoxNature->addItems(PokeFinderCore::Translator::getFrameNatures());
+        ui->comboBoxHiddenPower->addItems(PokeFinderCore::Translator::getPowers());
         ui->comboBoxCharacteristic->addItems(PokeFinderCore::Translator::getCharacteristic());
 
         connect(ui->pushButtonFindIVs, &QPushButton::clicked, this, &IVCalculator::findIVs);

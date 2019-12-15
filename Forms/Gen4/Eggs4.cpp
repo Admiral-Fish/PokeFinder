@@ -20,8 +20,7 @@
 #include "Eggs4.hpp"
 #include "ui_Eggs4.h"
 #include <Core/Gen4/EggSearcher4.hpp>
-#include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
 #include <Forms/Gen4/ProfileManager4.hpp>
 #include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Models/Gen4/Egg4Model.hpp>
@@ -126,11 +125,11 @@ namespace PokeFinderForms
         ui->comboBoxSearcherGenderRatio->setItemData(5, 1);
         ui->comboBoxSearcherGenderRatio->setItemData(6, 2);
 
-        ui->comboBoxGeneratorNature->setup(PokeFinderCore::Nature::getNatures());
-        ui->comboBoxGeneratorHiddenPower->setup(PokeFinderCore::Power::getPowers());
+        ui->comboBoxGeneratorNature->setup(PokeFinderCore::Translator::getNatures());
+        ui->comboBoxGeneratorHiddenPower->setup(PokeFinderCore::Translator::getPowers());
 
-        ui->comboBoxSearcherNature->setup(PokeFinderCore::Nature::getNatures());
-        ui->comboBoxSearcherHiddenPower->setup(PokeFinderCore::Power::getPowers());
+        ui->comboBoxSearcherNature->setup(PokeFinderCore::Translator::getNatures());
+        ui->comboBoxSearcherHiddenPower->setup(PokeFinderCore::Translator::getPowers());
 
         QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
         connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);

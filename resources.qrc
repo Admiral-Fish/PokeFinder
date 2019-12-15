@@ -74,13 +74,29 @@
         <file alias="hgss_ja.txt">Core/Text/Gen4/hgss_ja.txt</file>
         <file alias="hgss_ko.txt">Core/Text/Gen4/hgss_ko.txt</file>
         <file alias="hgss_zh.txt">Core/Text/Gen4/hgss_zh.txt</file>
-        <file alias="species_de.txt">Core/Text/species_de.txt</file>
-        <file alias="species_en.txt">Core/Text/species_en.txt</file>
-        <file alias="species_es.txt">Core/Text/species_es.txt</file>
-        <file alias="species_fr.txt">Core/Text/species_fr.txt</file>
-        <file alias="species_it.txt">Core/Text/species_it.txt</file>
-        <file alias="species_ja.txt">Core/Text/species_ja.txt</file>
-        <file alias="species_ko.txt">Core/Text/species_ko.txt</file>
-        <file alias="species_zh.txt">Core/Text/species_zh.txt</file>
+        <file alias="species_de.txt">Core/Text/Species/species_de.txt</file>
+        <file alias="species_en.txt">Core/Text/Species/species_en.txt</file>
+        <file alias="species_es.txt">Core/Text/Species/species_es.txt</file>
+        <file alias="species_fr.txt">Core/Text/Species/species_fr.txt</file>
+        <file alias="species_it.txt">Core/Text/Species/species_it.txt</file>
+        <file alias="species_ja.txt">Core/Text/Species/species_ja.txt</file>
+        <file alias="species_ko.txt">Core/Text/Species/species_ko.txt</file>
+        <file alias="species_zh.txt">Core/Text/Species/species_zh.txt</file>
+        <file alias="natures_de.txt">Core/Text/Natures/natures_de.txt</file>
+        <file alias="natures_en.txt">Core/Text/Natures/natures_en.txt</file>
+        <file alias="natures_es.txt">Core/Text/Natures/natures_es.txt</file>
+        <file alias="natures_fr.txt">Core/Text/Natures/natures_fr.txt</file>
+        <file alias="natures_it.txt">Core/Text/Natures/natures_it.txt</file>
+        <file alias="natures_ja.txt">Core/Text/Natures/natures_ja.txt</file>
+        <file alias="natures_ko.txt">Core/Text/Natures/natures_ko.txt</file>
+        <file alias="natures_zh.txt">Core/Text/Natures/natures_zh.txt</file>
+        <file alias="powers_de.txt">Core/Text/Powers/powers_de.txt</file>
+        <file alias="powers_en.txt">Core/Text/Powers/powers_en.txt</file>
+        <file alias="powers_es.txt">Core/Text/Powers/powers_es.txt</file>
+        <file alias="powers_fr.txt">Core/Text/Powers/powers_fr.txt</file>
+        <file alias="powers_it.txt">Core/Text/Powers/powers_it.txt</file>
+        <file alias="powers_ja.txt">Core/Text/Powers/powers_ja.txt</file>
+        <file alias="powers_ko.txt">Core/Text/Powers/powers_ko.txt</file>
+        <file alias="powers_zh.txt">Core/Text/Powers/powers_zh.txt</file>
     </qresource>
 </RCC>

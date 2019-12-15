@@ -26,7 +26,14 @@
 
 namespace PokeFinderCore::Translator
 {
+    void init();
     QStringList getCharacteristic();
+    QStringList getNatures();
+    QString getNature(u8 nature);
+    QStringList getFrameNatures();
+    QStringList getPowers();
+    QString getPower(u8 power);
+    QString getSpecies(u16 specie);
     QStringList getSpecies(const QVector<u16> &nums);
     QStringList getLocationsGen3(const QVector<u8> &nums, Game game);
     QStringList getLocationsGen4(const QVector<u8> &nums, Game game);

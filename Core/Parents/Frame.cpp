@@ -18,8 +18,7 @@
  */
 
 #include "Frame.hpp"
-#include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
 
 namespace PokeFinderCore
 {
@@ -38,9 +37,9 @@ namespace PokeFinderCore
         }
     }
 
-    QString Frame::getNatureString() const { return Nature::getNature(nature); }
+    QString Frame::getNatureString() const { return Translator::getNature(nature); }
 
-    QString Frame::getPowerString() const { return Power::getPower(hidden); }
+    QString Frame::getPowerString() const { return Translator::getPower(hidden); }
 
     QString Frame::getShinyString() const { return shiny ? "!!!" : ""; }
 

@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <Core/Util/Translator.hpp>
 #include <Forms/MainWindow.hpp>
 #include <QApplication>
 #include <QFile>
@@ -49,8 +50,9 @@ int main(int argc, char *argv[])
     {
         QApplication::installTranslator(&translator);
     }
+    PokeFinderCore::Translator::init();
 
-    PokeFinderForms::MainWindow w;
+    MainWindow w;
     w.show();
     w.raise();
 

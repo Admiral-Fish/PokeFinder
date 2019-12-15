@@ -18,79 +18,44 @@
  */
 
 #include "Nature.hpp"
-#include <QTranslator>
+
+constexpr u8 adjustedNature[25]
+    = { 3, 5, 2, 20, 23, 11, 8, 13, 1, 16, 15, 14, 4, 17, 19, 7, 22, 10, 21, 9, 18, 6, 0, 24, 12 };
+constexpr u8 reversedNature[25]
+    = { 22, 8, 2, 0, 12, 1, 21, 15, 6, 19, 17, 5, 24, 7, 11, 10, 9, 13, 20, 14, 3, 18, 16, 4, 23 };
+constexpr double modifiers[25][6] = {
+    { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Hardy
+    { 1.0, 1.1, 0.9, 1.0, 1.0, 1.0 }, // Lonely
+    { 1.0, 1.1, 1.0, 1.0, 1.0, 0.9 }, // Brave
+    { 1.0, 1.1, 1.0, 0.9, 1.0, 1.0 }, // Adamant
+    { 1.0, 1.1, 1.0, 1.0, 0.9, 1.0 }, // Naughty
+    { 1.0, 0.9, 1.1, 1.0, 1.0, 1.0 }, // Bold
+    { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Docile
+    { 1.0, 1.0, 1.1, 1.0, 1.0, 0.9 }, // Relaxed
+    { 1.0, 1.0, 1.1, 0.9, 1.0, 1.0 }, // Impish
+    { 1.0, 1.0, 1.1, 1.0, 0.9, 1.0 }, // Lax
+    { 1.0, 0.9, 1.0, 1.0, 1.0, 1.1 }, // Timid
+    { 1.0, 1.0, 0.9, 1.0, 1.0, 1.1 }, // Hasty
+    { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Serious
+    { 1.0, 1.0, 1.0, 0.9, 1.0, 1.1 }, // Jolly
+    { 1.0, 1.0, 1.0, 1.0, 0.9, 1.1 }, // Naive
+    { 1.0, 0.9, 1.0, 1.1, 1.0, 1.0 }, // Modest
+    { 1.0, 1.0, 0.9, 1.1, 1.0, 1.0 }, // Mild
+    { 1.0, 1.0, 1.0, 1.1, 1.0, 0.9 }, // Quiet
+    { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Bashful
+    { 1.0, 1.0, 1.0, 1.1, 0.9, 1.0 }, // Rash
+    { 1.0, 0.9, 1.0, 1.0, 1.1, 1.0 }, // Calm
+    { 1.0, 1.0, 0.9, 1.0, 1.1, 1.0 }, // Gentle
+    { 1.0, 1.0, 1.0, 1.0, 1.1, 0.9 }, // Sassy
+    { 1.0, 1.0, 1.0, 0.9, 1.1, 1.0 }, // Careful
+    { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 } // Quirky
+};
 
 namespace PokeFinderCore
 {
-    QStringList Nature::getNatures()
-    {
-        const QStringList natures = { QObject::tr("Adamant"), QObject::tr("Bold"), QObject::tr("Brave"),
-            QObject::tr("Calm"), QObject::tr("Careful"), QObject::tr("Hasty"), QObject::tr("Impish"),
-            QObject::tr("Jolly"), QObject::tr("Lonely"), QObject::tr("Mild"), QObject::tr("Modest"),
-            QObject::tr("Naive"), QObject::tr("Naughty"), QObject::tr("Quiet"), QObject::tr("Rash"),
-            QObject::tr("Relaxed"), QObject::tr("Sassy"), QObject::tr("Timid"), QObject::tr("Gentle"),
-            QObject::tr("Lax"), QObject::tr("Bashful"), QObject::tr("Docile"), QObject::tr("Hardy"),
-            QObject::tr("Quirky"), QObject::tr("Serious") };
-        return natures;
-    }
+    u8 Nature::getAdjustedNature(u8 nature) { return adjustedNature[nature]; }
 
-    QString Nature::getNature(u8 nature) { return getFrameNatures().at(nature); }
+    u8 Nature::getReversedNature(u8 nature) { return reversedNature[nature]; }
 
-    QStringList Nature::getFrameNatures()
-    {
-        const QStringList natures = { QObject::tr("Hardy"), QObject::tr("Lonely"), QObject::tr("Brave"),
-            QObject::tr("Adamant"), QObject::tr("Naughty"), QObject::tr("Bold"), QObject::tr("Docile"),
-            QObject::tr("Relaxed"), QObject::tr("Impish"), QObject::tr("Lax"), QObject::tr("Timid"),
-            QObject::tr("Hasty"), QObject::tr("Serious"), QObject::tr("Jolly"), QObject::tr("Naive"),
-            QObject::tr("Modest"), QObject::tr("Mild"), QObject::tr("Quiet"), QObject::tr("Bashful"),
-            QObject::tr("Rash"), QObject::tr("Calm"), QObject::tr("Gentle"), QObject::tr("Sassy"),
-            QObject::tr("Careful"), QObject::tr("Quirky") };
-        return natures;
-    }
-
-    u8 Nature::getAdjustedNature(u8 nature)
-    {
-        const QVector<u8> vals
-            = { 3, 5, 2, 20, 23, 11, 8, 13, 1, 16, 15, 14, 4, 17, 19, 7, 22, 10, 21, 9, 18, 6, 0, 24, 12 };
-        return vals.at(nature);
-    }
-
-    u8 Nature::getReversedNature(u8 nature)
-    {
-        const QVector<u8> vals
-            = { 22, 8, 2, 0, 12, 1, 21, 15, 6, 19, 17, 5, 24, 7, 11, 10, 9, 13, 20, 14, 3, 18, 16, 4, 23 };
-        return vals.at(nature);
-    }
-
-    QVector<double> Nature::getNatureModifier(u8 nature)
-    {
-        const QVector<QVector<double>> modifiers = {
-            { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Hardy
-            { 1.0, 1.1, 0.9, 1.0, 1.0, 1.0 }, // Lonely
-            { 1.0, 1.1, 1.0, 1.0, 1.0, 0.9 }, // Brave
-            { 1.0, 1.1, 1.0, 0.9, 1.0, 1.0 }, // Adamant
-            { 1.0, 1.1, 1.0, 1.0, 0.9, 1.0 }, // Naughty
-            { 1.0, 0.9, 1.1, 1.0, 1.0, 1.0 }, // Bold
-            { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Docile
-            { 1.0, 1.0, 1.1, 1.0, 1.0, 0.9 }, // Relaxed
-            { 1.0, 1.0, 1.1, 0.9, 1.0, 1.0 }, // Impish
-            { 1.0, 1.0, 1.1, 1.0, 0.9, 1.0 }, // Lax
-            { 1.0, 0.9, 1.0, 1.0, 1.0, 1.1 }, // Timid
-            { 1.0, 1.0, 0.9, 1.0, 1.0, 1.1 }, // Hasty
-            { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Serious
-            { 1.0, 1.0, 1.0, 0.9, 1.0, 1.1 }, // Jolly
-            { 1.0, 1.0, 1.0, 1.0, 0.9, 1.1 }, // Naive
-            { 1.0, 0.9, 1.0, 1.1, 1.0, 1.0 }, // Modest
-            { 1.0, 1.0, 0.9, 1.1, 1.0, 1.0 }, // Mild
-            { 1.0, 1.0, 1.0, 1.1, 1.0, 0.9 }, // Quiet
-            { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Bashful
-            { 1.0, 1.0, 1.0, 1.1, 0.9, 1.0 }, // Rash
-            { 1.0, 0.9, 1.0, 1.0, 1.1, 1.0 }, // Calm
-            { 1.0, 1.0, 0.9, 1.0, 1.1, 1.0 }, // Gentle
-            { 1.0, 1.0, 1.0, 1.0, 1.1, 0.9 }, // Sassy
-            { 1.0, 1.0, 1.0, 0.9, 1.1, 1.0 }, // Careful
-            { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 } // Quirky
-        };
-        return modifiers.at(nature);
-    }
+    double Nature::getNatureModifier(u8 nature, u8 stat) { return modifiers[nature][stat]; }
 }

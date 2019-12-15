@@ -22,7 +22,7 @@
 #include <Core/Gen3/Egg3.hpp>
 #include <Core/Parents/FrameCompare.hpp>
 #include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
+#include <Core/Util/Translator.hpp>
 #include <Forms/Gen3/ProfileManager3.hpp>
 #include <Models/Gen3/Egg3Model.hpp>
 #include <QSettings>
@@ -150,14 +150,14 @@ namespace PokeFinderForms
         ui->comboBoxRSGenderRatio->setItemData(5, 1);
         ui->comboBoxRSGenderRatio->setItemData(6, 2);
 
-        ui->comboBoxEmeraldNature->setup(PokeFinderCore::Nature::getNatures());
-        ui->comboBoxEverstone->addItems(PokeFinderCore::Nature::getNatures());
-        ui->comboBoxFRLGNature->setup(PokeFinderCore::Nature::getNatures());
-        ui->comboBoxRSNature->setup(PokeFinderCore::Nature::getNatures());
+        ui->comboBoxEmeraldNature->setup(PokeFinderCore::Translator::getNatures());
+        ui->comboBoxEverstone->addItems(PokeFinderCore::Translator::getNatures());
+        ui->comboBoxFRLGNature->setup(PokeFinderCore::Translator::getNatures());
+        ui->comboBoxRSNature->setup(PokeFinderCore::Translator::getNatures());
 
-        ui->comboBoxEmeraldHiddenPower->setup(PokeFinderCore::Power::getPowers());
-        ui->comboBoxFRLGHiddenPower->setup(PokeFinderCore::Power::getPowers());
-        ui->comboBoxRSHiddenPower->setup(PokeFinderCore::Power::getPowers());
+        ui->comboBoxEmeraldHiddenPower->setup(PokeFinderCore::Translator::getPowers());
+        ui->comboBoxFRLGHiddenPower->setup(PokeFinderCore::Translator::getPowers());
+        ui->comboBoxRSHiddenPower->setup(PokeFinderCore::Translator::getPowers());
 
         ui->comboBoxEmeraldMethod->setItemData(0, PokeFinderCore::Method::EBred);
         ui->comboBoxEmeraldMethod->setItemData(1, PokeFinderCore::Method::EBredSplit);

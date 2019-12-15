@@ -22,6 +22,7 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
 #include <Core/Util/Nature.hpp>
+#include <Core/Util/Translator.hpp>
 #include <QSettings>
 
 namespace PokeFinderForms
@@ -56,7 +57,7 @@ namespace PokeFinderForms
         ui->tableView->setModel(model);
 
         ui->textBoxTID->setValues(InputType::TIDSID);
-        ui->comboBoxNature->addItems(PokeFinderCore::Nature::getNatures());
+        ui->comboBoxNature->addItems(PokeFinderCore::Translator::getNatures());
 
         connect(ui->pushButtonFind, &QPushButton::clicked, this, &IVtoPID::find);
 

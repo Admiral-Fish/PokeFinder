@@ -22,53 +22,70 @@
 #include <QSettings>
 #include <QTextStream>
 
+static QStringList characteristics;
+static QStringList natures;
+static QStringList frameNatures;
+static QStringList powers;
+static QStringList species;
+
+QStringList readFile(QString name)
+{
+    QFile file(name);
+
+    QStringList input;
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream ts(&file);
+        ts.setCodec("UTF-8");
+
+        while (!ts.atEnd())
+        {
+            input << ts.readLine();
+        }
+        file.close();
+    }
+    return input;
+}
+
 namespace PokeFinderCore
 {
-    QStringList Translator::getCharacteristic()
+    void Translator::init()
     {
-        QStringList names;
         QSettings setting;
-        QFile file(QString(":/text/characteristic_%1.txt").arg(setting.value("settings/locale", "en").toString()));
-        if (file.open(QIODevice::ReadOnly))
-        {
-            QTextStream ts(&file);
-            ts.setCodec("UTF-8");
+        QString locale = setting.value("settings/locale", "en").toString().left(2);
 
-            while (!ts.atEnd())
-            {
-                names.append(ts.readLine());
-            }
-            file.close();
+        characteristics = readFile(QString(":/text/characteristic_%1.txt").arg(locale));
+        frameNatures = readFile(QString(":/text/natures_%1.txt").arg(locale));
+        for (int i : { 3, 5, 2, 20, 23, 11, 8, 13, 1, 16, 15, 14, 4, 17, 19, 7, 22, 10, 21, 9, 18, 6, 0, 24, 12 })
+        {
+            natures.append(frameNatures.at(i));
         }
-        return names;
+        powers = readFile(QString(":/text/powers_%1.txt").arg(locale));
+        species = readFile(QString(":/text/species_%1.txt").arg(locale));
     }
+
+    QStringList Translator::getCharacteristic() { return characteristics; }
+
+    QStringList Translator::getNatures() { return natures; }
+
+    QString Translator::getNature(u8 nature) { return frameNatures.at(nature); }
+
+    QStringList Translator::getFrameNatures() { return frameNatures; }
+
+    QStringList Translator::getPowers() { return powers; }
+
+    QString Translator::getPower(u8 power) { return powers.at(power); }
+
+    QString Translator::getSpecies(u16 specie) { return species.at(specie - 1); }
 
     QStringList Translator::getSpecies(const QVector<u16> &nums)
     {
-        QStringList species;
-
-        QSettings setting;
-        QFile file(QString(":/text/species_%1.txt").arg(setting.value("settings/locale", "en").toString()));
-
-        if (file.open(QIODevice::ReadOnly))
+        QStringList s;
+        for (u16 num : nums)
         {
-            QTextStream ts(&file);
-            ts.setCodec("UTF-8");
-
-            QStringList input;
-            while (!ts.atEnd())
-            {
-                input << ts.readLine();
-            }
-            file.close();
-
-            for (const u16 &x : nums)
-            {
-                species.append(input.at(x - 1));
-            }
+            s.append(species.at(num - 1));
         }
-
-        return species;
+        return s;
     }
 
     QStringList Translator::getLocationsGen3(const QVector<u8> &nums, Game game)

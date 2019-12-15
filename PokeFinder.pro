@@ -122,7 +122,6 @@ HEADERS += \
     Core/Util/Lead.hpp \
     Core/Util/Method.hpp \
     Core/Util/Nature.hpp \
-    Core/Util/Power.hpp \
     Core/Util/ResearcherFrame.hpp \
     Core/Util/ShadowType.hpp \
     Core/Util/TableUtility.hpp \
@@ -224,7 +223,6 @@ SOURCES += \
     Core/Util/EncounterSlot.cpp \
     Core/Util/IVChecker.cpp \
     Core/Util/Nature.cpp \
-    Core/Util/Power.cpp \
     Core/Util/Translator.cpp \
     Core/Util/Utilities.cpp \
     Forms/Controls/CheckList.cpp \
