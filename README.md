@@ -70,7 +70,7 @@ Linux
 - Install the dependencies
   - sudo add-apt-repository ppa:beineri/opt-qt-5.14.1-bionic
   - sudo apt-get update -qq
-  - sudo apt-get -y install qt514base qt514svg libgl1-mesa-dev
+  - sudo apt-get -y install qt514base qt514svg qt514tools libgl1-mesa-dev
   - source /opt/qt5*/bin/qt5*-env.sh
 - Build
   - git submodule update
