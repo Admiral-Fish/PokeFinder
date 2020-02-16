@@ -25,6 +25,7 @@
 class IDFrame3 : public IDFrame
 {
 public:
+    IDFrame3() = default;
     IDFrame3(u32 frame, u16 tid, u16 sid);
 };
 

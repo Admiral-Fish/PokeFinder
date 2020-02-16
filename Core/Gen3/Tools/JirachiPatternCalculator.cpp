@@ -19,6 +19,7 @@
 
 #include "JirachiPatternCalculator.hpp"
 #include <Core/RNG/LCRNG.hpp>
+#include <QVector>
 
 namespace JirachiPatternCalculator
 {

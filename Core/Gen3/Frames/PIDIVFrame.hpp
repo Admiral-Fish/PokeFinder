@@ -27,6 +27,7 @@ enum Method : u8;
 class PIDIVFrame
 {
 public:
+    PIDIVFrame() = default;
     PIDIVFrame(u32 seed, Method method);
     u32 getSeed() const;
     Method getMethod() const;

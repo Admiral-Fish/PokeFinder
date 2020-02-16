@@ -25,6 +25,7 @@
 class IDFrame
 {
 public:
+    IDFrame() = default;
     IDFrame(u32 frame, u16 tid, u16 sid);
     IDFrame(u16 tid, u16 sid);
     u32 getFrame() const;

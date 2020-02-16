@@ -25,6 +25,7 @@
 class IDFrame4 : public IDFrame
 {
 public:
+    IDFrame4() = default;
     IDFrame4(u32 seed, u16 tid, u16 sid);
     u32 getSeed() const;
     void setSeed(u32 seed);

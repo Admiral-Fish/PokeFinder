@@ -26,6 +26,7 @@
 class SeedTimeFrame3
 {
 public:
+    SeedTimeFrame3() = default;
     SeedTimeFrame3(const QDateTime &dateTime, u32 frame);
     QString getDateTime() const;
     u32 getFrame() const;

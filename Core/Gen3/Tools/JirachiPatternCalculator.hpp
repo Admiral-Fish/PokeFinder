@@ -26,6 +26,6 @@
 namespace JirachiPatternCalculator
 {
     QStringList getPatterns(u32 seed);
-};
+}
 
 #endif // JIRACHIPATTERNCALCULATOR_HPP
