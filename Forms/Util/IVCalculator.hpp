@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,11 +23,7 @@
 #include <Core/Util/Global.hpp>
 #include <QLabel>
 
-namespace PokeFinderCore
-{
-    class Pokemon;
-    class Characteristic;
-}
+class PersonalInfo;
 
 namespace Ui
 {
@@ -43,14 +39,16 @@ public:
 
 private:
     Ui::IVCalculator *ui;
-    QVector<PokeFinderCore::Characteristic> characteristics;
-    QVector<PokeFinderCore::Pokemon> pokemon;
+    QVector<PersonalInfo> personalInfo;
+
     void setupModels();
     void displayIVs(QLabel *label, const QVector<u8> &ivs);
+    PersonalInfo getPersonalInfo(const PersonalInfo &base);
 
 private slots:
     void findIVs();
     void pokemonIndexChanged(int index);
+    void altformIndexChanged(int index);
     void generationIndexChanged(int index);
 };
 

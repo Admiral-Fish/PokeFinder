@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,13 +19,13 @@
 
 #include "IDs3.hpp"
 #include "ui_IDs3.h"
-#include <Core/RNG/LCRNG.hpp>
+#include <Core/Gen3/Generators/IDGenerator3.hpp>
+#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Util/Utilities.hpp>
+#include <Models/Gen3/IDModel3.hpp>
 #include <QSettings>
 
-IDs3::IDs3(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::IDs3)
+IDs3::IDs3(QWidget *parent) : QWidget(parent), ui(new Ui::IDs3)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -43,9 +43,13 @@ IDs3::~IDs3()
 
 void IDs3::setupModels()
 {
-    xdcolo = new QStandardItemModel(ui->tableViewXDColo);
-    frlge = new QStandardItemModel(ui->tableViewFRLGE);
-    rs = new QStandardItemModel(ui->tableViewFRLGE);
+    xdcolo = new IDModel3(ui->tableViewXDColo);
+    frlge = new IDModel3(ui->tableViewFRLGE);
+    rs = new IDModel3(ui->tableViewFRLGE);
+
+    ui->tableViewXDColo->setModel(xdcolo);
+    ui->tableViewFRLGE->setModel(frlge);
+    ui->tableViewRS->setModel(rs);
 
     ui->textBoxFRLGEPID->setValues(InputType::Seed32Bit);
     ui->textBoxFRLGETID->setValues(InputType::TIDSID);
@@ -69,15 +73,6 @@ void IDs3::setupModels()
 
     ui->dateTimeEdit->setDisplayFormat(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
 
-    xdcolo->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
-    ui->tableViewXDColo->setModel(xdcolo);
-
-    frlge->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
-    ui->tableViewFRLGE->setModel(frlge);
-
-    rs->setHorizontalHeaderLabels(QStringList() << tr("Frame") << tr("TID") << tr("SID"));
-    ui->tableViewRS->setModel(rs);
-
     connect(ui->pushButtonXDColoSearch, &QPushButton::clicked, this, &IDs3::xdColoSearch);
     connect(ui->pushButtonFRLGESearch, &QPushButton::clicked, this, &IDs3::frlgeSearch);
     connect(ui->pushButtonRSSearch, &QPushButton::clicked, this, &IDs3::rsSearch);
@@ -94,108 +89,113 @@ void IDs3::setupModels()
 
 void IDs3::xdColoSearch()
 {
-    frlge->removeRows(0, frlge->rowCount());
+    xdcolo->clearModel();
 
-    u16 tid = ui->textBoxFRLGETID->getUShort();
-    bool usePID = ui->checkBoxFRLGEPID->isChecked();
-    bool useSID = ui->checkBoxFRLGESID->isChecked();
-    u32 pid = ui->textBoxFRLGEPID->getUInt();
-    u16 searchSID = ui->textBoxFRLGESID->getUShort();
-    u32 minFrame = ui->textBoxFRLGEStartingFrame->getUInt();
-    u32 maxResults = ui->textBoxFRLGEMaxResults->getUInt();
+    u32 seed = ui->textBoxXDColoSeed->getUInt();
+    u32 initialFrame = ui->textBoxXDColoStartingFrame->getUInt();
+    u32 maxResults = ui->textBoxXDColoMaxResults->getUInt();
 
-    PokeFinderCore::PokeRNG rng(tid, minFrame - 1);
-    rng.nextUShort();
+    IDGenerator3 generator(seed, initialFrame, maxResults);
 
-    u32 max = minFrame + maxResults;
-    for (u32 frame = minFrame; frame <= max; ++frame)
+    QVector<u16> tidFilter;
+    QVector<u16> sidFilter;
+    QVector<u16> tsvFilter;
+
+    if (ui->checkBoxXDColoTID->isChecked())
     {
-        u16 sid = rng.nextUShort();
-
-        if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useSID || searchSID == sid))
-        {
-            frlge->appendRow(QList<QStandardItem *>()
-                << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid))
-                << new QStandardItem(QString::number(sid)));
-        }
+        tidFilter.append(ui->textBoxXDColoTID->getUShort());
     }
+
+    if (ui->checkBoxXDColoSID->isChecked())
+    {
+        sidFilter.append(ui->textBoxXDColoSID->getUShort());
+    }
+
+    if (ui->checkBoxXDColoPID->isChecked())
+    {
+        u32 pid = ui->textBoxXDColoPID->getUInt();
+        tsvFilter.append(((pid >> 16) ^ (pid & 0xffff)) >> 3);
+    }
+
+    IDFilter filter(tidFilter, sidFilter, tsvFilter);
+
+    auto frames = generator.generateXDColo(filter);
+    xdcolo->addItems(frames);
 }
 
 void IDs3::frlgeSearch()
 {
-    rs->removeRows(0, rs->rowCount());
+    frlge->clearModel();
 
-    u32 seed;
-    bool usePID = ui->checkBoxRSPID->isChecked();
-    bool useSID = ui->checkBoxRSSID->isChecked();
-    bool useTID = ui->checkBoxRSTID->isChecked();
-    u32 pid = ui->textBoxRSPID->getUInt();
-    u16 searchSID = ui->textBoxRSSID->getUShort();
-    u16 searchTID = ui->textBoxRSTID->getUShort();
-    u32 minFrame = ui->textBoxRSStartingFrame->getUInt();
-    u32 maxResults = ui->textBoxRSMaxResults->getUInt();
+    u16 tid = ui->textBoxFRLGETID->getUShort();
+    u32 initialFrame = ui->textBoxFRLGEStartingFrame->getUInt();
+    u32 maxResults = ui->textBoxFRLGEMaxResults->getUInt();
 
-    if (ui->radioButtonRSInitialSeed->isChecked())
+    IDGenerator3 generator(tid, initialFrame, maxResults);
+    generator.setStaticTID(tid);
+
+    QVector<u16> sidFilter;
+    QVector<u16> tsvFilter;
+
+    if (ui->checkBoxFRLGESID->isChecked())
     {
-        seed = ui->textBoxRSInitialSeed->getUInt();
-    }
-    else
-    {
-        seed = PokeFinderCore::Utilities::calcGen3Seed(
-            ui->dateTimeEdit->date(), ui->dateTimeEdit->time().hour(), ui->dateTimeEdit->time().minute());
+        sidFilter.append(ui->textBoxFRLGESID->getUShort());
     }
 
-    PokeFinderCore::PokeRNG rng(seed, minFrame);
-
-    u16 tid = rng.nextUShort(), sid;
-
-    u32 max = minFrame + maxResults;
-    for (u32 frame = minFrame; frame <= max; ++frame)
+    if (ui->checkBoxFRLGEPID->isChecked())
     {
-        sid = tid;
-        tid = rng.nextUShort();
-
-        if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid)
-            && (!useSID || searchSID == sid))
-        {
-            rs->appendRow(QList<QStandardItem *>()
-                << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid))
-                << new QStandardItem(QString::number(sid)));
-        }
+        u32 pid = ui->textBoxFRLGEPID->getUInt();
+        tsvFilter.append(((pid >> 16) ^ (pid & 0xffff)) >> 3);
     }
+
+    IDFilter filter({ tid }, sidFilter, tsvFilter);
+
+    auto frames = generator.generateFRLGE(filter);
+    frlge->addItems(frames);
 }
 
 void IDs3::rsSearch()
 {
-    xdcolo->removeRows(0, xdcolo->rowCount());
+    rs->clearModel();
 
-    u32 seed = ui->textBoxXDColoSeed->getUInt();
-    bool usePID = ui->checkBoxXDColoPID->isChecked();
-    bool useSID = ui->checkBoxXDColoSID->isChecked();
-    bool useTID = ui->checkBoxXDColoTID->isChecked();
-    u32 pid = ui->textBoxXDColoPID->getUInt();
-    u16 searchSID = ui->textBoxXDColoSID->getUShort();
-    u16 searchTID = ui->textBoxXDColoTID->getUShort();
-    u32 minFrame = ui->textBoxXDColoStartingFrame->getUInt();
-    u32 maxResults = ui->textBoxXDColoMaxResults->getUInt();
-
-    PokeFinderCore::XDRNG rng(seed, minFrame + 1);
-    u16 sid = rng.nextUShort(), tid;
-
-    u32 max = minFrame + maxResults;
-    for (u32 frame = minFrame; frame <= max; ++frame)
+    u16 seed;
+    if (ui->radioButtonRSInitialSeed->isChecked())
     {
-        tid = sid;
-        sid = rng.nextUShort();
-
-        if ((!usePID || PokeFinderCore::Utilities::shiny(pid, tid, sid)) && (!useTID || searchTID == tid)
-            && (!useSID || searchSID == sid))
-        {
-            xdcolo->appendRow(QList<QStandardItem *>()
-                << new QStandardItem(QString::number(frame)) << new QStandardItem(QString::number(tid))
-                << new QStandardItem(QString::number(sid)));
-        }
+        seed = ui->textBoxRSInitialSeed->getUShort();
     }
+    else
+    {
+        seed = Utilities::calcGen3Seed(ui->dateTimeEdit->dateTime());
+    }
+    u32 initialFrame = ui->textBoxRSStartingFrame->getUInt();
+    u32 maxResults = ui->textBoxRSMaxResults->getUInt();
+
+    IDGenerator3 generator(seed, initialFrame, maxResults);
+
+    QVector<u16> tidFilter;
+    QVector<u16> sidFilter;
+    QVector<u16> tsvFilter;
+
+    if (ui->checkBoxRSTID->isChecked())
+    {
+        tidFilter.append(ui->textBoxRSTID->getUShort());
+    }
+
+    if (ui->checkBoxRSSID->isChecked())
+    {
+        sidFilter.append(ui->textBoxRSSID->getUShort());
+    }
+
+    if (ui->checkBoxXDColoPID->isChecked())
+    {
+        u32 pid = ui->textBoxRSPID->getUInt();
+        tsvFilter.append(((pid >> 16) ^ (pid & 0xffff)) >> 3);
+    }
+
+    IDFilter filter(tidFilter, sidFilter, tsvFilter);
+
+    auto frames = generator.generateRS(filter);
+    rs->addItems(frames);
 }
 
 void IDs3::rsDeadBattery(bool checked)

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,9 +21,9 @@
 #include <QEvent>
 #include <QLineEdit>
 #include <QListView>
+#include <QStandardItemModel>
 
-CheckList::CheckList(QWidget *parent)
-    : QComboBox(parent)
+CheckList::CheckList(QWidget *parent) : QComboBox(parent)
 {
     model = new QStandardItemModel(this);
     setModel(model);
@@ -133,7 +133,9 @@ void CheckList::updateText()
 
 int CheckList::checkState() const
 {
-    int total = model->rowCount(), checked = 0, unchecked = 0;
+    int total = model->rowCount();
+    int checked = 0;
+    int unchecked = 0;
 
     for (int i = 0; i < total; i++)
     {

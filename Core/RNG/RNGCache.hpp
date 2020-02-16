@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,31 +21,29 @@
 #define RNGCACHE_HPP
 
 #include <Core/Util/Global.hpp>
-#include <Core/Util/Method.hpp>
 #include <QVector>
 
-namespace PokeFinderCore
+enum Method : u8;
+
+class RNGCache
 {
-    class RNGCache
-    {
 
-    public:
-        RNGCache() = default;
-        explicit RNGCache(Method method);
-        QVector<u32> recoverLower16BitsIV(u32 first, u32 second) const;
-        QVector<u32> recoverLower16BitsPID(u32 first, u32 second) const;
-        void switchCache(Method MethodType);
+public:
+    RNGCache() = default;
+    explicit RNGCache(Method method);
+    QVector<u32> recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
+    QVector<u32> recoverLower16BitsPID(u32 pid) const;
+    void switchCache(Method MethodType);
 
-    private:
-        u32 add {};
-        u32 k {};
-        u32 mult {};
-        QVector<u8> low;
-        QVector<bool> flags;
+private:
+    u32 add {};
+    u32 k {};
+    u32 mult {};
+    QVector<u8> low;
+    QVector<bool> flags;
 
-        void populateMap();
-        void setupCache(Method method);
-    };
-}
+    void populateMap();
+    void setupCache(Method method);
+};
 
 #endif // RNGCACHE_HPP

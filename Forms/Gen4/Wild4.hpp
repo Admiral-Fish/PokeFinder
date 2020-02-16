@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,13 +24,9 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QMenu>
 
-class Searcher4Model;
-class Wild4Model;
-
-namespace PokeFinderCore
-{
-    class Frame4;
-}
+class WildFrame;
+class WildGeneratorModel4;
+class WildSearcherModel4;
 
 namespace Ui
 {
@@ -50,13 +46,14 @@ public:
 
 private:
     Ui::Wild4 *ui;
-    QVector<PokeFinderCore::Profile4> profiles;
-    Searcher4Model *searcherModel {};
-    Wild4Model *generatorModel {};
+    QVector<Profile4> profiles;
+    Profile4 currentProfile;
+    WildGeneratorModel4 *generatorModel {};
+    WildSearcherModel4 *searcherModel {};
     QMenu *generatorMenu {};
     QMenu *searcherMenu {};
-    QVector<PokeFinderCore::EncounterArea4> encounterGenerator;
-    QVector<PokeFinderCore::EncounterArea4> encounterSearcher;
+    QVector<EncounterArea4> encounterGenerator;
+    QVector<EncounterArea4> encounterSearcher;
 
     void setupModels();
     void updateLocationsGenerator();
@@ -65,8 +62,7 @@ private:
     void updatePokemonSearcher();
 
 private slots:
-    void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
-    void refreshProfiles();
+    void updateProgress(const QVector<WildFrame> &frames, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

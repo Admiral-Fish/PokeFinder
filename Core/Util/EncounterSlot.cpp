@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,11 +18,12 @@
  */
 
 #include "EncounterSlot.hpp"
-#include <QVector>
+#include <Core/Enum/Encounter.hpp>
+#include <vector>
 
-namespace PokeFinderCore
+namespace
 {
-    u8 calcSlot(u8 compare, const QVector<u8> &ranges)
+    u8 calcSlot(u8 compare, const std::vector<u8> &ranges)
     {
         for (u8 i = 0; i < ranges.size(); i++)
         {
@@ -31,10 +32,10 @@ namespace PokeFinderCore
                 return i;
             }
         }
-        return -1;
+        return 255;
     }
 
-    u8 calcSlot(u8 compare, const QVector<QPair<u8, u8>> &ranges)
+    u8 calcSlot(u8 compare, const std::vector<std::pair<u8, u8>> &ranges)
     {
         for (u8 i = 0; i < ranges.size(); i++)
         {
@@ -43,14 +44,17 @@ namespace PokeFinderCore
                 return i;
             }
         }
-        return -1;
+        return 255;
     }
+}
 
+namespace EncounterSlot
+{
     // Calcs the encounter slot for Method H 1/2/4 (Emerald, FRLG, RS)
-    u8 EncounterSlot::hSlot(u16 result, Encounter encounterType)
+    u8 hSlot(u16 result, Encounter encounter)
     {
         u8 compare = result % 100;
-        switch (encounterType)
+        switch (encounter)
         {
         case Encounter::OldRod:
             return calcSlot(compare, { 70, 100 });
@@ -67,10 +71,10 @@ namespace PokeFinderCore
     }
 
     // Calcs the encounter slot for Method J (DPPt)
-    u8 EncounterSlot::jSlot(u16 result, Encounter encounterType)
+    u8 jSlot(u16 result, Encounter encounter)
     {
         u8 compare = result / 656;
-        switch (encounterType)
+        switch (encounter)
         {
         case Encounter::GoodRod:
         case Encounter::SuperRod:
@@ -84,10 +88,10 @@ namespace PokeFinderCore
     }
 
     // Calcs the encounter slot for Method K (HGSS)
-    u8 EncounterSlot::kSlot(u16 result, Encounter encounterType)
+    u8 kSlot(u16 result, Encounter encounter)
     {
         u8 compare = result % 100;
-        switch (encounterType)
+        switch (encounter)
         {
         case Encounter::OldRod:
         case Encounter::GoodRod:
@@ -96,9 +100,9 @@ namespace PokeFinderCore
         case Encounter::Surfing:
             return calcSlot(compare, { 60, 90, 95, 99, 100 });
         case Encounter::BugCatchingContest:
-            return calcSlot(compare,
-                { { 80, 99 }, { 60, 79 }, { 50, 59 }, { 40, 49 }, { 30, 39 }, { 20, 29 }, { 15, 19 }, { 10, 14 },
-                    { 5, 9 }, { 0, 4 } });
+            return calcSlot(
+                compare,
+                { { 80, 99 }, { 60, 79 }, { 50, 59 }, { 40, 49 }, { 30, 39 }, { 20, 29 }, { 15, 19 }, { 10, 14 }, { 5, 9 }, { 0, 4 } });
         case Encounter::SafariZone:
             return compare % 10;
         case Encounter::HeadButt:

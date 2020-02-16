@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,41 +20,16 @@
 #ifndef ENCOUNTERS4_HPP
 #define ENCOUNTERS4_HPP
 
-#include <Core/Gen4/Profile4.hpp>
-#include <Core/Parents/Pokemon.hpp>
-#include <QByteArrayList>
+#include <Core/Util/Global.hpp>
+#include <QVector>
 
-namespace PokeFinderCore
+class EncounterArea4;
+enum Encounter : u8;
+class Profile4;
+
+namespace Encounters4
 {
-    class EncounterArea4;
-    class Slot;
-    enum Encounter : u8;
-
-    class Encounters4
-    {
-    public:
-        Encounters4(Encounter type, int time, const Profile4 &profile);
-        QVector<EncounterArea4> getEncounters() const;
-
-    private:
-        Profile4 profile;
-        Encounter type;
-        int time; // 0: Morning, 1: Day, 2: Night
-        // Dual is used in DPPt
-        // Radio 0: None, 1: Hoenn, 2: Sinnoh, For HGSS
-        QVector<Pokemon> pokemon;
-
-        QByteArrayList getData() const;
-        QVector<EncounterArea4> getHGSS(const QByteArray &data) const;
-        QVector<EncounterArea4> getDPPt(const QByteArray &data) const;
-        void modifyRadio(QVector<Slot> &mons, const QByteArray &data) const;
-        void modifyTime(QVector<Slot> &mons, const QByteArray &data) const;
-        void modifyDual(QVector<Slot> &mons, const QByteArray &data) const;
-        void modifyRadar(QVector<Slot> &mons, const QByteArray &data) const;
-        void modifySwarmHGSS(QVector<Slot> &mons, const QByteArray &data) const;
-        void modifySwarmDPPt(QVector<Slot> &mons, const QByteArray &data) const;
-        u16 getValue(const QByteArray &data, int offset, int length) const;
-    };
+    QVector<EncounterArea4> getEncounters(Encounter encounter, int time, const Profile4 &profile);
 }
 
 #endif // ENCOUNTERS4_HPP

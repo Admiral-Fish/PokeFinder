@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,67 +18,81 @@
  */
 
 #include "Translator.hpp"
+#include <Core/Enum/Game.hpp>
 #include <QFile>
-#include <QSettings>
 #include <QTextStream>
 
-static QStringList characteristics;
-static QStringList natures;
-static QStringList frameNatures;
-static QStringList powers;
-static QStringList species;
-
-QStringList readFile(QString name)
+namespace
 {
-    QFile file(name);
+    QString language;
+    QStringList characteristics;
+    QStringList natures;
+    QStringList hiddenPowers;
+    QStringList species;
+    const QStringList genders = { "♂", "♀", "-" };
 
-    QStringList input;
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    QStringList readFile(const QString &name)
     {
-        QTextStream ts(&file);
-        ts.setCodec("UTF-8");
+        QFile file(name);
 
-        while (!ts.atEnd())
+        QStringList input;
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            input << ts.readLine();
+            QTextStream ts(&file);
+            ts.setCodec("UTF-8");
+
+            while (!ts.atEnd())
+            {
+                input << ts.readLine();
+            }
+            file.close();
         }
-        file.close();
+        return input;
     }
-    return input;
 }
 
-namespace PokeFinderCore
+namespace Translator
 {
-    void Translator::init()
+    void init(const QString &locale)
     {
-        QSettings setting;
-        QString locale = setting.value("settings/locale", "en").toString().left(2);
-
-        characteristics = readFile(QString(":/text/characteristic_%1.txt").arg(locale));
-        frameNatures = readFile(QString(":/text/natures_%1.txt").arg(locale));
-        for (int i : { 3, 5, 2, 20, 23, 11, 8, 13, 1, 16, 15, 14, 4, 17, 19, 7, 22, 10, 21, 9, 18, 6, 0, 24, 12 })
-        {
-            natures.append(frameNatures.at(i));
-        }
-        powers = readFile(QString(":/text/powers_%1.txt").arg(locale));
-        species = readFile(QString(":/text/species_%1.txt").arg(locale));
+        language = locale;
+        characteristics = readFile(QString(":/text/characteristic_%1.txt").arg(language));
+        natures = readFile(QString(":/text/natures_%1.txt").arg(language));
+        hiddenPowers = readFile(QString(":/text/powers_%1.txt").arg(language));
+        species = readFile(QString(":/text/species_%1.txt").arg(language));
     }
 
-    QStringList Translator::getCharacteristic() { return characteristics; }
+    QStringList getCharacteristic()
+    {
+        return characteristics;
+    }
 
-    QStringList Translator::getNatures() { return natures; }
+    QStringList getNatures()
+    {
+        return natures;
+    }
 
-    QString Translator::getNature(u8 nature) { return frameNatures.at(nature); }
+    QString getNature(u8 nature)
+    {
+        return natures.at(nature);
+    }
 
-    QStringList Translator::getFrameNatures() { return frameNatures; }
+    QStringList getHiddenPowers()
+    {
+        return hiddenPowers;
+    }
 
-    QStringList Translator::getPowers() { return powers; }
+    QString getHiddenPower(u8 power)
+    {
+        return hiddenPowers.at(power);
+    }
 
-    QString Translator::getPower(u8 power) { return powers.at(power); }
+    QString getSpecies(u16 specie)
+    {
+        return species.at(specie - 1);
+    }
 
-    QString Translator::getSpecies(u16 specie) { return species.at(specie - 1); }
-
-    QStringList Translator::getSpecies(const QVector<u16> &nums)
+    QStringList getSpecies(const QVector<u16> &nums)
     {
         QStringList s;
         for (u16 num : nums)
@@ -88,51 +102,23 @@ namespace PokeFinderCore
         return s;
     }
 
-    QStringList Translator::getLocationsGen3(const QVector<u8> &nums, Game game)
+    QString getGender(u8 gender)
     {
-        QStringList locations;
+        return genders.at(gender);
+    }
 
+    QStringList getLocations(const QVector<u8> &nums, Game game)
+    {
         QString version;
         if (game & Game::FRLG)
         {
             version = "frlg";
         }
-        else
+        else if (game & Game::RSE)
         {
             version = "rse";
         }
-
-        QSettings setting;
-        QFile file(QString(":/text/%1_%2.txt").arg(version, setting.value("settings/locale", "en").toString()));
-
-        if (file.open(QIODevice::ReadOnly))
-        {
-            QTextStream ts(&file);
-            ts.setCodec("UTF-8");
-
-            QMap<u8, QString> input;
-            while (!ts.atEnd())
-            {
-                QStringList entry = ts.readLine().split(',');
-                input[entry.at(0).toInt()] = entry.at(1);
-            }
-            file.close();
-
-            for (const u8 &x : nums)
-            {
-                locations.append(input[x]);
-            }
-        }
-
-        return locations;
-    }
-
-    QStringList Translator::getLocationsGen4(const QVector<u8> &nums, Game game)
-    {
-        QStringList locations;
-
-        QString version;
-        if (game & Game::DPPt)
+        else if (game & Game::DPPt)
         {
             version = "dppt";
         }
@@ -141,26 +127,18 @@ namespace PokeFinderCore
             version = "hgss";
         }
 
-        QSettings setting;
-        QFile file(QString(":/text/%1_%2.txt").arg(version, setting.value("settings/locale", "en").toString()));
-
-        if (file.open(QIODevice::ReadOnly))
+        QStringList strings = readFile(QString(":/text/%1_%2.txt").arg(version, language));
+        QMap<int, QString> map;
+        for (const QString &string : strings)
         {
-            QTextStream ts(&file);
-            ts.setCodec("UTF-8");
+            QStringList entry = string.split(",");
+            map.insert(entry.at(0).toInt(), entry.at(1));
+        }
 
-            QMap<u8, QString> input;
-            while (!ts.atEnd())
-            {
-                QStringList entry = ts.readLine().split(',');
-                input[entry.at(0).toInt()] = entry.at(1);
-            }
-            file.close();
-
-            for (const u8 &x : nums)
-            {
-                locations.append(input[x]);
-            }
+        QStringList locations;
+        for (const u8 &num : nums)
+        {
+            locations.append(map[num]);
         }
 
         return locations;

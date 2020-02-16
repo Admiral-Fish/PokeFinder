@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProfileEditor4</class>
+ <widget class="QDialog" name="ProfileEditor4">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>560</width>
+    <height>130</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>560</width>
+    <height>130</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Profile Editor Gen 4</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QLabel" name="labelVersion">
+     <property name="text">
+      <string>Version</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="TextBox" name="textBoxTID"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEditProfile"/>
+   </item>
+   <item row="1" column="6">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QLabel" name="labelSID">
+     <property name="text">
+      <string>SID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="6">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="TextBox" name="textBoxSID"/>
+   </item>
+   <item row="0" column="4">
+    <widget class="QLabel" name="labelTID">
+     <property name="text">
+      <string>TID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="comboBoxVersion">
+     <item>
+      <property name="text">
+       <string>Diamond</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Pearl</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Platinum</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Heart Gold</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Soul Silver</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="labelProfile">
+     <property name="text">
+      <string>Profile Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="labelDualSlot">
+     <property name="text">
+      <string>Dual Slot</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QComboBox" name="comboBoxDualSlot">
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ruby</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Sapphire</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Fire Red</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Leaf Green</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Emerald</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="2" colspan="2">
+    <widget class="QCheckBox" name="checkBoxRadar">
+     <property name="text">
+      <string>PokeRadar</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="labelRadio">
+     <property name="text">
+      <string>Radio</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QComboBox" name="comboBoxRadio">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Hoenn Sound</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Sinnoh Sound</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="2" column="2" colspan="2">
+    <widget class="QCheckBox" name="checkBoxSwarm">
+     <property name="text">
+      <string>Swarm</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/TextBox.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>lineEditProfile</tabstop>
+  <tabstop>comboBoxVersion</tabstop>
+  <tabstop>comboBoxDualSlot</tabstop>
+  <tabstop>checkBoxRadar</tabstop>
+  <tabstop>comboBoxRadio</tabstop>
+  <tabstop>checkBoxSwarm</tabstop>
+  <tabstop>textBoxTID</tabstop>
+  <tabstop>textBoxSID</tabstop>
+  <tabstop>pushButtonOkay</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>ProfileEditor4</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>514</x>
+     <y>56</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>511</x>
+     <y>84</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

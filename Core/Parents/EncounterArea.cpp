@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,66 +18,74 @@
  */
 
 #include "EncounterArea.hpp"
+#include <Core/Enum/Encounter.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QStringList>
 
-namespace PokeFinderCore
+EncounterArea::EncounterArea(u8 location, Encounter encounter, const QVector<Slot> &pokemon) :
+    pokemon(pokemon), location(location), encounter(encounter)
 {
-    EncounterArea::EncounterArea(int location, Encounter type, const QVector<Slot> &pokemon)
+}
+
+Encounter EncounterArea::getEncounter() const
+{
+    return encounter;
+}
+
+u8 EncounterArea::getLocation() const
+{
+    return location;
+}
+
+QVector<Slot> EncounterArea::getPokemon() const
+{
+    return pokemon;
+}
+
+QVector<u16> EncounterArea::getUniqueSpecies() const
+{
+    QVector<u16> nums;
+
+    for (const auto &mon : pokemon)
     {
-        this->location = location;
-        this->type = type;
-        this->pokemon = pokemon;
-    }
-
-    Encounter EncounterArea::getType() const { return type; }
-
-    u8 EncounterArea::getLocation() const { return location; }
-
-    QVector<Slot> EncounterArea::getPokemon() const { return pokemon; }
-
-    QVector<u16> EncounterArea::getUniqueSpecies() const
-    {
-        QVector<u16> nums;
-
-        for (const auto &mon : pokemon)
+        if (!nums.contains(mon.getSpecie()))
         {
-            if (!nums.contains(mon.getSpecie()))
-            {
-                nums.append(mon.getSpecie());
-            }
+            nums.append(mon.getSpecie());
         }
-
-        return nums;
     }
 
-    QVector<bool> EncounterArea::getSlots(u16 num) const
+    return nums;
+}
+
+QVector<bool> EncounterArea::getSlots(u16 num) const
+{
+    QVector<bool> flags(pokemon.size());
+
+    std::transform(pokemon.begin(), pokemon.end(), flags.begin(), [num](const auto &mon) { return mon.getSpecie() == num; });
+
+    return flags;
+}
+
+QPair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
+{
+    QPair<u8, u8> range = qMakePair(100, 0);
+    for (auto slot : pokemon)
     {
-        QVector<bool> flags;
-
-        for (const auto &mon : pokemon)
+        if (slot.getSpecie() == specie)
         {
-            flags.append(mon.getSpecie() == num);
+            range.first = std::min(range.first, slot.getMinLevel());
+            range.second = std::max(range.second, slot.getMaxLevel());
         }
-
-        return flags;
     }
+    return range;
+}
 
-    QPair<u8, u8> EncounterArea::getLevelRange(u16 specie) const
-    {
-        QPair<u8, u8> range = qMakePair(100, 0);
-        for (auto slot : pokemon)
-        {
-            if (slot.getSpecie() == specie)
-            {
-                range.first = qMin(range.first, slot.getMinLevel());
-                range.second = qMax(range.second, slot.getMaxLevel());
-            }
-        }
-        return range;
-    }
+QStringList EncounterArea::getSpecieNames() const
+{
+    return Translator::getSpecies(getUniqueSpecies());
+}
 
-    QStringList EncounterArea::getSpecieNames() const { return Translator::getSpecies(getUniqueSpecies()); }
-
-    void EncounterArea::setSlot(u8 index, u16 specie, const Pokemon &mon) { pokemon[index].setSpecie(specie, mon); }
+void EncounterArea::setSlot(u8 index, u16 specie, const PersonalInfo &mon)
+{
+    pokemon[index].setSpecie(specie, mon);
 }

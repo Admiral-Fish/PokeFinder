@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,8 +25,7 @@
 #include <QKeyEvent>
 #include <QTextStream>
 
-TableView::TableView(QWidget *parent)
-    : QTableView(parent)
+TableView::TableView(QWidget *parent) : QTableView(parent)
 {
 }
 
@@ -65,9 +64,10 @@ void TableView::keyPressEvent(QKeyEvent *event)
 
 void TableView::outputModel(bool csv) const
 {
-    QString fileName = QFileDialog::getSaveFileName(nullptr,
-        QObject::tr(csv ? "Save Output to CSV" : "Save Output to TXT"), QDir::currentPath(),
-        QObject::tr(csv ? "CSV File (*.csv);;All Files (*)" : "Text File (*.txt);;All Files (*)"));
+    QString caption = tr(csv ? "Save Output to CSV" : "Save Output to TXT");
+    QString filter = tr(csv ? "CSV File (*.csv);;All Files (*)" : "Text File (*.txt);;All Files (*)");
+
+    QString fileName = QFileDialog::getSaveFileName(nullptr, caption, QDir::currentPath(), filter);
 
     if (fileName.isEmpty())
     {

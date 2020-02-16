@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -40,20 +40,23 @@ class TextBox : public QLineEdit
 public:
     explicit TextBox(QWidget *parent = nullptr);
     void setValues(InputType type);
-    void setValues(u64 minValue, u64 maxValue, int base = 10);
+    void setValues(u64 minValue, u64 maxValue, int length, int base);
     int getInt() const;
+    u8 getUChar() const;
     u16 getUShort() const;
     u32 getUInt() const;
 
 private:
     bool setup;
-    u64 maxValue = 0;
-    u64 minValue {};
-    int base {};
+    u64 maxValue;
+    u64 minValue;
+    int base;
+    int length;
     QRegExp filter;
 
 private slots:
     void onTextEdited(QString string);
+    void onEditFinished();
 };
 
 #endif // TEXTBOX_HPP

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,16 +18,15 @@
  */
 
 #include "ResearcherModel.hpp"
+#include <functional>
 
-ResearcherModel::ResearcherModel(QObject *parent, bool is64Bit)
-    : TableModel<PokeFinderCore::ResearcherFrame>(parent)
+ResearcherModel::ResearcherModel(QObject *parent, bool flag) : TableModel<ResearcherFrame>(parent), flag(flag)
 {
-    flag = is64Bit;
 }
 
-void ResearcherModel::setFlag(bool is64Bit)
+void ResearcherModel::setFlag(bool flag)
 {
-    flag = is64Bit;
+    this->flag = flag;
     emit headerDataChanged(Qt::Horizontal, 0, columnCount());
 }
 
@@ -45,7 +44,7 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        auto frame = model.at(index.row());
+        const auto &frame = model.at(index.row());
         if (flag)
         {
             switch (index.column())
@@ -158,36 +157,36 @@ QVariant ResearcherModel::headerData(int section, Qt::Orientation orientation, i
 QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
 {
     int column = 0;
-    u64 (*getResult)(const PokeFinderCore::ResearcherFrame &) = nullptr;
+    std::function<u64(const ResearcherFrame &)> getResult;
     if (string == tr("64Bit"))
     {
         column = 1;
-        getResult = &ResearcherModel::get64Bit;
+        getResult = [](const ResearcherFrame &frame) { return frame.getFull64(); };
     }
     else if (string == tr("32Bit High"))
     {
         column = 2;
-        getResult = &ResearcherModel::get32BitHigh;
+        getResult = [](const ResearcherFrame &frame) { return frame.getHigh32(); };
     }
     else if (string == tr("32Bit Low"))
     {
         column = 3;
-        getResult = &ResearcherModel::get32BitLow;
+        getResult = [](const ResearcherFrame &frame) { return frame.getLow32(); };
     }
     else if (string == tr("32Bit"))
     {
         column = 1;
-        getResult = &ResearcherModel::get32;
+        getResult = [](const ResearcherFrame &frame) { return frame.getFull32(); };
     }
     else if (string == tr("16Bit High"))
     {
         column = flag ? 4 : 2;
-        getResult = &ResearcherModel::get16BitHigh;
+        getResult = [](const ResearcherFrame &frame) { return frame.getHigh16(); };
     }
     else if (string == tr("16Bit Low"))
     {
         column = flag ? 5 : 3;
-        getResult = &ResearcherModel::get16BitLow;
+        getResult = [](const ResearcherFrame &frame) { return frame.getLow16(); };
     }
 
     int size = rowCount();

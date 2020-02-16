@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,31 +21,29 @@
 #define ENCOUNTERAREA_HPP
 
 #include <Core/Parents/Slot.hpp>
-#include <Core/Util/Encounter.hpp>
 #include <Core/Util/Global.hpp>
 #include <QVector>
 
-namespace PokeFinderCore
-{
-    class EncounterArea
-    {
-    public:
-        EncounterArea() = default;
-        EncounterArea(int location, Encounter type, const QVector<Slot> &pokemon);
-        Encounter getType() const;
-        u8 getLocation() const;
-        QVector<Slot> getPokemon() const;
-        QVector<u16> getUniqueSpecies() const;
-        QVector<bool> getSlots(u16 num) const;
-        QPair<u8, u8> getLevelRange(u16 specie) const;
-        QStringList getSpecieNames() const;
-        void setSlot(u8 index, u16 specie, const Pokemon &mon);
+enum Encounter : u8;
 
-    protected:
-        QVector<Slot> pokemon;
-        u8 location {};
-        Encounter type {};
-    };
-}
+class EncounterArea
+{
+public:
+    EncounterArea() = default;
+    EncounterArea(u8 location, Encounter encounter, const QVector<Slot> &pokemon);
+    Encounter getEncounter() const;
+    u8 getLocation() const;
+    QVector<Slot> getPokemon() const;
+    QVector<u16> getUniqueSpecies() const;
+    QVector<bool> getSlots(u16 num) const;
+    QPair<u8, u8> getLevelRange(u16 specie) const;
+    QStringList getSpecieNames() const;
+    void setSlot(u8 index, u16 specie, const PersonalInfo &mon);
+
+protected:
+    QVector<Slot> pokemon;
+    u8 location {};
+    Encounter encounter {};
+};
 
 #endif // ENCOUNTERAREA_HPP

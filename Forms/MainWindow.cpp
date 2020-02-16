@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,32 +21,34 @@
 #include "ui_MainWindow.h"
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Gen3/GameCube.hpp>
-#include <Forms/Gen3/GameCubeRTC.hpp>
-#include <Forms/Gen3/GameCubeSeedFinder.hpp>
 #include <Forms/Gen3/IDs3.hpp>
-#include <Forms/Gen3/JirachiPattern.hpp>
-#include <Forms/Gen3/PIDtoIVs.hpp>
-#include <Forms/Gen3/PokeSpot.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
-#include <Forms/Gen3/SpindaPainter.hpp>
 #include <Forms/Gen3/Stationary3.hpp>
+#include <Forms/Gen3/Tools/GameCubeRTC.hpp>
+#include <Forms/Gen3/Tools/GameCubeSeedFinder.hpp>
+#include <Forms/Gen3/Tools/JirachiPattern.hpp>
+#include <Forms/Gen3/Tools/PIDIV.hpp>
+#include <Forms/Gen3/Tools/PokeSpot.hpp>
+#include <Forms/Gen3/Tools/SeedTime3.hpp>
+#include <Forms/Gen3/Tools/SpindaPainter.hpp>
 #include <Forms/Gen3/Wild3.hpp>
-#include <Forms/Gen4/ChainedSID.hpp>
 #include <Forms/Gen4/Eggs4.hpp>
 #include <Forms/Gen4/IDs4.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
 #include <Forms/Gen4/Stationary4.hpp>
+#include <Forms/Gen4/Tools/ChainedSID.hpp>
+#include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Util/IVtoPID.hpp>
 #include <Forms/Util/Researcher.hpp>
+#include <QDate>
 #include <QDesktopServices>
+#include <QProcess>
+#include <QSettings>
+#include <QTimer>
 #include <QtNetwork>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     setWindowTitle(QString("Pok\303\251Finder %1").arg(VERSION));
@@ -69,6 +71,7 @@ MainWindow::~MainWindow()
     delete stationary3;
     delete wild3;
     delete egg3;
+    delete gamecube;
     delete ids3;
     delete stationary4;
     delete wild4;
@@ -84,8 +87,8 @@ void MainWindow::setupModels()
     langGroup->setExclusive(true);
     connect(langGroup, &QActionGroup::triggered, this, &MainWindow::slotLanguageChanged);
     currentLanguage = setting.value("settings/locale", "en").toString();
-    QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh_Hans_CN" };
-    for (u8 i = 0; i < locales.size(); i++)
+    QStringList locales = { "de", "en", "es", "fr", "it", "ja", "ko", "zh" };
+    for (int i = 0; i < locales.size(); i++)
     {
         const QString &lang = locales.at(i);
 
@@ -105,7 +108,7 @@ void MainWindow::setupModels()
     connect(styleGroup, &QActionGroup::triggered, this, &MainWindow::slotStyleChanged);
     currentStyle = setting.value("settings/style", "dark").toString();
     QStringList styles = { "dark", "light" };
-    for (u8 i = 0; i < styles.size(); i++)
+    for (int i = 0; i < styles.size(); i++)
     {
         const QString &style = styles.at(i);
 
@@ -126,62 +129,28 @@ void MainWindow::setupModels()
     connect(ui->pushButtonEgg3, &QPushButton::clicked, this, &MainWindow::openEgg3);
     connect(ui->pushButtonIDs3, &QPushButton::clicked, this, &MainWindow::openIDs3);
     connect(ui->actionGameCubeRTC, &QAction::triggered, this, &MainWindow::openGameCubeRTC);
-    connect(ui->actionGameCube_Seed_Finder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
-    connect(ui->actionIVtoPID3, &QAction::triggered, this, &MainWindow::openIVtoPID3);
+    connect(ui->actionGameCubeSeedFinder, &QAction::triggered, this, &MainWindow::openGameCubeSeedFinder);
+    connect(ui->actionIVtoPID3, &QAction::triggered, this, &MainWindow::openIVtoPID);
     connect(ui->actionJirachiPattern, &QAction::triggered, this, &MainWindow::openJirachiPattern);
     connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
     connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
-    connect(ui->actionSpinda_Painter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
+    connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
     connect(ui->pushButtonStationary4, &QPushButton::clicked, this, &MainWindow::openStationary4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
-    connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID4);
+    connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
     connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
-    connect(ui->actionSID_from_Chained_Shiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
-    connect(ui->actionEncounter_Lookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
-    connect(ui->actionIV_Calculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
+    connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
+    connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
+    connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
 
     if (setting.contains("mainWindow/geometry"))
     {
         this->restoreGeometry(setting.value("mainWindow/geometry").toByteArray());
     }
-}
-
-void MainWindow::checkUpdates()
-{
-    QSettings setting;
-    QDate today = QDate::currentDate();
-    QDate lastOpened = setting.value("settings/lastOpened", today).toDate();
-
-    if (lastOpened.daysTo(today) >= 0)
-    {
-        QNetworkAccessManager manager;
-        QNetworkRequest request(QUrl("https://api.github.com/repos/Admiral-Fish/PokeFinder/releases/latest"));
-        QScopedPointer<QNetworkReply> reply(manager.get(request));
-
-        QEventLoop loop;
-        connect(reply.data(), SIGNAL(finished()), &loop, SLOT(quit()));
-        connect(reply.data(), SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-        loop.exec();
-
-        auto response = QJsonDocument::fromJson(reply->readAll());
-        QString webVersion = response.object()["tag_name"].toString().right(5);
-        if (!webVersion.isEmpty() && VERSION != webVersion)
-        {
-            QMessageBox info(QMessageBox::Question, tr("Update Check"),
-                tr("An update is available. Would you like to download the newest version?"),
-                QMessageBox::Yes | QMessageBox::No);
-            if (info.exec() == QMessageBox::Yes)
-            {
-                QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/latest"));
-            }
-        }
-    }
-
-    setting.setValue("settings/lastOpened", today);
 }
 
 void MainWindow::slotLanguageChanged(QAction *action)
@@ -193,8 +162,8 @@ void MainWindow::slotLanguageChanged(QAction *action)
         {
             currentLanguage = lang;
 
-            QMessageBox message(QMessageBox::Question, tr("Language update"),
-                tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
+            QMessageBox message(QMessageBox::Question, tr("Language update"), tr("Restart for changes to take effect. Restart now?"),
+                                QMessageBox::Yes | QMessageBox::No);
             if (message.exec() == QMessageBox::Yes)
             {
                 QProcess::startDetached(QApplication::applicationFilePath());
@@ -213,8 +182,8 @@ void MainWindow::slotStyleChanged(QAction *action)
         {
             currentStyle = style;
 
-            QMessageBox message(QMessageBox::Question, tr("Style change"),
-                tr("Restart for changes to take effect. Restart now?"), QMessageBox::Yes | QMessageBox::No);
+            QMessageBox message(QMessageBox::Question, tr("Style change"), tr("Restart for changes to take effect. Restart now?"),
+                                QMessageBox::Yes | QMessageBox::No);
             if (message.exec() == QMessageBox::Yes)
             {
                 QProcess::startDetached(QApplication::applicationFilePath());
@@ -222,6 +191,40 @@ void MainWindow::slotStyleChanged(QAction *action)
             }
         }
     }
+}
+
+void MainWindow::checkUpdates()
+{
+    QSettings setting;
+    QDate today = QDate::currentDate();
+    QDate lastOpened = setting.value("settings/lastOpened", today).toDate();
+
+    if (lastOpened.daysTo(today) >= 0)
+    {
+        QNetworkAccessManager manager;
+        QNetworkRequest request(QUrl("https://api.github.com/repos/Admiral-Fish/PokeFinder/releases/latest"));
+        QScopedPointer<QNetworkReply> reply(manager.get(request));
+
+        QEventLoop loop;
+        connect(reply.data(), &QNetworkReply::finished, &loop, &QEventLoop::quit);
+        connect(reply.data(), QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error), &loop, &QEventLoop::quit);
+        loop.exec();
+
+        auto json = QJsonDocument::fromJson(reply->readAll()).object();
+        QString webVersion = json["tag_name"].toString().right(5);
+        if (!webVersion.isEmpty() && VERSION != webVersion)
+        {
+            QMessageBox info(QMessageBox::Question, tr("Update Check"),
+                             tr("An update is available. Would you like to download the newest version?"),
+                             QMessageBox::Yes | QMessageBox::No);
+            if (info.exec() == QMessageBox::Yes)
+            {
+                QDesktopServices::openUrl(QUrl("https://github.com/Admiral-Fish/PokeFinder/releases/latest"));
+            }
+        }
+    }
+
+    setting.setValue("settings/lastOpened", today);
 }
 
 void MainWindow::updateProfiles(int num)
@@ -330,7 +333,7 @@ void MainWindow::openGameCubeSeedFinder()
     finder->raise();
 }
 
-void MainWindow::openIVtoPID3()
+void MainWindow::openIVtoPID()
 {
     auto *ivToPID = new IVtoPID();
     ivToPID->show();
@@ -346,11 +349,7 @@ void MainWindow::openJirachiPattern()
 
 void MainWindow::openPIDtoIV()
 {
-    auto *pidToIV = new PIDtoIVs();
-    if (stationary3)
-    {
-        connect(pidToIV, &PIDtoIVs::moveResultsToStationary, stationary3, &Stationary3::moveResults);
-    }
+    auto *pidToIV = new PIDIV();
     pidToIV->show();
     pidToIV->raise();
 }
@@ -364,7 +363,7 @@ void MainWindow::openPokeSpot()
 
 void MainWindow::openSeedtoTime3()
 {
-    auto *seedToTime = new SeedToTime3();
+    auto *seedToTime = new SeedTime3();
     seedToTime->show();
     seedToTime->raise();
 }
@@ -417,13 +416,6 @@ void MainWindow::openIDs4()
     }
     ids4->show();
     ids4->raise();
-}
-
-void MainWindow::openIVtoPID4()
-{
-    auto *ivToPID = new IVtoPID();
-    ivToPID->show();
-    ivToPID->raise();
 }
 
 void MainWindow::openSeedtoTime4()

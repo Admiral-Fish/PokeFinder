@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,10 +26,9 @@
 #include <Core/RNG/TinyMT.hpp>
 #include <Models/Util/ResearcherModel.hpp>
 #include <QSettings>
+#include <functional>
 
-Researcher::Researcher(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::Researcher)
+Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -51,8 +50,8 @@ void Researcher::setupModels()
     ui->tableView->setModel(model);
     resizeHeader();
 
-    ui->textBoxStartingFrame->setValues(InputType::Frame64Bit);
-    ui->textBoxMaxFrames->setValues(InputType::Frame64Bit);
+    ui->textBoxInitialFrame->setValues(InputType::Frame64Bit);
+    ui->textBoxMaxResults->setValues(InputType::Frame64Bit);
     ui->textBoxSeed->setValues(InputType::Seed64Bit);
     ui->textBoxSearch->setValues(InputType::Seed64Bit);
 
@@ -61,16 +60,16 @@ void Researcher::setupModels()
     ui->textBoxStatus1->setValues(InputType::Seed32Bit);
     ui->textBoxStatus0->setValues(InputType::Seed32Bit);
 
-    ui->lineEditRValue1->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue2->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue3->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue4->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue5->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue6->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue7->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue8->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue9->setValues(1, 0xffffffff, 16);
-    ui->lineEditRValue10->setValues(1, 0xffffffff, 16);
+    ui->lineEditRValue1->setValues(1, 0xffffffff, 10, 16);
+    ui->lineEditRValue2->setValues(1, 0xffffffff, 10, 16);
+    ui->lineEditRValue3->setValues(1, 0xffffffff, 10, 16);
+    ui->lineEditRValue4->setValues(1, 0xffffffff, 10, 16);
+    ui->lineEditRValue5->setValues(1, 0xffffffff, 10, 16);
+    ui->lineEditRValue6->setValues(1, 0xffffffff, 10, 16);
+    ui->lineEditRValue7->setValues(1, 0xffffffff, 10, 16);
+    ui->lineEditRValue8->setValues(1, 0xffffffff, 10, 16);
+    ui->lineEditRValue9->setValues(1, 0xffffffff, 10, 16);
+    ui->lineEditRValue10->setValues(1, 0xffffffff, 10, 16);
 
     keys[tr("64Bit")] = 0;
     keys[tr("32Bit")] = 1;
@@ -109,8 +108,8 @@ void Researcher::setupModels()
     }
 }
 
-u64 Researcher::getCustom(const QString &text, const PokeFinderCore::ResearcherFrame &frame,
-    const QVector<PokeFinderCore::ResearcherFrame> &frames)
+u64 Researcher::getCustom(const QString &text, const ResearcherFrame &frame,
+                          const QVector<ResearcherFrame> &frames)
 {
     switch (keys[text])
     {
@@ -205,11 +204,11 @@ void Researcher::generate()
     model->setFlag(rng64Bit);
 
     u64 seed = ui->textBoxSeed->text().toULongLong(nullptr, 16);
-    u32 maxFrames = ui->textBoxMaxFrames->getUInt();
-    u32 startingFrame = ui->textBoxStartingFrame->getUInt();
+    u32 initialFrame = ui->textBoxInitialFrame->getUInt();
+    u32 maxResults = ui->textBoxMaxResults->getUInt();
 
-    PokeFinderCore::IRNG<u32> *rng = nullptr;
-    PokeFinderCore::IRNG<u64> *rng64 = nullptr;
+    IRNG<u32> *rng = nullptr;
+    IRNG<u64> *rng64 = nullptr;
 
     if (ui->rngSelection->currentIndex() != 1 && (seed > 0xffffffff))
     {
@@ -221,83 +220,86 @@ void Researcher::generate()
         switch (ui->comboBoxRNG32Bit->currentIndex())
         {
         case 0:
-            rng = new PokeFinderCore::PokeRNG(static_cast<u32>(seed), startingFrame - 1);
+            rng = new PokeRNG(static_cast<u32>(seed));
             break;
         case 1:
-            rng = new PokeFinderCore::PokeRNGR(static_cast<u32>(seed), startingFrame - 1);
+            rng = new PokeRNGR(static_cast<u32>(seed));
             break;
         case 2:
-            rng = new PokeFinderCore::XDRNG(static_cast<u32>(seed), startingFrame - 1);
+            rng = new XDRNG(static_cast<u32>(seed));
             break;
         case 3:
-            rng = new PokeFinderCore::XDRNGR(static_cast<u32>(seed), startingFrame - 1);
+            rng = new XDRNGR(static_cast<u32>(seed));
             break;
         case 4:
-            rng = new PokeFinderCore::ARNG(static_cast<u32>(seed), startingFrame - 1);
+            rng = new ARNG(static_cast<u32>(seed));
             break;
         case 5:
-            rng = new PokeFinderCore::ARNGR(static_cast<u32>(seed), startingFrame - 1);
+            rng = new ARNGR(static_cast<u32>(seed));
             break;
         case 6:
-            rng = new PokeFinderCore::MersenneTwister(static_cast<u32>(seed), startingFrame - 1);
+            rng = new MersenneTwister(static_cast<u32>(seed));
             break;
         case 7:
-            rng = new PokeFinderCore::MersenneTwisterUntempered(static_cast<u32>(seed), startingFrame - 1);
+            rng = new MersenneTwisterUntempered(static_cast<u32>(seed));
             break;
         case 8:
-            if (maxFrames > 227 || startingFrame > 227 || (startingFrame + maxFrames > 227))
+            if ((initialFrame + maxResults) > 227)
             {
                 QMessageBox error;
                 error.setText(tr("Please enter a search range lower then 228"));
                 error.exec();
                 return;
             }
-            rng = new PokeFinderCore::MersenneTwisterFast(static_cast<u32>(seed), maxFrames, startingFrame - 1);
+            rng = new MersenneTwisterFast(static_cast<u16>(maxResults), static_cast<u32>(seed));
             break;
         }
+        rng->advanceFrames(initialFrame - 1);
     }
     else if (ui->rngSelection->currentIndex() == 1)
     {
         switch (ui->comboBoxRNG64Bit->currentIndex())
         {
         case 0:
-            rng64 = new PokeFinderCore::BWRNG(seed, startingFrame - 1);
+            rng64 = new BWRNG(seed);
             break;
         case 1:
-            rng64 = new PokeFinderCore::BWRNGR(seed, startingFrame - 1);
+            rng64 = new BWRNGR(seed);
             break;
         case 2:
             if (seed > 0xffffffff)
             {
                 seed >>= 32;
             }
-            rng64 = new PokeFinderCore::SFMT(static_cast<u32>(seed), startingFrame - 1);
+            rng64 = new SFMT(static_cast<u32>(seed));
             break;
         }
+        rng64->advanceFrames(initialFrame - 1);
     }
     else
     {
         u32 status[4] = { ui->textBoxStatus0->getUInt(), ui->textBoxStatus1->getUInt(), ui->textBoxStatus2->getUInt(),
-            ui->textBoxStatus3->getUInt() };
-        rng = new PokeFinderCore::TinyMT(status, startingFrame - 1);
+                          ui->textBoxStatus3->getUInt() };
+        rng = new TinyMT(status);
+        rng->advanceFrames(initialFrame - 1);
     }
 
-    QHash<QString, u64 (*)(u64, u64)> calc;
-    calc["/"] = &Researcher::divide;
-    calc["%"] = &Researcher::modulo;
-    calc[">>"] = &Researcher::shiftRight;
-    calc["<<"] = &Researcher::shiftLeft;
-    calc["&"] = &Researcher::bitAnd;
-    calc["|"] = &Researcher::bitOr;
-    calc["^"] = &Researcher::bitXor;
-    calc["+"] = &Researcher::add;
-    calc["-"] = &Researcher::subtract;
-    calc["*"] = &Researcher::multiply;
+    QHash<QString, std::function<u64(u64, u64)>> calc;
+    calc["/"] = [](u64 x, u64 y) { return y == 0 ? 0 : x / y; };
+    calc["%"] = [](u64 x, u64 y) { return x % y; };
+    calc[">>"] = [](u64 x, u64 y) { return x >> y; };
+    calc["<<"] = [](u64 x, u64 y) { return x << y; };
+    calc["&"] = [](u64 x, u64 y) { return x & y; };
+    calc["|"] = [](u64 x, u64 y) { return x | y; };
+    calc["^"] = [](u64 x, u64 y) { return x ^ y; };
+    calc["+"] = [](u64 x, u64 y) { return x + y; };
+    calc["-"] = [](u64 x, u64 y) { return x - y; };
+    calc["*"] = [](u64 x, u64 y) { return x * y; };
 
     QVector<bool> calcCustom(10);
     QVector<u64> customRValue(10);
     QVector<bool> pass(10);
-    QVector<u64 (*)(u64, u64)> calculators(10);
+    QVector<std::function<u64(u64, u64)>> calculators(10);
 
     calcCustom[0] = ui->lineEditRValue1->text() != "";
     calcCustom[1] = ui->lineEditRValue2->text() != "" || ui->comboBoxRValue2->currentIndex() != 0;
@@ -355,20 +357,26 @@ void Researcher::generate()
     calculators[8] = calc[ui->comboBoxOperator9->currentText()];
     calculators[9] = calc[ui->comboBoxOperator10->currentText()];
 
-    QStringList textL = { ui->comboBoxLValue1->currentText(), ui->comboBoxLValue2->currentText(),
-        ui->comboBoxLValue3->currentText(), ui->comboBoxLValue4->currentText(), ui->comboBoxLValue5->currentText(),
-        ui->comboBoxLValue6->currentText(), ui->comboBoxLValue7->currentText(), ui->comboBoxLValue8->currentText(),
-        ui->comboBoxLValue9->currentText(), ui->comboBoxLValue10->currentText() };
+    QStringList textL = { ui->comboBoxLValue1->currentText(), ui->comboBoxLValue2->currentText(), ui->comboBoxLValue3->currentText(),
+                          ui->comboBoxLValue4->currentText(), ui->comboBoxLValue5->currentText(), ui->comboBoxLValue6->currentText(),
+                          ui->comboBoxLValue7->currentText(), ui->comboBoxLValue8->currentText(), ui->comboBoxLValue9->currentText(),
+                          ui->comboBoxLValue10->currentText() };
 
-    QStringList textR = { tr("None"), ui->comboBoxRValue2->currentText(), ui->comboBoxRValue3->currentText(),
-        ui->comboBoxRValue4->currentText(), ui->comboBoxRValue5->currentText(), ui->comboBoxRValue6->currentText(),
-        ui->comboBoxRValue7->currentText(), ui->comboBoxRValue8->currentText(), ui->comboBoxRValue9->currentText(),
-        ui->comboBoxRValue10->currentText() };
+    QStringList textR = { tr("None"),
+                          ui->comboBoxRValue2->currentText(),
+                          ui->comboBoxRValue3->currentText(),
+                          ui->comboBoxRValue4->currentText(),
+                          ui->comboBoxRValue5->currentText(),
+                          ui->comboBoxRValue6->currentText(),
+                          ui->comboBoxRValue7->currentText(),
+                          ui->comboBoxRValue8->currentText(),
+                          ui->comboBoxRValue9->currentText(),
+                          ui->comboBoxRValue10->currentText() };
 
-    QVector<PokeFinderCore::ResearcherFrame> frames;
-    for (u32 i = startingFrame; i < maxFrames + startingFrame; i++)
+    QVector<ResearcherFrame> frames;
+    for (u32 i = initialFrame; i < maxResults + initialFrame; i++)
     {
-        PokeFinderCore::ResearcherFrame frame(rng64Bit, i);
+        ResearcherFrame frame(rng64Bit, i);
         if (rng64Bit)
         {
             frame.setFull64(rng64->next());
@@ -378,7 +386,7 @@ void Researcher::generate()
             frame.setFull32(rng->next());
         }
 
-        for (int j = 0; j < 10; j++)
+        for (u8 j = 0; j < 10; j++)
         {
             if (calcCustom.at(j))
             {
@@ -412,13 +420,16 @@ void Researcher::generate()
 
 void Researcher::selectionIndexChanged(int index)
 {
-    ui->textBoxSeed->setVisible(index != 2);
-    ui->labelSeed->setVisible(index != 2);
-    ui->comboBoxSearch->clear();
-    QStringList items = index != 1
-        ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low")
-        : QStringList() << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low");
-    ui->comboBoxSearch->addItems(items);
+    if (index >= 0)
+    {
+        ui->textBoxSeed->setVisible(index != 2);
+        ui->labelSeed->setVisible(index != 2);
+        ui->comboBoxSearch->clear();
+        QStringList items = index != 1
+            ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low")
+            : QStringList() << tr("64Bit") << tr("32Bit High") << tr("32Bit Low") << tr("16Bit High") << tr("16Bit Low");
+        ui->comboBoxSearch->addItems(items);
+    }
 }
 
 void Researcher::search()

@@ -1,14 +1,14 @@
 environment:
   matrix:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-    QTPATH: C:\Qt\5.13\msvc2017_64
+    QTPATH: C:\Qt\5.14\msvc2017_64
     OS: win64
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x64
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu1804
     OS: linux
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-    QTPATH: C:\Qt\5.13\msvc2017
+    QTPATH: C:\Qt\5.14\msvc2017
     OS: win32
     VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x86
@@ -39,6 +39,8 @@ after_build:
     - cmd: del PokeFinder-windows\vc_redist*.exe
     - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
     - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
+    - cmd: xcopy /I %OpenSSL%\libcrypto*.dll PokeFinder-windows\
+    - cmd: xcopy /I %OpenSSL%\libssl*.dll PokeFinder-windows\
     - cmd: 7z a PokeFinder-%OS%.zip PokeFinder-windows\
     - cmd: sha256sum PokeFinder-%OS%.zip > PokeFinder-%OS%.zip.sha256
     # Linux

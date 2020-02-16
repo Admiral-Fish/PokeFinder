@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,23 +20,23 @@
 #ifndef TRANSLATOR_HPP
 #define TRANSLATOR_HPP
 
-#include <Core/Util/Game.hpp>
 #include <Core/Util/Global.hpp>
-#include <QVector>
+#include <QString>
 
-namespace PokeFinderCore::Translator
+enum Game : u16;
+
+namespace Translator
 {
-    void init();
+    void init(const QString &locale);
     QStringList getCharacteristic();
     QStringList getNatures();
     QString getNature(u8 nature);
-    QStringList getFrameNatures();
-    QStringList getPowers();
-    QString getPower(u8 power);
+    QStringList getHiddenPowers();
+    QString getHiddenPower(u8 power);
     QString getSpecies(u16 specie);
     QStringList getSpecies(const QVector<u16> &nums);
-    QStringList getLocationsGen3(const QVector<u8> &nums, Game game);
-    QStringList getLocationsGen4(const QVector<u8> &nums, Game game);
+    QString getGender(u8 gender);
+    QStringList getLocations(const QVector<u8> &nums, Game game);
 }
 
 #endif // TRANSLATOR_HPP

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,45 +21,38 @@
 #define SHADOWLOCK_HPP
 
 #include <Core/Gen3/LockInfo.hpp>
-#include <Core/Util/Method.hpp>
-#include <Core/Util/ShadowType.hpp>
+#include <Core/RNG/LCRNG.hpp>
 #include <QVector>
 
-namespace PokeFinderCore
+class ShadowLock
 {
-    class XDRNG;
-    class XDRNGR;
+public:
+    ShadowLock() = default;
+    ShadowLock(u8 num, Method version);
+    ShadowType getType();
+    bool firstShadowNormal(u32 seed);
+    bool firstShadowSet(u32 seed);
+    bool firstShadowShinySkip(u32 seed);
+    bool firstShadowUnset(u32 seed);
+    bool salamenceSet(u32 seed);
+    bool salamenceShinySkip(u32 seed);
+    bool salamenceUnset(u32 seed);
+    bool singleNL(u32 seed);
+    bool eReader(u32 seed, u32 readerPID);
+    void switchLock(u8 lockNum, Method version);
 
-    class ShadowLock
-    {
-    public:
-        ShadowLock() = default;
-        ShadowLock(u8 num, Method version);
-        ShadowType getType();
-        bool firstShadowNormal(u32 seed);
-        bool firstShadowSet(u32 seed);
-        bool firstShadowShinySkip(u32 seed);
-        bool firstShadowUnset(u32 seed);
-        bool salamenceSet(u32 seed);
-        bool salamenceShinySkip(u32 seed);
-        bool salamenceUnset(u32 seed);
-        bool singleNL(u32 seed);
-        bool eReader(u32 seed, u32 readerPID);
-        void switchLock(u8 lockNum, Method version);
+private:
+    int backCount {}, frontCount {};
+    LockInfo currLock;
+    ShadowTeam team;
+    int x {};
 
-    private:
-        int backCount {}, frontCount {};
-        LockInfo currLock;
-        ShadowTeam team;
-        int x {};
-
-        void compareBackwards(u32 &pid, XDRNGR &rng);
-        void compareForwards(u32 &pid, XDRNG &rng);
-        void getCurrLock();
-        u32 getPIDForward(XDRNG &rng);
-        u32 getPIDBackward(XDRNGR &rng);
-        u16 getPSVReverse(XDRNGR &rng);
-    };
-}
+    void compareBackwards(u32 &pid, XDRNGR &rng);
+    void compareForwards(u32 &pid, XDRNG &rng);
+    void getCurrLock();
+    u32 getPIDForward(XDRNG &rng);
+    u32 getPIDBackward(XDRNGR &rng);
+    u16 getPSVReverse(XDRNGR &rng);
+};
 
 #endif // SHADOWLOCK_HPP

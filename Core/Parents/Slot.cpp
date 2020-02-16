@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,35 +19,37 @@
 
 #include "Slot.hpp"
 
-namespace PokeFinderCore
+Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo &info) :
+    minLevel(minLevel), maxLevel(maxLevel), specie(specie), info(info)
 {
-    Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, const Pokemon &pokemon)
-    {
-        this->specie = specie;
-        this->minLevel = minLevel;
-        this->maxLevel = maxLevel;
-        this->pokemon = pokemon;
-    }
+}
 
-    Slot::Slot(u16 specie, u8 level, const Pokemon &pokemon)
-        : minLevel(level)
-        , maxLevel(level)
-    {
-        this->specie = specie;
-        this->pokemon = pokemon;
-    }
+Slot::Slot(u16 specie, u8 level, const PersonalInfo &info) : minLevel(level), maxLevel(level), specie(specie), info(info)
+{
+}
 
-    u8 Slot::getMinLevel() const { return minLevel; }
+u8 Slot::getMinLevel() const
+{
+    return minLevel;
+}
 
-    u8 Slot::getMaxLevel() const { return maxLevel; }
+u8 Slot::getMaxLevel() const
+{
+    return maxLevel;
+}
 
-    u16 Slot::getSpecie() const { return specie; }
+u16 Slot::getSpecie() const
+{
+    return specie;
+}
 
-    Pokemon Slot::getPokemon() const { return pokemon; }
+PersonalInfo Slot::getPersonal() const
+{
+    return info;
+}
 
-    void Slot::setSpecie(u16 specie, const Pokemon &pokemon)
-    {
-        this->specie = specie;
-        this->pokemon = pokemon;
-    }
+void Slot::setSpecie(u16 specie, const PersonalInfo &info)
+{
+    this->specie = specie;
+    this->info = info;
 }

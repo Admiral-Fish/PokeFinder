@@ -22,9 +22,6 @@
   <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
     <widget class="QTabWidget" name="rngSelection">
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
      <widget class="QWidget" name="tab32Bit">
       <attribute name="title">
        <string>32Bit</string>
@@ -133,15 +130,12 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="TextBox" name="textBoxStatus3" native="true">
+        <widget class="TextBox" name="textBoxStatus3">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="maxLength" stdset="0">
-          <number>8</number>
          </property>
         </widget>
        </item>
@@ -153,15 +147,12 @@
         </widget>
        </item>
        <item row="1" column="3">
-        <widget class="TextBox" name="textBoxStatus2" native="true">
+        <widget class="TextBox" name="textBoxStatus2">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="maxLength" stdset="0">
-          <number>8</number>
          </property>
         </widget>
        </item>
@@ -173,15 +164,12 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="TextBox" name="textBoxStatus1" native="true">
+        <widget class="TextBox" name="textBoxStatus1">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="maxLength" stdset="0">
-          <number>8</number>
          </property>
         </widget>
        </item>
@@ -193,15 +181,12 @@
         </widget>
        </item>
        <item row="2" column="3">
-        <widget class="TextBox" name="textBoxStatus0" native="true">
+        <widget class="TextBox" name="textBoxStatus0">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="maxLength" stdset="0">
-          <number>8</number>
          </property>
         </widget>
        </item>
@@ -311,11 +296,7 @@
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="TextBox" name="lineEditRValue1" native="true">
-        <property name="maxLength" stdset="0">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue1"/>
       </item>
       <item row="0" column="4">
        <widget class="QCheckBox" name="checkBoxHex1">
@@ -430,11 +411,7 @@
        </widget>
       </item>
       <item row="1" column="3">
-       <widget class="TextBox" name="lineEditRValue2" native="true">
-        <property name="maxLength" stdset="0">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue2"/>
       </item>
       <item row="1" column="4">
        <widget class="QCheckBox" name="checkBoxHex2">
@@ -608,11 +585,7 @@
        </widget>
       </item>
       <item row="2" column="3">
-       <widget class="TextBox" name="lineEditRValue3" native="true">
-        <property name="maxLength" stdset="0">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue3"/>
       </item>
       <item row="2" column="4">
        <widget class="QCheckBox" name="checkBoxHex3">
@@ -806,11 +779,7 @@
        </widget>
       </item>
       <item row="3" column="3">
-       <widget class="TextBox" name="lineEditRValue4" native="true">
-        <property name="maxLength" stdset="0">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue4"/>
       </item>
       <item row="3" column="4">
        <widget class="QCheckBox" name="checkBoxHex4">
@@ -1024,11 +993,7 @@
        </widget>
       </item>
       <item row="4" column="3">
-       <widget class="TextBox" name="lineEditRValue5" native="true">
-        <property name="maxLength" stdset="0">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue5"/>
       </item>
       <item row="4" column="4">
        <widget class="QCheckBox" name="checkBoxHex5">
@@ -1262,11 +1227,7 @@
        </widget>
       </item>
       <item row="5" column="3">
-       <widget class="TextBox" name="lineEditRValue6" native="true">
-        <property name="maxLength" stdset="0">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue6"/>
       </item>
       <item row="5" column="4">
        <widget class="QCheckBox" name="checkBoxHex6">
@@ -1520,11 +1481,7 @@
        </widget>
       </item>
       <item row="6" column="3">
-       <widget class="TextBox" name="lineEditRValue7" native="true">
-        <property name="maxLength" stdset="0">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue7"/>
       </item>
       <item row="6" column="4">
        <widget class="QCheckBox" name="checkBoxHex7">
@@ -1798,11 +1755,7 @@
        </widget>
       </item>
       <item row="7" column="3">
-       <widget class="TextBox" name="lineEditRValue8" native="true">
-        <property name="maxLength" stdset="0">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue8"/>
       </item>
       <item row="7" column="4">
        <widget class="QCheckBox" name="checkBoxHex8">
@@ -2096,11 +2049,7 @@
        </widget>
       </item>
       <item row="8" column="3">
-       <widget class="TextBox" name="lineEditRValue9" native="true">
-        <property name="maxLength" stdset="0">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue9"/>
       </item>
       <item row="8" column="4">
        <widget class="QCheckBox" name="checkBoxHex9">
@@ -2414,11 +2363,7 @@
        </widget>
       </item>
       <item row="9" column="3">
-       <widget class="TextBox" name="lineEditRValue10" native="true">
-        <property name="maxLength" stdset="0">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue10"/>
       </item>
       <item row="9" column="4">
        <widget class="QCheckBox" name="checkBoxHex10">
@@ -2566,19 +2511,16 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_6">
       <item row="0" column="0">
-       <widget class="QLabel" name="labelStartingFrame">
+       <widget class="QLabel" name="labelInitialFrame">
         <property name="text">
-         <string>Starting Frame</string>
+         <string>Initial Frame</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="TextBox" name="textBoxStartingFrame" native="true">
-        <property name="text" stdset="0">
+       <widget class="TextBox" name="textBoxInitialFrame">
+        <property name="text">
          <string notr="true">1</string>
-        </property>
-        <property name="maxLength" stdset="0">
-         <number>20</number>
         </property>
        </widget>
       </item>
@@ -2590,12 +2532,9 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="TextBox" name="textBoxMaxFrames" native="true">
-        <property name="text" stdset="0">
+       <widget class="TextBox" name="textBoxMaxResults">
+        <property name="text">
          <string notr="true">1000</string>
-        </property>
-        <property name="maxLength" stdset="0">
-         <number>20</number>
         </property>
        </widget>
       </item>
@@ -2607,11 +2546,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="TextBox" name="textBoxSeed" native="true">
-        <property name="maxLength" stdset="0">
-         <number>16</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="textBoxSeed"/>
       </item>
       <item row="2" column="2">
        <widget class="QPushButton" name="pushButtonGenerate">
@@ -2643,11 +2578,7 @@
        </widget>
       </item>
       <item row="0" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxSearch" native="true">
-        <property name="maxLength" stdset="0">
-         <number>16</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="textBoxSearch"/>
       </item>
       <item row="0" column="3">
        <widget class="QComboBox" name="comboBoxSearch">
@@ -2718,7 +2649,7 @@
  <customwidgets>
   <customwidget>
    <class>TextBox</class>
-   <extends>QWidget</extends>
+   <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
  </customwidgets>
@@ -2730,8 +2661,8 @@
   <tabstop>textBoxStatus2</tabstop>
   <tabstop>textBoxStatus1</tabstop>
   <tabstop>textBoxStatus0</tabstop>
-  <tabstop>textBoxStartingFrame</tabstop>
-  <tabstop>textBoxMaxFrames</tabstop>
+  <tabstop>textBoxInitialFrame</tabstop>
+  <tabstop>textBoxMaxResults</tabstop>
   <tabstop>textBoxSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>textBoxSearch</tabstop>

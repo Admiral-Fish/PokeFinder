@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,40 +23,37 @@
 #include <Core/Util/Global.hpp>
 #include <QVector>
 
-namespace PokeFinderCore
+enum Method : u8;
+enum ShadowType : u8;
+
+class LockInfo
 {
-    enum Method : u8;
-    enum ShadowType : u8;
+public:
+    LockInfo() = default;
+    LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
+    bool compare(u32 pid) const;
 
-    class LockInfo
-    {
-    public:
-        LockInfo() = default;
-        LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
-        bool compare(u32 pid) const;
+private:
+    u8 genderUpper;
+    u8 genderLower;
+    u8 nature;
+    bool free;
+};
 
-    private:
-        u8 genderUpper;
-        u8 genderLower;
-        u8 nature;
-        bool free;
-    };
+class ShadowTeam
+{
 
-    class ShadowTeam
-    {
+public:
+    ShadowTeam() = default;
+    ShadowTeam(const QVector<LockInfo> &locks, ShadowType type);
+    LockInfo getLock(u8 index) const;
+    ShadowType getType() const;
+    int getSize() const;
+    static QVector<ShadowTeam> loadShadowTeams(Method version);
 
-    public:
-        ShadowTeam() = default;
-        ShadowTeam(const QVector<LockInfo> &locks, ShadowType type);
-        LockInfo getLock(u8 index) const;
-        ShadowType getType() const;
-        int getSize() const;
-        static QVector<ShadowTeam> loadShadowTeams(Method version);
-
-    private:
-        QVector<LockInfo> locks;
-        ShadowType type;
-    };
-}
+private:
+    QVector<LockInfo> locks;
+    ShadowType type;
+};
 
 #endif // LOCKINFO_HPP

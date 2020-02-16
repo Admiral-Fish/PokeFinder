@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,101 +22,57 @@
 
 #include <Core/RNG/IRNG.hpp>
 
-namespace PokeFinderCore
+template <u32 add, u32 mult>
+class LCRNG : public IRNG<u32>
 {
-    template <u32 add, u32 mult>
-    class LCRNG : public IRNG<u32>
+public:
+    LCRNG(u32 seed = 0) : seed(seed)
     {
-    public:
-        LCRNG(u32 seed = 0, u32 frames = 0)
-        {
-            this->seed = seed;
-            advanceFrames(frames);
-        }
+    }
 
-        void advanceFrames(u32 frames) override
-        {
-            for (u32 frame = 0; frame < frames; frame++)
-            {
-                seed = seed * mult + add;
-            }
-        }
-
-        u16 nextUShort(u32 frames = 0) { return nextUInt(frames) >> 16; }
-
-        u32 nextUInt(u32 frames = 0)
-        {
-            advanceFrames(frames + 1);
-            return seed;
-        }
-
-        u32 next(u32 frames = 0) override { return nextUInt(frames); }
-
-        void setSeed(u32 seed, u32 frames = 0) override
-        {
-            this->seed = seed;
-            advanceFrames(frames);
-        }
-
-        u32 getSeed() const { return seed; }
-
-    private:
-        u32 seed {};
-    };
-
-    class ARNG : public LCRNG<0x01, 0x6c078965>
+    void advanceFrames(u32 frames) override
     {
-    public:
-        ARNG(u32 seed = 0, u32 frames = 0)
-            : LCRNG(seed, frames)
+        for (u32 frame = 0; frame < frames; frame++)
         {
+            nextUInt();
         }
-    };
+    }
 
-    class ARNGR : public LCRNG<0x69c77f93, 0x9638806d>
+    u16 nextUShort()
     {
-    public:
-        ARNGR(u32 seed = 0, u32 frames = 0)
-            : LCRNG(seed, frames)
-        {
-        }
-    };
+        return nextUInt() >> 16;
+    }
 
-    class PokeRNG : public LCRNG<0x6073, 0x41c64e6d>
+    u32 nextUInt()
     {
-    public:
-        PokeRNG(u32 seed = 0, u32 frames = 0)
-            : LCRNG(seed, frames)
-        {
-        }
-    };
+        return seed = seed * mult + add;
+    }
 
-    class PokeRNGR : public LCRNG<0xa3561a1, 0xeeb9eb65>
+    u32 next() override
     {
-    public:
-        PokeRNGR(u32 seed = 0, u32 frames = 0)
-            : LCRNG(seed, frames)
-        {
-        }
-    };
+        return nextUInt();
+    }
 
-    class XDRNG : public LCRNG<0x269EC3, 0x343FD>
+    void setSeed(u32 seed, u32 frames = 0) override
     {
-    public:
-        XDRNG(u32 seed = 0, u32 frames = 0)
-            : LCRNG(seed, frames)
-        {
-        }
-    };
+        this->seed = seed;
+        advanceFrames(frames);
+    }
 
-    class XDRNGR : public LCRNG<0xA170F641, 0xB9B33155>
+    u32 getSeed() const
     {
-    public:
-        XDRNGR(u32 seed = 0, u32 frames = 0)
-            : LCRNG(seed, frames)
-        {
-        }
-    };
-}
+        return seed;
+    }
+
+private:
+    u32 seed {};
+};
+
+using ARNG = LCRNG<0x01, 0x6C078965>;
+using ARNGR = LCRNG<0x69C77F93, 0x9638806D>;
+using PokeRNG = LCRNG<0x6073, 0x41C64E6D>;
+using PokeRNGR = LCRNG<0xA3561A1, 0xEEB9EB65>;
+using XDRNG = LCRNG<0x269EC3, 0x343FD>;
+using XDRNGR = LCRNG<0xA170F641, 0xB9B33155>;
 
 #endif // LCRNG_HPP

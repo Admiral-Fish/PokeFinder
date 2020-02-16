@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SearchCoinFlips</class>
+ <widget class="QDialog" name="SearchCoinFlips">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>370</width>
+    <height>150</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>370</width>
+    <height>150</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Search Coin Flips</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="pushButtonHeads">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../resources.qrc">
+       <normaloff>:/images/heads.png</normaloff>:/images/heads.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>66</width>
+       <height>60</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="pushButtonTails">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../resources.qrc">
+       <normaloff>:/images/tails.png</normaloff>:/images/tails.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>66</width>
+       <height>60</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QLabel" name="labelPossibleResults">
+     <property name="text">
+      <string>Possible Results:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="pushButtonOkay">
+     <property name="text">
+      <string>Ok</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QPushButton" name="pushButtonCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QLineEdit" name="lineEditFlips"/>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>pushButtonHeads</tabstop>
+  <tabstop>pushButtonTails</tabstop>
+  <tabstop>lineEditFlips</tabstop>
+  <tabstop>pushButtonOkay</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../../resources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButtonOkay</sender>
+   <signal>clicked()</signal>
+   <receiver>SearchCoinFlips</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>196</x>
+     <y>134</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>123</x>
+     <y>130</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>SearchCoinFlips</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>330</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>48</x>
+     <y>125</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

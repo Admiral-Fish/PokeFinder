@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,14 +21,11 @@
 #define ENCOUNTERLOOKUP_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QStandardItemModel>
 #include <QWidget>
 
-namespace PokeFinderCore
-{
-    enum Encounter : u8;
-    enum Game : u16;
-}
+class QStandardItemModel;
+enum Encounter : u8;
+enum Game : u16;
 
 namespace Ui
 {
@@ -47,9 +44,9 @@ private:
     QStandardItemModel *model {};
 
     void setupModels();
-    QSet<QPair<u8, QString>> getEncounters3(PokeFinderCore::Game game, u16 specie);
-    QSet<QPair<u8, QString>> getEncounters4(PokeFinderCore::Game game, u16 specie);
-    QString getEncounterString(PokeFinderCore::Encounter type);
+    QSet<QPair<u8, QString>> getEncounters3(Game game, u16 specie);
+    QSet<QPair<u8, QString>> getEncounters4(Game game, u16 specie);
+    QString getEncounterString(Encounter type);
 
 private slots:
     void find();

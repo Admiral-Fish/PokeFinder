@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,15 +23,10 @@
 #include <Core/Gen3/EncounterArea3.hpp>
 #include <Core/Gen3/Profile3.hpp>
 #include <QMenu>
-#include <QModelIndex>
 
-class Searcher3Model;
-class Wild3Model;
-
-namespace PokeFinderCore
-{
-    class Frame3;
-}
+class WildFrame;
+class WildGeneratorModel3;
+class WildSearcherModel3;
 
 namespace Ui
 {
@@ -51,15 +46,14 @@ public:
 
 private:
     Ui::Wild3 *ui;
-    QVector<PokeFinderCore::Profile3> profiles;
-    Searcher3Model *searcherModel {};
-    Wild3Model *generatorModel {};
+    QVector<Profile3> profiles;
+    Profile3 currentProfile;
+    WildGeneratorModel3 *generatorModel {};
+    WildSearcherModel3 *searcherModel {};
     QMenu *generatorMenu {};
     QMenu *searcherMenu {};
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
-    QVector<PokeFinderCore::EncounterArea3> encounterGenerator;
-    QVector<PokeFinderCore::EncounterArea3> encounterSearcher;
+    QVector<EncounterArea3> encounterGenerator;
+    QVector<EncounterArea3> encounterSearcher;
 
     void setupModels();
     void updateLocationsGenerator();
@@ -68,16 +62,12 @@ private:
     void updatePokemonSearcher();
 
 private slots:
-    void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
-    void refreshProfiles();
+    void updateProgress(const QVector<WildFrame> &frames, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);
     void tableViewGeneratorContextMenu(QPoint pos);
     void tableViewSearcherContextMenu(QPoint pos);
-    void setTargetFrameGenerator();
-    void jumpToTargetGenerator();
-    void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void seedToTime();
     void copySeedToClipboard();
     void generatorLead();

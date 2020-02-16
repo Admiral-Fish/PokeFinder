@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,19 +19,21 @@
 
 #include "Stationary3.hpp"
 #include "ui_Stationary3.h"
-#include <Core/Gen3/Generator3.hpp>
-#include <Core/Gen3/IVSearcher3.hpp>
+#include <Core/Enum/Game.hpp>
+#include <Core/Enum/Method.hpp>
+#include <Core/Gen3/Generators/StationaryGenerator3.hpp>
+#include <Core/Gen3/ProfileLoader3.hpp>
+#include <Core/Gen3/Searchers/StationarySearcher3.hpp>
 #include <Core/Util/Translator.hpp>
-#include <Forms/Gen3/ProfileManager3.hpp>
-#include <Forms/Gen3/SeedToTime3.hpp>
-#include <Models/Gen3/Searcher3Model.hpp>
-#include <Models/Gen3/Stationary3Model.hpp>
+#include <Forms/Gen3/Profile/ProfileManager3.hpp>
+#include <Forms/Gen3/Tools/SeedTime3.hpp>
+#include <Models/Gen3/StationaryModel3.hpp>
 #include <QClipboard>
 #include <QSettings>
+#include <QThread>
+#include <QTimer>
 
-Stationary3::Stationary3(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::Stationary3)
+Stationary3::Stationary3(QWidget *parent) : QWidget(parent), ui(new Ui::Stationary3)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -39,7 +41,7 @@ Stationary3::Stationary3(QWidget *parent)
     updateProfiles();
     setupModels();
 
-    qRegisterMetaType<QVector<PokeFinderCore::Frame3>>("QVector<PokeFinderCore::Frame3>");
+    qRegisterMetaType<QVector<Frame>>("QVector<Frame>");
 }
 
 Stationary3::~Stationary3()
@@ -55,13 +57,12 @@ Stationary3::~Stationary3()
 
 void Stationary3::updateProfiles()
 {
-    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-        &Stationary3::profilesIndexChanged);
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary3::profilesIndexChanged);
 
-    profiles = { PokeFinderCore::Profile3() };
-    for (const auto &profile : PokeFinderCore::Profile3::loadProfileList())
+    profiles = { Profile3() };
+    for (const auto &profile : ProfileLoader3::getProfiles())
     {
-        if (!(profile.getVersion() & PokeFinderCore::Game::GC))
+        if (!(profile.getVersion() & Game::GC))
         {
             profiles.append(profile);
         }
@@ -70,7 +71,7 @@ void Stationary3::updateProfiles()
     ui->comboBoxProfiles->clear();
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getProfileName());
+        ui->comboBoxProfiles->addItem(profile.getName());
     }
 
     QSettings setting;
@@ -83,8 +84,8 @@ void Stationary3::updateProfiles()
 
 void Stationary3::setupModels()
 {
-    generatorModel = new Stationary3Model(ui->tableViewGenerator);
-    searcherModel = new Searcher3Model(ui->tableViewSearcher, PokeFinderCore::Method::Method1);
+    generatorModel = new StationaryGeneratorModel3(ui->tableViewGenerator);
+    searcherModel = new StationarySearcherModel3(ui->tableViewSearcher);
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 
@@ -92,66 +93,32 @@ void Stationary3::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorTID->setValues(InputType::TIDSID);
-    ui->textBoxGeneratorSID->setValues(InputType::TIDSID);
-    ui->textBoxGeneratorStartingFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
     ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
     ui->textBoxGeneratorDelay->setValues(InputType::Frame32Bit);
 
-    ui->textBoxSearcherTID->setValues(InputType::TIDSID);
-    ui->textBoxSearcherSID->setValues(InputType::TIDSID);
+    ui->comboBoxGeneratorNature->setup(Translator::getNatures());
+    ui->comboBoxSearcherNature->setup(Translator::getNatures());
 
-    ui->comboBoxGeneratorNature->setup(PokeFinderCore::Translator::getNatures());
-    ui->comboBoxSearcherNature->setup(PokeFinderCore::Translator::getNatures());
+    ui->comboBoxGeneratorHiddenPower->setup(Translator::getHiddenPowers());
+    ui->comboBoxSearcherHiddenPower->setup(Translator::getHiddenPowers());
 
-    ui->comboBoxGeneratorHiddenPower->setup(PokeFinderCore::Translator::getPowers());
-    ui->comboBoxSearcherHiddenPower->setup(PokeFinderCore::Translator::getPowers());
+    ui->comboBoxGeneratorMethod->setup({ Method::Method1, Method::Method1Reverse, Method::Method2, Method::Method4 });
+    ui->comboBoxSearcherMethod->setup({ Method::Method1, Method::Method1Reverse, Method::Method2, Method::Method4 });
 
-    ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), PokeFinderCore::Method::Method1);
-    ui->comboBoxGeneratorMethod->addItem(tr("Method 1 Reverse"), PokeFinderCore::Method::Method1Reverse);
-    ui->comboBoxGeneratorMethod->addItem(tr("Method 2"), PokeFinderCore::Method::Method2);
-    ui->comboBoxGeneratorMethod->addItem(tr("Method 4"), PokeFinderCore::Method::Method4);
-    ui->comboBoxSearcherMethod->addItem(tr("Method 1"), PokeFinderCore::Method::Method1);
-    ui->comboBoxSearcherMethod->addItem(tr("Method 1 Reverse"), PokeFinderCore::Method::Method1Reverse);
-    ui->comboBoxSearcherMethod->addItem(tr("Method 2"), PokeFinderCore::Method::Method2);
-    ui->comboBoxSearcherMethod->addItem(tr("Method 4"), PokeFinderCore::Method::Method4);
+    ui->comboBoxGeneratorGender->setup({ 255, 0, 1 });
+    ui->comboBoxSearcherGender->setup({ 255, 0, 1 });
 
-    ui->comboBoxGeneratorGenderRatio->setItemData(0, 0);
-    ui->comboBoxGeneratorGenderRatio->setItemData(1, 127);
-    ui->comboBoxGeneratorGenderRatio->setItemData(2, 191);
-    ui->comboBoxGeneratorGenderRatio->setItemData(3, 63);
-    ui->comboBoxGeneratorGenderRatio->setItemData(4, 31);
-    ui->comboBoxGeneratorGenderRatio->setItemData(5, 1);
-    ui->comboBoxGeneratorGenderRatio->setItemData(6, 2);
+    ui->comboBoxGeneratorAbility->setup({ 255, 0, 1 });
+    ui->comboBoxSearcherAbility->setup({ 255, 0, 1 });
 
-    ui->comboBoxSearcherGenderRatio->setItemData(0, 0);
-    ui->comboBoxSearcherGenderRatio->setItemData(1, 127);
-    ui->comboBoxSearcherGenderRatio->setItemData(2, 191);
-    ui->comboBoxSearcherGenderRatio->setItemData(3, 63);
-    ui->comboBoxSearcherGenderRatio->setItemData(4, 31);
-    ui->comboBoxSearcherGenderRatio->setItemData(5, 1);
-    ui->comboBoxSearcherGenderRatio->setItemData(6, 2);
+    ui->comboBoxGeneratorGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
+    ui->comboBoxSearcherGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
 
-    QAction *setTargetFrame = generatorMenu->addAction(tr("Set Target Frame"));
-    QAction *jumpToTarget = generatorMenu->addAction(tr("Jump to Target Frame"));
-    QAction *center1Second = generatorMenu->addAction(tr("Center to +/- 1 Second and Set as Target Frame"));
-    QAction *center2Seconds = generatorMenu->addAction(tr("Center to +/- 2 Seconds and Set as Target Frame"));
-    QAction *center3Seconds = generatorMenu->addAction(tr("Center to +/- 3 Seconds and Set as Target Frame"));
-    QAction *center5Seconds = generatorMenu->addAction(tr("Center to +/- 5 Seconds and Set as Target Frame"));
-    QAction *center10Seconds = generatorMenu->addAction(tr("Center to +/- 10 Seconds and Set as Target Frame"));
-    QAction *center1Minute = generatorMenu->addAction(tr("Center to +/- 1 Minute and Set as Target Frame"));
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
-    connect(setTargetFrame, &QAction::triggered, this, &Stationary3::setTargetFrameGenerator);
-    connect(jumpToTarget, &QAction::triggered, this, &Stationary3::jumpToTargetGenerator);
-    connect(center1Second, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(60); });
-    connect(center2Seconds, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(120); });
-    connect(center3Seconds, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(180); });
-    connect(center5Seconds, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(300); });
-    connect(center10Seconds, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(600); });
-    connect(center1Minute, &QAction::triggered, this, [=]() { centerFramesAndSetTargetGenerator(3600); });
-    connect(outputTXTGenerator, &QAction::triggered, this, [=]() { ui->tableViewGenerator->outputModel(); });
-    connect(outputCSVGenerator, &QAction::triggered, this, [=]() { ui->tableViewGenerator->outputModel(true); });
+    connect(outputTXTGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(); });
+    connect(outputCSVGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(true); });
 
     QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
@@ -159,15 +126,13 @@ void Stationary3::setupModels()
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
     connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
     connect(seedToTime, &QAction::triggered, this, &Stationary3::seedToTime);
-    connect(outputTXTSearcher, &QAction::triggered, this, [=]() { ui->tableViewSearcher->outputModel(); });
-    connect(outputCSVSearcher, &QAction::triggered, this, [=]() { ui->tableViewSearcher->outputModel(true); });
+    connect(outputTXTSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(); });
+    connect(outputCSVSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(true); });
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary3::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary3::search);
-    connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this,
-        &Stationary3::tableViewGeneratorContextMenu);
-    connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this,
-        &Stationary3::tableViewSearcherContextMenu);
+    connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Stationary3::tableViewGeneratorContextMenu);
+    connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Stationary3::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Stationary3::profileManager);
 
     QSettings setting;
@@ -177,34 +142,10 @@ void Stationary3::setupModels()
     }
 }
 
-void Stationary3::moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
-{
-    if (!seed.isEmpty())
-    {
-        ui->textBoxGeneratorSeed->setText(seed);
-    }
-
-    for (auto i = 0; i < ui->comboBoxGeneratorMethod->model()->rowCount(); i++)
-    {
-        if (ui->comboBoxGeneratorMethod->model()->data(ui->comboBoxGeneratorMethod->model()->index(i, 0)).toString()
-            == method)
-        {
-            ui->comboBoxGeneratorMethod->setCurrentIndex(i);
-            break;
-        }
-    }
-    ui->ivFilterGenerator->setValues(hp, atk, def, spa, spd, spe);
-}
-
-void Stationary3::updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress)
+void Stationary3::updateProgress(const QVector<Frame> &frames, int progress)
 {
     searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
-}
-
-void Stationary3::refreshProfiles()
-{
-    emit alertProfiles(3);
 }
 
 void Stationary3::generate()
@@ -212,167 +153,129 @@ void Stationary3::generate()
     generatorModel->clearModel();
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 startingFrame = ui->textBoxGeneratorStartingFrame->getUInt();
+    u32 initialFrame = ui->textBoxGeneratorInitialFrame->getUInt();
     u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
-    u16 tid = ui->textBoxGeneratorTID->getUShort();
-    u16 sid = ui->textBoxGeneratorSID->getUShort();
+    u16 tid = currentProfile.getTID();
+    u16 sid = currentProfile.getSID();
+    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->getCurrentByte();
+    auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
     u32 offset = 0;
     if (ui->checkBoxGeneratorDelay->isChecked())
     {
         offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
-    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toInt();
-    PokeFinderCore::Generator3 generator(maxResults, startingFrame, seed, tid, sid, offset, genderRatio);
-    PokeFinderCore::FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(),
-        ui->comboBoxGeneratorAbility->currentIndex(), ui->checkBoxGeneratorShinyOnly->isChecked(),
-        ui->checkBoxGeneratorDisableFilters->isChecked(), ui->ivFilterGenerator->getLower(),
-        ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-        ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+    StationaryGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, method);
+    generator.setSeed(seed);
+    generator.setOffset(offset);
 
-    generator.setup(static_cast<PokeFinderCore::Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
+                       ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+                       ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+                       ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
-    QVector<PokeFinderCore::Frame3> frames = generator.generate(compare);
+    auto frames = generator.generate(filter);
     generatorModel->addItems(frames);
 }
 
 void Stationary3::search()
 {
     searcherModel->clearModel();
-    searcherModel->setMethod(static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    u16 tid = ui->textBoxSearcherTID->getUShort();
-    u16 sid = ui->textBoxSearcherSID->getUShort();
     QVector<u8> min = ui->ivFilterSearcher->getLower();
     QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
-    u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-    PokeFinderCore::FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(),
-        ui->comboBoxSearcherAbility->currentIndex(), ui->checkBoxSearcherShinyOnly->isChecked(), false, min, max,
-        ui->comboBoxSearcherNature->getChecked(), ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
-    PokeFinderCore::Searcher3 searcher(tid, sid, genderRatio, compare);
+    FrameFilter filter(ui->comboBoxSearcherGender->getCurrentByte(), ui->comboBoxSearcherAbility->getCurrentByte(),
+                       ui->checkBoxSearcherShinyOnly->isChecked(), false, min, max, ui->comboBoxSearcherNature->getChecked(),
+                       ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
 
-    searcher.setup(static_cast<PokeFinderCore::Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+    u16 tid = currentProfile.getTID();
+    u16 sid = currentProfile.getSID();
+    u8 genderRatio = ui->comboBoxSearcherGenderRatio->getCurrentByte();
+    auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
+
+    auto *searcher = new StationarySearcher3(tid, sid, genderRatio, method, filter);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
     {
         maxProgress *= max.at(i) - min.at(i) + 1;
     }
+    ui->progressBar->setRange(0, maxProgress);
 
-    ui->progressBar->setValue(0);
-    ui->progressBar->setMaximum(maxProgress);
+    auto *thread = QThread::create([=] { searcher->startSearch(min, max); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
-    auto *search = new PokeFinderCore::IVSearcher3(searcher, min, max);
-
-    connect(search, &PokeFinderCore::IVSearcher3::finished, this, [=] {
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults(), searcher->getProgress()); });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed, [=] {
         ui->pushButtonSearch->setEnabled(true);
         ui->pushButtonCancel->setEnabled(false);
+        updateProgress(searcher->getResults(), searcher->getProgress());
+        delete searcher;
     });
-    connect(search, &PokeFinderCore::IVSearcher3::updateProgress, this, &Stationary3::updateProgress);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &PokeFinderCore::IVSearcher3::cancelSearch);
 
-    search->startSearch();
+    thread->start();
+    timer->start(1000);
 }
 
 void Stationary3::profilesIndexChanged(int index)
 {
-    if (index < 0)
+    if (index >= 0)
     {
-        return;
+        currentProfile = profiles.at(index);
+
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
+        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
     }
-
-    auto profile = profiles.at(index);
-    QString tid = QString::number(profile.getTID());
-    QString sid = QString::number(profile.getSID());
-
-    ui->textBoxGeneratorTID->setText(tid);
-    ui->textBoxGeneratorSID->setText(sid);
-    ui->textBoxSearcherTID->setText(tid);
-    ui->textBoxSearcherSID->setText(sid);
-    ui->labelProfileTIDValue->setText(tid);
-    ui->labelProfileSIDValue->setText(sid);
-    ui->labelProfileGameValue->setText(profile.getVersionString());
 }
 
 void Stationary3::tableViewGeneratorContextMenu(QPoint pos)
 {
-    if (generatorModel->rowCount() == 0)
+    if (generatorModel->rowCount() > 0)
     {
-        return;
-    }
 
-    lastIndex = ui->tableViewGenerator->indexAt(pos);
-    generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+        generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+    }
 }
 
 void Stationary3::tableViewSearcherContextMenu(QPoint pos)
 {
-    if (searcherModel->rowCount() == 0)
+    if (searcherModel->rowCount() > 0)
     {
-        return;
+        searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
     }
-
-    lastIndex = ui->tableViewSearcher->indexAt(pos);
-    searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
-}
-
-void Stationary3::setTargetFrameGenerator()
-{
-    targetFrame = lastIndex;
-}
-
-void Stationary3::jumpToTargetGenerator()
-{
-    ui->tableViewGenerator->scrollTo(targetFrame, QAbstractItemView::PositionAtTop);
-    ui->tableViewGenerator->selectionModel()->select(
-        targetFrame, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-}
-
-void Stationary3::centerFramesAndSetTargetGenerator(u32 centerFrames)
-{
-    ui->checkBoxGeneratorDisableFilters->setChecked(true);
-
-    u32 frameNumber = ui->tableViewGenerator->model()
-                          ->data(ui->tableViewGenerator->model()->index(lastIndex.row(), 0))
-                          .toString()
-                          .toUInt();
-
-    u32 startingFrame = frameNumber < centerFrames + 1 ? 1 : frameNumber - centerFrames;
-    u32 selectedIndex = frameNumber < centerFrames + 1 ? frameNumber - 1 : centerFrames;
-    u32 maxFrames = frameNumber < centerFrames + 1 ? frameNumber - 1 + centerFrames + 1 : centerFrames * 2 + 1;
-
-    ui->textBoxGeneratorStartingFrame->setText(QString::number(startingFrame));
-    ui->textBoxGeneratorMaxResults->setText(QString::number(maxFrames));
-
-    generate();
-
-    targetFrame = ui->tableViewGenerator->model()->index(static_cast<int>(selectedIndex), 0);
-
-    jumpToTargetGenerator();
 }
 
 void Stationary3::seedToTime()
 {
-    u32 seed
-        = searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString().toUInt(nullptr, 16);
-    auto *seedToTime = new SeedToTime3(seed);
+    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    index = searcherModel->index(index.row(), 0);
+    u32 seed = searcherModel->data(index).toString().toUInt(nullptr, 16);
+
+    auto *seedToTime = new SeedTime3(seed);
     seedToTime->show();
     seedToTime->raise();
 }
 
 void Stationary3::copySeedToClipboard()
 {
-    QApplication::clipboard()->setText(
-        searcherModel->data(searcherModel->index(lastIndex.row(), 0), Qt::DisplayRole).toString());
+    QModelIndex index = ui->tableViewSearcher->currentIndex();
+    index = searcherModel->index(index.row(), 0);
+
+    QApplication::clipboard()->setText(searcherModel->data(index).toString());
 }
 
 void Stationary3::profileManager()
 {
     auto *manager = new ProfileManager3();
-    connect(manager, &ProfileManager3::updateProfiles, this, &Stationary3::refreshProfiles);
+    connect(manager, &ProfileManager3::updateProfiles, this, [=] { emit alertProfiles(3); });
     manager->show();
 }

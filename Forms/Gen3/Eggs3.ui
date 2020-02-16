@@ -28,6 +28,12 @@
      <layout class="QGridLayout" name="gridLayout_13">
       <item row="0" column="0">
        <widget class="QLabel" name="labelProfile">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>Profile</string>
         </property>
@@ -100,9 +106,6 @@
      <property name="styleSheet">
       <string notr="true"/>
      </property>
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
      <widget class="QWidget" name="tabEmerald">
       <attribute name="title">
        <string>Emerald</string>
@@ -120,45 +123,46 @@
           <string>Egg PID</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelEmeraldPIDFrame">
+          <item row="4" column="4">
+           <widget class="QComboBox" name="comboBoxEverstone">
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QLabel" name="labelEmeraldEverstone">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>Frame</string>
+             <string>Everstone</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="TextBox" name="textBoxEmeraldPIDMinFrame">
+          <item row="6" column="3">
+           <widget class="QLabel" name="labelEmeraldGenderRatio">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string notr="true">1000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="TextBox" name="textBoxEmeraldPIDMaxFrame">
-            <property name="text">
-             <string notr="true">5000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QLabel" name="labelEmeraldGender">
-            <property name="text">
-             <string>Gender</string>
+             <string>Gender Ratio</string>
             </property>
            </widget>
           </item>
           <item row="0" column="4">
-           <widget class="QComboBox" name="comboBoxEmeraldGender">
+           <widget class="ComboBox" name="comboBoxEmeraldGender">
             <item>
              <property name="text">
-              <string notr="true">-</string>
+              <string notr="true">Any</string>
              </property>
             </item>
             <item>
@@ -173,87 +177,20 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelEmeraldRedraws">
-            <property name="text">
-             <string>Redraws</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxMinRedraws">
-            <property name="text">
-             <string notr="true">0</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="TextBox" name="textBoxMaxRedraws">
-            <property name="text">
-             <string notr="true">5</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <widget class="QLabel" name="labelEmeraldAbility">
-            <property name="text">
-             <string>Ability</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="4">
-           <widget class="QComboBox" name="comboBoxEmeraldAbility">
-            <item>
-             <property name="text">
-              <string>Any</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">0</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelEmeraldCalibration">
-            <property name="text">
-             <string>Calibration</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxCalibration">
-            <property name="text">
-             <string notr="true">18</string>
-            </property>
-            <property name="maxLength">
-             <number>3</number>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="3">
            <widget class="QLabel" name="labelEmeraldNature">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Nature</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="4">
-           <widget class="CheckList" name="comboBoxEmeraldNature"/>
-          </item>
-          <item row="2" column="5">
+          <item row="2" column="5" rowspan="2">
            <widget class="QPushButton" name="pushButtonEmeraldAnyNature">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -266,91 +203,38 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="3">
-           <widget class="QLabel" name="labelEmeraldEverstone">
+          <item row="7" column="4">
+           <widget class="QCheckBox" name="checkBoxEmeraldShiny">
             <property name="text">
-             <string>Everstone</string>
+             <string>Shiny Only</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="4">
-           <widget class="QComboBox" name="comboBoxEverstone">
-            <item>
-             <property name="text">
-              <string>None</string>
-             </property>
-            </item>
-           </widget>
+          <item row="2" column="4" rowspan="2">
+           <widget class="CheckList" name="comboBoxEmeraldNature"/>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelEmeraldTID">
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxMinRedraws">
             <property name="text">
-             <string>TID</string>
+             <string notr="true">0</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxEmeraldTID">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelEmeraldPIDInitialFrame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string notr="true">12345</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
+             <string>Initial Frame</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="3">
-           <widget class="QLabel" name="labelEmeraldCompatibility">
-            <property name="text">
-             <string>Compatibility</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="4">
-           <widget class="QComboBox" name="comboBoxEmeraldCompatibility">
-            <item>
-             <property name="text">
-              <string>The two don't seem to like each other</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>The two seem to get along</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>The two seem to get along very well</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelEmeraldSID">
-            <property name="text">
-             <string>SID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxEmeraldSID">
-            <property name="text">
-             <string notr="true">54321</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="3">
-           <widget class="QLabel" name="labelEmeraldGenderRatio">
-            <property name="text">
-             <string>Gender Ratio</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="4">
-           <widget class="QComboBox" name="comboBoxEmeraldGenderRatio">
+          <item row="6" column="4">
+           <widget class="ComboBox" name="comboBoxEmeraldGenderRatio">
             <item>
              <property name="text">
               <string>Genderless</string>
@@ -388,17 +272,154 @@
             </item>
            </widget>
           </item>
-          <item row="6" column="0" colspan="3">
+          <item row="5" column="4">
+           <widget class="ComboBox" name="comboBoxEmeraldCompatibility">
+            <item>
+             <property name="text">
+              <string>The two don't seem to like each other</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>The two seem to get along</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>The two seem to get along very well</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="5" column="3">
+           <widget class="QLabel" name="labelEmeraldCompatibility">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Compatibility</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="ComboBox" name="comboBoxEmeraldAbility">
+            <item>
+             <property name="text">
+              <string>Any</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">0</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="labelEmeraldGender">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Gender</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="labelEmeraldAbility">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Ability</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="TextBox" name="textBoxMaxRedraws">
+            <property name="text">
+             <string notr="true">5</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxEmeraldPIDMaxResults">
+            <property name="text">
+             <string notr="true">5000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxEmeraldPIDInitialFrame">
+            <property name="text">
+             <string notr="true">1000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0" colspan="3">
            <widget class="QPushButton" name="pushButtonEmeraldPIDGenerate">
             <property name="text">
              <string>Generate</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="4">
-           <widget class="QCheckBox" name="checkBoxEmeraldShiny">
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelEmeraldRedraws">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>Shiny Only</string>
+             <string>Redraws</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelEmeraldCalibration">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Calibration</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="TextBox" name="textBoxCalibration">
+            <property name="text">
+             <string notr="true">18</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelEmeraldPIDMaxResults">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Max Results</string>
             </property>
            </widget>
           </item>
@@ -462,97 +483,120 @@ QRadioButton {
          <property name="title">
           <string>Egg IVs</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_11">
-          <item row="0" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QLabel" name="labelEmeraldIVsFrame">
-              <property name="text">
-               <string>Frame</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="TextBox" name="textBoxEmeraldIVsMinFrame">
-              <property name="text">
-               <string notr="true">1000</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="TextBox" name="textBoxEmeraldIVsMaxFrame">
-              <property name="text">
-               <string notr="true">5000</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="1" column="4">
+           <widget class="CheckList" name="comboBoxEmeraldHiddenPower"/>
           </item>
-          <item row="0" column="1" rowspan="3">
-           <widget class="IVFilter" name="ivFilterEmerald" native="true"/>
+          <item row="1" column="2" colspan="2">
+           <widget class="QLabel" name="labelEmeraldHiddenPower">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Hidden Power</string>
+            </property>
+           </widget>
           </item>
           <item row="1" column="0">
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelEmeraldMethod">
-              <property name="text">
-               <string>Method</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="comboBoxEmeraldMethod">
-              <item>
-               <property name="text">
-                <string>Normal</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Split</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Alternate</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelEmeraldHiddenPower">
-              <property name="text">
-               <string>Hidden Power:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="CheckList" name="comboBoxEmeraldHiddenPower"/>
-            </item>
-            <item row="1" column="2">
-             <widget class="QPushButton" name="pushButtonEmeraldAnyHiddenPower">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Any</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           <widget class="QLabel" name="labelEmeraldIVsMaxResults">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Max Results</string>
+            </property>
+           </widget>
           </item>
-          <item row="2" column="0">
+          <item row="1" column="5">
+           <widget class="QPushButton" name="pushButtonEmeraldAnyHiddenPower">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Any</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonEmeraldIVsGenerate">
             <property name="text">
              <string>Generate</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="2">
+          <item row="0" column="1">
+           <widget class="TextBox" name="textBoxEmeraldIVsInitialFrame">
+            <property name="text">
+             <string notr="true">1000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelEmeraldMethod">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Method</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxEmeraldIVsMaxResults">
+            <property name="text">
+             <string notr="true">5000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="6" rowspan="3">
+           <widget class="IVFilter" name="ivFilterEmerald" native="true"/>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelEmeraldIVsInitialFrame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Initial Frame</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="7">
            <widget class="EggSettings" name="eggSettingsEmerald" native="true"/>
+          </item>
+          <item row="0" column="3" colspan="2">
+           <widget class="ComboBox" name="comboBoxEmeraldMethod">
+            <item>
+             <property name="text">
+              <string>Normal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Split</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Alternate</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -583,20 +627,77 @@ QRadioButton {
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelRSSeed">
-            <property name="text">
-             <string>Seed (Held / Pickup)</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <widget class="TextBox" name="textBoxRSSeedHeld">
             <property name="text">
              <string notr="true">5A0</string>
             </property>
-            <property name="maxLength">
-             <number>4</number>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxRSInitialFrameHeld">
+            <property name="text">
+             <string notr="true">1000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="TextBox" name="textBoxRSMaxResultsHeld">
+            <property name="text">
+             <string notr="true">5000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelRSPickupFrame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Pickup Frame</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelRSMethod">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Method</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelRSSeed">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Seed (Held / Pickup)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxRSInitialFramePickup">
+            <property name="text">
+             <string notr="true">1000</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
+           <widget class="QPushButton" name="pushButtonRSGenerate">
+            <property name="text">
+             <string>Generate</string>
             </property>
            </widget>
           </item>
@@ -605,74 +706,30 @@ QRadioButton {
             <property name="text">
              <string notr="true">5A0</string>
             </property>
-            <property name="maxLength">
-             <number>4</number>
-            </property>
            </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelRSFrameHeld">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Frame Held</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxRSMinHeld">
-            <property name="text">
-             <string notr="true">1000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="TextBox" name="textBoxRSMaxHeld">
-            <property name="text">
-             <string notr="true">5000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelRSPickupFrame">
-            <property name="text">
-             <string>Pickup Frame</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="TextBox" name="textBoxRSMinPickup">
-            <property name="text">
-             <string notr="true">1000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="2">
-           <widget class="TextBox" name="textBoxRSMaxPickup">
+           <widget class="TextBox" name="textBoxRSMaxResultsPickup">
             <property name="text">
              <string notr="true">5000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelRSMethod">
-            <property name="text">
-             <string>Method</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxRSMethod">
+           <widget class="ComboBox" name="comboBoxRSMethod">
             <item>
              <property name="text">
               <string>Normal</string>
@@ -688,47 +745,6 @@ QRadioButton {
               <string>Alternate</string>
              </property>
             </item>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelRSTID">
-            <property name="text">
-             <string>TID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelRSSID">
-            <property name="text">
-             <string>SID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxRSTID">
-            <property name="text">
-             <string notr="true">12345</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxRSSID">
-            <property name="text">
-             <string notr="true">54321</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0" colspan="3">
-           <widget class="QPushButton" name="pushButtonRSGenerate">
-            <property name="text">
-             <string>Generate</string>
-            </property>
            </widget>
           </item>
          </layout>
@@ -751,16 +767,22 @@ QRadioButton {
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelRSGender">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Gender</string>
             </property>
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QComboBox" name="comboBoxRSGender">
+           <widget class="ComboBox" name="comboBoxRSGender">
             <item>
              <property name="text">
-              <string notr="true">-</string>
+              <string notr="true">Any</string>
              </property>
             </item>
             <item>
@@ -777,13 +799,19 @@ QRadioButton {
           </item>
           <item row="1" column="1">
            <widget class="QLabel" name="labelRSAbility">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Ability</string>
             </property>
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QComboBox" name="comboBoxRSAbility">
+           <widget class="ComboBox" name="comboBoxRSAbility">
             <item>
              <property name="text">
               <string>Any</string>
@@ -803,6 +831,12 @@ QRadioButton {
           </item>
           <item row="2" column="1">
            <widget class="QLabel" name="labelRSNature">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Nature</string>
             </property>
@@ -826,6 +860,12 @@ QRadioButton {
           </item>
           <item row="3" column="1">
            <widget class="QLabel" name="labelRSHiddenPower">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Hidden Power</string>
             </property>
@@ -849,13 +889,19 @@ QRadioButton {
           </item>
           <item row="4" column="1">
            <widget class="QLabel" name="labelRSCompatibility">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Compatibility</string>
             </property>
            </widget>
           </item>
           <item row="4" column="2">
-           <widget class="QComboBox" name="comboBoxRSCompatibility">
+           <widget class="ComboBox" name="comboBoxRSCompatibility">
             <item>
              <property name="text">
               <string>The two don't seem to like each other</string>
@@ -875,13 +921,19 @@ QRadioButton {
           </item>
           <item row="5" column="1">
            <widget class="QLabel" name="labelRSGenderRatio">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Gender Ratio</string>
             </property>
            </widget>
           </item>
           <item row="5" column="2">
-           <widget class="QComboBox" name="comboBoxRSGenderRatio">
+           <widget class="ComboBox" name="comboBoxRSGenderRatio">
             <item>
              <property name="text">
               <string>Genderless</string>
@@ -951,90 +1003,55 @@ QRadioButton {
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_8">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelFRLGSeed">
-            <property name="text">
-             <string>Seed (Held / Pickup)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="TextBox" name="textBoxFRLGSeedHeld">
-            <property name="maxLength">
-             <number>4</number>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="TextBox" name="textBoxFRLGSeedPickup">
-            <property name="maxLength">
-             <number>4</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelFRLGFrameHeld">
-            <property name="text">
-             <string>Frame Held</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxFRLGMinHeld">
-            <property name="text">
-             <string notr="true">1000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="TextBox" name="textBoxFRLGMaxHeld">
-            <property name="text">
-             <string notr="true">5000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelFRLGPickupFrame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Pickup Frame</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="TextBox" name="textBoxFRLGMinPickup">
+           <widget class="TextBox" name="textBoxFRLGInitialFramePickup">
             <property name="text">
              <string notr="true">1000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
             </property>
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="TextBox" name="textBoxFRLGMaxPickup">
+           <widget class="TextBox" name="textBoxFRLGMaxResultsPickup">
             <property name="text">
              <string notr="true">5000</string>
             </property>
-            <property name="maxLength">
-             <number>10</number>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxFRLGInitialFrameHeld">
+            <property name="text">
+             <string notr="true">1000</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelFRLGMethod">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelFRLGSeed">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>Method</string>
+             <string>Seed (Held / Pickup)</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxFRLGMethod">
+           <widget class="ComboBox" name="comboBoxFRLGMethod">
             <item>
              <property name="text">
               <string>Normal</string>
@@ -1052,46 +1069,51 @@ QRadioButton {
             </item>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelFRLGTID">
+          <item row="0" column="2">
+           <widget class="TextBox" name="textBoxFRLGSeedPickup"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelFRLGFrameHeld">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>TID</string>
+             <string>Frame Held</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxFRLGTID">
+          <item row="1" column="2">
+           <widget class="TextBox" name="textBoxFRLGMaxResultsHeld">
             <property name="text">
-             <string notr="true">12345</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
+             <string notr="true">5000</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelFRLGSID">
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelFRLGMethod">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>SID</string>
+             <string>Method</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxFRLGSID">
-            <property name="text">
-             <string notr="true">54321</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0" colspan="3">
+          <item row="4" column="0" colspan="3">
            <widget class="QPushButton" name="pushButtonFRLGGenerate">
             <property name="text">
              <string>Generate</string>
             </property>
            </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="TextBox" name="textBoxFRLGSeedHeld"/>
           </item>
          </layout>
         </widget>
@@ -1113,16 +1135,22 @@ QRadioButton {
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelFRLGGender">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Gender</string>
             </property>
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QComboBox" name="comboBoxFRLGGender">
+           <widget class="ComboBox" name="comboBoxFRLGGender">
             <item>
              <property name="text">
-              <string notr="true">-</string>
+              <string notr="true">Any</string>
              </property>
             </item>
             <item>
@@ -1139,13 +1167,19 @@ QRadioButton {
           </item>
           <item row="1" column="1">
            <widget class="QLabel" name="labelFRLGAbility">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Ability</string>
             </property>
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QComboBox" name="comboBoxFRLGAbility">
+           <widget class="ComboBox" name="comboBoxFRLGAbility">
             <item>
              <property name="text">
               <string>Any</string>
@@ -1165,6 +1199,12 @@ QRadioButton {
           </item>
           <item row="2" column="1">
            <widget class="QLabel" name="labelFRLGNature">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Nature</string>
             </property>
@@ -1188,6 +1228,12 @@ QRadioButton {
           </item>
           <item row="3" column="1">
            <widget class="QLabel" name="labelFRLGHiddenPower">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Hidden Power</string>
             </property>
@@ -1211,13 +1257,19 @@ QRadioButton {
           </item>
           <item row="4" column="1">
            <widget class="QLabel" name="labelFRLGCompatibility">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Compatibility</string>
             </property>
            </widget>
           </item>
           <item row="4" column="2">
-           <widget class="QComboBox" name="comboBoxFRLGCompatibility">
+           <widget class="ComboBox" name="comboBoxFRLGCompatibility">
             <item>
              <property name="text">
               <string>The two don't seem to like each other</string>
@@ -1237,13 +1289,19 @@ QRadioButton {
           </item>
           <item row="5" column="1">
            <widget class="QLabel" name="labelFRLGGenderRatio">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Gender Ratio</string>
             </property>
            </widget>
           </item>
           <item row="5" column="2">
-           <widget class="QComboBox" name="comboBoxFRLGGenderRatio">
+           <widget class="ComboBox" name="comboBoxFRLGGenderRatio">
             <item>
              <property name="text">
               <string>Genderless</string>
@@ -1309,19 +1367,28 @@ QRadioButton {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TableView</class>
-   <extends>QTableView</extends>
-   <header>Forms/Controls/TableView.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>IVFilter</class>
+   <extends>QWidget</extends>
+   <header>Forms/Controls/IVFilter.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
+   <slots>
+    <slot>resetChecks()</slot>
+   </slots>
   </customwidget>
   <customwidget>
    <class>EggSettings</class>
@@ -1330,23 +1397,21 @@ QRadioButton {
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>IVFilter</class>
-   <extends>QWidget</extends>
-   <header>Forms/Controls/IVFilter.hpp</header>
-   <container>1</container>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabEggSelection</tabstop>
-  <tabstop>textBoxEmeraldPIDMinFrame</tabstop>
-  <tabstop>textBoxEmeraldPIDMaxFrame</tabstop>
+  <tabstop>textBoxEmeraldPIDInitialFrame</tabstop>
+  <tabstop>textBoxEmeraldPIDMaxResults</tabstop>
   <tabstop>textBoxMinRedraws</tabstop>
   <tabstop>textBoxMaxRedraws</tabstop>
   <tabstop>textBoxCalibration</tabstop>
-  <tabstop>textBoxEmeraldTID</tabstop>
-  <tabstop>textBoxEmeraldSID</tabstop>
+  <tabstop>pushButtonEmeraldPIDGenerate</tabstop>
   <tabstop>comboBoxEmeraldGender</tabstop>
   <tabstop>comboBoxEmeraldAbility</tabstop>
   <tabstop>comboBoxEmeraldNature</tabstop>
@@ -1355,24 +1420,22 @@ QRadioButton {
   <tabstop>comboBoxEmeraldCompatibility</tabstop>
   <tabstop>comboBoxEmeraldGenderRatio</tabstop>
   <tabstop>checkBoxEmeraldShiny</tabstop>
-  <tabstop>pushButtonEmeraldPIDGenerate</tabstop>
   <tabstop>tableViewEmeraldPID</tabstop>
-  <tabstop>textBoxEmeraldIVsMinFrame</tabstop>
-  <tabstop>textBoxEmeraldIVsMaxFrame</tabstop>
+  <tabstop>textBoxEmeraldIVsInitialFrame</tabstop>
+  <tabstop>textBoxEmeraldIVsMaxResults</tabstop>
+  <tabstop>pushButtonEmeraldIVsGenerate</tabstop>
   <tabstop>comboBoxEmeraldMethod</tabstop>
   <tabstop>comboBoxEmeraldHiddenPower</tabstop>
   <tabstop>pushButtonEmeraldAnyHiddenPower</tabstop>
-  <tabstop>pushButtonEmeraldIVsGenerate</tabstop>
   <tabstop>tableViewEmeraldIVs</tabstop>
   <tabstop>textBoxRSSeedHeld</tabstop>
   <tabstop>textBoxRSSeedPickup</tabstop>
-  <tabstop>textBoxRSMinHeld</tabstop>
-  <tabstop>textBoxRSMaxHeld</tabstop>
-  <tabstop>textBoxRSMinPickup</tabstop>
-  <tabstop>textBoxRSMaxPickup</tabstop>
+  <tabstop>textBoxRSInitialFrameHeld</tabstop>
+  <tabstop>textBoxRSMaxResultsHeld</tabstop>
+  <tabstop>textBoxRSInitialFramePickup</tabstop>
+  <tabstop>textBoxRSMaxResultsPickup</tabstop>
   <tabstop>comboBoxRSMethod</tabstop>
-  <tabstop>textBoxRSTID</tabstop>
-  <tabstop>textBoxRSSID</tabstop>
+  <tabstop>pushButtonRSGenerate</tabstop>
   <tabstop>comboBoxRSGender</tabstop>
   <tabstop>comboBoxRSAbility</tabstop>
   <tabstop>comboBoxRSNature</tabstop>
@@ -1382,17 +1445,15 @@ QRadioButton {
   <tabstop>comboBoxRSCompatibility</tabstop>
   <tabstop>comboBoxRSGenderRatio</tabstop>
   <tabstop>checkBoxRSShiny</tabstop>
-  <tabstop>pushButtonRSGenerate</tabstop>
   <tabstop>tableViewRS</tabstop>
   <tabstop>textBoxFRLGSeedHeld</tabstop>
   <tabstop>textBoxFRLGSeedPickup</tabstop>
-  <tabstop>textBoxFRLGMinHeld</tabstop>
-  <tabstop>textBoxFRLGMaxHeld</tabstop>
-  <tabstop>textBoxFRLGMinPickup</tabstop>
-  <tabstop>textBoxFRLGMaxPickup</tabstop>
+  <tabstop>textBoxFRLGInitialFrameHeld</tabstop>
+  <tabstop>textBoxFRLGMaxResultsHeld</tabstop>
+  <tabstop>textBoxFRLGInitialFramePickup</tabstop>
+  <tabstop>textBoxFRLGMaxResultsPickup</tabstop>
   <tabstop>comboBoxFRLGMethod</tabstop>
-  <tabstop>textBoxFRLGTID</tabstop>
-  <tabstop>textBoxFRLGSID</tabstop>
+  <tabstop>pushButtonFRLGGenerate</tabstop>
   <tabstop>comboBoxFRLGGender</tabstop>
   <tabstop>comboBoxFRLGAbility</tabstop>
   <tabstop>comboBoxFRLGNature</tabstop>
@@ -1402,7 +1463,6 @@ QRadioButton {
   <tabstop>comboBoxFRLGCompatibility</tabstop>
   <tabstop>comboBoxFRLGGenderRatio</tabstop>
   <tabstop>checkBoxFRLGShiny</tabstop>
-  <tabstop>pushButtonFRLGGenerate</tabstop>
   <tabstop>tableViewFRLG</tabstop>
  </tabstops>
  <resources/>

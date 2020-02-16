@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,46 +18,61 @@
  */
 
 #include "DateTime.hpp"
+#include <Core/Enum/Game.hpp>
 #include <Core/Util/Utilities.hpp>
 
-namespace PokeFinderCore
+DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes) :
+    seed(Utilities::calcGen4Seed(dateTime, delay - (2000 - dateTime.date().year()))), delay(delay), dateTime(dateTime), version(version)
 {
-    DateTime::DateTime(
-        const QDateTime &dateTime, u32 delay, Game version, const QVector<bool> &roamers, const QVector<u8> &routes)
-        : seed(Utilities::calcGen4Seed(dateTime, delay - (2000 - dateTime.date().year())))
-    {
-        this->dateTime = dateTime;
-        this->delay = delay;
-        this->version = version;
-        info = HGSSRoamer(seed, roamers, routes);
-    }
+    info = HGSSRoamer(seed, roamers, routes);
+}
 
-    DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info)
-        : seed(Utilities::calcGen4Seed(dateTime, delay - (2000 - dateTime.date().year())))
-    {
-        this->dateTime = dateTime;
-        this->delay = delay;
-        this->version = version;
-        this->info = info;
-        this->info.recalculateRoamers(seed);
-    }
+DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGSSRoamer &info) :
+    seed(Utilities::calcGen4Seed(dateTime, delay - (2000 - dateTime.date().year()))),
+    delay(delay),
+    dateTime(dateTime),
+    version(version),
+    info(info)
+{
+    this->info.recalculateRoamers(seed);
+}
 
-    QString DateTime::sequence() const
-    {
-        return (version & Game::HGSS) ? Utilities::getCalls(seed, 15, info) : Utilities::coinFlips(seed, 15);
-    }
+QString DateTime::sequence() const
+{
+    return (version & Game::HGSS) ? Utilities::getCalls(seed, 15, info) : Utilities::coinFlips(seed, 15);
+}
 
-    QString DateTime::getDate() const { return dateTime.date().toString(Qt::SystemLocaleShortDate); }
+QString DateTime::getDate() const
+{
+    return dateTime.date().toString(Qt::SystemLocaleShortDate);
+}
 
-    QString DateTime::getTime() const { return dateTime.time().toString(); }
+QString DateTime::getTime() const
+{
+    return dateTime.time().toString();
+}
 
-    u32 DateTime::getSeed() const { return seed; }
+u32 DateTime::getSeed() const
+{
+    return seed;
+}
 
-    u32 DateTime::getDelay() const { return delay; }
+u32 DateTime::getDelay() const
+{
+    return delay;
+}
 
-    Game DateTime::getVersion() const { return version; }
+Game DateTime::getVersion() const
+{
+    return version;
+}
 
-    QDateTime DateTime::getDateTime() const { return dateTime; }
+QDateTime DateTime::getDateTime() const
+{
+    return dateTime;
+}
 
-    HGSSRoamer DateTime::getInfo() const { return info; }
+HGSSRoamer DateTime::getInfo() const
+{
+    return info;
 }

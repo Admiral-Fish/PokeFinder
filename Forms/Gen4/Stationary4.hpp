@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,13 +23,9 @@
 #include <Core/Gen4/Profile4.hpp>
 #include <QMenu>
 
-class Searcher4Model;
-class Stationary4Model;
-
-namespace PokeFinderCore
-{
-    class Frame4;
-}
+class StationaryFrame;
+class StationaryGeneratorModel4;
+class StationarySearcherModel4;
 
 namespace Ui
 {
@@ -49,17 +45,17 @@ public:
 
 private:
     Ui::Stationary4 *ui;
-    Searcher4Model *searcherModel {};
-    Stationary4Model *generatorModel {};
-    QVector<PokeFinderCore::Profile4> profiles;
+    StationaryGeneratorModel4 *generatorModel {};
+    StationarySearcherModel4 *searcherModel {};
+    QVector<Profile4> profiles;
+    Profile4 currentProfile;
     QMenu *generatorMenu {};
     QMenu *searcherMenu {};
 
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<PokeFinderCore::Frame4> &frames, int progress);
-    void refreshProfiles();
+    void updateProgress(const QVector<StationaryFrame> &frames, int progress);
     void generate();
     void search();
     void profileIndexChanged(int index);

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,67 +22,58 @@
 
 #include <Core/RNG/IRNG.hpp>
 
-namespace PokeFinderCore
+template <u64 add, u64 mult>
+class LCRNG64 : public IRNG<u64>
 {
-    template <u64 add, u64 mult>
-    class LCRNG64 : public IRNG<u64>
+public:
+    LCRNG64(u64 seed = 0) : seed(seed)
     {
-    public:
-        LCRNG64(u64 seed = 0, u32 frames = 0)
-        {
-            this->seed = seed;
-            advanceFrames(frames);
-        }
+    }
 
-        void advanceFrames(u32 frames) override
-        {
-            for (u32 frame = 0; frame < frames; frame++)
-            {
-                seed = seed * mult + add;
-            }
-        }
-
-        u32 nextUInt(u32 max, u32 frames = 0) { return ((nextULong(frames) >> 32) * max) >> 32; }
-
-        u64 nextULong(u32 frames = 0)
-        {
-            advanceFrames(frames + 1);
-            return seed;
-        }
-
-        u32 nextUInt(u32 frames = 0) { return nextULong(frames) >> 32; }
-
-        u64 next(u32 frames = 0) override { return nextULong(frames); }
-
-        void setSeed(u64 seed, u32 frames = 0) override
-        {
-            this->seed = seed;
-            advanceFrames(frames);
-        }
-
-        u64 getSeed() const { return seed; }
-
-    private:
-        u64 seed {};
-    };
-
-    class BWRNG : public LCRNG64<0x269ec3, 0x5d588b656c078965>
+    void advanceFrames(u32 frames) override
     {
-    public:
-        BWRNG(u64 seed = 0, u32 frames = 0)
-            : LCRNG64(seed, frames)
+        for (u32 frame = 0; frame < frames; frame++)
         {
+            nextULong();
         }
-    };
+    }
 
-    class BWRNGR : public LCRNG64<0x9b1ae6e9a384e6f9, 0xdedcedae9638806d>
+    u32 nextUInt(u32 max)
     {
-    public:
-        BWRNGR(u64 seed = 0, u32 frames = 0)
-            : LCRNG64(seed, frames)
-        {
-        }
-    };
-}
+        return ((nextULong() >> 32) * max) >> 32;
+    }
+
+    u64 nextULong()
+    {
+        return seed = seed * mult + add;
+    }
+
+    u32 nextUInt()
+    {
+        return nextULong() >> 32;
+    }
+
+    u64 next() override
+    {
+        return nextULong();
+    }
+
+    void setSeed(u64 seed, u32 frames = 0) override
+    {
+        this->seed = seed;
+        advanceFrames(frames);
+    }
+
+    u64 getSeed() const
+    {
+        return seed;
+    }
+
+private:
+    u64 seed {};
+};
+
+using BWRNG = LCRNG64<0x269ec3, 0x5d588b656c078965>;
+using BWRNGR = LCRNG64<0x9b1ae6e9a384e6f9, 0xdedcedae9638806d>;
 
 #endif // LCRNG64_HPP

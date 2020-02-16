@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,8 +26,7 @@ template <typename Item>
 class TableModel : public QAbstractTableModel
 {
 public:
-    TableModel(QObject *parent = nullptr)
-        : QAbstractTableModel(parent)
+    TableModel(QObject *parent = nullptr) : QAbstractTableModel(parent)
     {
     }
 
@@ -64,9 +63,15 @@ public:
         emit endRemoveRows();
     }
 
-    Item getItem(int row) const { return model.at(row); }
+    Item getItem(int row) const
+    {
+        return model.at(row);
+    }
 
-    QVector<Item> getModel() const { return model; }
+    QVector<Item> getModel() const
+    {
+        return model;
+    }
 
     void clearModel()
     {
@@ -79,7 +84,10 @@ public:
         }
     }
 
-    int rowCount(const QModelIndex & /*parent*/ = QModelIndex()) const override { return model.size(); }
+    int rowCount(const QModelIndex & /*parent*/ = QModelIndex()) const override
+    {
+        return model.size();
+    }
 
 protected:
     QVector<Item> model;

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,9 +20,10 @@
 #ifndef IDS4_HPP
 #define IDS4_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QStandardItemModel>
 #include <QWidget>
+
+class IDFrame4;
+class IDModel4;
 
 namespace Ui
 {
@@ -41,15 +42,15 @@ public:
 
 private:
     Ui::IDs4 *ui;
-    QStandardItemModel *shinyPID {};
-    QStandardItemModel *tidSID {};
-    QStandardItemModel *seedFinder {};
+    IDModel4 *shinyPID {};
+    IDModel4 *tidSID {};
+    IDModel4 *seedFinder {};
 
     void setupModels();
 
 private slots:
-    void updateProgressShinyPID(const QVector<QList<QStandardItem *>> &frames, int progress);
-    void updateProgressTIDSID(const QVector<QList<QStandardItem *>> &frames, int progress);
+    void updateProgressShinyPID(const QVector<IDFrame4> &frames, int progress);
+    void updateProgressTIDSID(const QVector<IDFrame4> &frames, int progress);
     void shinyPIDSearch();
     void tidSIDSearch();
     void seedFinderSearch();

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,12 +23,7 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <QWidget>
 
-class Egg3Model;
-
-namespace PokeFinderCore
-{
-    class Frame3;
-}
+class EggModel3;
 
 namespace Ui
 {
@@ -48,16 +43,16 @@ public:
 
 private:
     Ui::Eggs3 *ui;
-    QVector<PokeFinderCore::Profile3> profiles;
-    Egg3Model *emeraldIVs {};
-    Egg3Model *emeraldPID {};
-    Egg3Model *rs {};
-    Egg3Model *frlg {};
+    QVector<Profile3> profiles;
+    Profile3 currentProfile;
+    EggModel3 *emeraldIVs {};
+    EggModel3 *emeraldPID {};
+    EggModel3 *rs {};
+    EggModel3 *frlg {};
 
     void setupModels();
 
 private slots:
-    void refreshProfiles();
     void emeraldPIDGenerate();
     void emeraldIVsGenerate();
     void rsGenerate();

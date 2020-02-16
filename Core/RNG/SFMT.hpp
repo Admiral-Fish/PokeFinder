@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,26 +22,23 @@
 
 #include <Core/RNG/IRNG.hpp>
 
-namespace PokeFinderCore
+class SFMT : public IRNG<u64>
 {
-    class SFMT : public IRNG<u64>
-    {
-    public:
-        SFMT(u32 seed = 0, u32 frames = 0);
-        void advanceFrames(u32 frames) override;
-        u32 nextUInt(u32 frames = 0);
-        u64 nextULong(u32 frames = 0);
-        u64 next(u32 frames = 0) override;
-        void setSeed(u64 seed, u32 frames) override;
+public:
+    SFMT(u32 seed = 0);
+    void advanceFrames(u32 frames) override;
+    u32 nextUInt();
+    u64 nextULong();
+    u64 next() override;
+    void setSeed(u64 seed, u32 frames) override;
 
-    private:
-        u32 sfmt[624];
-        u32 index {};
+private:
+    u32 sfmt[624];
+    u32 index {};
 
-        void initialize(u32 seed);
-        void periodCertificaion();
-        void shuffle();
-    };
-}
+    void initialize(u32 seed);
+    void periodCertificaion();
+    void shuffle();
+};
 
 #endif // SFMT_HPP

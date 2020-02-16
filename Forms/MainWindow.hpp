@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,15 +28,15 @@ namespace Ui
     class MainWindow;
 }
 
-class Eggs3;
-class GameCube;
-class IDs3;
 class Stationary3;
 class Wild3;
-class Eggs4;
-class IDs4;
+class GameCube;
+class Eggs3;
+class IDs3;
 class Stationary4;
 class Wild4;
+class Eggs4;
+class IDs4;
 
 class MainWindow : public QMainWindow
 {
@@ -63,11 +63,11 @@ private:
     IDs4 *ids4 {};
 
     void setupModels();
-    void checkUpdates();
 
 private slots:
     void slotLanguageChanged(QAction *action);
     void slotStyleChanged(QAction *action);
+    void checkUpdates();
     void updateProfiles(int num);
     void openStationary3();
     void openWild3();
@@ -76,7 +76,7 @@ private slots:
     void openIDs3();
     void openGameCubeRTC();
     void openGameCubeSeedFinder();
-    void openIVtoPID3();
+    void openIVtoPID();
     void openJirachiPattern();
     void openPIDtoIV();
     void openPokeSpot();
@@ -86,7 +86,6 @@ private slots:
     void openWild4();
     void openEgg4();
     void openIDs4();
-    void openIVtoPID4();
     void openSeedtoTime4();
     void openSIDFromChainedShiny();
     void openEncounterLookup();

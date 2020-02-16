@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,35 +23,32 @@
 #include <Core/Util/Global.hpp>
 #include <QVector>
 
-namespace PokeFinderCore
+class HGSSRoamer
 {
-    class HGSSRoamer
-    {
-    public:
-        HGSSRoamer() = default;
-        HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes);
-        u8 getSkips() const;
-        u8 getRaikouRoute() const;
-        u8 getEnteiRoute() const;
-        u8 getLatiRoute() const;
-        QString getRouteString() const;
-        QVector<bool> getRoamers() const;
-        QVector<u8> getRoutes() const;
-        void recalculateRoamers(u32 seed);
+public:
+    HGSSRoamer() = default;
+    HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes);
+    u8 getSkips() const;
+    u8 getRaikouRoute() const;
+    u8 getEnteiRoute() const;
+    u8 getLatiRoute() const;
+    QString getRouteString() const;
+    QVector<bool> getRoamers() const;
+    QVector<u8> getRoutes() const;
+    void recalculateRoamers(u32 seed);
 
-    private:
-        void calculateRoamers();
-        u8 getRouteJ(u16 prng) const;
-        u8 getRouteK(u16 prng) const;
+private:
+    void calculateRoamers();
+    u8 getRouteJ(u16 prng) const;
+    u8 getRouteK(u16 prng) const;
 
-        u8 skips {};
-        u8 raikouRoute {};
-        u8 enteiRoute {};
-        u8 latiRoute {};
-        u32 seed {};
-        QVector<bool> roamers;
-        QVector<u8> routes;
-    };
-}
+    u8 skips {};
+    u8 raikouRoute {};
+    u8 enteiRoute {};
+    u8 latiRoute {};
+    u32 seed {};
+    QVector<bool> roamers;
+    QVector<u8> routes;
+};
 
 #endif // HGSSROAMER_HPP

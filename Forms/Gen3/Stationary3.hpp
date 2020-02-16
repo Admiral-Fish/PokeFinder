@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,15 +22,10 @@
 
 #include <Core/Gen3/Profile3.hpp>
 #include <QMenu>
-#include <QModelIndex>
 
-class Searcher3Model;
-class Stationary3Model;
-
-namespace PokeFinderCore
-{
-    class Frame3;
-}
+class Frame;
+class StationaryGeneratorModel3;
+class StationarySearcherModel3;
 
 namespace Ui
 {
@@ -50,30 +45,22 @@ public:
 
 private:
     Ui::Stationary3 *ui;
-    Searcher3Model *searcherModel {};
-    Stationary3Model *generatorModel {};
-    QVector<PokeFinderCore::Profile3> profiles;
+    StationaryGeneratorModel3 *generatorModel {};
+    StationarySearcherModel3 *searcherModel {};
+    QVector<Profile3> profiles;
+    Profile3 currentProfile;
     QMenu *generatorMenu {};
     QMenu *searcherMenu {};
-    QModelIndex lastIndex;
-    QModelIndex targetFrame;
 
     void setupModels();
 
-public slots:
-    void moveResults(const QString &seed, const QString &method, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-
 private slots:
-    void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
-    void refreshProfiles();
+    void updateProgress(const QVector<Frame> &frames, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);
     void tableViewGeneratorContextMenu(QPoint pos);
     void tableViewSearcherContextMenu(QPoint pos);
-    void setTargetFrameGenerator();
-    void jumpToTargetGenerator();
-    void centerFramesAndSetTargetGenerator(u32 centerFrames);
     void seedToTime();
     void copySeedToClipboard();
     void profileManager();

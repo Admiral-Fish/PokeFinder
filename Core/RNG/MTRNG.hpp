@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,51 +22,48 @@
 
 #include <Core/RNG/IRNG.hpp>
 
-namespace PokeFinderCore
+class MT : public IRNG<u32>
 {
-    class MT : public IRNG<u32>
-    {
-    public:
-        void advanceFrames(u32 frames) override;
+public:
+    void advanceFrames(u32 frames) override;
 
-    protected:
-        u32 mt[624];
-        u32 index;
-        virtual void shuffle();
-        virtual void initialize(u32 seed);
-        void setSeed(u32 seed, u32 frames) override;
-        u16 nextUShort(u32 frames = 0);
-        u32 next(u32 frames = 0) override;
-        virtual u32 nextUInt(u32 frames = 0) = 0;
-    };
+protected:
+    u32 mt[624];
+    u32 index;
+    virtual void shuffle();
+    virtual void initialize(u32 seed);
+    void setSeed(u32 seed, u32 frames) override;
+    u16 nextUShort();
+    u32 next() override;
+    virtual u32 nextUInt() = 0;
+};
 
-    class MersenneTwister : public MT
-    {
-    public:
-        MersenneTwister(u32 seed = 0, u32 frames = 0);
-        u32 nextUInt(u32 frames = 0) override;
-    };
+class MersenneTwister : public MT
+{
+public:
+    MersenneTwister(u32 seed = 0);
+    u32 nextUInt() override;
+};
 
-    class MersenneTwisterUntempered : public MT
-    {
-    public:
-        MersenneTwisterUntempered(u32 seed = 0, u32 frames = 0);
-        u32 nextUInt(u32 frames = 0) override;
-    };
+class MersenneTwisterUntempered : public MT
+{
+public:
+    MersenneTwisterUntempered(u32 seed = 0);
+    u32 nextUInt() override;
+};
 
-    class MersenneTwisterFast : public MT
-    {
-    public:
-        explicit MersenneTwisterFast(u32 calls, u32 seed = 0, u32 frames = 0);
-        u32 nextUInt(u32 frames = 0) override;
+class MersenneTwisterFast : public MT
+{
+public:
+    explicit MersenneTwisterFast(u16 calls, u32 seed = 0);
+    u32 nextUInt() override;
 
-    private:
-        u16 max;
-        u16 maxCalls;
+private:
+    u16 max;
+    u16 maxCalls;
 
-        void initialize(u32 seed) override;
-        void shuffle() override;
-    };
-}
+    void initialize(u32 seed) override;
+    void shuffle() override;
+};
 
 #endif // MTRNG_HPP

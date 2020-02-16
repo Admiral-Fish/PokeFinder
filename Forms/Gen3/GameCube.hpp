@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,13 +23,9 @@
 #include <Core/Gen3/Profile3.hpp>
 #include <QMenu>
 
-class Searcher3Model;
-class Stationary3Model;
-
-namespace PokeFinderCore
-{
-    class Frame3;
-}
+class GameCubeFrame;
+class GameCubeGeneratorModel;
+class GameCubeSearcherModel;
 
 namespace Ui
 {
@@ -49,17 +45,17 @@ public:
 
 private:
     Ui::GameCube *ui;
-    Searcher3Model *searcherModel {};
-    Stationary3Model *generatorModel {};
-    QVector<PokeFinderCore::Profile3> profiles;
+    GameCubeGeneratorModel *generatorModel {};
+    GameCubeSearcherModel *searcherModel {};
+    QVector<Profile3> profiles;
+    Profile3 currentProfile;
     QMenu *generatorMenu {};
     QMenu *searcherMenu {};
 
     void setupModels();
 
 private slots:
-    void updateProgress(const QVector<PokeFinderCore::Frame3> &frames, int progress);
-    void refreshProfiles();
+    void updateProgress(const QVector<GameCubeFrame> &frames, int progress);
     void generate();
     void search();
     void profilesIndexChanged(int index);

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,10 +19,6 @@
 
 #include "Nature.hpp"
 
-constexpr u8 adjustedNature[25]
-    = { 3, 5, 2, 20, 23, 11, 8, 13, 1, 16, 15, 14, 4, 17, 19, 7, 22, 10, 21, 9, 18, 6, 0, 24, 12 };
-constexpr u8 reversedNature[25]
-    = { 22, 8, 2, 0, 12, 1, 21, 15, 6, 19, 17, 5, 24, 7, 11, 10, 9, 13, 20, 14, 3, 18, 16, 4, 23 };
 constexpr double modifiers[25][6] = {
     { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }, // Hardy
     { 1.0, 1.1, 0.9, 1.0, 1.0, 1.0 }, // Lonely
@@ -51,11 +47,10 @@ constexpr double modifiers[25][6] = {
     { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 } // Quirky
 };
 
-namespace PokeFinderCore
+namespace Nature
 {
-    u8 Nature::getAdjustedNature(u8 nature) { return adjustedNature[nature]; }
-
-    u8 Nature::getReversedNature(u8 nature) { return reversedNature[nature]; }
-
-    double Nature::getNatureModifier(u8 nature, u8 stat) { return modifiers[nature][stat]; }
+    double getNatureModifier(u8 nature, u8 stat)
+    {
+        return modifiers[nature][stat];
+    }
 }
