@@ -1,0 +1,86 @@
+0,Pueblo Azuliza
+1,Pueblo Oromar
+2,Ciudad Petalia
+3,Ciudad Portual
+4,Ciudad Calagua
+5,Ciudad Algaria
+6,Arrecípolis
+7,Ciudad Colosalia
+8,Ruta 101
+9,Ruta 102
+10,Ruta 103
+11,Ruta 104
+12,Ruta 105
+13,Ruta 106
+14,Ruta 107
+15,Ruta 108
+16,Ruta 109
+17,Ruta 110
+18,Ruta 111
+19,Ruta 112
+20,Ruta 113
+21,Ruta 114
+22,Ruta 115
+23,Ruta 116
+24,Ruta 117
+25,Ruta 118
+26,Ruta 119
+27,Ruta 120
+28,Ruta 121
+29,Ruta 122
+30,Ruta 123
+31,Ruta 124
+32,Ruta 125
+33,Ruta 126
+34,Ruta 127
+35,Ruta 128
+36,Ruta 129
+37,Ruta 130
+38,Ruta 131
+39,Ruta 132
+40,Ruta 133
+41,Ruta 134
+42,Buceando (Ruta 124)
+43,Buceando (Ruta 126)
+44,Cueva Granito Planta baja (zona 1)
+45,Cueva Granito Planta baja (zona 2)
+46,Cueva Granito Sótano 1
+47,Cueva Granito Sótano 2
+48,Zona Safari Sureste (entrada)
+49,Zona Safari Suroeste
+50,Zona Safari Noroeste
+51,Zona Safari Noreste
+52,Zona Safari Extensión Norte
+53,Zona Safari Extensión Sur
+54,Bosque Petalia
+55,Túnel Fervergal
+56,Nao Abandonada
+57,Malvalanova (Entrada)
+58,Malvalanova (Sótano)
+59,Cascada Meteoro Entrada (zona 1)
+60,Cascada Meteoro Interior de la cueva (zona 2)
+61,Cascada Meteoro Sótano 1 Interior de la cueva (zona 1)
+62,Cascada Meteoro Sótano 2 Cuarto trasero (zona 2)
+63,Cascada Meteoro Sala de Máximo Peñas
+64,Monte Pírico Planta baja, pisos 1 y 2 (cementerio)
+65,Monte Pírico Pisos 3, 4 y 5 (cementerio)
+66,Monte Pírico Ladera
+67,Monte Pírico Cima
+68,Cueva Cardumen
+69,Cueva Cardumen Sala helada
+70,Caverna Abisal
+71,Calle Victoria Planta baja
+72,Calle Victoria Sótano 1
+73,Calle Victoria Sótano 2
+74,Cueva Ancestral Planta baja
+75,Cueva Ancestral Sótanos 1 al 5
+76,Senda Ígnea
+77,Desfiladero
+78,Pilar Celeste Planta baja
+79,Pilar Celeste Pisos 1 y 2
+80,Pilar Celeste Pisos 3 y 4
+81,Guarida Magma
+82,Torre Espejismo
+83,Cueva Taller
+84,Gruta Desértica
+85,Cueva Cambiante

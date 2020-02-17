@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,16 +21,16 @@
 #define CHECKLIST
 
 #include <QComboBox>
-#include <QStandardItemModel>
+
+class QStandardItemModel;
 
 class CheckList : public QComboBox
 {
     Q_OBJECT
-
 public:
     explicit CheckList(QWidget *parent = nullptr);
     void setup(const QStringList &items = QStringList());
-    QVector<bool> getChecked();
+    QVector<bool> getChecked() const;
     void setChecks(QVector<bool> flags);
 
 public slots:
@@ -43,12 +43,11 @@ private:
     QStandardItemModel *model;
 
     void updateText();
-    int checkState();
+    int checkState() const;
 
 private slots:
     void modelDataChanged();
     void itemPressed(const QModelIndex &index);
-
 };
 
 #endif // CHECKLIST

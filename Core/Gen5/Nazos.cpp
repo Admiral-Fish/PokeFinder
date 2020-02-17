@@ -18,6 +18,7 @@
  */
 
 #include "Nazos.hpp"
+#include <Core/Enum/Game.hpp>
 
 static const QVector<u32> englishBlack = { 0xB0602102, 0xAC612102, 0xAC612102, 0xF8612102, 0xF8612102 };
 static const QVector<u32> englishBlackDSi = { 0x90017602, 0x8C027602, 0x8C027602, 0xD8027602, 0xD8027602 };
@@ -100,6 +101,7 @@ QVector<u32> Nazos::getNazo(Game version, Language language, DSType dsType)
                 default:
                     break;
             }
+            break;
         case Language::Japanese:
             switch (version)
             {
@@ -113,7 +115,8 @@ QVector<u32> Nazos::getNazo(Game version, Language language, DSType dsType)
                     return dsType == DSType::DSOriginal ? japaneseWhite2 : japaneseWhite2DSi;
                 default:
                     break;
-            }
+                }
+                break;
         case Language::German:
             switch (version)
             {
@@ -128,6 +131,7 @@ QVector<u32> Nazos::getNazo(Game version, Language language, DSType dsType)
                 default:
                     break;
             }
+            break;
         case Language::Spanish:
             switch (version)
             {
@@ -142,6 +146,7 @@ QVector<u32> Nazos::getNazo(Game version, Language language, DSType dsType)
                 default:
                     break;
             }
+            break;
         case Language::French:
             switch (version)
             {
@@ -156,6 +161,7 @@ QVector<u32> Nazos::getNazo(Game version, Language language, DSType dsType)
                 default:
                     break;
             }
+            break;
         case Language::Italian:
             switch (version)
             {
@@ -170,6 +176,7 @@ QVector<u32> Nazos::getNazo(Game version, Language language, DSType dsType)
                 default:
                     break;
             }
+            break;
         case Language::Korean:
             switch (version)
             {
@@ -184,9 +191,9 @@ QVector<u32> Nazos::getNazo(Game version, Language language, DSType dsType)
                 default:
                     break;
             }
-        default:
-            return QVector<u32>();
-    }
+            break;
+        }
+        return QVector<u32>();
 }
 
 QVector<u32> Nazos::getNazo(const Profile5 &profile)

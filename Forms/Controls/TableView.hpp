@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,15 +24,15 @@
 
 class TableView : public QTableView
 {
-
 public:
     explicit TableView(QWidget *parent = nullptr);
     void resizeEvent(QResizeEvent *event) override;
     void mouseDoubleClickEvent(QMouseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
-    void outputModelTXT();
-    void outputModelCSV();
+    void outputModel(bool csv = false) const;
 
+private:
+    void setSelectionToClipBoard();
 };
 
 #endif // TABLEVIEW_HPP

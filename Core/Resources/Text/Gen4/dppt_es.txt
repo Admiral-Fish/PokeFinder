@@ -1,0 +1,113 @@
+0,Ciudad Canal
+1,Ciudad Vetusta
+2,Ciudad Pradera
+3,Ciudad Marina
+4,Liga Pokémon
+5,Mina Pirita Primer piso
+6,Mina Pirita Sótano
+7,Valle Eólico
+8,Bosque Vetusto
+9,Forja Fuego
+10,Monte Corona (Entrada Ruta 207/208)
+11,Monte Corona Primer piso
+12,Monte Corona Segundo piso
+13,Monte Corona En el exterior (zona de nieve)
+14,Monte Corona Tercer piso
+15,Monte Corona Cuarto piso
+16,Monte Corona Quinto piso
+17,Monte Corona Sexto piso
+18,Monte Corona Exterior
+19,Monte Corona (Entrada Ruta 216)
+20,Monte Corona (Entrada Ruta 211)
+21,Monte Corona Sótano
+22,Gran Pantano Zona 1
+23,Gran Pantano Zona 2
+24,Gran Pantano Zona 3
+25,Gran Pantano Zona 4
+26,Gran Pantano Zona 5
+27,Gran Pantano Zona 6
+28,Ruinas Sosiego
+29,Calle Victoria Entrada
+30,Calle Victoria Piso 1
+31,Calle Victoria Sótano
+32,Calle Victoria Entrada al sótano profundo
+33,Calle Victoria Sótano profundo
+34,Calle Victoria Salida del sótano profundo
+35,Senda Desolada
+36,Puerta Pirita Primer piso
+37,Puerta Pirita Sótano
+38,Montaña Dura
+39,Montaña Dura Entrada
+40,Montaña Dura Interior
+41,Fuente Despedida
+42,Cueva Retorno Entrada
+43,Cueva Retorno Primer Pilar
+44,Cueva Retorno Segundo Pilar
+45,Templo Puntaneva Sala 1
+46,Templo Puntaneva Sótano 1
+47,Templo Puntaneva Sótano 2
+48,Templo Puntaneva Sótano 3
+49,Templo Puntaneva Sótano 4
+50,Templo Puntaneva Sala de Regigigas
+51,Cueva Extravío Zona oscura
+52,Cueva Extravío Zona secreta
+53,Mina Ruinamaníaco (menos de 10 Unown Atrapados)
+54,Mina Ruinamaníaco (más de 10 Unown Atrapados)
+55,Túnel Maníaco
+56,Jardín Trofeo
+57,Isla Hierro Zona exterior
+58,Isla Hierro Planta baja
+59,Isla Hierro Sótano 1
+60,Isla Hierro Sótano 2 izquierdo
+61,Isla Hierro Sótano 2 derecho
+62,Isla Hierro Sótano 3
+63,Vieja Mansión
+64,Vieja Mansión 5to Cuarto
+65,Lago Veraz
+66,Lago Valor
+67,Lago Agudeza
+68,Orilla Valor
+69,Orilla Agudeza
+70,Ruta 201
+71,Ruta 202
+72,Ruta 203
+73,Ruta 204 (Sur)
+74,Ruta 204 (Norte)
+75,Ruta 205 (Sur)
+76,Ruta 205 (Norte)
+77,Ruta 206
+78,Ruta 207
+79,Ruta 208
+80,Ruta 209
+81,Lost Tower 1F
+82,Lost Tower 2F
+83,Lost Tower 3F
+84,Lost Tower 4F
+85,Lost Tower 5F
+86,Ruta 210 (Sur)
+87,Ruta 210 (Norte)
+88,Ruta 211 (Oeste)
+89,Ruta 211 (Este)
+90,Ruta 212 (Norte)
+91,Ruta 212 (Sur)
+92,Ruta 213
+93,Ruta 214
+94,Ruta 215
+95,Ruta 216
+96,Ruta 217
+97,Ruta 218
+98,Ruta 219
+99,Ruta 221
+100,Ruta 222
+101,Ruta 224
+102,Ruta 225
+103,Ruta 227
+104,Ruta 228
+105,Ruta 229
+106,Pueblo Hojaverde
+107,Pueblo Caelestis
+108,Zona Descanso
+109,Ruta 220
+110,Ruta 223
+111,Ruta 226
+112,Ruta 230

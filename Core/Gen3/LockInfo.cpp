@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,8 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QFile>
 #include "LockInfo.hpp"
+#include <Core/Enum/Method.hpp>
+#include <Core/Enum/ShadowType.hpp>
+#include <QFile>
 
 LockInfo::LockInfo(u8 nature, u8 genderLower, u8 genderUpper)
 {
@@ -77,13 +79,13 @@ QVector<ShadowTeam> ShadowTeam::loadShadowTeams(Method version)
     while (offset < data.size())
     {
         auto type = static_cast<ShadowType>(data.at(offset + 1));
-        u8 size = data.at(offset);
+        u8 size = static_cast<u8>(data.at(offset));
         QVector<LockInfo> locks;
         for (u8 i = 0; i < size; i++)
         {
-            u8 nature = data.at(offset + 2 + i * 3);
-            u8 genderLower = data.at(offset + 3 + i * 3);
-            u8 genderUpper = data.at(offset + 4 + i * 3);
+            u8 nature = static_cast<u8>(data.at(offset + 2 + i * 3));
+            u8 genderLower = static_cast<u8>(data.at(offset + 3 + i * 3));
+            u8 genderUpper = static_cast<u8>(data.at(offset + 4 + i * 3));
             locks.append(LockInfo(nature, genderLower, genderUpper));
         }
 

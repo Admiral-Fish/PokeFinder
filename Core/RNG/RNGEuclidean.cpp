@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,34 +18,37 @@
  */
 
 #include "RNGEuclidean.hpp"
+#include <Core/Enum/Method.hpp>
 
-#define ADD 0x269EC3
-#define MULT 0x343FD
+constexpr u32 ADD = 0x269EC3;
+constexpr u32 MULT = 0x343FD;
 
 // See https://crypto.stackexchange.com/a/10629 for how the following math works
 // Uses Euclidean divison to reduce the search space (kmax) even further then RNGCache
 // Only beneficial for smaller multipliers such as XDRNG
 
-RNGEuclidean::RNGEuclidean(Method FrameType)
+RNGEuclidean::RNGEuclidean(Method method)
 {
-    setupEuclidean(FrameType);
+    setupEuclidean(method);
 }
 
 // Recovers origin seeds for two 16 bit calls(15 bits known)
-QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u32 first, u32 second) const
+QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<QPair<u32, u32>> origin;
-    u32 fullFirst, fullSecond;
+
+    u32 first = static_cast<u32>((hp | (atk << 5) | (def << 10)) << 16);
+    u32 second = static_cast<u32>((spe | (spa << 5) | (spd << 10)) << 16);
 
     u64 t = ((second - sub1 * first) - sub2) & 0x7FFFFFFF;
-    u32 kmax = (base - t) >> 31;
+    u32 kmax = static_cast<u32>((base - t) >> 31);
 
     for (u32 k = 0; k <= kmax; k++, t += 0x80000000)
     {
         if ((t % sub1) < 0x10000)
         {
-            fullFirst = first | static_cast<u32>(t / sub1);
-            fullSecond = fullFirst * MULT + ADD;
+            u32 fullFirst = first | static_cast<u32>(t / sub1);
+            u32 fullSecond = fullFirst * MULT + ADD;
             origin.append(QPair<u32, u32>(fullFirst, fullSecond));
         }
     }
@@ -53,10 +56,12 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u32 first, u32 secon
 }
 
 // Recovers origin seeds for two 16 bit calls
-QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 first, u32 second) const
+QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 pid) const
 {
     QVector<QPair<u32, u32>> origin;
-    u32 fullFirst, fullSecond;
+
+    u32 first = pid & 0xffff0000;
+    u32 second = pid << 16;
 
     u64 t = ((second - sub1 * first) - sub2) & 0xFFFFFFFF;
     u32 kmax = (base - t) >> 32;
@@ -65,8 +70,8 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 first, u32 seco
     {
         if ((t % sub1) < 0x10000)
         {
-            fullFirst = first | static_cast<u32>(t / sub1);
-            fullSecond = fullFirst * MULT + ADD;
+            u32 fullFirst = pid | static_cast<u32>(t / sub1);
+            u32 fullSecond = fullFirst * MULT + ADD;
             origin.append(QPair<u32, u32>(fullFirst, fullSecond));
         }
     }
@@ -77,7 +82,8 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 first, u32 seco
 QVector<u32> RNGEuclidean::recoverLower27BitsChannel(u32 hp, u32 atk, u32 def, u32 spa, u32 spd, u32 spe) const
 {
     QVector<u32> origin;
-    u32 first = hp << 27, fullFirst;
+    u32 first = hp << 27;
+    u32 fullFirst;
 
     u64 t = (((spd << 27) - sub1 * first) - sub2) & 0xFFFFFFFF;
     u32 kmax = (base - t) >> 32;
@@ -117,14 +123,13 @@ void RNGEuclidean::switchEuclidean(Method frameType)
     setupEuclidean(frameType);
 }
 
-void RNGEuclidean::setupEuclidean(Method frameType)
+void RNGEuclidean::setupEuclidean(Method method)
 {
-    if (frameType == Method::Channel)
+    if (method == Method::Channel)
     {
         // Channel is a unique situation having 6 rng calls with each call 5 bits known
-        // It is unable to use the cache method and uses a modified Euclidean approach to keep kmax as low as possible
-        // Using the first and last calls we can produce a modified adder and multiplier
-        // Mult:j = Mult^j
+        // It is unable to use the cache method and uses a modified Euclidean approach to keep kmax as low as
+        // possible Using the first and last calls we can produce a modified adder and multiplier Mult:j = Mult^j
         // Add:j = Add * (1 + Mult + ... + Mult^(j-1))
         // Using j = 5 and XDRNG gives Mult = 0x284A930D and Add = 0xa2974c77
         sub1 = 0x284A930D; // Modified mult

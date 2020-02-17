@@ -20,23 +20,12 @@
 #ifndef STATIONARY5_HPP
 #define STATIONARY5_HPP
 
+#include <Core/Gen5/Profile5.hpp>
 #include <QMenu>
-#include <QMutex>
-#include <QFileDialog>
-#include <QSettings>
-#include <QThread>
-#include <QTimer>
-#include <Core/Gen5/Generator5.hpp>
-//#include <Core/Gen5/IVSearcher5.hpp>
-#include <Core/Util/Translator.hpp>
-#include <Forms/Gen5/ProfileManager5.hpp>
-//#include <Models/Gen5/Searcher5Model.hpp>
-//#include <Models/Gen5/Stationary5Model.hpp>
 
-#include <Core/Util/Lead.hpp>
-#include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
-#include <Core/Parents/FrameCompare.hpp>
+class StationaryFrame;
+class StationaryGeneratorModel4;
+class StationarySearcherModel4;
 
 namespace Ui
 {
@@ -46,7 +35,6 @@ namespace Ui
 class Stationary5 : public QWidget
 {
     Q_OBJECT
-
 signals:
     void alertProfiles(int);
 
@@ -60,22 +48,21 @@ private:
     //Searcher5Model *searcherModel{};
     //Stationary5Model *generatorModel{};
     QVector<Profile5> profiles;
+    Profile5 currentProfile;
     QMenu *generatorMenu{};
     QMenu *searcherMenu{};
 
     void setupModels();
-    void updateView(const QVector<Frame5> &frames, int progress);
+    void updateProgress(const QVector<StationaryFrame> &frames, int progress);
 
 private slots:
-    void refreshProfiles();
-    void on_pushButtonGenerate_clicked();
-    void on_pushButtonSearch_clicked();
-    void on_comboBoxProfiles_currentIndexChanged(int index);
-    void on_pushButtonGeneratorLead_clicked();
-    void on_tableViewGenerator_customContextMenuRequested(const QPoint &pos);
-    void on_tableViewSearcher_customContextMenuRequested(const QPoint &pos);
-    void on_pushButtonProfileManager_clicked();
-
+    void generate();
+    void search();
+    void profileIndexChanged(int index);
+    void generatorLead();
+    void tableViewGeneratorContextMenu(const QPoint &pos);
+    void tableViewSearcherContextMenu(const QPoint &pos);
+    void profileManager();
 };
 
 #endif // STATIONARY5_HPP

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,9 @@
 #ifndef IDS3_HPP
 #define IDS3_HPP
 
-#include <QStandardItemModel>
 #include <QWidget>
+
+class IDModel3;
 
 namespace Ui
 {
@@ -31,27 +32,25 @@ namespace Ui
 class IDs3 : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit IDs3(QWidget *parent = nullptr);
     ~IDs3() override;
 
 private:
     Ui::IDs3 *ui;
-    QStandardItemModel *xdcolo{};
-    QStandardItemModel *frlge{};
-    QStandardItemModel *rs{};
+    IDModel3 *xdcolo {};
+    IDModel3 *frlge {};
+    IDModel3 *rs {};
 
     void setupModels();
 
 private slots:
-    void on_pushButtonXDColoSearch_clicked();
-    void on_pushButtonFRLGESearch_clicked();
-    void on_pushButtonRSSearch_clicked();
-    void on_checkBoxRSDeadBattery_clicked(bool checked);
-    void on_radioButtonRSDate_toggled(bool checked);
-    void on_radioButtonRSInitialSeed_toggled(bool checked);
-
+    void xdColoSearch();
+    void frlgeSearch();
+    void rsSearch();
+    void rsDeadBattery(bool checked);
+    void rsDate(bool checked);
+    void rsInitialSeed(bool checked);
 };
 
 #endif // IDS3_HPP

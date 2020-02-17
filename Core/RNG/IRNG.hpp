@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,18 +22,14 @@
 
 #include <Core/Util/Global.hpp>
 
+template <typename IntegerType>
 class IRNG
 {
-
 public:
-    virtual u32 nextUInt() = 0;
-    virtual u16 nextUShort() = 0;
-    virtual void setSeed(u32 seed) = 0;
-    virtual void setSeed(u32 seed, u32 frames) = 0;
-    virtual u32 getSeed() = 0;
+    virtual IntegerType next() = 0;
+    virtual void setSeed(IntegerType seed, u32 frames = 0) = 0;
     virtual void advanceFrames(u32 frames) = 0;
     virtual ~IRNG() = default;
-
 };
 
 #endif // IRNG_HPP

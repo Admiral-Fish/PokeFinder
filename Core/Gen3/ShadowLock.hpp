@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,15 +20,12 @@
 #ifndef SHADOWLOCK_HPP
 #define SHADOWLOCK_HPP
 
-#include <QVector>
 #include <Core/Gen3/LockInfo.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <Core/Util/Method.hpp>
-#include <Core/Util/ShadowType.hpp>
+#include <QVector>
 
 class ShadowLock
 {
-
 public:
     ShadowLock() = default;
     ShadowLock(u8 num, Method version);
@@ -45,10 +42,10 @@ public:
     void switchLock(u8 lockNum, Method version);
 
 private:
-    int backCount{}, frontCount{};
+    int backCount {}, frontCount {};
     LockInfo currLock;
     ShadowTeam team;
-    int x{};
+    int x {};
 
     void compareBackwards(u32 &pid, XDRNGR &rng);
     void compareForwards(u32 &pid, XDRNG &rng);
@@ -56,7 +53,6 @@ private:
     u32 getPIDForward(XDRNG &rng);
     u32 getPIDBackward(XDRNGR &rng);
     u16 getPSVReverse(XDRNGR &rng);
-
 };
 
 #endif // SHADOWLOCK_HPP

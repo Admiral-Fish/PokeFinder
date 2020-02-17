@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QFile>
 #include "ShadowLock.hpp"
 
 /* Each non-shadow before a shadow has to match
@@ -36,24 +35,27 @@ ShadowType ShadowLock::getType()
 
 bool ShadowLock::firstShadowNormal(u32 seed)
 {
-    XDRNGR backward(seed, 1);
-    u32 pid, pidOriginal;
+    XDRNGR backward(seed);
+    backward.advanceFrames(1);
 
     // Grab PID from first non-shadow going backwards
     // If it doesn't match spread fails
-    pidOriginal = getPIDBackward(backward);
+    u32 pidOriginal = getPIDBackward(backward);
     if (!team.getLock(0).compare(pidOriginal))
     {
         return false;
     }
 
+    u32 pid = 0;
     for (x = 1; x < backCount; x++)
     {
         backward.advanceFrames(5);
         compareBackwards(pid, backward);
     }
 
-    XDRNG forward(backward.getSeed(), 1);
+    XDRNG forward(backward.getSeed());
+    forward.advanceFrames(1);
+
     for (x = frontCount; x >= 0; x--)
     {
         forward.advanceFrames(5);
@@ -66,24 +68,27 @@ bool ShadowLock::firstShadowNormal(u32 seed)
 
 bool ShadowLock::firstShadowSet(u32 seed)
 {
-    XDRNGR backward(seed, 6);
-    u32 pid, pidOriginal;
+    XDRNGR backward(seed);
+    backward.advanceFrames(6);
 
     // Grab PID from first non-shadow going backwards
     // If it doesn't match spread fails
-    pidOriginal = getPIDBackward(backward);
+    u32 pidOriginal = getPIDBackward(backward);
     if (!team.getLock(0).compare(pidOriginal))
     {
         return false;
     }
 
+    u32 pid = 0;
     for (x = 1; x < backCount; x++)
     {
         backward.advanceFrames(5);
         compareBackwards(pid, backward);
     }
 
-    XDRNG forward(backward.getSeed(), 1);
+    XDRNG forward(backward.getSeed());
+    forward.advanceFrames(1);
+
     for (x = frontCount; x >= 0; x--)
     {
         forward.advanceFrames(5);
@@ -96,13 +101,12 @@ bool ShadowLock::firstShadowSet(u32 seed)
 
 bool ShadowLock::firstShadowShinySkip(u32 seed)
 {
-    XDRNGR backward(seed, 1);
-    u32 pid, pidOriginal;
-    u16 psv, psvtemp;
+    XDRNGR backward(seed);
+    backward.advanceFrames(1);
 
     // Check how many advances from shiny skip
-    psv = getPSVReverse(backward);
-    psvtemp = getPSVReverse(backward);
+    u16 psv = getPSVReverse(backward);
+    u16 psvtemp = getPSVReverse(backward);
     while (psv == psvtemp)
     {
         psvtemp = psv;
@@ -112,19 +116,22 @@ bool ShadowLock::firstShadowShinySkip(u32 seed)
     // Grab PID from first non-shadow going backwards
     // If it doesn't match spread fails
     backward.advanceFrames(5);
-    pidOriginal = getPIDBackward(backward);
+    u32 pidOriginal = getPIDBackward(backward);
     if (!team.getLock(0).compare(pidOriginal))
     {
         return false;
     }
 
+    u32 pid = 0;
     for (x = 1; x < backCount; x++)
     {
         backward.advanceFrames(5);
         compareBackwards(pid, backward);
     }
 
-    XDRNG forward(backward.getSeed(), 1);
+    XDRNG forward(backward.getSeed());
+    forward.advanceFrames(1);
+
     for (x = frontCount; x >= 0; x--)
     {
         forward.advanceFrames(5);
@@ -137,24 +144,27 @@ bool ShadowLock::firstShadowShinySkip(u32 seed)
 
 bool ShadowLock::firstShadowUnset(u32 seed)
 {
-    XDRNGR backward(seed, 8);
-    u32 pid, pidOriginal;
+    XDRNGR backward(seed);
+    backward.advanceFrames(8);
 
     // Grab PID from first non-shadow going backwards
     // If it doesn't match spread fails
-    pidOriginal = getPIDBackward(backward);
+    u32 pidOriginal = getPIDBackward(backward);
     if (!team.getLock(0).compare(pidOriginal))
     {
         return false;
     }
 
+    u32 pid = 0;
     for (x = 1; x < backCount; x++)
     {
         backward.advanceFrames(5);
         compareBackwards(pid, backward);
     }
 
-    XDRNG forward(backward.getSeed(), 1);
+    XDRNG forward(backward.getSeed());
+    forward.advanceFrames(1);
+
     for (x = frontCount; x >= 0; x--)
     {
         forward.advanceFrames(5);
@@ -167,7 +177,8 @@ bool ShadowLock::firstShadowUnset(u32 seed)
 
 bool ShadowLock::salamenceSet(u32 seed)
 {
-    XDRNGR backward(seed, 6);
+    XDRNGR backward(seed);
+    backward.advanceFrames(6);
 
     // Build PID of non-shadow
     u32 pid = getPIDBackward(backward);
@@ -177,13 +188,12 @@ bool ShadowLock::salamenceSet(u32 seed)
 
 bool ShadowLock::salamenceShinySkip(u32 seed)
 {
-    XDRNGR backward(seed, 1);
-
-    u16 psv, psvtemp;
+    XDRNGR backward(seed);
+    backward.advanceFrames(1);
 
     // Check how many advances from shiny skip
-    psv = getPSVReverse(backward);
-    psvtemp = getPSVReverse(backward);
+    u16 psv = getPSVReverse(backward);
+    u16 psvtemp = getPSVReverse(backward);
     while (psv == psvtemp)
     {
         psvtemp = psv;
@@ -200,7 +210,8 @@ bool ShadowLock::salamenceShinySkip(u32 seed)
 
 bool ShadowLock::salamenceUnset(u32 seed)
 {
-    XDRNGR backward(seed, 8);
+    XDRNGR backward(seed);
+    backward.advanceFrames(8);
 
     // Build PID of non-shadow
     u32 pid = getPIDBackward(backward);
@@ -211,7 +222,8 @@ bool ShadowLock::salamenceUnset(u32 seed)
 
 bool ShadowLock::singleNL(u32 seed)
 {
-    XDRNGR backward(seed, 1);
+    XDRNGR backward(seed);
+    backward.advanceFrames(1);
 
     // Build PID of non-shadow
     u32 pid = getPIDBackward(backward);
@@ -230,7 +242,9 @@ bool ShadowLock::eReader(u32 seed, u32 readerPID)
         return false;
     }
 
-    XDRNGR backward(seed, 1);
+    XDRNGR backward(seed);
+    backward.advanceFrames(1);
+
     u32 pid;
 
     x = 1;
@@ -242,7 +256,9 @@ bool ShadowLock::eReader(u32 seed, u32 readerPID)
         compareBackwards(pid, backward);
     }
 
-    XDRNG forward(backward.getSeed(), 1);
+    XDRNG forward(backward.getSeed());
+    forward.advanceFrames(1);
+
     for (x = frontCount; x >= 0; x--)
     {
         forward.advanceFrames(3);
@@ -272,8 +288,7 @@ void ShadowLock::compareBackwards(u32 &pid, XDRNGR &rng)
     do
     {
         pid = getPIDBackward(rng);
-    }
-    while (!currLock.compare(pid));
+    } while (!currLock.compare(pid));
 }
 
 void ShadowLock::compareForwards(u32 &pid, XDRNG &rng)
@@ -282,8 +297,7 @@ void ShadowLock::compareForwards(u32 &pid, XDRNG &rng)
     do
     {
         pid = getPIDForward(rng);
-    }
-    while (!currLock.compare(pid));
+    } while (!currLock.compare(pid));
 }
 
 void ShadowLock::getCurrLock()

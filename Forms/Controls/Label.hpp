@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,19 +21,16 @@
 #define LABEL_HPP
 
 #include <QLabel>
-#include <QMouseEvent>
 
 class Label : public QLabel
 {
     Q_OBJECT
-
 signals:
     void pressed(int);
 
 public:
     explicit Label(QWidget *parent = nullptr);
     void mousePressEvent(QMouseEvent *event) override;
-
 };
 
 #endif // LABEL_HPP

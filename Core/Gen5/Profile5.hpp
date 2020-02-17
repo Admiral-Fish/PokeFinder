@@ -20,17 +20,19 @@
 #ifndef PROFILE5_HPP
 #define PROFILE5_HPP
 
-#include <Core/Gen5/DSType.hpp>
+#include <Core/Enum/DSType.hpp>
+#include <Core/Enum/Language.hpp>
 #include <Core/Parents/Profile.hpp>
+#include <QVector>
 
 class Profile5 : public Profile
 {
 
 public:
-    Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u64 mac, const QVector<bool> &keypresses, u8 vcount,
-             u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType, Language language = Language::English);
-    Profile5(QJsonObject data);
     Profile5();
+    Profile5(const QString &name, Game version, u16 tid, u16 sid, u64 mac, const QVector<bool> &keypresses, u8 vcount,
+        u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType,
+        Language language = Language::English);
     u64 getMac() const;
     QVector<bool> getKeypresses() const;
     QString getKeypressesString() const;
@@ -43,13 +45,8 @@ public:
     bool getSoftReset() const;
     DSType getDSType() const;
     QString getDSTypeString() const;
-    QJsonObject getJson() const;
-    static QVector<Profile5> loadProfileList();
-    void saveProfile() const;
-    void deleteProfile() const;
-    void updateProfile(const Profile5 &original) const;
-    friend bool operator==(const Profile5 &left, const Profile5 &right);
-    friend bool operator!=(const Profile5 &left, const Profile5 &right);
+    Language getLanguage() const;
+    QString getLanguageString() const;
 
 private:
     u64 mac;
@@ -62,7 +59,7 @@ private:
     u16 timer0Max;
     bool softReset;
     DSType dsType;
-
+    Language language;
 };
 
 bool operator==(const Profile5 &left, const Profile5 &right);

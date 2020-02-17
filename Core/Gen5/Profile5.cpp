@@ -17,60 +17,43 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QApplication>
-#include <QFile>
-#include <QJsonArray>
-#include <QJsonDocument>
 #include "Profile5.hpp"
-
-Profile5::Profile5(const QString &profileName, Game version, u16 tid, u16 sid, u64 mac, const QVector<bool> &keypresses, u8 vcount,
-                   u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType, Language language)
-    : Profile(profileName, version, tid, sid, language)
-{
-    this->mac = mac;
-    this->keypresses = keypresses;
-    this->vcount = vcount;
-    this->gxstat = gxstat;
-    this->vframe = vframe;
-    this->skipLR = skipLR;
-    this->timer0Min = timer0Min;
-    this->timer0Max = timer0Max;
-    this->softReset = softReset;
-    this->dsType = dsType;
-}
-
-Profile5::Profile5(QJsonObject data)
-    : Profile(data["name"].toString(), static_cast<Game>(data["version"].toInt()), data["tid"].toInt(), data["sid"].toInt(), static_cast<Language>(data["language"].toInt()))
-{
-    mac = data["mac"].toString().toULongLong(nullptr, 16);
-    QJsonArray keys = data["keys"].toArray();
-    for (int i = 0; i < 4; i++)
-    {
-        keypresses.append(keys[i].toBool());
-    }
-    vcount = data["vcount"].toInt();
-    gxstat = data["gxstat"].toInt();
-    vframe = data["vframe"].toInt();
-    skipLR = data["skipLR"].toBool();
-    timer0Min = data["timer0Min"].toInt();
-    timer0Max = data["timer0Max"].toInt();
-    softReset = data["softReset"].toBool();
-    dsType = static_cast<DSType>(data["dsType"].toInt());
-}
+#include <Core/Enum/Game.hpp>
+#include <QStringList>
+#include <QTranslator>
 
 Profile5::Profile5()
+    : mac(0x9BF123456)
+    , keypresses({ true, true, true, true })
+    , vcount(0x2f)
+    , gxstat(6)
+    , vframe(5)
+    , skipLR(false)
+    , timer0Min(0x621)
+    , timer0Max(0x621)
+    , softReset(false)
+    , dsType(DSType::DSOriginal)
 {
     // Default parameters for White on desmume
     version = Game::White;
-    mac = 0x9BF123456;
-    keypresses = { true, true, true, true };
-    vcount = 0x2F;
-    gxstat = 6;
-    vframe = 5;
-    skipLR = false;
-    timer0Min = timer0Max = 0x621;
-    softReset = false;
-    dsType = DSType::DSOriginal;
+}
+
+Profile5::Profile5(const QString &name, Game version, u16 tid, u16 sid, u64 mac, const QVector<bool> &keypresses,
+    u8 vcount, u8 gxstat, u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType,
+    Language language)
+    : Profile(name, version, tid, sid)
+    , mac(mac)
+    , keypresses(keypresses)
+    , vcount(vcount)
+    , gxstat(gxstat)
+    , vframe(vframe)
+    , skipLR(skipLR)
+    , timer0Min(timer0Min)
+    , timer0Max(timer0Max)
+    , softReset(softReset)
+    , dsType(dsType)
+    , language(language)
+{
 }
 
 u64 Profile5::getMac() const
@@ -86,14 +69,13 @@ QVector<bool> Profile5::getKeypresses() const
 QString Profile5::getKeypressesString() const
 {
     QStringList strings;
-    QVector<bool> keys = getKeypresses();
-    for (u8 i = 0; i < keys.size(); i++)
+    for (u8 i = 0; i < keypresses.size(); i++)
     {
-        if (i == 0 && keys.at(i))
+        if (i == 0 && keypresses.at(i))
         {
             strings.append(QObject::tr("None"));
         }
-        else if (keys.at(i))
+        else if (keypresses.at(i))
         {
             strings.append(QString::number(i));
         }
@@ -151,133 +133,46 @@ QString Profile5::getDSTypeString() const
             return QObject::tr("DSi");
         case DSType::DS3:
             return QObject::tr("3DS");
-        default:
-            return "-";
-    }
-}
-
-QJsonObject Profile5::getJson() const
-{
-    QJsonObject profile;
-    profile["name"] = profileName;
-    profile["version"] = version;
-    profile["language"] = language;
-    profile["tid"] = tid;
-    profile["sid"] = sid;
-    profile["mac"] = QString::number(mac, 16);
-    QJsonArray keys;
-    for (u8 i = 0; i < 4; i++)
-    {
-        keys.append(keypresses.at(i));
-    }
-    profile["keys"] = keys;
-    profile["vcount"] = vcount;
-    profile["gxstat"] = gxstat;
-    profile["vframe"] = vframe;
-    profile["skipLR"] = skipLR;
-    profile["timer0Min"] = timer0Min;
-    profile["timer0Max"] = timer0Max;
-    profile["softReset"] = softReset;
-    profile["dsType"] = dsType;
-    return profile;
-}
-
-QVector<Profile5> Profile5::loadProfileList()
-{
-    QVector<Profile5> profileList;
-
-    QFile file(QApplication::applicationDirPath() + "/profiles.json");
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        QJsonDocument profiles(QJsonDocument::fromJson(file.readAll()));
-        QJsonArray gen5 = profiles["gen5"].toArray();
-
-        for (const auto &&i : gen5)
-        {
-            profileList.append(Profile5(i.toObject()));
         }
-        file.close();
-    }
-
-    return profileList;
+        return "-";
 }
 
-void Profile5::saveProfile() const
+Language Profile5::getLanguage() const
 {
-    QFile file(QApplication::applicationDirPath() + "/profiles.json");
-    if (file.open(QIODevice::ReadWrite | QIODevice::Text))
-    {
-        QJsonObject profiles(QJsonDocument::fromJson(file.readAll()).object());
-        QJsonArray gen5 = profiles["gen5"].toArray();
-
-        gen5.append(getJson());
-        profiles["gen5"] = gen5;
-
-        file.resize(0);
-        file.write(QJsonDocument(profiles).toJson());
-        file.close();
-    }
+    return language;
 }
 
-void Profile5::deleteProfile() const
+QString Profile5::getLanguageString() const
 {
-    QFile file(QApplication::applicationDirPath() + "/profiles.json");
-    if (file.open(QIODevice::ReadWrite | QFile::Text))
+    switch (language)
     {
-        QJsonObject profiles(QJsonDocument::fromJson(file.readAll()).object());
-        QJsonArray gen5 = profiles["gen5"].toArray();
-
-        for (int i = 0; i < gen5.size(); i++)
-        {
-            Profile5 profile(gen5[i].toObject());
-
-            if (profile == *this)
-            {
-                gen5.removeAt(i);
-                profiles["gen4"] = gen5;
-
-                file.resize(0);
-                file.write(QJsonDocument(profiles).toJson());
-                break;
-            }
-        }
-
-        file.close();
+    case Language::English:
+        return "ENG";
+    case Language::French:
+        return "FRE";
+    case Language::German:
+        return "DEU";
+    case Language::Italian:
+        return "ITA";
+    case Language::Japanese:
+        return "JPN";
+    case Language::Korean:
+        return "KOR";
+    case Language::Spanish:
+        return "SPA";
     }
-}
-
-void Profile5::updateProfile(const Profile5 &original) const
-{
-    QFile file(QApplication::applicationDirPath() + "/profiles.json");
-    if (file.open(QIODevice::ReadWrite | QFile::Text))
-    {
-        QJsonObject profiles(QJsonDocument::fromJson(file.readAll()).object());
-        QJsonArray gen5 = profiles["gen5"].toArray();
-
-        for (auto &&i : gen5)
-        {
-            Profile5 profile(i.toObject());
-
-            if (original == profile && original != *this)
-            {
-                i = getJson();
-                profiles["gen5"] = gen5;
-
-                file.resize(0);
-                file.write(QJsonDocument(profiles).toJson());
-                break;
-            }
-        }
-        file.close();
-    }
+    return "-";
 }
 
 bool operator==(const Profile5 &left, const Profile5 &right)
 {
-    return left.profileName == right.profileName && left.version == right.version && left.language == right.language &&
-           left.tid == right.tid && left.sid == right.sid && left.mac == right.mac && left.keypresses == right.keypresses &&
-           left.vcount == right.vcount && left.gxstat == right.gxstat && left.vframe == right.vframe && left.skipLR == right.skipLR &&
-           left.timer0Min == right.timer0Min && left.softReset == right.softReset && left.dsType == right.dsType;
+    return left.getName() == right.getName() && left.getVersion() == right.getVersion()
+        && left.getTID() == right.getTID() && left.getSID() == right.getSID() && left.getMac() == right.getMac()
+        && left.getKeypresses() == right.getKeypresses() && left.getVCount() == right.getVCount()
+        && left.getGxStat() == right.getGxStat() && left.getVFrame() == right.getVFrame()
+        && left.getSkipLR() == right.getSkipLR() && left.getTimer0Min() == right.getTimer0Min()
+        && left.getTimer0Max() == right.getTimer0Max() && left.getSoftReset() == right.getSoftReset()
+        && left.getDSType() == right.getDSType() && left.getLanguage() == right.getLanguage();
 }
 
 bool operator!=(const Profile5 &left, const Profile5 &right)

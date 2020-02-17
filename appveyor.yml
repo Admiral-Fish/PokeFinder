@@ -1,16 +1,16 @@
 environment:
   matrix:
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    QTPATH: C:\Qt\5.13\msvc2017_64
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    QTPATH: C:\Qt\5.14\msvc2017_64
     OS: win64
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x64
   - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu1804
     OS: linux
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    QTPATH: C:\Qt\5.13\msvc2017
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    QTPATH: C:\Qt\5.14\msvc2017
     OS: win32
-    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+    VCVARSALLPATH: C:\"Program Files (x86)\Microsoft Visual Studio"\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
     VCVARSALL: x86
 
 install:
@@ -21,8 +21,10 @@ before_build:
     - cmd: set PATH=%QTPATH%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
     - cmd: call %VCVARSALLPATH% %VCVARSALL%
     # Linux
-    - sh: sudo apt-get -qq update
-    - sh: sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default
+    - sh: sudo add-apt-repository ppa:beineri/opt-qt-5.14.1-bionic -y
+    - sh: sudo apt-get update -qq
+    - sh: sudo apt-get -y install qt514base qt514svg qt514tools libgl1-mesa-dev
+    - sh: source /opt/qt5*/bin/qt5*-env.sh
     
 build_script:
     - qmake PokeFinder.pro
@@ -39,18 +41,23 @@ after_build:
     - cmd: del PokeFinder-windows\vc_redist*.exe
     - cmd: xcopy /I %QTPATH%\plugins\platforms\qwindows.dll PokeFinder-windows\platforms\
     - cmd: xcopy /I %QTPATH%\plugins\styles\qwindowsvistastyle.dll PokeFinder-windows\styles\
+    - cmd: xcopy /I %OpenSSL%\libcrypto*.dll PokeFinder-windows\
+    - cmd: xcopy /I %OpenSSL%\libssl*.dll PokeFinder-windows\
     - cmd: 7z a PokeFinder-%OS%.zip PokeFinder-windows\
+    - cmd: sha256sum PokeFinder-%OS%.zip > PokeFinder-%OS%.zip.sha256
     # Linux
     - sh: zip -r PokeFinder-linux.zip PokeFinder
+    - sh: sha256sum PokeFinder-linux.zip > PokeFinder-linux.zip.sha256
     
 artifacts:
 - path: PokeFinder-%OS%.zip
+- path: PokeFinder-%OS%.zip.sha256
 
 deploy:
     provider: GitHub
     description: ''
     auth_token:
         secure: u3c5wUq11csZ77TpgKMImu9U+ibNiviMcEpTuQXmqp1YGSHA/+u5FhqZ3KRZBAQX
-    artifact: PokeFinder-%OS%.zip
+    artifact: PokeFinder-%OS%.zip,PokeFinder-%OS%.zip.sha256
     on:
         APPVEYOR_REPO_TAG: true

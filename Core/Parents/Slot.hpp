@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,29 +20,27 @@
 #ifndef SLOT_HPP
 #define SLOT_HPP
 
+#include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Util/Global.hpp>
-#include <Core/Parents/Pokemon.hpp>
 
 class Slot
 {
-
 public:
     Slot() = default;
-    Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon);
-    Slot(u16 specie, u8 level, Pokemon pokemon);
+    Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo &info);
+    Slot(u16 specie, u8 level, const PersonalInfo &info);
 
     u8 getMinLevel() const;
     u8 getMaxLevel() const;
     u16 getSpecie() const;
-    Pokemon getPokemon() const;
-    void setSpecie(u16 specie, Pokemon pokemon);
+    PersonalInfo getPersonal() const;
+    void setSpecie(u16 specie, const PersonalInfo &info);
 
 private:
     u8 minLevel;
     u8 maxLevel;
     u16 specie;
-    Pokemon pokemon;
-
+    PersonalInfo info;
 };
 
 #endif // SLOT_HPP

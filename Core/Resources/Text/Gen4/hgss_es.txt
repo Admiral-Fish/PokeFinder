@@ -1,0 +1,120 @@
+0,Pueblo Primavera
+1,Ruta 29
+2,Ciudad Cerezo
+3,Ruta 30
+4,Ruta 31
+5,Ciudad Malva
+6,Torre Bellsprout
+7,Ruta 32
+8,Ruinas Alfa (Exterior)
+9,Ruinas Alfa (Interior)
+10,Cueva Unión Planta baja
+11,Cueva Unión Sótano 1
+12,Cueva Unión Sótano 2
+13,Ruta 33
+14,Pozo Slowpoke Planta baja
+15,Pozo Slowpoke Sótano
+16,Encinar
+17,Ruta 34
+18,Ruta 35
+19,Parque Nacional
+20,Ruta 36
+21,Ruta 37
+22,Ciudad Iris
+23,Torre Quemada Planta baja
+24,Torre Quemada Sótano
+25,Torre Campana
+26,Ruta 38
+27,Ruta 39
+28,Ciudad Olivo
+29,Ruta 40
+30,Ruta 41
+31,Islas Remolino Planta baja
+32,Islas Remolino Sótano 1
+33,Islas Remolino Sótano 2
+34,Islas Remolino Sótano 3
+35,Ciudad Orquídea
+36,Ruta 42
+37,Monte Mortero Planta baja (entrada)
+38,Monte Mortero Planta baja (interior)
+39,Monte Mortero Primera planta
+40,Monte Mortero Sótano
+41,Ruta 43
+42,Lago de la Furia
+43,Ruta 44
+44,Ruta Helada Planta baja
+45,Ruta Helada Sótano 1
+46,Ruta Helada Sótano 2
+47,Ruta Helada Sótano 3
+48,Ciudad Endrino
+49,Guarida Dragón
+50,Ruta 45
+51,Ruta 46
+52,Cueva Oscura (Ruta 31)
+53,Cueva Oscura (Ruta 45)
+54,Ruta 47
+55,Monte Moon Interior
+56,Monte Moon Exterior (Plaza Monte Moon)
+57,Islas Espuma Zonas de acceso
+58,Islas Espuma Sótano 1
+59,Islas Espuma Sótano 2
+60,Islas Espuma Sótano 3
+61,Islas Espuma Sótano 4
+62,Cueva M Plateado Cueva con cascadas
+63,Monte Plateado Ladera verde
+64,Cueva M Plateado Cueva pequeña
+65,Paso Acantilado
+66,Cueva Acantilado
+67,Monte Plateado Exterior
+68,Cueva M Plateado Cueva espiral
+69,Monte Plateado Ladera nevada
+70,Cueva M Plateado Cueva final
+71,Cueva M Plateado Cueva de Moltres
+72,Ruta 12
+73,Ruta 19
+74,Ruta 20
+75,Pueblo Paleta
+76,Ciudad Verde
+77,Ciudad Celeste
+78,Ciudad Carmín
+79,Ciudad Azulona
+80,Ciudad Fucsia
+81,Isla Canela
+82,Ruta 48
+83,Ruta 26
+84,Ruta 27
+85,Ruta 28
+86,Monte Moon
+87,Túnel Roca Planta baja
+88,Túnel Roca Sótano
+89,Calle Victoria Entrada
+90,Ruta 1
+91,Ruta 2 (Sur)
+92,Ruta 3
+93,Ruta 4
+94,Ruta 5
+95,Ruta 6
+96,Ruta 7
+97,Ruta 8
+98,Ruta 9
+99,Ruta 10
+100,Ruta 11
+101,Ruta 13
+102,Ruta 14
+103,Ruta 15
+104,Ruta 16
+105,Ruta 17
+106,Ruta 18
+107,Ruta 21
+108,Ruta 22
+109,Ruta 24
+110,Ruta 25
+111,Cataratas Tohjo
+112,Cueva Diglett
+113,Calle Victoria Piso 1
+114,Calle Victoria Piso 2
+115,Ruta 2 (Norte)
+116,Bosque Verde
+117,Cerulean Cave Planta baja
+118,Cerulean Cave Primer piso
+119,Cerulean Cave Sótano

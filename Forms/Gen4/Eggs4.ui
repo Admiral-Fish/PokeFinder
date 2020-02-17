@@ -100,9 +100,6 @@
      <property name="styleSheet">
       <string notr="true"/>
      </property>
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
@@ -120,30 +117,13 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_9">
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
-            <property name="text">
-             <string>Seed</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="1">
-           <widget class="TextBox" name="textBoxGeneratorStartingFrame">
+           <widget class="TextBox" name="textBoxGeneratorInitialFrame">
             <property name="text">
              <string notr="true">1</string>
             </property>
             <property name="maxLength">
              <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="TextBox" name="textBoxGeneratorTID">
-            <property name="text">
-             <string notr="true">12345</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
             </property>
            </widget>
           </item>
@@ -157,48 +137,38 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="1">
+           <widget class="ComboBox" name="comboBoxGeneratorMethod">
+            <item>
+             <property name="text">
+              <string>IVs</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>PID</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorStartingFrame">
+           <widget class="QLabel" name="labelGeneratorInitialFrame">
             <property name="text">
-             <string>Starting Frame</string>
+             <string>Initial Frame</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelGeneratorSID">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorMethod">
             <property name="text">
-             <string>SID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelGeneratorTID">
-            <property name="text">
-             <string>TID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSID">
-            <property name="text">
-             <string notr="true">54321</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxResults">
-            <property name="text">
-             <string>Max Results</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButtonGenerate">
-            <property name="text">
-             <string>Generate</string>
+             <string>Method</string>
             </property>
            </widget>
           </item>
@@ -212,28 +182,28 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorMethod">
+          <item row="4" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGenerate">
             <property name="text">
-             <string>Method</string>
+             <string>Generate</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorMethod">
-            <item>
-             <property name="text">
-              <string>IVs</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>PID</string>
-             </property>
-            </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxResults">
+            <property name="text">
+             <string>Max Results</string>
+            </property>
            </widget>
           </item>
          </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="TableView" name="tableViewGenerator">
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
         </widget>
        </item>
        <item row="0" column="1">
@@ -259,10 +229,10 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QComboBox" name="comboBoxGeneratorGender">
+           <widget class="ComboBox" name="comboBoxGeneratorGender">
             <item>
              <property name="text">
-              <string notr="true">-</string>
+              <string notr="true">Any</string>
              </property>
             </item>
             <item>
@@ -285,7 +255,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QComboBox" name="comboBoxGeneratorAbility">
+           <widget class="ComboBox" name="comboBoxGeneratorAbility">
             <item>
              <property name="text">
               <string>Any</string>
@@ -357,7 +327,7 @@
            </widget>
           </item>
           <item row="4" column="2">
-           <widget class="QComboBox" name="comboBoxGeneratorGenderRatio">
+           <widget class="ComboBox" name="comboBoxGeneratorGenderRatio">
             <item>
              <property name="text">
               <string>Genderless</string>
@@ -415,13 +385,6 @@
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="TableView" name="tableViewGenerator">
-         <attribute name="verticalHeaderVisible">
-          <bool>false</bool>
-         </attribute>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabSearcher">
@@ -441,48 +404,7 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_7">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherMethod">
-            <property name="text">
-             <string>Method</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelSearcherDelay">
-            <property name="text">
-             <string>Delay</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherIVFrame">
-            <property name="text">
-             <string>IV Frame</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="TextBox" name="textBoxSearcherIVMaxFrame">
-            <property name="text">
-             <string notr="true">100000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2">
-           <widget class="TextBox" name="textBoxSearcherMaxDelay">
-            <property name="text">
-             <string notr="true">2000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0" colspan="3">
+          <item row="4" column="0" colspan="3">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QPushButton" name="pushButtonSearch">
@@ -500,45 +422,25 @@
             </item>
            </layout>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherPIDFrame">
+          <item row="3" column="1">
+           <widget class="TextBox" name="textBoxSearcherMinDelay">
             <property name="text">
-             <string>PID Frame</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="TextBox" name="textBoxSearcherIVMinFrame">
-            <property name="text">
-             <string notr="true">1</string>
+             <string notr="true">600</string>
             </property>
             <property name="maxLength">
              <number>10</number>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxSearcherTID">
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelSearcherIVFrame">
             <property name="text">
-             <string notr="true">12345</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="TextBox" name="textBoxSearcherPIDMaxFrame">
-            <property name="text">
-             <string notr="true">30</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
+             <string>IV Frame</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxSearcherMethod">
+           <widget class="ComboBox" name="comboBoxSearcherMethod">
             <item>
              <property name="text">
               <string>IVs</string>
@@ -556,30 +458,64 @@
             </item>
            </widget>
           </item>
-          <item row="5" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxSearcherSID">
+          <item row="1" column="2">
+           <widget class="TextBox" name="textBoxSearcherPIDMaxFrame">
             <property name="text">
-             <string notr="true">54321</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="TextBox" name="textBoxSearcherMinDelay">
-            <property name="text">
-             <string notr="true">600</string>
+             <string notr="true">30</string>
             </property>
             <property name="maxLength">
              <number>10</number>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelSearcherTID">
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelSearcherDelay">
             <property name="text">
-             <string>TID</string>
+             <string>Delay</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherPIDFrame">
+            <property name="text">
+             <string>PID Frame</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="TextBox" name="textBoxSearcherIVMaxFrame">
+            <property name="text">
+             <string notr="true">100000</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxSearcherIVMinFrame">
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="TextBox" name="textBoxSearcherMaxDelay">
+            <property name="text">
+             <string notr="true">2000</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSearcherMethod">
+            <property name="text">
+             <string>Method</string>
             </property>
            </widget>
           </item>
@@ -590,13 +526,6 @@
             </property>
             <property name="maxLength">
              <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelSearcherSID">
-            <property name="text">
-             <string>SID</string>
             </property>
            </widget>
           </item>
@@ -626,10 +555,10 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QComboBox" name="comboBoxSearcherGender">
+           <widget class="ComboBox" name="comboBoxSearcherGender">
             <item>
              <property name="text">
-              <string notr="true">-</string>
+              <string notr="true">Any</string>
              </property>
             </item>
             <item>
@@ -652,7 +581,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QComboBox" name="comboBoxSearcherAbility">
+           <widget class="ComboBox" name="comboBoxSearcherAbility">
             <item>
              <property name="text">
               <string>Any</string>
@@ -724,7 +653,7 @@
            </widget>
           </item>
           <item row="4" column="2">
-           <widget class="QComboBox" name="comboBoxSearcherGenderRatio">
+           <widget class="ComboBox" name="comboBoxSearcherGenderRatio">
             <item>
              <property name="text">
               <string>Genderless</string>
@@ -842,6 +771,11 @@
    <header>Forms/Controls/EggSettings.hpp</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
@@ -849,10 +783,9 @@
   <tabstop>tabEggSelection</tabstop>
   <tabstop>comboBoxGeneratorMethod</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
-  <tabstop>textBoxGeneratorStartingFrame</tabstop>
+  <tabstop>textBoxGeneratorInitialFrame</tabstop>
   <tabstop>textBoxGeneratorMaxResults</tabstop>
-  <tabstop>textBoxGeneratorTID</tabstop>
-  <tabstop>textBoxGeneratorSID</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>comboBoxGeneratorGender</tabstop>
   <tabstop>comboBoxGeneratorAbility</tabstop>
   <tabstop>comboBoxGeneratorNature</tabstop>
@@ -862,13 +795,16 @@
   <tabstop>comboBoxGeneratorGenderRatio</tabstop>
   <tabstop>checkBoxGeneratorMasuada</tabstop>
   <tabstop>checkBoxGeneratorShinyOnly</tabstop>
-  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherMethod</tabstop>
   <tabstop>textBoxSearcherPIDMinFrame</tabstop>
+  <tabstop>textBoxSearcherPIDMaxFrame</tabstop>
   <tabstop>textBoxSearcherIVMinFrame</tabstop>
-  <tabstop>textBoxSearcherTID</tabstop>
-  <tabstop>textBoxSearcherSID</tabstop>
+  <tabstop>textBoxSearcherIVMaxFrame</tabstop>
+  <tabstop>textBoxSearcherMinDelay</tabstop>
+  <tabstop>textBoxSearcherMaxDelay</tabstop>
+  <tabstop>pushButtonSearch</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
   <tabstop>comboBoxSearcherGender</tabstop>
   <tabstop>comboBoxSearcherAbility</tabstop>
   <tabstop>comboBoxSearcherNature</tabstop>
@@ -878,8 +814,6 @@
   <tabstop>comboBoxSearcherGenderRatio</tabstop>
   <tabstop>checkBoxSearcherMasuada</tabstop>
   <tabstop>checkBoxSearcherShinyOnly</tabstop>
-  <tabstop>pushButtonSearch</tabstop>
-  <tabstop>pushButtonCancel</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>

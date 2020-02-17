@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,18 +24,12 @@
 
 class EncounterArea3 : public EncounterArea
 {
-
 public:
     EncounterArea3() = default;
-    EncounterArea3(u8 location, u16 delay, Encounter type, const QVector<Slot> &pokemon);
+    EncounterArea3(u8 location, Encounter encounter, const QVector<Slot> &pokemon);
     u8 calcLevel(u8 index, u16 prng) const;
     u8 calcLevel(u8 index) const;
     u8 getEncounterRate() const;
-    u16 getDelay() const;
-
-private:
-    u16 delay{};
-
 };
 
 #endif // ENCOUNTERAREA3_HPP

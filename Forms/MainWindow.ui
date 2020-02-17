@@ -16,9 +16,6 @@
     <height>390</height>
    </size>
   </property>
-  <property name="windowTitle">
-   <string notr="true">PokéFinder 2.4.1</string>
-  </property>
   <property name="windowIcon">
    <iconset>
     <normaloff>../pokefinder.ico</normaloff>../pokefinder.ico</iconset>
@@ -172,22 +169,28 @@
     <property name="title">
      <string>Tools</string>
     </property>
-    <addaction name="actionEncounter_Lookup"/>
-    <addaction name="actionIV_Calculator"/>
+    <addaction name="actionEncounterLookup"/>
+    <addaction name="actionIVCalculator"/>
     <addaction name="actionResearcher"/>
    </widget>
    <widget class="QMenu" name="menuGen3Tools">
     <property name="title">
      <string>Gen 3 Tools</string>
     </property>
-    <addaction name="actionGameCubeRTC"/>
-    <addaction name="actionGameCube_Seed_Finder"/>
+    <widget class="QMenu" name="menuGameCube">
+     <property name="title">
+      <string>GameCube</string>
+     </property>
+     <addaction name="actionGameCubeRTC"/>
+     <addaction name="actionGameCubeSeedFinder"/>
+     <addaction name="actionJirachiPattern"/>
+     <addaction name="actionPokeSpot"/>
+    </widget>
+    <addaction name="menuGameCube"/>
     <addaction name="actionIVtoPID3"/>
-    <addaction name="actionJirachiPattern"/>
     <addaction name="actionPIDtoIV"/>
-    <addaction name="actionPokeSpot"/>
     <addaction name="actionSeedtoTime3"/>
-    <addaction name="actionSpinda_Painter"/>
+    <addaction name="actionSpindaPainter"/>
    </widget>
    <widget class="QMenu" name="menuGen4Tools">
     <property name="title">
@@ -195,7 +198,7 @@
     </property>
     <addaction name="actionIVtoPID4"/>
     <addaction name="actionSeedtoTime4"/>
-    <addaction name="actionSID_from_Chained_Shiny"/>
+    <addaction name="actionSIDfromChainedShiny"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
@@ -366,27 +369,27 @@
     <string>Chinese</string>
    </property>
   </action>
-  <action name="actionSID_from_Chained_Shiny">
+  <action name="actionSIDfromChainedShiny">
    <property name="text">
     <string>SID from Chained Shiny</string>
    </property>
   </action>
-  <action name="actionIV_Calculator">
+  <action name="actionIVCalculator">
    <property name="text">
     <string>IV Calculator</string>
    </property>
   </action>
-  <action name="actionSpinda_Painter">
+  <action name="actionSpindaPainter">
    <property name="text">
     <string>Spinda Painter</string>
    </property>
   </action>
-  <action name="actionEncounter_Lookup">
+  <action name="actionEncounterLookup">
    <property name="text">
     <string>Encounter Lookup</string>
    </property>
   </action>
-  <action name="actionGameCube_Seed_Finder">
+  <action name="actionGameCubeSeedFinder">
    <property name="text">
     <string>GameCube Seed Finder</string>
    </property>

@@ -1,0 +1,107 @@
+0,Pueblo Paleta
+1,Viridian City
+2,Ciudad Verde
+3,Ciudad Carmín
+4,Ciudad Azulona
+5,Ciudad Fucsia
+6,Isla Canela
+7,Ruta 1
+8,Ruta 2
+9,Ruta 3
+10,Ruta 4
+11,Ruta 5
+12,Ruta 6
+13,Ruta 7
+14,Ruta 8
+15,Ruta 9
+16,Ruta 10
+17,Ruta 11
+18,Ruta 12
+19,Ruta 13
+20,Ruta 14
+21,Ruta 15
+22,Ruta 16
+23,Ruta 17
+24,Ruta 18
+25,Ruta 19
+26,Ruta 20
+27,Ruta 21
+28,Ruta 22
+29,Ruta 23
+30,Ruta 24
+31,Ruta 25
+32,Bosque Verde
+33,Monte Moon Planta baja
+34,Monte Moon Sótano 1
+35,Monte Moon Sótano 2
+36,S.S. Anne
+37,Cueva Diglett
+38,Calle Victoria Planta baja
+39,Calle Victoria Segunda planta
+40,Calle Victoria Primera planta
+41,Mansión Pokémon Planta baja y pisos 1 y 2
+42,Mansión Pokémon Sótano
+43,Zona Safari, Zona central
+44,Zona Safari, Zona 1
+45,Zona Safari, Zona 2
+46,Zona Safari, Zona 3
+47,Túnel Roca Planta baja
+48,Túnel Roca Sótano
+49,Islas Espuma Planta baja
+50,Islas Espuma Sótano 1
+51,Islas Espuma Sótano 2
+52,Islas Espuma Sótano 3
+53,Islas Espuma Sótano 4
+54,Torre Pokémon Piso 2
+55,Torre Pokémon Pisos 3
+56,Torre Pokémon Pisos 4
+57,Torre Pokémon Pisos 5
+58,Torre Pokémon Pisos 6
+59,Cueva Celeste Planta baja
+60,Cueva Celeste Primer piso
+61,Cueva Celeste Sótano
+62,Central de Energía
+63,Isla Prima
+64,Isla Quarta
+65,Isla Inta
+66,Camino Candente
+67,Playa Tesoro
+68,Cabo Extremo
+69,Puente Unión
+70,Puerto Isla Tera
+71,Lugar de Recreo
+72,Aquarinto
+73,Prado Isla Inta
+74,Pilar Recuerdo
+75,Isla Aislada
+76,Vía Verde
+77,Vía Acuática
+78,Valle Ruinas
+79,Torre Desafío (Exterior)
+80,Entrada al Cañón
+81,Cañón Sétano
+82,Ruinas Sete
+83,Monte Ascuas Ladera
+84,Monte Ascuas Entrada al desfiladero
+85,Monte Ascuas Desfiladero
+86,Monte Ascuas Salida del desfiladero
+87,Monte Ascuas Planta baja
+88,Monte Ascuas Sótano 1
+89,Monte Ascuas Sótano 2
+90,Monte Ascuas Sótano 3
+91,Monte Ascuas Sótano 4
+92,Monte Ascuas Sótano 5
+93,Bosque Baya
+94,Cueva Glaciada Planta baja (sala 1)
+95,Cueva Glaciada Planta baja (sala 2)
+96,Cueva Glaciada Sótano
+97,Cueva Glaciada Planta baja (sala 3)
+98,Bosquejo
+99,Cueva Cambiante
+100,Cámara Anémuna
+101,Cámara Tulipdos
+102,Cámara Trisante
+103,Cámara Quarciso
+104,Cámara Hibinca
+105,Cámara Seiris
+106,Cámara Pasiete

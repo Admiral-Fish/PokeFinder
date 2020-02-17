@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,10 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include "CheckList.hpp"
 #include <QEvent>
 #include <QLineEdit>
 #include <QListView>
-#include "CheckList.hpp"
+#include <QStandardItemModel>
 
 CheckList::CheckList(QWidget *parent) : QComboBox(parent)
 {
@@ -32,7 +33,7 @@ CheckList::CheckList(QWidget *parent) : QComboBox(parent)
     lineEdit()->installEventFilter(this);
 
     connect(lineEdit(), &QLineEdit::selectionChanged, lineEdit(), &QLineEdit::deselect);
-    connect(dynamic_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &CheckList::itemPressed);
+    connect(qobject_cast<QListView *>(view()), &QAbstractItemView::pressed, this, &CheckList::itemPressed);
     connect(model, &QAbstractItemModel::dataChanged, this, &CheckList::modelDataChanged);
 }
 
@@ -52,7 +53,7 @@ void CheckList::setup(const QStringList &items)
     }
 }
 
-QVector<bool> CheckList::getChecked()
+QVector<bool> CheckList::getChecked() const
 {
     QVector<bool> result;
 
@@ -103,36 +104,38 @@ void CheckList::updateText()
 
     switch (checkState())
     {
-        case Qt::Checked:
-            text = tr("Any");
-            break;
-        case Qt::Unchecked:
-            text = tr("Any");
-            break;
-        case Qt::PartiallyChecked:
-            for (int i = 0; i < model->rowCount(); i++)
+    case Qt::Checked:
+        text = tr("Any");
+        break;
+    case Qt::Unchecked:
+        text = tr("Any");
+        break;
+    case Qt::PartiallyChecked:
+        for (int i = 0; i < model->rowCount(); i++)
+        {
+            if (model->item(i)->checkState() == Qt::Checked)
             {
-                if (model->item(i)->checkState() == Qt::Checked)
+                if (!text.isEmpty())
                 {
-                    if (!text.isEmpty())
-                    {
-                        text += ", ";
-                    }
-
-                    text += model->item(i)->text();
+                    text += ", ";
                 }
+
+                text += model->item(i)->text();
             }
-            break;
-        default:
-            text = tr("Any");
+        }
+        break;
+    default:
+        text = tr("Any");
     }
 
     lineEdit()->setText(text);
 }
 
-int CheckList::checkState()
+int CheckList::checkState() const
 {
-    int total = model->rowCount(), checked = 0, unchecked = 0;
+    int total = model->rowCount();
+    int checked = 0;
+    int unchecked = 0;
 
     for (int i = 0; i < total; i++)
     {

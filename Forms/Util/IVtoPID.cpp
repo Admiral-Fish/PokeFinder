@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,16 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "IVtoPID.hpp"
 #include "ui_IVtoPID.h"
+#include <Core/Enum/Method.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/RNGEuclidean.hpp>
 #include <Core/Util/Nature.hpp>
+#include <Core/Util/Translator.hpp>
+#include <QSettings>
 
-IVtoPID::IVtoPID(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::IVtoPID)
+IVtoPID::IVtoPID(QWidget *parent) : QWidget(parent), ui(new Ui::IVtoPID)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -46,14 +46,22 @@ IVtoPID::~IVtoPID()
 void IVtoPID::setupModels()
 {
     model = new QStandardItemModel(ui->tableView);
-    model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("PID") << tr("Method") << tr("Ability") << "50%" << "12.5%" << "25%" << "75%" << tr("SID"));
+    model->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("PID") << tr("Method") << tr("Ability") << "50%"
+                                                   << "12.5%"
+                                                   << "25%"
+                                                   << "75%" << tr("SID"));
     ui->tableView->setModel(model);
 
     ui->textBoxTID->setValues(InputType::TIDSID);
-    ui->comboBoxNature->addItems(Nature::getNatures());
+    ui->comboBoxNature->addItems(Translator::getNatures());
+
+    connect(ui->pushButtonFind, &QPushButton::clicked, this, &IVtoPID::find);
 
     QSettings setting;
-    if (setting.contains("ivToPID/geometry")) this->restoreGeometry(setting.value("ivToPID/geometry").toByteArray());
+    if (setting.contains("ivToPID/geometry"))
+    {
+        this->restoreGeometry(setting.value("ivToPID/geometry").toByteArray());
+    }
 }
 
 QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid)
@@ -62,9 +70,9 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature,
 
     u32 x_test = ivs2 << 16;
     u32 x_testXD = ivs1 << 16;
-    u32 pid = 0;
-    u16 sid = 0;
-    bool pass = false;
+    u32 pid;
+    u16 sid;
+    bool pass;
 
     for (u32 cnt = 0; cnt <= 0xFFFF; cnt++)
     {
@@ -86,9 +94,11 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature,
             if (pid % 25 == nature)
             {
                 QList<QStandardItem *> result;
-                result << new QStandardItem(QString::number(XDColoSeed, 16).toUpper()) << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("XD/Colo"))
-                       << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F")
-                       << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
+                result << new QStandardItem(QString::number(XDColoSeed, 16).toUpper())
+                       << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("XD/Colo"))
+                       << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
+                       << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
+                       << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
                 results.append(result);
             }
         }
@@ -113,9 +123,11 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature,
             if (pid % 25 == nature)
             {
                 QList<QStandardItem *> result;
-                result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("Method 1"))
-                       << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F")
-                       << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
+                result << new QStandardItem(QString::number(method1Seed, 16).toUpper())
+                       << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("Method 1"))
+                       << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
+                       << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
+                       << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
                 results.append(result);
             }
 
@@ -124,9 +136,11 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature,
             if (pid % 25 == nature)
             {
                 QList<QStandardItem *> result;
-                result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("Reverse Method 1"))
-                       << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F")
-                       << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
+                result << new QStandardItem(QString::number(method1Seed, 16).toUpper())
+                       << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("Reverse Method 1"))
+                       << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
+                       << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
+                       << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
                 results.append(result);
             }
 
@@ -136,9 +150,11 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature,
             {
                 sid = (rng3 ^ rng4 ^ tid) & 0xFFF8;
                 QList<QStandardItem *> result;
-                result << new QStandardItem(QString::number(method234Seed, 16).toUpper()) << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("Method 2"))
-                       << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F")
-                       << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
+                result << new QStandardItem(QString::number(method234Seed, 16).toUpper())
+                       << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("Method 2"))
+                       << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
+                       << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
+                       << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
                 results.append(result);
             }
 
@@ -146,120 +162,47 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature,
             if (rng3 / 0x5556 != 0)
             {
                 u8 choppedPID = rng2 / 0xA3E;
-                sid = (choppedPID ^ tid) & 0xFFF8;
                 pass = choppedPID % 25 == nature;
-                if (pass)
-                {
-                    QList<QStandardItem *> result;
-                    result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(choppedPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (DPPt)"))
-                           << new QStandardItem(QString::number(choppedPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
-                           << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                    results.append(result);
-                }
 
                 if (pass)
                 {
-                    choppedPID += 0x96;
-                    sid = (choppedPID ^ tid) & 0xFFF8;
-                    QList<QStandardItem *> result;
-                    result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(choppedPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (DPPt)"))
-                           << new QStandardItem(QString::number(choppedPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
-                           << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                    results.append(result);
+                    for (auto i : { 0, 0x96, 0x32, -0x7d, -0x19 })
+                    {
+                        u8 cPID = choppedPID + i;
+                        sid = (cPID ^ tid) & 0xFFF8;
+                        QList<QStandardItem *> result;
+                        result << new QStandardItem(QString::number(method1Seed, 16).toUpper())
+                               << new QStandardItem(QString::number(cPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (DPPt)"))
+                               << new QStandardItem(QString::number(cPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F")
+                               << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
+                               << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F")
+                               << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
+                        results.append(result);
+                    }
                 }
-
-                if (pass)
-                {
-                    choppedPID += 0x32;
-                    sid = (choppedPID ^ tid) & 0xFFF8;
-                    QList<QStandardItem *> result;
-                    result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(choppedPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (DPPt)"))
-                           << new QStandardItem(QString::number(choppedPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
-                           << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                    results.append(result);
-                }
-
-                if (pass)
-                {
-                    choppedPID -= 0x7D;
-                    sid = (choppedPID ^ tid) & 0xFFF8;
-                    QList<QStandardItem *> result;
-                    result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(choppedPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (DPPt)"))
-                           << new QStandardItem(QString::number(choppedPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
-                           << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                    results.append(result);
-                }
-
-                if (pass)
-                {
-                    choppedPID -= 0x19;
-                    sid = (choppedPID ^ tid) & 0xFFF8;
-                    QList<QStandardItem *> result;
-                    result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(choppedPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (DPPt)"))
-                           << new QStandardItem(QString::number(choppedPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
-                           << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                    results.append(result);
-                }
-
             }
 
             // Cute Charm HGSS
             if (rng3 % 3 != 0)
             {
                 u8 choppedPID = rng2 % 25;
-                sid = (choppedPID ^ tid) & 0xFFF8;
                 pass = choppedPID == nature;
-                if (pass)
-                {
-                    QList<QStandardItem *> result;
-                    result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(choppedPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (HGSS)"))
-                           << new QStandardItem(QString::number(choppedPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
-                           << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                    results.append(result);
-                }
 
                 if (pass)
                 {
-                    choppedPID += 0x96;
-                    sid = (choppedPID ^ tid) & 0xFFF8;
-                    QList<QStandardItem *> result;
-                    result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(choppedPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (HGSS)"))
-                           << new QStandardItem(QString::number(choppedPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
-                           << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                    results.append(result);
-                }
-
-                if (pass)
-                {
-                    choppedPID += 0x32;
-                    sid = (choppedPID ^ tid) & 0xFFF8;
-                    QList<QStandardItem *> result;
-                    result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(choppedPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (HGSS)"))
-                           << new QStandardItem(QString::number(choppedPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
-                           << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                    results.append(result);
-                }
-
-                if (pass)
-                {
-                    choppedPID -= 0x7D;
-                    sid = (choppedPID ^ tid) & 0xFFF8;
-                    QList<QStandardItem *> result;
-                    result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(choppedPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (HGSS)"))
-                           << new QStandardItem(QString::number(choppedPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
-                           << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                    results.append(result);
-                }
-
-                if (pass)
-                {
-                    choppedPID -= 0x19;
-                    sid = (choppedPID ^ tid) & 0xFFF8;
-                    QList<QStandardItem *> result;
-                    result << new QStandardItem(QString::number(method1Seed, 16).toUpper()) << new QStandardItem(QString::number(choppedPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (HGSS)"))
-                           << new QStandardItem(QString::number(choppedPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
-                           << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
-                    results.append(result);
+                    for (auto i : { 0, 0x96, 0x32, -0x7d, -0x19 })
+                    {
+                        u8 cPID = choppedPID + i;
+                        sid = (cPID ^ tid) & 0xFFF8;
+                        QList<QStandardItem *> result;
+                        result << new QStandardItem(QString::number(method1Seed, 16).toUpper())
+                               << new QStandardItem(QString::number(cPID, 16).toUpper()) << new QStandardItem(tr("Cute Charm (DPPt)"))
+                               << new QStandardItem(QString::number(cPID & 1)) << new QStandardItem(((choppedPID & 0xFF) > 126) ? "M" : "F")
+                               << new QStandardItem(((choppedPID & 0xFF) > 30) ? "M" : "F")
+                               << new QStandardItem(((choppedPID & 0xFF) > 63) ? "M" : "F")
+                               << new QStandardItem(((choppedPID & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
+                        results.append(result);
+                    }
                 }
             }
         }
@@ -272,9 +215,11 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeeds(u16 ivs1, u16 ivs2, u8 nature,
             if (pid % 25 == nature)
             {
                 QList<QStandardItem *> result;
-                result << new QStandardItem(QString::number(method234Seed, 16).toUpper()) << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("Method 4"))
-                       << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F")
-                       << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
+                result << new QStandardItem(QString::number(method234Seed, 16).toUpper())
+                       << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("Method 4"))
+                       << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
+                       << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
+                       << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
                 results.append(result);
             }
         }
@@ -287,12 +232,13 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeedsChannel(u8 hp, u8 atk, u8 def, 
 {
     QVector<QList<QStandardItem *>> results;
 
-    RNGEuclidean euclidean(Channel);
+    RNGEuclidean euclidean(Method::Channel);
     QVector<u32> seeds = euclidean.recoverLower27BitsChannel(hp, atk, def, spa, spd, spe);
 
     for (const auto &seed : seeds)
     {
-        XDRNGR rng(seed, 3);
+        XDRNGR rng(seed);
+        rng.advanceFrames(3);
 
         u16 pid2 = rng.nextUShort();
         u16 pid1 = rng.nextUShort();
@@ -309,9 +255,11 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeedsChannel(u8 hp, u8 atk, u8 def, 
         if (pid % 25 == nature)
         {
             QList<QStandardItem *> result;
-            result << new QStandardItem(QString::number(rng.nextUInt(), 16).toUpper()) << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("Channel"))
-                   << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F")
-                   << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
+            result << new QStandardItem(QString::number(rng.nextUInt(), 16).toUpper())
+                   << new QStandardItem(QString::number(pid, 16).toUpper()) << new QStandardItem(tr("Channel"))
+                   << new QStandardItem(QString::number(pid & 1)) << new QStandardItem(((pid & 0xFF) > 126) ? "M" : "F")
+                   << new QStandardItem(((pid & 0xFF) > 30) ? "M" : "F") << new QStandardItem(((pid & 0xFF) > 63) ? "M" : "F")
+                   << new QStandardItem(((pid & 0xFF) > 190) ? "M" : "F") << new QStandardItem(QString::number(sid));
             results.append(result);
         }
     }
@@ -319,7 +267,7 @@ QVector<QList<QStandardItem *>> IVtoPID::getSeedsChannel(u8 hp, u8 atk, u8 def, 
     return results;
 }
 
-void IVtoPID::on_pushButtonFind_clicked()
+void IVtoPID::find()
 {
     model->removeRows(0, model->rowCount());
 
@@ -330,7 +278,7 @@ void IVtoPID::on_pushButtonFind_clicked()
     u8 spd = ui->spinBoxSpD->value();
     u8 spe = ui->spinBoxSpe->value();
 
-    u8 nature = Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxNature->currentIndex()));
+    u8 nature = static_cast<u8>(ui->comboBoxNature->currentIndex());
 
     u16 tid = ui->textBoxTID->text().toUShort();
 

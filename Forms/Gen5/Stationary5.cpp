@@ -19,6 +19,12 @@
 
 #include "Stationary5.hpp"
 #include "ui_Stationary5.h"
+#include <Core/Enum/Lead.hpp>
+#include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Parents/Frames/StationaryFrame.hpp>
+#include <Core/Util/Translator.hpp>
+#include <Forms/Gen5/Profile/ProfileManager5.hpp>
+#include <QSettings>
 
 Stationary5::Stationary5(QWidget *parent) :
     QWidget(parent),
@@ -30,7 +36,7 @@ Stationary5::Stationary5(QWidget *parent) :
     updateProfiles();
     setupModels();
 
-    qRegisterMetaType<QVector<Frame5>>("QVector<Frame5>");
+    qRegisterMetaType<QVector<StationaryFrame>>("QVector<StationaryFrame>");
 }
 
 Stationary5::~Stationary5()
@@ -43,14 +49,14 @@ Stationary5::~Stationary5()
 
 void Stationary5::updateProfiles()
 {
-    profiles = Profile5::loadProfileList();
+    profiles = ProfileLoader5::getProfiles();
     profiles.insert(profiles.begin(), Profile5());
 
     ui->comboBoxProfiles->clear();
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getProfileName());
+        ui->comboBoxProfiles->addItem(profile.getName());
     }
 
     QSettings setting;
@@ -91,13 +97,13 @@ void Stationary5::setupModels()
     ui->comboBoxSearcherLead->setItemData(3, Lead::None);
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
-    ui->comboBoxGeneratorLead->addItems(Nature::getNatures());
+    ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
 
-    ui->comboBoxGeneratorNature->setup(Nature::getNatures());
-    ui->comboBoxSearcherNature->setup(Nature::getNatures());
+    ui->comboBoxGeneratorNature->setup(Translator::getNatures());
+    ui->comboBoxSearcherNature->setup(Translator::getNatures());
 
-    ui->comboBoxGeneratorHiddenPower->setup(Power::getPowers());
-    ui->comboBoxSearcherHiddenPower->setup(Power::getPowers());
+    ui->comboBoxGeneratorHiddenPower->setup(Translator::getHiddenPowers());
+    ui->comboBoxSearcherHiddenPower->setup(Translator::getHiddenPowers());
 
     ui->comboBoxGeneratorGenderRatio->setItemData(0, 0);
     ui->comboBoxGeneratorGenderRatio->setItemData(1, 127);
@@ -118,37 +124,50 @@ void Stationary5::setupModels()
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
 
-    connect(outputTXTGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModelTXT(); });
-    connect(outputCSVGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModelCSV(); });
+    connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(false); });
+    connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(true); });
 
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
 
-    connect(outputTXTSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
-    connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
+    connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
+    connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
     QSettings setting;
-    if (setting.contains("Stationary5MinDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("Stationary5MinDelay").toString());
-    if (setting.contains("Stationary5MaxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("Stationary5MaxDelay").toString());
-    if (setting.contains("Stationary5MinFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("Stationary5MinFrame").toString());
-    if (setting.contains("Stationary5MaxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("Stationary5MaxFrame").toString());
+    setting.beginGroup("stationary5");
+    if (setting.contains("minDelay"))
+    {
+        ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
+    }
+    if (setting.contains("maxDelay"))
+    {
+        ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
+    }
+    if (setting.contains("minFrame"))
+    {
+        ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+    }
+    if (setting.contains("maxFrame"))
+    {
+        ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+    }
+    if (setting.contains("geometry"))
+    {
+        this->restoreGeometry(setting.value("geometry").toByteArray());
+    }
+    setting.endGroup();
 }
 
-void Stationary5::updateView(const QVector<Frame5> &frames, int progress)
+void Stationary5::updateProgress(const QVector<StationaryFrame> &frames, int progress)
 {
-    //searcherModel->addItems(frames);
+    // searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
 }
 
-void Stationary5::refreshProfiles()
+void Stationary5::generate()
 {
-    emit alertProfiles(5);
-}
-
-void Stationary5::on_pushButtonGenerate_clicked()
-{
-    //generatorModel->clear();
-    //generatorModel->setMethod(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+    /*generatorModel->clear();
+    generatorModel->setMethod(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 startingFrame = ui->textBoxGeneratorStartingFrame->getUInt();
@@ -162,11 +181,12 @@ void Stationary5::on_pushButtonGenerate_clicked()
     }
 
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toInt();
-    Generator5 generator(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+    Generator5 generator(maxResults, startingFrame, seed, tid, sid, offset,
+        static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
     FrameCompare compare(ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                         ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getLower(),
-                         ui->comboBoxGeneratorNature->getChecked(), ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+        ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+        ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getLower(), ui->comboBoxGeneratorNature->getChecked(),
+        ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
     generator.setEncounterType(Stationary);
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -183,89 +203,86 @@ void Stationary5::on_pushButtonGenerate_clicked()
         else
         {
             generator.setLeadType(Lead::Synchronize);
-            generator.setSynchNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
+            generator.setSynchNature(
+                Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
         }
     }
 
     QVector<Frame5> frames = generator.generate(compare);
-    //generatorModel->setModel(frames);
+    generatorModel->setModel(frames);*/
 }
 
-void Stationary5::on_pushButtonSearch_clicked()
+void Stationary5::search()
 {
-    //searcherModel->clear();
-    //searcherModel->setMethod(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+    /*searcherModel->clear();
+    searcherModel->setMethod(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
-    ui->pushButtonSearch->setEnabled(false);
-    ui->pushButtonCancel->setEnabled(true);
+   ui->pushButtonSearch->setEnabled(false);
+   ui->pushButtonCancel->setEnabled(true);
 
-    u16 tid = ui->textBoxSearcherTID->getUShort();
-    u16 sid = ui->textBoxSearcherSID->getUShort();
+   u16 tid = ui->textBoxSearcherTID->getUShort();
+   u16 sid = ui->textBoxSearcherSID->getUShort();
 
-    u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toInt();
-    FrameCompare compare(ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
-                         ui->checkBoxSearcherShinyOnly->isChecked(), false,
-                         ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getLower(),
-                         ui->comboBoxSearcherNature->getChecked(), ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
-    //Searcher5 searcher(tid, sid, static_cast<u32>(genderRatioIndex), ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
-    //                               ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(), compare, static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+   u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toInt();
+   FrameCompare compare(ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
+       ui->checkBoxSearcherShinyOnly->isChecked(), false, ui->ivFilterSearcher->getLower(),
+       ui->ivFilterSearcher->getLower(), ui->comboBoxSearcherNature->getChecked(),
+       ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
+    Searcher5 searcher(tid, sid, static_cast<u32>(genderRatioIndex), ui->textBoxSearcherMinDelay->getUInt(),
+    ui->textBoxSearcherMaxDelay->getUInt(),
+                                  ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(),
+                                  compare,
+                                  static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
 
-    //searcher.setLeadType(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
+    searcher.setLeadType(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
 
-    QVector<u8> min = ui->ivFilterSearcher->getLower();
-    QVector<u8> max = ui->ivFilterSearcher->getUpper();
+   QVector<u8> min = ui->ivFilterSearcher->getLower();
+   QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
-    int maxProgress = 1;
-    for (int i = 0; i < 6; i++)
-    {
-        maxProgress *= max.at(i) - min.at(i) + 1;
-    }
+   int maxProgress = 1;
+   for (int i = 0; i < 6; i++)
+   {
+       maxProgress *= max.at(i) - min.at(i) + 1;
+   }
 
-    ui->progressBar->setValue(0);
-    ui->progressBar->setMaximum(maxProgress);
+   ui->progressBar->setValue(0);
+   ui->progressBar->setMaximum(maxProgress);
 
-    /*auto *search = new IVSearcher5(searcher, min, max);
-    auto *timer = new QTimer(search);
+   auto *search = new IVSearcher5(searcher, min, max);
+   auto *timer = new QTimer(search);
 
-    connect(search, &IVSearcher5::finished, timer, &QTimer::stop);
-    connect(search, &IVSearcher5::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &IVSearcher5::finished, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(timer, &QTimer::timeout, this, [ = ] { updateView(search->getResults(), search->currentProgress()); });
-    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher5::cancelSearch);
+   connect(search, &IVSearcher5::finished, timer, &QTimer::stop);
+   connect(search, &IVSearcher5::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true);
+   ui->pushButtonCancel->setEnabled(false); }); connect(search, &IVSearcher5::finished, this, [ = ] {
+   updateView(search->getResults(), search->currentProgress()); }); connect(timer, &QTimer::timeout, this, [ = ] {
+   updateView(search->getResults(), search->currentProgress()); }); connect(ui->pushButtonCancel,
+   &QPushButton::clicked, search, &IVSearcher5::cancelSearch);
 
-    search->start();
-    timer->start(1000);*/
+   search->start();
+   timer->start(1000);*/
 }
 
-void Stationary5::on_comboBoxProfiles_currentIndexChanged(int index)
+void Stationary5::profileIndexChanged(int index)
 {
-    if (index < 0)
+    if (index >= 0)
     {
-        return;
+        currentProfile = profiles.at(index);
+
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
+        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
+        ui->labelProfileDSTypeValue->setText(currentProfile.getDSTypeString());
+        ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
+        ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
+            + QString::number(currentProfile.getTimer0Max(), 16));
+        ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
+        ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
+        ui->labelProfileKeypressesValue->setText(currentProfile.getKeypressesString());
+        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
     }
-
-    auto profile = profiles.at(index);
-    QString tid = QString::number(profile.getTID());
-    QString sid = QString::number(profile.getSID());
-
-    ui->textBoxGeneratorTID->setText(tid);
-    ui->textBoxGeneratorSID->setText(sid);
-    ui->textBoxSearcherTID->setText(tid);
-    ui->textBoxSearcherSID->setText(sid);
-
-    ui->labelProfileTIDValue->setText(tid);
-    ui->labelProfileSIDValue->setText(sid);
-    ui->labelProfileMACAddressValue->setText(QString::number(profile.getMac(), 16));
-    ui->labelProfileDSTypeValue->setText(profile.getDSTypeString());
-    ui->labelProfileVCountValue->setText(QString::number(profile.getVCount(), 16));
-    ui->labelProfileTimer0Value->setText(QString::number(profile.getTimer0Min(), 16) + "-" + QString::number(profile.getTimer0Max(), 16));
-    ui->labelProfileGxStatValue->setText(QString::number(profile.getGxStat()));
-    ui->labelProfileVFrameValue->setText(QString::number(profile.getVFrame()));
-    ui->labelProfileKeypressesValue->setText(profile.getKeypressesString());
-    ui->labelProfileGameValue->setText(profile.getVersionString());
 }
 
-void Stationary5::on_pushButtonGeneratorLead_clicked()
+void Stationary5::generatorLead()
 {
     ui->comboBoxGeneratorLead->clear();
     QString text = ui->pushButtonGeneratorLead->text();
@@ -291,33 +308,29 @@ void Stationary5::on_pushButtonGeneratorLead_clicked()
         ui->comboBoxGeneratorLead->setEnabled(true);
 
         ui->comboBoxGeneratorLead->addItem("None");
-        ui->comboBoxGeneratorLead->addItems(Nature::getNatures());
+        ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
     }
 }
 
-void Stationary5::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+void Stationary5::tableViewGeneratorContextMenu(const QPoint &pos)
 {
-    /*if (generatorModel->rowCount() == 0)
+    /*if (generatorModel->rowCount() > 0)
     {
-        return;
+        generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
     }*/
-
-    generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
 }
 
-void Stationary5::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+void Stationary5::tableViewSearcherContextMenu(const QPoint &pos)
 {
     /*if (searcherModel->rowCount() == 0)
     {
-        return;
+        searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
     }*/
-
-    searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
 }
 
-void Stationary5::on_pushButtonProfileManager_clicked()
+void Stationary5::profileManager()
 {
     auto *manager = new ProfileManager5();
-    connect(manager, &ProfileManager5::updateProfiles, this, &Stationary5::refreshProfiles);
+    connect(manager, &ProfileManager5::updateProfiles, this, [=] { emit alertProfiles(5); });
     manager->show();
 }

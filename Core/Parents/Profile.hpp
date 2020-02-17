@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,33 +20,27 @@
 #ifndef PROFILE_HPP
 #define PROFILE_HPP
 
-#include <QJsonObject>
-#include <QVector>
-#include <Core/Util/Game.hpp>
 #include <Core/Util/Global.hpp>
-#include <Core/Util/Language.hpp>
+#include <QString>
+
+enum Game : u16;
 
 class Profile
 {
-
 public:
     Profile();
-    Profile(const QString &profileName, Game version, u16 tid, u16 sid, Language language = Language::English);
+    Profile(const QString &name, Game version, u16 tid, u16 sid);
     QString getVersionString() const;
-    QString getLanguageString() const;
     Game getVersion() const;
-    Language getLanguage() const;
-    QString getProfileName() const;
+    QString getName() const;
     u16 getTID() const;
     u16 getSID() const;
 
 protected:
-    QString profileName;
-    Game version{};
-    Language language;
+    QString name;
+    Game version {};
     u16 tid;
     u16 sid;
-
 };
 
 #endif // PROFILE_HPP
