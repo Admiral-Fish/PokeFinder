@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,9 +20,10 @@
 #ifndef EGGS3_HPP
 #define EGGS3_HPP
 
-#include <QWidget>
 #include <Core/Gen3/Profile3.hpp>
-#include <Models/Gen3/Egg3Model.hpp>
+#include <QWidget>
+
+class EggModel3;
 
 namespace Ui
 {
@@ -32,7 +33,6 @@ namespace Ui
 class Eggs3 : public QWidget
 {
     Q_OBJECT
-
 signals:
     void alertProfiles(int);
 
@@ -44,25 +44,21 @@ public:
 private:
     Ui::Eggs3 *ui;
     QVector<Profile3> profiles;
-    Egg3Model *emeraldIVs{};
-    Egg3Model *emeraldPID{};
-    Egg3Model *rs{};
-    Egg3Model *frlg{};
+    Profile3 currentProfile;
+    EggModel3 *emeraldIVs {};
+    EggModel3 *emeraldPID {};
+    EggModel3 *rs {};
+    EggModel3 *frlg {};
 
     void setupModels();
 
 private slots:
-    void refreshProfiles();
-    void on_pushButtonEmeraldPIDGenerate_clicked();
-    void on_pushButtonEmeraldIVsGenerate_clicked();
-    void on_pushButtonRSGenerate_clicked();
-    void on_pushButtonFRLGGenerate_clicked();
-    void on_comboBoxProfiles_currentIndexChanged(int index);
-    void on_pushButtonEmeraldAnyAbility_clicked();
-    void on_pushButtonRSAnyAbility_clicked();
-    void on_pushButtonFRLGAnyAbility_clicked();
-    void on_pushButtonProfileManager_clicked();
-
+    void emeraldPIDGenerate();
+    void emeraldIVsGenerate();
+    void rsGenerate();
+    void frlgGenerate();
+    void profilesIndexChanged(int index);
+    void profileManager();
 };
 
 #endif // EGGS3_HPP

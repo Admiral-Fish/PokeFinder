@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,8 @@
 #ifndef EGGSETTINGS_HPP
 #define EGGSETTINGS_HPP
 
-#include <QWidget>
 #include <Core/Util/Global.hpp>
+#include <QWidget>
 
 namespace Ui
 {
@@ -45,9 +45,8 @@ private:
     Ui::EggSettings *ui;
 
 private slots:
-    void on_pushButtonSwapParents_clicked();
-    void on_checkBoxShowInteritance_clicked(bool checked);
-
+    void swapParents();
+    void showInheritance(bool checked);
 };
 
 #endif // EGGSETTINGS_HPP

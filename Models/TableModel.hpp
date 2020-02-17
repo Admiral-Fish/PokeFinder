@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,17 +22,15 @@
 
 #include <QAbstractTableModel>
 
-template <typename T>
+template <typename Item>
 class TableModel : public QAbstractTableModel
 {
-
 public:
-    TableModel(QObject *parent = nullptr) :
-        QAbstractTableModel(parent)
+    TableModel(QObject *parent = nullptr) : QAbstractTableModel(parent)
     {
     }
 
-    void addItems(const QVector<T> &items)
+    void addItems(const QVector<Item> &items)
     {
         if (!items.isEmpty())
         {
@@ -43,7 +41,7 @@ public:
         }
     }
 
-    void addItem(const T &item)
+    void addItem(const Item &item)
     {
         int i = rowCount();
         emit beginInsertRows(QModelIndex(), i, i);
@@ -51,7 +49,7 @@ public:
         emit endInsertRows();
     }
 
-    void updateItem(const T &item, int row)
+    void updateItem(const Item &item, int row)
     {
         model[row] = item;
         emit dataChanged(index(row, 0), index(row, columnCount()));
@@ -65,12 +63,12 @@ public:
         emit endRemoveRows();
     }
 
-    T getItem(int row) const
+    Item getItem(int row) const
     {
         return model.at(row);
     }
 
-    QVector<T> getModel() const
+    QVector<Item> getModel() const
     {
         return model;
     }
@@ -92,8 +90,7 @@ public:
     }
 
 protected:
-    QVector<T> model;
-
+    QVector<Item> model;
 };
 
 #endif // TABLEMODEL_HPP

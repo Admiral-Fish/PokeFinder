@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -96,8 +96,7 @@ void HGSSRoamer::calculateRoamers()
         {
             skips++;
             raikouRoute = getRouteJ(rng.nextUShort());
-        }
-        while (routes.at(0) == raikouRoute);
+        } while (routes.at(0) == raikouRoute);
     }
 
     if (roamers.at(1))
@@ -106,8 +105,7 @@ void HGSSRoamer::calculateRoamers()
         {
             skips++;
             enteiRoute = getRouteJ(rng.nextUShort());
-        }
-        while (routes.at(1) == enteiRoute);
+        } while (routes.at(1) == enteiRoute);
     }
 
     if (roamers.at(2))
@@ -116,8 +114,7 @@ void HGSSRoamer::calculateRoamers()
         {
             skips++;
             latiRoute = getRouteK(rng.nextUShort());
-        }
-        while (routes.at(2) == latiRoute);
+        } while (routes.at(2) == latiRoute);
     }
 }
 
@@ -134,12 +131,12 @@ u8 HGSSRoamer::getRouteK(u16 prng) const
     {
         switch (val)
         {
-            case 22:
-                return 24;
-            case 23:
-                return 26;
-            case 24:
-                return 28;
+        case 22:
+            return 24;
+        case 23:
+            return 26;
+        case 24:
+            return 28;
         }
     }
 

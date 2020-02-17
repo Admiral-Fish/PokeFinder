@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,20 +19,13 @@
 
 #include "Slot.hpp"
 
-Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, Pokemon pokemon)
+Slot::Slot(u16 specie, u8 minLevel, u8 maxLevel, const PersonalInfo &info) :
+    minLevel(minLevel), maxLevel(maxLevel), specie(specie), info(info)
 {
-    this->specie = specie;
-    this->minLevel = minLevel;
-    this->maxLevel = maxLevel;
-    this->pokemon = pokemon;
 }
 
-Slot::Slot(u16 specie, u8 level, Pokemon pokemon)
+Slot::Slot(u16 specie, u8 level, const PersonalInfo &info) : minLevel(level), maxLevel(level), specie(specie), info(info)
 {
-    this->specie = specie;
-    minLevel = level;
-    maxLevel = level;
-    this->pokemon = pokemon;
 }
 
 u8 Slot::getMinLevel() const
@@ -50,13 +43,13 @@ u16 Slot::getSpecie() const
     return specie;
 }
 
-Pokemon Slot::getPokemon() const
+PersonalInfo Slot::getPersonal() const
 {
-    return pokemon;
+    return info;
 }
 
-void Slot::setSpecie(u16 specie, Pokemon pokemon)
+void Slot::setSpecie(u16 specie, const PersonalInfo &info)
 {
     this->specie = specie;
-    this->pokemon = pokemon;
+    this->info = info;
 }

@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,12 +20,11 @@
 #ifndef HGSSROAMER_HPP
 #define HGSSROAMER_HPP
 
-#include <QVector>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
 class HGSSRoamer
 {
-
 public:
     HGSSRoamer() = default;
     HGSSRoamer(u32 seed, const QVector<bool> &roamers, const QVector<u8> &routes);
@@ -43,14 +42,13 @@ private:
     u8 getRouteJ(u16 prng) const;
     u8 getRouteK(u16 prng) const;
 
-    u8 skips{};
-    u8 raikouRoute{};
-    u8 enteiRoute{};
-    u8 latiRoute{};
-    u32 seed{};
+    u8 skips {};
+    u8 raikouRoute {};
+    u8 enteiRoute {};
+    u8 latiRoute {};
+    u32 seed {};
     QVector<bool> roamers;
     QVector<u8> routes;
-
 };
 
 #endif // HGSSROAMER_HPP

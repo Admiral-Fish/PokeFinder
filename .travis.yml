@@ -14,13 +14,13 @@ script:
   - make -j $(sysctl -n hw.physicalcpu)
 
 before_deploy:
-  - /usr/local/Cellar/qt/5.13.1/bin/macdeployqt PokeFinder.app -dmg -verbose=2
+  - /usr/local/Cellar/qt/5.13.2/bin/macdeployqt PokeFinder.app -dmg -verbose=2
   - zip -r PokeFinder-macOS.zip PokeFinder.dmg
 
 deploy:
   provider: releases
   api_key:
-    secure: HEeoNmgC6cDkb87dQXGr4KqEVRCj4dPgK7HALMuUT1p9IXBbB1sC1hhKjtKNAJhc9yEH6LqSLGNtXSOfoxRsZnmd+JovJLEaFlC/66GqEzdtPoz22i9ilEbvpv1dmsvsg/4By2ZJvQtf5vDlZrXEEhCUCP4ntk3qmCUpwvzwiiR38kPllSqXNYWrE9Om+cZIib8QxaqjPbbUJaDsN4aXhnJ9KWhTQ0lNgn6/JhdESkPmbSOHbr7PcHGcXQIaaHFEGwjW1/DL9iymXAPbwm61gQ5NJs/U//0LqJiLhPwD3hNyuC2ns6bfg/PETpuqjIFxoDnIaVEfkTSn4Oo0ltCMDuKV+1oQl0IRx6RuYajjPAa0L1VMlWwGTeO/kn9dBWKAnEweJbAAchalcpypSzpmQPTKudRu3rx3Z2rSo402zRslLsy9gXWlOg5ZIHX1Ijj2hQ1flHQB74L4dnalmfjnRJQVWGhFZiCdQ3+WaD26n8dTZQ+Wf9WKZnZJSVJH1pQuj9jgUAjPZBwIIuEMCMGf+d8NE7QXbWuKcvuY7DKfHrhdBF0Y5U5QZBMqit7Gf45laO4P1WWikKemYV/SOIbHXSmx/TPVEeWhxBdq9+V+jTrp1/o/B/zpsAyNmhI6c6nk+QZN9U+Q0BNGi4FiZgvZcqPPkIkN9CeZHBJggLjb0GQ=
+    secure: j4tDOhJM/2k/8cmIWV6IqpK/Vlu8RKNW0L2Hm1AJaKZqrmAGBn6ex+cOl5p7CfyXg8OA8YpQTjmX987kUgSI5v08B1VfrTu8+tqB5BsrPi9DIhMr3m2TYRObtW3PmcFns0QKp0FACLmwKJdKFh1atyP9SdC+0XRzsOfiVoJXN2C8r6fv23mGc4i5vINiKuv4QHtOhyS1d2iUAI/Me9WjLkP2RbYmIrejATvsAcdOp+QxlTqecGiWchkkTfWRKVmULcyGnv20KhvvKnoMWh21JwNyxQ3BLLyBMiK/aFU6JDiGccDLoaxvg4f+OvCmpIl/LqxUD1/z+vWJ4BOJ9CWgyPya3MGXsc8WqOPaaq/J/XyzB9hytpod6qKQylDC+H6H4hNeufb6oNzy4oIZ5mquICBXjgipkLtWlBX11kK9li3W3zbfbcwDaxISJkuYbNeeMVZFS4KHdpkB1QNr0AzRmXzPfogBmDXxF97MrJxPFv3pooLa55gStUOuTQz5tKUhAOzqrzkGa79klk6JjVVnWR+xoln61gqEdLxFotA4osQuRiINcwYp8S619PX6fkzMl64/nr6bG5DL8APfNljEwraGhl59hKxQQFxc8ArVBbvlGhkMkwjDMtUG0xX7TbujkhE+DGohRPuLeUVIYpUELQl50EvQCZr8S/Lm/4lnVLA=
   file: "PokeFinder-macOS.zip"
   skip_cleanup: true
   on:

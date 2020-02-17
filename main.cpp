@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,12 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include <Core/Util/Translator.hpp>
+#include <Forms/MainWindow.hpp>
 #include <QApplication>
 #include <QFile>
 #include <QSettings>
 #include <QTextStream>
 #include <QTranslator>
-#include <Forms/MainWindow.hpp>
 
 int main(int argc, char *argv[])
 {
@@ -44,8 +45,16 @@ int main(int argc, char *argv[])
         }
     }
 
+    QString locale = setting.value("settings/locale", "en").toString();
+    if (locale == "zh_Hans_CN") // TODO: remove in a future version
+    {
+        locale = "zh";
+        setting.setValue("settings/locale", locale);
+    }
+    Translator::init(locale);
+
     QTranslator translator;
-    if (translator.load(QString(":/i18n/PokeFinder_%1.qm").arg(setting.value("settings/locale", "en").toString())))
+    if (translator.load(QString(":/i18n/PokeFinder_%1.qm").arg(locale)))
     {
         QApplication::installTranslator(&translator);
     }

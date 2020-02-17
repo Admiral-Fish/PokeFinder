@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,16 +20,17 @@
 #ifndef UTILITIES_HPP
 #define UTILITIES_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QDateTime>
-#include <Core/Gen4/HGSSRoamer.hpp>
+
+class HGSSRoamer;
 
 namespace Utilities
 {
-    u16 calcGen3Seed(const QDate &time, u32 h, u32 m);
+    u16 calcGen3Seed(const QDateTime &dateTime);
     u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    bool shiny(u32 pid, u16 tid, u16  sid);
     QString coinFlips(u32 seed, u8 flips);
     QString getCalls(u32 seed, u8 num, const HGSSRoamer &info);
-};
+}
 
 #endif // UTILITIES_HPP

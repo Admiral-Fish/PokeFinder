@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,14 +20,13 @@
 #ifndef GRAPHICSPIXMAPITEM_HPP
 #define GRAPHICSPIXMAPITEM_HPP
 
-#include <QGraphicsPixmapItem>
 #include <Core/Util/Global.hpp>
+#include <QGraphicsPixmapItem>
 
 class GraphicsPixmapItem : public QGraphicsPixmapItem
 {
-
 public:
-    GraphicsPixmapItem(const QPixmap &pixmap, u16 minX = 0, u16 minY = 0, u16 maxX = 0, u16 maxY = 0);
+    explicit GraphicsPixmapItem(const QPixmap &pixmap, u16 minX = 0, u16 minY = 0, u16 maxX = 0, u16 maxY = 0);
     void setMin(u16 minX, u16 minY);
     void setMax(u16 maxX, u16 maxY);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
@@ -35,7 +34,6 @@ public:
 private:
     u16 minX, maxX;
     u16 minY, maxY;
-
 };
 
 #endif // GRAPHICSPIXMAPITEM_HPP

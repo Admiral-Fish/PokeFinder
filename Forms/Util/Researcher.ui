@@ -22,34 +22,12 @@
   <layout class="QGridLayout" name="gridLayout_7">
    <item row="0" column="0">
     <widget class="QTabWidget" name="rngSelection">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
      <widget class="QWidget" name="tab32Bit">
       <attribute name="title">
        <string>32Bit</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <widget class="QRadioButton" name="radioButtonCommon32Bit">
-         <property name="text">
-          <string>Common RNGs</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
         <widget class="QComboBox" name="comboBoxRNG32Bit">
          <item>
           <property name="text">
@@ -98,65 +76,6 @@
          </item>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QRadioButton" name="radioButtonCustom32Bit">
-         <property name="text">
-          <string>Custom</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="label32BitMultiplier">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string notr="true">X</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="TextBox" name="textBoxMult32Bit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maxLength">
-          <number>8</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label32BitAdder">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string notr="true">+</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="TextBox" name="textBoxAdd32Bit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maxLength">
-          <number>8</number>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tab64Bit">
@@ -165,22 +84,6 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <widget class="QRadioButton" name="radioButtonCommon64Bit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Common RNGs</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
         <widget class="QComboBox" name="comboBoxRNG64Bit">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -203,77 +106,6 @@
            <string>SFMT</string>
           </property>
          </item>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QRadioButton" name="radioButtonCustom64Bit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Custom</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="label64BitMultiplier">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string notr="true">X</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="TextBox" name="textBoxMult64Bit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maxLength">
-          <number>16</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label64BitAdder">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string notr="true">+</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="TextBox" name="textBoxAdd64Bit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maxLength">
-          <number>16</number>
-         </property>
         </widget>
        </item>
       </layout>
@@ -305,9 +137,6 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
-          <number>8</number>
-         </property>
         </widget>
        </item>
        <item row="1" column="2">
@@ -324,9 +153,6 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="maxLength">
-          <number>8</number>
          </property>
         </widget>
        </item>
@@ -345,9 +171,6 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
-          <number>8</number>
-         </property>
         </widget>
        </item>
        <item row="2" column="2">
@@ -365,9 +188,6 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="maxLength">
-          <number>8</number>
-         </property>
         </widget>
        </item>
       </layout>
@@ -376,9 +196,6 @@
    </item>
    <item row="0" column="1" rowspan="3">
     <widget class="QGroupBox" name="groupBoxCustoms">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="title">
       <string>Customs</string>
      </property>
@@ -479,11 +296,7 @@
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="TextBox" name="lineEditRValue1">
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue1"/>
       </item>
       <item row="0" column="4">
        <widget class="QCheckBox" name="checkBoxHex1">
@@ -598,11 +411,7 @@
        </widget>
       </item>
       <item row="1" column="3">
-       <widget class="TextBox" name="lineEditRValue2">
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue2"/>
       </item>
       <item row="1" column="4">
        <widget class="QCheckBox" name="checkBoxHex2">
@@ -776,11 +585,7 @@
        </widget>
       </item>
       <item row="2" column="3">
-       <widget class="TextBox" name="lineEditRValue3">
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue3"/>
       </item>
       <item row="2" column="4">
        <widget class="QCheckBox" name="checkBoxHex3">
@@ -974,11 +779,7 @@
        </widget>
       </item>
       <item row="3" column="3">
-       <widget class="TextBox" name="lineEditRValue4">
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue4"/>
       </item>
       <item row="3" column="4">
        <widget class="QCheckBox" name="checkBoxHex4">
@@ -1192,11 +993,7 @@
        </widget>
       </item>
       <item row="4" column="3">
-       <widget class="TextBox" name="lineEditRValue5">
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue5"/>
       </item>
       <item row="4" column="4">
        <widget class="QCheckBox" name="checkBoxHex5">
@@ -1430,11 +1227,7 @@
        </widget>
       </item>
       <item row="5" column="3">
-       <widget class="TextBox" name="lineEditRValue6">
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue6"/>
       </item>
       <item row="5" column="4">
        <widget class="QCheckBox" name="checkBoxHex6">
@@ -1688,11 +1481,7 @@
        </widget>
       </item>
       <item row="6" column="3">
-       <widget class="TextBox" name="lineEditRValue7">
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue7"/>
       </item>
       <item row="6" column="4">
        <widget class="QCheckBox" name="checkBoxHex7">
@@ -1966,11 +1755,7 @@
        </widget>
       </item>
       <item row="7" column="3">
-       <widget class="TextBox" name="lineEditRValue8">
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue8"/>
       </item>
       <item row="7" column="4">
        <widget class="QCheckBox" name="checkBoxHex8">
@@ -2264,11 +2049,7 @@
        </widget>
       </item>
       <item row="8" column="3">
-       <widget class="TextBox" name="lineEditRValue9">
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue9"/>
       </item>
       <item row="8" column="4">
        <widget class="QCheckBox" name="checkBoxHex9">
@@ -2582,11 +2363,7 @@
        </widget>
       </item>
       <item row="9" column="3">
-       <widget class="TextBox" name="lineEditRValue10">
-        <property name="maxLength">
-         <number>10</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="lineEditRValue10"/>
       </item>
       <item row="9" column="4">
        <widget class="QCheckBox" name="checkBoxHex10">
@@ -2729,33 +2506,21 @@
    </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBoxParameters">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="title">
       <string>Parameters</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_6">
       <item row="0" column="0">
-       <widget class="QLabel" name="labelStartingFrame">
+       <widget class="QLabel" name="labelInitialFrame">
         <property name="text">
-         <string>Starting Frame</string>
+         <string>Initial Frame</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="TextBox" name="textBoxStartingFrame">
+       <widget class="TextBox" name="textBoxInitialFrame">
         <property name="text">
          <string notr="true">1</string>
-        </property>
-        <property name="maxLength">
-         <number>20</number>
         </property>
        </widget>
       </item>
@@ -2767,12 +2532,9 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="TextBox" name="textBoxMaxFrames">
+       <widget class="TextBox" name="textBoxMaxResults">
         <property name="text">
          <string notr="true">1000</string>
-        </property>
-        <property name="maxLength">
-         <number>20</number>
         </property>
        </widget>
       </item>
@@ -2784,14 +2546,10 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="TextBox" name="textBoxSeed">
-        <property name="maxLength">
-         <number>16</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="textBoxSeed"/>
       </item>
       <item row="2" column="2">
-       <widget class="QPushButton" name="pushButtonGenerate32Bit">
+       <widget class="QPushButton" name="pushButtonGenerate">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -2808,15 +2566,6 @@
    </item>
    <item row="2" column="0">
     <widget class="QGroupBox" name="groupBoxSearch">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="title">
       <string>Search</string>
      </property>
@@ -2829,11 +2578,7 @@
        </widget>
       </item>
       <item row="0" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxSearch">
-        <property name="maxLength">
-         <number>16</number>
-        </property>
-       </widget>
+       <widget class="TextBox" name="textBoxSearch"/>
       </item>
       <item row="0" column="3">
        <widget class="QComboBox" name="comboBoxSearch">
@@ -2910,24 +2655,16 @@
  </customwidgets>
  <tabstops>
   <tabstop>rngSelection</tabstop>
-  <tabstop>radioButtonCommon32Bit</tabstop>
-  <tabstop>radioButtonCustom32Bit</tabstop>
   <tabstop>comboBoxRNG32Bit</tabstop>
-  <tabstop>textBoxMult32Bit</tabstop>
-  <tabstop>textBoxAdd32Bit</tabstop>
-  <tabstop>radioButtonCommon64Bit</tabstop>
-  <tabstop>radioButtonCustom64Bit</tabstop>
   <tabstop>comboBoxRNG64Bit</tabstop>
-  <tabstop>textBoxMult64Bit</tabstop>
-  <tabstop>textBoxAdd64Bit</tabstop>
   <tabstop>textBoxStatus3</tabstop>
   <tabstop>textBoxStatus2</tabstop>
   <tabstop>textBoxStatus1</tabstop>
   <tabstop>textBoxStatus0</tabstop>
-  <tabstop>textBoxStartingFrame</tabstop>
-  <tabstop>textBoxMaxFrames</tabstop>
+  <tabstop>textBoxInitialFrame</tabstop>
+  <tabstop>textBoxMaxResults</tabstop>
   <tabstop>textBoxSeed</tabstop>
-  <tabstop>pushButtonGenerate32Bit</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>textBoxSearch</tabstop>
   <tabstop>comboBoxSearch</tabstop>
   <tabstop>pushButtonSearch</tabstop>

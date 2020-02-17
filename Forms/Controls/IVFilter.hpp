@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,8 @@
 #ifndef IVFILTER_HPP
 #define IVFILTER_HPP
 
-#include <QWidget>
 #include <Core/Util/Global.hpp>
+#include <QWidget>
 
 namespace Ui
 {
@@ -31,7 +31,6 @@ namespace Ui
 class IVFilter : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit IVFilter(QWidget *parent = nullptr);
     ~IVFilter() override;
@@ -57,7 +56,6 @@ private slots:
     void changeCompareSpA(int type);
     void changeCompareSpD(int type);
     void changeCompareSpe(int type);
-
 };
 
 #endif // IVFILTER_HPP

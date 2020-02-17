@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,9 +18,9 @@
  */
 
 #include "EncounterArea4.hpp"
+#include <Core/Parents/Slot.hpp>
 
-EncounterArea4::EncounterArea4(u8 location, Encounter type, const QVector<Slot> &pokemon) :
-    EncounterArea(location, type, pokemon)
+EncounterArea4::EncounterArea4(u8 location, Encounter type, const QVector<Slot> &pokemon) : EncounterArea(location, type, pokemon)
 {
 }
 
@@ -38,22 +38,22 @@ u16 EncounterArea4::getEncounterRate() const
 {
     switch (location)
     {
-        case 117: // Cerulean Cave 1F
-        case 119: // Cerulean Cave B1F
-            return 5;
-        case 8: // Ruins of Alpha (Outside)
-        case 88: // Rock Tunnel 2F
-            return 20;
-        case 35: // Cianwood City
-        case 66: // Cliff Cave
-        case 73: // Route 19
-            return 30;
-        case 78: // Vermillion City
-        case 114: // Victory Road 3F
-            return 40;
-        case 52: // Dark Cave (Route 31)
-            return 50;
-        default:
-            return 0;
+    case 117: // Cerulean Cave 1F
+    case 119: // Cerulean Cave B1F
+        return 5;
+    case 8: // Ruins of Alpha (Outside)
+    case 88: // Rock Tunnel 2F
+        return 20;
+    case 35: // Cianwood City
+    case 66: // Cliff Cave
+    case 73: // Route 19
+        return 30;
+    case 78: // Vermillion City
+    case 114: // Victory Road 3F
+        return 40;
+    case 52: // Dark Cave (Route 31)
+        return 50;
+    default:
+        return 0;
     }
 }

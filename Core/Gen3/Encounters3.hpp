@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,25 +20,16 @@
 #ifndef ENCOUNTERS3_HPP
 #define ENCOUNTERS3_HPP
 
-#include <Core/Gen3/EncounterArea3.hpp>
-#include <Core/Gen3/Profile3.hpp>
+#include <Core/Util/Global.hpp>
+#include <QVector>
 
-class Encounters3
+class EncounterArea3;
+enum Encounter : u8;
+class Profile3;
+
+namespace Encounters3
 {
-
-public:
-    Encounters3(Encounter type, const Profile3 &profile);
-    QVector<EncounterArea3> getEncounters() const;
-
-private:
-    QVector<Pokemon> pokemon;
-    Encounter type;
-    Profile3 profile;
-
-    QByteArrayList getData() const;
-    QVector<EncounterArea3> getArea(const QByteArray &data) const;
-    u16 getValue(const QByteArray &data, int offset, int length) const;
-
+    QVector<EncounterArea3> getEncounters(Encounter encounter, const Profile3 &profile);
 };
 
 #endif // ENCOUNTERS3_HPP

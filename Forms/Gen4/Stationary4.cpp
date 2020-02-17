@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,19 +17,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "Stationary4.hpp"
 #include "ui_Stationary4.h"
-#include <Core/Gen4/Generator4.hpp>
-#include <Core/Gen4/IVSearcher4.hpp>
-#include <Core/Util/Nature.hpp>
-#include <Core/Util/Power.hpp>
-#include <Forms/Gen4/ProfileManager4.hpp>
-#include <Forms/Gen4/SeedtoTime4.hpp>
+#include <Core/Enum/Lead.hpp>
+#include <Core/Enum/Method.hpp>
+#include <Core/Gen4/Generators/StationaryGenerator4.hpp>
+#include <Core/Gen4/ProfileLoader4.hpp>
+#include <Core/Gen4/Searchers/StationarySearcher4.hpp>
+#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Parents/Frames/StationaryFrame.hpp>
+#include <Core/Util/Translator.hpp>
+#include <Forms/Gen4/Profile/ProfileManager4.hpp>
+#include <Forms/Gen4/Tools/SeedtoTime4.hpp>
+#include <Models/Gen4/StationaryModel4.hpp>
+#include <QSettings>
+#include <QThread>
+#include <QTimer>
 
-Stationary4::Stationary4(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Stationary4)
+Stationary4::Stationary4(QWidget *parent) : QWidget(parent), ui(new Ui::Stationary4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -37,7 +42,7 @@ Stationary4::Stationary4(QWidget *parent) :
     updateProfiles();
     setupModels();
 
-    qRegisterMetaType<QVector<Frame4>>("QVector<Frame4>");
+    qRegisterMetaType<QVector<StationaryFrame>>("QVector<StationaryFrame>");
 }
 
 Stationary4::~Stationary4()
@@ -57,14 +62,16 @@ Stationary4::~Stationary4()
 
 void Stationary4::updateProfiles()
 {
-    profiles = Profile4::loadProfileList();
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary4::profileIndexChanged);
+
+    profiles = ProfileLoader4::getProfiles();
     profiles.insert(profiles.begin(), Profile4());
 
     ui->comboBoxProfiles->clear();
 
     for (const auto &profile : profiles)
     {
-        ui->comboBoxProfiles->addItem(profile.getProfileName());
+        ui->comboBoxProfiles->addItem(profile.getName());
     }
 
     QSettings setting;
@@ -77,8 +84,8 @@ void Stationary4::updateProfiles()
 
 void Stationary4::setupModels()
 {
-    generatorModel = new Stationary4Model(ui->tableViewGenerator, Method::Method1);
-    searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1, true);
+    generatorModel = new StationaryGeneratorModel4(ui->tableViewGenerator, Method::Method1);
+    searcherModel = new StationarySearcherModel4(ui->tableViewSearcher, Method::Method1);
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 
@@ -86,204 +93,210 @@ void Stationary4::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorTID->setValues(InputType::TIDSID);
-    ui->textBoxGeneratorSID->setValues(InputType::TIDSID);
-    ui->textBoxGeneratorStartingFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
     ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
     ui->textBoxGeneratorDelay->setValues(InputType::Frame32Bit);
 
-    ui->textBoxSearcherTID->setValues(InputType::TIDSID);
-    ui->textBoxSearcherSID->setValues(InputType::TIDSID);
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMinFrame->setValues(InputType::Frame32Bit);
     ui->textBoxSearcherMaxFrame->setValues(InputType::Frame32Bit);
 
-    ui->comboBoxSearcherLead->setItemData(0, Lead::Search);
-    ui->comboBoxSearcherLead->setItemData(1, Lead::Synchronize);
-    ui->comboBoxSearcherLead->setItemData(2, Lead::CuteCharm);
-    ui->comboBoxSearcherLead->setItemData(3, Lead::None);
+    ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
 
-    ui->comboBoxGeneratorGenderRatio->setItemData(0, 0);
-    ui->comboBoxGeneratorGenderRatio->setItemData(1, 127);
-    ui->comboBoxGeneratorGenderRatio->setItemData(2, 191);
-    ui->comboBoxGeneratorGenderRatio->setItemData(3, 63);
-    ui->comboBoxGeneratorGenderRatio->setItemData(4, 31);
-    ui->comboBoxGeneratorGenderRatio->setItemData(5, 1);
-    ui->comboBoxGeneratorGenderRatio->setItemData(6, 2);
+    ui->comboBoxGeneratorGender->setup({ 255, 0, 1 });
+    ui->comboBoxSearcherGender->setup({ 255, 0, 1 });
 
-    ui->comboBoxSearcherGenderRatio->setItemData(0, 0);
-    ui->comboBoxSearcherGenderRatio->setItemData(1, 127);
-    ui->comboBoxSearcherGenderRatio->setItemData(2, 191);
-    ui->comboBoxSearcherGenderRatio->setItemData(3, 63);
-    ui->comboBoxSearcherGenderRatio->setItemData(4, 31);
-    ui->comboBoxSearcherGenderRatio->setItemData(5, 1);
-    ui->comboBoxSearcherGenderRatio->setItemData(6, 2);
+    ui->comboBoxGeneratorAbility->setup({ 255, 0, 1 });
+    ui->comboBoxSearcherAbility->setup({ 255, 0, 1 });
+
+    ui->comboBoxGeneratorGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
+    ui->comboBoxSearcherGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
 
     ui->comboBoxGeneratorLead->addItem(tr("None"));
-    ui->comboBoxGeneratorLead->addItems(Nature::getNatures());
+    ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
 
-    ui->comboBoxGeneratorNature->setup(Nature::getNatures());
-    ui->comboBoxSearcherNature->setup(Nature::getNatures());
+    ui->comboBoxGeneratorNature->setup(Translator::getNatures());
+    ui->comboBoxSearcherNature->setup(Translator::getNatures());
 
-    ui->comboBoxGeneratorHiddenPower->setup(Power::getPowers());
-    ui->comboBoxSearcherHiddenPower->setup(Power::getPowers());
+    ui->comboBoxGeneratorHiddenPower->setup(Translator::getHiddenPowers());
+    ui->comboBoxSearcherHiddenPower->setup(Translator::getHiddenPowers());
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
-
-    connect(outputTXTGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModelTXT(); });
-    connect(outputCSVGenerator, &QAction::triggered, [ = ]() { ui->tableViewGenerator->outputModelCSV(); });
+    connect(outputTXTGenerator, &QAction::triggered, [=] { ui->tableViewGenerator->outputModel(); });
+    connect(outputCSVGenerator, &QAction::triggered, [=] { ui->tableViewGenerator->outputModel(true); });
 
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-
     connect(seedToTime, &QAction::triggered, this, &Stationary4::seedToTime);
-    connect(outputTXTSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelTXT(); });
-    connect(outputCSVSearcher, &QAction::triggered, [ = ]() { ui->tableViewSearcher->outputModelCSV(); });
+    connect(outputTXTSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(); });
+    connect(outputCSVSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(true); });
+
+    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Stationary4::generate);
+    connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Stationary4::search);
+    connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Stationary4::generatorLead);
+    connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Stationary4::tableViewGeneratorContextMenu);
+    connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Stationary4::tableViewSearcherContextMenu);
+    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Stationary4::profileManager);
 
     QSettings setting;
     setting.beginGroup("stationary4");
-    if (setting.contains("minDelay")) ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
-    if (setting.contains("maxDelay")) ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
-    if (setting.contains("minFrame")) ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
-    if (setting.contains("maxFrame")) ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
-    if (setting.contains("geometry")) this->restoreGeometry(setting.value("geometry").toByteArray());
+    if (setting.contains("minDelay"))
+    {
+        ui->textBoxSearcherMinDelay->setText(setting.value("minDelay").toString());
+    }
+    if (setting.contains("maxDelay"))
+    {
+        ui->textBoxSearcherMaxDelay->setText(setting.value("maxDelay").toString());
+    }
+    if (setting.contains("minFrame"))
+    {
+        ui->textBoxSearcherMinFrame->setText(setting.value("minFrame").toString());
+    }
+    if (setting.contains("maxFrame"))
+    {
+        ui->textBoxSearcherMaxFrame->setText(setting.value("maxFrame").toString());
+    }
+    if (setting.contains("geometry"))
+    {
+        this->restoreGeometry(setting.value("geometry").toByteArray());
+    }
     setting.endGroup();
 }
 
-void Stationary4::updateProgress(const QVector<Frame4> &frames, int progress)
+void Stationary4::updateProgress(const QVector<StationaryFrame> &frames, int progress)
 {
     searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
 }
 
-void Stationary4::refreshProfiles()
-{
-    emit alertProfiles(4);
-}
-
-void Stationary4::on_pushButtonGenerate_clicked()
+void Stationary4::generate()
 {
     generatorModel->clearModel();
-    generatorModel->setMethod(static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
+    auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
+    generatorModel->setMethod(method);
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
-    u32 startingFrame = ui->textBoxGeneratorStartingFrame->getUInt();
+    u32 initialFrame = ui->textBoxGeneratorInitialFrame->getUInt();
     u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
-    u16 tid = ui->textBoxGeneratorTID->getUShort();
-    u16 sid = ui->textBoxGeneratorSID->getUShort();
+    u16 tid = currentProfile.getTID();
+    u16 sid = currentProfile.getSID();
+    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->getCurrentByte();
     u32 offset = 0;
     if (ui->checkBoxGeneratorDelay->isChecked())
     {
         offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
-    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toUInt();
-    Generator4 generator(maxResults, startingFrame, seed, tid, sid, offset, static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()), genderRatio);
-    FrameCompare compare(ui->comboBoxGeneratorGender->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
-                         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                         ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-                         ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+    StationaryGenerator4 generator(initialFrame, maxResults, tid, sid, genderRatio, method);
+    generator.setSeed(seed);
+    generator.setOffset(offset);
 
-    generator.setEncounterType(Stationary);
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
     {
-        generator.setLeadType(static_cast<Lead>(ui->comboBoxGeneratorLead->currentData().toInt()));
+        generator.setLead(static_cast<Lead>(ui->comboBoxGeneratorLead->currentData().toInt()));
     }
     else
     {
         int num = ui->comboBoxGeneratorLead->currentIndex();
         if (num == 0)
         {
-            generator.setLeadType(Lead::None);
+            generator.setLead(Lead::None);
         }
         else
         {
-            generator.setLeadType(Lead::Synchronize);
-            generator.setSynchNature(Nature::getAdjustedNature(static_cast<u32>(ui->comboBoxGeneratorLead->currentIndex() - 1)));
+            generator.setLead(Lead::Synchronize);
+            generator.setSynchNature(static_cast<u8>(ui->comboBoxGeneratorLead->currentIndex() - 1));
         }
     }
 
-    QVector<Frame4> frames = generator.generate(compare);
+    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
+                       ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+                       ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+                       ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+
+    auto frames = generator.generate(filter);
     generatorModel->addItems(frames);
 }
 
-void Stationary4::on_pushButtonSearch_clicked()
+void Stationary4::search()
 {
+    auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
     searcherModel->clearModel();
-    searcherModel->setMethod(static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
+    searcherModel->setMethod(method);
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    u16 tid = ui->textBoxSearcherTID->getUShort();
-    u16 sid = ui->textBoxSearcherSID->getUShort();
-
-    u8 genderRatio = ui->comboBoxSearcherGenderRatio->currentData().toUInt();
-    FrameCompare compare(ui->comboBoxSearcherGender->currentIndex(), ui->comboBoxSearcherAbility->currentIndex(),
-                         ui->checkBoxSearcherShinyOnly->isChecked(), false,
-                         ui->ivFilterSearcher->getLower(), ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherNature->getChecked(),
-                         ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
-    Searcher4 searcher(tid, sid, genderRatio, ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt(),
-                       ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt(), compare, static_cast<Method>(ui->comboBoxSearcherMethod->currentData().toInt()));
-    searcher.setLeadType(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
-
     QVector<u8> min = ui->ivFilterSearcher->getLower();
     QVector<u8> max = ui->ivFilterSearcher->getUpper();
 
+    FrameFilter filter(ui->comboBoxSearcherGender->getCurrentByte(), ui->comboBoxSearcherAbility->getCurrentByte(),
+                       ui->checkBoxSearcherShinyOnly->isChecked(), false, min, max, ui->comboBoxSearcherNature->getChecked(),
+                       ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
+
+    u16 tid = currentProfile.getTID();
+    u16 sid = currentProfile.getSID();
+    u8 genderRatio = ui->comboBoxSearcherGenderRatio->getCurrentByte();
+
+    auto *searcher = new StationarySearcher4(tid, sid, genderRatio, method, filter);
+    searcher->setDelay(ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt());
+    searcher->setFrame(ui->textBoxSearcherMinFrame->getUInt(), ui->textBoxSearcherMaxFrame->getUInt());
+    searcher->setLead(static_cast<Lead>(ui->comboBoxSearcherLead->getCurrentInt()));
+
     int maxProgress = 1;
-    for (int i = 0; i < 6; i++)
+    for (u8 i = 0; i < 6; i++)
     {
         maxProgress *= max.at(i) - min.at(i) + 1;
     }
+    ui->progressBar->setRange(0, maxProgress);
 
-    ui->progressBar->setValue(0);
-    ui->progressBar->setMaximum(maxProgress);
+    auto *thread = QThread::create([=] { searcher->startSearch(min, max); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
-    auto *search = new IVSearcher4(searcher, min, max);
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults(), searcher->getProgress()); });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonSearch->setEnabled(true);
+        ui->pushButtonCancel->setEnabled(false);
+        updateProgress(searcher->getResults(), searcher->getProgress());
+        delete searcher;
+    });
 
-    connect(search, &IVSearcher4::finished, this, [ = ] { ui->pushButtonSearch->setEnabled(true); ui->pushButtonCancel->setEnabled(false); });
-    connect(search, &IVSearcher4::updateProgress, this, &Stationary4::updateProgress);
-    connect(ui->pushButtonCancel, &QPushButton::clicked, search, &IVSearcher4::cancelSearch);
-
-    search->startSearch();
+    thread->start();
+    timer->start(1000);
 }
 
-void Stationary4::on_comboBoxProfiles_currentIndexChanged(int index)
+void Stationary4::profileIndexChanged(int index)
 {
-    if (index < 0)
+    if (index >= 0)
     {
-        return;
+        currentProfile = profiles.at(index);
+
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
+        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+
+        bool flag = currentProfile.getVersion() & Game::HGSS;
+
+        ui->comboBoxGeneratorMethod->clear();
+        ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), Method::Method1);
+        ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
+        ui->comboBoxGeneratorMethod->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
+
+        ui->comboBoxSearcherMethod->clear();
+        ui->comboBoxSearcherMethod->addItem(tr("Method 1"), Method::Method1);
+        ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
+        ui->comboBoxSearcherMethod->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
     }
-
-    auto profile = profiles.at(index);
-    QString tid = QString::number(profile.getTID());
-    QString sid = QString::number(profile.getSID());
-
-    ui->textBoxGeneratorTID->setText(tid);
-    ui->textBoxGeneratorSID->setText(sid);
-    ui->textBoxSearcherTID->setText(tid);
-    ui->textBoxSearcherSID->setText(sid);
-    ui->labelProfileTIDValue->setText(tid);
-    ui->labelProfileSIDValue->setText(sid);
-    ui->labelProfileGameValue->setText(profile.getVersionString());
-
-    bool flag = profile.getVersion() & Game::HGSS;
-
-    ui->comboBoxGeneratorMethod->clear();
-    ui->comboBoxGeneratorMethod->addItem(tr("Method 1"), Method::Method1);
-    ui->comboBoxGeneratorMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
-    ui->comboBoxGeneratorMethod->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
-
-    ui->comboBoxSearcherMethod->clear();
-    ui->comboBoxSearcherMethod->addItem(tr("Method 1"), Method::Method1);
-    ui->comboBoxSearcherMethod->addItem(flag ? tr("Method K") : tr("Method J"), flag ? Method::MethodK : Method::MethodJ);
-    ui->comboBoxSearcherMethod->addItem(tr("Wondercard IVs"), Method::WondercardIVs);
 }
 
-void Stationary4::on_pushButtonGeneratorLead_clicked()
+void Stationary4::generatorLead()
 {
     ui->comboBoxGeneratorLead->clear();
     QString text = ui->pushButtonGeneratorLead->text();
@@ -303,41 +316,38 @@ void Stationary4::on_pushButtonGeneratorLead_clicked()
         ui->pushButtonGeneratorLead->setText(tr("Synchronize"));
 
         ui->comboBoxGeneratorLead->addItem("None");
-        ui->comboBoxGeneratorLead->addItems(Nature::getNatures());
+        ui->comboBoxGeneratorLead->addItems(Translator::getNatures());
     }
 }
 
 void Stationary4::seedToTime()
 {
     QModelIndex index = ui->tableViewSearcher->currentIndex();
-    auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(), profiles[ui->comboBoxProfiles->currentIndex()]);
+    auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(),
+                                 profiles.at(ui->comboBoxProfiles->currentIndex()));
     time->show();
     time->raise();
 }
 
-void Stationary4::on_tableViewGenerator_customContextMenuRequested(const QPoint &pos)
+void Stationary4::tableViewGeneratorContextMenu(QPoint pos)
 {
-    if (generatorModel->rowCount() == 0)
+    if (generatorModel->rowCount() > 0)
     {
-        return;
+        generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
     }
-
-    generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
 }
 
-void Stationary4::on_tableViewSearcher_customContextMenuRequested(const QPoint &pos)
+void Stationary4::tableViewSearcherContextMenu(QPoint pos)
 {
-    if (searcherModel->rowCount() == 0)
+    if (searcherModel->rowCount() > 0)
     {
-        return;
+        searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
     }
-
-    searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
 }
 
-void Stationary4::on_pushButtonProfileManager_clicked()
+void Stationary4::profileManager()
 {
     auto *manager = new ProfileManager4();
-    connect(manager, &ProfileManager4::updateProfiles, this, &Stationary4::refreshProfiles);
+    connect(manager, &ProfileManager4::updateProfiles, this, [=] { emit alertProfiles(4); });
     manager->show();
 }

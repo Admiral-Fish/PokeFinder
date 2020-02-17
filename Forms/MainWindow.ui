@@ -111,29 +111,35 @@
      <x>0</x>
      <y>0</y>
      <width>460</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTools">
     <property name="title">
      <string>Tools</string>
     </property>
-    <addaction name="actionEncounter_Lookup"/>
-    <addaction name="actionIV_Calculator"/>
+    <addaction name="actionEncounterLookup"/>
+    <addaction name="actionIVCalculator"/>
     <addaction name="actionResearcher"/>
    </widget>
    <widget class="QMenu" name="menuGen3Tools">
     <property name="title">
      <string>Gen 3 Tools</string>
     </property>
-    <addaction name="actionGameCubeRTC"/>
-    <addaction name="actionGameCube_Seed_Finder"/>
+    <widget class="QMenu" name="menuGameCube">
+     <property name="title">
+      <string>GameCube</string>
+     </property>
+     <addaction name="actionGameCubeRTC"/>
+     <addaction name="actionGameCubeSeedFinder"/>
+     <addaction name="actionJirachiPattern"/>
+     <addaction name="actionPokeSpot"/>
+    </widget>
+    <addaction name="menuGameCube"/>
     <addaction name="actionIVtoPID3"/>
-    <addaction name="actionJirachiPattern"/>
     <addaction name="actionPIDtoIV"/>
-    <addaction name="actionPokeSpot"/>
     <addaction name="actionSeedtoTime3"/>
-    <addaction name="actionSpinda_Painter"/>
+    <addaction name="actionSpindaPainter"/>
    </widget>
    <widget class="QMenu" name="menuGen4Tools">
     <property name="title">
@@ -141,7 +147,7 @@
     </property>
     <addaction name="actionIVtoPID4"/>
     <addaction name="actionSeedtoTime4"/>
-    <addaction name="actionSID_from_Chained_Shiny"/>
+    <addaction name="actionSIDfromChainedShiny"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
@@ -300,27 +306,27 @@
     <string>Chinese</string>
    </property>
   </action>
-  <action name="actionSID_from_Chained_Shiny">
+  <action name="actionSIDfromChainedShiny">
    <property name="text">
     <string>SID from Chained Shiny</string>
    </property>
   </action>
-  <action name="actionIV_Calculator">
+  <action name="actionIVCalculator">
    <property name="text">
     <string>IV Calculator</string>
    </property>
   </action>
-  <action name="actionSpinda_Painter">
+  <action name="actionSpindaPainter">
    <property name="text">
     <string>Spinda Painter</string>
    </property>
   </action>
-  <action name="actionEncounter_Lookup">
+  <action name="actionEncounterLookup">
    <property name="text">
     <string>Encounter Lookup</string>
    </property>
   </action>
-  <action name="actionGameCube_Seed_Finder">
+  <action name="actionGameCubeSeedFinder">
    <property name="text">
     <string>GameCube Seed Finder</string>
    </property>

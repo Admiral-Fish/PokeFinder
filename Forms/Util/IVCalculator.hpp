@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,9 +20,10 @@
 #ifndef IVCALCULATOR_HPP
 #define IVCALCULATOR_HPP
 
+#include <Core/Util/Global.hpp>
 #include <QLabel>
-#include <Core/Parents/Pokemon.hpp>
-#include <Core/Util/Characteristic.hpp>
+
+class PersonalInfo;
 
 namespace Ui
 {
@@ -32,23 +33,23 @@ namespace Ui
 class IVCalculator : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit IVCalculator(QWidget *parent = nullptr);
     ~IVCalculator() override;
 
 private:
     Ui::IVCalculator *ui;
-    QVector<Characteristic> characteristics;
-    QVector<Pokemon> pokemon;
+    QVector<PersonalInfo> personalInfo;
+
     void setupModels();
-    void displayIVs(QLabel *label, const QVector<u8>& ivs);
+    void displayIVs(QLabel *label, const QVector<u8> &ivs);
+    PersonalInfo getPersonalInfo(const PersonalInfo &base);
 
 private slots:
-    void on_pushButtonFindIVs_clicked();
-    void on_comboBoxPokemon_currentIndexChanged(int index);
-    void on_comboBoxGeneration_currentIndexChanged(int index);
-
+    void findIVs();
+    void pokemonIndexChanged(int index);
+    void altformIndexChanged(int index);
+    void generationIndexChanged(int index);
 };
 
 #endif // IVCALCULATOR_HPP

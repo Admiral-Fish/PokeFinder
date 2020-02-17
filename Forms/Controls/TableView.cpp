@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,16 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+#include "TableView.hpp"
 #include <QApplication>
 #include <QClipboard>
 #include <QFileDialog>
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QTextStream>
-#include "TableView.hpp"
 
-TableView::TableView(QWidget *parent) :
-    QTableView(parent)
+TableView::TableView(QWidget *parent) : QTableView(parent)
 {
 }
 
@@ -47,14 +46,9 @@ void TableView::resizeEvent(QResizeEvent *event)
 
 void TableView::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if (event->type() == QMouseEvent::MouseButtonDblClick)
+    if (event && event->type() == QMouseEvent::MouseButtonDblClick)
     {
-        QModelIndex index = this->currentIndex();
-        if (index.isValid())
-        {
-            QString str = this->model()->data(index).toString();
-            QApplication::clipboard()->setText(str);
-        }
+        setSelectionToClipBoard();
     }
 }
 
@@ -62,23 +56,18 @@ void TableView::keyPressEvent(QKeyEvent *event)
 {
     QTableView::keyPressEvent(event);
 
-    if (event)
+    if (event && (event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
     {
-        if ((event->key() == Qt::Key_C) && (event->modifiers() == Qt::ControlModifier))
-        {
-            QModelIndex index = this->currentIndex();
-            if (index.isValid())
-            {
-                QString str = this->model()->data(index).toString();
-                QApplication::clipboard()->setText(str);
-            }
-        }
+        setSelectionToClipBoard();
     }
 }
 
-void TableView::outputModelTXT()
+void TableView::outputModel(bool csv) const
 {
-    QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to TXT"), QDir::currentPath(), QObject::tr("Text File (*.txt);;All Files (*)"));
+    QString caption = tr(csv ? "Save Output to CSV" : "Save Output to TXT");
+    QString filter = tr(csv ? "CSV File (*.csv);;All Files (*)" : "Text File (*.txt);;All Files (*)");
+
+    QString fileName = QFileDialog::getSaveFileName(nullptr, caption, QDir::currentPath(), filter);
 
     if (fileName.isEmpty())
     {
@@ -100,59 +89,7 @@ void TableView::outputModelTXT()
             header += model->headerData(i, Qt::Horizontal, 0).toString();
             if (i != columns - 1)
             {
-                header += "\t";
-            }
-        }
-        header += "\n";
-
-        for (int i = 0; i < rows; i++)
-        {
-            QString body = "";
-            for (int j = 0; j < columns; j++)
-            {
-                QString entry = model->data(model->index(i, j)).toString();
-                body += (entry.isEmpty() ? "-" : entry);
-                if (i != columns - 1)
-                {
-                    body += "\t";
-                }
-            }
-            if (i != rows - 1)
-            {
-                body += "\n";
-            }
-            ts << body;
-        }
-
-        file.close();
-    }
-}
-
-void TableView::outputModelCSV()
-{
-    QString fileName = QFileDialog::getSaveFileName(nullptr, QObject::tr("Save Output to CSV"), QDir::currentPath(), QObject::tr("CSV File (*.csv);;All Files (*)"));
-
-    if (fileName.isEmpty())
-    {
-        return;
-    }
-
-    QFile file(fileName);
-    if (file.open(QIODevice::WriteOnly))
-    {
-        QAbstractItemModel *model = this->model();
-
-        QTextStream ts(&file);
-        int rows = model->rowCount();
-        int columns = model->columnCount();
-
-        QString header = "";
-        for (int i = 0; i < columns; i++)
-        {
-            header += model->headerData(i, Qt::Horizontal, 0).toString();
-            if (i != columns - 1)
-            {
-                header += ",";
+                header += csv ? "," : "\t";
             }
         }
         header += "\n";
@@ -167,7 +104,7 @@ void TableView::outputModelCSV()
                 body += (entry.isEmpty() ? "-" : entry);
                 if (j != columns - 1)
                 {
-                    body += ",";
+                    body += csv ? "," : "\t";
                 }
             }
             if (i != rows - 1)
@@ -178,5 +115,37 @@ void TableView::outputModelCSV()
         }
 
         file.close();
+    }
+}
+
+void TableView::setSelectionToClipBoard()
+{
+    QModelIndexList indexes = this->selectionModel()->selectedIndexes();
+    if (!indexes.isEmpty())
+    {
+        QString selectedText;
+
+        for (auto i = 0; i < indexes.size(); i++)
+        {
+            QModelIndex current = indexes[i];
+            QString text = current.data().toString();
+
+            if (i + 1 < selectedIndexes().count())
+            {
+                QModelIndex next = indexes[i + 1];
+
+                if (next.row() != current.row())
+                {
+                    text += "\n";
+                }
+                else
+                {
+                    text += "\t";
+                }
+            }
+            selectedText += text;
+        }
+
+        QApplication::clipboard()->setText(selectedText);
     }
 }

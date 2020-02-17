@@ -68,8 +68,10 @@ MacOS
 
 Linux
 - Install the dependencies
-  - sudo apt-get --qq update
-  - sudo apt-get install -y build-essential qtbase5-dev qt5-qmake qt5-default
+  - sudo add-apt-repository ppa:beineri/opt-qt-5.14.1-bionic
+  - sudo apt-get update -qq
+  - sudo apt-get -y install qt514base qt514svg qt514tools libgl1-mesa-dev
+  - source /opt/qt5*/bin/qt5*-env.sh
 - Build
   - git submodule update
   - qmake PokeFinder.pro

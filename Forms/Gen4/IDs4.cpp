@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,15 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <QSettings>
 #include "IDs4.hpp"
 #include "ui_IDs4.h"
-#include <Core/Gen4/IDSearcher4.hpp>
+#include <Core/Gen4/Frames/EggFrame4.hpp>
+#include <Core/Gen4/Generators/IDGenerator4.hpp>
+#include <Core/Gen4/Searchers/IDSearcher4.hpp>
 #include <Core/RNG/MTRNG.hpp>
+#include <Models/Gen4/IDModel4.hpp>
+#include <QSettings>
+#include <QThread>
+#include <QTimer>
 
-IDs4::IDs4(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::IDs4)
+IDs4::IDs4(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::IDs4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -43,27 +48,24 @@ IDs4::~IDs4()
 
 void IDs4::setupModels()
 {
-    shinyPID = new QStandardItemModel(ui->tableViewShinyPID);
+    shinyPID = new IDModel4(ui->tableViewShinyPID, false);
     ui->tableViewShinyPID->setModel(shinyPID);
-    shinyPID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay"));
 
-    tidSID = new QStandardItemModel(ui->tableViewTIDSID);
+    tidSID = new IDModel4(ui->tableViewTIDSID, false);
     ui->tableViewTIDSID->setModel(tidSID);
-    tidSID->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay"));
 
-    seedFinder = new QStandardItemModel(ui->tableViewSeedFinder);
+    seedFinder = new IDModel4(ui->tableViewSeedFinder, true);
     ui->tableViewSeedFinder->setModel(seedFinder);
-    seedFinder->setHorizontalHeaderLabels(QStringList() << tr("Seed") << tr("TID") << tr("SID") << tr("Delay") << tr("Seconds"));
 
     ui->textBoxTIDSIDTID->setValues(InputType::TIDSID);
     ui->textBoxTIDSIDSID->setValues(InputType::TIDSID);
-    ui->textBoxTIDSIDYear->setValues(0, 2099);
+    ui->textBoxTIDSIDYear->setValues(2000, 2099, 4, 10);
     ui->textBoxTIDSIDMinDelay->setValues(InputType::Delay);
     ui->textBoxTIDSIDMaxDelay->setValues(InputType::Delay);
 
     ui->textBoxShinyPIDPID->setValues(InputType::Seed32Bit);
     ui->textBoxShinyPIDTID->setValues(InputType::TIDSID);
-    ui->textBoxShinyPIDYear->setValues(0, 2099);
+    ui->textBoxShinyPIDYear->setValues(2000, 2099, 4, 10);
     ui->textBoxShinyPIDMinDelay->setValues(InputType::Delay);
     ui->textBoxShinyPIDMaxDelay->setValues(InputType::Delay);
 
@@ -71,137 +73,139 @@ void IDs4::setupModels()
     ui->textBoxSeedFinderMinDelay->setValues(InputType::Delay);
     ui->textBoxSeedFinderMaxDelay->setValues(InputType::Delay);
 
+    connect(ui->pushButtonShinyPIDSearch, &QPushButton::clicked, this, &IDs4::shinyPIDSearch);
+    connect(ui->pushButtonTIDSIDSearch, &QPushButton::clicked, this, &IDs4::tidSIDSearch);
+    connect(ui->pushButtonSeedFinderSearch, &QPushButton::clicked, this, &IDs4::seedFinderSearch);
+
     QSettings setting;
-    if (setting.contains("ids4/geometry")) this->restoreGeometry(setting.value("ids4/geometry").toByteArray());
+    if (setting.contains("ids4/geometry"))
+    {
+        this->restoreGeometry(setting.value("ids4/geometry").toByteArray());
+    }
 }
 
-void IDs4::updateProgressShinyPID(const QVector<QList<QStandardItem *> > &frames, int progress)
+void IDs4::updateProgressShinyPID(const QVector<IDFrame4> &frames, int progress)
 {
-    for (const auto &item : frames)
-    {
-        shinyPID->appendRow(item);
-    }
+    shinyPID->addItems(frames);
     ui->progressBarShinyPID->setValue(progress);
 }
 
-void IDs4::updateProgressTIDSID(const QVector<QList<QStandardItem *> > &frames, int progress)
+void IDs4::updateProgressTIDSID(const QVector<IDFrame4> &frames, int progress)
 {
-    for (const auto &item : frames)
-    {
-        tidSID->appendRow(item);
-    }
+    tidSID->addItems(frames);
     ui->progressBarTIDSID->setValue(progress);
 }
 
-void IDs4::on_pushButtonShinyPIDSearch_clicked()
+void IDs4::shinyPIDSearch()
 {
-    if (!ui->pushButtonTIDSIDSearch->isEnabled())
-    {
-        return;
-    }
-
-    shinyPID->removeRows(0, shinyPID->rowCount());
+    shinyPID->clearModel();
 
     ui->pushButtonShinyPIDSearch->setEnabled(false);
     ui->pushButtonShinyPIDCancel->setEnabled(true);
 
+    QVector<u16> tidList;
+    if (ui->checkBoxShinyPIDSearchTID->isChecked())
+    {
+        tidList.append(ui->textBoxShinyPIDTID->getUShort());
+    }
+
     u32 pid = ui->textBoxShinyPIDPID->getUInt();
-    bool useTID = ui->checkBoxShinyPIDSearchTID->isChecked();
-    u16 tid = ui->textBoxShinyPIDTID->getUShort();
-    u32 year = ui->textBoxShinyPIDYear->getUInt();
-    u32 minDelay = ui->textBoxShinyPIDMinDelay->getUInt();
-    u32 maxDelay = ui->textBoxShinyPIDMaxDelay->getUInt();
+    u16 psv = ((pid >> 16) ^ (pid & 0xffff)) >> 3;
+    QVector<u16> psvList = { psv };
+
+    IDFilter filter(tidList, QVector<u16>(), psvList);
+
+    u16 year = ui->textBoxShinyPIDYear->getUShort();
+    u32 minDelay = ui->textBoxShinyPIDMinDelay->getUInt() + year - 2000;
+    u32 maxDelay = ui->textBoxShinyPIDMaxDelay->getUInt() + year - 2000;
     bool infinite = ui->checkBoxShinyPIDInfiniteSearch->isChecked();
-    minDelay += (year - 2000);
-    maxDelay += (year - 2000);
 
     ui->progressBarShinyPID->setValue(0);
     ui->progressBarShinyPID->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
-    auto *search = new ShinyPIDSearcher(pid, useTID, tid, year, minDelay, maxDelay, infinite);
+    auto *searcher = new IDSearcher4(filter);
 
-    connect(search, &ShinyPIDSearcher::finished, this, [ = ] { ui->pushButtonShinyPIDSearch->setEnabled(true); ui->pushButtonShinyPIDCancel->setEnabled(false); });
-    connect(search, &ShinyPIDSearcher::updateProgress, this, &IDs4::updateProgressShinyPID);
-    connect(ui->pushButtonShinyPIDCancel, &QPushButton::clicked, search, &ShinyPIDSearcher::cancelSearch);
+    auto *thread = QThread::create([=] { searcher->startSearch(infinite, year, minDelay, maxDelay); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    connect(ui->pushButtonShinyPIDCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
-    search->startSearch();
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout, [=] { updateProgressShinyPID(searcher->getResults(), searcher->getProgress()); });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonShinyPIDSearch->setEnabled(true);
+        ui->pushButtonShinyPIDCancel->setEnabled(false);
+        updateProgressShinyPID(searcher->getResults(), searcher->getProgress());
+        delete searcher;
+    });
+
+    thread->start();
+    timer->start(1000);
 }
 
-void IDs4::on_pushButtonTIDSIDSearch_clicked()
+void IDs4::tidSIDSearch()
 {
-    if (!ui->pushButtonShinyPIDSearch->isEnabled())
-    {
-        return;
-    }
-
-    tidSID->removeRows(0, tidSID->rowCount());
+    tidSID->clearModel();
 
     ui->pushButtonTIDSIDSearch->setEnabled(false);
     ui->pushButtonTIDSIDCancel->setEnabled(true);
 
-    u16 tid = ui->textBoxTIDSIDTID->getUShort();
-    bool useSID = ui->checkBoxTIDSIDSearchSID->isChecked();
-    u16 searchSID = ui->textBoxTIDSIDSID->getUShort();
-    u32 year = ui->textBoxTIDSIDYear->getUInt();
-    u32 minDelay = ui->textBoxTIDSIDMinDelay->getUInt();
-    u32 maxDelay = ui->textBoxTIDSIDMaxDelay->getUInt();
+    QVector<u16> tidList = { ui->textBoxTIDSIDTID->getUShort() };
+
+    QVector<u16> sidList;
+    if (ui->checkBoxTIDSIDSearchSID->isChecked())
+    {
+        sidList.append(ui->textBoxTIDSIDSID->getUShort());
+    }
+
+    IDFilter filter(tidList, sidList, QVector<u16>());
+
+    u16 year = ui->textBoxTIDSIDYear->getUShort();
+    u32 minDelay = ui->textBoxTIDSIDMinDelay->getUInt() + year - 2000;
+    u32 maxDelay = ui->textBoxTIDSIDMaxDelay->getUInt() + year - 2000;
     bool infinite = ui->checkBoxTIDSIDInfiniteSearch->isChecked();
-    minDelay += (year - 2000);
-    maxDelay += (year - 2000);
 
     ui->progressBarTIDSID->setValue(0);
     ui->progressBarTIDSID->setMaximum(static_cast<int>(256 * 24 * (infinite ? 0xE8FFFF : (maxDelay - minDelay + 1))));
 
-    auto *search = new TIDSIDSearcher(tid, useSID, searchSID, year, minDelay, maxDelay, infinite);
+    auto *searcher = new IDSearcher4(filter);
 
-    connect(search, &TIDSIDSearcher::finished, this, [ = ] { ui->pushButtonTIDSIDSearch->setEnabled(true); ui->pushButtonTIDSIDCancel->setEnabled(false); });
-    connect(search, &TIDSIDSearcher::updateProgress, this, &IDs4::updateProgressTIDSID);
-    connect(ui->pushButtonTIDSIDCancel, &QPushButton::clicked, search, &TIDSIDSearcher::cancelSearch);
+    auto *thread = QThread::create([=] { searcher->startSearch(infinite, year, minDelay, maxDelay); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    connect(ui->pushButtonTIDSIDCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
-    search->startSearch();
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout, [=] { updateProgressTIDSID(searcher->getResults(), searcher->getProgress()); });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonTIDSIDSearch->setEnabled(true);
+        ui->pushButtonTIDSIDCancel->setEnabled(false);
+        updateProgressTIDSID(searcher->getResults(), searcher->getProgress());
+        delete searcher;
+    });
+
+    thread->start();
+    timer->start(1000);
 }
 
-void IDs4::on_pushButtonSeedFinderSearch_clicked()
+void IDs4::seedFinderSearch()
 {
-    if (!ui->pushButtonShinyPIDSearch->isEnabled() || !ui->pushButtonTIDSIDSearch->isEnabled())
-    {
-        return;
-    }
+    seedFinder->clearModel();
 
-    seedFinder->removeRows(0, seedFinder->rowCount());
-
-    u16 tid = ui->textBoxSeedFinderTID->getUShort();
     QDateTime dateTime = ui->dateTimeEdit->dateTime();
-    u32 month = dateTime.date().month();
-    u32 day = dateTime.date().day();
-    u32 year = dateTime.date().year();
-    u32 hour = dateTime.time().hour();
-    u32 minute = dateTime.time().minute();
-    u32 minDelay = ui->textBoxSeedFinderMinDelay->getUInt();
-    u32 maxDelay = ui->textBoxSeedFinderMaxDelay->getUInt();
+    u8 month = static_cast<u8>(dateTime.date().month());
+    u8 day = static_cast<u8>(dateTime.date().day());
+    u16 year = static_cast<u16>(dateTime.date().year());
+    u8 hour = static_cast<u8>(dateTime.time().hour());
+    u8 minute = static_cast<u8>(dateTime.time().minute());
+    u32 minDelay = ui->textBoxSeedFinderMinDelay->getUInt() + year - 2000;
+    u32 maxDelay = ui->textBoxSeedFinderMaxDelay->getUInt() + year - 2000;
 
-    minDelay += (year - 2000);
-    maxDelay += (year - 2000);
+    IDGenerator4 generator(minDelay, maxDelay, year, month, day, hour, minute);
+    IDFilter filter({ ui->textBoxSeedFinderTID->getUShort() }, QVector<u16>(), QVector<u16>());
 
-    for (u8 second = 0; second < 60; second++)
-    {
-        for (u32 efgh = minDelay; efgh <= maxDelay; efgh++)
-        {
-            u32 seed = (((((month * day) + (minute + second)) & 0xFF) << 24) | (hour << 16)) + efgh;
-
-            MersenneTwister mt(seed, 1);
-            u32 y = mt.nextUInt();
-
-            u16 id = y & 0xFFFF;
-            u16 sid = y >> 16;
-
-            if (tid == id)
-            {
-                u32 delay = efgh + 2000 - year;
-                auto frame = QList<QStandardItem *>() << new QStandardItem(QString::number(seed, 16).toUpper().rightJustified(8, '0')) << new QStandardItem(QString::number(id))
-                             << new QStandardItem(QString::number(sid)) << new QStandardItem(QString::number(delay)) << new QStandardItem(QString::number(second));
-                seedFinder->appendRow(frame);
-            }
-        }
-    }
+    auto frames = generator.generate(filter);
+    seedFinder->addItems(frames);
 }

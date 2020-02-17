@@ -94,9 +94,6 @@
      <property name="styleSheet">
       <string notr="true"/>
      </property>
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
      <widget class="QWidget" name="tabStationary">
       <attribute name="title">
        <string>Generator</string>
@@ -117,8 +114,21 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorMethod">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Method</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxGeneratorMethod">
+           <widget class="ComboBox" name="comboBoxGeneratorMethod">
             <property name="layoutDirection">
              <enum>Qt::LeftToRight</enum>
             </property>
@@ -128,45 +138,29 @@
             <property name="frame">
              <bool>true</bool>
             </property>
+            <item>
+             <property name="text">
+              <string>XD/Colo</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>XD</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Colo</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Channel</string>
+             </property>
+            </item>
            </widget>
           </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="labelGeneratorSeed">
-            <property name="text">
-             <string>Seed</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSID">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string notr="true">54321</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButtonGenerate">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>Generate</string>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
+          <item row="5" column="1">
            <widget class="TextBox" name="textBoxGeneratorSeed">
             <property name="inputMask">
              <string/>
@@ -188,40 +182,6 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelGeneratorShadow">
-            <property name="text">
-             <string>Shadow</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="labelGeneratorTID">
-            <property name="text">
-             <string>TID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorStartingFrame">
-            <property name="text">
-             <string>Starting Frame</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="TextBox" name="textBoxGeneratorTID">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string notr="true">12345</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
           <item row="4" column="1">
            <widget class="TextBox" name="textBoxGeneratorMaxResults">
             <property name="inputMask">
@@ -232,13 +192,6 @@
             </property>
             <property name="maxLength">
              <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxResults">
-            <property name="text">
-             <string>Max Results</string>
             </property>
            </widget>
           </item>
@@ -258,29 +211,76 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="labelGeneratorSID">
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelGeneratorType">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>SID</string>
+             <string>Type</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorMethod">
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorStartingFrame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>Method</string>
+             <string>Starting Frame</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxResults">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Max Results</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGenerate">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>Generate</string>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelGeneratorShadow">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Shadow</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
            <widget class="QComboBox" name="comboBoxGeneratorShadow"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelGeneratorType">
-            <property name="text">
-             <string>Type</string>
-            </property>
-           </widget>
           </item>
           <item row="2" column="1">
            <widget class="QComboBox" name="comboBoxGeneratorType">
@@ -299,6 +299,19 @@
               <string>Shiny Skip</string>
              </property>
             </item>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelGeneratorSeed">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Seed</string>
+            </property>
            </widget>
           </item>
          </layout>
@@ -321,13 +334,19 @@
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="1">
            <widget class="QLabel" name="labelGeneratorGender">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Gender</string>
             </property>
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QComboBox" name="comboBoxGeneratorAbility">
+           <widget class="ComboBox" name="comboBoxGeneratorAbility">
             <item>
              <property name="text">
               <string>Any</string>
@@ -360,6 +379,12 @@
           </item>
           <item row="3" column="1">
            <widget class="QLabel" name="labelGeneratorHiddenPower">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Hidden Power</string>
             </property>
@@ -386,6 +411,12 @@
           </item>
           <item row="2" column="1">
            <widget class="QLabel" name="labelGeneratorNature">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Nature</string>
             </property>
@@ -413,6 +444,12 @@
           </item>
           <item row="4" column="1">
            <widget class="QLabel" name="labelGeneratorGenderRatio">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Gender Ratio</string>
             </property>
@@ -422,7 +459,7 @@
            <widget class="CheckList" name="comboBoxGeneratorHiddenPower"/>
           </item>
           <item row="4" column="2">
-           <widget class="QComboBox" name="comboBoxGeneratorGenderRatio">
+           <widget class="ComboBox" name="comboBoxGeneratorGenderRatio">
             <item>
              <property name="text">
               <string>Genderless</string>
@@ -468,10 +505,10 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QComboBox" name="comboBoxGeneratorGender">
+           <widget class="ComboBox" name="comboBoxGeneratorGender">
             <item>
              <property name="text">
-              <string notr="true">-</string>
+              <string notr="true">Any</string>
              </property>
             </item>
             <item>
@@ -501,6 +538,12 @@
           </item>
           <item row="1" column="1">
            <widget class="QLabel" name="labelGeneratorAbility">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Ability</string>
             </property>
@@ -561,13 +604,19 @@
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="1" column="1">
            <widget class="QLabel" name="labelSearcherAbility">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Ability</string>
             </property>
            </widget>
           </item>
           <item row="4" column="2">
-           <widget class="QComboBox" name="comboBoxSearcherGenderRatio">
+           <widget class="ComboBox" name="comboBoxSearcherGenderRatio">
             <item>
              <property name="text">
               <string>Genderless</string>
@@ -607,6 +656,12 @@
           </item>
           <item row="2" column="1">
            <widget class="QLabel" name="labelSearcherNature">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Nature</string>
             </property>
@@ -623,7 +678,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QComboBox" name="comboBoxSearcherAbility">
+           <widget class="ComboBox" name="comboBoxSearcherAbility">
             <item>
              <property name="text">
               <string>Any</string>
@@ -643,6 +698,12 @@
           </item>
           <item row="3" column="1">
            <widget class="QLabel" name="labelSearcherHiddenPower">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Hidden Power</string>
             </property>
@@ -653,6 +714,12 @@
           </item>
           <item row="4" column="1">
            <widget class="QLabel" name="labelSearcherGenderRatio">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Gender Ratio</string>
             </property>
@@ -685,10 +752,10 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QComboBox" name="comboBoxSearcherGender">
+           <widget class="ComboBox" name="comboBoxSearcherGender">
             <item>
              <property name="text">
-              <string notr="true">-</string>
+              <string notr="true">Any</string>
              </property>
             </item>
             <item>
@@ -705,6 +772,12 @@
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="labelSearcherGender">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Gender</string>
             </property>
@@ -756,15 +829,11 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherMethod">
-            <property name="text">
-             <string>Method</string>
-            </property>
-           </widget>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBoxSearcherShadow"/>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherMethod">
+           <widget class="ComboBox" name="comboBoxSearcherMethod">
             <property name="layoutDirection">
              <enum>Qt::LeftToRight</enum>
             </property>
@@ -774,59 +843,29 @@
             <property name="frame">
              <bool>true</bool>
             </property>
+            <item>
+             <property name="text">
+              <string>XD/Colo</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>XD</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Colo</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Channel</string>
+             </property>
+            </item>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherTID">
-            <property name="text">
-             <string>TID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxSearcherTID">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string notr="true">12345</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherSID">
-            <property name="text">
-             <string>SID</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="TextBox" name="textBoxSearcherSID">
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string notr="true">54321</string>
-            </property>
-            <property name="maxLength">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelSearcherShadow">
-            <property name="text">
-             <string>Shadow</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QComboBox" name="comboBoxSearcherShadow"/>
-          </item>
-          <item row="4" column="0" colspan="2">
+          <item row="2" column="0" colspan="2">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QPushButton" name="pushButtonSearch">
@@ -855,6 +894,32 @@
              </widget>
             </item>
            </layout>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSearcherMethod">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Method</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherShadow">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Shadow</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -897,6 +962,11 @@
     <slot>resetChecks()</slot>
    </slots>
   </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxProfiles</tabstop>
@@ -907,9 +977,8 @@
   <tabstop>comboBoxGeneratorType</tabstop>
   <tabstop>textBoxGeneratorStartingFrame</tabstop>
   <tabstop>textBoxGeneratorMaxResults</tabstop>
-  <tabstop>textBoxGeneratorTID</tabstop>
-  <tabstop>textBoxGeneratorSID</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>comboBoxGeneratorGender</tabstop>
   <tabstop>comboBoxGeneratorAbility</tabstop>
   <tabstop>comboBoxGeneratorNature</tabstop>
@@ -921,12 +990,11 @@
   <tabstop>checkBoxGeneratorDisableFilters</tabstop>
   <tabstop>checkBoxGeneratorDelay</tabstop>
   <tabstop>textBoxGeneratorDelay</tabstop>
-  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherMethod</tabstop>
-  <tabstop>textBoxSearcherTID</tabstop>
-  <tabstop>textBoxSearcherSID</tabstop>
   <tabstop>comboBoxSearcherShadow</tabstop>
+  <tabstop>pushButtonSearch</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
   <tabstop>comboBoxSearcherGender</tabstop>
   <tabstop>comboBoxSearcherAbility</tabstop>
   <tabstop>comboBoxSearcherNature</tabstop>
@@ -935,8 +1003,6 @@
   <tabstop>pushButtonSearcherAnyHiddenPower</tabstop>
   <tabstop>comboBoxSearcherGenderRatio</tabstop>
   <tabstop>checkBoxSearcherShinyOnly</tabstop>
-  <tabstop>pushButtonSearch</tabstop>
-  <tabstop>pushButtonCancel</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>

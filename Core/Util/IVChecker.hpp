@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,21 +20,15 @@
 #ifndef IVCHECKER_HPP
 #define IVCHECKER_HPP
 
-#include <QVector>
-#include <Core/Parents/Pokemon.hpp>
-#include <Core/Util/Characteristic.hpp>
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
-class IVChecker
+class PersonalInfo;
+
+namespace IVChecker
 {
-
-public:
-    IVChecker() = default;
-    QVector<QVector<u8>> calculateIVs(Pokemon pokemon, const QVector<u16> &stats, u8 level, u8 nature, Characteristic characteristic, int hiddenPower);
-
-private:
-    QVector<QVector<u8>> ivs;
-
+    QVector<QVector<u8>> calculateIVRange(const PersonalInfo &info, const QVector<QVector<u16>> &stats, const QVector<u8> &level, u8 nature,
+                                          u8 characteristic, u8 hiddenPower);
 };
 
 #endif // IVCHECKER_HPP

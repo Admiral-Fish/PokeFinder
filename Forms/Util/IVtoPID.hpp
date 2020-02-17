@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,9 +20,9 @@
 #ifndef IVTOPIDHPP
 #define IVTOPIDHPP
 
+#include <Core/Util/Global.hpp>
 #include <QStandardItemModel>
 #include <QWidget>
-#include <Core/Util/Global.hpp>
 
 namespace Ui
 {
@@ -32,22 +32,20 @@ namespace Ui
 class IVtoPID : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit IVtoPID(QWidget *parent = nullptr);
     ~IVtoPID() override;
 
 private:
     Ui::IVtoPID *ui;
-    QStandardItemModel *model{};
+    QStandardItemModel *model {};
 
     void setupModels();
     QVector<QList<QStandardItem *>> getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid);
     QVector<QList<QStandardItem *>> getSeedsChannel(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe, u8 nature);
 
 private slots:
-    void on_pushButtonFind_clicked();
-
+    void find();
 };
 
 #endif // IVTOPID

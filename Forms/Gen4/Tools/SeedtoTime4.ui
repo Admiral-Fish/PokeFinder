@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SeedtoTime4</class>
+ <widget class="QWidget" name="SeedtoTime4">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Gen 4 Seed to Time</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <widget class="QWidget" name="tabDPPt">
+      <attribute name="title">
+       <string>DPPt</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBoxDPPtCalibration">
+         <property name="title">
+          <string>Calibration</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="4">
+           <widget class="QLabel" name="labelDPPtSecondMinus">
+            <property name="text">
+             <string notr="true">-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelDPPtDelayPlus">
+            <property name="text">
+             <string notr="true">+</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="8">
+           <widget class="TableView" name="tableViewDPPtCalibrate"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEditDPPtDelayMinus">
+            <property name="text">
+             <string notr="true">10</string>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="labelDPPtSecondOffset">
+            <property name="text">
+             <string>Second</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QLineEdit" name="lineEditDPPtSecondMinus">
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QPushButton" name="pushButtonDPPtCalibrate">
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QLabel" name="labelDPPtSecondPlus">
+            <property name="text">
+             <string notr="true">+</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5">
+           <widget class="QLineEdit" name="lineEditDPPtSecondPlus">
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="labelDPPtDelayMinus">
+            <property name="text">
+             <string notr="true">-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelDPPtDelay">
+            <property name="text">
+             <string>Delay</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="6">
+           <widget class="QPushButton" name="pushButtonDPPtSearchFlips">
+            <property name="text">
+             <string>Search Flips</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="lineEditDPPtDelayPlus">
+            <property name="text">
+             <string notr="true">10</string>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxDPPtSearch">
+         <property name="title">
+          <string>Search</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="2" column="6">
+           <widget class="QPushButton" name="pushButtonDPPtGenerate">
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="TextBox" name="textBoxDPPtYear">
+            <property name="text">
+             <string notr="true">2000</string>
+            </property>
+            <property name="maxLength">
+             <number>4</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QCheckBox" name="checkBoxDPPtSecond">
+            <property name="text">
+             <string notr="true"/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelDPPtYear">
+            <property name="text">
+             <string>Year</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelDPPtSeed">
+            <property name="text">
+             <string>Seed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="7">
+           <widget class="TableView" name="tableViewDPPtSearch"/>
+          </item>
+          <item row="1" column="4">
+           <widget class="TextBox" name="textBoxDPPtSecond">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maxLength">
+             <number>2</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="labelDPPtSecond">
+            <property name="text">
+             <string>Second</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QLabel" name="labelDPPtCoinFlips">
+            <property name="text">
+             <string>Coin Flips:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxDPPtSeed">
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabHGSS">
+      <attribute name="title">
+       <string>HGSS</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBoxHGSSCalibration">
+         <property name="title">
+          <string>Calibration</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="1" column="6">
+           <widget class="QPushButton" name="pushButtonHGSSSearchCalls">
+            <property name="text">
+             <string>Search Calls</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="labelHGSSSecondMinus">
+            <property name="text">
+             <string notr="true">-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEditHGSSDelayMinus">
+            <property name="text">
+             <string notr="true">10</string>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="lineEditHGSSDelayPlus">
+            <property name="text">
+             <string notr="true">10</string>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5">
+           <widget class="QLineEdit" name="lineEditHGSSSecondPlus">
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QLabel" name="labelHGSSSecondPlus">
+            <property name="text">
+             <string notr="true">+</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="8">
+           <widget class="TableView" name="tableViewHGSSCalibrate"/>
+          </item>
+          <item row="1" column="7">
+           <widget class="QPushButton" name="pushButtonHGSSCalibrate">
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QLineEdit" name="lineEditHGSSSecondMinus">
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelHGSSDelayPlus">
+            <property name="text">
+             <string notr="true">+</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="labelHGSSDelayMinus">
+            <property name="text">
+             <string notr="true">-</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelHGSSDelay">
+            <property name="text">
+             <string>Delay</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="labelHGSSSecondOffset">
+            <property name="text">
+             <string>Second</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxHGSSSearch">
+         <property name="title">
+          <string>Search</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0" colspan="3">
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="0" column="2">
+             <widget class="QLabel" name="labelHGSSYear">
+              <property name="text">
+               <string>Year</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QLabel" name="labelHGSSSecond">
+              <property name="text">
+               <string>Second</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelHGSSSeed">
+              <property name="text">
+               <string>Seed</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="TextBox" name="textBoxHGSSSeed">
+              <property name="maxLength">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="TextBox" name="textBoxHGSSYear">
+              <property name="text">
+               <string notr="true">2000</string>
+              </property>
+              <property name="maxLength">
+               <number>4</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QCheckBox" name="checkBoxHGSSSecond">
+              <property name="text">
+               <string notr="true"/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="4">
+             <widget class="TextBox" name="textBoxHGSSSecond">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="maxLength">
+               <number>2</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="5">
+             <widget class="QPushButton" name="pushButtonHGSSMap">
+              <property name="text">
+               <string>Map</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="6">
+             <widget class="QCheckBox" name="checkBoxHGSSRaikou">
+              <property name="text">
+               <string>R</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="7">
+             <widget class="QLineEdit" name="lineEditHGSSRaikou">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="maxLength">
+               <number>2</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="8">
+             <widget class="QCheckBox" name="checkBoxHGSSEntei">
+              <property name="text">
+               <string>E</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="9">
+             <widget class="QLineEdit" name="lineEditHGSSEntei">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="maxLength">
+               <number>2</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="10">
+             <widget class="QCheckBox" name="checkBoxHGSSLati">
+              <property name="text">
+               <string>L</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="11">
+             <widget class="QLineEdit" name="lineEditHGSSLati">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="maxLength">
+               <number>2</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelHGSSElmCalls">
+            <property name="text">
+             <string>Elm Calls:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>602</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="pushButtonHGSSGenerate">
+            <property name="text">
+             <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelHGSSRoamers">
+            <property name="text">
+             <string>Roamers:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="3">
+           <widget class="TableView" name="tableViewHGSSSearch"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextBox</class>
+   <extends>QLineEdit</extends>
+   <header>Forms/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>textBoxDPPtSeed</tabstop>
+  <tabstop>textBoxDPPtYear</tabstop>
+  <tabstop>checkBoxDPPtSecond</tabstop>
+  <tabstop>textBoxDPPtSecond</tabstop>
+  <tabstop>pushButtonDPPtGenerate</tabstop>
+  <tabstop>tableViewDPPtSearch</tabstop>
+  <tabstop>lineEditDPPtDelayMinus</tabstop>
+  <tabstop>lineEditDPPtDelayPlus</tabstop>
+  <tabstop>lineEditDPPtSecondMinus</tabstop>
+  <tabstop>lineEditDPPtSecondPlus</tabstop>
+  <tabstop>pushButtonDPPtSearchFlips</tabstop>
+  <tabstop>pushButtonDPPtCalibrate</tabstop>
+  <tabstop>tableViewDPPtCalibrate</tabstop>
+  <tabstop>textBoxHGSSSeed</tabstop>
+  <tabstop>textBoxHGSSYear</tabstop>
+  <tabstop>checkBoxHGSSSecond</tabstop>
+  <tabstop>textBoxHGSSSecond</tabstop>
+  <tabstop>pushButtonHGSSMap</tabstop>
+  <tabstop>checkBoxHGSSRaikou</tabstop>
+  <tabstop>lineEditHGSSRaikou</tabstop>
+  <tabstop>checkBoxHGSSEntei</tabstop>
+  <tabstop>lineEditHGSSEntei</tabstop>
+  <tabstop>checkBoxHGSSLati</tabstop>
+  <tabstop>lineEditHGSSLati</tabstop>
+  <tabstop>pushButtonHGSSGenerate</tabstop>
+  <tabstop>tableViewHGSSSearch</tabstop>
+  <tabstop>lineEditHGSSDelayMinus</tabstop>
+  <tabstop>lineEditHGSSDelayPlus</tabstop>
+  <tabstop>lineEditHGSSSecondMinus</tabstop>
+  <tabstop>lineEditHGSSSecondPlus</tabstop>
+  <tabstop>pushButtonHGSSSearchCalls</tabstop>
+  <tabstop>pushButtonHGSSCalibrate</tabstop>
+  <tabstop>tableViewHGSSCalibrate</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>checkBoxHGSSRaikou</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>lineEditHGSSRaikou</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>415</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>469</x>
+     <y>86</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHGSSEntei</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>lineEditHGSSEntei</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>535</x>
+     <y>87</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>580</x>
+     <y>83</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHGSSLati</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>lineEditHGSSLati</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>658</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>720</x>
+     <y>88</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHGSSSecond</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxHGSSSecond</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>253</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>323</x>
+     <y>89</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxDPPtSecond</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textBoxDPPtSecond</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>324</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>400</x>
+     <y>86</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

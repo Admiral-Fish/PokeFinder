@@ -1,6 +1,6 @@
 /*
  * This file is part of PokéFinder
- * Copyright (C) 2017-2019 by Admiral_Fish, bumba, and EzPzStreamz
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,79 +20,77 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+#include <QActionGroup>
 #include <QMainWindow>
-#include <Forms/Gen3/Eggs3.hpp>
-#include <Forms/Gen3/GameCube.hpp>
-#include <Forms/Gen3/IDs3.hpp>
-#include <Forms/Gen3/Stationary3.hpp>
-#include <Forms/Gen3/Wild3.hpp>
-#include <Forms/Gen4/Eggs4.hpp>
-#include <Forms/Gen4/IDs4.hpp>
-#include <Forms/Gen4/Stationary4.hpp>
-#include <Forms/Gen4/Wild4.hpp>
 
 namespace Ui
 {
     class MainWindow;
 }
 
+class Stationary3;
+class Wild3;
+class GameCube;
+class Eggs3;
+class IDs3;
+class Stationary4;
+class Wild4;
+class Eggs4;
+class IDs4;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
 private:
     Ui::MainWindow *ui;
-    QActionGroup *langGroup{};
-    QActionGroup *styleGroup{};
+    QActionGroup *langGroup {};
+    QActionGroup *styleGroup {};
     QString currentLanguage;
     QString currentStyle;
 
-    Stationary3 *stationary3{};
-    Wild3 *wild3{};
-    GameCube *gamecube{};
-    Eggs3 *egg3{};
-    IDs3 *ids3{};
-    Stationary4 *stationary4{};
-    Wild4 *wild4{};
-    Eggs4 *egg4{};
-    IDs4 *ids4{};
+    Stationary3 *stationary3 {};
+    Wild3 *wild3 {};
+    GameCube *gamecube {};
+    Eggs3 *egg3 {};
+    IDs3 *ids3 {};
+    Stationary4 *stationary4 {};
+    Wild4 *wild4 {};
+    Eggs4 *egg4 {};
+    IDs4 *ids4 {};
 
-    void setupLanguage();
-    void setupStyle();
-    void checkUpdates();
+    void setupModels();
 
 private slots:
     void slotLanguageChanged(QAction *action);
     void slotStyleChanged(QAction *action);
+    void checkUpdates();
     void updateProfiles(int num);
-    void on_pushButtonStationary3_clicked();
-    void on_pushButtonWild3_clicked();
-    void on_pushButtonGameCube_clicked();
-    void on_pushButtonEgg3_clicked();
-    void on_pushButtonIDs3_clicked();
-    void on_actionGameCubeRTC_triggered();
-    void on_actionGameCube_Seed_Finder_triggered();
-    void on_actionIVtoPID3_triggered();
-    void on_actionJirachiPattern_triggered();
-    void on_actionPIDtoIV_triggered();
-    void on_actionPokeSpot_triggered();
-    void on_actionSeedtoTime3_triggered();
-    void on_actionSpinda_Painter_triggered();
-    void on_pushButtonStationary4_clicked();
-    void on_pushButtonWild4_clicked();
-    void on_pushButtonEgg4_clicked();
-    void on_pushButtonIDs4_clicked();
-    void on_actionIVtoPID4_triggered();
-    void on_actionSeedtoTime4_triggered();
-    void on_actionSID_from_Chained_Shiny_triggered();
-    void on_actionEncounter_Lookup_triggered();
-    void on_actionIV_Calculator_triggered();
-    void on_actionResearcher_triggered();
-
+    void openStationary3();
+    void openWild3();
+    void openGameCube();
+    void openEgg3();
+    void openIDs3();
+    void openGameCubeRTC();
+    void openGameCubeSeedFinder();
+    void openIVtoPID();
+    void openJirachiPattern();
+    void openPIDtoIV();
+    void openPokeSpot();
+    void openSeedtoTime3();
+    void openSpindaPainter();
+    void openStationary4();
+    void openWild4();
+    void openEgg4();
+    void openIDs4();
+    void openSeedtoTime4();
+    void openSIDFromChainedShiny();
+    void openEncounterLookup();
+    void openIVCalculator();
+    void openResearcher();
 };
 
 #endif // MAINWINDOW_HPP
