@@ -78,14 +78,10 @@ void Stationary5::setupModels()
     //ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
-    ui->textBoxGeneratorTID->setValues(InputType::TIDSID);
-    ui->textBoxGeneratorSID->setValues(InputType::TIDSID);
     ui->textBoxGeneratorStartingFrame->setValues(InputType::Frame32Bit);
     ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
     ui->textBoxGeneratorDelay->setValues(InputType::Frame32Bit);
 
-    ui->textBoxSearcherTID->setValues(InputType::TIDSID);
-    ui->textBoxSearcherSID->setValues(InputType::TIDSID);
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMaxDelay->setValues(InputType::Delay);
     ui->textBoxSearcherMinFrame->setValues(InputType::Frame32Bit);
