@@ -28,9 +28,7 @@
 #include <QThread>
 #include <QTimer>
 
-IDs4::IDs4(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::IDs4)
+IDs4::IDs4(QWidget *parent) : QWidget(parent), ui(new Ui::IDs4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);

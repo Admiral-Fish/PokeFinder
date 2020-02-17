@@ -29,12 +29,7 @@ class RNGList
 {
 public:
     explicit RNGList(std::function<IntegerType()> function, u32 size = 5000) :
-        function(function),
-        list(new IntegerType[size]),
-        size(size),
-        head(0),
-        tail(size - 1),
-        pointer(0)
+        function(function), list(new IntegerType[size]), size(size), head(0), tail(size - 1), pointer(0)
     {
         for (u32 i = 0; i < size; i++)
         {

@@ -108,8 +108,7 @@ void Researcher::setupModels()
     }
 }
 
-u64 Researcher::getCustom(const QString &text, const ResearcherFrame &frame,
-                          const QVector<ResearcherFrame> &frames)
+u64 Researcher::getCustom(const QString &text, const ResearcherFrame &frame, const QVector<ResearcherFrame> &frames)
 {
     switch (keys[text])
     {

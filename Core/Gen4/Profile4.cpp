@@ -26,11 +26,7 @@ Profile4::Profile4() : dual(Game::Blank), radio(0), radar(false), swarm(false)
 }
 
 Profile4::Profile4(const QString &profileName, Game version, u16 tid, u16 sid, Game dual, int radio, bool radar, bool swarm) :
-    Profile(profileName, version, tid, sid),
-    dual(dual),
-    radio(radio),
-    radar(radar),
-    swarm(swarm)
+    Profile(profileName, version, tid, sid), dual(dual), radio(radio), radar(radar), swarm(swarm)
 {
 }
 

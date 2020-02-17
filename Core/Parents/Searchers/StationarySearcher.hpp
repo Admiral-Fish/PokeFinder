@@ -20,8 +20,8 @@
 #ifndef STATIONARYSEARCHER_HPP
 #define STATIONARYSEARCHER_HPP
 
-#include <Core/Parents/Searchers/Searcher.hpp>
 #include <Core/Enum/Lead.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 
 class StationarySearcher : public Searcher
 {

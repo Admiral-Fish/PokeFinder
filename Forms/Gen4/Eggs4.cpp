@@ -33,9 +33,7 @@
 #include <QThread>
 #include <QTimer>
 
-Eggs4::Eggs4(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::Eggs4)
+Eggs4::Eggs4(QWidget *parent) : QWidget(parent), ui(new Ui::Eggs4)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
