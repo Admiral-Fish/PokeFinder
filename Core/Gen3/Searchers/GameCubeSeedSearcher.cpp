@@ -39,10 +39,7 @@ constexpr u8 coloGenderRatios[8][6]
         { 0xff, 0x1f, 0x3f, 0x7f, 0x7f, 0x3f }, { 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f } };
 
 GameCubeSeedSearcher::GameCubeSeedSearcher(Method method, const QVector<u32> &criteria) :
-    criteria(criteria),
-    method(method),
-    searching(false),
-    progress(0)
+    criteria(criteria), method(method), searching(false), progress(0)
 {
 }
 

@@ -20,9 +20,9 @@
 #ifndef WILDSEARCHER_HPP
 #define WILDSEARCHER_HPP
 
-#include <Core/Parents/Searchers/Searcher.hpp>
 #include <Core/Enum/Encounter.hpp>
 #include <Core/Enum/Lead.hpp>
+#include <Core/Parents/Searchers/Searcher.hpp>
 
 class WildSearcher : public Searcher
 {

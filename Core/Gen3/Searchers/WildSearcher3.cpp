@@ -23,10 +23,7 @@
 #include <Core/Util/EncounterSlot.hpp>
 
 WildSearcher3::WildSearcher3(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
-    WildSearcher(tid, sid, genderRatio, method, filter),
-    cache(method),
-    searching(false),
-    progress(0)
+    WildSearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
 {
 }
 

@@ -20,9 +20,7 @@
 #include "EggSearcher4.hpp"
 
 EggSearcher4::EggSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
-    Searcher(tid, sid, genderRatio, method, filter),
-    searching(false),
-    progress(0)
+    Searcher(tid, sid, genderRatio, method, filter), searching(false), progress(0)
 {
 }
 

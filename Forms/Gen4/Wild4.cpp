@@ -37,9 +37,7 @@
 #include <QThread>
 #include <QTimer>
 
-Wild4::Wild4(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::Wild4)
+Wild4::Wild4(QWidget *parent) : QWidget(parent), ui(new Ui::Wild4)
 {
     ui->setupUi(this);
 
@@ -142,23 +140,17 @@ void Wild4::setupModels()
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Wild4::search);
     connect(ui->pushButtonGeneratorLead, &QPushButton::clicked, this, &Wild4::generatorLead);
     connect(ui->comboBoxGeneratorEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-        &Wild4::generatorEncounterIndexChanged);
+            &Wild4::generatorEncounterIndexChanged);
     connect(ui->comboBoxSearcherEncounter, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-        &Wild4::searcherEncounterIndexChanged);
+            &Wild4::searcherEncounterIndexChanged);
     connect(ui->comboBoxGeneratorLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-        &Wild4::generatorLocationIndexChanged);
-    connect(ui->comboBoxSearcherLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-        &Wild4::searcherLocationIndexChanged);
-    connect(ui->comboBoxGeneratorPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-        &Wild4::generatorPokemonIndexChanged);
-    connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-        &Wild4::searcherPokemonIndexChanged);
-    connect(ui->comboBoxGeneratorTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-        &Wild4::generatorTimeIndexChanged);
-    connect(ui->comboBoxSearcherTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this,
-        &Wild4::searcherTimeIndexChanged);
-    connect(
-        ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Wild4::tableViewGeneratorContextMenu);
+            &Wild4::generatorLocationIndexChanged);
+    connect(ui->comboBoxSearcherLocation, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherLocationIndexChanged);
+    connect(ui->comboBoxGeneratorPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::generatorPokemonIndexChanged);
+    connect(ui->comboBoxSearcherPokemon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherPokemonIndexChanged);
+    connect(ui->comboBoxGeneratorTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::generatorTimeIndexChanged);
+    connect(ui->comboBoxSearcherTime, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Wild4::searcherTimeIndexChanged);
+    connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Wild4::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Wild4::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Wild4::profileManager);
 

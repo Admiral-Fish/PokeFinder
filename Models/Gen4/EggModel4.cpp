@@ -22,9 +22,7 @@
 #include <Core/Util/Translator.hpp>
 
 EggGeneratorModel4::EggGeneratorModel4(QObject *parent, Method method) :
-    TableModel<EggFrame4>(parent),
-    method(method),
-    showInheritance(false)
+    TableModel<EggFrame4>(parent), method(method), showInheritance(false)
 {
 }
 

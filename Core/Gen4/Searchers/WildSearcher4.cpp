@@ -27,10 +27,7 @@
 constexpr u8 genderThreshHolds[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };
 
 WildSearcher4::WildSearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
-    WildSearcher(tid, sid, genderRatio, method, filter),
-    cache(method),
-    searching(false),
-    progress(0)
+    WildSearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
 {
 }
 

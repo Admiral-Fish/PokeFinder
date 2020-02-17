@@ -25,10 +25,7 @@
 constexpr u8 genderThreshHolds[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };
 
 StationarySearcher4::StationarySearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
-    StationarySearcher(tid, sid, genderRatio, method, filter),
-    cache(method),
-    searching(false),
-    progress(0)
+    StationarySearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
 {
     tsv = (tid ^ sid) >> 3;
 }
