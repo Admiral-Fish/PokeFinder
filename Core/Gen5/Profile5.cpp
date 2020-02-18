@@ -32,7 +32,8 @@ Profile5::Profile5() :
     timer0Min(0x621),
     timer0Max(0x621),
     softReset(false),
-    dsType(DSType::DSOriginal)
+    dsType(DSType::DSOriginal),
+    language(Language::English)
 {
     // Default parameters for White on desmume
     version = Game::White;

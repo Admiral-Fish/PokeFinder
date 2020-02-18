@@ -18,10 +18,14 @@
  */
 
 #include "SHA1.hpp"
+#include <cstring>
 
 SHA1::SHA1(const Profile5 &profile)
 {
     this->profile = profile;
+
+    std::memset(data, 0, sizeof(u32) * 80);
+    std::memset(alpha, 0, sizeof(u32) * 5);
 
     QVector<u32> nazos = Nazos::getNazo(profile);
     std::copy(nazos.begin(), nazos.end(), data);
@@ -31,7 +35,7 @@ SHA1::SHA1(const Profile5 &profile)
     {
         data[6] ^= 0x01000000;
     }
-    data[7] = (profile.getMac() >> 16) ^ (profile.getVFrame() * 0x1000000) ^ profile.getGxStat();
+    data[7] = (profile.getMac() >> 16) ^ (profile.getVFrame() << 24) ^ profile.getGxStat();
     data[13] = 0x80000000;
     data[15] = 0x000001A0;
 }
@@ -45,20 +49,20 @@ u64 SHA1::hashSeed()
     u32 d = alpha[3];
     u32 e = alpha[4];
 
-    auto section1Calc = [&temp, &a, &b, &c, &d, &e] { temp = ((a << 5) | (a >> 27)) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
-    auto section2Calc = [&temp, &a, &b, &c, &d, &e] { temp = ((a << 5) | (a >> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + temp; };
-    auto section3Calc = [&temp, &a, &b, &c, &d, &e] { temp = ((a << 5) | (a >> 27)) + ((b & c) | ((b | c) & d)) + e + 0x8F1BBCDC + temp; };
-    auto section4Calc = [&temp, &a, &b, &c, &d, &e] { temp = ((a << 5) | (a >> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + temp; };
-    auto updateVars = [&temp, &a, &b, &c, &d, &e] {
+    auto section1Calc = [&temp, &a, &b, &c, &d, &e, this] { temp = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
+    auto section2Calc = [&temp, &a, &b, &c, &d, &e, this] { temp = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ED9EBA1 + temp; };
+    auto section3Calc = [&temp, &a, &b, &c, &d, &e, this] { temp = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8F1BBCDC + temp; };
+    auto section4Calc = [&temp, &a, &b, &c, &d, &e, this] { temp = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xCA62C1D6 + temp; };
+    auto updateVars = [&temp, &a, &b, &c, &d, &e, this] {
         e = d;
         d = c;
-        c = (b << 30) | (b >> 2);
+        c = rotateRight(b, 2);
         b = a;
         a = temp;
     };
     auto calcW = [&temp, this](int i) {
         temp = data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16];
-        data[i] = temp = (temp << 1) | (temp >> 31);
+        data[i] = temp = rotateLeft(temp, 1);
     };
 
     // clang-format off
@@ -88,7 +92,7 @@ u64 SHA1::hashSeed()
     temp = data[27]; section2Calc(); updateVars();
     calcW(28); section2Calc(); updateVars();
     calcW(29); section2Calc(); updateVars();
-    calcW(30); section2Calc(); updateVars();
+    temp = data[30]; section2Calc(); updateVars();
     calcW(31); section2Calc(); updateVars();
     calcW(32); section2Calc(); updateVars();
     calcW(33); section2Calc(); updateVars();
@@ -164,14 +168,15 @@ void SHA1::preCompute()
     u32 d = 0x10325476;
     u32 e = 0xC3D2E1F0;
 
-    auto section1Calc = [&temp, &a, &b, &c, &d, &e] { temp = ((a << 5) | (a >> 27)) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
-    auto updateVars = [&temp, &a, &b, &c, &d, &e] {
+    auto section1Calc = [&temp, &a, &b, &c, &d, &e, this] { temp = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
+    auto updateVars = [&temp, &a, &b, &c, &d, &e, this] {
         e = d;
         d = c;
-        c = (b << 30) | (b >> 2);
+        c = rotateRight(b, 2);
         b = a;
         a = temp;
     };
+    auto calcW = [this](int i) { data[i] = rotateLeft(data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16], 1); };
 
     // clang-format off
 
@@ -194,13 +199,14 @@ void SHA1::preCompute()
     alpha[4] = e;
 
     // Select values will be the same for same date
-    data[16] = rotateLeft(data[13] ^ data[8] ^ data[2] ^ data[0], 1);
-    data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
-    data[19] = rotateLeft(data[16] ^ data[11] ^ data[5] ^ data[3], 1);
-    data[21] = rotateLeft(data[18] ^ data[13] ^ data[7] ^ data[5], 1);
-    data[22] = rotateLeft(data[19] ^ data[14] ^ data[8] ^ data[6], 1);
-    data[24] = rotateLeft(data[21] ^ data[16] ^ data[10] ^ data[8], 1);
-    data[27] = rotateLeft(data[24] ^ data[19] ^ data[13] ^ data[11], 1);
+    calcW(16);
+    calcW(18);
+    calcW(19);
+    calcW(21);
+    calcW(22);
+    calcW(24);
+    calcW(27);
+    calcW(30);
 }
 
 void SHA1::setTime(u8 hour, u8 minute, u8 second)
@@ -237,6 +243,11 @@ u32 SHA1::reorder(u32 val)
 u32 SHA1::rotateLeft(u32 val, u8 count)
 {
     return (val << count) | (val >> (32 - count));
+}
+
+u32 SHA1::rotateRight(u32 val, u8 count)
+{
+    return (val << (32 - count)) | (val >> count);
 }
 
 u32 SHA1::toBCD(u32 value)

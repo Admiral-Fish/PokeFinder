@@ -26,7 +26,6 @@
 
 class SHA1
 {
-
 public:
     explicit SHA1(const Profile5 &profile);
     u64 hashSeed();
@@ -38,11 +37,12 @@ public:
 
 private:
     Profile5 profile;
-    u32 data[80] = { 0 };
-    u32 alpha[5] = { 0 };
+    u32 data[80];
+    u32 alpha[5];
 
     u32 reorder(u32 val);
     u32 rotateLeft(u32 val, u8 count);
+    u32 rotateRight(u32 val, u8 count);
     u32 toBCD(u32 value);
 };
 
