@@ -19,41 +19,6 @@
 
 #include "SHA1.hpp"
 
-#define K0 0x5A827999
-#define K1 0x6ED9EBA1
-#define K2 0x8F1BBCDC
-#define K3 0xCA62C1D6
-
-#define H0 0x67452301
-#define H1 0xEFCDAB89
-#define H2 0x98BADCFE
-#define H3 0x10325476
-#define H4 0xC3D2E1F0
-
-#define section1Calc() \
-    temp = ((a << 5) | (a >> 27)) + ((b & c) | (~b & d)) + e + K0 + temp
-
-#define section2Calc() \
-    temp = ((a << 5) | (a >> 27)) + (b ^ c ^ d) + e + K1 + temp
-
-#define section3Calc() \
-    temp = ((a << 5) | (a >> 27)) + ((b & c) | ((b | c) & d)) + e + K2 + temp
-
-#define section4Calc() \
-    temp = ((a << 5) | (a >> 27)) + (b ^ c ^ d) + e + K3 + temp
-
-#define updateVars() \
-    e = d; \
-    d = c; \
-    c = (b << 30) | (b >> 2); \
-    b = a; \
-    a = temp
-
-#define calcW(i) \
-    temp = data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16]; \
-    data[i] = temp = (temp << 1) | (temp >> 31)
-
-
 SHA1::SHA1(const Profile5 &profile)
 {
     this->profile = profile;
@@ -73,13 +38,31 @@ SHA1::SHA1(const Profile5 &profile)
 
 u64 SHA1::hashSeed()
 {
-    u32 temp = 0;
+    u32 temp;
     u32 a = alpha[0];
     u32 b = alpha[1];
     u32 c = alpha[2];
     u32 d = alpha[3];
     u32 e = alpha[4];
 
+    auto section1Calc = [&temp, &a, &b, &c, &d, &e] { temp = ((a << 5) | (a >> 27)) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
+    auto section2Calc = [&temp, &a, &b, &c, &d, &e] { temp = ((a << 5) | (a >> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + temp; };
+    auto section3Calc = [&temp, &a, &b, &c, &d, &e] { temp = ((a << 5) | (a >> 27)) + ((b & c) | ((b | c) & d)) + e + 0x8F1BBCDC + temp; };
+    auto section4Calc = [&temp, &a, &b, &c, &d, &e] { temp = ((a << 5) | (a >> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + temp; };
+    auto updateVars = [&temp, &a, &b, &c, &d, &e] {
+        e = d;
+        d = c;
+        c = (b << 30) | (b >> 2);
+        b = a;
+        a = temp;
+    };
+    auto calcW = [&temp, this](int i) {
+        temp = data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16];
+        data[i] = temp = (temp << 1) | (temp >> 31);
+    };
+
+    // clang-format off
+    
     // Section 1: 0-19
     // 0-8 already computed
     temp = data[9]; section1Calc(); updateVars();
@@ -160,8 +143,10 @@ u64 SHA1::hashSeed()
     calcW(78); section4Calc(); updateVars();
     calcW(79); section4Calc();
 
-    u64 part1 = reorder(temp + H0);
-    u64 part2 = reorder(a + H1);
+    // clang-format on
+
+    u64 part1 = reorder(temp + 0x67452301);
+    u64 part2 = reorder(a + 0xEFCDAB89);
 
     u64 seed = (part2 << 32) | part1;
     seed = seed * 0x5d588b656c078965 + 0x269ec3;
@@ -172,13 +157,23 @@ u64 SHA1::hashSeed()
 void SHA1::preCompute()
 {
     // For hashes computed on the same date, the first 8 steps will be the same
+    u32 temp;
+    u32 a = 0x67452301;
+    u32 b = 0xEFCDAB89;
+    u32 c = 0x98BADCFE;
+    u32 d = 0x10325476;
+    u32 e = 0xC3D2E1F0;
 
-    u32 temp = 0;
-    u32 a = H0;
-    u32 b = H1;
-    u32 c = H2;
-    u32 d = H3;
-    u32 e = H4;
+    auto section1Calc = [&temp, &a, &b, &c, &d, &e] { temp = ((a << 5) | (a >> 27)) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
+    auto updateVars = [&temp, &a, &b, &c, &d, &e] {
+        e = d;
+        d = c;
+        c = (b << 30) | (b >> 2);
+        b = a;
+        a = temp;
+    };
+
+    // clang-format off
 
     temp = data[0]; section1Calc(); updateVars();
     temp = data[1]; section1Calc(); updateVars();
@@ -190,13 +185,15 @@ void SHA1::preCompute()
     temp = data[7]; section1Calc(); updateVars();
     temp = data[8]; section1Calc(); updateVars();
 
+    // clang-format on
+
     alpha[0] = a;
     alpha[1] = b;
     alpha[2] = c;
     alpha[3] = d;
     alpha[4] = e;
 
-    // Also select values will be the same for same date
+    // Select values will be the same for same date
     data[16] = rotateLeft(data[13] ^ data[8] ^ data[2] ^ data[0], 1);
     data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
     data[19] = rotateLeft(data[16] ^ data[11] ^ data[5] ^ data[3], 1);
@@ -222,8 +219,7 @@ void SHA1::setTimer0(u32 timer0)
 
 void SHA1::setDate(QDate date)
 {
-    u32 val = (toBCD((date.year() - 2000)) << 24) | (toBCD(date.day()) << 16) |
-              (toBCD(date.day()) << 8) | toBCD(date.dayOfWeek());
+    u32 val = (toBCD((date.year() - 2000)) << 24) | (toBCD(date.day()) << 16) | (toBCD(date.day()) << 8) | toBCD(date.dayOfWeek());
     data[8] = val;
 }
 
@@ -241,11 +237,6 @@ u32 SHA1::reorder(u32 val)
 u32 SHA1::rotateLeft(u32 val, u8 count)
 {
     return (val << count) | (val >> (32 - count));
-}
-
-u32 SHA1::rotateRight(u32 val, u8 count)
-{
-    return (val >> count) | (val << (32 - count));
 }
 
 u32 SHA1::toBCD(u32 value)

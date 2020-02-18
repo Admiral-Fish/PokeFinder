@@ -26,9 +26,7 @@
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <QSettings>
 
-Stationary5::Stationary5(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Stationary5)
+Stationary5::Stationary5(QWidget *parent) : QWidget(parent), ui(new Ui::Stationary5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -69,13 +67,13 @@ void Stationary5::updateProfiles()
 
 void Stationary5::setupModels()
 {
-    //generatorModel = new Stationary5Model(ui->tableViewGenerator, Method::Method1);
-    //searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1);
+    // generatorModel = new Stationary5Model(ui->tableViewGenerator, Method::Method1);
+    // searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1);
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 
-    //ui->tableViewGenerator->setModel(generatorModel);
-    //ui->tableViewSearcher->setModel(searcherModel);
+    // ui->tableViewGenerator->setModel(generatorModel);
+    // ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorStartingFrame->setValues(InputType::Frame32Bit);
@@ -270,7 +268,7 @@ void Stationary5::profileIndexChanged(int index)
         ui->labelProfileDSTypeValue->setText(currentProfile.getDSTypeString());
         ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
         ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
-            + QString::number(currentProfile.getTimer0Max(), 16));
+                                             + QString::number(currentProfile.getTimer0Max(), 16));
         ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
         ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
         ui->labelProfileKeypressesValue->setText(currentProfile.getKeypressesString());

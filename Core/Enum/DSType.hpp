@@ -22,9 +22,9 @@
 
 enum DSType
 {
-    DSOriginal  = 1 << 0,
-    DSi         = 1 << 1,
-    DS3         = 1 << 2
+    DSOriginal = 1 << 0,
+    DSi = 1 << 1,
+    DS3 = 1 << 2
 };
 
 #endif // DSTYPE_HPP

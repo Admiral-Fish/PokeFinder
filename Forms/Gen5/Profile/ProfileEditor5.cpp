@@ -22,9 +22,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
 
-ProfileEditor5::ProfileEditor5(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ProfileEditor5)
+ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -33,9 +31,7 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) :
     setupModels();
 }
 
-ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ProfileEditor5)
+ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -125,13 +121,12 @@ void ProfileEditor5::okay()
         return;
     }
 
-    fresh = Profile5(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
-        ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(),
-        ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(), ui->textBoxGxStat->getUChar(),
-        ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),
+    fresh = Profile5(
+        ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
+        ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(), ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(),
+        ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),
         ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(),
-        static_cast<DSType>(ui->comboBoxDSType->currentData().toInt()),
-        static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()));
+        static_cast<DSType>(ui->comboBoxDSType->currentData().toInt()), static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()));
 
     done(QDialog::Accepted);
 }

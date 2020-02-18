@@ -62,7 +62,7 @@ private:
     Wild4 *wild4 {};
     Eggs4 *egg4 {};
     IDs4 *ids4 {};
-    Stationary5 *stationary5{};
+    Stationary5 *stationary5 {};
 
     void setupModels();
 

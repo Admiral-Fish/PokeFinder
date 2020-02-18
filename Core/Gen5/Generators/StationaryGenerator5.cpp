@@ -24,8 +24,8 @@
 #include <Core/RNG/MTRNG.hpp>
 #include <Core/RNG/RNGList.hpp>
 
-Generator5::Generator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method)
-    : StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method)
+Generator5::Generator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method) :
+    StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method)
 {
     tsv = (tid ^ sid) >> 3;
 }

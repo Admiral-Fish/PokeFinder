@@ -33,40 +33,40 @@ QString Profile::getVersionString() const
 {
     switch (version)
     {
-        case Game::Ruby:
-            return QObject::tr("Ruby");
-        case Game::Sapphire:
-            return QObject::tr("Sapphire");
-        case Game::FireRed:
-            return QObject::tr("Fire Red");
-        case Game::LeafGreen:
-            return QObject::tr("Leaf Green");
-        case Game::Emerald:
-            return QObject::tr("Emerald");
-        case Game::Gales:
-            return QObject::tr("Gales");
-        case Game::Colosseum:
-            return QObject::tr("Colosseum");
-        case Game::Diamond:
-            return QObject::tr("Diamond");
-        case Game::Pearl:
-            return QObject::tr("Pearl");
-        case Game::Platinum:
-            return QObject::tr("Platinum");
-        case Game::HeartGold:
-            return QObject::tr("Heart Gold");
-        case Game::SoulSilver:
-            return QObject::tr("Soul Silver");
-        case Game::Black:
-            return QObject::tr("Black");
-        case Game::White:
-            return QObject::tr("White");
-        case Game::Black2:
-            return QObject::tr("Black 2");
-        case Game::White2:
-            return QObject::tr("White 2");
-        default:
-            return "-";
+    case Game::Ruby:
+        return QObject::tr("Ruby");
+    case Game::Sapphire:
+        return QObject::tr("Sapphire");
+    case Game::FireRed:
+        return QObject::tr("Fire Red");
+    case Game::LeafGreen:
+        return QObject::tr("Leaf Green");
+    case Game::Emerald:
+        return QObject::tr("Emerald");
+    case Game::Gales:
+        return QObject::tr("Gales");
+    case Game::Colosseum:
+        return QObject::tr("Colosseum");
+    case Game::Diamond:
+        return QObject::tr("Diamond");
+    case Game::Pearl:
+        return QObject::tr("Pearl");
+    case Game::Platinum:
+        return QObject::tr("Platinum");
+    case Game::HeartGold:
+        return QObject::tr("Heart Gold");
+    case Game::SoulSilver:
+        return QObject::tr("Soul Silver");
+    case Game::Black:
+        return QObject::tr("Black");
+    case Game::White:
+        return QObject::tr("White");
+    case Game::Black2:
+        return QObject::tr("Black 2");
+    case Game::White2:
+        return QObject::tr("White 2");
+    default:
+        return "-";
     }
 }
 

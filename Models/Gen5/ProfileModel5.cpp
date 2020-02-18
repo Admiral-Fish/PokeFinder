@@ -19,14 +19,13 @@
 
 #include "ProfileModel5.hpp"
 
-ProfileModel5::ProfileModel5(QObject *parent)
-    : TableModel<Profile5>(parent)
+ProfileModel5::ProfileModel5(QObject *parent) : TableModel<Profile5>(parent)
 {
 }
 
 int ProfileModel5::columnCount(const QModelIndex &parent) const
 {
-    (void) parent;
+    (void)parent;
     return 14;
 }
 
@@ -37,34 +36,34 @@ QVariant ProfileModel5::data(const QModelIndex &index, int role) const
         auto profile = model.at(index.row());
         switch (index.column())
         {
-            case 0:
-                return profile.getName();
-            case 1:
-                return profile.getVersionString();
-            case 2:
-                return profile.getLanguageString();
-            case 3:
-                return QString::number(profile.getTID());
-            case 4:
-                return QString::number(profile.getSID());
-            case 5:
-                return QString::number(profile.getMac(), 16);
-            case 6:
-                return profile.getDSTypeString();
-            case 7:
-                return QString::number(profile.getVCount(), 16);
-            case 8:
-                return QString::number(profile.getTimer0Min(), 16) + "/" + QString::number(profile.getTimer0Max(), 16);
-            case 9:
-                return profile.getGxStat();
-            case 10:
-                return profile.getVFrame();
-            case 11:
-                return profile.getKeypressesString();
-            case 12:
-                return profile.getSkipLR() ? tr("True") : tr("False");
-            case 13:
-                return profile.getSoftReset() ? tr("True") : tr("False");
+        case 0:
+            return profile.getName();
+        case 1:
+            return profile.getVersionString();
+        case 2:
+            return profile.getLanguageString();
+        case 3:
+            return QString::number(profile.getTID());
+        case 4:
+            return QString::number(profile.getSID());
+        case 5:
+            return QString::number(profile.getMac(), 16);
+        case 6:
+            return profile.getDSTypeString();
+        case 7:
+            return QString::number(profile.getVCount(), 16);
+        case 8:
+            return QString::number(profile.getTimer0Min(), 16) + "/" + QString::number(profile.getTimer0Max(), 16);
+        case 9:
+            return profile.getGxStat();
+        case 10:
+            return profile.getVFrame();
+        case 11:
+            return profile.getKeypressesString();
+        case 12:
+            return profile.getSkipLR() ? tr("True") : tr("False");
+        case 13:
+            return profile.getSoftReset() ? tr("True") : tr("False");
         }
     }
     return QVariant();

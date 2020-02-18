@@ -20,15 +20,15 @@
 #ifndef SHA1_HPP
 #define SHA1_HPP
 
-#include <QDate>
 #include <Core/Gen5/Nazos.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <QDate>
 
 class SHA1
 {
 
 public:
-    SHA1(const Profile5 &profile);
+    explicit SHA1(const Profile5 &profile);
     u64 hashSeed();
     void preCompute();
     void setTime(u8 hour, u8 minute, u8 second);
@@ -38,14 +38,12 @@ public:
 
 private:
     Profile5 profile;
-    u32 data[80] = {0};
-    u32 alpha[5] = {0};
+    u32 data[80] = { 0 };
+    u32 alpha[5] = { 0 };
 
     u32 reorder(u32 val);
     u32 rotateLeft(u32 val, u8 count);
-    u32 rotateRight(u32 val, u8 count);
     u32 toBCD(u32 value);
-
 };
 
 #endif // SHA1_HPP

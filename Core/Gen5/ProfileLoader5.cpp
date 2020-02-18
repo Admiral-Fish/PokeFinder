@@ -48,8 +48,8 @@ namespace ProfileLoader5
             bool softReset = object["softReset"].toBool();
             DSType dsType = static_cast<DSType>(object["dsType"].toInt());
             Language language = static_cast<Language>(object["language"].toInt());
-            return Profile5(name, version, tid, sid, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min,
-                timer0Max, softReset, dsType, language);
+            return Profile5(name, version, tid, sid, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min, timer0Max, softReset,
+                            dsType, language);
         }
 
         QJsonObject getJson(const Profile5 &profile)

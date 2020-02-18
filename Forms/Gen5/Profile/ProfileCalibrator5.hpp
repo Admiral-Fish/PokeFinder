@@ -3,8 +3,9 @@
 
 #include <QWidget>
 
-namespace Ui {
-class ProfileCalibrator5;
+namespace Ui
+{
+    class ProfileCalibrator5;
 }
 
 class ProfileCalibrator5 : public QWidget

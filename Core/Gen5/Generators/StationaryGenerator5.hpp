@@ -30,11 +30,11 @@ class Generator5 : public StationaryGenerator
 public:
     Generator5() = default;
     Generator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
-    //void setEncounter(const EncounterArea5 &value);
+    // void setEncounter(const EncounterArea5 &value);
     QVector<StationaryFrame> generate(const FrameFilter &filter) const;
 
 private:
-    //EncounterArea5 encounter;
+    // EncounterArea5 encounter;
     Encounter encounter;
 
     QVector<StationaryFrame> generateRoamerIVs(const FrameFilter &filter) const;

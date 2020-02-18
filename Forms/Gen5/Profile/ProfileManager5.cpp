@@ -23,9 +23,7 @@
 #include <Forms/Gen5/Profile/ProfileEditor5.hpp>
 #include <Models/Gen5/ProfileModel5.hpp>
 
-ProfileManager5::ProfileManager5(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ProfileManager5)
+ProfileManager5::ProfileManager5(QWidget *parent) : QWidget(parent), ui(new Ui::ProfileManager5)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
@@ -96,8 +94,8 @@ void ProfileManager5::remove()
         return;
     }
 
-    QMessageBox message(QMessageBox::Question, tr("Delete profile"),
-        tr("Are you sure you wish to delete this profile?"), QMessageBox::Yes | QMessageBox::No);
+    QMessageBox message(QMessageBox::Question, tr("Delete profile"), tr("Are you sure you wish to delete this profile?"),
+                        QMessageBox::Yes | QMessageBox::No);
     if (message.exec() == QMessageBox::Yes)
     {
         Profile5 profile = model->getItem(row);

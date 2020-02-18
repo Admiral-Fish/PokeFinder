@@ -87,113 +87,113 @@ QVector<u32> Nazos::getNazo(Game version, Language language, DSType dsType)
 {
     switch (language)
     {
-        case Language::English:
-            switch (version)
-            {
-                case Game::Black:
-                    return dsType == DSType::DSOriginal ? englishBlack : englishBlackDSi;
-                case Game::White:
-                    return dsType == DSType::DSOriginal ? englishWhite : englishWhiteDSi;
-                case Game::Black2:
-                    return dsType == DSType::DSOriginal ? englishBlack2 : englishBlack2DSi;
-                case Game::White2:
-                    return dsType == DSType::DSOriginal ? englishWhite2 : englishWhite2DSi;
-                default:
-                    break;
-            }
-            break;
-        case Language::Japanese:
-            switch (version)
-            {
-                case Game::Black:
-                    return dsType == DSType::DSOriginal ? japaneseBlack : japaneseBlackDSi;
-                case Game::White:
-                    return dsType == DSType::DSOriginal ? japaneseWhite : japaneseWhiteDSi;
-                case Game::Black2:
-                    return dsType == DSType::DSOriginal ? japaneseBlack2 : japaneseBlack2DSi;
-                case Game::White2:
-                    return dsType == DSType::DSOriginal ? japaneseWhite2 : japaneseWhite2DSi;
-                default:
-                    break;
-                }
-                break;
-        case Language::German:
-            switch (version)
-            {
-                case Game::Black:
-                    return dsType == DSType::DSOriginal ? germanBlack : germanBlackDSi;
-                case Game::White:
-                    return dsType == DSType::DSOriginal ? germanWhite : germanWhiteDSi;
-                case Game::Black2:
-                    return dsType == DSType::DSOriginal ? germanBlack2 : germanBlack2DSi;
-                case Game::White2:
-                    return dsType == DSType::DSOriginal ? germanWhite2 : germanWhite2DSi;
-                default:
-                    break;
-            }
-            break;
-        case Language::Spanish:
-            switch (version)
-            {
-                case Game::Black:
-                    return dsType == DSType::DSOriginal ? spanishBlack : spanishBlackDSi;
-                case Game::White:
-                    return dsType == DSType::DSOriginal ? spanishWhite : spanishWhiteDSi;
-                case Game::Black2:
-                    return dsType == DSType::DSOriginal ? spanishBlack2 : spanishBlack2DSi;
-                case Game::White2:
-                    return dsType == DSType::DSOriginal ? spanishWhite2 : spanishWhite2DSi;
-                default:
-                    break;
-            }
-            break;
-        case Language::French:
-            switch (version)
-            {
-                case Game::Black:
-                    return dsType == DSType::DSOriginal ? frenchBlack : frenchBlackDSi;
-                case Game::White:
-                    return dsType == DSType::DSOriginal ? frenchWhite : frenchWhiteDSi;
-                case Game::Black2:
-                    return dsType == DSType::DSOriginal ? frenchBlack2 : frenchBlack2DSi;
-                case Game::White2:
-                    return dsType == DSType::DSOriginal ? frenchWhite2 : frenchWhite2DSi;
-                default:
-                    break;
-            }
-            break;
-        case Language::Italian:
-            switch (version)
-            {
-                case Game::Black:
-                    return dsType == DSType::DSOriginal ? italianBlack : italianBlackDSi;
-                case Game::White:
-                    return dsType == DSType::DSOriginal ? italianWhite : italianWhiteDSi;
-                case Game::Black2:
-                    return dsType == DSType::DSOriginal ? italianBlack2 : italianBlack2DSi;
-                case Game::White2:
-                    return dsType == DSType::DSOriginal ? italianWhite2 : italianWhite2DSi;
-                default:
-                    break;
-            }
-            break;
-        case Language::Korean:
-            switch (version)
-            {
-                case Game::Black:
-                    return dsType == DSType::DSOriginal ? koreanBlack : koreanBlackDSi;
-                case Game::White:
-                    return dsType == DSType::DSOriginal ? koreanWhite : koreanWhiteDSi;
-                case Game::Black2:
-                    return dsType == DSType::DSOriginal ? koreanBlack2 : koreanBlack2DSi;
-                case Game::White2:
-                    return dsType == DSType::DSOriginal ? koreanWhite2 : koreanWhite2DSi;
-                default:
-                    break;
-            }
+    case Language::English:
+        switch (version)
+        {
+        case Game::Black:
+            return dsType == DSType::DSOriginal ? englishBlack : englishBlackDSi;
+        case Game::White:
+            return dsType == DSType::DSOriginal ? englishWhite : englishWhiteDSi;
+        case Game::Black2:
+            return dsType == DSType::DSOriginal ? englishBlack2 : englishBlack2DSi;
+        case Game::White2:
+            return dsType == DSType::DSOriginal ? englishWhite2 : englishWhite2DSi;
+        default:
             break;
         }
-        return QVector<u32>();
+        break;
+    case Language::Japanese:
+        switch (version)
+        {
+        case Game::Black:
+            return dsType == DSType::DSOriginal ? japaneseBlack : japaneseBlackDSi;
+        case Game::White:
+            return dsType == DSType::DSOriginal ? japaneseWhite : japaneseWhiteDSi;
+        case Game::Black2:
+            return dsType == DSType::DSOriginal ? japaneseBlack2 : japaneseBlack2DSi;
+        case Game::White2:
+            return dsType == DSType::DSOriginal ? japaneseWhite2 : japaneseWhite2DSi;
+        default:
+            break;
+        }
+        break;
+    case Language::German:
+        switch (version)
+        {
+        case Game::Black:
+            return dsType == DSType::DSOriginal ? germanBlack : germanBlackDSi;
+        case Game::White:
+            return dsType == DSType::DSOriginal ? germanWhite : germanWhiteDSi;
+        case Game::Black2:
+            return dsType == DSType::DSOriginal ? germanBlack2 : germanBlack2DSi;
+        case Game::White2:
+            return dsType == DSType::DSOriginal ? germanWhite2 : germanWhite2DSi;
+        default:
+            break;
+        }
+        break;
+    case Language::Spanish:
+        switch (version)
+        {
+        case Game::Black:
+            return dsType == DSType::DSOriginal ? spanishBlack : spanishBlackDSi;
+        case Game::White:
+            return dsType == DSType::DSOriginal ? spanishWhite : spanishWhiteDSi;
+        case Game::Black2:
+            return dsType == DSType::DSOriginal ? spanishBlack2 : spanishBlack2DSi;
+        case Game::White2:
+            return dsType == DSType::DSOriginal ? spanishWhite2 : spanishWhite2DSi;
+        default:
+            break;
+        }
+        break;
+    case Language::French:
+        switch (version)
+        {
+        case Game::Black:
+            return dsType == DSType::DSOriginal ? frenchBlack : frenchBlackDSi;
+        case Game::White:
+            return dsType == DSType::DSOriginal ? frenchWhite : frenchWhiteDSi;
+        case Game::Black2:
+            return dsType == DSType::DSOriginal ? frenchBlack2 : frenchBlack2DSi;
+        case Game::White2:
+            return dsType == DSType::DSOriginal ? frenchWhite2 : frenchWhite2DSi;
+        default:
+            break;
+        }
+        break;
+    case Language::Italian:
+        switch (version)
+        {
+        case Game::Black:
+            return dsType == DSType::DSOriginal ? italianBlack : italianBlackDSi;
+        case Game::White:
+            return dsType == DSType::DSOriginal ? italianWhite : italianWhiteDSi;
+        case Game::Black2:
+            return dsType == DSType::DSOriginal ? italianBlack2 : italianBlack2DSi;
+        case Game::White2:
+            return dsType == DSType::DSOriginal ? italianWhite2 : italianWhite2DSi;
+        default:
+            break;
+        }
+        break;
+    case Language::Korean:
+        switch (version)
+        {
+        case Game::Black:
+            return dsType == DSType::DSOriginal ? koreanBlack : koreanBlackDSi;
+        case Game::White:
+            return dsType == DSType::DSOriginal ? koreanWhite : koreanWhiteDSi;
+        case Game::Black2:
+            return dsType == DSType::DSOriginal ? koreanBlack2 : koreanBlack2DSi;
+        case Game::White2:
+            return dsType == DSType::DSOriginal ? koreanWhite2 : koreanWhite2DSi;
+        default:
+            break;
+        }
+        break;
+    }
+    return QVector<u32>();
 }
 
 QVector<u32> Nazos::getNazo(const Profile5 &profile)
