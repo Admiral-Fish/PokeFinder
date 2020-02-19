@@ -64,6 +64,10 @@ u64 SHA1::hashSeed()
         temp = data[i - 3] ^ data[i - 8] ^ data[i - 14] ^ data[i - 16];
         data[i] = temp = rotateLeft(temp, 1);
     };
+    auto calcWSIMD = [&temp, this](int i) {
+        temp = data[i - 6] ^ data[i - 16] ^ data[i - 28] ^ data[i - 32];
+        data[i] = temp = rotateLeft(temp, 2);
+    };
 
     // clang-format off
     
@@ -94,58 +98,58 @@ u64 SHA1::hashSeed()
     calcW(29); section2Calc(); updateVars();
     temp = data[30]; section2Calc(); updateVars();
     calcW(31); section2Calc(); updateVars();
-    calcW(32); section2Calc(); updateVars();
-    calcW(33); section2Calc(); updateVars();
-    calcW(34); section2Calc(); updateVars();
-    calcW(35); section2Calc(); updateVars();
-    calcW(36); section2Calc(); updateVars();
-    calcW(37); section2Calc(); updateVars();
-    calcW(38); section2Calc(); updateVars();
-    calcW(39); section2Calc(); updateVars();
+    calcWSIMD(32); section2Calc(); updateVars();
+    calcWSIMD(33); section2Calc(); updateVars();
+    calcWSIMD(34); section2Calc(); updateVars();
+    calcWSIMD(35); section2Calc(); updateVars();
+    calcWSIMD(36); section2Calc(); updateVars();
+    calcWSIMD(37); section2Calc(); updateVars();
+    calcWSIMD(38); section2Calc(); updateVars();
+    calcWSIMD(39); section2Calc(); updateVars();
 
     // Section 3: 40 - 59
-    calcW(40); section3Calc(); updateVars();
-    calcW(41); section3Calc(); updateVars();
-    calcW(42); section3Calc(); updateVars();
-    calcW(43); section3Calc(); updateVars();
-    calcW(44); section3Calc(); updateVars();
-    calcW(45); section3Calc(); updateVars();
-    calcW(46); section3Calc(); updateVars();
-    calcW(47); section3Calc(); updateVars();
-    calcW(48); section3Calc(); updateVars();
-    calcW(49); section3Calc(); updateVars();
-    calcW(50); section3Calc(); updateVars();
-    calcW(51); section3Calc(); updateVars();
-    calcW(52); section3Calc(); updateVars();
-    calcW(53); section3Calc(); updateVars();
-    calcW(54); section3Calc(); updateVars();
-    calcW(55); section3Calc(); updateVars();
-    calcW(56); section3Calc(); updateVars();
-    calcW(57); section3Calc(); updateVars();
-    calcW(58); section3Calc(); updateVars();
-    calcW(59); section3Calc(); updateVars();
+    calcWSIMD(40); section3Calc(); updateVars();
+    calcWSIMD(41); section3Calc(); updateVars();
+    calcWSIMD(42); section3Calc(); updateVars();
+    calcWSIMD(43); section3Calc(); updateVars();
+    calcWSIMD(44); section3Calc(); updateVars();
+    calcWSIMD(45); section3Calc(); updateVars();
+    calcWSIMD(46); section3Calc(); updateVars();
+    calcWSIMD(47); section3Calc(); updateVars();
+    calcWSIMD(48); section3Calc(); updateVars();
+    calcWSIMD(49); section3Calc(); updateVars();
+    calcWSIMD(50); section3Calc(); updateVars();
+    calcWSIMD(51); section3Calc(); updateVars();
+    calcWSIMD(52); section3Calc(); updateVars();
+    calcWSIMD(53); section3Calc(); updateVars();
+    calcWSIMD(54); section3Calc(); updateVars();
+    calcWSIMD(55); section3Calc(); updateVars();
+    calcWSIMD(56); section3Calc(); updateVars();
+    calcWSIMD(57); section3Calc(); updateVars();
+    calcWSIMD(58); section3Calc(); updateVars();
+    calcWSIMD(59); section3Calc(); updateVars();
 
     // Section 3: 60 - 79
-    calcW(60); section4Calc(); updateVars();
-    calcW(61); section4Calc(); updateVars();
-    calcW(62); section4Calc(); updateVars();
-    calcW(63); section4Calc(); updateVars();
-    calcW(64); section4Calc(); updateVars();
-    calcW(65); section4Calc(); updateVars();
-    calcW(66); section4Calc(); updateVars();
-    calcW(67); section4Calc(); updateVars();
-    calcW(68); section4Calc(); updateVars();
-    calcW(69); section4Calc(); updateVars();
-    calcW(70); section4Calc(); updateVars();
-    calcW(71); section4Calc(); updateVars();
-    calcW(72); section4Calc(); updateVars();
-    calcW(73); section4Calc(); updateVars();
-    calcW(74); section4Calc(); updateVars();
-    calcW(75); section4Calc(); updateVars();
-    calcW(76); section4Calc(); updateVars();
-    calcW(77); section4Calc(); updateVars();
-    calcW(78); section4Calc(); updateVars();
-    calcW(79); section4Calc();
+    calcWSIMD(60); section4Calc(); updateVars();
+    calcWSIMD(61); section4Calc(); updateVars();
+    calcWSIMD(62); section4Calc(); updateVars();
+    calcWSIMD(63); section4Calc(); updateVars();
+    calcWSIMD(64); section4Calc(); updateVars();
+    calcWSIMD(65); section4Calc(); updateVars();
+    calcWSIMD(66); section4Calc(); updateVars();
+    calcWSIMD(67); section4Calc(); updateVars();
+    calcWSIMD(68); section4Calc(); updateVars();
+    calcWSIMD(69); section4Calc(); updateVars();
+    calcWSIMD(70); section4Calc(); updateVars();
+    calcWSIMD(71); section4Calc(); updateVars();
+    calcWSIMD(72); section4Calc(); updateVars();
+    calcWSIMD(73); section4Calc(); updateVars();
+    calcWSIMD(74); section4Calc(); updateVars();
+    calcWSIMD(75); section4Calc(); updateVars();
+    calcWSIMD(76); section4Calc(); updateVars();
+    calcWSIMD(77); section4Calc(); updateVars();
+    calcWSIMD(78); section4Calc(); updateVars();
+    calcWSIMD(79); section4Calc();
 
     // clang-format on
 
