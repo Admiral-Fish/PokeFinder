@@ -24,13 +24,43 @@
 #include <Core/RNG/MTRNG.hpp>
 #include <Core/RNG/RNGList.hpp>
 
-Generator5::Generator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method) :
-    StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method)
+StationaryGenerator5::StationaryGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                                           Encounter encounter) :
+    StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method),
+    encounter(encounter)
 {
     tsv = (tid ^ sid) >> 3;
+
+    switch (method)
+    {
+    case Method::Method5IVs:
+        switch (encounter)
+        {
+        case Encounter::Roamer:
+            initializeMT(7);
+            break;
+        default:
+            initializeMT(6);
+            break;
+        }
+        break;
+    case Method::Method5CGear:
+        switch (encounter)
+        {
+        case Encounter::Roamer:
+            initializeMT(9);
+            break;
+        default:
+            initializeMT(8);
+            break;
+        }
+        break;
+    default:
+        break;
+    }
 }
 
-QVector<StationaryFrame> Generator5::generate(u64 seed, const FrameFilter &filter) const
+QVector<StationaryFrame> StationaryGenerator5::generate(u64 seed, const FrameFilter &filter) const
 {
     switch (method)
     {
@@ -57,15 +87,12 @@ QVector<StationaryFrame> Generator5::generate(u64 seed, const FrameFilter &filte
     }
 }
 
-QVector<StationaryFrame> Generator5::generateRoamerIVs(u64 seed, const FrameFilter &filter) const
+QVector<StationaryFrame> StationaryGenerator5::generateRoamerIVs(u64 seed, const FrameFilter &filter) const
 {
     QVector<StationaryFrame> frames;
 
-    // TODO: MTFast
-    MersenneTwister rng(static_cast<u32>(seed));
-    rng.advanceFrames(initialFrame - 1 + offset);
-
-    RNGList<u8> rngList([&rng] { return rng.nextUInt() >> 27; });
+    mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
+    RNGList<u8> rngList([this] { return mt->next() >> 27; });
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -91,15 +118,12 @@ QVector<StationaryFrame> Generator5::generateRoamerIVs(u64 seed, const FrameFilt
     return frames;
 }
 
-QVector<StationaryFrame> Generator5::generateIVs(u64 seed, const FrameFilter &filter) const
+QVector<StationaryFrame> StationaryGenerator5::generateIVs(u64 seed, const FrameFilter &filter) const
 {
     QVector<StationaryFrame> frames;
 
-    // TODO: MTFast
-    MersenneTwister rng(static_cast<u32>(seed));
-    rng.advanceFrames(initialFrame - 1 + offset);
-
-    RNGList<u8> rngList([&rng] { return rng.nextUInt() >> 27; });
+    mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
+    RNGList<u8> rngList([this] { return mt->next() >> 27; });
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -124,18 +148,16 @@ QVector<StationaryFrame> Generator5::generateIVs(u64 seed, const FrameFilter &fi
     return frames;
 }
 
-QVector<StationaryFrame> Generator5::generateRoamerCGear(u64 seed, const FrameFilter &filter) const
+QVector<StationaryFrame> StationaryGenerator5::generateRoamerCGear(u64 seed, const FrameFilter &filter) const
 {
     QVector<StationaryFrame> frames;
 
-    // TODO: MTFast
-    MersenneTwister rng(static_cast<u32>(seed));
-    rng.advanceFrames(initialFrame - 1 + offset);
-    rng.advanceFrames(2); // Skip first two frames
+    mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
+    mt->advanceFrames(2); // Skip first two frames
 
-    RNGList<u8> rngList([&rng] { return rng.nextUInt() >> 27; });
+    RNGList<u8> rngList([this] { return mt->next() >> 27; });
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
         StationaryFrame frame(initialFrame + cnt);
 
@@ -159,18 +181,16 @@ QVector<StationaryFrame> Generator5::generateRoamerCGear(u64 seed, const FrameFi
     return frames;
 }
 
-QVector<StationaryFrame> Generator5::generateCGear(u64 seed, const FrameFilter &filter) const
+QVector<StationaryFrame> StationaryGenerator5::generateCGear(u64 seed, const FrameFilter &filter) const
 {
     QVector<StationaryFrame> frames;
 
-    // TODO: MTFast
-    MersenneTwister rng(static_cast<u32>(seed));
-    rng.advanceFrames(initialFrame - 1 + offset);
-    rng.advanceFrames(2); // Skip first two frames
+    mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
+    mt->advanceFrames(2); // Skip first two frames
 
-    RNGList<u8> rngList([&rng] { return rng.nextUInt(); });
+    RNGList<u8> rngList([this] { return mt->next() >> 27; });
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
         StationaryFrame frame(initialFrame + cnt);
 
@@ -191,4 +211,17 @@ QVector<StationaryFrame> Generator5::generateCGear(u64 seed, const FrameFilter &
     }
 
     return frames;
+}
+
+void StationaryGenerator5::initializeMT(u8 num)
+{
+    try
+    {
+        mt = new MersenneTwisterFast(initialFrame + maxResults + offset + num);
+    }
+    catch (const std::runtime_error &e)
+    {
+        (void)e;
+        mt = new MersenneTwister();
+    }
 }

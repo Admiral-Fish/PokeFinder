@@ -22,24 +22,27 @@
 
 #include <Core/Parents/Frames/StationaryFrame.hpp>
 #include <Core/Parents/Generators/StationaryGenerator.hpp>
+#include <Core/RNG/IRNG.hpp>
 
 enum Encounter : u8;
 
-class Generator5 : public StationaryGenerator
+class StationaryGenerator5 : public StationaryGenerator
 {
 public:
-    Generator5() = default;
-    Generator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
+    StationaryGenerator5() = default;
+    StationaryGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter);
     QVector<StationaryFrame> generate(u64 seed, const FrameFilter &filter) const;
 
 private:
     Encounter encounter;
+    IRNG<u32> *mt;
 
     QVector<StationaryFrame> generateRoamerIVs(u64 seed, const FrameFilter &filter) const;
     QVector<StationaryFrame> generateIVs(u64 seed, const FrameFilter &filter) const;
     QVector<StationaryFrame> generateRoamerCGear(u64 seed, const FrameFilter &filter) const;
     QVector<StationaryFrame> generateCGear(u64 seed, const FrameFilter &filter) const;
     QVector<StationaryFrame> generateStationary(u64 seed, const FrameFilter &filter) const;
+    void initializeMT(u8 num);
 };
 
 #endif // GENERATOR5_HPP
