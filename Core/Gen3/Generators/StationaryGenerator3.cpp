@@ -28,26 +28,26 @@ StationaryGenerator3::StationaryGenerator3(u32 initialFrame, u32 maxResults, u16
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<Frame> StationaryGenerator3::generate(const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator3::generate(u32 seed, const FrameFilter &filter) const
 {
     switch (method)
     {
     case Method::Method1:
     case Method::Method2:
     case Method::Method4:
-        return generateMethod124(filter);
+        return generateMethod124(seed, filter);
     case Method::Method1Reverse:
-        return generateMethod1Reverse(filter);
+        return generateMethod1Reverse(seed, filter);
     default:
         return QVector<Frame>();
     }
 }
 
-QVector<Frame> StationaryGenerator3::generateMethod124(const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator3::generateMethod124(u32 seed, const FrameFilter &filter) const
 {
     QVector<Frame> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
@@ -85,11 +85,11 @@ QVector<Frame> StationaryGenerator3::generateMethod124(const FrameFilter &filter
     return frames;
 }
 
-QVector<Frame> StationaryGenerator3::generateMethod1Reverse(const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator3::generateMethod1Reverse(u32 seed, const FrameFilter &filter) const
 {
     QVector<Frame> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]

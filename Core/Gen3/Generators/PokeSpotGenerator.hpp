@@ -29,7 +29,7 @@ public:
     PokeSpotGenerator() = default;
     PokeSpotGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio);
     void setSpots(const QVector<bool> &spots);
-    QVector<GameCubeFrame> generate(const FrameFilter &filter) const;
+    QVector<GameCubeFrame> generate(u32 seed, const FrameFilter &filter) const;
 
 private:
     QVector<bool> spots;

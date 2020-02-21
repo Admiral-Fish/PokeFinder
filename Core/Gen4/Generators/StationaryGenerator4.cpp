@@ -29,28 +29,28 @@ StationaryGenerator4::StationaryGenerator4(u32 initialFrame, u32 maxResults, u16
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<Frame> StationaryGenerator4::generate(const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator4::generate(u32 seed, const FrameFilter &filter) const
 {
     switch (method)
     {
     case Method::Method1:
-        return generateMethod1(filter);
+        return generateMethod1(seed, filter);
     case Method::MethodJ:
-        return generateMethodJ(filter);
+        return generateMethodJ(seed, filter);
     case Method::MethodK:
-        return generateMethodK(filter);
+        return generateMethodK(seed, filter);
     case Method::WondercardIVs:
-        return generateWonderCardIVs(filter);
+        return generateWonderCardIVs(seed, filter);
     default:
         return QVector<Frame>();
     }
 }
 
-QVector<Frame> StationaryGenerator4::generateMethod1(const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator4::generateMethod1(u32 seed, const FrameFilter &filter) const
 {
     QVector<Frame> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
@@ -84,11 +84,11 @@ QVector<Frame> StationaryGenerator4::generateMethod1(const FrameFilter &filter) 
     return frames;
 }
 
-QVector<Frame> StationaryGenerator4::generateMethodJ(const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed, const FrameFilter &filter) const
 {
     QVector<Frame> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     u8 buffer = 0;
@@ -222,11 +222,11 @@ QVector<Frame> StationaryGenerator4::generateMethodJ(const FrameFilter &filter) 
     return frames;
 }
 
-QVector<Frame> StationaryGenerator4::generateMethodK(const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed, const FrameFilter &filter) const
 {
     QVector<Frame> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     u8 buffer = 0;
@@ -361,11 +361,11 @@ QVector<Frame> StationaryGenerator4::generateMethodK(const FrameFilter &filter) 
     return frames;
 }
 
-QVector<Frame> StationaryGenerator4::generateWonderCardIVs(const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator4::generateWonderCardIVs(u32 seed, const FrameFilter &filter) const
 {
     QVector<Frame> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     // Wondercard IVs [SEED] [IVS] [IVS]

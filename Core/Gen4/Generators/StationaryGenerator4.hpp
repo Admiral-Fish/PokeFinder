@@ -29,13 +29,13 @@ class StationaryGenerator4 : public StationaryGenerator
 public:
     StationaryGenerator4() = default;
     StationaryGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
-    QVector<Frame> generate(const FrameFilter &filter) const;
+    QVector<Frame> generate(u32 seed, const FrameFilter &filter) const;
 
 private:
-    QVector<Frame> generateMethod1(const FrameFilter &filter) const;
-    QVector<Frame> generateMethodJ(const FrameFilter &filter) const;
-    QVector<Frame> generateMethodK(const FrameFilter &filter) const;
-    QVector<Frame> generateWonderCardIVs(const FrameFilter &filter) const;
+    QVector<Frame> generateMethod1(u32 seed, const FrameFilter &filter) const;
+    QVector<Frame> generateMethodJ(u32 seed, const FrameFilter &filter) const;
+    QVector<Frame> generateMethodK(u32 seed, const FrameFilter &filter) const;
+    QVector<Frame> generateWonderCardIVs(u32 seed, const FrameFilter &filter) const;
 };
 
 #endif // STATIONARYGENERATOR4_HPP

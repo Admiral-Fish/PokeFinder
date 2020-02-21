@@ -62,21 +62,16 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
 
                 if (type == 0)
                 {
-                    generatorIV.setSeed(seed);
-                    frames = generatorIV.generate(filter);
+                    frames = generatorIV.generate(seed, filter);
                 }
                 else if (type == 1)
                 {
-                    generatorPID.setSeed(seed);
-                    frames = generatorPID.generate(filter);
+                    frames = generatorPID.generate(seed, filter);
                 }
                 else
                 {
-                    generatorIV.setSeed(seed);
-                    generatorPID.setSeed(seed);
-
-                    auto framesIV = generatorIV.generate(filter);
-                    auto framesPID = generatorPID.generate(filter);
+                    auto framesIV = generatorIV.generate(seed, filter);
+                    auto framesPID = generatorPID.generate(seed, filter);
 
                     if (!framesIV.isEmpty() && !framesPID.isEmpty())
                     {

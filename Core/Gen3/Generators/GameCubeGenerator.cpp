@@ -28,17 +28,17 @@ GameCubeGenerator::GameCubeGenerator(u32 initialFrame, u32 maxResults, u16 tid, 
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<GameCubeFrame> GameCubeGenerator::generate(const FrameFilter &filter) const
+QVector<GameCubeFrame> GameCubeGenerator::generate(u32 seed, const FrameFilter &filter) const
 {
     switch (method)
     {
     case Method::XDColo:
-        return generateXDColo(filter);
+        return generateXDColo(seed, filter);
     case Method::XD:
     case Method::Colo:
-        return generateXDColoShadow(filter);
+        return generateXDColoShadow(seed, filter);
     case Method::Channel:
-        return generateChannel(filter);
+        return generateChannel(seed, filter);
     default:
         return QVector<GameCubeFrame>();
     }
@@ -50,11 +50,11 @@ void GameCubeGenerator::setShadowTeam(u8 index, u8 type)
     this->type = type;
 }
 
-QVector<GameCubeFrame> GameCubeGenerator::generateXDColo(const FrameFilter &filter) const
+QVector<GameCubeFrame> GameCubeGenerator::generateXDColo(u32 seed, const FrameFilter &filter) const
 {
     QVector<GameCubeFrame> frames;
 
-    XDRNG rng(static_cast<u32>(seed));
+    XDRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
@@ -88,11 +88,11 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColo(const FrameFilter &filt
     return frames;
 }
 
-QVector<GameCubeFrame> GameCubeGenerator::generateXDColoShadow(const FrameFilter &filter) const
+QVector<GameCubeFrame> GameCubeGenerator::generateXDColoShadow(u32 seed, const FrameFilter &filter) const
 {
     QVector<GameCubeFrame> frames;
 
-    XDRNG rng(static_cast<u32>(seed));
+    XDRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
@@ -141,11 +141,11 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColoShadow(const FrameFilter
     return frames;
 }
 
-QVector<GameCubeFrame> GameCubeGenerator::generateChannel(const FrameFilter &filter) const
+QVector<GameCubeFrame> GameCubeGenerator::generateChannel(u32 seed, const FrameFilter &filter) const
 {
     QVector<GameCubeFrame> frames;
 
-    XDRNG rng(static_cast<u32>(seed));
+    XDRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     // Method Channel [SEED] [SID] [PID] [PID] [BERRY] [GAME ORIGIN] [OT GENDER] [IV] [IV] [IV] [IV] [IV] [IV]

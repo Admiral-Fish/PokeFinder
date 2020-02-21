@@ -176,7 +176,6 @@ void GameCube::generate()
     }
 
     GameCubeGenerator generator(initialFrame, maxResults, tid, sid, genderRatio, method);
-    generator.setSeed(seed);
     generator.setOffset(offset);
 
     FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
@@ -190,7 +189,7 @@ void GameCube::generate()
                                 static_cast<u8>(ui->comboBoxGeneratorType->currentIndex()));
     }
 
-    auto frames = generator.generate(filter);
+    auto frames = generator.generate(seed, filter);
     generatorModel->addItems(frames);
 }
 

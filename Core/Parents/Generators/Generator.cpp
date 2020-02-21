@@ -24,16 +24,6 @@ Generator::Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 gend
 {
 }
 
-u64 Generator::getSeed() const
-{
-    return seed;
-}
-
-void Generator::setSeed(u64 seed)
-{
-    this->seed = seed;
-}
-
 void Generator::setOffset(u32 offset)
 {
     this->offset = offset;

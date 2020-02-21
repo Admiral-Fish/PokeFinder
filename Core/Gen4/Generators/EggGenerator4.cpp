@@ -29,28 +29,28 @@ EggGenerator4::EggGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid,
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<EggFrame4> EggGenerator4::generate(const FrameFilter &filter) const
+QVector<EggFrame4> EggGenerator4::generate(u32 seed, const FrameFilter &filter) const
 {
     switch (method)
     {
     case Method::Gen4Normal:
-        return generateNormal(filter);
+        return generateNormal(seed, filter);
     case Method::Gen4Masuada:
-        return generateMasuada(filter);
+        return generateMasuada(seed, filter);
     case Method::DPPtIVs:
-        return generateDPPtIVs(filter);
+        return generateDPPtIVs(seed, filter);
     case Method::HGSSIVs:
-        return generateHGSSIVs(filter);
+        return generateHGSSIVs(seed, filter);
     default:
         return QVector<EggFrame4>();
     }
 }
 
-QVector<EggFrame4> EggGenerator4::generateNormal(const FrameFilter &filter) const
+QVector<EggFrame4> EggGenerator4::generateNormal(u32 seed, const FrameFilter &filter) const
 {
     QVector<EggFrame4> frames;
 
-    MersenneTwister mt(static_cast<u32>(seed));
+    MersenneTwister mt(seed);
     mt.advanceFrames(initialFrame - 1);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
@@ -73,11 +73,11 @@ QVector<EggFrame4> EggGenerator4::generateNormal(const FrameFilter &filter) cons
     return frames;
 }
 
-QVector<EggFrame4> EggGenerator4::generateMasuada(const FrameFilter &filter) const
+QVector<EggFrame4> EggGenerator4::generateMasuada(u32 seed, const FrameFilter &filter) const
 {
     QVector<EggFrame4> frames;
 
-    MersenneTwister mt(static_cast<u32>(seed));
+    MersenneTwister mt(seed);
     mt.advanceFrames(initialFrame - 1);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
@@ -112,11 +112,11 @@ QVector<EggFrame4> EggGenerator4::generateMasuada(const FrameFilter &filter) con
     return frames;
 }
 
-QVector<EggFrame4> EggGenerator4::generateDPPtIVs(const FrameFilter &filter) const
+QVector<EggFrame4> EggGenerator4::generateDPPtIVs(u32 seed, const FrameFilter &filter) const
 {
     QVector<EggFrame4> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
@@ -150,11 +150,11 @@ QVector<EggFrame4> EggGenerator4::generateDPPtIVs(const FrameFilter &filter) con
     return frames;
 }
 
-QVector<EggFrame4> EggGenerator4::generateHGSSIVs(const FrameFilter &filter) const
+QVector<EggFrame4> EggGenerator4::generateHGSSIVs(u32 seed, const FrameFilter &filter) const
 {
     QVector<EggFrame4> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())

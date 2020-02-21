@@ -30,7 +30,7 @@ Generator5::Generator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 ge
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<StationaryFrame> Generator5::generate(const FrameFilter &compare) const
+QVector<StationaryFrame> Generator5::generate(u64 seed, const FrameFilter &filter) const
 {
     switch (method)
     {
@@ -38,17 +38,17 @@ QVector<StationaryFrame> Generator5::generate(const FrameFilter &compare) const
         switch (encounter)
         {
         case Encounter::Roamer:
-            return generateRoamerIVs(compare);
+            return generateRoamerIVs(seed, filter);
         default:
-            return generateIVs(compare);
+            return generateIVs(seed, filter);
         }
     case Method::Method5CGear:
         switch (encounter)
         {
         case Encounter::Roamer:
-            return generateRoamerCGear(compare);
+            return generateRoamerCGear(seed, filter);
         default:
-            return generateCGear(compare);
+            return generateCGear(seed, filter);
         }
     // case Method::Method5:
     //    break;
@@ -57,10 +57,11 @@ QVector<StationaryFrame> Generator5::generate(const FrameFilter &compare) const
     }
 }
 
-QVector<StationaryFrame> Generator5::generateRoamerIVs(const FrameFilter &filter) const
+QVector<StationaryFrame> Generator5::generateRoamerIVs(u64 seed, const FrameFilter &filter) const
 {
     QVector<StationaryFrame> frames;
 
+    // TODO: MTFast
     MersenneTwister rng(static_cast<u32>(seed));
     rng.advanceFrames(initialFrame - 1 + offset);
 
@@ -90,10 +91,11 @@ QVector<StationaryFrame> Generator5::generateRoamerIVs(const FrameFilter &filter
     return frames;
 }
 
-QVector<StationaryFrame> Generator5::generateIVs(const FrameFilter &filter) const
+QVector<StationaryFrame> Generator5::generateIVs(u64 seed, const FrameFilter &filter) const
 {
     QVector<StationaryFrame> frames;
 
+    // TODO: MTFast
     MersenneTwister rng(static_cast<u32>(seed));
     rng.advanceFrames(initialFrame - 1 + offset);
 
@@ -122,10 +124,11 @@ QVector<StationaryFrame> Generator5::generateIVs(const FrameFilter &filter) cons
     return frames;
 }
 
-QVector<StationaryFrame> Generator5::generateRoamerCGear(const FrameFilter &filter) const
+QVector<StationaryFrame> Generator5::generateRoamerCGear(u64 seed, const FrameFilter &filter) const
 {
     QVector<StationaryFrame> frames;
 
+    // TODO: MTFast
     MersenneTwister rng(static_cast<u32>(seed));
     rng.advanceFrames(initialFrame - 1 + offset);
     rng.advanceFrames(2); // Skip first two frames
@@ -156,10 +159,11 @@ QVector<StationaryFrame> Generator5::generateRoamerCGear(const FrameFilter &filt
     return frames;
 }
 
-QVector<StationaryFrame> Generator5::generateCGear(const FrameFilter &filter) const
+QVector<StationaryFrame> Generator5::generateCGear(u64 seed, const FrameFilter &filter) const
 {
     QVector<StationaryFrame> frames;
 
+    // TODO: MTFast
     MersenneTwister rng(static_cast<u32>(seed));
     rng.advanceFrames(initialFrame - 1 + offset);
     rng.advanceFrames(2); // Skip first two frames

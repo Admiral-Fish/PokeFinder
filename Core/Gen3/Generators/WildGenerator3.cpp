@@ -33,11 +33,11 @@ WildGenerator3::WildGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 si
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<WildFrame> WildGenerator3::generate(const FrameFilter &filter) const
+QVector<WildFrame> WildGenerator3::generate(u32 seed, const FrameFilter &filter) const
 {
     QVector<WildFrame> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     u16 rate = encounterArea.getEncounterRate() * 16;

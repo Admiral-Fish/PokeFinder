@@ -210,18 +210,17 @@ void Eggs3::rsGenerate()
     u8 genderRatio = ui->comboBoxRSGenderRatio->getCurrentByte();
     auto method = static_cast<Method>(ui->comboBoxRSMethod->getCurrentInt());
 
-    EggGenerator3 generator(initialFrameHeld, maxResultsHeld, tid, sid, genderRatio, method, ui->textBoxRSSeedHeld->getUInt());
+    EggGenerator3 generator(initialFrameHeld, maxResultsHeld, tid, sid, genderRatio, method);
     generator.setParents(ui->eggSettingsRS->getParent1(), ui->eggSettingsRS->getParent2());
     generator.setCompatability(static_cast<u8>(ui->comboBoxRSCompatibility->currentData().toUInt()));
     generator.setInitialFramePickup(ui->textBoxRSInitialFramePickup->getUInt());
     generator.setMaxResultsPickup(ui->textBoxRSMaxResultsPickup->getUInt());
-    generator.setPickupSeed(ui->textBoxRSSeedPickup->getUShort());
 
     FrameFilter filter(ui->comboBoxRSGender->getCurrentByte(), ui->comboBoxRSAbility->getCurrentByte(), ui->checkBoxRSShiny->isChecked(),
                        false, ui->ivFilterRS->getLower(), ui->ivFilterRS->getUpper(), ui->comboBoxRSNature->getChecked(),
                        ui->comboBoxRSHiddenPower->getChecked(), QVector<bool>());
 
-    auto frames = generator.generate(filter);
+    auto frames = generator.generate(filter, ui->textBoxRSSeedHeld->getUInt(), ui->textBoxRSSeedPickup->getUInt());
     rs->addItems(frames);
 }
 
@@ -236,18 +235,17 @@ void Eggs3::frlgGenerate()
     u8 genderRatio = static_cast<u8>(ui->comboBoxFRLGGenderRatio->currentData().toUInt());
     auto method = static_cast<Method>(ui->comboBoxFRLGMethod->currentData().toUInt());
 
-    EggGenerator3 generator(initialFrameHeld, maxResultsHeld, tid, sid, genderRatio, method, ui->textBoxFRLGSeedHeld->getUInt());
+    EggGenerator3 generator(initialFrameHeld, maxResultsHeld, tid, sid, genderRatio, method);
     generator.setParents(ui->eggSettingsFRLG->getParent1(), ui->eggSettingsFRLG->getParent2());
     generator.setCompatability(static_cast<u8>(ui->comboBoxFRLGCompatibility->currentData().toUInt()));
     generator.setInitialFramePickup(ui->textBoxFRLGInitialFramePickup->getUInt());
     generator.setMaxResultsPickup(ui->textBoxFRLGMaxResultsPickup->getUInt());
-    generator.setPickupSeed(ui->textBoxFRLGSeedPickup->getUShort());
 
     FrameFilter filter(static_cast<u8>(ui->comboBoxFRLGGender->currentIndex()), static_cast<u8>(ui->comboBoxFRLGAbility->currentIndex()),
                        ui->checkBoxFRLGShiny->isChecked(), false, ui->ivFilterFRLG->getLower(), ui->ivFilterFRLG->getUpper(),
                        ui->comboBoxFRLGNature->getChecked(), ui->comboBoxFRLGHiddenPower->getChecked(), QVector<bool>());
 
-    auto frames = generator.generate(filter);
+    auto frames = generator.generate(filter, ui->textBoxFRLGSeedHeld->getUInt(), ui->textBoxFRLGSeedPickup->getUInt());
     frlg->addItems(frames);
 }
 

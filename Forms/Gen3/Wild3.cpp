@@ -252,7 +252,6 @@ void Wild3::generate()
     }
 
     WildGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, type);
-    generator.setSeed(seed);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
     generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()]);
     generator.setOffset(offset);
@@ -279,7 +278,7 @@ void Wild3::generate()
                        ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
                        ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
 
-    auto frames = generator.generate(filter);
+    auto frames = generator.generate(seed, filter);
     generatorModel->addItems(frames);
 }
 

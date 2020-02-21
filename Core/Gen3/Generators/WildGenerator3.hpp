@@ -29,7 +29,7 @@ class WildGenerator3 : public WildGenerator
 public:
     WildGenerator3() = default;
     WildGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
-    QVector<WildFrame> generate(const FrameFilter &filter) const;
+    QVector<WildFrame> generate(u32 seed, const FrameFilter &filter) const;
     void setEncounterArea(const EncounterArea3 &encounterArea);
 
 private:

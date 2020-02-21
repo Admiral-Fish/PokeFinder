@@ -33,11 +33,11 @@ void PokeSpotGenerator::setSpots(const QVector<bool> &spots)
     this->spots = spots;
 }
 
-QVector<GameCubeFrame> PokeSpotGenerator::generate(const FrameFilter &filter) const
+QVector<GameCubeFrame> PokeSpotGenerator::generate(u32 seed, const FrameFilter &filter) const
 {
     QVector<GameCubeFrame> frames;
 
-    XDRNG rng(static_cast<u32>(seed));
+    XDRNG rng(seed);
     rng.advanceFrames(initialFrame - 1);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())

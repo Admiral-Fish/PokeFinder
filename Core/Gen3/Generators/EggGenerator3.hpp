@@ -27,11 +27,10 @@ class EggGenerator3 : public EggGenerator
 {
 public:
     EggGenerator3() = default;
-    EggGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, u32 seed = 0);
-    QVector<EggFrame3> generate(const FrameFilter &filter) const;
+    EggGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
+    QVector<EggFrame3> generate(const FrameFilter &filter, u32 seed = 0, u32 seed2 = 0) const;
     void setInitialFramePickup(u32 value);
     void setMaxResultsPickup(u32 value);
-    void setPickupSeed(u16 value);
     void setCalibration(u8 value);
     void setMinRedraw(u8 value);
     void setMaxRedraw(u8 value);
@@ -41,7 +40,6 @@ public:
 private:
     u32 initialFramePickup {};
     u32 maxResultsPickup {};
-    u16 pickupSeed {};
     u8 calibration {};
     u8 minRedraw {};
     u8 maxRedraw {};
@@ -49,10 +47,10 @@ private:
     bool everstone {};
     u8 iv1 {}, iv2 {}, inh {};
 
-    QVector<EggFrame3> generateEmeraldPID(const FrameFilter &filter) const;
-    QVector<EggFrame3> generateEmeraldIVs(const FrameFilter &filter) const;
-    QVector<QPair<u32, u16>> generateLower() const;
-    QVector<EggFrame3> generateUpper(const QVector<QPair<u32, u16>> &lower, const FrameFilter &filter) const;
+    QVector<EggFrame3> generateEmeraldPID(u32 seed, const FrameFilter &filter) const;
+    QVector<EggFrame3> generateEmeraldIVs(u32 seed, const FrameFilter &filter) const;
+    QVector<QPair<u32, u16>> generateLower(u32 seed) const;
+    QVector<EggFrame3> generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower, const FrameFilter &filter) const;
     void setInheritance(EggFrame3 &frame, const u16 *inh, const u16 *par, bool broken) const;
 };
 

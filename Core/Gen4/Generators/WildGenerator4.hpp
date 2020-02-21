@@ -30,13 +30,13 @@ class WildGenerator4 : public WildGenerator
 public:
     WildGenerator4() = default;
     WildGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
-    QVector<WildFrame> generate(const FrameFilter &filter) const;
+    QVector<WildFrame> generate(u32 seed, const FrameFilter &filter) const;
     void setEncounterArea(const EncounterArea4 &encounterArea);
 
 private:
-    QVector<WildFrame> generateMethodJ(const FrameFilter &filter) const;
-    QVector<WildFrame> generateMethodK(const FrameFilter &filter) const;
-    QVector<WildFrame> generateChainedShiny(const FrameFilter &filter) const;
+    QVector<WildFrame> generateMethodJ(u32 seed, const FrameFilter &filter) const;
+    QVector<WildFrame> generateMethodK(u32 seed, const FrameFilter &filter) const;
+    QVector<WildFrame> generateChainedShiny(u32 seed, const FrameFilter &filter) const;
 
     EncounterArea4 encounterArea;
 };

@@ -277,7 +277,6 @@ void Wild4::generate()
     }
 
     WildGenerator4 generator(initialFrame, maxResults, tid, sid, genderRatio, method);
-    generator.setSeed(seed);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
 
@@ -309,7 +308,7 @@ void Wild4::generate()
                        ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
                        ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
 
-    QVector<WildFrame> frames = generator.generate(filter);
+    QVector<WildFrame> frames = generator.generate(seed, filter);
     generatorModel->addItems(frames);
 }
 

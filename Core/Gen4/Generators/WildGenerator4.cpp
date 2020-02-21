@@ -31,16 +31,16 @@ WildGenerator4::WildGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 si
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<WildFrame> WildGenerator4::generate(const FrameFilter &filter) const
+QVector<WildFrame> WildGenerator4::generate(u32 seed, const FrameFilter &filter) const
 {
     switch (method)
     {
     case Method::MethodJ:
-        return generateMethodJ(filter);
+        return generateMethodJ(seed, filter);
     case Method::MethodK:
-        return generateMethodK(filter);
+        return generateMethodK(seed, filter);
     case Method::ChainedShiny:
-        return generateChainedShiny(filter);
+        return generateChainedShiny(seed, filter);
     default:
         return QVector<WildFrame>();
     }
@@ -51,11 +51,11 @@ void WildGenerator4::setEncounterArea(const EncounterArea4 &encounterArea)
     this->encounterArea = encounterArea;
 }
 
-QVector<WildFrame> WildGenerator4::generateMethodJ(const FrameFilter &filter) const
+QVector<WildFrame> WildGenerator4::generateMethodJ(u32 seed, const FrameFilter &filter) const
 {
     QVector<WildFrame> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     u8 buffer = 0;
@@ -230,11 +230,11 @@ QVector<WildFrame> WildGenerator4::generateMethodJ(const FrameFilter &filter) co
     return frames;
 }
 
-QVector<WildFrame> WildGenerator4::generateMethodK(const FrameFilter &filter) const
+QVector<WildFrame> WildGenerator4::generateMethodK(u32 seed, const FrameFilter &filter) const
 {
     QVector<WildFrame> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     u8 buffer = 0;
@@ -440,11 +440,11 @@ QVector<WildFrame> WildGenerator4::generateMethodK(const FrameFilter &filter) co
     return frames;
 }
 
-QVector<WildFrame> WildGenerator4::generateChainedShiny(const FrameFilter &filter) const
+QVector<WildFrame> WildGenerator4::generateChainedShiny(u32 seed, const FrameFilter &filter) const
 {
     QVector<WildFrame> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
@@ -452,7 +452,7 @@ QVector<WildFrame> WildGenerator4::generateChainedShiny(const FrameFilter &filte
         WildFrame frame(initialFrame + cnt);
 
         PokeRNG go(rng.getSeed());
-        u32 seed = go.nextUInt(); // TODO: is this necessary
+        u32 originSeed = go.nextUInt(); // TODO: is this necessary
 
         u16 low = go.nextUShort() & 7;
         u16 high = go.nextUShort() & 7;
@@ -477,7 +477,7 @@ QVector<WildFrame> WildGenerator4::generateChainedShiny(const FrameFilter &filte
 
         if (filter.compareFrame(frame))
         {
-            frame.setSeed(seed);
+            frame.setSeed(originSeed);
             frames.append(frame);
         }
     }

@@ -195,7 +195,6 @@ void Eggs4::generate()
     generatorModel->setMethod(method);
 
     EggGenerator4 generator(initialFrame, maxResults, tid, sid, ui->comboBoxGeneratorGenderRatio->getCurrentByte(), method);
-    generator.setSeed(seed);
     generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
 
     FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
@@ -203,7 +202,7 @@ void Eggs4::generate()
                        ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
                        ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
-    auto frames = generator.generate(filter);
+    auto frames = generator.generate(seed, filter);
     generatorModel->addItems(frames);
 }
 

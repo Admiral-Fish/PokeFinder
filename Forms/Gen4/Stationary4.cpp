@@ -191,7 +191,6 @@ void Stationary4::generate()
     }
 
     StationaryGenerator4 generator(initialFrame, maxResults, tid, sid, genderRatio, method);
-    generator.setSeed(seed);
     generator.setOffset(offset);
 
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -217,7 +216,7 @@ void Stationary4::generate()
                        ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
                        ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
-    auto frames = generator.generate(filter);
+    auto frames = generator.generate(seed, filter);
     generatorModel->addItems(frames);
 }
 

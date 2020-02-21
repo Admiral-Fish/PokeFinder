@@ -33,12 +33,9 @@ class Generator
 public:
     Generator() = default;
     Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
-    u64 getSeed() const;
-    void setSeed(u64 seed);
     void setOffset(u32 offset);
 
 protected:
-    u64 seed;
     u32 initialFrame {};
     u32 maxResults {};
     u32 offset {};

@@ -166,7 +166,6 @@ void Stationary3::generate()
     }
 
     StationaryGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, method);
-    generator.setSeed(seed);
     generator.setOffset(offset);
 
     FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
@@ -174,7 +173,7 @@ void Stationary3::generate()
                        ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
                        ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
-    auto frames = generator.generate(filter);
+    auto frames = generator.generate(seed, filter);
     generatorModel->addItems(frames);
 }
 

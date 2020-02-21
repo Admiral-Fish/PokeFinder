@@ -98,12 +98,11 @@ void PokeSpot::generate()
     u8 genderRatio = ui->comboBoxGenderRatio->getCurrentByte();
 
     PokeSpotGenerator generator(initialFrame, maxResults, tid, sid, genderRatio);
-    generator.setSeed(seed);
     generator.setSpots(ui->comboBoxSpotType->getChecked());
 
     FrameFilter filter(ui->comboBoxGender->getCurrentByte(), ui->comboBoxAbility->getCurrentByte(), ui->checkBoxShinyOnly->isChecked(),
                        false, QVector<u8>(), QVector<u8>(), ui->comboBoxNature->getChecked(), QVector<bool>(), QVector<bool>());
 
-    auto frames = generator.generate(filter);
+    auto frames = generator.generate(seed, filter);
     model->addItems(frames);
 }
