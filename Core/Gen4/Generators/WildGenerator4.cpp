@@ -87,7 +87,7 @@ QVector<WildFrame> WildGenerator4::generateMethodJ(const FrameFilter &filter) co
         WildFrame frame(initialFrame + cnt);
 
         PokeRNG go(rng.getSeed());
-        frame.setSeed(go.getSeed() >> 16);
+        frame.setSeed(go.nextUShort()); // Blank ???
 
         switch (encounter)
         {
@@ -279,7 +279,7 @@ QVector<WildFrame> WildGenerator4::generateMethodK(const FrameFilter &filter) co
         WildFrame frame(initialFrame + cnt);
 
         PokeRNG go(rng.getSeed());
-        frame.setSeed(go.getSeed() >> 16);
+        frame.setSeed(go.nextUShort()); // Blank ???
 
         switch (encounter)
         {
