@@ -97,9 +97,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <widget class="QWidget" name="tabStationary">
       <attribute name="title">
        <string>Generator</string>
@@ -113,18 +110,12 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
          <property name="title">
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="2" column="1">
            <widget class="TextBox" name="textBoxGeneratorInitialFrame">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
             <property name="inputMask">
              <string/>
             </property>
@@ -248,9 +239,6 @@
            <horstretch>2</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
          <property name="title">
           <string>Filters</string>
@@ -485,9 +473,6 @@
            <horstretch>2</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
          <property name="title">
           <string>Filters</string>
@@ -738,9 +723,6 @@
         <widget class="TableView" name="tableViewSearcher">
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>

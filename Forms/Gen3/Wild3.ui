@@ -110,9 +110,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <widget class="QWidget" name="tabStationary">
       <attribute name="title">
        <string>Generator</string>
@@ -125,9 +122,6 @@
            <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
          <property name="title">
           <string>RNG Info</string>
@@ -263,9 +257,6 @@
           </item>
           <item row="5" column="1">
            <widget class="TextBox" name="textBoxGeneratorInitialFrame">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
             <property name="inputMask">
              <string/>
             </property>
@@ -343,9 +334,6 @@
            <horstretch>2</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
          <property name="title">
           <string>Filters</string>
@@ -602,9 +590,6 @@
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -839,9 +824,6 @@
            <horstretch>2</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
          <property name="title">
           <string>Filters</string>

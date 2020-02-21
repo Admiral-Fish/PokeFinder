@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>PIDIV</class>
- <widget class="QWidget" name="PIDtoIVs">
+ <widget class="QWidget" name="PIDIV">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -54,9 +54,6 @@
     <widget class="TableView" name="tableView">
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
      </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>

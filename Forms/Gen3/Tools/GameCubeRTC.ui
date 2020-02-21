@@ -70,9 +70,6 @@
    </item>
    <item row="4" column="0">
     <widget class="QPushButton" name="pushButtonSearch">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="text">
       <string>Search</string>
      </property>
@@ -92,9 +89,6 @@
     <widget class="TableView" name="tableView">
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
      </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>

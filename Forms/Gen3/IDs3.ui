@@ -22,9 +22,6 @@
   <layout class="QGridLayout" name="gridLayout_5">
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <widget class="QWidget" name="gen3XDColo">
       <attribute name="title">
        <string>XD/Colo</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>SeedTime3</class>
- <widget class="QWidget" name="SeedToTime3">
+ <widget class="QWidget" name="SeedTime3">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -65,9 +65,6 @@
    </item>
    <item row="2" column="2">
     <widget class="QPushButton" name="pushButtonFind">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="text">
       <string>Find</string>
      </property>
@@ -75,9 +72,6 @@
    </item>
    <item row="3" column="0" colspan="3">
     <widget class="TableView" name="tableView">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>
@@ -102,14 +96,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TableView</class>
-   <extends>QTableView</extends>
-   <header>Forms/Controls/TableView.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

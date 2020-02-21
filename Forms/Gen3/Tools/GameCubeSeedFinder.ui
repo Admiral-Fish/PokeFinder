@@ -731,8 +731,8 @@
  <buttongroups>
   <buttongroup name="buttonGroupColoTrainerName"/>
   <buttongroup name="buttonGroupChannel"/>
-  <buttongroup name="buttonGroupGalesEnemyLead"/>
   <buttongroup name="buttonGroupGalesYourLead"/>
   <buttongroup name="buttonGroupColoPartyLead"/>
+  <buttongroup name="buttonGroupGalesEnemyLead"/>
  </buttongroups>
 </ui>

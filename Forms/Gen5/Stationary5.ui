@@ -216,9 +216,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabRNGSelector">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
      <widget class="QWidget" name="tabStationary">
       <attribute name="title">
        <string>Generator</string>
@@ -231,9 +228,6 @@
            <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
          <property name="title">
           <string>RNG Info</string>
@@ -291,9 +285,6 @@
           </item>
           <item row="2" column="1">
            <widget class="TextBox" name="textBoxGeneratorStartingFrame">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
             <property name="inputMask">
              <string/>
             </property>
@@ -367,9 +358,6 @@
            <horstretch>2</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
          <property name="title">
           <string>Filters</string>
@@ -604,9 +592,6 @@
            <horstretch>2</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
          <property name="title">
           <string>Filters</string>
@@ -858,9 +843,6 @@
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -997,14 +979,6 @@
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>CheckList</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/CheckList.hpp</header>
-   <slots>
-    <slot>resetChecks()</slot>
-   </slots>
-  </customwidget>
-  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
@@ -1014,6 +988,14 @@
    <extends>QWidget</extends>
    <header>Forms/Controls/IVFilter.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CheckList</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/CheckList.hpp</header>
+   <slots>
+    <slot>resetChecks()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <tabstops>
