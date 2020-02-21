@@ -380,7 +380,8 @@ QVector<StationaryFrame> StationarySearcher4::normalMethodJ(StationaryFrame fram
     {
         if ((nextRNG / 0xa3e) == frame.getNature())
         {
-            frame.setSeed(rng.getSeed());
+            PokeRNGR go(rng.getSeed());
+            frame.setSeed(go.nextUInt());
             frames.append(frame);
         }
 
@@ -406,12 +407,15 @@ QVector<StationaryFrame> StationarySearcher4::synchMethodJ(StationaryFrame frame
     {
         if ((nextRNG >> 15) == 0)
         {
-            frame.setSeed(rng.getSeed());
+            PokeRNGR go(rng.getSeed());
+            frame.setSeed(go.nextUInt());
             frames.append(frame);
         }
         else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == frame.getNature())
         {
-            frame.setSeed(rng.getSeed() * 0xeeb9eb65 + 0xa3561a1);
+            PokeRNGR go(rng.getSeed());
+            go.advanceFrames(1);
+            frame.setSeed(go.nextUInt());
             frames.append(frame);
         }
 
@@ -427,7 +431,6 @@ QVector<StationaryFrame> StationarySearcher4::cuteCharmMethodJ(StationaryFrame f
 {
     QVector<StationaryFrame> frames;
 
-    PokeRNGR rng(seed);
     u16 high = frame.getPID() >> 16;
     u16 low = frame.getPID() & 0xffff;
 
@@ -491,7 +494,8 @@ QVector<StationaryFrame> StationarySearcher4::normalMethodK(StationaryFrame fram
     {
         if ((nextRNG % 25) == frame.getNature())
         {
-            frame.setSeed(rng.getSeed());
+            PokeRNGR go(rng.getSeed());
+            frame.setSeed(go.nextUInt());
             frames.append(frame);
         }
 
@@ -517,12 +521,15 @@ QVector<StationaryFrame> StationarySearcher4::synchMethodK(StationaryFrame frame
     {
         if ((nextRNG & 1) == 0)
         {
-            frame.setSeed(rng.getSeed());
+            PokeRNGR go(rng.getSeed());
+            frame.setSeed(go.nextUInt());
             frames.append(frame);
         }
         else if ((nextRNG2 & 1) == 1 && (nextRNG / 0xa3e) == frame.getNature())
         {
-            frame.setSeed(rng.getSeed() * 0xeeb9eb65 + 0xa3561a1);
+            PokeRNGR go(rng.getSeed());
+            go.advanceFrames(1);
+            frame.setSeed(go.nextUInt());
             frames.append(frame);
         }
 
@@ -538,7 +545,6 @@ QVector<StationaryFrame> StationarySearcher4::cuteCharmMethodK(StationaryFrame f
 {
     QVector<StationaryFrame> frames;
 
-    PokeRNGR rng(seed);
     u16 high = frame.getPID() >> 16;
     u16 low = frame.getPID() & 0xffff;
 
