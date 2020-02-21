@@ -55,12 +55,11 @@ public:
 class MersenneTwisterFast : public MT
 {
 public:
-    explicit MersenneTwisterFast(u16 calls, u32 seed = 0);
+    explicit MersenneTwisterFast(u32 calls, u32 seed = 0);
     u32 nextUInt() override;
 
 private:
-    u16 max;
-    u16 maxCalls;
+    u32 calls;
 
     void initialize(u32 seed) override;
     void shuffle() override;

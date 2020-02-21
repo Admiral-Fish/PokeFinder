@@ -18,6 +18,7 @@
  */
 
 #include "MTRNG.hpp"
+#include <stdexcept>
 
 void MT::advanceFrames(u32 frames)
 {
@@ -108,19 +109,18 @@ u32 MersenneTwisterUntempered::nextUInt()
     return mt[index++];
 }
 
-MersenneTwisterFast::MersenneTwisterFast(u16 calls, u32 seed) : maxCalls(calls)
+MersenneTwisterFast::MersenneTwisterFast(u32 calls, u32 seed) : calls(calls)
 {
-    if (maxCalls > 227)
+    if (calls > 227)
     {
-        return;
+        throw std::runtime_error("Too many calls");
     }
-    max = 397 + maxCalls;
     initialize(seed);
 }
 
 u32 MersenneTwisterFast::nextUInt()
 {
-    if (index >= max)
+    if (index >= calls + 397)
     {
         shuffle();
     }
@@ -137,7 +137,7 @@ void MersenneTwisterFast::initialize(u32 seed)
 {
     mt[0] = seed;
 
-    for (index = 1; index < max; ++index)
+    for (index = 1; index < calls + 397; index++)
     {
         mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
     }
@@ -145,7 +145,7 @@ void MersenneTwisterFast::initialize(u32 seed)
 
 void MersenneTwisterFast::shuffle()
 {
-    for (u16 i = 0; i < maxCalls; ++i)
+    for (u16 i = 0; i < calls; ++i)
     {
         u32 y = (mt[i] & 0x80000000) | (mt[(i + 1) % 624] & 0x7FFFFFFF);
         u32 next = y >> 1;
@@ -157,4 +157,6 @@ void MersenneTwisterFast::shuffle()
 
         mt[i] = next ^ mt[(i + 397) % 624];
     }
+
+    index -= calls + 397;
 }
