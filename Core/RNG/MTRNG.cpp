@@ -29,6 +29,22 @@ void MT::advanceFrames(u32 frames)
     }
 }
 
+void MT::setSeed(u32 seed, u32 frames)
+{
+    initialize(seed);
+    advanceFrames(frames);
+}
+
+u16 MT::nextUShort()
+{
+    return nextUInt() >> 16;
+}
+
+u32 MT::next()
+{
+    return nextUInt();
+}
+
 void MT::shuffle()
 {
     for (u16 i = 0; i < 624; i++)
@@ -55,22 +71,6 @@ void MT::initialize(u32 seed)
     {
         mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
     }
-}
-
-void MT::setSeed(u32 seed, u32 frames)
-{
-    initialize(seed);
-    advanceFrames(frames);
-}
-
-u16 MT::nextUShort()
-{
-    return nextUInt() >> 16;
-}
-
-u32 MT::next()
-{
-    return nextUInt();
 }
 
 MersenneTwister::MersenneTwister(u32 seed)

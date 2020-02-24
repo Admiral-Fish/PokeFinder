@@ -26,16 +26,16 @@ class MT : public IRNG<u32>
 {
 public:
     void advanceFrames(u32 frames) override;
+    void setSeed(u32 seed, u32 frames) override;
+    u16 nextUShort();
+    u32 next() override;
+    virtual u32 nextUInt() = 0;
 
 protected:
     u32 mt[624];
     u32 index;
     virtual void shuffle();
     virtual void initialize(u32 seed);
-    void setSeed(u32 seed, u32 frames) override;
-    u16 nextUShort();
-    u32 next() override;
-    virtual u32 nextUInt() = 0;
 };
 
 class MersenneTwister : public MT
