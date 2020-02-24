@@ -23,6 +23,8 @@
 #include <QSet>
 #include <cmath>
 
+constexpr u8 ivOrder[6] = { 0, 1, 2, 5, 3, 4 };
+
 namespace
 {
     QVector<QSet<u8>> calculateIVs(const PersonalInfo &info, const QVector<u16> &stats, u8 level, u8 nature, u8 characteristic)
@@ -65,7 +67,7 @@ namespace
         u8 characteristicHigh = 31;
         if (characteristic != 255)
         {
-            u8 stat = characteristic / 5;
+            u8 stat = ivOrder[characteristic / 5];
             u8 result = characteristic % 5;
 
             indexes.removeAll(stat);
@@ -112,7 +114,7 @@ QVector<QVector<u8>> IVChecker::calculateIVRange(const PersonalInfo &info, const
 
     if (hiddenPower != 255)
     {
-        QVector<QSet<u8>> final(6);
+        QVector<QSet<u8>> ivs(6);
         for (u8 hp : first.at(0))
         {
             for (u8 atk : first.at(1))
@@ -130,12 +132,12 @@ QVector<QVector<u8>> IVChecker::calculateIVRange(const PersonalInfo &info, const
                                        / 63);
                                 if (hpType == hiddenPower)
                                 {
-                                    final[0].insert(hp);
-                                    final[1].insert(atk);
-                                    final[2].insert(def);
-                                    final[3].insert(spa);
-                                    final[4].insert(spd);
-                                    final[5].insert(spe);
+                                    ivs[0].insert(hp);
+                                    ivs[1].insert(atk);
+                                    ivs[2].insert(def);
+                                    ivs[3].insert(spa);
+                                    ivs[4].insert(spd);
+                                    ivs[5].insert(spe);
                                 }
                             }
                         }
@@ -143,7 +145,7 @@ QVector<QVector<u8>> IVChecker::calculateIVRange(const PersonalInfo &info, const
                 }
             }
         }
-        first = final;
+        first = ivs;
     }
 
     QVector<QVector<u8>> ivs(6);

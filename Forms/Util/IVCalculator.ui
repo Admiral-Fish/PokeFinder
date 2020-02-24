@@ -26,54 +26,6 @@
       <string>Settings</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="0">
-       <widget class="QComboBox" name="comboBoxPokemon"/>
-      </item>
-      <item row="4" column="2">
-       <widget class="QPushButton" name="pushButtonFindIVs">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>23</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Find IVs</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QComboBox" name="comboBoxPokemon"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="comboBoxNature"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QComboBox" name="comboBoxGeneration">
-        <item>
-         <property name="text">
-          <string>Gen 3</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Gen 4</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Gen 5</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelCharacteristic">
-        <property name="text">
-         <string>Characteristic</string>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="1">
        <widget class="QComboBox" name="comboBoxHiddenPower">
         <item>
@@ -81,13 +33,6 @@
           <string>None</string>
          </property>
         </item>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLabel" name="labelHiddenPower">
-        <property name="text">
-         <string>Hidden Power</string>
-        </property>
        </widget>
       </item>
       <item row="4" column="0" colspan="2">
@@ -103,9 +48,6 @@
         </property>
        </spacer>
       </item>
-      <item row="3" column="2">
-       <widget class="QComboBox" name="comboBoxNature"/>
-      </item>
       <item row="2" column="2">
        <widget class="QLabel" name="labelNature">
         <property name="text">
@@ -113,14 +55,20 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelSpecies">
+      <item row="4" column="2">
+       <widget class="QPushButton" name="pushButtonFindIVs">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>23</height>
+         </size>
+        </property>
         <property name="text">
-         <string>Pokémon</string>
+         <string>Find IVs</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
+      <item row="1" column="0">
        <widget class="QComboBox" name="comboBoxGeneration">
         <item>
          <property name="text">
@@ -144,7 +92,24 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="2">
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelCharacteristic">
+        <property name="text">
+         <string>Characteristic</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QComboBox" name="comboBoxNature"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelHiddenPower">
+        <property name="text">
+         <string>Hidden Power</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
        <widget class="QLabel" name="labelGeneraiton">
         <property name="text">
          <string>Generation</string>
@@ -152,14 +117,24 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QComboBox" name="comboBoxAltForm"/>
+       <widget class="QComboBox" name="comboBoxPokemon"/>
       </item>
       <item row="0" column="1">
+       <widget class="QLabel" name="labelSpecies">
+        <property name="text">
+         <string>Pokémon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
        <widget class="QLabel" name="labelAltForm">
         <property name="text">
          <string>Altform</string>
         </property>
        </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QComboBox" name="comboBoxAltForm"/>
       </item>
      </layout>
     </widget>
@@ -353,9 +328,9 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>comboBoxGeneration</tabstop>
   <tabstop>comboBoxPokemon</tabstop>
   <tabstop>comboBoxAltForm</tabstop>
-  <tabstop>comboBoxGeneration</tabstop>
   <tabstop>comboBoxCharacteristic</tabstop>
   <tabstop>comboBoxHiddenPower</tabstop>
   <tabstop>comboBoxNature</tabstop>
