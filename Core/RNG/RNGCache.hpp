@@ -33,17 +33,13 @@ public:
     explicit RNGCache(Method method);
     QVector<u32> recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     QVector<u32> recoverLower16BitsPID(u32 pid) const;
-    void switchCache(Method MethodType);
 
 private:
-    u32 add {};
-    u32 k {};
-    u32 mult {};
-    QVector<u8> low;
-    QVector<bool> flags;
-
-    void populateMap();
-    void setupCache(Method method);
+    u32 add;
+    u32 k;
+    u32 mult;
+    u8 low[0x10000];
+    bool flags[0x10000];
 };
 
 #endif // RNGCACHE_HPP

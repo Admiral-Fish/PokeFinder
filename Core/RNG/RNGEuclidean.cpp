@@ -19,9 +19,7 @@
 
 #include "RNGEuclidean.hpp"
 #include <Core/Enum/Method.hpp>
-
-constexpr u32 ADD = 0x269EC3;
-constexpr u32 MULT = 0x343FD;
+#include <Core/RNG/LCRNG.hpp>
 
 // See https://crypto.stackexchange.com/a/10629 for how the following math works
 // Uses Euclidean divison to reduce the search space (kmax) even further then RNGCache
@@ -29,7 +27,24 @@ constexpr u32 MULT = 0x343FD;
 
 RNGEuclidean::RNGEuclidean(Method method)
 {
-    setupEuclidean(method);
+    if (method == Method::Channel)
+    {
+        // Channel is a unique situation having 6 rng calls with each call 5 bits known
+        // It is unable to use the cache method and uses a modified Euclidean approach to keep kmax as low as
+        // possible Using the first and last calls we can produce a modified adder and multiplier Mult:j = Mult^j
+        // Add:j = Add * (1 + Mult + ... + Mult^(j-1))
+        // Using j = 5 and XDRNG gives Mult = 0x284A930D and Add = 0xa2974c77
+        sub1 = 0x284A930D; // Modified mult
+        sub2 = 0x9A974C78; // (-)Modified add + 0x8000000 - 1
+        base = 0x142549847b56cf2; // 0x7ffffff * (Modified mult + 1)
+    }
+    // XDColo, XD, Colo
+    else
+    {
+        sub1 = 0x343fd; // XDRNG mult
+        sub2 = 0x259ec4; // (-)XDRNG add + 0x10000 - 1
+        base = 0x343fabc02; // 0xffff * (XDRNG mult + 1)
+    }
 }
 
 // Recovers origin seeds for two 16 bit calls(15 bits known)
@@ -48,7 +63,7 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u8 hp, u8 atk, u8 de
         if ((t % sub1) < 0x10000)
         {
             u32 fullFirst = first | static_cast<u32>(t / sub1);
-            u32 fullSecond = fullFirst * MULT + ADD;
+            u32 fullSecond = XDRNG(fullFirst).nextUInt();
             origin.append(QPair<u32, u32>(fullFirst, fullSecond));
         }
     }
@@ -71,7 +86,7 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 pid) const
         if ((t % sub1) < 0x10000)
         {
             u32 fullFirst = pid | static_cast<u32>(t / sub1);
-            u32 fullSecond = fullFirst * MULT + ADD;
+            u32 fullSecond = XDRNG(fullFirst).nextUInt();
             origin.append(QPair<u32, u32>(fullFirst, fullSecond));
         }
     }
@@ -96,17 +111,14 @@ QVector<u32> RNGEuclidean::recoverLower27BitsChannel(u32 hp, u32 atk, u32 def, u
             // Check if the next 4 IVs lineup
             // The euclidean divisor assures the first and last call match up
             // so there is no need to check if the last call lines up
-            u32 call = fullFirst * MULT + ADD;
-            if ((call >> 27) == atk)
+            XDRNG rng(fullFirst);
+            if ((rng.nextUInt() >> 27) == atk)
             {
-                call = call * MULT + ADD;
-                if ((call >> 27) == def)
+                if ((rng.nextUInt() >> 27) == def)
                 {
-                    call = call * MULT + ADD;
-                    if ((call >> 27) == spe)
+                    if ((rng.nextUInt() >> 27) == spe)
                     {
-                        call = call * MULT + ADD;
-                        if ((call >> 27) == spa)
+                        if ((rng.nextUInt() >> 27) == spa)
                         {
                             origin.append(fullFirst);
                         }
@@ -116,31 +128,4 @@ QVector<u32> RNGEuclidean::recoverLower27BitsChannel(u32 hp, u32 atk, u32 def, u
         }
     }
     return origin;
-}
-
-void RNGEuclidean::switchEuclidean(Method frameType)
-{
-    setupEuclidean(frameType);
-}
-
-void RNGEuclidean::setupEuclidean(Method method)
-{
-    if (method == Method::Channel)
-    {
-        // Channel is a unique situation having 6 rng calls with each call 5 bits known
-        // It is unable to use the cache method and uses a modified Euclidean approach to keep kmax as low as
-        // possible Using the first and last calls we can produce a modified adder and multiplier Mult:j = Mult^j
-        // Add:j = Add * (1 + Mult + ... + Mult^(j-1))
-        // Using j = 5 and XDRNG gives Mult = 0x284A930D and Add = 0xa2974c77
-        sub1 = 0x284A930D; // Modified mult
-        sub2 = 0x9A974C78; // (-)Modified add + 0x8000000 - 1
-        base = 0x142549847b56cf2; // 0x7ffffff * (Modified mult + 1)
-    }
-    // XDColo, XD, Colo
-    else
-    {
-        sub1 = 0x343fd; // XDRNG mult
-        sub2 = 0x259ec4; // (-)XDRNG add + 0x10000 - 1
-        base = 0x343fabc02; // 0xffff * (XDRNG mult + 1)
-    }
 }

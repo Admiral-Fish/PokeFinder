@@ -25,7 +25,32 @@
 
 RNGCache::RNGCache(Method method)
 {
-    setupCache(method);
+    if (method == Method::Method4)
+    {
+        k = 0xa29a6900; // Mult * Mult << 8
+        mult = 0xc2a29a69; // Mult * Mult
+        add = 0xe97e7b6a; // Add * (Mult + 1)
+    }
+    // Method 1/2
+    else
+    {
+        k = 0xc64e6d00; // Mult << 8
+        mult = 0x41c64e6d; // pokerng constant
+        add = 0x6073; // pokerng constant
+    }
+
+    std::memset(low, 0, sizeof(u32) * 0x10000);
+    std::memset(flags, false, sizeof(bool) * 0x10000);
+    for (u16 i = 0; i < 256; i++)
+    {
+        u32 right = mult * i + add;
+        u16 val = right >> 16;
+
+        flags[val] = true;
+        low[val--] = static_cast<u8>(i);
+        flags[val] = true;
+        low[val] = static_cast<u8>(i);
+    }
 }
 
 // Recovers origin seeds for two 16 bit calls(15 bits known) with or without gap based on the cache
@@ -43,9 +68,9 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
 
     for (u16 i = 0; i < 256; i++, search1 -= k, search2 -= k)
     {
-        if (flags.at(search1 >> 16))
+        if (flags[search1 >> 16])
         {
-            u32 test = first | static_cast<u32>(i << 8) | low.at(search1 >> 16);
+            u32 test = first | static_cast<u32>(i << 8) | low[search1 >> 16];
             // Verify IV calls line up
             if (((test * mult + add) & 0x7fff0000) == second)
             {
@@ -53,9 +78,9 @@ QVector<u32> RNGCache::recoverLower16BitsIV(u8 hp, u8 atk, u8 def, u8 spa, u8 sp
             }
         }
 
-        if (flags.at(search2 >> 16))
+        if (flags[search2 >> 16])
         {
-            u32 test = first | static_cast<u32>(i << 8) | low.at(search2 >> 16);
+            u32 test = first | static_cast<u32>(i << 8) | low[search2 >> 16];
             // Verify IV calls line up
             if (((test * mult + add) & 0x7fff0000) == second)
             {
@@ -78,9 +103,9 @@ QVector<u32> RNGCache::recoverLower16BitsPID(u32 pid) const
 
     for (u16 i = 0; i < 256; i++, search -= k)
     {
-        if (flags.at(search >> 16))
+        if (flags[search >> 16])
         {
-            u32 test = first | static_cast<u32>(i << 8) | low.at(search >> 16);
+            u32 test = first | static_cast<u32>(i << 8) | low[search >> 16];
             // Verify PID calls line up
             if (((test * mult + add) & 0xffff0000) == second)
             {
@@ -89,44 +114,4 @@ QVector<u32> RNGCache::recoverLower16BitsPID(u32 pid) const
         }
     }
     return origin;
-}
-
-void RNGCache::switchCache(Method MethodType)
-{
-    setupCache(MethodType);
-}
-
-void RNGCache::populateMap()
-{
-    low = QVector<u8>(0x10000, 0);
-    flags = QVector<bool>(0x10000, false);
-    for (u16 i = 0; i < 256; i++)
-    {
-        u32 right = mult * i + add;
-        u16 val = right >> 16;
-
-        flags[val] = true;
-        low[val--] = static_cast<u8>(i);
-        flags[val] = true;
-        low[val] = static_cast<u8>(i);
-    }
-}
-
-void RNGCache::setupCache(Method method)
-{
-    if (method == Method::Method4)
-    {
-        k = 0xa29a6900; // Mult * Mult << 8
-        mult = 0xc2a29a69; // Mult * Mult
-        add = 0xe97e7b6a; // Add * (Mult + 1)
-    }
-    // Method 1/2
-    else
-    {
-        k = 0xc64e6d00; // Mult << 8
-        mult = 0x41c64e6d; // pokerng constant
-        add = 0x6073; // pokerng constant
-    }
-
-    populateMap();
 }
