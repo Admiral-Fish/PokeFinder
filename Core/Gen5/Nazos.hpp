@@ -20,13 +20,18 @@
 #ifndef NAZOS_HPP
 #define NAZOS_HPP
 
-#include <Core/Gen5/Profile5.hpp>
 #include <Core/Util/Global.hpp>
+#include <array>
+
+enum DSType : u8;
+enum Game : u16;
+enum Language : u8;
+class Profile5;
 
 namespace Nazos
 {
-    QVector<u32> getNazo(Game version, Language language, DSType dsType);
-    QVector<u32> getNazo(const Profile5 &profile);
+    std::array<u32, 5> getNazo(Game version, Language language, DSType dsType);
+    std::array<u32, 5> getNazo(const Profile5 &profile);
 }
 
 #endif // NAZOS_HPP

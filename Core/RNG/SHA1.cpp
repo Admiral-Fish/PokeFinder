@@ -18,16 +18,41 @@
  */
 
 #include "SHA1.hpp"
+#include <Core/RNG/LCRNG64.hpp>
+#include <array>
 #include <cstring>
+
+inline u32 changeEndian(u32 val)
+{
+    val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
+    return (val << 16) | (val >> 16);
+}
+
+inline u32 rotateLeft(u32 val, u8 count)
+{
+    return (val << count) | (val >> (32 - count));
+}
+
+inline u32 rotateRight(u32 val, u8 count)
+{
+    return (val << (32 - count)) | (val >> count);
+}
+
+inline u8 bcd(u8 value)
+{
+    u8 tens = value / 10;
+    u8 ones = value % 10;
+
+    return static_cast<u8>(tens << 4) | ones;
+}
 
 SHA1::SHA1(const Profile5 &profile)
 {
     this->profile = profile;
 
     std::memset(data, 0, sizeof(u32) * 80);
-    std::memset(alpha, 0, sizeof(u32) * 5);
 
-    QVector<u32> nazos = Nazos::getNazo(profile);
+    auto nazos = Nazos::getNazo(profile);
     std::copy(nazos.begin(), nazos.end(), data);
 
     data[6] = profile.getMac() & 0xFFFF;
@@ -35,7 +60,7 @@ SHA1::SHA1(const Profile5 &profile)
     {
         data[6] ^= 0x01000000;
     }
-    data[7] = (profile.getMac() >> 16) ^ (profile.getVFrame() << 24) ^ profile.getGxStat();
+    data[7] = static_cast<u32>((profile.getMac() >> 16) ^ static_cast<u32>(profile.getVFrame() << 24) ^ profile.getGxStat());
     data[13] = 0x80000000;
     data[15] = 0x000001A0;
 }
@@ -49,11 +74,11 @@ u64 SHA1::hashSeed()
     u32 d = alpha[3];
     u32 e = alpha[4];
 
-    auto section1Calc = [&temp, &a, &b, &c, &d, &e, this] { temp = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
-    auto section2Calc = [&temp, &a, &b, &c, &d, &e, this] { temp = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ED9EBA1 + temp; };
-    auto section3Calc = [&temp, &a, &b, &c, &d, &e, this] { temp = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8F1BBCDC + temp; };
-    auto section4Calc = [&temp, &a, &b, &c, &d, &e, this] { temp = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xCA62C1D6 + temp; };
-    auto updateVars = [&temp, &a, &b, &c, &d, &e, this] {
+    auto section1Calc = [&temp, &a, &b, &c, &d, &e] { temp = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
+    auto section2Calc = [&temp, &a, &b, &c, &d, &e] { temp = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0x6ED9EBA1 + temp; };
+    auto section3Calc = [&temp, &a, &b, &c, &d, &e] { temp = rotateLeft(a, 5) + ((b & c) | ((b | c) & d)) + e + 0x8F1BBCDC + temp; };
+    auto section4Calc = [&temp, &a, &b, &c, &d, &e] { temp = rotateLeft(a, 5) + (b ^ c ^ d) + e + 0xCA62C1D6 + temp; };
+    auto updateVars = [&temp, &a, &b, &c, &d, &e] {
         e = d;
         d = c;
         c = rotateRight(b, 2);
@@ -153,16 +178,14 @@ u64 SHA1::hashSeed()
 
     // clang-format on
 
-    u64 part1 = reorder(temp + 0x67452301);
-    u64 part2 = reorder(a + 0xEFCDAB89);
+    u64 part1 = changeEndian(temp + 0x67452301);
+    u64 part2 = changeEndian(a + 0xEFCDAB89);
 
     u64 seed = (part2 << 32) | part1;
-    seed = seed * 0x5d588b656c078965 + 0x269ec3;
-
-    return seed;
+    return BWRNG(seed).nextULong();
 }
 
-void SHA1::preCompute()
+void SHA1::precompute()
 {
     // For hashes computed on the same date, the first 8 steps will be the same
     u32 temp;
@@ -172,8 +195,8 @@ void SHA1::preCompute()
     u32 d = 0x10325476;
     u32 e = 0xC3D2E1F0;
 
-    auto section1Calc = [&temp, &a, &b, &c, &d, &e, this] { temp = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
-    auto updateVars = [&temp, &a, &b, &c, &d, &e, this] {
+    auto section1Calc = [&temp, &a, &b, &c, &d, &e] { temp = rotateLeft(a, 5) + ((b & c) | (~b & d)) + e + 0x5A827999 + temp; };
+    auto updateVars = [&temp, &a, &b, &c, &d, &e] {
         e = d;
         d = c;
         c = rotateRight(b, 2);
@@ -215,53 +238,25 @@ void SHA1::preCompute()
 
 void SHA1::setTime(u8 hour, u8 minute, u8 second)
 {
-    u32 h = (toBCD(hour) + (hour >= 12 && profile.getDSType() != DSType::DS3 ? 0x40 : 0)) << 24;
-    u32 m = toBCD(minute) << 16;
-    u32 s = toBCD(second) << 8;
+    u32 h = static_cast<u32>((bcd(hour) + (hour >= 12 && profile.getDSType() != DSType::DS3 ? 0x40 : 0)) << 24);
+    u32 m = static_cast<u32>(bcd(minute) << 16);
+    u32 s = static_cast<u32>(bcd(second) << 8);
     u32 val = h | m | s;
     data[9] = val;
 }
 
 void SHA1::setTimer0(u32 timer0)
 {
-    data[5] = reorder((profile.getVCount() << 16) | timer0);
+    data[5] = changeEndian(static_cast<u32>(profile.getVCount() << 16) | timer0);
 }
 
-void SHA1::setDate(QDate date)
+void SHA1::setDate(u8 year, u8 month, u8 day, u8 week)
 {
-    u32 val = (toBCD((date.year() - 2000)) << 24) | (toBCD(date.day()) << 16) | (toBCD(date.day()) << 8) | toBCD(date.dayOfWeek());
+    u32 val = static_cast<u32>((bcd(year) << 24) | (bcd(month) << 16) | (bcd(day) << 8) | week);
     data[8] = val;
 }
 
 void SHA1::setButton(u32 button)
 {
     data[12] = button;
-}
-
-u32 SHA1::reorder(u32 val)
-{
-    val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
-    return (val << 16) | (val >> 16);
-}
-
-u32 SHA1::rotateLeft(u32 val, u8 count)
-{
-    return (val << count) | (val >> (32 - count));
-}
-
-u32 SHA1::rotateRight(u32 val, u8 count)
-{
-    return (val << (32 - count)) | (val >> count);
-}
-
-u32 SHA1::toBCD(u32 value)
-{
-    u32 thousands = value / 1000;
-    u32 allHundreds = value / 100;
-    u32 allTens = value / 10;
-
-    u32 hundreds = allHundreds - (thousands * 10);
-    u32 tens = allTens - (allHundreds * 10);
-
-    return (thousands << 12) | (hundreds << 8) | (tens << 4) | (value - (allTens * 10));
 }

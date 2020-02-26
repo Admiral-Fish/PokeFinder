@@ -29,21 +29,16 @@ class SHA1
 public:
     explicit SHA1(const Profile5 &profile);
     u64 hashSeed();
-    void preCompute();
+    void precompute();
     void setTime(u8 hour, u8 minute, u8 second);
     void setTimer0(u32 timer0);
-    void setDate(QDate date);
+    void setDate(u8 year, u8 month, u8 day, u8 week);
     void setButton(u32 button);
 
 private:
     Profile5 profile;
     u32 data[80];
     u32 alpha[5];
-
-    u32 reorder(u32 val);
-    u32 rotateLeft(u32 val, u8 count);
-    u32 rotateRight(u32 val, u8 count);
-    u32 toBCD(u32 value);
 };
 
 #endif // SHA1_HPP
