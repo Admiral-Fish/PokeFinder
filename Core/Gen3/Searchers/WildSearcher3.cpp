@@ -53,7 +53,7 @@ void WildSearcher3::startSearch(const QVector<u8> &min, const QVector<u8> &max)
                                 return;
                             }
 
-                            QVector<WildFrame> frames = search(hp, atk, def, spa, spd, spe);
+                            auto frames = search(hp, atk, def, spa, spd, spe);
 
                             std::lock_guard<std::mutex> guard(mutex);
                             results.append(frames);

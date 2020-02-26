@@ -31,14 +31,8 @@ StationarySearcher3::StationarySearcher3(u16 tid, u16 sid, u8 genderRatio, Metho
     tsv = (tid ^ sid) >> 3;
 }
 
-#include <QDebug>
-#include <QElapsedTimer>
-
 void StationarySearcher3::startSearch(const QVector<u8> &min, const QVector<u8> &max)
 {
-    QElapsedTimer t;
-    t.start();
-
     searching = true;
 
     for (u8 hp = min.at(0); hp <= max.at(0); hp++)
@@ -58,10 +52,10 @@ void StationarySearcher3::startSearch(const QVector<u8> &min, const QVector<u8> 
                                 return;
                             }
 
-                            QVector<Frame> frames = search(hp, atk, def, spa, spd, spe);
+                            auto frames = search(hp, atk, def, spa, spd, spe);
 
-                            // std::lock_guard<std::mutex> guard(mutex);
-                            // results.append(frames);
+                            std::lock_guard<std::mutex> guard(mutex);
+                            results.append(frames);
                             progress++;
                         }
                     }
@@ -69,8 +63,6 @@ void StationarySearcher3::startSearch(const QVector<u8> &min, const QVector<u8> 
             }
         }
     }
-
-    qDebug() << t.elapsed();
 }
 
 void StationarySearcher3::cancelSearch()
@@ -138,7 +130,7 @@ QVector<Frame> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 sp
 
         if (filter.comparePID(frame))
         {
-            // frames.append(frame);
+            frames.append(frame);
         }
 
         // Setup XORed frame
@@ -147,7 +139,7 @@ QVector<Frame> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 sp
         frame.setNature(frame.getPID() % 25);
         if (filter.comparePID(frame))
         {
-            // frames.append(frame);
+            frames.append(frame);
         }
     }
     return frames;

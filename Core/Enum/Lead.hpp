@@ -37,7 +37,8 @@ enum Lead : u8
     CuteCharm25F,
     CuteCharm125F,
     CuteCharmFemale,
-    SuctionCups
+    SuctionCups,
+    CompoundEyes
 };
 
 #endif // LEAD_HPP

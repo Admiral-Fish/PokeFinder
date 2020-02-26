@@ -308,7 +308,7 @@ void Wild4::generate()
     }
     generator.setEncounterArea(encounterGenerator.at(ui->comboBoxGeneratorLocation->currentIndex()));
 
-    QVector<WildFrame> frames = generator.generate(seed);
+    auto frames = generator.generate(seed);
     generatorModel->addItems(frames);
 }
 
