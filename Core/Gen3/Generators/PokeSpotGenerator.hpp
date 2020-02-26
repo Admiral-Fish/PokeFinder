@@ -27,9 +27,9 @@ class PokeSpotGenerator : public Generator
 {
 public:
     PokeSpotGenerator() = default;
-    PokeSpotGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio);
+    PokeSpotGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, const FrameFilter &filter);
     void setSpots(const QVector<bool> &spots);
-    QVector<GameCubeFrame> generate(u32 seed, const FrameFilter &filter) const;
+    QVector<GameCubeFrame> generate(u32 seed) const;
 
 private:
     QVector<bool> spots;

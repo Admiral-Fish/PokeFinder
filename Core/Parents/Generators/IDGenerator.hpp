@@ -20,20 +20,19 @@
 #ifndef IDGENERATOR_HPP
 #define IDGENERATOR_HPP
 
+#include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/Util/Global.hpp>
-
-class IDFilter;
 
 class IDGenerator
 {
 public:
     IDGenerator() = default;
-    IDGenerator(u64 seed, u32 initialFrame, u32 maxResults);
+    IDGenerator(u32 initialFrame, u32 maxResults, const IDFilter &filter);
 
 protected:
-    u64 seed;
     u32 initialFrame;
     u32 maxResults;
+    IDFilter filter;
 };
 
 #endif // IDGENERATOR_HPP

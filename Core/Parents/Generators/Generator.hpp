@@ -20,10 +20,9 @@
 #ifndef GENERATOR_HPP
 #define GENERATOR_HPP
 
+#include <Core/Parents/Filters/FrameFilter.hpp>
 #include <Core/Util/Global.hpp>
-#include <QVector>
 
-class FrameFilter;
 enum Encounter : u8;
 enum Lead : u8;
 enum Method : u8;
@@ -32,7 +31,7 @@ class Generator
 {
 public:
     Generator() = default;
-    Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
+    Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
     void setOffset(u32 offset);
 
 protected:
@@ -44,6 +43,7 @@ protected:
     u16 tsv;
     u8 genderRatio;
     Method method;
+    FrameFilter filter;
 };
 
 #endif // GENERATOR_HPP

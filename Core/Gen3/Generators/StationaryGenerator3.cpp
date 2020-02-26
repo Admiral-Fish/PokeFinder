@@ -22,28 +22,29 @@
 #include <Core/Parents/Filters/FrameFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-StationaryGenerator3::StationaryGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method) :
-    StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method)
+StationaryGenerator3::StationaryGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                                           const FrameFilter &filter) :
+    StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<Frame> StationaryGenerator3::generate(u32 seed, const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator3::generate(u32 seed) const
 {
     switch (method)
     {
     case Method::Method1:
     case Method::Method2:
     case Method::Method4:
-        return generateMethod124(seed, filter);
+        return generateMethod124(seed);
     case Method::Method1Reverse:
-        return generateMethod1Reverse(seed, filter);
+        return generateMethod1Reverse(seed);
     default:
         return QVector<Frame>();
     }
 }
 
-QVector<Frame> StationaryGenerator3::generateMethod124(u32 seed, const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator3::generateMethod124(u32 seed) const
 {
     QVector<Frame> frames;
 
@@ -85,7 +86,7 @@ QVector<Frame> StationaryGenerator3::generateMethod124(u32 seed, const FrameFilt
     return frames;
 }
 
-QVector<Frame> StationaryGenerator3::generateMethod1Reverse(u32 seed, const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
 {
     QVector<Frame> frames;
 

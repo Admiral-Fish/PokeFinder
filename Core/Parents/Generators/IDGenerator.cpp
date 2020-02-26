@@ -19,6 +19,9 @@
 
 #include "IDGenerator.hpp"
 
-IDGenerator::IDGenerator(u64 seed, u32 initialFrame, u32 maxResults) : seed(seed), initialFrame(initialFrame), maxResults(maxResults)
+IDGenerator::IDGenerator(u32 initialFrame, u32 maxResults, const IDFilter &filter) :
+    initialFrame(initialFrame),
+    maxResults(maxResults),
+    filter(filter)
 {
 }

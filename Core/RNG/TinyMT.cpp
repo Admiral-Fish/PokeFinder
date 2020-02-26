@@ -18,6 +18,7 @@
  */
 
 #include "TinyMT.hpp"
+#include <cstring>
 
 TinyMT::TinyMT(u32 seed)
 {
@@ -26,10 +27,7 @@ TinyMT::TinyMT(u32 seed)
 
 TinyMT::TinyMT(const u32 state[])
 {
-    for (u8 i = 0; i < 4; i++)
-    {
-        this->state[i] = state[i];
-    }
+    std::memcpy(this->state, state, sizeof(this->state));
 }
 
 void TinyMT::advanceFrames(u32 frames)

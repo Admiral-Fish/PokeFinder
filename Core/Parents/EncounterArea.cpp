@@ -85,7 +85,7 @@ QStringList EncounterArea::getSpecieNames() const
     return Translator::getSpecies(getUniqueSpecies());
 }
 
-void EncounterArea::setSlot(u8 index, u16 specie, const PersonalInfo &mon)
+void EncounterArea::setSlot(u8 index, u16 specie, const PersonalInfo &info)
 {
-    pokemon[index].setSpecie(specie, mon);
+    pokemon[index].setSpecie(specie, info);
 }

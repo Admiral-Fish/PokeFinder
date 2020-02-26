@@ -22,8 +22,8 @@
 #include <Core/Parents/Filters/FrameFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-PokeSpotGenerator::PokeSpotGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio) :
-    Generator(initialFrame, maxResults, tid, sid, genderRatio, Method::XDColo)
+PokeSpotGenerator::PokeSpotGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, const FrameFilter &filter) :
+    Generator(initialFrame, maxResults, tid, sid, genderRatio, Method::XDColo, filter)
 {
     tsv = (tid ^ sid) >> 3;
 }
@@ -33,7 +33,7 @@ void PokeSpotGenerator::setSpots(const QVector<bool> &spots)
     this->spots = spots;
 }
 
-QVector<GameCubeFrame> PokeSpotGenerator::generate(u32 seed, const FrameFilter &filter) const
+QVector<GameCubeFrame> PokeSpotGenerator::generate(u32 seed) const
 {
     QVector<GameCubeFrame> frames;
 

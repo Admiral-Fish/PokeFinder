@@ -194,15 +194,15 @@ void Eggs4::generate()
     }
     generatorModel->setMethod(method);
 
-    EggGenerator4 generator(initialFrame, maxResults, tid, sid, ui->comboBoxGeneratorGenderRatio->getCurrentByte(), method);
-    generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
-
     FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
                        ui->checkBoxGeneratorShinyOnly->isChecked(), false, ui->ivFilterGenerator->getLower(),
                        ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
                        ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
-    auto frames = generator.generate(seed, filter);
+    EggGenerator4 generator(initialFrame, maxResults, tid, sid, ui->comboBoxGeneratorGenderRatio->getCurrentByte(), method, filter);
+    generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
+
+    auto frames = generator.generate(seed);
     generatorModel->addItems(frames);
 }
 
@@ -245,11 +245,11 @@ void Eggs4::search()
     u32 maxFramePID = ui->textBoxSearcherPIDMaxFrame->getUInt();
 
     Method methodIV = (profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
-    EggGenerator4 generatorIV(minFrameIV, maxFrameIV, tid, sid, genderRatio, methodIV);
+    EggGenerator4 generatorIV(minFrameIV, maxFrameIV, tid, sid, genderRatio, methodIV, filter);
     generatorIV.setParents(ui->eggSettingsSearcher->getParent1(), ui->eggSettingsSearcher->getParent2());
 
     Method methodPID = ui->checkBoxSearcherMasuada->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal;
-    EggGenerator4 generatorPID(minFramePID, maxFramePID, tid, sid, genderRatio, methodPID);
+    EggGenerator4 generatorPID(minFramePID, maxFramePID, tid, sid, genderRatio, methodPID, filter);
 
     ui->progressBarSearcher->setValue(0);
     ui->progressBarSearcher->setMaximum(static_cast<int>(256 * 24 * (maxDelay - minDelay + 1)));

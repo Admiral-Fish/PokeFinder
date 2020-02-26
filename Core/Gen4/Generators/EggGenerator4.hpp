@@ -27,14 +27,14 @@ class EggGenerator4 : public EggGenerator
 {
 public:
     EggGenerator4() = default;
-    EggGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
-    QVector<EggFrame4> generate(u32 seed, const FrameFilter &filter) const;
+    EggGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    QVector<EggFrame4> generate(u32 seed) const;
 
 private:
-    QVector<EggFrame4> generateNormal(u32 seed, const FrameFilter &filter) const;
-    QVector<EggFrame4> generateMasuada(u32 seed, const FrameFilter &filter) const;
-    QVector<EggFrame4> generateDPPtIVs(u32 seed, const FrameFilter &filter) const;
-    QVector<EggFrame4> generateHGSSIVs(u32 seed, const FrameFilter &filter) const;
+    QVector<EggFrame4> generateNormal(u32 seed) const;
+    QVector<EggFrame4> generateMasuada(u32 seed) const;
+    QVector<EggFrame4> generateDPPtIVs(u32 seed) const;
+    QVector<EggFrame4> generateHGSSIVs(u32 seed) const;
     void setInheritance(EggFrame4 &frame, const u16 *inh, const u16 *par, bool broken) const;
 };
 

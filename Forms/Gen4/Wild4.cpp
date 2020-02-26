@@ -276,7 +276,12 @@ void Wild4::generate()
         offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
-    WildGenerator4 generator(initialFrame, maxResults, tid, sid, genderRatio, method);
+    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
+                       ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+                       ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+                       ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
+
+    WildGenerator4 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->getCurrentInt()));
 
@@ -303,12 +308,7 @@ void Wild4::generate()
     }
     generator.setEncounterArea(encounterGenerator.at(ui->comboBoxGeneratorLocation->currentIndex()));
 
-    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
-                       ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                       ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-                       ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
-
-    QVector<WildFrame> frames = generator.generate(seed, filter);
+    QVector<WildFrame> frames = generator.generate(seed);
     generatorModel->addItems(frames);
 }
 

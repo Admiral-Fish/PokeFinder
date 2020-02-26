@@ -165,15 +165,15 @@ void Stationary3::generate()
         offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
-    StationaryGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, method);
-    generator.setOffset(offset);
-
     FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
                        ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
                        ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
                        ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
 
-    auto frames = generator.generate(seed, filter);
+    StationaryGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
+    generator.setOffset(offset);
+
+    auto frames = generator.generate(seed);
     generatorModel->addItems(frames);
 }
 

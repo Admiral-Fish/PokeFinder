@@ -20,8 +20,9 @@
 #include "WildGenerator.hpp"
 #include <Core/Enum/Lead.hpp>
 
-WildGenerator::WildGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method) :
-    Generator(initialFrame, maxResults, tid, sid, genderRatio, method), lead(Lead::None)
+WildGenerator::WildGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+    Generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter),
+    lead(Lead::None)
 {
 }
 

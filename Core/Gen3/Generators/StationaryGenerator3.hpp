@@ -28,12 +28,12 @@ class StationaryGenerator3 : public StationaryGenerator
 {
 public:
     StationaryGenerator3() = default;
-    StationaryGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
-    QVector<Frame> generate(u32 seed, const FrameFilter &filter) const;
+    StationaryGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    QVector<Frame> generate(u32 seed) const;
 
 private:
-    QVector<Frame> generateMethod124(u32 seed, const FrameFilter &filter) const;
-    QVector<Frame> generateMethod1Reverse(u32 seed, const FrameFilter &filter) const;
+    QVector<Frame> generateMethod124(u32 seed) const;
+    QVector<Frame> generateMethod1Reverse(u32 seed) const;
 };
 
 #endif // STATIONARYGENERATOR3_HPP

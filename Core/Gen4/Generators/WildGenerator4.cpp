@@ -25,22 +25,23 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-WildGenerator4::WildGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method) :
-    WildGenerator(initialFrame, maxResults, tid, sid, genderRatio, method)
+WildGenerator4::WildGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                               const FrameFilter &filter) :
+    WildGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<WildFrame> WildGenerator4::generate(u32 seed, const FrameFilter &filter) const
+QVector<WildFrame> WildGenerator4::generate(u32 seed) const
 {
     switch (method)
     {
     case Method::MethodJ:
-        return generateMethodJ(seed, filter);
+        return generateMethodJ(seed);
     case Method::MethodK:
-        return generateMethodK(seed, filter);
+        return generateMethodK(seed);
     case Method::ChainedShiny:
-        return generateChainedShiny(seed, filter);
+        return generateChainedShiny(seed);
     default:
         return QVector<WildFrame>();
     }
@@ -51,7 +52,7 @@ void WildGenerator4::setEncounterArea(const EncounterArea4 &encounterArea)
     this->encounterArea = encounterArea;
 }
 
-QVector<WildFrame> WildGenerator4::generateMethodJ(u32 seed, const FrameFilter &filter) const
+QVector<WildFrame> WildGenerator4::generateMethodJ(u32 seed) const
 {
     QVector<WildFrame> frames;
 
@@ -230,7 +231,7 @@ QVector<WildFrame> WildGenerator4::generateMethodJ(u32 seed, const FrameFilter &
     return frames;
 }
 
-QVector<WildFrame> WildGenerator4::generateMethodK(u32 seed, const FrameFilter &filter) const
+QVector<WildFrame> WildGenerator4::generateMethodK(u32 seed) const
 {
     QVector<WildFrame> frames;
 
@@ -440,7 +441,7 @@ QVector<WildFrame> WildGenerator4::generateMethodK(u32 seed, const FrameFilter &
     return frames;
 }
 
-QVector<WildFrame> WildGenerator4::generateChainedShiny(u32 seed, const FrameFilter &filter) const
+QVector<WildFrame> WildGenerator4::generateChainedShiny(u32 seed) const
 {
     QVector<WildFrame> frames;
 

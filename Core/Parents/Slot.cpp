@@ -43,7 +43,7 @@ u16 Slot::getSpecie() const
     return specie;
 }
 
-PersonalInfo Slot::getPersonal() const
+PersonalInfo Slot::getInfo() const
 {
     return info;
 }

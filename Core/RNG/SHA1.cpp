@@ -18,6 +18,7 @@
  */
 
 #include "SHA1.hpp"
+#include <Core/Gen5/Nazos.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <array>
 #include <cstring>
@@ -50,7 +51,7 @@ SHA1::SHA1(const Profile5 &profile)
 {
     this->profile = profile;
 
-    std::memset(data, 0, sizeof(u32) * 80);
+    std::memset(data, 0, sizeof(data));
 
     auto nazos = Nazos::getNazo(profile);
     std::copy(nazos.begin(), nazos.end(), data);

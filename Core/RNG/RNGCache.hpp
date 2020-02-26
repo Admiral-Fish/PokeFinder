@@ -27,7 +27,6 @@ enum Method : u8;
 
 class RNGCache
 {
-
 public:
     RNGCache() = default;
     explicit RNGCache(Method method);

@@ -244,14 +244,19 @@ void Wild3::generate()
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->getCurrentByte();
-    auto type = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
+    auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
     u32 offset = 0;
     if (ui->checkBoxGeneratorDelay->isChecked())
     {
         offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
-    WildGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, type);
+    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
+                       ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+                       ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+                       ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
+
+    WildGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
     generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()]);
     generator.setOffset(offset);
@@ -273,12 +278,7 @@ void Wild3::generate()
         }
     }
 
-    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
-                       ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                       ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-                       ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
-
-    auto frames = generator.generate(seed, filter);
+    auto frames = generator.generate(seed);
     generatorModel->addItems(frames);
 }
 

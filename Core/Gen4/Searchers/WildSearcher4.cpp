@@ -138,7 +138,7 @@ QVector<WildFrame> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u
         return frames;
     }
 
-    QVector<u32> seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
     {
         PokeRNGR rng(val);
@@ -210,7 +210,7 @@ QVector<WildFrame> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u
         return frames;
     }
 
-    QVector<u32> seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
     {
         PokeRNGR rng(val);
@@ -282,7 +282,7 @@ QVector<WildFrame> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 s
         return frames;
     }
 
-    QVector<u32> seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const auto &seed : seeds)
     {
         PokeRNGR rng(seed);

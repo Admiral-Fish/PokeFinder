@@ -29,17 +29,17 @@ class GameCubeGenerator : public Generator
 {
 public:
     GameCubeGenerator() = default;
-    GameCubeGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
-    QVector<GameCubeFrame> generate(u32 seed, const FrameFilter &filter) const;
+    GameCubeGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    QVector<GameCubeFrame> generate(u32 seed) const;
     void setShadowTeam(u8 index, u8 type);
 
 private:
     ShadowTeam team;
     u8 type;
 
-    QVector<GameCubeFrame> generateXDColo(u32 seed, const FrameFilter &filter) const;
-    QVector<GameCubeFrame> generateXDColoShadow(u32 seed, const FrameFilter &filter) const;
-    QVector<GameCubeFrame> generateChannel(u32 seed, const FrameFilter &filter) const;
+    QVector<GameCubeFrame> generateXDColo(u32 seed) const;
+    QVector<GameCubeFrame> generateXDColoShadow(u32 seed) const;
+    QVector<GameCubeFrame> generateChannel(u32 seed) const;
     void generateNonShadows(XDRNG &rng) const;
 };
 

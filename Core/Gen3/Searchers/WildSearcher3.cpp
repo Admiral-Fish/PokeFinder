@@ -96,8 +96,8 @@ QVector<WildFrame> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
         return frames;
     }
 
-    QVector<u32> seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
-    for (const auto &val : seeds)
+    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    for (const u32 val : seeds)
     {
         // Setup normal frame
         PokeRNGR rng(val);

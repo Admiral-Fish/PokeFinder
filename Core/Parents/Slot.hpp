@@ -33,7 +33,7 @@ public:
     u8 getMinLevel() const;
     u8 getMaxLevel() const;
     u16 getSpecie() const;
-    PersonalInfo getPersonal() const;
+    PersonalInfo getInfo() const;
     void setSpecie(u16 specie, const PersonalInfo &info);
 
 private:

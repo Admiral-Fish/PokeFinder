@@ -23,8 +23,8 @@
 #include <Core/Parents/Filters/FrameFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-EggGenerator3::EggGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method) :
-    EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method)
+EggGenerator3::EggGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+    EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
     tsv = (tid ^ sid) >> 3;
 
@@ -74,16 +74,16 @@ EggGenerator3::EggGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid,
     }
 }
 
-QVector<EggFrame3> EggGenerator3::generate(const FrameFilter &filter, u32 seed, u32 seed2) const
+QVector<EggFrame3> EggGenerator3::generate(u32 seed, u32 seed2) const
 {
     switch (method)
     {
     case Method::EBredPID:
-        return generateEmeraldPID(seed, filter);
+        return generateEmeraldPID(seed);
     case Method::EBred:
     case Method::EBredSplit:
     case Method::EBredAlternate:
-        return generateEmeraldIVs(seed, filter);
+        return generateEmeraldIVs(seed);
     case Method::RSBred:
     case Method::RSBredAlternate:
     case Method::RSBredSplit:
@@ -92,7 +92,7 @@ QVector<EggFrame3> EggGenerator3::generate(const FrameFilter &filter, u32 seed, 
     case Method::FRLGBredAlternate:
     {
         auto lower = generateLower(seed);
-        return lower.isEmpty() ? QVector<EggFrame3>() : generateUpper(seed2, lower, filter);
+        return lower.isEmpty() ? QVector<EggFrame3>() : generateUpper(seed2, lower);
     }
     default:
         return QVector<EggFrame3>();
@@ -134,7 +134,7 @@ void EggGenerator3::setEverstone(bool value)
     everstone = value;
 }
 
-QVector<EggFrame3> EggGenerator3::generateEmeraldPID(u32 seed, const FrameFilter &filter) const
+QVector<EggFrame3> EggGenerator3::generateEmeraldPID(u32 seed) const
 {
     QVector<EggFrame3> frames;
 
@@ -207,7 +207,7 @@ QVector<EggFrame3> EggGenerator3::generateEmeraldPID(u32 seed, const FrameFilter
     return frames;
 }
 
-QVector<EggFrame3> EggGenerator3::generateEmeraldIVs(u32 seed, const FrameFilter &filter) const
+QVector<EggFrame3> EggGenerator3::generateEmeraldIVs(u32 seed) const
 {
     QVector<EggFrame3> frames;
 
@@ -271,7 +271,7 @@ QVector<QPair<u32, u16>> EggGenerator3::generateLower(u32 seed) const
     return frames;
 }
 
-QVector<EggFrame3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower, const FrameFilter &filter) const
+QVector<EggFrame3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower) const
 {
     QVector<EggFrame3> upper;
 

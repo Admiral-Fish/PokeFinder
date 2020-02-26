@@ -28,11 +28,11 @@ class IDGenerator3 : public IDGenerator
 {
 public:
     IDGenerator3() = default;
-    IDGenerator3(u64 seed, u32 initialFrame, u32 maxResults);
+    IDGenerator3(u32 initialFrame, u32 maxResults, const IDFilter &filter);
     void setStaticTID(u16 staticTID);
-    QVector<IDFrame3> generateXDColo(const IDFilter &filter);
-    QVector<IDFrame3> generateFRLGE(const IDFilter &filter);
-    QVector<IDFrame3> generateRS(const IDFilter &filter);
+    QVector<IDFrame3> generateXDColo(u32 seed);
+    QVector<IDFrame3> generateFRLGE(u32 seed);
+    QVector<IDFrame3> generateRS(u32 seed);
 
 private:
     u16 staticTID;

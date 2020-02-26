@@ -21,7 +21,7 @@
 #include <Core/Parents/Filters/IDFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-IDGenerator3::IDGenerator3(u64 seed, u32 initialFrame, u32 maxResults) : IDGenerator(seed, initialFrame, maxResults)
+IDGenerator3::IDGenerator3(u32 initialFrame, u32 maxResults, const IDFilter &filter) : IDGenerator(initialFrame, maxResults, filter)
 {
 }
 
@@ -30,11 +30,11 @@ void IDGenerator3::setStaticTID(u16 staticTID)
     this->staticTID = staticTID;
 }
 
-QVector<IDFrame3> IDGenerator3::generateXDColo(const IDFilter &filter)
+QVector<IDFrame3> IDGenerator3::generateXDColo(u32 seed)
 {
     QVector<IDFrame3> frames;
 
-    XDRNG rng(static_cast<u32>(seed));
+    XDRNG rng(seed);
     rng.advanceFrames(initialFrame - 1);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
@@ -55,11 +55,11 @@ QVector<IDFrame3> IDGenerator3::generateXDColo(const IDFilter &filter)
     return frames;
 }
 
-QVector<IDFrame3> IDGenerator3::generateFRLGE(const IDFilter &filter)
+QVector<IDFrame3> IDGenerator3::generateFRLGE(u32 seed)
 {
     QVector<IDFrame3> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
@@ -77,11 +77,11 @@ QVector<IDFrame3> IDGenerator3::generateFRLGE(const IDFilter &filter)
     return frames;
 }
 
-QVector<IDFrame3> IDGenerator3::generateRS(const IDFilter &filter)
+QVector<IDFrame3> IDGenerator3::generateRS(u32 seed)
 {
     QVector<IDFrame3> frames;
 
-    PokeRNG rng(static_cast<u32>(seed));
+    PokeRNG rng(seed);
     rng.advanceFrames(initialFrame);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())

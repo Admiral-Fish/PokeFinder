@@ -43,8 +43,8 @@ namespace PIDIVCalculator
 
             RNGCache cache(Method::Method1);
 
-            QVector<u32> seeds = cache.recoverLower16BitsPID(pid);
-            for (const auto &seed : seeds)
+            auto seeds = cache.recoverLower16BitsPID(pid);
+            for (const u32 seed : seeds)
             {
                 PokeRNGR backward(seed);
                 u32 originSeed = backward.nextUInt();

@@ -95,8 +95,6 @@ void IDs3::xdColoSearch()
     u32 initialFrame = ui->textBoxXDColoStartingFrame->getUInt();
     u32 maxResults = ui->textBoxXDColoMaxResults->getUInt();
 
-    IDGenerator3 generator(seed, initialFrame, maxResults);
-
     QVector<u16> tidFilter;
     QVector<u16> sidFilter;
     QVector<u16> tsvFilter;
@@ -118,8 +116,9 @@ void IDs3::xdColoSearch()
     }
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);
+    IDGenerator3 generator(initialFrame, maxResults, filter);
 
-    auto frames = generator.generateXDColo(filter);
+    auto frames = generator.generateXDColo(seed);
     xdcolo->addItems(frames);
 }
 
@@ -130,9 +129,6 @@ void IDs3::frlgeSearch()
     u16 tid = ui->textBoxFRLGETID->getUShort();
     u32 initialFrame = ui->textBoxFRLGEStartingFrame->getUInt();
     u32 maxResults = ui->textBoxFRLGEMaxResults->getUInt();
-
-    IDGenerator3 generator(tid, initialFrame, maxResults);
-    generator.setStaticTID(tid);
 
     QVector<u16> sidFilter;
     QVector<u16> tsvFilter;
@@ -149,8 +145,10 @@ void IDs3::frlgeSearch()
     }
 
     IDFilter filter({ tid }, sidFilter, tsvFilter);
+    IDGenerator3 generator(initialFrame, maxResults, filter);
+    generator.setStaticTID(tid);
 
-    auto frames = generator.generateFRLGE(filter);
+    auto frames = generator.generateFRLGE(tid);
     frlge->addItems(frames);
 }
 
@@ -169,8 +167,6 @@ void IDs3::rsSearch()
     }
     u32 initialFrame = ui->textBoxRSStartingFrame->getUInt();
     u32 maxResults = ui->textBoxRSMaxResults->getUInt();
-
-    IDGenerator3 generator(seed, initialFrame, maxResults);
 
     QVector<u16> tidFilter;
     QVector<u16> sidFilter;
@@ -193,8 +189,9 @@ void IDs3::rsSearch()
     }
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);
+    IDGenerator3 generator(initialFrame, maxResults, filter);
 
-    auto frames = generator.generateRS(filter);
+    auto frames = generator.generateRS(seed);
     rs->addItems(frames);
 }
 

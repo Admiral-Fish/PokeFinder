@@ -21,7 +21,6 @@
 #include <Core/Enum/Game.hpp>
 #include <QFile>
 #include <QTextStream>
-#include <QVector>
 
 namespace
 {

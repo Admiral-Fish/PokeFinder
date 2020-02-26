@@ -27,13 +27,14 @@
 #include <Core/Util/EncounterSlot.hpp>
 #include <functional>
 
-WildGenerator3::WildGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method) :
-    WildGenerator(initialFrame, maxResults, tid, sid, genderRatio, method)
+WildGenerator3::WildGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                               const FrameFilter &filter) :
+    WildGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<WildFrame> WildGenerator3::generate(u32 seed, const FrameFilter &filter) const
+QVector<WildFrame> WildGenerator3::generate(u32 seed) const
 {
     QVector<WildFrame> frames;
 

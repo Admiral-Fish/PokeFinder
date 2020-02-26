@@ -160,7 +160,11 @@ void Eggs3::emeraldPIDGenerate()
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->comboBoxEmeraldGenderRatio->getCurrentByte();
 
-    EggGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, Method::EBredPID);
+    FrameFilter filter(ui->comboBoxEmeraldGender->getCurrentByte(), ui->comboBoxEmeraldAbility->getCurrentByte(),
+                       ui->checkBoxEmeraldShiny->isChecked(), false, QVector<u8>(), QVector<u8>(), ui->comboBoxEmeraldNature->getChecked(),
+                       QVector<bool>(), QVector<bool>());
+
+    EggGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, Method::EBredPID, filter);
     generator.setMinRedraw(ui->textBoxMinRedraws->getUChar());
     generator.setMaxRedraw(ui->textBoxMaxRedraws->getUChar());
     generator.setCalibration(ui->textBoxCalibration->getUChar());
@@ -171,11 +175,7 @@ void Eggs3::emeraldPIDGenerate()
         generator.setEverstoneNature(static_cast<u8>(ui->comboBoxEverstone->currentIndex() - 1));
     }
 
-    FrameFilter filter(ui->comboBoxEmeraldGender->getCurrentByte(), ui->comboBoxEmeraldAbility->getCurrentByte(),
-                       ui->checkBoxEmeraldShiny->isChecked(), false, QVector<u8>(), QVector<u8>(), ui->comboBoxEmeraldNature->getChecked(),
-                       QVector<bool>(), QVector<bool>());
-
-    auto frames = generator.generate(filter);
+    auto frames = generator.generate();
     emeraldPID->addItems(frames);
 }
 
@@ -189,13 +189,13 @@ void Eggs3::emeraldIVsGenerate()
     u16 sid = currentProfile.getSID();
     auto method = static_cast<Method>(ui->comboBoxEmeraldMethod->getCurrentInt());
 
-    EggGenerator3 generator(initialFrame, maxResults, tid, sid, 0, method);
-    generator.setParents(ui->eggSettingsEmerald->getParent1(), ui->eggSettingsEmerald->getParent2());
-
     FrameFilter filter(0, 0, false, false, ui->ivFilterEmerald->getLower(), ui->ivFilterEmerald->getUpper(), QVector<bool>(),
                        ui->comboBoxEmeraldHiddenPower->getChecked(), QVector<bool>());
 
-    auto frames = generator.generate(filter);
+    EggGenerator3 generator(initialFrame, maxResults, tid, sid, 0, method, filter);
+    generator.setParents(ui->eggSettingsEmerald->getParent1(), ui->eggSettingsEmerald->getParent2());
+
+    auto frames = generator.generate();
     emeraldIVs->addItems(frames);
 }
 
@@ -209,18 +209,17 @@ void Eggs3::rsGenerate()
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->comboBoxRSGenderRatio->getCurrentByte();
     auto method = static_cast<Method>(ui->comboBoxRSMethod->getCurrentInt());
+    FrameFilter filter(ui->comboBoxRSGender->getCurrentByte(), ui->comboBoxRSAbility->getCurrentByte(), ui->checkBoxRSShiny->isChecked(),
+                       false, ui->ivFilterRS->getLower(), ui->ivFilterRS->getUpper(), ui->comboBoxRSNature->getChecked(),
+                       ui->comboBoxRSHiddenPower->getChecked(), QVector<bool>());
 
-    EggGenerator3 generator(initialFrameHeld, maxResultsHeld, tid, sid, genderRatio, method);
+    EggGenerator3 generator(initialFrameHeld, maxResultsHeld, tid, sid, genderRatio, method, filter);
     generator.setParents(ui->eggSettingsRS->getParent1(), ui->eggSettingsRS->getParent2());
     generator.setCompatability(static_cast<u8>(ui->comboBoxRSCompatibility->currentData().toUInt()));
     generator.setInitialFramePickup(ui->textBoxRSInitialFramePickup->getUInt());
     generator.setMaxResultsPickup(ui->textBoxRSMaxResultsPickup->getUInt());
 
-    FrameFilter filter(ui->comboBoxRSGender->getCurrentByte(), ui->comboBoxRSAbility->getCurrentByte(), ui->checkBoxRSShiny->isChecked(),
-                       false, ui->ivFilterRS->getLower(), ui->ivFilterRS->getUpper(), ui->comboBoxRSNature->getChecked(),
-                       ui->comboBoxRSHiddenPower->getChecked(), QVector<bool>());
-
-    auto frames = generator.generate(filter, ui->textBoxRSSeedHeld->getUInt(), ui->textBoxRSSeedPickup->getUInt());
+    auto frames = generator.generate(ui->textBoxRSSeedHeld->getUInt(), ui->textBoxRSSeedPickup->getUInt());
     rs->addItems(frames);
 }
 
@@ -235,17 +234,17 @@ void Eggs3::frlgGenerate()
     u8 genderRatio = static_cast<u8>(ui->comboBoxFRLGGenderRatio->currentData().toUInt());
     auto method = static_cast<Method>(ui->comboBoxFRLGMethod->currentData().toUInt());
 
-    EggGenerator3 generator(initialFrameHeld, maxResultsHeld, tid, sid, genderRatio, method);
+    FrameFilter filter(static_cast<u8>(ui->comboBoxFRLGGender->currentIndex()), static_cast<u8>(ui->comboBoxFRLGAbility->currentIndex()),
+                       ui->checkBoxFRLGShiny->isChecked(), false, ui->ivFilterFRLG->getLower(), ui->ivFilterFRLG->getUpper(),
+                       ui->comboBoxFRLGNature->getChecked(), ui->comboBoxFRLGHiddenPower->getChecked(), QVector<bool>());
+
+    EggGenerator3 generator(initialFrameHeld, maxResultsHeld, tid, sid, genderRatio, method, filter);
     generator.setParents(ui->eggSettingsFRLG->getParent1(), ui->eggSettingsFRLG->getParent2());
     generator.setCompatability(static_cast<u8>(ui->comboBoxFRLGCompatibility->currentData().toUInt()));
     generator.setInitialFramePickup(ui->textBoxFRLGInitialFramePickup->getUInt());
     generator.setMaxResultsPickup(ui->textBoxFRLGMaxResultsPickup->getUInt());
 
-    FrameFilter filter(static_cast<u8>(ui->comboBoxFRLGGender->currentIndex()), static_cast<u8>(ui->comboBoxFRLGAbility->currentIndex()),
-                       ui->checkBoxFRLGShiny->isChecked(), false, ui->ivFilterFRLG->getLower(), ui->ivFilterFRLG->getUpper(),
-                       ui->comboBoxFRLGNature->getChecked(), ui->comboBoxFRLGHiddenPower->getChecked(), QVector<bool>());
-
-    auto frames = generator.generate(filter, ui->textBoxFRLGSeedHeld->getUInt(), ui->textBoxFRLGSeedPickup->getUInt());
+    auto frames = generator.generate(ui->textBoxFRLGSeedHeld->getUInt(), ui->textBoxFRLGSeedPickup->getUInt());
     frlg->addItems(frames);
 }
 

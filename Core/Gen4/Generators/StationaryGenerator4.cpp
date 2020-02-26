@@ -23,30 +23,31 @@
 #include <Core/Parents/Filters/FrameFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-StationaryGenerator4::StationaryGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method) :
-    StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method)
+StationaryGenerator4::StationaryGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+                                           const FrameFilter &filter) :
+    StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<Frame> StationaryGenerator4::generate(u32 seed, const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator4::generate(u32 seed) const
 {
     switch (method)
     {
     case Method::Method1:
-        return generateMethod1(seed, filter);
+        return generateMethod1(seed);
     case Method::MethodJ:
-        return generateMethodJ(seed, filter);
+        return generateMethodJ(seed);
     case Method::MethodK:
-        return generateMethodK(seed, filter);
+        return generateMethodK(seed);
     case Method::WondercardIVs:
-        return generateWonderCardIVs(seed, filter);
+        return generateWonderCardIVs(seed);
     default:
         return QVector<Frame>();
     }
 }
 
-QVector<Frame> StationaryGenerator4::generateMethod1(u32 seed, const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator4::generateMethod1(u32 seed) const
 {
     QVector<Frame> frames;
 
@@ -84,7 +85,7 @@ QVector<Frame> StationaryGenerator4::generateMethod1(u32 seed, const FrameFilter
     return frames;
 }
 
-QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed, const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed) const
 {
     QVector<Frame> frames;
 
@@ -222,7 +223,7 @@ QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed, const FrameFilter
     return frames;
 }
 
-QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed, const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed) const
 {
     QVector<Frame> frames;
 
@@ -361,7 +362,7 @@ QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed, const FrameFilter
     return frames;
 }
 
-QVector<Frame> StationaryGenerator4::generateWonderCardIVs(u32 seed, const FrameFilter &filter) const
+QVector<Frame> StationaryGenerator4::generateWonderCardIVs(u32 seed) const
 {
     QVector<Frame> frames;
 

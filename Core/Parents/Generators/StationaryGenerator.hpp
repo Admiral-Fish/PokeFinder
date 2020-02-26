@@ -26,7 +26,7 @@ class StationaryGenerator : public Generator
 {
 public:
     StationaryGenerator() = default;
-    StationaryGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method);
+    StationaryGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
     void setLead(Lead lead);
     void setSynchNature(u8 synchNature);
 

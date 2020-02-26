@@ -19,8 +19,14 @@
 
 #include "Generator.hpp"
 
-Generator::Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method) :
-    initialFrame(initialFrame), maxResults(maxResults), tid(tid), sid(sid), genderRatio(genderRatio), method(method)
+Generator::Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+    initialFrame(initialFrame),
+    maxResults(maxResults),
+    tid(tid),
+    sid(sid),
+    genderRatio(genderRatio),
+    method(method),
+    filter(filter)
 {
 }
 

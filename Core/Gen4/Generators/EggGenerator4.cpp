@@ -23,30 +23,30 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MTRNG.hpp>
 
-EggGenerator4::EggGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method) :
-    EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method)
+EggGenerator4::EggGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
+    EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
     tsv = (tid ^ sid) >> 3;
 }
 
-QVector<EggFrame4> EggGenerator4::generate(u32 seed, const FrameFilter &filter) const
+QVector<EggFrame4> EggGenerator4::generate(u32 seed) const
 {
     switch (method)
     {
     case Method::Gen4Normal:
-        return generateNormal(seed, filter);
+        return generateNormal(seed);
     case Method::Gen4Masuada:
-        return generateMasuada(seed, filter);
+        return generateMasuada(seed);
     case Method::DPPtIVs:
-        return generateDPPtIVs(seed, filter);
+        return generateDPPtIVs(seed);
     case Method::HGSSIVs:
-        return generateHGSSIVs(seed, filter);
+        return generateHGSSIVs(seed);
     default:
         return QVector<EggFrame4>();
     }
 }
 
-QVector<EggFrame4> EggGenerator4::generateNormal(u32 seed, const FrameFilter &filter) const
+QVector<EggFrame4> EggGenerator4::generateNormal(u32 seed) const
 {
     QVector<EggFrame4> frames;
 
@@ -73,7 +73,7 @@ QVector<EggFrame4> EggGenerator4::generateNormal(u32 seed, const FrameFilter &fi
     return frames;
 }
 
-QVector<EggFrame4> EggGenerator4::generateMasuada(u32 seed, const FrameFilter &filter) const
+QVector<EggFrame4> EggGenerator4::generateMasuada(u32 seed) const
 {
     QVector<EggFrame4> frames;
 
@@ -112,7 +112,7 @@ QVector<EggFrame4> EggGenerator4::generateMasuada(u32 seed, const FrameFilter &f
     return frames;
 }
 
-QVector<EggFrame4> EggGenerator4::generateDPPtIVs(u32 seed, const FrameFilter &filter) const
+QVector<EggFrame4> EggGenerator4::generateDPPtIVs(u32 seed) const
 {
     QVector<EggFrame4> frames;
 
@@ -150,7 +150,7 @@ QVector<EggFrame4> EggGenerator4::generateDPPtIVs(u32 seed, const FrameFilter &f
     return frames;
 }
 
-QVector<EggFrame4> EggGenerator4::generateHGSSIVs(u32 seed, const FrameFilter &filter) const
+QVector<EggFrame4> EggGenerator4::generateHGSSIVs(u32 seed) const
 {
     QVector<EggFrame4> frames;
 

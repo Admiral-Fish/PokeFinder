@@ -175,13 +175,13 @@ void GameCube::generate()
         offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
-    GameCubeGenerator generator(initialFrame, maxResults, tid, sid, genderRatio, method);
-    generator.setOffset(offset);
-
     FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
                        ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
                        ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
                        ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+
+    GameCubeGenerator generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
+    generator.setOffset(offset);
 
     if (method == Method::XD || method == Method::Colo)
     {
@@ -189,7 +189,7 @@ void GameCube::generate()
                                 static_cast<u8>(ui->comboBoxGeneratorType->currentIndex()));
     }
 
-    auto frames = generator.generate(seed, filter);
+    auto frames = generator.generate(seed);
     generatorModel->addItems(frames);
 }
 

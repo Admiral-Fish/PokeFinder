@@ -20,9 +20,7 @@
 #ifndef SHA1_HPP
 #define SHA1_HPP
 
-#include <Core/Gen5/Nazos.hpp>
 #include <Core/Gen5/Profile5.hpp>
-#include <QDate>
 
 class SHA1
 {

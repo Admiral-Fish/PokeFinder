@@ -130,7 +130,7 @@ QVector<StationaryFrame> StationarySearcher4::searchMethod1(u8 hp, u8 atk, u8 de
         return frames;
     }
 
-    QVector<u32> seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 seed : seeds)
     {
         // Setup normal frame
@@ -175,7 +175,7 @@ QVector<StationaryFrame> StationarySearcher4::searchMethodJ(u8 hp, u8 atk, u8 de
         return frames;
     }
 
-    QVector<u32> seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
     {
         PokeRNGR rng(val);
@@ -247,7 +247,7 @@ QVector<StationaryFrame> StationarySearcher4::searchMethodK(u8 hp, u8 atk, u8 de
         return frames;
     }
 
-    QVector<u32> seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 val : seeds)
     {
         PokeRNGR rng(val);
@@ -319,7 +319,7 @@ QVector<StationaryFrame> StationarySearcher4::searchWondercardIVs(u8 hp, u8 atk,
         return frames;
     }
 
-    QVector<u32> seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    auto seeds = cache.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
     for (const u32 seed : seeds)
     {
         // Setup normal frame

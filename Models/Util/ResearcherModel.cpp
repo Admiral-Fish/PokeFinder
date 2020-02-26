@@ -64,25 +64,16 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
         case 6:
             return QString::number(frame.getLow16(), 16).toUpper().rightJustified(4, '0');
         case 7:
-            return QString::number(frame.getCustom(0), hex.at(0) ? 16 : 10).toUpper();
         case 8:
-            return QString::number(frame.getCustom(1), hex.at(1) ? 16 : 10).toUpper();
         case 9:
-            return QString::number(frame.getCustom(2), hex.at(2) ? 16 : 10).toUpper();
         case 10:
-            return QString::number(frame.getCustom(3), hex.at(3) ? 16 : 10).toUpper();
         case 11:
-            return QString::number(frame.getCustom(4), hex.at(4) ? 16 : 10).toUpper();
         case 12:
-            return QString::number(frame.getCustom(5), hex.at(5) ? 16 : 10).toUpper();
         case 13:
-            return QString::number(frame.getCustom(6), hex.at(6) ? 16 : 10).toUpper();
         case 14:
-            return QString::number(frame.getCustom(7), hex.at(7) ? 16 : 10).toUpper();
         case 15:
-            return QString::number(frame.getCustom(8), hex.at(8) ? 16 : 10).toUpper();
         case 16:
-            return QString::number(frame.getCustom(9), hex.at(9) ? 16 : 10).toUpper();
+            return QString::number(frame.getCustom(static_cast<u8>(column - 7)), hex.at(column - 7) ? 16 : 10).toUpper();
         case 17:
             return frame.getMod3();
         case 18:

@@ -38,7 +38,7 @@ public:
     QVector<bool> getSlots(u16 num) const;
     QPair<u8, u8> getLevelRange(u16 specie) const;
     QStringList getSpecieNames() const;
-    void setSlot(u8 index, u16 specie, const PersonalInfo &mon);
+    void setSlot(u8 index, u16 specie, const PersonalInfo &info);
 
 protected:
     QVector<Slot> pokemon;

@@ -190,7 +190,12 @@ void Stationary4::generate()
         offset = ui->textBoxGeneratorDelay->getUInt();
     }
 
-    StationaryGenerator4 generator(initialFrame, maxResults, tid, sid, genderRatio, method);
+    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
+                       ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
+                       ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
+                       ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+
+    StationaryGenerator4 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
 
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -211,12 +216,7 @@ void Stationary4::generate()
         }
     }
 
-    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
-                       ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                       ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-                       ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
-
-    auto frames = generator.generate(seed, filter);
+    auto frames = generator.generate(seed);
     generatorModel->addItems(frames);
 }
 

@@ -157,7 +157,6 @@ HEADERS += \
     Core/RNG/SHA1.hpp \
     Core/RNG/TinyMT.hpp \
     Core/Util/DateTime.hpp \
-    Core/Util/Encounter.hpp \
     Core/Util/EncounterSlot.hpp \
     Core/Util/Global.hpp \
     Core/Util/IVChecker.hpp \
