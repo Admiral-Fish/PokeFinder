@@ -84,12 +84,13 @@ namespace
 
         for (u8 i : indexes)
         {
-            for (u8 j = minIVs.at(i); j <= maxIVs.at(i); j++)
+            for (u8 iv = minIVs.at(i); iv <= maxIVs.at(i); iv++)
             {
-                if (j <= characteristicHigh)
+                if (iv > characteristicHigh)
                 {
-                    possible[i].insert(j);
+                    break;
                 }
+                possible[i].insert(iv);
             }
         }
 
