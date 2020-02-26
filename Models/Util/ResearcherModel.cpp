@@ -135,8 +135,7 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
         getResult = [](const ResearcherFrame &frame) { return frame.getLow16(); };
     }
 
-    int size = rowCount();
-    for (; row < size; row++)
+    for (; row < rowCount(); row++)
     {
         u64 value = getResult(model.at(row));
         if (value == result)
@@ -154,8 +153,5 @@ int ResearcherModel::getColumn(int column) const
     {
         return column > 3 ? column + 1 : column;
     }
-    else
-    {
-        return column > 0 ? column + 3 : column;
-    }
+    return column > 0 ? column + 3 : column;
 }

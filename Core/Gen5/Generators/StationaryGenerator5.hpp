@@ -22,26 +22,34 @@
 
 #include <Core/Parents/Frames/StationaryFrame.hpp>
 #include <Core/Parents/Generators/StationaryGenerator.hpp>
-#include <Core/RNG/IRNG.hpp>
 
 enum Encounter : u8;
+class MT;
 
 class StationaryGenerator5 : public StationaryGenerator
 {
 public:
     StationaryGenerator5() = default;
-    StationaryGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter);
-    QVector<StationaryFrame> generate(u64 seed, const FrameFilter &filter) const;
+    StationaryGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter,
+                         const FrameFilter &filter);
+    ~StationaryGenerator5();
+    QVector<StationaryFrame> generate(u64 seed) const;
 
 private:
+    u8 idBit;
     Encounter encounter;
-    IRNG<u32> *mt;
+    MT *mt;
 
-    QVector<StationaryFrame> generateRoamerIVs(u64 seed, const FrameFilter &filter) const;
-    QVector<StationaryFrame> generateIVs(u64 seed, const FrameFilter &filter) const;
-    QVector<StationaryFrame> generateRoamerCGear(u64 seed, const FrameFilter &filter) const;
-    QVector<StationaryFrame> generateCGear(u64 seed, const FrameFilter &filter) const;
-    QVector<StationaryFrame> generateStationary(u64 seed, const FrameFilter &filter) const;
+    QVector<StationaryFrame> generateRoamerIVs(u64 seed) const;
+    QVector<StationaryFrame> generateIVs(u64 seed) const;
+    QVector<StationaryFrame> generateRoamerCGear(u64 seed) const;
+    QVector<StationaryFrame> generateCGear(u64 seed) const;
+    QVector<StationaryFrame> generateStationary(u64 seed) const;
+    QVector<StationaryFrame> generateRoamer(u64 seed);
+    QVector<StationaryFrame> generateGift(u64 seed);
+    QVector<StationaryFrame> generateEntraLink(u64 seed);
+    QVector<StationaryFrame> generateLarvestaEgg(u64 seed);
+    QVector<StationaryFrame> generateHiddenGrotto(u64 seed);
     void initializeMT(u8 num);
 };
 
