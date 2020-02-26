@@ -20,11 +20,13 @@
 #ifndef DSTYPE_HPP
 #define DSTYPE_HPP
 
-enum DSType
+#include <Core/Util/Global.hpp>
+
+enum DSType : u8
 {
-    DSOriginal = 1 << 0,
-    DSi = 1 << 1,
-    DS3 = 1 << 2
+    DSOriginal,
+    DSi,
+    DS3
 };
 
 #endif // DSTYPE_HPP

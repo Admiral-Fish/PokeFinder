@@ -38,12 +38,12 @@ public:
 
 private:
     Ui::SpindaPainter *ui;
-    QGraphicsScene *scene {};
-    QGraphicsPixmapItem *spinda {};
-    GraphicsPixmapItem *spot1 {};
-    GraphicsPixmapItem *spot2 {};
-    GraphicsPixmapItem *spot3 {};
-    GraphicsPixmapItem *spot4 {};
+    QGraphicsScene *scene = nullptr;
+    QGraphicsPixmapItem *spinda = nullptr;
+    GraphicsPixmapItem *spot1 = nullptr;
+    GraphicsPixmapItem *spot2 = nullptr;
+    GraphicsPixmapItem *spot3 = nullptr;
+    GraphicsPixmapItem *spot4 = nullptr;
 
     void setupModels();
     void moveSpot(GraphicsPixmapItem *item, int index, u32 pid);

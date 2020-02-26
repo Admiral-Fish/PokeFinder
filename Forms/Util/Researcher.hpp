@@ -41,7 +41,7 @@ public:
 
 private:
     Ui::Researcher *ui;
-    ResearcherModel *model {};
+    ResearcherModel *model = nullptr;
     QHash<QString, u8> keys;
 
     void setupModels();

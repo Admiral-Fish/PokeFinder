@@ -38,7 +38,7 @@ public:
 
 private:
     Ui::IVtoPID *ui;
-    QStandardItemModel *model {};
+    QStandardItemModel *model = nullptr;
 
     void setupModels();
     QVector<QList<QStandardItem *>> getSeeds(u16 ivs1, u16 ivs2, u8 nature, u16 tid);

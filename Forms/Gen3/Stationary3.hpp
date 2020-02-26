@@ -45,12 +45,12 @@ public:
 
 private:
     Ui::Stationary3 *ui;
-    StationaryGeneratorModel3 *generatorModel {};
-    StationarySearcherModel3 *searcherModel {};
+    StationaryGeneratorModel3 *generatorModel = nullptr;
+    StationarySearcherModel3 *searcherModel = nullptr;
     QVector<Profile3> profiles;
     Profile3 currentProfile;
-    QMenu *generatorMenu {};
-    QMenu *searcherMenu {};
+    QMenu *generatorMenu = nullptr;
+    QMenu *searcherMenu = nullptr;
 
     void setupModels();
 

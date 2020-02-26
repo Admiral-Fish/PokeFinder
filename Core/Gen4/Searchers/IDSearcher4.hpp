@@ -29,7 +29,7 @@ class IDSearcher4
 {
 public:
     IDSearcher4() = default;
-    IDSearcher4(const IDFilter &filter);
+    explicit IDSearcher4(const IDFilter &filter);
     void startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDelay);
     void cancelSearch();
     QVector<IDFrame4> getResults();

@@ -46,13 +46,13 @@ public:
 private:
     QVector<u8> min;
     QVector<u8> max;
-    u8 gender {};
-    u8 ability {};
+    u8 gender;
+    u8 ability;
     QVector<bool> natures;
     QVector<bool> powers;
     QVector<bool> encounters;
-    bool shiny {};
-    bool skip {};
+    bool shiny;
+    bool skip;
 };
 
 #endif // FRAMEFILTER_HPP

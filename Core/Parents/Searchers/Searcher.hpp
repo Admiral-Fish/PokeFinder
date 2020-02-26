@@ -33,10 +33,10 @@ public:
     Searcher(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
 
 protected:
-    u16 tid {};
-    u16 sid {};
-    u16 tsv {};
-    u8 genderRatio {};
+    u16 tid;
+    u16 sid;
+    u16 tsv;
+    u8 genderRatio;
     Method method;
     FrameFilter filter;
 };

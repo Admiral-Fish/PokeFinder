@@ -42,8 +42,8 @@ public:
 
 protected:
     QVector<Slot> pokemon;
-    u8 location {};
-    Encounter encounter {};
+    u8 location;
+    Encounter encounter;
 };
 
 #endif // ENCOUNTERAREA_HPP

@@ -40,7 +40,7 @@ public:
 
 private:
     Ui::SeedTime3 *ui;
-    SeedTimeModel3 *model {};
+    SeedTimeModel3 *model = nullptr;
     u32 frame = 1;
 
     void setupModels();

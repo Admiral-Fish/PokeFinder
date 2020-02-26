@@ -42,10 +42,10 @@ public:
     void switchLock(u8 lockNum, Method version);
 
 private:
-    int backCount {}, frontCount {};
+    int backCount, frontCount;
     LockInfo currLock;
     ShadowTeam team;
-    int x {};
+    int x;
 
     void compareBackwards(u32 &pid, XDRNGR &rng);
     void compareForwards(u32 &pid, XDRNG &rng);

@@ -47,9 +47,9 @@ private:
     Ui::Eggs4 *ui;
     QVector<Profile4> profiles;
     Profile4 currentProfile;
-    EggGeneratorModel4 *generatorModel {};
-    EggSearcherModel4 *searcherModel {};
-    QMenu *searcherMenu {};
+    EggGeneratorModel4 *generatorModel = nullptr;
+    EggSearcherModel4 *searcherModel = nullptr;
+    QMenu *searcherMenu = nullptr;
 
     void setupModels();
 

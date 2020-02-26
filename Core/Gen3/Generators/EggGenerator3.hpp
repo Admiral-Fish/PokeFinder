@@ -38,14 +38,14 @@ public:
     void setEverstone(bool value);
 
 private:
-    u32 initialFramePickup {};
-    u32 maxResultsPickup {};
-    u8 calibration {};
-    u8 minRedraw {};
-    u8 maxRedraw {};
-    u8 compatability {};
-    bool everstone {};
-    u8 iv1 {}, iv2 {}, inh {};
+    u32 initialFramePickup;
+    u32 maxResultsPickup;
+    u8 calibration;
+    u8 minRedraw;
+    u8 maxRedraw;
+    u8 compatability;
+    bool everstone;
+    u8 iv1, iv2, inh;
 
     QVector<EggFrame3> generateEmeraldPID(u32 seed, const FrameFilter &filter) const;
     QVector<EggFrame3> generateEmeraldIVs(u32 seed, const FrameFilter &filter) const;

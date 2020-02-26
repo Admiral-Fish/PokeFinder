@@ -45,12 +45,12 @@ public:
 
 private:
     Ui::Stationary5 *ui;
-    // Searcher5Model *searcherModel{};
-    // Stationary5Model *generatorModel{};
+    // Searcher5Model *searcherModel= nullptr;
+    // Stationary5Model *generatorModel= nullptr;
     QVector<Profile5> profiles;
     Profile5 currentProfile;
-    QMenu *generatorMenu {};
-    QMenu *searcherMenu {};
+    QMenu *generatorMenu = nullptr;
+    QMenu *searcherMenu = nullptr;
 
     void setupModels();
     void updateProgress(const QVector<StationaryFrame> &frames, int progress);

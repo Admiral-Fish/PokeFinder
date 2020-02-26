@@ -38,7 +38,7 @@ public:
 
 private:
     Ui::PokeSpot *ui;
-    PokeSpotModel *model {};
+    PokeSpotModel *model = nullptr;
 
     void setupModels();
 

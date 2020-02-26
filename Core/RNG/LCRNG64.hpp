@@ -70,7 +70,7 @@ public:
     }
 
 private:
-    u64 seed {};
+    u64 seed;
 };
 
 using BWRNG = LCRNG64<0x269ec3, 0x5d588b656c078965>;

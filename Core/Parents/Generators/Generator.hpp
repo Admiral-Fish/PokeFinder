@@ -36,13 +36,13 @@ public:
     void setOffset(u32 offset);
 
 protected:
-    u32 initialFrame {};
-    u32 maxResults {};
-    u32 offset {};
-    u16 tid {};
-    u16 sid {};
-    u16 tsv {};
-    u8 genderRatio {};
+    u32 initialFrame;
+    u32 maxResults;
+    u32 offset;
+    u16 tid;
+    u16 sid;
+    u16 tsv;
+    u8 genderRatio;
     Method method;
 };
 

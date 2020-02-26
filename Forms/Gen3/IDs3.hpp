@@ -38,9 +38,9 @@ public:
 
 private:
     Ui::IDs3 *ui;
-    IDModel3 *xdcolo {};
-    IDModel3 *frlge {};
-    IDModel3 *rs {};
+    IDModel3 *xdcolo = nullptr;
+    IDModel3 *frlge = nullptr;
+    IDModel3 *rs = nullptr;
 
     void setupModels();
 

@@ -41,8 +41,8 @@ public:
 
 private:
     Ui::GameCubeRTC *ui;
-    GameCubeRTCModel *model {};
-    QMenu *contextMenu {};
+    GameCubeRTCModel *model = nullptr;
+    QMenu *contextMenu = nullptr;
 
     void setupModels();
 

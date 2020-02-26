@@ -41,10 +41,10 @@ public:
     HGSSRoamer getInfo() const;
 
 private:
-    u32 seed {};
-    u32 delay {};
+    u32 seed;
+    u32 delay;
     QDateTime dateTime;
-    Game version {};
+    Game version;
     HGSSRoamer info;
 };
 

@@ -45,12 +45,12 @@ public:
 
 private:
     Ui::GameCube *ui;
-    GameCubeGeneratorModel *generatorModel {};
-    GameCubeSearcherModel *searcherModel {};
+    GameCubeGeneratorModel *generatorModel = nullptr;
+    GameCubeSearcherModel *searcherModel = nullptr;
     QVector<Profile3> profiles;
     Profile3 currentProfile;
-    QMenu *generatorMenu {};
-    QMenu *searcherMenu {};
+    QMenu *generatorMenu = nullptr;
+    QMenu *searcherMenu = nullptr;
 
     void setupModels();
 

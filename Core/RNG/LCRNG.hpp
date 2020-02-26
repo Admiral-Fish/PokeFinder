@@ -65,7 +65,7 @@ public:
     }
 
 private:
-    u32 seed {};
+    u32 seed;
 };
 
 using ARNG = LCRNG<0x01, 0x6C078965>;

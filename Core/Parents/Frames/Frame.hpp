@@ -56,18 +56,18 @@ public:
     void calculateHiddenPower();
 
 protected:
-    u32 initialSeed {};
-    u32 seed {};
-    u32 frame {};
-    u32 pid {};
+    u32 initialSeed;
+    u32 seed;
+    u32 frame;
+    u32 pid;
     u8 ivs[6];
-    u8 ability {};
-    u8 gender {};
-    u8 hidden {};
-    u8 power {};
-    u8 nature {};
-    u8 level {};
-    bool shiny {};
+    u8 ability;
+    u8 gender;
+    u8 hidden;
+    u8 power;
+    u8 nature;
+    u8 level;
+    bool shiny;
 };
 
 #endif // FRAME_HPP

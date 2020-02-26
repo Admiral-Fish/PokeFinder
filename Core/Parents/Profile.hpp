@@ -38,7 +38,7 @@ public:
 
 protected:
     QString name;
-    Game version {};
+    Game version;
     u16 tid;
     u16 sid;
 };

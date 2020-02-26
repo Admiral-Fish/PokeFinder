@@ -73,7 +73,7 @@ namespace ProfileLoader5
             data["timer0Min"] = profile.getTimer0Min();
             data["timer0Max"] = profile.getTimer0Max();
             data["softReset"] = profile.getSoftReset();
-            data["dsType"] = profile.getDSType();
+            data["dsType"] = static_cast<int>(profile.getDSType());
             data["language"] = static_cast<int>(profile.getLanguage());
             return data;
         }

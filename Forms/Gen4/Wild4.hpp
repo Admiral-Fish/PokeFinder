@@ -48,10 +48,10 @@ private:
     Ui::Wild4 *ui;
     QVector<Profile4> profiles;
     Profile4 currentProfile;
-    WildGeneratorModel4 *generatorModel {};
-    WildSearcherModel4 *searcherModel {};
-    QMenu *generatorMenu {};
-    QMenu *searcherMenu {};
+    WildGeneratorModel4 *generatorModel = nullptr;
+    WildSearcherModel4 *searcherModel = nullptr;
+    QMenu *generatorMenu = nullptr;
+    QMenu *searcherMenu = nullptr;
     QVector<EncounterArea4> encounterGenerator;
     QVector<EncounterArea4> encounterSearcher;
 

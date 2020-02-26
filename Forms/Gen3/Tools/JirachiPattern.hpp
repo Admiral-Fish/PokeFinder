@@ -39,7 +39,7 @@ public:
 
 private:
     Ui::JirachiPattern *ui;
-    QStandardItemModel *model {};
+    QStandardItemModel *model = nullptr;
 
     void setupModels();
 

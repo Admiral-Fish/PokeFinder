@@ -39,8 +39,8 @@ public:
 
 private:
     Ui::PIDIV *ui;
-    PIDIVModel *model {};
-    QMenu *contextMenu {};
+    PIDIVModel *model = nullptr;
+    QMenu *contextMenu = nullptr;
 
     void setupModels();
 
