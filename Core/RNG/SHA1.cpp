@@ -47,10 +47,8 @@ inline u8 bcd(u8 value)
     return static_cast<u8>(tens << 4) | ones;
 }
 
-SHA1::SHA1(const Profile5 &profile)
+SHA1::SHA1(const Profile5 &profile) : profile(profile)
 {
-    this->profile = profile;
-
     std::memset(data, 0, sizeof(data));
 
     auto nazos = Nazos::getNazo(profile);
@@ -64,6 +62,9 @@ SHA1::SHA1(const Profile5 &profile)
     data[7] = static_cast<u32>((profile.getMac() >> 16) ^ static_cast<u32>(profile.getVFrame() << 24) ^ profile.getGxStat());
     data[13] = 0x80000000;
     data[15] = 0x000001A0;
+
+    // Precompute data[18]
+    data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
 }
 
 u64 SHA1::hashSeed()
@@ -228,7 +229,7 @@ void SHA1::precompute()
 
     // Select values will be the same for same date
     calcW(16);
-    calcW(18);
+    // calcW(18); Enough information is known to calculate this in the constructor
     calcW(19);
     calcW(21);
     calcW(22);
