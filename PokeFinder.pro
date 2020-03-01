@@ -123,6 +123,7 @@ HEADERS += \
     Core/Gen4/Searchers/WildSearcher4.hpp \
     Core/Gen4/Tools/ChainedSIDCalc.hpp \
     Core/Gen5/Generators/StationaryGenerator5.hpp \
+    Core/Gen5/Keypresses.hpp \
     Core/Gen5/Nazos.hpp \
     Core/Gen5/Profile5.hpp \
     Core/Gen5/ProfileLoader5.hpp \
@@ -269,6 +270,7 @@ SOURCES += \
     Core/Gen4/Searchers/WildSearcher4.cpp \
     Core/Gen4/Tools/ChainedSIDCalc.cpp \
     Core/Gen5/Generators/StationaryGenerator5.cpp \
+    Core/Gen5/Keypresses.cpp \
     Core/Gen5/Nazos.cpp \
     Core/Gen5/Profile5.cpp \
     Core/Gen5/ProfileLoader5.cpp \
