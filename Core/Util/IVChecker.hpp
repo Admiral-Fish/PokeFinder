@@ -27,8 +27,8 @@ class PersonalInfo;
 
 namespace IVChecker
 {
-    QVector<QVector<u8>> calculateIVRange(const PersonalInfo &info, const QVector<QVector<u16>> &stats, const QVector<u8> &level, u8 nature,
-                                          u8 characteristic, u8 hiddenPower);
+    QVector<QVector<u8>> calculateIVRange(const QVector<u8> &baseStats, const QVector<QVector<u16>> &stats, const QVector<u8> &level,
+                                          u8 nature, u8 characteristic, u8 hiddenPower);
 };
 
 #endif // IVCHECKER_HPP

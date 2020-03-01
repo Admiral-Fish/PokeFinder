@@ -27,11 +27,10 @@ constexpr u8 ivOrder[6] = { 0, 1, 2, 5, 3, 4 };
 
 namespace
 {
-    QVector<QSet<u8>> calculateIVs(const PersonalInfo &info, const QVector<u16> &stats, u8 level, u8 nature, u8 characteristic)
+    QVector<QSet<u8>> calculateIVs(const QVector<u8> &baseStats, const QVector<u16> &stats, u8 level, u8 nature, u8 characteristic)
     {
         QVector<u8> minIVs(6, 31);
         QVector<u8> maxIVs(6, 0);
-        QVector<u8> baseStats = info.getBaseStats();
 
         for (u8 i = 0; i < 6; i++)
         {
@@ -49,14 +48,8 @@ namespace
 
                 if (static_cast<u16>(stat) == stats.at(i))
                 {
-                    if (iv > maxIVs.at(i))
-                    {
-                        maxIVs[i] = iv;
-                    }
-                    if (iv < minIVs.at(i))
-                    {
-                        minIVs[i] = iv;
-                    }
+                    minIVs[i] = std::min(iv, minIVs.at(i));
+                    maxIVs[i] = std::max(iv, maxIVs.at(i));
                 }
             }
         }
@@ -98,14 +91,14 @@ namespace
     }
 }
 
-QVector<QVector<u8>> IVChecker::calculateIVRange(const PersonalInfo &info, const QVector<QVector<u16>> &stats, const QVector<u8> &level,
+QVector<QVector<u8>> IVChecker::calculateIVRange(const QVector<u8> &baseStats, const QVector<QVector<u16>> &stats, const QVector<u8> &level,
                                                  u8 nature, u8 characteristic, u8 hiddenPower)
 {
-    QVector<QSet<u8>> first = calculateIVs(info, stats.at(0), level.at(0), nature, characteristic);
+    QVector<QSet<u8>> first = calculateIVs(baseStats, stats.at(0), level.at(0), nature, characteristic);
 
     for (int i = 1; i < stats.size(); i++)
     {
-        auto next = calculateIVs(info, stats.at(i), level.at(i), nature, characteristic);
+        auto next = calculateIVs(baseStats, stats.at(i), level.at(i), nature, characteristic);
 
         for (u8 j = 0; j < 6; j++)
         {

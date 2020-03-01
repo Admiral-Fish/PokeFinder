@@ -181,14 +181,14 @@ void IVCalculator::findIVs()
     u8 characteristic = static_cast<u8>(ui->comboBoxCharacteristic->currentIndex() - 1);
     auto base = personalInfo.at(ui->comboBoxPokemon->currentIndex() + 1);
 
-    auto possible = IVChecker::calculateIVRange(getPersonalInfo(base), stats, levels, nature, characteristic, hiddenPower);
+    auto ivs = IVChecker::calculateIVRange(getPersonalInfo(base).getBaseStats(), stats, levels, nature, characteristic, hiddenPower);
 
-    displayIVs(ui->labelHPIVValue, possible.at(0));
-    displayIVs(ui->labelAtkIVValue, possible.at(1));
-    displayIVs(ui->labelDefIVValue, possible.at(2));
-    displayIVs(ui->labelSpAIVValue, possible.at(3));
-    displayIVs(ui->labelSpDIVValue, possible.at(4));
-    displayIVs(ui->labelSpeIVValue, possible.at(5));
+    displayIVs(ui->labelHPIVValue, ivs.at(0));
+    displayIVs(ui->labelAtkIVValue, ivs.at(1));
+    displayIVs(ui->labelDefIVValue, ivs.at(2));
+    displayIVs(ui->labelSpAIVValue, ivs.at(3));
+    displayIVs(ui->labelSpDIVValue, ivs.at(4));
+    displayIVs(ui->labelSpeIVValue, ivs.at(5));
 }
 
 void IVCalculator::pokemonIndexChanged(int index)
