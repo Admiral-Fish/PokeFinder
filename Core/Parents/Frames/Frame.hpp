@@ -27,8 +27,6 @@ class Frame
 public:
     Frame() = default;
     explicit Frame(u32 frame);
-    u32 getInitialSeed() const;
-    void setInitialSeed(u32 initialSeed);
     u32 getSeed() const;
     void setSeed(u32 seed);
     u32 getFrame() const;
@@ -39,11 +37,13 @@ public:
     u8 getIV(u8 index) const;
     void setIVs(u8 index, u8 iv);
     void setIVs(u16 iv1, u16 iv2);
+    void setIVs(u32 iv);
     void setIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
     u8 getAbility() const;
     void setAbility(u8 ability);
     u8 getGender() const;
     void setGender(u8 gender, u8 genderRatio);
+    void setGender(u8 gender);
     u8 getHidden() const;
     u8 getPower() const;
     u8 getNature() const;
@@ -56,7 +56,6 @@ public:
     void calculateHiddenPower();
 
 protected:
-    u32 initialSeed;
     u32 seed;
     u32 frame;
     u32 pid;

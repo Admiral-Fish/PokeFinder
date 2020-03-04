@@ -20,7 +20,10 @@
 #ifndef SHA1_HPP
 #define SHA1_HPP
 
-#include <Core/Gen5/Profile5.hpp>
+#include <Core/Util/Global.hpp>
+
+enum DSType : u8;
+class Profile5;
 
 class SHA1
 {
@@ -28,13 +31,12 @@ public:
     explicit SHA1(const Profile5 &profile);
     u64 hashSeed();
     void precompute();
-    void setTime(u8 hour, u8 minute, u8 second);
-    void setTimer0(u32 timer0);
+    void setTimer0(u32 timer0, u8 vcount);
     void setDate(u8 year, u8 month, u8 day, u8 week);
+    void setTime(u8 hour, u8 minute, u8 second, DSType dsType);
     void setButton(u32 button);
 
 private:
-    Profile5 profile;
     u32 data[80];
     u32 alpha[5];
 };

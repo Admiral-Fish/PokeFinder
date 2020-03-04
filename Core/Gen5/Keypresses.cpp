@@ -71,13 +71,13 @@ namespace Keypresses
             return true;
         }
 
-        QVector<u32> getKeyPresses(int keys, bool skipLR)
+        QVector<u16> getKeyPresses(int keys, bool skipLR)
         {
-            QVector<u32> buttons;
+            QVector<u16> buttons;
 
             for (int i = 0; i < 12; i++)
             {
-                u32 button1 = 1 << i;
+                u16 button1 = 1 << i;
 
                 if (!valid(button1, skipLR))
                 {
@@ -91,7 +91,7 @@ namespace Keypresses
 
                 for (int j = i + 1; j < (keys > 1 ? 12 : 0); j++)
                 {
-                    u32 button2 = button1 | (1 << j);
+                    u16 button2 = button1 | (1 << j);
 
                     if (!valid(button2, skipLR))
                     {
@@ -105,7 +105,7 @@ namespace Keypresses
 
                     for (int k = j + 1; k < (keys > 2 ? 12 : 0); k++)
                     {
-                        u32 button3 = button2 | (1 << k);
+                        u16 button3 = button2 | (1 << k);
 
                         if (!valid(button3, skipLR))
                         {
@@ -124,9 +124,9 @@ namespace Keypresses
         }
     }
 
-    QVector<u32> getKeyPresses(const QVector<bool> &keys, bool skipLR)
+    QVector<u16> getKeyPresses(const QVector<bool> &keys, bool skipLR)
     {
-        QVector<u32> buttons;
+        QVector<u16> buttons;
         if (keys.at(0))
         {
             buttons.append({ Buttons::None });
@@ -143,7 +143,7 @@ namespace Keypresses
         return buttons;
     }
 
-    QVector<u32> getValues(const QVector<u32> &buttons)
+    QVector<u32> getValues(const QVector<u16> &buttons)
     {
         QVector<u32> values;
         for (const auto button : buttons)

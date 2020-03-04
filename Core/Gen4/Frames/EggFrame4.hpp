@@ -27,10 +27,13 @@ class EggFrame4 : public EggFrame
 public:
     EggFrame4() = default;
     explicit EggFrame4(u32 frame);
+    u32 getInitialSeed() const;
+    void setInitialSeed(u32 initialSeed);
     u32 getSecondaryFrame() const;
     void setSecondaryFrame(u32 secondaryFrame);
 
 private:
+    u32 initialSeed;
     u32 secondaryFrame;
 };
 

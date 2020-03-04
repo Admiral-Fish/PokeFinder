@@ -17,28 +17,60 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "EggFrame4.hpp"
+#ifndef FRAME5_HPP
+#define FRAME5_HPP
 
-EggFrame4::EggFrame4(u32 frame) : EggFrame(frame)
-{
-}
+#include <Core/Util/Global.hpp>
+#include <QDateTime>
 
-u32 EggFrame4::getInitialSeed() const
+class Frame5
 {
-    return initialSeed;
-}
+public:
+    QDateTime getDateTime() const
+    {
+        return dt;
+    }
 
-void EggFrame4::setInitialSeed(u32 initialSeed)
-{
-    this->initialSeed = initialSeed;
-}
+    void setDateTime(const QDateTime &dt)
+    {
+        this->dt = dt;
+    }
 
-u32 EggFrame4::getSecondaryFrame() const
-{
-    return secondaryFrame;
-}
+    u64 getInitialSeed() const
+    {
+        return initialSeed;
+    }
 
-void EggFrame4::setSecondaryFrame(u32 secondaryFrame)
-{
-    this->secondaryFrame = secondaryFrame;
-}
+    void setInitialSeed(u64 initialSeed)
+    {
+        this->initialSeed = initialSeed;
+    }
+
+    u16 getButtons() const
+    {
+        return buttons;
+    }
+
+    void setButtons(u16 buttons)
+    {
+        this->buttons = buttons;
+    }
+
+    u16 getTimer0() const
+    {
+        return timer0;
+    }
+
+    void setTimer0(u16 timer0)
+    {
+        this->timer0 = timer0;
+    }
+
+protected:
+    QDateTime dt;
+    u64 initialSeed;
+    u16 buttons;
+    u16 timer0;
+};
+
+#endif // FRAME5_HPP

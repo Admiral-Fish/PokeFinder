@@ -19,6 +19,7 @@
 
 #include "SHA1.hpp"
 #include <Core/Gen5/Nazos.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/RNG/LCRNG64.hpp>
 #include <array>
 #include <cstring>
@@ -47,7 +48,7 @@ inline u8 bcd(u8 value)
     return static_cast<u8>(tens << 4) | ones;
 }
 
-SHA1::SHA1(const Profile5 &profile) : profile(profile)
+SHA1::SHA1(const Profile5 &profile)
 {
     std::memset(data, 0, sizeof(data));
 
@@ -238,24 +239,24 @@ void SHA1::precompute()
     calcW(30);
 }
 
-void SHA1::setTime(u8 hour, u8 minute, u8 second)
+void SHA1::setTimer0(u32 timer0, u8 vcount)
 {
-    u32 h = static_cast<u32>((bcd(hour) + (hour >= 12 && profile.getDSType() != DSType::DS3 ? 0x40 : 0)) << 24);
-    u32 m = static_cast<u32>(bcd(minute) << 16);
-    u32 s = static_cast<u32>(bcd(second) << 8);
-    u32 val = h | m | s;
-    data[9] = val;
-}
-
-void SHA1::setTimer0(u32 timer0)
-{
-    data[5] = changeEndian(static_cast<u32>(profile.getVCount() << 16) | timer0);
+    data[5] = changeEndian(static_cast<u32>(vcount << 16) | timer0);
 }
 
 void SHA1::setDate(u8 year, u8 month, u8 day, u8 week)
 {
     u32 val = static_cast<u32>((bcd(year) << 24) | (bcd(month) << 16) | (bcd(day) << 8) | week);
     data[8] = val;
+}
+
+void SHA1::setTime(u8 hour, u8 minute, u8 second, DSType dsType)
+{
+    u32 h = static_cast<u32>((bcd(hour) + (hour >= 12 && dsType != DSType::DS3 ? 0x40 : 0)) << 24);
+    u32 m = static_cast<u32>(bcd(minute) << 16);
+    u32 s = static_cast<u32>(bcd(second) << 8);
+    u32 val = h | m | s;
+    data[9] = val;
 }
 
 void SHA1::setButton(u32 button)

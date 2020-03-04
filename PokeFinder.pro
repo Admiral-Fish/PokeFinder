@@ -122,11 +122,14 @@ HEADERS += \
     Core/Gen4/Searchers/StationarySearcher4.hpp \
     Core/Gen4/Searchers/WildSearcher4.hpp \
     Core/Gen4/Tools/ChainedSIDCalc.hpp \
+    Core/Gen5/Frames/Frame5.hpp \
+    Core/Gen5/Frames/StationaryFrame5.hpp \
     Core/Gen5/Generators/StationaryGenerator5.hpp \
     Core/Gen5/Keypresses.hpp \
     Core/Gen5/Nazos.hpp \
     Core/Gen5/Profile5.hpp \
     Core/Gen5/ProfileLoader5.hpp \
+    Core/Gen5/Searchers/StationarySearcher5.hpp \
     Core/Parents/EncounterArea.hpp \
     Core/Parents/Filters/FrameFilter.hpp \
     Core/Parents/Filters/IDFilter.hpp \
@@ -274,6 +277,7 @@ SOURCES += \
     Core/Gen5/Nazos.cpp \
     Core/Gen5/Profile5.cpp \
     Core/Gen5/ProfileLoader5.cpp \
+    Core/Gen5/Searchers/StationarySearcher5.cpp \
     Core/Parents/EncounterArea.cpp \
     Core/Parents/Filters/FrameFilter.cpp \
     Core/Parents/Filters/IDFilter.cpp \

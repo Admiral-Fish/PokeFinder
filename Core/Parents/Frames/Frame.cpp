@@ -23,16 +23,6 @@ Frame::Frame(u32 frame) : frame(frame)
 {
 }
 
-u32 Frame::getInitialSeed() const
-{
-    return initialSeed;
-}
-
-void Frame::setInitialSeed(u32 initialSeed)
-{
-    this->initialSeed = initialSeed;
-}
-
 u32 Frame::getSeed() const
 {
     return seed;
@@ -88,6 +78,19 @@ void Frame::setIVs(u16 iv1, u16 iv2)
     ivs[5] = iv2 & 0x1f;
 }
 
+void Frame::setIVs(u32 iv)
+{
+    u16 iv1 = iv >> 16;
+    ivs[0] = iv1 >> 10;
+    ivs[1] = (iv1 >> 5) & 0x1f;
+    ivs[2] = iv1 & 0x1f;
+
+    u16 iv2 = iv & 0xffff;
+    ivs[3] = iv2 >> 10;
+    ivs[4] = (iv2 >> 5) & 0x1f;
+    ivs[5] = iv2 & 0x1f;
+}
+
 void Frame::setIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
     ivs[0] = hp;
@@ -131,6 +134,11 @@ void Frame::setGender(u8 gender, u8 genderRatio)
     {
         this->gender = gender < genderRatio;
     }
+}
+
+void Frame::setGender(u8 gender)
+{
+    this->gender = gender;
 }
 
 u8 Frame::getHidden() const

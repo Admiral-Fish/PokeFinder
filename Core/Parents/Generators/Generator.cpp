@@ -30,6 +30,11 @@ Generator::Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 gend
 {
 }
 
+FrameFilter Generator::getFilter() const
+{
+    return filter;
+}
+
 void Generator::setOffset(u32 offset)
 {
     this->offset = offset;

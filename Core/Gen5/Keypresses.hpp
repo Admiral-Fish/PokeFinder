@@ -25,8 +25,8 @@
 
 namespace Keypresses
 {
-    QVector<u32> getKeyPresses(const QVector<bool> &keys, bool skipLR);
-    QVector<u32> getValues(const QVector<u32> &buttons);
+    QVector<u16> getKeyPresses(const QVector<bool> &keys, bool skipLR);
+    QVector<u32> getValues(const QVector<u16> &buttons);
 }
 
 #endif // KEYPRESSES_HPP
