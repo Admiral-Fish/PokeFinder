@@ -45,16 +45,14 @@ private:
     Ui::Eggs3 *ui;
     QVector<Profile3> profiles;
     Profile3 currentProfile;
-    EggModel3 *emeraldIVs = nullptr;
-    EggModel3 *emeraldPID = nullptr;
+    EggModel3 *emerald = nullptr;
     EggModel3 *rs = nullptr;
     EggModel3 *frlg = nullptr;
 
     void setupModels();
 
 private slots:
-    void emeraldPIDGenerate();
-    void emeraldIVsGenerate();
+    void emeraldGenerate();
     void rsGenerate();
     void frlgGenerate();
     void profilesIndexChanged(int index);
