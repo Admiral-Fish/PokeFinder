@@ -21,9 +21,17 @@
 #include <Core/Parents/Frames/Frame.hpp>
 #include <Core/Parents/Frames/WildFrame.hpp>
 
-FrameFilter::FrameFilter(u8 gender, u8 ability, bool shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max,
+FrameFilter::FrameFilter(u8 gender, u8 ability, u8 shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max,
                          const QVector<bool> &natures, const QVector<bool> &powers, const QVector<bool> &encounters) :
-    min(min), max(max), gender(gender), ability(ability), natures(natures), powers(powers), encounters(encounters), shiny(shiny), skip(skip)
+    min(min),
+    max(max),
+    gender(gender),
+    ability(ability),
+    natures(natures),
+    powers(powers),
+    encounters(encounters),
+    shiny(shiny),
+    skip(skip)
 {
 }
 
@@ -59,7 +67,7 @@ bool FrameFilter::compareNature(const Frame &frame) const
 
 bool FrameFilter::compareShiny(const Frame &frame) const
 {
-    return skip || !shiny || (shiny && frame.getShiny());
+    return skip || shiny == 255 || (shiny & frame.getShiny());
 }
 
 bool FrameFilter::compareIV(const Frame &frame) const

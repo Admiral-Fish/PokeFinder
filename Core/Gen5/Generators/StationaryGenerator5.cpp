@@ -32,8 +32,6 @@ StationaryGenerator5::StationaryGenerator5(u32 initialFrame, u32 maxResults, u16
     idBit((tid & 1) ^ (sid & 1)),
     encounter(encounter)
 {
-    tsv = (tid ^ sid) >> 3;
-
     switch (method)
     {
     case Method::Method5IVs:
@@ -292,7 +290,7 @@ QVector<StationaryFrame5> StationaryGenerator5::generateStationary(u64 seed) con
         frame.setPID(pid);
         frame.setAbility((pid >> 16) & 1);
         frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         if (filter.comparePID(frame))
         {
@@ -321,7 +319,7 @@ QVector<StationaryFrame5> StationaryGenerator5::generateRoamer(u64 seed)
         frame.setPID(pid);
         frame.setAbility((pid >> 16) & 1);
         frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         if (filter.comparePID(frame))
         {
@@ -350,7 +348,7 @@ QVector<StationaryFrame5> StationaryGenerator5::generateGift(u64 seed)
         frame.setPID(pid);
         frame.setAbility((pid >> 16) & 1);
         frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         if (filter.comparePID(frame))
         {
@@ -398,7 +396,7 @@ QVector<StationaryFrame5> StationaryGenerator5::generateLarvestaEgg(u64 seed)
         frame.setPID(pid);
         frame.setAbility((pid >> 16) & 1);
         frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         if (filter.comparePID(frame))
         {

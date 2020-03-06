@@ -26,7 +26,6 @@ StationaryGenerator3::StationaryGenerator3(u32 initialFrame, u32 maxResults, u16
                                            const FrameFilter &filter) :
     StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 QVector<Frame> StationaryGenerator3::generate(u32 seed) const
@@ -72,7 +71,7 @@ QVector<Frame> StationaryGenerator3::generateMethod124(u32 seed) const
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, (high ^ low) >> 3);
+        frame.setShiny(tsv, high ^ low, 8);
 
         frame.setIVs(iv1, iv2);
         frame.calculateHiddenPower();
@@ -109,7 +108,7 @@ QVector<Frame> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, (high ^ low) >> 3);
+        frame.setShiny(tsv, high ^ low, 8);
 
         frame.setIVs(iv1, iv2);
         frame.calculateHiddenPower();

@@ -100,29 +100,15 @@ void Wild3::setupModels()
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
     ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Frame32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ Method::MethodH1, Method::MethodH2, Method::MethodH4 });
     ui->comboBoxSearcherMethod->setup({ Method::MethodH1, Method::MethodH2, Method::MethodH4 });
 
-    ui->comboBoxGeneratorGender->setup({ 255, 0, 1 });
-    ui->comboBoxSearcherGender->setup({ 255, 0, 1 });
-
-    ui->comboBoxGeneratorAbility->setup({ 255, 0, 1 });
-    ui->comboBoxSearcherAbility->setup({ 255, 0, 1 });
-
-    ui->comboBoxGeneratorGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
-    ui->comboBoxSearcherGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
+    ui->filterSearcher->disableControls(Controls::UseDelay | Controls::DisableFilter);
 
     generatorLead();
 
     ui->comboBoxSearcherLead->setup({ Lead::Search, Lead::Synchronize, Lead::CuteCharm, Lead::None });
-
-    ui->comboBoxGeneratorNature->setup(Translator::getNatures());
-    ui->comboBoxSearcherNature->setup(Translator::getNatures());
-
-    ui->comboBoxGeneratorHiddenPower->setup(Translator::getHiddenPowers());
-    ui->comboBoxSearcherHiddenPower->setup(Translator::getHiddenPowers());
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -243,18 +229,17 @@ void Wild3::generate()
     u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->getCurrentByte();
+    u8 genderRatio = ui->filterGenerator->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
     u32 offset = 0;
-    if (ui->checkBoxGeneratorDelay->isChecked())
+    if (ui->filterGenerator->useDelay())
     {
-        offset = ui->textBoxGeneratorDelay->getUInt();
+        offset = ui->filterGenerator->getDelay();
     }
 
-    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
-                       ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                       ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-                       ui->comboBoxGeneratorHiddenPower->getChecked(), ui->comboBoxGeneratorEncounterSlot->getChecked());
+    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+                       ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
+                       ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), ui->filterGenerator->getEncounterSlots());
 
     WildGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
@@ -289,16 +274,15 @@ void Wild3::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    QVector<u8> min = ui->ivFilterSearcher->getLower();
-    QVector<u8> max = ui->ivFilterSearcher->getUpper();
+    QVector<u8> min = ui->filterSearcher->getMinIVs();
+    QVector<u8> max = ui->filterSearcher->getMaxIVs();
 
-    FrameFilter filter(ui->comboBoxSearcherGender->getCurrentByte(), ui->comboBoxSearcherAbility->getCurrentByte(),
-                       ui->checkBoxSearcherShinyOnly->isChecked(), false, min, max, ui->comboBoxSearcherNature->getChecked(),
-                       ui->comboBoxSearcherHiddenPower->getChecked(), ui->comboBoxSearcherEncounterSlot->getChecked());
+    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
+                       ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), ui->filterSearcher->getEncounterSlots());
 
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->comboBoxSearcherGenderRatio->getCurrentByte();
+    u8 genderRatio = ui->filterSearcher->getGenderRatio();
     auto type = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
 
     auto *searcher = new WildSearcher3(tid, sid, genderRatio, type, filter);
@@ -458,7 +442,7 @@ void Wild3::generatorEncounterIndexChanged(int index)
             break;
         }
 
-        ui->comboBoxGeneratorEncounterSlot->setup(t);
+        ui->filterGenerator->setEncounterSlots(t);
         updateLocationsGenerator();
     }
 }
@@ -490,7 +474,7 @@ void Wild3::searcherEncounterIndexChanged(int index)
         default:
             break;
         }
-        ui->comboBoxSearcherEncounterSlot->setup(t);
+        ui->filterSearcher->setEncounterSlots(t);
         updateLocationsSearcher();
     }
 }
@@ -515,14 +499,14 @@ void Wild3::generatorPokemonIndexChanged(int index)
 {
     if (index <= 0)
     {
-        ui->comboBoxGeneratorEncounterSlot->resetChecks();
+        ui->filterGenerator->resetEncounterSlots();
     }
     else
     {
         u16 num = static_cast<u16>(ui->comboBoxGeneratorPokemon->currentData().toUInt());
         QVector<bool> flags = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentIndex()).getSlots(num);
 
-        ui->comboBoxGeneratorEncounterSlot->setChecks(flags);
+        ui->filterGenerator->toggleEncounterSlots(flags);
     }
 }
 
@@ -530,14 +514,14 @@ void Wild3::searcherPokemonIndexChanged(int index)
 {
     if (index <= 0)
     {
-        ui->comboBoxSearcherEncounterSlot->resetChecks();
+        ui->filterSearcher->resetEncounterSlots();
     }
     else
     {
         u16 num = static_cast<u16>(ui->comboBoxSearcherPokemon->currentData().toUInt());
         QVector<bool> flags = encounterSearcher.at(ui->comboBoxSearcherLocation->currentIndex()).getSlots(num);
 
-        ui->comboBoxSearcherEncounterSlot->setChecks(flags);
+        ui->filterSearcher->toggleEncounterSlots(flags);
     }
 }
 

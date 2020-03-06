@@ -24,6 +24,7 @@ Generator::Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 gend
     maxResults(maxResults),
     tid(tid),
     sid(sid),
+    tsv(tid ^ sid),
     genderRatio(genderRatio),
     method(method),
     filter(filter)

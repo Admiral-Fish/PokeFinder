@@ -171,19 +171,30 @@ void Frame::setLevel(u8 level)
     this->level = level;
 }
 
-bool Frame::getShiny() const
+u8 Frame::getShiny() const
 {
     return shiny;
 }
 
-void Frame::setShiny(bool shiny)
+void Frame::setShiny(u8 shiny)
 {
     this->shiny = shiny;
 }
 
-void Frame::setShiny(u16 tsv, u16 psv)
+void Frame::setShiny(u16 tsv, u16 psv, u8 val)
 {
-    shiny = tsv == psv;
+    if (tsv == psv)
+    {
+        shiny = 2; // Square
+    }
+    else if ((tsv ^ psv) < val)
+    {
+        shiny = 1; // Star
+    }
+    else
+    {
+        shiny = 0;
+    }
 }
 
 void Frame::calculateHiddenPower()

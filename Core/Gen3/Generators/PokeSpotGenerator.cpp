@@ -25,7 +25,6 @@
 PokeSpotGenerator::PokeSpotGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, const FrameFilter &filter) :
     Generator(initialFrame, maxResults, tid, sid, genderRatio, Method::XDColo, filter)
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 void PokeSpotGenerator::setSpots(const QVector<bool> &spots)
@@ -86,7 +85,7 @@ QVector<GameCubeFrame> PokeSpotGenerator::generate(u32 seed) const
                 frame.setAbility(low & 1);
                 frame.setGender(low & 255, genderRatio);
                 frame.setNature(frame.getPID() % 25);
-                frame.setShiny(tsv, (high ^ low) >> 3);
+                frame.setShiny(tsv, high ^ low, 8);
 
                 if (filter.comparePID(frame))
                 {

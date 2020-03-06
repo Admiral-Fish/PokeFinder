@@ -26,7 +26,6 @@ GameCubeGenerator::GameCubeGenerator(u32 initialFrame, u32 maxResults, u16 tid, 
                                      const FrameFilter &filter) :
     Generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 QVector<GameCubeFrame> GameCubeGenerator::generate(u32 seed) const
@@ -75,7 +74,7 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColo(u32 seed) const
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, (high ^ low) >> 3);
+        frame.setShiny(tsv, high ^ low, 8);
 
         frame.setIVs(iv1, iv2);
         frame.calculateHiddenPower();
@@ -125,7 +124,7 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColoShadow(u32 seed) const
         }
         else
         {
-            frame.setShiny(tsv, (high ^ low) >> 3);
+            frame.setShiny(tsv, high ^ low, 8);
         }
 
         frame.setPID(high, low);
@@ -175,7 +174,7 @@ QVector<GameCubeFrame> GameCubeGenerator::generateChannel(u32 seed) const
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny((40122 ^ sid) >> 3, (high ^ low) >> 3);
+        frame.setShiny(40122 ^ sid, high ^ low, 8);
 
         u8 hp = go.nextUShort() >> 11;
         u8 atk = go.nextUShort() >> 11;

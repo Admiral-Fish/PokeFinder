@@ -41,7 +41,10 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
         case 1:
             return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
         case 2:
-            return frame.getShiny() ? tr("Yes") : tr("No");
+        {
+            u8 shiny = frame.getShiny();
+            return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
+        }
         case 3:
             switch (frame.getInfo())
             {

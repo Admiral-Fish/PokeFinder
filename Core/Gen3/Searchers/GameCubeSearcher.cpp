@@ -25,7 +25,6 @@
 GameCubeSearcher::GameCubeSearcher(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
     Searcher(tid, sid, genderRatio, method, filter), euclidean(method), searching(false), progress(0)
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 void GameCubeSearcher::startSearch(const QVector<u8> &min, const QVector<u8> &max)
@@ -133,7 +132,7 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def, u8 
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, (high ^ low) >> 3);
+        frame.setShiny(tsv, high ^ low, 8);
 
         if (filter.comparePID(frame))
         {
@@ -179,7 +178,7 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDColoShadow(u8 hp, u8 atk, u8 de
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, (high ^ low) >> 3);
+        frame.setShiny(tsv, high ^ low, 8);
 
         if (filter.comparePID(frame))
         {
@@ -370,7 +369,7 @@ void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
             frame.setAbility(low & 1);
             frame.setGender(low & 255, genderRatio);
             frame.setNature(frame.getPID() % 25);
-            frame.setShiny((40122 ^ sid) >> 3, (high ^ low) >> 3);
+            frame.setShiny(40122 ^ sid, high ^ low, 8);
 
             u32 originSeed = rng.nextUInt();
             if (filter.comparePID(frame) && validateJirachi(originSeed))

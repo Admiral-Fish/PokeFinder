@@ -109,26 +109,12 @@ void Eggs3::setupModels()
     ui->comboBoxRSCompatibility->setup({ 20, 50, 70 });
     ui->comboBoxFRLGCompatibility->setup({ 20, 50, 70 });
 
-    ui->comboBoxEmeraldGender->setup({ 255, 0, 1 });
-    ui->comboBoxRSGender->setup({ 255, 0, 1 });
-    ui->comboBoxFRLGGender->setup({ 255, 0, 1 });
+    ui->filterEmeraldPID->disableControls(Controls::IVs | Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
+    ui->filterRS->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
+    ui->filterFRLG->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
-    ui->comboBoxEmeraldAbility->setup({ 255, 0, 1 });
-    ui->comboBoxRSAbility->setup({ 255, 0, 1 });
-    ui->comboBoxFRLGAbility->setup({ 255, 0, 1 });
-
-    ui->comboBoxEmeraldGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
-    ui->comboBoxRSGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
-    ui->comboBoxFRLGGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
-
-    ui->comboBoxEmeraldNature->setup(Translator::getNatures());
     ui->comboBoxEverstone->addItems(Translator::getNatures());
-    ui->comboBoxFRLGNature->setup(Translator::getNatures());
-    ui->comboBoxRSNature->setup(Translator::getNatures());
-
     ui->comboBoxEmeraldHiddenPower->setup(Translator::getHiddenPowers());
-    ui->comboBoxFRLGHiddenPower->setup(Translator::getHiddenPowers());
-    ui->comboBoxRSHiddenPower->setup(Translator::getHiddenPowers());
 
     ui->comboBoxEmeraldMethod->setup({ Method::EBred, Method::EBredSplit, Method::EBredAlternate });
     ui->comboBoxRSMethod->setup({ Method::RSBred, Method::RSBredSplit, Method::RSBredAlternate });
@@ -158,11 +144,10 @@ void Eggs3::emeraldPIDGenerate()
     u32 maxResults = ui->textBoxEmeraldPIDMaxResults->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->comboBoxEmeraldGenderRatio->getCurrentByte();
+    u8 genderRatio = ui->filterEmeraldPID->getGenderRatio();
 
-    FrameFilter filter(ui->comboBoxEmeraldGender->getCurrentByte(), ui->comboBoxEmeraldAbility->getCurrentByte(),
-                       ui->checkBoxEmeraldShiny->isChecked(), false, QVector<u8>(), QVector<u8>(), ui->comboBoxEmeraldNature->getChecked(),
-                       QVector<bool>(), QVector<bool>());
+    FrameFilter filter(ui->filterEmeraldPID->getGender(), ui->filterEmeraldPID->getAbility(), ui->filterEmeraldPID->getShiny(), false,
+                       QVector<u8>(), QVector<u8>(), ui->filterEmeraldPID->getNatures(), {}, {});
 
     EggGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, Method::EBredPID, filter);
     generator.setMinRedraw(ui->textBoxMinRedraws->getUChar());
@@ -207,11 +192,10 @@ void Eggs3::rsGenerate()
     u32 maxResultsHeld = ui->textBoxRSMaxResultsHeld->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->comboBoxRSGenderRatio->getCurrentByte();
+    u8 genderRatio = ui->filterRS->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxRSMethod->getCurrentInt());
-    FrameFilter filter(ui->comboBoxRSGender->getCurrentByte(), ui->comboBoxRSAbility->getCurrentByte(), ui->checkBoxRSShiny->isChecked(),
-                       false, ui->ivFilterRS->getLower(), ui->ivFilterRS->getUpper(), ui->comboBoxRSNature->getChecked(),
-                       ui->comboBoxRSHiddenPower->getChecked(), QVector<bool>());
+    FrameFilter filter(ui->filterRS->getGender(), ui->filterRS->getAbility(), ui->filterRS->getShiny(), false, ui->filterRS->getMinIVs(),
+                       ui->filterRS->getMaxIVs(), ui->filterRS->getNatures(), ui->filterRS->getHiddenPowers(), {});
 
     EggGenerator3 generator(initialFrameHeld, maxResultsHeld, tid, sid, genderRatio, method, filter);
     generator.setParents(ui->eggSettingsRS->getParent1(), ui->eggSettingsRS->getParent2());
@@ -231,12 +215,12 @@ void Eggs3::frlgGenerate()
     u32 maxResultsHeld = ui->textBoxFRLGMaxResultsHeld->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = static_cast<u8>(ui->comboBoxFRLGGenderRatio->currentData().toUInt());
+    u8 genderRatio = ui->filterFRLG->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxFRLGMethod->currentData().toUInt());
 
-    FrameFilter filter(static_cast<u8>(ui->comboBoxFRLGGender->currentIndex()), static_cast<u8>(ui->comboBoxFRLGAbility->currentIndex()),
-                       ui->checkBoxFRLGShiny->isChecked(), false, ui->ivFilterFRLG->getLower(), ui->ivFilterFRLG->getUpper(),
-                       ui->comboBoxFRLGNature->getChecked(), ui->comboBoxFRLGHiddenPower->getChecked(), QVector<bool>());
+    FrameFilter filter(ui->filterFRLG->getGender(), ui->filterFRLG->getAbility(), ui->filterFRLG->getShiny(), false,
+                       ui->filterFRLG->getMinIVs(), ui->filterFRLG->getMaxIVs(), ui->filterFRLG->getNatures(),
+                       ui->filterFRLG->getHiddenPowers(), {});
 
     EggGenerator3 generator(initialFrameHeld, maxResultsHeld, tid, sid, genderRatio, method, filter);
     generator.setParents(ui->eggSettingsFRLG->getParent1(), ui->eggSettingsFRLG->getParent2());

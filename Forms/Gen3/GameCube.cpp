@@ -102,25 +102,9 @@ void GameCube::setupModels()
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorStartingFrame->setValues(InputType::Frame32Bit);
     ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
-    ui->textBoxGeneratorDelay->setValues(InputType::Frame32Bit);
 
-    ui->comboBoxGeneratorNature->setup(Translator::getNatures());
-    ui->comboBoxSearcherNature->setup(Translator::getNatures());
-
-    ui->comboBoxGeneratorHiddenPower->setup(Translator::getHiddenPowers());
-    ui->comboBoxSearcherHiddenPower->setup(Translator::getHiddenPowers());
-
-    ui->comboBoxGeneratorMethod->setup({ Method::XDColo, Method::XD, Method::Colo, Method::Channel });
-    ui->comboBoxSearcherMethod->setup({ Method::XDColo, Method::XD, Method::Colo, Method::Channel });
-
-    ui->comboBoxGeneratorGender->setup({ 255, 0, 1 });
-    ui->comboBoxSearcherGender->setup({ 255, 0, 1 });
-
-    ui->comboBoxGeneratorAbility->setup({ 255, 0, 1 });
-    ui->comboBoxSearcherAbility->setup({ 255, 0, 1 });
-
-    ui->comboBoxGeneratorGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
-    ui->comboBoxSearcherGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
+    ui->filterGenerator->disableControls(Controls::EncounterSlots);
+    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -167,18 +151,17 @@ void GameCube::generate()
     u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->comboBoxGeneratorGenderRatio->getCurrentByte();
+    u8 genderRatio = ui->filterGenerator->getGenderRatio();
     auto method = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
     u32 offset = 0;
-    if (ui->checkBoxGeneratorDelay->isChecked())
+    if (ui->filterGenerator->useDelay())
     {
-        offset = ui->textBoxGeneratorDelay->getUInt();
+        offset = ui->filterGenerator->getDelay();
     }
 
-    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
-                       ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),
-                       ui->ivFilterGenerator->getLower(), ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-                       ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+                       ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
+                       ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
     GameCubeGenerator generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
@@ -202,16 +185,15 @@ void GameCube::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    QVector<u8> min = ui->ivFilterSearcher->getLower();
-    QVector<u8> max = ui->ivFilterSearcher->getUpper();
+    QVector<u8> min = ui->filterSearcher->getMinIVs();
+    QVector<u8> max = ui->filterSearcher->getMaxIVs();
 
-    FrameFilter filter(ui->comboBoxSearcherGender->getCurrentByte(), ui->comboBoxSearcherAbility->getCurrentByte(),
-                       ui->checkBoxSearcherShinyOnly->isChecked(), false, min, max, ui->comboBoxSearcherNature->getChecked(),
-                       ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
+    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
+                       ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->comboBoxSearcherGenderRatio->getCurrentByte();
+    u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
     auto *searcher = new GameCubeSearcher(tid, sid, genderRatio, method, filter);
     if (method == Method::XD || method == Method::Colo)

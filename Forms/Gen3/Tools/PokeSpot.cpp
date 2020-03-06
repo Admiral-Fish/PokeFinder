@@ -49,6 +49,7 @@ PokeSpot::~PokeSpot()
 void PokeSpot::setupModels()
 {
     model = new PokeSpotModel(ui->tableView);
+    ui->tableView->setModel(model);
 
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
     ui->textBoxStartingFrame->setValues(InputType::Frame32Bit);
@@ -56,15 +57,9 @@ void PokeSpot::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->comboBoxGender->setup({ 255, 0, 1 });
+    ui->filter->disableControls(Controls::IVs | Controls::UseDelay | Controls::HiddenPowers | Controls::DisableFilter
+                                | Controls::EncounterSlots);
 
-    ui->comboBoxAbility->setup({ 255, 0, 1 });
-
-    ui->comboBoxGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
-
-    ui->tableView->setModel(model);
-
-    ui->comboBoxNature->setup(Translator::getNatures());
     ui->comboBoxSpotType->setup();
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &PokeSpot::generate);
@@ -95,10 +90,10 @@ void PokeSpot::generate()
     u32 maxResults = ui->textBoxMaxResults->getUInt();
     u16 tid = ui->textBoxTID->getUShort();
     u16 sid = ui->textBoxSID->getUShort();
-    u8 genderRatio = ui->comboBoxGenderRatio->getCurrentByte();
+    u8 genderRatio = ui->filter->getGenderRatio();
 
-    FrameFilter filter(ui->comboBoxGender->getCurrentByte(), ui->comboBoxAbility->getCurrentByte(), ui->checkBoxShinyOnly->isChecked(),
-                       false, QVector<u8>(), QVector<u8>(), ui->comboBoxNature->getChecked(), QVector<bool>(), QVector<bool>());
+    FrameFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), false, {}, {}, ui->filter->getNatures(),
+                       {}, {});
 
     PokeSpotGenerator generator(initialFrame, maxResults, tid, sid, genderRatio, filter);
     generator.setSpots(ui->comboBoxSpotType->getChecked());

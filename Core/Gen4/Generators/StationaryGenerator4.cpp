@@ -27,7 +27,6 @@ StationaryGenerator4::StationaryGenerator4(u32 initialFrame, u32 maxResults, u16
                                            const FrameFilter &filter) :
     StationaryGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 QVector<Frame> StationaryGenerator4::generate(u32 seed) const
@@ -67,7 +66,7 @@ QVector<Frame> StationaryGenerator4::generateMethod1(u32 seed) const
         u16 iv2 = go.nextUShort();
 
         frame.setPID(high, low);
-        frame.setShiny(tsv, (high ^ low) >> 3);
+        frame.setShiny(tsv, high ^ low, 8);
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
@@ -206,7 +205,7 @@ QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed) const
 
         frame.setAbility(pid & 1);
         frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
@@ -345,7 +344,7 @@ QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed) const
 
         frame.setAbility(pid & 1);
         frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();

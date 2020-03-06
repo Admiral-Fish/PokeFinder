@@ -27,7 +27,6 @@ constexpr u8 genderThreshHolds[5] = { 0, 0x96, 0xC8, 0x4B, 0x32 };
 StationarySearcher4::StationarySearcher4(u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
     StationarySearcher(tid, sid, genderRatio, method, filter), cache(method), searching(false), progress(0)
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 void StationarySearcher4::setDelay(u32 minDelay, u32 maxDelay)
@@ -143,7 +142,7 @@ QVector<StationaryFrame> StationarySearcher4::searchMethod1(u8 hp, u8 atk, u8 de
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, (high ^ low) >> 3);
+        frame.setShiny(tsv, high ^ low, 8);
         if (filter.comparePID(frame))
         {
             frames.append(frame);
@@ -207,7 +206,7 @@ QVector<StationaryFrame> StationarySearcher4::searchMethodJ(u8 hp, u8 atk, u8 de
                 frame.setAbility(low & 1);
                 frame.setGender(low & 255, genderRatio);
                 frame.setNature(frame.getPID() % 25);
-                frame.setShiny(tsv, (high ^ low) >> 3);
+                frame.setShiny(tsv, high ^ low, 8);
 
                 if (!filter.comparePID(frame))
                 {
@@ -279,7 +278,7 @@ QVector<StationaryFrame> StationarySearcher4::searchMethodK(u8 hp, u8 atk, u8 de
                 frame.setAbility(low & 1);
                 frame.setGender(low & 255, genderRatio);
                 frame.setNature(frame.getPID() % 25);
-                frame.setShiny(tsv, (high ^ low) >> 3);
+                frame.setShiny(tsv, high ^ low, 8);
 
                 if (!filter.comparePID(frame))
                 {
@@ -468,7 +467,7 @@ QVector<StationaryFrame> StationarySearcher4::cuteCharmMethodJ(StationaryFrame f
             frame.setAbility(pid & 1);
             frame.setGender(pid, genderRatio);
             frame.setNature(nature);
-            frame.setShiny(tsv, pid >> 3);
+            frame.setShiny(tsv, pid, 8);
 
             if (filter.comparePID(frame))
             {
@@ -582,7 +581,7 @@ QVector<StationaryFrame> StationarySearcher4::cuteCharmMethodK(StationaryFrame f
             frame.setAbility(pid & 1);
             frame.setGender(pid, genderRatio);
             frame.setNature(nature);
-            frame.setShiny(tsv, pid >> 3);
+            frame.setShiny(tsv, pid, 8);
 
             if (filter.comparePID(frame))
             {

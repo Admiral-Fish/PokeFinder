@@ -170,7 +170,7 @@ QVector<WildFrame> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u
                 frame.setAbility(low & 1);
                 frame.setGender(low & 255, genderRatio);
                 frame.setNature(frame.getPID() % 25);
-                frame.setShiny(tsv, (high ^ low) >> 3);
+                frame.setShiny(tsv, high ^ low, 8);
 
                 if (!filter.comparePID(frame))
                 {
@@ -242,7 +242,7 @@ QVector<WildFrame> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u
                 frame.setAbility(low & 1);
                 frame.setGender(low & 255, genderRatio);
                 frame.setNature(frame.getPID() % 25);
-                frame.setShiny(tsv, (high ^ low) >> 3);
+                frame.setShiny(tsv, high ^ low, 8);
 
                 if (!filter.comparePID(frame))
                 {
@@ -453,7 +453,7 @@ QVector<WildFrame> WildSearcher4::cuteCharmMethodJ(WildFrame frame, u32 seed) co
                 frame.setAbility(pid & 1);
                 frame.setGender(pid, genderRatio);
                 frame.setNature(nature);
-                frame.setShiny(tsv, pid >> 3);
+                frame.setShiny(tsv, pid, 8);
 
                 if (filter.comparePID(frame))
                 {
@@ -611,7 +611,7 @@ QVector<WildFrame> WildSearcher4::cuteCharmMethodK(WildFrame frame, u32 seed) co
                 frame.setAbility(pid & 1);
                 frame.setGender(pid, genderRatio);
                 frame.setNature(nature);
-                frame.setShiny(tsv, pid >> 3);
+                frame.setShiny(tsv, pid, 8);
 
                 if (filter.comparePID(frame))
                 {

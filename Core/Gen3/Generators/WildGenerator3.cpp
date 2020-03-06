@@ -31,7 +31,6 @@ WildGenerator3::WildGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 si
                                const FrameFilter &filter) :
     WildGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 QVector<WildFrame> WildGenerator3::generate(u32 seed) const
@@ -180,7 +179,7 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
         frame.setPID(pid);
         frame.setAbility(pid & 1);
         frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, ((pid & 0xffff) ^ (pid >> 16)) >> 3);
+        frame.setShiny(tsv, (pid & 0xffff) ^ (pid >> 16), 8);
 
         // Valid PID is found now time to generate IVs
         u16 iv1;

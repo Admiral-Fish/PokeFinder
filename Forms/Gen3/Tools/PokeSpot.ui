@@ -135,173 +135,52 @@
      <property name="title">
       <string>Filters</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
+     <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0">
-       <widget class="QLabel" name="labelGender">
-        <property name="text">
-         <string>Gender</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="ComboBox" name="comboBoxGender">
-        <item>
-         <property name="text">
-          <string notr="true">Any</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string notr="true">♂</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string notr="true">♀</string>
-         </property>
-        </item>
-       </widget>
+       <widget class="Filter" name="filter" native="true"/>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="labelAbility">
-        <property name="text">
-         <string>Ability</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="ComboBox" name="comboBoxAbility">
-        <item>
-         <property name="text">
-          <string>Any</string>
-         </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelSpotType">
+          <property name="text">
+           <string>Spot Type</string>
+          </property>
+         </widget>
         </item>
-        <item>
-         <property name="text">
-          <string notr="true">0</string>
-         </property>
+        <item row="0" column="1">
+         <widget class="CheckList" name="comboBoxSpotType">
+          <item>
+           <property name="text">
+            <string>Common</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Uncommon</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Rare</string>
+           </property>
+          </item>
+         </widget>
         </item>
-        <item>
-         <property name="text">
-          <string notr="true">1</string>
-         </property>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="pushButtonAnySpotType">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Any</string>
+          </property>
+         </widget>
         </item>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelNature">
-        <property name="text">
-         <string>Nature</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="CheckList" name="comboBoxNature"/>
-      </item>
-      <item row="2" column="2">
-       <widget class="QPushButton" name="pushButtonAnyNature">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Any</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelGenderRatio">
-        <property name="text">
-         <string>Gender Ratio</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="ComboBox" name="comboBoxGenderRatio">
-        <item>
-         <property name="text">
-          <string>Genderless</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>50% ♂ / 50% ♀</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>25% ♂ / 75% ♀</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>75% ♂ / 25% ♀</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>87.5% ♂ / 12.5% ♀</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>100% ♂</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>100% ♀</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QCheckBox" name="checkBoxShinyOnly">
-        <property name="text">
-         <string>Shiny Only</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="labelSpotType">
-        <property name="text">
-         <string>Spot Type</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="CheckList" name="comboBoxSpotType">
-        <item>
-         <property name="text">
-          <string>Common</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Uncommon</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Rare</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="5" column="2">
-       <widget class="QPushButton" name="pushButtonAnySpotType">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Any</string>
-        </property>
-       </widget>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -318,11 +197,6 @@
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>TableView</class>
-   <extends>QTableView</extends>
-   <header>Forms/Controls/TableView.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
@@ -331,9 +205,15 @@
    </slots>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/ComboBox.hpp</header>
+   <class>TableView</class>
+   <extends>QTableView</extends>
+   <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>Filter</class>
+   <extends>QWidget</extends>
+   <header>Forms/Controls/Filter.hpp</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -343,12 +223,6 @@
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
-  <tabstop>comboBoxGender</tabstop>
-  <tabstop>comboBoxAbility</tabstop>
-  <tabstop>comboBoxNature</tabstop>
-  <tabstop>pushButtonAnyNature</tabstop>
-  <tabstop>comboBoxGenderRatio</tabstop>
-  <tabstop>checkBoxShinyOnly</tabstop>
   <tabstop>comboBoxSpotType</tabstop>
   <tabstop>pushButtonAnySpotType</tabstop>
   <tabstop>tableView</tabstop>
@@ -368,22 +242,6 @@
     <hint type="destinationlabel">
      <x>588</x>
      <y>176</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButtonAnyNature</sender>
-   <signal>clicked()</signal>
-   <receiver>comboBoxNature</receiver>
-   <slot>resetChecks()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>660</x>
-     <y>96</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>620</x>
-     <y>95</y>
     </hint>
    </hints>
   </connection>

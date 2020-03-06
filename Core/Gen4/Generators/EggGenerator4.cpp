@@ -26,7 +26,6 @@
 EggGenerator4::EggGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
     EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 QVector<EggFrame4> EggGenerator4::generate(u32 seed) const
@@ -62,7 +61,7 @@ QVector<EggFrame4> EggGenerator4::generateNormal(u32 seed) const
         frame.setAbility(pid & 1);
         frame.setGender(pid & 255, genderRatio);
         frame.setNature(pid % 25);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         if (filter.comparePID(frame))
         {
@@ -101,7 +100,7 @@ QVector<EggFrame4> EggGenerator4::generateMasuada(u32 seed) const
         frame.setAbility(pid & 1);
         frame.setGender(pid & 255, genderRatio);
         frame.setNature(pid % 25);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         if (filter.comparePID(frame))
         {

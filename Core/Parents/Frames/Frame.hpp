@@ -50,9 +50,9 @@ public:
     void setNature(u8 nature);
     u8 getLevel() const;
     void setLevel(u8 level);
-    bool getShiny() const;
-    void setShiny(bool shiny);
-    void setShiny(u16 tsv, u16 psv);
+    u8 getShiny() const;
+    void setShiny(u8 shiny);
+    void setShiny(u16 tsv, u16 psv, u8 val);
     void calculateHiddenPower();
 
 protected:
@@ -66,7 +66,7 @@ protected:
     u8 power;
     u8 nature;
     u8 level;
-    bool shiny;
+    u8 shiny;
 };
 
 #endif // FRAME_HPP

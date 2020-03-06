@@ -47,7 +47,10 @@ QVariant WildGeneratorModel3::data(const QModelIndex &index, int role) const
         case 3:
             return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
         case 4:
-            return frame.getShiny() ? tr("Yes") : tr("No");
+        {
+            u8 shiny = frame.getShiny();
+            return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
+        }
         case 5:
             return Translator::getNature(frame.getNature());
         case 6:
@@ -191,7 +194,10 @@ QVariant WildSearcherModel3::data(const QModelIndex &index, int role) const
         case 4:
             return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
         case 5:
-            return frame.getShiny() ? tr("Yes") : tr("No");
+        {
+            u8 shiny = frame.getShiny();
+            return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
+        }
         case 6:
             return Translator::getNature(frame.getNature());
         case 7:

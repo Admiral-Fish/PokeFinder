@@ -26,8 +26,6 @@
 EggGenerator3::EggGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
     EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
-    tsv = (tid ^ sid) >> 3;
-
     switch (method)
     {
     case Method::EBred:
@@ -190,7 +188,7 @@ QVector<EggFrame3> EggGenerator3::generateEmeraldPID(u32 seed) const
                 frame.setPID(pid);
                 frame.setAbility(pid & 1);
                 frame.setGender(pid & 255, genderRatio);
-                frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+                frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
                 if (filter.comparePID(frame))
                 {
@@ -322,7 +320,7 @@ QVector<EggFrame3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u3
             up.setAbility(low.second & 1);
             up.setGender(low.second & 255, genderRatio);
             up.setNature(up.getPID() % 25);
-            up.setShiny(tsv, ((up.getPID() >> 16) ^ (up.getPID() & 0xffff)) >> 3);
+            up.setShiny(tsv, (up.getPID() >> 16) ^ (up.getPID() & 0xffff), 8);
 
             if (filter.comparePID(up))
             {

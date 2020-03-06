@@ -26,20 +26,27 @@
       <string>Profile</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_6">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelProfile">
+      <item row="0" column="5">
+       <widget class="QLabel" name="labelProfileGame">
         <property name="text">
-         <string>Profile</string>
+         <string>Game</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="labelProfileSIDValue">
+        <property name="text">
+         <string notr="true">54321</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
        <widget class="QComboBox" name="comboBoxProfiles"/>
       </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="labelProfileTID">
+      <item row="1" column="1">
+       <widget class="QPushButton" name="pushButtonProfileManager">
         <property name="text">
-         <string>TID</string>
+         <string>Manager</string>
         </property>
        </widget>
       </item>
@@ -57,24 +64,10 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="labelProfileGame">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelProfile">
         <property name="text">
-         <string>Game</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="labelProfileGameValue">
-        <property name="text">
-         <string>Diamond</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="pushButtonProfileManager">
-        <property name="text">
-         <string>Manager</string>
+         <string>Profile</string>
         </property>
        </widget>
       </item>
@@ -85,10 +78,17 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
-       <widget class="QLabel" name="labelProfileSIDValue">
+      <item row="0" column="6">
+       <widget class="QLabel" name="labelProfileGameValue">
         <property name="text">
-         <string notr="true">54321</string>
+         <string>Diamond</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="labelProfileTID">
+        <property name="text">
+         <string>TID</string>
         </property>
        </widget>
       </item>
@@ -114,26 +114,6 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_9">
-          <item row="2" column="1">
-           <widget class="TextBox" name="textBoxGeneratorInitialFrame">
-            <property name="text">
-             <string notr="true">1</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxGeneratorSeed">
-            <property name="text">
-             <string notr="true"/>
-            </property>
-            <property name="maxLength">
-             <number>8</number>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <widget class="ComboBox" name="comboBoxGeneratorMethod">
             <item>
@@ -155,6 +135,23 @@
             </property>
            </widget>
           </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneratorMaxResults">
+            <property name="text">
+             <string>Max Results</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="TextBox" name="textBoxGeneratorSeed">
+            <property name="text">
+             <string notr="true"/>
+            </property>
+            <property name="maxLength">
+             <number>8</number>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="labelGeneratorInitialFrame">
             <property name="text">
@@ -162,10 +159,13 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelGeneratorMethod">
+          <item row="2" column="1">
+           <widget class="TextBox" name="textBoxGeneratorInitialFrame">
             <property name="text">
-             <string>Method</string>
+             <string notr="true">1</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
             </property>
            </widget>
           </item>
@@ -179,17 +179,24 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="2">
+          <item row="5" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonGenerate">
             <property name="text">
              <string>Generate</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxResults">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelGeneratorMethod">
             <property name="text">
-             <string>Max Results</string>
+             <string>Method</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxGeneratorMasuada">
+            <property name="text">
+             <string>Masuada</string>
             </property>
            </widget>
           </item>
@@ -215,169 +222,11 @@
           <string>Filters</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0" rowspan="7">
-           <widget class="IVFilter" name="ivFilterGenerator" native="true"/>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="labelGeneratorGender">
-            <property name="text">
-             <string>Gender</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="ComboBox" name="comboBoxGeneratorGender">
-            <item>
-             <property name="text">
-              <string notr="true">Any</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">♂</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">♀</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="labelGeneratorAbility">
-            <property name="text">
-             <string>Ability</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="ComboBox" name="comboBoxGeneratorAbility">
-            <item>
-             <property name="text">
-              <string>Any</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">0</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLabel" name="labelGeneratorNature">
-            <property name="text">
-             <string>Nature</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="CheckList" name="comboBoxGeneratorNature"/>
-          </item>
-          <item row="2" column="3">
-           <widget class="QPushButton" name="pushButtonGeneratorAnyNature">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Any</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="labelGeneratorHiddenPower">
-            <property name="text">
-             <string>Hidden Power</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2">
-           <widget class="CheckList" name="comboBoxGeneratorHiddenPower"/>
-          </item>
-          <item row="3" column="3">
-           <widget class="QPushButton" name="pushButtonGeneratorAnyHiddenPower">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Any</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLabel" name="labelGeneratorGenderRatio">
-            <property name="text">
-             <string>Gender Ratio</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2">
-           <widget class="ComboBox" name="comboBoxGeneratorGenderRatio">
-            <item>
-             <property name="text">
-              <string>Genderless</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>50% ♂ / 50% ♀</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>25% ♂ / 75% ♀</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>75% ♂ / 25% ♀</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>87.5% ♂ / 12.5% ♀</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>100% ♂</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>100% ♀</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="5" column="2">
-           <widget class="QCheckBox" name="checkBoxGeneratorMasuada">
-            <property name="text">
-             <string>Masuada</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="2">
-           <widget class="QCheckBox" name="checkBoxGeneratorShinyOnly">
-            <property name="text">
-             <string>Shiny Only</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0" colspan="4">
+          <item row="3" column="0" colspan="2">
            <widget class="EggSettings" name="eggSettingsGenerator" native="true"/>
+          </item>
+          <item row="0" column="0" rowspan="3" colspan="2">
+           <widget class="Filter" name="filterGenerator" native="true"/>
           </item>
          </layout>
         </widget>
@@ -401,7 +250,54 @@
           <string>RNG Info</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_7">
-          <item row="4" column="0" colspan="3">
+          <item row="3" column="3">
+           <widget class="TextBox" name="textBoxSearcherMaxDelay">
+            <property name="text">
+             <string notr="true">2000</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="TextBox" name="textBoxSearcherMinDelay">
+            <property name="text">
+             <string notr="true">600</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="TextBox" name="textBoxSearcherPIDMaxFrame">
+            <property name="text">
+             <string notr="true">30</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelSearcherDelay">
+            <property name="text">
+             <string>Delay</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="TextBox" name="textBoxSearcherPIDMinFrame">
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="4">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QPushButton" name="pushButtonSearch">
@@ -419,24 +315,27 @@
             </item>
            </layout>
           </item>
-          <item row="3" column="1">
-           <widget class="TextBox" name="textBoxSearcherMinDelay">
+          <item row="2" column="2">
+           <widget class="TextBox" name="textBoxSearcherIVMinFrame">
             <property name="text">
-             <string notr="true">600</string>
+             <string notr="true">1</string>
             </property>
             <property name="maxLength">
              <number>10</number>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="labelSearcherIVFrame">
+          <item row="2" column="3">
+           <widget class="TextBox" name="textBoxSearcherIVMaxFrame">
             <property name="text">
-             <string>IV Frame</string>
+             <string notr="true">100000</string>
+            </property>
+            <property name="maxLength">
+             <number>10</number>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="2">
+          <item row="0" column="2" colspan="2">
            <widget class="ComboBox" name="comboBoxSearcherMethod">
             <item>
              <property name="text">
@@ -455,23 +354,6 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="2">
-           <widget class="TextBox" name="textBoxSearcherPIDMaxFrame">
-            <property name="text">
-             <string notr="true">30</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelSearcherDelay">
-            <property name="text">
-             <string>Delay</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelSearcherPIDFrame">
             <property name="text">
@@ -479,33 +361,10 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="2">
-           <widget class="TextBox" name="textBoxSearcherIVMaxFrame">
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelSearcherIVFrame">
             <property name="text">
-             <string notr="true">100000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="TextBox" name="textBoxSearcherIVMinFrame">
-            <property name="text">
-             <string notr="true">1</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2">
-           <widget class="TextBox" name="textBoxSearcherMaxDelay">
-            <property name="text">
-             <string notr="true">2000</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
+             <string>IV Frame</string>
             </property>
            </widget>
           </item>
@@ -516,13 +375,10 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="TextBox" name="textBoxSearcherPIDMinFrame">
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxSearcherMasuada">
             <property name="text">
-             <string notr="true">1</string>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
+             <string>Masuada</string>
             </property>
            </widget>
           </item>
@@ -541,169 +397,11 @@
           <string>Filters</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0" rowspan="7">
-           <widget class="IVFilter" name="ivFilterSearcher" native="true"/>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="labelSearcherGender">
-            <property name="text">
-             <string>Gender</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="ComboBox" name="comboBoxSearcherGender">
-            <item>
-             <property name="text">
-              <string notr="true">Any</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">♂</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">♀</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="labelSearcherAbility">
-            <property name="text">
-             <string>Ability</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="ComboBox" name="comboBoxSearcherAbility">
-            <item>
-             <property name="text">
-              <string>Any</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">0</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">1</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLabel" name="labelSearcherNature">
-            <property name="text">
-             <string>Nature</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="CheckList" name="comboBoxSearcherNature"/>
-          </item>
-          <item row="2" column="3">
-           <widget class="QPushButton" name="pushButtonSearcherAnyNature">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Any</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="labelSearcherHiddenPower">
-            <property name="text">
-             <string>Hidden Power</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2">
-           <widget class="CheckList" name="comboBoxSearcherHiddenPower"/>
-          </item>
-          <item row="3" column="3">
-           <widget class="QPushButton" name="pushButtonSearcherAnyHiddenPower">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Any</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLabel" name="labelSearcherGenderRatio">
-            <property name="text">
-             <string>Gender Ratio</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2">
-           <widget class="ComboBox" name="comboBoxSearcherGenderRatio">
-            <item>
-             <property name="text">
-              <string>Genderless</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>50% ♂ / 50% ♀</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>25% ♂ / 75% ♀</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>75% ♂ / 25% ♀</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>87.5% ♂ / 12.5% ♀</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>100% ♂</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>100% ♀</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="5" column="2">
-           <widget class="QCheckBox" name="checkBoxSearcherMasuada">
-            <property name="text">
-             <string>Masuada</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="2">
-           <widget class="QCheckBox" name="checkBoxSearcherShinyOnly">
-            <property name="text">
-             <string>Shiny Only</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0" colspan="4">
+          <item row="3" column="0" colspan="2">
            <widget class="EggSettings" name="eggSettingsSearcher" native="true"/>
+          </item>
+          <item row="0" column="0" rowspan="3" colspan="2">
+           <widget class="Filter" name="filterSearcher" native="true"/>
           </item>
          </layout>
         </widget>
@@ -744,28 +442,20 @@
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>IVFilter</class>
+   <class>Filter</class>
    <extends>QWidget</extends>
-   <header>Forms/Controls/IVFilter.hpp</header>
+   <header>Forms/Controls/Filter.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>CheckList</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/CheckList.hpp</header>
-   <slots>
-    <slot>resetChecks()</slot>
-   </slots>
-  </customwidget>
-  <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>EggSettings</class>
@@ -782,16 +472,8 @@
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>textBoxGeneratorInitialFrame</tabstop>
   <tabstop>textBoxGeneratorMaxResults</tabstop>
-  <tabstop>pushButtonGenerate</tabstop>
-  <tabstop>comboBoxGeneratorGender</tabstop>
-  <tabstop>comboBoxGeneratorAbility</tabstop>
-  <tabstop>comboBoxGeneratorNature</tabstop>
-  <tabstop>pushButtonGeneratorAnyNature</tabstop>
-  <tabstop>comboBoxGeneratorHiddenPower</tabstop>
-  <tabstop>pushButtonGeneratorAnyHiddenPower</tabstop>
-  <tabstop>comboBoxGeneratorGenderRatio</tabstop>
   <tabstop>checkBoxGeneratorMasuada</tabstop>
-  <tabstop>checkBoxGeneratorShinyOnly</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableViewGenerator</tabstop>
   <tabstop>comboBoxSearcherMethod</tabstop>
   <tabstop>textBoxSearcherPIDMinFrame</tabstop>
@@ -800,52 +482,11 @@
   <tabstop>textBoxSearcherIVMaxFrame</tabstop>
   <tabstop>textBoxSearcherMinDelay</tabstop>
   <tabstop>textBoxSearcherMaxDelay</tabstop>
+  <tabstop>checkBoxSearcherMasuada</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
-  <tabstop>comboBoxSearcherGender</tabstop>
-  <tabstop>comboBoxSearcherAbility</tabstop>
-  <tabstop>comboBoxSearcherNature</tabstop>
-  <tabstop>pushButtonSearcherAnyNature</tabstop>
-  <tabstop>comboBoxSearcherHiddenPower</tabstop>
-  <tabstop>pushButtonSearcherAnyHiddenPower</tabstop>
-  <tabstop>comboBoxSearcherGenderRatio</tabstop>
-  <tabstop>checkBoxSearcherMasuada</tabstop>
-  <tabstop>checkBoxSearcherShinyOnly</tabstop>
   <tabstop>tableViewSearcher</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButtonGeneratorAnyNature</sender>
-   <signal>clicked()</signal>
-   <receiver>comboBoxGeneratorNature</receiver>
-   <slot>resetChecks()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1136</x>
-     <y>214</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1091</x>
-     <y>217</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButtonGeneratorAnyHiddenPower</sender>
-   <signal>clicked()</signal>
-   <receiver>comboBoxGeneratorHiddenPower</receiver>
-   <slot>resetChecks()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1140</x>
-     <y>242</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1065</x>
-     <y>244</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

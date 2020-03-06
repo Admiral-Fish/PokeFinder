@@ -29,7 +29,6 @@ WildGenerator4::WildGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 si
                                const FrameFilter &filter) :
     WildGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 QVector<WildFrame> WildGenerator4::generate(u32 seed) const
@@ -214,7 +213,7 @@ QVector<WildFrame> WildGenerator4::generateMethodJ(u32 seed) const
         frame.setPID(pid);
         frame.setAbility(pid & 1);
         frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
@@ -424,7 +423,7 @@ QVector<WildFrame> WildGenerator4::generateMethodK(u32 seed) const
         frame.setPID(pid);
         frame.setAbility(pid & 1);
         frame.setGender(pid & 255, genderRatio);
-        frame.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3);
+        frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();

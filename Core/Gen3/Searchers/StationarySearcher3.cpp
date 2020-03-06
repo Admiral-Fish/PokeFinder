@@ -28,7 +28,6 @@ StationarySearcher3::StationarySearcher3(u16 tid, u16 sid, u8 genderRatio, Metho
     searching(false),
     progress(0)
 {
-    tsv = (tid ^ sid) >> 3;
 }
 
 void StationarySearcher3::startSearch(const QVector<u8> &min, const QVector<u8> &max)
@@ -126,7 +125,7 @@ QVector<Frame> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 sp
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, (high ^ low) >> 3);
+        frame.setShiny(tsv, high ^ low, 8);
 
         if (filter.comparePID(frame))
         {
@@ -173,7 +172,7 @@ QVector<Frame> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, 
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, (high ^ low) >> 3);
+        frame.setShiny(tsv, high ^ low, 8);
 
         if (filter.comparePID(frame))
         {

@@ -105,20 +105,8 @@ void Eggs4::setupModels()
 
     ui->comboBoxGeneratorMethod->setup({ Method::DPPtIVs, Method::Gen4Normal });
 
-    ui->comboBoxGeneratorGender->setup({ 255, 0, 1 });
-    ui->comboBoxSearcherGender->setup({ 255, 0, 1 });
-
-    ui->comboBoxGeneratorAbility->setup({ 255, 0, 1 });
-    ui->comboBoxSearcherAbility->setup({ 255, 0, 1 });
-
-    ui->comboBoxGeneratorGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
-    ui->comboBoxSearcherGenderRatio->setup({ 255, 127, 191, 63, 31, 0, 254 });
-
-    ui->comboBoxGeneratorNature->setup(Translator::getNatures());
-    ui->comboBoxGeneratorHiddenPower->setup(Translator::getHiddenPowers());
-
-    ui->comboBoxSearcherNature->setup(Translator::getNatures());
-    ui->comboBoxSearcherHiddenPower->setup(Translator::getHiddenPowers());
+    ui->filterGenerator->disableControls(Controls::EncounterSlots);
+    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
@@ -194,12 +182,11 @@ void Eggs4::generate()
     }
     generatorModel->setMethod(method);
 
-    FrameFilter filter(ui->comboBoxGeneratorGender->getCurrentByte(), ui->comboBoxGeneratorAbility->getCurrentByte(),
-                       ui->checkBoxGeneratorShinyOnly->isChecked(), false, ui->ivFilterGenerator->getLower(),
-                       ui->ivFilterGenerator->getUpper(), ui->comboBoxGeneratorNature->getChecked(),
-                       ui->comboBoxGeneratorHiddenPower->getChecked(), QVector<bool>());
+    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(), false,
+                       ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(), ui->filterGenerator->getNatures(),
+                       ui->filterGenerator->getHiddenPowers(), {});
 
-    EggGenerator4 generator(initialFrame, maxResults, tid, sid, ui->comboBoxGeneratorGenderRatio->getCurrentByte(), method, filter);
+    EggGenerator4 generator(initialFrame, maxResults, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter);
     generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
 
     auto frames = generator.generate(seed);
@@ -230,12 +217,11 @@ void Eggs4::search()
 
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->comboBoxSearcherGenderRatio->getCurrentByte();
+    u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
-    FrameFilter filter(ui->comboBoxSearcherGender->getCurrentByte(), ui->comboBoxSearcherAbility->getCurrentByte(),
-                       ui->checkBoxSearcherShinyOnly->isChecked(), false, ui->ivFilterSearcher->getLower(),
-                       ui->ivFilterSearcher->getUpper(), ui->comboBoxSearcherNature->getChecked(),
-                       ui->comboBoxSearcherHiddenPower->getChecked(), QVector<bool>());
+    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false,
+                       ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(), ui->filterSearcher->getNatures(),
+                       ui->filterSearcher->getHiddenPowers(), {});
 
     u32 minDelay = ui->textBoxSearcherMinDelay->getUInt();
     u32 maxDelay = ui->textBoxSearcherMaxDelay->getUInt();

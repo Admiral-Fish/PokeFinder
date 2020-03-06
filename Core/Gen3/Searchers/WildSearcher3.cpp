@@ -110,7 +110,7 @@ QVector<WildFrame> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, (high ^ low) >> 3);
+        frame.setShiny(tsv, high ^ low, 8);
 
         u32 seed = rng.nextUInt();
 
