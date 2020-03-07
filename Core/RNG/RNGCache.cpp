@@ -19,6 +19,7 @@
 
 #include "RNGCache.hpp"
 #include <Core/Enum/Method.hpp>
+#include <cstring>
 
 // See https://crypto.stackexchange.com/a/10609 for how the following math works
 // Uses a brute force meet in the middle attack using precomputated data
