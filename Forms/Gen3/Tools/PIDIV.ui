@@ -23,7 +23,7 @@
    <item row="0" column="0">
     <widget class="QLabel" name="labelPID">
      <property name="text">
-      <string>PID </string>
+      <string>PID</string>
      </property>
     </widget>
    </item>
