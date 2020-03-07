@@ -307,8 +307,7 @@ void Stationary4::generatorLead()
 void Stationary4::seedToTime()
 {
     QModelIndex index = ui->tableViewSearcher->currentIndex();
-    auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(),
-                                 profiles.at(ui->comboBoxProfiles->currentIndex()));
+    auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0), Qt::DisplayRole).toString(), currentProfile);
     time->show();
     time->raise();
 }

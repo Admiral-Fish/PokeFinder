@@ -103,6 +103,9 @@ void GameCube::setupModels()
     ui->textBoxGeneratorStartingFrame->setValues(InputType::Frame32Bit);
     ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
 
+    ui->comboBoxGeneratorMethod->setup({ Method::XDColo, Method::XD, Method::Colo, Method::Channel });
+    ui->comboBoxSearcherMethod->setup({ Method::XDColo, Method::XD, Method::Colo, Method::Channel });
+
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 

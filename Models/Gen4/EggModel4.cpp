@@ -109,6 +109,14 @@ QVariant EggGeneratorModel4::data(const QModelIndex &index, int role) const
         case 10:
         case 11:
         case 12:
+            if (showInheritance)
+            {
+                u8 inh = frame.getInheritance(static_cast<u8>(column - 7));
+                if (inh)
+                {
+                    return inh == 1 ? "A" : "B";
+                }
+            }
             return frame.getIV(static_cast<u8>(column - 7));
         case 13:
             return Translator::getHiddenPower(frame.getHidden());
@@ -293,6 +301,14 @@ QVariant EggSearcherModel4::data(const QModelIndex &index, int role) const
         case 11:
         case 12:
         case 13:
+            if (showInheritance)
+            {
+                u8 inh = frame.getInheritance(static_cast<u8>(column - 8));
+                if (inh)
+                {
+                    return inh == 1 ? "A" : "B";
+                }
+            }
             return frame.getIV(static_cast<u8>(column - 8));
         case 14:
             return Translator::getHiddenPower(frame.getHidden());

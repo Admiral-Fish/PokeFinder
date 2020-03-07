@@ -177,7 +177,7 @@ void Eggs4::generate()
     }
     else
     {
-        Game version = profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion();
+        Game version = currentProfile.getVersion();
         method = (version & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
     }
     generatorModel->setMethod(method);
@@ -201,7 +201,7 @@ void Eggs4::search()
     switch (ui->comboBoxSearcherMethod->currentIndex())
     {
     case 0:
-        methodModel = (profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
+        methodModel = (currentProfile.getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
         break;
     case 1:
         methodModel = ui->checkBoxSearcherMasuada->isChecked() ? Method::Gen4Masuada : Method::Gen4Normal;
@@ -230,7 +230,7 @@ void Eggs4::search()
     u32 minFramePID = ui->textBoxSearcherPIDMinFrame->getUInt();
     u32 maxFramePID = ui->textBoxSearcherPIDMaxFrame->getUInt();
 
-    Method methodIV = (profiles.at(ui->comboBoxProfiles->currentIndex()).getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
+    Method methodIV = (currentProfile.getVersion() & Game::HGSS) ? Method::HGSSIVs : Method::DPPtIVs;
     EggGenerator4 generatorIV(minFrameIV, maxFrameIV, tid, sid, genderRatio, methodIV, filter);
     generatorIV.setParents(ui->eggSettingsSearcher->getParent1(), ui->eggSettingsSearcher->getParent2());
 
@@ -288,7 +288,7 @@ void Eggs4::seedToTime()
     QModelIndex index = ui->tableViewSearcher->currentIndex();
     QString seed = searcherModel->data(searcherModel->index(index.row(), 0)).toString();
 
-    auto *time = new SeedtoTime4(seed, profiles.at(ui->comboBoxProfiles->currentIndex()));
+    auto *time = new SeedtoTime4(seed, currentProfile);
     time->show();
     time->raise();
 }

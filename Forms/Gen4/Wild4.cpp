@@ -172,9 +172,8 @@ void Wild4::updateLocationsGenerator()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt());
     int time = ui->comboBoxGeneratorTime->currentIndex();
-    auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
 
-    encounterGenerator = Encounters4::getEncounters(encounter, time, profile);
+    encounterGenerator = Encounters4::getEncounters(encounter, time, currentProfile);
 
     QVector<u8> locs;
     for (const auto &area : encounterGenerator)
@@ -182,7 +181,7 @@ void Wild4::updateLocationsGenerator()
         locs.append(area.getLocation());
     }
 
-    QStringList locations = Translator::getLocations(locs, profile.getVersion());
+    QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
 
     ui->comboBoxGeneratorLocation->clear();
     ui->comboBoxGeneratorLocation->addItems(locations);
@@ -192,9 +191,8 @@ void Wild4::updateLocationsSearcher()
 {
     auto encounter = static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt());
     int time = ui->comboBoxSearcherTime->currentIndex();
-    auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
 
-    encounterSearcher = Encounters4::getEncounters(encounter, time, profile);
+    encounterSearcher = Encounters4::getEncounters(encounter, time, currentProfile);
 
     QVector<u8> locs;
     for (const auto &area : encounterSearcher)
@@ -202,7 +200,7 @@ void Wild4::updateLocationsSearcher()
         locs.append(area.getLocation());
     }
 
-    QStringList locations = Translator::getLocations(locs, profile.getVersion());
+    QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
 
     ui->comboBoxSearcherLocation->clear();
     ui->comboBoxSearcherLocation->addItems(locations);
@@ -421,8 +419,7 @@ void Wild4::generatorLead()
     QString text = ui->pushButtonGeneratorLead->text();
     if (text == tr("Synchronize"))
     {
-        auto profile = profiles.at(ui->comboBoxProfiles->currentIndex());
-        bool flag = profile.getVersion() & Game::HGSS;
+        bool flag = currentProfile.getVersion() & Game::HGSS;
         if (flag)
         {
             ui->pushButtonGeneratorLead->setText(tr("Suction Cups"));
@@ -589,8 +586,7 @@ void Wild4::searcherTimeIndexChanged(int index)
 void Wild4::seedToTime()
 {
     QModelIndex index = ui->tableViewSearcher->currentIndex();
-    auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0)).toString(),
-                                 profiles.at(ui->comboBoxProfiles->currentIndex()));
+    auto *time = new SeedtoTime4(searcherModel->data(searcherModel->index(index.row(), 0)).toString(), currentProfile);
     time->show();
     time->raise();
 }
