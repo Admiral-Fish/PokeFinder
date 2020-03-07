@@ -16,12 +16,15 @@ script:
 before_deploy:
   - /usr/local/Cellar/qt/5.13.2/bin/macdeployqt PokeFinder.app -dmg -verbose=2
   - zip -r PokeFinder-macOS.zip PokeFinder.dmg
+  - shasum -a 256 PokeFinder-macOS.zip > PokeFinder-macOS.zip.sha256
 
 deploy:
   provider: releases
   api_key:
     secure: j4tDOhJM/2k/8cmIWV6IqpK/Vlu8RKNW0L2Hm1AJaKZqrmAGBn6ex+cOl5p7CfyXg8OA8YpQTjmX987kUgSI5v08B1VfrTu8+tqB5BsrPi9DIhMr3m2TYRObtW3PmcFns0QKp0FACLmwKJdKFh1atyP9SdC+0XRzsOfiVoJXN2C8r6fv23mGc4i5vINiKuv4QHtOhyS1d2iUAI/Me9WjLkP2RbYmIrejATvsAcdOp+QxlTqecGiWchkkTfWRKVmULcyGnv20KhvvKnoMWh21JwNyxQ3BLLyBMiK/aFU6JDiGccDLoaxvg4f+OvCmpIl/LqxUD1/z+vWJ4BOJ9CWgyPya3MGXsc8WqOPaaq/J/XyzB9hytpod6qKQylDC+H6H4hNeufb6oNzy4oIZ5mquICBXjgipkLtWlBX11kK9li3W3zbfbcwDaxISJkuYbNeeMVZFS4KHdpkB1QNr0AzRmXzPfogBmDXxF97MrJxPFv3pooLa55gStUOuTQz5tKUhAOzqrzkGa79klk6JjVVnWR+xoln61gqEdLxFotA4osQuRiINcwYp8S619PX6fkzMl64/nr6bG5DL8APfNljEwraGhl59hKxQQFxc8ArVBbvlGhkMkwjDMtUG0xX7TbujkhE+DGohRPuLeUVIYpUELQl50EvQCZr8S/Lm/4lnVLA=
-  file: "PokeFinder-macOS.zip"
+  file:
+    - "PokeFinder-macOS.zip"
+    - "PokeFinder-macOS.zip.sha256"
   skip_cleanup: true
   on:
     repo: Admiral-Fish/PokeFinder
