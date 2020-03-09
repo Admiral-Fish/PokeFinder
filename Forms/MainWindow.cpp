@@ -37,7 +37,7 @@
 #include <Forms/Gen4/Tools/ChainedSID.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
-#include <Forms/Gen5/Stationary5.hpp>
+//#include <Forms/Gen5/Stationary5.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Util/IVtoPID.hpp>
@@ -78,6 +78,7 @@ MainWindow::~MainWindow()
     delete wild4;
     delete egg4;
     delete ids4;
+    // delete stationary5;
 }
 
 void MainWindow::setupModels()
@@ -144,7 +145,7 @@ void MainWindow::setupModels()
     connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
     connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
-    connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
+    // connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
@@ -201,7 +202,7 @@ void MainWindow::checkUpdates()
     QDate today = QDate::currentDate();
     QDate lastOpened = setting.value("settings/lastOpened", today).toDate();
 
-    if (lastOpened.daysTo(today) >= 0)
+    if (lastOpened.daysTo(today) > 0)
     {
         QNetworkAccessManager manager;
         QNetworkRequest request(QUrl("https://api.github.com/repos/Admiral-Fish/PokeFinder/releases/latest"));
@@ -265,13 +266,13 @@ void MainWindow::updateProfiles(int num)
             egg4->updateProfiles();
         }
     }
-    else if (num == 5)
+    /*else if (num == 5)
     {
         if (stationary5)
         {
             stationary5->updateProfiles();
         }
-    }
+    }*/
 }
 
 void MainWindow::openStationary3()
@@ -441,7 +442,7 @@ void MainWindow::openSIDFromChainedShiny()
     chainedSID->raise();
 }
 
-void MainWindow::openStationary5()
+/*void MainWindow::openStationary5()
 {
     if (!stationary5)
     {
@@ -450,7 +451,7 @@ void MainWindow::openStationary5()
     }
     stationary5->show();
     stationary5->raise();
-}
+}*/
 
 void MainWindow::openEncounterLookup()
 {

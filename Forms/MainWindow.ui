@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>680</width>
+    <width>460</width>
     <height>390</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>680</width>
+    <width>460</width>
     <height>390</height>
    </size>
   </property>
@@ -22,6 +22,43 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBoxGen4">
+      <property name="title">
+       <string>Gen 4</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButtonStationary4">
+         <property name="text">
+          <string>Stationary</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButtonWild4">
+         <property name="text">
+          <string>Wild</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButtonEgg4">
+         <property name="text">
+          <string>Egg</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="pushButtonIDs4">
+         <property name="text">
+          <string>TID/SID</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBoxGen3">
       <property name="title">
@@ -66,109 +103,6 @@
       </layout>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QGroupBox" name="groupBoxGen4">
-      <property name="title">
-       <string>Gen 4</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="pushButtonStationary4">
-         <property name="text">
-          <string>Stationary</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="pushButtonWild4">
-         <property name="text">
-          <string>Wild</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="pushButtonEgg4">
-         <property name="text">
-          <string>Egg</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="pushButtonIDs4">
-         <property name="text">
-          <string>TID/SID</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QGroupBox" name="groupBoxGen5">
-      <property name="title">
-       <string>Gen 5</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="pushButtonStationary5">
-         <property name="text">
-          <string>Stationary</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="pushButtonWild5">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>Wild</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="pushButtonEvent5">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>Event</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="pushButtonDreamRadar">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>Dream Radar</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QPushButton" name="pushButtonEgg5">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>Egg</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QPushButton" name="pushButtonIDs5">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>TID/SID</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -176,7 +110,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>680</width>
+     <width>460</width>
      <height>20</height>
     </rect>
    </property>
@@ -239,23 +173,11 @@
      <addaction name="actionDark"/>
      <addaction name="actionLight"/>
     </widget>
-    <widget class="QMenu" name="menuThreads">
-     <property name="title">
-      <string>Threads</string>
-     </property>
-    </widget>
     <addaction name="menuLanguage"/>
     <addaction name="menuStyle"/>
-    <addaction name="menuThreads"/>
-   </widget>
-   <widget class="QMenu" name="menuGen5Tools">
-    <property name="title">
-     <string>Gen 5 Tools</string>
-    </property>
    </widget>
    <addaction name="menuGen3Tools"/>
    <addaction name="menuGen4Tools"/>
-   <addaction name="menuGen5Tools"/>
    <addaction name="menuSettings"/>
    <addaction name="menuTools"/>
   </widget>

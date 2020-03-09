@@ -6,7 +6,7 @@ CONFIG += c++1z lrelease embed_translations
 
 TARGET = PokeFinder
 TEMPLATE = app
-VERSION = 2.4.2
+VERSION = 2.5.0
 #GIT_VERSION = $$system(git rev-parse HEAD)
 #GIT_BRANCH = $$system(git rev-parse --abbrev-ref HEAD)
 QMAKE_TARGET_DESCRIPTION = PokeFinder
@@ -63,10 +63,6 @@ FORMS += \
     Forms/Gen4/Tools/SearchCoinFlips.ui \
     Forms/Gen4/Tools/SeedtoTime4.ui \
     Forms/Gen4/Wild4.ui \
-    Forms/Gen5/Profile/ProfileCalibrator5.ui \
-    Forms/Gen5/Profile/ProfileEditor5.ui \
-    Forms/Gen5/Profile/ProfileManager5.ui \
-    Forms/Gen5/Stationary5.ui \
     Forms/MainWindow.ui \
     Forms/Util/EncounterLookup.ui \
     Forms/Util/IVCalculator.ui \
@@ -74,7 +70,6 @@ FORMS += \
     Forms/Util/Researcher.ui
 
 HEADERS += \
-    Core/Enum/DSType.hpp \
     Core/Enum/Encounter.hpp \
     Core/Enum/Game.hpp \
     Core/Enum/Language.hpp \
@@ -123,14 +118,6 @@ HEADERS += \
     Core/Gen4/Searchers/StationarySearcher4.hpp \
     Core/Gen4/Searchers/WildSearcher4.hpp \
     Core/Gen4/Tools/ChainedSIDCalc.hpp \
-    Core/Gen5/Frames/Frame5.hpp \
-    Core/Gen5/Frames/StationaryFrame5.hpp \
-    Core/Gen5/Generators/StationaryGenerator5.hpp \
-    Core/Gen5/Keypresses.hpp \
-    Core/Gen5/Nazos.hpp \
-    Core/Gen5/Profile5.hpp \
-    Core/Gen5/ProfileLoader5.hpp \
-    Core/Gen5/Searchers/StationarySearcher5.hpp \
     Core/Parents/EncounterArea.hpp \
     Core/Parents/Filters/FrameFilter.hpp \
     Core/Parents/Filters/IDFilter.hpp \
@@ -157,9 +144,7 @@ HEADERS += \
     Core/RNG/MTRNG.hpp \
     Core/RNG/RNGCache.hpp \
     Core/RNG/RNGEuclidean.hpp \
-    Core/RNG/RNGList.hpp \
     Core/RNG/SFMT.hpp \
-    Core/RNG/SHA1.hpp \
     Core/RNG/TinyMT.hpp \
     Core/Util/DateTime.hpp \
     Core/Util/EncounterSlot.hpp \
@@ -202,10 +187,6 @@ HEADERS += \
     Forms/Gen4/Tools/SearchCoinFlips.hpp \
     Forms/Gen4/Tools/SeedtoTime4.hpp \
     Forms/Gen4/Wild4.hpp \
-    Forms/Gen5/Profile/ProfileCalibrator5.hpp \
-    Forms/Gen5/Profile/ProfileEditor5.hpp \
-    Forms/Gen5/Profile/ProfileManager5.hpp \
-    Forms/Gen5/Stationary5.hpp \
     Forms/MainWindow.hpp \
     Forms/Util/EncounterLookup.hpp \
     Forms/Util/IVCalculator.hpp \
@@ -227,7 +208,6 @@ HEADERS += \
     Models/Gen4/SeedtoTimeModel4.hpp \
     Models/Gen4/StationaryModel4.hpp \
     Models/Gen4/WildModel4.hpp \
-    Models/Gen5/ProfileModel5.hpp \
     Models/TableModel.hpp \
     Models/Util/ResearcherModel.hpp
 
@@ -274,12 +254,6 @@ SOURCES += \
     Core/Gen4/Searchers/StationarySearcher4.cpp \
     Core/Gen4/Searchers/WildSearcher4.cpp \
     Core/Gen4/Tools/ChainedSIDCalc.cpp \
-    Core/Gen5/Generators/StationaryGenerator5.cpp \
-    Core/Gen5/Keypresses.cpp \
-    Core/Gen5/Nazos.cpp \
-    Core/Gen5/Profile5.cpp \
-    Core/Gen5/ProfileLoader5.cpp \
-    Core/Gen5/Searchers/StationarySearcher5.cpp \
     Core/Parents/EncounterArea.cpp \
     Core/Parents/Filters/FrameFilter.cpp \
     Core/Parents/Filters/IDFilter.cpp \
@@ -304,7 +278,6 @@ SOURCES += \
     Core/RNG/RNGCache.cpp \
     Core/RNG/RNGEuclidean.cpp \
     Core/RNG/SFMT.cpp \
-    Core/RNG/SHA1.cpp \
     Core/RNG/TinyMT.cpp \
     Core/Util/DateTime.cpp \
     Core/Util/EncounterSlot.cpp \
@@ -346,10 +319,6 @@ SOURCES += \
     Forms/Gen4/Tools/SearchCoinFlips.cpp \
     Forms/Gen4/Tools/SeedtoTime4.cpp \
     Forms/Gen4/Wild4.cpp \
-    Forms/Gen5/Profile/ProfileCalibrator5.cpp \
-    Forms/Gen5/Profile/ProfileEditor5.cpp \
-    Forms/Gen5/Profile/ProfileManager5.cpp \
-    Forms/Gen5/Stationary5.cpp \
     Forms/MainWindow.cpp \
     Forms/Util/EncounterLookup.cpp \
     Forms/Util/IVCalculator.cpp \
@@ -371,7 +340,6 @@ SOURCES += \
     Models/Gen4/SeedtoTimeModel4.cpp \
     Models/Gen4/StationaryModel4.cpp \
     Models/Gen4/WildModel4.cpp \
-    Models/Gen5/ProfileModel5.cpp \
     Models/Util/ResearcherModel.cpp \
     main.cpp
 
