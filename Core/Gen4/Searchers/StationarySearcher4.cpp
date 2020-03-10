@@ -123,6 +123,7 @@ QVector<StationaryFrame> StationarySearcher4::searchMethod1(u8 hp, u8 atk, u8 de
 
     StationaryFrame frame;
     frame.setIVs(hp, atk, def, spa, spd, spe);
+    frame.calculateHiddenPower();
 
     if (!filter.compareHiddenPower(frame))
     {

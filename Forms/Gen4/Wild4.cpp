@@ -304,16 +304,15 @@ void Wild4::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    QVector<u8> min = ui->filterGenerator->getMinIVs();
-    QVector<u8> max = ui->filterGenerator->getMaxIVs();
+    QVector<u8> min = ui->filterSearcher->getMinIVs();
+    QVector<u8> max = ui->filterSearcher->getMaxIVs();
 
-    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(), false, min,
-                       max, ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(),
-                       ui->filterGenerator->getEncounterSlots());
+    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(), false, min, max,
+                       ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), ui->filterSearcher->getEncounterSlots());
 
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
-    u8 genderRatio = ui->filterGenerator->getGenderRatio();
+    u8 genderRatio = ui->filterSearcher->getGenderRatio();
 
     auto *searcher = new WildSearcher4(tid, sid, genderRatio, method, filter);
     searcher->setDelay(ui->textBoxSearcherMinDelay->getUInt(), ui->textBoxSearcherMaxDelay->getUInt());
