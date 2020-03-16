@@ -85,7 +85,7 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 pid) const
     {
         if ((t % sub1) < 0x10000)
         {
-            u32 fullFirst = pid | static_cast<u32>(t / sub1);
+            u32 fullFirst = first | static_cast<u32>(t / sub1);
             u32 fullSecond = XDRNG(fullFirst).nextUInt();
             origin.append(QPair<u32, u32>(fullFirst, fullSecond));
         }
