@@ -335,7 +335,7 @@ void Wild3::profilesIndexChanged(int index)
         if (!flag)
         {
             ui->comboBoxGeneratorEncounter->addItem(tr("Safari Zone"), Encounter::SafariZone);
-            ui->comboBoxSearcherEncounter->addItem(tr("Safari Zone"), Encounter::Grass);
+            ui->comboBoxSearcherEncounter->addItem(tr("Safari Zone"), Encounter::SafariZone);
         }
         ui->comboBoxGeneratorEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
         ui->comboBoxSearcherEncounter->addItem(tr("Rock Smash"), Encounter::RockSmash);
