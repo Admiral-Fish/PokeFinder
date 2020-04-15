@@ -314,7 +314,7 @@ QVariant WildSearcherModel4::data(const QModelIndex &index, int role) const
         case 12:
         case 13:
         case 14:
-            return frame.getIV(static_cast<u8>(column - 8));
+            return frame.getIV(static_cast<u8>(column - 9));
         case 15:
             return Translator::getHiddenPower(frame.getHidden());
         case 16:
