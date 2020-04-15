@@ -101,7 +101,7 @@ QVector<WildFrame> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
     {
         // Setup normal frame
         PokeRNGR rng(val);
-        rng.advanceFrames(method == Method::Method2);
+        rng.advanceFrames(method == Method::MethodH2);
 
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();

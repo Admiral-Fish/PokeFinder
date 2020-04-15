@@ -26,7 +26,7 @@
 
 RNGCache::RNGCache(Method method)
 {
-    if (method == Method::Method4)
+    if (method == Method::Method4 || method == Method::MethodH4)
     {
         k = 0xa29a6900; // Mult * Mult << 8
         mult = 0xc2a29a69; // Mult * Mult

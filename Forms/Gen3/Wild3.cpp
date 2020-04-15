@@ -283,9 +283,9 @@ void Wild3::search()
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
-    auto type = static_cast<Method>(ui->comboBoxGeneratorMethod->getCurrentInt());
+    auto method = static_cast<Method>(ui->comboBoxSearcherMethod->getCurrentInt());
 
-    auto *searcher = new WildSearcher3(tid, sid, genderRatio, type, filter);
+    auto *searcher = new WildSearcher3(tid, sid, genderRatio, method, filter);
     searcher->setEncounter(static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()));
     searcher->setLead(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
     searcher->setEncounterArea(encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()]);
