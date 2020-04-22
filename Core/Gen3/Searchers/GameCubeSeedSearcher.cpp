@@ -221,7 +221,6 @@ void GameCubeSeedSearcher::searchChannel()
         if (flag)
         {
             seeds.append(rng.getSeed());
-            return;
         }
     }
 }

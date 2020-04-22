@@ -136,7 +136,7 @@ namespace Translator
         }
 
         QStringList locations;
-        for (const u8 &num : nums)
+        for (const u8 num : nums)
         {
             locations.append(map[num]);
         }
