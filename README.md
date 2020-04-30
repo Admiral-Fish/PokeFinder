@@ -1,6 +1,4 @@
 # PokéFinder
-[![Build status](https://ci.appveyor.com/api/projects/status/github/Admiral-Fish/PokeFinder?branch=master&svg=true)](https://ci.appveyor.com/project/Admiral-Fish/PokeFinder)
-[![Build Status](https://travis-ci.org/Admiral-Fish/PokeFinder.svg?branch=master)](https://travis-ci.org/Admiral-Fish/PokeFinder) 
 
 Join the PokéFinder Discord server to talk about development and contribute.
 
@@ -68,7 +66,7 @@ MacOS
 
 Linux
 - Install the dependencies
-  - sudo add-apt-repository ppa:beineri/opt-qt-5.14.1-bionic
+  - sudo add-apt-repository ppa:beineri/opt-qt-5.14.2-bionic
   - sudo apt-get update -qq
   - sudo apt-get -y install qt514base qt514svg qt514tools libgl1-mesa-dev
   - source /opt/qt5*/bin/qt5*-env.sh
