@@ -259,7 +259,7 @@ void SeedtoTime4::dpptGenerate()
     dpptModel->clearModel();
 
     QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::Diamond);
-    ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + Utilities::coinFlips(seed, 15));
+    ui->labelDPPtCoinFlips->setText(tr("Coin Flips: ") + Utilities::coinFlips(seed));
 
     dpptModel->addItems(results);
 }
@@ -314,7 +314,7 @@ void SeedtoTime4::hgssGenerate()
     HGSSRoamer info(seed, roamer, routes);
 
     QVector<DateTime> results = generate(seed, year, forceSecond, forcedSecond, Game::HeartGold);
-    ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + Utilities::getCalls(seed, 15, info));
+    ui->labelHGSSElmCalls->setText(tr("Elm Calls: ") + Utilities::getCalls(seed, info));
     QString str = info.getRouteString();
     str = str.isEmpty() ? tr("No roamers") : str;
     ui->labelHGSSRoamers->setText(tr("Roamers: ") + str);

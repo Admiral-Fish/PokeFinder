@@ -29,8 +29,8 @@ namespace Utilities
 {
     u16 calcGen3Seed(const QDateTime &dateTime);
     u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    QString coinFlips(u32 seed, u8 flips);
-    QString getCalls(u32 seed, u8 num, const HGSSRoamer &info);
+    QString coinFlips(u32 seed);
+    QString getCalls(u32 seed, const HGSSRoamer &info);
 }
 
 #endif // UTILITIES_HPP

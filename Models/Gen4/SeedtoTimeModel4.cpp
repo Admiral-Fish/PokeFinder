@@ -60,8 +60,8 @@ QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const
             case 3:
                 return frame.getDelay();
             case 4:
-                return (version & Game::HGSS) ? Utilities::getCalls(frame.getSeed(), 15, frame.getInfo())
-                                              : Utilities::coinFlips(frame.getSeed(), 15);
+                return (version & Game::HGSS) ? Utilities::getCalls(frame.getSeed(), frame.getInfo())
+                                              : Utilities::coinFlips(frame.getSeed());
             case 5:
             {
                 QString str = frame.getInfo().getRouteString();

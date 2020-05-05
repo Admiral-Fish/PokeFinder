@@ -42,7 +42,7 @@ DateTime::DateTime(const QDateTime &dateTime, u32 delay, Game version, const HGS
 
 QString DateTime::sequence() const
 {
-    return (version & Game::HGSS) ? Utilities::getCalls(seed, 15, info) : Utilities::coinFlips(seed, 15);
+    return (version & Game::HGSS) ? Utilities::getCalls(seed, info) : Utilities::coinFlips(seed);
 }
 
 QString DateTime::getDate() const

@@ -76,7 +76,7 @@ void SearchCoinFlips::flipsTextChanged(const QString &val)
     possible.clear();
     for (const auto &dt : data)
     {
-        QStringList compare = Utilities::coinFlips(dt.getSeed(), 15).split(",", QString::SkipEmptyParts);
+        QStringList compare = Utilities::coinFlips(dt.getSeed()).split(",", QString::SkipEmptyParts);
 
         bool pass = true;
         for (int j = 0; j < results.size(); j++)

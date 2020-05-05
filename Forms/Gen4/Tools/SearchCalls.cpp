@@ -90,7 +90,7 @@ void SearchCalls::callsTextChanged(const QString &val)
     possible.clear();
     for (const auto &dt : data)
     {
-        QString str = Utilities::getCalls(dt.getSeed(), 15, dt.getInfo());
+        QString str = Utilities::getCalls(dt.getSeed(), dt.getInfo());
 
         if (str.contains("skipped"))
         {

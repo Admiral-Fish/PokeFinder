@@ -48,13 +48,13 @@ namespace Utilities
         return static_cast<u32>(((ab << 24) | (cd << 16))) + delay;
     }
 
-    QString coinFlips(u32 seed, u8 flips)
+    QString coinFlips(u32 seed)
     {
         QStringList coins;
 
         MersenneTwister rng(seed);
 
-        for (u8 i = 0; i < flips; i++)
+        for (u8 i = 0; i < 20; i++)
         {
             coins.append((rng.nextUInt() & 1) == 0 ? "T" : "H");
         }
@@ -62,7 +62,7 @@ namespace Utilities
         return coins.join(", ");
     }
 
-    QString getCalls(u32 seed, u8 num, const HGSSRoamer &info)
+    QString getCalls(u32 seed, const HGSSRoamer &info)
     {
         QString calls = "";
 
@@ -74,13 +74,13 @@ namespace Utilities
 
         PokeRNG rng(seed);
 
-        for (u8 i = 0; i < num + skips; i++)
+        for (u8 i = 0; i < 20 + skips; i++)
         {
             u8 call = rng.nextUShort() % 3;
 
             calls += call == 0 ? "E" : call == 1 ? "K" : "P";
 
-            if (i != (num + skips - 1))
+            if (i != (20 + skips - 1))
             {
                 if (skips != 0 && skips == i + 1)
                 {
