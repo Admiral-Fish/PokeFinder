@@ -49,6 +49,7 @@ private:
     Profile4 currentProfile;
     EggGeneratorModel4 *generatorModel = nullptr;
     EggSearcherModel4 *searcherModel = nullptr;
+    QMenu *generatorMenu = nullptr;
     QMenu *searcherMenu = nullptr;
 
     void setupModels();
@@ -58,6 +59,7 @@ private slots:
     void generate();
     void search();
     void profilesIndexChanged(int index);
+    void tableViewGeneratorContextMenu(QPoint pos);
     void tableViewSearcherContextMenu(QPoint pos);
     void seedToTime();
     void profileManager();

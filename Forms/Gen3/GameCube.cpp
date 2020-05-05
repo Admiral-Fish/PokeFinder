@@ -28,7 +28,6 @@
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 #include <Models/Gen3/GameCubeModel.hpp>
-#include <QClipboard>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -93,6 +92,7 @@ void GameCube::setupModels()
 {
     generatorModel = new GameCubeGeneratorModel(ui->tableViewGenerator);
     searcherModel = new GameCubeSearcherModel(ui->tableViewSearcher, Method::XDColo);
+
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 
@@ -114,11 +114,9 @@ void GameCube::setupModels()
     connect(outputTXTGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(); });
     connect(outputCSVGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(true); });
 
-    QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-    connect(copySeedToClipboard, &QAction::triggered, this, &GameCube::copySeedToClipboard);
     connect(seedToTime, &QAction::triggered, this, &GameCube::seedToTime);
     connect(outputTXTSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(); });
     connect(outputCSVSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(true); });
@@ -394,14 +392,6 @@ void GameCube::seedToTime()
     auto *rtc = new GameCubeRTC(seed);
     rtc->show();
     rtc->raise();
-}
-
-void GameCube::copySeedToClipboard()
-{
-    QModelIndex index = ui->tableViewSearcher->currentIndex();
-    index = searcherModel->index(index.row(), 0);
-
-    QApplication::clipboard()->setText(searcherModel->data(index).toString());
 }
 
 void GameCube::profileManager()

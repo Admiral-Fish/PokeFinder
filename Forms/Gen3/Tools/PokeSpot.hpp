@@ -20,7 +20,7 @@
 #ifndef POKESPOT_HPP
 #define POKESPOT_HPP
 
-#include <QWidget>
+#include <QMenu>
 
 class PokeSpotModel;
 
@@ -39,11 +39,13 @@ public:
 private:
     Ui::PokeSpot *ui;
     PokeSpotModel *model = nullptr;
+    QMenu *menu = nullptr;
 
     void setupModels();
 
 private slots:
     void generate();
+    void tableViewContextMenu(QPoint pos);
 };
 
 #endif // POKESPOT_HPP

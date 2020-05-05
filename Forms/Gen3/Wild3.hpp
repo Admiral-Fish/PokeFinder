@@ -69,7 +69,6 @@ private slots:
     void tableViewGeneratorContextMenu(QPoint pos);
     void tableViewSearcherContextMenu(QPoint pos);
     void seedToTime();
-    void copySeedToClipboard();
     void generatorLead();
     void generatorEncounterIndexChanged(int index);
     void searcherEncounterIndexChanged(int index);

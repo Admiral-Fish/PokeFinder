@@ -52,9 +52,6 @@
    </item>
    <item row="2" column="0" colspan="3">
     <widget class="TableView" name="tableView">
-     <property name="contextMenuPolicy">
-      <enum>Qt::CustomContextMenu</enum>
-     </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>

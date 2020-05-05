@@ -21,7 +21,7 @@
 #define PIDTOIVS_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QMenu>
+#include <QWidget>
 
 class PIDIVModel;
 
@@ -40,14 +40,11 @@ public:
 private:
     Ui::PIDIV *ui;
     PIDIVModel *model = nullptr;
-    QMenu *contextMenu = nullptr;
 
     void setupModels();
 
 private slots:
     void generate();
-    void tableViewContextMenu(QPoint pos);
-    void copySeed();
 };
 
 #endif // PIDTOIVS_HPP

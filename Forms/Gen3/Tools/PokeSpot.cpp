@@ -51,6 +51,8 @@ void PokeSpot::setupModels()
     model = new PokeSpotModel(ui->tableView);
     ui->tableView->setModel(model);
 
+    menu = new QMenu(ui->tableView);
+
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
     ui->textBoxStartingFrame->setValues(InputType::Frame32Bit);
     ui->textBoxMaxResults->setValues(InputType::Frame32Bit);
@@ -62,7 +64,13 @@ void PokeSpot::setupModels()
 
     ui->comboBoxSpotType->setup();
 
+    QAction *outputTXT = menu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSV = menu->addAction(tr("Output Results to CSV"));
+    connect(outputTXT, &QAction::triggered, this, [=] { ui->tableView->outputModel(); });
+    connect(outputCSV, &QAction::triggered, this, [=] { ui->tableView->outputModel(true); });
+
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &PokeSpot::generate);
+    connect(ui->tableView, &QTableView::customContextMenuRequested, this, &PokeSpot::tableViewContextMenu);
 
     QSettings setting;
     setting.beginGroup("pokespot");
@@ -100,4 +108,12 @@ void PokeSpot::generate()
 
     auto frames = generator.generate(seed);
     model->addItems(frames);
+}
+
+void PokeSpot::tableViewContextMenu(QPoint pos)
+{
+    if (model->rowCount() > 0)
+    {
+        menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
+    }
 }

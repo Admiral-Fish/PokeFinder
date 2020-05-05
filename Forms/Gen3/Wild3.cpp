@@ -91,6 +91,7 @@ void Wild3::setupModels()
 {
     generatorModel = new WildGeneratorModel3(ui->tableViewGenerator);
     searcherModel = new WildSearcherModel3(ui->tableViewSearcher);
+
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 
@@ -115,11 +116,9 @@ void Wild3::setupModels()
     connect(outputTXTGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(); });
     connect(outputCSVGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(true); });
 
-    QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-    connect(copySeedToClipboard, &QAction::triggered, this, &Wild3::copySeedToClipboard);
     connect(seedToTime, &QAction::triggered, this, &Wild3::seedToTime);
     connect(outputTXTSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(); });
     connect(outputCSVSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(true); });
@@ -378,14 +377,6 @@ void Wild3::seedToTime()
     auto *seedToTime = new SeedTime3(seed);
     seedToTime->show();
     seedToTime->raise();
-}
-
-void Wild3::copySeedToClipboard()
-{
-    QModelIndex index = ui->tableViewSearcher->currentIndex();
-    index = searcherModel->index(index.row(), 0);
-
-    QApplication::clipboard()->setText(searcherModel->data(index).toString());
 }
 
 void Wild3::generatorLead()

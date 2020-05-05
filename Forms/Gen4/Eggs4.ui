@@ -97,6 +97,9 @@
    </item>
    <item row="1" column="0">
     <widget class="QTabWidget" name="tabEggSelection">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
      <widget class="QWidget" name="tabGenerator">
       <attribute name="title">
        <string>Generator</string>
@@ -205,6 +208,9 @@
        </item>
        <item row="1" column="0" colspan="2">
         <widget class="TableView" name="tableViewGenerator">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
          <attribute name="verticalHeaderVisible">
           <bool>false</bool>
          </attribute>
@@ -442,14 +448,14 @@
    <header>Forms/Controls/TextBox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>Forms/Controls/TableView.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>Filter</class>

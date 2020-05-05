@@ -50,6 +50,8 @@ void Researcher::setupModels()
     ui->tableView->setModel(model);
     resizeHeader();
 
+    menu = new QMenu(ui->tableView);
+
     ui->textBoxInitialFrame->setValues(InputType::Frame64Bit);
     ui->textBoxMaxResults->setValues(InputType::Frame64Bit);
     ui->textBoxSeed->setValues(InputType::Seed64Bit);
@@ -96,10 +98,16 @@ void Researcher::setupModels()
     keys[tr("Previous 8")] = 22;
     keys[tr("Previous 9")] = 23;
 
+    QAction *outputTXT = menu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSV = menu->addAction(tr("Output Results to CSV"));
+    connect(outputTXT, &QAction::triggered, this, [=] { ui->tableView->outputModel(); });
+    connect(outputCSV, &QAction::triggered, this, [=] { ui->tableView->outputModel(true); });
+
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Researcher::generate);
     connect(ui->rngSelection, &QTabWidget::currentChanged, this, &Researcher::selectionIndexChanged);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Researcher::search);
     connect(ui->pushButtonNext, &QPushButton::clicked, this, &Researcher::next);
+    connect(ui->tableView, &QTableView::customContextMenuRequested, this, &Researcher::tableViewContextMenu);
 
     QSettings setting;
     if (setting.contains("researcher/geometry"))
@@ -490,5 +498,13 @@ void Researcher::next()
         error.setText(tr("No result found"));
         error.exec();
         return;
+    }
+}
+
+void Researcher::tableViewContextMenu(QPoint pos)
+{
+    if (model->rowCount() > 0)
+    {
+        menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
     }
 }

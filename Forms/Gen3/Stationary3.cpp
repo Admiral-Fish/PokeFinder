@@ -28,7 +28,6 @@
 #include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Tools/SeedTime3.hpp>
 #include <Models/Gen3/StationaryModel3.hpp>
-#include <QClipboard>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -86,6 +85,7 @@ void Stationary3::setupModels()
 {
     generatorModel = new StationaryGeneratorModel3(ui->tableViewGenerator);
     searcherModel = new StationarySearcherModel3(ui->tableViewSearcher);
+
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 
@@ -107,11 +107,9 @@ void Stationary3::setupModels()
     connect(outputTXTGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(); });
     connect(outputCSVGenerator, &QAction::triggered, this, [=] { ui->tableViewGenerator->outputModel(true); });
 
-    QAction *copySeedToClipboard = searcherMenu->addAction(tr("Copy Seed to Clipboard"));
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
     QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
-    connect(copySeedToClipboard, &QAction::triggered, this, &Stationary3::copySeedToClipboard);
     connect(seedToTime, &QAction::triggered, this, &Stationary3::seedToTime);
     connect(outputTXTSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(); });
     connect(outputCSVSearcher, &QAction::triggered, this, [=] { ui->tableViewSearcher->outputModel(true); });
@@ -225,7 +223,6 @@ void Stationary3::tableViewGeneratorContextMenu(QPoint pos)
 {
     if (generatorModel->rowCount() > 0)
     {
-
         generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
     }
 }
@@ -247,14 +244,6 @@ void Stationary3::seedToTime()
     auto *seedToTime = new SeedTime3(seed);
     seedToTime->show();
     seedToTime->raise();
-}
-
-void Stationary3::copySeedToClipboard()
-{
-    QModelIndex index = ui->tableViewSearcher->currentIndex();
-    index = searcherModel->index(index.row(), 0);
-
-    QApplication::clipboard()->setText(searcherModel->data(index).toString());
 }
 
 void Stationary3::profileManager()

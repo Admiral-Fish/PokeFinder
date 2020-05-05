@@ -62,7 +62,6 @@ private slots:
     void tableViewGeneratorContextMenu(QPoint pos);
     void tableViewSearcherContextMenu(QPoint pos);
     void seedToTime();
-    void copySeedToClipboard();
     void profileManager();
 };
 

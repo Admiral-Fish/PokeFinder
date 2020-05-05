@@ -77,6 +77,10 @@ void Eggs3::setupModels()
     rs = new EggModel3(ui->tableViewRS, Method::RSBred);
     frlg = new EggModel3(ui->tableViewFRLG, Method::FRLGBred);
 
+    emeraldMenu = new QMenu(ui->tableViewEmerald);
+    rsMenu = new QMenu(ui->tableViewRS);
+    frlgMenu = new QMenu(ui->tableViewFRLG);
+
     ui->tableViewEmerald->setModel(emerald);
     ui->tableViewRS->setModel(rs);
     ui->tableViewFRLG->setModel(frlg);
@@ -115,6 +119,21 @@ void Eggs3::setupModels()
     ui->filterRS->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
     ui->filterFRLG->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
+    QAction *outputTXTEmerald = emeraldMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVEmerald = emeraldMenu->addAction(tr("Output Results to CSV"));
+    connect(outputTXTEmerald, &QAction::triggered, this, [=] { ui->tableViewEmerald->outputModel(); });
+    connect(outputCSVEmerald, &QAction::triggered, this, [=] { ui->tableViewEmerald->outputModel(true); });
+
+    QAction *outputTXTRS = rsMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVRS = rsMenu->addAction(tr("Output Results to CSV"));
+    connect(outputTXTRS, &QAction::triggered, this, [=] { ui->tableViewRS->outputModel(); });
+    connect(outputCSVRS, &QAction::triggered, this, [=] { ui->tableViewRS->outputModel(true); });
+
+    QAction *outputTXTFRLG = frlgMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVFRLG = frlgMenu->addAction(tr("Output Results to CSV"));
+    connect(outputTXTFRLG, &QAction::triggered, this, [=] { ui->tableViewFRLG->outputModel(); });
+    connect(outputCSVFRLG, &QAction::triggered, this, [=] { ui->tableViewFRLG->outputModel(true); });
+
     connect(ui->pushButtonEmeraldGenerate, &QPushButton::clicked, this, &Eggs3::emeraldGenerate);
     connect(ui->pushButtonRSGenerate, &QPushButton::clicked, this, &Eggs3::rsGenerate);
     connect(ui->pushButtonFRLGGenerate, &QPushButton::clicked, this, &Eggs3::frlgGenerate);
@@ -122,6 +141,9 @@ void Eggs3::setupModels()
     connect(ui->eggSettingsEmerald, &EggSettings::toggleInheritance, emerald, &EggModel3::toggleInheritance);
     connect(ui->eggSettingsRS, &EggSettings::toggleInheritance, rs, &EggModel3::toggleInheritance);
     connect(ui->eggSettingsFRLG, &EggSettings::toggleInheritance, frlg, &EggModel3::toggleInheritance);
+    connect(ui->tableViewEmerald, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewEmeraldContextMenu);
+    connect(ui->tableViewRS, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewRSContextMenu);
+    connect(ui->tableViewFRLG, &QTableView::customContextMenuRequested, this, &Eggs3::tableViewFRLGContextMenu);
 
     QSettings setting;
     if (setting.contains("eggs3/geometry"))
@@ -222,6 +244,30 @@ void Eggs3::profilesIndexChanged(int index)
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+    }
+}
+
+void Eggs3::tableViewEmeraldContextMenu(QPoint pos)
+{
+    if (emerald->rowCount() > 0)
+    {
+        emeraldMenu->popup(ui->tableViewEmerald->viewport()->mapToGlobal(pos));
+    }
+}
+
+void Eggs3::tableViewRSContextMenu(QPoint pos)
+{
+    if (rs->rowCount() > 0)
+    {
+        rsMenu->popup(ui->tableViewRS->viewport()->mapToGlobal(pos));
+    }
+}
+
+void Eggs3::tableViewFRLGContextMenu(QPoint pos)
+{
+    if (frlg->rowCount() > 0)
+    {
+        frlgMenu->popup(ui->tableViewFRLG->viewport()->mapToGlobal(pos));
     }
 }
 

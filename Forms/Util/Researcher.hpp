@@ -22,6 +22,7 @@
 
 #include <Core/Util/Global.hpp>
 #include <QHash>
+#include <QMenu>
 #include <QMessageBox>
 
 class ResearcherFrame;
@@ -42,6 +43,7 @@ public:
 private:
     Ui::Researcher *ui;
     ResearcherModel *model = nullptr;
+    QMenu *menu = nullptr;
     QHash<QString, u8> keys;
 
     void setupModels();
@@ -54,6 +56,7 @@ private slots:
     void selectionIndexChanged(int index);
     void search();
     void next();
+    void tableViewContextMenu(QPoint pos);
 };
 
 #endif // RESEARCHER_HPP

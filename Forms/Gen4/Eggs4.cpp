@@ -87,7 +87,9 @@ void Eggs4::setupModels()
 {
     generatorModel = new EggGeneratorModel4(ui->tableViewGenerator, Method::DPPtIVs);
     searcherModel = new EggSearcherModel4(ui->tableViewSearcher, Method::DPPtIVs);
-    searcherMenu = new QMenu(this);
+
+    generatorMenu = new QMenu(ui->tableViewGenerator);
+    searcherMenu = new QMenu(ui->tableViewSearcher);
 
     ui->tableViewGenerator->setModel(generatorModel);
     ui->tableViewSearcher->setModel(searcherModel);
@@ -108,11 +110,21 @@ void Eggs4::setupModels()
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
     ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::UseDelay | Controls::DisableFilter);
 
+    QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
+    connect(outputTXTGenerator, &QAction::triggered, [=] { ui->tableViewGenerator->outputModel(); });
+    connect(outputCSVGenerator, &QAction::triggered, [=] { ui->tableViewGenerator->outputModel(true); });
+
     QAction *seedToTime = searcherMenu->addAction(tr("Generate times for seed"));
+    QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
     connect(seedToTime, &QAction::triggered, this, &Eggs4::seedToTime);
+    connect(outputTXTSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(); });
+    connect(outputCSVSearcher, &QAction::triggered, [=] { ui->tableViewSearcher->outputModel(true); });
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Eggs4::generate);
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Eggs4::search);
+    connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Eggs4::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Eggs4::tableViewSearcherContextMenu);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Eggs4::profileManager);
     connect(ui->eggSettingsGenerator, &EggSettings::toggleInheritance, generatorModel, &EggGeneratorModel4::toggleInheritance);
@@ -272,6 +284,14 @@ void Eggs4::profilesIndexChanged(int index)
         ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
         ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
         ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+    }
+}
+
+void Eggs4::tableViewGeneratorContextMenu(QPoint pos)
+{
+    if (generatorModel->rowCount() > 0)
+    {
+        generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
     }
 }
 

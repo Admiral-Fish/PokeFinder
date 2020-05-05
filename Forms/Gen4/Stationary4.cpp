@@ -86,6 +86,7 @@ void Stationary4::setupModels()
 {
     generatorModel = new StationaryGeneratorModel4(ui->tableViewGenerator, Method::Method1);
     searcherModel = new StationarySearcherModel4(ui->tableViewSearcher, Method::Method1);
+
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 

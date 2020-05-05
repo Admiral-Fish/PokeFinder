@@ -90,6 +90,7 @@ void Wild4::setupModels()
 {
     generatorModel = new WildGeneratorModel4(ui->tableViewGenerator, Method::MethodJ);
     searcherModel = new WildSearcherModel4(ui->tableViewSearcher, Method::Method1);
+
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 

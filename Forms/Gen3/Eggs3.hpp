@@ -21,6 +21,7 @@
 #define EGGS3_HPP
 
 #include <Core/Gen3/Profile3.hpp>
+#include <QMenu>
 #include <QWidget>
 
 class EggModel3;
@@ -48,6 +49,9 @@ private:
     EggModel3 *emerald = nullptr;
     EggModel3 *rs = nullptr;
     EggModel3 *frlg = nullptr;
+    QMenu *emeraldMenu = nullptr;
+    QMenu *rsMenu = nullptr;
+    QMenu *frlgMenu = nullptr;
 
     void setupModels();
 
@@ -56,6 +60,9 @@ private slots:
     void rsGenerate();
     void frlgGenerate();
     void profilesIndexChanged(int index);
+    void tableViewEmeraldContextMenu(QPoint pos);
+    void tableViewRSContextMenu(QPoint pos);
+    void tableViewFRLGContextMenu(QPoint pos);
     void profileManager();
 };
 
