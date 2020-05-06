@@ -221,7 +221,7 @@ void Wild4::updateLocationsSearcher()
 
 void Wild4::updatePokemonGenerator()
 {
-    auto area = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentIndex());
+    auto area = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt());
     QVector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
@@ -236,7 +236,7 @@ void Wild4::updatePokemonGenerator()
 
 void Wild4::updatePokemonSearcher()
 {
-    auto area = encounterSearcher.at(ui->comboBoxSearcherLocation->currentIndex());
+    auto area = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt());
     QVector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
