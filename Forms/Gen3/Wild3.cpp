@@ -161,9 +161,15 @@ void Wild3::updateLocationsGenerator()
     }
 
     QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
+    QVector<int> indices(locations.size());
+    std::iota(indices.begin(), indices.end(), 0);
+    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
 
     ui->comboBoxGeneratorLocation->clear();
-    ui->comboBoxGeneratorLocation->addItems(locations);
+    for (int index : indices)
+    {
+        ui->comboBoxGeneratorLocation->addItem(locations.at(index), index);
+    }
 }
 
 void Wild3::updateLocationsSearcher()
@@ -178,14 +184,20 @@ void Wild3::updateLocationsSearcher()
     }
 
     QStringList locations = Translator::getLocations(locs, currentProfile.getVersion());
+    QVector<int> indices(locations.size());
+    std::iota(indices.begin(), indices.end(), 0);
+    std::sort(indices.begin(), indices.end(), [&locations](int i, int j) { return locations[i] < locations[j]; });
 
     ui->comboBoxSearcherLocation->clear();
-    ui->comboBoxSearcherLocation->addItems(locations);
+    for (int index : indices)
+    {
+        ui->comboBoxSearcherLocation->addItem(locations.at(index), index);
+    }
 }
 
 void Wild3::updatePokemonGenerator()
 {
-    auto area = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentIndex());
+    auto area = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt());
     QVector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
@@ -200,7 +212,7 @@ void Wild3::updatePokemonGenerator()
 
 void Wild3::updatePokemonSearcher()
 {
-    auto area = encounterSearcher.at(ui->comboBoxSearcherLocation->currentIndex());
+    auto area = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt());
     QVector<u16> species = area.getUniqueSpecies();
 
     QStringList names = area.getSpecieNames();
@@ -242,7 +254,7 @@ void Wild3::generate()
 
     WildGenerator3 generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter);
     generator.setEncounter(static_cast<Encounter>(ui->comboBoxGeneratorEncounter->currentData().toInt()));
-    generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentIndex()]);
+    generator.setEncounterArea(encounterGenerator[ui->comboBoxGeneratorLocation->currentData().toInt()]);
     generator.setOffset(offset);
 
     if (ui->pushButtonGeneratorLead->text() == tr("Cute Charm"))
@@ -287,7 +299,7 @@ void Wild3::search()
     auto *searcher = new WildSearcher3(tid, sid, genderRatio, method, filter);
     searcher->setEncounter(static_cast<Encounter>(ui->comboBoxSearcherEncounter->currentData().toInt()));
     searcher->setLead(static_cast<Lead>(ui->comboBoxSearcherLead->currentData().toInt()));
-    searcher->setEncounterArea(encounterSearcher[ui->comboBoxSearcherLocation->currentIndex()]);
+    searcher->setEncounterArea(encounterSearcher[ui->comboBoxSearcherLocation->currentData().toInt()]);
 
     int maxProgress = 1;
     for (u8 i = 0; i < 6; i++)
@@ -495,7 +507,7 @@ void Wild3::generatorPokemonIndexChanged(int index)
     else
     {
         u16 num = static_cast<u16>(ui->comboBoxGeneratorPokemon->currentData().toUInt());
-        QVector<bool> flags = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentIndex()).getSlots(num);
+        QVector<bool> flags = encounterGenerator.at(ui->comboBoxGeneratorLocation->currentData().toInt()).getSlots(num);
 
         ui->filterGenerator->toggleEncounterSlots(flags);
     }
@@ -510,7 +522,7 @@ void Wild3::searcherPokemonIndexChanged(int index)
     else
     {
         u16 num = static_cast<u16>(ui->comboBoxSearcherPokemon->currentData().toUInt());
-        QVector<bool> flags = encounterSearcher.at(ui->comboBoxSearcherLocation->currentIndex()).getSlots(num);
+        QVector<bool> flags = encounterSearcher.at(ui->comboBoxSearcherLocation->currentData().toInt()).getSlots(num);
 
         ui->filterSearcher->toggleEncounterSlots(flags);
     }
