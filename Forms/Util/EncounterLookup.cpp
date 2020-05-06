@@ -206,21 +206,17 @@ void EncounterLookup::find()
     if (game & Game::FRLG || game & Game::RSE)
     {
         encounters = getEncounters3(game, specie);
-        for (const auto &encounter : encounters)
-        {
-            locations.append(encounter.first);
-        }
-        locationNames = Translator::getLocations(locations, game);
     }
     else if (game & Game::DPPt || game & Game::HGSS)
     {
         encounters = getEncounters4(game, specie);
-        for (const auto &encounter : encounters)
-        {
-            locations.append(encounter.first);
-        }
-        locationNames = Translator::getLocations(locations, game);
     }
+
+    for (const auto &encounter : encounters)
+    {
+        locations.append(encounter.first);
+    }
+    locationNames = Translator::getLocations(locations, game);
 
     u16 i = 0;
     for (const auto &encounter : encounters)
