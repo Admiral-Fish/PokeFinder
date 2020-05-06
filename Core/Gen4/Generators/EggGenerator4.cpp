@@ -142,7 +142,7 @@ QVector<EggFrame4> EggGenerator4::generateDPPtIVs(u32 seed) const
 
         if (filter.compareIVs(frame))
         {
-            frame.setSeed(rng.getSeed());
+            frame.setSeed(iv1);
             frames.append(frame);
         }
     }
@@ -180,7 +180,7 @@ QVector<EggFrame4> EggGenerator4::generateHGSSIVs(u32 seed) const
 
         if (filter.compareIVs(frame))
         {
-            frame.setSeed(rng.getSeed());
+            frame.setSeed(iv1);
             frames.append(frame);
         }
     }
