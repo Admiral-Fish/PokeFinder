@@ -226,27 +226,16 @@ namespace Encounters4
             QVector<EncounterArea4> encounters;
             u8 location = static_cast<u8>(getValue(data, 0, 1));
 
+            // Grass
             if (getValue(data, 1, 1) == 1)
             {
-                int t;
-                if (time == 0)
-                {
-                    t = 1;
-                }
-                else if (time == 1)
-                {
-                    t = 3;
-                }
-                else
-                {
-                    t = 5;
-                }
+                int timeOffset = (time * 2) + 1;
 
                 QVector<Slot> grass;
                 for (int i = 0; i < 12; i++)
                 {
                     u8 level = static_cast<u8>(getValue(data, 4 + i * 7, 1));
-                    u16 specie = getValue(data, 4 + t + i * 7, 2);
+                    u16 specie = getValue(data, 4 + timeOffset + i * 7, 2);
                     grass.append(Slot(specie, level, info.at(specie)));
                 }
 
@@ -255,6 +244,8 @@ namespace Encounters4
 
                 encounters.append(EncounterArea4(location, Encounter::Grass, grass));
             }
+
+            // Rock Smash
             if (getValue(data, 2, 1) == 1)
             {
                 QVector<Slot> rock;
@@ -267,48 +258,75 @@ namespace Encounters4
                 }
                 encounters.append(EncounterArea4(location, Encounter::RockSmash, rock));
             }
+
+            // Water
             if (getValue(data, 3, 1) == 1)
             {
                 QVector<Slot> surf;
+                QVector<Slot> old;
+                QVector<Slot> good;
+                QVector<Slot> super;
                 for (int i = 0; i < 5; i++)
                 {
                     u8 min = static_cast<u8>(getValue(data, 104 + i * 4, 1));
                     u8 max = static_cast<u8>(getValue(data, 105 + i * 4, 1));
                     u16 specie = getValue(data, 106 + i * 4, 2);
                     surf.append(Slot(specie, min, max, info.at(specie)));
+
+                    min = static_cast<u8>(getValue(data, 124 + i * 4, 1));
+                    max = static_cast<u8>(getValue(data, 125 + i * 4, 1));
+                    specie = getValue(data, 126 + i * 4, 2);
+                    old.append(Slot(specie, min, max, info.at(specie)));
+
+                    min = static_cast<u8>(getValue(data, 144 + i * 4, 1));
+                    max = static_cast<u8>(getValue(data, 145 + i * 4, 1));
+                    specie = getValue(data, 146 + i * 4, 2);
+
+                    // Replace Corsula with Staryu at night
+                    // Replace slot 3 with Gyrados at Mt. Silver 2F at night
+                    if (time == 2)
+                    {
+                        if (specie == 222)
+                        {
+                            specie = 120;
+                        }
+                        else if (location == 68 && i == 3)
+                        {
+                            specie = 130;
+                        }
+                    }
+
+                    good.append(Slot(specie, min, max, info.at(specie)));
+
+                    min = static_cast<u8>(getValue(data, 164 + i * 4, 1));
+                    max = static_cast<u8>(getValue(data, 165 + i * 4, 1));
+                    specie = getValue(data, 166 + i * 4, 2);
+
+                    // Replace Corsula with Staryu at night
+                    // Replace slot 1 with Gyrados at Mt. Silver 2F at night
+                    if (time == 2)
+                    {
+                        if (specie == 222)
+                        {
+                            specie = 120;
+                        }
+                        else if (location == 68 && i == 1)
+                        {
+                            specie = 130;
+                        }
+                    }
+
+                    super.append(Slot(specie, min, max, info.at(specie)));
                 }
+
                 modifySwarmHGSS(surf, data, info, encounter, profile.getSwarm());
                 encounters.append(EncounterArea4(location, Encounter::Surfing, surf));
 
-                QVector<Slot> old;
-                for (int i = 0; i < 5; i++)
-                {
-                    u8 min = static_cast<u8>(getValue(data, 124 + i * 4, 1));
-                    u8 max = static_cast<u8>(getValue(data, 125 + i * 4, 1));
-                    u16 specie = getValue(data, 126 + i * 4, 2);
-                    old.append(Slot(specie, min, max, info.at(specie)));
-                }
                 encounters.append(EncounterArea4(location, Encounter::OldRod, old));
 
-                QVector<Slot> good;
-                for (int i = 0; i < 5; i++)
-                {
-                    u8 min = static_cast<u8>(getValue(data, 144 + i * 4, 1));
-                    u8 max = static_cast<u8>(getValue(data, 145 + i * 4, 1));
-                    u16 specie = getValue(data, 146 + i * 4, 2);
-                    good.append(Slot(specie, min, max, info.at(specie)));
-                }
                 modifySwarmHGSS(good, data, info, encounter, profile.getSwarm());
                 encounters.append(EncounterArea4(location, Encounter::GoodRod, good));
 
-                QVector<Slot> super;
-                for (int i = 0; i < 5; i++)
-                {
-                    u8 min = static_cast<u8>(getValue(data, 164 + i * 4, 1));
-                    u8 max = static_cast<u8>(getValue(data, 165 + i * 4, 1));
-                    u16 specie = getValue(data, 166 + i * 4, 2);
-                    super.append(Slot(specie, min, max, info.at(specie)));
-                }
                 modifySwarmHGSS(super, data, info, encounter, profile.getSwarm());
                 encounters.append(EncounterArea4(location, Encounter::SuperRod, super));
             }
@@ -320,6 +338,7 @@ namespace Encounters4
             QVector<EncounterArea4> encounters;
             u8 location = static_cast<u8>(getValue(data, 0, 1));
 
+            // Grass
             if (getValue(data, 1, 1) == 1)
             {
                 QVector<Slot> grass;
@@ -337,46 +356,40 @@ namespace Encounters4
 
                 encounters.append(EncounterArea4(location, Encounter::Grass, grass));
             }
+
+            // Water
             if (getValue(data, 2, 1) == 1)
             {
                 QVector<Slot> surf;
+                QVector<Slot> old;
+                QVector<Slot> good;
+                QVector<Slot> super;
                 for (int i = 0; i < 5; i++)
                 {
                     u8 min = static_cast<u8>(getValue(data, 79 + i * 4, 1));
                     u8 max = static_cast<u8>(getValue(data, 80 + i * 4, 1));
                     u16 specie = getValue(data, 81 + i * 4, 2);
                     surf.append(Slot(specie, min, max, info.at(specie)));
-                }
-                encounters.append(EncounterArea4(location, Encounter::Surfing, surf));
 
-                QVector<Slot> old;
-                for (int i = 0; i < 5; i++)
-                {
-                    u8 min = static_cast<u8>(getValue(data, 99 + i * 4, 1));
-                    u8 max = static_cast<u8>(getValue(data, 100 + i * 4, 1));
-                    u16 specie = getValue(data, 101 + i * 4, 2);
+                    min = static_cast<u8>(getValue(data, 99 + i * 4, 1));
+                    max = static_cast<u8>(getValue(data, 100 + i * 4, 1));
+                    specie = getValue(data, 101 + i * 4, 2);
                     old.append(Slot(specie, min, max, info.at(specie)));
-                }
-                encounters.append(EncounterArea4(location, Encounter::OldRod, old));
 
-                QVector<Slot> good;
-                for (int i = 0; i < 5; i++)
-                {
-                    u8 min = static_cast<u8>(getValue(data, 119 + i * 4, 1));
-                    u8 max = static_cast<u8>(getValue(data, 120 + i * 4, 1));
-                    u16 specie = getValue(data, 121 + i * 4, 2);
+                    min = static_cast<u8>(getValue(data, 119 + i * 4, 1));
+                    max = static_cast<u8>(getValue(data, 120 + i * 4, 1));
+                    specie = getValue(data, 121 + i * 4, 2);
                     good.append(Slot(specie, min, max, info.at(specie)));
-                }
-                encounters.append(EncounterArea4(location, Encounter::GoodRod, good));
 
-                QVector<Slot> super;
-                for (int i = 0; i < 5; i++)
-                {
-                    u8 min = static_cast<u8>(getValue(data, 139 + i * 4, 1));
-                    u8 max = static_cast<u8>(getValue(data, 140 + i * 4, 1));
-                    u16 specie = getValue(data, 141 + i * 4, 2);
+                    min = static_cast<u8>(getValue(data, 139 + i * 4, 1));
+                    max = static_cast<u8>(getValue(data, 140 + i * 4, 1));
+                    specie = getValue(data, 141 + i * 4, 2);
                     super.append(Slot(specie, min, max, info.at(specie)));
                 }
+
+                encounters.append(EncounterArea4(location, Encounter::Surfing, surf));
+                encounters.append(EncounterArea4(location, Encounter::OldRod, old));
+                encounters.append(EncounterArea4(location, Encounter::GoodRod, good));
                 encounters.append(EncounterArea4(location, Encounter::SuperRod, super));
             }
             return encounters;
