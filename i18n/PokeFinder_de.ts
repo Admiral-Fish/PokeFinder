@@ -676,6 +676,20 @@
         <source>Max Results</source>
         <translation>Max. Ergebnisse</translation>
     </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="122"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="127"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="132"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished">Ergebnisse als TXT ausgeben</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="123"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="128"/>
+        <location filename="../Forms/Gen3/Eggs3.cpp" line="133"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished">Ergebnisse als CSV ausgeben</translation>
+    </message>
 </context>
 <context>
     <name>Eggs4</name>
@@ -780,7 +794,19 @@
         <translation>Suchen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Eggs4.cpp" line="111"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="113"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="119"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished">Ergebnisse als TXT ausgeben</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="114"/>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="120"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished">Ergebnisse als CSV ausgeben</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen4/Eggs4.cpp" line="118"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Zufallswert</translation>
     </message>
@@ -1104,7 +1130,7 @@
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="69"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="68"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1125,25 +1151,40 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.cpp" line="112"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="119"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="118"/>
         <source>Output Results to TXT</source>
         <translation>Ergebnisse als TXT ausgeben</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.cpp" line="113"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="120"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="119"/>
         <source>Output Results to CSV</source>
         <translation>Ergebnisse als CSV ausgeben</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.cpp" line="117"/>
-        <source>Copy Seed to Clipboard</source>
-        <translation>Zufallswert in die Zwischenablage kopieren</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="118"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Zufallswert</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="265"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="268"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="271"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="338"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="341"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="344"/>
+        <source> (Citadark)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="266"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="269"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="272"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="339"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="342"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="345"/>
+        <source> (Initial)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/GameCube.cpp" line="267"/>
@@ -1152,36 +1193,16 @@
         <location filename="../Forms/Gen3/GameCube.cpp" line="340"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="343"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="346"/>
-        <source> (Citadark)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="268"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="271"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="274"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="341"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="344"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="347"/>
-        <source> (Initial)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="269"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="272"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="275"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="342"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="345"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="348"/>
         <source> (Phenac)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="286"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="287"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="288"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="289"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="290"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="355"/>
+        <location filename="../Forms/Gen3/GameCube.cpp" line="356"/>
         <location filename="../Forms/Gen3/GameCube.cpp" line="357"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="358"/>
-        <location filename="../Forms/Gen3/GameCube.cpp" line="359"/>
         <source> (E-Reader)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1608,17 +1629,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="115"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="141"/>
-        <source>Possible Results: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="106"/>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="132"/>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="160"/>
-        <source>Your seed is %1.
-Copy to clipboard?</source>
+        <source>Your seed is %1. Copy to clipboard?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="115"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="141"/>
+        <source>Possible Results: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2544,11 +2564,6 @@ Zufallswert</translation>
         <translation>Generieren</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/PIDIV.cpp" line="53"/>
-        <source>Copy Seed to Clipboard</source>
-        <translation>Zufallswert in die Zwischenablage kopieren</translation>
-    </message>
-    <message>
         <location filename="../Forms/Gen3/Tools/PIDIV.ui"/>
         <source>PID</source>
         <translation type="unfinished"></translation>
@@ -2668,6 +2683,16 @@ Zufallswert</translation>
         <location filename="../Forms/Gen3/Tools/PokeSpot.ui"/>
         <source>Rare</source>
         <translation>Selten</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/PokeSpot.cpp" line="67"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished">Ergebnisse als TXT ausgeben</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/PokeSpot.cpp" line="68"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished">Ergebnisse als CSV ausgeben</translation>
     </message>
 </context>
 <context>
@@ -3303,15 +3328,15 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="74"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="433"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="76"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
         <source>64Bit</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="75"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="432"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="77"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="440"/>
         <source>32Bit</source>
         <translation></translation>
     </message>
@@ -3322,38 +3347,38 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="76"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="433"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="78"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
         <source>32Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="77"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="433"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="79"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
         <source>32Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="78"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="432"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="433"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="80"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="440"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
         <source>16Bit High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="79"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="432"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="433"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="440"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
         <source>16Bit Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="368"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="398"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="376"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="406"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3384,19 +3409,19 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="97"/>
         <source>Previous 7</source>
         <translation>Vorherige 7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="96"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="98"/>
         <source>Previous 8</source>
         <translation>Vorherige 8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="97"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="99"/>
         <source>Previous 9</source>
         <translation>Vorherige 9</translation>
     </message>
@@ -3417,91 +3442,91 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="80"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
         <source>Custom 1</source>
         <translation>Nummer 1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
         <source>Custom 2</source>
         <translation>Nummer 2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
         <source>Custom 3</source>
         <translation>Nummer 3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
         <source>Previous 1</source>
         <translation>Vorherige 1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
         <source>Previous 2</source>
         <translation>Vorherige 2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
         <source>Custom 4</source>
         <translation>Nummer 4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
         <source>Previous 3</source>
         <translation>Vorherige 3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
         <source>Custom 5</source>
         <translation>Nummer 5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
         <source>Custom 6</source>
         <translation>Nummer 6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
         <source>Previous 4</source>
         <translation>Vorherige 4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
         <source>Previous 5</source>
         <translation>Vorherige 5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="96"/>
         <source>Previous 6</source>
         <translation>Vorherige 6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
         <source>Custom 7</source>
         <translation>Nummer 7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
         <source>Custom 8</source>
         <translation>Nummer 8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
         <source>Custom 9</source>
         <translation>Nummer 9</translation>
     </message>
@@ -3516,20 +3541,30 @@ Zufallswert</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="254"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="101"/>
+        <source>Output Results to TXT</source>
+        <translation type="unfinished">Ergebnisse als TXT ausgeben</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Researcher.cpp" line="102"/>
+        <source>Output Results to CSV</source>
+        <translation type="unfinished">Ergebnisse als CSV ausgeben</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Util/Researcher.cpp" line="262"/>
         <source>Please enter a search range lower then 228</source>
         <translatorcomment>Bitte einen Suchbereich unter 228 angeben.</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="344"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="352"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translatorcomment>Du musst die Hex-Checkbox aktivieren, um Hex-Werte nutzen zu können.</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="458"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="490"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="466"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="498"/>
         <source>No result found</source>
         <translation>Keine Ergebnisse gefunden</translation>
     </message>
@@ -3684,41 +3719,41 @@ Zufallswert</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="128"/>
+        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="122"/>
         <source>P - It seems that Pokémon that have been infected with Pokérus level up better. We&apos;re not quite sure why...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="126"/>
+        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="120"/>
         <source>E - There are so many different ways that Pokémon evolve, aren&apos;t there?! Some Pokémon don&apos;t even evolve until they meet certain conditions first!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="124"/>
+        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="118"/>
         <source>K - I expect there are some Pokémon in the Kanto region that I don&apos;t know. There are probably methods of evolution that I&apos;m not familiar with yet. I should use that perspective and discover what I can!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="35"/>
-        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="119"/>
+        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="112"/>
         <source>Possible Results: </source>
         <translation>Mögliche Ergebnisse: </translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Tools/SearchCalls.ui"/>
-        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="134"/>
+        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="128"/>
         <source>K - I&apos;m so glad you called! I was just about to call you, too! I guess we must be a good match!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Tools/SearchCalls.ui"/>
-        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="135"/>
+        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="129"/>
         <source>E - Hearing about your escapades rocks my soul! It sure does!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Tools/SearchCalls.ui"/>
-        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="136"/>
+        <location filename="../Forms/Gen4/Tools/SearchCalls.cpp" line="130"/>
         <source>P - How are you? What are you doing? Where are you? How many Badges do you have now? How much money have you saved? How&apos;s your mom? Have you got lots of Pokémon? Is it going to be sunny tomorrow? Arrgh, there&apos;s so much I want to chat about! This is going nowhere!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3747,7 +3782,7 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Tools/SearchCoinFlips.cpp" line="31"/>
-        <location filename="../Forms/Gen4/Tools/SearchCoinFlips.cpp" line="97"/>
+        <location filename="../Forms/Gen4/Tools/SearchCoinFlips.cpp" line="92"/>
         <source>Possible Results: </source>
         <translation>Mögliche Ergebnisse: </translation>
     </message>
@@ -4089,23 +4124,18 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="105"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="112"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="111"/>
         <source>Output Results to TXT</source>
         <translation>Ergebnisse als TXT ausgeben</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="106"/>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="113"/>
+        <location filename="../Forms/Gen3/Stationary3.cpp" line="112"/>
         <source>Output Results to CSV</source>
         <translation>Ergebnisse als CSV ausgeben</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Stationary3.cpp" line="110"/>
-        <source>Copy Seed to Clipboard</source>
-        <translation>Zufallswert in die Zwischenablage kopieren</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Stationary3.cpp" line="111"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Zufallswert</translation>
     </message>
@@ -4178,26 +4208,26 @@ Zufallswert</translation>
         <translation>Max. Ergebnisse</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="272"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="277"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="273"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="278"/>
         <source>Method 1</source>
         <translation>Methode 1</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="273"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="278"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="274"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="279"/>
         <source>Method J</source>
         <translation>Methode J</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="273"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="278"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="274"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="279"/>
         <source>Method K</source>
         <translation>Methode K</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="274"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="279"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="275"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="280"/>
         <source>Wondercard IVs</source>
         <translation>Wunderkarte IVs</translation>
     </message>
@@ -4213,8 +4243,8 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="287"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="300"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="288"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="301"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
@@ -4260,14 +4290,14 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="187"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="289"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="188"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="290"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Stationary4.ui"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="109"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="110"/>
         <source>None</source>
         <translation>Keine</translation>
     </message>
@@ -4277,7 +4307,7 @@ Zufallswert</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="117"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="118"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Zufallswert</translation>
     </message>
@@ -4287,39 +4317,39 @@ Zufallswert</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="112"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="118"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="113"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="119"/>
         <source>Output Results to TXT</source>
         <translation>Ergebnisse als TXT ausgeben</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="113"/>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="119"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="114"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="120"/>
         <source>Output Results to CSV</source>
         <translation>Ergebnisse als CSV ausgeben</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="292"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="293"/>
         <source>♂ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="293"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="294"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="294"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="295"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="295"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="296"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Stationary4.cpp" line="296"/>
+        <location filename="../Forms/Gen4/Stationary4.cpp" line="297"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4804,21 +4834,16 @@ Zufallswert</translation>
         <translation>Nicht vorhanden</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="113"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="114"/>
         <location filename="../Forms/Gen3/Wild3.cpp" line="120"/>
         <source>Output Results to TXT</source>
         <translation>Ergebnisse als TXT ausgeben</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="114"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="115"/>
         <location filename="../Forms/Gen3/Wild3.cpp" line="121"/>
         <source>Output Results to CSV</source>
         <translation>Ergebnisse als CSV ausgeben</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="118"/>
-        <source>Copy Seed to Clipboard</source>
-        <translation>Zufallswert in die Zwischenablage kopieren</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.cpp" line="119"/>
@@ -4831,42 +4856,42 @@ Zufallswert</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="399"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="402"/>
         <source>♂ Lead (50% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="400"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="403"/>
         <source>♂ Lead (75% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="401"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="404"/>
         <source>♂ Lead (25% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="402"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="405"/>
         <source>♂ Lead (12.5% ♀ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="403"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="406"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="404"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="407"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="405"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="408"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="406"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="409"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4916,39 +4941,39 @@ Zufallswert</translation>
         <translation>Begegnung</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="340"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="341"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="351"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="352"/>
         <source>Rock Smash</source>
         <translation>Zertrümmerer</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="342"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="343"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="353"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="354"/>
         <source>Surfing</source>
         <translation>Surfen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="344"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="345"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="355"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="356"/>
         <source>Old Rod</source>
         <translation>Angel</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="346"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="347"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="357"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="358"/>
         <source>Good Rod</source>
         <translation>Profiangel</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="348"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="349"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="359"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="360"/>
         <source>Super Rod</source>
         <translation>Superangel</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="395"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="410"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="398"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="413"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
@@ -4973,8 +4998,8 @@ Zufallswert</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="333"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="334"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="344"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="345"/>
         <source>Grass</source>
         <translation>Pflanze</translation>
     </message>
@@ -4985,8 +5010,8 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Wild3.ui"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="249"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="397"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="260"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="400"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
@@ -5011,8 +5036,8 @@ Zufallswert</translation>
         <translation>Methode H4</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="337"/>
-        <location filename="../Forms/Gen3/Wild3.cpp" line="338"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="348"/>
+        <location filename="../Forms/Gen3/Wild3.cpp" line="349"/>
         <source>Safari Zone</source>
         <translation>Safari-Zone</translation>
     </message>
@@ -5071,13 +5096,13 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="397"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="410"/>
         <source>Any</source>
         <translation>Alle</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="375"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="386"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="388"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="399"/>
         <source>Grass</source>
         <translation>Pflanze</translation>
     </message>
@@ -5092,20 +5117,20 @@ Zufallswert</translation>
         <translation>Methode</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="367"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="371"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="380"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="384"/>
         <source>Method J</source>
         <translation>Methode J</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="367"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="371"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="380"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="384"/>
         <source>Method K</source>
         <translation>Methode K</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="368"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="372"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="381"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="385"/>
         <source>Chained Shiny</source>
         <translation>Shiny-Kette</translation>
     </message>
@@ -5145,35 +5170,35 @@ Zufallswert</translation>
         <translation>Begegnung</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="380"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="391"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="393"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="404"/>
         <source>Surfing</source>
         <translation>Surfen</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="381"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="392"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="394"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="405"/>
         <source>Old Rod</source>
         <translation>Angel</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="382"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="393"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="395"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="406"/>
         <source>Good Rod</source>
         <translation>Profiangel</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="383"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="394"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="396"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="407"/>
         <source>Super Rod</source>
         <translation>Superangel</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="398"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="406"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="411"/>
         <location filename="../Forms/Gen4/Wild4.cpp" line="419"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="452"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="432"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="465"/>
         <source>Synchronize</source>
         <translation>Synchro</translation>
     </message>
@@ -5209,24 +5234,24 @@ Zufallswert</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="271"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="399"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="429"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="441"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="284"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="412"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="442"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="454"/>
         <source>Cute Charm</source>
         <translation>Charmebolzen</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="275"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="424"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="439"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="288"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="437"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="452"/>
         <source>Suction Cups</source>
         <translation>Saugnapf</translation>
     </message>
     <message>
         <location filename="../Forms/Gen4/Wild4.ui"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="110"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="111"/>
         <source>None</source>
         <translation>Nicht vorhanden</translation>
     </message>
@@ -5256,67 +5281,67 @@ Zufallswert</translation>
         <translation>Höchstwert</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="113"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="119"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="114"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="120"/>
         <source>Output Results to TXT</source>
         <translation>Ergebnisse als TXT ausgeben</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="114"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="120"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="115"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="121"/>
         <source>Output Results to CSV</source>
         <translation>Ergebnisse als CSV ausgeben</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="118"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="119"/>
         <source>Generate times for seed</source>
         <translation>Generiere Zeiten für Zufallswert</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="361"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="362"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="374"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="375"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="361"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="362"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="374"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="375"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="378"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="389"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="391"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="402"/>
         <source>Rock Smash</source>
         <translation>Zertrümmerer</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="432"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="444"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="445"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="457"/>
         <source>♂ Lead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="433"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="445"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="446"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="458"/>
         <source>♀ Lead (50% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="434"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="446"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="447"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="459"/>
         <source>♀ Lead (75% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="435"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="447"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="448"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="460"/>
         <source>♀ Lead (25% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="436"/>
-        <location filename="../Forms/Gen4/Wild4.cpp" line="448"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="449"/>
+        <location filename="../Forms/Gen4/Wild4.cpp" line="461"/>
         <source>♀ Lead (87.5% ♂ Target)</source>
         <translation type="unfinished"></translation>
     </message>
