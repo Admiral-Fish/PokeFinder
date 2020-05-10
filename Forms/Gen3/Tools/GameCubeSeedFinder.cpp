@@ -103,7 +103,7 @@ void GameCubeSeedFinder::updateGales(const QVector<u32> &seeds)
     {
         QString seed = QString::number(galeSeeds.at(0), 16).toUpper();
         ui->labelGalesResults->setText(tr("Seed: ") + seed);
-        QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1.\nCopy to clipboard?").arg(seed),
+        QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1. Copy to clipboard?").arg(seed),
                          QMessageBox::Yes | QMessageBox::No);
         if (info.exec() == QMessageBox::Yes)
         {
@@ -129,7 +129,7 @@ void GameCubeSeedFinder::updateColo(const QVector<u32> &seeds)
     {
         QString seed = QString::number(coloSeeds.at(0), 16).toUpper();
         ui->labelColoResults->setText(tr("Seed: ") + seed);
-        QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1.\nCopy to clipboard?").arg(seed),
+        QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1. Copy to clipboard?").arg(seed),
                          QMessageBox::Yes | QMessageBox::No);
         if (info.exec() == QMessageBox::Yes)
         {
@@ -157,7 +157,7 @@ void GameCubeSeedFinder::updateChannel(const QVector<u32> &seeds)
     {
         QString seed = QString::number(seeds.at(0), 16).toUpper();
         ui->labelChannelResult->setText(tr("Result: ") + seed);
-        QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1.\nCopy to clipboard?").arg(seed),
+        QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1. Copy to clipboard?").arg(seed),
                          QMessageBox::Yes | QMessageBox::No);
         if (info.exec() == QMessageBox::Yes)
         {
@@ -256,8 +256,8 @@ void GameCubeSeedFinder::galesSearch()
         connect(thread, &QThread::finished, timer, &QTimer::stop);
         connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
         connect(timer, &QTimer::destroyed, [=] {
-            ui->pushButtonColoSearch->setEnabled(true);
-            ui->pushButtonColoCancel->setEnabled(false);
+            ui->pushButtonGalesSearch->setEnabled(true);
+            ui->pushButtonGalesCancel->setEnabled(false);
             updateGalesProgress(searcher->getProgress());
             updateGales(searcher->getSeeds());
             delete searcher;
