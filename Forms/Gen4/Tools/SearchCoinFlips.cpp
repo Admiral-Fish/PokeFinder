@@ -70,29 +70,25 @@ void SearchCoinFlips::tails()
 
 void SearchCoinFlips::flipsTextChanged(const QString &val)
 {
-    QStringList results = val.split(",", QString::SkipEmptyParts);
-    int num = 0;
-
-    possible.clear();
-    for (const auto &dt : data)
+    if (!val.isEmpty())
     {
-        QStringList compare = Utilities::coinFlips(dt.getSeed()).split(",", QString::SkipEmptyParts);
+        QString result = val;
+        result.replace(" ", "").replace(",", "");
+        int num = 0;
 
-        bool pass = true;
-        for (int j = 0; j < results.size(); j++)
+        possible.clear();
+        for (const auto &dt : data)
         {
-            if (results.at(j) != compare.at(j))
+            QString compare = Utilities::coinFlips(dt.getSeed()).replace(" ", "").replace(",", "");
+
+            bool pass = compare.contains(result);
+            possible.append(pass);
+            if (pass)
             {
-                pass = false;
-                break;
+                num++;
             }
         }
-        possible.append(pass);
-        if (pass)
-        {
-            num++;
-        }
-    }
 
-    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
+        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
+    }
 }

@@ -84,39 +84,33 @@ void SearchCalls::p()
 
 void SearchCalls::callsTextChanged(const QString &val)
 {
-    QStringList results = val.split(",", QString::SkipEmptyParts);
-    int num = 0;
-
-    possible.clear();
-    for (const auto &dt : data)
+    if (!val.isEmpty())
     {
-        QString str = Utilities::getCalls(dt.getSeed(), dt.getInfo());
+        QString result = val;
+        result.replace(" ", "").replace(",", "");
+        int num = 0;
 
-        if (str.contains("skipped"))
+        possible.clear();
+        for (const auto &dt : data)
         {
-            int index = str.indexOf(")", 1);
-            str = str.mid(index + 3);
-        }
-
-        QStringList compare = str.split(",", QString::SkipEmptyParts);
-
-        bool pass = true;
-        for (int j = 0; j < results.size(); j++)
-        {
-            if (results.at(j) != compare.at(j))
+            QString compare = Utilities::getCalls(dt.getSeed(), dt.getInfo());
+            if (compare.contains("skipped"))
             {
-                pass = false;
-                break;
+                int index = compare.indexOf(")", 1);
+                compare = compare.mid(index + 3);
+            }
+            compare.replace(" ", "").replace(",", "");
+
+            bool pass = compare.contains(result);
+            possible.append(pass);
+            if (pass)
+            {
+                num++;
             }
         }
-        possible.append(pass);
-        if (pass)
-        {
-            num++;
-        }
-    }
 
-    ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
+        ui->labelPossibleResults->setText(tr("Possible Results: ") + QString::number(num));
+    }
 }
 
 void SearchCalls::elm()
