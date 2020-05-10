@@ -3,8 +3,7 @@
 case $OS in
   linux)
   {
-    source /opt/qt5*/bin/qt5*-env.sh
-    qmake PokeFinder.pro
+    $HOME/Qt/5.12/gcc_64/bin/qmake PokeFinder.pro
     make -j $(nproc)
   } ;;  
   macOS)
