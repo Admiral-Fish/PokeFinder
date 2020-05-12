@@ -182,7 +182,7 @@ void IDs3::rsSearch()
         sidFilter.append(ui->textBoxRSSID->getUShort());
     }
 
-    if (ui->checkBoxXDColoPID->isChecked())
+    if (ui->checkBoxRSPID->isChecked())
     {
         u32 pid = ui->textBoxRSPID->getUInt();
         tsvFilter.append(((pid >> 16) ^ (pid & 0xffff)) >> 3);
