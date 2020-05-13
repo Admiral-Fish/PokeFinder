@@ -37,7 +37,7 @@ class Stationary4;
 class Wild4;
 class Eggs4;
 class IDs4;
-// class Stationary5;
+class Stationary5;
 
 class MainWindow : public QMainWindow
 {
@@ -62,7 +62,7 @@ private:
     Wild4 *wild4 = nullptr;
     Eggs4 *egg4 = nullptr;
     IDs4 *ids4 = nullptr;
-    // Stationary5 *stationary5 = nullptr;
+    Stationary5 *stationary5 = nullptr;
 
     void setupModels();
 
@@ -90,7 +90,7 @@ private slots:
     void openIDs4();
     void openSeedtoTime4();
     void openSIDFromChainedShiny();
-    // void openStationary5();
+    void openStationary5();
     void openEncounterLookup();
     void openIVCalculator();
     void openResearcher();
