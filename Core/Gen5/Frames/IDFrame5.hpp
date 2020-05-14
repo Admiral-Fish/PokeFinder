@@ -26,6 +26,7 @@
 class IDFrame5 : public IDFrame
 {
 public:
+    IDFrame5() = default;
     IDFrame5(u32 frame, u16 tid, u16 sid);
     void setDateTime(const QDateTime &dt);
     QDateTime getDateTime() const;
