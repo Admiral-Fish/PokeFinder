@@ -147,9 +147,14 @@ namespace Translator
         return locations;
     }
 
-    QString getKeypress(u16 keypress)
+    QString getKeypress(u8 keypress)
     {
-        if (keypress == 0)
+        return buttons.at(keypress);
+    }
+
+    QString getKeypresses(u16 keypresses)
+    {
+        if (keypresses == 0)
         {
             return "None";
         }
@@ -158,7 +163,7 @@ namespace Translator
 
         for (int i = 0; i < 12; i++)
         {
-            if (keypress & (1 << i))
+            if (keypresses & (1 << i))
             {
                 if (!result.isEmpty())
                 {

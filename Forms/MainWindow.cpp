@@ -38,6 +38,7 @@
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
 #include <Forms/Gen5/IDs5.hpp>
+#include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
 #include <Forms/Gen5/Stationary5.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
@@ -167,6 +168,7 @@ void MainWindow::setupModels()
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
     connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
+    connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
@@ -496,6 +498,13 @@ void MainWindow::openIDs5()
     }
     ids5->show();
     ids5->raise();
+}
+
+void MainWindow::openProfileCalibrator()
+{
+    auto *calibrator = new ProfileCalibrator5();
+    calibrator->show();
+    calibrator->raise();
 }
 
 void MainWindow::openEncounterLookup()

@@ -237,6 +237,7 @@
     <property name="title">
      <string>Gen 5 Tools</string>
     </property>
+    <addaction name="actionProfileCalibrator"/>
    </widget>
    <addaction name="menuGen3Tools"/>
    <addaction name="menuGen4Tools"/>
@@ -392,6 +393,11 @@
   <action name="actionGameCubeSeedFinder">
    <property name="text">
     <string>GameCube Seed Finder</string>
+   </property>
+  </action>
+  <action name="actionProfileCalibrator">
+   <property name="text">
+    <string>Profile Calibrator</string>
    </property>
   </action>
  </widget>

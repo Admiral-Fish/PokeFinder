@@ -68,6 +68,26 @@ SHA1::SHA1(const Profile5 &profile)
     data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
 }
 
+SHA1::SHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat)
+{
+    std::memset(data, 0, sizeof(data));
+
+    auto nazos = Nazos::getNazo(version, language, type);
+    std::copy(nazos.begin(), nazos.end(), data);
+
+    data[6] = mac & 0xFFFF;
+    if (softReset)
+    {
+        data[6] ^= 0x01000000;
+    }
+    data[7] = static_cast<u32>((mac >> 16) ^ static_cast<u32>(vFrame << 24) ^ gxStat);
+    data[13] = 0x80000000;
+    data[15] = 0x000001A0;
+
+    // Precompute data[18]
+    data[18] = rotateLeft(data[15] ^ data[10] ^ data[4] ^ data[2], 1);
+}
+
 u64 SHA1::hashSeed()
 {
     u32 temp;

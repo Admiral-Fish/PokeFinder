@@ -50,7 +50,7 @@ QVariant IDModel5::data(const QModelIndex &index, int role) const
         case 5:
             return frame.getDateTime().toString("yyyy-MM-dd hh:mm:ss");
         case 6:
-            return Translator::getKeypress(frame.getKeypress());
+            return Translator::getKeypresses(frame.getKeypress());
         }
     }
     return QVariant();

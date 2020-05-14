@@ -37,7 +37,8 @@ namespace Translator
     QStringList getSpecies(const QVector<u16> &nums);
     QString getGender(u8 gender);
     QStringList getLocations(const QVector<u8> &nums, Game game);
-    QString getKeypress(u16 keypress);
+    QString getKeypress(u8 keypress);
+    QString getKeypresses(u16 keypresses);
 }
 
 #endif // TRANSLATOR_HPP

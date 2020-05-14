@@ -96,6 +96,7 @@ private slots:
     void openSIDFromChainedShiny();
     void openStationary5();
     void openIDs5();
+    void openProfileCalibrator();
     void openEncounterLookup();
     void openIVCalculator();
     void openResearcher();
