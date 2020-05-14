@@ -22,10 +22,7 @@
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
-#include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/Searchers/ProfileSearcher5.hpp>
-#include <Core/RNG/MTRNG.hpp>
-#include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Util/IVCalculator.hpp>
 #include <QMessageBox>
