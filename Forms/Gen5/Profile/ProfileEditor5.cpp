@@ -80,7 +80,7 @@ void ProfileEditor5::setupModels()
 {
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
-    ui->textBoxMAC->setValues(0, 0xFFFFFFFFF, 8, 16);
+    ui->textBoxMAC->setValues(0, 0xFFFFFFFFFF, 10, 16);
     ui->textBoxVCount->setValues(0, 0xFF, 2, 16);
     ui->textBoxGxStat->setValues(0, 99, 2, 10);
     ui->textBoxVFrame->setValues(0, 99, 2, 10);

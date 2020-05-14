@@ -33,7 +33,7 @@ namespace ProfileLoader5
             Game version = static_cast<Game>(object["version"].toInt());
             u16 tid = static_cast<u16>(object["tid"].toInt());
             u16 sid = static_cast<u16>(object["sid"].toInt());
-            u32 mac = object["mac"].toString().toUInt(nullptr, 16);
+            u64 mac = object["mac"].toString().toULongLong(nullptr, 16);
             QVector<bool> keypresses;
             for (int i = 0; i < 4; i++)
             {

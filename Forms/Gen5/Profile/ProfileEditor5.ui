@@ -51,11 +51,7 @@
     </widget>
    </item>
    <item row="0" column="6" colspan="2">
-    <widget class="TextBox" name="textBoxVFrame">
-     <property name="maxLength">
-      <number>1</number>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxVFrame"/>
    </item>
    <item row="0" column="8">
     <widget class="QLabel" name="labelTID">
@@ -65,11 +61,7 @@
     </widget>
    </item>
    <item row="0" column="9">
-    <widget class="TextBox" name="textBoxTID">
-     <property name="maxLength">
-      <number>5</number>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxTID"/>
    </item>
    <item row="0" column="10">
     <widget class="QPushButton" name="pushButtonAccept">
@@ -148,11 +140,7 @@
     </widget>
    </item>
    <item row="1" column="6" colspan="2">
-    <widget class="TextBox" name="textBoxTimer0Min">
-     <property name="maxLength">
-      <number>4</number>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxTimer0Min"/>
    </item>
    <item row="1" column="8">
     <widget class="QLabel" name="labelSID">
@@ -162,11 +150,7 @@
     </widget>
    </item>
    <item row="1" column="9">
-    <widget class="TextBox" name="textBoxSID">
-     <property name="maxLength">
-      <number>5</number>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxSID"/>
    </item>
    <item row="1" column="10">
     <widget class="QPushButton" name="pushButtonCancel">
@@ -229,11 +213,7 @@
     </widget>
    </item>
    <item row="2" column="4">
-    <widget class="TextBox" name="textBoxVCount">
-     <property name="maxLength">
-      <number>2</number>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxVCount"/>
    </item>
    <item row="2" column="5">
     <widget class="QLabel" name="labelTimer0Max">
@@ -243,11 +223,7 @@
     </widget>
    </item>
    <item row="2" column="6" colspan="2">
-    <widget class="TextBox" name="textBoxTimer0Max">
-     <property name="maxLength">
-      <number>4</number>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxTimer0Max"/>
    </item>
    <item row="3" column="0">
     <widget class="QLabel" name="labelDSType">
@@ -283,18 +259,10 @@
     </widget>
    </item>
    <item row="3" column="4">
-    <widget class="TextBox" name="textBoxGxStat">
-     <property name="maxLength">
-      <number>1</number>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxGxStat"/>
    </item>
    <item row="0" column="4">
-    <widget class="TextBox" name="textBoxMAC">
-     <property name="maxLength">
-      <number>9</number>
-     </property>
-    </widget>
+    <widget class="TextBox" name="textBoxMAC"/>
    </item>
    <item row="3" column="5">
     <widget class="QCheckBox" name="checkBoxSkipLR">
@@ -329,6 +297,9 @@
    <class>CheckList</class>
    <extends>QComboBox</extends>
    <header>Forms/Controls/CheckList.hpp</header>
+   <slots>
+    <slot>resetChecks()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -351,5 +322,22 @@
   <tabstop>pushButtonCancel</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>ProfileEditor5</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>662</x>
+     <y>53</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>588</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
