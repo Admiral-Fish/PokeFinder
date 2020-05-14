@@ -29,7 +29,10 @@
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Models/Gen5/IDModel5.hpp>
+#include <QDate>
 #include <QSettings>
+#include <QThread>
+#include <QTimer>
 
 IDs5::IDs5(QWidget *parent) :
     QWidget(parent),
@@ -120,6 +123,60 @@ void IDs5::updateProgress(const QVector<IDFrame5> &frames, int progress)
 
 void IDs5::search()
 {
+    model->clearModel();
+
+    ui->pushButtonSearch->setEnabled(false);
+    ui->pushButtonFind->setEnabled(false);
+    ui->pushButtonCancel->setEnabled(true);
+
+    u32 pid = ui->textBoxPID->getUInt();
+    bool usePID = ui->checkBoxPID->isChecked();
+
+    QVector<u16> tid;
+    if (ui->checkBoxTID->isChecked())
+    {
+        tid.append(ui->textBoxTID->getUShort());
+    }
+
+    QVector<u16> sid;
+    if (ui->checkBoxSID->isChecked())
+    {
+        sid.append(ui->textBoxSID->getUShort());
+    }
+
+    QDate start = ui->dateEditStart->date();
+    QDate end = ui->dateEditEnd->date();
+
+    IDFilter filter(tid, sid, {});
+    IDGenerator5 generator(0, ui->textBoxMaxResults->getUInt(), filter);
+
+    auto *searcher = new IDSearcher5(generator, currentProfile, pid, usePID, ui->checkBoxExistingSave->isChecked());
+
+    int maxProgress = Keypresses::getKeyPresses({ 0, 1 }, currentProfile.getSkipLR()).size();
+    maxProgress *= 86400 * (start.daysTo(end) + 1);
+    ui->progressBar->setRange(0, maxProgress);
+
+    QSettings settings;
+    int threads = settings.value("threads", QThread::idealThreadCount()).toInt();
+
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
+
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults(), searcher->getProgress()); });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonSearch->setEnabled(true);
+        ui->pushButtonFind->setEnabled(true);
+        ui->pushButtonCancel->setEnabled(false);
+        updateProgress(searcher->getResults(), searcher->getProgress());
+        delete searcher;
+    });
+
+    thread->start();
+    timer->start(1000);
 }
 
 void IDs5::find()
@@ -127,7 +184,7 @@ void IDs5::find()
     model->clearModel();
 
     u16 tid = ui->textBoxSeedFinderTID->getUShort();
-    QDate date = ui->dateEditDate->date();
+    QDate date = ui->dateEdit->date();
     int hour = ui->spinBoxHour->value();
     int minute = ui->spinBoxMinute->value();
     int minSecond = ui->spinBoxMinSecond->value();
@@ -141,7 +198,7 @@ void IDs5::find()
     IDGenerator5 generator(0, maxFrame, filter);
 
     SHA1 sha(currentProfile);
-    auto buttons = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR());
+    auto buttons = Keypresses::getKeyPresses({ 0, 1 }, currentProfile.getSkipLR());
     auto values = Keypresses::getValues(buttons);
 
     sha.setTimer0(currentProfile.getTimer0Min(), currentProfile.getVCount());
