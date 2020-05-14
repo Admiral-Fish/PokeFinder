@@ -44,8 +44,8 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->textBoxMAC->setText(QString::number(profile.getMac(), 16));
     ui->textBoxVCount->setText(QString::number(profile.getVCount(), 16));
-    ui->textBoxGxStat->setText(QString::number(profile.getGxStat()));
-    ui->textBoxVFrame->setText(QString::number(profile.getVFrame()));
+    ui->textBoxGxStat->setText(QString::number(profile.getGxStat(), 16));
+    ui->textBoxVFrame->setText(QString::number(profile.getVFrame(), 16));
     ui->textBoxTimer0Min->setText(QString::number(profile.getTimer0Min(), 16));
     ui->textBoxTimer0Max->setText(QString::number(profile.getTimer0Max(), 16));
 
@@ -82,8 +82,8 @@ void ProfileEditor5::setupModels()
     ui->textBoxSID->setValues(InputType::TIDSID);
     ui->textBoxMAC->setValues(0, 0xFFFFFFFFFF, 10, 16);
     ui->textBoxVCount->setValues(0, 0xFF, 2, 16);
-    ui->textBoxGxStat->setValues(0, 99, 2, 10);
-    ui->textBoxVFrame->setValues(0, 99, 2, 10);
+    ui->textBoxGxStat->setValues(0, 99, 2, 16);
+    ui->textBoxVFrame->setValues(0, 99, 2, 16);
     ui->textBoxTimer0Min->setValues(InputType::Seed16Bit);
     ui->textBoxTimer0Max->setValues(InputType::Seed16Bit);
 
