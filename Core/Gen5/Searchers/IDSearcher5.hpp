@@ -17,23 +17,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#ifndef IDSEARCHER5_HPP
+#define IDSEARCHER5_HPP
 
+#include <Core/Gen5/Generators/IDGenerator5.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Util/Global.hpp>
-#include <QDateTime>
+#include <QDate>
+#include <mutex>
 
-class HGSSRoamer;
-
-namespace Utilities
+class IDSearcher5
 {
-    u16 calcGen3Seed(const QDateTime &dateTime);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    QString coinFlips(u32 seed);
-    QString getCalls(u32 seed, const HGSSRoamer &info);
-    u32 initialFrameBW(u64 seed, u8 rounds = 5);
-    u32 initialFrameBW2(u64 seed, bool memory, u8 rounds = 5);
-    u32 initialFrameBW2ID(u64 seed, u8 rounds = 3);
-}
+public:
+    IDSearcher5() = default;
+    explicit IDSearcher5(const IDGenerator5 &idGenerator, const Profile5 &profile, u32 pid, bool checkPID, bool save);
+    void startSearch(int threads, QDate start, const QDate &end);
+    void cancelSearch();
+    QVector<IDFrame5> getResults();
+    int getProgress() const;
 
-#endif // UTILITIES_HPP
+private:
+    IDGenerator5 idGenerator;
+    Profile5 profile;
+    u32 pid;
+    bool checkPID;
+    bool save;
+
+    bool searching;
+    int progress;
+    QVector<IDFrame5> results;
+    std::mutex resultMutex;
+    std::mutex progressMutex;
+
+    void search(const QDate &start, const QDate &end);
+};
+
+#endif // IDSEARCHER5_HPP

@@ -31,6 +31,7 @@ namespace
     QStringList hiddenPowers;
     QStringList species;
     const QStringList genders = { "♂", "♀", "-" };
+    const QStringList buttons = { "R", "L", "X", "Y", "A", "B", "Select", "Start", "Right", "Left", "Up", "Down" };
 
     QStringList readFile(const QString &name)
     {
@@ -54,6 +55,7 @@ namespace
 
 namespace Translator
 {
+
     void init(const QString &locale)
     {
         language = locale;
@@ -143,5 +145,30 @@ namespace Translator
         }
 
         return locations;
+    }
+
+    QString getKeypress(u16 keypress)
+    {
+        if (keypress == 0)
+        {
+            return "None";
+        }
+
+        QString result = "";
+
+        for (int i = 0; i < 12; i++)
+        {
+            if (keypress & (1 << i))
+            {
+                if (!result.isEmpty())
+                {
+                    result += " + ";
+                }
+
+                result += buttons.at(i);
+            }
+        }
+
+        return result;
     }
 }

@@ -37,6 +37,7 @@
 #include <Forms/Gen4/Tools/ChainedSID.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
+#include <Forms/Gen5/IDs5.hpp>
 #include <Forms/Gen5/Stationary5.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
@@ -79,6 +80,7 @@ MainWindow::~MainWindow()
     delete egg4;
     delete ids4;
     delete stationary5;
+    delete ids5;
 }
 
 void MainWindow::setupModels()
@@ -146,6 +148,7 @@ void MainWindow::setupModels()
     connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
     connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
+    connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
@@ -271,6 +274,10 @@ void MainWindow::updateProfiles(int num)
         if (stationary5)
         {
             stationary5->updateProfiles();
+        }
+        if (ids5)
+        {
+            ids5->updateProfiles();
         }
     }
 }
@@ -451,6 +458,17 @@ void MainWindow::openStationary5()
     }
     stationary5->show();
     stationary5->raise();
+}
+
+void MainWindow::openIDs5()
+{
+    if (!ids5)
+    {
+        ids5 = new IDs5();
+        connect(ids5, &IDs5::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    ids5->show();
+    ids5->raise();
 }
 
 void MainWindow::openEncounterLookup()

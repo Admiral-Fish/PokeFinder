@@ -17,23 +17,47 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#ifndef IDS5_HPP
+#define IDS5_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QDateTime>
+#include <Core/Gen5/Profile5.hpp>
+#include <QMenu>
 
-class HGSSRoamer;
+class IDFrame5;
+class IDModel5;
 
-namespace Utilities
+namespace Ui
 {
-    u16 calcGen3Seed(const QDateTime &dateTime);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    QString coinFlips(u32 seed);
-    QString getCalls(u32 seed, const HGSSRoamer &info);
-    u32 initialFrameBW(u64 seed, u8 rounds = 5);
-    u32 initialFrameBW2(u64 seed, bool memory, u8 rounds = 5);
-    u32 initialFrameBW2ID(u64 seed, u8 rounds = 3);
+    class IDs5;
 }
 
-#endif // UTILITIES_HPP
+class IDs5 : public QWidget
+{
+    Q_OBJECT
+signals:
+    void alertProfiles(int);
+
+public:
+    explicit IDs5(QWidget *parent = nullptr);
+    ~IDs5();
+    void updateProfiles();
+
+private:
+    Ui::IDs5 *ui;
+    IDModel5 *model = nullptr;
+    QVector<Profile5> profiles;
+    Profile5 currentProfile;
+    QMenu *menu = nullptr;
+
+    void setupModels();
+
+private slots:
+    void updateProgress(const QVector<IDFrame5> &frames, int progress);
+    void search();
+    void find();
+    void profileIndexChanged(int index);
+    void tableViewContextMenu(const QPoint &pos);
+    void profileManager();
+};
+
+#endif // IDS5_HPP

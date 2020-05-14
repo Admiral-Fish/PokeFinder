@@ -17,23 +17,49 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#include "IDFrame5.hpp"
 
-#include <Core/Util/Global.hpp>
-#include <QDateTime>
-
-class HGSSRoamer;
-
-namespace Utilities
+IDFrame5::IDFrame5(u32 frame, u16 tid, u16 sid) : IDFrame(frame, tid, sid)
 {
-    u16 calcGen3Seed(const QDateTime &dateTime);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    QString coinFlips(u32 seed);
-    QString getCalls(u32 seed, const HGSSRoamer &info);
-    u32 initialFrameBW(u64 seed, u8 rounds = 5);
-    u32 initialFrameBW2(u64 seed, bool memory, u8 rounds = 5);
-    u32 initialFrameBW2ID(u64 seed, u8 rounds = 3);
+    tsv = (tid ^ sid) >> 3;
 }
 
-#endif // UTILITIES_HPP
+void IDFrame5::setDateTime(const QDateTime &dt)
+{
+    this->dt = dt;
+}
+
+QDateTime IDFrame5::getDateTime() const
+{
+    return dt;
+}
+
+void IDFrame5::setInitialFrame(u32 initialFrame)
+{
+    this->initialFrame = initialFrame;
+}
+
+u32 IDFrame5::getInitialFrame() const
+{
+    return initialFrame;
+}
+
+void IDFrame5::setKeypress(u16 keypress)
+{
+    this->keypress = keypress;
+}
+
+u16 IDFrame5::getKeypress() const
+{
+    return keypress;
+}
+
+void IDFrame5::setSeed(u64 seed)
+{
+    this->seed = seed;
+}
+
+u64 IDFrame5::getSeed() const
+{
+    return seed;
+}

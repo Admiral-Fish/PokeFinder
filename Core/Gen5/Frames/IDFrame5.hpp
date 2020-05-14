@@ -17,23 +17,30 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#ifndef IDFRAME5_HPP
+#define IDFRAME5_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Parents/Frames/IDFrame.hpp>
 #include <QDateTime>
 
-class HGSSRoamer;
-
-namespace Utilities
+class IDFrame5 : public IDFrame
 {
-    u16 calcGen3Seed(const QDateTime &dateTime);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    QString coinFlips(u32 seed);
-    QString getCalls(u32 seed, const HGSSRoamer &info);
-    u32 initialFrameBW(u64 seed, u8 rounds = 5);
-    u32 initialFrameBW2(u64 seed, bool memory, u8 rounds = 5);
-    u32 initialFrameBW2ID(u64 seed, u8 rounds = 3);
-}
+public:
+    IDFrame5(u32 frame, u16 tid, u16 sid);
+    void setDateTime(const QDateTime &dt);
+    QDateTime getDateTime() const;
+    void setInitialFrame(u32 initialFrame);
+    u32 getInitialFrame() const;
+    void setKeypress(u16 keypress);
+    u16 getKeypress() const;
+    void setSeed(u64 seed);
+    u64 getSeed() const;
 
-#endif // UTILITIES_HPP
+private:
+    QDateTime dt;
+    u32 initialFrame;
+    u16 keypress;
+    u64 seed;
+};
+
+#endif // IDFRAME5_HPP

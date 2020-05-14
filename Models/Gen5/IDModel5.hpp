@@ -17,23 +17,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#ifndef IDMODEL5_HPP
+#define IDMODEL5_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QDateTime>
+#include <Core/Gen5/Frames/IDFrame5.hpp>
+#include <Models/TableModel.hpp>
 
-class HGSSRoamer;
-
-namespace Utilities
+class IDModel5 : public TableModel<IDFrame5>
 {
-    u16 calcGen3Seed(const QDateTime &dateTime);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    QString coinFlips(u32 seed);
-    QString getCalls(u32 seed, const HGSSRoamer &info);
-    u32 initialFrameBW(u64 seed, u8 rounds = 5);
-    u32 initialFrameBW2(u64 seed, bool memory, u8 rounds = 5);
-    u32 initialFrameBW2ID(u64 seed, u8 rounds = 3);
-}
+    Q_OBJECT
+public:
+    explicit IDModel5(QObject *parent);
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-#endif // UTILITIES_HPP
+private:
+    QStringList header = { tr("Seed"), tr("Initial Frame"), tr("Frame"), tr("TID"), tr("SID"), tr("Date/Time"), tr("Buttons") };
+};
+
+#endif // IDMODEL5_HPP

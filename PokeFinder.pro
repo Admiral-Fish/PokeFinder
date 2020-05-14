@@ -64,6 +64,7 @@ FORMS += \
     Forms/Gen4/Tools/SearchCoinFlips.ui \
     Forms/Gen4/Tools/SeedtoTime4.ui \
     Forms/Gen4/Wild4.ui \
+    Forms/Gen5/IDs5.ui \
     Forms/Gen5/Profile/ProfileCalibrator5.ui \
     Forms/Gen5/Profile/ProfileEditor5.ui \
     Forms/Gen5/Profile/ProfileManager5.ui \
@@ -133,6 +134,7 @@ HEADERS += \
     Core/Gen5/Nazos.hpp \
     Core/Gen5/Profile5.hpp \
     Core/Gen5/ProfileLoader5.hpp \
+    Core/Gen5/Searchers/IDSearcher5.hpp \
     Core/Gen5/Searchers/StationarySearcher5.hpp \
     Core/Parents/EncounterArea.hpp \
     Core/Parents/Filters/FrameFilter.hpp \
@@ -205,6 +207,7 @@ HEADERS += \
     Forms/Gen4/Tools/SearchCoinFlips.hpp \
     Forms/Gen4/Tools/SeedtoTime4.hpp \
     Forms/Gen4/Wild4.hpp \
+    Forms/Gen5/IDs5.hpp \
     Forms/Gen5/Profile/ProfileCalibrator5.hpp \
     Forms/Gen5/Profile/ProfileEditor5.hpp \
     Forms/Gen5/Profile/ProfileManager5.hpp \
@@ -230,6 +233,7 @@ HEADERS += \
     Models/Gen4/SeedtoTimeModel4.hpp \
     Models/Gen4/StationaryModel4.hpp \
     Models/Gen4/WildModel4.hpp \
+    Models/Gen5/IDModel5.hpp \
     Models/Gen5/ProfileModel5.hpp \
     Models/TableModel.hpp \
     Models/Util/ResearcherModel.hpp
@@ -284,6 +288,7 @@ SOURCES += \
     Core/Gen5/Nazos.cpp \
     Core/Gen5/Profile5.cpp \
     Core/Gen5/ProfileLoader5.cpp \
+    Core/Gen5/Searchers/IDSearcher5.cpp \
     Core/Gen5/Searchers/StationarySearcher5.cpp \
     Core/Parents/EncounterArea.cpp \
     Core/Parents/Filters/FrameFilter.cpp \
@@ -351,6 +356,7 @@ SOURCES += \
     Forms/Gen4/Tools/SearchCoinFlips.cpp \
     Forms/Gen4/Tools/SeedtoTime4.cpp \
     Forms/Gen4/Wild4.cpp \
+    Forms/Gen5/IDs5.cpp \
     Forms/Gen5/Profile/ProfileCalibrator5.cpp \
     Forms/Gen5/Profile/ProfileEditor5.cpp \
     Forms/Gen5/Profile/ProfileManager5.cpp \
@@ -376,6 +382,7 @@ SOURCES += \
     Models/Gen4/SeedtoTimeModel4.cpp \
     Models/Gen4/StationaryModel4.cpp \
     Models/Gen4/WildModel4.cpp \
+    Models/Gen5/IDModel5.cpp \
     Models/Gen5/ProfileModel5.cpp \
     Models/Util/ResearcherModel.cpp \
     main.cpp

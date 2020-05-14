@@ -17,23 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#ifndef IDGENERATOR5_HPP
+#define IDGENERATOR5_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QDateTime>
+#include <Core/Gen5/Frames/IDFrame5.hpp>
+#include <Core/Parents/Generators/IDGenerator.hpp>
 
-class HGSSRoamer;
-
-namespace Utilities
+class IDGenerator5 : public IDGenerator
 {
-    u16 calcGen3Seed(const QDateTime &dateTime);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    QString coinFlips(u32 seed);
-    QString getCalls(u32 seed, const HGSSRoamer &info);
-    u32 initialFrameBW(u64 seed, u8 rounds = 5);
-    u32 initialFrameBW2(u64 seed, bool memory, u8 rounds = 5);
-    u32 initialFrameBW2ID(u64 seed, u8 rounds = 3);
-}
+public:
+    IDGenerator5() = default;
+    IDGenerator5(u32 initialFrame, u32 maxResults, const IDFilter &filter);
+    QVector<IDFrame5> generate(u64 seed, u32 pid = 0, bool checkPID = false);
+    void setInitialFrame(u32 initialFrame);
+};
 
-#endif // UTILITIES_HPP
+#endif // IDGENERATOR5_HPP
