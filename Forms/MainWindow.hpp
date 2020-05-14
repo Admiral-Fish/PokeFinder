@@ -51,6 +51,7 @@ private:
     Ui::MainWindow *ui;
     QActionGroup *langGroup = nullptr;
     QActionGroup *styleGroup = nullptr;
+    QActionGroup *threadGroup = nullptr;
     QString currentLanguage;
     QString currentStyle;
 
@@ -71,6 +72,7 @@ private:
 private slots:
     void slotLanguageChanged(QAction *action);
     void slotStyleChanged(QAction *action);
+    void slotThreadChanged(QAction *action);
     void checkUpdates();
     void updateProfiles(int num);
     void openStationary3();

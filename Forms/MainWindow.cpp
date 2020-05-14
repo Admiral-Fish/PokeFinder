@@ -127,6 +127,24 @@ void MainWindow::setupModels()
         styleGroup->addAction(action);
     }
 
+    threadGroup = new QActionGroup(ui->menuThreads);
+    threadGroup->setExclusive(true);
+    connect(threadGroup, &QActionGroup::triggered, this, &MainWindow::slotThreadChanged);
+    int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
+    for (int i = 1; i <= threads; i++)
+    {
+        auto *action = ui->menuThreads->addAction(QString::number(i));
+        action->setData(i);
+        action->setCheckable(true);
+
+        if (threads == i)
+        {
+            action->setChecked(true);
+        }
+
+        threadGroup->addAction(action);
+    }
+
     connect(ui->pushButtonStationary3, &QPushButton::clicked, this, &MainWindow::openStationary3);
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
@@ -196,6 +214,15 @@ void MainWindow::slotStyleChanged(QAction *action)
                 QApplication::quit();
             }
         }
+    }
+}
+
+void MainWindow::slotThreadChanged(QAction *action)
+{
+    if (action)
+    {
+        QSettings setting;
+        setting.setValue("settings/threads", action->data().toInt());
     }
 }
 
