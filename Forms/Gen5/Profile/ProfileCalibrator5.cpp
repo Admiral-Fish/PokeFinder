@@ -189,6 +189,7 @@ void ProfileCalibrator5::search()
     u64 mac = ui->textBoxMACAddress->getULong();
     u16 keypress
         = ui->comboBoxKeypress1->getCurrentUShort() | ui->comboBoxKeypress2->getCurrentUShort() | ui->comboBoxKeypress3->getCurrentUShort();
+    u8 offset = (version & Game::BW2) ? 2 : 0;
 
     if (minSeconds > maxSeconds || minVCount > maxVCount || minTimer0 > maxTimer0 || minGxStat > maxGxStat || minVFrame > maxVFrame)
     {
@@ -221,7 +222,9 @@ void ProfileCalibrator5::search()
                             sha.setTime(time.hour(), time.minute(), second, dsType);
 
                             u64 seed = sha.hashSeed();
-                            MersenneTwisterFast rng(6, seed >> 32);
+
+                            MersenneTwisterFast rng(6 + offset, seed >> 32);
+                            rng.advanceFrames(offset);
 
                             bool flag = true;
                             for (u8 i = 0; i < 6; i++)
