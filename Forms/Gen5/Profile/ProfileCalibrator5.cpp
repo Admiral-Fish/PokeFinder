@@ -23,12 +23,15 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/Gen5/Searchers/ProfileSearcher5.hpp>
 #include <Core/RNG/MTRNG.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Forms/Util/IVCalculator.hpp>
 #include <QMessageBox>
 #include <QSettings>
+#include <QThread>
+#include <QTimer>
 
 ProfileCalibrator5::ProfileCalibrator5(QWidget *parent) : QWidget(parent), ui(new Ui::ProfileCalibrator5)
 {
@@ -149,6 +152,15 @@ void ProfileCalibrator5::updateParameters()
     ui->textBoxMaxVFrame->setText("10");
 }
 
+void ProfileCalibrator5::updateProgress(const QVector<QList<QStandardItem *>> &frames, int progress)
+{
+    for (auto &frame : frames)
+    {
+        model->appendRow(frame);
+    }
+    ui->progressBar->setValue(progress);
+}
+
 void ProfileCalibrator5::openIVCalculator()
 {
     auto *iv = new IVCalculator();
@@ -189,7 +201,6 @@ void ProfileCalibrator5::search()
     u64 mac = ui->textBoxMACAddress->getULong();
     u16 keypress
         = ui->comboBoxKeypress1->getCurrentUShort() | ui->comboBoxKeypress2->getCurrentUShort() | ui->comboBoxKeypress3->getCurrentUShort();
-    u8 offset = (version & Game::BW2) ? 2 : 0;
 
     if (minSeconds > maxSeconds || minVCount > maxVCount || minTimer0 > maxTimer0 || minGxStat > maxGxStat || minVFrame > maxVFrame)
     {
@@ -199,62 +210,36 @@ void ProfileCalibrator5::search()
         return;
     }
 
-    auto buttons = Keypresses::getValues({ keypress });
-    for (u8 vframe = minVFrame; vframe <= maxVFrame; vframe++)
-    {
-        for (u8 gxStat = minGxStat; gxStat <= maxGxStat; gxStat++)
-        {
-            SHA1 sha(version, language, dsType, mac, softReset, vframe, gxStat);
-            sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
-                        static_cast<u8>(date.dayOfWeek()));
-            for (u16 timer0 = minTimer0; timer0 <= maxTimer0; timer0++)
-            {
-                for (u8 vcount = minVCount; vcount <= maxVCount; vcount++)
-                {
-                    sha.setTimer0(timer0, vcount);
-                    for (u32 button : buttons)
-                    {
-                        sha.setButton(button);
-                        sha.precompute();
+    ui->pushButtonSearch->setEnabled(false);
+    ui->pushButtonCancel->setEnabled(true);
 
-                        for (u8 second = minSeconds; second <= maxSeconds; second++)
-                        {
-                            sha.setTime(time.hour(), time.minute(), second, dsType);
+    auto *searcher = new ProfileSearcher5(minIVs, maxIVs, date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0,
+                                          minGxStat, maxGxStat, softReset, version, language, dsType, mac, keypress);
 
-                            u64 seed = sha.hashSeed();
+    int maxProgress = (maxSeconds - minSeconds + 1) * (maxVCount - minVCount + 1) * (maxTimer0 - minTimer0 + 1)
+        * (maxGxStat - maxGxStat + 1) * (maxVFrame - minVFrame + 1);
+    ui->progressBar->setRange(0, maxProgress);
 
-                            MersenneTwisterFast rng(6 + offset, seed >> 32);
-                            rng.advanceFrames(offset);
+    QSettings settings;
+    int threads = settings.value("settings/threads", QThread::idealThreadCount()).toInt();
 
-                            bool flag = true;
-                            for (u8 i = 0; i < 6; i++)
-                            {
-                                u8 iv = rng.nextUInt() >> 27;
-                                if (iv < minIVs.at(i) || iv > maxIVs.at(i))
-                                {
-                                    flag = false;
-                                    break;
-                                }
-                            }
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, minVFrame, maxVFrame); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
-                            if (flag)
-                            {
-                                QList<QStandardItem *> items;
-                                items.append(new QStandardItem(QString::number(second)));
-                                items.append(new QStandardItem(QString::number(vcount, 16)));
-                                items.append(new QStandardItem(QString::number(timer0, 16)));
-                                items.append(new QStandardItem(QString::number(gxStat, 16)));
-                                items.append(new QStandardItem(QString::number(vframe, 16)));
-                                items.append(new QStandardItem(QString::number(seed, 16)));
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults(), searcher->getProgress()); });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonSearch->setEnabled(true);
+        ui->pushButtonCancel->setEnabled(false);
+        updateProgress(searcher->getResults(), searcher->getProgress());
+        delete searcher;
+    });
 
-                                model->appendRow(items);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    thread->start();
+    timer->start(1000);
 }
 
 void ProfileCalibrator5::createProfile()

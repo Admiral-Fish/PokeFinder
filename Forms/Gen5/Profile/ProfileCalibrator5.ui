@@ -14,102 +14,6 @@
    <string>Profile Calibrator</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>1</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="title">
-      <string>Settings</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelMinIVs">
-        <property name="text">
-         <string>Min IVs</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QSpinBox" name="spinBoxMinHP"/>
-      </item>
-      <item row="0" column="2">
-       <widget class="QSpinBox" name="spinBoxMinAtk"/>
-      </item>
-      <item row="0" column="3">
-       <widget class="QSpinBox" name="spinBoxMinDef"/>
-      </item>
-      <item row="0" column="4">
-       <widget class="QSpinBox" name="spinBoxMinSpA"/>
-      </item>
-      <item row="0" column="5">
-       <widget class="QSpinBox" name="spinBoxMinSpD"/>
-      </item>
-      <item row="0" column="6">
-       <widget class="QSpinBox" name="spinBoxMinSpe"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelMaxIVs">
-        <property name="text">
-         <string>Max IVs</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="spinBoxMaxHP"/>
-      </item>
-      <item row="1" column="2">
-       <widget class="QSpinBox" name="spinBoxMaxAtk"/>
-      </item>
-      <item row="1" column="3">
-       <widget class="QSpinBox" name="spinBoxMaxDef"/>
-      </item>
-      <item row="1" column="4">
-       <widget class="QSpinBox" name="spinBoxMaxSpA"/>
-      </item>
-      <item row="1" column="5">
-       <widget class="QSpinBox" name="spinBoxMaxSpD"/>
-      </item>
-      <item row="1" column="6">
-       <widget class="QSpinBox" name="spinBoxMaxSpe"/>
-      </item>
-      <item row="2" column="2" colspan="3">
-       <widget class="QPushButton" name="pushButtonIVCalculator">
-        <property name="text">
-         <string>Open IV Calculator</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelDate">
-        <property name="text">
-         <string>Date</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1" colspan="3">
-       <widget class="QDateTimeEdit" name="dateTimeEdit"/>
-      </item>
-      <item row="4" column="1" colspan="2">
-       <widget class="QPushButton" name="pushButtonSearch">
-        <property name="text">
-         <string>Search</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="4" colspan="2">
-       <widget class="QPushButton" name="pushButtonClearTable">
-        <property name="text">
-         <string>Clear table</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item row="0" column="1">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="sizePolicy">
@@ -364,7 +268,7 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
+   <item row="2" column="0" colspan="2">
     <widget class="QTableView" name="tableView">
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
@@ -372,6 +276,127 @@
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
      </attribute>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>1</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Settings</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="0" colspan="2">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelMinIVs">
+          <property name="text">
+           <string>Min IVs</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="spinBoxMinHP"/>
+        </item>
+        <item row="0" column="2">
+         <widget class="QSpinBox" name="spinBoxMinAtk"/>
+        </item>
+        <item row="0" column="3">
+         <widget class="QSpinBox" name="spinBoxMinDef"/>
+        </item>
+        <item row="0" column="4">
+         <widget class="QSpinBox" name="spinBoxMinSpA"/>
+        </item>
+        <item row="0" column="5">
+         <widget class="QSpinBox" name="spinBoxMinSpD"/>
+        </item>
+        <item row="0" column="6">
+         <widget class="QSpinBox" name="spinBoxMinSpe"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelMaxIVs">
+          <property name="text">
+           <string>Max IVs</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="spinBoxMaxHP"/>
+        </item>
+        <item row="1" column="2">
+         <widget class="QSpinBox" name="spinBoxMaxAtk"/>
+        </item>
+        <item row="1" column="3">
+         <widget class="QSpinBox" name="spinBoxMaxDef"/>
+        </item>
+        <item row="1" column="4">
+         <widget class="QSpinBox" name="spinBoxMaxSpA"/>
+        </item>
+        <item row="1" column="5">
+         <widget class="QSpinBox" name="spinBoxMaxSpD"/>
+        </item>
+        <item row="1" column="6">
+         <widget class="QSpinBox" name="spinBoxMaxSpe"/>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelDate">
+        <property name="text">
+         <string>Date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDateTimeEdit" name="dateTimeEdit"/>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButtonSearch">
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="pushButtonCancel">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButtonIVCalculator">
+          <property name="text">
+           <string>Open IV Calculator</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="pushButtonClearTable">
+          <property name="text">
+           <string>Clear table</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
+      <number>0</number>
+     </property>
     </widget>
    </item>
   </layout>
@@ -401,9 +426,10 @@
   <tabstop>spinBoxMaxSpA</tabstop>
   <tabstop>spinBoxMaxSpD</tabstop>
   <tabstop>spinBoxMaxSpe</tabstop>
-  <tabstop>pushButtonIVCalculator</tabstop>
   <tabstop>dateTimeEdit</tabstop>
   <tabstop>pushButtonSearch</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>pushButtonIVCalculator</tabstop>
   <tabstop>pushButtonClearTable</tabstop>
   <tabstop>spinBoxMinSeconds</tabstop>
   <tabstop>spinBoxMaxSeconds</tabstop>

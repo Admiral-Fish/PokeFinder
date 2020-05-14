@@ -135,6 +135,7 @@ HEADERS += \
     Core/Gen5/Profile5.hpp \
     Core/Gen5/ProfileLoader5.hpp \
     Core/Gen5/Searchers/IDSearcher5.hpp \
+    Core/Gen5/Searchers/ProfileSearcher5.hpp \
     Core/Gen5/Searchers/StationarySearcher5.hpp \
     Core/Parents/EncounterArea.hpp \
     Core/Parents/Filters/FrameFilter.hpp \
@@ -289,6 +290,7 @@ SOURCES += \
     Core/Gen5/Profile5.cpp \
     Core/Gen5/ProfileLoader5.cpp \
     Core/Gen5/Searchers/IDSearcher5.cpp \
+    Core/Gen5/Searchers/ProfileSearcher5.cpp \
     Core/Gen5/Searchers/StationarySearcher5.cpp \
     Core/Parents/EncounterArea.cpp \
     Core/Parents/Filters/FrameFilter.cpp \
