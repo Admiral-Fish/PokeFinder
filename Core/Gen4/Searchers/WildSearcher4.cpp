@@ -685,5 +685,5 @@ bool WildSearcher4::encounterMethodK(WildFrame &frame, u32 seed) const
         break;
     }
 
-    return true;
+    return filter.compareEncounterSlot(frame);
 }
