@@ -540,7 +540,7 @@ QVector<WildFrame> WildSearcher4::synchMethodK(WildFrame frame, u32 seed) const
     frame.setLead(Lead::Synchronize);
 
     PokeRNGR rng(seed);
-    u32 pid;
+    u8 nature;
     u16 nextRNG = seed >> 16;
     u16 nextRNG2 = rng.nextUShort();
 
@@ -553,7 +553,7 @@ QVector<WildFrame> WildSearcher4::synchMethodK(WildFrame frame, u32 seed) const
                 frames.append(frame);
             }
         }
-        else if ((nextRNG2 & 1) == 1 && (nextRNG / 0xa3e) == frame.getNature())
+        else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == frame.getNature())
         {
             if (encounterMethodK(frame, rng.getSeed() * 0xeeb9eb65 + 0xa3561a1))
             {
@@ -561,10 +561,11 @@ QVector<WildFrame> WildSearcher4::synchMethodK(WildFrame frame, u32 seed) const
             }
         }
 
-        pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
-        nextRNG = rng.nextUShort();
+        nature = static_cast<u32>((nextRNG << 16) | nextRNG2) % 25;
+        // nextRNG = rng.nextUShort();
+        nextRNG = nextRNG2;
         nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != frame.getNature());
+    } while (nature != frame.getNature());
 
     return frames;
 }
