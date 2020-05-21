@@ -31,7 +31,8 @@ class Profile5 : public Profile
 public:
     Profile5();
     Profile5(const QString &name, Game version, u16 tid, u16 sid, u64 mac, const QVector<bool> &keypresses, u8 vcount, u8 gxstat, u8 vframe,
-             bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, DSType dsType, Language language = Language::English);
+             bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, bool memoryLink, DSType dsType,
+             Language language = Language::English);
     u64 getMac() const;
     QVector<bool> getKeypresses() const;
     QString getKeypressesString() const;
@@ -42,6 +43,7 @@ public:
     u16 getTimer0Min() const;
     u16 getTimer0Max() const;
     bool getSoftReset() const;
+    bool getMemoryLink() const;
     DSType getDSType() const;
     QString getDSTypeString() const;
     Language getLanguage() const;
@@ -57,6 +59,7 @@ private:
     u16 timer0Min;
     u16 timer0Max;
     bool softReset;
+    bool memoryLink;
     DSType dsType;
     Language language;
 };

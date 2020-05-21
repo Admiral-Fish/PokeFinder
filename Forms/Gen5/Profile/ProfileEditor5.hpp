@@ -55,6 +55,7 @@ private:
 private slots:
     void okay();
     void findParameters();
+    void versionIndexChanged(int index);
 };
 
 #endif // PROFILEEDITOR5_HPP

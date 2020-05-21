@@ -46,10 +46,11 @@ namespace ProfileLoader5
             u16 timer0Min = static_cast<u16>(object["timer0Min"].toInt());
             u16 timer0Max = static_cast<u16>(object["timer0Max"].toInt());
             bool softReset = object["softReset"].toBool();
+            bool memoryLink = object["memoryLink"].toBool();
             DSType dsType = static_cast<DSType>(object["dsType"].toInt());
             Language language = static_cast<Language>(object["language"].toInt());
             return Profile5(name, version, tid, sid, mac, keypresses, vcount, gxstat, vframe, skipLR, timer0Min, timer0Max, softReset,
-                            dsType, language);
+                            memoryLink, dsType, language);
         }
 
         QJsonObject getJson(const Profile5 &profile)
@@ -73,6 +74,7 @@ namespace ProfileLoader5
             data["timer0Min"] = profile.getTimer0Min();
             data["timer0Max"] = profile.getTimer0Max();
             data["softReset"] = profile.getSoftReset();
+            data["memoryLink"] = profile.getMemoryLink();
             data["dsType"] = static_cast<int>(profile.getDSType());
             data["language"] = static_cast<int>(profile.getLanguage());
             return data;

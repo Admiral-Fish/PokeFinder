@@ -43,27 +43,30 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="5">
+   <item row="0" column="3">
+    <widget class="TextBox" name="textBoxMAC"/>
+   </item>
+   <item row="0" column="4">
     <widget class="QLabel" name="labelVFrame">
      <property name="text">
       <string>VFrame</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="6" colspan="2">
+   <item row="0" column="5">
     <widget class="TextBox" name="textBoxVFrame"/>
    </item>
-   <item row="0" column="8">
+   <item row="0" column="6">
     <widget class="QLabel" name="labelTID">
      <property name="text">
       <string>TID</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="9">
+   <item row="0" column="7">
     <widget class="TextBox" name="textBoxTID"/>
    </item>
-   <item row="0" column="10">
+   <item row="0" column="8">
     <widget class="QPushButton" name="pushButtonAccept">
      <property name="text">
       <string>Accept</string>
@@ -101,14 +104,14 @@
      </item>
     </widget>
    </item>
-   <item row="1" column="2" colspan="2">
+   <item row="1" column="2">
     <widget class="QLabel" name="labelKeypresses">
      <property name="text">
       <string>Keypresses</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="4">
+   <item row="1" column="3">
     <widget class="CheckList" name="comboBoxKeypresses">
      <item>
       <property name="text">
@@ -132,27 +135,27 @@
      </item>
     </widget>
    </item>
-   <item row="1" column="5">
+   <item row="1" column="4">
     <widget class="QLabel" name="labelTimer0Min">
      <property name="text">
       <string>Timer0 Min</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="6" colspan="2">
+   <item row="1" column="5">
     <widget class="TextBox" name="textBoxTimer0Min"/>
    </item>
-   <item row="1" column="8">
+   <item row="1" column="6">
     <widget class="QLabel" name="labelSID">
      <property name="text">
       <string>SID</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="9">
+   <item row="1" column="7">
     <widget class="TextBox" name="textBoxSID"/>
    </item>
-   <item row="1" column="10">
+   <item row="1" column="8">
     <widget class="QPushButton" name="pushButtonCancel">
      <property name="text">
       <string>Cancel</string>
@@ -205,24 +208,24 @@
      </item>
     </widget>
    </item>
-   <item row="2" column="2" colspan="2">
+   <item row="2" column="2">
     <widget class="QLabel" name="labelVCount">
      <property name="text">
       <string>VCount</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="4">
+   <item row="2" column="3">
     <widget class="TextBox" name="textBoxVCount"/>
    </item>
-   <item row="2" column="5">
+   <item row="2" column="4">
     <widget class="QLabel" name="labelTimer0Max">
      <property name="text">
       <string>Timer0 Max</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="6" colspan="2">
+   <item row="2" column="5">
     <widget class="TextBox" name="textBoxTimer0Max"/>
    </item>
    <item row="3" column="0">
@@ -251,39 +254,47 @@
      </item>
     </widget>
    </item>
-   <item row="3" column="2" colspan="2">
+   <item row="3" column="2">
     <widget class="QLabel" name="labelGxStat">
      <property name="text">
       <string>GxStat</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="4">
+   <item row="3" column="3">
     <widget class="TextBox" name="textBoxGxStat"/>
    </item>
-   <item row="0" column="4">
-    <widget class="TextBox" name="textBoxMAC"/>
-   </item>
-   <item row="3" column="5">
-    <widget class="QCheckBox" name="checkBoxSkipLR">
-     <property name="text">
-      <string>Skip L/R</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="6" colspan="2">
-    <widget class="QCheckBox" name="checkBoxSoftReset">
-     <property name="text">
-      <string>Soft Reset</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="10">
+   <item row="3" column="8">
     <widget class="QPushButton" name="pushButtonFindParameters">
      <property name="text">
       <string>Find Parameters</string>
      </property>
     </widget>
+   </item>
+   <item row="3" column="4" colspan="4">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QCheckBox" name="checkBoxSkipLR">
+       <property name="text">
+        <string>Skip L/R</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="checkBoxSoftReset">
+       <property name="text">
+        <string>Soft Reset</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="checkBoxMemoryLink">
+       <property name="text">
+        <string>Memory Link</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -316,10 +327,12 @@
   <tabstop>textBoxTimer0Max</tabstop>
   <tabstop>checkBoxSkipLR</tabstop>
   <tabstop>checkBoxSoftReset</tabstop>
+  <tabstop>checkBoxMemoryLink</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
   <tabstop>pushButtonAccept</tabstop>
   <tabstop>pushButtonCancel</tabstop>
+  <tabstop>pushButtonFindParameters</tabstop>
  </tabstops>
  <resources/>
  <connections>

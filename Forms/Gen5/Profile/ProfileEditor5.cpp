@@ -29,6 +29,7 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
+    versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }
 
 ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor5)
@@ -56,9 +57,12 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
 
     ui->checkBoxSkipLR->setChecked(profile.getSkipLR());
     ui->checkBoxSoftReset->setChecked(profile.getSoftReset());
+    ui->checkBoxMemoryLink->setChecked(profile.getMemoryLink());
 
     isEditing = true;
     original = profile;
+
+    versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }
 
 ProfileEditor5::~ProfileEditor5()
@@ -108,6 +112,7 @@ void ProfileEditor5::setupModels()
 
     connect(ui->pushButtonAccept, &QPushButton::clicked, this, &ProfileEditor5::okay);
     connect(ui->pushButtonFindParameters, &QPushButton::clicked, this, &ProfileEditor5::findParameters);
+    connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor5::versionIndexChanged);
 }
 
 void ProfileEditor5::okay()
@@ -125,7 +130,7 @@ void ProfileEditor5::okay()
         ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
         ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(), ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(),
         ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),
-        ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(),
+        ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(), ui->checkBoxMemoryLink->isChecked(),
         static_cast<DSType>(ui->comboBoxDSType->currentData().toInt()), static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()));
 
     done(QDialog::Accepted);
@@ -138,4 +143,21 @@ void ProfileEditor5::findParameters()
     calibrator->raise();
 
     done(QDialog::Rejected);
+}
+
+void ProfileEditor5::versionIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        Game version = static_cast<Game>(ui->comboBoxVersion->currentData().toInt());
+        if (version & Game::BW2)
+        {
+            ui->checkBoxMemoryLink->setVisible(true);
+        }
+        else
+        {
+            ui->checkBoxMemoryLink->setVisible(false);
+            ui->checkBoxMemoryLink->setChecked(false);
+        }
+    }
 }
