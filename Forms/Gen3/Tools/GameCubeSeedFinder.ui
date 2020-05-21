@@ -22,6 +22,9 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
      <widget class="QWidget" name="tabGales">
       <attribute name="title">
        <string>Gales</string>
@@ -498,7 +501,7 @@
              </sizepolicy>
             </property>
             <property name="readOnly">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -730,9 +733,9 @@
  <connections/>
  <buttongroups>
   <buttongroup name="buttonGroupColoTrainerName"/>
-  <buttongroup name="buttonGroupChannel"/>
-  <buttongroup name="buttonGroupGalesYourLead"/>
   <buttongroup name="buttonGroupColoPartyLead"/>
+  <buttongroup name="buttonGroupGalesYourLead"/>
   <buttongroup name="buttonGroupGalesEnemyLead"/>
+  <buttongroup name="buttonGroupChannel"/>
  </buttongroups>
 </ui>

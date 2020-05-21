@@ -162,6 +162,11 @@ void GameCubeSeedSearcher::searchChannel()
 {
     for (u32 seed = 0x40000001; seed < 0xffffffff; seed++)
     {
+        if (!searching)
+        {
+            return;
+        }
+
         XDRNG rng(seed);
 
         bool flag = true;
@@ -223,6 +228,10 @@ void GameCubeSeedSearcher::searchChannel()
             seeds.append(rng.getSeed());
         }
     }
+
+    // Remove duplicates
+    std::sort(seeds.begin(), seeds.end());
+    seeds.erase(std::unique(seeds.begin(), seeds.end()), seeds.end());
 }
 
 bool GameCubeSeedSearcher::generateTeamGales(u32 &seed)

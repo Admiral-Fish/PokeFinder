@@ -149,15 +149,24 @@ void GameCubeSeedFinder::updateColoProgress(int progress)
 
 void GameCubeSeedFinder::updateChannel(const QVector<u32> &seeds)
 {
-    if (seeds.size() != 1)
+    if (seeds.size() == 0)
     {
         ui->labelChannelResult->setText(tr("Result: Invalid"));
     }
     else
     {
-        QString seed = QString::number(seeds.at(0), 16).toUpper();
+        QString seed = "";
+        for (int i = 0; i < seeds.size(); i++)
+        {
+            seed += QString::number(seeds.at(i), 16).toUpper();
+            if (i != seeds.size() - 1)
+            {
+                seed += ", ";
+            }
+        }
+
         ui->labelChannelResult->setText(tr("Result: ") + seed);
-        QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed is %1. Copy to clipboard?").arg(seed),
+        QMessageBox info(QMessageBox::Question, tr("Seed found"), tr("Your seed(s) is %1. Copy to clipboard?").arg(seed),
                          QMessageBox::Yes | QMessageBox::No);
         if (info.exec() == QMessageBox::Yes)
         {
