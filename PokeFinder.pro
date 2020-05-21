@@ -128,10 +128,12 @@ HEADERS += \
     Core/Gen5/Frames/Frame5.hpp \
     Core/Gen5/Frames/IDFrame5.hpp \
     Core/Gen5/Frames/StationaryFrame5.hpp \
+    Core/Gen5/Generators/EventGenerator5.hpp \
     Core/Gen5/Generators/IDGenerator5.hpp \
     Core/Gen5/Generators/StationaryGenerator5.hpp \
     Core/Gen5/Keypresses.hpp \
     Core/Gen5/Nazos.hpp \
+    Core/Gen5/PGF.hpp \
     Core/Gen5/Profile5.hpp \
     Core/Gen5/ProfileLoader5.hpp \
     Core/Gen5/Searchers/IDSearcher5.hpp \
@@ -283,10 +285,12 @@ SOURCES += \
     Core/Gen4/Searchers/WildSearcher4.cpp \
     Core/Gen4/Tools/ChainedSIDCalc.cpp \
     Core/Gen5/Frames/IDFrame5.cpp \
+    Core/Gen5/Generators/EventGenerator5.cpp \
     Core/Gen5/Generators/IDGenerator5.cpp \
     Core/Gen5/Generators/StationaryGenerator5.cpp \
     Core/Gen5/Keypresses.cpp \
     Core/Gen5/Nazos.cpp \
+    Core/Gen5/PGF.cpp \
     Core/Gen5/Profile5.cpp \
     Core/Gen5/ProfileLoader5.cpp \
     Core/Gen5/Searchers/IDSearcher5.cpp \

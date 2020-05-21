@@ -17,24 +17,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#ifndef PGF_HPP
+#define PGF_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QDateTime>
+#include <QByteArray>
 
-class HGSSRoamer;
-
-namespace Utilities
+class PGF
 {
-    u16 calcGen3Seed(const QDateTime &dateTime);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    QString coinFlips(u32 seed);
-    QString getCalls(u32 seed, const HGSSRoamer &info);
-    u32 initialFrameBW(u64 seed, u8 rounds = 5);
-    u32 initialFrameBW2(u64 seed, bool memory, u8 rounds = 5);
-    u32 initialFrameBW2ID(u64 seed, u8 rounds = 3);
-    u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio);
-}
+public:
+    explicit PGF(const QByteArray &data);
+    u16 getTID() const;
+    u16 getSID() const;
+    u16 getSpecies() const;
+    u8 getForm() const;
+    u8 getNature() const;
+    u8 getGender() const;
+    u8 getAbilityType() const;
+    u8 getPIDType() const;
+    u8 getIV(u8 index) const;
+    bool isEgg() const;
+    u8 getAdvances() const;
 
-#endif // UTILITIES_HPP
+private:
+    u16 tid;
+    u16 sid;
+    u16 species;
+    u8 form;
+    u8 nature; // 0xff -> unset
+    u8 gender; // 0: male, 1: female, 2: random
+    u8 abilityType; // 0: 0, 1: 1, 2: H, 3: 1/2, 4: 1/2/H
+    u8 pidType; // 0: no shiny, 1: allow shiny, 2: force shiny
+    u8 hp, atk, def, spa, spd, spe; // 0xff -> unset
+    bool egg;
+};
+
+#endif // PGF_HPP

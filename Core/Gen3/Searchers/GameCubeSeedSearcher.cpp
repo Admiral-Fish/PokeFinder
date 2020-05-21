@@ -223,6 +223,10 @@ void GameCubeSeedSearcher::searchChannel()
             seeds.append(rng.getSeed());
         }
     }
+
+    // Remove duplicates
+    std::sort(seeds.begin(), seeds.end());
+    seeds.erase(std::unique(seeds.begin(), seeds.end()), seeds.end());
 }
 
 bool GameCubeSeedSearcher::generateTeamGales(u32 &seed)

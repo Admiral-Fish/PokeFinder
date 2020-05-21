@@ -155,12 +155,8 @@ namespace Utilities
             }
         }
 
-        // bool loop = true;
         for (u8 limit = 0; limit < 100; limit++)
         {
-            // I am pretty sure this accomplishes the same thing as the below
-            // Gonna leave it below commented out in case I need to change back
-
             count += 3;
             u8 rand1 = rng.nextUInt(15);
             u8 rand2 = rng.nextUInt(15);
@@ -172,33 +168,6 @@ namespace Utilities
             {
                 break;
             }
-
-            /*
-            loop = false;
-
-            u8 rands[3];
-            count += 3;
-
-            for (u8 i = 0; i < 3; i++)
-            {
-                rands[i] = rng.nextUInt(15);
-            }
-
-            for (u8 i = 0; i < 3; i++)
-            {
-                for (u8 j = 0; j < 3; j++)
-                {
-                    if (i == j)
-                    {
-                        continue;
-                    }
-
-                    if (rands[i] == rands[j])
-                    {
-                        loop = true;
-                    }
-                }
-            }*/
         }
 
         return count;
@@ -215,5 +184,41 @@ namespace Utilities
         }
 
         return count;
+    }
+
+    u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio)
+    {
+        pid &= 0xffffff00;
+
+        if (genderRatio == 0) // Male only
+        {
+            u8 val = ((rand * 0x8) >> 32) + 1;
+            pid |= val;
+        }
+        else if (genderRatio == 254) // Female only
+        {
+            u8 val = ((rand * 0xF6) >> 32) + 8;
+            pid |= val;
+        }
+        else // Gender ratio
+        {
+            if (gender == 0) // Male
+            {
+                u8 val = ((rand * (0xFE - genderRatio)) >> 32) + genderRatio;
+                pid |= val;
+            }
+            else if (gender == 1) // Female
+            {
+                u8 val = ((rand * (genderRatio - 1)) >> 32) + 1;
+                pid |= val;
+            }
+            else
+            {
+                u8 val = rand >> 32;
+                pid |= val;
+            }
+        }
+
+        return pid;
     }
 }

@@ -17,24 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef UTILITIES_HPP
-#define UTILITIES_HPP
+#ifndef EVENTGENERATOR5_HPP
+#define EVENTGENERATOR5_HPP
 
-#include <Core/Util/Global.hpp>
-#include <QDateTime>
+#include <Core/Gen5/PGF.hpp>
+#include <Core/Parents/Frames/Frame.hpp>
+#include <Core/Parents/Generators/Generator.hpp>
 
-class HGSSRoamer;
-
-namespace Utilities
+class EventGenerator5 : public Generator
 {
-    u16 calcGen3Seed(const QDateTime &dateTime);
-    u32 calcGen4Seed(const QDateTime &dateTime, u32 delay);
-    QString coinFlips(u32 seed);
-    QString getCalls(u32 seed, const HGSSRoamer &info);
-    u32 initialFrameBW(u64 seed, u8 rounds = 5);
-    u32 initialFrameBW2(u64 seed, bool memory, u8 rounds = 5);
-    u32 initialFrameBW2ID(u64 seed, u8 rounds = 3);
-    u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio);
-}
+public:
+    EventGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
+    QVector<Frame> generate(u64 seed, const PGF &parameters) const;
+};
 
-#endif // UTILITIES_HPP
+#endif // EVENTGENERATOR5_HPP
