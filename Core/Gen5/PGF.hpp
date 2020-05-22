@@ -27,10 +27,11 @@ class PGF
 {
 public:
     explicit PGF(const QByteArray &data);
+    PGF(u16 tid, u16 sid, u16 species, u8 nature, u8 gender, u8 abilityType, u8 pidType, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
+        bool egg);
     u16 getTID() const;
     u16 getSID() const;
     u16 getSpecies() const;
-    u8 getForm() const;
     u8 getNature() const;
     u8 getGender() const;
     u8 getAbilityType() const;
@@ -43,7 +44,6 @@ private:
     u16 tid;
     u16 sid;
     u16 species;
-    u8 form;
     u8 nature; // 0xff -> unset
     u8 gender; // 0: male, 1: female, 2: random
     u8 abilityType; // 0: 0, 1: 1, 2: H, 3: 1/2, 4: 1/2/H

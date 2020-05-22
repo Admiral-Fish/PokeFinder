@@ -64,6 +64,7 @@ FORMS += \
     Forms/Gen4/Tools/SearchCoinFlips.ui \
     Forms/Gen4/Tools/SeedtoTime4.ui \
     Forms/Gen4/Wild4.ui \
+    Forms/Gen5/Event5.ui \
     Forms/Gen5/IDs5.ui \
     Forms/Gen5/Profile/ProfileCalibrator5.ui \
     Forms/Gen5/Profile/ProfileEditor5.ui \
@@ -210,6 +211,7 @@ HEADERS += \
     Forms/Gen4/Tools/SearchCoinFlips.hpp \
     Forms/Gen4/Tools/SeedtoTime4.hpp \
     Forms/Gen4/Wild4.hpp \
+    Forms/Gen5/Event5.hpp \
     Forms/Gen5/IDs5.hpp \
     Forms/Gen5/Profile/ProfileCalibrator5.hpp \
     Forms/Gen5/Profile/ProfileEditor5.hpp \
@@ -236,6 +238,7 @@ HEADERS += \
     Models/Gen4/SeedtoTimeModel4.hpp \
     Models/Gen4/StationaryModel4.hpp \
     Models/Gen4/WildModel4.hpp \
+    Models/Gen5/EventModel5.hpp \
     Models/Gen5/IDModel5.hpp \
     Models/Gen5/ProfileModel5.hpp \
     Models/TableModel.hpp \
@@ -362,6 +365,7 @@ SOURCES += \
     Forms/Gen4/Tools/SearchCoinFlips.cpp \
     Forms/Gen4/Tools/SeedtoTime4.cpp \
     Forms/Gen4/Wild4.cpp \
+    Forms/Gen5/Event5.cpp \
     Forms/Gen5/IDs5.cpp \
     Forms/Gen5/Profile/ProfileCalibrator5.cpp \
     Forms/Gen5/Profile/ProfileEditor5.cpp \
@@ -388,6 +392,7 @@ SOURCES += \
     Models/Gen4/SeedtoTimeModel4.cpp \
     Models/Gen4/StationaryModel4.cpp \
     Models/Gen4/WildModel4.cpp \
+    Models/Gen5/EventModel5.cpp \
     Models/Gen5/IDModel5.cpp \
     Models/Gen5/ProfileModel5.cpp \
     Models/Util/ResearcherModel.cpp \

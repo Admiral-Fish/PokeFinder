@@ -1,0 +1,309 @@
+/*
+ * This file is part of PokéFinder
+ * Copyright (C) 2017-2020 by Admiral_Fish, bumba, and EzPzStreamz
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
+#include "Event5.hpp"
+#include "ui_Event5.h"
+#include <Core/Enum/Game.hpp>
+#include <Core/Enum/Method.hpp>
+#include <Core/Gen5/Generators/EventGenerator5.hpp>
+#include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Parents/PersonalInfo.hpp>
+#include <Core/Util/Translator.hpp>
+#include <Core/Util/Utilities.hpp>
+#include <Forms/Gen5/Profile/ProfileManager5.hpp>
+#include <Models/Gen5/EventModel5.hpp>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QSettings>
+
+Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
+{
+    ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+
+    updateProfiles();
+    setupModels();
+
+    qRegisterMetaType<QVector<Frame>>("QVector<Frame>");
+}
+
+Event5::~Event5()
+{
+    QSettings setting;
+    setting.beginGroup("event5");
+    setting.setValue("profile", ui->comboBoxProfiles->currentIndex());
+    setting.setValue("geometry", this->saveGeometry());
+    setting.endGroup();
+
+    delete ui;
+}
+
+void Event5::updateProfiles()
+{
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Event5::profileIndexChanged);
+
+    profiles = ProfileLoader5::getProfiles();
+    profiles.insert(profiles.begin(), Profile5());
+
+    ui->comboBoxProfiles->clear();
+
+    for (const auto &profile : profiles)
+    {
+        ui->comboBoxProfiles->addItem(profile.getName());
+    }
+
+    QSettings setting;
+    int val = setting.value("stationary4/profile", 0).toInt();
+    if (val < ui->comboBoxProfiles->count())
+    {
+        ui->comboBoxProfiles->setCurrentIndex(val);
+    }
+}
+
+void Event5::setupModels()
+{
+    generatorModel = new EventGeneratorModel5(ui->tableViewGenerator);
+    // searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1);
+    generatorMenu = new QMenu(ui->tableViewGenerator);
+    searcherMenu = new QMenu(ui->tableViewSearcher);
+
+    ui->tableViewGenerator->setModel(generatorModel);
+    // ui->tableViewSearcher->setModel(searcherModel);
+
+    ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
+    ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorMaxResults->setValues(InputType::Frame32Bit);
+    ui->textBoxGeneratorEventTID->setValues(InputType::TIDSID);
+    ui->textBoxGeneratorEventSID->setValues(InputType::TIDSID);
+
+    ui->comboBoxGeneratorNature->addItems(Translator::getNatures());
+
+    ui->filterGenerator->disableControls(Controls::EncounterSlots);
+
+    QVector<u16> species(649);
+    std::iota(species.begin(), species.end(), 1);
+    ui->comboBoxGeneratorSpecies->addItems(Translator::getSpecies(species));
+
+    QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
+    connect(outputTXTGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(false); });
+    connect(outputCSVGenerator, &QAction::triggered, [=]() { ui->tableViewGenerator->outputModel(true); });
+
+    QAction *outputTXTSearcher = searcherMenu->addAction(tr("Output Results to TXT"));
+    QAction *outputCSVSearcher = searcherMenu->addAction(tr("Output Results to CSV"));
+    connect(outputTXTSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(false); });
+    connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
+
+    connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event5::generate);
+    connect(ui->pushButtonCalculateInitialFrame, &QPushButton::clicked, this, &Event5::calculateInitialFrame);
+    connect(ui->pushButtonGeneratorImport, &QPushButton::clicked, this, &Event5::generatorImportEvent);
+    connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event5::profileManager);
+    connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Event5::tableViewGeneratorContextMenu);
+    connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Event5::tableViewSearcherContextMenu);
+
+    QSettings setting;
+    setting.beginGroup("event5");
+    if (setting.contains("geometry"))
+    {
+        this->restoreGeometry(setting.value("geometry").toByteArray());
+    }
+    setting.endGroup();
+}
+
+PGF Event5::getGeneratorParameters() const
+{
+    u8 hp = ui->checkBoxGeneratorHP->isChecked() ? ui->spinBoxGeneratorHP->value() : 255;
+    u8 atk = ui->checkBoxGeneratorAtk->isChecked() ? ui->spinBoxGeneratorAtk->value() : 255;
+    u8 def = ui->checkBoxGeneratorDef->isChecked() ? ui->spinBoxGeneratorDef->value() : 255;
+    u8 spa = ui->checkBoxGeneratorSpA->isChecked() ? ui->spinBoxGeneratorSpA->value() : 255;
+    u8 spd = ui->checkBoxGeneratorSpD->isChecked() ? ui->spinBoxGeneratorSpD->value() : 255;
+    u8 spe = ui->checkBoxGeneratorSpe->isChecked() ? ui->spinBoxGeneratorSpe->value() : 255;
+    u8 nature = ui->checkBoxGeneratorNature->isChecked() ? ui->comboBoxGeneratorNature->currentIndex() : 255;
+
+    return PGF(ui->textBoxGeneratorEventTID->getUShort(), ui->textBoxGeneratorEventSID->getUShort(),
+               ui->comboBoxGeneratorSpecies->currentIndex() + 1, nature, ui->comboBoxGeneratorGender->currentIndex(),
+               ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorShiny->currentIndex(), hp, atk, def, spa, spd, spe,
+               ui->checkBoxGeneratorEgg->isChecked());
+}
+
+void Event5::updateProgress(const QVector<Frame> &frames, int progress)
+{
+    // searcherModel->addItems(frames);
+    ui->progressBar->setValue(progress);
+}
+
+void Event5::generate()
+{
+    generatorModel->clearModel();
+
+    u64 seed = ui->textBoxGeneratorSeed->getULong();
+    u32 initialFrame = ui->textBoxGeneratorInitialFrame->getUInt();
+    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u16 tid = currentProfile.getTID();
+    u16 sid = currentProfile.getSID();
+    u8 genderRatio = ui->filterGenerator->getGenderRatio();
+    u32 offset = 0;
+    if (ui->filterGenerator->useDelay())
+    {
+        offset = ui->filterGenerator->getDelay();
+    }
+
+    FrameFilter filter(ui->filterGenerator->getGender(), ui->filterGenerator->getAbility(), ui->filterGenerator->getShiny(),
+                       ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
+                       ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
+
+    // Placeholder method
+    EventGenerator5 generator(initialFrame, maxResults, tid, sid, genderRatio, Method::Method1, filter);
+    generator.setOffset(offset);
+
+    auto frames = generator.generate(seed, getGeneratorParameters());
+    generatorModel->addItems(frames);
+}
+
+void Event5::search()
+{
+    // TODO
+}
+
+void Event5::generatorImportEvent()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "Select a wondercard file", QDir::currentPath(), "Wondercard (*.pgf)");
+    if (!fileName.isEmpty())
+    {
+        QFile file(fileName);
+        if (file.open(QIODevice::ReadOnly))
+        {
+            QByteArray data = file.readAll();
+            file.close();
+            if (data.size() != 204)
+            {
+                QMessageBox error;
+                error.setText("Invalid format for wondercard");
+                error.exec();
+                return;
+            }
+
+            PGF pgf(data);
+
+            ui->textBoxGeneratorEventTID->setText(QString::number(pgf.getTID()));
+            ui->textBoxGeneratorEventSID->setText(QString::number(pgf.getSID()));
+
+            ui->comboBoxGeneratorSpecies->setCurrentIndex(pgf.getSpecies() - 1);
+
+            ui->checkBoxGeneratorNature->setChecked(pgf.getNature() != 255);
+            if (ui->checkBoxGeneratorNature->isChecked())
+            {
+                ui->comboBoxGeneratorNature->setCurrentIndex(pgf.getNature());
+            }
+
+            ui->comboBoxGeneratorGender->setCurrentIndex(pgf.getGender());
+            ui->comboBoxGeneratorAbility->setCurrentIndex(pgf.getAbilityType());
+            ui->comboBoxGeneratorShiny->setCurrentIndex(pgf.getPIDType());
+
+            QVector<QCheckBox *> checkBoxes = { ui->checkBoxGeneratorHP,  ui->checkBoxGeneratorAtk, ui->checkBoxGeneratorDef,
+                                                ui->checkBoxGeneratorSpA, ui->checkBoxGeneratorSpD, ui->checkBoxGeneratorSpe };
+            QVector<QSpinBox *> spinBoxes = { ui->spinBoxGeneratorHP,  ui->spinBoxGeneratorAtk, ui->spinBoxGeneratorDef,
+                                              ui->spinBoxGeneratorSpA, ui->spinBoxGeneratorSpD, ui->spinBoxGeneratorSpe };
+
+            for (u8 i = 0; i < 6; i++)
+            {
+                u8 iv = pgf.getIV(i);
+                if (iv != 255)
+                {
+                    checkBoxes[i]->setChecked(true);
+                    spinBoxes[i]->setValue(iv);
+                }
+                else
+                {
+                    checkBoxes[i]->setChecked(false);
+                }
+            }
+
+            ui->checkBoxGeneratorEgg->setChecked(pgf.isEgg());
+
+            ui->filterGenerator->setGenderRatio(PersonalInfo::loadPersonal(5).at(pgf.getSpecies()).getGender());
+        }
+        else
+        {
+            QMessageBox error;
+            error.setText("There was a problem opening the wondercard");
+            error.exec();
+            return;
+        }
+    }
+}
+
+void Event5::calculateInitialFrame()
+{
+    Game version = currentProfile.getVersion();
+
+    u8 initialFrame;
+    if (version & Game::BW)
+    {
+        initialFrame = Utilities::initialFrameBW(ui->textBoxGeneratorSeed->getULong());
+    }
+    else
+    {
+        initialFrame = Utilities::initialFrameBW2(ui->textBoxGeneratorSeed->getULong(), currentProfile.getMemoryLink());
+    }
+
+    ui->textBoxGeneratorInitialFrame->setText(QString::number(initialFrame));
+}
+
+void Event5::profileIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        currentProfile = profiles.at(index);
+
+        ui->labelProfileTIDValue->setText(QString::number(currentProfile.getTID()));
+        ui->labelProfileSIDValue->setText(QString::number(currentProfile.getSID()));
+        ui->labelProfileMACAddressValue->setText(QString::number(currentProfile.getMac(), 16));
+        ui->labelProfileDSTypeValue->setText(currentProfile.getDSTypeString());
+        ui->labelProfileVCountValue->setText(QString::number(currentProfile.getVCount(), 16));
+        ui->labelProfileTimer0Value->setText(QString::number(currentProfile.getTimer0Min(), 16) + "-"
+                                             + QString::number(currentProfile.getTimer0Max(), 16));
+        ui->labelProfileGxStatValue->setText(QString::number(currentProfile.getGxStat()));
+        ui->labelProfileVFrameValue->setText(QString::number(currentProfile.getVFrame()));
+        ui->labelProfileKeypressesValue->setText(currentProfile.getKeypressesString());
+        ui->labelProfileGameValue->setText(currentProfile.getVersionString());
+    }
+}
+
+void Event5::tableViewGeneratorContextMenu(QPoint pos)
+{
+    if (generatorModel->rowCount() > 0)
+    {
+        generatorMenu->popup(ui->tableViewGenerator->viewport()->mapToGlobal(pos));
+    }
+}
+
+void Event5::tableViewSearcherContextMenu(QPoint pos)
+{ /*if (searcherModel->rowCount() == 0)
+     {
+         searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
+     }*/
+}
+
+void Event5::profileManager()
+{
+    auto *manager = new ProfileManager5();
+    connect(manager, &ProfileManager5::updateProfiles, this, [=] { emit alertProfiles(5); });
+    manager->show();
+}

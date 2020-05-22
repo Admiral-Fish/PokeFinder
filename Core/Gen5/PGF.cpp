@@ -23,7 +23,6 @@ PGF::PGF(const QByteArray &data) :
     tid((static_cast<u8>(data.at(0x01)) << 8) | static_cast<u8>(data.at(0x00))),
     sid((static_cast<u8>(data.at(0x03)) << 8) | static_cast<u8>(data.at(0x02))),
     species((static_cast<u8>(data.at(0x1B)) << 8) | static_cast<u8>(data.at(0x1A))),
-    form(static_cast<u8>(data.at(0x1C))),
     nature(static_cast<u8>(data.at(0x34))),
     gender(static_cast<u8>(data.at(0x35))),
     abilityType(static_cast<u8>(data.at(0x36))),
@@ -35,6 +34,25 @@ PGF::PGF(const QByteArray &data) :
     spd(static_cast<u8>(data.at(0x48))),
     spe(static_cast<u8>(data.at(0x46))),
     egg(static_cast<u8>(data.at(0x5C)) == 1)
+{
+}
+
+PGF::PGF(u16 tid, u16 sid, u16 species, u8 nature, u8 gender, u8 abilityType, u8 pidType, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
+         bool egg) :
+    tid(tid),
+    sid(sid),
+    species(species),
+    nature(nature),
+    gender(gender),
+    abilityType(abilityType),
+    pidType(pidType),
+    hp(hp),
+    atk(atk),
+    def(def),
+    spa(spa),
+    spd(spd),
+    spe(spe),
+    egg(egg)
 {
 }
 
@@ -51,11 +69,6 @@ u16 PGF::getSID() const
 u16 PGF::getSpecies() const
 {
     return species;
-}
-
-u8 PGF::getForm() const
-{
-    return form;
 }
 
 u8 PGF::getNature() const
