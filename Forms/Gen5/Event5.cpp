@@ -73,7 +73,7 @@ void Event5::updateProfiles()
     }
 
     QSettings setting;
-    int val = setting.value("stationary4/profile", 0).toInt();
+    int val = setting.value("event5/profile", 0).toInt();
     if (val < ui->comboBoxProfiles->count())
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
