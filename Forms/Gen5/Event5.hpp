@@ -24,8 +24,9 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <QMenu>
 
+class EventFrame5;
 class EventGeneratorModel5;
-class Frame;
+class EventSearcherModel5;
 
 namespace Ui
 {
@@ -46,7 +47,7 @@ public:
 private:
     Ui::Event5 *ui;
     EventGeneratorModel5 *generatorModel = nullptr;
-    // StationarySearcherModel4 *searcherModel = nullptr;
+    EventSearcherModel5 *searcherModel = nullptr;
     QVector<Profile5> profiles;
     Profile5 currentProfile;
     QMenu *generatorMenu = nullptr;
@@ -54,12 +55,14 @@ private:
 
     void setupModels();
     PGF getGeneratorParameters() const;
+    PGF getSearcherParameters() const;
 
 private slots:
-    void updateProgress(const QVector<Frame> &frames, int progress);
+    void updateProgress(const QVector<EventFrame5> &frames, int progress);
     void generate();
     void search();
     void generatorImportEvent();
+    void searcherImportEvent();
     void calculateInitialFrame();
     void profileIndexChanged(int index);
     void tableViewGeneratorContextMenu(QPoint pos);

@@ -151,15 +151,15 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                             }
                             else
                             {
-                                frames = ivGenerator.generate(seed);
+                                // frames = ivGenerator.generate(seed);
                             }
 
                             for (auto ivFrame : frames)
                             {
-                                ivFrame.setDateTime(QDateTime(date, QTime(hour, minute, second)));
-                                ivFrame.setInitialSeed(seed);
-                                ivFrame.setButtons(buttons.at(i));
-                                ivFrame.setTimer0(timer0);
+                                // ivFrame.setDateTime(QDateTime(date, QTime(hour, minute, second)));
+                                // ivFrame.setInitialSeed(seed);
+                                // ivFrame.setButtons(buttons.at(i));
+                                // ivFrame.setTimer0(timer0);
 
                                 if (includePID)
                                 {

@@ -126,6 +126,7 @@ HEADERS += \
     Core/Gen4/Searchers/StationarySearcher4.hpp \
     Core/Gen4/Searchers/WildSearcher4.hpp \
     Core/Gen4/Tools/ChainedSIDCalc.hpp \
+    Core/Gen5/Frames/EventFrame5.hpp \
     Core/Gen5/Frames/Frame5.hpp \
     Core/Gen5/Frames/IDFrame5.hpp \
     Core/Gen5/Frames/StationaryFrame5.hpp \
@@ -137,6 +138,7 @@ HEADERS += \
     Core/Gen5/PGF.hpp \
     Core/Gen5/Profile5.hpp \
     Core/Gen5/ProfileLoader5.hpp \
+    Core/Gen5/Searchers/EventSearcher5.hpp \
     Core/Gen5/Searchers/IDSearcher5.hpp \
     Core/Gen5/Searchers/ProfileSearcher5.hpp \
     Core/Gen5/Searchers/StationarySearcher5.hpp \
@@ -296,6 +298,7 @@ SOURCES += \
     Core/Gen5/PGF.cpp \
     Core/Gen5/Profile5.cpp \
     Core/Gen5/ProfileLoader5.cpp \
+    Core/Gen5/Searchers/EventSearcher5.cpp \
     Core/Gen5/Searchers/IDSearcher5.cpp \
     Core/Gen5/Searchers/ProfileSearcher5.cpp \
     Core/Gen5/Searchers/StationarySearcher5.cpp \

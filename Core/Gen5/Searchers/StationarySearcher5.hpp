@@ -20,6 +20,7 @@
 #ifndef STATIONARYSEARCHER5_HPP
 #define STATIONARYSEARCHER5_HPP
 
+#include <Core/Gen5/Frames/StationaryFrame5.hpp>
 #include <Core/Gen5/Generators/StationaryGenerator5.hpp>
 #include <Core/Gen5/Profile5.hpp>
 #include <QDate>

@@ -17,26 +17,29 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EVENTGENERATOR5_HPP
-#define EVENTGENERATOR5_HPP
+#ifndef EVENTFRAME5_HPP
+#define EVENTFRAME5_HPP
 
-#include <Core/Gen5/PGF.hpp>
+#include <Core/Gen5/Frames/Frame5.hpp>
 #include <Core/Parents/Frames/Frame.hpp>
-#include <Core/Parents/Generators/Generator.hpp>
 
-class EventGenerator5 : public Generator
+class EventFrame5 : public Frame5
 {
 public:
-    EventGenerator5() = default;
-    EventGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter,
-                    const PGF &parameters);
-    QVector<Frame> generate(u64 seed) const;
-    void setInitialFrame(u32 initialFrame);
+    EventFrame5() = default;
+    EventFrame5(const QDateTime &dt, u64 initialSeed, u16 buttons, u16 timer0, const Frame &frame) :
+        Frame5(dt, initialSeed, buttons, timer0),
+        frame(frame)
+    {
+    }
+
+    Frame getFrame() const
+    {
+        return frame;
+    }
 
 private:
-    PGF parameters;
-    u16 xorValue;
-    u8 advances;
+    Frame frame;
 };
 
-#endif // EVENTGENERATOR5_HPP
+#endif // EVENTFRAME5_HPP

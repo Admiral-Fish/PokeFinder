@@ -606,15 +606,259 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabSpreadSearcher">
+     <widget class="QWidget" name="tabSearcher">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <attribute name="title">
        <string>Searcher</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_9">
+      <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBoxSearcherSettings">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_13">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSearcherSpecies">
+            <property name="text">
+             <string>Species</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxSearcherSpecies"/>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <layout class="QGridLayout" name="gridLayout_9">
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="checkBoxSearcherAtk">
+              <property name="text">
+               <string>Atk</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QCheckBox" name="checkBoxSearcherDef">
+              <property name="text">
+               <string>Def</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QCheckBox" name="checkBoxSearcherSpD">
+              <property name="text">
+               <string>SpD</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QCheckBox" name="checkBoxSearcherSpe">
+              <property name="text">
+               <string>Spe</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="checkBoxSearcherHP">
+              <property name="text">
+               <string>HP</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="spinBoxSearcherHP">
+              <property name="maximum">
+               <number>31</number>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QCheckBox" name="checkBoxSearcherSpA">
+              <property name="text">
+               <string>SpA</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QSpinBox" name="spinBoxSearcherSpe">
+              <property name="maximum">
+               <number>31</number>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QSpinBox" name="spinBoxSearcherSpD">
+              <property name="maximum">
+               <number>31</number>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QSpinBox" name="spinBoxSearcherSpA">
+              <property name="maximum">
+               <number>31</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="spinBoxSearcherAtk">
+              <property name="maximum">
+               <number>31</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QSpinBox" name="spinBoxSearcherDef">
+              <property name="maximum">
+               <number>31</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="2">
+           <layout class="QGridLayout" name="gridLayout_14">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelSearcherAbility">
+              <property name="text">
+               <string>Ability</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="comboBoxSearcherAbility">
+              <item>
+               <property name="text">
+                <string notr="true">0</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">H</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">0/1</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelSearcherGender">
+              <property name="text">
+               <string>Gender</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="comboBoxSearcherGender">
+              <item>
+               <property name="text">
+                <string>♂ Only</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>♀ Only</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Random</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QCheckBox" name="checkBoxSearcherNature">
+              <property name="text">
+               <string>Nature</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="comboBoxSearcherNature"/>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="labelSearcherShiny">
+              <property name="text">
+               <string>Shiny</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QComboBox" name="comboBoxSearcherShiny">
+              <item>
+               <property name="text">
+                <string>Force non-shiny</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Random</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Force shiny</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="labelSearcherEventTID">
+              <property name="text">
+               <string>Event TID</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="TextBox" name="textBoxSearcherEventTID"/>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="labelSearcherEventSID">
+              <property name="text">
+               <string>Event SID</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="TextBox" name="textBoxSearcherEventSID"/>
+            </item>
+            <item row="6" column="0">
+             <widget class="QCheckBox" name="checkBoxSearcherEgg">
+              <property name="text">
+               <string>Egg</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="pushButtonSearcherImport">
+            <property name="text">
+             <string>Import</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2">
         <widget class="QGroupBox" name="groupBoxSearcherFilters">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -632,7 +876,7 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" colspan="2">
+       <item row="2" column="0" colspan="3">
         <widget class="TableView" name="tableViewSearcher">
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
@@ -657,7 +901,7 @@
          </attribute>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="1" column="0" colspan="3">
         <widget class="QProgressBar" name="progressBar">
          <property name="value">
           <number>0</number>
@@ -677,45 +921,43 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
-           <widget class="QLabel" name="labelSearcherMethod">
+           <widget class="QLabel" name="labelSearcherMaxAdvances">
             <property name="text">
-             <string>Method</string>
+             <string>Max Advances</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="TextBox" name="textBoxSearcherMaxAdvances">
+            <property name="text">
+             <string notr="true">100</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSearcherStartDate">
+            <property name="text">
+             <string>Start Date</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherLead">
-            <item>
-             <property name="text">
-              <string>Any</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Synchronize</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Cute Charm</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>None</string>
-             </property>
-            </item>
+           <widget class="QDateEdit" name="dateEditSearcherStartDate">
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="ComboBox" name="comboBoxSearcherMethod">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelSearcherEndDate">
+            <property name="text">
+             <string>End Date</string>
             </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="frame">
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QDateEdit" name="dateEditSearcherEndDate">
+            <property name="calendarPopup">
              <bool>true</bool>
             </property>
            </widget>
@@ -725,7 +967,7 @@
             <item>
              <widget class="QPushButton" name="pushButtonSearch">
               <property name="enabled">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <property name="text">
                <string>Search</string>
@@ -745,97 +987,6 @@
               </property>
               <property name="text">
                <string>Cancel</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSearcherLead">
-            <property name="text">
-             <string>Lead</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" colspan="2">
-           <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelSearcherMinDelay">
-              <property name="text">
-               <string>Min Delay</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="TextBox" name="textBoxSearcherMinDelay">
-              <property name="inputMask">
-               <string/>
-              </property>
-              <property name="text">
-               <string notr="true">600</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLabel" name="labelSearcherMaxDelay">
-              <property name="text">
-               <string>Max Delay</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="3">
-             <widget class="TextBox" name="textBoxSearcherMaxDelay">
-              <property name="inputMask">
-               <string/>
-              </property>
-              <property name="text">
-               <string notr="true">2000</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelSearcherMinFrame">
-              <property name="text">
-               <string>Min Frame</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="TextBox" name="textBoxSearcherMinFrame">
-              <property name="inputMask">
-               <string/>
-              </property>
-              <property name="text">
-               <string notr="true">1</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QLabel" name="labelSearcherMaxFrame">
-              <property name="text">
-               <string>Max Frame</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <widget class="TextBox" name="textBoxSearcherMaxFrame">
-              <property name="inputMask">
-               <string/>
-              </property>
-              <property name="text">
-               <string notr="true">1000</string>
-              </property>
-              <property name="maxLength">
-               <number>5</number>
               </property>
              </widget>
             </item>
@@ -862,17 +1013,73 @@
    <header>Forms/Controls/TableView.hpp</header>
   </customwidget>
   <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/ComboBox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>Filter</class>
    <extends>QWidget</extends>
    <header>Forms/Controls/Filter.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>comboBoxProfiles</tabstop>
+  <tabstop>pushButtonProfileManager</tabstop>
+  <tabstop>tabRNGSelector</tabstop>
+  <tabstop>textBoxGeneratorInitialFrame</tabstop>
+  <tabstop>textBoxGeneratorMaxResults</tabstop>
+  <tabstop>textBoxGeneratorSeed</tabstop>
+  <tabstop>pushButtonGenerate</tabstop>
+  <tabstop>pushButtonCalculateInitialFrame</tabstop>
+  <tabstop>comboBoxGeneratorSpecies</tabstop>
+  <tabstop>pushButtonGeneratorImport</tabstop>
+  <tabstop>checkBoxGeneratorHP</tabstop>
+  <tabstop>spinBoxGeneratorHP</tabstop>
+  <tabstop>checkBoxGeneratorAtk</tabstop>
+  <tabstop>spinBoxGeneratorAtk</tabstop>
+  <tabstop>checkBoxGeneratorDef</tabstop>
+  <tabstop>spinBoxGeneratorDef</tabstop>
+  <tabstop>checkBoxGeneratorSpA</tabstop>
+  <tabstop>spinBoxGeneratorSpA</tabstop>
+  <tabstop>checkBoxGeneratorSpD</tabstop>
+  <tabstop>spinBoxGeneratorSpD</tabstop>
+  <tabstop>checkBoxGeneratorSpe</tabstop>
+  <tabstop>spinBoxGeneratorSpe</tabstop>
+  <tabstop>comboBoxGeneratorAbility</tabstop>
+  <tabstop>comboBoxGeneratorGender</tabstop>
+  <tabstop>checkBoxGeneratorNature</tabstop>
+  <tabstop>comboBoxGeneratorNature</tabstop>
+  <tabstop>comboBoxGeneratorShiny</tabstop>
+  <tabstop>textBoxGeneratorEventTID</tabstop>
+  <tabstop>textBoxGeneratorEventSID</tabstop>
+  <tabstop>checkBoxGeneratorEgg</tabstop>
+  <tabstop>tableViewGenerator</tabstop>
+  <tabstop>textBoxSearcherMaxAdvances</tabstop>
+  <tabstop>dateEditSearcherStartDate</tabstop>
+  <tabstop>dateEditSearcherEndDate</tabstop>
+  <tabstop>pushButtonSearch</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>comboBoxSearcherSpecies</tabstop>
+  <tabstop>pushButtonSearcherImport</tabstop>
+  <tabstop>checkBoxSearcherHP</tabstop>
+  <tabstop>spinBoxSearcherHP</tabstop>
+  <tabstop>checkBoxSearcherAtk</tabstop>
+  <tabstop>spinBoxSearcherAtk</tabstop>
+  <tabstop>checkBoxSearcherDef</tabstop>
+  <tabstop>spinBoxSearcherDef</tabstop>
+  <tabstop>checkBoxSearcherSpA</tabstop>
+  <tabstop>spinBoxSearcherSpA</tabstop>
+  <tabstop>checkBoxSearcherSpD</tabstop>
+  <tabstop>spinBoxSearcherSpD</tabstop>
+  <tabstop>checkBoxSearcherSpe</tabstop>
+  <tabstop>spinBoxSearcherSpe</tabstop>
+  <tabstop>comboBoxSearcherAbility</tabstop>
+  <tabstop>comboBoxSearcherGender</tabstop>
+  <tabstop>checkBoxSearcherNature</tabstop>
+  <tabstop>comboBoxSearcherNature</tabstop>
+  <tabstop>comboBoxSearcherShiny</tabstop>
+  <tabstop>textBoxSearcherEventTID</tabstop>
+  <tabstop>textBoxSearcherEventSID</tabstop>
+  <tabstop>checkBoxSearcherEgg</tabstop>
+  <tabstop>tableViewSearcher</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -23,23 +23,24 @@
 #include <Core/Util/Utilities.hpp>
 
 EventGenerator5::EventGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
-                                 const FrameFilter &filter) :
-    Generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
+                                 const FrameFilter &filter, const PGF &parameters) :
+    Generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter),
+    parameters(parameters)
 {
     tsv = (tid ^ sid) >> 3;
+
+    u16 cardXOR = parameters.getTID() ^ parameters.getSID();
+    xorValue = parameters.isEgg() ? (tid ^ sid) : cardXOR;
+
+    advances = parameters.getAdvances();
 }
 
-QVector<Frame> EventGenerator5::generate(u64 seed, const PGF &parameters) const
+QVector<Frame> EventGenerator5::generate(u64 seed) const
 {
     QVector<Frame> frames;
 
     BWRNG rng(seed);
     rng.advanceFrames(initialFrame + offset - 1);
-
-    u16 cardXOR = parameters.getTID() ^ parameters.getSID();
-    u16 actualXOR = parameters.isEgg() ? (tid ^ sid) : cardXOR;
-
-    u8 advances = parameters.getAdvances();
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextULong())
     {
@@ -83,7 +84,7 @@ QVector<Frame> EventGenerator5::generate(u64 seed, const PGF &parameters) const
 
         if (parameters.getPIDType() == 0) // No shiny
         {
-            if (((pid >> 16) ^ (pid & 0xffff) ^ actualXOR) < 8)
+            if (((pid >> 16) ^ (pid & 0xffff) ^ xorValue) < 8)
             {
                 pid ^= 0x10000000;
             }
@@ -91,7 +92,7 @@ QVector<Frame> EventGenerator5::generate(u64 seed, const PGF &parameters) const
         else if (parameters.getPIDType() == 2) // Force shiny
         {
             u32 low = pid & 0xff;
-            pid = ((low ^ actualXOR) << 16) | low;
+            pid = ((low ^ xorValue) << 16) | low;
         }
 
         // Handle ability
@@ -136,4 +137,9 @@ QVector<Frame> EventGenerator5::generate(u64 seed, const PGF &parameters) const
     }
 
     return frames;
+}
+
+void EventGenerator5::setInitialFrame(u32 initialFrame)
+{
+    this->initialFrame = initialFrame;
 }

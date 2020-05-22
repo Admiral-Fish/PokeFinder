@@ -17,40 +17,37 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef PGF_HPP
-#define PGF_HPP
+#ifndef EVENTSEARCHER5_HPP
+#define EVENTSEARCHER5_HPP
 
+#include <Core/Gen5/Frames/EventFrame5.hpp>
+#include <Core/Gen5/Generators/EventGenerator5.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Util/Global.hpp>
-#include <QByteArray>
+#include <QDate>
+#include <mutex>
 
-class PGF
+class EventSearcher5
 {
 public:
-    PGF() = default;
-    explicit PGF(const QByteArray &data);
-    PGF(u16 tid, u16 sid, u16 species, u8 nature, u8 gender, u8 abilityType, u8 pidType, u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe,
-        bool egg);
-    u16 getTID() const;
-    u16 getSID() const;
-    u16 getSpecies() const;
-    u8 getNature() const;
-    u8 getGender() const;
-    u8 getAbilityType() const;
-    u8 getPIDType() const;
-    u8 getIV(u8 index) const;
-    bool isEgg() const;
-    u8 getAdvances() const;
+    EventSearcher5() = default;
+    explicit EventSearcher5(const EventGenerator5 &generator, const Profile5 &profile);
+    void startSearch(int threads, QDate start, const QDate &end);
+    void cancelSearch();
+    QVector<EventFrame5> getResults();
+    int getProgress() const;
 
 private:
-    u16 tid;
-    u16 sid;
-    u16 species;
-    u8 nature; // 0xff -> unset
-    u8 gender; // 0: male, 1: female, 2: random
-    u8 abilityType; // 0: 0, 1: 1, 2: H, 3: 1/2, 4: 1/2/H
-    u8 pidType; // 0: no shiny, 1: allow shiny, 2: force shiny
-    u8 hp, atk, def, spa, spd, spe; // 0xff -> unset
-    bool egg;
+    EventGenerator5 generator;
+    Profile5 profile;
+
+    bool searching;
+    int progress;
+    QVector<EventFrame5> results;
+    std::mutex resultMutex;
+    std::mutex progressMutex;
+
+    void search(const QDate &start, const QDate &end);
 };
 
-#endif // PGF_HPP
+#endif // EVENTSEARCHER5_HPP

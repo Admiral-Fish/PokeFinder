@@ -20,6 +20,7 @@
 #ifndef EVENTMODEL5_HPP
 #define EVENTMODEL5_HPP
 
+#include <Core/Gen5/Frames/EventFrame5.hpp>
 #include <Core/Parents/Frames/Frame.hpp>
 #include <Models/TableModel.hpp>
 
@@ -35,6 +36,22 @@ public:
 private:
     QStringList header = { tr("Frame"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
                            tr("Def"),   tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
+};
+
+class EventSearcherModel5 : public TableModel<EventFrame5>
+{
+    Q_OBJECT
+public:
+    explicit EventSearcherModel5(QObject *parent);
+    void sort(int column, Qt::SortOrder order) override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
+private:
+    QStringList header
+        = { tr("Seed"), tr("Frame"), tr("PID"), tr("Shiny"),  tr("Nature"), tr("Ability"), tr("HP"),        tr("Atk"),    tr("Def"),
+            tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender"),  tr("Date/Time"), tr("Timer0"), tr("Buttons") };
 };
 
 #endif // EVENTMODEL5_HPP

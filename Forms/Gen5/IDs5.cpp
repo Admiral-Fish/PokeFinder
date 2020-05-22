@@ -157,7 +157,7 @@ void IDs5::search()
     ui->progressBar->setRange(0, maxProgress);
 
     QSettings settings;
-    int threads = settings.value("threads", QThread::idealThreadCount()).toInt();
+    int threads = settings.value("settings/threads", QThread::idealThreadCount()).toInt();
 
     auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);

@@ -22,7 +22,9 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/Gen5/Generators/EventGenerator5.hpp>
+#include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Gen5/Searchers/EventSearcher5.hpp>
 #include <Core/Parents/PersonalInfo.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
@@ -31,6 +33,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
+#include <QThread>
+#include <QTimer>
 
 Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
 {
@@ -79,12 +83,12 @@ void Event5::updateProfiles()
 void Event5::setupModels()
 {
     generatorModel = new EventGeneratorModel5(ui->tableViewGenerator);
-    // searcherModel = new Searcher4Model(ui->tableViewSearcher, Method::Method1);
+    searcherModel = new EventSearcherModel5(ui->tableViewSearcher);
     generatorMenu = new QMenu(ui->tableViewGenerator);
     searcherMenu = new QMenu(ui->tableViewSearcher);
 
     ui->tableViewGenerator->setModel(generatorModel);
-    // ui->tableViewSearcher->setModel(searcherModel);
+    ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGeneratorInitialFrame->setValues(InputType::Frame32Bit);
@@ -92,13 +96,20 @@ void Event5::setupModels()
     ui->textBoxGeneratorEventTID->setValues(InputType::TIDSID);
     ui->textBoxGeneratorEventSID->setValues(InputType::TIDSID);
 
+    ui->textBoxSearcherMaxAdvances->setValues(InputType::Frame32Bit);
+    ui->textBoxSearcherEventTID->setValues(InputType::TIDSID);
+    ui->textBoxSearcherEventSID->setValues(InputType::TIDSID);
+
     ui->comboBoxGeneratorNature->addItems(Translator::getNatures());
+    ui->comboBoxSearcherNature->addItems(Translator::getNatures());
 
     ui->filterGenerator->disableControls(Controls::EncounterSlots);
+    ui->filterSearcher->disableControls(Controls::EncounterSlots | Controls::DisableFilter | Controls::UseDelay);
 
     QVector<u16> species(649);
     std::iota(species.begin(), species.end(), 1);
     ui->comboBoxGeneratorSpecies->addItems(Translator::getSpecies(species));
+    ui->comboBoxSearcherSpecies->addItems(Translator::getSpecies(species));
 
     QAction *outputTXTGenerator = generatorMenu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = generatorMenu->addAction(tr("Output Results to CSV"));
@@ -111,8 +122,10 @@ void Event5::setupModels()
     connect(outputCSVSearcher, &QAction::triggered, [=]() { ui->tableViewSearcher->outputModel(true); });
 
     connect(ui->pushButtonGenerate, &QPushButton::clicked, this, &Event5::generate);
+    connect(ui->pushButtonSearch, &QPushButton::clicked, this, &Event5::search);
     connect(ui->pushButtonCalculateInitialFrame, &QPushButton::clicked, this, &Event5::calculateInitialFrame);
     connect(ui->pushButtonGeneratorImport, &QPushButton::clicked, this, &Event5::generatorImportEvent);
+    connect(ui->pushButtonSearcherImport, &QPushButton::clicked, this, &Event5::searcherImportEvent);
     connect(ui->pushButtonProfileManager, &QPushButton::clicked, this, &Event5::profileManager);
     connect(ui->tableViewGenerator, &QTableView::customContextMenuRequested, this, &Event5::tableViewGeneratorContextMenu);
     connect(ui->tableViewSearcher, &QTableView::customContextMenuRequested, this, &Event5::tableViewSearcherContextMenu);
@@ -142,9 +155,25 @@ PGF Event5::getGeneratorParameters() const
                ui->checkBoxGeneratorEgg->isChecked());
 }
 
-void Event5::updateProgress(const QVector<Frame> &frames, int progress)
+PGF Event5::getSearcherParameters() const
 {
-    // searcherModel->addItems(frames);
+    u8 hp = ui->checkBoxSearcherHP->isChecked() ? ui->spinBoxSearcherHP->value() : 255;
+    u8 atk = ui->checkBoxSearcherAtk->isChecked() ? ui->spinBoxSearcherAtk->value() : 255;
+    u8 def = ui->checkBoxSearcherDef->isChecked() ? ui->spinBoxSearcherDef->value() : 255;
+    u8 spa = ui->checkBoxSearcherSpA->isChecked() ? ui->spinBoxSearcherSpA->value() : 255;
+    u8 spd = ui->checkBoxSearcherSpD->isChecked() ? ui->spinBoxSearcherSpD->value() : 255;
+    u8 spe = ui->checkBoxSearcherSpe->isChecked() ? ui->spinBoxSearcherSpe->value() : 255;
+    u8 nature = ui->checkBoxSearcherNature->isChecked() ? ui->comboBoxSearcherNature->currentIndex() : 255;
+
+    return PGF(ui->textBoxSearcherEventTID->getUShort(), ui->textBoxSearcherEventSID->getUShort(),
+               ui->comboBoxSearcherSpecies->currentIndex() + 1, nature, ui->comboBoxSearcherGender->currentIndex(),
+               ui->comboBoxSearcherAbility->currentIndex(), ui->comboBoxSearcherShiny->currentIndex(), hp, atk, def, spa, spd, spe,
+               ui->checkBoxSearcherEgg->isChecked());
+}
+
+void Event5::updateProgress(const QVector<EventFrame5> &frames, int progress)
+{
+    searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
 }
 
@@ -169,16 +198,63 @@ void Event5::generate()
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
     // Placeholder method
-    EventGenerator5 generator(initialFrame, maxResults, tid, sid, genderRatio, Method::Method1, filter);
+    EventGenerator5 generator(initialFrame, maxResults, tid, sid, genderRatio, Method::Method1, filter, getGeneratorParameters());
     generator.setOffset(offset);
 
-    auto frames = generator.generate(seed, getGeneratorParameters());
+    auto frames = generator.generate(seed);
     generatorModel->addItems(frames);
 }
 
 void Event5::search()
 {
-    // TODO
+    searcherModel->clearModel();
+
+    ui->pushButtonSearch->setEnabled(false);
+    ui->pushButtonCancel->setEnabled(true);
+
+    u32 maxResults = ui->textBoxSearcherMaxAdvances->getUInt();
+    u16 tid = currentProfile.getTID();
+    u16 sid = currentProfile.getSID();
+    u8 genderRatio = ui->filterSearcher->getGenderRatio();
+
+    FrameFilter filter(ui->filterSearcher->getGender(), ui->filterSearcher->getAbility(), ui->filterSearcher->getShiny(),
+                       ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
+                       ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
+
+    // Placeholder method
+    EventGenerator5 generator(0, maxResults, tid, sid, genderRatio, Method::Method1, filter, getSearcherParameters());
+    generator.setOffset(0);
+
+    EventSearcher5 *searcher = new EventSearcher5(generator, currentProfile);
+
+    QDate start = ui->dateEditSearcherStartDate->date();
+    QDate end = ui->dateEditSearcherEndDate->date();
+
+    int maxProgress = Keypresses::getKeyPresses(currentProfile.getKeypresses(), currentProfile.getSkipLR()).size();
+    maxProgress *= 86400 * (start.daysTo(end) + 1);
+    maxProgress *= (currentProfile.getTimer0Max() - currentProfile.getTimer0Min() + 1);
+    ui->progressBar->setRange(0, maxProgress);
+
+    QSettings settings;
+    int threads = settings.value("settings/threads", QThread::idealThreadCount()).toInt();
+
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
+
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout, [=] { updateProgress(searcher->getResults(), searcher->getProgress()); });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonSearch->setEnabled(true);
+        ui->pushButtonCancel->setEnabled(false);
+        updateProgress(searcher->getResults(), searcher->getProgress());
+        delete searcher;
+    });
+
+    thread->start();
+    timer->start(1000);
 }
 
 void Event5::generatorImportEvent()
@@ -249,6 +325,74 @@ void Event5::generatorImportEvent()
     }
 }
 
+void Event5::searcherImportEvent()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "Select a wondercard file", QDir::currentPath(), "Wondercard (*.pgf)");
+    if (!fileName.isEmpty())
+    {
+        QFile file(fileName);
+        if (file.open(QIODevice::ReadOnly))
+        {
+            QByteArray data = file.readAll();
+            file.close();
+            if (data.size() != 204)
+            {
+                QMessageBox error;
+                error.setText("Invalid format for wondercard");
+                error.exec();
+                return;
+            }
+
+            PGF pgf(data);
+
+            ui->textBoxSearcherEventTID->setText(QString::number(pgf.getTID()));
+            ui->textBoxSearcherEventSID->setText(QString::number(pgf.getSID()));
+
+            ui->comboBoxSearcherSpecies->setCurrentIndex(pgf.getSpecies() - 1);
+
+            ui->checkBoxSearcherNature->setChecked(pgf.getNature() != 255);
+            if (ui->checkBoxSearcherNature->isChecked())
+            {
+                ui->comboBoxSearcherNature->setCurrentIndex(pgf.getNature());
+            }
+
+            ui->comboBoxSearcherGender->setCurrentIndex(pgf.getGender());
+            ui->comboBoxSearcherAbility->setCurrentIndex(pgf.getAbilityType());
+            ui->comboBoxSearcherShiny->setCurrentIndex(pgf.getPIDType());
+
+            QVector<QCheckBox *> checkBoxes = { ui->checkBoxSearcherHP,  ui->checkBoxSearcherAtk, ui->checkBoxSearcherDef,
+                                                ui->checkBoxSearcherSpA, ui->checkBoxSearcherSpD, ui->checkBoxSearcherSpe };
+            QVector<QSpinBox *> spinBoxes = { ui->spinBoxSearcherHP,  ui->spinBoxSearcherAtk, ui->spinBoxSearcherDef,
+                                              ui->spinBoxSearcherSpA, ui->spinBoxSearcherSpD, ui->spinBoxSearcherSpe };
+
+            for (u8 i = 0; i < 6; i++)
+            {
+                u8 iv = pgf.getIV(i);
+                if (iv != 255)
+                {
+                    checkBoxes[i]->setChecked(true);
+                    spinBoxes[i]->setValue(iv);
+                }
+                else
+                {
+                    checkBoxes[i]->setChecked(false);
+                }
+            }
+
+            ui->checkBoxSearcherEgg->setChecked(pgf.isEgg());
+
+            ui->filterSearcher->setGenderRatio(PersonalInfo::loadPersonal(5).at(pgf.getSpecies()).getGender());
+        }
+        else
+        {
+            QMessageBox error;
+            error.setText("There was a problem opening the wondercard");
+            error.exec();
+            return;
+        }
+    }
+}
+
 void Event5::calculateInitialFrame()
 {
     Game version = currentProfile.getVersion();
@@ -295,10 +439,11 @@ void Event5::tableViewGeneratorContextMenu(QPoint pos)
 }
 
 void Event5::tableViewSearcherContextMenu(QPoint pos)
-{ /*if (searcherModel->rowCount() == 0)
-     {
-         searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
-     }*/
+{
+    if (searcherModel->rowCount() == 0)
+    {
+        searcherMenu->popup(ui->tableViewSearcher->viewport()->mapToGlobal(pos));
+    }
 }
 
 void Event5::profileManager()

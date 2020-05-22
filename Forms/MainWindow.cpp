@@ -134,7 +134,7 @@ void MainWindow::setupModels()
     threadGroup->setExclusive(true);
     connect(threadGroup, &QActionGroup::triggered, this, &MainWindow::slotThreadChanged);
     int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
-    for (int i = 1; i <= threads; i++)
+    for (int i = 1; i <= QThread::idealThreadCount(); i++)
     {
         auto *action = ui->menuThreads->addAction(QString::number(i));
         action->setData(i);
