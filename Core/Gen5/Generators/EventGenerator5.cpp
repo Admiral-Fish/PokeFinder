@@ -27,10 +27,9 @@ EventGenerator5::EventGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 
     Generator(initialFrame, maxResults, tid, sid, genderRatio, method, filter),
     parameters(parameters)
 {
-    tsv = (tid ^ sid) >> 3;
-
     u16 cardXOR = parameters.getTID() ^ parameters.getSID();
     xorValue = parameters.isEgg() ? (tid ^ sid) : cardXOR;
+    tsv = xorValue >> 3;
 
     advances = parameters.getAdvances();
 }
