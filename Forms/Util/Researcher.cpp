@@ -27,6 +27,7 @@
 #include <Models/Util/ResearcherModel.hpp>
 #include <QSettings>
 #include <functional>
+#include <stdexcept>
 
 Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher)
 {
