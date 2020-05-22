@@ -27,6 +27,7 @@
 #include <QVector>
 #include <mutex>
 
+enum Buttons : u16;
 enum Game : u16;
 enum Language : u8;
 enum DSType : u8;
@@ -37,7 +38,7 @@ public:
     ProfileSearcher5() = default;
     explicit ProfileSearcher5(const QVector<u8> &minIVs, const QVector<u8> &maxIVs, const QDate &date, const QTime &time, int minSeconds,
                               int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat,
-                              bool softReset, Game version, Language language, DSType dsType, u64 mac, u16 keypress);
+                              bool softReset, Game version, Language language, DSType dsType, u64 mac, Buttons keypress);
     void startSearch(int threads, u8 minVFrame, u8 maxVFrame);
     void cancelSearch();
     QVector<QList<QStandardItem *>> getResults();
@@ -61,7 +62,7 @@ private:
     Language language;
     DSType dsType;
     u64 mac;
-    u16 keypress;
+    Buttons keypress;
     u8 offset;
 
     bool searching;

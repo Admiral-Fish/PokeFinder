@@ -152,7 +152,7 @@ void IDs5::search()
 
     auto *searcher = new IDSearcher5(generator, currentProfile, pid, usePID, ui->checkBoxExistingSave->isChecked());
 
-    int maxProgress = Keypresses::getKeyPresses({ 0, 1 }, currentProfile.getSkipLR()).size();
+    int maxProgress = Keypresses::getKeyPresses({ false, true }, currentProfile.getSkipLR()).size();
     maxProgress *= 86400 * (start.daysTo(end) + 1);
     ui->progressBar->setRange(0, maxProgress);
 

@@ -196,8 +196,8 @@ void ProfileCalibrator5::search()
     Language language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
     DSType dsType = static_cast<DSType>(ui->comboBoxDSType->getCurrentInt());
     u64 mac = ui->textBoxMACAddress->getULong();
-    u16 keypress
-        = ui->comboBoxKeypress1->getCurrentUShort() | ui->comboBoxKeypress2->getCurrentUShort() | ui->comboBoxKeypress3->getCurrentUShort();
+    Buttons keypress = static_cast<Buttons>(ui->comboBoxKeypress1->getCurrentUShort() | ui->comboBoxKeypress2->getCurrentUShort()
+                                            | ui->comboBoxKeypress3->getCurrentUShort());
 
     if (minSeconds > maxSeconds || minVCount > maxVCount || minTimer0 > maxTimer0 || minGxStat > maxGxStat || minVFrame > maxVFrame)
     {

@@ -77,6 +77,7 @@ FORMS += \
     Forms/Util/Researcher.ui
 
 HEADERS += \
+    Core/Enum/Buttons.hpp \
     Core/Enum/DSType.hpp \
     Core/Enum/Encounter.hpp \
     Core/Enum/Game.hpp \

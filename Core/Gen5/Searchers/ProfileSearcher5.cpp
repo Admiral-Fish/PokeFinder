@@ -26,7 +26,8 @@
 
 ProfileSearcher5::ProfileSearcher5(const QVector<u8> &minIVs, const QVector<u8> &maxIVs, const QDate &date, const QTime &time,
                                    int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat,
-                                   u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac, u16 keypress) :
+                                   u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
+                                   Buttons keypress) :
     minIVs(minIVs),
     maxIVs(maxIVs),
     date(date),

@@ -20,13 +20,14 @@
 #ifndef KEYPRESSES_HPP
 #define KEYPRESSES_HPP
 
+#include <Core/Enum/Buttons.hpp>
 #include <Core/Util/Global.hpp>
 #include <QVector>
 
 namespace Keypresses
 {
-    QVector<u16> getKeyPresses(const QVector<bool> &keys, bool skipLR);
-    QVector<u32> getValues(const QVector<u16> &buttons);
+    QVector<Buttons> getKeyPresses(const QVector<bool> &keypresses, bool skipLR);
+    QVector<u32> getValues(const QVector<Buttons> &buttons);
 }
 
 #endif // KEYPRESSES_HPP
