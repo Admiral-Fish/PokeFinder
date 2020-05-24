@@ -977,16 +977,6 @@
           </item>
           <item row="2" column="1">
            <widget class="QDateEdit" name="dateEditSearcherEndDate">
-            <property name="dateTime">
-             <datetime>
-              <hour>0</hour>
-              <minute>0</minute>
-              <second>0</second>
-              <year>2000</year>
-              <month>2</month>
-              <day>1</day>
-             </datetime>
-            </property>
             <property name="maximumDateTime">
              <datetime>
               <hour>23</hour>
