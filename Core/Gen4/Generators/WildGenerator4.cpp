@@ -87,12 +87,14 @@ QVector<WildFrame> WildGenerator4::generateMethodJ(u32 seed) const
         WildFrame frame(initialFrame + cnt);
 
         PokeRNG go(rng.getSeed());
-        frame.setSeed(go.nextUShort()); // Blank ???
+
+        u16 first = go.nextUShort(); // Encounter slot call, nibble call for fishing
+        frame.setSeed(first);
 
         switch (encounter)
         {
         case Encounter::Grass:
-            frame.setEncounterSlot(EncounterSlot::jSlot(go.getSeed() >> 16, encounter));
+            frame.setEncounterSlot(EncounterSlot::jSlot(first, encounter));
             if (!filter.compareEncounterSlot(frame))
             {
                 continue;
@@ -101,7 +103,7 @@ QVector<WildFrame> WildGenerator4::generateMethodJ(u32 seed) const
             frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
             break;
         case Encounter::Surfing:
-            frame.setEncounterSlot(EncounterSlot::jSlot(go.getSeed() >> 16, encounter));
+            frame.setEncounterSlot(EncounterSlot::jSlot(first, encounter));
             if (!filter.compareEncounterSlot(frame))
             {
                 continue;
@@ -112,7 +114,7 @@ QVector<WildFrame> WildGenerator4::generateMethodJ(u32 seed) const
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            if (((go.getSeed() >> 16) / 656) >= thresh)
+            if ((first / 656) >= thresh)
             {
                 continue;
             }
@@ -279,12 +281,14 @@ QVector<WildFrame> WildGenerator4::generateMethodK(u32 seed) const
         WildFrame frame(initialFrame + cnt);
 
         PokeRNG go(rng.getSeed());
-        frame.setSeed(go.nextUShort()); // Blank ???
+
+        u16 first = go.nextUShort(); // Encounter slot, nibble for fishing, blank or item for rock smash
+        frame.setSeed(first);
 
         switch (encounter)
         {
         case Encounter::Grass:
-            frame.setEncounterSlot(EncounterSlot::kSlot(go.getSeed() >> 16, encounter));
+            frame.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
             if (!filter.compareEncounterSlot(frame))
             {
                 continue;
@@ -293,7 +297,7 @@ QVector<WildFrame> WildGenerator4::generateMethodK(u32 seed) const
             frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
             break;
         case Encounter::Surfing:
-            frame.setEncounterSlot(EncounterSlot::kSlot(go.getSeed() >> 16, encounter));
+            frame.setEncounterSlot(EncounterSlot::kSlot(first, encounter));
             if (!filter.compareEncounterSlot(frame))
             {
                 continue;
@@ -304,7 +308,7 @@ QVector<WildFrame> WildGenerator4::generateMethodK(u32 seed) const
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            if (((go.getSeed() >> 16) % 100) >= thresh)
+            if ((first % 100) >= thresh)
             {
                 continue;
             }
@@ -319,7 +323,6 @@ QVector<WildFrame> WildGenerator4::generateMethodK(u32 seed) const
             go.advanceFrames(1);
             break;
         case Encounter::RockSmash:
-            // Blank(or maybe item) ???
             if (((go.nextUShort()) % 100) >= rate)
             {
                 continue;
