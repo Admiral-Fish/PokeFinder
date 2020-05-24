@@ -93,7 +93,8 @@ int IDSearcher5::getProgress() const
 
 void IDSearcher5::search(const QDate &start, const QDate &end)
 {
-    int offset = (profile.getVersion() & Game::BW) ? 2 : save ? 4 : 7;
+    bool flag = profile.getVersion() & Game::BW;
+    int offset = flag ? 2 : save ? 4 : 7;
 
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
@@ -102,14 +103,13 @@ void IDSearcher5::search(const QDate &start, const QDate &end)
     // IDs only uses minimum Timer0
     sha.setTimer0(profile.getTimer0Min(), profile.getVCount());
 
-    for (int i = 0; i < values.size(); i++)
+    for (QDate date = start; date <= end; date = date.addDays(1))
     {
-        sha.setButton(values.at(i));
-
-        for (QDate date = start; date <= end; date = date.addDays(1))
+        sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
+                    static_cast<u8>(date.dayOfWeek()));
+        for (int i = 0; i < values.size(); i++)
         {
-            sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
-                        static_cast<u8>(date.dayOfWeek()));
+            sha.setButton(values.at(i));
             sha.precompute();
 
             for (u8 hour = 0; hour < 24; hour++)
@@ -126,10 +126,9 @@ void IDSearcher5::search(const QDate &start, const QDate &end)
                         sha.setTime(hour, minute, second, profile.getDSType());
                         u64 seed = sha.hashSeed();
 
-                        idGenerator.setInitialFrame(offset
-                                                    + ((profile.getVersion() & Game::BW)
-                                                           ? Utilities::initialFrameBW(seed, save ? 2 : 3)
-                                                           : Utilities::initialFrameBW2ID(seed, save ? 2 : 3)));
+                        idGenerator.setInitialFrame(
+                            offset
+                            + (flag ? Utilities::initialFrameBW(seed, save ? 2 : 3) : Utilities::initialFrameBW2ID(seed, save ? 2 : 3)));
                         auto frames = idGenerator.generate(seed, pid, checkPID);
 
                         QDateTime dt(date, QTime(hour, minute, second));

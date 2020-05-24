@@ -240,7 +240,7 @@ QVariant EventSearcherModel5::data(const QModelIndex &index, int role) const
         case 14:
             return Translator::getGender(frame.getGender());
         case 15:
-            return display.getDateTime().toString("yyyy-MM-dd hh:mm:ss");
+            return display.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
         case 16:
             return QString::number(display.getTimer0(), 16).toUpper();
         case 17:

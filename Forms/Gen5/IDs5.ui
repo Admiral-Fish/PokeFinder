@@ -187,6 +187,26 @@
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="1" column="1" colspan="2">
        <widget class="QDateEdit" name="dateEdit">
+        <property name="maximumDateTime">
+         <datetime>
+          <hour>23</hour>
+          <minute>59</minute>
+          <second>59</second>
+          <year>2099</year>
+          <month>12</month>
+          <day>31</day>
+         </datetime>
+        </property>
+        <property name="minimumDateTime">
+         <datetime>
+          <hour>0</hour>
+          <minute>0</minute>
+          <second>0</second>
+          <year>2000</year>
+          <month>1</month>
+          <day>1</day>
+         </datetime>
+        </property>
         <property name="calendarPopup">
          <bool>true</bool>
         </property>
@@ -200,12 +220,16 @@
        </widget>
       </item>
       <item row="5" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxSeedFinderMaxResults"/>
+       <widget class="TextBox" name="textBoxSeedFinderMaxResults">
+        <property name="text">
+         <string notr="true">100</string>
+        </property>
+       </widget>
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="labelFrameRange">
         <property name="text">
-         <string>Max results</string>
+         <string>Max Advances</string>
         </property>
        </widget>
       </item>
@@ -339,6 +363,26 @@
       </item>
       <item row="3" column="1">
        <widget class="QDateEdit" name="dateEditStart">
+        <property name="maximumDateTime">
+         <datetime>
+          <hour>23</hour>
+          <minute>59</minute>
+          <second>59</second>
+          <year>2099</year>
+          <month>12</month>
+          <day>31</day>
+         </datetime>
+        </property>
+        <property name="minimumDateTime">
+         <datetime>
+          <hour>0</hour>
+          <minute>0</minute>
+          <second>0</second>
+          <year>2000</year>
+          <month>1</month>
+          <day>1</day>
+         </datetime>
+        </property>
         <property name="calendarPopup">
          <bool>true</bool>
         </property>
@@ -346,6 +390,26 @@
       </item>
       <item row="3" column="2">
        <widget class="QDateEdit" name="dateEditEnd">
+        <property name="maximumDateTime">
+         <datetime>
+          <hour>23</hour>
+          <minute>59</minute>
+          <second>59</second>
+          <year>2099</year>
+          <month>12</month>
+          <day>31</day>
+         </datetime>
+        </property>
+        <property name="minimumDateTime">
+         <datetime>
+          <hour>0</hour>
+          <minute>0</minute>
+          <second>0</second>
+          <year>2000</year>
+          <month>1</month>
+          <day>1</day>
+         </datetime>
+        </property>
         <property name="calendarPopup">
          <bool>true</bool>
         </property>
@@ -361,12 +425,16 @@
       <item row="5" column="0">
        <widget class="QLabel" name="labelMaxFrame">
         <property name="text">
-         <string>Max results</string>
+         <string>Max Advances</string>
         </property>
        </widget>
       </item>
       <item row="5" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxMaxResults"/>
+       <widget class="TextBox" name="textBoxMaxResults">
+        <property name="text">
+         <string notr="true">100</string>
+        </property>
+       </widget>
       </item>
       <item row="6" column="0" colspan="3">
        <layout class="QHBoxLayout" name="horizontalLayout">

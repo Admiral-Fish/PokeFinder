@@ -98,14 +98,13 @@ void EventSearcher5::search(const QDate &start, const QDate &end)
     for (u16 timer0 = profile.getTimer0Min(); timer0 <= profile.getTimer0Max(); timer0++)
     {
         sha.setTimer0(timer0, profile.getVCount());
-        for (int i = 0; i < values.size(); i++)
+        for (QDate date = start; date <= end; date = date.addDays(1))
         {
-            sha.setButton(values.at(i));
-
-            for (QDate date = start; date <= end; date = date.addDays(1))
+            sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
+                        static_cast<u8>(date.dayOfWeek()));
+            for (int i = 0; i < values.size(); i++)
             {
-                sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
-                            static_cast<u8>(date.dayOfWeek()));
+                sha.setButton(values.at(i));
                 sha.precompute();
 
                 for (u8 hour = 0; hour < 24; hour++)
