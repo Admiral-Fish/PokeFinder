@@ -102,10 +102,10 @@ void EventSearcher5::search(const QDate &start, const QDate &end)
         {
             sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
                         static_cast<u8>(date.dayOfWeek()));
+            sha.precompute();
             for (int i = 0; i < values.size(); i++)
             {
                 sha.setButton(values.at(i));
-                sha.precompute();
 
                 for (u8 hour = 0; hour < 24; hour++)
                 {
