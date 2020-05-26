@@ -226,7 +226,7 @@ void ProfileCalibrator5::search()
         bool memoryLink = ui->checkBoxMemoryLink->isChecked();
 
         QVector<u8> needles;
-        QStringList input = ui->lineEditNeedles->text().split("");
+        QStringList input = ui->lineEditNeedles->text().split(" ");
         for (int i = 0; i < input.size(); i++)
         {
             QString needle = input.at(i);
@@ -335,13 +335,25 @@ void ProfileCalibrator5::dsTypeIndexChanged(int index)
 
 void ProfileCalibrator5::addNeedle(QAbstractButton *button)
 {
-    ui->lineEditNeedles->setText(ui->lineEditNeedles->text() + button->text());
+    QString text = ui->lineEditNeedles->text();
+    if (!text.isEmpty())
+    {
+        text += " ";
+    }
+    text += button->text();
+
+    ui->lineEditNeedles->setText(text);
 }
 
 void ProfileCalibrator5::removeNeedle()
 {
     QString text = ui->lineEditNeedles->text();
-    ui->lineEditNeedles->setText(text.chopped(1));
+    text.replace(" ", "");
+    text.chop(1);
+
+    QStringList split = text.split("", Qt::SkipEmptyParts);
+
+    ui->lineEditNeedles->setText(split.join(" "));
 }
 
 void ProfileCalibrator5::clearNeedles()

@@ -518,7 +518,7 @@
           <item row="1" column="0">
            <widget class="QLineEdit" name="lineEditNeedles">
             <property name="readOnly">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
            </widget>
           </item>
