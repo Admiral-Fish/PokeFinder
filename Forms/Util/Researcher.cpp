@@ -27,12 +27,14 @@
 #include <Models/Util/ResearcherModel.hpp>
 #include <QSettings>
 #include <functional>
+#include <stdexcept>
 
 Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose);
+
     setupModels();
 }
 
