@@ -20,6 +20,7 @@
 #ifndef PROFILECALIBRATOR5_HPP
 #define PROFILECALIBRATOR5_HPP
 
+#include <QAbstractButton>
 #include <QMenu>
 #include <QStandardItemModel>
 
@@ -53,6 +54,9 @@ private slots:
     void tableViewContextMenu(QPoint pos);
     void versionIndexChanged(int index);
     void dsTypeIndexChanged(int index);
+    void addNeedle(QAbstractButton *button);
+    void removeNeedle();
+    void clearNeedles();
 };
 
 #endif // PROFILECALIBRATOR5_HPP

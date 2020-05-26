@@ -20,16 +20,15 @@
 #include "ProfileSearcher5.hpp"
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Keypresses.hpp>
+#include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTRNG.hpp>
 #include <Core/RNG/SHA1.hpp>
+#include <Core/Util/Utilities.hpp>
 #include <QtConcurrent>
 
-ProfileSearcher5::ProfileSearcher5(const QVector<u8> &minIVs, const QVector<u8> &maxIVs, const QDate &date, const QTime &time,
-                                   int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0, u8 minGxStat,
-                                   u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
-                                   Buttons keypress) :
-    minIVs(minIVs),
-    maxIVs(maxIVs),
+ProfileSearcher5::ProfileSearcher5(const QDate &date, const QTime &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount,
+                                   u16 minTimer0, u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version,
+                                   Language language, DSType dsType, u64 mac, Buttons keypress) :
     date(date),
     time(time),
     minSeconds(minSeconds),
@@ -46,9 +45,12 @@ ProfileSearcher5::ProfileSearcher5(const QVector<u8> &minIVs, const QVector<u8> 
     dsType(dsType),
     mac(mac),
     keypress(keypress),
-    offset((version & Game::BW2 ? 2 : 0)),
     searching(false),
     progress(0)
+{
+}
+
+ProfileSearcher5::~ProfileSearcher5()
 {
 }
 
@@ -130,21 +132,7 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
 
                         u64 seed = sha.hashSeed();
 
-                        MersenneTwisterFast rng(6 + offset, seed >> 32);
-                        rng.advanceFrames(offset);
-
-                        bool flag = true;
-                        for (u8 i = 0; i < 6; i++)
-                        {
-                            u8 iv = rng.nextUInt() >> 27;
-                            if (iv < minIVs.at(i) || iv > maxIVs.at(i))
-                            {
-                                flag = false;
-                                break;
-                            }
-                        }
-
-                        if (flag)
+                        if (valid(seed))
                         {
                             QList<QStandardItem *> items;
                             items.append(new QStandardItem(QString::number(second)));
@@ -165,4 +153,75 @@ void ProfileSearcher5::search(u8 vframeStart, u8 vframeEnd)
             }
         }
     }
+}
+
+ProfileIVSearcher5::ProfileIVSearcher5(const QVector<u8> &minIVs, const QVector<u8> &maxIVs, const QDate &date, const QTime &time,
+                                       int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0, u16 maxTimer0,
+                                       u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language, DSType dsType, u64 mac,
+                                       Buttons keypress) :
+    ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
+                     version, language, dsType, mac, keypress),
+    minIVs(minIVs),
+    maxIVs(maxIVs),
+    offset((version & Game::BW2 ? 2 : 0))
+{
+}
+
+bool ProfileIVSearcher5::valid(u64 seed)
+{
+    MersenneTwisterFast rng(6 + offset, seed >> 32);
+    rng.advanceFrames(offset);
+
+    for (u8 i = 0; i < 6; i++)
+    {
+        u8 iv = rng.nextUInt() >> 27;
+        if (iv < minIVs.at(i) || iv > maxIVs.at(i))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+ProfileNeedleSearcher5::ProfileNeedleSearcher5(const QVector<u8> &needles, bool unovaLink, bool memoryLink, const QDate &date,
+                                               const QTime &time, int minSeconds, int maxSeconds, u8 minVCount, u8 maxVCount, u16 minTimer0,
+                                               u16 maxTimer0, u8 minGxStat, u8 maxGxStat, bool softReset, Game version, Language language,
+                                               DSType dsType, u64 mac, Buttons keypress) :
+    ProfileSearcher5(date, time, minSeconds, maxSeconds, minVCount, maxVCount, minTimer0, maxTimer0, minGxStat, maxGxStat, softReset,
+                     version, language, dsType, mac, keypress),
+    needles(needles),
+    unovaLink(unovaLink),
+    memoryLink(memoryLink),
+    game(version & Game::BW)
+{
+}
+
+bool ProfileNeedleSearcher5::valid(u64 seed)
+{
+    BWRNG rng(seed);
+
+    u8 advances = game ? Utilities::initialFrameBW(seed) : Utilities::initialFrameBW2(seed, memoryLink);
+    if (unovaLink)
+    {
+        advances++;
+    }
+
+    rng.advanceFrames(advances - 1);
+
+    for (u8 needle : needles)
+    {
+        u8 rand = rng.nextUInt(8);
+        if (rand != needle)
+        {
+            return false;
+        }
+
+        if (unovaLink)
+        {
+            rng.nextULong();
+        }
+    }
+
+    return true;
 }
