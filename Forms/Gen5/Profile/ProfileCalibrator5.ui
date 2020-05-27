@@ -326,6 +326,9 @@
           <day>1</day>
          </datetime>
         </property>
+        <property name="displayFormat">
+         <string>MM/dd/yyyy HH:mm</string>
+        </property>
        </widget>
       </item>
       <item row="2" column="0" colspan="2">
