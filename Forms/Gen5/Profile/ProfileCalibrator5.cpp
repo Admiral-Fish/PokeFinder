@@ -348,12 +348,13 @@ void ProfileCalibrator5::addNeedle(QAbstractButton *button)
 void ProfileCalibrator5::removeNeedle()
 {
     QString text = ui->lineEditNeedles->text();
-    text.replace(" ", "");
-    text.chop(1);
+    if (!text.isEmpty())
+    {
+        QStringList split = text.split(" ");
+        split.removeLast();
 
-    QStringList split = text.split("", Qt::SkipEmptyParts);
-
-    ui->lineEditNeedles->setText(split.join(" "));
+        ui->lineEditNeedles->setText(split.join(" "));
+    }
 }
 
 void ProfileCalibrator5::clearNeedles()
