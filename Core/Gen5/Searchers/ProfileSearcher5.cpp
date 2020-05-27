@@ -202,6 +202,8 @@ bool ProfileNeedleSearcher5::valid(u64 seed)
     BWRNG rng(seed);
 
     u8 advances = game ? Utilities::initialFrameBW(seed) : Utilities::initialFrameBW2(seed, memoryLink);
+
+    // Opening the menu advances 1 frame
     if (unovaLink)
     {
         advances++;
