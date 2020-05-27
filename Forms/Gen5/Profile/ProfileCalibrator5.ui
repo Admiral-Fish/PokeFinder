@@ -327,7 +327,7 @@
          </datetime>
         </property>
         <property name="displayFormat">
-         <string>MM/dd/yyyy HH:mm</string>
+         <string notr="true">MM/dd/yyyy HH:mm</string>
         </property>
        </widget>
       </item>
