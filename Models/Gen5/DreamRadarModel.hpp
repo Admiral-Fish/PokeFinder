@@ -17,32 +17,32 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EVENTMODEL5_HPP
-#define EVENTMODEL5_HPP
+#ifndef DREAMRADARMODEL_HPP
+#define DREAMRADARMODEL_HPP
 
 #include <Core/Gen5/Frames/SearcherFrame5.hpp>
 #include <Core/Parents/Frames/Frame.hpp>
 #include <Models/TableModel.hpp>
 
-class EventGeneratorModel5 : public TableModel<Frame>
+class DreamRadarGeneratorModel5 : public TableModel<Frame>
 {
     Q_OBJECT
 public:
-    explicit EventGeneratorModel5(QObject *parent);
+    explicit DreamRadarGeneratorModel5(QObject *parent);
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
 private:
-    QStringList header = { tr("Frame"), tr("Chatot"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
+    QStringList header = { tr("Frame"), tr("Needle"), tr("PID"), tr("Shiny"), tr("Nature"), tr("Ability"), tr("HP"),    tr("Atk"),
                            tr("Def"),   tr("SpA"),    tr("SpD"), tr("Spe"),   tr("Hidden"), tr("Power"),   tr("Gender") };
 };
 
-class EventSearcherModel5 : public TableModel<SearcherFrame5<Frame>>
+class DreamRadarSearcherModel5 : public TableModel<SearcherFrame5<Frame>>
 {
     Q_OBJECT
 public:
-    explicit EventSearcherModel5(QObject *parent);
+    explicit DreamRadarSearcherModel5(QObject *parent);
     void sort(int column, Qt::SortOrder order) override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
@@ -54,4 +54,4 @@ private:
             tr("SpA"),  tr("SpD"),   tr("Spe"), tr("Hidden"), tr("Power"),  tr("Gender"),  tr("Date/Time"), tr("Timer0"), tr("Buttons") };
 };
 
-#endif // EVENTMODEL5_HPP
+#endif // DREAMRADARMODEL_HPP

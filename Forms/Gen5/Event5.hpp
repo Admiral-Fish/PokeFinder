@@ -24,9 +24,11 @@
 #include <Core/Gen5/Profile5.hpp>
 #include <QMenu>
 
-class EventFrame5;
 class EventGeneratorModel5;
 class EventSearcherModel5;
+class Frame;
+template <typename FrameType>
+class SearcherFrame5;
 
 namespace Ui
 {
@@ -58,7 +60,7 @@ private:
     PGF getSearcherParameters() const;
 
 private slots:
-    void updateProgress(const QVector<EventFrame5> &frames, int progress);
+    void updateProgress(const QVector<SearcherFrame5<Frame>> &frames, int progress);
     void generate();
     void search();
     void generatorImportEvent();

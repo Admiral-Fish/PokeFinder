@@ -24,12 +24,11 @@
 #include <Core/Util/Global.hpp>
 #include <functional>
 
-template <typename IntegerType>
+template <typename IntegerType, u32 size>
 class RNGList
 {
 public:
-    explicit RNGList(std::function<IntegerType()> function, u32 size = 5000) :
-        function(function), list(new IntegerType[size]), size(size), head(0), tail(size - 1), pointer(0)
+    explicit RNGList(std::function<IntegerType()> function) : function(function), head(0), tail(size - 1), pointer(0)
     {
         for (u32 i = 0; i < size; i++)
         {
@@ -41,9 +40,12 @@ public:
 
     void operator=(const RNGList &) = delete;
 
-    ~RNGList()
+    void advanceStates(u32 frames)
     {
-        delete[] list;
+        for (u32 frame = 0; frame < frames; frame++)
+        {
+            advanceState();
+        }
     }
 
     void advanceState()
@@ -88,7 +90,7 @@ public:
 
 private:
     std::function<IntegerType()> function;
-    IntegerType *list;
+    IntegerType list[size];
     u32 size, head, tail, pointer;
 };
 

@@ -25,8 +25,8 @@
 class MT : public IRNG<u32>
 {
 public:
-    void advanceFrames(u32 frames) override;
-    void setSeed(u32 seed, u32 frames) override;
+    virtual void advanceFrames(u32 frames) override;
+    void setSeed(u32 seed, u32 frame = 0) override;
     u16 nextUShort();
     u32 next() override;
     virtual u32 nextUInt() = 0;
@@ -57,6 +57,7 @@ class MersenneTwisterFast : public MT
 public:
     explicit MersenneTwisterFast(u32 calls, u32 seed = 0);
     u32 nextUInt() override;
+    void advanceFrames(u32 frames) override;
 
 private:
     u32 calls;

@@ -23,23 +23,24 @@
 #include <Core/Gen5/Frames/Frame5.hpp>
 #include <Core/Parents/Frames/Frame.hpp>
 
-class EventFrame5 : public Frame5
+template <typename FrameType>
+class SearcherFrame5 : public Frame5
 {
 public:
-    EventFrame5() = default;
-    EventFrame5(const QDateTime &dt, u64 initialSeed, u16 buttons, u16 timer0, const Frame &frame) :
+    SearcherFrame5() = default;
+    SearcherFrame5(const QDateTime &dt, u64 initialSeed, u16 buttons, u16 timer0, const FrameType &frame) :
         Frame5(dt, initialSeed, buttons, timer0),
         frame(frame)
     {
     }
 
-    Frame getFrame() const
+    FrameType getFrame() const
     {
         return frame;
     }
 
 private:
-    Frame frame;
+    FrameType frame;
 };
 
 #endif // EVENTFRAME5_HPP

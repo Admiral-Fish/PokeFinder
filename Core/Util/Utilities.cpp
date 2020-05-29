@@ -192,12 +192,12 @@ namespace Utilities
 
         if (genderRatio == 0) // Male only
         {
-            u8 val = ((rand * 0x8) >> 32) + 1;
+            u8 val = ((rand * 0xF6) >> 32) + 8;
             pid |= val;
         }
         else if (genderRatio == 254) // Female only
         {
-            u8 val = ((rand * 0xF6) >> 32) + 8;
+            u8 val = ((rand * 0x8) >> 32) + 1;
             pid |= val;
         }
         else // Gender ratio

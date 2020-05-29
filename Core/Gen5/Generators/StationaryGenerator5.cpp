@@ -99,7 +99,7 @@ QVector<StationaryFrame> StationaryGenerator5::generateRoamerIVs(u64 seed) const
     QVector<StationaryFrame> frames;
 
     mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
-    RNGList<u8> rngList([this] { return mt->next() >> 27; });
+    RNGList<u8, 100> rngList([this] { return mt->next() >> 27; });
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -131,7 +131,7 @@ QVector<StationaryFrame> StationaryGenerator5::generateIVs(u64 seed) const
     QVector<StationaryFrame> frames;
 
     mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
-    RNGList<u8> rngList([this] { return mt->next() >> 27; });
+    RNGList<u8, 100> rngList([this] { return mt->next() >> 27; });
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -164,7 +164,7 @@ QVector<StationaryFrame> StationaryGenerator5::generateRoamerCGear(u64 seed) con
     mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
     mt->advanceFrames(2); // Skip first two frames
 
-    RNGList<u8> rngList([this] { return mt->next() >> 27; });
+    RNGList<u8, 100> rngList([this] { return mt->next() >> 27; });
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -198,7 +198,7 @@ QVector<StationaryFrame> StationaryGenerator5::generateCGear(u64 seed) const
     mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
     mt->advanceFrames(2); // Skip first two frames
 
-    RNGList<u8> rngList([this] { return mt->next() >> 27; });
+    RNGList<u8, 100> rngList([this] { return mt->next() >> 27; });
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {

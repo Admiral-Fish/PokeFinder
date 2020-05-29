@@ -17,28 +17,28 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef EVENTSEARCHER5_HPP
-#define EVENTSEARCHER5_HPP
+#ifndef DREAMRADARSEARCHER_HPP
+#define DREAMRADARSEARCHER_HPP
 
 #include <Core/Gen5/Frames/SearcherFrame5.hpp>
-#include <Core/Gen5/Generators/EventGenerator5.hpp>
+#include <Core/Gen5/Generators/DreamRadarGenerator.hpp>
 #include <Core/Gen5/Profile5.hpp>
+#include <Core/Parents/Frames/Frame.hpp>
 #include <Core/Util/Global.hpp>
 #include <QDate>
 #include <mutex>
 
-class EventSearcher5
+class DreamRadarSearcher
 {
 public:
-    EventSearcher5() = default;
-    explicit EventSearcher5(const EventGenerator5 &generator, const Profile5 &profile);
-    void startSearch(int threads, QDate start, const QDate &end);
+    DreamRadarSearcher() = default;
+    explicit DreamRadarSearcher(const Profile5 &profile);
+    void startSearch(int threads, QDate start, const QDate &end, const DreamRadarGenerator &generator);
     void cancelSearch();
     QVector<SearcherFrame5<Frame>> getResults();
     int getProgress() const;
 
 private:
-    EventGenerator5 generator;
     Profile5 profile;
 
     bool searching;
@@ -47,7 +47,7 @@ private:
     std::mutex resultMutex;
     std::mutex progressMutex;
 
-    void search(const QDate &start, const QDate &end);
+    void search(const QDate &start, const QDate &end, DreamRadarGenerator generator);
 };
 
-#endif // EVENTSEARCHER5_HPP
+#endif // DREAMRADARSEARCHER_HPP

@@ -17,22 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "EventSearcher5.hpp"
-#include <Core/Enum/Game.hpp>
+#include "DreamRadarSearcher.hpp"
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <QtConcurrent>
 
-EventSearcher5::EventSearcher5(const EventGenerator5 &generator, const Profile5 &profile) :
-    generator(generator),
-    profile(profile),
-    searching(false),
-    progress(0)
+DreamRadarSearcher::DreamRadarSearcher(const Profile5 &profile) : profile(profile), searching(false), progress(0)
 {
 }
 
-void EventSearcher5::startSearch(int threads, QDate start, const QDate &end)
+void DreamRadarSearcher::startSearch(int threads, QDate start, const QDate &end, const DreamRadarGenerator &generator)
 {
     searching = true;
     QThreadPool pool;
@@ -51,12 +46,12 @@ void EventSearcher5::startSearch(int threads, QDate start, const QDate &end)
     {
         if (i == threads - 1)
         {
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, end); }));
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, end, generator); }));
         }
         else
         {
             QDate mid = start.addDays(daysSplit);
-            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid); }));
+            threadContainer.append(QtConcurrent::run(&pool, [=] { search(start, mid, generator); }));
         }
         start = start.addDays(daysSplit);
     }
@@ -67,12 +62,12 @@ void EventSearcher5::startSearch(int threads, QDate start, const QDate &end)
     }
 }
 
-void EventSearcher5::cancelSearch()
+void DreamRadarSearcher::cancelSearch()
 {
     searching = false;
 }
 
-QVector<SearcherFrame5<Frame>> EventSearcher5::getResults()
+QVector<SearcherFrame5<Frame>> DreamRadarSearcher::getResults()
 {
     std::lock_guard<std::mutex> lock(resultMutex);
 
@@ -82,15 +77,13 @@ QVector<SearcherFrame5<Frame>> EventSearcher5::getResults()
     return data;
 }
 
-int EventSearcher5::getProgress() const
+int DreamRadarSearcher::getProgress() const
 {
     return progress;
 }
 
-void EventSearcher5::search(const QDate &start, const QDate &end)
+void DreamRadarSearcher::search(const QDate &start, const QDate &end, DreamRadarGenerator generator)
 {
-    bool flag = profile.getVersion() & Game::BW;
-
     SHA1 sha(profile);
     auto buttons = Keypresses::getKeyPresses(profile.getKeypresses(), profile.getSkipLR());
     auto values = Keypresses::getValues(buttons);
@@ -121,9 +114,7 @@ void EventSearcher5::search(const QDate &start, const QDate &end)
                             sha.setTime(hour, minute, second, profile.getDSType());
                             u64 seed = sha.hashSeed();
 
-                            generator.setInitialFrame(flag ? Utilities::initialFrameBW(seed)
-                                                           : Utilities::initialFrameBW2(seed, profile.getMemoryLink()));
-                            auto frames = generator.generate(seed);
+                            auto frames = generator.generate(seed, profile.getMemoryLink());
 
                             QVector<SearcherFrame5<Frame>> displayFrames;
                             displayFrames.reserve(frames.size());

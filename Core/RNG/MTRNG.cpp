@@ -29,10 +29,10 @@ void MT::advanceFrames(u32 frames)
     }
 }
 
-void MT::setSeed(u32 seed, u32 frames)
+void MT::setSeed(u32 seed, u32 frame)
 {
     initialize(seed);
-    advanceFrames(frames);
+    advanceFrames(frame);
 }
 
 u16 MT::nextUShort()
@@ -133,6 +133,15 @@ u32 MersenneTwisterFast::nextUInt()
     return y;
 }
 
+void MersenneTwisterFast::advanceFrames(u32 frames)
+{
+    index += frames;
+    while (index >= 397 + calls)
+    {
+        shuffle();
+    }
+}
+
 void MersenneTwisterFast::initialize(u32 seed)
 {
     mt[0] = seed;
@@ -145,9 +154,9 @@ void MersenneTwisterFast::initialize(u32 seed)
 
 void MersenneTwisterFast::shuffle()
 {
-    for (u16 i = 0; i < calls; ++i)
+    for (u16 i = 0; i < calls; i++)
     {
-        u32 y = (mt[i] & 0x80000000) | (mt[(i + 1) % 624] & 0x7FFFFFFF);
+        u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7FFFFFFF);
         u32 next = y >> 1;
 
         if (y & 1)
@@ -155,7 +164,7 @@ void MersenneTwisterFast::shuffle()
             next ^= 0x9908B0DF;
         }
 
-        mt[i] = next ^ mt[(i + 397) % 624];
+        mt[i] = next ^ mt[i + 397];
     }
 
     index -= calls + 397;

@@ -171,7 +171,7 @@ PGF Event5::getSearcherParameters() const
                ui->checkBoxSearcherEgg->isChecked());
 }
 
-void Event5::updateProgress(const QVector<EventFrame5> &frames, int progress)
+void Event5::updateProgress(const QVector<SearcherFrame5<Frame>> &frames, int progress)
 {
     searcherModel->addItems(frames);
     ui->progressBar->setValue(progress);
