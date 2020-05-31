@@ -25,7 +25,6 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTRNG.hpp>
 #include <Core/RNG/RNGList.hpp>
-#include <stdexcept>
 
 StationaryGenerator5::StationaryGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
                                            Encounter encounter, const FrameFilter &filter) :
@@ -33,38 +32,6 @@ StationaryGenerator5::StationaryGenerator5(u32 initialFrame, u32 maxResults, u16
     idBit((tid & 1) ^ (sid & 1)),
     encounter(encounter)
 {
-    switch (method)
-    {
-    case Method::Method5IVs:
-        switch (encounter)
-        {
-        case Encounter::Roamer:
-            initializeMT(7);
-            break;
-        default:
-            initializeMT(6);
-            break;
-        }
-        break;
-    case Method::Method5CGear:
-        switch (encounter)
-        {
-        case Encounter::Roamer:
-            initializeMT(9);
-            break;
-        default:
-            initializeMT(8);
-            break;
-        }
-        break;
-    default:
-        break;
-    }
-}
-
-StationaryGenerator5::~StationaryGenerator5()
-{
-    delete mt;
 }
 
 QVector<StationaryFrame> StationaryGenerator5::generate(u64 seed) const
@@ -98,14 +65,16 @@ QVector<StationaryFrame> StationaryGenerator5::generateRoamerIVs(u64 seed) const
 {
     QVector<StationaryFrame> frames;
 
-    mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
-    RNGList<u8, 100> rngList([this] { return mt->next() >> 27; });
+    MersenneTwister mt(seed >> 32);
+    mt.advanceFrames(initialFrame - 1 + offset);
+
+    RNGList<u8, MersenneTwister, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
         StationaryFrame frame;
 
-        rngList.getValue(); // Blank ???
+        rngList.advanceFrames(1); // Blank ???
         u8 hp = rngList.getValue();
         u8 atk = rngList.getValue();
         u8 def = rngList.getValue();
@@ -130,8 +99,10 @@ QVector<StationaryFrame> StationaryGenerator5::generateIVs(u64 seed) const
 {
     QVector<StationaryFrame> frames;
 
-    mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
-    RNGList<u8, 100> rngList([this] { return mt->next() >> 27; });
+    MersenneTwister mt(seed >> 32);
+    mt.advanceFrames(initialFrame - 1 + offset);
+
+    RNGList<u8, MersenneTwister, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -161,16 +132,17 @@ QVector<StationaryFrame> StationaryGenerator5::generateRoamerCGear(u64 seed) con
 {
     QVector<StationaryFrame> frames;
 
-    mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
-    mt->advanceFrames(2); // Skip first two frames
+    MersenneTwister mt(seed >> 32);
+    mt.advanceFrames(initialFrame - 1 + offset);
+    mt.advanceFrames(2); // Skip first two frames
 
-    RNGList<u8, 100> rngList([this] { return mt->next() >> 27; });
+    RNGList<u8, MersenneTwister, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
         StationaryFrame frame;
 
-        rngList.getValue(); // Blank ???
+        rngList.advanceFrames(1); // Blank ???
         u8 hp = rngList.getValue();
         u8 atk = rngList.getValue();
         u8 def = rngList.getValue();
@@ -195,10 +167,11 @@ QVector<StationaryFrame> StationaryGenerator5::generateCGear(u64 seed) const
 {
     QVector<StationaryFrame> frames;
 
-    mt->setSeed(static_cast<u32>(seed), initialFrame - 1 + offset);
-    mt->advanceFrames(2); // Skip first two frames
+    MersenneTwister mt(seed >> 32);
+    mt.advanceFrames(initialFrame - 1 + offset);
+    mt.advanceFrames(2); // Skip first two frames
 
-    RNGList<u8, 100> rngList([this] { return mt->next() >> 27; });
+    RNGList<u8, MersenneTwister, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -424,17 +397,4 @@ QVector<StationaryFrame> StationaryGenerator5::generateHiddenGrotto(u64 seed)
     }
 
     return frames;
-}
-
-void StationaryGenerator5::initializeMT(u8 num)
-{
-    try
-    {
-        mt = new MersenneTwisterFast(initialFrame + maxResults + offset + num);
-    }
-    catch (const std::runtime_error &e)
-    {
-        (void)e;
-        mt = new MersenneTwister();
-    }
 }

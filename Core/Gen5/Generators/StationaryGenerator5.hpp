@@ -24,7 +24,6 @@
 #include <Core/Parents/Generators/StationaryGenerator.hpp>
 
 enum Encounter : u8;
-class MT;
 
 class StationaryGenerator5 : public StationaryGenerator
 {
@@ -32,13 +31,11 @@ public:
     StationaryGenerator5() = default;
     StationaryGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter,
                          const FrameFilter &filter);
-    ~StationaryGenerator5();
     QVector<StationaryFrame> generate(u64 seed) const;
 
 private:
     u8 idBit;
     Encounter encounter;
-    MT *mt;
 
     QVector<StationaryFrame> generateRoamerIVs(u64 seed) const;
     QVector<StationaryFrame> generateIVs(u64 seed) const;
@@ -50,7 +47,6 @@ private:
     QVector<StationaryFrame> generateEntraLink(u64 seed);
     QVector<StationaryFrame> generateLarvestaEgg(u64 seed);
     QVector<StationaryFrame> generateHiddenGrotto(u64 seed);
-    void initializeMT(u8 num);
 };
 
 #endif // GENERATOR5_HPP

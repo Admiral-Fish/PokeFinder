@@ -22,17 +22,16 @@
 #define RNGLIST_HPP
 
 #include <Core/Util/Global.hpp>
-#include <functional>
 
-template <typename IntegerType, u32 size>
+template <typename IntegerType, typename RNGType, u32 size, u8 shift>
 class RNGList
 {
 public:
-    explicit RNGList(std::function<IntegerType()> function) : function(function), head(0), tail(size - 1), pointer(0)
+    explicit RNGList(RNGType &rng) : rng(rng), head(0), tail(size - 1), pointer(0)
     {
         for (u32 i = 0; i < size; i++)
         {
-            list[i] = function();
+            list[i] = this->rng.next() >> shift;
         }
     }
 
@@ -55,7 +54,7 @@ public:
             tail = 0;
         }
 
-        list[head++] = function();
+        list[head++] = rng.next() >> shift;
         if (head == size)
         {
             head = 0;
@@ -89,7 +88,7 @@ public:
     }
 
 private:
-    std::function<IntegerType()> function;
+    RNGType rng;
     IntegerType list[size];
     u32 head, tail, pointer;
 };
