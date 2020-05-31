@@ -125,25 +125,24 @@ void EventSearcher5::search(const QDate &start, const QDate &end)
                                                            : Utilities::initialFrameBW2(seed, profile.getMemoryLink()));
                             auto frames = generator.generate(seed);
 
-                            QVector<SearcherFrame5<Frame>> displayFrames;
-                            displayFrames.reserve(frames.size());
-
-                            QDateTime dt(date, QTime(hour, minute, second));
-                            for (const auto &frame : frames)
+                            if (!frames.isEmpty())
                             {
-                                SearcherFrame5<Frame> display(dt, seed, buttons.at(i), timer0, frame);
-                                displayFrames.append(display);
-                            }
+                                QVector<SearcherFrame5<Frame>> displayFrames;
+                                displayFrames.reserve(frames.size());
 
-                            {
+                                QDateTime dt(date, QTime(hour, minute, second));
+                                for (const auto &frame : frames)
+                                {
+                                    SearcherFrame5<Frame> display(dt, seed, buttons.at(i), timer0, frame);
+                                    displayFrames.append(display);
+                                }
+
                                 std::lock_guard<std::mutex> lock(resultMutex);
                                 results.append(displayFrames);
                             }
 
-                            {
-                                std::lock_guard<std::mutex> lock(progressMutex);
-                                progress++;
-                            }
+                            std::lock_guard<std::mutex> lock(progressMutex);
+                            progress++;
                         }
                     }
                 }

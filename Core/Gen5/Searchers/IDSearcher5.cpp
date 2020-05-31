@@ -131,22 +131,21 @@ void IDSearcher5::search(const QDate &start, const QDate &end)
                             + (flag ? Utilities::initialFrameBW(seed, save ? 2 : 3) : Utilities::initialFrameBW2ID(seed, save ? 2 : 3)));
                         auto frames = idGenerator.generate(seed, pid, checkPID);
 
-                        QDateTime dt(date, QTime(hour, minute, second));
-                        for (auto &frame : frames)
+                        if (!frames.isEmpty())
                         {
-                            frame.setDateTime(dt);
-                            frame.setKeypress(buttons.at(i));
-                        }
+                            QDateTime dt(date, QTime(hour, minute, second));
+                            for (auto &frame : frames)
+                            {
+                                frame.setDateTime(dt);
+                                frame.setKeypress(buttons.at(i));
+                            }
 
-                        {
                             std::lock_guard<std::mutex> lock(resultMutex);
                             results.append(frames);
                         }
 
-                        {
-                            std::lock_guard<std::mutex> lock(progressMutex);
-                            progress++;
-                        }
+                        std::lock_guard<std::mutex> lock(progressMutex);
+                        progress++;
                     }
                 }
             }
