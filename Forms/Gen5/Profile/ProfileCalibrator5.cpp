@@ -22,8 +22,10 @@
 #include <Core/Enum/DSType.hpp>
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Language.hpp>
+#include <Core/Gen5/ProfileLoader5.hpp>
 #include <Core/Gen5/Searchers/ProfileSearcher5.hpp>
 #include <Core/Util/Translator.hpp>
+#include <Forms/Gen5/Profile/ProfileEditor5.hpp>
 #include <Forms/Util/IVCalculator.hpp>
 #include <QMessageBox>
 #include <QSettings>
@@ -306,7 +308,22 @@ void ProfileCalibrator5::createProfile()
         return;
     }
 
-    // TODO
+    Game version = static_cast<Game>(ui->comboBoxVersion->getCurrentInt());
+    Language language = static_cast<Language>(ui->comboBoxLanguage->getCurrentInt());
+    DSType dsType = static_cast<DSType>(ui->comboBoxLanguage->getCurrentInt());
+    u64 mac = ui->textBoxMACAddress->getULong();
+    u8 vcount = model->data(model->index(row, 1)).toString().toUShort(nullptr, 16);
+    u16 timer0 = model->data(model->index(row, 2)).toString().toUShort(nullptr, 16);
+    u8 gxstat = model->data(model->index(row, 3)).toString().toUShort(nullptr, 16);
+    u8 vframe = model->data(model->index(row, 4)).toString().toUShort(nullptr, 16);
+
+    QScopedPointer<ProfileEditor5> dialog(new ProfileEditor5(version, language, dsType, mac, vcount, timer0, gxstat, vframe));
+    if (dialog->exec() == QDialog::Accepted)
+    {
+        Profile5 profile = dialog->getNewProfile();
+        ProfileLoader5::addProfile(profile);
+        emit alertProfiles(5);
+    }
 }
 
 void ProfileCalibrator5::tableViewContextMenu(QPoint pos)

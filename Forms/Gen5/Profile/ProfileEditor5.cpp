@@ -65,6 +65,30 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
     versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }
 
+ProfileEditor5::ProfileEditor5(Game version, Language language, DSType dsType, u64 mac, u8 vcount, u16 timer0, u8 gxstat, u8 vframe,
+                               QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::ProfileEditor5)
+{
+    ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
+
+    setupModels();
+
+    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(version));
+    ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(language));
+    ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(dsType));
+    ui->textBoxMAC->setText(QString::number(mac, 16));
+    ui->textBoxVCount->setText(QString::number(vcount, 16));
+    ui->textBoxTimer0Min->setText(QString::number(timer0, 16));
+    ui->textBoxTimer0Max->setText(QString::number(timer0, 16));
+    ui->textBoxGxStat->setText(QString::number(gxstat, 16));
+    ui->textBoxVFrame->setText(QString::number(vframe, 16));
+
+    versionIndexChanged(ui->comboBoxVersion->currentIndex());
+}
+
 ProfileEditor5::~ProfileEditor5()
 {
     delete ui;

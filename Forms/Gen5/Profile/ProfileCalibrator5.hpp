@@ -32,6 +32,8 @@ namespace Ui
 class ProfileCalibrator5 : public QWidget
 {
     Q_OBJECT
+signals:
+    void alertProfiles(int);
 
 public:
     explicit ProfileCalibrator5(QWidget *parent = nullptr);
