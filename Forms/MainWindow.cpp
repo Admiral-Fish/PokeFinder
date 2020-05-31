@@ -87,6 +87,7 @@ MainWindow::~MainWindow()
     delete ids4;
     delete stationary5;
     delete event5;
+    delete dreamRadar;
     delete ids5;
 }
 
@@ -315,6 +316,10 @@ void MainWindow::updateProfiles(int num)
         if (event5)
         {
             event5->updateProfiles();
+        }
+        if (dreamRadar)
+        {
+            dreamRadar->updateProfiles();
         }
         if (ids5)
         {
