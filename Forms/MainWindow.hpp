@@ -39,6 +39,7 @@ class Eggs4;
 class IDs4;
 class Stationary5;
 class Event5;
+class DreamRadar;
 class IDs5;
 
 class MainWindow : public QMainWindow
@@ -67,6 +68,7 @@ private:
     IDs4 *ids4 = nullptr;
     Stationary5 *stationary5 = nullptr;
     Event5 *event5 = nullptr;
+    DreamRadar *dreamRadar = nullptr;
     IDs5 *ids5 = nullptr;
 
     void setupModels();
@@ -88,18 +90,22 @@ private slots:
     void openJirachiPattern();
     void openPIDtoIV();
     void openPokeSpot();
+    void openProfileManager3();
     void openSeedtoTime3();
     void openSpindaPainter();
     void openStationary4();
     void openWild4();
     void openEgg4();
     void openIDs4();
+    void openProfileManager4();
     void openSeedtoTime4();
     void openSIDFromChainedShiny();
     void openStationary5();
     void openEvent5();
+    void openDreamRadar();
     void openIDs5();
     void openProfileCalibrator();
+    void openProfileManager5();
     void openEncounterLookup();
     void openIVCalculator();
     void openResearcher();

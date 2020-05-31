@@ -41,6 +41,7 @@ public:
     explicit IDs5(QWidget *parent = nullptr);
     ~IDs5();
     void updateProfiles();
+    bool hasProfiles() const;
 
 private:
     Ui::IDs5 *ui;

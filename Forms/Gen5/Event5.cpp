@@ -43,8 +43,6 @@ Event5::Event5(QWidget *parent) : QWidget(parent), ui(new Ui::Event5)
 
     updateProfiles();
     setupModels();
-
-    qRegisterMetaType<QVector<Frame>>("QVector<Frame>");
 }
 
 Event5::~Event5()
@@ -63,7 +61,6 @@ void Event5::updateProfiles()
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Event5::profileIndexChanged);
 
     profiles = ProfileLoader5::getProfiles();
-    profiles.insert(profiles.begin(), Profile5());
 
     ui->comboBoxProfiles->clear();
 
@@ -78,6 +75,11 @@ void Event5::updateProfiles()
     {
         ui->comboBoxProfiles->setCurrentIndex(val);
     }
+}
+
+bool Event5::hasProfiles() const
+{
+    return !profiles.isEmpty();
 }
 
 void Event5::setupModels()

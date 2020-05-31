@@ -22,6 +22,7 @@
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Gen3/GameCube.hpp>
 #include <Forms/Gen3/IDs3.hpp>
+#include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 #include <Forms/Gen3/Tools/GameCubeSeedFinder.hpp>
@@ -33,13 +34,16 @@
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen4/Eggs4.hpp>
 #include <Forms/Gen4/IDs4.hpp>
+#include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Stationary4.hpp>
 #include <Forms/Gen4/Tools/ChainedSID.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
+#include <Forms/Gen5/DreamRadar.hpp>
 #include <Forms/Gen5/Event5.hpp>
 #include <Forms/Gen5/IDs5.hpp>
 #include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
+#include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Forms/Gen5/Stationary5.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
@@ -170,6 +174,7 @@ void MainWindow::setupModels()
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
     connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
     connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
+    connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
@@ -414,6 +419,13 @@ void MainWindow::openPokeSpot()
     pokeSpot->raise();
 }
 
+void MainWindow::openProfileManager3()
+{
+    auto *manager = new ProfileManager3();
+    connect(manager, &ProfileManager3::updateProfiles, this, [=] { updateProfiles(3); });
+    manager->show();
+}
+
 void MainWindow::openSeedtoTime3()
 {
     auto *seedToTime = new SeedTime3();
@@ -471,6 +483,13 @@ void MainWindow::openIDs4()
     ids4->raise();
 }
 
+void MainWindow::openProfileManager4()
+{
+    auto *manager = new ProfileManager4();
+    connect(manager, &ProfileManager4::updateProfiles, this, [=] { updateProfiles(4); });
+    manager->show();
+}
+
 void MainWindow::openSeedtoTime4()
 {
     auto *seedToTime = new SeedtoTime4();
@@ -494,6 +513,14 @@ void MainWindow::openStationary5()
     }
     stationary5->show();
     stationary5->raise();
+
+    if (!stationary5->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        stationary5->close();
+    }
 }
 
 void MainWindow::openEvent5()
@@ -505,6 +532,33 @@ void MainWindow::openEvent5()
     }
     event5->show();
     event5->raise();
+
+    if (!event5->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        event5->close();
+    }
+}
+
+void MainWindow::openDreamRadar()
+{
+    if (!dreamRadar)
+    {
+        dreamRadar = new DreamRadar();
+        connect(dreamRadar, &DreamRadar::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    dreamRadar->show();
+    dreamRadar->raise();
+
+    if (!dreamRadar->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        dreamRadar->close();
+    }
 }
 
 void MainWindow::openIDs5()
@@ -516,13 +570,29 @@ void MainWindow::openIDs5()
     }
     ids5->show();
     ids5->raise();
+
+    if (!ids5->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        ids5->close();
+    }
 }
 
 void MainWindow::openProfileCalibrator()
 {
     auto *calibrator = new ProfileCalibrator5();
+    connect(calibrator, &ProfileCalibrator5::alertProfiles, this, &MainWindow::updateProfiles);
     calibrator->show();
     calibrator->raise();
+}
+
+void MainWindow::openProfileManager5()
+{
+    auto *manager = new ProfileManager5();
+    connect(manager, &ProfileManager5::updateProfiles, this, [=] { updateProfiles(5); });
+    manager->show();
 }
 
 void MainWindow::openEncounterLookup()

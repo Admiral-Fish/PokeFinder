@@ -189,6 +189,7 @@
     <addaction name="menuGameCube"/>
     <addaction name="actionIVtoPID3"/>
     <addaction name="actionPIDtoIV"/>
+    <addaction name="actionProfileManager3"/>
     <addaction name="actionSeedtoTime3"/>
     <addaction name="actionSpindaPainter"/>
    </widget>
@@ -197,6 +198,7 @@
      <string>Gen 4 Tools</string>
     </property>
     <addaction name="actionIVtoPID4"/>
+    <addaction name="actionProfileManager4"/>
     <addaction name="actionSeedtoTime4"/>
     <addaction name="actionSIDfromChainedShiny"/>
    </widget>
@@ -238,6 +240,7 @@
      <string>Gen 5 Tools</string>
     </property>
     <addaction name="actionProfileCalibrator"/>
+    <addaction name="actionProfileManager5"/>
    </widget>
    <addaction name="menuGen3Tools"/>
    <addaction name="menuGen4Tools"/>
@@ -398,6 +401,21 @@
   <action name="actionProfileCalibrator">
    <property name="text">
     <string>Profile Calibrator</string>
+   </property>
+  </action>
+  <action name="actionProfileManager3">
+   <property name="text">
+    <string>Profile Manager</string>
+   </property>
+  </action>
+  <action name="actionProfileManager4">
+   <property name="text">
+    <string>Profile Manager</string>
+   </property>
+  </action>
+  <action name="actionProfileManager5">
+   <property name="text">
+    <string>Profile Manager</string>
    </property>
   </action>
  </widget>

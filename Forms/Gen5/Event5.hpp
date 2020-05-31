@@ -45,6 +45,7 @@ public:
     explicit Event5(QWidget *parent = nullptr);
     ~Event5() override;
     void updateProfiles();
+    bool hasProfiles() const;
 
 private:
     Ui::Event5 *ui;

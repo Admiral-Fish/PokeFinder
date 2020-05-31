@@ -43,8 +43,6 @@ IDs5::IDs5(QWidget *parent) :
 
     updateProfiles();
     setupModels();
-
-    qRegisterMetaType<QVector<IDFrame5>>("QVector<IDFrame5>");
 }
 
 IDs5::~IDs5()
@@ -63,7 +61,6 @@ void IDs5::updateProfiles()
     connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &IDs5::profileIndexChanged);
 
     profiles = ProfileLoader5::getProfiles();
-    profiles.insert(profiles.begin(), Profile5());
 
     ui->comboBoxProfiles->clear();
 
@@ -78,6 +75,11 @@ void IDs5::updateProfiles()
     {
         ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
     }
+}
+
+bool IDs5::hasProfiles() const
+{
+    return !profiles.isEmpty();
 }
 
 void IDs5::setupModels()
@@ -152,7 +154,7 @@ void IDs5::search()
 
     auto *searcher = new IDSearcher5(generator, currentProfile, pid, usePID, ui->checkBoxExistingSave->isChecked());
 
-    int maxProgress = Keypresses::getKeyPresses({ false, true }, currentProfile.getSkipLR()).size();
+    int maxProgress = Keypresses::getKeyPresses({ false, true, false, false }, currentProfile.getSkipLR()).size();
     maxProgress *= 86400 * (start.daysTo(end) + 1);
     ui->progressBar->setRange(0, maxProgress);
 

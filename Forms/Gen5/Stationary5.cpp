@@ -33,8 +33,6 @@ Stationary5::Stationary5(QWidget *parent) : QWidget(parent), ui(new Ui::Stationa
 
     updateProfiles();
     setupModels();
-
-    qRegisterMetaType<QVector<StationaryFrame>>("QVector<StationaryFrame>");
 }
 
 Stationary5::~Stationary5()
@@ -47,8 +45,9 @@ Stationary5::~Stationary5()
 
 void Stationary5::updateProfiles()
 {
+    connect(ui->comboBoxProfiles, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Stationary5::profileIndexChanged);
+
     profiles = ProfileLoader5::getProfiles();
-    profiles.insert(profiles.begin(), Profile5());
 
     ui->comboBoxProfiles->clear();
 
@@ -63,6 +62,11 @@ void Stationary5::updateProfiles()
     {
         ui->comboBoxProfiles->setCurrentIndex(val >= 0 ? val : 0);
     }
+}
+
+bool Stationary5::hasProfiles() const
+{
+    return !profiles.isEmpty();
 }
 
 void Stationary5::setupModels()
