@@ -69,10 +69,9 @@ QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
 
     RNGList<u8, 100> rngList([&mt = mt] { return mt.nextUInt() >> 27; });
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceStates(2), rng.advanceFrames(2))
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceStates(2), rng.nextULong())
     {
         Frame frame(cnt + initialFrame);
-        frame.setSeed(rng.getSeed(8));
 
         BWRNG go(rng.getSeed());
         go.advanceFrames(pidAdvances);
@@ -118,6 +117,8 @@ QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
         go.advanceFrames(2);
 
         frame.setNature(go.nextUInt(25));
+
+        frame.setSeed(rng.nextUInt(8));
 
         if (filter.compareFrame(frame))
         {
