@@ -32,13 +32,14 @@ class DreamRadarSearcher
 {
 public:
     DreamRadarSearcher() = default;
-    explicit DreamRadarSearcher(const Profile5 &profile);
-    void startSearch(int threads, QDate start, const QDate &end, const DreamRadarGenerator &generator);
+    explicit DreamRadarSearcher(const DreamRadarGenerator &generator, const Profile5 &profile);
+    void startSearch(int threads, QDate start, const QDate &end);
     void cancelSearch();
     QVector<SearcherFrame5<Frame>> getResults();
     int getProgress() const;
 
 private:
+    DreamRadarGenerator generator;
     Profile5 profile;
 
     bool searching;
@@ -47,7 +48,7 @@ private:
     std::mutex resultMutex;
     std::mutex progressMutex;
 
-    void search(const QDate &start, const QDate &end, DreamRadarGenerator generator);
+    void search(const QDate &start, const QDate &end);
 };
 
 #endif // DREAMRADARSEARCHER_HPP
