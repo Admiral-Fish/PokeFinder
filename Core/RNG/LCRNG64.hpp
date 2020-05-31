@@ -69,6 +69,11 @@ public:
         return seed;
     }
 
+    u64 getSeed(u32 max) const
+    {
+        return ((seed >> 32) * max) >> 32;
+    }
+
 private:
     u64 seed;
 };

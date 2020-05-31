@@ -91,7 +91,7 @@ public:
 private:
     std::function<IntegerType()> function;
     IntegerType list[size];
-    u32 size, head, tail, pointer;
+    u32 head, tail, pointer;
 };
 
 #endif // RNGLIST_HPP
