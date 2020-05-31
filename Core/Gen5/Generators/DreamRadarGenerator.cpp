@@ -43,25 +43,10 @@ DreamRadarGenerator::DreamRadarGenerator(u32 initialFrame, u32 maxResults, u16 t
 
         if (i != (radarSlots.size() - 1))
         {
-            pidAdvances += (slot.gender == 255) ? 4 : 5;
+            pidAdvances += (slot.genderRatio == 255) ? 4 : 5;
             ivAdvances += 13;
         }
     }
-
-    try
-    {
-        mt = new MersenneTwisterFast(((initialFrame + maxResults - 1) * 2) + ivAdvances + 10 + 6, 0);
-    }
-    catch (const std::exception &e)
-    {
-        (void)e;
-        mt = new MersenneTwister(0);
-    }
-}
-
-DreamRadarGenerator::~DreamRadarGenerator()
-{
-    delete mt;
 }
 
 QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
@@ -77,17 +62,17 @@ QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
         rng.nextULong();
     }
 
-    mt->setSeed(seed >> 32);
-    mt->advanceFrames(9); // Initial advances
-    mt->advanceFrames((initialFrame - 1) * 2); // Starting frame
-    mt->advanceFrames(ivAdvances); // Slot advances
+    MersenneTwister mt(seed >> 32);
+    mt.advanceFrames(9); // Initial advances
+    mt.advanceFrames((initialFrame - 1) * 2); // Starting frame
+    mt.advanceFrames(ivAdvances); // Slot advances
 
-    RNGList<u8, 100> rngList([&mt = mt] { return mt->nextUInt() >> 27; });
+    RNGList<u8, 100> rngList([&mt = mt] { return mt.nextUInt() >> 27; });
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceStates(2), rng.advanceFrames(2))
     {
         Frame frame(cnt + initialFrame);
-        // TODO: value for spinner
+        frame.setSeed(rng.getSeed(8));
 
         BWRNG go(rng.getSeed());
         go.advanceFrames(pidAdvances);
@@ -98,6 +83,7 @@ QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
         }
         frame.calculateHiddenPower();
 
+        go.nextULong(); // Frame skip ???
         u32 pid = go.nextUInt();
 
         // Gender modification
@@ -127,6 +113,7 @@ QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
 
         frame.setPID(pid);
         frame.setAbility(2);
+        frame.setShiny(0);
 
         go.advanceFrames(2);
 

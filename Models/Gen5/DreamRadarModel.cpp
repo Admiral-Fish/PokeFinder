@@ -41,7 +41,7 @@ QVariant DreamRadarGeneratorModel5::data(const QModelIndex &index, int role) con
         case 0:
             return frame.getFrame();
         case 1:
-            return "TODO";
+            return frame.getSeed();
         case 2:
             return QString::number(frame.getPID(), 16).toUpper().rightJustified(8, '0');
         case 3:

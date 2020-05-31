@@ -23,8 +23,6 @@
 #include <Core/Parents/Frames/Frame.hpp>
 #include <Core/Parents/Generators/Generator.hpp>
 
-class MT;
-
 struct DreamRadarSlot
 {
     u8 type; // 0: genie, 1: gen 4 legends, 2: non-legend
@@ -44,11 +42,9 @@ public:
     DreamRadarGenerator() = default;
     DreamRadarGenerator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter,
                         const QVector<DreamRadarSlot> &radarSlots);
-    ~DreamRadarGenerator();
     QVector<Frame> generate(u64 seed, bool memory);
 
 private:
-    MT *mt;
     u8 pidAdvances;
     u8 ivAdvances;
     DreamRadarSlot radarSlot;
