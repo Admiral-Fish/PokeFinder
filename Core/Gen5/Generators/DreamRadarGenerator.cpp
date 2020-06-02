@@ -118,7 +118,7 @@ QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
 
         frame.setNature(go.nextUInt(25));
 
-        frame.setSeed(rng.nextUInt(8));
+        frame.setSeed(rng.nextUInt(8)); // Needle calculation
 
         if (filter.compareFrame(frame))
         {
