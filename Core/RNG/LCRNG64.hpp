@@ -30,7 +30,7 @@ public:
     {
     }
 
-    void advanceFrames(u32 frames) override
+    void advanceFrames(u32 frames) final
     {
         for (u32 frame = 0; frame < frames; frame++)
         {
@@ -53,12 +53,12 @@ public:
         return nextULong() >> 32;
     }
 
-    u64 next() override
+    u64 next() final
     {
         return nextULong();
     }
 
-    void setSeed(u64 seed, u32 frames = 0) override
+    void setSeed(u64 seed, u32 frames = 0) final
     {
         this->seed = seed;
         advanceFrames(frames);
