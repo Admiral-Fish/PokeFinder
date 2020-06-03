@@ -25,27 +25,54 @@
 
 namespace
 {
-    constexpr u8 probabilityTable[6][5] = { { 50, 100, 100, 100, 100 }, { 50, 50, 100, 100, 100 }, { 30, 50, 100, 100, 100 },
-                                            { 25, 30, 50, 100, 100 },   { 20, 25, 33, 50, 100 },   { 100, 100, 100, 100, 100 } };
-
     u32 advanceProbabilityTable(BWRNG &rng)
     {
         u32 count = 0;
 
-        for (u8 i = 0; i < 6; i++)
-        {
-            for (u8 j = 0; j < 5; j++)
-            {
-                if (probabilityTable[i][j] == 100)
-                {
-                    break;
-                }
+        // Round 1
+        count++;
+        rng.advanceFrames(1);
 
+        // Round 2
+        count++;
+        if (rng.nextUInt(101) > 50)
+        {
+            count++;
+            rng.advanceFrames(1);
+        }
+
+        // Round 3
+        count++;
+        if (rng.nextUInt(101) > 30)
+        {
+            count++;
+            rng.advanceFrames(1);
+        }
+
+        // Round 4
+        count++;
+        if (rng.nextUInt(101) > 25)
+        {
+            count++;
+            if (rng.nextUInt(101) > 30)
+            {
                 count++;
-                u8 rand = rng.nextUInt(101);
-                if (rand <= probabilityTable[i][j])
+                rng.advanceFrames(1);
+            }
+        }
+
+        // Round 5
+        count++;
+        if (rng.nextUInt(101) > 20)
+        {
+            count++;
+            if (rng.nextUInt(101) > 25)
+            {
+                count++;
+                if (rng.nextUInt(101) > 33)
                 {
-                    break;
+                    count++;
+                    rng.advanceFrames(1);
                 }
             }
         }
@@ -53,6 +80,7 @@ namespace
         return count;
     }
 }
+
 namespace Utilities
 {
     u16 calcGen3Seed(const QDateTime &dateTime)
@@ -139,12 +167,12 @@ namespace Utilities
         return count;
     }
 
-    u32 initialFrameBW2(u64 seed, bool memory, u8 rounds)
+    u32 initialFrameBW2(u64 seed, bool memory)
     {
         BWRNG rng(seed);
         u32 count = 1;
 
-        for (u8 i = 0; i < rounds; i++)
+        for (u8 i = 0; i < 5; i++)
         {
             count += advanceProbabilityTable(rng);
 
