@@ -1607,31 +1607,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="233"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="341"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="242"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="350"/>
         <source>Missing precalc file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="233"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="341"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="242"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="350"/>
         <source>Would you like to download the precalc file?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="101"/>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="127"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="241"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="278"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="349"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="386"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="250"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="287"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="358"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="395"/>
         <source>Round #</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="106"/>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="132"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="160"/>
         <source>Your seed is %1. Copy to clipboard?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1647,23 +1646,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="159"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="168"/>
         <source>Result: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="242"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="350"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="169"/>
+        <source>Your seed(s) is %1. Copy to clipboard?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="251"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="359"/>
         <source>Possible Results: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="395"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="404"/>
         <source>Missing info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="395"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="404"/>
         <source>You must have at least 10 entries</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1676,7 +1680,7 @@
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="106"/>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="132"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="160"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="169"/>
         <source>Seed found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3327,15 +3331,15 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="76"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="78"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
         <source>64Bit</source>
         <translation>64位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="77"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="440"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="79"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="442"/>
         <source>32Bit</source>
         <translation>32位</translation>
     </message>
@@ -3346,38 +3350,38 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="78"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="80"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
         <source>32Bit High</source>
         <translation>前32位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="79"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
         <source>32Bit Low</source>
         <translation>后32位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="80"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="440"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="442"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
         <source>16Bit High</source>
         <translation>前16位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="81"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="440"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="441"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="442"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="443"/>
         <source>16Bit Low</source>
         <translation>后16位</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="376"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="406"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="378"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="408"/>
         <source>None</source>
         <translation>无</translation>
     </message>
@@ -3408,19 +3412,19 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="97"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="99"/>
         <source>Previous 7</source>
         <translation>前7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="98"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="100"/>
         <source>Previous 8</source>
         <translation>前8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="99"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="101"/>
         <source>Previous 9</source>
         <translation>前9</translation>
     </message>
@@ -3441,91 +3445,91 @@
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="82"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
         <source>Custom 1</source>
         <translation>自定义1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="83"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
         <source>Custom 2</source>
         <translation>自定义2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="84"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
         <source>Custom 3</source>
         <translation>自定义3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
         <source>Previous 1</source>
         <translation>前1</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
         <source>Previous 2</source>
         <translation>前2</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="85"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
         <source>Custom 4</source>
         <translation>自定义4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="93"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
         <source>Previous 3</source>
         <translation>前3</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="86"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
         <source>Custom 5</source>
         <translation>自定义5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="87"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
         <source>Custom 6</source>
         <translation>自定义6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="94"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="96"/>
         <source>Previous 4</source>
         <translation>前4</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="95"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="97"/>
         <source>Previous 5</source>
         <translation>前5</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="96"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="98"/>
         <source>Previous 6</source>
         <translation>前6</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="88"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
         <source>Custom 7</source>
         <translation>自定义7</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="89"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="91"/>
         <source>Custom 8</source>
         <translation>自定义8</translation>
     </message>
     <message>
         <location filename="../Forms/Util/Researcher.ui"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="90"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="92"/>
         <source>Custom 9</source>
         <translation>自定义9</translation>
     </message>
@@ -3540,28 +3544,28 @@
         <translation>16进制</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="101"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="103"/>
         <source>Output Results to TXT</source>
         <translation type="unfinished">导出结果至TXT</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="102"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="104"/>
         <source>Output Results to CSV</source>
         <translation type="unfinished">导出结果至CSV</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="262"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="264"/>
         <source>Please enter a search range lower then 228</source>
         <translation>请输入小于228的输入范围</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="352"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="354"/>
         <source>You must check the Hex box in order to use Hex values.</source>
         <translation>请勾上16进制以输入16进制数。</translation>
     </message>
     <message>
-        <location filename="../Forms/Util/Researcher.cpp" line="466"/>
-        <location filename="../Forms/Util/Researcher.cpp" line="498"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="468"/>
+        <location filename="../Forms/Util/Researcher.cpp" line="500"/>
         <source>No result found</source>
         <translation>无结果</translation>
     </message>
