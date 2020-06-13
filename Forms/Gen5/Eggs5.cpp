@@ -24,6 +24,7 @@
 #include <Core/Gen5/Generators/EggGenerator5.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/Gen5/ProfileLoader5.hpp>
+#include <Core/Gen5/Searchers/EggSearcher5.hpp>
 #include <Core/Util/Translator.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
@@ -182,7 +183,7 @@ void Eggs5::search()
                             currentProfile.getShinyCharm());
     generator.setOffset(0);
 
-    // EventSearcher5 *searcher = new EventSearcher5(generator, currentProfile);
+    EggSearcher5 *searcher = new EggSearcher5(generator, currentProfile);
 
     QDate start = ui->dateEditSearcherStartDate->date();
     QDate end = ui->dateEditSearcherEndDate->date();
@@ -195,7 +196,7 @@ void Eggs5::search()
     QSettings settings;
     int threads = settings.value("settings/threads", QThread::idealThreadCount()).toInt();
 
-    /*auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
+    auto *thread = QThread::create([=] { searcher->startSearch(threads, start, end); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
     connect(ui->pushButtonCancel, &QPushButton::clicked, [searcher] { searcher->cancelSearch(); });
 
@@ -211,7 +212,7 @@ void Eggs5::search()
     });
 
     thread->start();
-    timer->start(1000);*/
+    timer->start(1000);
 }
 
 void Eggs5::calculateInitialFrame()

@@ -107,7 +107,7 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
         frame.setNature(nature);
 
         // Add check for mother having HA
-        bool hiddenAbility = go.nextUInt(100) >= 40 && daycare.getParentAbility(1) == 2;
+        bool hiddenAbility = go.nextUInt(100) >= 40 && parentAbility == 2;
 
         // Ability inheritance doesn't get used outside of hidden ability
         /*u8 ability;

@@ -17,35 +17,37 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GENERATOR_HPP
-#define GENERATOR_HPP
+#ifndef EGGSEARCHER5_HPP
+#define EGGSEARCHER5_HPP
 
-#include <Core/Parents/Filters/FrameFilter.hpp>
+#include <Core/Gen5/Frames/SearcherFrame5.hpp>
+#include <Core/Gen5/Generators/EggGenerator5.hpp>
+#include <Core/Gen5/Profile5.hpp>
 #include <Core/Util/Global.hpp>
+#include <QDate>
+#include <mutex>
 
-enum Encounter : u8;
-enum Lead : u8;
-enum Method : u8;
-
-class Generator
+class EggSearcher5
 {
 public:
-    Generator() = default;
-    Generator(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter);
-    FrameFilter getFilter() const;
-    void setOffset(u32 offset);
-    void setInitialFrame(u32 initialFrame);
+    EggSearcher5() = default;
+    explicit EggSearcher5(const EggGenerator5 &generator, const Profile5 &profile);
+    void startSearch(int threads, QDate start, const QDate &end);
+    void cancelSearch();
+    QVector<SearcherFrame5<EggFrame>> getResults();
+    int getProgress() const;
 
-protected:
-    u32 initialFrame;
-    u32 maxResults;
-    u32 offset;
-    u16 tid;
-    u16 sid;
-    u16 tsv;
-    u8 genderRatio;
-    Method method;
-    FrameFilter filter;
+private:
+    EggGenerator5 generator;
+    Profile5 profile;
+
+    bool searching;
+    int progress;
+    QVector<SearcherFrame5<EggFrame>> results;
+    std::mutex resultMutex;
+    std::mutex progressMutex;
+
+    void search(const QDate &start, const QDate &end);
 };
 
-#endif // GENERATOR_HPP
+#endif // EGGSEARCHER5_HPP

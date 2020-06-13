@@ -137,8 +137,3 @@ QVector<Frame> EventGenerator5::generate(u64 seed) const
 
     return frames;
 }
-
-void EventGenerator5::setInitialFrame(u32 initialFrame)
-{
-    this->initialFrame = initialFrame;
-}

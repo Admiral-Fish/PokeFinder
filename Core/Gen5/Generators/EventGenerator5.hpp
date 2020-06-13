@@ -31,7 +31,6 @@ public:
     EventGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter,
                     const PGF &parameters);
     QVector<Frame> generate(u64 seed) const;
-    void setInitialFrame(u32 initialFrame);
 
 private:
     PGF parameters;

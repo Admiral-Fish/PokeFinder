@@ -40,3 +40,8 @@ void Generator::setOffset(u32 offset)
 {
     this->offset = offset;
 }
+
+void Generator::setInitialFrame(u32 initialFrame)
+{
+    this->initialFrame = initialFrame;
+}

@@ -145,6 +145,7 @@ HEADERS += \
     Core/Gen5/Profile5.hpp \
     Core/Gen5/ProfileLoader5.hpp \
     Core/Gen5/Searchers/DreamRadarSearcher.hpp \
+    Core/Gen5/Searchers/EggSearcher5.hpp \
     Core/Gen5/Searchers/EventSearcher5.hpp \
     Core/Gen5/Searchers/IDSearcher5.hpp \
     Core/Gen5/Searchers/ProfileSearcher5.hpp \
@@ -314,6 +315,7 @@ SOURCES += \
     Core/Gen5/Profile5.cpp \
     Core/Gen5/ProfileLoader5.cpp \
     Core/Gen5/Searchers/DreamRadarSearcher.cpp \
+    Core/Gen5/Searchers/EggSearcher5.cpp \
     Core/Gen5/Searchers/EventSearcher5.cpp \
     Core/Gen5/Searchers/IDSearcher5.cpp \
     Core/Gen5/Searchers/ProfileSearcher5.cpp \
