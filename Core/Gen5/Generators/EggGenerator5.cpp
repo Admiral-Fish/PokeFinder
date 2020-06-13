@@ -33,8 +33,8 @@ EggGenerator5::EggGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid,
     EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter),
     daycare(daycare),
     rolls((shinyCharm ? 2 : 0) + (daycare.getMasuada() ? 5 : 0)),
-    everstone(daycare.getEverstone(Game::BW)),
-    poweritem(daycare.getPowerItem()),
+    everstone(daycare.getEverstoneCount(Game::BW)),
+    poweritem(daycare.getPowerItemCount()),
     ditto(daycare.getDitto()),
     parentAbility(daycare.getParentAbility(1))
 {
@@ -95,12 +95,12 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
                 // 0->parent1 / 1->parent2
                 if (everstone == 2)
                 {
-                    nature = daycare.getEverstoneNature(go.nextUInt(2));
+                    nature = daycare.getParentNature(go.nextUInt(2));
                 }
                 else
                 {
-                    u8 parent = daycare.getItem(0) == 1 ? 0 : 1;
-                    nature = daycare.getEverstoneNature(parent);
+                    u8 parent = daycare.getParentItem(0) == 1 ? 0 : 1;
+                    nature = daycare.getParentNature(parent);
                 }
             }
         }
@@ -144,15 +144,15 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
             if (poweritem == 2)
             {
                 u8 parent = go.nextUInt(2);
-                u8 item = daycare.getItem(parent);
+                u8 item = daycare.getParentItem(parent);
 
                 frame.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
                 frame.setInheritance(item - 2, parent + 1);
             }
             else
             {
-                u8 parent = (daycare.getItem(0) >= 2 && daycare.getItem(1) <= 7) ? 0 : 1;
-                u8 item = daycare.getItem(parent);
+                u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(1) <= 7) ? 0 : 1;
+                u8 item = daycare.getParentItem(parent);
 
                 frame.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
                 frame.setInheritance(item - 2, parent + 1);
@@ -274,12 +274,12 @@ EggFrame EggGenerator5::generateBW2Egg(u64 seed) const
         // 0->parent1 / 1->parent2
         if (everstone == 2)
         {
-            nature = daycare.getEverstoneNature(rng.nextUInt(2));
+            nature = daycare.getParentNature(rng.nextUInt(2));
         }
         else
         {
-            u8 parent = daycare.getItem(0) == 1 ? 0 : 1;
-            nature = daycare.getEverstoneNature(parent);
+            u8 parent = daycare.getParentItem(0) == 1 ? 0 : 1;
+            nature = daycare.getParentNature(parent);
         }
     }
     frame.setNature(nature);
@@ -319,15 +319,15 @@ EggFrame EggGenerator5::generateBW2Egg(u64 seed) const
         if (poweritem == 2)
         {
             u8 parent = rng.nextUInt(2);
-            u8 item = daycare.getItem(parent);
+            u8 item = daycare.getParentItem(parent);
 
             frame.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
             frame.setInheritance(item - 2, parent + 1);
         }
         else
         {
-            u8 parent = (daycare.getItem(0) >= 2 && daycare.getItem(1) <= 7) ? 0 : 1;
-            u8 item = daycare.getItem(parent);
+            u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(1) <= 7) ? 0 : 1;
+            u8 item = daycare.getParentItem(parent);
 
             frame.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
             frame.setInheritance(item - 2, parent + 1);

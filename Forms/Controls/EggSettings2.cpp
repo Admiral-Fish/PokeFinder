@@ -107,7 +107,7 @@ bool EggSettings2::compatibleParents() const
         return true;
     }
 
-    // Genderless Ditto
+    // Genderless/Ditto
     if ((parent1 == 2 && parent2 == 3) || (parent1 == 3 && parent2 == 2))
     {
         return true;
@@ -116,9 +116,51 @@ bool EggSettings2::compatibleParents() const
     return false;
 }
 
-void EggSettings2::reorderParents()
+bool EggSettings2::reorderParents()
 {
-    // TODO
+    u8 parent1 = ui->comboBoxParentAGender->currentIndex();
+    u8 parent2 = ui->comboBoxParentBGender->currentIndex();
+
+    // Female/Male -> Male/Female
+    bool flag = parent1 == 1 && parent2 == 0;
+
+    // Female/Ditto -> Ditto/Female
+    flag |= parent1 == 1 && parent2 == 3;
+
+    // Ditto/Male -> Male/Ditto
+    flag |= parent1 == 3 && parent2 == 0;
+
+    // Ditto/Genderless -> Genderless/Ditto
+    flag |= parent1 == 3 && parent2 == 2;
+
+    if (flag)
+    {
+        Daycare daycare = getDaycareSettings();
+
+        ui->spinBoxParentAHP->setValue(daycare.getParentIV(1, 0));
+        ui->spinBoxParentAAtk->setValue(daycare.getParentIV(1, 1));
+        ui->spinBoxParentADef->setValue(daycare.getParentIV(1, 2));
+        ui->spinBoxParentASpA->setValue(daycare.getParentIV(1, 3));
+        ui->spinBoxParentASpD->setValue(daycare.getParentIV(1, 4));
+        ui->spinBoxParentASpe->setValue(daycare.getParentIV(1, 5));
+        ui->comboBoxParentAAbility->setCurrentIndex(daycare.getParentAbility(1));
+        ui->comboBoxParentAGender->setCurrentIndex(daycare.getParentGender(1));
+        ui->comboBoxParentAItem->setCurrentIndex(daycare.getParentItem(1));
+        ui->comboBoxParentANature->setCurrentIndex(daycare.getParentNature(1));
+
+        ui->spinBoxParentBHP->setValue(daycare.getParentIV(0, 0));
+        ui->spinBoxParentBAtk->setValue(daycare.getParentIV(0, 1));
+        ui->spinBoxParentBDef->setValue(daycare.getParentIV(0, 2));
+        ui->spinBoxParentBSpA->setValue(daycare.getParentIV(0, 3));
+        ui->spinBoxParentBSpD->setValue(daycare.getParentIV(0, 4));
+        ui->spinBoxParentBSpe->setValue(daycare.getParentIV(0, 5));
+        ui->comboBoxParentBAbility->setCurrentIndex(daycare.getParentAbility(0));
+        ui->comboBoxParentBGender->setCurrentIndex(daycare.getParentGender(0));
+        ui->comboBoxParentBItem->setCurrentIndex(daycare.getParentItem(0));
+        ui->comboBoxParentBNature->setCurrentIndex(daycare.getParentNature(0));
+    }
+
+    return flag;
 }
 
 void EggSettings2::setupModels()

@@ -33,7 +33,37 @@ Daycare::Daycare(const QVector<u8> &parent1IVs, const QVector<u8> &parent2IVs, u
 {
 }
 
-u8 Daycare::getEverstone(Game version) const
+u8 Daycare::getParentIV(u8 parent, u8 index) const
+{
+    if (parent == 0)
+    {
+        return parent1IVs.at(index);
+    }
+
+    return parent2IVs.at(index);
+}
+
+u8 Daycare::getParentAbility(u8 parent) const
+{
+    return parentAbility[parent];
+}
+
+u8 Daycare::getParentGender(u8 parent) const
+{
+    return parentGender[parent];
+}
+
+u8 Daycare::getParentItem(u8 parent) const
+{
+    return parentItem[parent];
+}
+
+u8 Daycare::getParentNature(u8 parent) const
+{
+    return parentNature[parent];
+}
+
+u8 Daycare::getEverstoneCount(Game version) const
 {
     int count = 0;
 
@@ -76,17 +106,7 @@ u8 Daycare::getEverstone(Game version) const
     return count;
 }
 
-u8 Daycare::getEverstoneNature(u8 parent) const
-{
-    return parentNature[parent];
-}
-
-u8 Daycare::getItem(u8 parent) const
-{
-    return parentItem[parent];
-}
-
-u8 Daycare::getPowerItem() const
+u8 Daycare::getPowerItemCount() const
 {
     u8 count = 0;
 
@@ -99,21 +119,6 @@ u8 Daycare::getPowerItem() const
     }
 
     return count;
-}
-
-u8 Daycare::getParentIV(u8 parent, u8 index) const
-{
-    if (parent == 0)
-    {
-        return parent1IVs.at(index);
-    }
-
-    return parent2IVs.at(index);
-}
-
-u8 Daycare::getParentAbility(u8 parent) const
-{
-    return parentAbility[parent];
 }
 
 bool Daycare::getDitto() const

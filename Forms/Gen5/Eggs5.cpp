@@ -29,6 +29,7 @@
 #include <Core/Util/Utilities.hpp>
 #include <Forms/Gen5/Profile/ProfileManager5.hpp>
 #include <Models/Gen5/EggModel5.hpp>
+#include <QMessageBox>
 #include <QSettings>
 #include <QThread>
 #include <QTimer>
@@ -135,6 +136,18 @@ void Eggs5::updateProgress(const QVector<SearcherFrame5<EggFrame>> &frames, int 
 
 void Eggs5::generate()
 {
+    if (!ui->eggSettingsGenerator->compatibleParents())
+    {
+        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        box.exec();
+        return;
+    }
+    else if (ui->eggSettingsGenerator->reorderParents())
+    {
+        QMessageBox box(QMessageBox::Information, "Parents Reordered", "Parent were swapped to match the game");
+        box.exec();
+    }
+
     generatorModel->clearModel();
     Method method = (currentProfile.getVersion() & Game::BW) ? Method::BWBred : Method::BW2Bred;
 
@@ -164,6 +177,18 @@ void Eggs5::generate()
 
 void Eggs5::search()
 {
+    if (!ui->eggSettingsSearcher->compatibleParents())
+    {
+        QMessageBox box(QMessageBox::Warning, "Incompatible Parents", "Gender of selected parents are not compatible for breeding");
+        box.exec();
+        return;
+    }
+    else if (ui->eggSettingsSearcher->reorderParents())
+    {
+        QMessageBox box(QMessageBox::Information, "Parents Reordered", "Parent were swapped to match the game");
+        box.exec();
+    }
+
     searcherModel->clearModel();
     Method method = (currentProfile.getVersion() & Game::BW) ? Method::BWBred : Method::BW2Bred;
 

@@ -38,7 +38,7 @@ public:
     void setup(u8 generation);
     Daycare getDaycareSettings() const;
     bool compatibleParents() const;
-    void reorderParents();
+    bool reorderParents();
 
 private:
     Ui::EggSettings2 *ui;

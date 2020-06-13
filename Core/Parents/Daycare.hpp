@@ -31,12 +31,13 @@ public:
     Daycare() = default;
     Daycare(const QVector<u8> &parent1IVs, const QVector<u8> &parent2IVs, u8 parent1Ability, u8 parent2Ability, u8 parent1Gender,
             u8 parent2Gender, u8 parent1Item, u8 parent2Item, u8 parent1Nature, u8 parent2Nature, bool masuada, bool nidoranVolbeat);
-    u8 getEverstone(Game version) const;
-    u8 getEverstoneNature(u8 parent) const;
-    u8 getItem(u8 parent) const;
-    u8 getPowerItem() const;
     u8 getParentIV(u8 parent, u8 index) const;
     u8 getParentAbility(u8 parent) const;
+    u8 getParentGender(u8 parent) const;
+    u8 getParentItem(u8 parent) const;
+    u8 getParentNature(u8 parent) const;
+    u8 getEverstoneCount(Game version) const;
+    u8 getPowerItemCount() const;
     bool getDitto() const;
     bool getMasuada() const;
     bool getNidoranVolbeat() const;
