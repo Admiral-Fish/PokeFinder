@@ -199,8 +199,7 @@ void Event5::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    // Placeholder method
-    EventGenerator5 generator(initialFrame, maxResults, tid, sid, genderRatio, Method::Method1, filter, getGeneratorParameters());
+    EventGenerator5 generator(initialFrame, maxResults, tid, sid, genderRatio, Method::Method5Event, filter, getGeneratorParameters());
     generator.setOffset(offset);
 
     auto frames = generator.generate(seed);
@@ -223,8 +222,7 @@ void Event5::search()
                        ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    // Placeholder method
-    EventGenerator5 generator(0, maxResults, tid, sid, genderRatio, Method::Method1, filter, getSearcherParameters());
+    EventGenerator5 generator(0, maxResults, tid, sid, genderRatio, Method::Method5Event, filter, getSearcherParameters());
     generator.setOffset(0);
 
     EventSearcher5 *searcher = new EventSearcher5(generator, currentProfile);

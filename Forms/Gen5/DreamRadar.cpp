@@ -228,8 +228,7 @@ void DreamRadar::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    // Placeholder method
-    DreamRadarGenerator generator(initialFrame, maxResults, tid, sid, genderRatio, Method::Method1, filter, radarSlots);
+    DreamRadarGenerator generator(initialFrame, maxResults, tid, sid, genderRatio, Method::DreamRadar, filter, radarSlots);
     generator.setOffset(offset);
 
     auto frames = generator.generate(seed, currentProfile.getMemoryLink());
@@ -261,8 +260,7 @@ void DreamRadar::search()
                        ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    // Placeholder method
-    DreamRadarGenerator generator(initialFrame, maxResults, tid, sid, genderRatio, Method::Method1, filter, radarSlots);
+    DreamRadarGenerator generator(initialFrame, maxResults, tid, sid, genderRatio, Method::DreamRadar, filter, radarSlots);
     generator.setOffset(0);
 
     DreamRadarSearcher *searcher = new DreamRadarSearcher(generator, currentProfile);
