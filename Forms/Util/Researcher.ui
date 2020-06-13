@@ -66,12 +66,7 @@
          </item>
          <item>
           <property name="text">
-           <string>M. Twister (Untempered)</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>M. Twister (Fast)</string>
+           <string>Mersenne Twister Fast</string>
           </property>
          </item>
         </widget>

@@ -249,16 +249,12 @@ void Researcher::generate()
             rng = new MersenneTwister(static_cast<u32>(seed));
             break;
         case 7:
-            rng = new MersenneTwisterUntempered(static_cast<u32>(seed));
-            break;
-        case 8:
-            try
+            if (initialFrame + maxResults - 1 <= 227)
             {
-                rng = new MersenneTwisterFast(initialFrame + maxResults, static_cast<u32>(seed));
+                rng = new MersenneTwisterFast(static_cast<u32>(seed), initialFrame + maxResults);
             }
-            catch (const std::runtime_error &e)
+            else
             {
-                (void)e;
                 QMessageBox error;
                 error.setText(tr("Please enter a search range lower then 228"));
                 error.exec();
