@@ -58,6 +58,7 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
     ui->checkBoxSkipLR->setChecked(profile.getSkipLR());
     ui->checkBoxSoftReset->setChecked(profile.getSoftReset());
     ui->checkBoxMemoryLink->setChecked(profile.getMemoryLink());
+    ui->checkBoxShinyCharm->setChecked(profile.getShinyCharm());
 
     isEditing = true;
     original = profile;
@@ -150,12 +151,13 @@ void ProfileEditor5::okay()
         return;
     }
 
-    fresh = Profile5(
-        ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
-        ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(), ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(),
-        ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),
-        ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(), ui->checkBoxMemoryLink->isChecked(),
-        static_cast<DSType>(ui->comboBoxDSType->currentData().toInt()), static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()));
+    fresh = Profile5(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
+                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(),
+                     ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(), ui->textBoxGxStat->getUChar(),
+                     ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),
+                     ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(), ui->checkBoxMemoryLink->isChecked(),
+                     ui->checkBoxShinyCharm->isChecked(), static_cast<DSType>(ui->comboBoxDSType->currentData().toInt()),
+                     static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()));
 
     done(QDialog::Accepted);
 }
@@ -177,11 +179,14 @@ void ProfileEditor5::versionIndexChanged(int index)
         if (version & Game::BW2)
         {
             ui->checkBoxMemoryLink->setVisible(true);
+            ui->checkBoxShinyCharm->setVisible(true);
         }
         else
         {
             ui->checkBoxMemoryLink->setVisible(false);
             ui->checkBoxMemoryLink->setChecked(false);
+            ui->checkBoxShinyCharm->setVisible(false);
+            ui->checkBoxShinyCharm->setChecked(false);
         }
     }
 }

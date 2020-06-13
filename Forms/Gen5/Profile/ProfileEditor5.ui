@@ -271,30 +271,33 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="4" colspan="4">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QCheckBox" name="checkBoxSkipLR">
-       <property name="text">
-        <string>Skip L/R</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBoxSoftReset">
-       <property name="text">
-        <string>Soft Reset</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBoxMemoryLink">
-       <property name="text">
-        <string>Memory Link</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+   <item row="3" column="4">
+    <widget class="QCheckBox" name="checkBoxSoftReset">
+     <property name="text">
+      <string>Soft Reset</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="5">
+    <widget class="QCheckBox" name="checkBoxSkipLR">
+     <property name="text">
+      <string>Skip L/R</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="6">
+    <widget class="QCheckBox" name="checkBoxMemoryLink">
+     <property name="text">
+      <string>Memory Link</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="7">
+    <widget class="QCheckBox" name="checkBoxShinyCharm">
+     <property name="text">
+      <string>Shiny Charm</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -325,9 +328,6 @@
   <tabstop>textBoxVFrame</tabstop>
   <tabstop>textBoxTimer0Min</tabstop>
   <tabstop>textBoxTimer0Max</tabstop>
-  <tabstop>checkBoxSkipLR</tabstop>
-  <tabstop>checkBoxSoftReset</tabstop>
-  <tabstop>checkBoxMemoryLink</tabstop>
   <tabstop>textBoxTID</tabstop>
   <tabstop>textBoxSID</tabstop>
   <tabstop>pushButtonAccept</tabstop>
