@@ -37,6 +37,7 @@ RESOURCES += \
 
 FORMS += \
     Forms/Controls/EggSettings.ui \
+    Forms/Controls/EggSettings2.ui \
     Forms/Controls/Filter.ui \
     Forms/Controls/IVFilter.ui \
     Forms/Gen3/Eggs3.ui \
@@ -65,6 +66,7 @@ FORMS += \
     Forms/Gen4/Tools/SeedtoTime4.ui \
     Forms/Gen4/Wild4.ui \
     Forms/Gen5/DreamRadar.ui \
+    Forms/Gen5/Eggs5.ui \
     Forms/Gen5/Event5.ui \
     Forms/Gen5/IDs5.ui \
     Forms/Gen5/Profile/ProfileCalibrator5.ui \
@@ -133,6 +135,7 @@ HEADERS += \
     Core/Gen5/Frames/SearcherFrame5.hpp \
     Core/Gen5/Frames/StationaryFrame5.hpp \
     Core/Gen5/Generators/DreamRadarGenerator.hpp \
+    Core/Gen5/Generators/EggGenerator5.hpp \
     Core/Gen5/Generators/EventGenerator5.hpp \
     Core/Gen5/Generators/IDGenerator5.hpp \
     Core/Gen5/Generators/StationaryGenerator5.hpp \
@@ -146,6 +149,7 @@ HEADERS += \
     Core/Gen5/Searchers/IDSearcher5.hpp \
     Core/Gen5/Searchers/ProfileSearcher5.hpp \
     Core/Gen5/Searchers/StationarySearcher5.hpp \
+    Core/Parents/Daycare.hpp \
     Core/Parents/EncounterArea.hpp \
     Core/Parents/Filters/FrameFilter.hpp \
     Core/Parents/Filters/IDFilter.hpp \
@@ -186,6 +190,7 @@ HEADERS += \
     Forms/Controls/CheckList.hpp \
     Forms/Controls/ComboBox.hpp \
     Forms/Controls/EggSettings.hpp \
+    Forms/Controls/EggSettings2.hpp \
     Forms/Controls/Filter.hpp \
     Forms/Controls/GraphicsPixmapItem.hpp \
     Forms/Controls/IVFilter.hpp \
@@ -218,6 +223,7 @@ HEADERS += \
     Forms/Gen4/Tools/SeedtoTime4.hpp \
     Forms/Gen4/Wild4.hpp \
     Forms/Gen5/DreamRadar.hpp \
+    Forms/Gen5/Eggs5.hpp \
     Forms/Gen5/Event5.hpp \
     Forms/Gen5/IDs5.hpp \
     Forms/Gen5/Profile/ProfileCalibrator5.hpp \
@@ -246,6 +252,7 @@ HEADERS += \
     Models/Gen4/StationaryModel4.hpp \
     Models/Gen4/WildModel4.hpp \
     Models/Gen5/DreamRadarModel.hpp \
+    Models/Gen5/EggModel5.hpp \
     Models/Gen5/EventModel5.hpp \
     Models/Gen5/IDModel5.hpp \
     Models/Gen5/ProfileModel5.hpp \
@@ -297,6 +304,7 @@ SOURCES += \
     Core/Gen4/Tools/ChainedSIDCalc.cpp \
     Core/Gen5/Frames/IDFrame5.cpp \
     Core/Gen5/Generators/DreamRadarGenerator.cpp \
+    Core/Gen5/Generators/EggGenerator5.cpp \
     Core/Gen5/Generators/EventGenerator5.cpp \
     Core/Gen5/Generators/IDGenerator5.cpp \
     Core/Gen5/Generators/StationaryGenerator5.cpp \
@@ -310,6 +318,7 @@ SOURCES += \
     Core/Gen5/Searchers/IDSearcher5.cpp \
     Core/Gen5/Searchers/ProfileSearcher5.cpp \
     Core/Gen5/Searchers/StationarySearcher5.cpp \
+    Core/Parents/Daycare.cpp \
     Core/Parents/EncounterArea.cpp \
     Core/Parents/Filters/FrameFilter.cpp \
     Core/Parents/Filters/IDFilter.cpp \
@@ -345,6 +354,7 @@ SOURCES += \
     Forms/Controls/CheckList.cpp \
     Forms/Controls/ComboBox.cpp \
     Forms/Controls/EggSettings.cpp \
+    Forms/Controls/EggSettings2.cpp \
     Forms/Controls/Filter.cpp \
     Forms/Controls/GraphicsPixmapItem.cpp \
     Forms/Controls/IVFilter.cpp \
@@ -377,6 +387,7 @@ SOURCES += \
     Forms/Gen4/Tools/SeedtoTime4.cpp \
     Forms/Gen4/Wild4.cpp \
     Forms/Gen5/DreamRadar.cpp \
+    Forms/Gen5/Eggs5.cpp \
     Forms/Gen5/Event5.cpp \
     Forms/Gen5/IDs5.cpp \
     Forms/Gen5/Profile/ProfileCalibrator5.cpp \
@@ -405,6 +416,7 @@ SOURCES += \
     Models/Gen4/StationaryModel4.cpp \
     Models/Gen4/WildModel4.cpp \
     Models/Gen5/DreamRadarModel.cpp \
+    Models/Gen5/EggModel5.cpp \
     Models/Gen5/EventModel5.cpp \
     Models/Gen5/IDModel5.cpp \
     Models/Gen5/ProfileModel5.cpp \
