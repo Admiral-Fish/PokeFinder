@@ -166,21 +166,26 @@ void MainWindow::setupModels()
     connect(ui->actionJirachiPattern, &QAction::triggered, this, &MainWindow::openJirachiPattern);
     connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
+    connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
     connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
     connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
+
     connect(ui->pushButtonStationary4, &QPushButton::clicked, this, &MainWindow::openStationary4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
+    connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
     connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
     connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
+
     connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
     connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
     connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
     connect(ui->pushButtonEgg5, &QPushButton::clicked, this, &MainWindow::openEgg5);
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
+    connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
