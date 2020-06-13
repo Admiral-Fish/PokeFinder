@@ -169,7 +169,7 @@ ProfileIVSearcher5::ProfileIVSearcher5(const QVector<u8> &minIVs, const QVector<
 
 bool ProfileIVSearcher5::valid(u64 seed)
 {
-    MersenneTwisterFast rng(6 + offset, seed >> 32);
+    MersenneTwisterFast rng(seed >> 32, 6 + offset);
     rng.advanceFrames(offset);
 
     for (u8 i = 0; i < 6; i++)
