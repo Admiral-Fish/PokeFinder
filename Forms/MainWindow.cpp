@@ -40,6 +40,7 @@
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
 #include <Forms/Gen5/DreamRadar.hpp>
+#include <Forms/Gen5/Eggs5.hpp>
 #include <Forms/Gen5/Event5.hpp>
 #include <Forms/Gen5/IDs5.hpp>
 #include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
@@ -88,6 +89,7 @@ MainWindow::~MainWindow()
     delete stationary5;
     delete event5;
     delete dreamRadar;
+    delete egg5;
     delete ids5;
 }
 
@@ -176,6 +178,7 @@ void MainWindow::setupModels()
     connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
     connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
     connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
+    connect(ui->pushButtonEgg5, &QPushButton::clicked, this, &MainWindow::openEgg5);
     connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
     connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
@@ -563,6 +566,25 @@ void MainWindow::openDreamRadar()
                             tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
         message.exec();
         dreamRadar->close();
+    }
+}
+
+void MainWindow::openEgg5()
+{
+    if (!egg5)
+    {
+        egg5 = new Eggs5();
+        connect(egg5, &Eggs5::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    egg5->show();
+    egg5->raise();
+
+    if (!egg5->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        egg5->close();
     }
 }
 

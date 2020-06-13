@@ -40,6 +40,7 @@ class IDs4;
 class Stationary5;
 class Event5;
 class DreamRadar;
+class Eggs5;
 class IDs5;
 
 class MainWindow : public QMainWindow
@@ -69,6 +70,7 @@ private:
     Stationary5 *stationary5 = nullptr;
     Event5 *event5 = nullptr;
     DreamRadar *dreamRadar = nullptr;
+    Eggs5 *egg5 = nullptr;
     IDs5 *ids5 = nullptr;
 
     void setupModels();
@@ -103,6 +105,7 @@ private slots:
     void openStationary5();
     void openEvent5();
     void openDreamRadar();
+    void openEgg5();
     void openIDs5();
     void openProfileCalibrator();
     void openProfileManager5();
