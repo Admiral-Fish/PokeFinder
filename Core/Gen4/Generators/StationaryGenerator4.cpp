@@ -118,7 +118,7 @@ QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed) const
         Frame frame(initialFrame + cnt);
 
         PokeRNG go(rng.getSeed());
-        frame.setSeed(go.nextUShort());
+        frame.setSeed(go.getSeed());
 
         u32 pid = 0;
         switch (lead)
@@ -254,8 +254,8 @@ QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed) const
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
     {
         Frame frame(initialFrame + cnt);
-        PokeRNG go(rng.getSeed());
 
+        PokeRNG go(rng.getSeed());
         frame.setSeed(go.getSeed());
 
         u32 pid = 0;

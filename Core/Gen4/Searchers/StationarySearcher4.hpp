@@ -54,14 +54,13 @@ private:
     QVector<StationaryFrame> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     QVector<StationaryFrame> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     QVector<StationaryFrame> searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryFrame> searchInitialSeeds(const QVector<StationaryFrame> &results) const;
-
     QVector<StationaryFrame> normalMethodJ(StationaryFrame frame, u32 seed) const;
     QVector<StationaryFrame> synchMethodJ(StationaryFrame frame, u32 seed) const;
     QVector<StationaryFrame> cuteCharmMethodJ(StationaryFrame frame, u32 seed) const;
     QVector<StationaryFrame> normalMethodK(StationaryFrame frame, u32 seed) const;
     QVector<StationaryFrame> synchMethodK(StationaryFrame frame, u32 seed) const;
     QVector<StationaryFrame> cuteCharmMethodK(StationaryFrame frame, u32 seed) const;
+    QVector<StationaryFrame> searchInitialSeeds(const QVector<StationaryFrame> &results) const;
 };
 
 #endif // STATIONARYSEARCHER4_HPP

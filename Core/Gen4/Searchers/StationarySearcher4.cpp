@@ -335,37 +335,6 @@ QVector<StationaryFrame> StationarySearcher4::searchWondercardIVs(u8 hp, u8 atk,
     return frames;
 }
 
-QVector<StationaryFrame> StationarySearcher4::searchInitialSeeds(const QVector<StationaryFrame> &results) const
-{
-    QVector<StationaryFrame> frames;
-
-    for (StationaryFrame result : results)
-    {
-        PokeRNGR rng(result.getSeed());
-        rng.advanceFrames(minFrame - 1);
-
-        u32 test = rng.getSeed();
-
-        for (u32 cnt = minFrame; cnt <= maxFrame; cnt++)
-        {
-            u8 hour = (test >> 16) & 0xFF;
-            u16 delay = test & 0xFFFF;
-
-            // Check if seed matches a valid gen 4 format
-            if (hour < 24 && delay >= minDelay && delay <= maxDelay)
-            {
-                result.setSeed(test);
-                result.setFrame(cnt);
-                frames.append(result);
-            }
-
-            test = rng.nextUInt();
-        }
-    }
-
-    return frames;
-}
-
 QVector<StationaryFrame> StationarySearcher4::normalMethodJ(StationaryFrame frame, u32 seed) const
 {
     QVector<StationaryFrame> frames;
@@ -380,8 +349,7 @@ QVector<StationaryFrame> StationarySearcher4::normalMethodJ(StationaryFrame fram
     {
         if ((nextRNG / 0xa3e) == frame.getNature())
         {
-            PokeRNGR go(rng.getSeed());
-            frame.setSeed(go.nextUInt());
+            frame.setSeed(rng.getSeed());
             frames.append(frame);
         }
 
@@ -407,14 +375,12 @@ QVector<StationaryFrame> StationarySearcher4::synchMethodJ(StationaryFrame frame
     {
         if ((nextRNG >> 15) == 0)
         {
-            PokeRNGR go(rng.getSeed());
-            frame.setSeed(go.nextUInt());
+            frame.setSeed(rng.getSeed());
             frames.append(frame);
         }
         else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == frame.getNature())
         {
             PokeRNGR go(rng.getSeed());
-            go.advanceFrames(1);
             frame.setSeed(go.nextUInt());
             frames.append(frame);
         }
@@ -494,8 +460,7 @@ QVector<StationaryFrame> StationarySearcher4::normalMethodK(StationaryFrame fram
     {
         if ((nextRNG % 25) == frame.getNature())
         {
-            PokeRNGR go(rng.getSeed());
-            frame.setSeed(go.nextUInt());
+            frame.setSeed(rng.getSeed());
             frames.append(frame);
         }
 
@@ -521,14 +486,12 @@ QVector<StationaryFrame> StationarySearcher4::synchMethodK(StationaryFrame frame
     {
         if ((nextRNG & 1) == 0)
         {
-            PokeRNGR go(rng.getSeed());
-            frame.setSeed(go.nextUInt());
+            frame.setSeed(rng.getSeed());
             frames.append(frame);
         }
-        else if ((nextRNG2 & 1) == 1 && (nextRNG / 0xa3e) == frame.getNature())
+        else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == frame.getNature())
         {
             PokeRNGR go(rng.getSeed());
-            go.advanceFrames(1);
             frame.setSeed(go.nextUInt());
             frames.append(frame);
         }
@@ -588,6 +551,37 @@ QVector<StationaryFrame> StationarySearcher4::cuteCharmMethodK(StationaryFrame f
             {
                 frames.append(frame);
             }
+        }
+    }
+
+    return frames;
+}
+
+QVector<StationaryFrame> StationarySearcher4::searchInitialSeeds(const QVector<StationaryFrame> &results) const
+{
+    QVector<StationaryFrame> frames;
+
+    for (StationaryFrame result : results)
+    {
+        PokeRNGR rng(result.getSeed());
+        rng.advanceFrames(minFrame - 1);
+
+        u32 test = rng.getSeed();
+
+        for (u32 cnt = minFrame; cnt <= maxFrame; cnt++)
+        {
+            u8 hour = (test >> 16) & 0xFF;
+            u16 delay = test & 0xFFFF;
+
+            // Check if seed matches a valid gen 4 format
+            if (hour < 24 && delay >= minDelay && delay <= maxDelay)
+            {
+                result.setSeed(test);
+                result.setFrame(cnt);
+                frames.append(result);
+            }
+
+            test = rng.nextUInt();
         }
     }
 
