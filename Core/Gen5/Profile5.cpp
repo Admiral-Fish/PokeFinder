@@ -33,6 +33,7 @@ Profile5::Profile5() :
     timer0Max(0x621),
     softReset(false),
     memoryLink(false),
+    shinyCharm(false),
     dsType(DSType::DSOriginal),
     language(Language::English)
 {
@@ -41,7 +42,7 @@ Profile5::Profile5() :
 }
 
 Profile5::Profile5(const QString &name, Game version, u16 tid, u16 sid, u64 mac, const QVector<bool> &keypresses, u8 vcount, u8 gxstat,
-                   u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, bool memoryLink, DSType dsType,
+                   u8 vframe, bool skipLR, u16 timer0Min, u16 timer0Max, bool softReset, bool memoryLink, bool shinyCharm, DSType dsType,
                    Language language) :
     Profile(name, version, tid, sid),
     mac(mac),
@@ -54,6 +55,7 @@ Profile5::Profile5(const QString &name, Game version, u16 tid, u16 sid, u64 mac,
     timer0Max(timer0Max),
     softReset(softReset),
     memoryLink(memoryLink),
+    shinyCharm(shinyCharm),
     dsType(dsType),
     language(language)
 {
@@ -126,6 +128,11 @@ bool Profile5::getMemoryLink() const
     return memoryLink;
 }
 
+bool Profile5::getShinyCharm() const
+{
+    return shinyCharm;
+}
+
 DSType Profile5::getDSType() const
 {
     return dsType;
@@ -179,8 +186,8 @@ bool operator==(const Profile5 &left, const Profile5 &right)
         && left.getVCount() == right.getVCount() && left.getGxStat() == right.getGxStat() && left.getVFrame() == right.getVFrame()
         && left.getSkipLR() == right.getSkipLR() && left.getTimer0Min() == right.getTimer0Min()
         && left.getTimer0Max() == right.getTimer0Max() && left.getSoftReset() == right.getSoftReset()
-        && left.getMemoryLink() == right.getMemoryLink() && left.getDSType() == right.getDSType()
-        && left.getLanguage() == right.getLanguage();
+        && left.getMemoryLink() == right.getMemoryLink() && left.getShinyCharm() == right.getShinyCharm()
+        && left.getDSType() == right.getDSType() && left.getLanguage() == right.getLanguage();
 }
 
 bool operator!=(const Profile5 &left, const Profile5 &right)
