@@ -130,13 +130,16 @@ HEADERS += \
     Core/Gen4/Searchers/StationarySearcher4.hpp \
     Core/Gen4/Searchers/WildSearcher4.hpp \
     Core/Gen4/Tools/ChainedSIDCalc.hpp \
+    Core/Gen5/Filters/HiddenGrottoFilter.hpp \
     Core/Gen5/Frames/Frame5.hpp \
+    Core/Gen5/Frames/HiddenGrottoFrame.hpp \
     Core/Gen5/Frames/IDFrame5.hpp \
     Core/Gen5/Frames/SearcherFrame5.hpp \
     Core/Gen5/Frames/StationaryFrame5.hpp \
     Core/Gen5/Generators/DreamRadarGenerator.hpp \
     Core/Gen5/Generators/EggGenerator5.hpp \
     Core/Gen5/Generators/EventGenerator5.hpp \
+    Core/Gen5/Generators/HiddenGrottoGenerator.hpp \
     Core/Gen5/Generators/IDGenerator5.hpp \
     Core/Gen5/Generators/StationaryGenerator5.hpp \
     Core/Gen5/Keypresses.hpp \
@@ -303,10 +306,12 @@ SOURCES += \
     Core/Gen4/Searchers/StationarySearcher4.cpp \
     Core/Gen4/Searchers/WildSearcher4.cpp \
     Core/Gen4/Tools/ChainedSIDCalc.cpp \
+    Core/Gen5/Filters/HiddenGrottoFilter.cpp \
     Core/Gen5/Frames/IDFrame5.cpp \
     Core/Gen5/Generators/DreamRadarGenerator.cpp \
     Core/Gen5/Generators/EggGenerator5.cpp \
     Core/Gen5/Generators/EventGenerator5.cpp \
+    Core/Gen5/Generators/HiddenGrottoGenerator.cpp \
     Core/Gen5/Generators/IDGenerator5.cpp \
     Core/Gen5/Generators/StationaryGenerator5.cpp \
     Core/Gen5/Keypresses.cpp \
