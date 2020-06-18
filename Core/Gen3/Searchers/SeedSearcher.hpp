@@ -17,40 +17,30 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GAMECUBESEED_HPP
-#define GAMECUBESEED_HPP
+#ifndef SEEDSEARCHER_HPP
+#define SEEDSEARCHER_HPP
 
 #include <Core/Util/Global.hpp>
 #include <QVector>
+#include <mutex>
 
-enum Method : u8;
-
-class GameCubeSeedSearcher
+class SeedSearcher
 {
 public:
-    GameCubeSeedSearcher(Method method, const QVector<u32> &criteria);
-    QVector<u32> getInitialSeeds(u8 num1, u8 num2);
-    void startSearch(const QVector<u32> &seeds);
-    void startSearch();
+    explicit SeedSearcher(const QVector<u32> &criteria);
+    virtual ~SeedSearcher() = default;
+    QVector<u32> getInitialSeeds();
     void cancelSearch();
-    void addCriteria(const QVector<u32> &criteria);
-    QVector<u32> getSeeds() const;
-    int getProgress() const;
+    QVector<u32> getResults() const;
+    virtual int getProgress() const;
 
-private:
-    QVector<u32> seeds;
+protected:
+    QVector<u32> results;
     QVector<u32> criteria;
-    Method method;
     bool searching;
     u32 progress;
-
-    void searchXDColo();
-    void searchChannel();
-    bool generateTeamGales(u32 &seed);
-    bool generateTeamColo(u32 &seed);
-    void generatePokemonGales(u32 &seed, u16 tsv);
-    void generatePokemonColo(u32 &seed, u16 tsv, u32 dummyPID, u8 nature, u8 gender, u8 genderRatio);
-    QVector<u8> generateEVs(u32 &seed);
+    std::mutex resultMutex;
+    std::mutex progressMutex;
 };
 
-#endif // GAMECUBESEED_HPP
+#endif // SEEDSEARCHER_HPP

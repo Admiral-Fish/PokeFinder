@@ -20,7 +20,9 @@
 #include "GameCubeSeedFinder.hpp"
 #include "ui_GameCubeSeedFinder.h"
 #include <Core/Enum/Method.hpp>
-#include <Core/Gen3/Searchers/GameCubeSeedSearcher.hpp>
+#include <Core/Gen3/Searchers/ChannelSeedSearcher.hpp>
+#include <Core/Gen3/Searchers/ColoSeedSearcher.hpp>
+#include <Core/Gen3/Searchers/GalesSeedSearcher.hpp>
 #include <Core/Util/Translator.hpp>
 #include <QClipboard>
 #include <QDesktopServices>
@@ -43,32 +45,16 @@ GameCubeSeedFinder::GameCubeSeedFinder(QWidget *parent) : QWidget(parent), ui(ne
     galesRound = 1;
     coloRound = 1;
 
+    ui->textBoxGalesTSV->setValues(0, 8191, 4, 10);
     ui->textBoxGalesTopLeft->setValues(1, 714, 3, 10);
     ui->textBoxGalesBottomLeft->setValues(1, 714, 3, 10);
     ui->textBoxGalesTopRight->setValues(1, 714, 3, 10);
     ui->textBoxGalesBottomRight->setValues(1, 714, 3, 10);
 
-    QStringList gales = Translator::getSpecies({ 150, 151, 386, 384, 385, 144, 145, 146, 115, 380 });
-    ui->radioButtonGalesMewtwo->setText(gales.at(0));
-    ui->radioButtonGalesMew->setText(gales.at(1));
-    ui->radioButtonGalesDeoxys->setText(gales.at(2));
-    ui->radioButtonGalesRayquaza->setText(gales.at(3));
-    ui->radioButtonGalesJirachi->setText(gales.at(4));
-    ui->radioButtonGalesArticuno->setText(gales.at(5));
-    ui->radioButtonGalesZapdos->setText(gales.at(6));
-    ui->radioButtonGalesMoltres->setText(gales.at(7));
-    ui->radioButtonGalesKangaskhan->setText(gales.at(8));
-    ui->radioButtonGalesLatias->setText(gales.at(9));
+    ui->comboBoxGalesYourLead->addItems(Translator::getSpecies({ 150, 151, 386, 384, 385 }));
+    ui->comboBoxGalesEnemyLead->addItems(Translator::getSpecies({ 144, 145, 146, 115, 380 }));
 
-    QStringList colo = Translator::getSpecies({ 257, 244, 260, 243, 154, 245, 376, 214 });
-    ui->radioButtonColoBlaziken->setText(colo.at(0));
-    ui->radioButtonColoEntei->setText(colo.at(1));
-    ui->radioButtonColoSwampert->setText(colo.at(2));
-    ui->radioButtonColoRaikou->setText(colo.at(3));
-    ui->radioButtonColoMeganium->setText(colo.at(4));
-    ui->radioButtonColoSuicune->setText(colo.at(5));
-    ui->radioButtonColoMetagross->setText(colo.at(6));
-    ui->radioButtonColoHeracross->setText(colo.at(7));
+    ui->comboBoxColoPartyLead->addItems(Translator::getSpecies({ 257, 244, 260, 243, 154, 245, 376, 214 }));
 
     connect(ui->pushButtonGalesSearch, &QPushButton::clicked, this, &GameCubeSeedFinder::galesSearch);
     connect(ui->pushButtonGalesReset, &QPushButton::clicked, this, &GameCubeSeedFinder::galesReset);
@@ -182,99 +168,51 @@ void GameCubeSeedFinder::updateChannelProgress(int progress)
 
 void GameCubeSeedFinder::galesSearch()
 {
-    u8 num1;
-    u8 num2;
-    if (ui->radioButtonGalesMewtwo->isChecked())
-    {
-        num1 = 0;
-    }
-    else if (ui->radioButtonGalesMew->isChecked())
-    {
-        num1 = 1;
-    }
-    else if (ui->radioButtonGalesDeoxys->isChecked())
-    {
-        num1 = 2;
-    }
-    else if (ui->radioButtonGalesRayquaza->isChecked())
-    {
-        num1 = 3;
-    }
-    else
-    {
-        num1 = 4;
-    }
-
-    if (ui->radioButtonGalesArticuno->isChecked())
-    {
-        num2 = 0;
-    }
-    else if (ui->radioButtonGalesZapdos->isChecked())
-    {
-        num2 = 1;
-    }
-    else if (ui->radioButtonGalesMoltres->isChecked())
-    {
-        num2 = 2;
-    }
-    else if (ui->radioButtonGalesKangaskhan->isChecked())
-    {
-        num2 = 3;
-    }
-    else
-    {
-        num2 = 4;
-    }
-
+    u8 yourLead = ui->comboBoxGalesYourLead->currentIndex();
+    u8 enemyLead = ui->comboBoxGalesEnemyLead->currentIndex();
+    u16 tsv = ui->textBoxGalesTSV->getUShort();
     u16 topLeft = ui->textBoxGalesTopLeft->getUShort();
     u16 bottomLeft = ui->textBoxGalesBottomLeft->getUShort();
     u16 topRight = ui->textBoxGalesTopRight->getUShort();
     u16 bottomRight = ui->textBoxGalesBottomRight->getUShort();
 
-    auto *searcher = new GameCubeSeedSearcher(Method::XD, { num1, num2, topLeft, bottomLeft, topRight, bottomRight });
+    ui->pushButtonGalesSearch->setEnabled(false);
+    ui->pushButtonGalesCancel->setEnabled(true);
+
+    // TODO: provide TSV
+    auto *searcher = new GalesSeedSearcher({ yourLead, enemyLead, topLeft, bottomLeft, topRight, bottomRight }, tsv);
+
+    QSettings setting;
+    int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
+
+    QThread *thread;
     if (galesRound == 1)
     {
-        galeSeeds = searcher->getInitialSeeds(num1, num2);
-        delete searcher;
-
-        if (galeSeeds.isEmpty())
-        {
-            QMessageBox info(QMessageBox::Question, tr("Missing precalc file"), tr("Would you like to download the precalc file?"),
-                             QMessageBox::Yes | QMessageBox::No);
-            if (info.exec() == QMessageBox::Yes)
-            {
-                QDesktopServices::openUrl(QUrl("https://github.com/aldelaro5/GC-pokemon-RNG-manipulation-assistant/releases"));
-            }
-            return;
-        }
-        ui->labelGalesRound->setText(tr("Round #") + QString::number(++galesRound));
-        ui->labelGalesResults->setText(tr("Possible Results: ") + QString::number(galeSeeds.size()));
+        ui->progressBarGales->setRange(0, 0x33330000);
+        thread = QThread::create([=] { searcher->startSearch(threads); });
     }
     else
     {
-        ui->pushButtonGalesSearch->setEnabled(false);
-        ui->pushButtonGalesCancel->setEnabled(true);
         ui->progressBarGales->setRange(0, galeSeeds.size());
-
-        auto *thread = QThread::create([=] { searcher->startSearch(galeSeeds); });
-        connect(ui->pushButtonGalesCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
-        connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-
-        auto *timer = new QTimer();
-        connect(timer, &QTimer::timeout, [=] { updateGalesProgress(searcher->getProgress()); });
-        connect(thread, &QThread::finished, timer, &QTimer::stop);
-        connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-        connect(timer, &QTimer::destroyed, [=] {
-            ui->pushButtonGalesSearch->setEnabled(true);
-            ui->pushButtonGalesCancel->setEnabled(false);
-            updateGalesProgress(searcher->getProgress());
-            updateGales(searcher->getSeeds());
-            delete searcher;
-        });
-
-        thread->start();
-        timer->start(1000);
+        thread = QThread::create([=] { searcher->startSearch(threads, galeSeeds); });
     }
+    connect(ui->pushButtonGalesCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout, [=] { updateGalesProgress(searcher->getProgress()); });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonGalesSearch->setEnabled(true);
+        ui->pushButtonGalesCancel->setEnabled(false);
+        updateGalesProgress(searcher->getProgress());
+        updateGales(searcher->getResults());
+        delete searcher;
+    });
+
+    thread->start();
+    timer->start(1000);
 }
 
 void GameCubeSeedFinder::galesReset()
@@ -290,99 +228,45 @@ void GameCubeSeedFinder::galesReset()
 
 void GameCubeSeedFinder::coloSearch()
 {
-    u8 num1;
-    u8 num2;
-    if (ui->radioButtonColoBlaziken->isChecked())
+    u8 partyLead = ui->comboBoxColoPartyLead->currentIndex();
+    u8 trainer = ui->comboBoxColoTrainer->currentIndex();
+
+    auto *searcher = new ColoSeedSearcher({ partyLead, trainer });
+
+    QSettings setting;
+    int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
+
+    ui->pushButtonColoSearch->setEnabled(false);
+    ui->pushButtonColoCancel->setEnabled(true);
+
+    QThread *thread;
+    if (galesRound == 1)
     {
-        num1 = 0;
-    }
-    else if (ui->radioButtonColoEntei->isChecked())
-    {
-        num1 = 1;
-    }
-    else if (ui->radioButtonColoSwampert->isChecked())
-    {
-        num1 = 2;
-    }
-    else if (ui->radioButtonColoRaikou->isChecked())
-    {
-        num1 = 3;
-    }
-    else if (ui->radioButtonColoMeganium->isChecked())
-    {
-        num1 = 4;
-    }
-    else if (ui->radioButtonColoSuicune->isChecked())
-    {
-        num1 = 5;
-    }
-    else if (ui->radioButtonColoMetagross->isChecked())
-    {
-        num1 = 6;
+        ui->progressBarColo->setRange(0, 0x20000000);
+        thread = QThread::create([=] { searcher->startSearch(threads); });
     }
     else
     {
-        num1 = 7;
-    }
-
-    if (ui->radioButtonColoWes->isChecked())
-    {
-        num2 = 0;
-    }
-    else if (ui->radioButtonColoSeth->isChecked())
-    {
-        num2 = 1;
-    }
-
-    else
-    {
-        num2 = 2;
-    }
-
-    auto *searcher = new GameCubeSeedSearcher(Method::Colo, { num1, num2 });
-    if (coloRound == 1)
-    {
-        coloSeeds = searcher->getInitialSeeds(num1, num2);
-        delete searcher;
-
-        if (coloSeeds.isEmpty())
-        {
-            QMessageBox info(QMessageBox::Question, tr("Missing precalc file"), tr("Would you like to download the precalc file?"),
-                             QMessageBox::Yes | QMessageBox::No);
-            if (info.exec() == QMessageBox::Yes)
-            {
-                QDesktopServices::openUrl(QUrl("https://github.com/aldelaro5/GC-pokemon-RNG-manipulation-assistant/releases"));
-            }
-            return;
-        }
-        ui->labelColoRound->setText(tr("Round #") + QString::number(++coloRound));
-        ui->labelColoResults->setText(tr("Possible Results: ") + QString::number(coloSeeds.size()));
-    }
-    else
-    {
-        ui->pushButtonColoSearch->setEnabled(false);
-        ui->pushButtonColoCancel->setEnabled(true);
         ui->progressBarColo->setRange(0, coloSeeds.size());
-
-        auto *thread = QThread::create([=] { searcher->startSearch(coloSeeds); });
-        connect(ui->pushButtonColoCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
-        connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-
-        auto *timer = new QTimer();
-        connect(timer, &QTimer::timeout, [=] { updateColoProgress(searcher->getProgress()); });
-        connect(thread, &QThread::finished, timer, &QTimer::stop);
-        connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
-        connect(timer, &QTimer::destroyed, [=] {
-            ui->pushButtonColoSearch->setEnabled(true);
-            ui->pushButtonColoCancel->setEnabled(false);
-            updateColoProgress(searcher->getProgress());
-            updateColo(searcher->getSeeds());
-            delete searcher;
-        });
-
-        thread->start();
-        timer->start(1000);
+        thread = QThread::create([=] { searcher->startSearch(threads, coloSeeds); });
     }
+    connect(ui->pushButtonColoCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+
+    auto *timer = new QTimer();
+    connect(timer, &QTimer::timeout, [=] { updateColoProgress(searcher->getProgress()); });
+    connect(thread, &QThread::finished, timer, &QTimer::stop);
+    connect(thread, &QThread::finished, timer, &QTimer::deleteLater);
+    connect(timer, &QTimer::destroyed, [=] {
+        ui->pushButtonColoSearch->setEnabled(true);
+        ui->pushButtonColoCancel->setEnabled(false);
+        updateColoProgress(searcher->getProgress());
+        updateColo(searcher->getResults());
+        delete searcher;
+    });
+
+    thread->start();
+    timer->start(1000);
 }
 
 void GameCubeSeedFinder::coloReset()
@@ -416,9 +300,12 @@ void GameCubeSeedFinder::channelSearch()
     ui->pushButtonChannelCancel->setEnabled(true);
     ui->progressBarChannel->setRange(0, 0x60000000);
 
-    auto *searcher = new GameCubeSeedSearcher(Method::Channel, criteria);
+    auto *searcher = new ChannelSeedSearcher(criteria);
 
-    auto *thread = QThread::create([=] { searcher->startSearch(); });
+    QSettings setting;
+    int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
+
+    auto *thread = QThread::create([=] { searcher->startSearch(threads); });
     connect(ui->pushButtonChannelCancel, &QPushButton::clicked, [=] { searcher->cancelSearch(); });
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
 
@@ -430,7 +317,7 @@ void GameCubeSeedFinder::channelSearch()
         ui->pushButtonChannelSearch->setEnabled(true);
         ui->pushButtonChannelCancel->setEnabled(false);
         updateChannelProgress(searcher->getProgress());
-        updateChannel(searcher->getSeeds());
+        updateChannel(searcher->getResults());
         delete searcher;
     });
 

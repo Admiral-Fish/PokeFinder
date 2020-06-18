@@ -17,24 +17,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef GAMECUBERTCSEARCHER_HPP
-#define GAMECUBERTCSEARCHER_HPP
+#ifndef CHANNELSEEDSEARCHER_HPP
+#define CHANNELSEEDSEARCHER_HPP
 
-#include <Core/Gen3/Frames/GameCubeRTCFrame.hpp>
-#include <Core/Util/Global.hpp>
-#include <QVector>
+#include <Core/Gen3/Searchers/SeedSearcher.hpp>
+#include <Core/RNG/LCRNG.hpp>
 
-class GameCubeRTCSearcher
+class ChannelSeedSearcher : public SeedSearcher
 {
 public:
-    GameCubeRTCSearcher();
-    void startSearch(u32 initialSeed, u32 targetSeed, u32 initialFrame, u32 maxResults);
-    void cancelSearch();
-    QVector<GameCubeRTCFrame> getResults();
+    explicit ChannelSeedSearcher(const QVector<u32> &criteria);
+    void startSearch(int threads);
+    int getProgress() const override;
 
 private:
-    QVector<GameCubeRTCFrame> results;
-    bool searching;
+    void search(u32 start, u32 end);
+    bool searchSeed(XDRNG &rng);
 };
 
-#endif // GAMECUBERTCSEARCHER_HPP
+#endif // CHANNELSEEDSEARCHER_HPP

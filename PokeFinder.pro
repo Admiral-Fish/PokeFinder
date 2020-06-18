@@ -94,9 +94,12 @@ HEADERS += \
     Core/Gen3/LockInfo.hpp \
     Core/Gen3/Profile3.hpp \
     Core/Gen3/ProfileLoader3.hpp \
-    Core/Gen3/Searchers/GameCubeRTCSearcher.hpp \
+    Core/Gen3/Searchers/ChannelSeedSearcher.hpp \
+    Core/Gen3/Searchers/ColoSeedSearcher.hpp \
+    Core/Gen3/Searchers/GalesSeedSearcher.hpp \
     Core/Gen3/Searchers/GameCubeSearcher.hpp \
-    Core/Gen3/Searchers/GameCubeSeedSearcher.hpp \
+    Core/Gen3/Searchers/RTCSearcher.hpp \
+    Core/Gen3/Searchers/SeedSearcher.hpp \
     Core/Gen3/Searchers/StationarySearcher3.hpp \
     Core/Gen3/Searchers/WildSearcher3.hpp \
     Core/Gen3/ShadowLock.hpp \
@@ -230,9 +233,12 @@ SOURCES += \
     Core/Gen3/LockInfo.cpp \
     Core/Gen3/Profile3.cpp \
     Core/Gen3/ProfileLoader3.cpp \
-    Core/Gen3/Searchers/GameCubeRTCSearcher.cpp \
+    Core/Gen3/Searchers/ChannelSeedSearcher.cpp \
+    Core/Gen3/Searchers/ColoSeedSearcher.cpp \
+    Core/Gen3/Searchers/GalesSeedSearcher.cpp \
     Core/Gen3/Searchers/GameCubeSearcher.cpp \
-    Core/Gen3/Searchers/GameCubeSeedSearcher.cpp \
+    Core/Gen3/Searchers/RTCSearcher.cpp \
+    Core/Gen3/Searchers/SeedSearcher.cpp \
     Core/Gen3/Searchers/StationarySearcher3.cpp \
     Core/Gen3/Searchers/WildSearcher3.cpp \
     Core/Gen3/ShadowLock.cpp \

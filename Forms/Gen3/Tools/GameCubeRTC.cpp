@@ -19,7 +19,7 @@
 
 #include "GameCubeRTC.hpp"
 #include "ui_GameCubeRTC.h"
-#include <Core/Gen3/Searchers/GameCubeRTCSearcher.hpp>
+#include <Core/Gen3/Searchers/RTCSearcher.hpp>
 #include <Models/Gen3/GameCubeRTCModel.hpp>
 #include <QClipboard>
 #include <QSettings>
@@ -101,7 +101,7 @@ void GameCubeRTC::search()
     u32 initialFrame = ui->textBoxMinFrame->getUInt();
     u32 maxResults = ui->textBoxMaxFrame->getUInt();
 
-    auto *searcher = new GameCubeRTCSearcher();
+    auto *searcher = new RTCSearcher();
     auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialFrame, maxResults); });
 
     connect(thread, &QThread::finished, this, [=] {

@@ -17,17 +17,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "GameCubeRTCSearcher.hpp"
+#include "RTCSearcher.hpp"
 #include <Core/RNG/LCRNG.hpp>
 #include <QDateTime>
 
 static const QDateTime date(QDate(2000, 1, 1), QTime(0, 0));
 
-GameCubeRTCSearcher::GameCubeRTCSearcher() : searching(false)
+RTCSearcher::RTCSearcher() : searching(false)
 {
 }
 
-void GameCubeRTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialFrame, u32 maxResults)
+void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialFrame, u32 maxResults)
 {
     searching = true;
 
@@ -69,12 +69,12 @@ void GameCubeRTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initi
     }
 }
 
-void GameCubeRTCSearcher::cancelSearch()
+void RTCSearcher::cancelSearch()
 {
     searching = false;
 }
 
-QVector<GameCubeRTCFrame> GameCubeRTCSearcher::getResults()
+QVector<GameCubeRTCFrame> RTCSearcher::getResults()
 {
     return results;
 }

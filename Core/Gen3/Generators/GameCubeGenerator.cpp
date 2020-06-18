@@ -95,12 +95,11 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColoShadow(u32 seed) const
     XDRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
     {
         GameCubeFrame frame(initialFrame + cnt);
 
-        XDRNG go(rng.nextUInt());
-        go.advanceFrames(4);
+        XDRNG go(rng.getSeed());
 
         generateNonShadows(go);
 
@@ -199,13 +198,30 @@ void GameCubeGenerator::generateNonShadows(XDRNG &rng) const
 {
     for (auto i = team.getSize() - 1; i >= 0; i--)
     {
-        rng.advanceFrames(3);
+        // Temporary PID: 2 frames
+        // IVs: 2 frames
+        // Blank (maybe ability): 1 frame
+        rng.advanceFrames(5);
+
+        // Skip this loop
+        // If shadow
+
         u32 pid;
         do
         {
             u16 high = rng.nextUShort();
             u16 low = rng.nextUShort();
             pid = (high << 16) | low;
+
+            // Non-shadows are shiny locked in gales
+            // From your TID/SID
+            if (method == Method::XD)
+            {
+                if ((high ^ low ^ tsv) < 8)
+                {
+                    continue;
+                }
+            }
         } while (!team.getLock(i).compare(pid));
     }
 
