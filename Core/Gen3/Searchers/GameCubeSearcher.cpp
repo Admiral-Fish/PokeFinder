@@ -122,14 +122,14 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def, u8 
     {
         // Setup normal frame
         XDRNG rng(pair.second);
-        rng.advanceFrames(1);
 
+        u8 ability = rng.nextUShort() & 1;
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
         frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
         frame.setPID(high, low);
-        frame.setAbility(low & 1);
+        frame.setAbility(ability);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
         frame.setShiny(tsv, high ^ low, 8);
@@ -168,14 +168,23 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDColoShadow(u8 hp, u8 atk, u8 de
     {
         // Setup normal frame
         XDRNG rng(pair.second);
-        rng.advanceFrames(1);
 
+        u8 ability = rng.nextUShort() & 1;
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
+        if (method == Method::XD)
+        {
+            while ((tsv ^ high ^ low) < 8)
+            {
+                high = rng.nextUShort();
+                low = rng.nextUShort();
+            }
+        }
+
         frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
         frame.setPID(high, low);
-        frame.setAbility(low & 1);
+        frame.setAbility(ability);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
         frame.setShiny(tsv, high ^ low, 8);

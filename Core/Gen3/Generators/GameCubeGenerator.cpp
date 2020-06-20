@@ -66,12 +66,12 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColo(u32 seed) const
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
-        go.nextUInt();
+        u8 ability = go.nextUShort() & 1;
         u16 high = go.nextUShort();
         u16 low = go.nextUShort();
 
         frame.setPID(high, low);
-        frame.setAbility(low & 1);
+        frame.setAbility(ability);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
         frame.setShiny(tsv, high ^ low, 8);
@@ -108,13 +108,13 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColoShadow(u32 seed) const
         frame.setIVs(iv1, iv2);
         frame.calculateHiddenPower();
 
-        go.nextUInt();
+        u8 ability = go.nextUShort() & 1;
 
         u16 high = go.nextUShort();
         u16 low = go.nextUShort();
         if (method == Method::XD) // Shiny lock gales
         {
-            while (tsv == ((high ^ low) >> 3))
+            while ((tsv ^ high ^ low) < 8)
             {
                 high = go.nextUShort();
                 low = go.nextUShort();
@@ -127,7 +127,7 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColoShadow(u32 seed) const
         }
 
         frame.setPID(high, low);
-        frame.setAbility(low & 1);
+        frame.setAbility(ability);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
 
