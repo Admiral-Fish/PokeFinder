@@ -154,7 +154,7 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDShadow(u32 seed) const
         frame.setIVs(iv1, iv2);
         frame.calculateHiddenPower();
 
-        u8 ability = go.nextUShort() & 1;
+        frame.setAbility(go.nextUShort() & 1);
 
         u16 high = go.nextUShort();
         u16 low = go.nextUShort();
@@ -166,7 +166,6 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDShadow(u32 seed) const
         frame.setShiny(false);
 
         frame.setPID(high, low);
-        frame.setAbility(ability);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
 
@@ -197,14 +196,16 @@ QVector<GameCubeFrame> GameCubeGenerator::generateColoShadow(u32 seed) const
         // Trainer TID/SID
         u16 trainerTSV = go.nextUShort() ^ go.nextUShort();
 
+        u8 ability;
+        u32 pid;
         for (auto lock = locks.rbegin(); lock != locks.rend(); lock++)
         {
             // Temporary PID: 2 frames
             // IVs: 2 frames
             // Ability: 1 frame
-            go.advanceFrames(5);
+            go.advanceFrames(4);
+            ability = go.nextUShort() & 1;
 
-            u32 pid;
             do
             {
                 u16 high = go.nextUShort();
@@ -219,27 +220,15 @@ QVector<GameCubeFrame> GameCubeGenerator::generateColoShadow(u32 seed) const
         }
 
         // E-Reader is included as part of the above loop
-        // Uncalculate the advances we need for PID and ability
+        // Set the PID and ability that was already computed
         // IVs are 0
         if (team.getType() == ShadowType::EReader)
         {
-            // This might need to be changed
-            XDRNGR backward(go.getSeed());
-
-            u32 pid = go.nextUShort();
-            pid |= go.nextUInt() & 0xffff0000;
-
-            u16 psv = (pid >> 16) ^ (pid & 0xffff);
-            while ((psv ^ trainerTSV) < 8)
-            {
-                psv = backward.nextUShort() ^ backward.nextUShort();
-            }
-            frame.setAbility(backward.nextUShort() & 1);
-
             frame.setIVs(0);
             frame.calculateHiddenPower();
 
             frame.setPID(pid);
+            frame.setAbility(ability);
             frame.setGender(pid & 255, genderRatio);
             frame.setNature(pid % 25);
             frame.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
@@ -253,7 +242,7 @@ QVector<GameCubeFrame> GameCubeGenerator::generateColoShadow(u32 seed) const
             frame.setIVs(iv1, iv2);
             frame.calculateHiddenPower();
 
-            u8 ability = go.nextUShort() & 1;
+            frame.setAbility(go.nextUShort() & 1);
 
             u16 high = go.nextUShort();
             u16 low = go.nextUShort();
@@ -264,7 +253,6 @@ QVector<GameCubeFrame> GameCubeGenerator::generateColoShadow(u32 seed) const
             }
 
             frame.setPID(high, low);
-            frame.setAbility(ability);
             frame.setGender(low & 255, genderRatio);
             frame.setNature(frame.getPID() % 25);
             frame.setShiny(tsv, high ^ low, 8);
