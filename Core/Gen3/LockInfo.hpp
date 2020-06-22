@@ -32,6 +32,7 @@ public:
     LockInfo() = default;
     LockInfo(u8 nature, u8 genderLower, u8 genderUpper);
     bool compare(u32 pid) const;
+    bool getFree() const;
 
 private:
     u8 genderUpper;
@@ -47,6 +48,7 @@ public:
     ShadowTeam() = default;
     ShadowTeam(const QVector<LockInfo> &locks, ShadowType type);
     LockInfo getLock(u8 index) const;
+    QVector<LockInfo> getLocks() const;
     ShadowType getType() const;
     int getSize() const;
     static QVector<ShadowTeam> loadShadowTeams(Method version);

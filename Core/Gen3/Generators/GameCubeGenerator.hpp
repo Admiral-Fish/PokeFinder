@@ -38,9 +38,9 @@ private:
     u8 type;
 
     QVector<GameCubeFrame> generateXDColo(u32 seed) const;
-    QVector<GameCubeFrame> generateXDColoShadow(u32 seed) const;
+    QVector<GameCubeFrame> generateXDShadow(u32 seed) const;
+    QVector<GameCubeFrame> generateColoShadow(u32 seed) const;
     QVector<GameCubeFrame> generateChannel(u32 seed) const;
-    void generateNonShadows(XDRNG &rng) const;
 };
 
 #endif // GAMECUBEGENERATOR_HPP

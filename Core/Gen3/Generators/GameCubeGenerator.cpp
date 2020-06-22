@@ -35,8 +35,9 @@ QVector<GameCubeFrame> GameCubeGenerator::generate(u32 seed) const
     case Method::XDColo:
         return generateXDColo(seed);
     case Method::XD:
+        return generateXDShadow(seed);
     case Method::Colo:
-        return generateXDColoShadow(seed);
+        return generateColoShadow(seed);
     case Method::Channel:
         return generateChannel(seed);
     default:
@@ -88,12 +89,14 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColo(u32 seed) const
     return frames;
 }
 
-QVector<GameCubeFrame> GameCubeGenerator::generateXDColoShadow(u32 seed) const
+QVector<GameCubeFrame> GameCubeGenerator::generateXDShadow(u32 seed) const
 {
     QVector<GameCubeFrame> frames;
 
     XDRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
+
+    QVector<LockInfo> locks = team.getLocks();
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
     {
@@ -101,7 +104,50 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColoShadow(u32 seed) const
 
         XDRNG go(rng.getSeed());
 
-        generateNonShadows(go);
+        // Enemy TID/SID
+        go.advanceFrames(2);
+
+        for (auto lock = locks.rbegin(); lock != locks.rend(); lock++)
+        {
+            // Temporary PID: 2 frames
+            // IVs: 2 frames
+            // Ability: 1 frame
+            go.advanceFrames(5);
+
+            // If we are looking at a shadow pokemon
+            // We will assume it is already set and skip the PID process
+            if (!lock->getFree())
+            {
+                u32 pid;
+                do
+                {
+                    u16 high = go.nextUShort();
+                    u16 low = go.nextUShort();
+                    pid = (high << 16) | low;
+
+                    if ((high ^ low ^ tsv) < 8) // Shiny lock is from TSV of savefile
+                    {
+                        continue;
+                    }
+                } while (!lock->compare(pid));
+            }
+        }
+
+        if (team.getType() == ShadowType::SecondShadow || team.getType() == ShadowType::Salamence)
+        {
+            go.advanceFrames(5); // Set and Unset start the same
+
+            if (type == 1) // Check for shiny lock with unset
+            {
+                u16 psv = go.nextUShort() ^ go.nextUShort();
+                while ((psv ^ tsv) < 8)
+                {
+                    psv = go.nextUShort() ^ go.nextUShort();
+                }
+            }
+        }
+
+        go.advanceFrames(2); // Fake PID
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
@@ -112,24 +158,97 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColoShadow(u32 seed) const
 
         u16 high = go.nextUShort();
         u16 low = go.nextUShort();
-        if (method == Method::XD) // Shiny lock gales
+        while ((high ^ low ^ tsv) < 8) // Shiny lock is from TSV of savefile
         {
-            while ((tsv ^ high ^ low) < 8)
-            {
-                high = go.nextUShort();
-                low = go.nextUShort();
-            }
-            frame.setShiny(false);
+            high = go.nextUShort();
+            low = go.nextUShort();
         }
-        else
+        frame.setShiny(false);
+
+        frame.setPID(high, low);
+        frame.setAbility(ability);
+        frame.setGender(low & 255, genderRatio);
+        frame.setNature(frame.getPID() % 25);
+
+        if (filter.compareFrame(frame))
         {
-            frame.setShiny(tsv, high ^ low, 8);
+            frames.append(frame);
+        }
+    }
+
+    return frames;
+}
+
+QVector<GameCubeFrame> GameCubeGenerator::generateColoShadow(u32 seed) const
+{
+    QVector<GameCubeFrame> frames;
+
+    XDRNG rng(seed);
+    rng.advanceFrames(initialFrame - 1 + offset);
+
+    QVector<LockInfo> locks = team.getLocks();
+
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    {
+        GameCubeFrame frame(initialFrame + cnt);
+
+        XDRNG go(rng.getSeed());
+
+        // Trainer TID/SID
+        u16 trainerTSV = go.nextUShort() ^ go.nextUShort();
+
+        for (auto lock = locks.rbegin(); lock != locks.rend(); lock++)
+        {
+            // Temporary PID: 2 frames
+            // IVs: 2 frames
+            // Ability: 1 frame
+            go.advanceFrames(5);
+
+            u32 pid;
+            do
+            {
+                u16 high = go.nextUShort();
+                u16 low = go.nextUShort();
+                pid = (high << 16) | low;
+
+                if ((high ^ low ^ trainerTSV) < 8) // Shiny lock is from enemy TSV
+                {
+                    continue;
+                }
+            } while (!lock->compare(pid));
+        }
+
+        // Undo advances for E-Reader
+        if (team.getType() == ShadowType::EReader)
+        {
+            // This might need to be changed
+            XDRNGR backward(go.getSeed());
+            backward.advanceFrames(7);
+            go.setSeed(backward.getSeed());
+        }
+
+        go.advanceFrames(2); // Fake PID
+
+        u16 iv1 = go.nextUShort();
+        u16 iv2 = go.nextUShort();
+        frame.setIVs(iv1, iv2);
+        frame.calculateHiddenPower();
+
+        u8 ability = go.nextUShort() & 1;
+
+        u16 high = go.nextUShort();
+        u16 low = go.nextUShort();
+        while ((high ^ low ^ trainerTSV) < 8) // Shiny lock is from enemy TSV
+        {
+            high = go.nextUShort();
+            low = go.nextUShort();
         }
 
         frame.setPID(high, low);
         frame.setAbility(ability);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
+        frame.setShiny(tsv, high ^ low, 8);
 
         if (filter.compareFrame(frame))
         {
@@ -192,74 +311,4 @@ QVector<GameCubeFrame> GameCubeGenerator::generateChannel(u32 seed) const
     }
 
     return frames;
-}
-
-void GameCubeGenerator::generateNonShadows(XDRNG &rng) const
-{
-    for (auto i = team.getSize() - 1; i >= 0; i--)
-    {
-        // Temporary PID: 2 frames
-        // IVs: 2 frames
-        // Blank (maybe ability): 1 frame
-        rng.advanceFrames(5);
-
-        // Skip this loop
-        // If shadow
-
-        u32 pid;
-        do
-        {
-            u16 high = rng.nextUShort();
-            u16 low = rng.nextUShort();
-            pid = (high << 16) | low;
-
-            // Non-shadows are shiny locked in gales
-            // From your TID/SID
-            if (method == Method::XD)
-            {
-                if ((high ^ low ^ tsv) < 8)
-                {
-                    continue;
-                }
-            }
-        } while (!team.getLock(i).compare(pid));
-    }
-
-    switch (team.getType())
-    {
-    case ShadowType::SingleLock:
-    case ShadowType::FirstShadow:
-        rng.advanceFrames(2);
-        break;
-    case ShadowType::SecondShadow:
-    case ShadowType::Salamence:
-        switch (type)
-        {
-        case 0: // Set
-            rng.advanceFrames(7);
-            break;
-        case 1: // Unset
-            rng.advanceFrames(9);
-            break;
-        case 2: // Shinyskip
-            rng.advanceFrames(5);
-            u16 psv = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
-            u16 psvTemp = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
-            while (psv == psvTemp)
-            {
-                psvTemp = psv;
-                psv = (rng.nextUShort() ^ rng.nextUShort()) >> 3;
-            }
-            rng.advanceFrames(2);
-            break;
-        }
-        break;
-    case ShadowType::EReader:
-        // Unconsume calls for IVs/PID for shadow
-        XDRNGR backward(rng.getSeed());
-        backward.advanceFrames(5);
-
-        rng.setSeed(backward.getSeed());
-        break;
-    }
 }

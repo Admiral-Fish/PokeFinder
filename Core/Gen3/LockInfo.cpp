@@ -41,6 +41,11 @@ bool LockInfo::compare(u32 pid) const
     return gender >= genderLower && gender <= genderUpper && nature == (pid % 25);
 }
 
+bool LockInfo::getFree() const
+{
+    return free;
+}
+
 ShadowTeam::ShadowTeam(const QVector<LockInfo> &locks, ShadowType type)
 {
     this->locks = locks;
@@ -50,6 +55,11 @@ ShadowTeam::ShadowTeam(const QVector<LockInfo> &locks, ShadowType type)
 LockInfo ShadowTeam::getLock(u8 index) const
 {
     return locks.at(index);
+}
+
+QVector<LockInfo> ShadowTeam::getLocks() const
+{
+    return locks;
 }
 
 ShadowType ShadowTeam::getType() const
