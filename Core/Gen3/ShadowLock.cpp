@@ -343,7 +343,7 @@ bool ShadowLock::ereader(u32 seed, u32 readerPID)
     {
         if (backwardLock != locks.begin() + 1)
         {
-            backward.advanceFrames(3);
+            backward.advanceFrames(5);
         }
 
         do
@@ -358,7 +358,7 @@ bool ShadowLock::ereader(u32 seed, u32 readerPID)
     auto forwardLock = locks.crbegin();
     for (forwardLock++; forwardLock != locks.crend(); forwardLock++)
     {
-        forward.advanceFrames(3);
+        forward.advanceFrames(5);
 
         do
         {
