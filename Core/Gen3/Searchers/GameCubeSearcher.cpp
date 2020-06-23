@@ -185,7 +185,7 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 def, u
         frame.setAbility(ability);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
-        frame.setShiny(tsv, high ^ low, 8);
+        frame.setShiny(0);
 
         if (filter.comparePID(frame))
         {

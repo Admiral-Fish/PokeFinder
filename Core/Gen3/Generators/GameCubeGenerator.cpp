@@ -163,11 +163,11 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDShadow(u32 seed) const
             high = go.nextUShort();
             low = go.nextUShort();
         }
-        frame.setShiny(false);
 
         frame.setPID(high, low);
         frame.setGender(low & 255, genderRatio);
         frame.setNature(frame.getPID() % 25);
+        frame.setShiny(0);
 
         if (filter.compareFrame(frame))
         {
