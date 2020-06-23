@@ -19,6 +19,7 @@
 
 #include "GalesSeedSearcher.hpp"
 #include <QtConcurrent>
+#include <cstring>
 
 constexpr u16 hpStat[10][2] = { { 322, 340 }, { 310, 290 }, { 210, 620 }, { 320, 230 }, { 310, 310 },
                                 { 290, 310 }, { 290, 270 }, { 290, 250 }, { 320, 270 }, { 270, 230 } };
