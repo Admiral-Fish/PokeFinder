@@ -98,8 +98,9 @@ QVector<GameCubeFrame> GameCubeSearcher::search(u8 hp, u8 atk, u8 def, u8 spa, u
     case Method::XDColo:
         return searchXDColo(hp, atk, def, spa, spd, spe);
     case Method::XD:
+        return searchXDShadow(hp, atk, def, spa, spd, spe);
     case Method::Colo:
-        return searchXDColoShadow(hp, atk, def, spa, spd, spe);
+        return searchColoShadow(hp, atk, def, spa, spd, spe);
     default:
         return QVector<GameCubeFrame>();
     }
@@ -151,7 +152,7 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def, u8 
     return frames;
 }
 
-QVector<GameCubeFrame> GameCubeSearcher::searchXDColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+QVector<GameCubeFrame> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
 {
     QVector<GameCubeFrame> frames;
 
@@ -173,13 +174,10 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDColoShadow(u8 hp, u8 atk, u8 de
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        if (method == Method::XD)
+        while ((tsv ^ high ^ low) < 8)
         {
-            while ((tsv ^ high ^ low) < 8)
-            {
-                high = rng.nextUShort();
-                low = rng.nextUShort();
-            }
+            high = rng.nextUShort();
+            low = rng.nextUShort();
         }
 
         frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
@@ -194,7 +192,7 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDColoShadow(u8 hp, u8 atk, u8 de
             switch (type)
             {
             case ShadowType::SingleLock:
-                if (lock.singleNL(frame.getSeed()))
+                if (lock.singleNL(frame.getSeed(), tsv))
                 {
                     frame.setInfo(0);
                     frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
@@ -202,7 +200,7 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDColoShadow(u8 hp, u8 atk, u8 de
                 }
                 break;
             case ShadowType::FirstShadow:
-                if (lock.firstShadowNormal(frame.getSeed()))
+                if (lock.firstShadowNormal(frame.getSeed(), tsv))
                 {
                     frame.setInfo(0);
                     frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
@@ -210,52 +208,34 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDColoShadow(u8 hp, u8 atk, u8 de
                 }
                 break;
             case ShadowType::SecondShadow:
-                if (lock.firstShadowUnset(frame.getSeed()))
+                if (lock.firstShadowUnset(frame.getSeed(), tsv))
                 {
                     frame.setInfo(1); // Also unlikely for the other methods of encounter to pass
                     frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
-                if (lock.firstShadowSet(frame.getSeed()))
+                if (lock.firstShadowSet(frame.getSeed(), tsv))
                 {
                     frame.setInfo(2); // Also unlikely for the other methods of encounter to pass
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                    continue;
-                }
-                if (lock.firstShadowShinySkip(frame.getSeed()))
-                {
-                    frame.setInfo(3); // Also unlikely for the other methods of encounter to pass
                     frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
             case ShadowType::Salamence:
-                if (lock.salamenceUnset(frame.getSeed()))
+                if (lock.salamenceUnset(frame.getSeed(), tsv))
                 {
                     frame.setInfo(1); // Also unlikely for the other methods of encounter to pass
                     frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
-                if (lock.salamenceSet(frame.getSeed()))
+                if (lock.salamenceSet(frame.getSeed(), tsv))
                 {
                     frame.setInfo(2); // Also unlikely for the other methods of encounter to pass
                     frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
-                if (lock.salamenceShinySkip(frame.getSeed()))
-                {
-                    frame.setInfo(3); // Also unlikely for the other methods of encounter to pass
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                    continue;
-                }
                 break;
-            case ShadowType::EReader:
-                if (lock.eReader(frame.getSeed(), frame.getPID()))
-                {
-                    frame.setInfo(0);
-                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
-                    continue;
-                }
+            default:
                 break;
             }
         }
@@ -270,60 +250,130 @@ QVector<GameCubeFrame> GameCubeSearcher::searchXDColoShadow(u8 hp, u8 atk, u8 de
             switch (type)
             {
             case ShadowType::SingleLock:
-                if (lock.singleNL(frame.getSeed()))
+                if (lock.singleNL(frame.getSeed(), tsv))
                 {
                     frame.setInfo(0);
                     frames.append(frame);
                 }
                 break;
             case ShadowType::FirstShadow:
-                if (lock.firstShadowNormal(frame.getSeed()))
+                if (lock.firstShadowNormal(frame.getSeed(), tsv))
                 {
                     frame.setInfo(0);
                     frames.append(frame);
                 }
                 break;
             case ShadowType::SecondShadow:
-                if (lock.firstShadowUnset(frame.getSeed()))
+                if (lock.firstShadowUnset(frame.getSeed(), tsv))
                 {
                     frame.setInfo(1);
                     frames.append(frame);
                 }
-                else if (lock.firstShadowSet(frame.getSeed()))
+                else if (lock.firstShadowSet(frame.getSeed(), tsv))
                 {
                     frame.setInfo(2);
-                    frames.append(frame);
-                }
-                else if (lock.firstShadowShinySkip(frame.getSeed()))
-                {
-                    frame.setInfo(3);
                     frames.append(frame);
                 }
                 break;
             case ShadowType::Salamence:
-                if (lock.salamenceUnset(frame.getSeed()))
+                if (lock.salamenceUnset(frame.getSeed(), tsv))
                 {
                     frame.setInfo(1);
                     frames.append(frame);
                 }
-                else if (lock.salamenceSet(frame.getSeed()))
+                else if (lock.salamenceSet(frame.getSeed(), tsv))
                 {
                     frame.setInfo(2);
                     frames.append(frame);
                 }
-                else if (lock.salamenceShinySkip(frame.getSeed()))
-                {
-                    frame.setInfo(3);
-                    frames.append(frame);
-                }
                 break;
-            case ShadowType::EReader:
-                if (lock.eReader(frame.getSeed(), frame.getPID()))
+            default:
+                break;
+            }
+        }
+    }
+    return frames;
+}
+
+QVector<GameCubeFrame> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe)
+{
+    QVector<GameCubeFrame> frames;
+
+    GameCubeFrame frame;
+    frame.setIVs(hp, atk, def, spa, spd, spe);
+    frame.calculateHiddenPower();
+    if (!filter.compareHiddenPower(frame))
+    {
+        return frames;
+    }
+
+    QVector<QPair<u32, u32>> seeds = euclidean.recoverLower16BitsIV(hp, atk, def, spa, spd, spe);
+    for (const auto &pair : seeds)
+    {
+        // Setup normal frame
+        XDRNG rng(pair.second);
+
+        u8 ability = rng.nextUShort() & 1;
+        u16 high = rng.nextUShort();
+        u16 low = rng.nextUShort();
+
+        frame.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        frame.setPID(high, low);
+        frame.setAbility(ability);
+        frame.setGender(low & 255, genderRatio);
+        frame.setNature(frame.getPID() % 25);
+        frame.setShiny(tsv, high ^ low, 8);
+
+        if (filter.comparePID(frame))
+        {
+            switch (type)
+            {
+            case ShadowType::FirstShadow:
+                if (lock.coloShadow(frame.getSeed()))
                 {
                     frame.setInfo(0);
                     frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
+                break;
+            case ShadowType::EReader:
+                if (lock.ereader(frame.getSeed(), frame.getPID()))
+                {
+                    frame.setInfo(0);
+                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    continue;
+                }
+                break;
+            default:
+                break;
+            }
+        }
+
+        // Setup XORed frame
+        frame.setSeed(frame.getSeed() ^ 0x80000000);
+        frame.setPID(frame.getPID() ^ 0x80008000);
+        frame.setNature(frame.getPID() % 25);
+
+        if (filter.comparePID(frame))
+        {
+            switch (type)
+            {
+            case ShadowType::FirstShadow:
+                if (lock.coloShadow(frame.getSeed()))
+                {
+                    frame.setInfo(0);
+                    frames.append(frame);
+                }
+                break;
+            case ShadowType::EReader:
+                if (lock.ereader(frame.getSeed(), frame.getPID()))
+                {
+                    frame.setInfo(0);
+                    frames.append(frame); // If this seed passes it is impossible for the sister spread to generate
+                    continue;
+                }
+                break;
+            default:
                 break;
             }
         }

@@ -49,7 +49,8 @@ private:
 
     QVector<GameCubeFrame> search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
     QVector<GameCubeFrame> searchXDColo(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
-    QVector<GameCubeFrame> searchXDColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+    QVector<GameCubeFrame> searchXDShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
+    QVector<GameCubeFrame> searchColoShadow(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe);
     void searchChannel(u8 minSpD, u8 maxSpD);
     bool validateJirachi(u32 seed);
     bool validateMenu(u32 seed);

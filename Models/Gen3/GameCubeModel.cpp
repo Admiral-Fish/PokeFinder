@@ -234,8 +234,6 @@ QVariant GameCubeSearcherModel::data(const QModelIndex &index, int role) const
                 return tr("First shadow unset");
             case 2:
                 return tr("First shadow set");
-            case 3:
-                return tr("Shiny skip");
             }
         }
     }
