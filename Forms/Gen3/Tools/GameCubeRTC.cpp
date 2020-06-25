@@ -91,7 +91,7 @@ void GameCubeRTC::setupModels()
 
 void GameCubeRTC::search()
 {
-    model->removeRows(0, model->rowCount());
+    model->clearModel();
 
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
