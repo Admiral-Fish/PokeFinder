@@ -21,7 +21,6 @@
 #include "ui_GameCubeRTC.h"
 #include <Core/Gen3/Searchers/RTCSearcher.hpp>
 #include <Models/Gen3/GameCubeRTCModel.hpp>
-#include <QClipboard>
 #include <QSettings>
 #include <QThread>
 
@@ -62,7 +61,6 @@ GameCubeRTC::~GameCubeRTC()
 void GameCubeRTC::setupModels()
 {
     model = new GameCubeRTCModel(ui->tableView);
-    contextMenu = new QMenu(ui->tableView);
     ui->tableView->setModel(model);
 
     ui->textBoxStartSeed->setValues(InputType::Seed32Bit);
@@ -70,11 +68,7 @@ void GameCubeRTC::setupModels()
     ui->textBoxMinFrame->setValues(InputType::Frame32Bit);
     ui->textBoxMaxFrame->setValues(InputType::Frame32Bit);
 
-    QAction *copySeed = contextMenu->addAction(tr("Copy Seed to Clipboard"));
-    connect(copySeed, &QAction::triggered, this, &GameCubeRTC::copySeed);
-
     connect(ui->pushButtonSearch, &QPushButton::clicked, this, &GameCubeRTC::search);
-    connect(ui->tableView, &QTableView::customContextMenuRequested, this, &GameCubeRTC::tableViewContextMenu);
 
     QSettings setting;
     setting.beginGroup("gamecubeRTC");
@@ -121,20 +115,4 @@ void GameCubeRTC::search()
 void GameCubeRTC::updateTableView(const QVector<GameCubeRTCFrame> &results)
 {
     model->addItems(results);
-}
-
-void GameCubeRTC::copySeed()
-{
-    QVariant data = ui->tableView->model()->data(ui->tableView->model()->index(ui->tableView->currentIndex().row(), 2));
-    QApplication::clipboard()->setText(data.toString());
-}
-
-void GameCubeRTC::tableViewContextMenu(QPoint pos)
-{
-    if (model->rowCount() == 0)
-    {
-        return;
-    }
-
-    contextMenu->popup(ui->tableView->viewport()->mapToGlobal(pos));
 }

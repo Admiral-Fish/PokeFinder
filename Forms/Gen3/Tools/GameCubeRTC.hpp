@@ -21,7 +21,7 @@
 #define GAMECUBERTC_HPP
 
 #include <Core/Util/Global.hpp>
-#include <QMenu>
+#include <QWidget>
 
 class GameCubeRTCFrame;
 class GameCubeRTCModel;
@@ -42,15 +42,12 @@ public:
 private:
     Ui::GameCubeRTC *ui;
     GameCubeRTCModel *model = nullptr;
-    QMenu *contextMenu = nullptr;
 
     void setupModels();
 
 private slots:
     void search();
     void updateTableView(const QVector<GameCubeRTCFrame> &results);
-    void copySeed();
-    void tableViewContextMenu(QPoint pos);
 };
 
 #endif // GAMECUBERTC_HPP
