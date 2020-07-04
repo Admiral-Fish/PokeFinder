@@ -653,6 +653,21 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Kecleon Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Kecleon Split</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Kecleon Alternate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Alternate</source>
         <translation type="unfinished"></translation>
     </message>

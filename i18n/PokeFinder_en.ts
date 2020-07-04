@@ -658,6 +658,21 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Kecleon Normal</source>
+        <translation>Kecleon Normal</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Kecleon Split</source>
+        <translation>Kecleon Split</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Kecleon Alternate</source>
+        <translation>Kecleon Alternate</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Seed (Held / Pickup)</source>
         <translation>Seed (Held / Pickup)</translation>
     </message>

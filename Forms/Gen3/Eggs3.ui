@@ -238,6 +238,21 @@
               <string>Alternate</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Kecleon Normal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Kecleon Split</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Kecleon Alternate</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="0" column="0">

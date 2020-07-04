@@ -43,6 +43,9 @@ int EggModel3::columnCount(const QModelIndex & /*parent*/) const
     case Method::EBred:
     case Method::EBredAlternate:
     case Method::EBredSplit:
+    case Method::EKecleonBred:
+    case Method::EKecleonBredAlternate:
+    case Method::EKecleonBredSplit:
         return 9;
     case Method::EBredPID:
         return 7;
@@ -132,6 +135,9 @@ int EggModel3::getColumn(int column) const
     case Method::EBred:
     case Method::EBredAlternate:
     case Method::EBredSplit:
+    case Method::EKecleonBred:
+    case Method::EKecleonBredAlternate:
+    case Method::EKecleonBredSplit:
         return column > 0 ? column + 7 : column;
     case Method::EBredPID:
         return column == 6 ? column + 10 : column > 0 ? column + 2 : column;

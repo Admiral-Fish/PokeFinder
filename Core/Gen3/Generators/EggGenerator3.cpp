@@ -46,6 +46,24 @@ EggGenerator3::EggGenerator3(u32 initialFrame, u32 maxResults, u16 tid, u16 sid,
         inh = 2;
         // par = 0;
         break;
+    case Method::EKecleonBred:
+        iv1 = 0;
+        iv2 = 0;
+        inh = 3;
+        // par = 0;
+        break;
+    case Method::EKecleonBredSplit:
+        iv1 = 0;
+        iv2 = 1;
+        inh = 3;
+        // par = 0;
+        break;
+    case Method::EKecleonBredAlternate:
+        iv1 = 0;
+        iv2 = 0;
+        inh = 4;
+        // par = 0;
+        break;
     case Method::RSBred:
     case Method::FRLGBred:
         iv1 = 1;
@@ -81,6 +99,9 @@ QVector<EggFrame3> EggGenerator3::generate(u32 seed, u32 seed2) const
     case Method::EBred:
     case Method::EBredSplit:
     case Method::EBredAlternate:
+    case Method::EKecleonBred:
+    case Method::EKecleonBredSplit:
+    case Method::EKecleonBredAlternate:
         return generateEmeraldIVs(seed);
     case Method::RSBred:
     case Method::RSBredAlternate:

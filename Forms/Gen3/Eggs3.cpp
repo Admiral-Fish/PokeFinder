@@ -111,7 +111,8 @@ void Eggs3::setupModels()
 
     ui->comboBoxEverstone->addItems(Translator::getNatures());
 
-    ui->comboBoxEmeraldMethod->setup({ Method::EBredPID, Method::EBred, Method::EBredSplit, Method::EBredAlternate });
+    ui->comboBoxEmeraldMethod->setup({ Method::EBredPID, Method::EBred, Method::EBredSplit, Method::EBredAlternate, Method::EKecleonBred,
+                                       Method::EKecleonBredSplit, Method::EKecleonBredAlternate });
     ui->comboBoxRSMethod->setup({ Method::RSBred, Method::RSBredSplit, Method::RSBredAlternate });
     ui->comboBoxFRLGMethod->setup({ Method::FRLGBred, Method::FRLGBredSplit, Method::FRLGBredAlternate });
 

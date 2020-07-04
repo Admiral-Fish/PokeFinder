@@ -644,17 +644,32 @@
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Split</source>
-        <translation type="unfinished"></translation>
+        <translation>Split</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
         <source>Alternate</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternate</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Kecleon Normal</source>
+        <translation>变隐龙 Normal</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Kecleon Split</source>
+        <translation>变隐龙 Split</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Eggs3.ui"/>
+        <source>Kecleon Alternate</source>
+        <translation>变隐龙 Alternate</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Eggs3.ui"/>
