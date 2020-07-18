@@ -37,7 +37,6 @@ private:
     u32 state[4];
 
     void initialize(u32 seed);
-    void periodCertification();
     void nextState();
     u32 temper();
 };

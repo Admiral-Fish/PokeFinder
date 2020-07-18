@@ -19,8 +19,6 @@
 
 #include "SFMT.hpp"
 
-constexpr u32 parity[4] = { 0x1, 0x0, 0x0, 0x13c9e684 };
-
 SFMT::SFMT(u32 seed)
 {
     initialize(seed);
@@ -77,39 +75,15 @@ void SFMT::initialize(u32 seed)
         sfmt[index] = 0x6C078965 * (sfmt[index - 1] ^ (sfmt[index - 1] >> 30)) + index;
     }
 
-    periodCertificaion();
-}
-
-void SFMT::periodCertificaion()
-{
-    u32 inner = 0;
-    u32 work;
-
-    for (u8 i = 0; i < 4; i++)
-    {
-        inner ^= sfmt[i] & parity[i];
-    }
+    u32 inner = (sfmt[0] & 1) ^ (sfmt[3] & 0x13c9e684);
     for (u8 i = 16; i > 0; i >>= 1)
     {
         inner ^= inner >> i;
     }
-    if (inner & 1)
-    {
-        return;
-    }
 
-    for (u8 i = 0; i < 4; i++)
+    if ((inner & 1) == 0)
     {
-        work = 1;
-        for (u8 j = 0; j < 32; j++)
-        {
-            if ((work & parity[i]) != 0)
-            {
-                sfmt[i] ^= work;
-                return;
-            }
-            work <<= 1;
-        }
+        sfmt[0] ^= 1;
     }
 }
 
@@ -122,13 +96,12 @@ void SFMT::shuffle()
 
     do
     {
-        sfmt[a + 3] = sfmt[a + 3] ^ (sfmt[a + 3] << 8) ^ (sfmt[a + 2] >> 24) ^ (sfmt[c + 3] >> 8) ^ ((sfmt[b + 3] >> 11) & 0xbffffff6)
-            ^ (sfmt[d + 3] << 18);
-        sfmt[a + 2] = sfmt[a + 2] ^ (sfmt[a + 2] << 8) ^ (sfmt[a + 1] >> 24) ^ (sfmt[c + 3] << 24) ^ (sfmt[c + 2] >> 8)
-            ^ ((sfmt[b + 2] >> 11) & 0xbffaffff) ^ (sfmt[d + 2] << 18);
-        sfmt[a + 1] = sfmt[a + 1] ^ (sfmt[a + 1] << 8) ^ (sfmt[a] >> 24) ^ (sfmt[c + 2] << 24) ^ (sfmt[c + 1] >> 8)
-            ^ ((sfmt[b + 1] >> 11) & 0xddfecb7f) ^ (sfmt[d + 1] << 18);
-        sfmt[a] = sfmt[a] ^ (sfmt[a] << 8) ^ (sfmt[c + 1] << 24) ^ (sfmt[c] >> 8) ^ ((sfmt[b] >> 11) & 0xdfffffef) ^ (sfmt[d] << 18);
+        // clang-format off
+        sfmt[a + 3] ^= (sfmt[a + 3] << 8) ^ (sfmt[a + 2] >> 24) ^ (sfmt[c + 3] >> 8) ^ ((sfmt[b + 3] >> 11) & 0xbffffff6) ^ (sfmt[d + 3] << 18);
+        sfmt[a + 2] ^= (sfmt[a + 2] << 8) ^ (sfmt[a + 1] >> 24) ^ (sfmt[c + 3] << 24) ^ (sfmt[c + 2] >> 8) ^ ((sfmt[b + 2] >> 11) & 0xbffaffff) ^ (sfmt[d + 2] << 18);
+        sfmt[a + 1] ^= (sfmt[a + 1] << 8) ^ (sfmt[a] >> 24) ^ (sfmt[c + 2] << 24) ^ (sfmt[c + 1] >> 8) ^ ((sfmt[b + 1] >> 11) & 0xddfecb7f) ^ (sfmt[d + 1] << 18);
+        sfmt[a] ^= (sfmt[a] << 8) ^ (sfmt[c + 1] << 24) ^ (sfmt[c] >> 8) ^ ((sfmt[b] >> 11) & 0xdfffffef) ^ (sfmt[d] << 18);
+        // clang-format on
 
         c = d;
         d = a;

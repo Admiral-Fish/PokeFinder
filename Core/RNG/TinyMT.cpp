@@ -72,16 +72,6 @@ void TinyMT::initialize(u32 seed)
         state[i & 3] ^= 0x6c078965 * (state[(i - 1) & 3] ^ (state[(i - 1) & 3] >> 30)) + i;
     }
 
-    periodCertification();
-
-    for (u8 i = 0; i < 8; i++)
-    {
-        nextState();
-    }
-}
-
-void TinyMT::periodCertification()
-{
     if ((state[0] & 0x7FFFFFFF) == 0 && state[1] == 0 && state[2] == 0 && state[3] == 0)
     {
         state[0] = 'T';
@@ -89,14 +79,21 @@ void TinyMT::periodCertification()
         state[2] = 'N';
         state[3] = 'Y';
     }
+
+    for (u8 i = 0; i < 8; i++)
+    {
+        nextState();
+    }
 }
 
 void TinyMT::nextState()
 {
     u32 y = state[3];
     u32 x = (state[0] & 0x7FFFFFFF) ^ state[1] ^ state[2];
+
     x ^= (x << 1);
     y ^= (y >> 1) ^ x;
+
     state[0] = state[1];
     state[1] = state[2];
     state[2] = x ^ (y << 10);
@@ -119,5 +116,6 @@ u32 TinyMT::temper()
     {
         t0 ^= 0x3793fdff;
     }
+
     return t0;
 }
