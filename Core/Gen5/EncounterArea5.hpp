@@ -17,29 +17,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTER_HPP
-#define ENCOUNTER_HPP
+#ifndef ENCOUNTERAREA5_HPP
+#define ENCOUNTERAREA5_HPP
 
-#include <Core/Util/Global.hpp>
+#include <Core/Parents/EncounterArea.hpp>
 
-enum Encounter : u8
+class EncounterArea5 : public EncounterArea
 {
-    Grass,
-    DoubleGrass,
-    SpecialGrass,
-    RockSmash,
-    Surfing,
-    SpecialSurf,
-    OldRod,
-    GoodRod,
-    SuperRod,
-    SpecialSuperRod,
-    Stationary,
-    SafariZone,
-    BugCatchingContest,
-    HeadButt,
-    Roamer,
-    Gift
+public:
+    EncounterArea5() = default;
+    EncounterArea5(u8 location, Encounter type, const QVector<Slot> &pokemon);
+    u8 calcLevel(u8 index, u16 prng) const;
+    u8 calcLevel(u8 index) const;
 };
 
-#endif // ENCOUNTER_HPP
+#endif // ENCOUNTERAREA5_HPP

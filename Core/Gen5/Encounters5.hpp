@@ -17,29 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef ENCOUNTER_HPP
-#define ENCOUNTER_HPP
+#ifndef ENCOUNTERS5_HPP
+#define ENCOUNTERS5_HPP
 
 #include <Core/Util/Global.hpp>
+#include <QVector>
 
-enum Encounter : u8
+class EncounterArea5;
+enum Encounter : u8;
+enum Game : u16;
+
+namespace Encounters5
 {
-    Grass,
-    DoubleGrass,
-    SpecialGrass,
-    RockSmash,
-    Surfing,
-    SpecialSurf,
-    OldRod,
-    GoodRod,
-    SuperRod,
-    SpecialSuperRod,
-    Stationary,
-    SafariZone,
-    BugCatchingContest,
-    HeadButt,
-    Roamer,
-    Gift
-};
+    QVector<EncounterArea5> getEncounters(Encounter encounter, u8 season, Game version);
+}
 
-#endif // ENCOUNTER_HPP
+#endif // ENCOUNTERS5_HPP

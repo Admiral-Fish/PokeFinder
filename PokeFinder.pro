@@ -130,6 +130,8 @@ HEADERS += \
     Core/Gen4/Searchers/StationarySearcher4.hpp \
     Core/Gen4/Searchers/WildSearcher4.hpp \
     Core/Gen4/Tools/ChainedSIDCalc.hpp \
+    Core/Gen5/EncounterArea5.hpp \
+    Core/Gen5/Encounters5.hpp \
     Core/Gen5/Filters/HiddenGrottoFilter.hpp \
     Core/Gen5/Frames/Frame5.hpp \
     Core/Gen5/Frames/HiddenGrottoFrame.hpp \
@@ -306,6 +308,8 @@ SOURCES += \
     Core/Gen4/Searchers/StationarySearcher4.cpp \
     Core/Gen4/Searchers/WildSearcher4.cpp \
     Core/Gen4/Tools/ChainedSIDCalc.cpp \
+    Core/Gen5/EncounterArea5.cpp \
+    Core/Gen5/Encounters5.cpp \
     Core/Gen5/Filters/HiddenGrottoFilter.cpp \
     Core/Gen5/Frames/IDFrame5.cpp \
     Core/Gen5/Generators/DreamRadarGenerator.cpp \
