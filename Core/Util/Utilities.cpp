@@ -20,7 +20,66 @@
 #include "Utilities.hpp"
 #include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/RNG/LCRNG.hpp>
+#include <Core/RNG/LCRNG64.hpp>
 #include <Core/RNG/MTRNG.hpp>
+
+namespace
+{
+    u32 advanceProbabilityTable(BWRNG &rng)
+    {
+        u32 count = 0;
+
+        // Round 1
+        count++;
+        rng.advanceFrames(1);
+
+        // Round 2
+        count++;
+        if (rng.nextUInt(101) > 50)
+        {
+            count++;
+            rng.advanceFrames(1);
+        }
+
+        // Round 3
+        count++;
+        if (rng.nextUInt(101) > 30)
+        {
+            count++;
+            rng.advanceFrames(1);
+        }
+
+        // Round 4
+        count++;
+        if (rng.nextUInt(101) > 25)
+        {
+            count++;
+            if (rng.nextUInt(101) > 30)
+            {
+                count++;
+                rng.advanceFrames(1);
+            }
+        }
+
+        // Round 5
+        count++;
+        if (rng.nextUInt(101) > 20)
+        {
+            count++;
+            if (rng.nextUInt(101) > 25)
+            {
+                count++;
+                if (rng.nextUInt(101) > 33)
+                {
+                    count++;
+                    rng.advanceFrames(1);
+                }
+            }
+        }
+
+        return count;
+    }
+}
 
 namespace Utilities
 {
@@ -93,5 +152,101 @@ namespace Utilities
             }
         }
         return calls;
+    }
+
+    u32 initialFrameBW(u64 seed, u8 rounds)
+    {
+        BWRNG rng(seed);
+        u32 count = 1;
+
+        for (u8 i = 0; i < rounds; i++)
+        {
+            count += advanceProbabilityTable(rng);
+        }
+
+        return count;
+    }
+
+    u32 initialFrameBW2(u64 seed, bool memory)
+    {
+        BWRNG rng(seed);
+        u32 count = 1;
+
+        for (u8 i = 0; i < 5; i++)
+        {
+            count += advanceProbabilityTable(rng);
+
+            if (i == 0)
+            {
+                count += memory ? 2 : 3;
+                rng.advanceFrames(memory ? 2 : 3);
+            }
+        }
+
+        for (u8 limit = 0; limit < 100; limit++)
+        {
+            count += 3;
+            u8 rand1 = rng.nextUInt(15);
+            u8 rand2 = rng.nextUInt(15);
+            u8 rand3 = rng.nextUInt(15);
+
+            // This check is to see if any of the 3 rand calls are duplicates
+            // If they aren't then break the loop early
+            if (rand1 != rand2 && rand1 != rand3 && rand2 != rand3)
+            {
+                break;
+            }
+        }
+
+        return count;
+    }
+
+    u32 initialFrameBW2ID(u64 seed, u8 rounds)
+    {
+        BWRNG rng(seed);
+        u32 count = 1;
+
+        for (u8 i = 0; i < rounds; i++)
+        {
+            count += advanceProbabilityTable(rng);
+        }
+
+        return count;
+    }
+
+    u32 forceGender(u32 pid, u64 rand, u8 gender, u8 genderRatio)
+    {
+        pid &= 0xffffff00;
+
+        if (genderRatio == 0) // Male only
+        {
+            u8 val = ((rand * 0xF6) >> 32) + 8;
+            pid |= val;
+        }
+        else if (genderRatio == 254) // Female only
+        {
+            u8 val = ((rand * 0x8) >> 32) + 1;
+            pid |= val;
+        }
+        else // Gender ratio
+        {
+            if (gender == 0) // Male
+            {
+                u8 val = ((rand * (0xFE - genderRatio)) >> 32) + genderRatio;
+                pid |= val;
+            }
+            else if (gender == 1) // Female
+            {
+                u8 val = ((rand * (genderRatio - 1)) >> 32) + 1;
+                pid |= val;
+            }
+            else
+            {
+                u8 val = rand >> 32;
+                pid |= val;
+            }
+        }
+
+        return pid;
     }
 }

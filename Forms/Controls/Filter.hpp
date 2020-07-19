@@ -65,6 +65,7 @@ public:
     u32 getDelay() const;
     bool getDisableFilters();
     void disableControls(u16 control);
+    void setGenderRatio(u8 genderRatio);
 
 private:
     Ui::Filter *ui;

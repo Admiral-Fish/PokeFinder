@@ -183,3 +183,8 @@ void Filter::disableControls(u16 control)
         ui->checkBoxDisableFilters->setVisible(false);
     }
 }
+
+void Filter::setGenderRatio(u8 genderRatio)
+{
+    ui->comboBoxGenderRatio->setCurrentIndex(ui->comboBoxGenderRatio->findData(genderRatio));
+}

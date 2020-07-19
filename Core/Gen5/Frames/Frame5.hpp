@@ -26,14 +26,19 @@
 class Frame5
 {
 public:
+    Frame5() = default;
+
+    Frame5(const QDateTime &dt, u64 initialSeed, u16 buttons, u16 timer0) :
+        dt(dt),
+        initialSeed(initialSeed),
+        buttons(buttons),
+        timer0(timer0)
+    {
+    }
+
     QDateTime getDateTime() const
     {
         return dt;
-    }
-
-    void setDateTime(const QDateTime &dt)
-    {
-        this->dt = dt;
     }
 
     u64 getInitialSeed() const
@@ -41,29 +46,14 @@ public:
         return initialSeed;
     }
 
-    void setInitialSeed(u64 initialSeed)
-    {
-        this->initialSeed = initialSeed;
-    }
-
     u16 getButtons() const
     {
         return buttons;
     }
 
-    void setButtons(u16 buttons)
-    {
-        this->buttons = buttons;
-    }
-
     u16 getTimer0() const
     {
         return timer0;
-    }
-
-    void setTimer0(u16 timer0)
-    {
-        this->timer0 = timer0;
     }
 
 protected:

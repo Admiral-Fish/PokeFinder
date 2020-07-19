@@ -18,64 +18,19 @@
  */
 
 #include "MTRNG.hpp"
-#include <stdexcept>
 
-void MT::advanceFrames(u32 frames)
+MersenneTwister::MersenneTwister(u32 seed)
+{
+    initialize(seed);
+}
+
+void MersenneTwister::advanceFrames(u32 frames)
 {
     index += frames;
     while (index >= 624)
     {
         shuffle();
     }
-}
-
-void MT::setSeed(u32 seed, u32 frames)
-{
-    initialize(seed);
-    advanceFrames(frames);
-}
-
-u16 MT::nextUShort()
-{
-    return nextUInt() >> 16;
-}
-
-u32 MT::next()
-{
-    return nextUInt();
-}
-
-void MT::shuffle()
-{
-    for (u16 i = 0; i < 624; i++)
-    {
-        u32 y = (mt[i] & 0x80000000) | (mt[(i + 1) % 624] & 0x7FFFFFFF);
-        u32 next = y >> 1;
-
-        if (y & 1)
-        {
-            next ^= 0x9908B0DF;
-        }
-
-        mt[i] = next ^ mt[(i + 397) % 624];
-    }
-
-    index -= 624;
-}
-
-void MT::initialize(u32 seed)
-{
-    mt[0] = seed;
-
-    for (index = 1; index < 624; index++)
-    {
-        mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
-    }
-}
-
-MersenneTwister::MersenneTwister(u32 seed)
-{
-    initialize(seed);
 }
 
 u32 MersenneTwister::nextUInt()
@@ -94,58 +49,25 @@ u32 MersenneTwister::nextUInt()
     return y;
 }
 
-MersenneTwisterUntempered::MersenneTwisterUntempered(u32 seed)
+u16 MersenneTwister::nextUShort()
+{
+    return nextUInt() >> 16;
+}
+
+u32 MersenneTwister::next()
+{
+    return nextUInt();
+}
+
+void MersenneTwister::setSeed(u32 seed, u32 frames)
 {
     initialize(seed);
+    advanceFrames(frames);
 }
 
-u32 MersenneTwisterUntempered::nextUInt()
+void MersenneTwister::shuffle()
 {
-    if (index >= 624)
-    {
-        shuffle();
-    }
-
-    return mt[index++];
-}
-
-MersenneTwisterFast::MersenneTwisterFast(u32 calls, u32 seed) : calls(calls)
-{
-    if (calls > 227)
-    {
-        throw std::runtime_error("Too many calls");
-    }
-    initialize(seed);
-}
-
-u32 MersenneTwisterFast::nextUInt()
-{
-    if (index >= calls + 397)
-    {
-        shuffle();
-    }
-
-    u32 y = mt[index++];
-    y ^= (y >> 11);
-    y ^= (y << 7) & 0x9D2C5680;
-    y ^= (y << 15) & 0xEF000000;
-
-    return y;
-}
-
-void MersenneTwisterFast::initialize(u32 seed)
-{
-    mt[0] = seed;
-
-    for (index = 1; index < calls + 397; index++)
-    {
-        mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
-    }
-}
-
-void MersenneTwisterFast::shuffle()
-{
-    for (u16 i = 0; i < calls; ++i)
+    for (u16 i = 0; i < 624; i++)
     {
         u32 y = (mt[i] & 0x80000000) | (mt[(i + 1) % 624] & 0x7FFFFFFF);
         u32 next = y >> 1;
@@ -158,5 +80,90 @@ void MersenneTwisterFast::shuffle()
         mt[i] = next ^ mt[(i + 397) % 624];
     }
 
-    index -= calls + 397;
+    index -= 624;
+}
+
+void MersenneTwister::initialize(u32 seed)
+{
+    mt[0] = seed;
+
+    for (index = 1; index < 624; index++)
+    {
+        mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
+    }
+}
+
+// Assume everything that uses MT Fast checks the call limit manually
+// Avoids needing to have exceptions
+MersenneTwisterFast::MersenneTwisterFast(u32 seed, u8 size) : size(size)
+{
+    initialize(seed);
+}
+
+u32 MersenneTwisterFast::nextUInt()
+{
+    if (index >= size + 397)
+    {
+        shuffle();
+    }
+
+    u32 y = mt[index++];
+    y ^= (y >> 11);
+    y ^= (y << 7) & 0x9D2C5680;
+    y ^= (y << 15) & 0xEFC60000;
+
+    return y;
+}
+
+u16 MersenneTwisterFast::nextUShort()
+{
+    return nextUInt() >> 16;
+}
+
+u32 MersenneTwisterFast::next()
+{
+    return nextUInt();
+}
+
+void MersenneTwisterFast::setSeed(u32 seed, u32 frames)
+{
+    initialize(seed);
+    advanceFrames(frames);
+}
+
+void MersenneTwisterFast::advanceFrames(u32 frames)
+{
+    index += frames;
+    while (index >= 397 + size)
+    {
+        shuffle();
+    }
+}
+
+void MersenneTwisterFast::initialize(u32 seed)
+{
+    mt[0] = seed;
+
+    for (index = 1; index < size + 397; index++)
+    {
+        mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
+    }
+}
+
+void MersenneTwisterFast::shuffle()
+{
+    for (u16 i = 0; i < size; i++)
+    {
+        u32 y = (mt[i] & 0x80000000) | (mt[i + 1] & 0x7FFFFFFF);
+        u32 next = y >> 1;
+
+        if (y & 1)
+        {
+            next ^= 0x9908B0DF;
+        }
+
+        mt[i] = next ^ mt[i + 397];
+    }
+
+    index -= size + 397;
 }

@@ -56,7 +56,11 @@ enum Method : u8
     Gen4Combined,
     Method5IVs,
     Method5CGear,
-    Method5
+    Method5,
+    BWBred,
+    BW2Bred,
+    DreamRadar,
+    Method5Event
     // TODO: Add Gen 5 egg/events
 };
 

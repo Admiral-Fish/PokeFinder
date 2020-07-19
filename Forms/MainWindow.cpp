@@ -22,6 +22,7 @@
 #include <Forms/Gen3/Eggs3.hpp>
 #include <Forms/Gen3/GameCube.hpp>
 #include <Forms/Gen3/IDs3.hpp>
+#include <Forms/Gen3/Profile/ProfileManager3.hpp>
 #include <Forms/Gen3/Stationary3.hpp>
 #include <Forms/Gen3/Tools/GameCubeRTC.hpp>
 #include <Forms/Gen3/Tools/GameCubeSeedFinder.hpp>
@@ -33,11 +34,18 @@
 #include <Forms/Gen3/Wild3.hpp>
 #include <Forms/Gen4/Eggs4.hpp>
 #include <Forms/Gen4/IDs4.hpp>
+#include <Forms/Gen4/Profile/ProfileManager4.hpp>
 #include <Forms/Gen4/Stationary4.hpp>
 #include <Forms/Gen4/Tools/ChainedSID.hpp>
 #include <Forms/Gen4/Tools/SeedtoTime4.hpp>
 #include <Forms/Gen4/Wild4.hpp>
-//#include <Forms/Gen5/Stationary5.hpp>
+#include <Forms/Gen5/DreamRadar.hpp>
+#include <Forms/Gen5/Eggs5.hpp>
+#include <Forms/Gen5/Event5.hpp>
+#include <Forms/Gen5/IDs5.hpp>
+#include <Forms/Gen5/Profile/ProfileCalibrator5.hpp>
+#include <Forms/Gen5/Profile/ProfileManager5.hpp>
+#include <Forms/Gen5/Stationary5.hpp>
 #include <Forms/Util/EncounterLookup.hpp>
 #include <Forms/Util/IVCalculator.hpp>
 #include <Forms/Util/IVtoPID.hpp>
@@ -78,7 +86,11 @@ MainWindow::~MainWindow()
     delete wild4;
     delete egg4;
     delete ids4;
-    // delete stationary5;
+    delete stationary5;
+    delete event5;
+    delete dreamRadar;
+    delete egg5;
+    delete ids5;
 }
 
 void MainWindow::setupModels()
@@ -125,6 +137,24 @@ void MainWindow::setupModels()
         styleGroup->addAction(action);
     }
 
+    threadGroup = new QActionGroup(ui->menuThreads);
+    threadGroup->setExclusive(true);
+    connect(threadGroup, &QActionGroup::triggered, this, &MainWindow::slotThreadChanged);
+    int threads = setting.value("settings/threads", QThread::idealThreadCount()).toInt();
+    for (int i = 1; i <= QThread::idealThreadCount(); i++)
+    {
+        auto *action = ui->menuThreads->addAction(QString::number(i));
+        action->setData(i);
+        action->setCheckable(true);
+
+        if (threads == i)
+        {
+            action->setChecked(true);
+        }
+
+        threadGroup->addAction(action);
+    }
+
     connect(ui->pushButtonStationary3, &QPushButton::clicked, this, &MainWindow::openStationary3);
     connect(ui->pushButtonWild3, &QPushButton::clicked, this, &MainWindow::openWild3);
     connect(ui->pushButtonGameCube, &QPushButton::clicked, this, &MainWindow::openGameCube);
@@ -136,16 +166,26 @@ void MainWindow::setupModels()
     connect(ui->actionJirachiPattern, &QAction::triggered, this, &MainWindow::openJirachiPattern);
     connect(ui->actionPIDtoIV, &QAction::triggered, this, &MainWindow::openPIDtoIV);
     connect(ui->actionPokeSpot, &QAction::triggered, this, &MainWindow::openPokeSpot);
+    connect(ui->actionProfileManager3, &QAction::triggered, this, &MainWindow::openProfileManager3);
     connect(ui->actionSeedtoTime3, &QAction::triggered, this, &MainWindow::openSeedtoTime3);
     connect(ui->actionSpindaPainter, &QAction::triggered, this, &MainWindow::openSpindaPainter);
+
     connect(ui->pushButtonStationary4, &QPushButton::clicked, this, &MainWindow::openStationary4);
     connect(ui->pushButtonWild4, &QPushButton::clicked, this, &MainWindow::openWild4);
     connect(ui->pushButtonEgg4, &QPushButton::clicked, this, &MainWindow::openEgg4);
     connect(ui->pushButtonIDs4, &QPushButton::clicked, this, &MainWindow::openIDs4);
+    connect(ui->actionProfileManager4, &QAction::triggered, this, &MainWindow::openProfileManager4);
     connect(ui->actionIVtoPID4, &QAction::triggered, this, &MainWindow::openIVtoPID);
     connect(ui->actionSeedtoTime4, &QAction::triggered, this, &MainWindow::openSeedtoTime4);
     connect(ui->actionSIDfromChainedShiny, &QAction::triggered, this, &MainWindow::openSIDFromChainedShiny);
-    // connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
+
+    connect(ui->pushButtonStationary5, &QPushButton::clicked, this, &MainWindow::openStationary5);
+    connect(ui->pushButtonEvent5, &QPushButton::clicked, this, &MainWindow::openEvent5);
+    connect(ui->pushButtonDreamRadar, &QPushButton::clicked, this, &MainWindow::openDreamRadar);
+    connect(ui->pushButtonEgg5, &QPushButton::clicked, this, &MainWindow::openEgg5);
+    connect(ui->pushButtonIDs5, &QPushButton::clicked, this, &MainWindow::openIDs5);
+    connect(ui->actionProfileCalibrator, &QAction::triggered, this, &MainWindow::openProfileCalibrator);
+    connect(ui->actionProfileManager5, &QAction::triggered, this, &MainWindow::openProfileManager5);
     connect(ui->actionEncounterLookup, &QAction::triggered, this, &MainWindow::openEncounterLookup);
     connect(ui->actionIVCalculator, &QAction::triggered, this, &MainWindow::openIVCalculator);
     connect(ui->actionResearcher, &QAction::triggered, this, &MainWindow::openResearcher);
@@ -193,6 +233,15 @@ void MainWindow::slotStyleChanged(QAction *action)
                 QApplication::quit();
             }
         }
+    }
+}
+
+void MainWindow::slotThreadChanged(QAction *action)
+{
+    if (action)
+    {
+        QSettings setting;
+        setting.setValue("settings/threads", action->data().toInt());
     }
 }
 
@@ -266,13 +315,25 @@ void MainWindow::updateProfiles(int num)
             egg4->updateProfiles();
         }
     }
-    /*else if (num == 5)
+    else if (num == 5)
     {
         if (stationary5)
         {
             stationary5->updateProfiles();
         }
-    }*/
+        if (event5)
+        {
+            event5->updateProfiles();
+        }
+        if (dreamRadar)
+        {
+            dreamRadar->updateProfiles();
+        }
+        if (ids5)
+        {
+            ids5->updateProfiles();
+        }
+    }
 }
 
 void MainWindow::openStationary3()
@@ -371,6 +432,13 @@ void MainWindow::openPokeSpot()
     pokeSpot->raise();
 }
 
+void MainWindow::openProfileManager3()
+{
+    auto *manager = new ProfileManager3();
+    connect(manager, &ProfileManager3::updateProfiles, this, [=] { updateProfiles(3); });
+    manager->show();
+}
+
 void MainWindow::openSeedtoTime3()
 {
     auto *seedToTime = new SeedTime3();
@@ -428,6 +496,13 @@ void MainWindow::openIDs4()
     ids4->raise();
 }
 
+void MainWindow::openProfileManager4()
+{
+    auto *manager = new ProfileManager4();
+    connect(manager, &ProfileManager4::updateProfiles, this, [=] { updateProfiles(4); });
+    manager->show();
+}
+
 void MainWindow::openSeedtoTime4()
 {
     auto *seedToTime = new SeedtoTime4();
@@ -442,7 +517,7 @@ void MainWindow::openSIDFromChainedShiny()
     chainedSID->raise();
 }
 
-/*void MainWindow::openStationary5()
+void MainWindow::openStationary5()
 {
     if (!stationary5)
     {
@@ -451,7 +526,106 @@ void MainWindow::openSIDFromChainedShiny()
     }
     stationary5->show();
     stationary5->raise();
-}*/
+
+    if (!stationary5->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        stationary5->close();
+    }
+}
+
+void MainWindow::openEvent5()
+{
+    if (!event5)
+    {
+        event5 = new Event5();
+        connect(event5, &Event5::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    event5->show();
+    event5->raise();
+
+    if (!event5->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        event5->close();
+    }
+}
+
+void MainWindow::openDreamRadar()
+{
+    if (!dreamRadar)
+    {
+        dreamRadar = new DreamRadar();
+        connect(dreamRadar, &DreamRadar::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    dreamRadar->show();
+    dreamRadar->raise();
+
+    if (!dreamRadar->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        dreamRadar->close();
+    }
+}
+
+void MainWindow::openEgg5()
+{
+    if (!egg5)
+    {
+        egg5 = new Eggs5();
+        connect(egg5, &Eggs5::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    egg5->show();
+    egg5->raise();
+
+    if (!egg5->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        egg5->close();
+    }
+}
+
+void MainWindow::openIDs5()
+{
+    if (!ids5)
+    {
+        ids5 = new IDs5();
+        connect(ids5, &IDs5::alertProfiles, this, &MainWindow::updateProfiles);
+    }
+    ids5->show();
+    ids5->raise();
+
+    if (!ids5->hasProfiles())
+    {
+        QMessageBox message(QMessageBox::Warning, tr("No profiles found"),
+                            tr("Please use the Profile Calibrator under Gen 5 Tools to create one."));
+        message.exec();
+        ids5->close();
+    }
+}
+
+void MainWindow::openProfileCalibrator()
+{
+    auto *calibrator = new ProfileCalibrator5();
+    connect(calibrator, &ProfileCalibrator5::alertProfiles, this, &MainWindow::updateProfiles);
+    calibrator->show();
+    calibrator->raise();
+}
+
+void MainWindow::openProfileManager5()
+{
+    auto *manager = new ProfileManager5();
+    connect(manager, &ProfileManager5::updateProfiles, this, [=] { updateProfiles(5); });
+    manager->show();
+}
 
 void MainWindow::openEncounterLookup()
 {

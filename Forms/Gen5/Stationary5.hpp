@@ -42,6 +42,7 @@ public:
     explicit Stationary5(QWidget *parent = nullptr);
     ~Stationary5() override;
     void updateProfiles();
+    bool hasProfiles() const;
 
 private:
     Ui::Stationary5 *ui;

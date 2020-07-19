@@ -25,11 +25,15 @@
 enum Encounter : u8
 {
     Grass,
+    DoubleGrass,
+    SpecialGrass,
     RockSmash,
     Surfing,
+    SpecialSurf,
     OldRod,
     GoodRod,
     SuperRod,
+    SpecialSuperRod,
     Stationary,
     SafariZone,
     BugCatchingContest,

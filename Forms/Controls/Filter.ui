@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>344</width>
-    <height>261</height>
+    <width>484</width>
+    <height>124</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string notr="true">Filter</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" rowspan="9">
+   <item row="0" column="0" rowspan="4">
     <widget class="IVFilter" name="ivFilter" native="true"/>
    </item>
    <item row="0" column="1">
@@ -55,6 +55,42 @@
      </item>
     </widget>
    </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="labelEncounterSlot">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Encounter Slot</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="CheckList" name="checkListEncounterSlot">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QPushButton" name="pushButtonEncounterSlotAny">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Any</string>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="1">
     <widget class="QLabel" name="labelGender">
      <property name="sizePolicy">
@@ -91,6 +127,42 @@
        <string notr="true">♀</string>
       </property>
      </item>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QLabel" name="labelHiddenPower">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Hidden Power</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="CheckList" name="checkListHiddenPower">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="QPushButton" name="pushButtonHiddenPowerAny">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Any</string>
+     </property>
     </widget>
    </item>
    <item row="2" column="1">
@@ -151,79 +223,7 @@
      </item>
     </widget>
    </item>
-   <item row="3" column="1">
-    <widget class="QLabel" name="labelEncounterSlot">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Encounter Slot</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="2">
-    <widget class="CheckList" name="checkListEncounterSlot">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="3">
-    <widget class="QPushButton" name="pushButtonEncounterSlotAny">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Any</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QLabel" name="labelHiddenPower">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Hidden Power</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="2">
-    <widget class="CheckList" name="checkListHiddenPower">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="3">
-    <widget class="QPushButton" name="pushButtonHiddenPowerAny">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Any</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="1">
+   <item row="2" column="3">
     <widget class="QLabel" name="labelNature">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -236,7 +236,7 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="2">
+   <item row="2" column="4">
     <widget class="CheckList" name="checkListNature">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -246,7 +246,7 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="3">
+   <item row="2" column="5">
     <widget class="QPushButton" name="pushButtonNatureAny">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -259,7 +259,7 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="1">
+   <item row="3" column="1">
     <widget class="QLabel" name="labelShiny">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -272,7 +272,7 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="2">
+   <item row="3" column="2">
     <widget class="ComboBox" name="comboBoxShiny">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -302,21 +302,14 @@
      </item>
     </widget>
    </item>
-   <item row="7" column="1">
+   <item row="3" column="3">
     <widget class="QCheckBox" name="checkBoxUseDelay">
      <property name="text">
       <string>Use Delay</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="1">
-    <widget class="QCheckBox" name="checkBoxDisableFilters">
-     <property name="text">
-      <string>Disable Filters</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="2">
+   <item row="3" column="4">
     <widget class="TextBox" name="textBoxDelay">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -326,24 +319,20 @@
      </property>
     </widget>
    </item>
+   <item row="3" column="5">
+    <widget class="QCheckBox" name="checkBoxDisableFilters">
+     <property name="text">
+      <string>Disable Filters</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>IVFilter</class>
-   <extends>QWidget</extends>
-   <header>Forms/Controls/IVFilter.hpp</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>TextBox</class>
    <extends>QLineEdit</extends>
    <header>Forms/Controls/TextBox.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>Forms/Controls/ComboBox.hpp</header>
   </customwidget>
   <customwidget>
    <class>CheckList</class>
@@ -353,18 +342,29 @@
     <slot>resetChecks()</slot>
    </slots>
   </customwidget>
+  <customwidget>
+   <class>ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Forms/Controls/ComboBox.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>IVFilter</class>
+   <extends>QWidget</extends>
+   <header>Forms/Controls/IVFilter.hpp</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>comboBoxAbility</tabstop>
   <tabstop>comboBoxGender</tabstop>
   <tabstop>comboBoxGenderRatio</tabstop>
+  <tabstop>comboBoxShiny</tabstop>
   <tabstop>checkListEncounterSlot</tabstop>
   <tabstop>pushButtonEncounterSlotAny</tabstop>
   <tabstop>checkListHiddenPower</tabstop>
   <tabstop>pushButtonHiddenPowerAny</tabstop>
   <tabstop>checkListNature</tabstop>
   <tabstop>pushButtonNatureAny</tabstop>
-  <tabstop>comboBoxShiny</tabstop>
   <tabstop>checkBoxUseDelay</tabstop>
   <tabstop>textBoxDelay</tabstop>
   <tabstop>checkBoxDisableFilters</tabstop>

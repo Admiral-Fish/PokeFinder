@@ -23,12 +23,15 @@
 #include <Core/Util/Global.hpp>
 
 enum DSType : u8;
+enum Game : u16;
+enum Language : u8;
 class Profile5;
 
 class SHA1
 {
 public:
     explicit SHA1(const Profile5 &profile);
+    SHA1(Game version, Language language, DSType type, u64 mac, bool softReset, u8 vFrame, u8 gxStat);
     u64 hashSeed();
     void precompute();
     void setTimer0(u32 timer0, u8 vcount);

@@ -29,6 +29,7 @@ ProfileEditor5::ProfileEditor5(QWidget *parent) : QDialog(parent), ui(new Ui::Pr
     setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
 
     setupModels();
+    versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }
 
 ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDialog(parent), ui(new Ui::ProfileEditor5)
@@ -44,8 +45,8 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
     ui->textBoxSID->setText(QString::number(profile.getSID()));
     ui->textBoxMAC->setText(QString::number(profile.getMac(), 16));
     ui->textBoxVCount->setText(QString::number(profile.getVCount(), 16));
-    ui->textBoxGxStat->setText(QString::number(profile.getGxStat()));
-    ui->textBoxVFrame->setText(QString::number(profile.getVFrame()));
+    ui->textBoxGxStat->setText(QString::number(profile.getGxStat(), 16));
+    ui->textBoxVFrame->setText(QString::number(profile.getVFrame(), 16));
     ui->textBoxTimer0Min->setText(QString::number(profile.getTimer0Min(), 16));
     ui->textBoxTimer0Max->setText(QString::number(profile.getTimer0Max(), 16));
 
@@ -56,9 +57,37 @@ ProfileEditor5::ProfileEditor5(const Profile5 &profile, QWidget *parent) : QDial
 
     ui->checkBoxSkipLR->setChecked(profile.getSkipLR());
     ui->checkBoxSoftReset->setChecked(profile.getSoftReset());
+    ui->checkBoxMemoryLink->setChecked(profile.getMemoryLink());
+    ui->checkBoxShinyCharm->setChecked(profile.getShinyCharm());
 
     isEditing = true;
     original = profile;
+
+    versionIndexChanged(ui->comboBoxVersion->currentIndex());
+}
+
+ProfileEditor5::ProfileEditor5(Game version, Language language, DSType dsType, u64 mac, u8 vcount, u16 timer0, u8 gxstat, u8 vframe,
+                               QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::ProfileEditor5)
+{
+    ui->setupUi(this);
+    setAttribute(Qt::WA_QuitOnClose, false);
+    setWindowFlags(Qt::Widget | Qt::MSWindowsFixedSizeDialogHint);
+
+    setupModels();
+
+    ui->comboBoxVersion->setCurrentIndex(ui->comboBoxVersion->findData(version));
+    ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findData(language));
+    ui->comboBoxDSType->setCurrentIndex(ui->comboBoxDSType->findData(dsType));
+    ui->textBoxMAC->setText(QString::number(mac, 16));
+    ui->textBoxVCount->setText(QString::number(vcount, 16));
+    ui->textBoxTimer0Min->setText(QString::number(timer0, 16));
+    ui->textBoxTimer0Max->setText(QString::number(timer0, 16));
+    ui->textBoxGxStat->setText(QString::number(gxstat, 16));
+    ui->textBoxVFrame->setText(QString::number(vframe, 16));
+
+    versionIndexChanged(ui->comboBoxVersion->currentIndex());
 }
 
 ProfileEditor5::~ProfileEditor5()
@@ -80,10 +109,10 @@ void ProfileEditor5::setupModels()
 {
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
-    ui->textBoxMAC->setValues(0, 0xFFFFFFFFF, 8, 16);
+    ui->textBoxMAC->setValues(0, 0xFFFFFFFFFF, 12, 16);
     ui->textBoxVCount->setValues(0, 0xFF, 2, 16);
-    ui->textBoxGxStat->setValues(0, 99, 2, 10);
-    ui->textBoxVFrame->setValues(0, 99, 2, 10);
+    ui->textBoxGxStat->setValues(0, 99, 2, 16);
+    ui->textBoxVFrame->setValues(0, 99, 2, 16);
     ui->textBoxTimer0Min->setValues(InputType::Seed16Bit);
     ui->textBoxTimer0Max->setValues(InputType::Seed16Bit);
 
@@ -108,6 +137,7 @@ void ProfileEditor5::setupModels()
 
     connect(ui->pushButtonAccept, &QPushButton::clicked, this, &ProfileEditor5::okay);
     connect(ui->pushButtonFindParameters, &QPushButton::clicked, this, &ProfileEditor5::findParameters);
+    connect(ui->comboBoxVersion, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ProfileEditor5::versionIndexChanged);
 }
 
 void ProfileEditor5::okay()
@@ -121,12 +151,13 @@ void ProfileEditor5::okay()
         return;
     }
 
-    fresh = Profile5(
-        ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()), ui->textBoxTID->getUShort(),
-        ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(), ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(),
-        ui->textBoxGxStat->getUChar(), ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),
-        ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(),
-        static_cast<DSType>(ui->comboBoxDSType->currentData().toInt()), static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()));
+    fresh = Profile5(ui->lineEditProfile->text(), static_cast<Game>(ui->comboBoxVersion->currentData().toInt()),
+                     ui->textBoxTID->getUShort(), ui->textBoxSID->getUShort(), ui->textBoxMAC->getULong(),
+                     ui->comboBoxKeypresses->getChecked(), ui->textBoxVCount->getUChar(), ui->textBoxGxStat->getUChar(),
+                     ui->textBoxVFrame->getUChar(), ui->checkBoxSkipLR->isChecked(), ui->textBoxTimer0Min->getUShort(),
+                     ui->textBoxTimer0Max->getUShort(), ui->checkBoxSoftReset->isChecked(), ui->checkBoxMemoryLink->isChecked(),
+                     ui->checkBoxShinyCharm->isChecked(), static_cast<DSType>(ui->comboBoxDSType->currentData().toInt()),
+                     static_cast<Language>(ui->comboBoxLanguage->currentData().toInt()));
 
     done(QDialog::Accepted);
 }
@@ -138,4 +169,24 @@ void ProfileEditor5::findParameters()
     calibrator->raise();
 
     done(QDialog::Rejected);
+}
+
+void ProfileEditor5::versionIndexChanged(int index)
+{
+    if (index >= 0)
+    {
+        Game version = static_cast<Game>(ui->comboBoxVersion->currentData().toInt());
+        if (version & Game::BW2)
+        {
+            ui->checkBoxMemoryLink->setVisible(true);
+            ui->checkBoxShinyCharm->setVisible(true);
+        }
+        else
+        {
+            ui->checkBoxMemoryLink->setVisible(false);
+            ui->checkBoxMemoryLink->setChecked(false);
+            ui->checkBoxShinyCharm->setVisible(false);
+            ui->checkBoxShinyCharm->setChecked(false);
+        }
+    }
 }

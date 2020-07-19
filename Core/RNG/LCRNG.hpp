@@ -30,7 +30,7 @@ public:
     {
     }
 
-    void advanceFrames(u32 frames) override
+    void advanceFrames(u32 frames) final
     {
         for (u32 frame = 0; frame < frames; frame++)
         {
@@ -48,12 +48,12 @@ public:
         return seed = seed * mult + add;
     }
 
-    u32 next() override
+    u32 next() final
     {
         return nextUInt();
     }
 
-    void setSeed(u32 seed, u32 frames = 0) override
+    void setSeed(u32 seed, u32 frames = 0) final
     {
         this->seed = seed;
         advanceFrames(frames);

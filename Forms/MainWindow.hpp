@@ -37,7 +37,11 @@ class Stationary4;
 class Wild4;
 class Eggs4;
 class IDs4;
-// class Stationary5;
+class Stationary5;
+class Event5;
+class DreamRadar;
+class Eggs5;
+class IDs5;
 
 class MainWindow : public QMainWindow
 {
@@ -50,6 +54,7 @@ private:
     Ui::MainWindow *ui;
     QActionGroup *langGroup = nullptr;
     QActionGroup *styleGroup = nullptr;
+    QActionGroup *threadGroup = nullptr;
     QString currentLanguage;
     QString currentStyle;
 
@@ -62,13 +67,18 @@ private:
     Wild4 *wild4 = nullptr;
     Eggs4 *egg4 = nullptr;
     IDs4 *ids4 = nullptr;
-    // Stationary5 *stationary5 = nullptr;
+    Stationary5 *stationary5 = nullptr;
+    Event5 *event5 = nullptr;
+    DreamRadar *dreamRadar = nullptr;
+    Eggs5 *egg5 = nullptr;
+    IDs5 *ids5 = nullptr;
 
     void setupModels();
 
 private slots:
     void slotLanguageChanged(QAction *action);
     void slotStyleChanged(QAction *action);
+    void slotThreadChanged(QAction *action);
     void checkUpdates();
     void updateProfiles(int num);
     void openStationary3();
@@ -82,15 +92,23 @@ private slots:
     void openJirachiPattern();
     void openPIDtoIV();
     void openPokeSpot();
+    void openProfileManager3();
     void openSeedtoTime3();
     void openSpindaPainter();
     void openStationary4();
     void openWild4();
     void openEgg4();
     void openIDs4();
+    void openProfileManager4();
     void openSeedtoTime4();
     void openSIDFromChainedShiny();
-    // void openStationary5();
+    void openStationary5();
+    void openEvent5();
+    void openDreamRadar();
+    void openEgg5();
+    void openIDs5();
+    void openProfileCalibrator();
+    void openProfileManager5();
     void openEncounterLookup();
     void openIVCalculator();
     void openResearcher();

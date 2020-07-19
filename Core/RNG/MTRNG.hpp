@@ -22,47 +22,40 @@
 
 #include <Core/RNG/IRNG.hpp>
 
-class MT : public IRNG<u32>
-{
-public:
-    void advanceFrames(u32 frames) override;
-    void setSeed(u32 seed, u32 frames) override;
-    u16 nextUShort();
-    u32 next() override;
-    virtual u32 nextUInt() = 0;
-
-protected:
-    u32 mt[624];
-    u32 index;
-    virtual void shuffle();
-    virtual void initialize(u32 seed);
-};
-
-class MersenneTwister : public MT
+class MersenneTwister final : public IRNG<u32>
 {
 public:
     MersenneTwister(u32 seed = 0);
-    u32 nextUInt() override;
-};
-
-class MersenneTwisterUntempered : public MT
-{
-public:
-    MersenneTwisterUntempered(u32 seed = 0);
-    u32 nextUInt() override;
-};
-
-class MersenneTwisterFast : public MT
-{
-public:
-    explicit MersenneTwisterFast(u32 calls, u32 seed = 0);
-    u32 nextUInt() override;
+    void advanceFrames(u32 frames) final;
+    u32 nextUInt();
+    u16 nextUShort();
+    u32 next() final;
+    void setSeed(u32 seed, u32 frames = 0) final;
 
 private:
-    u32 calls;
+    u32 mt[624];
+    u16 index;
+    void shuffle();
+    void initialize(u32 seed);
+};
 
-    void initialize(u32 seed) override;
-    void shuffle() override;
+class MersenneTwisterFast : public IRNG<u32>
+{
+public:
+    explicit MersenneTwisterFast(u32 seed = 0, u8 size = 0);
+    void advanceFrames(u32 frames) final;
+    u32 nextUInt();
+    u16 nextUShort();
+    u32 next() final;
+    void setSeed(u32 seed, u32 frames = 0) final;
+
+private:
+    u32 mt[624];
+    u8 size;
+    u16 index;
+
+    void shuffle();
+    void initialize(u32 seed);
 };
 
 #endif // MTRNG_HPP

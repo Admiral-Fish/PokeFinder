@@ -9,9 +9,9 @@ class StationaryFrame5 : public Frame5, public StationaryFrame
 public:
     StationaryFrame5() = default;
 
-    explicit StationaryFrame5(u32 frame) : StationaryFrame(frame)
-    {
-    }
+    // explicit StationaryFrame5(u32 frame) : StationaryFrame(frame)
+    //{
+    //}
 
     u32 getIVFrame() const
     {

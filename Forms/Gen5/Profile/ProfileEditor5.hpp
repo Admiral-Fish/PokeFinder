@@ -40,6 +40,8 @@ signals:
 public:
     explicit ProfileEditor5(QWidget *parent = nullptr);
     explicit ProfileEditor5(const Profile5 &profile, QWidget *parent = nullptr);
+    ProfileEditor5(Game version, Language language, DSType dsType, u64 mac, u8 vcount, u16 timer0, u8 gxstat, u8 vframe,
+                   QWidget *parent = nullptr);
     ~ProfileEditor5() override;
     Profile5 getNewProfile();
     Profile5 getOriginal();
@@ -55,6 +57,7 @@ private:
 private slots:
     void okay();
     void findParameters();
+    void versionIndexChanged(int index);
 };
 
 #endif // PROFILEEDITOR5_HPP

@@ -20,11 +20,10 @@
 #ifndef GENERATOR5_HPP
 #define GENERATOR5_HPP
 
-#include <Core/Gen5/Frames/StationaryFrame5.hpp>
+#include <Core/Parents/Frames/StationaryFrame.hpp>
 #include <Core/Parents/Generators/StationaryGenerator.hpp>
 
 enum Encounter : u8;
-class MT;
 
 class StationaryGenerator5 : public StationaryGenerator
 {
@@ -32,25 +31,22 @@ public:
     StationaryGenerator5() = default;
     StationaryGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter,
                          const FrameFilter &filter);
-    ~StationaryGenerator5();
-    QVector<StationaryFrame5> generate(u64 seed) const;
+    QVector<StationaryFrame> generate(u64 seed) const;
 
 private:
     u8 idBit;
     Encounter encounter;
-    MT *mt;
 
-    QVector<StationaryFrame5> generateRoamerIVs(u64 seed) const;
-    QVector<StationaryFrame5> generateIVs(u64 seed) const;
-    QVector<StationaryFrame5> generateRoamerCGear(u64 seed) const;
-    QVector<StationaryFrame5> generateCGear(u64 seed) const;
-    QVector<StationaryFrame5> generateStationary(u64 seed) const;
-    QVector<StationaryFrame5> generateRoamer(u64 seed);
-    QVector<StationaryFrame5> generateGift(u64 seed);
-    QVector<StationaryFrame5> generateEntraLink(u64 seed);
-    QVector<StationaryFrame5> generateLarvestaEgg(u64 seed);
-    QVector<StationaryFrame5> generateHiddenGrotto(u64 seed);
-    void initializeMT(u8 num);
+    QVector<StationaryFrame> generateRoamerIVs(u64 seed) const;
+    QVector<StationaryFrame> generateIVs(u64 seed) const;
+    QVector<StationaryFrame> generateRoamerCGear(u64 seed) const;
+    QVector<StationaryFrame> generateCGear(u64 seed) const;
+    QVector<StationaryFrame> generateStationary(u64 seed) const;
+    QVector<StationaryFrame> generateRoamer(u64 seed);
+    QVector<StationaryFrame> generateGift(u64 seed);
+    QVector<StationaryFrame> generateEntraLink(u64 seed);
+    QVector<StationaryFrame> generateLarvestaEgg(u64 seed);
+    QVector<StationaryFrame> generateHiddenGrotto(u64 seed);
 };
 
 #endif // GENERATOR5_HPP

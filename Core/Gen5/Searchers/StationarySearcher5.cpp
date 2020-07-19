@@ -104,15 +104,15 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
     {
         sha.setTimer0(timer0, profile.getVCount());
 
-        for (int i = 0; i < values.size(); i++)
+        for (QDate date = start; date <= end; date = date.addDays(1))
         {
-            sha.setButton(values.at(i));
+            sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
+                        static_cast<u8>(date.dayOfWeek()));
+            sha.precompute();
 
-            for (QDate date = start; date <= end; date = date.addDays(1))
+            for (int i = 0; i < values.size(); i++)
             {
-                sha.setDate(static_cast<u8>(date.year() - 2000), static_cast<u8>(date.month()), static_cast<u8>(date.day()),
-                            static_cast<u8>(date.dayOfWeek()));
-                sha.precompute();
+                sha.setButton(values.at(i));
 
                 for (u8 hour = 0; hour < 24; hour++)
                 {
@@ -151,15 +151,15 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                             }
                             else
                             {
-                                frames = ivGenerator.generate(seed);
+                                // frames = ivGenerator.generate(seed);
                             }
 
                             for (auto ivFrame : frames)
                             {
-                                ivFrame.setDateTime(QDateTime(date, QTime(hour, minute, second)));
-                                ivFrame.setInitialSeed(seed);
-                                ivFrame.setButtons(buttons.at(i));
-                                ivFrame.setTimer0(timer0);
+                                // ivFrame.setDateTime(QDateTime(date, QTime(hour, minute, second)));
+                                // ivFrame.setInitialSeed(seed);
+                                // ivFrame.setButtons(buttons.at(i));
+                                // ivFrame.setTimer0(timer0);
 
                                 if (includePID)
                                 {
