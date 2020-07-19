@@ -103,30 +103,4 @@
         <file alias="powers_ko.txt">Core/Resources/Text/ko/powers_ko.txt</file>
         <file alias="powers_zh.txt">Core/Resources/Text/zh/powers_zh.txt</file>
     </qresource>
-    <qresource prefix="/ivs">
-        <file alias="MTRNG-Frame1.bin">Core/Resources/IVs/MTRNG-Frame1.bin</file>
-        <file alias="MTRNG-Frame2.bin">Core/Resources/IVs/MTRNG-Frame2.bin</file>
-        <file alias="MTRNG-Frame3.bin">Core/Resources/IVs/MTRNG-Frame3.bin</file>
-        <file alias="MTRNG-Frame4.bin">Core/Resources/IVs/MTRNG-Frame4.bin</file>
-        <file alias="MTRNG-Frame5.bin">Core/Resources/IVs/MTRNG-Frame5.bin</file>
-        <file alias="MTRNG-Frame6.bin">Core/Resources/IVs/MTRNG-Frame6.bin</file>
-        <file alias="MTRNG-Frame7.bin">Core/Resources/IVs/MTRNG-Frame7.bin</file>
-        <file alias="MTRNG-Frame8.bin">Core/Resources/IVs/MTRNG-Frame8.bin</file>
-        <file alias="MTRNG-Frame1-Roamer.bin">Core/Resources/IVs/MTRNG-Frame1-Roamer.bin</file>
-        <file alias="MTRNG-Frame2-Roamer.bin">Core/Resources/IVs/MTRNG-Frame2-Roamer.bin</file>
-        <file alias="MTRNG-Frame3-Roamer.bin">Core/Resources/IVs/MTRNG-Frame3-Roamer.bin</file>
-        <file alias="MTRNG-Frame4-Roamer.bin">Core/Resources/IVs/MTRNG-Frame4-Roamer.bin</file>
-        <file alias="MTRNG-Frame5-Roamer.bin">Core/Resources/IVs/MTRNG-Frame5-Roamer.bin</file>
-        <file alias="MTRNG-Frame6-Roamer.bin">Core/Resources/IVs/MTRNG-Frame6-Roamer.bin</file>
-        <file alias="MTRNG-Frame21-Entralink.bin">Core/Resources/IVs/MTRNG-Frame21-Entralink.bin</file>
-        <file alias="MTRNG-Frame22-Entralink.bin">Core/Resources/IVs/MTRNG-Frame22-Entralink.bin</file>
-        <file alias="MTRNG-Frame23-Entralink.bin">Core/Resources/IVs/MTRNG-Frame23-Entralink.bin</file>
-        <file alias="MTRNG-Frame24-Entralink.bin">Core/Resources/IVs/MTRNG-Frame24-Entralink.bin</file>
-        <file alias="MTRNG-Frame25-Entralink.bin">Core/Resources/IVs/MTRNG-Frame25-Entralink.bin</file>
-        <file alias="MTRNG-Frame26-Entralink.bin">Core/Resources/IVs/MTRNG-Frame26-Entralink.bin</file>
-        <file alias="MTRNG-Frame27-Entralink.bin">Core/Resources/IVs/MTRNG-Frame27-Entralink.bin</file>
-        <file alias="MTRNG-Frame28-Entralink.bin">Core/Resources/IVs/MTRNG-Frame28-Entralink.bin</file>
-        <file alias="MTRNG-Frame29-Entralink.bin">Core/Resources/IVs/MTRNG-Frame29-Entralink.bin</file>
-        <file alias="MTRNG-Frame30-Entralink.bin">Core/Resources/IVs/MTRNG-Frame30-Entralink.bin</file>
-    </qresource>
 </RCC>
