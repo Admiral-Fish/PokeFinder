@@ -7,7 +7,7 @@ QMAKE_LRELEASE_FLAGS = -nounfinished -removeidentical
 
 TARGET = PokeFinder
 TEMPLATE = app
-VERSION = 2.5.3
+VERSION = 2.5.4
 #GIT_VERSION = $$system(git rev-parse HEAD)
 #GIT_BRANCH = $$system(git rev-parse --abbrev-ref HEAD)
 QMAKE_TARGET_DESCRIPTION = PokeFinder

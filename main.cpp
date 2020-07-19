@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
         locale = "zh";
         setting.setValue("settings/locale", locale);
     }
+
     Translator::init(locale);
 
     QTranslator translator;
