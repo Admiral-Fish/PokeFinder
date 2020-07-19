@@ -172,7 +172,7 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
         u8 hpIV = rng.nextUShort() & 31;
         rng.advanceFrames(1); // Other IV Call
 
-        rng.nextUInt(); // Blank (maybe ability)
+        rng.nextUInt(); // Ability
 
         generatePokemon(rng);
 
@@ -192,7 +192,7 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
         u8 hpIV = rng.nextUShort() & 31;
         rng.advanceFrames(1); // Other IV Call
 
-        rng.nextUInt(); // Blank (maybe ability)
+        rng.nextUInt(); // Ability
 
         generatePokemon(rng);
 
