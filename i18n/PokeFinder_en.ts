@@ -1357,11 +1357,6 @@
         <source>Cancel</source>
         <translation>Cancel</translation>
     </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeRTC.cpp" line="73"/>
-        <source>Copy Seed to Clipboard</source>
-        <translation>Copy Seed to Clipboard</translation>
-    </message>
 </context>
 <context>
     <name>GameCubeRTCModel</name>
@@ -1412,11 +1407,6 @@
         <location filename="../Models/Gen3/GameCubeModel.cpp" line="236"/>
         <source>First shadow set</source>
         <translation>First shadow set</translation>
-    </message>
-    <message>
-        <location filename="../Models/Gen3/GameCubeModel.cpp" line="238"/>
-        <source>Shiny skip</source>
-        <translation>Shiny skip</translation>
     </message>
     <message>
         <location filename="../Models/Gen3/GameCubeModel.hpp" line="54"/>
@@ -1533,11 +1523,6 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
-        <source>Pokémon</source>
-        <translation>Pokémon</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Enemy Lead</source>
         <translation>Enemy Lead</translation>
     </message>
@@ -1548,43 +1533,8 @@
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
-        <source>HP Stat</source>
-        <translation>HP Stat</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
-        <source>Top Left</source>
-        <translation>Top Left</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
-        <source>Bottom Left</source>
-        <translation>Bottom Left</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
-        <source>Bottom Right</source>
-        <translation>Bottom Right</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
-        <source>Top Right</source>
-        <translation>Top Right</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
-        <source>Enter starting from Round 2</source>
-        <translation>Enter starting from Round 2</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Colo</source>
         <translation>Colo</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
-        <source>Trainer Name</source>
-        <translation>Trainer Name</translation>
     </message>
     <message>
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
@@ -1607,80 +1557,60 @@
         <translation>Party Lead</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="242"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="350"/>
-        <source>Missing precalc file</source>
-        <translation>Missing precalc file</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="242"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="350"/>
-        <source>Would you like to download the precalc file?</source>
-        <translation>Would you like to download the precalc file?</translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="101"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="127"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="250"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="287"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="358"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="395"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="87"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="113"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="225"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="279"/>
         <source>Round #</source>
         <translation>Round #</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="106"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="132"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="92"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="118"/>
         <source>Your seed is %1. Copy to clipboard?</source>
         <translation>Your seed is %1. Copy to clipboard?</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="115"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="141"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="101"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="127"/>
         <source>Possible Results: %1</source>
         <translation>Possible Results: %1</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="154"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="140"/>
         <source>Result: Invalid</source>
         <translation>Result: Invalid</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="168"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="154"/>
         <source>Result: </source>
         <translation>Result: </translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="169"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="155"/>
         <source>Your seed(s) is %1. Copy to clipboard?</source>
         <translation>Your seed(s) is %1. Copy to clipboard?</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="251"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="359"/>
-        <source>Possible Results: </source>
-        <translation>Possible Results: </translation>
-    </message>
-    <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="404"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="288"/>
         <source>Missing info</source>
         <translation>Missing info</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="404"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="288"/>
         <source>You must have at least 10 entries</source>
         <translation>You must have at least 10 entries</translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="105"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="131"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="91"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="117"/>
         <source>Seed: </source>
         <translation>Seed: </translation>
     </message>
     <message>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="106"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="132"/>
-        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="169"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="92"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="118"/>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.cpp" line="155"/>
         <source>Seed found</source>
         <translation>Seed found</translation>
     </message>
@@ -1773,6 +1703,36 @@
         <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
         <source>Remove</source>
         <translation>Remove</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
+        <source>TSV</source>
+        <translation>TSV</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
+        <source>Top Left HP</source>
+        <translation>Top Left HP</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
+        <source>Top Right HP</source>
+        <translation>Top Right HP</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
+        <source>Bottom Left HP</source>
+        <translation>Bottom Left HP</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
+        <source>Bottom Right HP</source>
+        <translation>Bottom Right HP</translation>
+    </message>
+    <message>
+        <location filename="../Forms/Gen3/Tools/GameCubeSeedFinder.ui"/>
+        <source>Trainer</source>
+        <translation>Trainer</translation>
     </message>
 </context>
 <context>
