@@ -25,6 +25,8 @@
 class HiddenGrottoFrame
 {
 public:
+    HiddenGrottoFrame() = default;
+
     HiddenGrottoFrame(u32 frame, u8 group, u8 slot, u8 gender) : frame(frame), group(group), slot(slot), gender(gender)
     {
     }
