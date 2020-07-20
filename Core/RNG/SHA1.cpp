@@ -205,7 +205,7 @@ u64 SHA1::hashSeed()
     u64 part2 = changeEndian(a + 0xEFCDAB89);
 
     u64 seed = (part2 << 32) | part1;
-    return BWRNG(seed).nextULong();
+    return BWRNG(seed).next();
 }
 
 void SHA1::precompute()

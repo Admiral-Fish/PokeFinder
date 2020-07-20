@@ -31,13 +31,13 @@ inline bool isShiny(u32 pid, u16 tsv)
 inline u32 getPIDBackward(XDRNGR &rng)
 {
     u32 pid = rng.nextUShort();
-    pid |= rng.nextUInt() & 0xffff0000;
+    pid |= rng.next() & 0xffff0000;
     return pid;
 }
 
 inline u32 getPIDForward(XDRNG &rng)
 {
-    u32 pid = rng.nextUInt() & 0xffff0000;
+    u32 pid = rng.next() & 0xffff0000;
     pid |= rng.nextUShort();
     return pid;
 }

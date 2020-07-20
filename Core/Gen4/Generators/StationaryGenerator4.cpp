@@ -54,7 +54,7 @@ QVector<Frame> StationaryGenerator4::generateMethod1(u32 seed) const
     rng.advanceFrames(initialFrame - 1 + offset);
 
     // Method 1 [SEED] [PID] [PID] [IVS] [IVS]
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         Frame frame(initialFrame + cnt);
         PokeRNG go(rng.getSeed());
@@ -113,7 +113,7 @@ QVector<Frame> StationaryGenerator4::generateMethodJ(u32 seed) const
         break;
     }
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         Frame frame(initialFrame + cnt);
 
@@ -251,7 +251,7 @@ QVector<Frame> StationaryGenerator4::generateMethodK(u32 seed) const
         break;
     }
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         Frame frame(initialFrame + cnt);
 
@@ -370,7 +370,7 @@ QVector<Frame> StationaryGenerator4::generateWonderCardIVs(u32 seed) const
 
     // Wondercard IVs [SEED] [IVS] [IVS]
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         Frame frame(initialFrame + cnt);
         PokeRNG go(rng.getSeed());

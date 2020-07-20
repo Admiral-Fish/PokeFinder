@@ -120,7 +120,7 @@ QVector<Frame> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 sp
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        frame.setSeed(rng.nextUInt());
+        frame.setSeed(rng.next());
         frame.setPID(high, low);
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
@@ -167,7 +167,7 @@ QVector<Frame> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, 
         u16 low = rng.nextUShort();
         u16 high = rng.nextUShort();
 
-        frame.setSeed(rng.nextUInt());
+        frame.setSeed(rng.next());
         frame.setPID(high, low);
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);

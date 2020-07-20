@@ -27,10 +27,8 @@ class ResearcherFrame
 public:
     ResearcherFrame() = default;
     ResearcherFrame(bool rng64Bit, u32 frame);
-    u32 getFull32() const;
-    void setFull32(u32 seed);
-    u64 getFull64() const;
-    void setFull64(u64 seed);
+    u64 getState() const;
+    void setState(u64 seed);
     u32 getFrame() const;
     u64 getCustom(u8 x) const;
     void setCustom(u8 x, u64 val);
@@ -48,8 +46,7 @@ public:
 private:
     u64 custom[10];
     bool rng64Bit;
-    u64 full64;
-    u32 full32;
+    u64 state;
     u32 frame;
 };
 

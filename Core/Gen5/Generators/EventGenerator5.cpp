@@ -41,7 +41,7 @@ QVector<Frame> EventGenerator5::generate(u64 seed) const
     BWRNG rng(seed);
     rng.advanceFrames(initialFrame + offset - 1);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextULong())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         // TODO: set seed for chatot pitch
         Frame frame(initialFrame + cnt);

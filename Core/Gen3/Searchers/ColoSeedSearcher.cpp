@@ -126,7 +126,7 @@ void ColoSeedSearcher::search(u32 start, u32 end)
             {
             }
 
-            XDRNG rng(reverse.nextUInt());
+            XDRNG rng(reverse.next());
             if (searchSeed(rng))
             {
                 std::lock_guard<std::mutex> lock(resultMutex);
@@ -183,7 +183,7 @@ bool ColoSeedSearcher::searchSeed(XDRNG &rng)
 
         rng.advanceFrames(2); // IVs
 
-        rng.nextUInt(); // Ability
+        rng.next(); // Ability
 
         generatePokemon(rng, tsv, natures[enemyIndex][i], genders[enemyIndex][i], genderRatios[enemyIndex][i]);
     }
@@ -203,7 +203,7 @@ bool ColoSeedSearcher::searchSeed(XDRNG &rng)
 
         rng.advanceFrames(2); // IVs
 
-        rng.nextUInt(); // Ability
+        rng.next(); // Ability
 
         generatePokemon(rng, tsv, natures[playerIndex][i], genders[playerIndex][i], genderRatios[playerIndex][i]);
     }

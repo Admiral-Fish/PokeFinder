@@ -60,7 +60,7 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDColo(u32 seed) const
 
     // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         GameCubeFrame frame(initialFrame + cnt);
         XDRNG go(rng.getSeed());
@@ -98,7 +98,7 @@ QVector<GameCubeFrame> GameCubeGenerator::generateXDShadow(u32 seed) const
 
     QVector<LockInfo> locks = team.getLocks();
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         GameCubeFrame frame(initialFrame + cnt);
 
@@ -187,7 +187,7 @@ QVector<GameCubeFrame> GameCubeGenerator::generateColoShadow(u32 seed) const
 
     QVector<LockInfo> locks = team.getLocks();
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         GameCubeFrame frame(initialFrame + cnt);
 
@@ -276,7 +276,7 @@ QVector<GameCubeFrame> GameCubeGenerator::generateChannel(u32 seed) const
 
     // Method Channel [SEED] [SID] [PID] [PID] [BERRY] [GAME ORIGIN] [OT GENDER] [IV] [IV] [IV] [IV] [IV] [IV]
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         GameCubeFrame frame(initialFrame + cnt);
         XDRNG go(rng.getSeed());

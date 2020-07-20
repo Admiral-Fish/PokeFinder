@@ -21,7 +21,7 @@
 #include <Core/Gen4/HGSSRoamer.hpp>
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MTRNG.hpp>
+#include <Core/RNG/MT.hpp>
 
 namespace
 {
@@ -111,11 +111,11 @@ namespace Utilities
     {
         QStringList coins;
 
-        MersenneTwister rng(seed);
+        MT rng(seed);
 
         for (u8 i = 0; i < 20; i++)
         {
-            coins.append((rng.nextUInt() & 1) == 0 ? "T" : "H");
+            coins.append((rng.next() & 1) == 0 ? "T" : "H");
         }
 
         return coins.join(", ");

@@ -18,7 +18,7 @@
  */
 
 #include "IDSearcher4.hpp"
-#include <Core/RNG/MTRNG.hpp>
+#include <Core/RNG/MT.hpp>
 
 IDSearcher4::IDSearcher4(const IDFilter &filter) : filter(filter), searching(false), progress(0)
 {
@@ -41,10 +41,10 @@ void IDSearcher4::startSearch(bool infinite, u16 year, u32 minDelay, u32 maxDela
                 }
 
                 u32 seed = static_cast<u32>((ab << 24) | (cd << 16)) + efgh;
-                MersenneTwister mt(seed);
+                MT mt(seed);
                 mt.advanceFrames(1);
 
-                u32 sidtid = mt.nextUInt();
+                u32 sidtid = mt.next();
 
                 u16 tid = sidtid & 0xffff;
                 u16 sid = sidtid >> 16;

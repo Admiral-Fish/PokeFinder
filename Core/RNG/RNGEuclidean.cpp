@@ -63,7 +63,7 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsIV(u8 hp, u8 atk, u8 de
         if ((t % sub1) < 0x10000)
         {
             u32 fullFirst = first | static_cast<u32>(t / sub1);
-            u32 fullSecond = XDRNG(fullFirst).nextUInt();
+            u32 fullSecond = XDRNG(fullFirst).next();
             origin.append(QPair<u32, u32>(fullFirst, fullSecond));
         }
     }
@@ -86,7 +86,7 @@ QVector<QPair<u32, u32>> RNGEuclidean::recoverLower16BitsPID(u32 pid) const
         if ((t % sub1) < 0x10000)
         {
             u32 fullFirst = first | static_cast<u32>(t / sub1);
-            u32 fullSecond = XDRNG(fullFirst).nextUInt();
+            u32 fullSecond = XDRNG(fullFirst).next();
             origin.append(QPair<u32, u32>(fullFirst, fullSecond));
         }
     }
@@ -112,13 +112,13 @@ QVector<u32> RNGEuclidean::recoverLower27BitsChannel(u32 hp, u32 atk, u32 def, u
             // The euclidean divisor assures the first and last call match up
             // so there is no need to check if the last call lines up
             XDRNG rng(fullFirst);
-            if ((rng.nextUInt() >> 27) == atk)
+            if ((rng.next() >> 27) == atk)
             {
-                if ((rng.nextUInt() >> 27) == def)
+                if ((rng.next() >> 27) == def)
                 {
-                    if ((rng.nextUInt() >> 27) == spe)
+                    if ((rng.next() >> 27) == spe)
                     {
-                        if ((rng.nextUInt() >> 27) == spa)
+                        if ((rng.next() >> 27) == spa)
                         {
                             origin.append(fullFirst);
                         }

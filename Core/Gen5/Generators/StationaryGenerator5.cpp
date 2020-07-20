@@ -23,7 +23,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/Filters/FrameFilter.hpp>
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MTRNG.hpp>
+#include <Core/RNG/MT.hpp>
 #include <Core/RNG/RNGList.hpp>
 
 StationaryGenerator5::StationaryGenerator5(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
@@ -65,10 +65,10 @@ QVector<StationaryFrame> StationaryGenerator5::generateRoamerIVs(u64 seed) const
 {
     QVector<StationaryFrame> frames;
 
-    MersenneTwister mt(seed >> 32);
+    MT mt(seed >> 32);
     mt.advanceFrames(initialFrame - 1 + offset);
 
-    RNGList<u8, MersenneTwister, 100, 27> rngList(mt);
+    RNGList<u8, MT, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -99,10 +99,10 @@ QVector<StationaryFrame> StationaryGenerator5::generateIVs(u64 seed) const
 {
     QVector<StationaryFrame> frames;
 
-    MersenneTwister mt(seed >> 32);
+    MT mt(seed >> 32);
     mt.advanceFrames(initialFrame - 1 + offset);
 
-    RNGList<u8, MersenneTwister, 100, 27> rngList(mt);
+    RNGList<u8, MT, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -132,11 +132,11 @@ QVector<StationaryFrame> StationaryGenerator5::generateRoamerCGear(u64 seed) con
 {
     QVector<StationaryFrame> frames;
 
-    MersenneTwister mt(seed >> 32);
+    MT mt(seed >> 32);
     mt.advanceFrames(initialFrame - 1 + offset);
     mt.advanceFrames(2); // Skip first two frames
 
-    RNGList<u8, MersenneTwister, 100, 27> rngList(mt);
+    RNGList<u8, MT, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -167,11 +167,11 @@ QVector<StationaryFrame> StationaryGenerator5::generateCGear(u64 seed) const
 {
     QVector<StationaryFrame> frames;
 
-    MersenneTwister mt(seed >> 32);
+    MT mt(seed >> 32);
     mt.advanceFrames(initialFrame - 1 + offset);
     mt.advanceFrames(2); // Skip first two frames
 
-    RNGList<u8, MersenneTwister, 100, 27> rngList(mt);
+    RNGList<u8, MT, 100, 27> rngList(mt);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
     {
@@ -235,7 +235,7 @@ QVector<StationaryFrame> StationaryGenerator5::generateStationary(u64 seed) cons
             }
             else
             {
-                go.nextULong(); // TODO modify pid
+                go.next(); // TODO modify pid
                 frame.setNature(static_cast<u8>(go.nextUInt(25)));
             }
         }

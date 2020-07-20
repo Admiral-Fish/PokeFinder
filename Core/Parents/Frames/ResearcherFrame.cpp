@@ -23,24 +23,14 @@ ResearcherFrame::ResearcherFrame(bool rng64Bit, u32 frame) : custom {}, rng64Bit
 {
 }
 
-u32 ResearcherFrame::getFull32() const
+u64 ResearcherFrame::getState() const
 {
-    return full32;
+    return state;
 }
 
-void ResearcherFrame::setFull32(u32 seed)
+void ResearcherFrame::setState(u64 seed)
 {
-    full32 = seed;
-}
-
-u64 ResearcherFrame::getFull64() const
-{
-    return full64;
-}
-
-void ResearcherFrame::setFull64(u64 seed)
-{
-    full64 = seed;
+    state = seed;
 }
 
 u32 ResearcherFrame::getFrame() const
@@ -60,22 +50,22 @@ void ResearcherFrame::setCustom(u8 x, u64 val)
 
 u32 ResearcherFrame::getHigh32() const
 {
-    return full64 >> 32;
+    return state >> 32;
 }
 
 u32 ResearcherFrame::getLow32() const
 {
-    return full64 & 0xffffffff;
+    return state & 0xffffffff;
 }
 
 u32 ResearcherFrame::getHigh16() const
 {
-    return rng64Bit ? getHigh32() >> 16 : full32 >> 16;
+    return rng64Bit ? getHigh32() >> 16 : state >> 16;
 }
 
 u32 ResearcherFrame::getLow16() const
 {
-    return rng64Bit ? getHigh32() & 0xFFFF : full32 & 0xFFFF;
+    return rng64Bit ? getHigh32() & 0xFFFF : state & 0xFFFF;
 }
 
 u32 ResearcherFrame::getMod25() const

@@ -20,53 +20,8 @@
 #include "TinyMT.hpp"
 #include <cstring>
 
-TinyMT::TinyMT(u32 seed)
+TinyMT::TinyMT(u32 seed) : state { seed, 0x8f7011ee, 0xfc78ff1f, 0x3793fdff }
 {
-    initialize(seed);
-}
-
-TinyMT::TinyMT(const u32 state[])
-{
-    std::memcpy(this->state, state, sizeof(this->state));
-}
-
-void TinyMT::advanceFrames(u32 frames)
-{
-    for (u32 frame = 0; frame < frames; frame++)
-    {
-        nextState();
-    }
-}
-
-u32 TinyMT::nextUInt()
-{
-    nextState();
-    return temper();
-}
-
-u16 TinyMT::nextUShort()
-{
-    return nextUInt() >> 16;
-}
-
-u32 TinyMT::next()
-{
-    return nextUInt();
-}
-
-void TinyMT::setSeed(u32 seed, u32 frames)
-{
-    initialize(seed);
-    advanceFrames(frames);
-}
-
-void TinyMT::initialize(u32 seed)
-{
-    state[0] = seed;
-    state[1] = 0x8f7011ee;
-    state[2] = 0xfc78ff1f;
-    state[3] = 0x3793fdff;
-
     for (u8 i = 1; i < 8; i++)
     {
         state[i & 3] ^= 0x6c078965 * (state[(i - 1) & 3] ^ (state[(i - 1) & 3] >> 30)) + i;
@@ -84,6 +39,30 @@ void TinyMT::initialize(u32 seed)
     {
         nextState();
     }
+}
+
+TinyMT::TinyMT(const u32 state[])
+{
+    std::memcpy(this->state, state, sizeof(this->state));
+}
+
+void TinyMT::advanceFrames(u32 frames)
+{
+    for (u32 frame = 0; frame < frames; frame++)
+    {
+        nextState();
+    }
+}
+
+u32 TinyMT::next()
+{
+    nextState();
+    return temper();
+}
+
+u16 TinyMT::nextUShort()
+{
+    return next() >> 16;
 }
 
 void TinyMT::nextState()

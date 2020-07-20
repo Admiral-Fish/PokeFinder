@@ -39,7 +39,7 @@ QVector<GameCubeFrame> PokeSpotGenerator::generate(u32 seed) const
     XDRNG rng(seed);
     rng.advanceFrames(initialFrame - 1);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         XDRNG go(rng.getSeed());
 

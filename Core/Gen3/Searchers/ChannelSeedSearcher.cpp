@@ -93,7 +93,7 @@ bool ChannelSeedSearcher::searchSeed(XDRNG &rng)
 
         while (mask != 7)
         {
-            u8 num = rng.nextUInt() >> 30;
+            u8 num = rng.next() >> 30;
             if (shift == 0)
             {
                 if ((compare > 20 && num != 0) || (compare < 20 && num == 0))

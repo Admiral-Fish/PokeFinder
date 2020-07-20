@@ -52,13 +52,13 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
         case 0:
             return frame.getFrame();
         case 1:
-            return QString::number(frame.getFull64(), 16).toUpper().rightJustified(16, '0');
+            return QString::number(frame.getState(), 16).toUpper().rightJustified(16, '0');
         case 2:
             return QString::number(frame.getHigh32(), 16).toUpper().rightJustified(8, '0');
         case 3:
             return QString::number(frame.getLow32(), 16).toUpper().rightJustified(8, '0');
         case 4:
-            return QString::number(frame.getFull32(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(frame.getState(), 16).toUpper().rightJustified(8, '0');
         case 5:
             return QString::number(frame.getHigh16(), 16).toUpper().rightJustified(4, '0');
         case 6:
@@ -107,7 +107,7 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
     if (string == tr("64Bit"))
     {
         column = 1;
-        getResult = [](const ResearcherFrame &frame) { return frame.getFull64(); };
+        getResult = [](const ResearcherFrame &frame) { return frame.getState(); };
     }
     else if (string == tr("32Bit High"))
     {
@@ -122,7 +122,7 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
     else if (string == tr("32Bit"))
     {
         column = 1;
-        getResult = [](const ResearcherFrame &frame) { return frame.getFull32(); };
+        getResult = [](const ResearcherFrame &frame) { return frame.getState(); };
     }
     else if (string == tr("16Bit High"))
     {

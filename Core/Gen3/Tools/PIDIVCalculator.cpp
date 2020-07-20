@@ -47,7 +47,7 @@ namespace PIDIVCalculator
             for (const u32 seed : seeds)
             {
                 PokeRNGR backward(seed);
-                u32 originSeed = backward.nextUInt();
+                u32 originSeed = backward.next();
 
                 PokeRNG forward(seed);
                 forward.advanceFrames(1);
@@ -84,7 +84,7 @@ namespace PIDIVCalculator
 
                 u16 iv2 = backward.nextUShort();
                 u16 iv1 = backward.nextUShort();
-                u32 seed = backward.nextUInt();
+                u32 seed = backward.next();
 
                 PIDIVFrame frame(seed, Method::XDColo);
 
@@ -110,7 +110,7 @@ namespace PIDIVCalculator
             {
                 XDRNGR backward(pair.first);
                 u16 sid = backward.nextUShort();
-                u32 seed = backward.nextUInt();
+                u32 seed = backward.next();
 
                 XDRNG forward(seed);
                 forward.advanceFrames(1);
@@ -132,7 +132,7 @@ namespace PIDIVCalculator
 
                     for (u8 i : { 0, 1, 2, 5, 3, 4 })
                     {
-                        frame.setIV(i, forward.nextUInt() >> 27);
+                        frame.setIV(i, forward.next() >> 27);
                     }
 
                     frames.append(frame);
@@ -144,7 +144,7 @@ namespace PIDIVCalculator
             {
                 XDRNGR backward(pair.first);
                 u16 sid = backward.nextUShort();
-                u32 seed = backward.nextUInt();
+                u32 seed = backward.next();
 
                 XDRNG forward(seed);
                 forward.advanceFrames(1);
@@ -166,7 +166,7 @@ namespace PIDIVCalculator
 
                     for (u8 i : { 0, 1, 2, 5, 3, 4 })
                     {
-                        frame.setIV(i, forward.nextUInt() >> 27);
+                        frame.setIV(i, forward.next() >> 27);
                     }
 
                     frames.append(frame);

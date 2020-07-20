@@ -20,23 +20,20 @@
 #ifndef SFMT_HPP
 #define SFMT_HPP
 
-#include <Core/RNG/IRNG.hpp>
+#include <Core/Util/Global.hpp>
 
-class SFMT : public IRNG<u64>
+class SFMT
 {
 public:
     SFMT(u32 seed = 0);
-    void advanceFrames(u32 frames) override;
+    void advanceFrames(u32 frames);
+    u64 next();
     u32 nextUInt();
-    u64 nextULong();
-    u64 next() override;
-    void setSeed(u64 seed, u32 frames) override;
 
 private:
     u32 sfmt[624];
     u32 index;
 
-    void initialize(u32 seed);
     void shuffle();
 };
 

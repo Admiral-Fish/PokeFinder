@@ -20,23 +20,20 @@
 #ifndef TINYMT_HPP
 #define TINYMT_HPP
 
-#include <Core/RNG/IRNG.hpp>
+#include <Core/Util/Global.hpp>
 
-class TinyMT : public IRNG<u32>
+class TinyMT
 {
 public:
     TinyMT(u32 seed = 0);
     explicit TinyMT(const u32 state[4]);
-    void advanceFrames(u32 frames) override;
-    u32 nextUInt();
+    void advanceFrames(u32 frames);
+    u32 next();
     u16 nextUShort();
-    u32 next() override;
-    void setSeed(u32 seed, u32 frames) override;
 
 private:
     u32 state[4];
 
-    void initialize(u32 seed);
     void nextState();
     u32 temper();
 };

@@ -82,7 +82,7 @@ QVector<WildFrame> WildGenerator4::generateMethodJ(u32 seed) const
         break;
     }
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         WildFrame frame(initialFrame + cnt);
 
@@ -276,7 +276,7 @@ QVector<WildFrame> WildGenerator4::generateMethodK(u32 seed) const
         break;
     }
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         WildFrame frame(initialFrame + cnt);
 
@@ -450,12 +450,12 @@ QVector<WildFrame> WildGenerator4::generateChainedShiny(u32 seed) const
     PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         WildFrame frame(initialFrame + cnt);
 
         PokeRNG go(rng.getSeed());
-        u32 originSeed = go.nextUInt(); // TODO: is this necessary
+        u32 originSeed = go.next(); // TODO: is this necessary
 
         u16 low = go.nextUShort() & 7;
         u16 high = go.nextUShort() & 7;

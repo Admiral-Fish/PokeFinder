@@ -17,14 +17,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "MTRNG.hpp"
+#include "MT.hpp"
 
-MersenneTwister::MersenneTwister(u32 seed)
+MT::MT(u32 seed)
 {
-    initialize(seed);
+    mt[0] = seed;
+
+    for (index = 1; index < 624; index++)
+    {
+        mt[index] = 0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index;
+    }
 }
 
-void MersenneTwister::advanceFrames(u32 frames)
+void MT::advanceFrames(u32 frames)
 {
     index += frames;
     while (index >= 624)
@@ -33,7 +38,7 @@ void MersenneTwister::advanceFrames(u32 frames)
     }
 }
 
-u32 MersenneTwister::nextUInt()
+u32 MT::next()
 {
     if (index >= 624)
     {
@@ -49,23 +54,12 @@ u32 MersenneTwister::nextUInt()
     return y;
 }
 
-u16 MersenneTwister::nextUShort()
+u16 MT::nextUShort()
 {
-    return nextUInt() >> 16;
+    return next() >> 16;
 }
 
-u32 MersenneTwister::next()
-{
-    return nextUInt();
-}
-
-void MersenneTwister::setSeed(u32 seed, u32 frames)
-{
-    initialize(seed);
-    advanceFrames(frames);
-}
-
-void MersenneTwister::shuffle()
+void MT::shuffle()
 {
     for (u16 i = 0; i < 624; i++)
     {
@@ -83,24 +77,19 @@ void MersenneTwister::shuffle()
     index -= 624;
 }
 
-void MersenneTwister::initialize(u32 seed)
+// Assume everything that uses MT Fast checks the call limit manually
+// Avoids needing to have exceptions
+MTFast::MTFast(u32 seed, u8 size) : size(size)
 {
     mt[0] = seed;
 
-    for (index = 1; index < 624; index++)
+    for (index = 1; index < size + 397; index++)
     {
-        mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
+        mt[index] = 0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index;
     }
 }
 
-// Assume everything that uses MT Fast checks the call limit manually
-// Avoids needing to have exceptions
-MersenneTwisterFast::MersenneTwisterFast(u32 seed, u8 size) : size(size)
-{
-    initialize(seed);
-}
-
-u32 MersenneTwisterFast::nextUInt()
+u32 MTFast::next()
 {
     if (index >= size + 397)
     {
@@ -115,42 +104,21 @@ u32 MersenneTwisterFast::nextUInt()
     return y;
 }
 
-u16 MersenneTwisterFast::nextUShort()
+u16 MTFast::nextUShort()
 {
-    return nextUInt() >> 16;
+    return next() >> 16;
 }
 
-u32 MersenneTwisterFast::next()
-{
-    return nextUInt();
-}
-
-void MersenneTwisterFast::setSeed(u32 seed, u32 frames)
-{
-    initialize(seed);
-    advanceFrames(frames);
-}
-
-void MersenneTwisterFast::advanceFrames(u32 frames)
+void MTFast::advanceFrames(u32 frames)
 {
     index += frames;
-    while (index >= 397 + size)
+    while (index >= size + 397)
     {
         shuffle();
     }
 }
 
-void MersenneTwisterFast::initialize(u32 seed)
-{
-    mt[0] = seed;
-
-    for (index = 1; index < size + 397; index++)
-    {
-        mt[index] = (0x6C078965 * (mt[index - 1] ^ (mt[index - 1] >> 30)) + index);
-    }
-}
-
-void MersenneTwisterFast::shuffle()
+void MTFast::shuffle()
 {
     for (u16 i = 0; i < size; i++)
     {

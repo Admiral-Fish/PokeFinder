@@ -112,7 +112,7 @@ QVector<WildFrame> WildSearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, 
         frame.setNature(frame.getPID() % 25);
         frame.setShiny(tsv, high ^ low, 8);
 
-        u32 seed = rng.nextUInt();
+        u32 seed = rng.next();
 
         // Use for loop to check both normal and sister spread
         for (const bool flag : { false, true })

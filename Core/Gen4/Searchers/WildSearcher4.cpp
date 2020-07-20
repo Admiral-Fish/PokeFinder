@@ -144,7 +144,7 @@ QVector<WildFrame> WildSearcher4::searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u
         PokeRNGR rng(val);
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
-        u32 seed = rng.nextUInt();
+        u32 seed = rng.next();
 
         frame.setPID(high, low);
 
@@ -216,7 +216,7 @@ QVector<WildFrame> WildSearcher4::searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u
         PokeRNGR rng(val);
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
-        u32 seed = rng.nextUInt();
+        u32 seed = rng.next();
 
         frame.setPID(high, low);
 
@@ -304,8 +304,8 @@ QVector<WildFrame> WildSearcher4::searchChainedShiny(u8 hp, u8 atk, u8 def, u8 s
 
         if (filter.comparePID(frame))
         {
-            rng.nextUInt();
-            frame.setSeed(rng.nextUInt());
+            rng.next();
+            frame.setSeed(rng.next());
             frames.append(frame);
 
             // Sister spread shares PID
@@ -341,7 +341,7 @@ QVector<WildFrame> WildSearcher4::searchInitialSeeds(const QVector<WildFrame> &r
                 frames.append(result);
             }
 
-            test = rng.nextUInt();
+            test = rng.next();
         }
     }
 
@@ -475,12 +475,12 @@ bool WildSearcher4::encounterMethodJ(WildFrame &frame, u32 seed) const
     case Encounter::Grass:
         frame.setEncounterSlot(EncounterSlot::jSlot(seed >> 16, encounter));
         frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
-        frame.setSeed(rng.nextUInt());
+        frame.setSeed(rng.next());
         break;
     case Encounter::Surfing:
         frame.setEncounterSlot(EncounterSlot::jSlot(rng.nextUShort(), encounter));
         frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), seed >> 16));
-        frame.setSeed(rng.nextUInt());
+        frame.setSeed(rng.next());
         break;
     case Encounter::OldRod:
     case Encounter::GoodRod:
@@ -491,7 +491,7 @@ bool WildSearcher4::encounterMethodJ(WildFrame &frame, u32 seed) const
         {
             frame.setEncounterSlot(EncounterSlot::jSlot(slot, encounter));
             frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), seed >> 16));
-            frame.setSeed(rng.nextUInt());
+            frame.setSeed(rng.next());
         }
         else
         {
@@ -633,12 +633,12 @@ bool WildSearcher4::encounterMethodK(WildFrame &frame, u32 seed) const
     case Encounter::Grass:
         frame.setEncounterSlot(EncounterSlot::kSlot(seed >> 16, encounter));
         frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
-        frame.setSeed(rng.nextUInt());
+        frame.setSeed(rng.next());
         break;
     case Encounter::Surfing:
         frame.setEncounterSlot(EncounterSlot::kSlot(rng.nextUShort(), encounter));
         frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), seed >> 16));
-        frame.setSeed(rng.nextUInt());
+        frame.setSeed(rng.next());
         break;
     case Encounter::OldRod:
     case Encounter::GoodRod:
@@ -650,14 +650,14 @@ bool WildSearcher4::encounterMethodK(WildFrame &frame, u32 seed) const
         {
             frame.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
             frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
-            frame.setSeed(rng.nextUInt());
+            frame.setSeed(rng.next());
         }
         else if (nibble < suctionCupThresh && frame.getLead() == Lead::None)
         {
             frame.setLead(Lead::SuctionCups);
             frame.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
             frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot()));
-            frame.setSeed(rng.nextUInt());
+            frame.setSeed(rng.next());
         }
         else
         {
@@ -673,7 +673,7 @@ bool WildSearcher4::encounterMethodK(WildFrame &frame, u32 seed) const
             frame.setEncounterSlot(EncounterSlot::kSlot(slot, encounter));
             frame.setLevel(encounterArea.calcLevel(frame.getEncounterSlot(), seed >> 16));
             rng.advanceFrames(1); // Blank (maybe item)
-            frame.setSeed(rng.nextUInt());
+            frame.setSeed(rng.next());
         }
         else
         {

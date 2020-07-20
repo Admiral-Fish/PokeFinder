@@ -37,7 +37,7 @@ QVector<IDFrame3> IDGenerator3::generateXDColo(u32 seed)
     XDRNG rng(seed);
     rng.advanceFrames(initialFrame - 1);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         XDRNG go(rng.getSeed());
 
@@ -84,7 +84,7 @@ QVector<IDFrame3> IDGenerator3::generateRS(u32 seed)
     PokeRNG rng(seed);
     rng.advanceFrames(initialFrame);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         PokeRNG go(rng.getSeed());
 

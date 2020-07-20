@@ -21,7 +21,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Enum/Method.hpp>
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MTRNG.hpp>
+#include <Core/RNG/MT.hpp>
 
 inline bool isShiny(u32 pid, u16 tsv)
 {
@@ -58,7 +58,7 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
 {
     QVector<EggFrame> frames;
 
-    MersenneTwisterFast mt(seed >> 32, 13);
+    MTFast mt(seed >> 32, 13);
     mt.advanceFrames(7);
 
     u8 ivs[6];
@@ -70,7 +70,7 @@ QVector<EggFrame> EggGenerator5::generateBW(u64 seed) const
     BWRNG rng(seed);
     rng.advanceFrames(initialFrame - 1 + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextULong())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         EggFrame frame(cnt + initialFrame);
         // TODO: chatot
@@ -207,18 +207,18 @@ QVector<EggFrame> EggGenerator5::generateBW2(u64 seed) const
 {
     QVector<EggFrame> frames;
 
-    MersenneTwister mt(seed >> 32);
+    MTFast mt(seed >> 32, 4);
     mt.advanceFrames(2);
 
-    u64 eggSeed = static_cast<u64>(mt.nextUInt()) << 32;
-    eggSeed |= mt.nextUInt();
+    u64 eggSeed = static_cast<u64>(mt.next()) << 32;
+    eggSeed |= mt.next();
 
     EggFrame frame = generateBW2Egg(eggSeed);
     if (filter.compareIVs(frame) && filter.compareAbility(frame) && filter.compareNature(frame))
     {
         BWRNG rng(seed);
         rng.advanceFrames(initialFrame - 1 + offset);
-        for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextULong())
+        for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
         {
             BWRNG go(rng.getSeed());
 

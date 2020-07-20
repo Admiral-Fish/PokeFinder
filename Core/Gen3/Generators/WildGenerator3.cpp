@@ -78,7 +78,7 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
         };
     }
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         WildFrame frame(initialFrame + cnt);
         PokeRNG go(rng.getSeed());
@@ -88,7 +88,7 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
         case Encounter::RockSmash:
             if (!rock)
             {
-                go.nextUInt();
+                go.next();
             }
             if (((go.nextUShort()) % 2880) >= rate)
             {
@@ -114,7 +114,7 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
             go.advanceFrames(2);
             break;
         case Encounter::Grass:
-            go.nextUInt();
+            go.next();
             frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
             if (!filter.compareEncounterSlot(frame))
             {
@@ -128,7 +128,7 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            go.nextUInt();
+            go.next();
             frame.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
             if (!filter.compareEncounterSlot(frame))
             {
@@ -191,14 +191,14 @@ QVector<WildFrame> WildGenerator3::generate(u32 seed) const
         }
         else if (method == Method::MethodH2)
         {
-            go.nextUInt();
+            go.next();
             iv1 = go.nextUShort();
             iv2 = go.nextUShort();
         }
         else
         {
             iv1 = go.nextUShort();
-            go.nextUInt();
+            go.next();
             iv2 = go.nextUShort();
         }
         frame.setIVs(iv1, iv2);

@@ -17,19 +17,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef IRNG_HPP
-#define IRNG_HPP
+#ifndef MT_HPP
+#define MT_HPP
 
 #include <Core/Util/Global.hpp>
 
-template <typename IntegerType>
-class IRNG
+class MT
 {
 public:
-    virtual IntegerType next() = 0;
-    virtual void setSeed(IntegerType seed, u32 frames = 0) = 0;
-    virtual void advanceFrames(u32 frames) = 0;
-    virtual ~IRNG() = default;
+    MT(u32 seed = 0);
+    void advanceFrames(u32 frames);
+    u32 next();
+    u16 nextUShort();
+
+private:
+    u32 mt[624];
+    u16 index;
+    void shuffle();
 };
 
-#endif // IRNG_HPP
+class MTFast
+{
+public:
+    explicit MTFast(u32 seed = 0, u8 size = 0);
+    void advanceFrames(u32 frames);
+    u32 next();
+    u16 nextUShort();
+
+private:
+    u32 mt[624];
+    u8 size;
+    u16 index;
+
+    void shuffle();
+};
+
+#endif // MT_HPP

@@ -179,10 +179,9 @@ HEADERS += \
     Core/Parents/Searchers/StationarySearcher.hpp \
     Core/Parents/Searchers/WildSearcher.hpp \
     Core/Parents/Slot.hpp \
-    Core/RNG/IRNG.hpp \
     Core/RNG/LCRNG.hpp \
     Core/RNG/LCRNG64.hpp \
-    Core/RNG/MTRNG.hpp \
+    Core/RNG/MT.hpp \
     Core/RNG/RNGCache.hpp \
     Core/RNG/RNGEuclidean.hpp \
     Core/RNG/RNGList.hpp \
@@ -356,7 +355,7 @@ SOURCES += \
     Core/Parents/Searchers/StationarySearcher.cpp \
     Core/Parents/Searchers/WildSearcher.cpp \
     Core/Parents/Slot.cpp \
-    Core/RNG/MTRNG.cpp \
+    Core/RNG/MT.cpp \
     Core/RNG/RNGCache.cpp \
     Core/RNG/RNGEuclidean.cpp \
     Core/RNG/SFMT.cpp \

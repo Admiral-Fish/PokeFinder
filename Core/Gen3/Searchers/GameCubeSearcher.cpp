@@ -430,7 +430,7 @@ void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
             frame.setNature(frame.getPID() % 25);
             frame.setShiny(40122 ^ sid, high ^ low, 8);
 
-            u32 originSeed = rng.nextUInt();
+            u32 originSeed = rng.next();
             if (filter.comparePID(frame) && validateJirachi(originSeed))
             {
                 frame.setSeed(originSeed);
@@ -493,7 +493,7 @@ bool GameCubeSearcher::validateMenu(u32 seed)
     u8 mask = static_cast<u8>(1 << target);
     while ((mask & 14) != 14)
     {
-        u8 num = rng.nextUInt() >> 30;
+        u8 num = rng.next() >> 30;
         if (num == target)
         {
             return false;

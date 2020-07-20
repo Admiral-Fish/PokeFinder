@@ -19,7 +19,7 @@
 
 #include "DreamRadarGenerator.hpp"
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MTRNG.hpp>
+#include <Core/RNG/MT.hpp>
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
 
@@ -59,17 +59,17 @@ QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
     rng.advanceFrames((initialFrame - 1) * 2);
     if (!memory)
     {
-        rng.nextULong();
+        rng.next();
     }
 
-    MersenneTwister mt(seed >> 32);
+    MT mt(seed >> 32);
     mt.advanceFrames(9); // Initial advances
     mt.advanceFrames((initialFrame - 1) * 2); // Starting frame
     mt.advanceFrames(ivAdvances); // Slot advances
 
-    RNGList<u8, MersenneTwister, 6, 27> rngList(mt);
+    RNGList<u8, MT, 6, 27> rngList(mt);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceStates(2), rng.nextULong())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceStates(2), rng.next())
     {
         Frame frame(cnt + initialFrame);
 
@@ -82,18 +82,18 @@ QVector<Frame> DreamRadarGenerator::generate(u64 seed, bool memory)
         }
         frame.calculateHiddenPower();
 
-        go.nextULong(); // Frame skip ???
+        go.next(); // Frame skip ???
         u32 pid = go.nextUInt();
 
         // Gender modification
         if (radarSlot.type == 0 || radarSlot.type == 1) // Genies already male, gen 4 legends also get assigned male pids
         {
-            pid = Utilities::forceGender(pid, go.nextULong() >> 32, 0, 0);
+            pid = Utilities::forceGender(pid, go.next() >> 32, 0, 0);
             frame.setGender(radarSlot.gender);
         }
         else if (radarSlot.gender == 0 || radarSlot.gender == 1)
         {
-            pid = Utilities::forceGender(pid, go.nextULong() >> 32, radarSlot.gender, radarSlot.genderRatio);
+            pid = Utilities::forceGender(pid, go.next() >> 32, radarSlot.gender, radarSlot.genderRatio);
             frame.setGender(pid & 0xff, radarSlot.genderRatio);
         }
         else

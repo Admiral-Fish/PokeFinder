@@ -140,7 +140,7 @@ QVector<EggFrame3> EggGenerator3::generateEmeraldPID(u32 seed) const
     rng.advanceFrames(initialFrame - 1);
 
     u32 val = initialFrame;
-    for (u32 cnt = 0; cnt < maxResults; cnt++, val++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, val++, rng.next())
     {
         for (u8 redraw = minRedraw; redraw <= maxRedraw; redraw++)
         {
@@ -158,7 +158,7 @@ QVector<EggFrame3> EggGenerator3::generateEmeraldPID(u32 seed) const
                 u32 pid = 0;
                 if (!flag)
                 {
-                    pid = ((go.nextUShort() % 0xFFFE) + 1) | (trng.nextUInt() & 0xFFFF0000);
+                    pid = ((go.nextUShort() % 0xFFFE) + 1) | (trng.next() & 0xFFFF0000);
                     frame.setNature(pid % 25);
                 }
                 else
@@ -174,7 +174,7 @@ QVector<EggFrame3> EggGenerator3::generateEmeraldPID(u32 seed) const
                             break;
                         }
 
-                        pid = go.nextUShort() | (trng.nextUInt() & 0xFFFF0000);
+                        pid = go.nextUShort() | (trng.next() & 0xFFFF0000);
                         i++;
                     } while (pid % 25 != everstoneNature);
 
@@ -254,7 +254,7 @@ QVector<QPair<u32, u16>> EggGenerator3::generateLower(u32 seed) const
     PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         PokeRNG go(rng.getSeed());
         if (((go.nextUShort() * 100) / 0xFFFF) < compatability)
@@ -276,7 +276,7 @@ QVector<EggFrame3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u3
     PokeRNG rng(seed);
     rng.advanceFrames(initialFramePickup - 1);
 
-    for (u32 cnt = 0; cnt < maxResultsPickup; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResultsPickup; cnt++, rng.next())
     {
         EggFrame3 frame;
         PokeRNG go(rng.getSeed());

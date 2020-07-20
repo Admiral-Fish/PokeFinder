@@ -21,13 +21,12 @@
 #include "ui_Researcher.h"
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MTRNG.hpp>
+#include <Core/RNG/MT.hpp>
 #include <Core/RNG/SFMT.hpp>
 #include <Core/RNG/TinyMT.hpp>
 #include <Models/Util/ResearcherModel.hpp>
 #include <QSettings>
 #include <functional>
-#include <stdexcept>
 
 Researcher::Researcher(QWidget *parent) : QWidget(parent), ui(new Ui::Researcher)
 {
@@ -123,9 +122,8 @@ u64 Researcher::getCustom(const QString &text, const ResearcherFrame &frame, con
     switch (keys[text])
     {
     case 0:
-        return frame.getFull64();
     case 1:
-        return frame.getFull32();
+        return frame.getState();
     case 2:
         return frame.getHigh32();
     case 3:
@@ -205,6 +203,20 @@ QVector<bool> Researcher::getHexCheck()
     return hex;
 }
 
+template <class RNGType>
+QVector<u64> getStates(RNGType rng, u32 initial, u32 max)
+{
+    QVector<u64> states;
+
+    rng.advanceFrames(initial - 1);
+    for (u32 i = 0; i < max; i++)
+    {
+        states.append(rng.next());
+    }
+
+    return states;
+}
+
 void Researcher::generate()
 {
     bool rng64Bit = ui->rngSelection->currentIndex() == 1;
@@ -216,43 +228,42 @@ void Researcher::generate()
     u32 initialFrame = ui->textBoxInitialFrame->getUInt();
     u32 maxResults = ui->textBoxMaxResults->getUInt();
 
-    IRNG<u32> *rng = nullptr;
-    IRNG<u64> *rng64 = nullptr;
-
     if (ui->rngSelection->currentIndex() != 1 && (seed > 0xffffffff))
     {
         seed >>= 32;
     }
 
+    QVector<u64> states;
     if (ui->rngSelection->currentIndex() == 0)
     {
         switch (ui->comboBoxRNG32Bit->currentIndex())
         {
         case 0:
-            rng = new PokeRNG(static_cast<u32>(seed));
+            states = getStates(PokeRNG(seed), initialFrame, maxResults);
             break;
         case 1:
-            rng = new PokeRNGR(static_cast<u32>(seed));
+            states = getStates(PokeRNGR(seed), initialFrame, maxResults);
             break;
         case 2:
-            rng = new XDRNG(static_cast<u32>(seed));
+            states = getStates(XDRNG(seed), initialFrame, maxResults);
             break;
         case 3:
-            rng = new XDRNGR(static_cast<u32>(seed));
+            states = getStates(XDRNGR(seed), initialFrame, maxResults);
             break;
         case 4:
-            rng = new ARNG(static_cast<u32>(seed));
+            states = getStates(ARNG(seed), initialFrame, maxResults);
             break;
         case 5:
-            rng = new ARNGR(static_cast<u32>(seed));
+            states = getStates(ARNGR(seed), initialFrame, maxResults);
             break;
         case 6:
-            rng = new MersenneTwister(static_cast<u32>(seed));
+            states = getStates(MT(seed), initialFrame, maxResults);
             break;
         case 7:
+
             if (initialFrame + maxResults - 1 <= 227)
             {
-                rng = new MersenneTwisterFast(static_cast<u32>(seed), initialFrame + maxResults);
+                states = getStates(MTFast(seed, initialFrame + maxResults), initialFrame, maxResults);
             }
             else
             {
@@ -263,34 +274,39 @@ void Researcher::generate()
             }
             break;
         }
-        rng->advanceFrames(initialFrame - 1);
     }
     else if (ui->rngSelection->currentIndex() == 1)
     {
         switch (ui->comboBoxRNG64Bit->currentIndex())
         {
         case 0:
-            rng64 = new BWRNG(seed);
+            states = getStates(BWRNG(seed), initialFrame, maxResults);
             break;
         case 1:
-            rng64 = new BWRNGR(seed);
+            states = getStates(BWRNGR(seed), initialFrame, maxResults);
             break;
         case 2:
             if (seed > 0xffffffff)
             {
                 seed >>= 32;
             }
-            rng64 = new SFMT(static_cast<u32>(seed));
+            states = getStates(SFMT(seed), initialFrame, maxResults);
             break;
         }
-        rng64->advanceFrames(initialFrame - 1);
     }
     else
     {
         u32 status[4] = { ui->textBoxStatus0->getUInt(), ui->textBoxStatus1->getUInt(), ui->textBoxStatus2->getUInt(),
                           ui->textBoxStatus3->getUInt() };
-        rng = new TinyMT(status);
-        rng->advanceFrames(initialFrame - 1);
+
+        if (std::all_of(std::begin(status), std::end(status), [](u32 x) { return x == 0; }))
+        {
+            states = getStates(TinyMT(seed), initialFrame, maxResults);
+        }
+        else
+        {
+            states = getStates(TinyMT(status), initialFrame, maxResults);
+        }
     }
 
     QHash<QString, std::function<u64(u64, u64)>> calc;
@@ -349,8 +365,6 @@ void Researcher::generate()
             QMessageBox error;
             error.setText(tr("You must check the Hex box in order to use Hex values."));
             error.exec();
-            delete rng;
-            delete rng64;
             return;
         }
     }
@@ -383,17 +397,11 @@ void Researcher::generate()
                           ui->comboBoxRValue10->currentText() };
 
     QVector<ResearcherFrame> frames;
-    for (u32 i = initialFrame; i < maxResults + initialFrame; i++)
+    for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        ResearcherFrame frame(rng64Bit, i);
-        if (rng64Bit)
-        {
-            frame.setFull64(rng64->next());
-        }
-        else
-        {
-            frame.setFull32(rng->next());
-        }
+        ResearcherFrame frame(rng64Bit, cnt + initialFrame);
+
+        frame.setState(states.at(cnt));
 
         for (u8 j = 0; j < 10; j++)
         {
@@ -422,17 +430,12 @@ void Researcher::generate()
         ui->tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Interactive);
         ui->tableView->horizontalHeader()->resizeSection(i, width);
     }
-
-    delete rng;
-    delete rng64;
 }
 
 void Researcher::selectionIndexChanged(int index)
 {
     if (index >= 0)
     {
-        ui->textBoxSeed->setVisible(index != 2);
-        ui->labelSeed->setVisible(index != 2);
         ui->comboBoxSearch->clear();
         QStringList items = index != 1
             ? QStringList() << tr("32Bit") << tr("16Bit High") << tr("16Bit Low")

@@ -46,7 +46,7 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialFrame,
 
         for (u32 x = 0; x < maxResults; x++)
         {
-            if (rng.nextUInt() == targetSeed)
+            if (rng.next() == targetSeed)
             {
                 QDateTime finalTime = date.addSecs(seconds);
 

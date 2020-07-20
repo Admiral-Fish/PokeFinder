@@ -21,7 +21,7 @@
 #include <Core/Enum/Game.hpp>
 #include <Core/Gen5/Keypresses.hpp>
 #include <Core/RNG/LCRNG64.hpp>
-#include <Core/RNG/MTRNG.hpp>
+#include <Core/RNG/MT.hpp>
 #include <Core/RNG/SHA1.hpp>
 #include <Core/Util/Utilities.hpp>
 #include <QtConcurrent>
@@ -163,18 +163,18 @@ ProfileIVSearcher5::ProfileIVSearcher5(const QVector<u8> &minIVs, const QVector<
                      version, language, dsType, mac, keypress),
     minIVs(minIVs),
     maxIVs(maxIVs),
-    offset((version & Game::BW2 ? 2 : 0))
+    offset(version & Game::BW2 ? 2 : 0)
 {
 }
 
 bool ProfileIVSearcher5::valid(u64 seed)
 {
-    MersenneTwisterFast rng(seed >> 32, 6 + offset);
+    MTFast rng(seed >> 32, 6 + offset);
     rng.advanceFrames(offset);
 
     for (u8 i = 0; i < 6; i++)
     {
-        u8 iv = rng.nextUInt() >> 27;
+        u8 iv = rng.next() >> 27;
         if (iv < minIVs.at(i) || iv > maxIVs.at(i))
         {
             return false;
@@ -221,7 +221,7 @@ bool ProfileNeedleSearcher5::valid(u64 seed)
 
         if (unovaLink)
         {
-            rng.nextULong();
+            rng.next();
         }
     }
 

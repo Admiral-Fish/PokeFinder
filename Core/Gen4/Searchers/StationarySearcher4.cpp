@@ -138,7 +138,7 @@ QVector<StationaryFrame> StationarySearcher4::searchMethod1(u8 hp, u8 atk, u8 de
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        frame.setSeed(rng.nextUInt());
+        frame.setSeed(rng.next());
         frame.setPID(high, low);
         frame.setAbility(low & 1);
         frame.setGender(low & 255, genderRatio);
@@ -181,7 +181,7 @@ QVector<StationaryFrame> StationarySearcher4::searchMethodJ(u8 hp, u8 atk, u8 de
         PokeRNGR rng(val);
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
-        u32 seed = rng.nextUInt();
+        u32 seed = rng.next();
 
         frame.setPID(high, low);
 
@@ -253,7 +253,7 @@ QVector<StationaryFrame> StationarySearcher4::searchMethodK(u8 hp, u8 atk, u8 de
         PokeRNGR rng(val);
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
-        u32 seed = rng.nextUInt();
+        u32 seed = rng.next();
 
         frame.setPID(high, low);
 
@@ -324,7 +324,7 @@ QVector<StationaryFrame> StationarySearcher4::searchWondercardIVs(u8 hp, u8 atk,
     {
         // Setup normal frame
         PokeRNGR rng(seed);
-        frame.setSeed(rng.nextUInt());
+        frame.setSeed(rng.next());
         frames.append(frame);
 
         // Setup XORed frame
@@ -381,7 +381,7 @@ QVector<StationaryFrame> StationarySearcher4::synchMethodJ(StationaryFrame frame
         else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == frame.getNature())
         {
             PokeRNGR go(rng.getSeed());
-            frame.setSeed(go.nextUInt());
+            frame.setSeed(go.next());
             frames.append(frame);
         }
 
@@ -492,7 +492,7 @@ QVector<StationaryFrame> StationarySearcher4::synchMethodK(StationaryFrame frame
         else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == frame.getNature())
         {
             PokeRNGR go(rng.getSeed());
-            frame.setSeed(go.nextUInt());
+            frame.setSeed(go.next());
             frames.append(frame);
         }
 
@@ -581,7 +581,7 @@ QVector<StationaryFrame> StationarySearcher4::searchInitialSeeds(const QVector<S
                 frames.append(result);
             }
 
-            test = rng.nextUInt();
+            test = rng.next();
         }
     }
 

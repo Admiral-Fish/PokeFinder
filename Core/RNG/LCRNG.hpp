@@ -20,43 +20,37 @@
 #ifndef LCRNG_HPP
 #define LCRNG_HPP
 
-#include <Core/RNG/IRNG.hpp>
+#include <Core/Util/Global.hpp>
 
 template <u32 add, u32 mult>
-class LCRNG : public IRNG<u32>
+class LCRNG
 {
 public:
     LCRNG(u32 seed = 0) : seed(seed)
     {
     }
 
-    void advanceFrames(u32 frames) final
+    void advanceFrames(u32 frames)
     {
         for (u32 frame = 0; frame < frames; frame++)
         {
-            nextUInt();
+            next();
         }
     }
 
-    u16 nextUShort()
-    {
-        return nextUInt() >> 16;
-    }
-
-    u32 nextUInt()
+    u32 next()
     {
         return seed = seed * mult + add;
     }
 
-    u32 next() final
+    u16 nextUShort()
     {
-        return nextUInt();
+        return next() >> 16;
     }
 
-    void setSeed(u32 seed, u32 frames = 0) final
+    void setSeed(u32 seed)
     {
         this->seed = seed;
-        advanceFrames(frames);
     }
 
     u32 getSeed() const

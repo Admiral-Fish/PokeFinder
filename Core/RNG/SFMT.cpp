@@ -21,53 +21,6 @@
 
 SFMT::SFMT(u32 seed)
 {
-    initialize(seed);
-}
-
-void SFMT::advanceFrames(u32 frames)
-{
-    index += (frames * 2);
-    while (index >= 624)
-    {
-        shuffle();
-    }
-}
-
-u64 SFMT::next()
-{
-    return nextULong();
-}
-
-u32 SFMT::nextUInt()
-{
-    if (index >= 624)
-    {
-        shuffle();
-    }
-
-    return sfmt[index++];
-}
-
-u64 SFMT::nextULong()
-{
-    if (index >= 624)
-    {
-        shuffle();
-    }
-
-    u32 high = sfmt[index++];
-    u32 low = sfmt[index++];
-    return high | (static_cast<u64>(low) << 32);
-}
-
-void SFMT::setSeed(u64 seed, u32 frames)
-{
-    initialize(static_cast<u32>(seed));
-    advanceFrames(frames);
-}
-
-void SFMT::initialize(u32 seed)
-{
     sfmt[0] = seed;
 
     for (index = 1; index < 624; index++)
@@ -85,6 +38,37 @@ void SFMT::initialize(u32 seed)
     {
         sfmt[0] ^= 1;
     }
+}
+
+void SFMT::advanceFrames(u32 frames)
+{
+    index += (frames * 2);
+    while (index >= 624)
+    {
+        shuffle();
+    }
+}
+
+u64 SFMT::next()
+{
+    if (index >= 624)
+    {
+        shuffle();
+    }
+
+    u32 high = sfmt[index++];
+    u32 low = sfmt[index++];
+    return high | (static_cast<u64>(low) << 32);
+}
+
+u32 SFMT::nextUInt()
+{
+    if (index >= 624)
+    {
+        shuffle();
+    }
+
+    return sfmt[index++];
 }
 
 void SFMT::shuffle()

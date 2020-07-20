@@ -21,7 +21,7 @@
 #include <Core/Enum/Method.hpp>
 #include <Core/Parents/Filters/FrameFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
-#include <Core/RNG/MTRNG.hpp>
+#include <Core/RNG/MT.hpp>
 
 EggGenerator4::EggGenerator4(u32 initialFrame, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const FrameFilter &filter) :
     EggGenerator(initialFrame, maxResults, tid, sid, genderRatio, method, filter)
@@ -49,14 +49,14 @@ QVector<EggFrame4> EggGenerator4::generateNormal(u32 seed) const
 {
     QVector<EggFrame4> frames;
 
-    MersenneTwister mt(seed);
+    MT mt(seed);
     mt.advanceFrames(initialFrame - 1);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
         EggFrame4 frame(initialFrame + cnt);
 
-        u32 pid = mt.nextUInt();
+        u32 pid = mt.next();
         frame.setPID(pid);
         frame.setAbility(pid & 1);
         frame.setGender(pid & 255, genderRatio);
@@ -76,14 +76,14 @@ QVector<EggFrame4> EggGenerator4::generateMasuada(u32 seed) const
 {
     QVector<EggFrame4> frames;
 
-    MersenneTwister mt(seed);
+    MT mt(seed);
     mt.advanceFrames(initialFrame - 1);
 
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
         EggFrame4 frame(initialFrame + cnt);
 
-        u32 pid = mt.nextUInt();
+        u32 pid = mt.next();
         for (int i = 0; i <= 3; i++)
         {
             u16 val = (pid >> 16) ^ (pid & 0xFFFF);
@@ -118,7 +118,7 @@ QVector<EggFrame4> EggGenerator4::generateDPPtIVs(u32 seed) const
     PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         EggFrame4 frame(initialFrame + cnt);
         PokeRNG go(rng.getSeed());
@@ -156,7 +156,7 @@ QVector<EggFrame4> EggGenerator4::generateHGSSIVs(u32 seed) const
     PokeRNG rng(seed);
     rng.advanceFrames(initialFrame - 1);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUInt())
+    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         EggFrame4 frame(initialFrame + cnt);
         PokeRNG go(rng.getSeed());

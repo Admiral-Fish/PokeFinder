@@ -87,7 +87,7 @@ u16 SeedTime3::originSeed(u32 seed)
     PokeRNGR rng(seed);
     while (rng.getSeed() > 0xFFFF)
     {
-        rng.nextUInt();
+        rng.next();
         frame++;
     }
     return static_cast<u16>(rng.getSeed());

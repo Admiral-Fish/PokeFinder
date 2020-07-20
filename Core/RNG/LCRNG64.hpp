@@ -20,58 +20,42 @@
 #ifndef LCRNG64_HPP
 #define LCRNG64_HPP
 
-#include <Core/RNG/IRNG.hpp>
+#include <Core/Util/Global.hpp>
 
 template <u64 add, u64 mult>
-class LCRNG64 : public IRNG<u64>
+class LCRNG64
 {
 public:
     LCRNG64(u64 seed = 0) : seed(seed)
     {
     }
 
-    void advanceFrames(u32 frames) final
+    void advanceFrames(u32 frames)
     {
         for (u32 frame = 0; frame < frames; frame++)
         {
-            nextULong();
+            next();
         }
     }
 
-    u32 nextUInt(u32 max)
-    {
-        return ((nextULong() >> 32) * max) >> 32;
-    }
-
-    u64 nextULong()
+    u64 next()
     {
         return seed = seed * mult + add;
     }
 
+    u32 nextUInt(u32 max)
+    {
+        return ((next() >> 32) * max) >> 32;
+    }
+
     u32 nextUInt()
     {
-        return nextULong() >> 32;
-    }
-
-    u64 next() final
-    {
-        return nextULong();
-    }
-
-    void setSeed(u64 seed, u32 frames = 0) final
-    {
-        this->seed = seed;
-        advanceFrames(frames);
+        return next() >> 32;
     }
 
     u64 getSeed() const
     {
         return seed;
-    }
-
-    u64 getSeed(u32 max) const
-    {
-        return ((seed >> 32) * max) >> 32;
     }
 
 private:

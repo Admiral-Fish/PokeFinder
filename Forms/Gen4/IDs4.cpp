@@ -22,7 +22,6 @@
 #include <Core/Gen4/Frames/EggFrame4.hpp>
 #include <Core/Gen4/Generators/IDGenerator4.hpp>
 #include <Core/Gen4/Searchers/IDSearcher4.hpp>
-#include <Core/RNG/MTRNG.hpp>
 #include <Models/Gen4/IDModel4.hpp>
 #include <QSettings>
 #include <QThread>

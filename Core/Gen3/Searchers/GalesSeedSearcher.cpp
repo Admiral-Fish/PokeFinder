@@ -111,9 +111,9 @@ void GalesSeedSearcher::search(u32 start, u32 end)
             }
 
             XDRNGR reverse((high << 16) | low);
-            reverse.nextUInt();
+            reverse.next();
 
-            XDRNG rng(reverse.nextUInt());
+            XDRNG rng(reverse.next());
             if (searchSeed(rng))
             {
                 std::lock_guard<std::mutex> lock(resultMutex);
@@ -149,7 +149,7 @@ void GalesSeedSearcher::search(const QVector<u32> &seeds)
 
 bool GalesSeedSearcher::searchSeed(XDRNG &rng)
 {
-    rng.nextUInt();
+    rng.next();
 
     u8 playerIndex = rng.nextUShort() % 5;
     if (playerIndex != criteria.at(0))
@@ -162,7 +162,7 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
     {
         return false;
     }
-    rng.nextUInt();
+    rng.next();
 
     rng.advanceFrames(2); // SID/TID
     for (u8 i = 0; i < 2; i++)
@@ -172,7 +172,7 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
         u8 hpIV = rng.nextUShort() & 31;
         rng.advanceFrames(1); // Other IV Call
 
-        rng.nextUInt(); // Ability
+        rng.next(); // Ability
 
         generatePokemon(rng);
 
@@ -182,7 +182,7 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
             return false;
         }
     }
-    rng.nextUInt();
+    rng.next();
 
     rng.advanceFrames(2); // SID/TID
     for (u8 i = 0; i < 2; i++)
@@ -192,7 +192,7 @@ bool GalesSeedSearcher::searchSeed(XDRNG &rng)
         u8 hpIV = rng.nextUShort() & 31;
         rng.advanceFrames(1); // Other IV Call
 
-        rng.nextUInt(); // Ability
+        rng.next(); // Ability
 
         generatePokemon(rng);
 
