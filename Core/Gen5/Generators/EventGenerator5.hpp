@@ -28,7 +28,7 @@ class EventGenerator5 : public Generator
 {
 public:
     EventGenerator5() = default;
-    EventGenerator5(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
+    EventGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                     const PGF &parameters);
     QVector<State> generate(u64 seed) const;
 

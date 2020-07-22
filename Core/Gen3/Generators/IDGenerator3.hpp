@@ -28,7 +28,7 @@ class IDGenerator3 : public IDGenerator
 {
 public:
     IDGenerator3() = default;
-    IDGenerator3(u32 initialAdvances, u32 maxResults, const IDFilter &filter);
+    IDGenerator3(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
     void setStaticTID(u16 staticTID);
     QVector<IDState3> generateXDColo(u32 seed);
     QVector<IDState3> generateFRLGE(u32 seed);

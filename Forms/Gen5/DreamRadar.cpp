@@ -159,7 +159,7 @@ void DreamRadar::setupModels()
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::State32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::State32Bit);
 
     ui->textBoxSearcherInitialAdvances->setValues(InputType::State32Bit);
     ui->textBoxSearcherMaxAdvances->setValues(InputType::State32Bit);
@@ -212,7 +212,7 @@ void DreamRadar::generate()
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
@@ -226,7 +226,7 @@ void DreamRadar::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    DreamRadarGenerator generator(initialAdvances, maxResults, tid, sid, genderRatio, Method::DreamRadar, filter, radarSlots);
+    DreamRadarGenerator generator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::DreamRadar, filter, radarSlots);
     generator.setOffset(offset);
 
     auto states = generator.generate(seed, currentProfile.getMemoryLink());
@@ -249,7 +249,7 @@ void DreamRadar::search()
     ui->pushButtonCancel->setEnabled(true);
 
     u32 initialAdvances = ui->textBoxSearcherInitialAdvances->getUInt();
-    u32 maxResults = ui->textBoxSearcherMaxAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
@@ -258,7 +258,7 @@ void DreamRadar::search()
                        ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    DreamRadarGenerator generator(initialAdvances, maxResults, tid, sid, genderRatio, Method::DreamRadar, filter, radarSlots);
+    DreamRadarGenerator generator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::DreamRadar, filter, radarSlots);
     generator.setOffset(0);
 
     DreamRadarSearcher *searcher = new DreamRadarSearcher(generator, currentProfile);

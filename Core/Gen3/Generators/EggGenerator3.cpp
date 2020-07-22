@@ -23,9 +23,9 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+EggGenerator3::EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                              const StateFilter &filter) :
-    EggGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter)
+    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
 {
     switch (method)
     {
@@ -103,9 +103,9 @@ void EggGenerator3::setInitialAdvancesPickup(u32 value)
     initialAdvancesPickup = value;
 }
 
-void EggGenerator3::setMaxResultsPickup(u32 value)
+void EggGenerator3::setMaxAdvancesPickup(u32 value)
 {
-    maxResultsPickup = value;
+    maxAdvancesPickup = value;
 }
 
 void EggGenerator3::setCalibration(u8 value)
@@ -141,7 +141,7 @@ QVector<EggState3> EggGenerator3::generateEmeraldPID(u32 seed) const
     rng.advance(initialAdvances);
 
     u32 val = initialAdvances;
-    for (u32 cnt = 0; cnt < maxResults; cnt++, val++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, val++, rng.next())
     {
         for (u8 redraw = minRedraw; redraw <= maxRedraw; redraw++)
         {
@@ -213,7 +213,7 @@ QVector<EggState3> EggGenerator3::generateEmeraldIVs(u32 seed) const
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUShort())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.nextUShort())
     {
         EggState3 state(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());
@@ -255,7 +255,7 @@ QVector<QPair<u32, u16>> EggGenerator3::generateLower(u32 seed) const
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         PokeRNG go(rng.getSeed());
         if (((go.nextUShort() * 100) / 0xFFFF) < compatability)
@@ -277,7 +277,7 @@ QVector<EggState3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u3
     PokeRNG rng(seed);
     rng.advance(initialAdvancesPickup);
 
-    for (u32 cnt = 0; cnt < maxResultsPickup; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvancesPickup; cnt++, rng.next())
     {
         EggState3 state;
         PokeRNG go(rng.getSeed());

@@ -19,9 +19,9 @@
 
 #include "Generator.hpp"
 
-Generator::Generator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
+Generator::Generator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter) :
     initialAdvances(initialAdvances),
-    maxResults(maxResults),
+    maxAdvances(maxAdvances),
     tid(tid),
     sid(sid),
     tsv(tid ^ sid),

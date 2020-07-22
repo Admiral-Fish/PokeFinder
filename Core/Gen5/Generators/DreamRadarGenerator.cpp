@@ -23,9 +23,9 @@
 #include <Core/RNG/RNGList.hpp>
 #include <Core/Util/Utilities.hpp>
 
-DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+DreamRadarGenerator::DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                          const StateFilter &filter, const QVector<DreamRadarSlot> &radarSlots) :
-    Generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter),
+    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter),
     pidAdvances(0),
     ivAdvances(0),
     radarSlot(radarSlots.last())
@@ -69,7 +69,7 @@ QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
 
     RNGList<u8, MT, 6, 27> rngList(mt);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceStates(2), rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceStates(2), rng.next())
     {
         State state(cnt + initialAdvances);
 

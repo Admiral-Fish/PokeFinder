@@ -86,7 +86,7 @@ void Eggs3::setupModels()
     ui->tableViewFRLG->setModel(frlg);
 
     ui->textBoxEmeraldInitialAdvances->setValues(InputType::State32Bit);
-    ui->textBoxEmeraldMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxEmeraldMaxAdvances->setValues(InputType::State32Bit);
     ui->textBoxMinRedraws->setValues(0, 255, 3, 10);
     ui->textBoxMaxRedraws->setValues(0, 255, 3, 10);
     ui->textBoxCalibration->setValues(0, 255, 3, 10);
@@ -94,16 +94,16 @@ void Eggs3::setupModels()
     ui->textBoxRSSeedHeld->setValues(InputType::Seed16Bit);
     ui->textBoxRSSeedPickup->setValues(InputType::Seed16Bit);
     ui->textBoxRSInitialAdvancesHeld->setValues(InputType::State32Bit);
-    ui->textBoxRSMaxResultsHeld->setValues(InputType::State32Bit);
+    ui->textBoxRSMaxAdvancesHeld->setValues(InputType::State32Bit);
     ui->textBoxRSInitialAdvancesPickup->setValues(InputType::State32Bit);
-    ui->textBoxRSMaxResultsPickup->setValues(InputType::State32Bit);
+    ui->textBoxRSMaxAdvancesPickup->setValues(InputType::State32Bit);
 
     ui->textBoxFRLGSeedHeld->setValues(InputType::Seed16Bit);
     ui->textBoxFRLGSeedPickup->setValues(InputType::Seed16Bit);
     ui->textBoxFRLGInitialAdvancesHeld->setValues(InputType::State32Bit);
-    ui->textBoxFRLGMaxResultsHeld->setValues(InputType::State32Bit);
+    ui->textBoxFRLGMaxAdvancesHeld->setValues(InputType::State32Bit);
     ui->textBoxFRLGInitialAdvancesPickup->setValues(InputType::State32Bit);
-    ui->textBoxFRLGMaxResultsPickup->setValues(InputType::State32Bit);
+    ui->textBoxFRLGMaxAdvancesPickup->setValues(InputType::State32Bit);
 
     ui->comboBoxEmeraldCompatibility->setup({ 20, 50, 70 });
     ui->comboBoxRSCompatibility->setup({ 20, 50, 70 });
@@ -159,7 +159,7 @@ void Eggs3::emeraldGenerate()
     emerald->setMethod(method);
 
     u32 initialAdvances = ui->textBoxEmeraldInitialAdvances->getUInt();
-    u32 maxResults = ui->textBoxEmeraldMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxEmeraldMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterEmerald->getGenderRatio();
@@ -168,7 +168,7 @@ void Eggs3::emeraldGenerate()
                        ui->filterEmerald->getMinIVs(), ui->filterEmerald->getMaxIVs(), ui->filterEmerald->getNatures(),
                        ui->filterEmerald->getHiddenPowers(), {});
 
-    EggGenerator3 generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter);
+    EggGenerator3 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
     generator.setMinRedraw(ui->textBoxMinRedraws->getUChar());
     generator.setMaxRedraw(ui->textBoxMaxRedraws->getUChar());
     generator.setCalibration(ui->textBoxCalibration->getUChar());
@@ -192,7 +192,7 @@ void Eggs3::rsGenerate()
     rs->clearModel();
 
     u32 initialAdvancesHeld = ui->textBoxRSInitialAdvancesHeld->getUInt();
-    u32 maxResultsHeld = ui->textBoxRSMaxResultsHeld->getUInt();
+    u32 maxAdvancesHeld = ui->textBoxRSMaxAdvancesHeld->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterRS->getGenderRatio();
@@ -200,11 +200,11 @@ void Eggs3::rsGenerate()
     StateFilter filter(ui->filterRS->getGender(), ui->filterRS->getAbility(), ui->filterRS->getShiny(), false, ui->filterRS->getMinIVs(),
                        ui->filterRS->getMaxIVs(), ui->filterRS->getNatures(), ui->filterRS->getHiddenPowers(), {});
 
-    EggGenerator3 generator(initialAdvancesHeld, maxResultsHeld, tid, sid, genderRatio, method, filter);
+    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, tid, sid, genderRatio, method, filter);
     generator.setParents(ui->eggSettingsRS->getParent1(), ui->eggSettingsRS->getParent2());
     generator.setCompatability(static_cast<u8>(ui->comboBoxRSCompatibility->currentData().toUInt()));
     generator.setInitialAdvancesPickup(ui->textBoxRSInitialAdvancesPickup->getUInt());
-    generator.setMaxResultsPickup(ui->textBoxRSMaxResultsPickup->getUInt());
+    generator.setMaxAdvancesPickup(ui->textBoxRSMaxAdvancesPickup->getUInt());
 
     auto states = generator.generate(ui->textBoxRSSeedHeld->getUInt(), ui->textBoxRSSeedPickup->getUInt());
     rs->addItems(states);
@@ -215,7 +215,7 @@ void Eggs3::frlgGenerate()
     frlg->clearModel();
 
     u32 initialAdvancesHeld = ui->textBoxFRLGInitialAdvancesHeld->getUInt();
-    u32 maxResultsHeld = ui->textBoxFRLGMaxResultsHeld->getUInt();
+    u32 maxAdvancesHeld = ui->textBoxFRLGMaxAdvancesHeld->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterFRLG->getGenderRatio();
@@ -225,11 +225,11 @@ void Eggs3::frlgGenerate()
                        ui->filterFRLG->getMinIVs(), ui->filterFRLG->getMaxIVs(), ui->filterFRLG->getNatures(),
                        ui->filterFRLG->getHiddenPowers(), {});
 
-    EggGenerator3 generator(initialAdvancesHeld, maxResultsHeld, tid, sid, genderRatio, method, filter);
+    EggGenerator3 generator(initialAdvancesHeld, maxAdvancesHeld, tid, sid, genderRatio, method, filter);
     generator.setParents(ui->eggSettingsFRLG->getParent1(), ui->eggSettingsFRLG->getParent2());
     generator.setCompatability(static_cast<u8>(ui->comboBoxFRLGCompatibility->currentData().toUInt()));
     generator.setInitialAdvancesPickup(ui->textBoxFRLGInitialAdvancesPickup->getUInt());
-    generator.setMaxResultsPickup(ui->textBoxFRLGMaxResultsPickup->getUInt());
+    generator.setMaxAdvancesPickup(ui->textBoxFRLGMaxAdvancesPickup->getUInt());
 
     auto states = generator.generate(ui->textBoxFRLGSeedHeld->getUInt(), ui->textBoxFRLGSeedPickup->getUInt());
     frlg->addItems(states);

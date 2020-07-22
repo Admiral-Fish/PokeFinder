@@ -55,7 +55,7 @@ void PokeSpot::setupModels()
 
     ui->textBoxSeed->setValues(InputType::Seed32Bit);
     ui->textBoxStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxMaxAdvances->setValues(InputType::State32Bit);
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
@@ -95,7 +95,7 @@ void PokeSpot::generate()
 
     u32 seed = ui->textBoxSeed->getUInt();
     u32 initialAdvances = ui->textBoxStartingAdvance->getUInt();
-    u32 maxResults = ui->textBoxMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
     u16 tid = ui->textBoxTID->getUShort();
     u16 sid = ui->textBoxSID->getUShort();
     u8 genderRatio = ui->filter->getGenderRatio();
@@ -103,7 +103,7 @@ void PokeSpot::generate()
     StateFilter filter(ui->filter->getGender(), ui->filter->getAbility(), ui->filter->getShiny(), false, {}, {}, ui->filter->getNatures(),
                        {}, {});
 
-    PokeSpotGenerator generator(initialAdvances, maxResults, tid, sid, genderRatio, filter);
+    PokeSpotGenerator generator(initialAdvances, maxAdvances, tid, sid, genderRatio, filter);
     generator.setSpots(ui->comboBoxSpotType->getChecked());
 
     auto states = generator.generate(seed);

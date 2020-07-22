@@ -28,7 +28,7 @@ class StationaryGenerator4 : public StationaryGenerator
 {
 public:
     StationaryGenerator4() = default;
-    StationaryGenerator4(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    StationaryGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     QVector<State> generate(u32 seed) const;
 
 private:

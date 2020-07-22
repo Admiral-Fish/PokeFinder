@@ -27,12 +27,12 @@
 class HiddenGrottoGenerator
 {
 public:
-    HiddenGrottoGenerator(u32 initialAdvances, u32 maxResults, u8 genderRatio, const HiddenGrottoFilter &filter);
+    HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u8 genderRatio, const HiddenGrottoFilter &filter);
     QVector<HiddenGrottoState> generate(u64 seed);
 
 private:
     u32 initialAdvances;
-    u32 maxResults;
+    u32 maxAdvances;
     u8 genderRatio;
     HiddenGrottoFilter filter;
 };

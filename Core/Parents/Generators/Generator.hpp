@@ -31,14 +31,14 @@ class Generator
 {
 public:
     Generator() = default;
-    Generator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    Generator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     StateFilter getFilter() const;
     void setOffset(u32 offset);
     void setInitialAdvances(u32 initialAdvances);
 
 protected:
     u32 initialAdvances;
-    u32 maxResults;
+    u32 maxAdvances;
     u32 offset;
     u16 tid;
     u16 sid;

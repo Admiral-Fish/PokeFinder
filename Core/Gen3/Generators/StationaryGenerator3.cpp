@@ -22,9 +22,9 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-StationaryGenerator3::StationaryGenerator3(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+StationaryGenerator3::StationaryGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                            const StateFilter &filter) :
-    StationaryGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter)
+    StationaryGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
 {
 }
 
@@ -54,7 +54,7 @@ QVector<State> StationaryGenerator3::generateMethod124(u32 seed) const
     // Method 2 [SEED] [PID] [PID] [BLANK] [IVS] [IVS]
     // Method 4 [SEED] [PID] [PID] [IVS] [BLANK] [IVS]
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         State state(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());
@@ -94,7 +94,7 @@ QVector<State> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
 
     // Method 1 Reverse [SEED] [PID] [PID] [IVS] [IVS]
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         State state(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());

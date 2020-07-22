@@ -28,7 +28,7 @@ class RTCSearcher
 {
 public:
     RTCSearcher();
-    void startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxResults);
+    void startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances);
     void cancelSearch();
     QVector<GameCubeRTCState> getResults();
 

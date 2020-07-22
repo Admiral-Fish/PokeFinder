@@ -54,7 +54,7 @@ void Researcher::setupModels()
     menu = new QMenu(ui->tableView);
 
     ui->textBoxInitialAdvances->setValues(InputType::Advance64Bit);
-    ui->textBoxMaxResults->setValues(InputType::Advance64Bit);
+    ui->textBoxMaxAdvances->setValues(InputType::Advance64Bit);
     ui->textBoxSeed->setValues(InputType::Seed64Bit);
     ui->textBoxSearch->setValues(InputType::Seed64Bit);
 
@@ -226,7 +226,7 @@ void Researcher::generate()
 
     u64 seed = ui->textBoxSeed->text().toULongLong(nullptr, 16);
     u32 initialAdvances = ui->textBoxInitialAdvances->getUInt();
-    u32 maxResults = ui->textBoxMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxMaxAdvances->getUInt();
 
     if (ui->rngSelection->currentIndex() != 1 && (seed > 0xffffffff))
     {
@@ -239,31 +239,31 @@ void Researcher::generate()
         switch (ui->comboBoxRNG32Bit->currentIndex())
         {
         case 0:
-            rngStates = getStates(PokeRNG(seed), initialAdvances, maxResults);
+            rngStates = getStates(PokeRNG(seed), initialAdvances, maxAdvances);
             break;
         case 1:
-            rngStates = getStates(PokeRNGR(seed), initialAdvances, maxResults);
+            rngStates = getStates(PokeRNGR(seed), initialAdvances, maxAdvances);
             break;
         case 2:
-            rngStates = getStates(XDRNG(seed), initialAdvances, maxResults);
+            rngStates = getStates(XDRNG(seed), initialAdvances, maxAdvances);
             break;
         case 3:
-            rngStates = getStates(XDRNGR(seed), initialAdvances, maxResults);
+            rngStates = getStates(XDRNGR(seed), initialAdvances, maxAdvances);
             break;
         case 4:
-            rngStates = getStates(ARNG(seed), initialAdvances, maxResults);
+            rngStates = getStates(ARNG(seed), initialAdvances, maxAdvances);
             break;
         case 5:
-            rngStates = getStates(ARNGR(seed), initialAdvances, maxResults);
+            rngStates = getStates(ARNGR(seed), initialAdvances, maxAdvances);
             break;
         case 6:
-            rngStates = getStates(MT(seed), initialAdvances, maxResults);
+            rngStates = getStates(MT(seed), initialAdvances, maxAdvances);
             break;
         case 7:
 
-            if (initialAdvances + maxResults - 1 <= 227)
+            if (initialAdvances + maxAdvances - 1 <= 227)
             {
-                rngStates = getStates(MTFast(seed, initialAdvances + maxResults), initialAdvances, maxResults);
+                rngStates = getStates(MTFast(seed, initialAdvances + maxAdvances), initialAdvances, maxAdvances);
             }
             else
             {
@@ -280,17 +280,17 @@ void Researcher::generate()
         switch (ui->comboBoxRNG64Bit->currentIndex())
         {
         case 0:
-            rngStates = getStates(BWRNG(seed), initialAdvances, maxResults);
+            rngStates = getStates(BWRNG(seed), initialAdvances, maxAdvances);
             break;
         case 1:
-            rngStates = getStates(BWRNGR(seed), initialAdvances, maxResults);
+            rngStates = getStates(BWRNGR(seed), initialAdvances, maxAdvances);
             break;
         case 2:
             if (seed > 0xffffffff)
             {
                 seed >>= 32;
             }
-            rngStates = getStates(SFMT(seed), initialAdvances, maxResults);
+            rngStates = getStates(SFMT(seed), initialAdvances, maxAdvances);
             break;
         }
     }
@@ -301,11 +301,11 @@ void Researcher::generate()
 
         if (std::all_of(std::begin(status), std::end(status), [](u32 x) { return x == 0; }))
         {
-            rngStates = getStates(TinyMT(seed), initialAdvances, maxResults);
+            rngStates = getStates(TinyMT(seed), initialAdvances, maxAdvances);
         }
         else
         {
-            rngStates = getStates(TinyMT(status), initialAdvances, maxResults);
+            rngStates = getStates(TinyMT(status), initialAdvances, maxAdvances);
         }
     }
 
@@ -397,7 +397,7 @@ void Researcher::generate()
                           ui->comboBoxRValue10->currentText() };
 
     QVector<ResearcherState> states;
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         ResearcherState state(rng64Bit, cnt + initialAdvances);
 

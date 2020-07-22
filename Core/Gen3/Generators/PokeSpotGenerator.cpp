@@ -22,8 +22,8 @@
 #include <Core/Parents/Filters/StateFilter.hpp>
 #include <Core/RNG/LCRNG.hpp>
 
-PokeSpotGenerator::PokeSpotGenerator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter) :
-    Generator(initialAdvances, maxResults, tid, sid, genderRatio, Method::XDColo, filter)
+PokeSpotGenerator::PokeSpotGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, const StateFilter &filter) :
+    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::XDColo, filter)
 {
 }
 
@@ -39,7 +39,7 @@ QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
     XDRNG rng(seed);
     rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         XDRNG go(rng.getSeed());
 

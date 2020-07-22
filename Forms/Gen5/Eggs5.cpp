@@ -92,7 +92,7 @@ void Eggs5::setupModels()
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::State32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::State32Bit);
 
     ui->textBoxSearcherMaxAdvances->setValues(InputType::State32Bit);
 
@@ -153,7 +153,7 @@ void Eggs5::generate()
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
@@ -167,7 +167,7 @@ void Eggs5::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    EggGenerator5 generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter,
+    EggGenerator5 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter,
                             ui->eggSettingsGenerator->getDaycareSettings(), currentProfile.getShinyCharm());
     generator.setOffset(offset);
 
@@ -195,7 +195,7 @@ void Eggs5::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    u32 maxResults = ui->textBoxSearcherMaxAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
@@ -204,7 +204,7 @@ void Eggs5::search()
                        ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    EggGenerator5 generator(0, maxResults, tid, sid, genderRatio, method, filter, ui->eggSettingsSearcher->getDaycareSettings(),
+    EggGenerator5 generator(0, maxAdvances, tid, sid, genderRatio, method, filter, ui->eggSettingsSearcher->getDaycareSettings(),
                             currentProfile.getShinyCharm());
     generator.setOffset(0);
 

@@ -93,10 +93,10 @@ void GameCubeRTC::search()
     u32 initialSeed = ui->textBoxStartSeed->getUInt();
     u32 targetSeed = ui->textBoxTargetSeed->getUInt();
     u32 initialAdvances = ui->textBoxMinAdvance->getUInt();
-    u32 maxResults = ui->textBoxMaxAdvance->getUInt();
+    u32 maxAdvances = ui->textBoxMaxAdvance->getUInt();
 
     auto *searcher = new RTCSearcher();
-    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxResults); });
+    auto *thread = QThread::create([=] { searcher->startSearch(initialSeed, targetSeed, initialAdvances, maxAdvances); });
 
     connect(thread, &QThread::finished, this, [=] {
         ui->pushButtonSearch->setEnabled(true);

@@ -81,7 +81,7 @@ void Stationary5::setupModels()
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::State32Bit);
     ui->textBoxGeneratorDelay->setValues(InputType::State32Bit);
 
     ui->textBoxSearcherMinDelay->setValues(InputType::Delay);
@@ -169,7 +169,7 @@ void Stationary5::generate()
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 startingAdvance = ui->textBoxGeneratorStartingAdvance->getUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = ui->textBoxGeneratorTID->getUShort();
     u16 sid = ui->textBoxGeneratorSID->getUShort();
     u32 offset = 0;
@@ -179,7 +179,7 @@ void Stationary5::generate()
     }
 
     u8 genderRatio = ui->comboBoxGeneratorGenderRatio->currentData().toInt();
-    Generator5 generator(maxResults, startingAdvance, seed, tid, sid, offset,
+    Generator5 generator(maxAdvances, startingAdvance, seed, tid, sid, offset,
         static_cast<Method>(ui->comboBoxGeneratorMethod->currentData().toInt()));
     AdvanceCompare compare(ui->comboBoxGeneratorAbility->currentIndex(), ui->comboBoxGeneratorAbility->currentIndex(),
         ui->checkBoxGeneratorShinyOnly->isChecked(), ui->checkBoxGeneratorDisableFilters->isChecked(),

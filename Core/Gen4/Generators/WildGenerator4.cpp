@@ -25,9 +25,9 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/Util/EncounterSlot.hpp>
 
-WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+WildGenerator4::WildGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                const StateFilter &filter) :
-    WildGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter)
+    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
 {
 }
 
@@ -82,7 +82,7 @@ QVector<WildState> WildGenerator4::generateMethodJ(u32 seed) const
         break;
     }
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
 
@@ -276,7 +276,7 @@ QVector<WildState> WildGenerator4::generateMethodK(u32 seed) const
         break;
     }
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
 
@@ -450,7 +450,7 @@ QVector<WildState> WildGenerator4::generateChainedShiny(u32 seed) const
     PokeRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
 

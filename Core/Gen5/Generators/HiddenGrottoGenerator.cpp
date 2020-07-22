@@ -24,8 +24,8 @@
 // Game has all of these + 1, removed for simplicity
 constexpr u32 grottoSlots[11] = { 0, 4, 19, 20, 24, 34, 59, 60, 64, 74, 99 };
 
-HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxResults, u8 genderRatio, const HiddenGrottoFilter &filter) :
-    initialAdvances(initialAdvances), maxResults(maxResults), genderRatio(genderRatio), filter(filter)
+HiddenGrottoGenerator::HiddenGrottoGenerator(u32 initialAdvances, u32 maxAdvances, u8 genderRatio, const HiddenGrottoFilter &filter) :
+    initialAdvances(initialAdvances), maxAdvances(maxAdvances), genderRatio(genderRatio), filter(filter)
 {
 }
 
@@ -35,7 +35,7 @@ QVector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
 
     BWRNG rng(seed);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         BWRNG go(rng.getSeed());
 

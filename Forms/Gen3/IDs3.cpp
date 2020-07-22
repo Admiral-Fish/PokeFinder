@@ -55,21 +55,21 @@ void IDs3::setupModels()
     ui->textBoxFRLGETID->setValues(InputType::TIDSID);
     ui->textBoxFRLGESID->setValues(InputType::TIDSID);
     ui->textBoxFRLGEStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxFRLGEMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxFRLGEMaxAdvances->setValues(InputType::State32Bit);
 
     ui->textBoxRSPID->setValues(InputType::Seed32Bit);
     ui->textBoxRSTID->setValues(InputType::TIDSID);
     ui->textBoxRSSID->setValues(InputType::TIDSID);
     ui->textBoxRSInitialSeed->setValues(InputType::Seed16Bit);
     ui->textBoxRSStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxRSMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxRSMaxAdvances->setValues(InputType::State32Bit);
 
     ui->textBoxXDColoPID->setValues(InputType::Seed32Bit);
     ui->textBoxXDColoTID->setValues(InputType::TIDSID);
     ui->textBoxXDColoSID->setValues(InputType::TIDSID);
     ui->textBoxXDColoSeed->setValues(InputType::Seed32Bit);
     ui->textBoxXDColoStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxXDColoMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxXDColoMaxAdvances->setValues(InputType::State32Bit);
 
     ui->dateTimeEdit->setDisplayFormat(QLocale::system().dateTimeFormat(QLocale::ShortFormat));
 
@@ -93,7 +93,7 @@ void IDs3::xdColoSearch()
 
     u32 seed = ui->textBoxXDColoSeed->getUInt();
     u32 initialAdvances = ui->textBoxXDColoStartingAdvance->getUInt();
-    u32 maxResults = ui->textBoxXDColoMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxXDColoMaxAdvances->getUInt();
 
     QVector<u16> tidFilter;
     QVector<u16> sidFilter;
@@ -116,7 +116,7 @@ void IDs3::xdColoSearch()
     }
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);
-    IDGenerator3 generator(initialAdvances, maxResults, filter);
+    IDGenerator3 generator(initialAdvances, maxAdvances, filter);
 
     auto states = generator.generateXDColo(seed);
     xdcolo->addItems(states);
@@ -128,7 +128,7 @@ void IDs3::frlgeSearch()
 
     u16 tid = ui->textBoxFRLGETID->getUShort();
     u32 initialAdvances = ui->textBoxFRLGEStartingAdvance->getUInt();
-    u32 maxResults = ui->textBoxFRLGEMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxFRLGEMaxAdvances->getUInt();
 
     QVector<u16> sidFilter;
     QVector<u16> tsvFilter;
@@ -145,7 +145,7 @@ void IDs3::frlgeSearch()
     }
 
     IDFilter filter({ tid }, sidFilter, tsvFilter);
-    IDGenerator3 generator(initialAdvances, maxResults, filter);
+    IDGenerator3 generator(initialAdvances, maxAdvances, filter);
     generator.setStaticTID(tid);
 
     auto states = generator.generateFRLGE(tid);
@@ -166,7 +166,7 @@ void IDs3::rsSearch()
         seed = Utilities::calcGen3Seed(ui->dateTimeEdit->dateTime());
     }
     u32 initialAdvances = ui->textBoxRSStartingAdvance->getUInt();
-    u32 maxResults = ui->textBoxRSMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxRSMaxAdvances->getUInt();
 
     QVector<u16> tidFilter;
     QVector<u16> sidFilter;
@@ -189,7 +189,7 @@ void IDs3::rsSearch()
     }
 
     IDFilter filter(tidFilter, sidFilter, tsvFilter);
-    IDGenerator3 generator(initialAdvances, maxResults, filter);
+    IDGenerator3 generator(initialAdvances, maxAdvances, filter);
 
     auto states = generator.generateRS(seed);
     rs->addItems(states);

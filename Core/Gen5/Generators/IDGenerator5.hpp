@@ -27,7 +27,7 @@ class IDGenerator5 : public IDGenerator
 {
 public:
     IDGenerator5() = default;
-    IDGenerator5(u32 initialAdvances, u32 maxResults, const IDFilter &filter);
+    IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter);
     QVector<IDState5> generate(u64 seed, u32 pid = 0, bool checkPID = false);
     void setInitialAdvances(u32 initialAdvances);
 };

@@ -95,7 +95,7 @@ void Eggs4::setupModels()
     ui->tableViewSearcher->setModel(searcherModel);
 
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::State32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::State32Bit);
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
 
     ui->textBoxSearcherIVMinAdvance->setValues(InputType::State32Bit);
@@ -174,7 +174,7 @@ void Eggs4::generate()
     generatorModel->clearModel();
 
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
@@ -198,7 +198,7 @@ void Eggs4::generate()
                        ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(), ui->filterGenerator->getNatures(),
                        ui->filterGenerator->getHiddenPowers(), {});
 
-    EggGenerator4 generator(initialAdvances, maxResults, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter);
+    EggGenerator4 generator(initialAdvances, maxAdvances, tid, sid, ui->filterGenerator->getGenderRatio(), method, filter);
     generator.setParents(ui->eggSettingsGenerator->getParent1(), ui->eggSettingsGenerator->getParent2());
 
     auto states = generator.generate(seed);

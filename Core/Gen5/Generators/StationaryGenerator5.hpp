@@ -29,7 +29,7 @@ class StationaryGenerator5 : public StationaryGenerator
 {
 public:
     StationaryGenerator5() = default;
-    StationaryGenerator5(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter,
+    StationaryGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, Encounter encounter,
                          const StateFilter &filter);
     QVector<StationaryState> generate(u64 seed) const;
 

@@ -22,9 +22,9 @@
 #include <Core/Enum/ShadowType.hpp>
 #include <Core/Parents/Filters/StateFilter.hpp>
 
-GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+GameCubeGenerator::GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                      const StateFilter &filter) :
-    Generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter)
+    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
 {
 }
 
@@ -60,7 +60,7 @@ QVector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
 
     // Method XD/Colo [SEED] [IVS] [IVS] [BLANK] [PID] [PID]
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         GameCubeState state(initialAdvances + cnt);
         XDRNG go(rng.getSeed());
@@ -98,7 +98,7 @@ QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 
     QVector<LockInfo> locks = team.getLocks();
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         GameCubeState state(initialAdvances + cnt);
 
@@ -187,7 +187,7 @@ QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
 
     QVector<LockInfo> locks = team.getLocks();
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         GameCubeState state(initialAdvances + cnt);
 
@@ -276,7 +276,7 @@ QVector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
 
     // Method Channel [SEED] [SID] [PID] [PID] [BERRY] [GAME ORIGIN] [OT GENDER] [IV] [IV] [IV] [IV] [IV] [IV]
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         GameCubeState state(initialAdvances + cnt);
         XDRNG go(rng.getSeed());

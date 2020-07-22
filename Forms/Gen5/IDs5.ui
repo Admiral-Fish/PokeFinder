@@ -220,7 +220,7 @@
        </widget>
       </item>
       <item row="5" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxSeedFinderMaxResults">
+       <widget class="TextBox" name="textBoxSeedFinderMaxAdvances">
         <property name="text">
          <string notr="true">100</string>
         </property>
@@ -430,7 +430,7 @@
        </widget>
       </item>
       <item row="5" column="1" colspan="2">
-       <widget class="TextBox" name="textBoxMaxResults">
+       <widget class="TextBox" name="textBoxMaxAdvances">
         <property name="text">
          <string notr="true">100</string>
         </property>
@@ -491,7 +491,7 @@
   <tabstop>checkBoxSID</tabstop>
   <tabstop>textBoxSID</tabstop>
   <tabstop>checkBoxExistingSave</tabstop>
-  <tabstop>textBoxMaxResults</tabstop>
+  <tabstop>textBoxMaxAdvances</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonCancel</tabstop>
   <tabstop>textBoxSeedFinderTID</tabstop>
@@ -500,7 +500,7 @@
   <tabstop>spinBoxMinute</tabstop>
   <tabstop>spinBoxMinSecond</tabstop>
   <tabstop>spinBoxMaxSecond</tabstop>
-  <tabstop>textBoxSeedFinderMaxResults</tabstop>
+  <tabstop>textBoxSeedFinderMaxAdvances</tabstop>
   <tabstop>checkBoxSeedFinderExistingSave</tabstop>
   <tabstop>pushButtonFind</tabstop>
   <tabstop>tableView</tabstop>

@@ -267,7 +267,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="labelEmeraldMaxResults">
+           <widget class="QLabel" name="labelEmeraldMaxAdvances">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -275,12 +275,12 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Max Results</string>
+             <string>Max Advances</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1" colspan="2">
-           <widget class="TextBox" name="textBoxEmeraldMaxResults">
+           <widget class="TextBox" name="textBoxEmeraldMaxAdvances">
             <property name="text">
              <string notr="true">5000</string>
             </property>
@@ -428,7 +428,7 @@
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="TextBox" name="textBoxRSMaxResultsHeld">
+             <widget class="TextBox" name="textBoxRSMaxAdvancesHeld">
               <property name="text">
                <string notr="true">5000</string>
               </property>
@@ -455,7 +455,7 @@
              </widget>
             </item>
             <item row="2" column="2">
-             <widget class="TextBox" name="textBoxRSMaxResultsPickup">
+             <widget class="TextBox" name="textBoxRSMaxAdvancesPickup">
               <property name="text">
                <string notr="true">5000</string>
               </property>
@@ -619,7 +619,7 @@
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="TextBox" name="textBoxFRLGMaxResultsHeld">
+             <widget class="TextBox" name="textBoxFRLGMaxAdvancesHeld">
               <property name="text">
                <string notr="true">5000</string>
               </property>
@@ -646,7 +646,7 @@
              </widget>
             </item>
             <item row="2" column="2">
-             <widget class="TextBox" name="textBoxFRLGMaxResultsPickup">
+             <widget class="TextBox" name="textBoxFRLGMaxAdvancesPickup">
               <property name="text">
                <string notr="true">5000</string>
               </property>
@@ -799,7 +799,7 @@
   <tabstop>pushButtonProfileManager</tabstop>
   <tabstop>tabEggSelection</tabstop>
   <tabstop>textBoxEmeraldInitialAdvances</tabstop>
-  <tabstop>textBoxEmeraldMaxResults</tabstop>
+  <tabstop>textBoxEmeraldMaxAdvances</tabstop>
   <tabstop>comboBoxEmeraldMethod</tabstop>
   <tabstop>textBoxCalibration</tabstop>
   <tabstop>textBoxMinRedraws</tabstop>
@@ -811,9 +811,9 @@
   <tabstop>textBoxRSSeedHeld</tabstop>
   <tabstop>textBoxRSSeedPickup</tabstop>
   <tabstop>textBoxRSInitialAdvancesHeld</tabstop>
-  <tabstop>textBoxRSMaxResultsHeld</tabstop>
+  <tabstop>textBoxRSMaxAdvancesHeld</tabstop>
   <tabstop>textBoxRSInitialAdvancesPickup</tabstop>
-  <tabstop>textBoxRSMaxResultsPickup</tabstop>
+  <tabstop>textBoxRSMaxAdvancesPickup</tabstop>
   <tabstop>comboBoxRSMethod</tabstop>
   <tabstop>comboBoxRSCompatibility</tabstop>
   <tabstop>pushButtonRSGenerate</tabstop>
@@ -821,9 +821,9 @@
   <tabstop>textBoxFRLGSeedHeld</tabstop>
   <tabstop>textBoxFRLGSeedPickup</tabstop>
   <tabstop>textBoxFRLGInitialAdvancesHeld</tabstop>
-  <tabstop>textBoxFRLGMaxResultsHeld</tabstop>
+  <tabstop>textBoxFRLGMaxAdvancesHeld</tabstop>
   <tabstop>textBoxFRLGInitialAdvancesPickup</tabstop>
-  <tabstop>textBoxFRLGMaxResultsPickup</tabstop>
+  <tabstop>textBoxFRLGMaxAdvancesPickup</tabstop>
   <tabstop>comboBoxFRLGMethod</tabstop>
   <tabstop>comboBoxFRLGCompatibility</tabstop>
   <tabstop>pushButtonFRLGGenerate</tabstop>

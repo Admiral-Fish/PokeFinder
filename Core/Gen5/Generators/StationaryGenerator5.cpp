@@ -26,9 +26,9 @@
 #include <Core/RNG/MT.hpp>
 #include <Core/RNG/RNGList.hpp>
 
-StationaryGenerator5::StationaryGenerator5(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+StationaryGenerator5::StationaryGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                            Encounter encounter, const StateFilter &filter) :
-    StationaryGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter),
+    StationaryGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter),
     idBit((tid & 1) ^ (sid & 1)),
     encounter(encounter)
 {
@@ -70,7 +70,7 @@ QVector<StationaryState> StationaryGenerator5::generateRoamerIVs(u64 seed) const
 
     RNGList<u8, MT, 100, 27> rngList(mt);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceState())
     {
         StationaryState state;
 
@@ -104,7 +104,7 @@ QVector<StationaryState> StationaryGenerator5::generateIVs(u64 seed) const
 
     RNGList<u8, MT, 100, 27> rngList(mt);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceState())
     {
         StationaryState state;
 
@@ -138,7 +138,7 @@ QVector<StationaryState> StationaryGenerator5::generateRoamerCGear(u64 seed) con
 
     RNGList<u8, MT, 100, 27> rngList(mt);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceState())
     {
         StationaryState state;
 
@@ -173,7 +173,7 @@ QVector<StationaryState> StationaryGenerator5::generateCGear(u64 seed) const
 
     RNGList<u8, MT, 100, 27> rngList(mt);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceState())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rngList.advanceState())
     {
         StationaryState state;
 
@@ -204,7 +204,7 @@ QVector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) cons
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
@@ -282,7 +282,7 @@ QVector<StationaryState> StationaryGenerator5::generateRoamer(u64 seed)
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
@@ -311,7 +311,7 @@ QVector<StationaryState> StationaryGenerator5::generateGift(u64 seed)
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
@@ -340,7 +340,7 @@ QVector<StationaryState> StationaryGenerator5::generateEntraLink(u64 seed)
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
@@ -358,7 +358,7 @@ QVector<StationaryState> StationaryGenerator5::generateLarvestaEgg(u64 seed)
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
@@ -388,7 +388,7 @@ QVector<StationaryState> StationaryGenerator5::generateHiddenGrotto(u64 seed)
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());

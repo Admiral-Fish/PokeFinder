@@ -27,9 +27,9 @@
 #include <Core/Util/EncounterSlot.hpp>
 #include <functional>
 
-WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+WildGenerator3::WildGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                const StateFilter &filter) :
-    WildGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter)
+    WildGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
 {
 }
 
@@ -78,7 +78,7 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
         };
     }
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         WildState state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());

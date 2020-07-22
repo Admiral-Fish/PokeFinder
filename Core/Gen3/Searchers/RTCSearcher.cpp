@@ -27,7 +27,7 @@ RTCSearcher::RTCSearcher() : searching(false)
 {
 }
 
-void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxResults)
+void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvances, u32 maxAdvances)
 {
     searching = true;
 
@@ -44,7 +44,7 @@ void RTCSearcher::startSearch(u32 initialSeed, u32 targetSeed, u32 initialAdvanc
     {
         XDRNG rng(initialSeed);
 
-        for (u32 x = 0; x < maxResults; x++)
+        for (u32 x = 0; x < maxAdvances; x++)
         {
             if (rng.next() == targetSeed)
             {

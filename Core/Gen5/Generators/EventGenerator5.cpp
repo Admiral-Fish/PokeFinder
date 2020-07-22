@@ -22,9 +22,9 @@
 #include <Core/RNG/LCRNG64.hpp>
 #include <Core/Util/Utilities.hpp>
 
-EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+EventGenerator5::EventGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                                  const StateFilter &filter, const PGF &parameters) :
-    Generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter), parameters(parameters)
+    Generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter), parameters(parameters)
 {
     u16 cardXOR = parameters.getTID() ^ parameters.getSID();
     xorValue = parameters.isEgg() ? (tid ^ sid) : cardXOR;
@@ -40,7 +40,7 @@ QVector<State> EventGenerator5::generate(u64 seed) const
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         // TODO: set seed for chatot pitch
         State state(initialAdvances + cnt);

@@ -19,7 +19,7 @@
 
 #include "IDGenerator.hpp"
 
-IDGenerator::IDGenerator(u32 initialAdvances, u32 maxResults, const IDFilter &filter) :
-    initialAdvances(initialAdvances), maxResults(maxResults), filter(filter)
+IDGenerator::IDGenerator(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) :
+    initialAdvances(initialAdvances), maxAdvances(maxAdvances), filter(filter)
 {
 }

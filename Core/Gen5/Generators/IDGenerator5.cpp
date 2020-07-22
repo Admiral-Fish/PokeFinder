@@ -20,7 +20,7 @@
 #include "IDGenerator5.hpp"
 #include <Core/RNG/LCRNG64.hpp>
 
-IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxResults, const IDFilter &filter) : IDGenerator(initialAdvances, maxResults, filter)
+IDGenerator5::IDGenerator5(u32 initialAdvances, u32 maxAdvances, const IDFilter &filter) : IDGenerator(initialAdvances, maxAdvances, filter)
 {
 }
 
@@ -35,7 +35,7 @@ QVector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
     u16 psv = (pid >> 16) ^ (pid & 0xffff);
     u16 xorPSV = psv ^ 0x8000;
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         u32 rand = rng.nextUInt(0xffffffff);
         u16 tid = rand & 0xffff;

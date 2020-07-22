@@ -91,10 +91,10 @@ void IDs5::setupModels()
     ui->textBoxTID->setValues(InputType::TIDSID);
     ui->textBoxSID->setValues(InputType::TIDSID);
 
-    ui->textBoxMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxMaxAdvances->setValues(InputType::State32Bit);
 
     ui->textBoxSeedFinderTID->setValues(InputType::TIDSID);
-    ui->textBoxSeedFinderMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxSeedFinderMaxAdvances->setValues(InputType::State32Bit);
 
     QAction *outputTXTGenerator = menu->addAction(tr("Output Results to TXT"));
     QAction *outputCSVGenerator = menu->addAction(tr("Output Results to CSV"));
@@ -148,7 +148,7 @@ void IDs5::search()
     QDate end = ui->dateEditEnd->date();
 
     IDFilter filter(tid, sid, {});
-    IDGenerator5 generator(0, ui->textBoxMaxResults->getUInt(), filter);
+    IDGenerator5 generator(0, ui->textBoxMaxAdvances->getUInt(), filter);
 
     auto *searcher = new IDSearcher5(generator, currentProfile, pid, usePID, ui->checkBoxExistingSave->isChecked());
 
@@ -189,7 +189,7 @@ void IDs5::find()
     int minute = ui->spinBoxMinute->value();
     int minSecond = ui->spinBoxMinSecond->value();
     int maxSecond = ui->spinBoxMaxSecond->value();
-    u32 maxAdvance = ui->textBoxSeedFinderMaxResults->getUInt();
+    u32 maxAdvance = ui->textBoxSeedFinderMaxAdvances->getUInt();
     bool save = ui->checkBoxSeedFinderExistingSave->isChecked();
 
     int offset = (currentProfile.getVersion() & Game::BW) ? 2 : save ? 4 : 7;

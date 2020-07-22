@@ -177,7 +177,7 @@
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="TextBox" name="textBoxGeneratorMaxResults">
+           <widget class="TextBox" name="textBoxGeneratorMaxAdvances">
             <property name="inputMask">
              <string/>
             </property>
@@ -229,7 +229,7 @@
            </widget>
           </item>
           <item row="4" column="0">
-           <widget class="QLabel" name="labelGeneratorMaxResults">
+           <widget class="QLabel" name="labelGeneratorMaxAdvances">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -237,7 +237,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Max Results</string>
+             <string>Max Advances</string>
             </property>
            </widget>
           </item>
@@ -552,7 +552,7 @@
   <tabstop>comboBoxGeneratorShadow</tabstop>
   <tabstop>comboBoxGeneratorType</tabstop>
   <tabstop>textBoxGeneratorStartingAdvance</tabstop>
-  <tabstop>textBoxGeneratorMaxResults</tabstop>
+  <tabstop>textBoxGeneratorMaxAdvances</tabstop>
   <tabstop>textBoxGeneratorSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>tableViewGenerator</tabstop>

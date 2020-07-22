@@ -101,7 +101,7 @@ void GameCube::setupModels()
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed32Bit);
     ui->textBoxGeneratorStartingAdvance->setValues(InputType::State32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::State32Bit);
 
     ui->comboBoxGeneratorMethod->setup({ Method::XDColo, Method::XD, Method::Colo, Method::Channel });
     ui->comboBoxSearcherMethod->setup({ Method::XDColo, Method::XD, Method::Colo, Method::Channel });
@@ -149,7 +149,7 @@ void GameCube::generate()
 
     u32 seed = ui->textBoxGeneratorSeed->getUInt();
     u32 initialAdvances = ui->textBoxGeneratorStartingAdvance->getUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
@@ -164,7 +164,7 @@ void GameCube::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    GameCubeGenerator generator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter);
+    GameCubeGenerator generator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter);
     generator.setOffset(offset);
 
     if (method == Method::XD || method == Method::Colo)

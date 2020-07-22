@@ -23,9 +23,9 @@
 #include <Core/RNG/LCRNG.hpp>
 #include <Core/RNG/MT.hpp>
 
-EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+EggGenerator4::EggGenerator4(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                              const StateFilter &filter) :
-    EggGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter)
+    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter)
 {
 }
 
@@ -53,7 +53,7 @@ QVector<EggState4> EggGenerator4::generateNormal(u32 seed) const
     MT mt(seed);
     mt.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         EggState4 state(initialAdvances + cnt);
 
@@ -80,7 +80,7 @@ QVector<EggState4> EggGenerator4::generateMasuada(u32 seed) const
     MT mt(seed);
     mt.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++)
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++)
     {
         EggState4 state(initialAdvances + cnt);
 
@@ -119,7 +119,7 @@ QVector<EggState4> EggGenerator4::generateDPPtIVs(u32 seed) const
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         EggState4 state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
@@ -157,7 +157,7 @@ QVector<EggState4> EggGenerator4::generateHGSSIVs(u32 seed) const
     PokeRNG rng(seed);
     rng.advance(initialAdvances);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         EggState4 state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());

@@ -28,9 +28,9 @@ inline bool isShiny(u32 pid, u16 tsv)
     return ((pid >> 16) ^ (pid & 0xffff) ^ tsv) < 8;
 }
 
-EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method,
+EggGenerator5::EggGenerator5(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method,
                              const StateFilter &filter, const Daycare &daycare, bool shinyCharm) :
-    EggGenerator(initialAdvances, maxResults, tid, sid, genderRatio, method, filter),
+    EggGenerator(initialAdvances, maxAdvances, tid, sid, genderRatio, method, filter),
     daycare(daycare),
     rolls((shinyCharm ? 2 : 0) + (daycare.getMasuada() ? 5 : 0)),
     everstone(daycare.getEverstoneCount(Game::BW)),
@@ -70,7 +70,7 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
     BWRNG rng(seed);
     rng.advance(initialAdvances + offset);
 
-    for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+    for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
     {
         EggState state(cnt + initialAdvances);
         // TODO: chatot
@@ -218,7 +218,7 @@ QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
     {
         BWRNG rng(seed);
         rng.advance(initialAdvances + offset);
-        for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
+        for (u32 cnt = 0; cnt < maxAdvances; cnt++, rng.next())
         {
             BWRNG go(rng.getSeed());
 

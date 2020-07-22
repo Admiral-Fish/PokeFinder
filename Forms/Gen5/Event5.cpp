@@ -94,7 +94,7 @@ void Event5::setupModels()
 
     ui->textBoxGeneratorSeed->setValues(InputType::Seed64Bit);
     ui->textBoxGeneratorInitialAdvances->setValues(InputType::State32Bit);
-    ui->textBoxGeneratorMaxResults->setValues(InputType::State32Bit);
+    ui->textBoxGeneratorMaxAdvances->setValues(InputType::State32Bit);
     ui->textBoxGeneratorEventTID->setValues(InputType::TIDSID);
     ui->textBoxGeneratorEventSID->setValues(InputType::TIDSID);
 
@@ -185,7 +185,7 @@ void Event5::generate()
 
     u64 seed = ui->textBoxGeneratorSeed->getULong();
     u32 initialAdvances = ui->textBoxGeneratorInitialAdvances->getUInt();
-    u32 maxResults = ui->textBoxGeneratorMaxResults->getUInt();
+    u32 maxAdvances = ui->textBoxGeneratorMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterGenerator->getGenderRatio();
@@ -199,7 +199,7 @@ void Event5::generate()
                        ui->filterGenerator->getDisableFilters(), ui->filterGenerator->getMinIVs(), ui->filterGenerator->getMaxIVs(),
                        ui->filterGenerator->getNatures(), ui->filterGenerator->getHiddenPowers(), {});
 
-    EventGenerator5 generator(initialAdvances, maxResults, tid, sid, genderRatio, Method::Method5Event, filter, getGeneratorParameters());
+    EventGenerator5 generator(initialAdvances, maxAdvances, tid, sid, genderRatio, Method::Method5Event, filter, getGeneratorParameters());
     generator.setOffset(offset);
 
     auto states = generator.generate(seed);
@@ -213,7 +213,7 @@ void Event5::search()
     ui->pushButtonSearch->setEnabled(false);
     ui->pushButtonCancel->setEnabled(true);
 
-    u32 maxResults = ui->textBoxSearcherMaxAdvances->getUInt();
+    u32 maxAdvances = ui->textBoxSearcherMaxAdvances->getUInt();
     u16 tid = currentProfile.getTID();
     u16 sid = currentProfile.getSID();
     u8 genderRatio = ui->filterSearcher->getGenderRatio();
@@ -222,7 +222,7 @@ void Event5::search()
                        ui->filterSearcher->getDisableFilters(), ui->filterSearcher->getMinIVs(), ui->filterSearcher->getMaxIVs(),
                        ui->filterSearcher->getNatures(), ui->filterSearcher->getHiddenPowers(), {});
 
-    EventGenerator5 generator(0, maxResults, tid, sid, genderRatio, Method::Method5Event, filter, getSearcherParameters());
+    EventGenerator5 generator(0, maxAdvances, tid, sid, genderRatio, Method::Method5Event, filter, getSearcherParameters());
     generator.setOffset(0);
 
     EventSearcher5 *searcher = new EventSearcher5(generator, currentProfile);

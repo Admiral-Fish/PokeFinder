@@ -27,10 +27,10 @@ class EggGenerator3 : public EggGenerator
 {
 public:
     EggGenerator3() = default;
-    EggGenerator3(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    EggGenerator3(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     QVector<EggState3> generate(u32 seed = 0, u32 seed2 = 0) const;
     void setInitialAdvancesPickup(u32 value);
-    void setMaxResultsPickup(u32 value);
+    void setMaxAdvancesPickup(u32 value);
     void setCalibration(u8 value);
     void setMinRedraw(u8 value);
     void setMaxRedraw(u8 value);
@@ -39,7 +39,7 @@ public:
 
 private:
     u32 initialAdvancesPickup;
-    u32 maxResultsPickup;
+    u32 maxAdvancesPickup;
     u8 calibration;
     u8 minRedraw;
     u8 maxRedraw;

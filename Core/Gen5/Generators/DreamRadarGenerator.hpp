@@ -40,7 +40,7 @@ class DreamRadarGenerator : public Generator
 {
 public:
     DreamRadarGenerator() = default;
-    DreamRadarGenerator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
+    DreamRadarGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter,
                         const QVector<DreamRadarSlot> &radarSlots);
     QVector<State> generate(u64 seed, bool memory);
 

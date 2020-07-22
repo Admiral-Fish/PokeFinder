@@ -2520,14 +2520,14 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="labelMaxResults">
+       <widget class="QLabel" name="labelMaxAdvances">
         <property name="text">
-         <string>Max Results</string>
+         <string>Max Advances</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="TextBox" name="textBoxMaxResults">
+       <widget class="TextBox" name="textBoxMaxAdvances">
         <property name="text">
          <string notr="true">1000</string>
         </property>
@@ -2665,7 +2665,7 @@
   <tabstop>textBoxStatus1</tabstop>
   <tabstop>textBoxStatus0</tabstop>
   <tabstop>textBoxInitialAdvances</tabstop>
-  <tabstop>textBoxMaxResults</tabstop>
+  <tabstop>textBoxMaxAdvances</tabstop>
   <tabstop>textBoxSeed</tabstop>
   <tabstop>pushButtonGenerate</tabstop>
   <tabstop>textBoxSearch</tabstop>

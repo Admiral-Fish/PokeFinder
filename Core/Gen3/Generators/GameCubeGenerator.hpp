@@ -29,7 +29,7 @@ class GameCubeGenerator : public Generator
 {
 public:
     GameCubeGenerator() = default;
-    GameCubeGenerator(u32 initialAdvances, u32 maxResults, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
+    GameCubeGenerator(u32 initialAdvances, u32 maxAdvances, u16 tid, u16 sid, u8 genderRatio, Method method, const StateFilter &filter);
     QVector<GameCubeState> generate(u32 seed) const;
     void setShadowTeam(u8 index, u8 type);
 
