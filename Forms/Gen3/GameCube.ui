@@ -224,7 +224,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Starting Advance</string>
+             <string>Initial Advances</string>
             </property>
            </widget>
           </item>

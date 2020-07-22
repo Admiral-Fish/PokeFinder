@@ -49,7 +49,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="labelStartingAdvance">
         <property name="text">
-         <string>Starting Advance</string>
+         <string>Initial Advances</string>
         </property>
        </widget>
       </item>
