@@ -46,25 +46,25 @@ QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &currentState = model.at(index.row());
+        const auto &state = model.at(index.row());
         if (calibrate)
         {
             switch (index.column())
             {
             case 0:
-                return QString::number(currentState.getSeed(), 16).toUpper().toUpper().rightJustified(8, '0');
+                return QString::number(state.getSeed(), 16).toUpper().toUpper().rightJustified(8, '0');
             case 1:
-                return currentState.getDate();
+                return state.getDate();
             case 2:
-                return currentState.getTime();
+                return state.getTime();
             case 3:
-                return currentState.getDelay();
+                return state.getDelay();
             case 4:
-                return (version & Game::HGSS) ? Utilities::getCalls(currentState.getSeed(), currentState.getInfo())
-                                              : Utilities::coinFlips(currentState.getSeed());
+                return (version & Game::HGSS) ? Utilities::getCalls(state.getSeed(), state.getInfo())
+                                              : Utilities::coinFlips(state.getSeed());
             case 5:
             {
-                QString str = currentState.getInfo().getRouteString();
+                QString str = state.getInfo().getRouteString();
                 return str.isEmpty() ? tr("No roamers") : str;
             }
             }
@@ -74,11 +74,11 @@ QVariant SeedtoTimeModel4::data(const QModelIndex &index, int role) const
             switch (index.column())
             {
             case 0:
-                return currentState.getDate();
+                return state.getDate();
             case 1:
-                return currentState.getTime();
+                return state.getTime();
             case 2:
-                return currentState.getDelay();
+                return state.getDelay();
             }
         }
     }

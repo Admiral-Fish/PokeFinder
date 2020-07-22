@@ -117,39 +117,39 @@ void Researcher::setupModels()
     }
 }
 
-u64 Researcher::getCustom(const QString &text, const ResearcherState &currentState, const QVector<ResearcherState> &states)
+u64 Researcher::getCustom(const QString &text, const ResearcherState &state, const QVector<ResearcherState> &states)
 {
     switch (keys[text])
     {
     case 0:
     case 1:
-        return currentState.getAdvance();
+        return state.getAdvance();
     case 2:
-        return currentState.getHigh32();
+        return state.getHigh32();
     case 3:
-        return currentState.getLow32();
+        return state.getLow32();
     case 4:
-        return currentState.getHigh16();
+        return state.getHigh16();
     case 5:
-        return currentState.getLow16();
+        return state.getLow16();
     case 6:
-        return currentState.getCustom(0);
+        return state.getCustom(0);
     case 7:
-        return currentState.getCustom(1);
+        return state.getCustom(1);
     case 8:
-        return currentState.getCustom(2);
+        return state.getCustom(2);
     case 9:
-        return currentState.getCustom(3);
+        return state.getCustom(3);
     case 10:
-        return currentState.getCustom(4);
+        return state.getCustom(4);
     case 11:
-        return currentState.getCustom(5);
+        return state.getCustom(5);
     case 12:
-        return currentState.getCustom(6);
+        return state.getCustom(6);
     case 13:
-        return currentState.getCustom(7);
+        return state.getCustom(7);
     case 14:
-        return currentState.getCustom(8);
+        return state.getCustom(8);
     case 15:
         return states.isEmpty() ? 0 : states[states.size() - 1].getCustom(0);
     case 16:
@@ -399,25 +399,25 @@ void Researcher::generate()
     QVector<ResearcherState> states;
     for (u32 cnt = 0; cnt < maxResults; cnt++)
     {
-        ResearcherState currentState(rng64Bit, cnt + initialAdvances);
+        ResearcherState state(rng64Bit, cnt + initialAdvances);
 
-        currentState.setState(rngStates.at(cnt));
+        state.setState(rngStates.at(cnt));
 
         for (u8 j = 0; j < 10; j++)
         {
             if (calcCustom.at(j))
             {
-                u64 temp = getCustom(textL.at(j), currentState, states);
+                u64 temp = getCustom(textL.at(j), state, states);
 
                 if (textR[j] != tr("None"))
                 {
-                    customRValue[j] = getCustom(textR.at(j), currentState, states);
+                    customRValue[j] = getCustom(textR.at(j), state, states);
                 }
 
-                currentState.setCustom(j, calculators.at(j)(temp, customRValue.at(j)));
+                state.setCustom(j, calculators.at(j)(temp, customRValue.at(j)));
             }
         }
-        states.append(currentState);
+        states.append(state);
     }
 
     model->setHex(getHexCheck());

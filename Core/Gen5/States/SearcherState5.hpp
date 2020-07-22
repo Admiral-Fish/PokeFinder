@@ -28,18 +28,18 @@ class SearcherState5 : public State5
 {
 public:
     SearcherState5() = default;
-    SearcherState5(const QDateTime &dt, u64 initialSeed, u16 buttons, u16 timer0, const StateType &currentState) :
-        State5(dt, initialSeed, buttons, timer0), currentState(currentState)
+    SearcherState5(const QDateTime &dt, u64 initialSeed, u16 buttons, u16 timer0, const StateType &state) :
+        State5(dt, initialSeed, buttons, timer0), state(state)
     {
     }
 
     StateType getState() const
     {
-        return currentState;
+        return state;
     }
 
 private:
-    StateType currentState;
+    StateType state;
 };
 
 #endif // EVENTSTATE5_HPP

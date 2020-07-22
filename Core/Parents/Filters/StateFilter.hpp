@@ -32,15 +32,15 @@ public:
     StateFilter() = default;
     StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const QVector<u8> &min, const QVector<u8> &max, const QVector<bool> &natures,
                 const QVector<bool> &powers, const QVector<bool> &encounters);
-    bool compareState(const State &currentState) const;
-    bool comparePID(const State &currentState) const;
-    bool compareIVs(const State &currentState) const;
-    bool compareAbility(const State &currentState) const;
-    bool compareGender(const State &currentState) const;
-    bool compareNature(const State &currentState) const;
-    bool compareShiny(const State &currentState) const;
-    bool compareIV(const State &currentState) const;
-    bool compareHiddenPower(const State &currentState) const;
+    bool compareState(const State &state) const;
+    bool comparePID(const State &state) const;
+    bool compareIVs(const State &state) const;
+    bool compareAbility(const State &state) const;
+    bool compareGender(const State &state) const;
+    bool compareNature(const State &state) const;
+    bool compareShiny(const State &state) const;
+    bool compareIV(const State &state) const;
+    bool compareHiddenPower(const State &state) const;
     bool compareEncounterSlot(const WildState &currrentState) const;
 
 private:

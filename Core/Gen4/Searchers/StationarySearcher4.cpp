@@ -121,11 +121,11 @@ QVector<StationaryState> StationarySearcher4::searchMethod1(u8 hp, u8 atk, u8 de
 {
     QVector<StationaryState> states;
 
-    StationaryState currentState;
-    currentState.setIVs(hp, atk, def, spa, spd, spe);
-    currentState.calculateHiddenPower();
+    StationaryState state;
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(currentState))
+    if (!filter.compareHiddenPower(state))
     {
         return states;
     }
@@ -138,24 +138,24 @@ QVector<StationaryState> StationarySearcher4::searchMethod1(u8 hp, u8 atk, u8 de
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        currentState.setSeed(rng.next());
-        currentState.setPID(high, low);
-        currentState.setAbility(low & 1);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(tsv, high ^ low, 8);
-        if (filter.comparePID(currentState))
+        state.setSeed(rng.next());
+        state.setPID(high, low);
+        state.setAbility(low & 1);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(tsv, high ^ low, 8);
+        if (filter.comparePID(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
 
         // Setup XORed state
-        currentState.setPID(currentState.getPID() ^ 0x80008000);
-        currentState.setNature(currentState.getPID() % 25);
-        if (filter.comparePID(currentState))
+        state.setPID(state.getPID() ^ 0x80008000);
+        state.setNature(state.getPID() % 25);
+        if (filter.comparePID(state))
         {
-            currentState.setSeed(currentState.getSeed() ^ 0x80000000);
-            states.append(currentState);
+            state.setSeed(state.getSeed() ^ 0x80000000);
+            states.append(state);
         }
     }
 
@@ -166,11 +166,11 @@ QVector<StationaryState> StationarySearcher4::searchMethodJ(u8 hp, u8 atk, u8 de
 {
     QVector<StationaryState> states;
 
-    StationaryState currentState;
-    currentState.setIVs(hp, atk, def, spa, spd, spe);
-    currentState.calculateHiddenPower();
+    StationaryState state;
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(currentState))
+    if (!filter.compareHiddenPower(state))
     {
         return states;
     }
@@ -183,49 +183,49 @@ QVector<StationaryState> StationarySearcher4::searchMethodJ(u8 hp, u8 atk, u8 de
         u16 low = rng.nextUShort();
         u32 seed = rng.next();
 
-        currentState.setPID(high, low);
+        state.setPID(high, low);
 
         for (const bool flag : { false, true })
         {
             if (flag)
             {
-                currentState.setPID(currentState.getPID() ^ 0x80008000);
+                state.setPID(state.getPID() ^ 0x80008000);
                 seed ^= 0x80000000;
             }
 
             if (lead == Lead::CuteCharm)
             {
-                states.append(cuteCharmMethodJ(currentState, seed));
+                states.append(cuteCharmMethodJ(state, seed));
             }
             else
             {
                 if (lead == Lead::Search)
                 {
-                    states.append(cuteCharmMethodJ(currentState, seed));
+                    states.append(cuteCharmMethodJ(state, seed));
                 }
 
-                currentState.setAbility(low & 1);
-                currentState.setGender(low & 255, genderRatio);
-                currentState.setNature(currentState.getPID() % 25);
-                currentState.setShiny(tsv, high ^ low, 8);
+                state.setAbility(low & 1);
+                state.setGender(low & 255, genderRatio);
+                state.setNature(state.getPID() % 25);
+                state.setShiny(tsv, high ^ low, 8);
 
-                if (!filter.comparePID(currentState))
+                if (!filter.comparePID(state))
                 {
                     continue;
                 }
 
                 if (lead == Lead::None)
                 {
-                    states.append(normalMethodJ(currentState, seed));
+                    states.append(normalMethodJ(state, seed));
                 }
                 else if (lead == Lead::Synchronize)
                 {
-                    states.append(synchMethodJ(currentState, seed));
+                    states.append(synchMethodJ(state, seed));
                 }
                 else if (lead == Lead::Search)
                 {
-                    states.append(normalMethodJ(currentState, seed));
-                    states.append(synchMethodJ(currentState, seed));
+                    states.append(normalMethodJ(state, seed));
+                    states.append(synchMethodJ(state, seed));
                 }
             }
         }
@@ -238,11 +238,11 @@ QVector<StationaryState> StationarySearcher4::searchMethodK(u8 hp, u8 atk, u8 de
 {
     QVector<StationaryState> states;
 
-    StationaryState currentState;
-    currentState.setIVs(hp, atk, def, spa, spd, spe);
-    currentState.calculateHiddenPower();
+    StationaryState state;
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(currentState))
+    if (!filter.compareHiddenPower(state))
     {
         return states;
     }
@@ -255,49 +255,49 @@ QVector<StationaryState> StationarySearcher4::searchMethodK(u8 hp, u8 atk, u8 de
         u16 low = rng.nextUShort();
         u32 seed = rng.next();
 
-        currentState.setPID(high, low);
+        state.setPID(high, low);
 
         for (const bool flag : { false, true })
         {
             if (flag)
             {
-                currentState.setPID(currentState.getPID() ^ 0x80008000);
+                state.setPID(state.getPID() ^ 0x80008000);
                 seed ^= 0x80000000;
             }
 
             if (lead == Lead::CuteCharm)
             {
-                states.append(cuteCharmMethodK(currentState, seed));
+                states.append(cuteCharmMethodK(state, seed));
             }
             else
             {
                 if (lead == Lead::Search)
                 {
-                    states.append(cuteCharmMethodK(currentState, seed));
+                    states.append(cuteCharmMethodK(state, seed));
                 }
 
-                currentState.setAbility(low & 1);
-                currentState.setGender(low & 255, genderRatio);
-                currentState.setNature(currentState.getPID() % 25);
-                currentState.setShiny(tsv, high ^ low, 8);
+                state.setAbility(low & 1);
+                state.setGender(low & 255, genderRatio);
+                state.setNature(state.getPID() % 25);
+                state.setShiny(tsv, high ^ low, 8);
 
-                if (!filter.comparePID(currentState))
+                if (!filter.comparePID(state))
                 {
                     continue;
                 }
 
                 if (lead == Lead::None)
                 {
-                    states.append(normalMethodK(currentState, seed));
+                    states.append(normalMethodK(state, seed));
                 }
                 else if (lead == Lead::Synchronize)
                 {
-                    states.append(synchMethodK(currentState, seed));
+                    states.append(synchMethodK(state, seed));
                 }
                 else if (lead == Lead::Search)
                 {
-                    states.append(normalMethodK(currentState, seed));
-                    states.append(synchMethodK(currentState, seed));
+                    states.append(normalMethodK(state, seed));
+                    states.append(synchMethodK(state, seed));
                 }
             }
         }
@@ -310,11 +310,11 @@ QVector<StationaryState> StationarySearcher4::searchWondercardIVs(u8 hp, u8 atk,
 {
     QVector<StationaryState> states;
 
-    StationaryState currentState;
-    currentState.setIVs(hp, atk, def, spa, spd, spe);
-    currentState.calculateHiddenPower();
+    StationaryState state;
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(currentState))
+    if (!filter.compareHiddenPower(state))
     {
         return states;
     }
@@ -324,21 +324,21 @@ QVector<StationaryState> StationarySearcher4::searchWondercardIVs(u8 hp, u8 atk,
     {
         // Setup normal state
         PokeRNGR rng(seed);
-        currentState.setSeed(rng.next());
-        states.append(currentState);
+        state.setSeed(rng.next());
+        states.append(state);
 
         // Setup XORed state
-        currentState.setSeed(currentState.getSeed() ^ 0x80000000);
-        states.append(currentState);
+        state.setSeed(state.getSeed() ^ 0x80000000);
+        states.append(state);
     }
 
     return states;
 }
 
-QVector<StationaryState> StationarySearcher4::normalMethodJ(StationaryState currentState, u32 seed) const
+QVector<StationaryState> StationarySearcher4::normalMethodJ(StationaryState state, u32 seed) const
 {
     QVector<StationaryState> states;
-    currentState.setLead(Lead::None);
+    state.setLead(Lead::None);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -347,24 +347,24 @@ QVector<StationaryState> StationarySearcher4::normalMethodJ(StationaryState curr
 
     do
     {
-        if ((nextRNG / 0xa3e) == currentState.getNature())
+        if ((nextRNG / 0xa3e) == state.getNature())
         {
-            currentState.setSeed(rng.getSeed());
-            states.append(currentState);
+            state.setSeed(rng.getSeed());
+            states.append(state);
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
         nextRNG = rng.nextUShort();
         nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != currentState.getNature());
+    } while (pid % 25 != state.getNature());
 
     return states;
 }
 
-QVector<StationaryState> StationarySearcher4::synchMethodJ(StationaryState currentState, u32 seed) const
+QVector<StationaryState> StationarySearcher4::synchMethodJ(StationaryState state, u32 seed) const
 {
     QVector<StationaryState> states;
-    currentState.setLead(Lead::Synchronize);
+    state.setLead(Lead::Synchronize);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -375,34 +375,34 @@ QVector<StationaryState> StationarySearcher4::synchMethodJ(StationaryState curre
     {
         if ((nextRNG >> 15) == 0)
         {
-            currentState.setSeed(rng.getSeed());
-            states.append(currentState);
+            state.setSeed(rng.getSeed());
+            states.append(state);
         }
-        else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == currentState.getNature())
+        else if ((nextRNG2 >> 15) == 1 && (nextRNG / 0xa3e) == state.getNature())
         {
             PokeRNGR go(rng.getSeed());
-            currentState.setSeed(go.next());
-            states.append(currentState);
+            state.setSeed(go.next());
+            states.append(state);
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
         nextRNG = rng.nextUShort();
         nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != currentState.getNature());
+    } while (pid % 25 != state.getNature());
 
     return states;
 }
 
-QVector<StationaryState> StationarySearcher4::cuteCharmMethodJ(StationaryState currentState, u32 seed) const
+QVector<StationaryState> StationarySearcher4::cuteCharmMethodJ(StationaryState state, u32 seed) const
 {
     QVector<StationaryState> states;
 
-    u16 high = currentState.getPID() >> 16;
-    u16 low = currentState.getPID() & 0xffff;
+    u16 high = state.getPID() >> 16;
+    u16 low = state.getPID() & 0xffff;
 
     if ((low / 0x5556) != 0)
     {
-        currentState.setSeed(seed);
+        state.setSeed(seed);
 
         u8 choppedPID = high / 0xa3e;
         u8 nature = choppedPID % 25;
@@ -410,35 +410,35 @@ QVector<StationaryState> StationarySearcher4::cuteCharmMethodJ(StationaryState c
         {
             if (buffer == 0)
             {
-                currentState.setLead(Lead::CuteCharmFemale);
+                state.setLead(Lead::CuteCharmFemale);
             }
             else if (buffer == 0x96)
             {
-                currentState.setLead(Lead::CuteCharm50M);
+                state.setLead(Lead::CuteCharm50M);
             }
             else if (buffer == 0xc8)
             {
-                currentState.setLead(Lead::CuteCharm25M);
+                state.setLead(Lead::CuteCharm25M);
             }
             else if (buffer == 0x4b)
             {
-                currentState.setLead(Lead::CuteCharm75M);
+                state.setLead(Lead::CuteCharm75M);
             }
             else if (buffer == 0x32)
             {
-                currentState.setLead(Lead::CuteCharm875M);
+                state.setLead(Lead::CuteCharm875M);
             }
 
             u8 pid = choppedPID + buffer;
-            currentState.setPID(pid);
-            currentState.setAbility(pid & 1);
-            currentState.setGender(pid, genderRatio);
-            currentState.setNature(nature);
-            currentState.setShiny(tsv, pid, 8);
+            state.setPID(pid);
+            state.setAbility(pid & 1);
+            state.setGender(pid, genderRatio);
+            state.setNature(nature);
+            state.setShiny(tsv, pid, 8);
 
-            if (filter.comparePID(currentState))
+            if (filter.comparePID(state))
             {
-                states.append(currentState);
+                states.append(state);
             }
         }
     }
@@ -446,10 +446,10 @@ QVector<StationaryState> StationarySearcher4::cuteCharmMethodJ(StationaryState c
     return states;
 }
 
-QVector<StationaryState> StationarySearcher4::normalMethodK(StationaryState currentState, u32 seed) const
+QVector<StationaryState> StationarySearcher4::normalMethodK(StationaryState state, u32 seed) const
 {
     QVector<StationaryState> states;
-    currentState.setLead(Lead::None);
+    state.setLead(Lead::None);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -458,24 +458,24 @@ QVector<StationaryState> StationarySearcher4::normalMethodK(StationaryState curr
 
     do
     {
-        if ((nextRNG % 25) == currentState.getNature())
+        if ((nextRNG % 25) == state.getNature())
         {
-            currentState.setSeed(rng.getSeed());
-            states.append(currentState);
+            state.setSeed(rng.getSeed());
+            states.append(state);
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
         nextRNG = rng.nextUShort();
         nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != currentState.getNature());
+    } while (pid % 25 != state.getNature());
 
     return states;
 }
 
-QVector<StationaryState> StationarySearcher4::synchMethodK(StationaryState currentState, u32 seed) const
+QVector<StationaryState> StationarySearcher4::synchMethodK(StationaryState state, u32 seed) const
 {
     QVector<StationaryState> states;
-    currentState.setLead(Lead::Synchronize);
+    state.setLead(Lead::Synchronize);
 
     PokeRNGR rng(seed);
     u32 pid;
@@ -486,34 +486,34 @@ QVector<StationaryState> StationarySearcher4::synchMethodK(StationaryState curre
     {
         if ((nextRNG & 1) == 0)
         {
-            currentState.setSeed(rng.getSeed());
-            states.append(currentState);
+            state.setSeed(rng.getSeed());
+            states.append(state);
         }
-        else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == currentState.getNature())
+        else if ((nextRNG2 & 1) == 1 && (nextRNG % 25) == state.getNature())
         {
             PokeRNGR go(rng.getSeed());
-            currentState.setSeed(go.next());
-            states.append(currentState);
+            state.setSeed(go.next());
+            states.append(state);
         }
 
         pid = static_cast<u32>((nextRNG << 16) | nextRNG2);
         nextRNG = rng.nextUShort();
         nextRNG2 = rng.nextUShort();
-    } while (pid % 25 != currentState.getNature());
+    } while (pid % 25 != state.getNature());
 
     return states;
 }
 
-QVector<StationaryState> StationarySearcher4::cuteCharmMethodK(StationaryState currentState, u32 seed) const
+QVector<StationaryState> StationarySearcher4::cuteCharmMethodK(StationaryState state, u32 seed) const
 {
     QVector<StationaryState> states;
 
-    u16 high = currentState.getPID() >> 16;
-    u16 low = currentState.getPID() & 0xffff;
+    u16 high = state.getPID() >> 16;
+    u16 low = state.getPID() & 0xffff;
 
     if ((low % 3) != 0)
     {
-        currentState.setSeed(seed);
+        state.setSeed(seed);
 
         u8 choppedPID = high % 25;
         u8 nature = choppedPID % 25;
@@ -521,35 +521,35 @@ QVector<StationaryState> StationarySearcher4::cuteCharmMethodK(StationaryState c
         {
             if (buffer == 0)
             {
-                currentState.setLead(Lead::CuteCharmFemale);
+                state.setLead(Lead::CuteCharmFemale);
             }
             else if (buffer == 0x96)
             {
-                currentState.setLead(Lead::CuteCharm50M);
+                state.setLead(Lead::CuteCharm50M);
             }
             else if (buffer == 0xc8)
             {
-                currentState.setLead(Lead::CuteCharm25M);
+                state.setLead(Lead::CuteCharm25M);
             }
             else if (buffer == 0x4b)
             {
-                currentState.setLead(Lead::CuteCharm75M);
+                state.setLead(Lead::CuteCharm75M);
             }
             else if (buffer == 0x32)
             {
-                currentState.setLead(Lead::CuteCharm875M);
+                state.setLead(Lead::CuteCharm875M);
             }
 
             u8 pid = choppedPID + buffer;
-            currentState.setPID(pid);
-            currentState.setAbility(pid & 1);
-            currentState.setGender(pid, genderRatio);
-            currentState.setNature(nature);
-            currentState.setShiny(tsv, pid, 8);
+            state.setPID(pid);
+            state.setAbility(pid & 1);
+            state.setGender(pid, genderRatio);
+            state.setNature(nature);
+            state.setShiny(tsv, pid, 8);
 
-            if (filter.comparePID(currentState))
+            if (filter.comparePID(state))
             {
-                states.append(currentState);
+                states.append(state);
             }
         }
     }

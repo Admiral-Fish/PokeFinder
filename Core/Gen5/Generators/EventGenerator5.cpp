@@ -43,7 +43,7 @@ QVector<State> EventGenerator5::generate(u64 seed) const
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
         // TODO: set seed for chatot pitch
-        State currentState(initialAdvances + cnt);
+        State state(initialAdvances + cnt);
 
         BWRNG go(rng.getSeed());
         go.advance(advanceParameter); // Advances from loading wondercard
@@ -54,14 +54,14 @@ QVector<State> EventGenerator5::generate(u64 seed) const
             u8 parameterIV = parameters.getIV(i);
             if (parameterIV == 255)
             {
-                currentState.setIVs(i, go.nextUInt() >> 27);
+                state.setIVs(i, go.nextUInt() >> 27);
             }
             else
             {
-                currentState.setIVs(i, parameterIV);
+                state.setIVs(i, parameterIV);
             }
         }
-        currentState.calculateHiddenPower();
+        state.calculateHiddenPower();
 
         // 2 blanks
         go.advance(2);
@@ -73,11 +73,11 @@ QVector<State> EventGenerator5::generate(u64 seed) const
         {
             u64 rand = go.nextUInt();
             pid = Utilities::forceGender(pid, rand, parameters.getGender(), genderRatio);
-            currentState.setGender(parameters.getGender());
+            state.setGender(parameters.getGender());
         }
         else
         {
-            currentState.setGender(pid & 0xff, genderRatio);
+            state.setGender(pid & 0xff, genderRatio);
         }
 
         if (parameters.getPIDType() == 0) // No shiny
@@ -105,32 +105,32 @@ QVector<State> EventGenerator5::generate(u64 seed) const
                 pid &= ~0x10000U;
             }
 
-            currentState.setAbility(parameters.getAbilityType());
+            state.setAbility(parameters.getAbilityType());
         }
         else if (parameters.getAbilityType() == 3) // Ability flip
         {
             pid ^= 0x10000;
-            currentState.setAbility((pid >> 16) & 1);
+            state.setAbility((pid >> 16) & 1);
         }
 
-        currentState.setPID(pid);
-        currentState.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3, 8);
+        state.setPID(pid);
+        state.setShiny(tsv, ((pid >> 16) ^ (pid & 0xffff)) >> 3, 8);
 
         if (parameters.getNature() != 0xff)
         {
-            currentState.setNature(parameters.getNature());
+            state.setNature(parameters.getNature());
         }
         else
         {
             // Unused frame
             go.advance(1);
 
-            currentState.setNature(go.nextUInt(25));
+            state.setNature(go.nextUInt(25));
         }
 
-        if (filter.compareState(currentState))
+        if (filter.compareState(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 

@@ -25,19 +25,19 @@ HiddenGrottoFilter::HiddenGrottoFilter(const QVector<bool> &groups, const QVecto
 {
 }
 
-bool HiddenGrottoFilter::compareState(const HiddenGrottoState &currentState)
+bool HiddenGrottoFilter::compareState(const HiddenGrottoState &state)
 {
-    if (!groups.at(currentState.getGroup()))
+    if (!groups.at(state.getGroup()))
     {
         return false;
     }
 
-    if (!encounterSlots.at(currentState.getSlot()))
+    if (!encounterSlots.at(state.getSlot()))
     {
         return false;
     }
 
-    if (!genders.at(currentState.getGender()))
+    if (!genders.at(state.getGender()))
     {
         return false;
     }

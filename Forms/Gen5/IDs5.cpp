@@ -224,10 +224,10 @@ void IDs5::find()
             auto states = generator.generate(seed);
 
             QDateTime dt(date, QTime(hour, minute, second));
-            for (auto &currentState : states)
+            for (auto &state : states)
             {
-                currentState.setDateTime(dt);
-                currentState.setKeypress(buttons.at(i));
+                state.setDateTime(dt);
+                state.setKeypress(buttons.at(i));
             }
 
             results.append(states);

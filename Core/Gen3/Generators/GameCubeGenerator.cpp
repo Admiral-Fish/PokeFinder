@@ -62,7 +62,7 @@ QVector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        GameCubeState currentState(initialAdvances + cnt);
+        GameCubeState state(initialAdvances + cnt);
         XDRNG go(rng.getSeed());
 
         u16 iv1 = go.nextUShort();
@@ -71,18 +71,18 @@ QVector<GameCubeState> GameCubeGenerator::generateXDColo(u32 seed) const
         u16 high = go.nextUShort();
         u16 low = go.nextUShort();
 
-        currentState.setPID(high, low);
-        currentState.setAbility(ability);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(tsv, high ^ low, 8);
+        state.setPID(high, low);
+        state.setAbility(ability);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(tsv, high ^ low, 8);
 
-        currentState.setIVs(iv1, iv2);
-        currentState.calculateHiddenPower();
+        state.setIVs(iv1, iv2);
+        state.calculateHiddenPower();
 
-        if (filter.compareState(currentState))
+        if (filter.compareState(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 
@@ -100,7 +100,7 @@ QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        GameCubeState currentState(initialAdvances + cnt);
+        GameCubeState state(initialAdvances + cnt);
 
         XDRNG go(rng.getSeed());
 
@@ -151,10 +151,10 @@ QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
 
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
-        currentState.setIVs(iv1, iv2);
-        currentState.calculateHiddenPower();
+        state.setIVs(iv1, iv2);
+        state.calculateHiddenPower();
 
-        currentState.setAbility(go.nextUShort() & 1);
+        state.setAbility(go.nextUShort() & 1);
 
         u16 high = go.nextUShort();
         u16 low = go.nextUShort();
@@ -164,14 +164,14 @@ QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
             low = go.nextUShort();
         }
 
-        currentState.setPID(high, low);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(0);
+        state.setPID(high, low);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(0);
 
-        if (filter.compareState(currentState))
+        if (filter.compareState(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 
@@ -189,7 +189,7 @@ QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        GameCubeState currentState(initialAdvances + cnt);
+        GameCubeState state(initialAdvances + cnt);
 
         XDRNG go(rng.getSeed());
 
@@ -224,14 +224,14 @@ QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
         // IVs are 0
         if (team.getType() == ShadowType::EReader)
         {
-            currentState.setIVs(0);
-            currentState.calculateHiddenPower();
+            state.setIVs(0);
+            state.calculateHiddenPower();
 
-            currentState.setPID(pid);
-            currentState.setAbility(ability);
-            currentState.setGender(pid & 255, genderRatio);
-            currentState.setNature(pid % 25);
-            currentState.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+            state.setPID(pid);
+            state.setAbility(ability);
+            state.setGender(pid & 255, genderRatio);
+            state.setNature(pid % 25);
+            state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
         }
         else
         {
@@ -239,10 +239,10 @@ QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
 
             u16 iv1 = go.nextUShort();
             u16 iv2 = go.nextUShort();
-            currentState.setIVs(iv1, iv2);
-            currentState.calculateHiddenPower();
+            state.setIVs(iv1, iv2);
+            state.calculateHiddenPower();
 
-            currentState.setAbility(go.nextUShort() & 1);
+            state.setAbility(go.nextUShort() & 1);
 
             u16 high = go.nextUShort();
             u16 low = go.nextUShort();
@@ -252,15 +252,15 @@ QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
                 low = go.nextUShort();
             }
 
-            currentState.setPID(high, low);
-            currentState.setGender(low & 255, genderRatio);
-            currentState.setNature(currentState.getPID() % 25);
-            currentState.setShiny(tsv, high ^ low, 8);
+            state.setPID(high, low);
+            state.setGender(low & 255, genderRatio);
+            state.setNature(state.getPID() % 25);
+            state.setShiny(tsv, high ^ low, 8);
         }
 
-        if (filter.compareState(currentState))
+        if (filter.compareState(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 
@@ -278,7 +278,7 @@ QVector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        GameCubeState currentState(initialAdvances + cnt);
+        GameCubeState state(initialAdvances + cnt);
         XDRNG go(rng.getSeed());
 
         // u16 tid = 40122;
@@ -296,11 +296,11 @@ QVector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
             high ^= 0x8000;
         }
 
-        currentState.setPID(high, low);
-        currentState.setAbility(low & 1);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(40122 ^ sid, high ^ low, 8);
+        state.setPID(high, low);
+        state.setAbility(low & 1);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(40122 ^ sid, high ^ low, 8);
 
         u8 hp = go.nextUShort() >> 11;
         u8 atk = go.nextUShort() >> 11;
@@ -309,12 +309,12 @@ QVector<GameCubeState> GameCubeGenerator::generateChannel(u32 seed) const
         u8 spa = go.nextUShort() >> 11;
         u8 spd = go.nextUShort() >> 11;
 
-        currentState.setIVs(hp, atk, def, spa, spd, spe);
-        currentState.calculateHiddenPower();
+        state.setIVs(hp, atk, def, spa, spd, spe);
+        state.calculateHiddenPower();
 
-        if (filter.compareState(currentState))
+        if (filter.compareState(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 

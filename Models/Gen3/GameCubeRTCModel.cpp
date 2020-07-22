@@ -33,15 +33,15 @@ QVariant GameCubeRTCModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &currentState = model.at(index.row());
+        const auto &state = model.at(index.row());
         switch (index.column())
         {
         case 0:
-            return currentState.getDateTime();
+            return state.getDateTime();
         case 1:
-            return currentState.getAdvance();
+            return state.getAdvance();
         case 2:
-            return QString::number(currentState.getSeed(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         }
     }
     return QVariant();

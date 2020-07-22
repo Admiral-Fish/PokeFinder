@@ -110,10 +110,10 @@ QVector<GameCubeState> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def, u8 
 {
     QVector<GameCubeState> states;
 
-    GameCubeState currentState;
-    currentState.setIVs(hp, atk, def, spa, spd, spe);
-    currentState.calculateHiddenPower();
-    if (!filter.compareHiddenPower(currentState))
+    GameCubeState state;
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
+    if (!filter.compareHiddenPower(state))
     {
         return states;
     }
@@ -128,25 +128,25 @@ QVector<GameCubeState> GameCubeSearcher::searchXDColo(u8 hp, u8 atk, u8 def, u8 
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        currentState.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
-        currentState.setPID(high, low);
-        currentState.setAbility(ability);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(tsv, high ^ low, 8);
+        state.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        state.setPID(high, low);
+        state.setAbility(ability);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(tsv, high ^ low, 8);
 
-        if (filter.comparePID(currentState))
+        if (filter.comparePID(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
 
         // Setup XORed state
-        currentState.setPID(currentState.getPID() ^ 0x80008000);
-        currentState.setNature(currentState.getPID() % 25);
-        if (filter.comparePID(currentState))
+        state.setPID(state.getPID() ^ 0x80008000);
+        state.setNature(state.getPID() % 25);
+        if (filter.comparePID(state))
         {
-            currentState.setSeed(currentState.getSeed() ^ 0x80000000);
-            states.append(currentState);
+            state.setSeed(state.getSeed() ^ 0x80000000);
+            states.append(state);
         }
     }
     return states;
@@ -156,10 +156,10 @@ QVector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 def, u
 {
     QVector<GameCubeState> states;
 
-    GameCubeState currentState;
-    currentState.setIVs(hp, atk, def, spa, spd, spe);
-    currentState.calculateHiddenPower();
-    if (!filter.compareHiddenPower(currentState))
+    GameCubeState state;
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
+    if (!filter.compareHiddenPower(state))
     {
         return states;
     }
@@ -180,58 +180,58 @@ QVector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 def, u
             low = rng.nextUShort();
         }
 
-        currentState.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
-        currentState.setPID(high, low);
-        currentState.setAbility(ability);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(0);
+        state.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        state.setPID(high, low);
+        state.setAbility(ability);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(0);
 
-        if (filter.comparePID(currentState))
+        if (filter.comparePID(state))
         {
             switch (type)
             {
             case ShadowType::SingleLock:
-                if (lock.singleNL(currentState.getSeed(), tsv))
+                if (lock.singleNL(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(0);
-                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
+                    state.setInfo(0);
+                    states.append(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
             case ShadowType::FirstShadow:
-                if (lock.firstShadowNormal(currentState.getSeed(), tsv))
+                if (lock.firstShadowNormal(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(0);
-                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
+                    state.setInfo(0);
+                    states.append(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
             case ShadowType::SecondShadow:
-                if (lock.firstShadowUnset(currentState.getSeed(), tsv))
+                if (lock.firstShadowUnset(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(1); // Also unlikely for the other methods of encounter to pass
-                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
+                    state.setInfo(1); // Also unlikely for the other methods of encounter to pass
+                    states.append(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
-                if (lock.firstShadowSet(currentState.getSeed(), tsv))
+                if (lock.firstShadowSet(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(2); // Also unlikely for the other methods of encounter to pass
-                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
+                    state.setInfo(2); // Also unlikely for the other methods of encounter to pass
+                    states.append(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
             case ShadowType::Salamence:
-                if (lock.salamenceUnset(currentState.getSeed(), tsv))
+                if (lock.salamenceUnset(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(1); // Also unlikely for the other methods of encounter to pass
-                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
+                    state.setInfo(1); // Also unlikely for the other methods of encounter to pass
+                    states.append(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
-                if (lock.salamenceSet(currentState.getSeed(), tsv))
+                if (lock.salamenceSet(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(2); // Also unlikely for the other methods of encounter to pass
-                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
+                    state.setInfo(2); // Also unlikely for the other methods of encounter to pass
+                    states.append(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -241,50 +241,50 @@ QVector<GameCubeState> GameCubeSearcher::searchXDShadow(u8 hp, u8 atk, u8 def, u
         }
 
         // Setup XORed state
-        currentState.setSeed(currentState.getSeed() ^ 0x80000000);
-        currentState.setPID(currentState.getPID() ^ 0x80008000);
-        currentState.setNature(currentState.getPID() % 25);
+        state.setSeed(state.getSeed() ^ 0x80000000);
+        state.setPID(state.getPID() ^ 0x80008000);
+        state.setNature(state.getPID() % 25);
 
-        if (filter.comparePID(currentState))
+        if (filter.comparePID(state))
         {
             switch (type)
             {
             case ShadowType::SingleLock:
-                if (lock.singleNL(currentState.getSeed(), tsv))
+                if (lock.singleNL(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(0);
-                    states.append(currentState);
+                    state.setInfo(0);
+                    states.append(state);
                 }
                 break;
             case ShadowType::FirstShadow:
-                if (lock.firstShadowNormal(currentState.getSeed(), tsv))
+                if (lock.firstShadowNormal(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(0);
-                    states.append(currentState);
+                    state.setInfo(0);
+                    states.append(state);
                 }
                 break;
             case ShadowType::SecondShadow:
-                if (lock.firstShadowUnset(currentState.getSeed(), tsv))
+                if (lock.firstShadowUnset(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(1);
-                    states.append(currentState);
+                    state.setInfo(1);
+                    states.append(state);
                 }
-                else if (lock.firstShadowSet(currentState.getSeed(), tsv))
+                else if (lock.firstShadowSet(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(2);
-                    states.append(currentState);
+                    state.setInfo(2);
+                    states.append(state);
                 }
                 break;
             case ShadowType::Salamence:
-                if (lock.salamenceUnset(currentState.getSeed(), tsv))
+                if (lock.salamenceUnset(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(1);
-                    states.append(currentState);
+                    state.setInfo(1);
+                    states.append(state);
                 }
-                else if (lock.salamenceSet(currentState.getSeed(), tsv))
+                else if (lock.salamenceSet(state.getSeed(), tsv))
                 {
-                    currentState.setInfo(2);
-                    states.append(currentState);
+                    state.setInfo(2);
+                    states.append(state);
                 }
                 break;
             default:
@@ -299,10 +299,10 @@ QVector<GameCubeState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def,
 {
     QVector<GameCubeState> states;
 
-    GameCubeState currentState;
-    currentState.setIVs(hp, atk, def, spa, spd, spe);
-    currentState.calculateHiddenPower();
-    if (!filter.compareHiddenPower(currentState))
+    GameCubeState state;
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
+    if (!filter.compareHiddenPower(state))
     {
         return states;
     }
@@ -317,30 +317,30 @@ QVector<GameCubeState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def,
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        currentState.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
-        currentState.setPID(high, low);
-        currentState.setAbility(ability);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(tsv, high ^ low, 8);
+        state.setSeed(pair.first * 0xB9B33155 + 0xA170F641);
+        state.setPID(high, low);
+        state.setAbility(ability);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(tsv, high ^ low, 8);
 
-        if (filter.comparePID(currentState))
+        if (filter.comparePID(state))
         {
             switch (type)
             {
             case ShadowType::FirstShadow:
-                if (lock.coloShadow(currentState.getSeed()))
+                if (lock.coloShadow(state.getSeed()))
                 {
-                    currentState.setInfo(0);
-                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
+                    state.setInfo(0);
+                    states.append(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
             case ShadowType::EReader:
-                if (lock.ereader(currentState.getSeed(), currentState.getPID()))
+                if (lock.ereader(state.getSeed(), state.getPID()))
                 {
-                    currentState.setInfo(0);
-                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
+                    state.setInfo(0);
+                    states.append(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -350,26 +350,26 @@ QVector<GameCubeState> GameCubeSearcher::searchColoShadow(u8 hp, u8 atk, u8 def,
         }
 
         // Setup XORed state
-        currentState.setSeed(currentState.getSeed() ^ 0x80000000);
-        currentState.setPID(currentState.getPID() ^ 0x80008000);
-        currentState.setNature(currentState.getPID() % 25);
+        state.setSeed(state.getSeed() ^ 0x80000000);
+        state.setPID(state.getPID() ^ 0x80008000);
+        state.setNature(state.getPID() % 25);
 
-        if (filter.comparePID(currentState))
+        if (filter.comparePID(state))
         {
             switch (type)
             {
             case ShadowType::FirstShadow:
-                if (lock.coloShadow(currentState.getSeed()))
+                if (lock.coloShadow(state.getSeed()))
                 {
-                    currentState.setInfo(0);
-                    states.append(currentState);
+                    state.setInfo(0);
+                    states.append(state);
                 }
                 break;
             case ShadowType::EReader:
-                if (lock.ereader(currentState.getSeed(), currentState.getPID()))
+                if (lock.ereader(state.getSeed(), state.getPID()))
                 {
-                    currentState.setInfo(0);
-                    states.append(currentState); // If this seed passes it is impossible for the sister spread to generate
+                    state.setInfo(0);
+                    states.append(state); // If this seed passes it is impossible for the sister spread to generate
                     continue;
                 }
                 break;
@@ -403,10 +403,10 @@ void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
             u8 atk = rng.nextUShort() >> 11;
             u8 hp = rng.nextUShort() >> 11;
 
-            GameCubeState currentState;
-            currentState.setIVs(hp, atk, def, spa, spd, spe);
-            currentState.calculateHiddenPower();
-            if (!filter.compareIVs(currentState))
+            GameCubeState state;
+            state.setIVs(hp, atk, def, spa, spd, spe);
+            state.calculateHiddenPower();
+            if (!filter.compareIVs(state))
             {
                 continue;
             }
@@ -424,19 +424,19 @@ void GameCubeSearcher::searchChannel(u8 minSpD, u8 maxSpD)
                 high ^= 0x8000;
             }
 
-            currentState.setPID(high, low);
-            currentState.setAbility(low & 1);
-            currentState.setGender(low & 255, genderRatio);
-            currentState.setNature(currentState.getPID() % 25);
-            currentState.setShiny(40122 ^ sid, high ^ low, 8);
+            state.setPID(high, low);
+            state.setAbility(low & 1);
+            state.setGender(low & 255, genderRatio);
+            state.setNature(state.getPID() % 25);
+            state.setShiny(40122 ^ sid, high ^ low, 8);
 
             u32 originSeed = rng.next();
-            if (filter.comparePID(currentState) && validateJirachi(originSeed))
+            if (filter.comparePID(state) && validateJirachi(originSeed))
             {
-                currentState.setSeed(originSeed);
+                state.setSeed(originSeed);
 
                 std::lock_guard<std::mutex> lock(mutex);
-                results.append(currentState);
+                results.append(state);
             }
         }
     }

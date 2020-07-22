@@ -60,14 +60,14 @@ private:
     QVector<WildState> searchChainedShiny(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     QVector<WildState> searchInitialSeeds(const QVector<WildState> &results) const;
 
-    QVector<WildState> normalMethodJ(WildState currentState, u32 seed) const;
-    QVector<WildState> synchMethodJ(WildState currentState, u32 seed) const;
-    QVector<WildState> cuteCharmMethodJ(WildState currentState, u32 seed) const;
-    bool encounterMethodJ(WildState &currentState, u32 seed) const;
-    QVector<WildState> normalMethodK(WildState currentState, u32 seed) const;
-    QVector<WildState> synchMethodK(WildState currentState, u32 seed) const;
-    QVector<WildState> cuteCharmMethodK(WildState currentState, u32 seed) const;
-    bool encounterMethodK(WildState &currentState, u32 seed) const;
+    QVector<WildState> normalMethodJ(WildState state, u32 seed) const;
+    QVector<WildState> synchMethodJ(WildState state, u32 seed) const;
+    QVector<WildState> cuteCharmMethodJ(WildState state, u32 seed) const;
+    bool encounterMethodJ(WildState &state, u32 seed) const;
+    QVector<WildState> normalMethodK(WildState state, u32 seed) const;
+    QVector<WildState> synchMethodK(WildState state, u32 seed) const;
+    QVector<WildState> cuteCharmMethodK(WildState state, u32 seed) const;
+    bool encounterMethodK(WildState &state, u32 seed) const;
 };
 
 #endif // WILDSEARCHER4_HPP

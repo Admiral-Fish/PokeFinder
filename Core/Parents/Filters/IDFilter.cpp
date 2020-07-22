@@ -25,19 +25,19 @@ IDFilter::IDFilter(const QVector<u16> &tidFilter, const QVector<u16> &sidFilter,
 {
 }
 
-bool IDFilter::compare(const IDState &currentState) const
+bool IDFilter::compare(const IDState &state) const
 {
-    if (!tidFilter.isEmpty() && !tidFilter.contains(currentState.getTID()))
+    if (!tidFilter.isEmpty() && !tidFilter.contains(state.getTID()))
     {
         return false;
     }
 
-    if (!sidFilter.isEmpty() && !sidFilter.contains(currentState.getSID()))
+    if (!sidFilter.isEmpty() && !sidFilter.contains(state.getSID()))
     {
         return false;
     }
 
-    if (!tsvFilter.isEmpty() && !tsvFilter.contains(currentState.getTSV()))
+    if (!tsvFilter.isEmpty() && !tsvFilter.contains(state.getTSV()))
     {
         return false;
     }

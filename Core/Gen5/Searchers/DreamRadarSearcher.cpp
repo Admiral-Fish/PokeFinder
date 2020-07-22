@@ -122,9 +122,9 @@ void DreamRadarSearcher::search(const QDate &start, const QDate &end)
                                 displayStates.reserve(states.size());
 
                                 QDateTime dt(date, QTime(hour, minute, second));
-                                for (const auto &currentState : states)
+                                for (const auto &state : states)
                                 {
-                                    SearcherState5<State> display(dt, seed, buttons.at(i), timer0, currentState);
+                                    SearcherState5<State> display(dt, seed, buttons.at(i), timer0, state);
                                     displayStates.append(display);
                                 }
 

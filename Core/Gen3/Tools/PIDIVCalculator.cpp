@@ -27,14 +27,14 @@ namespace PIDIVCalculator
 {
     namespace
     {
-        void setIVs(PIDIVState &currentState, u16 iv1, u16 iv2)
+        void setIVs(PIDIVState &state, u16 iv1, u16 iv2)
         {
-            currentState.setIV(0, iv1 & 0x1f);
-            currentState.setIV(1, (iv1 >> 5) & 0x1f);
-            currentState.setIV(2, (iv1 >> 10) & 0x1f);
-            currentState.setIV(3, (iv2 >> 5) & 0x1f);
-            currentState.setIV(4, (iv2 >> 10) & 0x1f);
-            currentState.setIV(5, iv2 & 0x1f);
+            state.setIV(0, iv1 & 0x1f);
+            state.setIV(1, (iv1 >> 5) & 0x1f);
+            state.setIV(2, (iv1 >> 10) & 0x1f);
+            state.setIV(3, (iv2 >> 5) & 0x1f);
+            state.setIV(4, (iv2 >> 10) & 0x1f);
+            state.setIV(5, iv2 & 0x1f);
         }
 
         QVector<PIDIVState> calcMethod124(u32 pid)
@@ -86,11 +86,11 @@ namespace PIDIVCalculator
                 u16 iv1 = backward.nextUShort();
                 u32 seed = backward.next();
 
-                PIDIVState currentState(seed, Method::XDColo);
+                PIDIVState state(seed, Method::XDColo);
 
-                setIVs(currentState, iv1, iv2);
+                setIVs(state, iv1, iv2);
 
-                states.append(currentState);
+                states.append(state);
             }
 
             return states;
@@ -128,14 +128,14 @@ namespace PIDIVCalculator
                 {
                     forward.advance(3);
 
-                    PIDIVState currentState(seed, Method::Channel);
+                    PIDIVState state(seed, Method::Channel);
 
                     for (u8 i : { 0, 1, 2, 5, 3, 4 })
                     {
-                        currentState.setIV(i, forward.next() >> 27);
+                        state.setIV(i, forward.next() >> 27);
                     }
 
-                    states.append(currentState);
+                    states.append(state);
                 }
             }
 
@@ -162,14 +162,14 @@ namespace PIDIVCalculator
                 {
                     forward.advance(3);
 
-                    PIDIVState currentState(seed, Method::Channel);
+                    PIDIVState state(seed, Method::Channel);
 
                     for (u8 i : { 0, 1, 2, 5, 3, 4 })
                     {
-                        currentState.setIV(i, forward.next() >> 27);
+                        state.setIV(i, forward.next() >> 27);
                     }
 
-                    states.append(currentState);
+                    states.append(state);
                 }
             }
 

@@ -45,24 +45,24 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &currentState = model.at(index.row());
+        const auto &state = model.at(index.row());
         int column = getColumn(index.column());
         switch (column)
         {
         case 0:
-            return currentState.getAdvance();
+            return state.getAdvance();
         case 1:
-            return QString::number(currentState.getAdvance(), 16).toUpper().rightJustified(16, '0');
+            return QString::number(state.getAdvance(), 16).toUpper().rightJustified(16, '0');
         case 2:
-            return QString::number(currentState.getHigh32(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getHigh32(), 16).toUpper().rightJustified(8, '0');
         case 3:
-            return QString::number(currentState.getLow32(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getLow32(), 16).toUpper().rightJustified(8, '0');
         case 4:
-            return QString::number(currentState.getAdvance(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getAdvance(), 16).toUpper().rightJustified(8, '0');
         case 5:
-            return QString::number(currentState.getHigh16(), 16).toUpper().rightJustified(4, '0');
+            return QString::number(state.getHigh16(), 16).toUpper().rightJustified(4, '0');
         case 6:
-            return QString::number(currentState.getLow16(), 16).toUpper().rightJustified(4, '0');
+            return QString::number(state.getLow16(), 16).toUpper().rightJustified(4, '0');
         case 7:
         case 8:
         case 9:
@@ -73,19 +73,19 @@ QVariant ResearcherModel::data(const QModelIndex &index, int role) const
         case 14:
         case 15:
         case 16:
-            return QString::number(currentState.getCustom(static_cast<u8>(column - 7)), hex.at(column - 7) ? 16 : 10).toUpper();
+            return QString::number(state.getCustom(static_cast<u8>(column - 7)), hex.at(column - 7) ? 16 : 10).toUpper();
         case 17:
-            return currentState.getMod3();
+            return state.getMod3();
         case 18:
-            return currentState.getMod25();
+            return state.getMod25();
         case 19:
-            return currentState.getMod100();
+            return state.getMod100();
         case 20:
-            return currentState.getDiv656();
+            return state.getDiv656();
         case 21:
-            return currentState.getHighBit();
+            return state.getHighBit();
         case 22:
-            return currentState.getLowBit();
+            return state.getLowBit();
         }
     }
     return QVariant();
@@ -107,32 +107,32 @@ QModelIndex ResearcherModel::search(const QString &string, u64 result, int row)
     if (string == tr("64Bit"))
     {
         column = 1;
-        getResult = [](const ResearcherState &currentState) { return currentState.getAdvance(); };
+        getResult = [](const ResearcherState &state) { return state.getAdvance(); };
     }
     else if (string == tr("32Bit High"))
     {
         column = 2;
-        getResult = [](const ResearcherState &currentState) { return currentState.getHigh32(); };
+        getResult = [](const ResearcherState &state) { return state.getHigh32(); };
     }
     else if (string == tr("32Bit Low"))
     {
         column = 3;
-        getResult = [](const ResearcherState &currentState) { return currentState.getLow32(); };
+        getResult = [](const ResearcherState &state) { return state.getLow32(); };
     }
     else if (string == tr("32Bit"))
     {
         column = 1;
-        getResult = [](const ResearcherState &currentState) { return currentState.getAdvance(); };
+        getResult = [](const ResearcherState &state) { return state.getAdvance(); };
     }
     else if (string == tr("16Bit High"))
     {
         column = flag ? 4 : 2;
-        getResult = [](const ResearcherState &currentState) { return currentState.getHigh16(); };
+        getResult = [](const ResearcherState &state) { return state.getHigh16(); };
     }
     else if (string == tr("16Bit Low"))
     {
         column = flag ? 5 : 3;
-        getResult = [](const ResearcherState &currentState) { return currentState.getLow16(); };
+        getResult = [](const ResearcherState &state) { return state.getLow16(); };
     }
 
     for (; row < rowCount(); row++)

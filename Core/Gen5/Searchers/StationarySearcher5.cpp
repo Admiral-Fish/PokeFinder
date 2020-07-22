@@ -136,15 +136,15 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                                     auto it = ivMap.at(j).find(seed >> 32);
                                     if (it != ivMap.at(j).end())
                                     {
-                                        StationaryState5 currentState;
-                                        currentState.setIVs(it.value());
-                                        currentState.calculateHiddenPower();
+                                        StationaryState5 state;
+                                        state.setIVs(it.value());
+                                        state.calculateHiddenPower();
 
                                         // Filter here
-                                        if (ivGenerator.getFilter().compareIVs(currentState))
+                                        if (ivGenerator.getFilter().compareIVs(state))
                                         {
-                                            currentState.setIVCurrentState(j + 1);
-                                            states.append(currentState);
+                                            state.setIVState(j + 1);
+                                            states.append(state);
                                         }
                                     }
                                 }
@@ -154,35 +154,35 @@ void StationarySearcher5::search(const QDate &start, const QDate &end)
                                 // states = ivGenerator.generate(seed);
                             }
 
-                            for (auto ivCurrentState : states)
+                            for (auto ivState : states)
                             {
-                                // ivCurrentState.setDateTime(QDateTime(date, QTime(hour, minute, second)));
-                                // ivCurrentState.setInitialSeed(seed);
-                                // ivCurrentState.setButtons(buttons.at(i));
-                                // ivCurrentState.setTimer0(timer0);
+                                // ivState.setDateTime(QDateTime(date, QTime(hour, minute, second)));
+                                // ivState.setInitialSeed(seed);
+                                // ivState.setButtons(buttons.at(i));
+                                // ivState.setTimer0(timer0);
 
                                 if (includePID)
                                 {
                                     auto pidStates = pidGenerator.generate(seed);
 
-                                    for (const auto &pidCurrentState : pidStates)
+                                    for (const auto &pidState : pidStates)
                                     {
-                                        ivCurrentState.setPID(pidCurrentState.getPID());
-                                        ivCurrentState.setAbility(pidCurrentState.getAbility());
-                                        ivCurrentState.setAdvance(pidCurrentState.getAdvance());
-                                        ivCurrentState.setGender(pidCurrentState.getGender());
-                                        ivCurrentState.setNature(pidCurrentState.getNature());
-                                        ivCurrentState.setShiny(pidCurrentState.getShiny());
-                                        ivCurrentState.setSeed(pidCurrentState.getSeed());
+                                        ivState.setPID(pidState.getPID());
+                                        ivState.setAbility(pidState.getAbility());
+                                        ivState.setAdvance(pidState.getAdvance());
+                                        ivState.setGender(pidState.getGender());
+                                        ivState.setNature(pidState.getNature());
+                                        ivState.setShiny(pidState.getShiny());
+                                        ivState.setSeed(pidState.getSeed());
 
                                         std::lock_guard<std::mutex> lock(resultMutex);
-                                        results.append(ivCurrentState);
+                                        results.append(ivState);
                                     }
                                 }
                                 else
                                 {
                                     std::lock_guard<std::mutex> lock(resultMutex);
-                                    results.append(ivCurrentState);
+                                    results.append(ivState);
                                 }
                             }
 

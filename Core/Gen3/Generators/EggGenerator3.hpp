@@ -51,7 +51,7 @@ private:
     QVector<EggState3> generateEmeraldIVs(u32 seed) const;
     QVector<QPair<u32, u16>> generateLower(u32 seed) const;
     QVector<EggState3> generateUpper(u32 seed, const QVector<QPair<u32, u16>> &lower) const;
-    void setInheritance(EggState3 &currentState, const u16 *inh, const u16 *par, bool broken) const;
+    void setInheritance(EggState3 &state, const u16 *inh, const u16 *par, bool broken) const;
 };
 
 #endif // EGGGENERATOR3_HPP

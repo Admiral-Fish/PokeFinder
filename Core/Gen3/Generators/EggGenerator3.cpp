@@ -150,7 +150,7 @@ QVector<EggState3> EggGenerator3::generateEmeraldPID(u32 seed) const
             if (((go.nextUShort() * 100) / 0xFFFF) < compatability)
             {
                 u16 offset = calibration + 3 * redraw;
-                EggState3 currentState(cnt + initialAdvances - offset);
+                EggState3 state(cnt + initialAdvances - offset);
 
                 bool flag = everstone ? (go.nextUShort() >> 15) == 0 : false;
 
@@ -160,7 +160,7 @@ QVector<EggState3> EggGenerator3::generateEmeraldPID(u32 seed) const
                 if (!flag)
                 {
                     pid = ((go.nextUShort() % 0xFFFE) + 1) | (trng.next() & 0xFFFF0000);
-                    currentState.setNature(pid % 25);
+                    state.setNature(pid % 25);
                 }
                 else
                 {
@@ -183,18 +183,18 @@ QVector<EggState3> EggGenerator3::generateEmeraldPID(u32 seed) const
                     {
                         continue;
                     }
-                    currentState.setNature(everstoneNature);
+                    state.setNature(everstoneNature);
                 }
 
-                currentState.setPID(pid);
-                currentState.setAbility(pid & 1);
-                currentState.setGender(pid & 255, genderRatio);
-                currentState.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+                state.setPID(pid);
+                state.setAbility(pid & 1);
+                state.setGender(pid & 255, genderRatio);
+                state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
-                if (filter.comparePID(currentState))
+                if (filter.comparePID(state))
                 {
-                    currentState.setRedraw(redraw);
-                    states.append(currentState);
+                    state.setRedraw(redraw);
+                    states.append(state);
                 }
             }
         }
@@ -215,14 +215,14 @@ QVector<EggState3> EggGenerator3::generateEmeraldIVs(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.nextUShort())
     {
-        EggState3 currentState(cnt + initialAdvances);
+        EggState3 state(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());
 
         go.advance(this->iv1);
         u16 iv1 = go.nextUShort();
         go.advance(this->iv2);
         u16 iv2 = go.nextUShort();
-        currentState.setIVs(iv1, iv2);
+        state.setIVs(iv1, iv2);
 
         go.advance(this->inh);
         u16 inh1 = go.nextUShort();
@@ -236,12 +236,12 @@ QVector<EggState3> EggGenerator3::generateEmeraldIVs(u32 seed) const
         u16 par3 = go.nextUShort();
         u16 par[3] = { par1, par2, par3 };
 
-        setInheritance(currentState, inh, par, true);
-        currentState.calculateHiddenPower();
+        setInheritance(state, inh, par, true);
+        state.calculateHiddenPower();
 
-        if (filter.compareIVs(currentState))
+        if (filter.compareIVs(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 
@@ -279,16 +279,16 @@ QVector<EggState3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u3
 
     for (u32 cnt = 0; cnt < maxResultsPickup; cnt++, rng.next())
     {
-        EggState3 currentState;
+        EggState3 state;
         PokeRNG go(rng.getSeed());
 
-        currentState.setPID(go.nextUShort());
+        state.setPID(go.nextUShort());
 
         go.advance(this->iv1);
         u16 iv1 = go.nextUShort();
         rng.advance(this->iv2);
         u16 iv2 = go.nextUShort();
-        currentState.setIVs(iv1, iv2);
+        state.setIVs(iv1, iv2);
 
         go.advance(this->inh);
         u16 inh1 = go.nextUShort();
@@ -302,13 +302,13 @@ QVector<EggState3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u3
         u16 par3 = go.nextUShort();
         u16 par[3] = { par1, par2, par3 };
 
-        setInheritance(currentState, inh, par, false);
-        currentState.calculateHiddenPower();
+        setInheritance(state, inh, par, false);
+        state.calculateHiddenPower();
 
-        if (filter.compareIVs(currentState))
+        if (filter.compareIVs(state))
         {
-            currentState.setPickupAdvance(cnt + initialAdvancesPickup);
-            upper.append(currentState);
+            state.setPickupAdvance(cnt + initialAdvancesPickup);
+            upper.append(state);
         }
     }
 
@@ -333,7 +333,7 @@ QVector<EggState3> EggGenerator3::generateUpper(u32 seed, const QVector<QPair<u3
     return states;
 }
 
-void EggGenerator3::setInheritance(EggState3 &currentState, const u16 *inh, const u16 *par, bool broken) const
+void EggGenerator3::setInheritance(EggState3 &state, const u16 *inh, const u16 *par, bool broken) const
 {
     u8 available[6] = { 0, 1, 2, 3, 4, 5 };
     for (u8 i = 0; i < 3; i++)
@@ -344,28 +344,28 @@ void EggGenerator3::setInheritance(EggState3 &currentState, const u16 *inh, cons
         switch (stat)
         {
         case 0:
-            currentState.setIVs(0, parent == 0 ? parent1.at(0) : parent2.at(0));
-            currentState.setInheritance(0, parent + 1);
+            state.setIVs(0, parent == 0 ? parent1.at(0) : parent2.at(0));
+            state.setInheritance(0, parent + 1);
             break;
         case 1:
-            currentState.setIVs(1, parent == 0 ? parent1.at(1) : parent2.at(1));
-            currentState.setInheritance(1, parent + 1);
+            state.setIVs(1, parent == 0 ? parent1.at(1) : parent2.at(1));
+            state.setInheritance(1, parent + 1);
             break;
         case 2:
-            currentState.setIVs(2, parent == 0 ? parent1.at(2) : parent2.at(2));
-            currentState.setInheritance(2, parent + 1);
+            state.setIVs(2, parent == 0 ? parent1.at(2) : parent2.at(2));
+            state.setInheritance(2, parent + 1);
             break;
         case 3:
-            currentState.setIVs(5, parent == 0 ? parent1.at(5) : parent2.at(5));
-            currentState.setInheritance(5, parent + 1);
+            state.setIVs(5, parent == 0 ? parent1.at(5) : parent2.at(5));
+            state.setInheritance(5, parent + 1);
             break;
         case 4:
-            currentState.setIVs(3, parent == 0 ? parent1.at(3) : parent2.at(3));
-            currentState.setInheritance(3, parent + 1);
+            state.setIVs(3, parent == 0 ? parent1.at(3) : parent2.at(3));
+            state.setInheritance(3, parent + 1);
             break;
         case 5:
-            currentState.setIVs(4, parent == 0 ? parent1.at(4) : parent2.at(4));
-            currentState.setInheritance(4, parent + 1);
+            state.setIVs(4, parent == 0 ? parent1.at(4) : parent2.at(4));
+            state.setInheritance(4, parent + 1);
             break;
         }
 

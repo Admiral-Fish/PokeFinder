@@ -128,10 +128,10 @@ void IDSearcher5::search(const QDate &start, const QDate &end)
                         if (!states.isEmpty())
                         {
                             QDateTime dt(date, QTime(hour, minute, second));
-                            for (auto &currentState : states)
+                            for (auto &state : states)
                             {
-                                currentState.setDateTime(dt);
-                                currentState.setKeypress(buttons.at(i));
+                                state.setDateTime(dt);
+                                state.setKeypress(buttons.at(i));
                             }
 
                             std::lock_guard<std::mutex> lock(resultMutex);

@@ -80,7 +80,7 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        WildState currentState(initialAdvances + cnt);
+        WildState state(initialAdvances + cnt);
         PokeRNG go(rng.getSeed());
 
         switch (encounter)
@@ -95,33 +95,33 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
                 continue;
             }
 
-            currentState.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(currentState))
+            state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
+            if (!filter.compareEncounterSlot(state))
             {
                 continue;
             }
 
-            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), go.nextUShort()));
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
             break;
         case Encounter::SafariZone:
-            currentState.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(currentState))
+            state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
+            if (!filter.compareEncounterSlot(state))
             {
                 continue;
             }
 
-            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot()));
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             go.advance(2);
             break;
         case Encounter::Grass:
             go.next();
-            currentState.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(currentState))
+            state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
+            if (!filter.compareEncounterSlot(state))
             {
                 continue;
             }
 
-            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot()));
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot()));
             go.advance(1);
             break;
         case Encounter::Surfing:
@@ -129,13 +129,13 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
         case Encounter::GoodRod:
         case Encounter::SuperRod:
             go.next();
-            currentState.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
-            if (!filter.compareEncounterSlot(currentState))
+            state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
+            if (!filter.compareEncounterSlot(state))
             {
                 continue;
             }
 
-            currentState.setLevel(encounterArea.calcLevel(currentState.getEncounterSlot(), go.nextUShort()));
+            state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
             break;
         default:
             break;
@@ -143,26 +143,26 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
 
         if (lead == Lead::None)
         {
-            currentState.setNature(go.nextUShort() % 25);
+            state.setNature(go.nextUShort() % 25);
         }
         else if (lead == Lead::Synchronize)
         {
             if ((go.nextUShort() & 1) == 0) // state is synchable so set nature to synch nature
             {
-                currentState.setNature(synchNature);
+                state.setNature(synchNature);
             }
             else // Synch failed so grab hunt nature from next RNG call
             {
-                currentState.setNature(go.nextUShort() % 25);
+                state.setNature(go.nextUShort() % 25);
             }
         }
         else // Covers cutecharm
         {
             cuteCharmFlag = go.nextUShort() % 3 > 0;
-            currentState.setNature(go.nextUShort() % 25);
+            state.setNature(go.nextUShort() % 25);
         }
 
-        if (!filter.compareNature(currentState))
+        if (!filter.compareNature(state))
         {
             continue;
         }
@@ -174,12 +174,12 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
             u16 low = go.nextUShort();
             u16 high = go.nextUShort();
             pid = (high << 16) | low;
-        } while (pid % 25 != currentState.getNature() || (cuteCharmFlag && !cuteCharm(pid)));
+        } while (pid % 25 != state.getNature() || (cuteCharmFlag && !cuteCharm(pid)));
 
-        currentState.setPID(pid);
-        currentState.setAbility(pid & 1);
-        currentState.setGender(pid & 255, genderRatio);
-        currentState.setShiny(tsv, (pid & 0xffff) ^ (pid >> 16), 8);
+        state.setPID(pid);
+        state.setAbility(pid & 1);
+        state.setGender(pid & 255, genderRatio);
+        state.setShiny(tsv, (pid & 0xffff) ^ (pid >> 16), 8);
 
         // Valid PID is found now time to generate IVs
         u16 iv1;
@@ -201,12 +201,12 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
             go.next();
             iv2 = go.nextUShort();
         }
-        currentState.setIVs(iv1, iv2);
-        currentState.calculateHiddenPower();
+        state.setIVs(iv1, iv2);
+        state.calculateHiddenPower();
 
-        if (filter.compareState(currentState))
+        if (filter.compareState(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 

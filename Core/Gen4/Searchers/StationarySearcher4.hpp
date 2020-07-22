@@ -54,12 +54,12 @@ private:
     QVector<StationaryState> searchMethodJ(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     QVector<StationaryState> searchMethodK(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
     QVector<StationaryState> searchWondercardIVs(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const;
-    QVector<StationaryState> normalMethodJ(StationaryState currentState, u32 seed) const;
-    QVector<StationaryState> synchMethodJ(StationaryState currentState, u32 seed) const;
-    QVector<StationaryState> cuteCharmMethodJ(StationaryState currentState, u32 seed) const;
-    QVector<StationaryState> normalMethodK(StationaryState currentState, u32 seed) const;
-    QVector<StationaryState> synchMethodK(StationaryState currentState, u32 seed) const;
-    QVector<StationaryState> cuteCharmMethodK(StationaryState currentState, u32 seed) const;
+    QVector<StationaryState> normalMethodJ(StationaryState state, u32 seed) const;
+    QVector<StationaryState> synchMethodJ(StationaryState state, u32 seed) const;
+    QVector<StationaryState> cuteCharmMethodJ(StationaryState state, u32 seed) const;
+    QVector<StationaryState> normalMethodK(StationaryState state, u32 seed) const;
+    QVector<StationaryState> synchMethodK(StationaryState state, u32 seed) const;
+    QVector<StationaryState> cuteCharmMethodK(StationaryState state, u32 seed) const;
     QVector<StationaryState> searchInitialSeeds(const QVector<StationaryState> &results) const;
 };
 

@@ -156,9 +156,9 @@ void ProfileCalibrator5::updateParameters()
 
 void ProfileCalibrator5::updateProgress(const QVector<QList<QStandardItem *>> &states, int progress)
 {
-    for (auto &currentState : states)
+    for (auto &state : states)
     {
-        model->appendRow(currentState);
+        model->appendRow(state);
     }
     ui->progressBar->setValue(progress);
 }

@@ -75,27 +75,27 @@ void EggSearcher4::startSearch(u32 minDelay, u32 maxDelay)
 
                     if (!statesIV.isEmpty() && !statesPID.isEmpty())
                     {
-                        for (auto currentStatePID : statesPID)
+                        for (auto statePID : statesPID)
                         {
-                            for (const auto &currentStateIV : statesIV)
+                            for (const auto &stateIV : statesIV)
                             {
-                                currentStatePID.setIVs(currentStateIV.getIV(0), currentStateIV.getIV(1), currentStateIV.getIV(2),
-                                                       currentStateIV.getIV(3), currentStateIV.getIV(4), currentStateIV.getIV(5));
+                                statePID.setIVs(stateIV.getIV(0), stateIV.getIV(1), stateIV.getIV(2), stateIV.getIV(3), stateIV.getIV(4),
+                                                stateIV.getIV(5));
                                 for (u8 i = 0; i < 6; i++)
                                 {
-                                    currentStatePID.setInheritance(i, currentStateIV.getInheritance(i));
+                                    statePID.setInheritance(i, stateIV.getInheritance(i));
                                 }
-                                currentStatePID.setSecondaryAdvance(currentStateIV.getAdvance());
+                                statePID.setSecondaryAdvance(stateIV.getAdvance());
 
-                                states.append(currentStatePID);
+                                states.append(statePID);
                             }
                         }
                     }
                 }
 
-                for (EggState4 &currentState : states)
+                for (EggState4 &state : states)
                 {
-                    currentState.setInitialSeed(seed);
+                    state.setInitialSeed(seed);
                 }
 
                 total += states.size();

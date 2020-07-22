@@ -33,13 +33,13 @@ QVariant SeedTimeModel3::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &currentState = model.at(index.row());
+        const auto &state = model.at(index.row());
         switch (index.column())
         {
         case 0:
-            return currentState.getDateTime();
+            return state.getDateTime();
         case 1:
-            return currentState.getAdvance();
+            return state.getAdvance();
         }
     }
     return QVariant();

@@ -33,22 +33,22 @@ QVariant IDModel4::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &currentState = model.at(index.row());
+        const auto &state = model.at(index.row());
         int column = index.column();
         switch (column)
         {
         case 0:
-            return QString::number(currentState.getSeed(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
-            return currentState.getTID();
+            return state.getTID();
         case 2:
-            return currentState.getSID();
+            return state.getSID();
         case 3:
-            return currentState.getTSV();
+            return state.getTSV();
         case 4:
-            return currentState.getDelay();
+            return state.getDelay();
         case 5:
-            return currentState.getSeconds();
+            return state.getSeconds();
         }
     }
     return QVariant();

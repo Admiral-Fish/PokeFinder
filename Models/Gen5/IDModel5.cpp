@@ -34,23 +34,23 @@ QVariant IDModel5::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        auto currentState = model.at(index.row());
+        auto state = model.at(index.row());
         switch (index.column())
         {
         case 0:
-            return QString::number(currentState.getSeed(), 16).toUpper().rightJustified(16, '0');
+            return QString::number(state.getSeed(), 16).toUpper().rightJustified(16, '0');
         case 1:
-            return currentState.getInitialAdvances();
+            return state.getInitialAdvances();
         case 2:
-            return currentState.getAdvance();
+            return state.getAdvance();
         case 3:
-            return currentState.getTID();
+            return state.getTID();
         case 4:
-            return currentState.getSID();
+            return state.getSID();
         case 5:
-            return currentState.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
+            return state.getDateTime().toString("MM-dd-yyyy hh:mm:ss");
         case 6:
-            return Translator::getKeypresses(currentState.getKeypress());
+            return Translator::getKeypresses(state.getKeypress());
         }
     }
     return QVariant();

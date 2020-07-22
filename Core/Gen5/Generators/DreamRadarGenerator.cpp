@@ -71,16 +71,16 @@ QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rngList.advanceStates(2), rng.next())
     {
-        State currentState(cnt + initialAdvances);
+        State state(cnt + initialAdvances);
 
         BWRNG go(rng.getSeed());
         go.advance(pidAdvances);
 
         for (u8 i = 0; i < 6; i++)
         {
-            currentState.setIVs(i, rngList.getValue());
+            state.setIVs(i, rngList.getValue());
         }
-        currentState.calculateHiddenPower();
+        state.calculateHiddenPower();
 
         go.next(); // Advance skip ???
         u32 pid = go.nextUInt();
@@ -89,16 +89,16 @@ QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
         if (radarSlot.type == 0 || radarSlot.type == 1) // Genies already male, gen 4 legends also get assigned male pids
         {
             pid = Utilities::forceGender(pid, go.next() >> 32, 0, 0);
-            currentState.setGender(radarSlot.gender);
+            state.setGender(radarSlot.gender);
         }
         else if (radarSlot.gender == 0 || radarSlot.gender == 1)
         {
             pid = Utilities::forceGender(pid, go.next() >> 32, radarSlot.gender, radarSlot.genderRatio);
-            currentState.setGender(pid & 0xff, radarSlot.genderRatio);
+            state.setGender(pid & 0xff, radarSlot.genderRatio);
         }
         else
         {
-            currentState.setGender(2);
+            state.setGender(2);
         }
 
         // Flip ability
@@ -110,19 +110,19 @@ QVector<State> DreamRadarGenerator::generate(u64 seed, bool memory)
             pid ^= 0x10000000;
         }
 
-        currentState.setPID(pid);
-        currentState.setAbility(2);
-        currentState.setShiny(0);
+        state.setPID(pid);
+        state.setAbility(2);
+        state.setShiny(0);
 
         go.advance(2);
 
-        currentState.setNature(go.nextUInt(25));
+        state.setNature(go.nextUInt(25));
 
-        currentState.setSeed(rng.nextUInt(8)); // Needle calculation
+        state.setSeed(rng.nextUInt(8)); // Needle calculation
 
-        if (filter.compareState(currentState))
+        if (filter.compareState(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 

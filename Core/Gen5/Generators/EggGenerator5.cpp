@@ -72,7 +72,7 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        EggState currentState(cnt + initialAdvances);
+        EggState state(cnt + initialAdvances);
         // TODO: chatot
 
         BWRNG go(rng.getSeed());
@@ -104,7 +104,7 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
                 }
             }
         }
-        currentState.setNature(nature);
+        state.setNature(nature);
 
         // Add check for mother having HA
         bool hiddenAbility = go.nextUInt(100) >= 40 && parentAbility == 2;
@@ -146,16 +146,16 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
                 u8 parent = go.nextUInt(2);
                 u8 item = daycare.getParentItem(parent);
 
-                currentState.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-                currentState.setInheritance(item - 2, parent + 1);
+                state.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
+                state.setInheritance(item - 2, parent + 1);
             }
             else
             {
                 u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(1) <= 7) ? 0 : 1;
                 u8 item = daycare.getParentItem(parent);
 
-                currentState.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-                currentState.setInheritance(item - 2, parent + 1);
+                state.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
+                state.setInheritance(item - 2, parent + 1);
             }
         }
 
@@ -166,22 +166,22 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
             u8 parent = go.nextUInt(2);
 
             // Assign stat inheritance
-            if (currentState.getInheritance(index) == 0)
+            if (state.getInheritance(index) == 0)
             {
                 inheritance++;
-                currentState.setIVs(index, daycare.getParentIV(parent, index));
-                currentState.setInheritance(index, parent + 1);
+                state.setIVs(index, daycare.getParentIV(parent, index));
+                state.setInheritance(index, parent + 1);
             }
         }
 
         for (u8 i = 0; i < 6; i++)
         {
-            if (currentState.getInheritance(i) == 0)
+            if (state.getInheritance(i) == 0)
             {
-                currentState.setIVs(i, ivs[i]);
+                state.setIVs(i, ivs[i]);
             }
         }
-        currentState.calculateHiddenPower();
+        state.calculateHiddenPower();
 
         u32 pid = go.nextUInt(0xffffffff);
         for (u8 i = 0; i < rolls && !isShiny(pid, tsv); i++)
@@ -189,14 +189,14 @@ QVector<EggState> EggGenerator5::generateBW(u64 seed) const
             pid = go.nextUInt(0xffffffff);
         }
 
-        currentState.setPID(pid);
-        currentState.setAbility(hiddenAbility ? 2 : ((pid >> 16) & 1));
-        currentState.setGender(pid & 255, genderRatio);
-        currentState.setShiny(tsv, (pid >> 16) ^ (pid ^ 0xffff), 8);
+        state.setPID(pid);
+        state.setAbility(hiddenAbility ? 2 : ((pid >> 16) & 1));
+        state.setGender(pid & 255, genderRatio);
+        state.setShiny(tsv, (pid >> 16) ^ (pid ^ 0xffff), 8);
 
-        if (filter.compareState(currentState))
+        if (filter.compareState(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 
@@ -213,8 +213,8 @@ QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
     u64 eggSeed = static_cast<u64>(mt.next()) << 32;
     eggSeed |= mt.next();
 
-    EggState currentState = generateBW2Egg(eggSeed);
-    if (filter.compareIVs(currentState) && filter.compareAbility(currentState) && filter.compareNature(currentState))
+    EggState state = generateBW2Egg(eggSeed);
+    if (filter.compareIVs(state) && filter.compareAbility(state) && filter.compareNature(state))
     {
         BWRNG rng(seed);
         rng.advance(initialAdvances + offset);
@@ -225,7 +225,7 @@ QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
             go.advance(2); // 2 blanks
 
             u32 pid = go.nextUInt();
-            if (((pid >> 16) & 1) != currentState.getAbility())
+            if (((pid >> 16) & 1) != state.getAbility())
             {
                 pid ^= 0x10000;
             }
@@ -233,20 +233,20 @@ QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
             for (u8 i = 0; i < rolls && !isShiny(pid, tsv); i++)
             {
                 pid = go.nextUInt();
-                if (((pid >> 16) & 1) != currentState.getAbility())
+                if (((pid >> 16) & 1) != state.getAbility())
                 {
                     pid ^= 0x10000;
                 }
             }
 
-            currentState.setPID(pid);
-            currentState.setGender(pid & 255, genderRatio);
-            currentState.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
+            state.setPID(pid);
+            state.setGender(pid & 255, genderRatio);
+            state.setShiny(tsv, (pid >> 16) ^ (pid & 0xffff), 8);
 
-            if (filter.compareShiny(currentState) && filter.compareGender(currentState))
+            if (filter.compareShiny(state) && filter.compareGender(state))
             {
-                currentState.setAdvance(initialAdvances + cnt);
-                states.append(currentState);
+                state.setAdvance(initialAdvances + cnt);
+                states.append(state);
             }
         }
     }
@@ -256,7 +256,7 @@ QVector<EggState> EggGenerator5::generateBW2(u64 seed) const
 
 EggState EggGenerator5::generateBW2Egg(u64 seed) const
 {
-    EggState currentState(0);
+    EggState state(0);
     BWRNG rng(seed);
 
     // False: Nidoran-F / Volbeat
@@ -282,7 +282,7 @@ EggState EggGenerator5::generateBW2Egg(u64 seed) const
             nature = daycare.getParentNature(parent);
         }
     }
-    currentState.setNature(nature);
+    state.setNature(nature);
 
     u8 ability;
     if (!ditto)
@@ -306,7 +306,7 @@ EggState EggGenerator5::generateBW2Egg(u64 seed) const
         rng.advance(1);
         ability = rng.nextUInt(2);
     }
-    currentState.setAbility(ability);
+    state.setAbility(ability);
 
     // Power Items
     u8 inheritance = 0;
@@ -321,16 +321,16 @@ EggState EggGenerator5::generateBW2Egg(u64 seed) const
             u8 parent = rng.nextUInt(2);
             u8 item = daycare.getParentItem(parent);
 
-            currentState.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-            currentState.setInheritance(item - 2, parent + 1);
+            state.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
+            state.setInheritance(item - 2, parent + 1);
         }
         else
         {
             u8 parent = (daycare.getParentItem(0) >= 2 && daycare.getParentItem(1) <= 7) ? 0 : 1;
             u8 item = daycare.getParentItem(parent);
 
-            currentState.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
-            currentState.setInheritance(item - 2, parent + 1);
+            state.setIVs(item - 2, daycare.getParentIV(parent, item - 2));
+            state.setInheritance(item - 2, parent + 1);
         }
     }
 
@@ -340,22 +340,22 @@ EggState EggGenerator5::generateBW2Egg(u64 seed) const
         u8 index = rng.nextUInt(6);
         u8 parent = rng.nextUInt(2);
 
-        if (currentState.getInheritance(index) == 0)
+        if (state.getInheritance(index) == 0)
         {
-            currentState.setIVs(index, daycare.getParentIV(parent, index));
-            currentState.setInheritance(index, parent + 1);
+            state.setIVs(index, daycare.getParentIV(parent, index));
+            state.setInheritance(index, parent + 1);
             inheritance++;
         }
     }
 
     for (u8 i = 0; i < 6; i++)
     {
-        if (currentState.getInheritance(i) == 0)
+        if (state.getInheritance(i) == 0)
         {
-            currentState.setIVs(i, rng.nextUInt(32));
+            state.setIVs(i, rng.nextUInt(32));
         }
     }
-    currentState.calculateHiddenPower();
+    state.calculateHiddenPower();
 
-    return currentState;
+    return state;
 }

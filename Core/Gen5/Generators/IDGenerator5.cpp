@@ -41,10 +41,10 @@ QVector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
         u16 tid = rand & 0xffff;
         u16 sid = rand >> 16;
 
-        IDState5 currentState(initialAdvances + cnt, tid, sid);
-        currentState.setInitialAdvances(initialAdvances);
+        IDState5 state(initialAdvances + cnt, tid, sid);
+        state.setInitialAdvances(initialAdvances);
 
-        if (filter.compare(currentState))
+        if (filter.compare(state))
         {
             if (checkPID)
             {
@@ -52,16 +52,16 @@ QVector<IDState5> IDGenerator5::generate(u64 seed, u32 pid, bool checkPID)
 
                 // Check if PID will be modified by the tid/sid combo
                 u16 actualPSV = (idBit ^ pidBit) ? xorPSV : psv;
-                if ((actualPSV >> 3) == currentState.getTSV())
+                if ((actualPSV >> 3) == state.getTSV())
                 {
-                    currentState.setSeed(seed);
-                    states.append(currentState);
+                    state.setSeed(seed);
+                    states.append(state);
                 }
             }
             else
             {
-                currentState.setSeed(seed);
-                states.append(currentState);
+                state.setSeed(seed);
+                states.append(state);
             }
         }
     }

@@ -33,20 +33,20 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        const auto &currentState = model.at(index.row());
+        const auto &state = model.at(index.row());
         switch (index.column())
         {
         case 0:
-            return currentState.getAdvance();
+            return state.getAdvance();
         case 1:
-            return QString::number(currentState.getPID(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 2:
         {
-            u8 shiny = currentState.getShiny();
+            u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 3:
-            switch (currentState.getInfo())
+            switch (state.getInfo())
             {
             case 0:
                 return tr("Common");
@@ -56,11 +56,11 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
                 return tr("Rare");
             }
         case 4:
-            return Translator::getNature(currentState.getNature());
+            return Translator::getNature(state.getNature());
         case 5:
-            return currentState.getAbility();
+            return state.getAbility();
         case 6:
-            return Translator::getGender(currentState.getGender());
+            return Translator::getGender(state.getGender());
         }
     }
     return QVariant();

@@ -27,42 +27,42 @@ StateFilter::StateFilter(u8 gender, u8 ability, u8 shiny, bool skip, const QVect
 {
 }
 
-bool StateFilter::compareState(const State &currentState) const
+bool StateFilter::compareState(const State &state) const
 {
-    return comparePID(currentState) && compareIVs(currentState);
+    return comparePID(state) && compareIVs(state);
 }
 
-bool StateFilter::comparePID(const State &currentState) const
+bool StateFilter::comparePID(const State &state) const
 {
-    return compareShiny(currentState) && compareAbility(currentState) && compareGender(currentState) && compareNature(currentState);
+    return compareShiny(state) && compareAbility(state) && compareGender(state) && compareNature(state);
 }
 
-bool StateFilter::compareIVs(const State &currentState) const
+bool StateFilter::compareIVs(const State &state) const
 {
-    return compareHiddenPower(currentState) && compareIV(currentState);
+    return compareHiddenPower(state) && compareIV(state);
 }
 
-bool StateFilter::compareAbility(const State &currentState) const
+bool StateFilter::compareAbility(const State &state) const
 {
-    return skip || ability == 255 || ability == currentState.getAbility();
+    return skip || ability == 255 || ability == state.getAbility();
 }
 
-bool StateFilter::compareGender(const State &currentState) const
+bool StateFilter::compareGender(const State &state) const
 {
-    return skip || gender == 255 || gender == currentState.getGender();
+    return skip || gender == 255 || gender == state.getGender();
 }
 
-bool StateFilter::compareNature(const State &currentState) const
+bool StateFilter::compareNature(const State &state) const
 {
-    return skip || natures.at(currentState.getNature());
+    return skip || natures.at(state.getNature());
 }
 
-bool StateFilter::compareShiny(const State &currentState) const
+bool StateFilter::compareShiny(const State &state) const
 {
-    return skip || shiny == 255 || (shiny & currentState.getShiny());
+    return skip || shiny == 255 || (shiny & state.getShiny());
 }
 
-bool StateFilter::compareIV(const State &currentState) const
+bool StateFilter::compareIV(const State &state) const
 {
     if (skip)
     {
@@ -71,7 +71,7 @@ bool StateFilter::compareIV(const State &currentState) const
 
     for (u8 i = 0; i < 6; i++)
     {
-        u8 iv = currentState.getIV(i);
+        u8 iv = state.getIV(i);
 
         if (iv < min.at(i) || iv > max.at(i))
         {
@@ -82,12 +82,12 @@ bool StateFilter::compareIV(const State &currentState) const
     return true;
 }
 
-bool StateFilter::compareHiddenPower(const State &currentState) const
+bool StateFilter::compareHiddenPower(const State &state) const
 {
-    return skip || powers.at(currentState.getHidden());
+    return skip || powers.at(state.getHidden());
 }
 
-bool StateFilter::compareEncounterSlot(const WildState &currentState) const
+bool StateFilter::compareEncounterSlot(const WildState &state) const
 {
-    return skip || encounters.at(currentState.getEncounterSlot());
+    return skip || encounters.at(state.getEncounterSlot());
 }

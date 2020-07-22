@@ -29,7 +29,7 @@ class HiddenGrottoFilter
 {
 public:
     HiddenGrottoFilter(const QVector<bool> &groups, const QVector<bool> &encounterSlots, const QVector<bool> &genders);
-    bool compareState(const HiddenGrottoState &currentState);
+    bool compareState(const HiddenGrottoState &state);
 
 private:
     QVector<bool> groups;

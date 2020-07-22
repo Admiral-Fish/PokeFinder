@@ -56,7 +56,7 @@ QVector<State> StationaryGenerator3::generateMethod124(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        State currentState(cnt + initialAdvances);
+        State state(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());
 
         u16 low = go.nextUShort();
@@ -67,18 +67,18 @@ QVector<State> StationaryGenerator3::generateMethod124(u32 seed) const
         go.advance(method == Method::Method4);
         u16 iv2 = go.nextUShort();
 
-        currentState.setPID(high, low);
-        currentState.setAbility(low & 1);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(tsv, high ^ low, 8);
+        state.setPID(high, low);
+        state.setAbility(low & 1);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(tsv, high ^ low, 8);
 
-        currentState.setIVs(iv1, iv2);
-        currentState.calculateHiddenPower();
+        state.setIVs(iv1, iv2);
+        state.calculateHiddenPower();
 
-        if (filter.compareState(currentState))
+        if (filter.compareState(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 
@@ -96,7 +96,7 @@ QVector<State> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
 
     for (u32 cnt = 0; cnt < maxResults; cnt++, rng.next())
     {
-        State currentState(cnt + initialAdvances);
+        State state(cnt + initialAdvances);
         PokeRNG go(rng.getSeed());
 
         u16 high = go.nextUShort();
@@ -104,18 +104,18 @@ QVector<State> StationaryGenerator3::generateMethod1Reverse(u32 seed) const
         u16 iv1 = go.nextUShort();
         u16 iv2 = go.nextUShort();
 
-        currentState.setPID(high, low);
-        currentState.setAbility(low & 1);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(tsv, high ^ low, 8);
+        state.setPID(high, low);
+        state.setAbility(low & 1);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(tsv, high ^ low, 8);
 
-        currentState.setIVs(iv1, iv2);
-        currentState.calculateHiddenPower();
+        state.setIVs(iv1, iv2);
+        state.calculateHiddenPower();
 
-        if (filter.compareState(currentState))
+        if (filter.compareState(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 

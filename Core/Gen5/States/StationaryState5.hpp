@@ -13,18 +13,18 @@ public:
     {
     }
 
-    u32 getIVCurrentState() const
+    u32 getIVState() const
     {
-        return ivCurrentState;
+        return ivState;
     }
 
-    void setIVCurrentState(u32 ivCurrentState)
+    void setIVState(u32 ivState)
     {
-        this->ivCurrentState = ivCurrentState;
+        this->ivState = ivState;
     }
 
 private:
-    u32 ivCurrentState;
+    u32 ivState;
 };
 
 #endif // STATIONARYSTATE5_HPP

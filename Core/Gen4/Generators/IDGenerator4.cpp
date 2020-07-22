@@ -44,13 +44,13 @@ QVector<IDState4> IDGenerator4::generate(const IDFilter &filter)
             u16 tid = sidtid & 0xFFFF;
             u16 sid = sidtid >> 16;
 
-            IDState4 currentState(seed, tid, sid);
+            IDState4 state(seed, tid, sid);
 
-            if (filter.compare(currentState))
+            if (filter.compare(state))
             {
-                currentState.setDelay(efgh + 2000 - year);
-                currentState.setSeconds(second);
-                states.append(currentState);
+                state.setDelay(efgh + 2000 - year);
+                state.setSeconds(second);
+                states.append(state);
             }
         }
     }

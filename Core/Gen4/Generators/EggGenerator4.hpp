@@ -35,7 +35,7 @@ private:
     QVector<EggState4> generateMasuada(u32 seed) const;
     QVector<EggState4> generateDPPtIVs(u32 seed) const;
     QVector<EggState4> generateHGSSIVs(u32 seed) const;
-    void setInheritance(EggState4 &currentState, const u16 *inh, const u16 *par, bool broken) const;
+    void setInheritance(EggState4 &state, const u16 *inh, const u16 *par, bool broken) const;
 };
 
 #endif // EGGGENERATOR4_HPP

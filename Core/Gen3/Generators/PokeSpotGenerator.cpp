@@ -49,7 +49,7 @@ QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
             // Munchlax provides a skip
             if ((go.nextUShort() % 100) >= 10)
             {
-                GameCubeState currentState(initialAdvances + cnt);
+                GameCubeState state(initialAdvances + cnt);
 
                 // Check what type the pokespot is
                 u8 call = go.nextUShort() % 100;
@@ -59,7 +59,7 @@ QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
                     {
                         continue;
                     }
-                    currentState.setInfo(0);
+                    state.setInfo(0);
                 }
                 else if (call > 49 && call < 85)
                 {
@@ -67,7 +67,7 @@ QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
                     {
                         continue;
                     }
-                    currentState.setInfo(1);
+                    state.setInfo(1);
                 }
                 else
                 {
@@ -75,21 +75,21 @@ QVector<GameCubeState> PokeSpotGenerator::generate(u32 seed) const
                     {
                         continue;
                     }
-                    currentState.setInfo(2);
+                    state.setInfo(2);
                 }
 
                 u16 high = go.nextUShort();
                 u16 low = go.nextUShort();
 
-                currentState.setPID(high, low);
-                currentState.setAbility(low & 1);
-                currentState.setGender(low & 255, genderRatio);
-                currentState.setNature(currentState.getPID() % 25);
-                currentState.setShiny(tsv, high ^ low, 8);
+                state.setPID(high, low);
+                state.setAbility(low & 1);
+                state.setGender(low & 255, genderRatio);
+                state.setNature(state.getPID() % 25);
+                state.setShiny(tsv, high ^ low, 8);
 
-                if (filter.comparePID(currentState))
+                if (filter.comparePID(state))
                 {
-                    states.append(currentState);
+                    states.append(state);
                 }
             }
         }

@@ -53,10 +53,10 @@ QVector<HiddenGrottoState> HiddenGrottoGenerator::generate(u64 seed)
 
             u8 gender = go.nextUInt(100) < genderRatio;
 
-            HiddenGrottoState currentState(initialAdvances + cnt, group, slot, gender);
-            if (filter.compareState(currentState))
+            HiddenGrottoState state(initialAdvances + cnt, group, slot, gender);
+            if (filter.compareState(state))
             {
-                states.append(currentState);
+                states.append(state);
             }
         }
     }

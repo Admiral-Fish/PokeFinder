@@ -34,13 +34,13 @@ QVariant PIDIVModel::data(const QModelIndex &index, int role) const
 {
     if (role == Qt::DisplayRole)
     {
-        auto const &currentState = model.at(index.row());
+        auto const &state = model.at(index.row());
         switch (index.column())
         {
         case 0:
-            return QString::number(currentState.getSeed(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getSeed(), 16).toUpper().rightJustified(8, '0');
         case 1:
-            switch (currentState.getMethod())
+            switch (state.getMethod())
             {
             case Method::Method1:
                 return tr("Method 1");
@@ -60,7 +60,7 @@ QVariant PIDIVModel::data(const QModelIndex &index, int role) const
             QString result;
             for (u8 i = 0; i < 6; i++)
             {
-                result += QString::number(currentState.getIV(i));
+                result += QString::number(state.getIV(i));
                 if (i != 5)
                 {
                     result += ".";

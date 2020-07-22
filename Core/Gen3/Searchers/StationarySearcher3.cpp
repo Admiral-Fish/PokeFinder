@@ -100,12 +100,12 @@ QVector<State> StationarySearcher3::search(u8 hp, u8 atk, u8 def, u8 spa, u8 spd
 QVector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<State> states;
-    State currentState;
+    State state;
 
-    currentState.setIVs(hp, atk, def, spa, spd, spe);
-    currentState.calculateHiddenPower();
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(currentState))
+    if (!filter.compareHiddenPower(state))
     {
         return states;
     }
@@ -120,25 +120,25 @@ QVector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 sp
         u16 high = rng.nextUShort();
         u16 low = rng.nextUShort();
 
-        currentState.setSeed(rng.next());
-        currentState.setPID(high, low);
-        currentState.setAbility(low & 1);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(tsv, high ^ low, 8);
+        state.setSeed(rng.next());
+        state.setPID(high, low);
+        state.setAbility(low & 1);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(tsv, high ^ low, 8);
 
-        if (filter.comparePID(currentState))
+        if (filter.comparePID(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
 
         // Setup XORed state
-        currentState.setSeed(currentState.getSeed() ^ 0x80000000);
-        currentState.setPID(currentState.getPID() ^ 0x80008000);
-        currentState.setNature(currentState.getPID() % 25);
-        if (filter.comparePID(currentState))
+        state.setSeed(state.getSeed() ^ 0x80000000);
+        state.setPID(state.getPID() ^ 0x80008000);
+        state.setNature(state.getPID() % 25);
+        if (filter.comparePID(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
     return states;
@@ -147,12 +147,12 @@ QVector<State> StationarySearcher3::searchMethod124(u8 hp, u8 atk, u8 def, u8 sp
 QVector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, u8 spa, u8 spd, u8 spe) const
 {
     QVector<State> states;
-    State currentState;
+    State state;
 
-    currentState.setIVs(hp, atk, def, spa, spd, spe);
-    currentState.calculateHiddenPower();
+    state.setIVs(hp, atk, def, spa, spd, spe);
+    state.calculateHiddenPower();
 
-    if (!filter.compareHiddenPower(currentState))
+    if (!filter.compareHiddenPower(state))
     {
         return states;
     }
@@ -167,25 +167,25 @@ QVector<State> StationarySearcher3::searchMethod1Reverse(u8 hp, u8 atk, u8 def, 
         u16 low = rng.nextUShort();
         u16 high = rng.nextUShort();
 
-        currentState.setSeed(rng.next());
-        currentState.setPID(high, low);
-        currentState.setAbility(low & 1);
-        currentState.setGender(low & 255, genderRatio);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setShiny(tsv, high ^ low, 8);
+        state.setSeed(rng.next());
+        state.setPID(high, low);
+        state.setAbility(low & 1);
+        state.setGender(low & 255, genderRatio);
+        state.setNature(state.getPID() % 25);
+        state.setShiny(tsv, high ^ low, 8);
 
-        if (filter.comparePID(currentState))
+        if (filter.comparePID(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
 
         // Setup XORed state
-        currentState.setPID(currentState.getPID() ^ 0x80008000);
-        currentState.setNature(currentState.getPID() % 25);
-        currentState.setSeed(currentState.getSeed() ^ 0x80000000);
-        if (filter.comparePID(currentState))
+        state.setPID(state.getPID() ^ 0x80008000);
+        state.setNature(state.getPID() % 25);
+        state.setSeed(state.getSeed() ^ 0x80000000);
+        if (filter.comparePID(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
     return states;

@@ -57,27 +57,27 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
     {
         int column = getColumn(index.column());
 
-        const auto &currentState = model.at(index.row());
+        const auto &state = model.at(index.row());
         switch (column)
         {
         case 0:
         case 1:
-            return currentState.getAdvance();
+            return state.getAdvance();
         case 2:
-            return currentState.getPickupAdvance();
+            return state.getPickupAdvance();
         case 3:
-            return currentState.getRedraw();
+            return state.getRedraw();
         case 4:
-            return QString::number(currentState.getPID(), 16).toUpper().rightJustified(8, '0');
+            return QString::number(state.getPID(), 16).toUpper().rightJustified(8, '0');
         case 5:
         {
-            u8 shiny = currentState.getShiny();
+            u8 shiny = state.getShiny();
             return shiny == 2 ? tr("Square") : shiny == 1 ? tr("Star") : tr("No");
         }
         case 6:
-            return Translator::getNature(currentState.getNature());
+            return Translator::getNature(state.getNature());
         case 7:
-            return currentState.getAbility();
+            return state.getAbility();
         case 8:
         case 9:
         case 10:
@@ -86,19 +86,19 @@ QVariant EggModel3::data(const QModelIndex &index, int role) const
         case 13:
             if (showInheritance)
             {
-                u8 inh = currentState.getInheritance(static_cast<u8>(column - 8));
+                u8 inh = state.getInheritance(static_cast<u8>(column - 8));
                 if (inh)
                 {
                     return inh == 1 ? "A" : "B";
                 }
             }
-            return currentState.getIV(static_cast<u8>(column - 8));
+            return state.getIV(static_cast<u8>(column - 8));
         case 14:
-            return Translator::getHiddenPower(currentState.getHidden());
+            return Translator::getHiddenPower(state.getHidden());
         case 15:
-            return currentState.getPower();
+            return state.getPower();
         case 16:
-            return Translator::getGender(currentState.getGender());
+            return Translator::getGender(state.getGender());
         }
     }
 

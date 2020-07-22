@@ -44,11 +44,11 @@ QVector<IDState3> IDGenerator3::generateXDColo(u32 seed)
         u16 tid = go.nextUShort();
         u16 sid = go.nextUShort();
 
-        IDState3 currentState(initialAdvances + cnt, tid, sid);
+        IDState3 state(initialAdvances + cnt, tid, sid);
 
-        if (filter.compare(currentState))
+        if (filter.compare(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 
@@ -66,11 +66,11 @@ QVector<IDState3> IDGenerator3::generateFRLGE(u32 seed)
     {
         u16 sid = rng.nextUShort();
 
-        IDState3 currentState(initialAdvances + cnt, staticTID, sid);
+        IDState3 state(initialAdvances + cnt, staticTID, sid);
 
-        if (filter.compare(currentState))
+        if (filter.compare(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 
@@ -91,11 +91,11 @@ QVector<IDState3> IDGenerator3::generateRS(u32 seed)
         u16 sid = go.nextUShort();
         u16 tid = go.nextUShort();
 
-        IDState3 currentState(initialAdvances + cnt, tid, sid);
+        IDState3 state(initialAdvances + cnt, tid, sid);
 
-        if (filter.compare(currentState))
+        if (filter.compare(state))
         {
-            states.append(currentState);
+            states.append(state);
         }
     }
 
